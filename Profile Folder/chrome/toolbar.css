@@ -266,16 +266,3 @@ toolbar
 .toolbarbutton-animatable-box {
   display: none !important;
 }
-#identity-box[pageproxystate="valid"].verifiedDomain:not(.certUserOverridden) #identity-icon {
-  background-image: url(assets/img/toolbar/httpslock.png);
-  height: 19px !important;
-  width: 19px !important;
-}
-#identity-box[pageproxystate=valid].certUserOverridden #identity-icon {
-  background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-}
-#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
-  background-image: url(assets/img/toolbar/httpslock.png);
-  height: 19px !important;
-  width: 19px !important;
-}

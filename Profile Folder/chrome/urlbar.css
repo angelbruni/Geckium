@@ -27,11 +27,42 @@
   content: "";
   height: 2px;
   top: 12px;
-  left: calc(100% + 2px);
+  left: calc(100% + 1px);
+  pointer-events: none !important;
   rotate: -16deg;
   width: 40px;
   z-index: 100;
   background: #a20000;
+}
+
+#identity-box[pageproxystate="valid"].notSecureText, #identity-box[pageproxystate="valid"].chromeUI, #identity-box[pageproxystate="valid"].extensionPage, #urlbar-label-box {
+  margin-inline-end: 4px !important;
+}
+#identity-box[pageproxystate="valid"].weakCipher #identity-icon, #identity-box[pageproxystate="valid"].mixedDisplayContent #identity-icon, #identity-box[pageproxystate="valid"].mixedDisplayContentLoadedActiveBlocked #identity-icon, #identity-box[pageproxystate="valid"].certUserOverridden #identity-icon, #identity-box[pageproxystate="valid"].certErrorPage #identity-icon {
+  list-style-image: none !important;
+  background-image: url(assets/img/toolbar/warninglock.png) !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+#identity-box[pageproxystate="valid"].notSecure #identity-icon, #identity-box[pageproxystate="valid"].mixedActiveContent #identity-icon, #identity-box[pageproxystate="valid"].httpsOnlyErrorPage #identity-icon {
+  list-style-image: none !important;
+  background-image: url(assets/img/toolbar/unsecurelock.png) !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+
+#identity-box[pageproxystate="valid"].verifiedDomain:not(.certUserOverridden) #identity-icon {
+  background-image: url(assets/img/toolbar/httpslock.png);
+  height: 19px !important;
+  width: 19px !important;
+}
+#identity-box[pageproxystate=valid].certUserOverridden #identity-icon {
+  background-image: url(assets/img/toolbar/unsecurelock.png) !important;
+}
+#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon, #identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
+  background-image: url(assets/img/toolbar/httpslock.png);
+  height: 19px !important;
+  width: 19px !important;
 }
 
 #urlbar-background {
@@ -70,6 +101,25 @@
 #identity-box[pageproxystate="valid"].chromeUI #identity-icon, #identity-box.unknownIdentity #identity-icon, #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate="invalid"] #identity-icon {
   list-style-image: none !important;
   background-image: url("assets/img/toolbar/grayfolder.png");
+}
+
+.urlbarView-title:is([isurl="true"]):before {
+  display: none !important;
+}
+.urlbarView-action {
+  display: none !important;
+}
+.urlbarView-row[type="search"]:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  height: 18px;
+  width: 18px;
+  background-image: url("assets/img/toolbar/search.png") !important;
+  background-size: cover !important;
+}
+.urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]), .urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
+ fill: transparent;
 }
 
 #identity-icon-label {
