@@ -7,11 +7,11 @@
 .urlbarView {
   display: block;
   background: rgb(255, 255, 255, 0.9) !important;
-  border: 1px solid rgb(0, 0, 0, 20%) !important;
+  border: 1px solid rgba(0,0,0,.3) !important;
   margin-top: 2px !important;
   margin-inline: 0 !important;
   box-shadow: 0 0 16px rgb(0, 0, 0, 16%);
-  border-radius: 3px;
+  border-radius: 5px;
   width: 100% !important;
   padding: 0;
 }
@@ -115,7 +115,8 @@
 }
 
 .urlbarView-row-inner {
-  padding-block: 4px !important;
+	padding-block-start: 2px !important;
+  	padding-block-end: 3px !important;
 }
 
 .urlbarView-dynamic-onboardTabToSearch-no-wrap .urlbarView-dynamic-onboardTabToSearch-icon {
