@@ -4,6 +4,16 @@
   --tab-transition-time: 220ms;
 }
 
+:not(:root[tabsintitlebar]) .toolbar-items {
+  margin-top: -7px !important;
+}
+:root[tabsintitlebar]:not(:root[sizemode="maximized"]) .toolbar-items {
+  padding-top: 23px !important;
+}
+:root[sizemode="maximized"] .toolbar-items {
+  margin-top: -3px !important;
+}
+
 /* bruni: This is the animation responsible for hiding the tab
 		  when the background reaches min-width. */
 @keyframes hide-tab {
@@ -27,7 +37,7 @@
   margin-top: 4px !important;
 }
 .tab-content {
-  margin-left: -15px !important;
+  margin-left: -13px !important;
 }
 .tabbrowser-tab:not([visuallyselected="true"]) .tab-content::before {
   background: url(assets/img/tabbar/tab_inactive_left.png) no-repeat;
@@ -197,10 +207,6 @@
   display: none !important;
 }
 
-#tabbrowser-arrowscrollbox {
-  padding-top: 10px !important;
-}
-
 .tab-content {
   padding: 0;
   overflow: hidden !important;
@@ -220,7 +226,6 @@
 }
 
 .tabbrowser-tab:first-of-type {
-  margin-left: 16px !important;
   margin-left: 13px !important;
 }
 
@@ -292,7 +297,7 @@
 }
 
 #tabbrowser-tabs {
-  padding-left: 4px !important;
+  padding-left: 2px !important;
 }
 
 .tabbrowser-tab:not([visuallyselected="true"]):hover .tab-glare-container {
