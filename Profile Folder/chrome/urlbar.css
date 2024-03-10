@@ -1,0 +1,129 @@
+#urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background,
+#searchbar:focus-within {
+  outline: transparent !important;
+}
+
+.verifiedDomain {
+  position: relative;
+}
+#urlbar:not([focused="true"]) .verifiedDomain[pageproxystate="valid"]::after {
+  content: "https";
+  position: absolute;
+  left: calc(100% + 4px);
+  pointer-events: none;
+  margin-top: 2px;
+  color: #4c9817;
+  background: white;
+  z-index: 100;
+  font-size: 16px;
+  z-index: 10;
+}
+#urlbar:not([focused="true"]) .verifiedDomain[pageproxystate="valid"]:is(.certUserOverridden)::after {
+  color: #a20000 !important;
+}
+#urlbar:not([focused="true"]) .verifiedDomain[pageproxystate="valid"]:is(.certUserOverridden)::before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 2px;
+  top: 12px;
+  left: calc(100% + 2px);
+  rotate: -16deg;
+  width: 40px;
+  z-index: 100;
+  background: #a20000;
+}
+
+#urlbar-background {
+  background: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(0, 0, 0, 20%) !important;
+  border-top: 1px solid rgb(0, 0, 0, 30%) !important;
+  box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+    inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;
+  border-radius: 3px !important;
+  height: 26px;
+}
+
+.browser-toolbar:not(.titlebar-color) {
+  background: linear-gradient(to top, #e3e3e4, #f7f7f7);
+}
+
+#urlbar-label-box {
+  font-size: 12px !important;
+  color: rgb(0, 0, 0, 50%) !important;
+  padding-inline: 0 !important;
+}
+#identity-box-button, #urlbar-search-mode-indicator {
+  background: transparent !important;
+}
+#urlbar-search-mode-indicator {
+  font-size: 12px !important;
+  padding-inline: 0 !important;
+  color: rgb(0, 0, 0, 60%) !important;
+}
+#urlbar-search-mode-indicator #urlbar-search-mode-indicator-title {
+  display: block !important;
+}
+#identity-box[pageproxystate="valid"].notSecureText > .identity-box-button, #identity-box[pageproxystate="valid"].chromeUI > .identity-box-button, #identity-box[pageproxystate="valid"].extensionPage > .identity-box-button, #urlbar-label-box {
+  background: transparent !important;
+}
+#identity-box[pageproxystate="valid"].chromeUI #identity-icon, #identity-box.unknownIdentity #identity-icon, #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate="invalid"] #identity-icon {
+  list-style-image: none !important;
+  background-image: url("assets/img/toolbar/grayfolder.png");
+}
+
+#identity-icon-label {
+  display: none;
+}
+
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+.urlbar-input-box {
+  height: 24px !important;
+  font-size: 16px !important;
+}
+#urlbar-container {
+  padding: 0 !important;
+  --urlbar-container-height: 28px !important;
+}
+
+#urlbar-input-container {
+  height: 28px !important;
+  padding: 0 !important;
+  margin-top: -1px !important;
+}
+
+#urlbar[breakout][breakout-extend] #urlbar-input-container {
+  padding-block: 1px !important;
+  padding-inline: 1px !important;
+  padding: 0 !important;
+}
+
+#identity-box {
+  height: 26px !important;
+}
+
+#urlbar[breakout][breakout-extend] {
+  left: initial !important;
+  width: 100% !important;
+  top: 1px !important;
+}
+
+#urlbar[breakout][breakout-extend] > #urlbar-background {
+  animation: none !important;
+  box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+    inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
+}
+
+#urlbar {
+  --urlbar-toolbar-height: 30px !important;
+  --urlbar-height: 28px !important;
+}
+
+#urlbar[focused="true"] > #urlbar-background,
+#searchbar:focus-within {
+  box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+    inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
+}
