@@ -262,7 +262,8 @@ toolbar {
 
 #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
 #nav-bar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
-  	
+	
+	margin-left: var(--toolbar-start-end-padding) !important;
 }
 
 #PanelUI-menu-button {
