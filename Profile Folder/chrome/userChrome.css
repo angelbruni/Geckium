@@ -2,3 +2,7 @@
 @import url("urlbar.css");
 @import url("urlbar-menu.css");
 @import url("toolbar.css");
+
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tab-background:is([selected], [multiselected]) {
+  background: url(assets/img/tabbar/tab.png) no-repeat stretch !important;
+}
