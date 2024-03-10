@@ -752,8 +752,10 @@ toolbar[overflowable][customizing] > .customization-target {
   border-radius: 2px !important;
 }
 #tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up):hover, #tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-down):hover, #tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-up):hover, #tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-down):hover {
-  /*background: transparent !important;
-  box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+  background: transparent !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.58), 0 -1px 0 rgba(0, 0, 0, 0.06);
+}
+#tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up):active, #tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-down):active, #tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-up):active, #tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-down):active {
   transition: none !important;
   background-color: rgba(0, 0, 0, 0.12) !important;
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px transparent, 0 -1px 0 transparent;
@@ -765,8 +767,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]) {
   border-radius: 2px !important;
 }
 toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]):hover {
-  /*background: transparent !important;
-  box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+  background: transparent !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.58), 0 -1px 0 rgba(0, 0, 0, 0.06);
+}
+toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]):active {
   transition: none !important;
   background-color: rgba(0, 0, 0, 0.12) !important;
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px transparent, 0 -1px 0 transparent;
@@ -780,8 +784,12 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) {
 toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):hover > .toolbarbutton-icon,
 toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):hover > .toolbarbutton-text,
 toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):hover > .toolbarbutton-badge-stack {
-  /*background: transparent !important;
-  box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+  background: transparent !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.58), 0 -1px 0 rgba(0, 0, 0, 0.06);
+}
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolbarbutton-text,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolbarbutton-badge-stack {
   transition: none !important;
   background-color: rgba(0, 0, 0, 0.12) !important;
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px transparent, 0 -1px 0 transparent;

@@ -145,8 +145,11 @@ toolbar[overflowable][customizing]>.customization-target {
 			border-radius: 2px !important;
 
 			&:hover {
-				/*background: transparent !important;
-				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+				background: transparent !important;
+				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);
+			}
+
+			&:active {
 				transition: none !important;
 				background-color: rgb(0, 0, 0, 12%) !important;
 				box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
@@ -163,8 +166,11 @@ toolbarbutton {
 			border-radius: 2px !important;
 
 			&:hover {
-				/*background: transparent !important;
-				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+				background: transparent !important;
+				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);
+			}
+
+			&:active {
 				transition: none !important;
 				background-color: rgb(0, 0, 0, 12%) !important;
 				box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
@@ -184,8 +190,15 @@ toolbar {
 				> .toolbarbutton-icon,
 				> .toolbarbutton-text,
 				> .toolbarbutton-badge-stack {
-					/*background: transparent !important;
-					box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+					background: transparent !important;
+					box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);
+				}
+			}
+
+			&:active {
+				> .toolbarbutton-icon,
+				> .toolbarbutton-text,
+				> .toolbarbutton-badge-stack {
 					transition: none !important;
 					background-color: rgb(0, 0, 0, 12%) !important;
 					box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
