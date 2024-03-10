@@ -1,0 +1,350 @@
+:root {
+	--toolbarbutton-inner-padding: 5px !important;
+	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+	--toolbarbutton-outer-padding: 2px !important;
+	--chrome-content-separator-color: transparent !important;
+	--toolbar-start-end-padding: 6px !important;
+	--inner-border-color: #dfdfdf;
+
+	&:not([customizing]) {
+		.toolbarbutton-1[disabled="true"] {
+			opacity: 0.22 !important;
+			filter: brightness(1) contrast(2);
+		}
+	}
+
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.browser-toolbar {
+			margin-inline: 0 !important;
+			border-top-left-radius: 0 !important;
+			border-top-right-radius: 0 !important;
+		}
+		
+		#navigator-toolbox-background {
+			&::before {
+				left: 0;
+  				right: 0;
+  				bottom: 1px;
+			}
+		}
+
+		#nav-bar {
+			&::before,
+			&::after {
+				display: none !important;
+			}
+		}
+
+		#browser {
+			box-shadow: 0 !important;
+  			border: none;
+  			margin: 0;
+  			margin-top: -1px !important;
+		}
+	} 
+}
+
+.tab-close-button {
+	list-style-image: none !important;
+	height: 18px !important;
+	width: 18px !important;
+	margin-top: 2px;
+	background-image: url(assets/img/tabbar/tab_close_normal.png);
+
+	&:hover {
+		background-image: url(assets/img/tabbar/tab_close_hover.png)
+	}
+
+	&:active {
+		background-image: url(assets/img/tabbar/tab_close_pressed.png)
+	}
+}
+
+.close-icon:hover {
+	background-color: transparent !important;
+}
+
+.browser-toolbar {
+	border-top-left-radius: 4px !important;
+	border-top-right-radius: 4px !important;
+	margin-inline: 3px;
+}
+
+#navigator-toolbox-background {
+	position: relative;
+}
+
+#navigator-toolbox-background:before {
+	position: absolute;
+	left: 3px;
+	right: 3px;
+	bottom: 0;
+	content: "";
+	height: 1px;
+	box-shadow: 0 1px 0 0 #aaaabb !important;
+	z-index: 1;
+}
+
+toolbar[overflowable][customizing]>.customization-target {
+	overflow: visible !important;
+}
+
+#nav-bar {
+	padding: 4px 0 !important;
+
+	&::before,
+	&::after {
+		position: absolute;
+		content: "";
+		height: 37px;
+		width: 6px;
+		top: -1px;
+	}
+
+	&::before {
+		left: -2px;
+		background: url(assets/img/toolbar/toolbar_top_left_corner.png);
+	}
+
+	&::after {
+		background-size: 339px 6px;
+		transform: scaleY(1.024);
+		left: calc(100% - 4px);
+		background: url(assets/img/toolbar/toolbar_top_right_corner.png);
+	}
+
+	&:not([urlbar-exceeds-toolbar-bounds]) {
+		overflow: visible !important;
+	}
+
+	&:not(:-moz-lwtheme) {
+		box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
+	}
+}
+
+#browser {
+	border: 1px solid var(--inner-border-color);
+	margin: 3px;
+	margin-top: 0px;
+	box-shadow: 0 1px 3px rgb(0, 0, 0, 95%);
+	margin-top: -1px;
+}
+
+#TabsToolbar {
+	--toolbarbutton-inner-padding: 0 !important;
+}
+
+#tabbrowser-arrowscrollbox {
+	&:not([scrolledtostart="true"]),
+	&:not([scrolledtoend="true"]) {
+		&::part(scrollbutton-up),
+		&::part(scrollbutton-down) {
+			transition: all 100ms ease-in-out !important;
+			box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+			border-radius: 2px !important;
+
+			&:hover {
+				/*background: transparent !important;
+				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+				transition: none !important;
+				background-color: rgb(0, 0, 0, 12%) !important;
+				box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
+			}
+		}
+	}
+}
+
+toolbarbutton {
+	&.bookmark-item {
+		&:not(.subviewbutton, [disabled="true"], [open]) {
+			transition: all 100ms ease-in-out !important;
+			box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+			border-radius: 2px !important;
+
+			&:hover {
+				/*background: transparent !important;
+				box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+				transition: none !important;
+				background-color: rgb(0, 0, 0, 12%) !important;
+				box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
+			}
+		}
+	}
+}
+
+toolbar {
+	.toolbarbutton-1 {
+		&:not([disabled="true"], [checked], [open]) {
+			transition: all 100ms ease-in-out !important;
+			box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+			border-radius: 2px !important;
+
+			&:hover {
+				> .toolbarbutton-icon,
+				> .toolbarbutton-text,
+				> .toolbarbutton-badge-stack {
+					/*background: transparent !important;
+					box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);*/
+					transition: none !important;
+					background-color: rgb(0, 0, 0, 12%) !important;
+					box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
+				}
+			}
+		}
+	}
+}
+
+#stop-reload-button {
+	margin: 0 !important;
+}
+
+.toolbarbutton-1 {
+	padding: 0 !important;
+	margin: 0 var(--toolbarbutton-outer-padding) !important;
+
+	&[open="true"] {
+		.toolbarbutton-badge-stack {
+			background-color: rgb(0, 0, 0, 12%) !important;
+			box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%);
+			border-radius: 2px !important;
+		}
+	}
+
+	&:is(#PanelUI-menu-button) {
+		.toolbarbutton-badge-stack {
+			border-radius: 2px !important;
+		}
+	}
+}
+
+.identity-box-button {
+	padding-left: 4px !important;
+	padding-right: 0px !important;
+
+	&:hover {
+		&:not([open="true"]),
+		&:active {
+			background: transparent !important;
+		}
+	}
+
+	&[open="true"] {
+		background: transparent !important;
+	}
+}
+
+#tracking-protection-icon-container {
+	&:hover {
+		&:not([open="true"]),
+		&:active {
+			background: transparent !important;
+		}
+	}
+
+	&[open="true"] {
+		background: transparent !important;
+	}
+}
+
+#nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
+#nav-bar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
+  	padding-inline-start: 0 !important;
+}
+
+#PanelUI-menu-button {
+	margin-right: var(--toolbar-start-end-padding) !important;
+	list-style-image: none !important;
+	background-image: url(assets/img/toolbar/menu.png);
+	background-position: center;
+
+	.toolbarbutton-badge-stack {
+		height: 26px !important;
+	}
+}
+
+#identity-box {
+	&[pageproxystate="valid"] {
+		&.verifiedDomain,
+		&.mixedActiveBlocked {
+			#identity-icon {
+				list-style-image: none !important;
+				background-position: center;
+				background-size: contain;
+			}
+		}
+	}
+}
+
+#back-button,
+#forward-button,
+#reload-button,
+#stop-button,
+#unified-extensions-button,
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	list-style-image: none !important;
+	background-position: calc(50% - 1px);
+	background-size: 28px 28px;
+}
+
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	position: relative;
+	background-image: url(assets/img/tabbar/newtab_normal.png);
+	background-size: 34px 18px;
+	margin-top: 6px !important;
+	margin-left: -4px !important;
+	height: 18px;
+	width: 34px;
+
+	&:before {
+		position: absolute;
+		height: 18px;
+		width: 34px;
+		background: var(--inactive-tab-background-color);
+		mask-image: url(assets/img/tabbar/newtab_mask.png);
+		z-index: -1;
+		left: -1px;
+		content: "";
+	}
+
+	&:hover {
+		background-image: url(assets/img/tabbar/newtab_hover.png);
+	}
+
+	&:active {
+		background-image: url(assets/img/tabbar/newtab_pressed.png);
+	}
+}
+
+#back-button {
+	background-image: url(assets/img/toolbar/backforward.png);
+	background-size: 28px 28px;
+}
+
+#forward-button {
+	background-image: url(assets/img/toolbar/backforward.png);
+	background-position: center;
+	transform: scaleX(-1);
+}
+
+#reload-button {
+	background-image: url(assets/img/toolbar/refresh.png);
+	background-size: 32px 32px;
+}
+
+#stop-button {
+	background-image: url(assets/img/toolbar/stop.png);
+}
+
+#unified-extensions-button {
+	background-image: url(assets/img/toolbar/extenstions.png);
+	background-size: 28px 28px;
+	background-position: 50% calc(50% + 1px) !important;
+	list-style-image: none !important;
+}
+
+.toolbarbutton-animatable-box {
+	display: none !important;
+}
