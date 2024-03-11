@@ -1,6 +1,7 @@
 :root {
 	--urlbar-verified-proxystate-valid: #4c9817;
 	--urlbar-verified-proxystate-valid-overridden: #a20000;
+	--urlbar-height: 25px;
 }
 
 .verifiedDomain {
@@ -8,8 +9,8 @@
 }
 
 #urlbar {
-	--urlbar-toolbar-height: 25px !important;
 	--urlbar-height: 25px !important;
+	--urlbar-toolbar-height: var(--urlbar-height) !important;
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
@@ -39,8 +40,9 @@
 					margin-top: 2px;
 					color: var(--urlbar-verified-proxystate-valid);
 					background: white;
-					font-size: 16px;
+					font-size: 11pt;
 					z-index: 10;
+					mask-image: linear-gradient(0deg, black 19px, transparent 19px);
 				}
 
 				&:is(.certUserOverridden) {
@@ -117,13 +119,15 @@
 }
 
 #identity-box {
-	height: 25px !important;
+	height: var(--urlbar-height) !important;
 
 	&[pageproxystate="valid"] {
 		#identity-icon {
 			list-style-image: none !important;
-			height: 16px !important;
-			width: 16px !important;
+			height: 19px !important;
+			width: 19px !important;
+			background-position: center;
+			background-repeat: no-repeat;
 		}
 
 		&.notSecureText,
@@ -193,7 +197,7 @@
 	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
 				inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;
 	border-radius: 3px !important;
-	height: 25px;
+	height: var(--urlbar-height);
 }
 
 .browser-toolbar {
@@ -261,19 +265,19 @@
 }
 
 .urlbar-input-box {
-	height: 24px !important;
-	font-size: 16px !important;
+	height: calc(var(--urlbar-height) - 2px) !important;
+	font-size: 11pt !important;
 }
 
 #urlbar-container {
-	--urlbar-container-height: 25px !important;
+	--urlbar-container-height: var(--urlbar-height) !important;
 
 	padding: 0 !important;
 	margin-inline: 2px !important;
 }
 
 #urlbar-input-container {
-	height: 25px !important;
+	height: var(--urlbar-height) !important;
 	padding: 0 !important;
 	margin-top: -1px !important;
 }

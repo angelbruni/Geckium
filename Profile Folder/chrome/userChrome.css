@@ -304,6 +304,7 @@
 :root {
   --urlbar-verified-proxystate-valid: #4c9817;
   --urlbar-verified-proxystate-valid-overridden: #a20000;
+  --urlbar-height: 25px;
 }
 
 .verifiedDomain {
@@ -311,8 +312,8 @@
 }
 
 #urlbar {
-  --urlbar-toolbar-height: 25px !important;
   --urlbar-height: 25px !important;
+  --urlbar-toolbar-height: var(--urlbar-height) !important;
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
@@ -330,8 +331,10 @@
   margin-top: 2px;
   color: var(--urlbar-verified-proxystate-valid);
   background: white;
-  font-size: 16px;
+  font-size: 11pt;
   z-index: 10;
+  -webkit-mask-image: linear-gradient(0deg, black 19px, transparent 19px);
+          mask-image: linear-gradient(0deg, black 19px, transparent 19px);
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]:is(.certUserOverridden)::after {
   color: var(--urlbar-verified-proxystate-valid-overridden) !important;
@@ -385,12 +388,14 @@
 }
 
 #identity-box {
-  height: 25px !important;
+  height: var(--urlbar-height) !important;
 }
 #identity-box[pageproxystate=valid] #identity-icon {
   list-style-image: none !important;
-  height: 16px !important;
-  width: 16px !important;
+  height: 19px !important;
+  width: 19px !important;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #identity-box[pageproxystate=valid].notSecureText, #identity-box[pageproxystate=valid].chromeUI, #identity-box[pageproxystate=valid].extensionPage {
   margin-inline-end: 4px !important;
@@ -425,7 +430,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.3) !important;
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4), inset 0 0.5px 0 rgba(0, 0, 0, 0.05) !important;
   border-radius: 3px !important;
-  height: 25px;
+  height: var(--urlbar-height);
 }
 
 .browser-toolbar:not(.titlebar-color) {
@@ -477,18 +482,18 @@
 }
 
 .urlbar-input-box {
-  height: 24px !important;
-  font-size: 16px !important;
+  height: calc(var(--urlbar-height) - 2px) !important;
+  font-size: 11pt !important;
 }
 
 #urlbar-container {
-  --urlbar-container-height: 25px !important;
+  --urlbar-container-height: var(--urlbar-height) !important;
   padding: 0 !important;
   margin-inline: 2px !important;
 }
 
 #urlbar-input-container {
-  height: 25px !important;
+  height: var(--urlbar-height) !important;
   padding: 0 !important;
   margin-top: -1px !important;
 }
@@ -795,7 +800,7 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 }
 
 .identity-box-button {
-  padding-left: 4px !important;
+  padding-left: 3px !important;
   padding-right: 0px !important;
 }
 
