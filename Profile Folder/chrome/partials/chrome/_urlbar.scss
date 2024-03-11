@@ -3,12 +3,6 @@
 	--urlbar-verified-proxystate-valid-overridden: #a20000;
 }
 
-#searchbar:focus-within {
-	outline: transparent !important;
-	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-		inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
-}
-
 .verifiedDomain {
 	position: relative;
 }
@@ -96,18 +90,20 @@
 
 			> #urlbar-background {
 				animation: none !important;
-				box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-							inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
 			}
 		}
 	}
+}
 
-	&[focused="true"] {
-		> #urlbar-background {
-			box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-						inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
-		}
-	}
+#searchbar:focus-within {
+	outline: transparent !important;
+}
+
+#urlbar[breakout][breakout-extend] > #urlbar-background,
+#urlbar[focused="true"] > #urlbar-background
+#searchbar:focus-within {
+	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+		inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
 }
 
 #urlbar-label-box {
@@ -124,8 +120,8 @@
 	&[pageproxystate="valid"] {
 		#identity-icon {
 			list-style-image: none !important;
-			height: 19px !important;
-			width: 19px !important;
+			height: 16px !important;
+			width: 16px !important;
 		}
 
 		&.notSecureText,
