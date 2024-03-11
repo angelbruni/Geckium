@@ -314,8 +314,8 @@
 }
 
 #urlbar {
-  --urlbar-toolbar-height: 30px !important;
-  --urlbar-height: 28px !important;
+  --urlbar-toolbar-height: 25px !important;
+  --urlbar-height: 25px !important;
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
@@ -353,6 +353,9 @@
   list-style-image: none !important;
   background-image: url("assets/img/toolbar/grayfolder.png");
 }
+#urlbar[breakout] {
+  top: 1px !important;
+}
 #urlbar[breakout][breakout-extend] {
   left: initial !important;
   width: 100% !important;
@@ -385,7 +388,7 @@
 }
 
 #identity-box {
-  height: 26px !important;
+  height: 25px !important;
 }
 #identity-box[pageproxystate=valid] #identity-icon {
   list-style-image: none !important;
@@ -425,7 +428,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.3) !important;
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4), inset 0 0.5px 0 rgba(0, 0, 0, 0.05) !important;
   border-radius: 3px !important;
-  height: 26px;
+  height: 25px;
 }
 
 .browser-toolbar:not(.titlebar-color) {
@@ -482,13 +485,13 @@
 }
 
 #urlbar-container {
-  --urlbar-container-height: 28px !important;
+  --urlbar-container-height: 25px !important;
   padding: 0 !important;
   margin-inline: 2px !important;
 }
 
 #urlbar-input-container {
-  height: 28px !important;
+  height: 25px !important;
   padding: 0 !important;
   margin-top: -1px !important;
 }
@@ -708,7 +711,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #nav-bar {
-  padding: 4px 0 !important;
+  padding: 3px 0 !important;
 }
 #nav-bar::before, #nav-bar::after {
   position: absolute;

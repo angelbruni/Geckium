@@ -8,8 +8,8 @@
 }
 
 #urlbar {
-	--urlbar-toolbar-height: 30px !important;
-	--urlbar-height: 28px !important;
+	--urlbar-toolbar-height: 25px !important;
+	--urlbar-height: 25px !important;
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
@@ -77,6 +77,8 @@
 	}
 
 	&[breakout] {
+		top: 1px !important;
+		
 		&[breakout-extend] {
 			left: initial !important;
 			width: 100% !important;
@@ -115,7 +117,7 @@
 }
 
 #identity-box {
-	height: 26px !important;
+	height: 25px !important;
 
 	&[pageproxystate="valid"] {
 		#identity-icon {
@@ -191,7 +193,7 @@
 	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
 				inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;
 	border-radius: 3px !important;
-	height: 26px;
+	height: 25px;
 }
 
 .browser-toolbar {
@@ -264,14 +266,14 @@
 }
 
 #urlbar-container {
-	--urlbar-container-height: 28px !important;
+	--urlbar-container-height: 25px !important;
 
 	padding: 0 !important;
 	margin-inline: 2px !important;
 }
 
 #urlbar-input-container {
-	height: 28px !important;
+	height: 25px !important;
 	padding: 0 !important;
 	margin-top: -1px !important;
 }
