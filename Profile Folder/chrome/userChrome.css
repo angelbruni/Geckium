@@ -767,6 +767,17 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px transparent, 0 -1px 0 transparent;
 }
 
+#tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up),
+#tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-down),
+toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]),
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-text,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open], #PanelUI-menu-button) > .toolbarbutton-badge-stack {
+  transition: all 100ms ease-in-out !important;
+  box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+  border-radius: 2px !important;
+}
+
 #stop-reload-button {
   margin: 0 !important;
 }
