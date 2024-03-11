@@ -66,24 +66,24 @@
 }
 
 .browser-toolbar {
-	border-top-left-radius: 4px !important;
-	border-top-right-radius: 4px !important;
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
 	margin-inline: 3px;
 }
 
 #navigator-toolbox-background {
 	position: relative;
-}
 
-#navigator-toolbox-background:before {
-	position: absolute;
-	left: 3px;
-	right: 3px;
-	bottom: 0;
-	content: "";
-	height: 1px;
-	box-shadow: 0 1px 0 0 #aaaabb !important;
-	z-index: 1;
+	&::before {
+		position: absolute;
+		left: 3px;
+		right: 3px;
+		bottom: 0;
+		content: "";
+		height: 1px;
+		box-shadow: 0 1px 0 0 rgb(170,170,171) !important;
+		z-index: 1;
+	}
 }
 
 toolbar[overflowable][customizing]>.customization-target {
@@ -99,7 +99,7 @@ toolbar[overflowable][customizing]>.customization-target {
 		content: "";
 		height: 37px;
 		width: 6px;
-		top: -1px;
+		top: -3px;
 	}
 
 	&::before {

@@ -461,7 +461,7 @@
   display: block;
   background: rgba(255, 255, 255, 0.9) !important;
   border: 1px solid rgba(0, 0, 0, 0.3) !important;
-  margin-top: 2px !important;
+  margin-top: 4px !important;
   margin-inline: 0 !important;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
@@ -617,23 +617,22 @@
 }
 
 .browser-toolbar {
-  border-top-left-radius: 4px !important;
-  border-top-right-radius: 4px !important;
+  border-top-left-radius: 3px !important;
+  border-top-right-radius: 3px !important;
   margin-inline: 3px;
 }
 
 #navigator-toolbox-background {
   position: relative;
 }
-
-#navigator-toolbox-background:before {
+#navigator-toolbox-background::before {
   position: absolute;
   left: 3px;
   right: 3px;
   bottom: 0;
   content: "";
   height: 1px;
-  box-shadow: 0 1px 0 0 #aaaabb !important;
+  box-shadow: 0 1px 0 0 rgb(170, 170, 171) !important;
   z-index: 1;
 }
 
@@ -649,7 +648,7 @@ toolbar[overflowable][customizing] > .customization-target {
   content: "";
   height: 37px;
   width: 6px;
-  top: -1px;
+  top: -3px;
 }
 #nav-bar::before {
   left: -2px;
