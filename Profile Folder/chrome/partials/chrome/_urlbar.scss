@@ -1,283 +1,284 @@
 :root {
-	--urlbar-verified-proxystate-valid: #4c9817;
-	--urlbar-verified-proxystate-valid-overridden: #a20000;
-	--urlbar-height: 25px;
+  --urlbar-verified-proxystate-valid: #4c9817;
+  --urlbar-verified-proxystate-valid-overridden: #a20000;
+  --urlbar-height: 25px;
 }
 
 .verifiedDomain {
-	position: relative;
+  position: relative;
 }
 
 #urlbar {
-	--urlbar-height: 25px !important;
-	--urlbar-toolbar-height: var(--urlbar-height) !important;
+  --urlbar-height: 25px !important;
+  --urlbar-toolbar-height: var(--urlbar-height) !important;
 
-	&[focused="true"] {
-		&:not([supress-focus-border]) {
-			> #urlbar-background {
-				outline: transparent !important;
-			}
-		}
-	}
+  &[focused="true"] {
+    &:not([supress-focus-border]) {
+      > #urlbar-background {
+        outline: transparent !important;
+      }
+    }
+  }
 
-	&:not([focused="true"]) {
-		.verifiedDomain {
-			&[pageproxystate="valid"] {
+  &:not([focused="true"]) {
+    .verifiedDomain {
+      &[pageproxystate="valid"] {
+        &::before,
+        &::after {
+          position: absolute;
+          pointer-events: none !important;
+        }
 
-				&::before,
-				&::after {
-					position: absolute;
-					pointer-events: none !important;
-				}
+        &::before {
+          content: "";
+        }
 
-				&::before {
-					content: ""
-				}
+        &::after {
+          content: "https";
+          left: calc(100% + 4px);
+          margin-top: 2px;
+          color: var(--urlbar-verified-proxystate-valid);
+          background: white;
+          font-size: 11pt;
+          z-index: 10;
+          mask-image: linear-gradient(0deg, black 19px, transparent 19px);
+        }
 
-				&::after {
-					content: "https";
-					left: calc(100% + 4px);
-					margin-top: 2px;
-					color: var(--urlbar-verified-proxystate-valid);
-					background: white;
-					font-size: 11pt;
-					z-index: 10;
-					mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-				}
+        &:is(.certUserOverridden) {
+          &::after {
+            color: var(
+              --urlbar-verified-proxystate-valid-overridden
+            ) !important;
+          }
 
-				&:is(.certUserOverridden) {
-					&::after {
-						color: var(--urlbar-verified-proxystate-valid-overridden) !important;
-					}
+          &::before {
+            display: block;
+            height: 2px;
+            top: 12px;
+            left: calc(100% + 1px);
+            rotate: -16deg;
+            width: 40px;
+            z-index: 100;
+            background: var(--urlbar-verified-proxystate-valid-overridden);
+          }
+        }
+      }
+    }
+  }
 
-					&::before {
-						display: block;
-						height: 2px;
-						top: 12px;
-						left: calc(100% + 1px);
-						rotate: -16deg;
-						width: 40px;
-						z-index: 100;
-						background: var(--urlbar-verified-proxystate-valid-overridden);
-					}
-				}
-			}
-		}
-	}
+  &:not(.searchButton) {
+    > #urlbar-input-container {
+      > #identity-box {
+        &[pageproxystate="invalid"] {
+          #identity-icon {
+            list-style-image: none !important;
+            background-image: url("assets/img/toolbar/grayfolder.png");
+          }
+        }
+      }
+    }
+  }
 
-	&:not(.searchButton) {
-		> #urlbar-input-container {
-			> #identity-box {
-				&[pageproxystate="invalid"] {
-					#identity-icon {
-						list-style-image: none !important;
-						background-image: url("assets/img/toolbar/grayfolder.png");
-					}
-				}
-			}
-		}
-	}
+  &[breakout] {
+    top: 1px !important;
 
-	&[breakout] {
-		top: 1px !important;
-		
-		&[breakout-extend] {
-			left: initial !important;
-			width: 100% !important;
-			top: 1px !important;
+    &[breakout-extend] {
+      left: initial !important;
+      width: 100% !important;
+      top: 1px !important;
 
-			#urlbar-input-container {
-				padding-block: 1px !important;
-				padding-inline: 1px !important;
-				padding: 0 !important;
-			}
+      #urlbar-input-container {
+        padding-block: 1px !important;
+        padding-inline: 1px !important;
+        padding: 0 !important;
+      }
 
-			> #urlbar-background {
-				animation: none !important;
-			}
-		}
-	}
+      > #urlbar-background {
+        animation: none !important;
+      }
+    }
+  }
 }
 
 #searchbar:focus-within {
-	outline: transparent !important;
+  outline: transparent !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
-#urlbar[focused="true"] > #urlbar-background
-#searchbar:focus-within {
-	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-		inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
+#urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
+  box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+    inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
 }
 
 #urlbar-label-box {
-	margin-inline-end: 4px !important;
-	background: transparent !important;
-	font-size: 12px !important;
-	color: rgb(0, 0, 0, 50%) !important;
-	padding-inline: 0 !important;
+  margin-inline-end: 4px !important;
+  background: transparent !important;
+  font-size: 12px !important;
+  color: rgb(0, 0, 0, 50%) !important;
+  padding-inline: 0 !important;
 }
 
 #identity-box {
-	height: var(--urlbar-height) !important;
+  height: var(--urlbar-height) !important;
 
-	&[pageproxystate="valid"] {
-		#identity-icon {
-			list-style-image: none !important;
-			height: 19px !important;
-			width: 19px !important;
-			background-position: center;
-			background-repeat: no-repeat;
-		}
+  &[pageproxystate="valid"] {
+    #identity-icon {
+      list-style-image: none !important;
+      height: 19px !important;
+      width: 19px !important;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-		&.notSecureText,
-		&.chromeUI,
-		&.extensionPage {
-			margin-inline-end: 4px !important;
+    &.notSecureText,
+    &.chromeUI,
+    &.extensionPage {
+      margin-inline-end: 4px !important;
 
-			> .identity-box-button {
-				background: transparent !important;
-			}
-		}
+      > .identity-box-button {
+        background: transparent !important;
+      }
+    }
 
-		&.weakCipher,
+    &.weakCipher,
 		&.mixedDisplayContent,
 		&.mixedDisplayContentLoadedActiveBlocked,
 		//&.certUserOverridden,
 		&.certErrorPage {
-			#identity-icon {
-				background-image: url(assets/img/toolbar/warninglock.png) !important;
-			}
-		}
+      #identity-icon {
+        background-image: url(assets/img/toolbar/warninglock.png) !important;
+      }
+    }
 
-		&.certUserOverridden {
-			#identity-icon {
-				background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-			}
-		}
+    &.certUserOverridden {
+      #identity-icon {
+        background-image: url(assets/img/toolbar/unsecurelock.png) !important;
+      }
+    }
 
-		&.notSecure,
-		&.mixedActiveContent,
-		&.httpsOnlyErrorPage {
-			#ientity-icon {
-				background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-			}
-		}
+    &.notSecure,
+    &.mixedActiveContent,
+    &.httpsOnlyErrorPage {
+      #ientity-icon {
+        background-image: url(assets/img/toolbar/unsecurelock.png) !important;
+      }
+    }
 
-		&.verifiedDomain {
-			&:not(.certUserOverridden),
-			&.verifiedDomain,
-			&.mixedActiveBlocked {
-				#identity-icon {
-					background-image: url(assets/img/toolbar/httpslock.png);
-				}
-			}
-		}
+    &.verifiedDomain {
+      &:not(.certUserOverridden),
+      &.verifiedDomain,
+      &.mixedActiveBlocked {
+        #identity-icon {
+          background-image: url(assets/img/toolbar/httpslock.png);
+        }
+      }
+    }
 
-		&.chromeUI {
-			#identity-icon {
-				list-style-image: none !important;
-				background-image: url("assets/img/toolbar/grayfolder.png");
-			}
-		}
-	}
+    &.chromeUI {
+      #identity-icon {
+        list-style-image: none !important;
+        background-image: url("assets/img/toolbar/grayfolder.png");
+      }
+    }
+  }
 
-	.unknownIdentity {
-		#identity-icon {
-			list-style-image: none !important;
-			background-image: url("assets/img/toolbar/grayfolder.png");
-		}
-	}
+  .unknownIdentity {
+    #identity-icon {
+      list-style-image: none !important;
+      background-image: url("assets/img/toolbar/grayfolder.png");
+    }
+  }
 }
 
 #urlbar-background {
-	background: rgb(255, 255, 255) !important;
-	border: 1px solid rgb(0, 0, 0, 20%) !important;
-	border-top: 1px solid rgb(0, 0, 0, 30%) !important;
-	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-				inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;
-	border-radius: 3px !important;
-	height: var(--urlbar-height);
+  background: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(0, 0, 0, 20%) !important;
+  border-top: 1px solid rgb(0, 0, 0, 30%) !important;
+  box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+    inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;
+  border-radius: 3px !important;
+  height: var(--urlbar-height);
 }
 
 .browser-toolbar {
-	&:not(.titlebar-color) {
-		background: linear-gradient(to top, #e3e3e4, #f7f7f7);
-	}
+  &:not(.titlebar-color) {
+    background: linear-gradient(to top, #deeaf8, #f0f2f5);
+  }
 }
 
 #identity-box-button,
 #urlbar-search-mode-indicator {
-	background: transparent !important;
+  background: transparent !important;
 }
 
 #urlbar-search-mode-indicator {
-	font-size: 12px !important;
-	padding-inline: 0 !important;
-	color: rgb(0, 0, 0, 60%) !important;
+  font-size: 12px !important;
+  padding-inline: 0 !important;
+  color: rgb(0, 0, 0, 60%) !important;
 
-	#urlbar-search-mode-indicator-title {
-		display: block !important;
-	}
+  #urlbar-search-mode-indicator-title {
+    display: block !important;
+  }
 }
 
 .urlbarView-title {
-	&:is([isurl="true"]) {
-		&::before {
-			display: none !important;
-		}
-	}
+  &:is([isurl="true"]) {
+    &::before {
+      display: none !important;
+    }
+  }
 }
 
 .urlbarView-action {
-	display: none !important;
+  display: none !important;
 }
 
 .urlbarView-row {
-	&[type="search"] {
-		&:not(:first-child) {
-			&::before {
-				content: "";
-				position: absolute;
-				left: 6px;
-				height: 18px;
-				width: 18px;
-				background-image: url("assets/img/toolbar/search.png") !important;
-				background-size: cover !important;
-			}
-		}
-	}
+  &[type="search"] {
+    &:not(:first-child) {
+      &::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        height: 18px;
+        width: 18px;
+        background-image: url("assets/img/toolbar/search.png") !important;
+        background-size: cover !important;
+      }
+    }
+  }
 }
 
 .urlbarView-favicon {
-	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
-	&:is([src="chrome://browser/skin/history.svg"]) {
-		fill: transparent;
-	}
+  &:is([src="chrome://global/skin/icons/search-glass.svg"]),
+	&:is([src="chrome://browser/skin/history.svg"])
+  {
+    fill: transparent;
+  }
 }
 
 #identity-icon-label {
-	display: none;
+  display: none;
 }
 
 #tracking-protection-icon-container {
-	display: none !important;
+  display: none !important;
 }
 
 .urlbar-input-box {
-	height: calc(var(--urlbar-height) - 2px) !important;
-	font-size: 11pt !important;
+  height: calc(var(--urlbar-height) - 2px) !important;
+  font-size: 11pt !important;
 }
 
 #urlbar-container {
-	--urlbar-container-height: var(--urlbar-height) !important;
+  --urlbar-container-height: var(--urlbar-height) !important;
 
-	padding: 0 !important;
-	margin-inline: 2px !important;
+  padding: 0 !important;
+  margin-inline: 2px !important;
 }
 
 #urlbar-input-container {
-	height: var(--urlbar-height) !important;
-	padding: 0 !important;
-	margin-top: -1px !important;
+  height: var(--urlbar-height) !important;
+  padding: 0 !important;
+  margin-top: -1px !important;
 }
