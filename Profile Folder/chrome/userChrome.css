@@ -649,6 +649,9 @@
   --toolbar-start-end-padding: 6px !important;
   --inner-border-color: #dfdfdf;
 }
+:root #navigator-toolbox {
+  border-bottom: 0 !important;
+}
 :root:not([customizing]) .toolbarbutton-1[disabled=true] {
   opacity: 0.5 !important;
 }
@@ -694,12 +697,6 @@
   border-top-right-radius: 3px !important;
 }
 
-#PersonalToolbar {
-  background: linear-gradient(to bottom, rgb(217, 230, 247), rgb(210, 226, 246));
-  height: 24px;
-  max-height: 24px;
-}
-
 .tab-close-button {
   list-style-image: none !important;
   height: 18px !important;
@@ -728,7 +725,7 @@
   bottom: 0;
   content: "";
   height: 1px;
-  box-shadow: 0 1px 0 0 rgb(170, 170, 171) !important;
+  box-shadow: 0 1px 0 0 #b2b2b2 !important;
   z-index: 1;
 }
 
@@ -1015,4 +1012,23 @@ toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack {
 
 .toolbarbutton-animatable-box {
   display: none !important;
+}
+
+#PersonalToolbar {
+  height: 26px !important;
+  padding-inline: 2px !important;
+  background: linear-gradient(to top, #ecf3fc, #deeaf8) !important;
+}
+
+.bookmark-item {
+  box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent, 0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
+  transition: all 150ms linear;
+  margin: 3px !important;
+  border-radius: 6px !important;
+  color: #062d75 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.bookmark-item:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 1px 1px transparent;
+  background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5)) !important;
 }/*# sourceMappingURL=userChrome.css.map */
