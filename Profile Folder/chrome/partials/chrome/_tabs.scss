@@ -4,6 +4,7 @@
     rgb(203, 206, 218, 85%),
     rgb(203, 207, 219, 85%)
   );
+  --tab-selected-bgcolor: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
 
   --tab-transition-time: 220ms;
 
@@ -27,11 +28,11 @@
     }
   }
 
-	&[geckium-five][geckium-eleven] {
-		.tab-glare-container {
-			display: flex;
-		}
-	}
+  &[geckium-five][geckium-eleven] {
+    .tab-glare-container {
+      display: flex;
+    }
+  }
 }
 
 /* bruni: This is the animation responsible for hiding the tab
@@ -152,7 +153,7 @@
     .tab-stack {
       &::before,
       &::after {
-        background-image: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
+        background-image: var(--tab-selected-bgcolor) !important;
       }
 
       &::before {
@@ -171,7 +172,7 @@
     }
 
     .tab-background {
-      background-image: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
+      background-image: var(--tab-selected-bgcolor) !important;
     }
   }
 
@@ -333,7 +334,7 @@
 }
 
 .tab-glare-container {
-	display: none;
+  display: none;
   position: relative;
   left: -13px;
   width: 115%;
