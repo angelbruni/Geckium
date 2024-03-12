@@ -200,12 +200,6 @@
 	height: var(--urlbar-height);
 }
 
-.browser-toolbar {
-	&:not(.titlebar-color) {
-		background: linear-gradient(to top, #e3e3e4, #f7f7f7);
-	}
-}
-
 #identity-box-button,
 #urlbar-search-mode-indicator {
 	background: transparent !important;
@@ -253,7 +247,7 @@
 	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
 	&:is([src="chrome://browser/skin/history.svg"]) {
 		
-		
+
 	}
 }
 
