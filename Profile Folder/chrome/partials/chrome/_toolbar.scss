@@ -66,6 +66,22 @@
   }
 }
 
+.browser-toolbar {
+	margin-inline: 3px;
+}
+
+#nav-bar {
+	background: linear-gradient(to top, #deeaf8, #f0f2f5);
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+}
+
+#PersonalToolbar {
+	background: linear-gradient(to bottom, rgb(217,230,247), rgb(210,226,246));
+	height: 24px;
+	max-height: 24px;
+}
+
 .tab-close-button {
   list-style-image: none !important;
   height: 18px !important;
@@ -84,12 +100,6 @@
 
 .close-icon:hover {
   background-color: transparent !important;
-}
-
-.browser-toolbar {
-  border-top-left-radius: 3px !important;
-  border-top-right-radius: 3px !important;
-  margin-inline: 3px;
 }
 
 #navigator-toolbox-background {
