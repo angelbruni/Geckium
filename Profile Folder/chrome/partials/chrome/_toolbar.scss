@@ -9,7 +9,22 @@
 	&:not([customizing]) {
 		.toolbarbutton-1[disabled="true"] {
 			opacity: 0.22 !important;
-			filter: brightness(1) contrast(2);
+		}
+	}
+	
+	&[tabsintitlebar] {
+		#tabbrowser-arrowscrollbox {
+			
+		}
+	}
+
+	&:not([tabsintitlebar]) {
+		.toolbar-items {
+			
+		}
+
+		#tabbrowser-arrowscrollbox {
+			
 		}
 	}
 
@@ -19,6 +34,12 @@
 			
 			
 			
+		}
+		
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				
+			}
 		}
 		
 		#navigator-toolbox-background {
@@ -86,7 +107,7 @@
 	}
 }
 
-toolbar[overflowable][customizing]>.customization-target {
+toolbar[overflowable][customizing] > .customization-target {
 	overflow: visible !important;
 }
 
@@ -136,32 +157,70 @@ toolbar[overflowable][customizing]>.customization-target {
 }
 
 #tabbrowser-arrowscrollbox:not([scrolledtostart="true"])::part(scrollbutton-up):hover,
+
+
 #tabbrowser-arrowscrollbox:not([scrolledtoend="true"])::part(scrollbutton-down):hover,
 toolbarbutton.bookmark-item:not(.subviewbutton,[disabled="true"],[open]):hover,
+
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):hover > .toolbarbutton-icon,
+
+
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):hover > .toolbarbutton-text,
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):hover > .toolbarbutton-badge-stack {
+
+
 	background: transparent !important;
 	box-shadow: 0 1px 1px rgb(0, 0, 0, 58%), 0 -1px 0 rgb(0, 0, 0, 6%);
 }
 
 #tabbrowser-arrowscrollbox:not([scrolledtostart="true"])::part(scrollbutton-up),
 #tabbrowser-arrowscrollbox:not([scrolledtoend="true"])::part(scrollbutton-down),
-toolbarbutton.bookmark-item:not(.subviewbutton, [disabled="true"], [open]),
-toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]) > .toolbarbutton-icon,
-toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]) > .toolbarbutton-text,
-toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open], #PanelUI-menu-button) > .toolbarbutton-badge-stack {
-	transition: all 100ms ease-in-out !important;
-	box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
-	border-radius: 2px !important;
+toolbarbutton.bookmark-item:not(.subviewbutton, [open]),
+toolbar .toolbarbutton-1:not([checked], [open]) > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([checked], [open]) > .toolbarbutton-text,
+toolbar .toolbarbutton-1:not([checked], [open]) > .toolbarbutton-badge-stack {
+	
+	
+	
+}
+
+toolbar .toolbarbutton-1 {
+	& > .toolbarbutton-icon {
+		
+		
+	}
+	& > .toolbarbutton-badge-stack {
+		
+		
+	}
 }
 
 #tabbrowser-arrowscrollbox:not([scrolledtostart="true"])::part(scrollbutton-up):hover,
+
+
 #tabbrowser-arrowscrollbox:not([scrolledtoend="true"])::part(scrollbutton-down):hover,
+
+
 toolbarbutton.bookmark-item:not(.subviewbutton,[disabled="true"],[open]):hover,
+
+
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .toolbarbutton-icon,
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .toolbarbutton-text,
+
+
 toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .toolbarbutton-badge-stack {
+
+
 	transition: none !important;
 	background-color: rgb(0, 0, 0, 12%) !important;
 	box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%), 0 1px 1px transparent, 0 -1px 0 transparent;
@@ -180,6 +239,7 @@ toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .too
 		.toolbarbutton-badge-stack {
 			background-color: rgb(0, 0, 0, 12%) !important;
 			box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%), 0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%), inset 0 0 1px rgb(0, 0, 0, 20%);
+
 		}
 	}
 
@@ -206,6 +266,8 @@ toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .too
 
 #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
 #nav-bar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
+
+
 	
 	margin-left: var(--toolbar-start-end-padding) !important;
 }
@@ -273,27 +335,86 @@ toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .too
 
 	&:active {
 		background-image: url(assets/img/tabbar/newtab_pressed.png);
+		
 	}
 }
 
-#back-button {
-	background-image: url(assets/img/toolbar/backforward.png);
+#tabs-newtab-button .toolbarbutton-icon {
 	
+
+}
+
+#back-button {
+
+	background-image: url(assets/img/toolbar/backforward.png);
+
+	
+
+
+
+	.toolbarbutton-icon {
+
+
+
+
+	}
+
+	&::before {
+
+
+
+
+
+
+
+	}
+	&:not([disabled="true"])::before {
+
+	}
 }
 
 #forward-button {
 	background-image: url(assets/img/toolbar/backforward.png);
+
+
 	background-position: center;
-	transform: scaleX(-1);
+	
+
+
+	.toolbarbutton-icon {
+
+
+
+
+
+	}
+
+	&:not([disabled="true"])::before {
+
+
+
+
+
+
+
+	}
+}
+
+#stop-button {
+	
 }
 
 #reload-button {
 	background-image: url(assets/img/toolbar/refresh.png);
+
+
 	background-size: 32px 32px;
 }
 
 #stop-button {
 	background-image: url(assets/img/toolbar/stop.png);
+
+	
 }
 
 #unified-extensions-button {
@@ -305,4 +426,31 @@ toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .too
 
 .toolbarbutton-animatable-box {
 	display: none !important;
+}
+
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+:root {
+	&:not([customizing]) {
+		.toolbarbutton-1[disabled="true"] {
+			filter: brightness(1) contrast(2);
+		}
+	}
+}
+
+#tabbrowser-arrowscrollbox:not([scrolledtostart="true"])::part(scrollbutton-up),
+#tabbrowser-arrowscrollbox:not([scrolledtoend="true"])::part(scrollbutton-down),
+toolbarbutton.bookmark-item:not(.subviewbutton, [disabled="true"], [open]),
+toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]) > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]) > .toolbarbutton-text,
+toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open], #PanelUI-menu-button) > .toolbarbutton-badge-stack {
+	transition: all 100ms ease-in-out !important;
+	box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+	border-radius: 2px !important;
+}
+
+#forward-button {
+	transform: scaleX(-1);
 }

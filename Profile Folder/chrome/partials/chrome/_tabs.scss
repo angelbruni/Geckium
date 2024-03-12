@@ -1,6 +1,10 @@
 :root {
 	--inactive-tab-background-color: linear-gradient(to top, rgb(203, 206, 218, 85%), rgb(203, 207, 219, 85%));
 
+
+
+
+	
 	--tab-transition-time: 220ms;
 
 	&:not([tabsintitlebar]) {
@@ -20,6 +24,12 @@
 	&[sizemode="maximized"] {
 		.toolbar-items {
 			
+		}
+	}
+
+	&[geckium-five][geckium-eleven] {
+		.tab-glare-container {
+			display: flex;
 		}
 	}
 }
@@ -177,6 +187,7 @@
 	/* bruni: This controls the tab "open"/"close" transition. */
 	&:not([pinned]) {
 		transition: min-width var(--tab-transition-time) ease, max-width var(--tab-transition-time) ease !important;
+
 	}
 
 	/* bruni: This makes it so the tab does not disappear when it starts "close" transition 
@@ -234,6 +245,8 @@
 #tabbrowser-tabs,
 #tabbrowser-arrowscrollbox,
 #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
+
+
 	min-height: 22px !important;
 }
 
@@ -272,6 +285,8 @@
 			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
 @media (prefers-reduced-motion: no-preference) {
 	#tabbrowser-tabs[movingtab]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+
+
 	.tabbrowser-tab[tab-grouping],
 	.tabbrowser-tab[tabdrop-samewindow] {
 		transition: transform 200ms var(--animation-easing-function) !important;
@@ -298,10 +313,6 @@
 	display: none !important;
 }
 
-#tabbrowser-arrowscrollbox {
-	padding-top: 10px !important;
-}
-
 #tabbrowser-tabs {
 	&:not([secondarytext-unsupported]) {
 		.tab-label-container {
@@ -322,6 +333,7 @@
 }
 
 .tab-glare-container {
+	display: none;
 	position: relative;
 	left: -13px;
 	width: 115%;
@@ -372,4 +384,12 @@
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
 	filter: blur(2px);
+}
+
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+#tabbrowser-arrowscrollbox {
+	padding-top: 10px !important;
 }

@@ -2,6 +2,10 @@
   --inactive-tab-background-color: linear-gradient(to top, rgb(203, 206, 218, 85%), rgb(203, 207, 219, 85%));
   --tab-transition-time: 220ms;
 }
+:root[geckium-five][geckium-eleven] .tab-glare-container {
+  display: flex;
+}
+
 /* bruni: This is the animation responsible for hiding the tab
 			when the background reaches min-width. */
 @keyframes hide-tab {
@@ -222,10 +226,6 @@
   display: none !important;
 }
 
-#tabbrowser-arrowscrollbox {
-  padding-top: 10px !important;
-}
-
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
   height: 24px !important;
   margin-top: 1px;
@@ -242,6 +242,7 @@
 }
 
 .tab-glare-container {
+  display: none;
   position: relative;
   left: -13px;
   width: 115%;
@@ -292,6 +293,10 @@
   			sometimes in the middle it produces transparent Y pixels,
   			so we are trying to blur it to make it unnoticeable. */
   filter: blur(2px);
+}
+
+#tabbrowser-arrowscrollbox {
+  padding-top: 10px !important;
 }
 
 :root {
@@ -601,7 +606,6 @@
 }
 :root:not([customizing]) .toolbarbutton-1[disabled=true] {
   opacity: 0.22 !important;
-  filter: brightness(1) contrast(2);
 }
 .tab-close-button {
   list-style-image: none !important;
@@ -692,17 +696,6 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):hover > .toolba
 toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):hover > .toolbarbutton-badge-stack {
   background: transparent !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.58), 0 -1px 0 rgba(0, 0, 0, 0.06);
-}
-
-#tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up),
-#tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-down),
-toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]),
-toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-icon,
-toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-text,
-toolbar .toolbarbutton-1:not([disabled=true], [checked], [open], #PanelUI-menu-button) > .toolbarbutton-badge-stack {
-  transition: all 100ms ease-in-out !important;
-  box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
-  border-radius: 2px !important;
 }
 
 #tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up):hover,
@@ -812,13 +805,10 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 #back-button {
   background-image: url(assets/img/toolbar/backforward.png);
 }
-
 #forward-button {
   background-image: url(assets/img/toolbar/backforward.png);
   background-position: center;
-  transform: scaleX(-1);
 }
-
 #reload-button {
   background-image: url(assets/img/toolbar/refresh.png);
   background-size: 32px 32px;
@@ -837,4 +827,23 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 
 .toolbarbutton-animatable-box {
   display: none !important;
+}
+
+:root:not([customizing]) .toolbarbutton-1[disabled=true] {
+  filter: brightness(1) contrast(2);
+}
+
+#tabbrowser-arrowscrollbox:not([scrolledtostart=true])::part(scrollbutton-up),
+#tabbrowser-arrowscrollbox:not([scrolledtoend=true])::part(scrollbutton-down),
+toolbarbutton.bookmark-item:not(.subviewbutton, [disabled=true], [open]),
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-icon,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]) > .toolbarbutton-text,
+toolbar .toolbarbutton-1:not([disabled=true], [checked], [open], #PanelUI-menu-button) > .toolbarbutton-badge-stack {
+  transition: all 100ms ease-in-out !important;
+  box-shadow: 0 1px 1px transparent, 0 -1px 0 transparent;
+  border-radius: 2px !important;
+}
+
+#forward-button {
+  transform: scaleX(-1);
 }/*# sourceMappingURL=userChrome.css.map */
