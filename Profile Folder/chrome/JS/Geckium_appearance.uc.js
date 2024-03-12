@@ -37,8 +37,6 @@ function applyApperance(choice) {
 		} else {
 			choice = pref(prefMap.appearance).tryGet.int();
 		}
-	} else {
-		choice = firstKey;
 	}
 
 	for (let i = 0; i <= choice; i++) {
