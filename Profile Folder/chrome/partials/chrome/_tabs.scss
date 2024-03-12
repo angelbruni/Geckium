@@ -26,6 +26,12 @@
       margin-top: -3px !important;
     }
   }
+
+	&[geckium-five][geckium-eleven] {
+		.tab-glare-container {
+			display: flex;
+		}
+	}
 }
 
 /* bruni: This is the animation responsible for hiding the tab
@@ -327,6 +333,7 @@
 }
 
 .tab-glare-container {
+	display: none;
   position: relative;
   left: -13px;
   width: 115%;

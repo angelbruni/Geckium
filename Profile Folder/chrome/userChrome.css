@@ -15,6 +15,9 @@
 :root[sizemode=maximized] .toolbar-items {
   margin-top: -3px !important;
 }
+:root[geckium-five][geckium-eleven] .tab-glare-container {
+  display: flex;
+}
 
 /* bruni: This is the animation responsible for hiding the tab
 			when the background reaches min-width. */
@@ -249,6 +252,7 @@
 }
 
 .tab-glare-container {
+  display: none;
   position: relative;
   left: -13px;
   width: 115%;
