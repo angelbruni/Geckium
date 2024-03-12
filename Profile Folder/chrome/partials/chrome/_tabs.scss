@@ -84,7 +84,8 @@
 
     .tab-content {
       &::before {
-        background: url(assets/img/tabbar/tab_inactive_left.png) no-repeat;
+        background: url(assets/img/chrome-1/tabbar/tab_inactive_left.png)
+          no-repeat;
         opacity: 0.6;
         background-position: 0 2px;
       }
@@ -100,21 +101,23 @@
 
     .tab-stack {
       &::before {
-        mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+        mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
         backdrop-filter: blur(400px);
         background: var(--inactive-tab-background-color) !important;
         left: -14px;
       }
 
       &::after {
-        mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+        mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
         background: var(--inactive-tab-background-color) !important;
+        transform: translateY(1px);
       }
     }
 
     .tab-content {
       &::after {
-        background: url(assets/img/tabbar/tab_inactive_right.png) no-repeat;
+        background: url(assets/img/chrome-1/tabbar/tab_inactive_right.png)
+          no-repeat;
         opacity: 0.6;
         background-position: 0px 2px;
       }
@@ -122,7 +125,7 @@
 
     .tab-context-line {
       &::before {
-        background: url(assets/img/tabbar/tab_inactive_center.png) top;
+        background: url(assets/img/chrome-1/tabbar/tab_inactive_center.png) top;
         opacity: 0.6;
         height: 28px !important;
         top: 2px;
@@ -140,13 +143,15 @@
 
     .tab-content {
       &::before {
-        background: url(assets/img/tabbar/tab_active_left.png) no-repeat;
-        background-position: -6px 0;
+        background: url(assets/img/chrome-1/tabbar/tab_active_left.png)
+          no-repeat;
+        background-position: 0 2px;
       }
 
       &::after {
-        background: url(assets/img/tabbar/tab_active_right.png) no-repeat;
-        background-position: 0;
+        background: url(assets/img/chrome-1/tabbar/tab_active_right.png)
+          no-repeat;
+        background-position: 0 2px;
       }
     }
 
@@ -157,17 +162,19 @@
       }
 
       &::before {
-        mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+        mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
       }
 
       &::after {
-        mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+        mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
+        transform: translateY(1px);
       }
     }
 
     .tab-context-line {
       &::before {
-        background: url(assets/img/tabbar/tab_active_center.png) top;
+        background: url(assets/img/chrome-1/tabbar/tab_active_center.png) top;
+        top: 2px;
       }
     }
 

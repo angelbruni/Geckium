@@ -64,7 +64,7 @@
   transition: opacity 0.2s linear;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::before {
-  background: url(assets/img/tabbar/tab_inactive_left.png) no-repeat;
+  background: url(assets/img/chrome-1/tabbar/tab_inactive_left.png) no-repeat;
   opacity: 0.6;
   background-position: 0 2px;
 }
@@ -75,25 +75,26 @@
   opacity: 0.6 !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before {
-  -webkit-mask-image: url(assets/img/tabbar/tab_alpha_left.png);
-          mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+  -webkit-mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
+          mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
   -webkit-backdrop-filter: blur(400px);
           backdrop-filter: blur(400px);
   background: var(--inactive-tab-background-color) !important;
   left: -14px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
-  -webkit-mask-image: url(assets/img/tabbar/tab_alpha_right.png);
-          mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+  -webkit-mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
+          mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
   background: var(--inactive-tab-background-color) !important;
+  transform: translateY(1px);
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
-  background: url(assets/img/tabbar/tab_inactive_right.png) no-repeat;
+  background: url(assets/img/chrome-1/tabbar/tab_inactive_right.png) no-repeat;
   opacity: 0.6;
   background-position: 0px 2px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-context-line::before {
-  background: url(assets/img/tabbar/tab_inactive_center.png) top;
+  background: url(assets/img/chrome-1/tabbar/tab_inactive_center.png) top;
   opacity: 0.6;
   height: 28px !important;
   top: 2px;
@@ -106,26 +107,28 @@
   z-index: 1000;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-content::before {
-  background: url(assets/img/tabbar/tab_active_left.png) no-repeat;
-  background-position: -6px 0;
+  background: url(assets/img/chrome-1/tabbar/tab_active_left.png) no-repeat;
+  background-position: 0 2px;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-content::after {
-  background: url(assets/img/tabbar/tab_active_right.png) no-repeat;
-  background-position: 0;
+  background: url(assets/img/chrome-1/tabbar/tab_active_right.png) no-repeat;
+  background-position: 0 2px;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::before, .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
   background-image: var(--tab-selected-bgcolor) !important;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::before {
-  -webkit-mask-image: url(assets/img/tabbar/tab_alpha_left.png);
-          mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+  -webkit-mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
+          mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_left.png);
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
-  -webkit-mask-image: url(assets/img/tabbar/tab_alpha_right.png);
-          mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+  -webkit-mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
+          mask-image: url(assets/img/chrome-1/tabbar/tab_alpha_right.png);
+  transform: translateY(1px);
 }
 .tabbrowser-tab[visuallyselected=true] .tab-context-line::before {
-  background: url(assets/img/tabbar/tab_active_center.png) top;
+  background: url(assets/img/chrome-1/tabbar/tab_active_center.png) top;
+  top: 2px;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-background {
   background-image: var(--tab-selected-bgcolor) !important;
