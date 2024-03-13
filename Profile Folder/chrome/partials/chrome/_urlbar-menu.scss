@@ -1,6 +1,6 @@
 :root {
-	--autocomplete-popup-hover-background: rgb(30, 133, 216, 16%) !important;
-	--autocomplete-popup-highlight-background: rgb(30, 133, 216, 90%) !important;
+	--autocomplete-popup-hover-background: rgb(203,230,255) !important;
+	--autocomplete-popup-highlight-background: -moz-menuhover !important;
 	--autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
 	&:not([uidensity="compact"]) {
@@ -12,14 +12,23 @@
 
 .urlbarView {
 	display: block;
-	background: rgb(255, 255, 255, 0.9) !important;
+	background: rgb(255, 255, 255) !important;
 	border: 1px solid rgba(0, 0, 0, .3) !important;
 	margin-top: 4px !important;
 	margin-inline: 0 !important;
-	box-shadow: 0 0 16px rgb(0, 0, 0, 16%);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
 	border-radius: 5px;
-	width: 100% !important;
 	padding: 0;
+
+	/* bruni: Let's make the urlbar menu width from star button to go button. */
+	transform: translateX(calc(var(--toolbarbutton-width) * -1));
+	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+}
+
+/* guh .urlbarView-title,
+/*.urlbarView-tags,*/
+.urlbarView-url {
+	font-size: unset !important;
 }
 
 .urlbarView-results {
@@ -82,7 +91,6 @@
 	position: absolute;
 	right: 0 !important;
 	background: transparent !important;
-	font-size: 12px !important;
 	color: rgb(30, 133, 216) !important;
 }
 
@@ -91,10 +99,14 @@
 		flex-wrap: nowrap !important;
 	}
 
-	.urlbarView-overflowable,
-	.urlbarView-url {
+	.urlbarView-url{
 		overflow: visible !important;
 	}
+}
+
+.urlbarView-overflowable[overflow],
+.urlbarView-url[overflow] {
+	mask-image: none !important;
 }
 
 #urlbar {
@@ -140,15 +152,15 @@
 }
 
 .urlbarView-title {
-	text-overflow: truncate;
+	text-overflow: ellipsis;
 	overflow: hidden;
 	min-width: 0;
-	font-size: 12px !important;
+	color: rgb(131,133,133);
 
 	&::before {
+		content: "-";
 		padding: 0 4px;
-		content: "-" !important;
-		opacity: 0.3 !important;
+		
 	}
 }
 
@@ -172,10 +184,6 @@
 		&::before {
 			display: none !important;
 		}
-	}
-
-	.urlbarView-dynamic-onboardTabToSearch-description {
-		font-size: 12px !important;
 	}
 }
 
