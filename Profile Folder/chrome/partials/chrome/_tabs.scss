@@ -1,8 +1,28 @@
 :root {
-	--inactive-tab-background-color: linear-gradient(to top,
-			rgb(203, 206, 218, 85%),
-			rgb(203, 207, 219, 85%));
-	--tab-selected-bgcolor: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
+	--newtab-normal: rgba(255,255,255,.01);
+
+	--tab-glare-opacity: 1;
+	--tab-glare: rgb(211, 217, 225, .45);
+
+	--tab-sides-width: 15px;
+	--tab-width: 194px;
+	--tab-distance: 4px;
+
+	&[geckium-five][geckium-eleven] {
+		--tab-glare-opacity: 0.4;
+		--tab-glare: linear-gradient(90deg, transparent, white, transparent);
+	}
+
+	&[geckium-choice="five"] {
+		.tab-glare-container {
+			transition: opacity 100ms linear !important;
+		}
+	}
+
+	--inactive-tab-background-color: rgb(211, 217, 225, .8);
+	
+	--tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253),
+													rgb(252,254,255)) !important;
 
 	--tab-transition-time: 220ms;
 
@@ -23,12 +43,6 @@
 	&[sizemode="maximized"] {
 		.toolbar-items {
 			margin-top: -3px !important;
-		}
-	}
-
-	&[geckium-five][geckium-eleven] {
-		.tab-glare-container {
-			display: flex;
 		}
 	}
 }
@@ -54,7 +68,7 @@
 	border-radius: 0px !important;
 	box-shadow: none !important;
 	border: 0 !important;
-	width: calc(100% - 14px) !important;
+	width: calc(100% - 1px) !important;
 	margin-top: 4px !important;
 }
 
@@ -67,13 +81,33 @@
 .tabbrowser-tab {
 	padding: 0;
 	overflow: visible !important;
-	min-width: 20px !important;
 	min-width: 0 !important;
 
 	&:not([visuallyselected="true"]) {
+		&:not(:first-of-type) {
+			.tab-content {
+				&::before {
+					background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
+					background-position: 0 2px;
+				}
+			}
+	
+			.tab-stack {
+				&::before {
+					mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+				}
+			}
+
+			.tab-glare-left {
+				mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+				mask-position-y: -1px;
+				width: 12px;
+			}
+		}
+
 		&:hover {
 			.tab-glare-container {
-				opacity: 0.4;
+				opacity: var(--tab-glare-opacity);
 
 				/* bruni: In Chrome, the glare shows up faster when hovering. */
 				transition: opacity 0.2s linear;
@@ -83,7 +117,6 @@
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
-				opacity: 0.6;
 				background-position: 0 2px;
 			}
 		}
@@ -97,23 +130,26 @@
 		}
 
 		.tab-stack {
+			&::before,
+			&::after {
+				background-color: var(--inactive-tab-background-color) !important;
+				//transition: 100ms background-color linear;
+			}
+
 			&::before {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-				backdrop-filter: blur(400px);
-				background: var(--inactive-tab-background-color) !important;
-				left: -14px;
+				//backdrop-filter: blur(400px);
+				left: calc(var(--tab-sides-width) * -1);
 			}
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-				background: var(--inactive-tab-background-color) !important;
 			}
 		}
 
 		.tab-content {
 			&::after {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
-				opacity: 0.6;
 				background-position: 0px 2px;
 			}
 		}
@@ -121,14 +157,14 @@
 		.tab-context-line {
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png) top;
-				opacity: 0.6;
 				height: 28px !important;
 				top: 2px;
 			}
 		}
 
 		.tab-background {
-			background: var(--inactive-tab-background-color) !important;
+			background-color: var(--inactive-tab-background-color) !important;
+			//transition: 100ms background-color linear;
 		}
 	}
 
@@ -149,7 +185,6 @@
 		}
 
 		.tab-stack {
-
 			&::before,
 			&::after {
 				background-image: var(--tab-selected-bgcolor) !important;
@@ -179,7 +214,7 @@
 	&[fadein] {
 		&:not([pinned]) {
 			&:not([style*="max-width"]) {
-				max-width: 196px !important;
+				max-width: var(--tab-width) !important;
 				transform-origin: left !important;
 			}
 		}
@@ -202,34 +237,32 @@
 
 	.tab-content {
 		padding: 0 !important;
-		border-left: 15px solid transparent !important;
-		border-right: 13px solid transparent !important;
+		border-left: var(--tab-sides-width) solid transparent !important;
+		border-right: 0 !important;
 		padding-right: 3px !important;
 	}
 
 	&:first-of-type {
-		margin-left: 16px !important;
-		margin-left: 13px !important;
+		margin-left: 9px !important
 	}
 }
 
 .tab-content {
-
 	&::before,
 	&::after {
 		position: absolute;
-		width: 18px;
+		width: var(--tab-sides-width);
 		height: 100%;
 		pointer-events: none;
 		content: "";
 	}
 
 	&::before {
-		left: -14px;
+		left: calc(var(--tab-sides-width) * -1);
 	}
 
 	&::after {
-		left: calc(100% - 14px);
+		left: calc(100% - 1px);
 	}
 }
 
@@ -237,8 +270,8 @@
 	&::before {
 		position: absolute;
 		top: 0;
-		width: calc(100% - 15px);
-		left: 1px;
+		left: 0;
+		width: calc(100% - 1px) !important;
 		content: "";
 		height: 12px;
 	}
@@ -258,26 +291,28 @@
 }
 
 .tab-stack {
+	margin-inline-start: calc(var(--tab-distance) + 1px) !important;
+	margin-inline-end: var(--tab-distance) !important;
 
 	&::before,
 	&::after {
 		position: absolute;
 		content: "";
-		width: 14px;
+		width: var(--tab-sides-width);
 		mask-size: cover;
 		mask-repeat: no-repeat;
 		pointer-events: none;
 	}
 
 	&::before {
-		left: -13px;
+		left: calc(var(--tab-sides-width) * -1);
 		height: calc(100% - 2px);
 		bottom: 0px;
 	}
 
 	&::after {
-		left: calc(100% - 14px);
-		height: calc(100%);
+		left: calc(100% - 1px);
+		height: 100%;
 		bottom: -2px;
 		z-index: -1;
 	}
@@ -286,7 +321,6 @@
 /* bruni: This controls the transition of the tabs moving around while a tab is being
 			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
 @media (prefers-reduced-motion: no-preference) {
-
 	#tabbrowser-tabs[movingtab]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
 	.tabbrowser-tab[tab-grouping],
 	.tabbrowser-tab[tabdrop-samewindow] {
@@ -334,7 +368,6 @@
 }
 
 .tab-glare-container {
-	display: none;
 	position: relative;
 	left: -13px;
 	width: 115%;
@@ -371,17 +404,25 @@
 
 	/* bruni: Why are the masks different in size???  */
 	mask-position-y: -3px;
-	width: 14px;
+	width: var(--tab-sides-width);
 }
 
 .tab-glare {
 	position: absolute;
 	height: 100%;
 	width: 400px;
-	background-image: linear-gradient(90deg, transparent, white, transparent);
 	transform: translateX(-50%);
 
-	/* bruni: Firefox gradient rendering has some issues, in this case,
+	/* bruni: 	By the way, we are using the glare as background hover
+				for Chrome 5, if we transition the background of the
+				tab it will try to transition from gradient (active) 
+				to colour (inactive), and since gradients are not
+				animatable (at least in Gecko), you will see a transition
+				from transparent to inactive tab colour, and we don't
+				want that. */
+	background: var(--tab-glare);
+
+	/* bruni: 	Firefox gradient rendering has some issues, in this case,
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
 	filter: blur(2px);

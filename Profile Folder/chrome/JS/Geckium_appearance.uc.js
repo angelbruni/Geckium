@@ -56,6 +56,8 @@ function applyApperance(choice) {
 }
 applyApperance();
 
+window.addEventListener("load", applyApperance);
+
 // bruni: Automatically apply appearance when it detecs changes in the pref.
 const appearanceObserver = {
 	observe: function (subject, topic, data) {

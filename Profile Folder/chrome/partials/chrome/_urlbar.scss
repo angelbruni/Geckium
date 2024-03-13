@@ -1,6 +1,10 @@
 :root {
-	--urlbar-verified-proxystate-valid: #4c9817;
-	--urlbar-verified-proxystate-valid-overridden: #a20000;
+	--protocol-background-color: white;
+	--protocol-color: black;
+
+	--urlbar-background-verified-proxystate-valid: rgb(255,245,196);
+	--urlbar-verified-proxystate-valid: rgb(10,155,38);
+	--urlbar-verified-proxystate-valid-overridden: rgb(210,0,0);
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 }
 
@@ -11,6 +15,8 @@
 #urlbar {
 	--urlbar-height: var(--urlbar-height-definitive) !important;
 	--urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
+
+	font-size: 10pt !important;
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
@@ -23,7 +29,6 @@
 	&:not([focused="true"]) {
 		.verifiedDomain {
 			&[pageproxystate="valid"] {
-
 				&::before,
 				&::after {
 					position: absolute;
@@ -34,33 +39,24 @@
 					content: "";
 				}
 
-				&::after {
+				/*&::after {
 					content: "https";
 					left: calc(100% + 4px);
-					margin-top: 2px;
+					transform: translateY(3px);
 					color: var(--urlbar-verified-proxystate-valid);
 					background: white;
 					font-size: 11pt;
 					z-index: 10;
 					mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-				}
+				}*/
 
-				&:is(.certUserOverridden) {
+				/*&:is(.certUserOverridden) {
 					&::after {
 						color: var(--urlbar-verified-proxystate-valid-overridden) !important;
 					}
 
-					&::before {
-						display: block;
-						height: 2px;
-						top: 12px;
-						left: calc(100% + 1px);
-						rotate: -16deg;
-						width: 40px;
-						z-index: 100;
-						background: var(--urlbar-verified-proxystate-valid-overridden);
-					}
-				}
+					
+				}*/
 			}
 		}
 	}
@@ -88,17 +84,32 @@
 			width: 100% !important;
 			top: var(--top) !important;
 
+			#urlbar-protocol {
+				display: none;
+			}
+
 			#urlbar-input-container {
 				padding-block: 1px !important;
 				padding-inline: 1px !important;
 				padding: 0 !important;
 			}
 
-			>#urlbar-background {
+			> #urlbar-background {
 				animation: none !important;
 			}
 		}
 	}
+
+	&[breakout],
+	&[breakout][breakout-extend] {
+		left: var(--toolbarbutton-width) !important;
+		width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
+	}
+}
+
+#custom-identity-label {
+	margin: 0 !important;
+	color: var(--protocol-color);
 }
 
 #searchbar:focus-within {
@@ -115,13 +126,12 @@
 #urlbar-label-box {
 	margin-inline-end: 4px !important;
 	background: transparent !important;
-	font-size: 12px !important;
 	color: rgb(0, 0, 0, 50%) !important;
 	padding-inline: 0 !important;
 }
 
 #identity-box {
-	height: var(--urlbar-height-definitive) !important;
+	height: calc(var(--urlbar-height-definitive) - 1px) !important;
 
 	&[pageproxystate="valid"] {
 		#identity-icon {
@@ -141,48 +151,6 @@
 				background: transparent !important;
 			}
 		}
-
-		&.weakCipher,
-		&.mixedDisplayContent,
-		&.mixedDisplayContentLoadedActiveBlocked,
-		//&.certUserOverridden,
-		&.certErrorPage {
-			#identity-icon {
-				background-image: url(assets/img/toolbar/warninglock.png) !important;
-			}
-		}
-
-		&.certUserOverridden {
-			#identity-icon {
-				background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-			}
-		}
-
-		&.notSecure,
-		&.mixedActiveContent,
-		&.httpsOnlyErrorPage {
-			#ientity-icon {
-				background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-			}
-		}
-
-		&.verifiedDomain {
-
-			&:not(.certUserOverridden),
-			&.verifiedDomain,
-			&.mixedActiveBlocked {
-				#identity-icon {
-					background-image: url(assets/img/toolbar/httpslock.png);
-				}
-			}
-		}
-
-		&.chromeUI {
-			#identity-icon {
-				list-style-image: none !important;
-				background-image: url("assets/img/toolbar/grayfolder.png");
-			}
-		}
 	}
 
 	.unknownIdentity {
@@ -194,13 +162,12 @@
 }
 
 #urlbar-background {
-	background: rgb(255, 255, 255) !important;
-	border: 1px solid var(--toolbarbutton-border-color-normal) !important;
-	border-top: 1px solid rgb(0, 0, 0, 30%) !important;
-	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-	inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;*/
+	background: var(--protocol-background-color) !important;
+	border-inline: 0 !important;
+	border-block: 1px solid var(--toolbarbutton-border-color-normal) !important;
 	box-shadow: none !important;
-	border-radius: var(--toolbarbutton-radius) !important;
+	//border-radius: var(--toolbarbutton-radius) !important;
+	border-radius: 0 !important;
 	height: var(--urlbar-height-definitive);
 }
 
@@ -210,7 +177,6 @@
 }
 
 #urlbar-search-mode-indicator {
-	font-size: 12px !important;
 	padding-inline: 0 !important;
 	color: rgb(0, 0, 0, 60%) !important;
 
@@ -239,7 +205,7 @@
 				position: absolute;
 				left: 6px;
 				height: 18px;
-				width: 18px;
+				width: var(--tab-sides-width);
 				background-image: url("assets/img/toolbar/search.png") !important;
 				background-size: cover !important;
 			}
@@ -248,11 +214,16 @@
 }
 
 .urlbarView-favicon {
-
 	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
 	&:is([src="chrome://browser/skin/history.svg"]) {
 		fill: transparent;
 	}
+}
+
+#identity-icon {
+	list-style-image: none !important;
+	background-position: center;
+	background-size: contain;
 }
 
 #identity-icon-label {
@@ -263,9 +234,40 @@
 	display: none !important;
 }
 
+#urlbar-protocol {
+	position: absolute;
+	height: 100%;
+	margin: 0 !important;
+	transform: translateY(3px);
+	pointer-events: none;
+	background: var(--protocol-background-color) !important;
+	color: var(--protocol-color);
+
+	&::before {
+		content: "";
+		position: absolute;
+		height: 2px;
+		top: 11px;
+		left: -1px;
+		rotate: 160deg;
+		width: 35px;
+		z-index: 100;
+	}
+}
+
 .urlbar-input-box {
 	height: calc(var(--urlbar-height-definitive) - 2px) !important;
 	font-size: 11pt !important;
+	margin-inline: 3px;
+	overflow: hidden;
+}
+
+#urlbar-input {
+	&::placeholder {
+		opacity: 1 !important;
+		color: rgb(127,127,127);
+		text-align: right;
+	}
 }
 
 #urlbar-container {
@@ -273,10 +275,23 @@
 
 	padding: 0 !important;
 	margin-inline: 2px !important;
+
+	&:not([starpos="start"]) {
+		#go-button-box {
+			display: none;
+		}
+	}
+
+	&[starpos="start"] {
+		#urlbar-go-button {
+			display: none !important;
+		}
+	}
 }
 
 #urlbar-input-container {
 	height: var(--urlbar-height-definitive) !important;
 	padding: 0 !important;
-	margin-top: -1px !important;
+	border: 0 !important;
+	//margin-top: -1px;
 }

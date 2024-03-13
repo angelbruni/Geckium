@@ -1,9 +1,21 @@
 :root {
-  --inactive-tab-background-color: linear-gradient(to top,
-  		rgb(203, 206, 218, 85%),
-  		rgb(203, 207, 219, 85%));
-  --tab-selected-bgcolor: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
+  --newtab-normal: rgba(255,255,255,.01);
+  --tab-glare-opacity: 1;
+  --tab-glare: rgb(211, 217, 225, .45);
+  --tab-sides-width: 15px;
+  --tab-width: 194px;
+  --tab-distance: 4px;
+  --inactive-tab-background-color: rgb(211, 217, 225, .8);
+  --tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253),
+  												rgb(252,254,255)) !important;
   --tab-transition-time: 220ms;
+}
+:root[geckium-five][geckium-eleven] {
+  --tab-glare-opacity: 0.4;
+  --tab-glare: linear-gradient(90deg, transparent, white, transparent);
+}
+:root[geckium-choice=five] .tab-glare-container {
+  transition: opacity 100ms linear !important;
 }
 :root:not([tabsintitlebar]) .titlebar-items {
   margin-top: -7px !important;
@@ -13,9 +25,6 @@
 }
 :root[sizemode=maximized] .toolbar-items {
   margin-top: -3px !important;
-}
-:root[geckium-five][geckium-eleven] .tab-glare-container {
-  display: flex;
 }
 
 /* bruni: This is the animation responsible for hiding the tab
@@ -36,7 +45,7 @@
   border-radius: 0px !important;
   box-shadow: none !important;
   border: 0 !important;
-  width: calc(100% - 14px) !important;
+  width: calc(100% - 1px) !important;
   margin-top: 4px !important;
 }
 
@@ -49,21 +58,33 @@
 .tabbrowser-tab {
   padding: 0;
   overflow: visible !important;
-  min-width: 20px !important;
   min-width: 0 !important;
   /* bruni: This controls the tab "open"/"close" transition. */
   /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
   		  and it also makes the tab disappear when the background reaches min-width just
   		  like real Chrome. */
 }
+.tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
+  background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
+  background-position: 0 2px;
+}
+.tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-stack::before {
+  -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+          mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+}
+.tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-glare-left {
+  -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+          mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+  mask-position-y: -1px;
+  width: 12px;
+}
 .tabbrowser-tab:not([visuallyselected=true]):hover .tab-glare-container {
-  opacity: 0.4;
+  opacity: var(--tab-glare-opacity);
   /* bruni: In Chrome, the glare shows up faster when hovering. */
   transition: opacity 0.2s linear;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
-  opacity: 0.6;
   background-position: 0 2px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-label {
@@ -72,32 +93,29 @@
 .tabbrowser-tab:not([visuallyselected=true]) .tab-icon-stack {
   opacity: 0.6 !important;
 }
+.tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before, .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
+  background-color: var(--inactive-tab-background-color) !important;
+}
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-  -webkit-backdrop-filter: blur(400px);
-          backdrop-filter: blur(400px);
-  background: var(--inactive-tab-background-color) !important;
-  left: -14px;
+  left: calc(var(--tab-sides-width) * -1);
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-  background: var(--inactive-tab-background-color) !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
-  opacity: 0.6;
   background-position: 0px 2px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-context-line::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png) top;
-  opacity: 0.6;
   height: 28px !important;
   top: 2px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-background {
-  background: var(--inactive-tab-background-color) !important;
+  background-color: var(--inactive-tab-background-color) !important;
 }
 .tabbrowser-tab[visuallyselected=true] {
   position: relative;
@@ -130,7 +148,7 @@
   background-image: var(--tab-selected-bgcolor) !important;
 }
 .tabbrowser-tab[fadein]:not([pinned]):not([style*=max-width]) {
-  max-width: 196px !important;
+  max-width: var(--tab-width) !important;
   transform-origin: left !important;
 }
 .tabbrowser-tab:not([pinned]) {
@@ -143,34 +161,33 @@
 }
 .tabbrowser-tab .tab-content {
   padding: 0 !important;
-  border-left: 15px solid transparent !important;
-  border-right: 13px solid transparent !important;
+  border-left: var(--tab-sides-width) solid transparent !important;
+  border-right: 0 !important;
   padding-right: 3px !important;
 }
 .tabbrowser-tab:first-of-type {
-  margin-left: 16px !important;
-  margin-left: 13px !important;
+  margin-left: 9px !important;
 }
 
 .tab-content::before, .tab-content::after {
   position: absolute;
-  width: 18px;
+  width: var(--tab-sides-width);
   height: 100%;
   pointer-events: none;
   content: "";
 }
 .tab-content::before {
-  left: -14px;
+  left: calc(var(--tab-sides-width) * -1);
 }
 .tab-content::after {
-  left: calc(100% - 14px);
+  left: calc(100% - 1px);
 }
 
 .tab-context-line::before {
   position: absolute;
   top: 0;
-  width: calc(100% - 15px);
-  left: 1px;
+  left: 0;
+  width: calc(100% - 1px) !important;
   content: "";
   height: 12px;
 }
@@ -188,10 +205,14 @@
   height: 28px !important;
 }
 
+.tab-stack {
+  margin-inline-start: calc(var(--tab-distance) + 1px) !important;
+  margin-inline-end: var(--tab-distance) !important;
+}
 .tab-stack::before, .tab-stack::after {
   position: absolute;
   content: "";
-  width: 14px;
+  width: var(--tab-sides-width);
   -webkit-mask-size: cover;
           mask-size: cover;
   -webkit-mask-repeat: no-repeat;
@@ -199,12 +220,12 @@
   pointer-events: none;
 }
 .tab-stack::before {
-  left: -13px;
+  left: calc(var(--tab-sides-width) * -1);
   height: calc(100% - 2px);
   bottom: 0px;
 }
 .tab-stack::after {
-  left: calc(100% - 14px);
+  left: calc(100% - 1px);
   height: 100%;
   bottom: -2px;
   z-index: -1;
@@ -253,7 +274,6 @@
 }
 
 .tab-glare-container {
-  display: none;
   position: relative;
   left: -13px;
   width: 115%;
@@ -291,24 +311,34 @@
           mask-image: url(assets/img/tabbar/tab_alpha_right.png);
   /* bruni: Why are the masks different in size???  */
   mask-position-y: -3px;
-  width: 14px;
+  width: var(--tab-sides-width);
 }
 
 .tab-glare {
   position: absolute;
   height: 100%;
   width: 400px;
-  background-image: linear-gradient(90deg, transparent, white, transparent);
   transform: translateX(-50%);
-  /* bruni: Firefox gradient rendering has some issues, in this case,
+  /* bruni: 	By the way, we are using the glare as background hover
+  			for Chrome 5, if we transition the background of the
+  			tab it will try to transition from gradient (active) 
+  			to colour (inactive), and since gradients are not
+  			animatable (at least in Gecko), you will see a transition
+  			from transparent to inactive tab colour, and we don't
+  			want that. */
+  background: var(--tab-glare);
+  /* bruni: 	Firefox gradient rendering has some issues, in this case,
   			sometimes in the middle it produces transparent Y pixels,
   			so we are trying to blur it to make it unnoticeable. */
   filter: blur(2px);
 }
 
 :root {
-  --urlbar-verified-proxystate-valid: #4c9817;
-  --urlbar-verified-proxystate-valid-overridden: #a20000;
+  --protocol-background-color: white;
+  --protocol-color: black;
+  --urlbar-background-verified-proxystate-valid: rgb(255,245,196);
+  --urlbar-verified-proxystate-valid: rgb(10,155,38);
+  --urlbar-verified-proxystate-valid-overridden: rgb(210,0,0);
   --urlbar-height-definitive: var(--toolbarbutton-height);
 }
 
@@ -319,9 +349,29 @@
 #urlbar {
   --urlbar-height: var(--urlbar-height-definitive) !important;
   --urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
+  font-size: 10pt !important;
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
+}
+#urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid] {
+  /*&::after {
+  	content: "https";
+  	left: calc(100% + 4px);
+  	transform: translateY(3px);
+  	color: var(--urlbar-verified-proxystate-valid);
+  	background: white;
+  	font-size: 11pt;
+  	z-index: 10;
+  	mask-image: linear-gradient(0deg, black 19px, transparent 19px);
+  }*/
+  /*&:is(.certUserOverridden) {
+  	&::after {
+  		color: var(--urlbar-verified-proxystate-valid-overridden) !important;
+  	}
+
+
+  }*/
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::before, #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::after {
   position: absolute;
@@ -329,30 +379,6 @@
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::before {
   content: "";
-}
-#urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::after {
-  content: "https";
-  left: calc(100% + 4px);
-  margin-top: 2px;
-  color: var(--urlbar-verified-proxystate-valid);
-  background: white;
-  font-size: 11pt;
-  z-index: 10;
-  -webkit-mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-          mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-}
-#urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]:is(.certUserOverridden)::after {
-  color: var(--urlbar-verified-proxystate-valid-overridden) !important;
-}
-#urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]:is(.certUserOverridden)::before {
-  display: block;
-  height: 2px;
-  top: 12px;
-  left: calc(100% + 1px);
-  rotate: -16deg;
-  width: 40px;
-  z-index: 100;
-  background: var(--urlbar-verified-proxystate-valid-overridden);
 }
 #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=invalid] #identity-icon {
   list-style-image: none !important;
@@ -367,6 +393,9 @@
   width: 100% !important;
   top: var(--top) !important;
 }
+#urlbar[breakout][breakout-extend] #urlbar-protocol {
+  display: none;
+}
 #urlbar[breakout][breakout-extend] #urlbar-input-container {
   padding-block: 1px !important;
   padding-inline: 1px !important;
@@ -374,6 +403,15 @@
 }
 #urlbar[breakout][breakout-extend] > #urlbar-background {
   animation: none !important;
+}
+#urlbar[breakout], #urlbar[breakout][breakout-extend] {
+  left: var(--toolbarbutton-width) !important;
+  width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
+}
+
+#custom-identity-label {
+  margin: 0 !important;
+  color: var(--protocol-color);
 }
 
 #searchbar:focus-within {
@@ -390,13 +428,12 @@
 #urlbar-label-box {
   margin-inline-end: 4px !important;
   background: transparent !important;
-  font-size: 12px !important;
   color: rgba(0, 0, 0, 0.5) !important;
   padding-inline: 0 !important;
 }
 
 #identity-box {
-  height: var(--urlbar-height-definitive) !important;
+  height: calc(var(--urlbar-height-definitive) - 1px) !important;
 }
 #identity-box[pageproxystate=valid] #identity-icon {
   list-style-image: none !important;
@@ -411,35 +448,17 @@
 #identity-box[pageproxystate=valid].notSecureText > .identity-box-button, #identity-box[pageproxystate=valid].chromeUI > .identity-box-button, #identity-box[pageproxystate=valid].extensionPage > .identity-box-button {
   background: transparent !important;
 }
-#identity-box[pageproxystate=valid].weakCipher #identity-icon, #identity-box[pageproxystate=valid].mixedDisplayContent #identity-icon, #identity-box[pageproxystate=valid].mixedDisplayContentLoadedActiveBlocked #identity-icon, #identity-box[pageproxystate=valid].certErrorPage #identity-icon {
-  background-image: url(assets/img/toolbar/warninglock.png) !important;
-}
-#identity-box[pageproxystate=valid].certUserOverridden #identity-icon {
-  background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-}
-#identity-box[pageproxystate=valid].notSecure #ientity-icon, #identity-box[pageproxystate=valid].mixedActiveContent #ientity-icon, #identity-box[pageproxystate=valid].httpsOnlyErrorPage #ientity-icon {
-  background-image: url(assets/img/toolbar/unsecurelock.png) !important;
-}
-#identity-box[pageproxystate=valid].verifiedDomain:not(.certUserOverridden) #identity-icon, #identity-box[pageproxystate=valid].verifiedDomain.verifiedDomain #identity-icon, #identity-box[pageproxystate=valid].verifiedDomain.mixedActiveBlocked #identity-icon {
-  background-image: url(assets/img/toolbar/httpslock.png);
-}
-#identity-box[pageproxystate=valid].chromeUI #identity-icon {
-  list-style-image: none !important;
-  background-image: url("assets/img/toolbar/grayfolder.png");
-}
 #identity-box .unknownIdentity #identity-icon {
   list-style-image: none !important;
   background-image: url("assets/img/toolbar/grayfolder.png");
 }
 
 #urlbar-background {
-  background: rgb(255, 255, 255) !important;
-  border: 1px solid var(--toolbarbutton-border-color-normal) !important;
-  border-top: 1px solid rgba(0, 0, 0, 0.3) !important;
-  /*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-  inset 0 0.5px 0 rgb(0, 0, 0, 5%) !important;*/
+  background: var(--protocol-background-color) !important;
+  border-inline: 0 !important;
+  border-block: 1px solid var(--toolbarbutton-border-color-normal) !important;
   box-shadow: none !important;
-  border-radius: var(--toolbarbutton-radius) !important;
+  border-radius: 0 !important;
   height: var(--urlbar-height-definitive);
 }
 
@@ -449,7 +468,6 @@
 }
 
 #urlbar-search-mode-indicator {
-  font-size: 12px !important;
   padding-inline: 0 !important;
   color: rgba(0, 0, 0, 0.6) !important;
 }
@@ -470,13 +488,19 @@
   position: absolute;
   left: 6px;
   height: 18px;
-  width: 18px;
+  width: var(--tab-sides-width);
   background-image: url("assets/img/toolbar/search.png") !important;
   background-size: cover !important;
 }
 
 .urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]), .urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
   fill: transparent;
+}
+
+#identity-icon {
+  list-style-image: none !important;
+  background-position: center;
+  background-size: contain;
 }
 
 #identity-icon-label {
@@ -487,9 +511,43 @@
   display: none !important;
 }
 
+#urlbar-protocol {
+  position: absolute;
+  height: 100%;
+  margin: 0 !important;
+  transform: translateY(3px);
+  pointer-events: none;
+  background: var(--protocol-background-color) !important;
+  color: var(--protocol-color);
+}
+#urlbar-protocol::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  top: 11px;
+  left: -1px;
+  rotate: 160deg;
+  width: 35px;
+  z-index: 100;
+}
+
 .urlbar-input-box {
   height: calc(var(--urlbar-height-definitive) - 2px) !important;
   font-size: 11pt !important;
+  margin-inline: 3px;
+  overflow: hidden;
+}
+
+#urlbar-input::-moz-placeholder {
+  opacity: 1 !important;
+  color: rgb(127, 127, 127);
+  text-align: right;
+}
+
+#urlbar-input::placeholder {
+  opacity: 1 !important;
+  color: rgb(127, 127, 127);
+  text-align: right;
 }
 
 #urlbar-container {
@@ -497,16 +555,22 @@
   padding: 0 !important;
   margin-inline: 2px !important;
 }
+#urlbar-container:not([starpos=start]) #go-button-box {
+  display: none;
+}
+#urlbar-container[starpos=start] #urlbar-go-button {
+  display: none !important;
+}
 
 #urlbar-input-container {
   height: var(--urlbar-height-definitive) !important;
   padding: 0 !important;
-  margin-top: -1px !important;
+  border: 0 !important;
 }
 
 :root {
-  --autocomplete-popup-hover-background: rgb(30, 133, 216, 16%) !important;
-  --autocomplete-popup-highlight-background: rgb(30, 133, 216, 90%) !important;
+  --autocomplete-popup-hover-background: rgb(203,230,255) !important;
+  --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 }
 :root:not([uidensity=compact]) .urlbarView-row:not([type=tip], [type=dynamic]) {
@@ -515,14 +579,22 @@
 
 .urlbarView {
   display: block;
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: rgb(255, 255, 255) !important;
   border: 1px solid rgba(0, 0, 0, 0.3) !important;
   margin-top: 4px !important;
   margin-inline: 0 !important;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
-  width: 100% !important;
   padding: 0;
+  /* bruni: Let's make the urlbar menu width from star button to go button. */
+  transform: translateX(calc(var(--toolbarbutton-width) * -1));
+  width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+}
+
+/* guh .urlbarView-title,
+/*.urlbarView-tags,*/
+.urlbarView-url {
+  font-size: unset !important;
 }
 
 .urlbarView-results {
@@ -562,7 +634,6 @@
   position: absolute;
   right: 0 !important;
   background: transparent !important;
-  font-size: 12px !important;
   color: rgb(30, 133, 216) !important;
 }
 
@@ -570,11 +641,16 @@
   .urlbarView-results[wrap] > .urlbarView-row:where(:not([rich-suggestion=with-icon])) > .urlbarView-row-inner {
     flex-wrap: nowrap !important;
   }
-  .urlbarView-overflowable,
   .urlbarView-url {
     overflow: visible !important;
   }
 }
+.urlbarView-overflowable[overflow],
+.urlbarView-url[overflow] {
+  -webkit-mask-image: none !important;
+          mask-image: none !important;
+}
+
 #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
   border-top: 0 !important;
 }
@@ -608,15 +684,14 @@
 }
 
 .urlbarView-title {
-  text-overflow: truncate;
+  text-overflow: ellipsis;
   overflow: hidden;
   min-width: 0;
-  font-size: 12px !important;
+  color: rgb(131, 133, 133);
 }
 .urlbarView-title::before {
+  content: "-";
   padding: 0 4px;
-  content: "-" !important;
-  opacity: 0.3 !important;
 }
 
 .urlbarView-row-inner {
@@ -635,9 +710,6 @@
 .urlbarView-dynamic-onboardTabToSearch-no-wrap .urlbarView-dynamic-onboardTabToSearch-title.urlbarView-title::before {
   display: none !important;
 }
-.urlbarView-dynamic-onboardTabToSearch-no-wrap .urlbarView-dynamic-onboardTabToSearch-description {
-  font-size: 12px !important;
-}
 
 .urlbarView-dynamic-onboardTabToSearch-action {
   display: none;
@@ -652,20 +724,25 @@
   --inner-border-color: #dfdfdf;
   --nav-bar-height: 37px;
   --toolbarbutton-width: 29px;
+  --toolbarbutton-menu-width: 36px;
   --toolbarbutton-height: 27px;
   --toolbarbutton-border-color-normal: rgb(198,206,228);
   --toolbarbutton-border-color-hot: rgb(163,174,197);
   --toolbarbutton-border-color-active: rgb(171,181,203);
   --toolbarbutton-radius: 6px;
+  --toolbarbutton-disabled-opacity: 1 !important;
 }
 :root #navigator-toolbox {
   border-bottom: 0 !important;
 }
-:root:not([customizing]) .toolbarbutton-1[disabled=true] {
-  opacity: 0.5 !important;
+:root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-badge-stack,
+:root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-icon,
+:root:not([customizing]) .toolbarbutton-1[disabled] image:first-of-type {
+  opacity: 0.35;
+  filter: saturate(1.5);
 }
 :root[tabsintitlebar] #tabbrowser-arrowscrollbox {
-  padding-top: 10px !important;
+  padding-top: 12px !important;
 }
 :root:not([tabsintitlebar]) .toolbar-items {
   padding-top: 0 !important;
@@ -697,11 +774,11 @@
 }
 
 .browser-toolbar {
-  margin-inline: 3px;
+  margin-inline: 2px;
 }
 
 #nav-bar {
-  background: linear-gradient(to top, #deeaf8, #f0f2f5);
+  background: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
   align-items: center;
@@ -715,6 +792,7 @@
   list-style-image: none !important;
   height: 18px !important;
   width: 18px !important;
+  padding: 0 !important;
   margin-top: 2px;
   background-image: url(assets/img/tabbar/tab_close_normal.png);
 }
@@ -749,6 +827,7 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #nav-bar {
   height: var(--nav-bar-height);
+  padding-inline: 2px !important;
 }
 #nav-bar::before, #nav-bar::after {
   position: absolute;
@@ -773,10 +852,30 @@ toolbar[overflowable][customizing] > .customization-target {
 #nav-bar:not(:-moz-lwtheme) {
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3) !important;
 }
+#nav-bar[securestate=chrome] #identity-box {
+  display: none !important;
+}
+#nav-bar[securestate=secure], #nav-bar[securestate=ev] {
+  --protocol-color: var(--urlbar-verified-proxystate-valid);
+  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+}
+#nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
+  background-image: url(assets/img/chrome-5/toolbar/lock_small.png);
+}
+#nav-bar[securestate=warning], #nav-bar[securestate=insecure] {
+  --protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
+}
+#nav-bar[securestate=warning] #urlbar-protocol::before, #nav-bar[securestate=insecure] #urlbar-protocol::before {
+  background: var(--urlbar-verified-proxystate-valid-overridden);
+}
+#nav-bar[securestate=warning] #identity-icon, #nav-bar[securestate=insecure] #identity-icon {
+  background-image: url(assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
+  background-size: contain;
+}
 
 #browser {
   border: 1px solid var(--inner-border-color);
-  margin: 3px;
+  margin: 2px;
   margin-top: 0px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
   margin-top: -1px;
@@ -793,9 +892,10 @@ toolbar[overflowable][customizing] > .customization-target {
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
   position: relative;
   padding: 0 !important;
+  background: transparent !important;
   margin: 0 var(--toolbarbutton-outer-padding) !important;
-  width: var(--toolbarbutton-width);
-  height: var(--toolbarbutton-height);
+  width: var(--toolbarbutton-width) !important;
+  height: var(--toolbarbutton-height) !important;
   border: 1px solid var(--toolbarbutton-border-color-normal);
   align-items: center;
   justify-content: center;
@@ -842,7 +942,8 @@ toolbar[overflowable][customizing] > .customization-target {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-badge-stack,
-.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-icon {
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-icon,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover image:first-of-type {
   background-color: transparent !important;
   filter: saturate(1.5);
 }
@@ -855,9 +956,10 @@ toolbar[overflowable][customizing] > .customization-target {
   transition: none;
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active .toolbarbutton-badge-stack,
-.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active .toolbarbutton-icon, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-badge-stack,
-.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-icon {
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active .toolbarbutton-icon image:first-of-type, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-icon image:first-of-type {
   filter: unset;
+  background: unset !important;
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) .toolbarbutton-icon {
   padding: 0 !important;
@@ -891,6 +993,48 @@ toolbar[overflowable][customizing] > .customization-target {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#star-button-box {
+  margin: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#star-button-box::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#star-button-box::after {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#go-button-box {
+  margin: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  margin-left: auto !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#go-button-box::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#go-button-box::after {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button {
+  width: var(--toolbarbutton-menu-width) !important;
+  border: 0 !important;
+  transition: background-color 100ms linear;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button::after, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::after, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::before {
+  content: unset !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:hover, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:hover {
+  border: 1px solid rgb(201, 210, 221);
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:hover .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:hover .toolbarbutton-icon,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:hover image:first-of-type, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:hover .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:hover .toolbarbutton-icon,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:hover image:first-of-type {
+  filter: unset;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:active, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button[open], .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:active, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button[open] {
+  border: 1px solid rgb(201, 210, 221);
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
 
 #back-button {
   list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
@@ -901,6 +1045,28 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #forward-button {
   list-style-image: url(assets/img/chrome-5/toolbar/forward.png) !important;
+}
+
+#reload-button {
+  list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
+}
+
+#go-button-box {
+  list-style-image: url(assets/img/chrome-5/toolbar/go.png);
+}
+
+#star-button-box > #star-button {
+  width: auto !important;
+  height: auto !important;
+  list-style-image: url(assets/img/chrome-5/toolbar/star.png) !important;
+}
+#star-button-box > #star-button[starred] {
+  list-style-image: url(assets/img/chrome-5/toolbar/starred.png) !important;
+}
+
+#star-button-box > #star-button,
+#go-button {
+  transform: translateY(-1px);
 }
 
 .identity-box-button {
@@ -915,22 +1081,10 @@ toolbar[overflowable][customizing] > .customization-target {
   background: transparent !important;
 }
 
-#nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
-#nav-bar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
-  padding-inline-start: 0 !important;
-  margin-left: var(--toolbar-start-end-padding) !important;
-}
-
 #PanelUI-menu-button {
   margin-right: var(--toolbar-start-end-padding) !important;
   list-style-image: url(assets/img/chrome-5/toolbar/menu.png) !important;
   background-position: center;
-}
-
-#identity-box[pageproxystate=valid].verifiedDomain #identity-icon, #identity-box[pageproxystate=valid].mixedActiveBlocked #identity-icon {
-  list-style-image: none !important;
-  background-position: center;
-  background-size: contain;
 }
 
 #tabs-newtab-button,
@@ -943,41 +1097,56 @@ toolbar[overflowable][customizing] > .customization-target {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
   position: relative;
-  background-image: url(assets/img/tabbar/newtab_normal.png);
-  background-size: 34px 18px;
-  margin-top: 6px !important;
-  margin-left: -4px !important;
+  background: var(--newtab-normal) url(assets/img/chrome-5/tabbar/newtab.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 7px !important;
+  margin-left: 3px !important;
   height: 18px;
-  width: 34px;
+  width: 28px;
+  transition: background-color 100ms linear;
+  /*&:hover {
+  	filter: unset !important;
+  }
+
+  &:hover {
+  	background-image: url(assets/img/chrome-5/tabbar/newtab_h.png);
+  	background-color: var(--newtab-normal);
+  }
+
+  &:active {
+  	background-image: url(assets/img/chrome-5/tabbar/newtab_p.png);
+  	background-color: transparent !important;
+  }
+
+  &:after {
+  	display: none;
+  }*/
 }
-#tabs-newtab-button:before,
-#TabsToolbar #new-tab-button:before {
-  position: absolute;
-  height: 18px;
-  width: 34px;
-  background: var(--inactive-tab-background-color);
-  -webkit-mask-image: url(assets/img/tabbar/newtab_mask.png);
-          mask-image: url(assets/img/tabbar/newtab_mask.png);
-  z-index: -1;
-  left: 0;
-  content: "";
-}
-#tabs-newtab-button:hover,
-#TabsToolbar #new-tab-button:hover {
-  filter: unset !important;
-}
-#tabs-newtab-button:hover,
-#TabsToolbar #new-tab-button:hover {
-  background-image: url(assets/img/tabbar/newtab_hover.png);
+#tabs-newtab-button:hover::before,
+#TabsToolbar #new-tab-button:hover::before {
+  background-color: var(--newtab-hot);
 }
 #tabs-newtab-button:active,
 #TabsToolbar #new-tab-button:active {
-  background-image: url(assets/img/tabbar/newtab_pressed.png);
-  background-color: transparent !important;
+  background: transparent url(assets/img/chrome-5/tabbar/newtab_p.png);
 }
-#tabs-newtab-button:after,
-#TabsToolbar #new-tab-button:after {
-  display: none;
+#tabs-newtab-button:active::before,
+#TabsToolbar #new-tab-button:active::before {
+  background-color: transparent;
+  transition: none !important;
+}
+#tabs-newtab-button:before,
+#TabsToolbar #new-tab-button:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+          mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+  background-color: var(--newtab-normal);
+  transition: background-color 100ms linear;
+  z-index: -1;
 }
 
 #tabs-newtab-button .toolbarbutton-icon {
@@ -985,21 +1154,12 @@ toolbar[overflowable][customizing] > .customization-target {
   background: transparent !important;
 }
 
-#reload-button {
-  list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
-}
-
 #stop-button {
   list-style-image: url(assets/img/chrome-5/toolbar/stop.png) !important;
 }
 
 #unified-extensions-button {
-  list-style-image: url(assets/img/toolbar/extenstions.png) !important;
-  /* bruni: I wanna hide this button for now. */
-  overflow: hidden;
-  width: 0 !important;
-  border: 0 !important;
-  position: absolute !important;
+  list-style-image: url(assets/img/chrome-5/toolbar/plugin.svg) !important;
 }
 
 .toolbarbutton-animatable-box {
