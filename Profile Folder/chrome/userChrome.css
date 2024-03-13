@@ -86,7 +86,6 @@
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
   background: var(--inactive-tab-background-color) !important;
-  transform: translateY(1px);
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
@@ -977,8 +976,6 @@ toolbar[overflowable][customizing] > .customization-target {
   list-style-image: url(assets/img/toolbar/extenstions.png) !important;
   /* bruni: I wanna hide this button for now. */
   width: 0 !important;
-  margin: 0 !important;
-  margin-inline: 0 !important;
   border: 0 !important;
   position: absolute !important;
 }
