@@ -336,9 +336,9 @@
 :root {
   --protocol-background-color: white;
   --protocol-color: black;
-  --urlbar-background-verified-proxystate-valid: rgb(255,245,196);
-  --urlbar-verified-proxystate-valid: rgb(10,155,38);
-  --urlbar-verified-proxystate-valid-overridden: rgb(210,0,0);
+  --urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
+  --urlbar-verified-proxystate-valid: rgb(10, 155, 38);
+  --urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
   --urlbar-height-definitive: var(--toolbarbutton-height);
 }
 
@@ -353,6 +353,9 @@
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
+}
+#urlbar:not([focused=true]):not([pageproxystate=valid]) #urlbar-protocol {
+  display: none !important;
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid] {
   /*&::after {
@@ -383,6 +386,26 @@
 #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=invalid] #identity-icon {
   list-style-image: none !important;
   background-image: url("assets/img/toolbar/grayfolder.png");
+}
+#urlbar #urlbar-protocol {
+  position: absolute;
+  height: 100%;
+  margin: 0 !important;
+  transform: translateY(3px);
+  pointer-events: none;
+  background: var(--protocol-background-color) !important;
+  color: var(--protocol-color);
+  z-index: 1;
+}
+#urlbar #urlbar-protocol::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  top: 11px;
+  left: -1px;
+  rotate: 160deg;
+  width: 35px;
+  z-index: 100;
 }
 #urlbar[breakout] {
   --top: 0px;
@@ -511,26 +534,6 @@
   display: none !important;
 }
 
-#urlbar-protocol {
-  position: absolute;
-  height: 100%;
-  margin: 0 !important;
-  transform: translateY(3px);
-  pointer-events: none;
-  background: var(--protocol-background-color) !important;
-  color: var(--protocol-color);
-}
-#urlbar-protocol::before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  top: 11px;
-  left: -1px;
-  rotate: 160deg;
-  width: 35px;
-  z-index: 100;
-}
-
 .urlbar-input-box {
   height: calc(var(--urlbar-height-definitive) - 2px) !important;
   font-size: 11pt !important;
@@ -569,7 +572,7 @@
 }
 
 :root {
-  --autocomplete-popup-hover-background: rgb(203,230,255) !important;
+  --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 }
@@ -726,9 +729,10 @@
   --toolbarbutton-width: 29px;
   --toolbarbutton-menu-width: 36px;
   --toolbarbutton-height: 27px;
-  --toolbarbutton-border-color-normal: rgb(198,206,228);
-  --toolbarbutton-border-color-hot: rgb(163,174,197);
-  --toolbarbutton-border-color-active: rgb(171,181,203);
+  --toolbarbutton-border-color-normal: rgb(198, 206, 228);
+  --toolbarbutton-border-color-hot: rgb(163, 174, 197);
+  --toolbarbutton-border-color-active: rgb(171, 181, 203);
+  --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
 }
@@ -815,7 +819,7 @@
   position: absolute;
   left: 3px;
   right: 3px;
-  bottom: 0;
+  bottom: 1px;
   height: 1px;
   box-shadow: 0 1px 0 0 rgb(182, 186, 192) !important;
   z-index: 1;
@@ -832,19 +836,18 @@ toolbar[overflowable][customizing] > .customization-target {
 #nav-bar::before, #nav-bar::after {
   position: absolute;
   content: "";
-  height: 37px;
-  width: 6px;
-  top: -3px;
+  height: 39px;
+  width: 3px;
+  top: -2px;
 }
 #nav-bar::before {
   left: -2px;
-  background: url(assets/img/toolbar/toolbar_top_left_corner.png);
+  background: url(assets/img/chrome-5/toolbar/content_top_left_corner.png);
 }
 #nav-bar::after {
-  background-size: 339px 6px;
-  transform: scaleY(1.024);
-  left: calc(100% - 4px);
-  background: url(assets/img/toolbar/toolbar_top_right_corner.png);
+  top: -2px;
+  left: calc(100% - 1px);
+  background: url(assets/img/chrome-5/toolbar/content_top_right_corner.png);
 }
 #nav-bar:not([urlbar-exceeds-toolbar-bounds]) {
   overflow: visible !important;
@@ -857,7 +860,9 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
   --protocol-color: var(--urlbar-verified-proxystate-valid);
-  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+  --protocol-background-color: var(
+    --urlbar-background-verified-proxystate-valid
+  );
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
   background-image: url(assets/img/chrome-5/toolbar/lock_small.png);
@@ -874,11 +879,27 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #browser {
+  position: relative;
   border: 1px solid var(--inner-border-color);
   margin: 2px;
-  margin-top: 0px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
   margin-top: -1px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.24);
+}
+#browser::before, #browser::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-repeat: repeat-y;
+}
+#browser::before {
+  left: -3px;
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
+}
+#browser::after {
+  left: 100%;
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
 }
 
 #TabsToolbar {
@@ -901,8 +922,8 @@ toolbar[overflowable][customizing] > .customization-target {
   justify-content: center;
   transition: border-color 100ms linear;
   /* bruni: 	let's separate radius like this so
-  			we can easily override each individually
-  			later when needed.						*/
+  		we can easily override each individually
+  		later when needed.						*/
   border-top-left-radius: var(--toolbarbutton-radius) !important;
   border-top-right-radius: var(--toolbarbutton-radius) !important;
   border-bottom-left-radius: var(--toolbarbutton-radius) !important;
@@ -1167,9 +1188,25 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #PersonalToolbar {
+  position: relative;
+  overflow: visible !important;
   height: 26px !important;
   padding-inline: 2px !important;
-  background: linear-gradient(to top, #ecf3fc, #deeaf8) !important;
+  background: linear-gradient(to top, #ecf3fc, #dae7f7) !important;
+}
+#PersonalToolbar::before, #PersonalToolbar::after {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 3px;
+}
+#PersonalToolbar::before {
+  left: -2px;
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
+}
+#PersonalToolbar::after {
+  left: calc(100% - 1px);
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
 }
 
 .bookmark-item {
