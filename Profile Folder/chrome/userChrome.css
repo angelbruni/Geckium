@@ -1190,14 +1190,16 @@ toolbar[overflowable][customizing] > .customization-target {
 #PersonalToolbar {
   position: relative;
   overflow: visible !important;
-  height: 26px !important;
-  padding-inline: 2px !important;
+  height: 30px !important;
+  padding: 3px !important;
   background: linear-gradient(to top, #ecf3fc, #dae7f7) !important;
 }
 #PersonalToolbar::before, #PersonalToolbar::after {
   position: absolute;
   content: "";
-  height: 26px;
+  height: 30px;
+  background-repeat: repeat-y;
+  top: 0;
   width: 3px;
 }
 #PersonalToolbar::before {
@@ -1212,7 +1214,7 @@ toolbar[overflowable][customizing] > .customization-target {
 .bookmark-item {
   box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent, 0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
   transition: all 150ms linear;
-  margin: 3px !important;
+  margin-inline: 3px !important;
   border-radius: var(--toolbarbutton-radius) !important;
   color: #062d75 !important;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
