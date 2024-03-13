@@ -1,9 +1,7 @@
 :root {
-  --inactive-tab-background-color: linear-gradient(
-    to top,
-    rgb(203, 206, 218, 85%),
-    rgb(203, 207, 219, 85%)
-  );
+  --inactive-tab-background-color: linear-gradient(to top,
+  		rgb(203, 206, 218, 85%),
+  		rgb(203, 207, 219, 85%));
   --tab-selected-bgcolor: linear-gradient(to top, #f0f2f5, #fdfdfe) !important;
   --tab-transition-time: 220ms;
 }
@@ -55,8 +53,8 @@
   min-width: 0 !important;
   /* bruni: This controls the tab "open"/"close" transition. */
   /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
-  	  and it also makes the tab disappear when the background reaches min-width just
-  	  like real Chrome. */
+  		  and it also makes the tab disappear when the background reaches min-width just
+  		  like real Chrome. */
 }
 .tabbrowser-tab:not([visuallyselected=true]):hover .tab-glare-container {
   opacity: 0.4;
@@ -263,7 +261,7 @@
   overflow: hidden;
   opacity: 0;
   /* bruni: In Chrome, the glare hides in a slower
-  		pace when the mouse leaves. */
+  			pace when the mouse leaves. */
   transition: opacity 0.5s linear;
 }
 
@@ -303,8 +301,8 @@
   background-image: linear-gradient(90deg, transparent, white, transparent);
   transform: translateX(-50%);
   /* bruni: Firefox gradient rendering has some issues, in this case,
-  		sometimes in the middle it produces transparent Y pixels,
-  		so we are trying to blur it to make it unnoticeable. */
+  			sometimes in the middle it produces transparent Y pixels,
+  			so we are trying to blur it to make it unnoticeable. */
   filter: blur(2px);
 }
 
@@ -799,42 +797,54 @@ toolbar[overflowable][customizing] > .customization-target {
   width: var(--toolbarbutton-width);
   height: var(--toolbarbutton-height);
   border: 1px solid var(--toolbarbutton-border-color-normal);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-  overflow: hidden;
   align-items: center;
   justify-content: center;
   transition: border-color 100ms linear;
   /* bruni: 	let's separate radius like this so
   			we can easily override each individually
-  			later when needed. */
+  			later when needed.						*/
   border-top-left-radius: var(--toolbarbutton-radius) !important;
   border-top-right-radius: var(--toolbarbutton-radius) !important;
   border-bottom-left-radius: var(--toolbarbutton-radius) !important;
   border-bottom-right-radius: var(--toolbarbutton-radius) !important;
   /* bruni: Navigation buttons needs some rethinking. */
 }
-.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::before {
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  transition: box-shadow 100ms linear;
+  border-radius: calc(var(--toolbarbutton-radius) - 1px);
+  border-top-left-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+  border-top-right-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+  border-bottom-left-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+  border-bottom-right-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::before {
   height: 35%;
   opacity: 0;
-  transition: opacity 100ms linear;
   background: linear-gradient(to top, black, transparent);
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::after {
+  height: 100%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover {
   border: 1px solid var(--toolbarbutton-border-color-hot);
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover::before {
-  opacity: 0.1;
+  opacity: 0.15;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover::after {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-badge-stack,
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-icon {
   background-color: transparent !important;
-  filter: saturate(2);
+  filter: saturate(1.5);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] {
   border: 1px solid var(--toolbarbutton-border-color-active);
@@ -867,15 +877,26 @@ toolbar[overflowable][customizing] > .customization-target {
   border-bottom-right-radius: 0 !important;
   border-right: 1px solid transparent;
 }
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button::after {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button {
   margin-inline-start: -4px !important;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   border-left: 1px solid transparent;
 }
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button::after {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
 
 #back-button {
   list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
+}
+#back-button::after {
+  border-right: 1px solid rgb(221, 229, 243);
 }
 
 #forward-button {
@@ -975,6 +996,7 @@ toolbar[overflowable][customizing] > .customization-target {
 #unified-extensions-button {
   list-style-image: url(assets/img/toolbar/extenstions.png) !important;
   /* bruni: I wanna hide this button for now. */
+  overflow: hidden;
   width: 0 !important;
   border: 0 !important;
   position: absolute !important;
