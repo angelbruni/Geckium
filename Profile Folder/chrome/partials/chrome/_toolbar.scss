@@ -1,517 +1,427 @@
 :root {
-  --toolbarbutton-inner-padding: 5px !important;
-  --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
-  --toolbarbutton-outer-padding: 3px !important;
-  --chrome-content-separator-color: transparent !important;
-  --toolbar-start-end-padding: 6px !important;
-  --inner-border-color: #dfdfdf;
+	--toolbarbutton-inner-padding: 5px !important;
+	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+	--toolbarbutton-outer-padding: 3px !important;
+	--chrome-content-separator-color: transparent !important;
+	--toolbar-start-end-padding: 6px !important;
+	--inner-border-color: #dfdfdf;
+	
+	--nav-bar-height: 37px;
 
-  #navigator-toolbox {
-    border-bottom: 0 !important;
-  }
+	--toolbarbutton-width: 29px;
+	--toolbarbutton-height: 27px;
+	--toolbarbutton-border-color-normal: rgb(198,206,228);
+	--toolbarbutton-border-color-hot: rgb(163,174,197);
+	--toolbarbutton-border-color-active: rgb(171,181,203);
+	--toolbarbutton-radius: 6px;
 
-  &:not([customizing]) {
-    .toolbarbutton-1[disabled="true"] {
-      opacity: 0.5 !important;
-    }
-  }
+	#navigator-toolbox {
+		border-bottom: 0 !important;
+	}
 
-  &[tabsintitlebar] {
-    #tabbrowser-arrowscrollbox {
-      padding-top: 10px !important;
-    }
-  }
+	&:not([customizing]) {
+		.toolbarbutton-1[disabled="true"] {
+			opacity: 0.5 !important;
+		}
+	}
 
-  &:not([tabsintitlebar]) {
-    .toolbar-items {
-      padding-top: 0 !important;
-    }
+	&[tabsintitlebar] {
+		#tabbrowser-arrowscrollbox {
+			padding-top: 10px !important;
+		}
+	}
 
-    #tabbrowser-arrowscrollbox {
-      margin-top: -4px !important;
-    }
-  }
+	&:not([tabsintitlebar]) {
+		.toolbar-items {
+			padding-top: 0 !important;
+		}
 
-  &[sizemode="maximized"],
-  &[sizemode="fullscreen"] {
-    .browser-toolbar {
-      margin-inline: 0 !important;
-      border-top-left-radius: 0 !important;
-      border-top-right-radius: 0 !important;
-    }
+		#tabbrowser-arrowscrollbox {
+			margin-top: -4px !important;
+		}
+	}
 
-    &[tabsintitlebar] {
-      #tabbrowser-arrowscrollbox {
-        padding-top: 0px !important;
-      }
-    }
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.browser-toolbar {
+			margin-inline: 0 !important;
+			border-top-left-radius: 0 !important;
+			border-top-right-radius: 0 !important;
+		}
 
-    #navigator-toolbox-background {
-      &::before {
-        left: 0;
-        right: 0;
-        bottom: 1px;
-      }
-    }
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 0px !important;
+			}
+		}
 
-    #nav-bar {
-      &::before,
-      &::after {
-        display: none !important;
-      }
-    }
+		#navigator-toolbox-background {
+			&::before {
+				left: 0;
+				right: 0;
+				bottom: 1px;
+			}
+		}
 
-    #browser {
-      box-shadow: 0 !important;
-      border: none;
-      margin: 0;
-      margin-top: -1px !important;
-    }
-  }
+		#nav-bar {
+			&::before,
+			&::after {
+				display: none !important;
+			}
+		}
+
+		#browser {
+			box-shadow: 0 !important;
+			border: none;
+			margin: 0;
+			margin-top: -1px !important;
+		}
+	}
 }
 
 .browser-toolbar {
-  margin-inline: 3px;
+	margin-inline: 3px;
 }
 
 #nav-bar {
-  background: linear-gradient(to top, #deeaf8, #f0f2f5);
-  border-top-left-radius: 3px !important;
-  border-top-right-radius: 3px !important;
+	background: linear-gradient(to top, #deeaf8, #f0f2f5);
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+	align-items: center;
+}
+
+#nav-bar-customization-target {
+	align-items: center;
 }
 
 .tab-close-button {
-  list-style-image: none !important;
-  height: 18px !important;
-  width: 18px !important;
-  margin-top: 2px;
-  background-image: url(assets/img/tabbar/tab_close_normal.png);
+	list-style-image: none !important;
+	height: 18px !important;
+	width: 18px !important;
+	margin-top: 2px;
+	background-image: url(assets/img/tabbar/tab_close_normal.png);
 
-  &:hover {
-    background-image: url(assets/img/tabbar/tab_close_hover.png);
-  }
+	&:hover {
+		background-image: url(assets/img/tabbar/tab_close_hover.png);
+	}
 
-  &:active {
-    background-image: url(assets/img/tabbar/tab_close_pressed.png);
-  }
+	&:active {
+		background-image: url(assets/img/tabbar/tab_close_pressed.png);
+	}
 }
 
 .close-icon:hover {
-  background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 #navigator-toolbox-background {
-  position: relative;
+	position: relative;
 
-  &::before {
-    position: absolute;
-    left: 3px;
-    right: 3px;
-    bottom: 0;
-    content: "";
-    height: 1px;
-    box-shadow: 0 1px 0 0 #b2b2b2 !important;
-    z-index: 1;
-  }
+	&::before {
+		content: "";
+		position: absolute;
+		left: 3px;
+		right: 3px;
+		bottom: 0;
+		height: 1px;
+		box-shadow: 0 1px 0 0 rgb(182, 186, 192) !important;
+		z-index: 1;
+	}
 }
 
-toolbar[overflowable][customizing] > .customization-target {
-  overflow: visible !important;
+toolbar[overflowable][customizing]>.customization-target {
+	overflow: visible !important;
 }
 
 #nav-bar {
-  padding: 3px 0 !important;
+	//padding: 5px 0 !important;
+	height: var(--nav-bar-height);
 
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    height: 37px;
-    width: 6px;
-    top: -3px;
-  }
+	&::before,
+	&::after {
+		position: absolute;
+		content: "";
+		height: 37px;
+		width: 6px;
+		top: -3px;
+	}
 
-  &::before {
-    left: -2px;
-    background: url(assets/img/toolbar/toolbar_top_left_corner.png);
-  }
+	&::before {
+		left: -2px;
+		background: url(assets/img/toolbar/toolbar_top_left_corner.png);
+	}
 
-  &::after {
-    background-size: 339px 6px;
-    transform: scaleY(1.024);
-    left: calc(100% - 4px);
-    background: url(assets/img/toolbar/toolbar_top_right_corner.png);
-  }
+	&::after {
+		background-size: 339px 6px;
+		transform: scaleY(1.024);
+		left: calc(100% - 4px);
+		background: url(assets/img/toolbar/toolbar_top_right_corner.png);
+	}
 
-  &:not([urlbar-exceeds-toolbar-bounds]) {
-    overflow: visible !important;
-  }
+	&:not([urlbar-exceeds-toolbar-bounds]) {
+		overflow: visible !important;
+	}
 
-  &:not(:-moz-lwtheme) {
-    box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
-  }
+	&:not(:-moz-lwtheme) {
+		box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
+	}
 }
 
 #browser {
-  border: 1px solid var(--inner-border-color);
-  margin: 3px;
-  margin-top: 0px;
-  box-shadow: 0 1px 3px rgb(0, 0, 0, 95%);
-  margin-top: -1px;
+	border: 1px solid var(--inner-border-color);
+	margin: 3px;
+	margin-top: 0px;
+	box-shadow: 0 1px 3px rgb(0, 0, 0, 95%);
+	margin-top: -1px;
 }
 
 #TabsToolbar {
-  --toolbarbutton-inner-padding: 0 !important;
-}
-
-toolbar .toolbarbutton-1 {
-  & > .toolbarbutton-icon {
-    height: 27px !important;
-    width: 29px !important;
-  }
-  & > .toolbarbutton-badge-stack {
-    height: 27px !important;
-    width: 29px !important;
-  }
+	--toolbarbutton-inner-padding: 0 !important;
 }
 
 #stop-reload-button {
-  margin: 0 !important;
+	margin: 0 !important;
 }
 
-.toolbarbutton-1 {
-  padding: 0 !important;
-  margin: 0 var(--toolbarbutton-outer-padding) !important;
-  border-radius: 6px !important;
-  position: relative;
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
+	position: relative;
+	padding: 0 !important;
+	margin: 0 var(--toolbarbutton-outer-padding) !important;
+	width: var(--toolbarbutton-width);
+	height: var(--toolbarbutton-height);
+	border: 1px solid var(--toolbarbutton-border-color-normal);
+	box-shadow: inset 0 0 0 1px rgba(255,255,255,.3);
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	transition: border-color 100ms linear;
 
-  &::after {
-    position: absolute;
-    inset: 1px;
-    background: linear-gradient(
-      to top,
-      rgb(0, 0, 0, 92%),
-      transparent,
-      transparent
-    );
-    border-radius: 6px;
-    opacity: 0;
-    transition: all 100ms ease-in-out;
-    content: "";
-  }
-  &:not([disabled="true"]):hover::after {
-    opacity: 0.1 !important;
-  }
+	/* bruni: 	let's separate radius like this so
+				we can easily override each individually
+				later when needed. */
+	border-top-left-radius: var(--toolbarbutton-radius) !important;
+	border-top-right-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 
-  .toolbarbutton-icon,
-  .toolbarbutton-text,
-  .toolbarbutton-badge-stack {
-    transition: all 100ms ease-in-out !important;
-    box-shadow: 0 0.5px 1px rgb(8, 22, 39, 8%), inset 0 0 0 1px #bdc9e1,
-      0 1px 0 0 transparent, -1px 0 0 0 transparent, 1px 0 0 0 transparent,
-      inset 0 1px 4px 1px transparent !important;
-    border-radius: 6px !important;
-  }
+	&::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 35%;
+		opacity: 0;
+		transition: opacity 100ms linear;
+		background: linear-gradient(to top, black, transparent);
+	}
 
-  &:not([disabled="true"]):hover .toolbarbutton-icon,
-  &:not([disabled="true"]):hover .toolbarbutton-text,
-  &:not([disabled="true"]):hover .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 0 0 1px rgb(13, 18, 28, 28%),
-      0 1px 0 0 rgb(0, 0, 0, 10%), -1px 0 0 0 rgb(0, 0, 0, 2%),
-      1px 0 0 0 rgb(0, 0, 0, 2%) !important;
-    background: transparent !important;
-  }
+	&:not([disabled]) {
+		&:hover {
+			border: 1px solid var(--toolbarbutton-border-color-hot);
+			box-shadow: 0 0 0px 1px rgba(0, 0, 0, .05);
 
-  &:not([disabled="true"]):active .toolbarbutton-icon,
-  &:not([disabled="true"]):active .toolbarbutton-text,
-  &:not([disabled="true"]):active .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 0 0 1px rgb(13, 18, 28, 20%),
-      0 1px 0 0 transparent, -1px 0 0 0 transparent, 1px 0 0 0 transparent,
-      inset 0 1px 4px 1px rgb(0, 0, 0, 22%) !important;
-    transition: none !important;
-    background: rgb(0, 0, 0, 4%) !important;
-  }
+			&::before {
+				opacity: .1;
+			}
 
-  &[open="true"] {
-    .toolbarbutton-badge-stack {
-      background-color: rgb(0, 0, 0, 12%) !important;
-      box-shadow: -1px 0 0 0 rgb(0, 0, 0, 30%), 1px 0 0 0 rgb(0, 0, 0, 30%),
-        0 -1px 0 0 rgb(0, 0, 0, 50%), 0 1px 0 0 rgb(0, 0, 0, 30%),
-        inset 0 0 1px rgb(0, 0, 0, 20%);
-    }
-  }
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon {
+				background-color: transparent !important;
+				filter: saturate(2);
+			}
+		}
 
-  &:not([disabled="true"]):hover {
-    filter: saturate(2);
-  }
+		&:active,
+		&[open] {
+			border: 1px solid var(--toolbarbutton-border-color-active);
+			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, .05),
+						inset 0 0 6px 1px rgba(0, 0, 0, .1);
 
-  &:is(#PanelUI-menu-button) {
-    .toolbarbutton-badge-stack {
-      border-radius: 6px !important;
-    }
-  }
+			&::before {
+				opacity: 0;
+				transition: none;
+			}
+
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon {
+				filter: unset;
+			}
+		}
+	}
+
+	.toolbarbutton-icon {
+		padding: 0 !important;
+		width: auto !important;
+		height: auto !important;
+	}
+
+	.toolbarbutton-badge-stack {
+		padding: 0 !important;
+		border-radius: 0 !important;
+		height: inherit;
+		width: inherit;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* bruni: Navigation buttons needs some rethinking. */
+	&#back-button {
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+		border-right: 1px solid transparent;
+	}
+
+	&#forward-button {
+		margin-inline-start: -4px !important;
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		border-left: 1px solid transparent;
+	}
+}
+
+#back-button {
+	list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
+}
+
+#forward-button {
+	list-style-image: url(assets/img/chrome-5/toolbar/forward.png) !important;
 }
 
 .identity-box-button {
-  padding-left: 3px !important;
-  padding-right: 0px !important;
+	padding-left: 3px !important;
+	padding-right: 0px !important;
 }
 
 .identity-box-button,
 #tracking-protection-icon-container {
-  &:hover:not([open="true"]),
-  &:hover:active,
-  &[open="true"] {
-    background: transparent !important;
-  }
+	&:hover:not([open="true"]),
+	&:hover:active,
+	&[open="true"] {
+		background: transparent !important;
+	}
 }
 
-#nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
-#nav-bar-customization-target
-  > toolbarpaletteitem:first-child
-  > :is(toolbarbutton, toolbaritem) {
-  padding-inline-start: 0 !important;
-  margin-left: var(--toolbar-start-end-padding) !important;
+#nav-bar-customization-target> :is(toolbarbutton, toolbaritem):first-child,
+#nav-bar-customization-target>toolbarpaletteitem:first-child> :is(toolbarbutton, toolbaritem) {
+	padding-inline-start: 0 !important;
+	margin-left: var(--toolbar-start-end-padding) !important;
 }
 
 #PanelUI-menu-button {
-  margin-right: var(--toolbar-start-end-padding) !important;
-  list-style-image: none !important;
-  background-image: url(assets/img/toolbar/menu.png);
-  background-position: center;
-
-  .toolbarbutton-badge-stack {
-    height: 26px !important;
-  }
+	margin-right: var(--toolbar-start-end-padding) !important;
+	list-style-image: url(assets/img/chrome-5/toolbar/menu.png) !important;
+	background-position: center;
 }
 
 #identity-box {
-  &[pageproxystate="valid"] {
-    &.verifiedDomain,
-    &.mixedActiveBlocked {
-      #identity-icon {
-        list-style-image: none !important;
-        background-position: center;
-        background-size: contain;
-      }
-    }
-  }
-}
-
-#back-button,
-#forward-button,
-#reload-button,
-#stop-button,
-#unified-extensions-button,
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-  list-style-image: none !important;
-  background-position: 50%;
-  background-size: 28px 28px;
+	&[pageproxystate="valid"] {
+		&.verifiedDomain,
+		&.mixedActiveBlocked {
+			#identity-icon {
+				list-style-image: none !important;
+				background-position: center;
+				background-size: contain;
+			}
+		}
+	}
 }
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
-  position: relative;
-  background-image: url(assets/img/tabbar/newtab_normal.png);
-  background-size: 34px 18px;
-  margin-top: 6px !important;
-  margin-left: -4px !important;
-  height: 18px;
-  width: 34px;
+	list-style-image: none !important;
+	background-position: 50%;
+	background-size: 28px 28px;
+}
 
-  &:before {
-    position: absolute;
-    height: 18px;
-    width: 34px;
-    background: var(--inactive-tab-background-color);
-    mask-image: url(assets/img/tabbar/newtab_mask.png);
-    z-index: -1;
-    left: 0;
-    content: "";
-  }
-  &:hover {
-    filter: unset !important;
-  }
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	position: relative;
+	background-image: url(assets/img/tabbar/newtab_normal.png);
+	background-size: 34px 18px;
+	margin-top: 6px !important;
+	margin-left: -4px !important;
+	height: 18px;
+	width: 34px;
 
-  &:hover {
-    background-image: url(assets/img/tabbar/newtab_hover.png);
-  }
+	&:before {
+		position: absolute;
+		height: 18px;
+		width: 34px;
+		background: var(--inactive-tab-background-color);
+		mask-image: url(assets/img/tabbar/newtab_mask.png);
+		z-index: -1;
+		left: 0;
+		content: "";
+	}
 
-  &:active {
-    background-image: url(assets/img/tabbar/newtab_pressed.png);
-    background-color: transparent !important;
-  }
+	&:hover {
+		filter: unset !important;
+	}
 
-  &:after {
-    display: none;
-  }
+	&:hover {
+		background-image: url(assets/img/tabbar/newtab_hover.png);
+	}
+
+	&:active {
+		background-image: url(assets/img/tabbar/newtab_pressed.png);
+		background-color: transparent !important;
+	}
+
+	&:after {
+		display: none;
+	}
 }
 
 #tabs-newtab-button .toolbarbutton-icon {
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-#back-button {
-  position: relative;
-  background-image: url(assets/img/chrome-5/toolbar/back.png),
-    linear-gradient(to top, transparent, rgb(255, 255, 255, 90%));
-  background-size: 29px 29px;
-  background-position: calc(50% - 1px) calc(50%) !important;
-  margin-right: 0 !important;
-
-  .toolbarbutton-icon,
-  .toolbarbutton-text,
-  .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px rgb(8, 22, 39, 8%), inset 0 1px 0 0 #bdc9e1,
-      inset 0 -1px 0 0 #bdc9e1, inset 1px 0 0 0 #bdc9e1, 0 1px 0 0 transparent,
-      -1px 0 0 0 transparent, 1px 0 0 0 transparent !important;
-  }
-
-  &:not([disabled="true"]):hover .toolbarbutton-icon,
-  &:not([disabled="true"]):hover .toolbarbutton-text,
-  &:not([disabled="true"]):hover .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 1px 0 0 rgb(13, 18, 28, 28%),
-      inset 0 -1px 0 0 rgb(13, 18, 28, 28%),
-      inset 1px 0 0 0 rgb(13, 18, 28, 28%), 0 1px 0 0 rgb(0, 0, 0, 10%),
-      -1px 0 0 0 rgb(0, 0, 0, 2%), 1px 0 0 0 rgb(0, 0, 0, 2%) !important;
-  }
-
-  &:not([disabled="true"]):active .toolbarbutton-icon,
-  &:not([disabled="true"]):active .toolbarbutton-text,
-  &:not([disabled="true"]):active .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 1px 0 0 rgb(13, 18, 28, 20%),
-      inset 0 -1px 0 0 rgb(13, 18, 28, 20%),
-      inset 1px 0 0 0 rgb(13, 18, 28, 20%), 0 1px 0 0 transparent,
-      -1px 0 0 0 transparent, 1px 0 0 0 transparent,
-      inset 0 1px 4px 1px rgb(0, 0, 0, 22%) !important;
-  }
-
-  .toolbarbutton-icon {
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-  }
-
-  &:not([disabled="true"]):hover {
-    background-image: url(assets/img/chrome-5/toolbar/back.png),
-      linear-gradient(to top, transparent, rgb(255, 255, 255));
-  }
-
-  &::after {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-
-  &::before {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #bdc9e180;
-    content: "";
-  }
-}
-
-#forward-button {
-  background-image: url(assets/img/chrome-5/toolbar/forward.png),
-    linear-gradient(to top, transparent, rgb(255, 255, 255, 90%));
-  position: relative;
-  background-position: calc(50%) calc(50%) !important;
-  background-size: 28px 29px;
-  margin-left: 0 !important;
-
-  .toolbarbutton-icon,
-  .toolbarbutton-text,
-  .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px rgb(8, 22, 39, 8%), inset 0 1px 0 0 #bdc9e1,
-      inset 0 -1px 0 0 #bdc9e1, inset -1px 0 0 0 #bdc9e1, 0 1px 0 0 transparent,
-      -1px 0 0 0 transparent, 1px 0 0 0 transparent !important;
-  }
-
-  &:not([disabled="true"]):hover .toolbarbutton-icon,
-  &:not([disabled="true"]):hover .toolbarbutton-text,
-  &:not([disabled="true"]):hover .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 1px 0 0 rgb(13, 18, 28, 28%),
-      inset 0 -1px 0 0 rgb(13, 18, 28, 28%),
-      inset -1px 0 0 0 rgb(13, 18, 28, 28%), 0 1px 0 0 rgb(0, 0, 0, 10%),
-      -1px 0 0 0 rgb(0, 0, 0, 2%), 1px 0 0 0 rgb(0, 0, 0, 2%) !important;
-  }
-
-  &:not([disabled="true"]):active .toolbarbutton-icon,
-  &:not([disabled="true"]):active .toolbarbutton-text,
-  &:not([disabled="true"]):active .toolbarbutton-badge-stack {
-    box-shadow: 0 0.5px 1px transparent, inset 0 1px 0 0 rgb(13, 18, 28, 20%),
-      inset 0 -1px 0 0 rgb(13, 18, 28, 20%),
-      inset -1px 0 0 0 rgb(13, 18, 28, 20%), 0 1px 0 0 transparent,
-      -1px 0 0 0 transparent, 1px 0 0 0 transparent,
-      inset 0 1px 4px 1px rgb(0, 0, 0, 22%) !important;
-  }
-
-  .toolbarbutton-icon {
-    border-top-left-radius: 0px !important;
-    border-bottom-left-radius: 0px !important;
-  }
-
-  &::after {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    left: 0 !important;
-  }
-}
-
-#stop-button {
-  background-position: 50% !important;
+	box-shadow: none !important;
+	background: transparent !important;
 }
 
 #reload-button {
-  background-image: url(assets/img/chrome-5/toolbar/reload.png),
-    linear-gradient(to top, transparent, rgb(255, 255, 255, 90%));
-  background-position: 50% 50% !important;
-  background-size: 31px 29px;
+	list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
 }
 
 #stop-button {
-  background-image: url(assets/img/chrome-5/toolbar/stop.png),
-    linear-gradient(to top, transparent, rgb(255, 255, 255, 90%));
-  background-size: 32px 32px;
+	list-style-image: url(assets/img/chrome-5/toolbar/stop.png) !important;
 }
 
 #unified-extensions-button {
-  background-image: url(assets/img/toolbar/extenstions.png);
-  background-size: 28px 28px;
-  background-position: 50% calc(50% + 1px) !important;
-  list-style-image: none !important;
+	list-style-image: url(assets/img/toolbar/extenstions.png) !important;
+
+	/* bruni: I wanna hide this button for now. */
+	width: 0 !important;
+	margin: 0 !important;
+	margin-inline: 0 !important;
+	border: 0 !important;
+	position: absolute !important;
 }
 
 .toolbarbutton-animatable-box {
-  display: none !important;
+	display: none !important;
 }
 
 #PersonalToolbar {
-  height: 26px !important;
-  padding-inline: 2px !important;
-  background: linear-gradient(to top, #ecf3fc, #deeaf8) !important;
+	height: 26px !important;
+	padding-inline: 2px !important;
+	background: linear-gradient(to top, #ecf3fc, #deeaf8) !important;
 }
 
 .bookmark-item {
-  box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent,
-    0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
-  transition: all 150ms linear;
-  margin: 3px !important;
-  border-radius: 6px !important;
-  color: #062d75 !important;
-  text-shadow: 0 1px 0 rgb(255, 255, 255, 50%);
+	box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent,
+		0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
+	transition: all 150ms linear;
+	margin: 3px !important;
+	border-radius: var(--toolbarbutton-radius) !important;
+	color: #062d75 !important;
+	text-shadow: 0 1px 0 rgb(255, 255, 255, 50%);
 
-  &:hover {
-    box-shadow: inset 0 0 0 1px rgb(255, 255, 255, 30%),
-      0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-      inset 0 0 1px 1px transparent;
-    background: linear-gradient(
-      to top,
-      transparent,
-      rgb(255, 255, 255, 50%)
-    ) !important;
-  }
+	&:hover {
+		box-shadow: inset 0 0 0 1px rgb(255, 255, 255, 30%),
+			0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+			inset 0 0 1px 1px transparent;
+		background: linear-gradient(to top,
+				transparent,
+				rgb(255, 255, 255, 50%)) !important;
+	}
 }
