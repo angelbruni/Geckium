@@ -1,11 +1,9 @@
 :root {
-	--inactive-tab-background-color: linear-gradient(to top, rgb(203, 206, 218, 85%), rgb(203, 207, 219, 85%));
+	--inactive-tab-background-color: linear-gradient(to top,
+			rgb(203, 206, 218, 85%),
+			rgb(203, 207, 219, 85%));
 
 
-
-
-
-	
 	--tab-transition-time: 220ms;
 
 	&:not([tabsintitlebar]) {
@@ -85,7 +83,6 @@
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
-
 				opacity: .6;
 				background-position: 0 2px;
 			}
@@ -116,7 +113,6 @@
 		.tab-content {
 			&::after {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
-
 				opacity: .6;
 				background-position: 0px 2px;
 			}
@@ -143,18 +139,17 @@
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_active_left.png) no-repeat;
-
 				background-position: -6px 0;
 			}
 
 			&::after {
 				background: url(assets/img/chrome-5/tabbar/tab_active_right.png) no-repeat;
-
 				background-position: 0;
 			}
 		}
 
 		.tab-stack {
+
 			&::before,
 			&::after {
 				background-image: linear-gradient(to top, #f8f9f9, #ffffff) !important;
@@ -193,7 +188,8 @@
 
 	/* bruni: This controls the tab "open"/"close" transition. */
 	&:not([pinned]) {
-		transition: min-width var(--tab-transition-time) ease, max-width var(--tab-transition-time) ease !important;
+		transition: min-width var(--tab-transition-time) ease,
+			max-width var(--tab-transition-time) ease !important;
 
 	}
 
@@ -220,6 +216,7 @@
 }
 
 .tab-content {
+	
 	&::before,
 	&::after {
 		position: absolute;
@@ -251,9 +248,7 @@
 
 #tabbrowser-tabs,
 #tabbrowser-arrowscrollbox,
-#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned] {
-
-
+#tabbrowser-tabs[positionpinnedtabs]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[pinned] {
 	min-height: 22px !important;
 }
 
@@ -265,6 +260,7 @@
 }
 
 .tab-stack {
+	
 	&::before,
 	&::after {
 		position: absolute;
@@ -292,9 +288,8 @@
 /* bruni: This controls the transition of the tabs moving around while a tab is being
 			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
 @media (prefers-reduced-motion: no-preference) {
+
 	#tabbrowser-tabs[movingtab]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
-
-
 	.tabbrowser-tab[tab-grouping],
 	.tabbrowser-tab[tabdrop-samewindow] {
 		transition: transform 200ms var(--animation-easing-function) !important;
