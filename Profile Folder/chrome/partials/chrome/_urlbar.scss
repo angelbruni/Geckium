@@ -1,7 +1,7 @@
 :root {
 	--urlbar-verified-proxystate-valid: #4c9817;
 	--urlbar-verified-proxystate-valid-overridden: #a20000;
-	--urlbar-height: 25px;
+	--urlbar-height-definitive: var(--toolbarbutton-height);
 }
 
 .verifiedDomain {
@@ -9,8 +9,8 @@
 }
 
 #urlbar {
-	--urlbar-height: 25px !important;
-	--urlbar-toolbar-height: var(--urlbar-height) !important;
+	--urlbar-height: var(--urlbar-height-definitive) !important;
+	--urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
@@ -23,6 +23,7 @@
 	&:not([focused="true"]) {
 		.verifiedDomain {
 			&[pageproxystate="valid"] {
+
 				&::before,
 				&::after {
 					position: absolute;
@@ -47,8 +48,6 @@
 				&:is(.certUserOverridden) {
 					&::after {
 						color: var(--urlbar-verified-proxystate-valid-overridden) !important;
-
-
 					}
 
 					&::before {
@@ -80,12 +79,14 @@
 	}
 
 	&[breakout] {
-		top: 1px !important;
+		--top: 0px;
+		
+		top: var(--top) !important;
 		
 		&[breakout-extend] {
 			left: initial !important;
 			width: 100% !important;
-			top: 1px !important;
+			top: var(--top) !important;
 
 			#urlbar-input-container {
 				padding-block: 1px !important;
@@ -93,7 +94,7 @@
 				padding: 0 !important;
 			}
 
-			> #urlbar-background {
+			>#urlbar-background {
 				animation: none !important;
 			}
 		}
@@ -106,8 +107,9 @@
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
 #urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
-	box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-		inset 0 1px 1px rgb(0, 0, 0, 10%) !important;
+	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+	inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
+	box-shadow: none !important;
 }
 
 #urlbar-label-box {
@@ -119,7 +121,7 @@
 }
 
 #identity-box {
-	height: var(--urlbar-height) !important;
+	height: var(--urlbar-height-definitive) !important;
 
 	&[pageproxystate="valid"] {
 		#identity-icon {
@@ -135,7 +137,7 @@
 		&.extensionPage {
 			margin-inline-end: 4px !important;
 
-			> .identity-box-button {
+			>.identity-box-button {
 				background: transparent !important;
 			}
 		}
@@ -244,10 +246,10 @@
 }
 
 .urlbarView-favicon {
+
 	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
 	&:is([src="chrome://browser/skin/history.svg"]) {
 		
-
 	}
 }
 
@@ -260,19 +262,19 @@
 }
 
 .urlbar-input-box {
-	height: calc(var(--urlbar-height) - 2px) !important;
+	height: calc(var(--urlbar-height-definitive) - 2px) !important;
 	font-size: 11pt !important;
 }
 
 #urlbar-container {
-	--urlbar-container-height: var(--urlbar-height) !important;
+	--urlbar-container-height: var(--urlbar-height-definitive) !important;
 
 	padding: 0 !important;
 	
 }
 
 #urlbar-input-container {
-	height: var(--urlbar-height) !important;
+	height: var(--urlbar-height-definitive) !important;
 	padding: 0 !important;
 	margin-top: -1px !important;
 }

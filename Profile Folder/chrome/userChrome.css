@@ -303,7 +303,7 @@
 :root {
   --urlbar-verified-proxystate-valid: #4c9817;
   --urlbar-verified-proxystate-valid-overridden: #a20000;
-  --urlbar-height: 25px;
+  --urlbar-height-definitive: var(--toolbarbutton-height);
 }
 
 .verifiedDomain {
@@ -311,8 +311,8 @@
 }
 
 #urlbar {
-  --urlbar-height: 25px !important;
-  --urlbar-toolbar-height: var(--urlbar-height) !important;
+  --urlbar-height: var(--urlbar-height-definitive) !important;
+  --urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
@@ -352,12 +352,13 @@
   background-image: url("assets/img/toolbar/grayfolder.png");
 }
 #urlbar[breakout] {
-  top: 1px !important;
+  --top: 0px;
+  top: var(--top) !important;
 }
 #urlbar[breakout][breakout-extend] {
   left: initial !important;
   width: 100% !important;
-  top: 1px !important;
+  top: var(--top) !important;
 }
 #urlbar[breakout][breakout-extend] #urlbar-input-container {
   padding-block: 1px !important;
@@ -374,7 +375,9 @@
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
 #urlbar[focused=true] > #urlbar-background #searchbar:focus-within {
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.1) !important;
+  /*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+  inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
+  box-shadow: none !important;
 }
 
 #urlbar-label-box {
@@ -385,7 +388,7 @@
 }
 
 #identity-box {
-  height: var(--urlbar-height) !important;
+  height: var(--urlbar-height-definitive) !important;
 }
 #identity-box[pageproxystate=valid] #identity-icon {
   height: 19px !important;
@@ -440,17 +443,17 @@
 }
 
 .urlbar-input-box {
-  height: calc(var(--urlbar-height) - 2px) !important;
+  height: calc(var(--urlbar-height-definitive) - 2px) !important;
   font-size: 11pt !important;
 }
 
 #urlbar-container {
-  --urlbar-container-height: var(--urlbar-height) !important;
+  --urlbar-container-height: var(--urlbar-height-definitive) !important;
   padding: 0 !important;
 }
 
 #urlbar-input-container {
-  height: var(--urlbar-height) !important;
+  height: var(--urlbar-height-definitive) !important;
   padding: 0 !important;
   margin-top: -1px !important;
 }
@@ -600,6 +603,13 @@
   --chrome-content-separator-color: transparent !important;
   --toolbar-start-end-padding: 6px !important;
   --inner-border-color: #dfdfdf;
+  --nav-bar-height: 37px;
+  --toolbarbutton-width: 29px;
+  --toolbarbutton-height: 27px;
+  --toolbarbutton-border-color-normal: rgb(198,206,228);
+  --toolbarbutton-border-color-hot: rgb(163,174,197);
+  --toolbarbutton-border-color-active: rgb(171,181,203);
+  --toolbarbutton-radius: 6px;
 }
 :root:not([customizing]) .toolbarbutton-1[disabled=true] {
   opacity: 0.22 !important;
@@ -612,12 +622,11 @@
   background: linear-gradient(to top, #deeaf8, #f0f2f5);
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
+  align-items: center;
 }
 
-#PersonalToolbar {
-  background: linear-gradient(to bottom, rgb(217, 230, 247), rgb(210, 226, 246));
-  height: 24px;
-  max-height: 24px;
+#nav-bar-customization-target {
+  align-items: center;
 }
 
 .tab-close-button {
@@ -642,13 +651,13 @@
   position: relative;
 }
 #navigator-toolbox-background::before {
+  content: "";
   position: absolute;
   left: 3px;
   right: 3px;
   bottom: 0;
-  content: "";
   height: 1px;
-  box-shadow: 0 1px 0 0 rgb(170, 170, 171) !important;
+  box-shadow: 0 1px 0 0 rgb(182, 186, 192) !important;
   z-index: 1;
 }
 
@@ -657,7 +666,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #nav-bar {
-  padding: 3px 0 !important;
+  height: var(--nav-bar-height);
 }
 #nav-bar::before, #nav-bar::after {
   position: absolute;
@@ -699,20 +708,92 @@ toolbar[overflowable][customizing] > .customization-target {
   margin-right: 0 !important;
 }
 
-.toolbarbutton-1, #stop-reload-button {
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
   padding: 0 !important;
   margin: 0 var(--toolbarbutton-outer-padding) !important;
-  border-radius: 2px !important;
+  width: var(--toolbarbutton-width);
+  height: var(--toolbarbutton-height);
+  border: 1px solid var(--toolbarbutton-border-color-normal);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 100ms linear;
+  /* bruni: 	let's separate radius like this so
+  			we can easily override each individually
+  			later when needed. */
+  border-top-left-radius: var(--toolbarbutton-radius) !important;
+  border-top-right-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 }
-.toolbarbutton-1[open=true] .toolbarbutton-badge-stack, #stop-reload-button[open=true] .toolbarbutton-badge-stack {
-  background-color: rgba(0, 0, 0, 0.12) !important;
-  box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2);
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::before {
+  content: "";
+  width: 100%;
+  height: 35%;
+  opacity: 0;
+  transition: opacity 100ms linear;
+  background: linear-gradient(to top, black, transparent);
 }
-.toolbarbutton-1:not([disabled=true]):hover, #stop-reload-button:not([disabled=true]):hover {
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover {
+  border: 1px solid var(--toolbarbutton-border-color-hot);
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover::before {
+  opacity: 0.1;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover .toolbarbutton-icon {
+  background-color: transparent !important;
   filter: saturate(2);
 }
-.toolbarbutton-1:is(#PanelUI-menu-button) .toolbarbutton-badge-stack, #stop-reload-button:is(#PanelUI-menu-button) .toolbarbutton-badge-stack {
-  border-radius: 2px !important;
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] {
+  border: 1px solid var(--toolbarbutton-border-color-active);
+  box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open]::before {
+  opacity: 0;
+  transition: none;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active .toolbarbutton-icon, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-badge-stack,
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] .toolbarbutton-icon {
+  filter: unset;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) .toolbarbutton-icon {
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) .toolbarbutton-badge-stack {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  height: inherit;
+  width: inherit;
+  align-items: center;
+  justify-content: center;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
+  /* bruni: Navigation buttons needs some rethinking. */
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: 1px solid transparent;
+}
+.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button {
+  margin-inline-start: -4px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-left: 1px solid transparent;
+}
+
+#back-button {
+  list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
+}
+
+#forward-button {
+  list-style-image: url(assets/img/chrome-5/toolbar/forward.png) !important;
 }
 
 .identity-box-button {
@@ -734,12 +815,8 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #PanelUI-menu-button {
   margin-right: var(--toolbar-start-end-padding) !important;
-  list-style-image: none !important;
-  background-image: url(assets/img/toolbar/menu.png);
+  list-style-image: url(assets/img/chrome-5/toolbar/menu.png) !important;
   background-position: center;
-}
-#PanelUI-menu-button .toolbarbutton-badge-stack {
-  height: 26px !important;
 }
 
 #identity-box[pageproxystate=valid].verifiedDomain #identity-icon, #identity-box[pageproxystate=valid].mixedActiveBlocked #identity-icon {
@@ -748,11 +825,6 @@ toolbar[overflowable][customizing] > .customization-target {
   background-size: contain;
 }
 
-#back-button,
-#forward-button,
-#reload-button,
-#stop-button,
-#unified-extensions-button,
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
   list-style-image: none !important;
@@ -794,33 +866,54 @@ toolbar[overflowable][customizing] > .customization-target {
 #TabsToolbar #new-tab-button:active {
   background-image: url(assets/img/tabbar/newtab_pressed.png);
 }
-#back-button {
-  background-image: url(assets/img/chrome-5/toolbar/back.png);
-}
-#forward-button {
-  background-image: url(assets/img/chrome-5/toolbar/forward.png);
-  background-position: center;
-}
 #reload-button {
-  background-image: url(assets/img/chrome-5/toolbar/reload.png);
-  background-size: 32px 32px;
+  list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
 }
 
 #stop-button {
-  background-image: url(assets/img/chrome-5/toolbar/stop.png);
+  list-style-image: url(assets/img/chrome-5/toolbar/stop.png) !important;
 }
 
 #unified-extensions-button {
-  background-image: url(assets/img/toolbar/extenstions.png);
-  background-size: 28px 28px;
-  background-position: 50% calc(50% + 1px) !important;
-  list-style-image: none !important;
+  list-style-image: url(assets/img/toolbar/extenstions.png);
+  /* bruni: I wanna hide this button for now. */
+  width: 0 !important;
+  margin: 0 !important;
+  margin-inline: 0 !important;
+  border: 0 !important;
+  position: absolute !important;
+}
+
+#reload-button {
+  list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
+}
+
+#stop-button {
+  list-style-image: url(assets/img/chrome-5/toolbar/stop.png) !important;
+}
+
+#unified-extensions-button {
+  list-style-image: url(assets/img/toolbar/extenstions.png) !important;
+  /* bruni: I wanna hide this button for now. */
+  width: 0 !important;
+  margin: 0 !important;
+  margin-inline: 0 !important;
+  border: 0 !important;
+  position: absolute !important;
 }
 
 .toolbarbutton-animatable-box {
   display: none !important;
 }
 
+#PersonalToolbar {
+  height: 24px;
+  background: linear-gradient(to bottom, rgb(217, 230, 247), rgb(210, 226, 246));
+}
+
+.bookmark-item {
+  border-radius: var(--toolbarbutton-radius) !important;
+}
 :root:not([customizing]) .toolbarbutton-1[disabled=true] {
   filter: brightness(1) contrast(2);
 }
@@ -859,4 +952,8 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   transition: none !important;
   background-color: rgba(0, 0, 0, 0.12) !important;
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.3), 1px 0 0 0 rgba(0, 0, 0, 0.3), 0 -1px 0 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px transparent, 0 -1px 0 transparent;
+}
+
+#PersonalToolbar {
+  max-height: 24px;
 }/*# sourceMappingURL=userChrome.css.map */

@@ -21,6 +21,10 @@ function setAttributes(elm, attrs) {
 	}
 }
 
+function insertBefore(newNode, existingNode) {
+	existingNode.parentNode.insertBefore(newNode, existingNode);
+}
+
 function insertAfter(newNode, existingNode) {
 	existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
@@ -39,3 +43,5 @@ function pref(prefName) {
         }
     }
 };
+
+const appearanceChanged = new CustomEvent("appearanceChanged");

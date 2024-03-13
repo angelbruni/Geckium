@@ -2,7 +2,7 @@
 // @name        Geckium - Appearance
 // @author		AngelBruni
 // @description	Settings the desired appearance chosen by the user accordingly.
-// @loadorder   3
+// @loadorder   2
 // ==/UserScript==
 
 const appearanceMap = {
@@ -45,6 +45,12 @@ function applyApperance(choice) {
             docElm.setAttribute(attr, "");
         }
     }
+
+	// bruni: Let's also apply the attribute specific to the
+	//		  user choice so we can make unique styles for it.
+	docElm.setAttribute("geckium-choice", appearanceMap[choice]);
+	
+	dispatchEvent(appearanceChanged);
 
 	console.log("Applied appearance " + choice + ".");
 }
