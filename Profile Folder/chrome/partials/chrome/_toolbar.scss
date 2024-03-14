@@ -1,7 +1,24 @@
 :root {
-    --nav-bar: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
+    --nav-bar: linear-gradient(
+        to top,
+        rgb(218, 231, 247),
+        rgb(230, 239, 251),
+        rgb(245, 249, 254)
+    );
     --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
-	--personal-toolbar-border-bottom: rgb(182, 186, 192);
+    --personal-toolbar-border-bottom: rgb(182, 186, 192);
+    --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
+        0 0 0 1px transparent, 0 1px 1px 2px transparent,
+        inset 0 0 1px 1px transparent;
+    --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+            rgb(255, 255, 255, 30%),
+        0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+        inset 0 0 1px 1px transparent;
+    --personal-toolbar-item-hover-bg: linear-gradient(
+        to top,
+        transparent,
+        rgb(255, 255, 255, 50%)
+    ) !important;
 
     --chrome-content-separator-color: transparent !important;
     --toolbar-start-end-padding: 6px !important;
@@ -12,16 +29,20 @@
     --toolbarbutton-width: 29px;
     --toolbarbutton-menu-width: 36px;
     --toolbarbutton-height: 27px;
-	--toolbarbutton-inner-padding: 5px !important;
+    --toolbarbutton-inner-padding: 5px !important;
     --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
     --toolbarbutton-outer-padding: 3px !important;
     --toolbarbutton-border-color-normal: rgb(198, 206, 228);
     --toolbarbutton-border-color-hot: rgb(163, 174, 197);
     --toolbarbutton-border-color-active: rgb(171, 181, 203);
     --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-	--toolbarbutton-gradient: linear-gradient(to top, rgb(222,234,248), rgb(240,245,253));
+    --toolbarbutton-gradient: linear-gradient(
+        to top,
+        rgb(222, 234, 248),
+        rgb(240, 245, 253)
+    );
     --toolbarbutton-active-background: transparent !important;
-	--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
+    --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
     --toolbarbutton-radius: 6px;
     --toolbarbutton-disabled-opacity: 1 !important;
     --navigation-buttons-separator: rgb(221, 229, 243);
@@ -30,22 +51,53 @@
     --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
     @media (prefers-color-scheme: dark) {
-        --nav-bar: linear-gradient(to bottom, #5D5D5D, #4C4C4C) !important;
-        --personal-toolbar: linear-gradient(to bottom, #4C4C4C, #575757);
-		--personal-toolbar-border-bottom: rgb(91, 91, 91);
-		
-		--inner-border-color: rgb(79, 79, 79);
+        --nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
+        --personal-toolbar: linear-gradient(to bottom, #4c4c4c, #575757);
+        --personal-toolbar-border-bottom: rgb(91, 91, 91);
 
-		--toolbarbutton-border-color-normal: rgb(190, 190, 190);
-		--toolbarbutton-border-color-hot: rgb(196, 196, 196);
-		--toolbarbutton-border-color-active: rgb(199, 199, 199);
-        --toolbarbutton-gradient: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
-		--toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+        --inner-border-color: rgb(79, 79, 79);
 
-		--navigation-buttons-separator: rgb(209, 209, 209);
+        --toolbarbutton-border-color-normal: rgb(190, 190, 190);
+        --toolbarbutton-border-color-hot: rgb(196, 196, 196);
+        --toolbarbutton-border-color-active: rgb(199, 199, 199);
+        --toolbarbutton-gradient: linear-gradient(
+            to top,
+            rgb(209, 209, 209),
+            rgb(255, 255, 255)
+        );
+        --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+
+        --navigation-buttons-separator: rgb(209, 209, 209);
 
         --bookmark-item-color: #95b4ee;
         --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+    }
+
+    &[geckium-five][geckium-eleven] {
+        --nav-bar: linear-gradient(
+            to top,
+            rgb(228, 228, 228),
+            rgb(249, 249, 249)
+        );
+        --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+
+        --personal-toolbar: linear-gradient(
+            to top,
+            rgb(223, 223, 223),
+            rgb(228, 228, 228)
+        );
+        --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+                rgb(255, 255, 255, 30%),
+            0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+            inset 0 0 1px 1px transparent !important;
+        --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+
+        #PersonalToolbar {
+            padding-block: 2px !important;
+        }
+        .bookmark-item {
+            border-radius: 5px !important;
+        }
     }
 
     #navigator-toolbox {
@@ -278,7 +330,8 @@ toolbar[overflowable][customizing] > .customization-target {
         right: 1px;
         bottom: -1px;
         height: 23px;
-        background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png) bottom;
+        background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png)
+            bottom;
         pointer-events: none;
         z-index: 100;
     }
@@ -292,8 +345,8 @@ toolbar[overflowable][customizing] > .customization-target {
     position: relative;
     padding: 0 !important;
     background: var(--toolbarbutton-gradient) !important;
-	background-clip: padding-box !important;
-	fill: var(--toolbarbutton-icon-fill) !important;
+    background-clip: padding-box !important;
+    fill: var(--toolbarbutton-icon-fill) !important;
     margin: 0 var(--toolbarbutton-outer-padding) !important;
     width: var(--toolbarbutton-width) !important;
     height: var(--toolbarbutton-height) !important;
@@ -319,17 +372,25 @@ toolbar[overflowable][customizing] > .customization-target {
         width: 100%;
         transition: box-shadow 100ms linear;
 
-        border-top-left-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
-        border-top-right-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
-        border-bottom-left-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
-        border-bottom-right-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
+        border-top-left-radius: calc(
+            var(--toolbarbutton-radius) + 1px
+        ) !important;
+        border-top-right-radius: calc(
+            var(--toolbarbutton-radius) + 1px
+        ) !important;
+        border-bottom-left-radius: calc(
+            var(--toolbarbutton-radius) + 1px
+        ) !important;
+        border-bottom-right-radius: calc(
+            var(--toolbarbutton-radius) + 1px
+        ) !important;
     }
 
     &::before {
         height: 35%;
         opacity: 0;
         background: linear-gradient(to top, black, transparent);
-		transition: opacity 100ms linear;
+        transition: opacity 100ms linear;
     }
 
     &::after {
@@ -362,7 +423,8 @@ toolbar[overflowable][customizing] > .customization-target {
         &:active,
         &[open] {
             border: 1px solid var(--toolbarbutton-border-color-active);
-            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
+                inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
 
             &::before {
                 opacity: 0;
@@ -377,13 +439,13 @@ toolbar[overflowable][customizing] > .customization-target {
         }
     }
 
-	.toolbarbutton-badge-stack,
-	.toolbarbutton-icon,
-	image:first-of-type {
-		padding: 0 !important;
-		fill: var(--toolbarbutton-icon-fill) !important;
-		transition: 100ms filter linear;
-	}
+    .toolbarbutton-badge-stack,
+    .toolbarbutton-icon,
+    image:first-of-type {
+        padding: 0 !important;
+        fill: var(--toolbarbutton-icon-fill) !important;
+        transition: 100ms filter linear;
+    }
 
     .toolbarbutton-icon {
         width: auto !important;
@@ -453,7 +515,7 @@ toolbar[overflowable][customizing] > .customization-target {
     &#PanelUI-menu-button {
         width: var(--toolbarbutton-menu-width) !important;
         border: 0 !important;
-		background: transparent !important;
+        background: transparent !important;
         transition: background-color 100ms linear;
 
         &::after,
@@ -485,7 +547,7 @@ toolbar[overflowable][customizing] > .customization-target {
 
     &::after {
         border-right: 1px solid var(--navigation-buttons-separator);
-		z-index: 1;
+        z-index: 1;
     }
 }
 
@@ -646,8 +708,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
-    box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent,
-        0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
+    box-shadow: var(--personal-toolbar-item-shadow);
     transition: all 150ms linear;
     margin-inline: 3px !important;
     border-radius: var(--toolbarbutton-radius) !important;
@@ -655,13 +716,7 @@ toolbar[overflowable][customizing] > .customization-target {
     text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
 
     &:hover {
-        box-shadow: inset 0 0 0 1px rgb(255, 255, 255, 30%),
-            0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-            inset 0 0 1px 1px transparent;
-        background: linear-gradient(
-            to top,
-            transparent,
-            rgb(255, 255, 255, 50%)
-        ) !important;
+        box-shadow: var(--personal-toolbar-item-hover-shadow);
+        background: var(--personal-toolbar-item-hover-bg) !important;
     }
 }

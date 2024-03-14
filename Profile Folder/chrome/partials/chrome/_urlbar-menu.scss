@@ -1,197 +1,199 @@
 :root {
-	--urlbarView: var(--protocol-background-color);
+    --urlbarView: var(--protocol-background-color);
 
-	--autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
-	--autocomplete-popup-highlight-background: -moz-menuhover !important;
-	--autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
+    --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
+    --autocomplete-popup-highlight-background: -moz-menuhover !important;
+    --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
-	@media (prefers-color-scheme: dark) {
-		--autocomplete-popup-highlight-background: -moz-menuhover !important;
-	}
+    @media (prefers-color-scheme: dark) {
+        --autocomplete-popup-highlight-background: -moz-menuhover !important;
+    }
 
-	&:not([uidensity="compact"]) {
-		.urlbarView-row:not([type="tip"], [type="dynamic"]) {
-			min-height: 0 !important;
-		}
-	}
+    &:not([uidensity="compact"]) {
+        .urlbarView-row:not([type="tip"], [type="dynamic"]) {
+            min-height: 0 !important;
+        }
+    }
 }
 
 .urlbarView {
-	display: block;
-	background: var(--urlbarView) !important;
-	border: 1px solid rgba(0, 0, 0, 0.3) !important;
-	margin-top: 4px !important;
-	margin-inline: 0 !important;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
-	border-radius: 5px;
-	padding: 0;
+    display: block;
+    background: var(--urlbarView) !important;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    margin-top: 4px !important;
+    margin-inline: 0 !important;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    padding: 0;
 
-	/* bruni: Let's make the urlbar menu width from star button to go button. */
-	transform: translateX(calc(var(--toolbarbutton-width) * -1));
-	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+    /* bruni: Let's make the urlbar menu width from star button to go button. */
+    transform: translateX(calc(var(--toolbarbutton-width) * -1));
+    width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
 }
 
 /* guh .urlbarView-title,
 /*.urlbarView-tags,*/
 .urlbarView-url {
-	font-size: unset !important;
+    font-size: unset !important;
 }
 
 .urlbarView-results {
-	padding: 0 !important;
+    padding: 0 !important;
 }
 
 .urlbarView-row {
-	border-radius: 0 !important;
-	border: 0 !important;
-	padding-left: 4px !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    padding-left: 4px !important;
 
-	&[selected] {
-		&[type="switchtab"] {
-			.urlbarView-action {
-				color: rgb(255, 255, 255, 80%) !important;
-			}
-		}
+    &[selected] {
+        &[type="switchtab"] {
+            .urlbarView-action {
+                color: rgb(255, 255, 255, 80%) !important;
+            }
+        }
 
-		.urlbarView-url {
-			color: #7ff4b7 !important;
-		}
-	}
+        .urlbarView-url {
+            color: #7ff4b7 !important;
+        }
+    }
 
-	&[type="switchtab"] {
-		.urlbarView-row-inner {
-			.urlbarView-title {
-				padding-left: 24px;
+    &[type="switchtab"] {
+        .urlbarView-row-inner {
+            .urlbarView-title {
+                padding-left: 24px;
 
-				&::before {
-					display: none;
-				}
-			}
-		}
-	}
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
 
-	&[dynamicType="onboardTabToSearch"] {
-		>.urlbarView-row-inner {
-			min-height: 14px !important;
-		}
-	}
+    &[dynamicType="onboardTabToSearch"] {
+        > .urlbarView-row-inner {
+            min-height: 14px !important;
+        }
+    }
 
-	&[type="search"] {
-		.urlbarView-title {
-			&::before {
-				display: none;
-			}
-		}
-	}
+    &[type="search"] {
+        .urlbarView-title {
+            &::before {
+                display: none;
+            }
+        }
+    }
 
-	&:is([row-selectable]:hover, [selected]) {
-		>.urlbarView-button {
-			background-color: transparent !important;
-			color: white !important;
-			fill-opacity: 1;
-		}
-	}
+    &:is([row-selectable]:hover, [selected]) {
+        > .urlbarView-button {
+            background-color: transparent !important;
+            color: white !important;
+            fill-opacity: 1;
+        }
+    }
 }
 
 .urlbarView-action {
-	position: absolute;
-	right: 0 !important;
-	background: transparent !important;
-	color: rgb(30, 133, 216) !important;
+    position: absolute;
+    right: 0 !important;
+    background: transparent !important;
+    color: rgb(30, 133, 216) !important;
 }
 
 @media screen and (min-height: 600px) {
-	.urlbarView-results[wrap]>.urlbarView-row:where(:not([rich-suggestion="with-icon"]))>.urlbarView-row-inner {
-		flex-wrap: nowrap !important;
-	}
+    .urlbarView-results[wrap]
+        > .urlbarView-row:where(:not([rich-suggestion="with-icon"]))
+        > .urlbarView-row-inner {
+        flex-wrap: nowrap !important;
+    }
 
-	.urlbarView-url {
-		overflow: visible !important;
-	}
+    .urlbarView-url {
+        overflow: visible !important;
+    }
 }
 
 .urlbarView-overflowable[overflow],
 .urlbarView-url[overflow] {
-	mask-image: none !important;
+    mask-image: none !important;
 }
 
 #urlbar {
-	&[open] {
-		>.urlbarView {
-			>.urlbarView-body-outer {
-				>.urlbarView-body-inner {
-					border-top: 0 !important;
-				}
-			}
-		}
-	}
+    &[open] {
+        > .urlbarView {
+            > .urlbarView-body-outer {
+                > .urlbarView-body-inner {
+                    border-top: 0 !important;
+                }
+            }
+        }
+    }
 }
 
 .urlbarView-type-icon {
-	display: none;
+    display: none;
 }
 
 .search-one-offs {
-	display: none !important;
+    display: none !important;
 }
 
 .urlbarView-url {
-	color: #4c9817 !important;
-	flex-grow: 0 !important;
-	padding-left: 24px !important;
-	order: 1 !important;
+    color: #4c9817 !important;
+    flex-grow: 0 !important;
+    padding-left: 24px !important;
+    order: 1 !important;
 }
 
 .urlbarView-favicon {
-	position: absolute;
-	left: 8px;
+    position: absolute;
+    left: 8px;
 }
 
 .urlbarView-no-wrap {
-	order: 2 !important;
+    order: 2 !important;
 }
 
 .urlbarView-title-separator {
-	&::before {
-		display: none;
-	}
+    &::before {
+        display: none;
+    }
 }
 
 .urlbarView-title {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	min-width: 0;
-	color: rgb(131, 133, 133);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+    color: rgb(131, 133, 133);
 
-	&::before {
-		content: "-";
-		padding: 0 4px;
-	}
+    &::before {
+        content: "-";
+        padding: 0 4px;
+    }
 }
 
 .urlbarView-row-inner {
-	padding-block-start: 2px !important;
-	padding-block-end: 3px !important;
+    padding-block-start: 2px !important;
+    padding-block-end: 3px !important;
 }
 
 .urlbarView-dynamic-onboardTabToSearch-no-wrap {
-	.urlbarView-dynamic-onboardTabToSearch-icon {
-		height: 16px !important;
-		width: 16px !important;
-		left: 0;
-	}
+    .urlbarView-dynamic-onboardTabToSearch-icon {
+        height: 16px !important;
+        width: 16px !important;
+        left: 0;
+    }
 
-	.urlbarView-dynamic-onboardTabToSearch-text-container {
-		padding-left: 26px !important;
-	}
+    .urlbarView-dynamic-onboardTabToSearch-text-container {
+        padding-left: 26px !important;
+    }
 
-	.urlbarView-dynamic-onboardTabToSearch-title.urlbarView-title {
-		&::before {
-			display: none !important;
-		}
-	}
+    .urlbarView-dynamic-onboardTabToSearch-title.urlbarView-title {
+        &::before {
+            display: none !important;
+        }
+    }
 }
 
 .urlbarView-dynamic-onboardTabToSearch-action {
-	display: none;
+    display: none;
 }

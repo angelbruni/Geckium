@@ -1,340 +1,367 @@
 :root {
-	--newtab-normal: rgba(255,255,255,.01);
+    --newtab-normal: rgba(255, 255, 255, 0.01);
 
-	--tab-glare-opacity: 1;
-	--tab-glare: rgb(211, 217, 225, .45);
+    --tab-glare-opacity: 1;
+    --tab-glare: rgb(211, 217, 225, 0.45);
 
-	--tab-sides-width: 15px;
-	--tab-width: 194px;
-	--tab-distance: 4px;
+    --tab-sides-width: 15px;
+    --tab-width: 194px;
+    --tab-distance: 4px;
 
-	&[geckium-five][geckium-eleven] {
-		--tab-glare-opacity: 0.4;
-		--tab-glare: linear-gradient(90deg, transparent, white, transparent);
-	}
+    &[geckium-five][geckium-eleven] {
+        --tab-glare-opacity: 0.4;
+        --tab-glare: linear-gradient(90deg, transparent, white, transparent);
 
-	&[geckium-choice="five"] {
-		.tab-glare-container {
-			transition: opacity 100ms linear !important;
-		}
-	}
+        --tab-selected-bgcolor: linear-gradient(
+            to top,
+            rgb(249, 249, 249),
+            rgb(255, 255, 255)
+        ) !important;
+    }
 
-	--inactive-tab-background-color: rgb(211, 217, 225, .8);
-	--tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253), rgb(252,254,255)) !important;
-	--tabbrowser-tab-color: black;
+    &[geckium-choice="five"] {
+        .tab-glare-container {
+            transition: opacity 100ms linear !important;
+        }
+    }
 
-	--tab-transition-time: 220ms;
+    --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
+    --tab-selected-bgcolor: linear-gradient(
+        to top,
+        rgb(243, 248, 253),
+        rgb(252, 254, 255)
+    ) !important;
+    --tabbrowser-tab-color: black;
 
-	@media (prefers-color-scheme: dark) {
-		--tab-glare: rgba(19, 23, 29, 0.45);
+    --tab-transition-time: 220ms;
 
-		--inactive-tab-background-color: rgba(70, 70, 70, .8);
-		--tab-selected-bgcolor: linear-gradient(to bottom, #616161, #5D5D5D) !important;
-		--tabbrowser-tab-color: white;
-	}
+    @media (prefers-color-scheme: dark) {
+        --tab-glare: rgba(19, 23, 29, 0.45);
 
-	&:not([tabsintitlebar]) {
-		.titlebar-items {
-			margin-top: -7px !important;
-		}
-	}
+        --inactive-tab-background-color: rgba(70, 70, 70, 0.8);
+        --tab-selected-bgcolor: linear-gradient(
+            to bottom,
+            #616161,
+            #5d5d5d
+        ) !important;
+        --tabbrowser-tab-color: white;
+    }
 
-	&[tabsintitlebar] {
-		&:not([sizemode="maximized"]) {
-			.titlebar-items {
-				padding-top: 23px !important;
-			}
-		}
-	}
+    &:not([tabsintitlebar]) {
+        .titlebar-items {
+            margin-top: -7px !important;
+        }
+    }
 
-	&[sizemode="maximized"] {
-		.toolbar-items {
-			margin-top: -3px !important;
-		}
-	}
+    &[tabsintitlebar] {
+        &:not([sizemode="maximized"]) {
+            .titlebar-items {
+                padding-top: 23px !important;
+            }
+        }
+    }
+
+    &[sizemode="maximized"] {
+        .toolbar-items {
+            margin-top: -3px !important;
+        }
+    }
 }
 
 /* bruni: This is the animation responsible for hiding the tab
 			when the background reaches min-width. */
 @keyframes hide-tab {
-	59% {
-		opacity: 1;
-	}
+    59% {
+        opacity: 1;
+    }
 
-	60% {
-		opacity: 0;
-	}
+    60% {
+        opacity: 0;
+    }
 
-	100% {
-		opacity: 0;
-	}
+    100% {
+        opacity: 0;
+    }
 }
 
 .tab-background {
-	margin-block: 0 !important;
-	border-radius: 0px !important;
-	box-shadow: none !important;
-	border: 0 !important;
-	width: calc(100% - 1px) !important;
-	margin-top: 4px !important;
-	background-size: 100% 24px !important;
+    margin-block: 0 !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    width: calc(100% - 1px) !important;
+    margin-top: 4px !important;
+    background-size: 100% 24px !important;
 }
 
 .tab-content {
-	margin-left: -13px !important;
-	padding: 0;
-	overflow: hidden !important;
+    margin-left: -13px !important;
+    padding: 0;
+    overflow: hidden !important;
 }
 
 .tabbrowser-tab {
-	padding: 0;
-	overflow: visible !important;
-	min-width: 0 !important;
-	color: var(--tabbrowser-tab-color) !important;
+    padding: 0;
+    overflow: visible !important;
+    min-width: 0 !important;
+    color: var(--tabbrowser-tab-color) !important;
 
-	&:not([visuallyselected="true"]) {
-		&:not(:first-of-type) {
-			.tab-content {
-				&::before {
-					background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
-					background-position: 0 2px;
-				}
-			}
-	
-			.tab-stack {
-				&::before {
-					mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
-				}
-			}
+    &:not([visuallyselected="true"]) {
+        &:not(:first-of-type) {
+            .tab-content {
+                &::before {
+                    background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png)
+                        no-repeat;
+                    background-position: 0 2px;
+                }
+            }
 
-			.tab-glare-left {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
-				mask-position-y: -1px;
-				width: 12px;
-			}
-		}
+            .tab-stack {
+                &::before {
+                    mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+                }
+            }
 
-		&:hover {
-			.tab-glare-container {
-				opacity: var(--tab-glare-opacity);
+            .tab-glare-left {
+                mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+                mask-position-y: -1px;
+                width: 12px;
+            }
+        }
 
-				/* bruni: In Chrome, the glare shows up faster when hovering. */
-				transition: opacity 0.2s linear;
-			}
-		}
+        &:hover {
+            .tab-glare-container {
+                opacity: var(--tab-glare-opacity);
 
-		.tab-content {
-			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
-				background-position: 0 2px;
-			}
-		}
+                /* bruni: In Chrome, the glare shows up faster when hovering. */
+                transition: opacity 0.2s linear;
+            }
+        }
 
-		.tab-label {
-			opacity: 0.9 !important;
-		}
+        .tab-content {
+            &::before {
+                background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png)
+                    no-repeat;
+                background-position: 0 2px;
+            }
+        }
 
-		.tab-icon-stack {
-			opacity: 0.6 !important;
-		}
+        .tab-label {
+            opacity: 0.9 !important;
+        }
 
-		.tab-stack {
-			&::before,
-			&::after {
-				background-color: var(--inactive-tab-background-color) !important;
-				//transition: 100ms background-color linear;
-			}
+        .tab-icon-stack {
+            opacity: 0.6 !important;
+        }
 
-			&::before {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-				//backdrop-filter: blur(400px);
-				left: calc(var(--tab-sides-width) * -1);
-			}
+        .tab-stack {
+            &::before,
+            &::after {
+                background-color: var(
+                    --inactive-tab-background-color
+                ) !important;
+                //transition: 100ms background-color linear;
+            }
 
-			&::after {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-			}
-		}
+            &::before {
+                mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+                //backdrop-filter: blur(400px);
+                left: calc(var(--tab-sides-width) * -1);
+            }
 
-		.tab-content {
-			&::after {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
-				background-position: 0px 2px;
-			}
-		}
+            &::after {
+                mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+            }
+        }
 
-		.tab-context-line {
-			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png) top;
-				height: 28px !important;
-				top: 2px;
-			}
-		}
+        .tab-content {
+            &::after {
+                background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png)
+                    no-repeat;
+                background-position: 0px 2px;
+            }
+        }
 
-		.tab-background {
-			background-color: var(--inactive-tab-background-color) !important;
-			//transition: 100ms background-color linear;
-		}
-	}
+        .tab-context-line {
+            &::before {
+                background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png)
+                    top;
+                height: 28px !important;
+                top: 2px;
+            }
+        }
 
-	&[visuallyselected="true"] {
-		position: relative;
-		z-index: 1000;
+        .tab-background {
+            background-color: var(--inactive-tab-background-color) !important;
+            //transition: 100ms background-color linear;
+        }
+    }
 
-		.tab-content {
-			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_active_left.png) no-repeat;
-				background-position: 0 2px;
-			}
+    &[visuallyselected="true"] {
+        position: relative;
+        z-index: 1000;
 
-			&::after {
-				background: url(assets/img/chrome-5/tabbar/tab_active_right.png) no-repeat;
-				background-position: 0 2px;
-			}
-		}
+        .tab-content {
+            &::before {
+                background: url(assets/img/chrome-5/tabbar/tab_active_left.png)
+                    no-repeat;
+                background-position: 0 2px;
+            }
 
-		.tab-stack {
-			&::before,
-			&::after {
-				background-image: var(--tab-selected-bgcolor) !important;
-			}
+            &::after {
+                background: url(assets/img/chrome-5/tabbar/tab_active_right.png)
+                    no-repeat;
+                background-position: 0 2px;
+            }
+        }
 
-			&::before {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-			}
+        .tab-stack {
+            &::before,
+            &::after {
+                background-image: var(--tab-selected-bgcolor) !important;
+            }
 
-			&::after {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-			}
-		}
+            &::before {
+                mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+            }
 
-		.tab-context-line {
-			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_active_center.png) top;
-				top: 2px;
-			}
-		}
+            &::after {
+                mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+            }
+        }
 
-		.tab-background {
-			background-image: var(--tab-selected-bgcolor) !important;
-		}
-	}
+        .tab-context-line {
+            &::before {
+                background: url(assets/img/chrome-5/tabbar/tab_active_center.png)
+                    top;
+                top: 2px;
+            }
+        }
 
-	&[fadein] {
-		&:not([pinned]) {
-			&:not([style*="max-width"]) {
-				max-width: var(--tab-width) !important;
-				transform-origin: left !important;
-			}
-		}
-	}
+        .tab-background {
+            background-image: var(--tab-selected-bgcolor) !important;
+        }
+    }
 
-	/* bruni: This controls the tab "open"/"close" transition. */
-	&:not([pinned]) {
-		transition: min-width var(--tab-transition-time) ease,
-			max-width var(--tab-transition-time) ease !important;
-	}
+    &[fadein] {
+        &:not([pinned]) {
+            &:not([style*="max-width"]) {
+                max-width: var(--tab-width) !important;
+                transform-origin: left !important;
+            }
+        }
+    }
 
-	/* bruni: This makes it so the tab does not disappear when it starts "close" transition 
+    /* bruni: This controls the tab "open"/"close" transition. */
+    &:not([pinned]) {
+        transition: min-width var(--tab-transition-time) ease,
+            max-width var(--tab-transition-time) ease !important;
+    }
+
+    /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
 			  and it also makes the tab disappear when the background reaches min-width just
 			  like real Chrome. */
-	&:not([pinned], [fadein]) {
-		visibility: unset !important;
-		pointer-events: none !important;
-		animation: hide-tab var(--tab-transition-time) ease;
-	}
+    &:not([pinned], [fadein]) {
+        visibility: unset !important;
+        pointer-events: none !important;
+        animation: hide-tab var(--tab-transition-time) ease;
+    }
 
-	.tab-content {
-		padding: 0 !important;
-		border-left: var(--tab-sides-width) solid transparent !important;
-		border-right: 0 !important;
-		padding-right: 3px !important;
-	}
+    .tab-content {
+        padding: 0 !important;
+        border-left: var(--tab-sides-width) solid transparent !important;
+        border-right: 0 !important;
+        padding-right: 3px !important;
+    }
 
-	&:first-of-type {
-		margin-left: 9px !important
-	}
+    &:first-of-type {
+        margin-left: 9px !important;
+    }
 }
 
 .tab-content {
-	&::before,
-	&::after {
-		position: absolute;
-		width: var(--tab-sides-width);
-		height: 100%;
-		pointer-events: none;
-		content: "";
-	}
+    &::before,
+    &::after {
+        position: absolute;
+        width: var(--tab-sides-width);
+        height: 100%;
+        pointer-events: none;
+        content: "";
+    }
 
-	&::before {
-		left: calc(var(--tab-sides-width) * -1);
-	}
+    &::before {
+        left: calc(var(--tab-sides-width) * -1);
+    }
 
-	&::after {
-		left: calc(100% - 1px);
-	}
+    &::after {
+        left: calc(100% - 1px);
+    }
 }
 
 .tab-context-line {
-	&::before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: calc(100% - 1px) !important;
-		content: "";
-		height: 12px;
-	}
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 1px) !important;
+        content: "";
+        height: 12px;
+    }
 }
 
 #tabbrowser-tabs,
 #tabbrowser-arrowscrollbox,
-#tabbrowser-tabs[positionpinnedtabs]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[pinned] {
-	min-height: 22px !important;
+#tabbrowser-tabs[positionpinnedtabs]
+    > #tabbrowser-arrowscrollbox
+    > .tabbrowser-tab[pinned] {
+    min-height: 22px !important;
 }
 
 .tab-stack,
 .tab-background,
 .tab-content,
 .tabbrowser-tab {
-	height: 28px !important;
+    height: 28px !important;
 }
 
 .tab-stack {
-	margin-inline-start: calc(var(--tab-distance) + 1px) !important;
-	margin-inline-end: var(--tab-distance) !important;
+    margin-inline-start: calc(var(--tab-distance) + 1px) !important;
+    margin-inline-end: var(--tab-distance) !important;
 
-	&::before,
-	&::after {
-		position: absolute;
-		content: "";
-		width: var(--tab-sides-width);
-		mask-size: cover;
-		mask-repeat: no-repeat;
-		pointer-events: none;
-	}
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: var(--tab-sides-width);
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        pointer-events: none;
+    }
 
-	&::before {
-		left: calc(var(--tab-sides-width) * -1);
-		height: calc(100% - 2px);
-		bottom: 0px;
-	}
+    &::before {
+        left: calc(var(--tab-sides-width) * -1);
+        height: calc(100% - 2px);
+        bottom: 0px;
+    }
 
-	&::after {
-		left: calc(100% - 1px);
-		height: 100%;
-		bottom: -2px;
-		z-index: -1;
-	}
+    &::after {
+        left: calc(100% - 1px);
+        height: 100%;
+        bottom: -2px;
+        z-index: -1;
+    }
 }
 
 /* bruni: This controls the transition of the tabs moving around while a tab is being
 			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
 @media (prefers-reduced-motion: no-preference) {
-	#tabbrowser-tabs[movingtab]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
-	.tabbrowser-tab[tab-grouping],
-	.tabbrowser-tab[tabdrop-samewindow] {
-		transition: transform 200ms var(--animation-easing-function) !important;
-	}
+    #tabbrowser-tabs[movingtab]
+        > #tabbrowser-arrowscrollbox
+        > .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+    .tabbrowser-tab[tab-grouping],
+    .tabbrowser-tab[tabdrop-samewindow] {
+        transition: transform 200ms var(--animation-easing-function) !important;
+    }
 }
 
 /* bruni: This makes it so the tab does not disappear when it starts "close" transition. */
@@ -343,96 +370,96 @@
 .tab-close-button:not([fadein]),
 .tabbrowser-tab:not([fadein])::after,
 .tab-background:not([fadein]) {
-	visibility: unset !important;
+    visibility: unset !important;
 }
 
 .tab-label,
 .tab-throbber {
-	&:not([fadein]) {
-		display: flex !important;
-	}
+    &:not([fadein]) {
+        display: flex !important;
+    }
 }
 
 .titlebar-spacer {
-	display: none !important;
+    display: none !important;
 }
 
 #tabbrowser-tabs {
-	&:not([secondarytext-unsupported]) {
-		.tab-label-container {
-			height: 24px !important;
-			margin-top: 1px;
-		}
-	}
+    &:not([secondarytext-unsupported]) {
+        .tab-label-container {
+            height: 24px !important;
+            margin-top: 1px;
+        }
+    }
 }
 
 .tab-icon-stack {
-	margin-top: 2px;
+    margin-top: 2px;
 }
 
 .tabbrowser-tab,
 .tab-stack,
 .tab-content {
-	min-height: 20px !important;
+    min-height: 20px !important;
 }
 
 .tab-glare-container {
-	position: relative;
-	left: -13px;
-	width: 115%;
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
+    position: relative;
+    left: -13px;
+    width: 115%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
 
-	/* bruni: In Chrome, the glare hides in a slower
+    /* bruni: In Chrome, the glare hides in a slower
 				pace when the mouse leaves. */
-	transition: opacity 0.5s linear;
+    transition: opacity 0.5s linear;
 }
 
 .tab-glare-middle {
-	flex: 1;
+    flex: 1;
 }
 
 .tab-glare-left,
 .tab-glare-middle,
 .tab-glare-right {
-	mask-repeat: no-repeat;
-	top: 0;
-	position: relative;
-	overflow: hidden;
+    mask-repeat: no-repeat;
+    top: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .tab-glare-left {
-	mask-image: url(assets/img/tabbar/tab_alpha_left.png);
-	mask-position-y: -1px;
-	width: 12px;
+    mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+    mask-position-y: -1px;
+    width: 12px;
 }
 
 .tab-glare-right {
-	mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+    mask-image: url(assets/img/tabbar/tab_alpha_right.png);
 
-	/* bruni: Why are the masks different in size???  */
-	mask-position-y: -3px;
-	width: var(--tab-sides-width);
+    /* bruni: Why are the masks different in size???  */
+    mask-position-y: -3px;
+    width: var(--tab-sides-width);
 }
 
 .tab-glare {
-	position: absolute;
-	height: 100%;
-	width: 400px;
-	transform: translateX(-50%);
+    position: absolute;
+    height: 100%;
+    width: 400px;
+    transform: translateX(-50%);
 
-	/* bruni: 	By the way, we are using the glare as background hover
+    /* bruni: 	By the way, we are using the glare as background hover
 				for Chrome 5, if we transition the background of the
 				tab it will try to transition from gradient (active) 
 				to colour (inactive), and since gradients are not
 				animatable (at least in Gecko), you will see a transition
 				from transparent to inactive tab colour, and we don't
 				want that. */
-	background: var(--tab-glare);
+    background: var(--tab-glare);
 
-	/* bruni: 	Firefox gradient rendering has some issues, in this case,
+    /* bruni: 	Firefox gradient rendering has some issues, in this case,
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
-	filter: blur(2px);
+    filter: blur(2px);
 }

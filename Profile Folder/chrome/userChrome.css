@@ -1,18 +1,27 @@
 :root {
-  --newtab-normal: rgba(255,255,255,.01);
+  --newtab-normal: rgba(255, 255, 255, 0.01);
   --tab-glare-opacity: 1;
-  --tab-glare: rgb(211, 217, 225, .45);
+  --tab-glare: rgb(211, 217, 225, 0.45);
   --tab-sides-width: 15px;
   --tab-width: 194px;
   --tab-distance: 4px;
-  --inactive-tab-background-color: rgb(211, 217, 225, .8);
-  --tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253), rgb(252,254,255)) !important;
+  --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
+  --tab-selected-bgcolor: linear-gradient(
+      to top,
+      rgb(243, 248, 253),
+      rgb(252, 254, 255)
+  ) !important;
   --tabbrowser-tab-color: black;
   --tab-transition-time: 220ms;
 }
 :root[geckium-five][geckium-eleven] {
   --tab-glare-opacity: 0.4;
   --tab-glare: linear-gradient(90deg, transparent, white, transparent);
+  --tab-selected-bgcolor: linear-gradient(
+      to top,
+      rgb(249, 249, 249),
+      rgb(255, 255, 255)
+  ) !important;
 }
 :root[geckium-choice=five] .tab-glare-container {
   transition: opacity 100ms linear !important;
@@ -20,8 +29,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --tab-glare: rgba(19, 23, 29, 0.45);
-    --inactive-tab-background-color: rgba(70, 70, 70, .8);
-    --tab-selected-bgcolor: linear-gradient(to bottom, #616161, #5D5D5D) !important;
+    --inactive-tab-background-color: rgba(70, 70, 70, 0.8);
+    --tab-selected-bgcolor: linear-gradient(
+        to bottom,
+        #616161,
+        #5d5d5d
+    ) !important;
     --tabbrowser-tab-color: white;
   }
 }
@@ -71,8 +84,8 @@
   color: var(--tabbrowser-tab-color) !important;
   /* bruni: This controls the tab "open"/"close" transition. */
   /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
-  		  and it also makes the tab disappear when the background reaches min-width just
-  		  like real Chrome. */
+   and it also makes the tab disappear when the background reaches min-width just
+   like real Chrome. */
 }
 .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
@@ -291,7 +304,7 @@
   overflow: hidden;
   opacity: 0;
   /* bruni: In Chrome, the glare hides in a slower
-  			pace when the mouse leaves. */
+  pace when the mouse leaves. */
   transition: opacity 0.5s linear;
 }
 
@@ -330,16 +343,16 @@
   width: 400px;
   transform: translateX(-50%);
   /* bruni: 	By the way, we are using the glare as background hover
-  			for Chrome 5, if we transition the background of the
-  			tab it will try to transition from gradient (active) 
-  			to colour (inactive), and since gradients are not
-  			animatable (at least in Gecko), you will see a transition
-  			from transparent to inactive tab colour, and we don't
-  			want that. */
+  for Chrome 5, if we transition the background of the
+  tab it will try to transition from gradient (active) 
+  to colour (inactive), and since gradients are not
+  animatable (at least in Gecko), you will see a transition
+  from transparent to inactive tab colour, and we don't
+  want that. */
   background: var(--tab-glare);
   /* bruni: 	Firefox gradient rendering has some issues, in this case,
-  			sometimes in the middle it produces transparent Y pixels,
-  			so we are trying to blur it to make it unnoticeable. */
+  sometimes in the middle it produces transparent Y pixels,
+  so we are trying to blur it to make it unnoticeable. */
   filter: blur(2px);
 }
 
@@ -727,9 +740,26 @@
 }
 
 :root {
-  --nav-bar: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
+  --nav-bar: linear-gradient(
+      to top,
+      rgb(218, 231, 247),
+      rgb(230, 239, 251),
+      rgb(245, 249, 254)
+  );
   --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
+  --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
+      0 0 0 1px transparent, 0 1px 1px 2px transparent,
+      inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+          rgb(255, 255, 255, 30%),
+      0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+      inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-hover-bg: linear-gradient(
+      to top,
+      transparent,
+      rgb(255, 255, 255, 50%)
+  ) !important;
   --chrome-content-separator-color: transparent !important;
   --toolbar-start-end-padding: 6px !important;
   --inner-border-color: #dfdfdf;
@@ -744,7 +774,11 @@
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-  --toolbarbutton-gradient: linear-gradient(to top, rgb(222,234,248), rgb(240,245,253));
+  --toolbarbutton-gradient: linear-gradient(
+      to top,
+      rgb(222, 234, 248),
+      rgb(240, 245, 253)
+  );
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
   --toolbarbutton-radius: 6px;
@@ -755,19 +789,47 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --nav-bar: linear-gradient(to bottom, #5D5D5D, #4C4C4C) !important;
-    --personal-toolbar: linear-gradient(to bottom, #4C4C4C, #575757);
+    --nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
+    --personal-toolbar: linear-gradient(to bottom, #4c4c4c, #575757);
     --personal-toolbar-border-bottom: rgb(91, 91, 91);
     --inner-border-color: rgb(79, 79, 79);
     --toolbarbutton-border-color-normal: rgb(190, 190, 190);
     --toolbarbutton-border-color-hot: rgb(196, 196, 196);
     --toolbarbutton-border-color-active: rgb(199, 199, 199);
-    --toolbarbutton-gradient: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
+    --toolbarbutton-gradient: linear-gradient(
+        to top,
+        rgb(209, 209, 209),
+        rgb(255, 255, 255)
+    );
     --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
     --navigation-buttons-separator: rgb(209, 209, 209);
     --bookmark-item-color: #95b4ee;
     --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
   }
+}
+:root[geckium-five][geckium-eleven] {
+  --nav-bar: linear-gradient(
+      to top,
+      rgb(228, 228, 228),
+      rgb(249, 249, 249)
+  );
+  --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+  --personal-toolbar: linear-gradient(
+      to top,
+      rgb(223, 223, 223),
+      rgb(228, 228, 228)
+  );
+  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+          rgb(255, 255, 255, 30%),
+      0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+      inset 0 0 1px 1px transparent !important;
+  --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+}
+:root[geckium-five][geckium-eleven] #PersonalToolbar {
+  padding-block: 2px !important;
+}
+:root[geckium-five][geckium-eleven] .bookmark-item {
+  border-radius: 5px !important;
 }
 :root #navigator-toolbox {
   border-bottom: 0 !important;
@@ -1266,7 +1328,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
-  box-shadow: inset 0 0 0 1px transparent, 0 0 0 1px transparent, 0 1px 1px 2px transparent, inset 0 0 1px 1px transparent;
+  box-shadow: var(--personal-toolbar-item-shadow);
   transition: all 150ms linear;
   margin-inline: 3px !important;
   border-radius: var(--toolbarbutton-radius) !important;
@@ -1274,6 +1336,6 @@ toolbar[overflowable][customizing] > .customization-target {
   text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
 }
 .bookmark-item:hover {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 1px 1px transparent;
-  background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5)) !important;
+  box-shadow: var(--personal-toolbar-item-hover-shadow);
+  background: var(--personal-toolbar-item-hover-bg) !important;
 }/*# sourceMappingURL=userChrome.css.map */
