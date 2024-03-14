@@ -1,5 +1,7 @@
 :root {
-	--autocomplete-popup-hover-background: rgb(203,230,255) !important;
+	--urlbarView: var(--protocol-background-color);
+
+	--autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
 	--autocomplete-popup-highlight-background: -moz-menuhover !important;
 	--autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
@@ -12,7 +14,7 @@
 
 .urlbarView {
 	display: block;
-	background: rgb(255, 255, 255) !important;
+	background: var(--urlbarView) !important;
 	border: 1px solid rgba(0, 0, 0, .3) !important;
 	margin-top: 4px !important;
 	margin-inline: 0 !important;
@@ -65,7 +67,7 @@
 	}
 
 	&[dynamicType="onboardTabToSearch"] {
-		> .urlbarView-row-inner {
+		>.urlbarView-row-inner {
 			min-height: 14px !important;
 		}
 	}
@@ -79,7 +81,7 @@
 	}
 
 	&:is([row-selectable]:hover, [selected]) {
-		> .urlbarView-button {
+		>.urlbarView-button {
 			background-color: transparent !important;
 			color: white !important;
 			fill-opacity: 1;
@@ -95,11 +97,13 @@
 }
 
 @media screen and (min-height: 600px) {
-	.urlbarView-results[wrap]>.urlbarView-row:where(:not([rich-suggestion="with-icon"]))>.urlbarView-row-inner {
+	.urlbarView-results[wrap]
+		> .urlbarView-row:where(:not([rich-suggestion="with-icon"]))
+		> .urlbarView-row-inner {
 		flex-wrap: nowrap !important;
 	}
 
-	.urlbarView-url{
+	.urlbarView-url {
 		overflow: visible !important;
 	}
 }
@@ -111,9 +115,9 @@
 
 #urlbar {
 	&[open] {
-		> .urlbarView {
-			> .urlbarView-body-outer {
-				> .urlbarView-body-inner {
+		>.urlbarView {
+			>.urlbarView-body-outer {
+				>.urlbarView-body-inner {
 					border-top: 0 !important;
 				}
 			}
@@ -160,7 +164,6 @@
 	&::before {
 		content: "-";
 		padding: 0 4px;
-		
 	}
 }
 

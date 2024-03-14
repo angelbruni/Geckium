@@ -6,6 +6,14 @@
 	--urlbar-verified-proxystate-valid: rgb(10,155,38);
 	--urlbar-verified-proxystate-valid-overridden: rgb(210,0,0);
 	--urlbar-height-definitive: var(--toolbarbutton-height);
+
+	@media (prefers-color-scheme: dark) {
+		--protocol-background-color: rgb(22, 22, 22);
+		--protocol-color: white;
+
+		--urlbar-background-verified-proxystate-valid: #5A4D0A;
+		--urlbar-verified-proxystate-valid: #73E689;
+	}
 }
 
 .verifiedDomain {
@@ -20,13 +28,18 @@
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
-			> #urlbar-background {
+			>#urlbar-background {
 				outline: transparent !important;
 			}
 		}
 	}
 
 	&:not([focused="true"]) {
+		&:not([pageproxystate="valid"]) {
+			#urlbar-protocol {
+				display: none !important;
+			}
+		}
 		.verifiedDomain {
 			&[pageproxystate="valid"] {
 				&::before,
@@ -38,25 +51,6 @@
 				&::before {
 					content: ""
 				}
-
-				/*&::after {
-					content: "https";
-					left: calc(100% + 4px);
-					transform: translateY(3px);
-					color: var(--urlbar-verified-proxystate-valid);
-					background: white;
-					font-size: 11pt;
-					z-index: 10;
-					mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-				}*/
-
-				/*&:is(.certUserOverridden) {
-					&::after {
-						color: var(--urlbar-verified-proxystate-valid-overridden) !important;
-					}
-
-					
-				}*/
 			}
 		}
 	}
@@ -74,11 +68,33 @@
 		}
 	}
 
+	#urlbar-protocol {
+		
+		
+		
+		
+		
+		
+		
+
+
+		&::before {
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+	}
+
 	&[breakout] {
 		--top: 0px;
-		
+
 		top: var(--top) !important;
-		
+
 		&[breakout-extend] {
 			left: initial !important;
 			width: 100% !important;
@@ -94,7 +110,7 @@
 				padding: 0 !important;
 			}
 
-			> #urlbar-background {
+			>#urlbar-background {
 				animation: none !important;
 			}
 		}
@@ -116,8 +132,8 @@
 	outline: transparent !important;
 }
 
-#urlbar[breakout][breakout-extend] > #urlbar-background,
-#urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
+#urlbar[breakout][breakout-extend]>#urlbar-background,
+#urlbar[focused="true"]>#urlbar-background #searchbar:focus-within {
 	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
 	inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
 	box-shadow: none !important;
@@ -215,7 +231,7 @@
 
 .urlbarView-favicon {
 	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
-	&:is([src="chrome://browser/skin/history.svg"]) {
+	&:is([src="chrome://browser/skin/history.svg"]){	
 		
 	}
 }
@@ -234,26 +250,6 @@
 	display: none !important;
 }
 
-#urlbar-protocol {
-	position: absolute;
-	height: 100%;
-	margin: 0 !important;
-	transform: translateY(3px);
-	pointer-events: none;
-	background: var(--protocol-background-color) !important;
-	color: var(--protocol-color);
-
-	&::before {
-		content: "";
-		position: absolute;
-		height: 2px;
-		top: 11px;
-		left: -1px;
-		rotate: 160deg;
-		width: 35px;
-		z-index: 100;
-	}
-}
 
 .urlbar-input-box {
 	height: calc(var(--urlbar-height-definitive) - 2px) !important;
@@ -294,4 +290,28 @@
 	padding: 0 !important;
 	border: 0 !important;
 	//margin-top: -1px;
+}
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+#urlbar-protocol {
+	position: absolute;
+	height: 100%;
+	margin: 0 !important;
+	transform: translateY(3px);
+	pointer-events: none;
+	background: var(--protocol-background-color) !important;
+	color: var(--protocol-color);
+
+	&::before {
+		content: "";
+		position: absolute;
+		height: 2px;
+		top: 11px;
+		left: -1px;
+		rotate: 160deg;
+		width: 35px;
+		z-index: 100;
+	}
 }

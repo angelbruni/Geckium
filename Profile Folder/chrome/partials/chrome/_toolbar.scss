@@ -91,7 +91,7 @@
 }
 
 #nav-bar {
-	background: linear-gradient(to top, rgb(218,231,247), rgb(230,239,251), rgb(245,249,254));
+	background: var(--nav-bar);
 	border-top-left-radius: 3px !important;
 	border-top-right-radius: 3px !important;
 	align-items: center;
@@ -137,7 +137,7 @@
 	}
 }
 
-toolbar[overflowable][customizing]>.customization-target {
+toolbar[overflowable][customizing] > .customization-target {
 	overflow: visible !important;
 }
 
@@ -160,8 +160,7 @@ toolbar[overflowable][customizing]>.customization-target {
 	}
 
 	&::after {
-		background-size: 339px 6px;
-		transform: scaleY(1.024);
+		
 		left: calc(100% - 4px);
 		background: url(assets/img/toolbar/toolbar_top_right_corner.png);
 	}
@@ -185,6 +184,8 @@ toolbar[overflowable][customizing]>.customization-target {
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
+
+
 		#identity-icon {
 			background-image: url(assets/img/chrome-5/toolbar/lock_small.png);
 		}
@@ -193,7 +194,7 @@ toolbar[overflowable][customizing]>.customization-target {
 	&[securestate="warning"],
 	&[securestate="insecure"] {
 		--protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
-		
+
 		#urlbar-protocol {
 			&::before {
 				background: var(--urlbar-verified-proxystate-valid-overridden);
@@ -208,11 +209,29 @@ toolbar[overflowable][customizing]>.customization-target {
 }
 
 #browser {
+
 	border: 1px solid var(--inner-border-color);
 	margin: 2px;
-	margin-top: 0px;
-	box-shadow: 0 1px 3px rgb(0, 0, 0, 95%);
 	margin-top: -1px;
+	box-shadow: 0 1px 3px rgb(0, 0, 0, 95%);
+
+	&::before,
+	&::after {
+		
+		
+		
+		
+		
+		
+	}
+	&::before {
+		
+		
+	}
+	&::after {
+		
+		
+	}
 }
 
 #TabsToolbar {
@@ -234,6 +253,7 @@ toolbar[overflowable][customizing]>.customization-target {
 	align-items: center;
 	justify-content: center;
 	transition: border-color 100ms linear;
+
 	/* bruni: 	let's separate radius like this so
 				we can easily override each individually
 				later when needed.						*/
@@ -255,7 +275,11 @@ toolbar[overflowable][customizing]>.customization-target {
 		border-top-left-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
 		border-top-right-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
 		border-bottom-left-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+
+
 		border-bottom-right-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
+
+
 	}
 
 	&::before {
@@ -266,19 +290,20 @@ toolbar[overflowable][customizing]>.customization-target {
 
 	&::after {
 		height: 100%;
-		box-shadow: inset 0 0 0 1px rgba(255,255,255,.3);
+		box-shadow: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 	}
 
 	&:not([disabled]) {
 		&:hover {
 			border: 1px solid var(--toolbarbutton-border-color-hot);
-			box-shadow: 0 0 0px 1px rgba(0, 0, 0, .05);
+			box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
+
 			&::before {
-				opacity: .15;
+				opacity: 0.15;
 			}
 
 			&::after {
-				box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 			}
 
 			.toolbarbutton-badge-stack,
@@ -288,19 +313,20 @@ toolbar[overflowable][customizing]>.customization-target {
 				filter: saturate(1.5);
 			}
 		}
-		
+
 		&:active,
 		&[open] {
 			border: 1px solid var(--toolbarbutton-border-color-active);
-			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, .05),
-						inset 0 0 6px 1px rgba(0, 0, 0, .1);
+			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
+				inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
+
 			&::before {
 				opacity: 0;
 				transition: none;
 			}
+
 			.toolbarbutton-badge-stack,
-			.toolbarbutton-icon
-			image:first-of-type {
+			.toolbarbutton-icon image:first-of-type {
 				filter: unset;
 				background: unset !important;
 			}
@@ -327,31 +353,6 @@ toolbar[overflowable][customizing]>.customization-target {
 		border-top-right-radius: 0 !important;
 		border-bottom-right-radius: 0 !important;
 		border-right: 1px solid transparent;
-
-		&::before,
-		&::after {
-			border-top-right-radius: 0 !important;
-			border-bottom-right-radius: 0 !important;
-		}
-	}
-
-	&#forward-button {
-		margin-inline-start: -4px !important;
-		border-top-left-radius: 0 !important;
-		border-bottom-left-radius: 0 !important;
-		border-left: 1px solid transparent;
-
-		&::before,
-		&::after {
-			border-top-left-radius: 0 !important;
-			border-bottom-left-radius: 0 !important;
-		}
-	}
-
-	&#star-button-box {
-		margin: 0 !important;
-		border-top-right-radius: 0 !important;
-		border-bottom-right-radius: 0 !important;
 
 		&::before,
 		&::after {
@@ -407,7 +408,7 @@ toolbar[overflowable][customizing]>.customization-target {
 	list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
 
 	&::after {
-		border-right: 1px solid rgb(221,229,243)
+		border-right: 1px solid var(--navigation-buttons-separator);
 	}
 }
 
@@ -420,10 +421,10 @@ toolbar[overflowable][customizing]>.customization-target {
 }
 
 #go-button-box {
-	list-style-image: url(assets/img/chrome-5/toolbar/go.png)
+	list-style-image: url(assets/img/chrome-5/toolbar/go.png);
 }
 
-#star-button-box > #star-button {
+#star-button-box>#star-button {
 	width: auto !important;
 	height: auto !important;
 	list-style-image: url(assets/img/chrome-5/toolbar/star.png) !important;
@@ -433,7 +434,7 @@ toolbar[overflowable][customizing]>.customization-target {
 	}
 }
 
-#star-button-box > #star-button,
+#star-button-box>#star-button,
 #go-button {
 	transform: translateY(-1px);
 }
@@ -445,6 +446,7 @@ toolbar[overflowable][customizing]>.customization-target {
 
 .identity-box-button,
 #tracking-protection-icon-container {
+
 	&:hover:not([open="true"]),
 	&:hover:active,
 	&[open="true"] {
@@ -540,9 +542,27 @@ toolbar[overflowable][customizing]>.customization-target {
 }
 
 #PersonalToolbar {
+
+
 	height: 24px;
 	
-	background: linear-gradient(to bottom, rgb(217,230,247), rgb(210,226,246));
+	background: var(--personal-toolbar) !important;
+	
+	&::before,
+	&::after {
+		
+		
+		
+		
+	}
+	&::before {
+		
+		
+	}
+	&::after {
+
+		
+	}
 }
 
 .bookmark-item {
@@ -669,4 +689,11 @@ toolbar .toolbarbutton-1:not([disabled="true"], [checked], [open]):active > .too
 
 #PersonalToolbar {
 	max-height: 24px;
+}
+
+#nav-bar {
+	&::after {
+		background-size: 339px 6px;
+		transform: scaleY(1.024);
+	}
 }
