@@ -5,6 +5,10 @@
 	--autocomplete-popup-highlight-background: -moz-menuhover !important;
 	--autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
+	@media (prefers-color-scheme: dark) {
+		--autocomplete-popup-highlight-background: -moz-menuhover !important;
+	}
+
 	&:not([uidensity="compact"]) {
 		.urlbarView-row:not([type="tip"], [type="dynamic"]) {
 			min-height: 0 !important;
