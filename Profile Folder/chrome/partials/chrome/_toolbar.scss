@@ -1,15 +1,8 @@
 :root {
-    --nav-bar: linear-gradient(
-        to top,
-        rgb(218, 231, 247),
-        rgb(230, 239, 251),
-        rgb(245, 249, 254)
-    );
+    --nav-bar: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
     --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--personal-toolbar-border-bottom: rgb(182, 186, 192);
 
-    --toolbarbutton-inner-padding: 5px !important;
-    --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
-    --toolbarbutton-outer-padding: 3px !important;
     --chrome-content-separator-color: transparent !important;
     --toolbar-start-end-padding: 6px !important;
     --inner-border-color: #dfdfdf;
@@ -19,11 +12,16 @@
     --toolbarbutton-width: 29px;
     --toolbarbutton-menu-width: 36px;
     --toolbarbutton-height: 27px;
+	--toolbarbutton-inner-padding: 5px !important;
+    --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+    --toolbarbutton-outer-padding: 3px !important;
     --toolbarbutton-border-color-normal: rgb(198, 206, 228);
     --toolbarbutton-border-color-hot: rgb(163, 174, 197);
     --toolbarbutton-border-color-active: rgb(171, 181, 203);
     --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+	--toolbarbutton-gradient: linear-gradient(to top, rgb(222,234,248), rgb(240,245,253));
     --toolbarbutton-active-background: transparent !important;
+	--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
     --toolbarbutton-radius: 6px;
     --toolbarbutton-disabled-opacity: 1 !important;
     --navigation-buttons-separator: rgb(221, 229, 243);
@@ -32,12 +30,19 @@
     --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
     @media (prefers-color-scheme: dark) {
-        --nav-bar: linear-gradient(to top, #1e1e1e, #1a1a1a) !important;
-        --personal-toolbar: linear-gradient(to top, #2f2f2f, #1e1e1e);
+        --nav-bar: linear-gradient(to bottom, #5D5D5D, #4C4C4C) !important;
+        --personal-toolbar: linear-gradient(to bottom, #4C4C4C, #575757);
+		--personal-toolbar-border-bottom: rgb(91, 91, 91);
+		
+		--inner-border-color: rgb(79, 79, 79);
 
-        --toolbarbutton-border-color-normal: #364161;
-        --toolbarbutton-inner-border-color-normal: rgba(42, 44, 56, 0.3);
-        --navigation-buttons-separator: #2f4469;
+		--toolbarbutton-border-color-normal: rgb(190, 190, 190);
+		--toolbarbutton-border-color-hot: rgb(196, 196, 196);
+		--toolbarbutton-border-color-active: rgb(199, 199, 199);
+        --toolbarbutton-gradient: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
+		--toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+
+		--navigation-buttons-separator: rgb(209, 209, 209);
 
         --bookmark-item-color: #95b4ee;
         --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
@@ -158,7 +163,7 @@
         right: 3px;
         bottom: 1px;
         height: 1px;
-        box-shadow: 0 1px 0 0 rgb(182, 186, 192) !important;
+        box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
         z-index: 1;
     }
 }
@@ -272,9 +277,8 @@ toolbar[overflowable][customizing] > .customization-target {
         left: 2px;
         right: 1px;
         bottom: -1px;
-        height: 27px;
-        background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow.png)
-            bottom;
+        height: 23px;
+        background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png) bottom;
         pointer-events: none;
         z-index: 100;
     }
@@ -287,7 +291,9 @@ toolbar[overflowable][customizing] > .customization-target {
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
     position: relative;
     padding: 0 !important;
-    background: transparent !important;
+    background: var(--toolbarbutton-gradient) !important;
+	background-clip: padding-box !important;
+	fill: var(--toolbarbutton-icon-fill) !important;
     margin: 0 var(--toolbarbutton-outer-padding) !important;
     width: var(--toolbarbutton-width) !important;
     height: var(--toolbarbutton-height) !important;
@@ -312,26 +318,18 @@ toolbar[overflowable][customizing] > .customization-target {
         left: 0;
         width: 100%;
         transition: box-shadow 100ms linear;
-        border-radius: calc(var(--toolbarbutton-radius) - 1px);
 
-        border-top-left-radius: calc(
-            var(--toolbarbutton-radius) - 1px
-        ) !important;
-        border-top-right-radius: calc(
-            var(--toolbarbutton-radius) - 1px
-        ) !important;
-        border-bottom-left-radius: calc(
-            var(--toolbarbutton-radius) - 1px
-        ) !important;
-        border-bottom-right-radius: calc(
-            var(--toolbarbutton-radius) - 1px
-        ) !important;
+        border-top-left-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
+        border-top-right-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
+        border-bottom-left-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
+        border-bottom-right-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
     }
 
     &::before {
         height: 35%;
         opacity: 0;
         background: linear-gradient(to top, black, transparent);
+		transition: opacity 100ms linear;
     }
 
     &::after {
@@ -364,8 +362,7 @@ toolbar[overflowable][customizing] > .customization-target {
         &:active,
         &[open] {
             border: 1px solid var(--toolbarbutton-border-color-active);
-            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
-                inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
 
             &::before {
                 opacity: 0;
@@ -380,14 +377,20 @@ toolbar[overflowable][customizing] > .customization-target {
         }
     }
 
+	.toolbarbutton-badge-stack,
+	.toolbarbutton-icon,
+	image:first-of-type {
+		padding: 0 !important;
+		fill: var(--toolbarbutton-icon-fill) !important;
+		transition: 100ms filter linear;
+	}
+
     .toolbarbutton-icon {
-        padding: 0 !important;
         width: auto !important;
         height: auto !important;
     }
 
     .toolbarbutton-badge-stack {
-        padding: 0 !important;
         border-radius: 0 !important;
         height: inherit;
         width: inherit;
@@ -450,6 +453,7 @@ toolbar[overflowable][customizing] > .customization-target {
     &#PanelUI-menu-button {
         width: var(--toolbarbutton-menu-width) !important;
         border: 0 !important;
+		background: transparent !important;
         transition: background-color 100ms linear;
 
         &::after,
@@ -477,38 +481,39 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #back-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
+    list-style-image: url(assets/img/toolbar/back.svg) !important;
 
     &::after {
         border-right: 1px solid var(--navigation-buttons-separator);
+		z-index: 1;
     }
 }
 
 #forward-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/forward.png) !important;
+    list-style-image: url(assets/img/toolbar/forward.svg) !important;
 }
 
 #reload-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/reload.png) !important;
+    list-style-image: url(assets/img/toolbar/reload.svg) !important;
 }
 
 #go-button-box {
-    list-style-image: url(assets/img/chrome-5/toolbar/go.png);
+    list-style-image: url(assets/img/toolbar/go.svg);
 }
 
 #star-button-box > #star-button {
     width: auto !important;
     height: auto !important;
-    list-style-image: url(assets/img/chrome-5/toolbar/star.png) !important;
+    list-style-image: url(assets/img/toolbar/star.svg) !important;
 
     &[starred] {
-        list-style-image: url(assets/img/chrome-5/toolbar/starred.png) !important;
+        list-style-image: url(assets/img/toolbar/starred.svg) !important;
     }
 }
 
 #star-button-box > #star-button,
 #go-button {
-    transform: translateY(-1px);
+    transform: translateX(1px);
 }
 
 .identity-box-button {
@@ -527,7 +532,7 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #PanelUI-menu-button {
     margin-right: var(--toolbar-start-end-padding) !important;
-    list-style-image: url(assets/img/chrome-5/toolbar/menu.png) !important;
+    list-style-image: url(assets/img/toolbar/menu_chrome.svg) !important;
     background-position: center;
 }
 
@@ -601,11 +606,11 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #stop-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/stop.png) !important;
+    list-style-image: url(assets/img/toolbar/stop.svg) !important;
 }
 
 #unified-extensions-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/plugin.svg) !important;
+    list-style-image: url(assets/img/toolbar/menu_plugin.svg) !important;
 }
 
 .toolbarbutton-animatable-box {

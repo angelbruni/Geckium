@@ -1,6 +1,8 @@
 :root {
+	--toolbar-field-color: black !important;
+
 	--protocol-background-color: white;
-	--protocol-color: black;
+	--protocol-color: var(--toolbar-field-color);
 
 	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
 	--urlbar-verified-proxystate-valid: rgb(10, 155, 38);
@@ -8,11 +10,13 @@
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 
 	@media (prefers-color-scheme: dark) {
-		--protocol-background-color: rgb(22, 22, 22);
-		--protocol-color: white;
+		--toolbar-field-color: black !important;
 
-		--urlbar-background-verified-proxystate-valid: #5A4D0A;
-		--urlbar-verified-proxystate-valid: #73E689;
+		//--protocol-background-color: rgb(22, 22, 22);
+		//--protocol-color: white;
+
+		//--urlbar-background-verified-proxystate-valid: #5A4D0A;
+		//--urlbar-verified-proxystate-valid: #73E689;
 	}
 }
 
@@ -131,6 +135,11 @@
 
 #searchbar:focus-within {
 	outline: transparent !important;
+}
+
+#urlbar:is([focused="true"], [open]),
+#searchbar:focus-within {
+  color: var(--toolbar-field-color) !important;
 }
 
 #urlbar[breakout][breakout-extend]>#urlbar-background,
