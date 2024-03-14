@@ -20,11 +20,18 @@
 	}
 
 	--inactive-tab-background-color: rgb(211, 217, 225, .8);
-	
-	--tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253),
-													rgb(252,254,255)) !important;
+	--tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253), rgb(252,254,255)) !important;
+	--tabbrowser-tab-color: black;
 
 	--tab-transition-time: 220ms;
+
+	@media (prefers-color-scheme: dark) {
+		--tab-glare: rgba(19, 23, 29, 0.45);
+
+		--inactive-tab-background-color: #37404B;
+		--tab-selected-bgcolor: linear-gradient(to top, #1A1A1A, #1E1E1E) !important;
+		--tabbrowser-tab-color: white;
+	}
 
 	&:not([tabsintitlebar]) {
 		.titlebar-items {
@@ -82,6 +89,7 @@
 	padding: 0;
 	overflow: visible !important;
 	min-width: 0 !important;
+	color: var(--tabbrowser-tab-color) !important;
 
 	&:not([visuallyselected="true"]) {
 		&:not(:first-of-type) {

@@ -6,8 +6,8 @@
   --tab-width: 194px;
   --tab-distance: 4px;
   --inactive-tab-background-color: rgb(211, 217, 225, .8);
-  --tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253),
-  												rgb(252,254,255)) !important;
+  --tab-selected-bgcolor: linear-gradient(to top, rgb(243,248,253), rgb(252,254,255)) !important;
+  --tabbrowser-tab-color: black;
   --tab-transition-time: 220ms;
 }
 :root[geckium-five][geckium-eleven] {
@@ -16,6 +16,14 @@
 }
 :root[geckium-choice=five] .tab-glare-container {
   transition: opacity 100ms linear !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tab-glare: rgba(19, 23, 29, 0.45);
+    --inactive-tab-background-color: #37404B;
+    --tab-selected-bgcolor: linear-gradient(to top, #1A1A1A, #1E1E1E) !important;
+    --tabbrowser-tab-color: white;
+  }
 }
 :root:not([tabsintitlebar]) .titlebar-items {
   margin-top: -7px !important;
@@ -59,6 +67,7 @@
   padding: 0;
   overflow: visible !important;
   min-width: 0 !important;
+  color: var(--tabbrowser-tab-color) !important;
   /* bruni: This controls the tab "open"/"close" transition. */
   /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
   		  and it also makes the tab disappear when the background reaches min-width just
@@ -341,6 +350,14 @@
   --urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
   --urlbar-height-definitive: var(--toolbarbutton-height);
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --protocol-background-color: rgb(22, 22, 22);
+    --protocol-color: white;
+    --urlbar-background-verified-proxystate-valid: #5A4D0A;
+    --urlbar-verified-proxystate-valid: #73E689;
+  }
+}
 
 .verifiedDomain {
   position: relative;
@@ -356,25 +373,6 @@
 }
 #urlbar:not([focused=true]):not([pageproxystate=valid]) #urlbar-protocol {
   display: none !important;
-}
-#urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid] {
-  /*&::after {
-  	content: "https";
-  	left: calc(100% + 4px);
-  	transform: translateY(3px);
-  	color: var(--urlbar-verified-proxystate-valid);
-  	background: white;
-  	font-size: 11pt;
-  	z-index: 10;
-  	mask-image: linear-gradient(0deg, black 19px, transparent 19px);
-  }*/
-  /*&:is(.certUserOverridden) {
-  	&::after {
-  		color: var(--urlbar-verified-proxystate-valid-overridden) !important;
-  	}
-
-
-  }*/
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::before, #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::after {
   position: absolute;
@@ -572,6 +570,7 @@
 }
 
 :root {
+  --urlbarView: var(--protocol-background-color);
   --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
@@ -582,7 +581,7 @@
 
 .urlbarView {
   display: block;
-  background: rgb(255, 255, 255) !important;
+  background: var(--urlbarView) !important;
   border: 1px solid rgba(0, 0, 0, 0.3) !important;
   margin-top: 4px !important;
   margin-inline: 0 !important;
@@ -719,6 +718,8 @@
 }
 
 :root {
+  --nav-bar: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
+  --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
   --toolbarbutton-inner-padding: 5px !important;
   --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
   --toolbarbutton-outer-padding: 3px !important;
@@ -732,9 +733,24 @@
   --toolbarbutton-border-color-normal: rgb(198, 206, 228);
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
+  --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
+  --navigation-buttons-separator: rgb(221, 229, 243);
+  --bookmark-item-color: #062d75;
+  --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nav-bar: linear-gradient(to top, #1E1E1E, #1A1A1A) !important;
+    --personal-toolbar: linear-gradient(to top, #2F2F2F, #1E1E1E);
+    --toolbarbutton-border-color-normal: #364161;
+    --toolbarbutton-inner-border-color-normal: rgba(42, 44, 56, 0.3);
+    --navigation-buttons-separator: #2F4469;
+    --bookmark-item-color: #95B4EE;
+    --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+  }
 }
 :root #navigator-toolbox {
   border-bottom: 0 !important;
@@ -782,7 +798,7 @@
 }
 
 #nav-bar {
-  background: linear-gradient(to top, rgb(218, 231, 247), rgb(230, 239, 251), rgb(245, 249, 254));
+  background: var(--nav-bar);
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
   align-items: center;
@@ -860,9 +876,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
   --protocol-color: var(--urlbar-verified-proxystate-valid);
-  --protocol-background-color: var(
-    --urlbar-background-verified-proxystate-valid
-  );
+  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
   background-image: url(assets/img/chrome-5/toolbar/lock_small.png);
@@ -922,8 +936,8 @@ toolbar[overflowable][customizing] > .customization-target {
   justify-content: center;
   transition: border-color 100ms linear;
   /* bruni: 	let's separate radius like this so
-  		we can easily override each individually
-  		later when needed.						*/
+  			we can easily override each individually
+  			later when needed.						*/
   border-top-left-radius: var(--toolbarbutton-radius) !important;
   border-top-right-radius: var(--toolbarbutton-radius) !important;
   border-bottom-left-radius: var(--toolbarbutton-radius) !important;
@@ -950,7 +964,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::after {
   height: 100%;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover {
   border: 1px solid var(--toolbarbutton-border-color-hot);
@@ -1061,7 +1075,7 @@ toolbar[overflowable][customizing] > .customization-target {
   list-style-image: url(assets/img/chrome-5/toolbar/back.png) !important;
 }
 #back-button::after {
-  border-right: 1px solid rgb(221, 229, 243);
+  border-right: 1px solid var(--navigation-buttons-separator);
 }
 
 #forward-button {
@@ -1192,7 +1206,7 @@ toolbar[overflowable][customizing] > .customization-target {
   overflow: visible !important;
   height: 30px !important;
   padding: 3px !important;
-  background: linear-gradient(to top, #ecf3fc, #dae7f7) !important;
+  background: var(--personal-toolbar) !important;
 }
 #PersonalToolbar::before, #PersonalToolbar::after {
   position: absolute;
@@ -1216,8 +1230,8 @@ toolbar[overflowable][customizing] > .customization-target {
   transition: all 150ms linear;
   margin-inline: 3px !important;
   border-radius: var(--toolbarbutton-radius) !important;
-  color: #062d75 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: var(--bookmark-item-color) !important;
+  text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
 }
 .bookmark-item:hover {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 1px 1px transparent;
