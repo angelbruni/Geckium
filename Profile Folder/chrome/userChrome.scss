@@ -1,3 +1,11 @@
+:root {
+	&[lwtheme-image] {
+		&[lwtheme-brighttext] {
+			text-shadow: none !important;
+		}
+	}
+}
+
 @import "partials/chrome/tabs";
 @import "partials/chrome/urlbar";
 @import "partials/chrome/urlbar-menu";

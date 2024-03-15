@@ -1,3 +1,7 @@
+:root[lwtheme-image][lwtheme-brighttext] {
+  text-shadow: none !important;
+}
+
 :root {
   --newtab-normal: rgba(255, 255, 255, 0.01);
   --tab-glare-opacity: 1;
@@ -69,6 +73,7 @@
   width: calc(100% - 1px) !important;
   margin-top: 4px !important;
   background-size: 100% 24px !important;
+  outline: 0 !important;
 }
 
 .tab-content {
