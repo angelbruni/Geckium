@@ -267,6 +267,36 @@
   .tabbrowser-tab[tabdrop-samewindow] {
     transition: transform 200ms var(--animation-easing-function) !important;
   }
+  .tab-throbber[progress]::before {
+    background-image: url(assets/img/chrome-5/tabbar/throbber.png) !important;
+    width: 576px !important;
+    background-size: 576px 16px !important;
+    animation: geckium-progress-throbber 1s steps(36) infinite !important;
+    opacity: 1 !important;
+  }
+  @keyframes geckium-progress-throbber {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-576px);
+    }
+  }
+  .tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+    background-image: url(assets/img/chrome-5/tabbar/throbber_waiting.png) !important;
+    width: 2864px !important;
+    background-size: 2864px 16px !important;
+    animation: geckium-waiting-throbber 5s steps(179) infinite !important;
+    opacity: 1 !important;
+  }
+  @keyframes geckium-waiting-throbber {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-2864px);
+    }
+  }
 }
 /* bruni: This makes it so the tab does not disappear when it starts "close" transition. */
 .tab-icon-pending:not([fadein]),
