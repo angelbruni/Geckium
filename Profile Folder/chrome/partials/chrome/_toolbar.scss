@@ -5,13 +5,23 @@
 
 
 
-	--personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--personal-toolbar: linear-gradient(
+		to top,
+		#ecf3fc,
+		#dae7f7
+	);
 	--personal-toolbar-border-bottom: rgb(182, 186, 192);
-	
-    
-    
-    
-    
+	--personal-toolbar-item-shadow:
+		inset 0 0 0 1px transparent,
+		0 0 0 1px transparent,
+		0 1px 1px 2px transparent,
+		inset 0 0 1px 1px transparent;
+    --personal-toolbar-item-hover-shadow:
+		inset 0 0 0 1px
+		rgb(255, 255, 255, 30%),
+		0 0 0 1px rgb(0, 0, 0, 14%),
+		0 1px 1px 2px rgb(0, 0, 0, 6%),
+		inset 0 0 1px 1px transparent;
     
     
     
@@ -42,36 +52,13 @@
 
 
     --toolbarbutton-active-background: transparent !important;
-	--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
+	
     --toolbarbutton-radius: 6px;
     --toolbarbutton-disabled-opacity: 1 !important;
     --navigation-buttons-separator: rgb(221, 229, 243);
 
     --bookmark-item-color: #062d75;
     --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
-	
-	@media (prefers-color-scheme: dark) {
-		--nav-bar: linear-gradient(to bottom, #5D5D5D, #4C4C4C) !important;
-        --personal-toolbar: linear-gradient(to bottom, #4C4C4C, #575757);
-		--personal-toolbar-border-bottom: rgb(91, 91, 91);
-		
-		--inner-border-color: rgb(79, 79, 79);
-
-		--toolbarbutton-border-color-normal: rgb(190, 190, 190);
-		--toolbarbutton-border-color-hot: rgb(196, 196, 196);
-		--toolbarbutton-border-color-active: rgb(199, 199, 199);
-        --toolbarbutton-gradient: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
-
-
-
-		
-		--toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
-
-		--navigation-buttons-separator: rgb(209, 209, 209);
-
-		--bookmark-item-color: #95B4EE;
-		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
-	}
 
 	&[geckium-five][geckium-eleven] {
         
@@ -80,23 +67,168 @@
         
         
         
+		&:not(:-moz-lwtheme) {
+
+		}
         
         
         
         
         
         
-        
-        
-        
-        
-        #PersonalToolbar {
+		--personal-toolbar-item-hover-shadow:
+			inset 0 0 0 1px
+			rgb(255, 255, 255, 30%),
+			0 0 0 1px rgb(0, 0, 0, 8%),
+			0 1px 1px 2px rgb(0, 0, 0, 6%),
+			inset 0 0 1px 1px transparent !important;
+		
+		
+		#PersonalToolbar {
             
         }
         .bookmark-item {
             
         }
     }
+
+	@media (prefers-color-scheme: dark) {
+		--nav-bar: linear-gradient(
+			to bottom,
+			#5d5d5d,
+			#4c4c4c
+		) !important;
+        --personal-toolbar: linear-gradient(
+			to bottom,
+			#4c4c4c,
+			#575757
+		);
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+    }
+
+	&:not(:-moz-lwtheme) {
+		--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
+	}
+	&:-moz-lwtheme {
+		&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+			--toolbarbutton-icon-fill: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 70%,
+				white
+			) !important;
+		}
+		&:not([lwtheme-id*="firefox-compact"]) {
+			@import "titlebar/nocomp";
+			
+			@media not (prefers-color-scheme: dark) {
+				--nav-bar: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 5%,
+						white
+					),
+					color-mix(
+						in srgb, 
+						var(--toolbarbutton-icon-fill) 20%, 
+						white
+					),
+					color-mix(
+						in srgb, 
+						var(--toolbarbutton-icon-fill) 10%, 
+						white
+					)
+				);
+				--personal-toolbar: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb, 
+						var(--toolbarbutton-icon-fill) 10%, 
+						white
+					),
+					color-mix(
+						in srgb, 
+						var(--toolbarbutton-icon-fill) 2%, 
+						white
+					)
+				);
+				--toolbarbutton-border-color-normal: color-mix(
+					in srgb, 
+					var(--toolbarbutton-icon-fill) 50%, 
+					white
+				);
+				--toolbarbutton-border-color-hot: color-mix(
+					in srgb, 
+					var(--toolbarbutton-icon-fill) 40%, 
+					white
+				);
+				--toolbarbutton-border-color-active: color-mix(
+					in srgb, 
+					var(--toolbarbutton-icon-fill) 30%, 
+					white
+				);
+				--toolbarbutton-gradient: linear-gradient(
+					to bottom,
+					rgb(255, 255, 255),
+					color-mix(
+						in srgb, 
+						var(--toolbarbutton-icon-fill) 10%, 
+						white
+					)
+				);
+				.bookmark-item {
+					color: var(--toolbarbutton-icon-fill) !important;
+				}
+			}
+	
+			@media (prefers-color-scheme: dark) {
+				--nav-bar: var(--lwt-accent-color) !important;
+				--personal-toolbar: var(--lwt-accent-color);
+				
+				--toolbarbutton-border-color-normal: color-mix(
+					in srgb, 
+					var(--lwt-accent-color) 50%, 
+					white
+				);
+				--toolbarbutton-border-color-hot: color-mix(
+					in srgb, 
+					var(--lwt-accent-color) 40%, 
+					white
+				);
+				--toolbarbutton-border-color-active: color-mix(
+					in srgb, 
+					var(--lwt-accent-color) 30%, 
+					white
+				);
+				--toolbarbutton-gradient: linear-gradient(
+					to bottom,
+					rgb(255, 255, 255),
+					color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+				);
+				--toolbarbutton-icon-fill: color-mix(
+					in srgb,
+					var(--lwt-accent-color) 50%, 
+					black
+				) !important;
+				.bookmark-item {
+					color: var(--tabbrowser-tab-color) !important;
+				}
+			}
+		}
+	}
 
 	#navigator-toolbox {
 		
@@ -115,7 +247,7 @@
 	
 	&[tabsintitlebar] {
 		#tabbrowser-arrowscrollbox {
-			padding-top: 12px !important;
+			padding-top: 7px !important;
 		}
 	}
 
@@ -167,15 +299,20 @@
 	} 
 }
 
+#navigator-toolbox {
+	background: transparent !important;
+	border-bottom: 0 !important;
+}
+
 .browser-toolbar {
 	margin-inline: 2px;
 }
 
 #nav-bar {
-	background: var(--nav-bar);
-	border-top-left-radius: 3px !important;
-	border-top-right-radius: 3px !important;
-	align-items: center;
+    background: var(--nav-bar) !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    align-items: center;
 }
 
 #nav-bar-customization-target {
@@ -316,6 +453,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #TabsToolbar {
+	background: transparent !important;
 	
 	--toolbarbutton-inner-padding: 0 !important;
 
@@ -681,7 +819,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
-
+	//box-shadow: var(--personal-toolbar-item-shadow);
 	
 	
 	border-radius: var(--toolbarbutton-radius) !important;

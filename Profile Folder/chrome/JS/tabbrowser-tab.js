@@ -11,9 +11,7 @@
 		// bruni: Modified tab template to include
 		//		  the necessary elements for the glare.
 		static markup = `
-	   <stack class="tab-stack" flex="1">
-		 <vbox class="tab-background">
-		   <hbox class="tab-glare-container">
+		<hbox class="tab-glare-container">
 			<hbox class="tab-glare-left">
 				<hbox class="tab-glare"/>
 			</hbox>
@@ -24,6 +22,9 @@
 				<hbox class="tab-glare"/>
 			</hbox>
 		   </hbox>
+	   <stack class="tab-stack" flex="1">
+	   
+		 <vbox class="tab-background">
 		   <hbox class="tab-context-line"/>
 		   <hbox class="tab-loading-burst" flex="1"/>
 		 </vbox>
