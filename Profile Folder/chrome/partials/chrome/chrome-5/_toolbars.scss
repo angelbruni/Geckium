@@ -402,10 +402,10 @@ toolbar[overflowable][customizing] > .customization-target {
     margin: 0 var(--toolbarbutton-outer-padding) !important;
     width: var(--toolbarbutton-width) !important;
     height: var(--toolbarbutton-height) !important;
-    border: 1px solid var(--toolbarbutton-border-color-normal);
     align-items: center;
     justify-content: center;
     transition: all 150ms linear;
+    border: 1px solid var(--toolbarbutton-border-color-normal);
 
     /* bruni: 	let's separate radius like this so
 				we can easily override each individually

@@ -15,6 +15,7 @@
         0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
         inset 0 0 1px 1px transparent !important;
     --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+    --bookmark-item-color-shadow: transparent !important;
 
     --toolbar-start-end-padding: 3px !important;
 
@@ -26,6 +27,7 @@
     --toolbarbutton-border-color-normal: transparent;
     --toolbarbutton-border-color-hot: rgb(203, 203, 203);
     --toolbarbutton-border-color-active: rgb(159, 159, 159);
+    --toolbarbutton-radius: 5px;
 
     --toolbar-field-default-background-color: white;
 
@@ -39,7 +41,6 @@
     .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
         background: transparent !important;
         border: 1px solid transparent !important;
-        border-radius: 5px !important;
 
         .toolbarbutton-icon {
             position: relative;
@@ -110,14 +111,12 @@
         &#back-button {
             &:not([disabled]) {
                 &:hover {
-                    border-right: 1px solid
-                        var(--toolbarbutton-border-color-hot);
+                    border: 1px solid var(--toolbarbutton-border-color-hot);
                 }
 
                 &:active,
                 &[open] {
-                    border-right: 1px solid
-                        var(--toolbarbutton-border-color-active) !important;
+                    border: 1px solid var(--toolbarbutton-border-color-active) !important;
                 }
             }
         }
@@ -125,13 +124,12 @@
         &#forward-button {
             &:not([disabled]) {
                 &:hover {
-                    border-left: 1px solid var(--toolbarbutton-border-color-hot);
+                    border: 1px solid var(--toolbarbutton-border-color-hot);
                 }
 
                 &:active,
                 &[open] {
-                    border-left: 1px solid
-                        var(--toolbarbutton-border-color-active) !important;
+                    border: 1px solid var(--toolbarbutton-border-color-active) !important;
                 }
             }
         }

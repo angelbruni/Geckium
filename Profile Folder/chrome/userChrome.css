@@ -1183,10 +1183,10 @@ toolbar[overflowable][customizing] > .customization-target {
   margin: 0 var(--toolbarbutton-outer-padding) !important;
   width: var(--toolbarbutton-width) !important;
   height: var(--toolbarbutton-height) !important;
-  border: 1px solid var(--toolbarbutton-border-color-normal);
   align-items: center;
   justify-content: center;
   transition: all 150ms linear;
+  border: 1px solid var(--toolbarbutton-border-color-normal);
   /* bruni: 	let's separate radius like this so
   we can easily override each individually
   later when needed.						*/
@@ -1911,6 +1911,7 @@ toolbarpaletteitem[place=palette] {
       0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
       inset 0 0 1px 1px transparent !important;
   --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+  --bookmark-item-color-shadow: transparent !important;
   --toolbar-start-end-padding: 3px !important;
   --nav-bar-height: 36px;
   --toolbarbutton-width: var(--toolbarbutton-height);
@@ -1919,6 +1920,7 @@ toolbarpaletteitem[place=palette] {
   --toolbarbutton-border-color-normal: transparent;
   --toolbarbutton-border-color-hot: rgb(203, 203, 203);
   --toolbarbutton-border-color-active: rgb(159, 159, 159);
+  --toolbarbutton-radius: 5px;
   --toolbar-field-default-background-color: white;
 }
 :root[geckium-five][geckium-eleven]:not(:-moz-lwtheme) {
@@ -1933,7 +1935,6 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
   background: transparent !important;
   border: 1px solid transparent !important;
-  border-radius: 5px !important;
   /* bruni: Navigation buttons needs some rethinking. */
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) .toolbarbutton-icon {
@@ -1985,16 +1986,16 @@ toolbarpaletteitem[place=palette] {
   transform: translateY(1px);
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button:not([disabled]):hover {
-  border-right: 1px solid var(--toolbarbutton-border-color-hot);
+  border: 1px solid var(--toolbarbutton-border-color-hot);
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button:not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button:not([disabled])[open] {
-  border-right: 1px solid var(--toolbarbutton-border-color-active) !important;
+  border: 1px solid var(--toolbarbutton-border-color-active) !important;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button:not([disabled]):hover {
-  border-left: 1px solid var(--toolbarbutton-border-color-hot);
+  border: 1px solid var(--toolbarbutton-border-color-hot);
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button:not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#forward-button:not([disabled])[open] {
-  border-left: 1px solid var(--toolbarbutton-border-color-active) !important;
+  border: 1px solid var(--toolbarbutton-border-color-active) !important;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#back-button {
   border-top-right-radius: var(--toolbarbutton-radius) !important;
