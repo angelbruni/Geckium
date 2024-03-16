@@ -4,6 +4,11 @@
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
         inset 0 0 0 1px rgba(255, 255, 255, 0.3);
     --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
+    --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(66, 66, 66, 20%) !important;
+    --bookmark-item-color: #000000;
+    --bookmark-item-hover-color: #062d75;
+    --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
     --toolbarbutton-radius: 4px;
 
     &:not(:-moz-lwtheme) {
@@ -65,5 +70,43 @@
         &[starred] {
             list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
         }
+    }
+}
+
+#PersonalToolbar {
+    padding: 1px !important;
+}
+
+.bookmark-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--toolbarbutton-radius) !important;
+    box-shadow: var(--personal-toolbar-item-shadow);
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: none !important;
+
+    &:hover {
+        box-shadow: var(--personal-toolbar-item-hover-shadow) !important;
+        border: 1px solid #b0b0b0;
+        border-top-color: #cdcdcc;
+        color: var(--bookmark-item-hover-color) !important;
+        transition: all 150ms linear !important;
+
+        &::before {
+            opacity: 1;
+            transition: all 150ms linear;
+        }
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background: rgb(255, 255, 255, 80%);
+        opacity: 0;
     }
 }

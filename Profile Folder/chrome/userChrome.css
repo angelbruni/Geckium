@@ -308,10 +308,10 @@
   --tab-distance: 4px;
   --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
   --tabbrowser-tab-selected: linear-gradient(
-         to top,
-         rgb(243, 248, 253),
-         rgb(252, 254, 255)
-     );
+      to top,
+      rgb(243, 248, 253),
+      rgb(252, 254, 255)
+  );
   --tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
   --tabbrowser-tab-color: black;
   --tab-transition-time: 220ms;
@@ -338,15 +338,23 @@
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --tabbrowser-tab-selected: linear-gradient(
-    	to top,
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+        to top,
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 8%,
+            white
+        ),
+        color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
     ) !important;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
-    --inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
+    --inactive-tab-background-color: color-mix(
+        in oklab,
+        color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+        transparent
+    ) !important;
     --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
   }
 }
@@ -632,7 +640,7 @@
 
 #tabbrowser-tabs {
   /* bruni: This will make the alpha for the tabs revert to the normal mask,
-  		  however, I found this to look more jarring than with it disabled. */
+   however, I found this to look more jarring than with it disabled. */
   /*&[movingtab] .tabbrowser-tab:not([visuallyselected="true"]):not(:first-of-type) {
   	.tab-content {
   		&::before {
@@ -2182,6 +2190,11 @@ toolbarpaletteitem[place=palette] {
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
       inset 0 0 0 1px rgba(255, 255, 255, 0.3);
   --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
+  --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(66, 66, 66, 20%) !important;
+  --bookmark-item-color: #000000;
+  --bookmark-item-hover-color: #062d75;
+  --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
   --toolbarbutton-radius: 4px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme) {
@@ -2227,6 +2240,39 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #star-button-box > #star-button[starred] {
   list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar {
+  padding: 1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--toolbarbutton-radius) !important;
+  box-shadow: var(--personal-toolbar-item-shadow);
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition: none !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item:hover {
+  box-shadow: var(--personal-toolbar-item-hover-shadow) !important;
+  border: 1px solid #b0b0b0;
+  border-top-color: #cdcdcc;
+  color: var(--bookmark-item-hover-color) !important;
+  transition: all 150ms linear !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item:hover::before {
+  opacity: 1;
+  transition: all 150ms linear;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=secure] #identity-icon, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;

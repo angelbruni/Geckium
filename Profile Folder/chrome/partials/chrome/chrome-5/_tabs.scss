@@ -13,7 +13,7 @@
     }
 
     --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
-	--tabbrowser-tab-selected: linear-gradient(
+    --tabbrowser-tab-selected: linear-gradient(
         to top,
         rgb(243, 248, 253),
         rgb(252, 254, 255)
@@ -22,10 +22,10 @@
     --tabbrowser-tab-color: black;
     --tab-transition-time: 220ms;
 
-	--newtab-width: 28px;
-	--newtab-height: 18px;
-	--newtab-normal: rgba(255, 255, 255, 0.01);
-	--newtab-hot: rgba(255, 255, 255, 0.1);
+    --newtab-width: 28px;
+    --newtab-height: 18px;
+    --newtab-normal: rgba(255, 255, 255, 0.01);
+    --newtab-hot: rgba(255, 255, 255, 0.1);
 
     @media (prefers-color-scheme: dark) {
         --tab-glare: rgba(19, 23, 29, 0.45);
@@ -39,22 +39,30 @@
         --tabbrowser-tab-color: white;
     }
 
-	&:-moz-lwtheme {
-		&:not([lwtheme-id*="firefox-compact"]) {
-			@media not (prefers-color-scheme: dark) {
-				--tabbrowser-tab-selected: linear-gradient(
-					to top,
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
-				) !important;
-			}
-	
-			@media (prefers-color-scheme: dark) {
-				--inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
-				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
-			}
-		}
-	}
+    &:-moz-lwtheme {
+        &:not([lwtheme-id*="firefox-compact"]) {
+            @media not (prefers-color-scheme: dark) {
+                --tabbrowser-tab-selected: linear-gradient(
+                    to top,
+                    color-mix(
+                        in srgb,
+                        var(--toolbarbutton-icon-fill) 8%,
+                        white
+                    ),
+                    color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+                ) !important;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                --inactive-tab-background-color: color-mix(
+                    in oklab,
+                    color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+                    transparent
+                ) !important;
+                --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
+            }
+        }
+    }
 
     &:not([tabsintitlebar]) {
         .titlebar-items {
@@ -78,21 +86,21 @@
 }
 
 @keyframes geckium-progress-throbber {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-576px);
-	}
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-576px);
+    }
 }
 
 @keyframes geckium-waiting-throbber {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-2864px);
-	}
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-2864px);
+    }
 }
 
 /* bruni: This is the animation responsible for hiding the tab
@@ -119,11 +127,11 @@
     width: calc(100% - 1px) !important;
     margin-top: 4px !important;
     background-size: 100% 24px !important;
-	outline: 0 !important;
+    outline: 0 !important;
 }
 
 .tab-loading-burst {
-	display: none !important;
+    display: none !important;
 }
 
 .tab-content {
@@ -133,7 +141,7 @@
 }
 
 .tabbrowser-tab {
-	position: relative;
+    position: relative;
     padding: 0;
     overflow: visible !important;
     min-width: 0 !important;
@@ -395,12 +403,12 @@
         transition: transform 200ms var(--animation-easing-function) !important;
     }
 
-	.tab-throbber[progress]::before,
-	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
-		opacity: 1 !important;
-	}
+    .tab-throbber[progress]::before,
+    .tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+        opacity: 1 !important;
+    }
 
-	.tab-throbber[progress]::before {
+    .tab-throbber[progress]::before {
         background-image: url(assets/img/tabbar/throbber.png) !important;
         width: 576px !important;
         background-size: 576px 16px !important;
@@ -436,9 +444,9 @@
 }
 
 #tabbrowser-tabs {
-	/* bruni: This will make the alpha for the tabs revert to the normal mask,
+    /* bruni: This will make the alpha for the tabs revert to the normal mask,
 			  however, I found this to look more jarring than with it disabled. */
-	/*&[movingtab] .tabbrowser-tab:not([visuallyselected="true"]):not(:first-of-type) {
+    /*&[movingtab] .tabbrowser-tab:not([visuallyselected="true"]):not(:first-of-type) {
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
@@ -476,16 +484,16 @@
 
 .tab-glare-container {
     position: absolute;
-	left: -8px;
-	width: calc(100% + 17px);
-	height: 100%;
-	overflow: hidden;
-	opacity: 0;
-	margin-top: 4px;
+    left: -8px;
+    width: calc(100% + 17px);
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 4px;
 
     /* bruni: In Chrome, the glare hides in a slower
 				pace when the mouse leaves. */
-    transition: opacity 0.5s linear;	
+    transition: opacity 0.5s linear;
 }
 
 .tab-glare-middle {
