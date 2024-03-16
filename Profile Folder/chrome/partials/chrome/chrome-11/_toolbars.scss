@@ -192,6 +192,11 @@
                     }
                 }
 
+                &::after {
+                    content: "" !important;
+                    transition: none !important;
+                }
+
                 &:active,
                 &[open] {
                     border: 1px solid var(--toolbarbutton-border-color-active) !important;

@@ -2037,6 +2037,10 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled]):hover image:first-of-type {
   filter: none;
 }
+:root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled])::after, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled])::after {
+  content: "" !important;
+  transition: none !important;
+}
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled])[open], :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled])[open] {
   border: 1px solid var(--toolbarbutton-border-color-active) !important;
   background-color: rgba(0, 0, 0, 0.08) !important;
