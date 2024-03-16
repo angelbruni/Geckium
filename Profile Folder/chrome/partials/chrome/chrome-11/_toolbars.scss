@@ -1,21 +1,7 @@
 & {
-    --nav-bar: linear-gradient(to top, rgb(228, 228, 228), rgb(249, 249, 249));
-
     &:not(:-moz-lwtheme) {
         --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
     }
-
-    --personal-toolbar: linear-gradient(
-        to top,
-        rgb(223, 223, 223),
-        rgb(228, 228, 228)
-    );
-    --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
-            rgb(255, 255, 255, 30%),
-        0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-        inset 0 0 1px 1px transparent !important;
-    --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
-    --bookmark-item-color-shadow: transparent !important;
 
     --toolbar-start-end-padding: 3px !important;
 
@@ -25,11 +11,15 @@
     --toolbarbutton-menu-width: var(--toolbarbutton-width);
     --toolbarbutton-outer-padding: 0.5px !important;
     --toolbarbutton-border-color-normal: transparent;
-    --toolbarbutton-border-color-hot: rgb(203, 203, 203);
-    --toolbarbutton-border-color-active: rgb(159, 159, 159);
-    --toolbarbutton-radius: 5px;
+	--toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
+	--toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+	--toolbarbutton-radius: 5px;
 
-    --toolbar-field-default-background-color: white;
+	@media (prefers-color-scheme: dark) {
+		--toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
+		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    }
 
     #PersonalToolbar {
         padding-block: 2px !important;
@@ -42,47 +32,36 @@
         background: transparent !important;
         border: 1px solid transparent !important;
 
-        .toolbarbutton-icon {
-            position: relative;
-            z-index: 2;
-        }
-
         &::before {
-            content: unset;
-        }
-        &::after {
-            content: "";
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 to top,
                 transparent,
-                rgb(255, 255, 255, 80%)
+                var(--toolbarbutton-gradient-hot)
             ) !important;
             transition: all 150ms linear;
             opacity: 0;
             z-index: 1;
+			height: 100%;
         }
 
         &::after {
-            box-shadow: none;
+            content: unset;
         }
 
         &:not([disabled]) {
             &:hover {
-                box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+                box-shadow: var(--toolbarbutton-shadow-hot) !important;
                 border-color: var(--toolbarbutton-border-color-hot) !important;
-
-                &::after {
-                    box-shadow: none;
-                }
 
                 .toolbarbutton-badge-stack,
                 .toolbarbutton-icon,
                 image:first-of-type {
-                    filter: none;
+                    filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
                 }
-                &::after {
+
+                &::before {
                     opacity: 1;
                 }
             }
@@ -90,23 +69,23 @@
             &:active,
             &[open] {
                 background: rgba(0, 0, 0, 0.08) !important;
-                box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
-                border-color: var(--toolbarbutton-border-color-hot) !important;
+                box-shadow: var(--toolbarbutton-shadow-active) !important;
+                border-color: var(--toolbarbutton-border-color-active) !important;
 
-                &::after {
+                &::before {
                     transition: none !important;
                     opacity: 0;
                 }
             }
         }
 
-        &:not(#unified-extensions-button, #PanelUI-menu-button) {
-            .toolbarbutton-badge-stack,
-            .toolbarbutton-icon,
-            image:first-of-type {
-                transform: translateY(1px);
-            }
-        }
+		.toolbarbutton-badge-stack,
+		.toolbarbutton-icon,
+		image:first-of-type {
+			position: relative;
+			filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
+			z-index: 1;
+		}
 
         &#back-button {
             &:not([disabled]) {
@@ -173,47 +152,43 @@
             border: 1px solid var(--toolbarbutton-border-color-normal) !important;
             transition: none;
 
+			&::before {
+				content: "" !important;
+				transition: none;
+			}
+
+			&::after {
+				content: unset;
+			}
+
             &:not([disabled]) {
                 &:hover {
                     border: 1px solid var(--toolbarbutton-border-color-hot) !important;
                     background-color: transparent !important;
-                    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-
-                    &::after {
-                        box-shadow: none;
-                    }
+                    box-shadow: var(--toolbarbutton-shadow-hot);
 
                     .toolbarbutton-badge-stack,
                     .toolbarbutton-icon,
                     image:first-of-type {
-                        filter: none;
+                        filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
                     }
-                }
 
-                &::after {
-                    content: "" !important;
-                    transition: none !important;
+					&::before {
+						opacity: 1;
+					}
                 }
 
                 &:active,
                 &[open] {
                     border: 1px solid var(--toolbarbutton-border-color-active) !important;
                     background-color: rgba(0, 0, 0, 0.08) !important;
-                    box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
+                    box-shadow: var(--toolbarbutton-shadow-active) !important;
+
+					&::before {
+						content: unset !important;
+					}
                 }
             }
-        }
-    }
-
-    #nav-bar {
-        &[securestate="secure"],
-        &[securestate="ev"] {
-            --toolbar-field-background-color: var(
-                --toolbar-field-default-background-color
-            );
-            --protocol-background-color: var(
-                --toolbar-field-default-background-color
-            );
         }
     }
 

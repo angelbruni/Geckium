@@ -7,9 +7,10 @@
 
 const appearanceMap = {
 	0: "five",
-	1: "eleven",
-	2: "twentyone",
-	3: "fortyseven"
+	1: "six",
+	2: "eleven",
+	3: "twentyone",
+	4: "fortyseven"
 };
 
 function applyApperance(choice) {
