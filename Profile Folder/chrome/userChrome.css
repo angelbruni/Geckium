@@ -1237,7 +1237,7 @@ toolbar[overflowable][customizing] > .customization-target {
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] {
   border: 1px solid var(--toolbarbutton-border-color-active);
   box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
-  transition: none;
+  transition: none !important;
 }
 .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active::before, .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open]::before {
   opacity: 0;
@@ -1973,6 +1973,11 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] {
   background: rgba(0, 0, 0, 0.08) !important;
   box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--toolbarbutton-border-color-hot) !important;
+}
+:root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active::after, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open]::after {
+  transition: none !important;
+  opacity: 0;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not(#unified-extensions-button, #PanelUI-menu-button) .toolbarbutton-badge-stack,
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not(#unified-extensions-button, #PanelUI-menu-button) .toolbarbutton-icon,

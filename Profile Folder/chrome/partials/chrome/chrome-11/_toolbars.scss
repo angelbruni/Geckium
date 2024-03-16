@@ -90,6 +90,12 @@
             &[open] {
                 background: rgba(0, 0, 0, 0.08) !important;
                 box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
+                border-color: var(--toolbarbutton-border-color-hot) !important;
+
+                &::after {
+                    transition: none !important;
+                    opacity: 0;
+                }
             }
         }
 

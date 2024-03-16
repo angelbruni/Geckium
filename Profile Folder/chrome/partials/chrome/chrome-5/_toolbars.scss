@@ -477,7 +477,7 @@ toolbar[overflowable][customizing] > .customization-target {
             border: 1px solid var(--toolbarbutton-border-color-active);
             box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
                 inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
-            transition: none;
+            transition: none !important;
 
             &::before {
                 opacity: 0;
