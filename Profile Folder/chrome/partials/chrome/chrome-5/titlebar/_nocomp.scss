@@ -1,6 +1,12 @@
 /* bruni: This is the code for the window frame when composition
 		  is disabled. This code is also used by custom themes.*/
 
+&[tabsintitlebar] {
+	#tabbrowser-arrowscrollbox {
+		padding-top: 7px !important;
+	}
+}
+
 body {
 	&:-moz-window-inactive {
 		background: var(--titlebar-inactive);

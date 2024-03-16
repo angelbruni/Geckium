@@ -1,0 +1,22 @@
+& {
+	#nav-bar {
+		&[securestate="secure"],
+		&[securestate="ev"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
+			}
+		}
+
+		&[securestate="warning"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
+			}
+		}
+
+		&[securestate="insecure"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
+			}
+		}
+	}
+}

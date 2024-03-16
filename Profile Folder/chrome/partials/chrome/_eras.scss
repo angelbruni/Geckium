@@ -1,0 +1,17 @@
+/* Chrome 0 -> 5 */
+@import "chrome-5/final";
+
+/* Chrome 6 -> 11 */
+:root[geckium-five][geckium-eleven] {
+	@import "chrome-11/final";
+}
+
+/* Chrome 12 -> 21 */
+:root[geckium-five][geckium-eleven][geckium-twentyone] {
+	@import "chrome-21/final";
+}
+
+/* Chrome 21 -> ~47 */
+:root[geckium-five][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
+	@import "chrome-47/final";
+}

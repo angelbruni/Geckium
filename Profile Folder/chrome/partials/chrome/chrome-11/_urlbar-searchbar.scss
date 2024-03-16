@@ -1,0 +1,77 @@
+& {
+	--urlbar-border: rgb(192,193,198);
+	--urlbar-verified-proxystate-valid: rgb(7,149,0);
+	--urlbar-verified-proxystate-valid-overridden: rgb(162,0,58);
+
+	#urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			left: 0 !important;
+			width: 100% !important;
+		}
+	}
+
+	#urlbar-container {
+		margin-inline: 4px !important;
+	}
+
+	#urlbar-background {
+		background-color: var(--toolbar-field-background-color) !important;
+		border-inline: 1px solid var(--urlbar-border) !important;
+		border-radius: var(--toolbarbutton-radius) !important;
+	}
+
+	.urlbar-input-box {
+		height: calc(var(--urlbar-height-definitive) - 1px) !important;
+	}
+
+	#urlbar-input {
+		&::placeholder {
+			text-align: start;
+		}
+	}
+
+	.urlbarView {
+		transform: unset;
+		width: 100% !important;
+	}
+
+	#nav-bar {
+		&[securestate="chrome"] {
+			#identity-box {
+				display: flex !important;
+			}
+		}
+
+		&[securestate="secure"],
+		&[securestate="ev"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
+			}
+		}
+
+		&[securestate="warning"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
+			}
+		}
+
+		&[securestate="insecure"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
+			}
+		}
+	}
+
+	#star-button-box {
+		padding: 0 !important;
+		align-items: center;
+		justify-content: center;
+
+		&:hover,
+		&:active,
+		&[open] {
+			background-color: transparent !important;
+		}
+	}
+}

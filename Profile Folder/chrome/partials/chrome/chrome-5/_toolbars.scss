@@ -31,7 +31,7 @@
     
 
 	--chrome-content-separator-color: transparent !important;
-	--toolbar-start-end-padding: 6px !important;
+	--toolbar-start-end-padding: 2px !important;
 	--inner-border-color: #dfdfdf;
 	
 	--nav-bar-height: 37px;
@@ -52,45 +52,12 @@
 
 
     --toolbarbutton-active-background: transparent !important;
-	
     --toolbarbutton-radius: 6px;
     --toolbarbutton-disabled-opacity: 1 !important;
     --navigation-buttons-separator: rgb(221, 229, 243);
 
     --bookmark-item-color: #062d75;
     --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
-
-	&[geckium-five][geckium-eleven] {
-        
-        
-        
-        
-        
-        
-		&:not(:-moz-lwtheme) {
-
-		}
-        
-        
-        
-        
-        
-        
-		--personal-toolbar-item-hover-shadow:
-			inset 0 0 0 1px
-			rgb(255, 255, 255, 30%),
-			0 0 0 1px rgb(0, 0, 0, 8%),
-			0 1px 1px 2px rgb(0, 0, 0, 6%),
-			inset 0 0 1px 1px transparent !important;
-		
-		
-		#PersonalToolbar {
-            
-        }
-        .bookmark-item {
-            
-        }
-    }
 
 	@media (prefers-color-scheme: dark) {
 		--nav-bar: linear-gradient(
@@ -102,7 +69,7 @@
 			to bottom,
 			#4c4c4c,
 			#575757
-		);
+		) !important;
         
         
         
@@ -123,16 +90,9 @@
 		--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
 	}
 	&:-moz-lwtheme {
-		&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
-			--toolbarbutton-icon-fill: color-mix(
-				in srgb,
-				var(--lwt-accent-color) 70%,
-				white
-			) !important;
-		}
 		&:not([lwtheme-id*="firefox-compact"]) {
 			@import "titlebar/nocomp";
-			
+
 			@media not (prefers-color-scheme: dark) {
 				--nav-bar: linear-gradient(
 					to bottom,
@@ -151,7 +111,7 @@
 						var(--toolbarbutton-icon-fill) 10%, 
 						white
 					)
-				);
+				) !important;
 				--personal-toolbar: linear-gradient(
 					to bottom,
 					color-mix(
@@ -164,7 +124,8 @@
 						var(--toolbarbutton-icon-fill) 2%, 
 						white
 					)
-				);
+				) !important;
+
 				--toolbarbutton-border-color-normal: color-mix(
 					in srgb, 
 					var(--toolbarbutton-icon-fill) 50%, 
@@ -196,7 +157,7 @@
 	
 			@media (prefers-color-scheme: dark) {
 				--nav-bar: var(--lwt-accent-color) !important;
-				--personal-toolbar: var(--lwt-accent-color);
+				--personal-toolbar: var(--lwt-accent-color) !important;
 				
 				--toolbarbutton-border-color-normal: color-mix(
 					in srgb, 
@@ -223,6 +184,15 @@
 					var(--lwt-accent-color) 50%, 
 					black
 				) !important;
+
+				&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+					--toolbarbutton-icon-fill: color-mix(
+						in srgb, 
+						var(--lwt-accent-color) 70%, 
+						white
+					) !important;
+				}
+
 				.bookmark-item {
 					color: var(--tabbrowser-tab-color) !important;
 				}
@@ -247,7 +217,7 @@
 	
 	&[tabsintitlebar] {
 		#tabbrowser-arrowscrollbox {
-			padding-top: 7px !important;
+			padding-top: 12px !important;
 		}
 	}
 
@@ -313,6 +283,36 @@
     border-top-left-radius: 3px !important;
     border-top-right-radius: 3px !important;
     align-items: center;
+	padding-inline: var(--toolbar-start-end-padding) !important;
+	height: var(--nav-bar-height);
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        height: 37px;
+        width: 6px;
+        top: -3px;
+    }
+
+    &::before {
+        left: -2px;
+        background: url(assets/img/chrome-5/toolbar/content_top_left_corner.png);
+    }
+
+    &::after {
+        top: -2px;
+        left: calc(100% - 4px);
+        background: url(assets/img/chrome-5/toolbar/content_top_right_corner.png);
+    }
+
+    &:not([urlbar-exceeds-toolbar-bounds]) {
+        overflow: visible !important;
+    }
+
+    &:not(:-moz-lwtheme) {
+        box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
+    }
 }
 
 #nav-bar-customization-target {
@@ -357,73 +357,6 @@
 
 toolbar[overflowable][customizing] > .customization-target {
 	overflow: visible !important;
-}
-
-#nav-bar {
-	height: var(--nav-bar-height);
-	padding-inline: 2px !important;
-
-	&::before,
-	&::after {
-		position: absolute;
-		content: "";
-		height: 37px;
-		width: 6px;
-		top: -3px;
-	}
-
-	&::before {
-		left: -2px;
-		background: url(assets/img/toolbar/toolbar_top_left_corner.png);
-	}
-
-	&::after {
-		
-		left: calc(100% - 4px);
-		background: url(assets/img/toolbar/toolbar_top_right_corner.png);
-	}
-
-	&:not([urlbar-exceeds-toolbar-bounds]) {
-		overflow: visible !important;
-	}
-
-	&:not(:-moz-lwtheme) {
-		box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
-	}
-
-	&[securestate="chrome"] {
-		#identity-box {
-			display: none !important;
-		}
-	}
-
-	&[securestate="secure"],
-	&[securestate="ev"] {
-		--protocol-color: var(--urlbar-verified-proxystate-valid);
-		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
-
-
-
-		#identity-icon {
-			background-image: url(assets/img/chrome-5/toolbar/lock_small.png);
-		}
-	}
-
-	&[securestate="warning"],
-	&[securestate="insecure"] {
-		--protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
-
-		#urlbar-protocol {
-			&::before {
-				background: var(--urlbar-verified-proxystate-valid-overridden);
-			}
-		}
-
-		#identity-icon {
-			background-image: url(assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
-			background-size: contain;
-		}
-	}
 }
 
 #browser {
@@ -562,7 +495,9 @@ toolbar[overflowable][customizing] > .customization-target {
 		&:active,
 		&[open] {
 			border: 1px solid var(--toolbarbutton-border-color-active);
-            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05), inset 0 0 6px 1px rgba(0, 0, 0, 0.1),
+               		 	inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
+			transition: none;
 
 
 			&::before {
@@ -638,23 +573,25 @@ toolbar[overflowable][customizing] > .customization-target {
 			content: unset !important;
 		}
 
-		&:hover {
-			border: 1px solid rgb(201,210,221);
-			background-color: rgba(255,255,255,.6) !important;
-
-			.toolbarbutton-badge-stack,
-			.toolbarbutton-icon,
-			image:first-of-type {
-				filter: unset;
+		&:not([disabled]) {
+			&:hover {
+				border: 1px solid rgb(201, 210, 221);
+				background-color: rgba(255, 255, 255, 0.6) !important;
+	
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: unset;
+				}
+			}
+	
+			&:active,
+			&[open] {
+				border: 1px solid rgb(201, 210, 221);
+				background-color: rgba(255, 255, 255, 0.3) !important;
 			}
 		}
-
-		&:active,
-		&[open] {
-			border: 1px solid rgb(201,210,221);
-			background-color: rgba(255,255,255,.3) !important;
-		}
-	}
+    }
 }
 
 #back-button {
@@ -679,8 +616,8 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #star-button-box > #star-button {
-    width: auto !important;
-    height: auto !important;
+    width: fit-content !important;
+	height: fit-content !important;
     list-style-image: url(assets/img/toolbar/star.svg) !important;
 
     &[starred] {
@@ -694,8 +631,9 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .identity-box-button {
-	padding-left: 3px !important;
-	padding-right: 0px !important;
+    padding: 0 !important;
+	min-height: 19px !important;
+	min-width: 19px !important;
 }
 
 .identity-box-button,
@@ -708,8 +646,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #PanelUI-menu-button {
-    margin-right: var(--toolbar-start-end-padding) !important;
-    list-style-image: url(assets/img/toolbar/menu_chrome.svg) !important;
+    list-style-image: url(assets/img/chrome-5/toolbar/menu_chrome.svg) !important;
     background-position: center;
 }
 
@@ -717,19 +654,19 @@ toolbar[overflowable][customizing] > .customization-target {
 #TabsToolbar #new-tab-button {
 	list-style-image: none !important;
 	background-position: calc(50% - 1px);
-	background-size: 30px 30px;
+    background-size: var(--newtab-width) var(--newtab-height) !important;
 }
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: relative;
-	background: var(--newtab-normal) url(assets/img/chrome-5/tabbar/newtab.png);
+    background: url(assets/img/chrome-5/tabbar/newtab.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	margin-top: 7px !important;
 	margin-left: 3px !important;
-	height: 18px;
-	width: 28px;
+    height: var(--newtab-height);
+    width: var(--newtab-width);
 	transition: background-color 100ms linear;
 
 	&:hover {
@@ -738,8 +675,8 @@ toolbar[overflowable][customizing] > .customization-target {
 		}
 	}
 
-	&:active {
-		background: transparent url(assets/img/chrome-5/tabbar/newtab_p.png);
+    &:active {
+        background: url(assets/img/chrome-5/tabbar/newtab_p.png);
 
 		&::before {
 			background-color: transparent;
@@ -747,34 +684,17 @@ toolbar[overflowable][customizing] > .customization-target {
 		}
 	}
 
-	&:before {
-		content: "";
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
-		background-color: var(--newtab-normal);
-		transition: background-color 100ms linear;
-		z-index: -1;
-	}
-
-	/*&:hover {
-		filter: unset !important;
-	}
-
-	&:hover {
-		background-image: url(assets/img/chrome-5/tabbar/newtab_h.png);
-		background-color: var(--newtab-normal);
-	}
-
-	&:active {
-		background-image: url(assets/img/chrome-5/tabbar/newtab_p.png);
-		
-	}
-
-	&:after {
-		
-	}*/
+    &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+		mask-size: var(--newtab-width) var(--newtab-height);
+        background-color: var(--newtab-normal);
+        transition: background-color 100ms linear;
+        z-index: -1;
+    }
 }
 
 #tabs-newtab-button .toolbarbutton-icon {
@@ -787,7 +707,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #unified-extensions-button {
-    list-style-image: url(assets/img/toolbar/menu_plugin.svg) !important;
+    list-style-image: url(assets/img/chrome-5/toolbar/menu_plugin.svg) !important;
 }
 
 .toolbarbutton-animatable-box {
