@@ -734,23 +734,15 @@
       rgb(230, 239, 251),
       rgb(245, 249, 254)
   );
-  --personal-toolbar: linear-gradient(
-  	to top,
-  	#ecf3fc,
-  	#dae7f7
-  );
+  --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
-  --personal-toolbar-item-shadow:
-  inset 0 0 0 1px transparent,
-        0 0 0 1px transparent,
-  0 1px 1px 2px transparent,
-        inset 0 0 1px 1px transparent;
-  --personal-toolbar-item-hover-shadow:
-  inset 0 0 0 1px
-        rgb(255, 255, 255, 30%),
-        0 0 0 1px rgb(0, 0, 0, 14%),
-  0 1px 1px 2px rgb(0, 0, 0, 6%),
-        inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
+      0 0 0 1px transparent, 0 1px 1px 2px transparent,
+      inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+          rgb(255, 255, 255, 30%),
+      0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+      inset 0 0 1px 1px transparent;
   --personal-toolbar-item-hover-bg: linear-gradient(
       to top,
       transparent,
@@ -784,15 +776,11 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --nav-bar: linear-gradient(
-    	to bottom,
-    	#5d5d5d,
-    	#4c4c4c
-    ) !important;
+    --nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
     --personal-toolbar: linear-gradient(
-    	to bottom,
-    	#4c4c4c,
-    	#575757
+        to bottom,
+        #4c4c4c,
+        #575757
     ) !important;
     --personal-toolbar-border-bottom: rgb(91, 91, 91);
     --inner-border-color: rgb(79, 79, 79);
@@ -926,59 +914,55 @@
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --nav-bar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 5%,
-    		white
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 20%,
-    		white
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	)
+        to bottom,
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 5%,
+            white
+        ),
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 20%,
+            white
+        ),
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 10%,
+            white
+        )
     ) !important;
     --personal-toolbar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 2%,
-    		white
-    	)
+        to bottom,
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 10%,
+            white
+        ),
+        color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
     ) !important;
     --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 50%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 50%,
+        white
     );
     --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 40%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 40%,
+        white
     );
     --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 30%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 30%,
+        white
     );
     --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	)
+        to bottom,
+        rgb(255, 255, 255),
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 10%,
+            white
+        )
     );
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
@@ -990,36 +974,36 @@
     --nav-bar: var(--lwt-accent-color) !important;
     --personal-toolbar: var(--lwt-accent-color) !important;
     --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 50%,
+        white
     );
     --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 40%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 40%,
+        white
     );
     --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 30%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 30%,
+        white
     );
     --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+        to bottom,
+        rgb(255, 255, 255),
+        color-mix(in srgb, var(--lwt-accent-color) 10%, white)
     );
     --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	black
+        in srgb,
+        var(--lwt-accent-color) 50%,
+        black
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
     --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 70%,
+        white
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
@@ -1202,7 +1186,7 @@ toolbar[overflowable][customizing] > .customization-target {
   border: 1px solid var(--toolbarbutton-border-color-normal);
   align-items: center;
   justify-content: center;
-  transition: border-color 100ms linear;
+  transition: all 150ms linear;
   /* bruni: 	let's separate radius like this so
   we can easily override each individually
   later when needed.						*/
@@ -1916,30 +1900,25 @@ toolbarpaletteitem[place=palette] {
   );
 }
 :root[geckium-five][geckium-eleven] {
-  --nav-bar: linear-gradient(
-  	to top,
-  	rgb(228, 228, 228),
-  	rgb(249, 249, 249)
-  );
+  --nav-bar: linear-gradient(to top, rgb(228, 228, 228), rgb(249, 249, 249));
   --personal-toolbar: linear-gradient(
-  	to top,
-  	rgb(223, 223, 223),
-  	rgb(228, 228, 228)
+      to top,
+      rgb(223, 223, 223),
+      rgb(228, 228, 228)
   );
-  --personal-toolbar-item-hover-shadow:
-  	inset 0 0 0 1px rgb(255, 255, 255, 30%),
-  	0 0 0 1px rgb(0, 0, 0, 8%),
-  	0 1px 1px 2px rgb(0, 0, 0, 6%),
-  	inset 0 0 1px 1px transparent !important;
+  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+          rgb(255, 255, 255, 30%),
+      0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+      inset 0 0 1px 1px transparent !important;
   --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
   --toolbar-start-end-padding: 3px !important;
   --nav-bar-height: 36px;
   --toolbarbutton-width: var(--toolbarbutton-height);
   --toolbarbutton-menu-width: var(--toolbarbutton-width);
-  --toolbarbutton-outer-padding: .5px !important;
+  --toolbarbutton-outer-padding: 0.5px !important;
   --toolbarbutton-border-color-normal: transparent;
-  --toolbarbutton-border-color-hot: rgb(203,203,203);
-  --toolbarbutton-border-color-active: rgb(159,159,159);
+  --toolbarbutton-border-color-hot: rgb(203, 203, 203);
+  --toolbarbutton-border-color-active: rgb(159, 159, 159);
   --toolbar-field-default-background-color: white;
 }
 :root[geckium-five][geckium-eleven]:not(:-moz-lwtheme) {
@@ -1953,16 +1932,32 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
   background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
   /* bruni: Navigation buttons needs some rethinking. */
+}
+:root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) .toolbarbutton-icon {
+  position: relative;
+  z-index: 2;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::before {
   content: unset;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.8)) !important;
+  transition: all 150ms linear;
+  opacity: 0;
+  z-index: 1;
+}
+:root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button)::after {
   box-shadow: none;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover {
-  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+  border-color: var(--toolbarbutton-border-color-hot) !important;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover::after {
   box-shadow: none;
@@ -1972,8 +1967,11 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover image:first-of-type {
   filter: none;
 }
+:root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):hover::after {
+  opacity: 1;
+}
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled]):active, :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not([disabled])[open] {
-  background-color: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(0, 0, 0, 0.08) !important;
   box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
 }
 :root[geckium-five][geckium-eleven] .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button):not(#unified-extensions-button, #PanelUI-menu-button) .toolbarbutton-badge-stack,
@@ -2040,8 +2038,12 @@ toolbarpaletteitem[place=palette] {
   box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
 }
 :root[geckium-five][geckium-eleven] #nav-bar[securestate=secure], :root[geckium-five][geckium-eleven] #nav-bar[securestate=ev] {
-  --toolbar-field-background-color: var(--toolbar-field-default-background-color);
-  --protocol-background-color: var(--toolbar-field-default-background-color);
+  --toolbar-field-background-color: var(
+      --toolbar-field-default-background-color
+  );
+  --protocol-background-color: var(
+      --toolbar-field-default-background-color
+  );
 }
 :root[geckium-five][geckium-eleven] #unified-extensions-button {
   list-style-image: url(assets/img/chrome-11/toolbar/menu_plugin.svg) !important;
