@@ -1,0 +1,189 @@
+& {
+	--nav-bar: linear-gradient(
+		to top,
+		rgb(228, 228, 228),
+		rgb(249, 249, 249)
+	);
+	
+	&:not(:-moz-lwtheme) {
+		--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+	}
+
+	--personal-toolbar: linear-gradient(
+		to top,
+		rgb(223, 223, 223),
+		rgb(228, 228, 228)
+	);
+	--personal-toolbar-item-hover-shadow:
+		inset 0 0 0 1px rgb(255, 255, 255, 30%),
+		0 0 0 1px rgb(0, 0, 0, 8%),
+		0 1px 1px 2px rgb(0, 0, 0, 6%),
+		inset 0 0 1px 1px transparent !important;
+	--personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+
+	--toolbar-start-end-padding: 3px !important;
+
+	--nav-bar-height: 36px;
+
+	--toolbarbutton-width: var(--toolbarbutton-height);
+    --toolbarbutton-menu-width: var(--toolbarbutton-width);
+	--toolbarbutton-outer-padding: .5px !important;
+	--toolbarbutton-border-color-normal: transparent;
+    --toolbarbutton-border-color-hot: rgb(203,203,203);
+    --toolbarbutton-border-color-active: rgb(159,159,159);
+
+	--toolbar-field-default-background-color: white;
+
+	#PersonalToolbar {
+		padding-block: 2px !important;
+	}
+	.bookmark-item {
+		border-radius: 5px !important;
+	}
+
+	.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
+		background: transparent !important;
+
+		&::before {
+			content: unset;
+		}
+	
+		&::after {
+			box-shadow: none;
+		}
+	
+		&:not([disabled]) {
+			&:hover {
+				box-shadow: 0 1px 0 0 rgba(255, 255, 255, .3);
+				
+				&::after {
+					box-shadow: none;
+				}
+	
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: none;
+				}
+			}
+
+			&:active,
+			&[open] {
+				background-color: rgba(0,0,0,.08) !important;
+				box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, .1) !important;
+							
+			}
+		}
+
+		&:not(#unified-extensions-button, #PanelUI-menu-button) {
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon,
+			image:first-of-type {
+				transform: translateY(1px);
+			}
+		}
+
+		&#back-button {
+			&:not([disabled]) {
+				&:hover {
+					border-right: 1px solid var(--toolbarbutton-border-color-hot);
+				}
+
+				&:active,
+				&[open] {
+					border-right: 1px solid var(--toolbarbutton-border-color-active) !important;
+				}
+			}
+		}
+
+		&#forward-button {
+			&:not([disabled]) {
+				&:hover {
+					border-left: 1px solid var(--toolbarbutton-border-color-hot);
+				}
+	
+				&:active,
+				&[open] {
+					border-left: 1px solid var(--toolbarbutton-border-color-active) !important;
+				}
+			}
+		}
+
+		/* bruni: Navigation buttons needs some rethinking. */
+		&#back-button {
+			border-top-right-radius: var(--toolbarbutton-radius) !important;
+			border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+			border-right: 1px solid var(--toolbarbutton-border-color-normal);
+	
+			&::before,
+			&::after {
+				border-top-right-radius: var(--toolbarbutton-radius) !important;
+				border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+			}
+
+			&::after {
+				border-right: 0;
+			}
+		}
+	
+		&#forward-button {
+			margin-inline-start: var(--toolbarbutton-outer-padding) !important;
+			border-top-left-radius: var(--toolbarbutton-radius) !important;
+			border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+			border-left: 1px solid var(--toolbarbutton-border-color-normal);
+	
+			&::before,
+			&::after {
+				border-top-left-radius: var(--toolbarbutton-radius) !important;
+				border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+			}
+		}
+	
+		&#unified-extensions-button,
+		&#PanelUI-menu-button {
+			border: 1px solid var(--toolbarbutton-border-color-normal) !important;
+			transition: none;
+
+			&:not([disabled]) {
+				&:hover {
+					border: 1px solid var(--toolbarbutton-border-color-hot) !important;
+					background-color: transparent !important;
+					box-shadow: 0 1px 0 0 rgba(255, 255, 255, .3);
+				
+					&::after {
+						box-shadow: none;
+					}
+		
+					.toolbarbutton-badge-stack,
+					.toolbarbutton-icon,
+					image:first-of-type {
+						filter: none;
+					}
+				}
+		
+				&:active,
+				&[open] {
+					border: 1px solid var(--toolbarbutton-border-color-active) !important;
+					background-color: rgba(0,0,0,.08) !important;
+					box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, .1) !important;
+				}
+			}
+		}
+	}
+
+	#nav-bar {
+		&[securestate="secure"],
+		&[securestate="ev"] {
+			--toolbar-field-background-color: var(--toolbar-field-default-background-color);
+			--protocol-background-color: var(--toolbar-field-default-background-color);
+		}
+	}
+
+	#unified-extensions-button {
+		list-style-image: url(assets/img/chrome-11/toolbar/menu_plugin.svg) !important;
+	}
+
+	#PanelUI-menu-button {
+		list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
+	}
+}

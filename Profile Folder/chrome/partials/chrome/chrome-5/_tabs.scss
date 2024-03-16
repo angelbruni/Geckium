@@ -1,23 +1,10 @@
 :root {
-    --newtab-normal: rgba(255, 255, 255, 0.01);
-
     --tab-glare-opacity: 1;
     --tab-glare: rgb(211, 217, 225, 0.45);
 
     --tab-sides-width: 15px;
     --tab-width: 194px;
     --tab-distance: 4px;
-
-    &[geckium-five][geckium-eleven] {
-        --tab-glare-opacity: 0.4;
-        --tab-glare: linear-gradient(90deg, transparent, white, transparent);
-
-        --tab-selected-bgcolor: linear-gradient(
-            to top,
-            rgb(249, 249, 249),
-            rgb(255, 255, 255)
-        ) !important;
-    }
 
     &[geckium-choice="five"] {
         .tab-glare-container {
@@ -26,20 +13,25 @@
     }
 
     --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
-    --tab-selected-bgcolor: linear-gradient(
+	--tabbrowser-tab-selected: linear-gradient(
         to top,
         rgb(243, 248, 253),
         rgb(252, 254, 255)
-    ) !important;
+    );
+    --tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
     --tabbrowser-tab-color: black;
-
     --tab-transition-time: 220ms;
+
+	--newtab-width: 28px;
+	--newtab-height: 18px;
+	--newtab-normal: rgba(255, 255, 255, 0.01);
+	--newtab-hot: rgba(255, 255, 255, 0.1);
 
     @media (prefers-color-scheme: dark) {
         --tab-glare: rgba(19, 23, 29, 0.45);
 
         --inactive-tab-background-color: rgba(70, 70, 70, 0.8);
-        --tab-selected-bgcolor: linear-gradient(
+        --tabbrowser-tab-selected: linear-gradient(
             to bottom,
             #616161,
             #5d5d5d
@@ -50,7 +42,7 @@
 	&:-moz-lwtheme {
 		&:not([lwtheme-id*="firefox-compact"]) {
 			@media not (prefers-color-scheme: dark) {
-				--tab-selected-bgcolor: linear-gradient(
+				--tabbrowser-tab-selected: linear-gradient(
 					to top,
 					color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
 					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
@@ -59,7 +51,7 @@
 	
 			@media (prefers-color-scheme: dark) {
 				--inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
-				--tab-selected-bgcolor: var(--lwt-accent-color) !important;
+				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
 			}
 		}
 	}
@@ -259,7 +251,7 @@
         .tab-stack {
             &::before,
             &::after {
-                background: var(--tab-selected-bgcolor) !important;
+                background: var(--tabbrowser-tab-selected) !important;
             }
 
             &::before {
@@ -280,7 +272,7 @@
         }
 
         .tab-background {
-            background: var(--tab-selected-bgcolor) !important;
+            background: var(--tabbrowser-tab-selected) !important;
         }
     }
 

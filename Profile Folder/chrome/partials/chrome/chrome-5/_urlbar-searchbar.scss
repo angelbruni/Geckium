@@ -1,0 +1,513 @@
+:root {
+	--toolbar-field-background-color: white !important;
+	--toolbar-field-color: black !important;
+
+	--protocol-background-color: var(--toolbar-field-background-color);
+	--protocol-color: var(--toolbar-field-color);
+
+	--urlbar-border: var(--toolbarbutton-border-color-normal);
+	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
+	--urlbar-verified-proxystate-valid: rgb(10, 155, 38);
+	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
+	--urlbar-height-definitive: var(--toolbarbutton-height);
+
+	@media (prefers-color-scheme: dark) {
+		--toolbar-field-color: black !important;
+	}
+
+	--urlbarView: var(--protocol-background-color);
+
+    --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
+    --autocomplete-popup-highlight-background: -moz-menuhover !important;
+    --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
+
+    @media (prefers-color-scheme: dark) {
+        --autocomplete-popup-highlight-background: -moz-menuhover !important;
+    }
+
+    &:not([uidensity="compact"]) {
+        .urlbarView-row:not([type="tip"], [type="dynamic"]) {
+            min-height: 0 !important;
+        }
+    }
+}
+
+.verifiedDomain {
+	position: relative;
+}
+
+#urlbar {
+	--urlbar-height: var(--urlbar-height-definitive) !important;
+	--urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
+
+	font-size: 10pt !important;
+
+	&[focused="true"] {
+		&:not([supress-focus-border]) {
+			>#urlbar-background {
+				outline: transparent !important;
+			}
+		}
+	}
+
+	&:not([focused="true"]) {
+		&:not([pageproxystate="valid"]) {
+			#urlbar-protocol {
+				display: none !important;
+			}
+		}
+
+		.verifiedDomain {
+			&[pageproxystate="valid"] {
+				&::before,
+				&::after {
+					position: absolute;
+					pointer-events: none !important;
+				}
+
+				&::before {
+					content: "";
+				}
+			}
+		}
+	}
+
+	&:not(.searchButton) {
+		> #urlbar-input-container {
+			> #identity-box {
+				&[pageproxystate="invalid"],
+				&[pageproxystate="valid"].chromeUI {
+					#identity-icon {
+						list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+					}
+				}
+			}
+		}
+	}
+
+	#urlbar-protocol {
+		position: absolute;
+		height: 100%;
+		margin: 0 !important;
+		transform: translateY(3px);
+		pointer-events: none;
+		background: var(--protocol-background-color) !important;
+		color: var(--protocol-color);
+		z-index: 1;
+
+		&::before {
+			content: "";
+			position: absolute;
+			height: 2px;
+			top: 11px;
+			left: -1px;
+			rotate: 160deg;
+			width: 35px;
+			z-index: 100;
+		}
+	}
+
+	&[breakout] {
+		--top: 0px;
+
+		top: var(--top) !important;
+
+		&[breakout-extend] {
+			left: initial !important;
+			width: 100% !important;
+			top: var(--top) !important;
+
+			#urlbar-protocol {
+				display: none;
+			}
+
+			> #urlbar-background {
+				animation: none !important;
+			}
+		}
+	}
+
+	&[breakout],
+	&[breakout][breakout-extend] {
+		left: var(--toolbarbutton-width) !important;
+		width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
+	}
+}
+
+#nav-bar {
+    &[securestate="chrome"] {
+        #identity-box {
+            display: none !important;
+        }
+    }
+
+    &[securestate="secure"],
+    &[securestate="ev"] {
+		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+        --protocol-color: var(--urlbar-verified-proxystate-valid);
+        --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+
+        #identity-icon {
+            list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
+        }
+    }
+
+    &[securestate="warning"],
+    &[securestate="insecure"] {
+        --protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
+
+        #urlbar-protocol {
+            &::before {
+                background: var(--urlbar-verified-proxystate-valid-overridden);
+            }
+        }
+
+        #identity-icon {
+            list-style-image: url(assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
+        }
+    }
+}
+
+#custom-identity-label {
+	margin: 0 !important;
+	color: var(--protocol-color);
+}
+
+#searchbar:focus-within {
+	outline: transparent !important;
+}
+
+#urlbar:is([focused="true"], [open]),
+#searchbar:focus-within {
+  color: var(--toolbar-field-color) !important;
+}
+
+#urlbar[breakout][breakout-extend]>#urlbar-background,
+#urlbar[focused="true"]>#urlbar-background #searchbar:focus-within {
+	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+	inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
+	box-shadow: none !important;
+}
+
+#urlbar-label-box {
+	margin-inline-end: 4px !important;
+	background: transparent !important;
+	color: rgb(0, 0, 0, 50%) !important;
+	padding-inline: 0 !important;
+}
+
+#identity-box {
+	margin: 0 !important;
+	height: calc(var(--urlbar-height-definitive) - 1px) !important;
+
+	&[pageproxystate="valid"] {
+		#identity-icon {
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		&.notSecureText,
+		&.chromeUI,
+		&.extensionPage {
+			>.identity-box-button {
+				background: transparent !important;
+			}
+		}
+	}
+
+	.unknownIdentity {
+		#identity-icon {
+			list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+		}
+	}
+}
+
+#urlbar-background {
+	border-inline: 0 !important;
+	border-block: 1px solid var(--urlbar-border) !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+	height: var(--urlbar-height-definitive);
+}
+
+#identity-box-button,
+#urlbar-search-mode-indicator {
+	background: transparent !important;
+}
+
+#urlbar-search-mode-indicator {
+	padding-inline: 0 !important;
+	color: rgb(0, 0, 0, 60%) !important;
+
+	#urlbar-search-mode-indicator-title {
+		display: block !important;
+	}
+}
+
+.urlbarView-title {
+	&:is([isurl="true"]) {
+		&::before {
+			display: none !important;
+		}
+	}
+}
+
+.urlbarView-action {
+	display: none !important;
+}
+
+.urlbarView-row {
+	&[type="search"] {
+		&:not(:first-child) {
+			&::before {
+				content: "";
+				position: absolute;
+				left: 6px;
+				height: 18px;
+				width: var(--tab-sides-width);
+				background-image: url("assets/img/toolbar/search.png") !important;
+				background-size: cover !important;
+			}
+		}
+	}
+}
+
+.urlbarView-favicon {
+
+	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
+	&:is([src="chrome://browser/skin/history.svg"]) {
+		fill: transparent;
+	}
+}
+
+#identity-icon {
+	height: auto !important;
+	width: auto !important;
+}
+
+#identity-icon-label {
+	display: none;
+}
+
+#tracking-protection-icon-container {
+	display: none !important;
+}
+
+.urlbar-input-box {
+	height: calc(var(--urlbar-height-definitive) - 2px) !important;
+	font-size: 11pt !important;
+	margin-inline: 3px;
+	overflow: hidden;
+}
+
+#urlbar-input {
+	&::placeholder {
+		opacity: 1 !important;
+		color: rgb(127, 127, 127);
+		text-align: end;
+	}
+}
+
+#urlbar-container {
+	--urlbar-container-height: var(--urlbar-height-definitive) !important;
+
+	padding: 0 !important;
+	margin-inline: 2px !important;
+
+	&:not([starpos="start"]) {
+		#go-button-box {
+			display: none;
+		}
+	}
+
+	#urlbar-go-button {
+		display: none !important;
+	}
+}
+
+#urlbar-input-container {
+	height: var(--urlbar-height-definitive) !important;
+	padding: 0 !important;
+	padding-inline-start: 4px !important;
+	border: 0 !important;
+}
+
+.urlbarView {
+    display: block;
+    background: var(--urlbarView) !important;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    margin-top: 4px !important;
+    margin-inline: 0 !important;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    padding: 0;
+
+    /* bruni: Let's make the urlbar menu width from star button to go button. */
+    transform: translateX(calc(var(--toolbarbutton-width) * -1));
+    width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+}
+
+.urlbarView-url {
+    font-size: unset !important;
+}
+
+.urlbarView-results {
+    padding: 0 !important;
+}
+
+.urlbarView-row {
+    border-radius: 0 !important;
+    border: 0 !important;
+    padding-left: 4px !important;
+
+    &[selected] {
+        &[type="switchtab"] {
+            .urlbarView-action {
+                color: rgb(255, 255, 255, 80%) !important;
+            }
+        }
+
+        .urlbarView-url {
+            color: #7ff4b7 !important;
+        }
+    }
+
+    &[type="switchtab"] {
+        .urlbarView-row-inner {
+            .urlbarView-title {
+                padding-left: 24px;
+
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &[dynamicType="onboardTabToSearch"] {
+        > .urlbarView-row-inner {
+            min-height: 14px !important;
+        }
+    }
+
+    &[type="search"] {
+        .urlbarView-title {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    &:is([row-selectable]:hover, [selected]) {
+        > .urlbarView-button {
+            background-color: transparent !important;
+            color: white !important;
+            fill-opacity: 1;
+        }
+    }
+}
+
+.urlbarView-action {
+    position: absolute;
+    right: 0 !important;
+    background: transparent !important;
+    color: rgb(30, 133, 216) !important;
+}
+
+@media screen and (min-height: 600px) {
+    .urlbarView-results[wrap]
+        > .urlbarView-row:where(:not([rich-suggestion="with-icon"]))
+        > .urlbarView-row-inner {
+        flex-wrap: nowrap !important;
+    }
+
+    .urlbarView-url {
+        overflow: visible !important;
+    }
+}
+
+.urlbarView-overflowable[overflow],
+.urlbarView-url[overflow] {
+    mask-image: none !important;
+}
+
+#urlbar {
+    &[open] {
+        > .urlbarView {
+            > .urlbarView-body-outer {
+                > .urlbarView-body-inner {
+                    border-top: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.urlbarView-type-icon {
+    display: none;
+}
+
+.search-one-offs {
+    display: none !important;
+}
+
+.urlbarView-url {
+    color: #4c9817 !important;
+    flex-grow: 0 !important;
+    padding-left: 24px !important;
+    order: 1 !important;
+}
+
+.urlbarView-favicon {
+    position: absolute;
+    left: 8px;
+}
+
+.urlbarView-no-wrap {
+    order: 2 !important;
+}
+
+.urlbarView-title-separator {
+    &::before {
+        display: none;
+    }
+}
+
+.urlbarView-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+    color: rgb(131, 133, 133);
+
+    &::before {
+        content: "-";
+        padding: 0 4px;
+    }
+}
+
+.urlbarView-row-inner {
+    padding-block-start: 2px !important;
+    padding-block-end: 3px !important;
+}
+
+.urlbarView-dynamic-onboardTabToSearch-no-wrap {
+    .urlbarView-dynamic-onboardTabToSearch-icon {
+        height: 16px !important;
+        width: 16px !important;
+        left: 0;
+    }
+
+    .urlbarView-dynamic-onboardTabToSearch-text-container {
+        padding-left: 26px !important;
+    }
+
+    .urlbarView-dynamic-onboardTabToSearch-title.urlbarView-title {
+        &::before {
+            display: none !important;
+        }
+    }
+}
+
+.urlbarView-dynamic-onboardTabToSearch-action {
+    display: none;
+}
