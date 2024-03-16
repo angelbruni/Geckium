@@ -74,8 +74,6 @@ function updateProtocol() {
 			break;
 	}
 
-	console.log(gBrowser.selectedTab.linkedBrowser.securityUI.state);
-
 	const urlbarProtocol = document.createXULElement("label");
 	if (!document.getElementById("urlbar-protocol")) {
 		const urlbarScheme = document.getElementById("urlbar-scheme");

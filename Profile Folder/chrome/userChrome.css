@@ -3,6 +3,297 @@
 }
 
 :root {
+  --titlebar-active: linear-gradient(
+  	to bottom,
+  	rgb(97,162,241),
+  	rgb(72,140,222) 40px
+  ) !important;
+  --titlebar-inactive: linear-gradient(
+  	to bottom,
+  	rgb(163,201,247),
+  	rgb(147,186,234) 40px
+  ) !important;
+}
+:root[privatebrowsingmode=temporary] {
+  --titlebar-active: linear-gradient(
+  	to bottom,
+  	rgb(97,122,156),
+  	rgb(80,105,141) 40px
+  ) !important;
+  --titlebar-inactive: linear-gradient(
+  	to bottom,
+  	rgb(147,161,178),
+  	rgb(128,143,161) 40px
+  ) !important;
+}
+@media (-moz-windows-compositor: 0) {
+  :root {
+    /* bruni: This is the code for the window frame when composition
+    		  is disabled. This code is also used by custom themes.*/
+  }
+  :root body {
+    background: var(--titlebar-active);
+    box-shadow: inset 0 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgb(89, 89, 89);
+    border-left: 1px solid rgb(89, 89, 89);
+    border-bottom: 1px solid rgb(68, 68, 68);
+    border-right: 1px solid rgb(68, 68, 68);
+    border-radius: 5px;
+    padding: 1px !important;
+    box-sizing: border-box;
+  }
+  :root body:-moz-window-inactive {
+    background: var(--titlebar-inactive);
+  }
+  :root #titlebar {
+    -webkit-appearance: unset !important;
+       -moz-appearance: unset !important;
+            appearance: unset !important;
+  }
+  :root .titlebar-buttonbox {
+    -webkit-appearance: unset !important;
+       -moz-appearance: unset !important;
+            appearance: unset !important;
+    -moz-default-appearance: -moz-window-button-box;
+    margin-right: 1px !important;
+    box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+@media (-moz-windows-compositor: 0) and (-moz-platform: windows-win7), (-moz-windows-compositor: 0) and (-moz-platform: windows-win8) {
+  :root .titlebar-button {
+    -webkit-appearance: unset !important;
+       -moz-appearance: unset !important;
+            appearance: unset !important;
+    display: flex !important;
+    margin: 0 !important;
+    height: 17px;
+    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+    margin-top: -1px !important;
+    transition: background-color 100ms linear;
+    background-clip: padding-box;
+  }
+  :root .titlebar-button:active {
+    transition: none;
+  }
+}
+@media (-moz-windows-compositor: 0) {
+  :root .titlebar-close {
+    border-left: 1px solid rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+    border-right: 1px solid rgba(0, 0, 0, 0.35);
+    border-bottom-right-radius: 5px;
+    width: 43px;
+    list-style-image: url(assets/img/titlebar/close.svg);
+  }
+  :root .titlebar-close:hover {
+    background-color: rgb(217, 76, 74);
+  }
+  :root .titlebar-close:active {
+    box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
+    background-color: rgb(213, 58, 63);
+  }
+  :root .titlebar-max:hover,
+  :root .titlebar-restore:hover,
+  :root .titlebar-min:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  :root .titlebar-max:active,
+  :root .titlebar-restore:active,
+  :root .titlebar-min:active {
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  :root[sizemode=maximized] body, :root[sizemode=fullscreen] body {
+    padding: 0 !important;
+    padding-top: 7px !important;
+  }
+  :root[sizemode=maximized] .titlebar-max, :root[sizemode=fullscreen] .titlebar-max {
+    display: none !important;
+  }
+  :root[sizemode=normal] .titlebar-restore {
+    display: none !important;
+  }
+  :root .titlebar-max,
+  :root .titlebar-restore {
+    border-left: 1px solid rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+    width: 25px;
+  }
+  :root .titlebar-max {
+    list-style-image: url(assets/img/titlebar/maximize.svg);
+  }
+  :root .titlebar-restore {
+    list-style-image: url(assets/img/titlebar/restore.svg);
+  }
+  :root .titlebar-restore .toolbarbutton-icon {
+    transform: translateX(-1px);
+  }
+  :root .titlebar-min {
+    border-left: 1px solid rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+    border-bottom-left-radius: 5px;
+    width: 25px;
+    list-style-image: url(assets/img/titlebar/minimize.svg);
+  }
+}
+:root:-moz-lwtheme {
+  background: transparent !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+  /* bruni: This is the code for the window frame when composition
+  		  is disabled. This code is also used by custom themes.*/
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) body {
+  background: var(--titlebar-active);
+  box-shadow: inset 0 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgb(89, 89, 89);
+  border-left: 1px solid rgb(89, 89, 89);
+  border-bottom: 1px solid rgb(68, 68, 68);
+  border-right: 1px solid rgb(68, 68, 68);
+  border-radius: 5px;
+  padding: 1px !important;
+  box-sizing: border-box;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) body:-moz-window-inactive {
+  background: var(--titlebar-inactive);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) #titlebar {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-buttonbox {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+  -moz-default-appearance: -moz-window-button-box;
+  margin-right: 1px !important;
+  box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+@media (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-button {
+    -moz-appearance: unset !important;
+         appearance: unset !important;
+    display: flex !important;
+    margin: 0 !important;
+    height: 17px;
+    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+    margin-top: -1px !important;
+    -moz-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    background-clip: padding-box;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-button:active {
+    -moz-transition: none;
+    transition: none;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-right: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-right-radius: 5px;
+  width: 43px;
+  list-style-image: url(assets/img/titlebar/close.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close:hover {
+  background-color: rgb(217, 76, 74);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close:active {
+  box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
+  background-color: rgb(213, 58, 63);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min:active {
+  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=fullscreen] body {
+  padding: 0 !important;
+  padding-top: 7px !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=fullscreen] .titlebar-max {
+  display: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=normal] .titlebar-restore {
+  display: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  width: 25px;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max {
+  list-style-image: url(assets/img/titlebar/maximize.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore {
+  list-style-image: url(assets/img/titlebar/restore.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore .toolbarbutton-icon {
+  transform: translateX(-1px);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-left-radius: 5px;
+  width: 25px;
+  list-style-image: url(assets/img/titlebar/minimize.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"] {
+  /* 	bruni: I like this theme but this theme doesn't
+  		   make use of the header image, which would
+  		   be more appropriate, so we are gonna fix
+  		   it like this for now... */
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"] body {
+  background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
+  background-position: var(--lwt-background-alignment) !important;
+  background-position-y: top !important;
+  background-repeat: var(--lwt-background-tiling) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] body {
+  background-position-y: top -65px !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-header-image"] body {
+  background: var(--lwt-header-image), var(--lwt-header-image), var(--lwt-additional-images) !important;
+  background-position: top right, bottom right !important;
+  background-position-y: top !important;
+  background-size: auto, 100% 1px !important;
+  background-repeat: no-repeat, repeat-y !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-header-image"] #navigator-toolbox {
+  background: var(--lwt-header-image) !important;
+  background-position: top right !important;
+  background-repeat: no-repeat !important;
+}
+
+#private-browsing-indicator-with-label {
+  align-items: end !important;
+  margin-inline: 0 !important;
+  margin-inline-start: 3px !important;
+  margin-inline-end: 1px !important;
+}
+
+.private-browsing-indicator-icon {
+  list-style-image: url("chrome://userchrome/content/assets/img/titlebar/otr_icon.png") !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+[data-l10n-id=private-browsing-indicator-label] {
+  display: none !important;
+}
+
+:root {
   --newtab-normal: rgba(255, 255, 255, 0.01);
   --tab-glare-opacity: 1;
   --tab-glare: rgb(211, 217, 225, 0.45);
@@ -42,6 +333,21 @@
     --tabbrowser-tab-color: white;
   }
 }
+@media not (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --tab-selected-bgcolor: linear-gradient(
+    	to top,
+    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
+    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+    ) !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
+    --tab-selected-bgcolor: var(--lwt-accent-color) !important;
+  }
+}
 :root:not([tabsintitlebar]) .titlebar-items {
   margin-top: -7px !important;
 }
@@ -52,6 +358,22 @@
   margin-top: -3px !important;
 }
 
+@keyframes geckium-progress-throbber {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-576px);
+  }
+}
+@keyframes geckium-waiting-throbber {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2864px);
+  }
+}
 /* bruni: This is the animation responsible for hiding the tab
 			when the background reaches min-width. */
 @keyframes hide-tab {
@@ -76,6 +398,10 @@
   outline: 0 !important;
 }
 
+.tab-loading-burst {
+  display: none !important;
+}
+
 .tab-content {
   margin-left: -13px !important;
   padding: 0;
@@ -83,6 +409,7 @@
 }
 
 .tabbrowser-tab {
+  position: relative;
   padding: 0;
   overflow: visible !important;
   min-width: 0 !important;
@@ -143,7 +470,7 @@
   top: 2px;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-background {
-  background-color: var(--inactive-tab-background-color) !important;
+  background: var(--inactive-tab-background-color) !important;
 }
 .tabbrowser-tab[visuallyselected=true] {
   position: relative;
@@ -158,7 +485,7 @@
   background-position: 0 2px;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::before, .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
-  background-image: var(--tab-selected-bgcolor) !important;
+  background: var(--tab-selected-bgcolor) !important;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::before {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
@@ -173,7 +500,7 @@
   top: 2px;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-background {
-  background-image: var(--tab-selected-bgcolor) !important;
+  background: var(--tab-selected-bgcolor) !important;
 }
 .tabbrowser-tab[fadein]:not([pinned]):not([style*=max-width]) {
   max-width: var(--tab-width) !important;
@@ -256,7 +583,6 @@
   left: calc(100% - 1px);
   height: 100%;
   bottom: -2px;
-  z-index: -1;
 }
 
 /* bruni: This controls the transition of the tabs moving around while a tab is being
@@ -267,35 +593,21 @@
   .tabbrowser-tab[tabdrop-samewindow] {
     transition: transform 200ms var(--animation-easing-function) !important;
   }
+  .tab-throbber[progress]::before,
+  .tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+    opacity: 1 !important;
+  }
   .tab-throbber[progress]::before {
-    background-image: url(assets/img/chrome-5/tabbar/throbber.png) !important;
+    background-image: url(assets/img/tabbar/throbber.png) !important;
     width: 576px !important;
     background-size: 576px 16px !important;
     animation: geckium-progress-throbber 1s steps(36) infinite !important;
-    opacity: 1 !important;
-  }
-  @keyframes geckium-progress-throbber {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-576px);
-    }
   }
   .tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
-    background-image: url(assets/img/chrome-5/tabbar/throbber_waiting.png) !important;
+    background-image: url(assets/img/tabbar/throbber_waiting.png) !important;
     width: 2864px !important;
     background-size: 2864px 16px !important;
     animation: geckium-waiting-throbber 5s steps(179) infinite !important;
-    opacity: 1 !important;
-  }
-  @keyframes geckium-waiting-throbber {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-2864px);
-    }
   }
 }
 /* bruni: This makes it so the tab does not disappear when it starts "close" transition. */
@@ -316,6 +628,27 @@
   display: none !important;
 }
 
+#tabbrowser-tabs {
+  /* bruni: This will make the alpha for the tabs revert to the normal mask,
+  		  however, I found this to look more jarring than with it disabled. */
+  /*&[movingtab] .tabbrowser-tab:not([visuallyselected="true"]):not(:first-of-type) {
+  	.tab-content {
+  		&::before {
+  			background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
+  		}
+  	}
+
+  	.tab-stack {
+  		&::before {
+  			mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+  		}
+  	}
+
+  	.tab-glare-left {
+  		mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+  	}
+  }*/
+}
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
   height: 24px !important;
   margin-top: 1px;
@@ -332,12 +665,13 @@
 }
 
 .tab-glare-container {
-  position: relative;
-  left: -13px;
-  width: 115%;
+  position: absolute;
+  left: -8px;
+  width: calc(100% + 17px);
   height: 100%;
   overflow: hidden;
   opacity: 0;
+  margin-top: 4px;
   /* bruni: In Chrome, the glare hides in a slower
   pace when the mouse leaves. */
   transition: opacity 0.5s linear;
@@ -361,7 +695,7 @@
   -webkit-mask-image: url(assets/img/tabbar/tab_alpha_left.png);
           mask-image: url(assets/img/tabbar/tab_alpha_left.png);
   mask-position-y: -1px;
-  width: 12px;
+  width: var(--tab-sides-width);
 }
 
 .tab-glare-right {
@@ -781,15 +1115,23 @@
       rgb(230, 239, 251),
       rgb(245, 249, 254)
   );
-  --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+  --personal-toolbar: linear-gradient(
+  	to top,
+  	#ecf3fc,
+  	#dae7f7
+  );
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
-  --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
-      0 0 0 1px transparent, 0 1px 1px 2px transparent,
-      inset 0 0 1px 1px transparent;
-  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
-          rgb(255, 255, 255, 30%),
-      0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-      inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-shadow:
+  inset 0 0 0 1px transparent,
+        0 0 0 1px transparent,
+  0 1px 1px 2px transparent,
+        inset 0 0 1px 1px transparent;
+  --personal-toolbar-item-hover-shadow:
+  inset 0 0 0 1px
+        rgb(255, 255, 255, 30%),
+        0 0 0 1px rgb(0, 0, 0, 14%),
+  0 1px 1px 2px rgb(0, 0, 0, 6%),
+        inset 0 0 1px 1px transparent;
   --personal-toolbar-item-hover-bg: linear-gradient(
       to top,
       transparent,
@@ -815,17 +1157,52 @@
       rgb(240, 245, 253)
   );
   --toolbarbutton-active-background: transparent !important;
-  --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
   --navigation-buttons-separator: rgb(221, 229, 243);
   --bookmark-item-color: #062d75;
   --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 }
+:root[geckium-five][geckium-eleven] {
+  --nav-bar: linear-gradient(
+      to top,
+      rgb(228, 228, 228),
+      rgb(249, 249, 249)
+  );
+  --personal-toolbar: linear-gradient(
+      to top,
+      rgb(223, 223, 223),
+      rgb(228, 228, 228)
+  );
+  --personal-toolbar-item-hover-shadow:
+  inset 0 0 0 1px
+           rgb(255, 255, 255, 30%),
+           0 0 0 1px rgb(0, 0, 0, 8%),
+  0 1px 1px 2px rgb(0, 0, 0, 6%),
+           inset 0 0 1px 1px transparent !important;
+  --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+}
+:root[geckium-five][geckium-eleven]:not(:-moz-lwtheme) {
+  --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+}
+:root[geckium-five][geckium-eleven] #PersonalToolbar {
+  padding-block: 2px !important;
+}
+:root[geckium-five][geckium-eleven] .bookmark-item {
+  border-radius: 5px !important;
+}
 @media (prefers-color-scheme: dark) {
   :root {
-    --nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
-    --personal-toolbar: linear-gradient(to bottom, #4c4c4c, #575757);
+    --nav-bar: linear-gradient(
+    	to bottom,
+    	#5d5d5d,
+    	#4c4c4c
+    ) !important;
+    --personal-toolbar: linear-gradient(
+    	to bottom,
+    	#4c4c4c,
+    	#575757
+    );
     --personal-toolbar-border-bottom: rgb(91, 91, 91);
     --inner-border-color: rgb(79, 79, 79);
     --toolbarbutton-border-color-normal: rgb(190, 190, 190);
@@ -842,32 +1219,218 @@
     --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
   }
 }
-:root[geckium-five][geckium-eleven] {
-  --nav-bar: linear-gradient(
-      to top,
-      rgb(228, 228, 228),
-      rgb(249, 249, 249)
-  );
-  --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
-  --personal-toolbar: linear-gradient(
-      to top,
-      rgb(223, 223, 223),
-      rgb(228, 228, 228)
-  );
-  --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
-          rgb(255, 255, 255, 30%),
-      0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-      inset 0 0 1px 1px transparent !important;
-  --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
+:root:not(:-moz-lwtheme) {
+  --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
 }
-:root[geckium-five][geckium-eleven] #PersonalToolbar {
-  padding-block: 2px !important;
+:root:-moz-lwtheme[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+  --toolbarbutton-icon-fill: color-mix(
+  	in srgb,
+  	var(--lwt-accent-color) 70%,
+  	white
+  ) !important;
 }
-:root[geckium-five][geckium-eleven] .bookmark-item {
-  border-radius: 5px !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+  /* bruni: This is the code for the window frame when composition
+  		  is disabled. This code is also used by custom themes.*/
 }
-:root #navigator-toolbox {
-  border-bottom: 0 !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) body {
+  background: var(--titlebar-active);
+  box-shadow: inset 0 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgb(89, 89, 89);
+  border-left: 1px solid rgb(89, 89, 89);
+  border-bottom: 1px solid rgb(68, 68, 68);
+  border-right: 1px solid rgb(68, 68, 68);
+  border-radius: 5px;
+  padding: 1px !important;
+  box-sizing: border-box;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) body:-moz-window-inactive {
+  background: var(--titlebar-inactive);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) #titlebar {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-buttonbox {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+  -moz-default-appearance: -moz-window-button-box;
+  margin-right: 1px !important;
+  box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+@media (-moz-platform: windows-win7), (-moz-platform: windows-win8) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-button {
+    -moz-appearance: unset !important;
+         appearance: unset !important;
+    display: flex !important;
+    margin: 0 !important;
+    height: 17px;
+    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+    margin-top: -1px !important;
+    -moz-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    background-clip: padding-box;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-button:active {
+    -moz-transition: none;
+    transition: none;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-right: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-right-radius: 5px;
+  width: 43px;
+  list-style-image: url(assets/img/titlebar/close.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close:hover {
+  background-color: rgb(217, 76, 74);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-close:active {
+  box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
+  background-color: rgb(213, 58, 63);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min:active {
+  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=fullscreen] body {
+  padding: 0 !important;
+  padding-top: 7px !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=fullscreen] .titlebar-max {
+  display: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[sizemode=normal] .titlebar-restore {
+  display: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  width: 25px;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-max {
+  list-style-image: url(assets/img/titlebar/maximize.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore {
+  list-style-image: url(assets/img/titlebar/restore.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-restore .toolbarbutton-icon {
+  transform: translateX(-1px);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .titlebar-min {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-left-radius: 5px;
+  width: 25px;
+  list-style-image: url(assets/img/titlebar/minimize.svg);
+}
+@media not (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --nav-bar: linear-gradient(
+    	to bottom,
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 5%,
+    		white
+    	),
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 20%,
+    		white
+    	),
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 10%,
+    		white
+    	)
+    );
+    --personal-toolbar: linear-gradient(
+    	to bottom,
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 10%,
+    		white
+    	),
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 2%,
+    		white
+    	)
+    );
+    --toolbarbutton-border-color-normal: color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 50%,
+    	white
+    );
+    --toolbarbutton-border-color-hot: color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 40%,
+    	white
+    );
+    --toolbarbutton-border-color-active: color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 30%,
+    	white
+    );
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	rgb(255, 255, 255),
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 10%,
+    		white
+    	)
+    );
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
+    color: var(--toolbarbutton-icon-fill) !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --nav-bar: var(--lwt-accent-color) !important;
+    --personal-toolbar: var(--lwt-accent-color);
+    --toolbarbutton-border-color-normal: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 50%,
+    	white
+    );
+    --toolbarbutton-border-color-hot: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 40%,
+    	white
+    );
+    --toolbarbutton-border-color-active: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 30%,
+    	white
+    );
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	rgb(255, 255, 255),
+    	color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+    );
+    --toolbarbutton-icon-fill: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 50%,
+    	black
+    ) !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
+    color: var(--tabbrowser-tab-color) !important;
+  }
 }
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-badge-stack,
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-icon,
@@ -876,7 +1439,7 @@
   filter: saturate(1.5);
 }
 :root[tabsintitlebar] #tabbrowser-arrowscrollbox {
-  padding-top: 12px !important;
+  padding-top: 7px !important;
 }
 :root:not([tabsintitlebar]) .toolbar-items {
   padding-top: 0 !important;
@@ -907,12 +1470,17 @@
   margin-top: -1px !important;
 }
 
+#navigator-toolbox {
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+
 .browser-toolbar {
   margin-inline: 2px;
 }
 
 #nav-bar {
-  background: var(--nav-bar);
+  background: var(--nav-bar) !important;
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
   align-items: center;
@@ -1033,6 +1601,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #TabsToolbar {
+  background: transparent !important;
   position: relative;
   --toolbarbutton-inner-padding: 0 !important;
 }
@@ -1363,7 +1932,6 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
-  box-shadow: var(--personal-toolbar-item-shadow);
   transition: all 150ms linear;
   margin-inline: 3px !important;
   border-radius: var(--toolbarbutton-radius) !important;

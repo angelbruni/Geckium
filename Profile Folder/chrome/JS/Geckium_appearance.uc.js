@@ -49,13 +49,10 @@ function applyApperance(choice) {
 	// bruni: Let's also apply the attribute specific to the
 	//		  user choice so we can make unique styles for it.
 	docElm.setAttribute("geckium-choice", appearanceMap[choice]);
-	
-	dispatchEvent(appearanceChanged);
 
-	console.log("Applied appearance " + choice + ".");
+	dispatchEvent(appearanceChanged);
 }
 applyApperance();
-
 window.addEventListener("load", applyApperance);
 
 // bruni: Automatically apply appearance when it detecs changes in the pref.
@@ -66,3 +63,35 @@ const appearanceObserver = {
 	}
 };
 Services.prefs.addObserver(appearanceMap.appearance, appearanceObserver, false)
+
+
+function setThemeAttr() {
+	docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string())
+
+	if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("default-theme") ) {
+		if (window.matchMedia('(-moz-windows-compositor: 1)').matches) {
+			docElm.setAttribute("chromemargin", "0,3,3,3");
+		} else {
+			docElm.setAttribute("chromemargin", "0,0,0,0");
+		}		
+	} else {
+		docElm.setAttribute("chromemargin", "0,0,0,0");
+	}
+}
+
+const themeObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+		setThemeAttr();
+	}
+};
+window.addEventListener("load", setThemeAttr);
+Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false)
+
+function changePrivateBadgePos() {
+	const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");
+	const titlebarSpacer = document.querySelector(".titlebar-spacer");
+
+	insertBefore(privateBrowsingIndicatorWithLabel, titlebarSpacer);
+}
+window.addEventListener("load", changePrivateBadgePos);
