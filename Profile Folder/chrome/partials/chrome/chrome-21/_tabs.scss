@@ -1,6 +1,116 @@
 & {
+	--tab-sides-width: 21px;
+
     --newtab-width: 34px;
     --newtab-normal: rgb(211, 217, 225, 0.6);
     --newtab-hot: rgb(211, 217, 225, 0.8);
     --newtab-active: rgb(211, 217, 225, 0.4);
+
+	.tabbrowser-tab {
+		&:not([visuallyselected="true"]) {
+			--tab-sides-width: 15px;
+
+			&:not(:first-of-type) {
+				.tab-content {
+					&::before {
+						background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
+							no-repeat;
+						background-position: 0 0px;
+					}
+				}
+	
+				.tab-stack {
+					&::before {
+						mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+					}
+				}
+	
+				.tab-glare-left {
+					mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+				}
+			}
+
+			.tab-content {
+				&::before,
+				&::after {
+					bottom: -2px;
+				}
+
+				&::before {
+					background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
+								no-repeat;
+				}
+			}
+
+			.tab-stack {
+				&::before {
+					mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+				}
+	
+				&::after {
+					mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+				}
+			}
+	
+			.tab-content {
+				&::after {
+					background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
+								no-repeat;
+				}
+			}
+	
+			.tab-context-line {
+				&::before {
+					background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
+								top;
+				}
+			}
+		}
+
+		&[visuallyselected="true"] {
+			position: relative;
+			z-index: 1000;
+	
+			.tab-content {
+				&::before {
+					background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
+								no-repeat;
+				}
+	
+				&::after {
+					background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
+								no-repeat;
+				}
+			}
+	
+			.tab-stack {
+				&::before {
+					left: calc(var(--tab-sides-width) * -1 + 1px);
+					mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+				}
+	
+				&::after {
+					mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+				}
+			}
+	
+			.tab-context-line {
+				&::before {
+					background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
+								top;
+				}
+			}
+		}
+
+		.tab-stack {
+			&::before,
+			&::after {
+				bottom: 0px;
+			}
+		}
+
+		.tab-content {
+			border-left: 13px solid transparent !important;
+		}
+	}
 }

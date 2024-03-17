@@ -137,7 +137,11 @@
   list-style-image: url(assets/img/titlebar/minimize.svg);
 }
 :root:-moz-lwtheme {
-  background: transparent !important;
+  /* bruni: This entire code takes care of custom themes support for titlebar */
+  /* bruni: Firefox is weird, if we set the root to be transparent,
+  		  then it takes body's background. The lowest we can go in
+  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+  background: rgba(1, 1, 1, 0.002) !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"] {
   /* 	bruni: I like this theme but this theme doesn't
@@ -165,6 +169,10 @@
   background: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] #navigator-toolbox {
+  background: transparent !important;
 }
 
 #private-browsing-indicator-with-label {
@@ -220,27 +228,71 @@
     --tabbrowser-tab-color: white;
   }
 }
+:root:-moz-lwtheme {
+  /* bruni: This entire code takes care of custom themes support for tabs */
+}
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --tabbrowser-tab-selected: linear-gradient(
-        to top,
-        color-mix(
-            in srgb,
-            var(--toolbarbutton-icon-fill) 8%,
-            white
-        ),
-        color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
-    ) !important;
+                   to top,
+                   color-mix(
+                       in srgb,
+                       var(--toolbarbutton-icon-fill) 8%,
+                       white
+                   ),
+                   color-mix(in srgb,
+    	var(--toolbarbutton-icon-fill) 5%,
+    	white
+    )
+               ) !important;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --inactive-tab-background-color: color-mix(
-        in oklab,
-        color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
-        transparent
-    ) !important;
+                   in srgb,
+                   color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 80%,
+    	black
+    ) 80%,
+              	 	transparent
+               ) !important;
     --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
+  }
+}
+@media not (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+    --tabbrowser-tab-selected: linear-gradient(
+    	to top,
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 8%,
+    			white
+    		) 70%,
+    		transparent
+    	),
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 5%,
+    			white
+    		) 70%,
+    		transparent
+    	),
+    ) !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+    --tabbrowser-tab-selected: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 70%,
+    	transparent
+    ) !important;
   }
 }
 :root:not([tabsintitlebar]) .titlebar-items {
@@ -411,7 +463,7 @@
 }
 .tabbrowser-tab .tab-content {
   padding: 0 !important;
-  border-left: var(--tab-sides-width) solid transparent !important;
+  border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
   border-right: 0 !important;
   padding-right: 3px !important;
 }
@@ -567,8 +619,11 @@
   overflow: hidden;
   opacity: 0;
   margin-top: 4px;
+  /* bruni: After reworking tab sizes, the tab-glare needs
+  		  fixing, so we are gonna hide it for now. */
+  display: none !important;
   /* bruni: In Chrome, the glare hides in a slower
-  pace when the mouse leaves. */
+   pace when the mouse leaves. */
   transition: opacity 0.5s linear;
 }
 
@@ -686,7 +741,6 @@
         rgb(209, 209, 209),
         rgb(255, 255, 255)
     );
-    --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
     --navigation-buttons-separator: rgb(209, 209, 209);
     --bookmark-item-color: #95b4ee;
     --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
@@ -694,6 +748,14 @@
 }
 :root:not(:-moz-lwtheme) {
   --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
+}
+:root:-moz-lwtheme {
+  /* bruni: This entire code takes care of custom themes support for toolbars */
+}
+@media (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme[lwtheme-id*=firefox-compact] {
+    --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+  }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
   /* bruni: This is the code for the window frame when composition
@@ -826,14 +888,18 @@
         )
     ) !important;
     --personal-toolbar: linear-gradient(
-        to bottom,
-        color-mix(
-            in srgb,
-            var(--toolbarbutton-icon-fill) 10%,
-            white
-        ),
-        color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-    ) !important;
+                   to bottom,
+                   color-mix(
+                       in srgb,
+                       var(--toolbarbutton-icon-fill) 10%,
+                       white
+                   ),
+                   color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 2%,
+    	white
+    )
+               ) !important;
     --toolbarbutton-border-color-normal: color-mix(
         in srgb,
         var(--toolbarbutton-icon-fill) 50%,
@@ -868,41 +934,183 @@
     --nav-bar: var(--lwt-accent-color) !important;
     --personal-toolbar: var(--lwt-accent-color) !important;
     --toolbarbutton-border-color-normal: color-mix(
-        in srgb,
-        var(--lwt-accent-color) 50%,
-        white
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 50%,
+    	white
     );
     --toolbarbutton-border-color-hot: color-mix(
-        in srgb,
-        var(--lwt-accent-color) 40%,
-        white
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 40%,
+    	white
     );
     --toolbarbutton-border-color-active: color-mix(
-        in srgb,
-        var(--lwt-accent-color) 30%,
-        white
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 30%,
+    	white
     );
     --toolbarbutton-gradient: linear-gradient(
-        to bottom,
-        rgb(255, 255, 255),
-        color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+    	to bottom,
+    	rgb(255, 255, 255),
+    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 10%, white)
+    );
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]) {
+    --toolbarbutton-border-color-normal: color-mix(
+    	in srgb,
+    	var(--toolbar-color) 50%,
+    	white
+    );
+    --toolbarbutton-border-color-hot: color-mix(
+    	in srgb,
+    	var(--toolbar-color) 40%,
+    	white
+    );
+    --toolbarbutton-border-color-active: color-mix(
+    	in srgb,
+    	var(--toolbar-color) 30%,
+    	white
+    );
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	rgb(255, 255, 255),
+    	color-mix(in srgb, var(--toolbar-color) 10%, white)
+    );
+    --toolbarbutton-icon-fill: var(--toolbar-color) !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"]) {
+    --toolbarbutton-border-color-normal: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 50%,
+    	white
+    );
+    --toolbarbutton-border-color-hot: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 40%,
+    	white
+    );
+    --toolbarbutton-border-color-active: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 30%,
+    	white
+    );
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	rgb(255, 255, 255),
+    	color-mix(in srgb, var(--lwt-accent-color) 10%, white)
     );
     --toolbarbutton-icon-fill: color-mix(
-        in srgb,
-        var(--lwt-accent-color) 50%,
-        black
+    	in srgb,
+    	var(--lwt-accent-color) 50%,
+    	black
     ) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
     --toolbarbutton-icon-fill: color-mix(
-        in srgb,
-        var(--lwt-accent-color) 70%,
-        white
+    	in srgb,
+    	var(--lwt-accent-color) 70%,
+    	white
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
     color: var(--tabbrowser-tab-color) !important;
   }
+}
+@media not (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+    --nav-bar: linear-gradient(
+    	to bottom,
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 5%,
+    			white
+    		) 70%,
+    		transparent
+    	),
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 20%,
+    			white
+    		) 70%,
+    		transparent
+    	),
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 10%,
+    			white
+    		) 70%,
+    		transparent
+    	)
+    ) !important;
+    --personal-toolbar: linear-gradient(
+    	to bottom,
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 10%,
+    			white
+    		) 70%,
+    		transparent
+    	),
+    	color-mix(
+    		in srgb,
+    		color-mix(
+    			in srgb,
+    			var(--toolbarbutton-icon-fill) 2%,
+    			white
+    		) 70%,
+    		transparent
+    	)
+    ) !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+    --nav-bar: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 70%,
+    	transparent
+    ) !important;
+    --personal-toolbar: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 70%,
+    	transparent
+    ) !important;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] #navigator-toolbox {
+  background: transparent !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+  background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
+  background-position: var(--lwt-background-alignment) !important;
+  background-repeat: var(--lwt-background-tiling) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar {
+  background-position-y: calc(var(--tab-height) * -1) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+  background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-header-image"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+  background: var(--lwt-header-image) !important;
+  background-position: top right !important;
+  background-repeat: no-repeat !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-header-image"] #nav-bar {
+  background-position-y: calc(var(--tab-height) * -1) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+  background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-badge-stack,
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-icon,
@@ -1915,10 +2123,6 @@ toolbarpaletteitem[place=palette] {
 }
 
 /* Chrome 7 -> 11 */
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"] body,
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"] #navigator-toolbox {
-  background: transparent !important;
-}
 :root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"] {
   --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
 }
@@ -1942,30 +2146,6 @@ toolbarpaletteitem[place=palette] {
     --toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
   }
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-additional-images"] #nav-bar,
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-additional-images"] #PersonalToolbar {
-  background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
-  background-position: var(--lwt-background-alignment) !important;
-  background-repeat: var(--lwt-background-tiling) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-additional-images"] #nav-bar {
-  background-position-y: calc(var(--tab-height) * -1) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-additional-images"] #PersonalToolbar {
-  background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-header-image"] #nav-bar,
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-header-image"] #PersonalToolbar {
-  background: var(--lwt-header-image) !important;
-  background-position: top right !important;
-  background-repeat: no-repeat !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-header-image"] #nav-bar {
-  background-position-y: calc(var(--tab-height) * -1) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven]:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--toolbar-bgcolor: rgba"][style*="--lwt-header-image"] #PersonalToolbar {
-  background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar {
   padding-block: 2px !important;
@@ -2095,10 +2275,74 @@ toolbarpaletteitem[place=palette] {
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+  --tab-sides-width: 21px;
   --newtab-width: 34px;
   --newtab-normal: rgb(211, 217, 225, 0.6);
   --newtab-hot: rgb(211, 217, 225, 0.8);
   --newtab-active: rgb(211, 217, 225, 0.4);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) {
+  --tab-sides-width: 15px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
+  background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png) no-repeat;
+  background-position: 0 0px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-stack::before {
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-glare-left {
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-content::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
+  bottom: -2px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-content::before {
+  background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png) no-repeat;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before {
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
+  background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png) no-repeat;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([visuallyselected=true]) .tab-context-line::before {
+  background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png) top;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] {
+  position: relative;
+  z-index: 1000;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-content::before {
+  background: url(assets/img/chrome-21/tabbar/tab_active_left.png) no-repeat;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-content::after {
+  background: url(assets/img/chrome-21/tabbar/tab_active_right.png) no-repeat;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-stack::before {
+  left: calc(var(--tab-sides-width) * -1 + 1px);
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
+  -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+          mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-context-line::before {
+  background: url(assets/img/chrome-21/tabbar/tab_active_center.png) top;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab .tab-stack::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab .tab-stack::after {
+  bottom: 0px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab .tab-content {
+  border-left: 13px solid transparent !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
   --toolbarbutton-border-color-hot: rgb(192, 192, 192);
@@ -2111,7 +2355,7 @@ toolbarpaletteitem[place=palette] {
   --bookmark-item-color: #000000;
   --bookmark-item-hover-color: #062d75;
   --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
-  --toolbarbutton-radius: 4px;
+  --toolbarbutton-radius: 3px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme) {
   --toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
@@ -2198,6 +2442,9 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=insecure] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #urlbar-background {
+  outline: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Chrome 21 -> ~47 */
