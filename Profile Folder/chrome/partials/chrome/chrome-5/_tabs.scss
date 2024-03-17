@@ -24,6 +24,7 @@
 	--tabbrowser-tab-color: black;
 
 	--tab-transition-time: 220ms;
+	--tab-height: 28px;
 
 	--newtab-width: 28px;
 	--newtab-height: 18px;
@@ -48,12 +49,20 @@
 				--tabbrowser-tab-selected: linear-gradient(
 					to top,
 					color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
+
+
+
+
 					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
 				) !important;
 			}
 	
 			@media (prefers-color-scheme: dark) {
 				--inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
+
+
+
+				
 				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
 			}
 		}
@@ -222,7 +231,7 @@
 			&::before {
 				background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png)
 					top;
-				height: 28px !important;
+                height: var(--tab-height) !important;
 				top: 2px;
 			}
 		}
@@ -359,7 +368,7 @@
 .tab-background,
 .tab-content,
 .tabbrowser-tab {
-	height: 28px !important;
+    height: var(--tab-height) !important;
 }
 
 .tab-stack {
