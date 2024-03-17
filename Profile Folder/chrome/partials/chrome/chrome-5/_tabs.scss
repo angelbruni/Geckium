@@ -21,6 +21,7 @@
     --tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
     --tabbrowser-tab-color: black;
     --tab-transition-time: 220ms;
+	--tab-height: 28px;
 
     --newtab-width: 28px;
     --newtab-height: 18px;
@@ -227,7 +228,7 @@
             &::before {
                 background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png)
                     top;
-                height: 28px !important;
+                height: var(--tab-height) !important;
                 top: 2px;
             }
         }
@@ -362,7 +363,7 @@
 .tab-background,
 .tab-content,
 .tabbrowser-tab {
-    height: 28px !important;
+    height: var(--tab-height) !important;
 }
 
 .tab-stack {

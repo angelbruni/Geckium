@@ -1,0 +1,12 @@
+& {
+	&:-moz-lwtheme {	
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[style*="--toolbar-bgcolor: rgba"] {
+				body,
+				#navigator-toolbox {
+					background: transparent !important;
+				}
+			}
+		}
+	}
+}

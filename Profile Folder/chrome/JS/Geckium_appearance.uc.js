@@ -56,20 +56,26 @@ function applyApperance(choice) {
 applyApperance();
 window.addEventListener("load", applyApperance);
 
-// bruni: Automatically apply appearance when it detecs changes in the pref.
-const appearanceObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed")
-			applyApperance();
-	}
-};
-Services.prefs.addObserver(appearanceMap.appearance, appearanceObserver, false)
-
-
 function setThemeAttr() {
 	docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string())
 
-	if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("default-theme") ) {
+	if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
+		docElm.setAttribute("chromemargin", "0,3,3,3");
+	} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact")) {
+		docElm.setAttribute("chromemargin", "0,3,3,3");
+	} else {
+		if (docElm.getAttribute("style").includes("--toolbar-bgcolor: rgba") && pref("Geckium.appearance.choice").tryGet.int() > 1) {
+			docElm.setAttribute("chromemargin", "0,3,3,3")
+		} else {
+			docElm.setAttribute("chromemargin", "0,0,0,0")
+		}
+	}
+
+	if (!window.matchMedia('(-moz-windows-compositor: 1)').matches) {
+		docElm.setAttribute("chromemargin", "0,0,0,0");
+	}
+
+	/*if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("default-theme") ) {
 		if (window.matchMedia('(-moz-windows-compositor: 1)').matches) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
 		} else {
@@ -77,7 +83,7 @@ function setThemeAttr() {
 		}		
 	} else {
 		docElm.setAttribute("chromemargin", "0,0,0,0");
-	}
+	}*/
 }
 
 const themeObserver = {
@@ -88,6 +94,18 @@ const themeObserver = {
 };
 window.addEventListener("load", setThemeAttr);
 Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false)
+
+/* bruni: Automatically apply appearance and theme
+		  attributes when it detecs changes in the pref. */
+const appearanceObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			applyApperance();
+			setThemeAttr();
+		}
+	}
+};
+Services.prefs.addObserver(appearanceMap.appearance, appearanceObserver, false)
 
 function changePrivateBadgePos() {
 	const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");

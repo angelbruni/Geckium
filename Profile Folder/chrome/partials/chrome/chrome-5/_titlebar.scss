@@ -23,14 +23,10 @@
 		) !important;
 	}
 
-	@media (-moz-windows-compositor: 0) {
-		@import "titlebar/nocomp";
-	}
+	@import "titlebar/nocomp";
 
 	&:-moz-lwtheme {	
 		&:not([lwtheme-id*="firefox-compact"]) {
-			@import "titlebar/nocomp";
-
 			&[style*="--lwt-additional-images"] {
 				body {
 					background: var(--lwt-additional-images), var(--lwt-accent-color) !important;

@@ -1,0 +1,9 @@
+& {
+	&:-moz-lwtheme {
+        &:not([lwtheme-id*="firefox-compact"]) {
+			&[style*="--toolbar-bgcolor: rgba"] {
+				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
+			}
+		}
+	}
+}

@@ -21,6 +21,47 @@
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
     }
 
+	&:-moz-lwtheme {
+        &:not([lwtheme-id*="firefox-compact"]) {
+			&[style*="--toolbar-bgcolor: rgba"] {
+				&[style*="--lwt-additional-images"] {
+					#nav-bar,
+					#PersonalToolbar {
+						background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
+						background-position: var(--lwt-background-alignment) !important;
+						background-repeat: var(--lwt-background-tiling) !important;
+					}
+
+					#nav-bar {
+						background-position-y: calc(var(--tab-height) * -1) !important;
+					}
+
+					#PersonalToolbar {
+						background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+					}
+				}
+				
+
+				&[style*="--lwt-header-image"] {
+					#nav-bar,
+					#PersonalToolbar {
+						background: var(--lwt-header-image) !important;
+						background-position: top right !important;
+						background-repeat: no-repeat !important;
+					}
+
+					#nav-bar {
+						background-position-y: calc(var(--tab-height) * -1) !important;
+					}
+
+					#PersonalToolbar {
+						background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+					}
+				}
+			}
+		}
+	}
+
     #PersonalToolbar {
         padding-block: 2px !important;
     }
