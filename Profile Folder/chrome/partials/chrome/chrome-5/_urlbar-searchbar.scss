@@ -1,23 +1,27 @@
 :root {
-	--toolbar-field-background-color: white !important;
-	--toolbar-field-color: black !important;
+    --toolbar-field-background-color: white !important;
+    --toolbar-field-color: black !important;
 
-	--protocol-background-color: var(--toolbar-field-background-color);
-	--protocol-color: var(--toolbar-field-color);
+    --protocol-background-color: var(--toolbar-field-background-color);
+    --protocol-color: var(--toolbar-field-color);
 
-	--urlbar-border: var(--toolbarbutton-border-color-normal);
-	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
-	--urlbar-verified-proxystate-valid: rgb(10, 155, 38);
-	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
-	--urlbar-height-definitive: var(--toolbarbutton-height);
+    --urlbar-border: var(--toolbarbutton-border-color-normal);
+    --urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
+    --urlbar-verified-proxystate-valid: rgb(10, 155, 38);
+    --urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
+    --urlbar-height-definitive: var(--toolbarbutton-height);
 
-	@media (prefers-color-scheme: dark) {
-		--toolbar-field-color: black !important;
-	}
+    @media (prefers-color-scheme: dark) {
+        --toolbar-field-color: black !important;
+    }
 
-	--urlbarView: var(--protocol-background-color);
+    --urlbarView: rgb(255, 255, 255, 94%);
 
-    --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
+    --autocomplete-popup-hover-background: color-mix(
+        in srgb,
+        -moz-menuhover 20%,
+        white 20%
+    ) !important;
     --autocomplete-popup-highlight-background: -moz-menuhover !important;
     --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
@@ -33,105 +37,105 @@
 }
 
 .verifiedDomain {
-	position: relative;
+    position: relative;
 }
 
 #urlbar {
-	--urlbar-height: var(--urlbar-height-definitive) !important;
-	--urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
+    --urlbar-height: var(--urlbar-height-definitive) !important;
+    --urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
 
-	font-size: 10pt !important;
+    font-size: 10pt !important;
 
-	&[focused="true"] {
-		&:not([supress-focus-border]) {
-			>#urlbar-background {
-				outline: transparent !important;
-			}
-		}
-	}
+    &[focused="true"] {
+        &:not([supress-focus-border]) {
+            > #urlbar-background {
+                outline: transparent !important;
+            }
+        }
+    }
 
-	&:not([focused="true"]) {
-		&:not([pageproxystate="valid"]) {
-			#urlbar-protocol {
-				display: none !important;
-			}
-		}
+    &:not([focused="true"]) {
+        &:not([pageproxystate="valid"]) {
+            #urlbar-protocol {
+                display: none !important;
+            }
+        }
 
-		.verifiedDomain {
-			&[pageproxystate="valid"] {
-				&::before,
-				&::after {
-					position: absolute;
-					pointer-events: none !important;
-				}
+        .verifiedDomain {
+            &[pageproxystate="valid"] {
+                &::before,
+                &::after {
+                    position: absolute;
+                    pointer-events: none !important;
+                }
 
-				&::before {
-					content: "";
-				}
-			}
-		}
-	}
+                &::before {
+                    content: "";
+                }
+            }
+        }
+    }
 
-	&:not(.searchButton) {
-		> #urlbar-input-container {
-			> #identity-box {
-				&[pageproxystate="invalid"],
-				&[pageproxystate="valid"].chromeUI {
-					#identity-icon {
-						list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
-					}
-				}
-			}
-		}
-	}
+    &:not(.searchButton) {
+        > #urlbar-input-container {
+            > #identity-box {
+                &[pageproxystate="invalid"],
+                &[pageproxystate="valid"].chromeUI {
+                    #identity-icon {
+                        list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+                    }
+                }
+            }
+        }
+    }
 
-	#urlbar-protocol {
-		position: absolute;
-		height: 100%;
-		margin: 0 !important;
-		transform: translateY(3px);
-		pointer-events: none;
-		background: var(--protocol-background-color) !important;
-		color: var(--protocol-color);
-		z-index: 1;
+    #urlbar-protocol {
+        position: absolute;
+        height: 100%;
+        margin: 0 !important;
+        transform: translateY(3px);
+        pointer-events: none;
+        background: var(--protocol-background-color) !important;
+        color: var(--protocol-color);
+        z-index: 1;
 
-		&::before {
-			content: "";
-			position: absolute;
-			height: 2px;
-			top: 11px;
-			left: -1px;
-			rotate: 160deg;
-			width: 35px;
-			z-index: 100;
-		}
-	}
+        &::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            top: 11px;
+            left: -1px;
+            rotate: 160deg;
+            width: 35px;
+            z-index: 100;
+        }
+    }
 
-	&[breakout] {
-		--top: 0px;
+    &[breakout] {
+        --top: 0px;
 
-		top: var(--top) !important;
+        top: var(--top) !important;
 
-		&[breakout-extend] {
-			left: initial !important;
-			width: 100% !important;
-			top: var(--top) !important;
+        &[breakout-extend] {
+            left: initial !important;
+            width: 100% !important;
+            top: var(--top) !important;
 
-			#urlbar-protocol {
-				display: none;
-			}
+            #urlbar-protocol {
+                display: none;
+            }
 
-			> #urlbar-background {
-				animation: none !important;
-			}
-		}
-	}
+            > #urlbar-background {
+                animation: none !important;
+            }
+        }
+    }
 
-	&[breakout],
-	&[breakout][breakout-extend] {
-		left: var(--toolbarbutton-width) !important;
-		width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
-	}
+    &[breakout],
+    &[breakout][breakout-extend] {
+        left: var(--toolbarbutton-width) !important;
+        width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
+    }
 }
 
 #nav-bar {
@@ -143,9 +147,13 @@
 
     &[securestate="secure"],
     &[securestate="ev"] {
-		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+        --toolbar-field-background-color: var(
+            --urlbar-background-verified-proxystate-valid
+        );
         --protocol-color: var(--urlbar-verified-proxystate-valid);
-        --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+        --protocol-background-color: var(
+            --urlbar-background-verified-proxystate-valid
+        );
 
         #identity-icon {
             list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
@@ -169,167 +177,160 @@
 }
 
 #custom-identity-label {
-	margin: 0 !important;
-	color: var(--protocol-color);
+    margin: 0 !important;
+    color: var(--protocol-color);
 }
 
 #searchbar:focus-within {
-	outline: transparent !important;
+    outline: transparent !important;
 }
 
 #urlbar:is([focused="true"], [open]),
 #searchbar:focus-within {
-  color: var(--toolbar-field-color) !important;
+    color: var(--toolbar-field-color) !important;
 }
 
-#urlbar[breakout][breakout-extend]>#urlbar-background,
-#urlbar[focused="true"]>#urlbar-background #searchbar:focus-within {
-	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
+#urlbar[breakout][breakout-extend] > #urlbar-background,
+#urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
+    /*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
 	inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
-	box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 #urlbar-label-box {
-	margin-inline-end: 4px !important;
-	background: transparent !important;
-	color: rgb(0, 0, 0, 50%) !important;
-	padding-inline: 0 !important;
+    margin-inline-end: 4px !important;
+    background: transparent !important;
+    color: rgb(0, 0, 0, 50%) !important;
+    padding-inline: 0 !important;
 }
 
 #identity-box {
-	margin: 0 !important;
-	height: calc(var(--urlbar-height-definitive) - 1px) !important;
+    margin: 0 !important;
+    height: calc(var(--urlbar-height-definitive) - 1px) !important;
 
-	&[pageproxystate="valid"] {
-		#identity-icon {
-			background-position: center;
-			background-repeat: no-repeat;
-		}
+    &[pageproxystate="valid"] {
+        #identity-icon {
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-		&.notSecureText,
-		&.chromeUI,
-		&.extensionPage {
-			>.identity-box-button {
-				background: transparent !important;
-			}
-		}
-	}
+        &.notSecureText,
+        &.chromeUI,
+        &.extensionPage {
+            > .identity-box-button {
+                background: transparent !important;
+            }
+        }
+    }
 
-	.unknownIdentity {
-		#identity-icon {
-			list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
-		}
-	}
+    .unknownIdentity {
+        #identity-icon {
+            list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+        }
+    }
 }
 
 #urlbar-background {
-	border-inline: 0 !important;
-	border-block: 1px solid var(--urlbar-border) !important;
-	box-shadow: none !important;
-	border-radius: 0 !important;
-	height: var(--urlbar-height-definitive);
+    border-inline: 0 !important;
+    border-block: 1px solid var(--urlbar-border) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    height: var(--urlbar-height-definitive);
 }
 
 #identity-box-button,
 #urlbar-search-mode-indicator {
-	background: transparent !important;
+    background: transparent !important;
 }
 
 #urlbar-search-mode-indicator {
-	padding-inline: 0 !important;
-	color: rgb(0, 0, 0, 60%) !important;
+    padding-inline: 0 !important;
+    color: rgb(0, 0, 0, 60%) !important;
 
-	#urlbar-search-mode-indicator-title {
-		display: block !important;
-	}
+    #urlbar-search-mode-indicator-title {
+        display: block !important;
+    }
 }
 
 .urlbarView-title {
-	&:is([isurl="true"]) {
-		&::before {
-			display: none !important;
-		}
-	}
-}
-
-.urlbarView-action {
-	display: none !important;
-}
-
-.urlbarView-row {
-	&[type="search"] {
-		&:not(:first-child) {
-			&::before {
-				content: "";
-				position: absolute;
-				left: 6px;
-				height: 18px;
-				width: var(--tab-sides-width);
-				background-image: url("assets/img/toolbar/search.png") !important;
-				background-size: cover !important;
-			}
-		}
-	}
+    &:is([isurl="true"]) {
+        &::before {
+            display: none !important;
+        }
+    }
 }
 
 .urlbarView-favicon {
+    &:is([src="chrome://global/skin/icons/search-glass.svg"]),
+	&:is([src="chrome://browser/skin/history.svg"])
+    {
+        fill: transparent;
+        height: 19px !important;
+        width: 19px !important;
+        background-size: 19px 19px !important;
+    }
 
-	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
-	&:is([src="chrome://browser/skin/history.svg"]) {
-		fill: transparent;
-	}
+    &:is([src="chrome://global/skin/icons/search-glass.svg"])
+    {
+        background-image: url(assets/img/toolbar/search.png);
+    }
+    &:is([src="chrome://browser/skin/history.svg"])
+    {
+        background-image: url(assets/img/toolbar/clock.png);
+        opacity: 0.8;
+    }
 }
 
 #identity-icon {
-	height: auto !important;
-	width: auto !important;
+    height: auto !important;
+    width: auto !important;
 }
 
 #identity-icon-label {
-	display: none;
+    display: none;
 }
 
 #tracking-protection-icon-container {
-	display: none !important;
+    display: none !important;
 }
 
 .urlbar-input-box {
-	height: calc(var(--urlbar-height-definitive) - 2px) !important;
-	font-size: 11pt !important;
-	margin-inline: 3px;
-	overflow: hidden;
+    height: calc(var(--urlbar-height-definitive) - 2px) !important;
+    font-size: 11pt !important;
+    margin-inline: 3px;
+    overflow: hidden;
 }
 
 #urlbar-input {
-	&::placeholder {
-		opacity: 1 !important;
-		color: rgb(127, 127, 127);
-		text-align: end;
-	}
+    &::placeholder {
+        opacity: 1 !important;
+        color: rgb(127, 127, 127);
+        text-align: end;
+    }
 }
 
 #urlbar-container {
-	--urlbar-container-height: var(--urlbar-height-definitive) !important;
+    --urlbar-container-height: var(--urlbar-height-definitive) !important;
 
-	padding: 0 !important;
-	margin-inline: 2px !important;
+    padding: 0 !important;
+    margin-inline: 2px !important;
 
-	&:not([starpos="start"]) {
-		#go-button-box {
-			display: none;
-		}
-	}
+    &:not([starpos="start"]) {
+        #go-button-box {
+            display: none;
+        }
+    }
 
-	#urlbar-go-button {
-		display: none !important;
-	}
+    #urlbar-go-button {
+        display: none !important;
+    }
 }
 
 #urlbar-input-container {
-	height: var(--urlbar-height-definitive) !important;
-	padding: 0 !important;
-	padding-inline-start: 4px !important;
-	border: 0 !important;
+    height: var(--urlbar-height-definitive) !important;
+    padding: 0 !important;
+    padding-inline-start: 4px !important;
+    border: 0 !important;
 }
 
 .urlbarView {
@@ -361,14 +362,15 @@
     padding-left: 4px !important;
 
     &[selected] {
-        &[type="switchtab"] {
-            .urlbarView-action {
-                color: rgb(255, 255, 255, 80%) !important;
-            }
+        .urlbarView-action {
+            color: rgb(255, 255, 255, 80%) !important;
         }
 
         .urlbarView-url {
             color: #7ff4b7 !important;
+        }
+        .urlbarView-title {
+            color: rgb(255, 255, 255, 60%);
         }
     }
 
@@ -381,6 +383,10 @@
                     display: none;
                 }
             }
+        }
+
+        .urlbarView-action {
+            padding: 0 !important;
         }
     }
 
@@ -409,9 +415,9 @@
 
 .urlbarView-action {
     position: absolute;
-    right: 0 !important;
+    right: 8px !important;
     background: transparent !important;
-    color: rgb(30, 133, 216) !important;
+    color: -moz-menuhover !important;
 }
 
 @media screen and (min-height: 600px) {

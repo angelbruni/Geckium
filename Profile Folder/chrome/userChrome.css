@@ -715,7 +715,8 @@
       rgb(222, 234, 248),
       rgb(240, 245, 253)
   );
-  --toolbarbutton-shadow-active: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
+  --toolbarbutton-shadow-active: inset 0 0 0 1px
+      var(--toolbarbutton-inner-border-color-normal);
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
@@ -888,18 +889,14 @@
         )
     ) !important;
     --personal-toolbar: linear-gradient(
-                   to bottom,
-                   color-mix(
-                       in srgb,
-                       var(--toolbarbutton-icon-fill) 10%,
-                       white
-                   ),
-                   color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 2%,
-    	white
-    )
-               ) !important;
+        to bottom,
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 10%,
+            white
+        ),
+        color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
+    ) !important;
     --toolbarbutton-border-color-normal: color-mix(
         in srgb,
         var(--toolbarbutton-icon-fill) 50%,
@@ -934,81 +931,89 @@
     --nav-bar: var(--lwt-accent-color) !important;
     --personal-toolbar: var(--lwt-accent-color) !important;
     --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 50%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 50%,
+        white
     );
     --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 40%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 40%,
+        white
     );
     --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 30%,
-    	white
+        in srgb,
+        var(--toolbarbutton-icon-fill) 30%,
+        white
     );
     --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 10%, white)
+        to bottom,
+        rgb(255, 255, 255),
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 10%,
+            white
+        )
     );
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]) {
     --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 50%,
-    	white
+        in srgb,
+        var(--toolbar-color) 50%,
+        white
     );
     --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 40%,
-    	white
+        in srgb,
+        var(--toolbar-color) 40%,
+        white
     );
     --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 30%,
-    	white
+        in srgb,
+        var(--toolbar-color) 30%,
+        white
     );
     --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--toolbar-color) 10%, white)
+        to bottom,
+        rgb(255, 255, 255),
+        color-mix(in srgb, var(--toolbar-color) 10%, white)
     );
     --toolbarbutton-icon-fill: var(--toolbar-color) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"]) {
     --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 50%,
+        white
     );
     --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 40%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 40%,
+        white
     );
     --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 30%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 30%,
+        white
     );
     --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+        to bottom,
+        rgb(255, 255, 255),
+        color-mix(
+            in srgb,
+            var(--lwt-accent-color) 10%,
+            white
+        )
     );
     --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	black
+        in srgb,
+        var(--lwt-accent-color) 50%,
+        black
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
     --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	white
+        in srgb,
+        var(--lwt-accent-color) 70%,
+        white
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) .bookmark-item {
@@ -1018,69 +1023,74 @@
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
     --nav-bar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 5%,
-    			white
-    		) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 20%,
-    			white
-    		) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 10%,
-    			white
-    		) 70%,
-    		transparent
-    	)
+        to bottom,
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 5%,
+                    white
+                )
+                70%,
+            transparent
+        ),
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 20%,
+                    white
+                )
+                70%,
+            transparent
+        ),
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 10%,
+                    white
+                )
+                70%,
+            transparent
+        )
     ) !important;
     --personal-toolbar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 10%,
-    			white
-    		) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 2%,
-    			white
-    		) 70%,
-    		transparent
-    	)
+        to bottom,
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 10%,
+                    white
+                )
+                70%,
+            transparent
+        ),
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 2%,
+                    white
+                )
+                70%,
+            transparent
+        )
     ) !important;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
     --nav-bar: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	transparent
+        in srgb,
+        var(--lwt-accent-color) 70%,
+        transparent
     ) !important;
     --personal-toolbar: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	transparent
+        in srgb,
+        var(--lwt-accent-color) 70%,
+        transparent
     ) !important;
   }
 }
@@ -1124,8 +1134,8 @@
 :root:not([tabsintitlebar]) .toolbar-items {
   padding-top: 0 !important;
 }
-:root:not([tabsintitlebar]) #tabbrowser-arrowscrollbox {
-  margin-top: -4px !important;
+:root:not([tabsintitlebar]) .toolbar-items {
+  margin-top: -3px !important;
 }
 :root[sizemode=maximized] .browser-toolbar, :root[sizemode=fullscreen] .browser-toolbar {
   margin-inline: 0 !important;
@@ -1575,6 +1585,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
+  box-shadow: var(--personal-toolbar-item-shadow);
   transition: all 150ms linear;
   margin-inline: 3px !important;
   border-radius: var(--toolbarbutton-radius) !important;
@@ -1584,6 +1595,18 @@ toolbar[overflowable][customizing] > .customization-target {
 .bookmark-item:hover {
   box-shadow: var(--personal-toolbar-item-hover-shadow);
   background: var(--personal-toolbar-item-hover-bg) !important;
+}
+
+#toolbar-menubar #menubar-items {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 4px !important;
+}
+
+#main-menubar > menu {
+  -webkit-appearance: menuitem !important;
+     -moz-appearance: menuitem !important;
+          appearance: menuitem !important;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
 }
 
 :root {
@@ -1596,8 +1619,12 @@ toolbar[overflowable][customizing] > .customization-target {
   --urlbar-verified-proxystate-valid: rgb(10, 155, 38);
   --urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
   --urlbar-height-definitive: var(--toolbarbutton-height);
-  --urlbarView: var(--protocol-background-color);
-  --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
+  --urlbarView: rgb(255, 255, 255, 94%);
+  --autocomplete-popup-hover-background: color-mix(
+      in srgb,
+      -moz-menuhover 20%,
+      white 20%
+  ) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 }
@@ -1684,9 +1711,13 @@ toolbar[overflowable][customizing] > .customization-target {
   display: none !important;
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
-  --toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+  --toolbar-field-background-color: var(
+      --urlbar-background-verified-proxystate-valid
+  );
   --protocol-color: var(--urlbar-verified-proxystate-valid);
-  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+  --protocol-background-color: var(
+      --urlbar-background-verified-proxystate-valid
+  );
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
@@ -1769,22 +1800,18 @@ toolbar[overflowable][customizing] > .customization-target {
   display: none !important;
 }
 
-.urlbarView-action {
-  display: none !important;
-}
-
-.urlbarView-row[type=search]:not(:first-child)::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  height: 18px;
-  width: var(--tab-sides-width);
-  background-image: url("assets/img/toolbar/search.png") !important;
-  background-size: cover !important;
-}
-
 .urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]), .urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
   fill: transparent;
+  height: 19px !important;
+  width: 19px !important;
+  background-size: 19px 19px !important;
+}
+.urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]) {
+  background-image: url(assets/img/toolbar/search.png);
+}
+.urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
+  background-image: url(assets/img/toolbar/clock.png);
+  opacity: 0.8;
 }
 
 #identity-icon {
@@ -1865,17 +1892,23 @@ toolbar[overflowable][customizing] > .customization-target {
   border: 0 !important;
   padding-left: 4px !important;
 }
-.urlbarView-row[selected][type=switchtab] .urlbarView-action {
+.urlbarView-row[selected] .urlbarView-action {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 .urlbarView-row[selected] .urlbarView-url {
   color: #7ff4b7 !important;
+}
+.urlbarView-row[selected] .urlbarView-title {
+  color: rgba(255, 255, 255, 0.6);
 }
 .urlbarView-row[type=switchtab] .urlbarView-row-inner .urlbarView-title {
   padding-left: 24px;
 }
 .urlbarView-row[type=switchtab] .urlbarView-row-inner .urlbarView-title::before {
   display: none;
+}
+.urlbarView-row[type=switchtab] .urlbarView-action {
+  padding: 0 !important;
 }
 .urlbarView-row[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
   min-height: 14px !important;
@@ -1891,9 +1924,9 @@ toolbar[overflowable][customizing] > .customization-target {
 
 .urlbarView-action {
   position: absolute;
-  right: 0 !important;
+  right: 8px !important;
   background: transparent !important;
-  color: rgb(30, 133, 216) !important;
+  color: -moz-menuhover !important;
 }
 
 @media screen and (min-height: 600px) {
