@@ -44,4 +44,8 @@ function pref(prefName) {
     }
 };
 
+function openWindow(windowName, features) {
+	window.openDialog('chrome://userchrome/content/windows/'+ windowName +'/index.xhtml', '', features);
+}
+
 const appearanceChanged = new CustomEvent("appearanceChanged");
