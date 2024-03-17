@@ -2359,10 +2359,15 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-content::after {
   background: url(assets/img/chrome-21/tabbar/tab_active_right.png) no-repeat;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-stack {
+  position: relative;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-stack::before {
-  left: calc(var(--tab-sides-width) * -1 + 1px);
   -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
           mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+  left: calc(var(--tab-sides-width) * -1 + 1px);
+  -webkit-mask-position: 1px -1px;
+          mask-position: 1px -1px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
   -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
