@@ -1733,7 +1733,8 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #custom-identity-label {
-  margin: 0 !important;
+  margin-inline-start: 4px !important;
+  margin-inline-end: 6px !important;
   color: var(--protocol-color);
 }
 
@@ -2105,9 +2106,9 @@ toolbarpaletteitem[place=palette] {
   );
 }
 :root[geckium-five][geckium-six] {
-  --urlbar-border: rgb(192,193,198);
-  --urlbar-verified-proxystate-valid: rgb(7,149,0);
-  --urlbar-verified-proxystate-valid-overridden: rgb(162,0,58);
+  --urlbar-border: rgb(192, 193, 198);
+  --urlbar-verified-proxystate-valid: rgb(7, 149, 0);
+  --urlbar-verified-proxystate-valid-overridden: rgb(162, 0, 58);
 }
 :root[geckium-five][geckium-six] #urlbar[breakout], :root[geckium-five][geckium-six] #urlbar[breakout][breakout-extend] {
   left: 0 !important;
@@ -2145,6 +2146,9 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six] #nav-bar[securestate=insecure] #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
+}
+:root[geckium-five][geckium-six] #nav-bar #custom-identity-label {
+  display: none;
 }
 :root[geckium-five][geckium-six] #star-button-box {
   padding: 0 !important;
