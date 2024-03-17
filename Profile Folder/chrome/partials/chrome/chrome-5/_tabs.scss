@@ -39,7 +39,6 @@
 
 
 
-
 		--tabbrowser-tab-color: white;
 	}
 
@@ -53,19 +52,60 @@
 
 
 
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+					color-mix(in srgb,
+						var(--toolbarbutton-icon-fill) 5%,
+						white
+					)
 				) !important;
 			}
 	
 			@media (prefers-color-scheme: dark) {
-				--inactive-tab-background-color: color-mix(in oklab, color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%, transparent) !important;
-
-
-
-				
+				--inactive-tab-background-color: color-mix(
+                    in srgb,
+                    color-mix(
+						in srgb,
+						var(--lwt-accent-color) 80%,
+						black
+					) 80%,
+               	 	transparent
+                ) !important;
 				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
 			}
 		}
+	}
+
+	&[customthememode="1"] {
+		@media not (prefers-color-scheme: dark) {
+			--tabbrowser-tab-selected: linear-gradient(
+				to top,
+				color-mix(
+					in srgb,
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 8%,
+						white
+					) 70%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 5%,
+						white
+					) 70%,
+					transparent
+				),
+			) !important;
+		}
+		@media (prefers-color-scheme: dark) {
+			--tabbrowser-tab-selected: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 70%,
+				transparent
+			) !important;
+		}
+
 	}
 	
 	&:not([tabsintitlebar]) {
@@ -314,12 +354,12 @@
 		animation: hide-tab var(--tab-transition-time) ease;
 	}
 
-	.tab-content {
-		padding: 0 !important;
-		border-left: var(--tab-sides-width) solid transparent !important;
-		border-right: 0 !important;
-		padding-right: 3px !important;
-	}
+    .tab-content {
+        padding: 0 !important;
+        border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
+        border-right: 0 !important;
+        padding-right: 3px !important;
+    }
 
 	&:first-of-type {
 		margin-left: 9px !important
@@ -496,9 +536,13 @@
 	opacity: 0;
 	margin-top: 4px;
 
-	/* bruni: In Chrome, the glare hides in a slower
-				pace when the mouse leaves. */
-	transition: opacity .5s linear;
+	/* bruni: After reworking tab sizes, the tab-glare needs
+			  fixing, so we are gonna hide it for now. */
+	display: none !important;
+
+    /* bruni: In Chrome, the glare hides in a slower
+			  pace when the mouse leaves. */
+    transition: opacity .5s linear;
 }
 
 .tab-glare-middle {

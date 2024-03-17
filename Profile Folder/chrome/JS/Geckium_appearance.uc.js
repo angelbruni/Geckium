@@ -64,11 +64,20 @@ function setThemeAttr() {
 	} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact")) {
 		docElm.setAttribute("chromemargin", "0,3,3,3");
 	} else {
-		if (docElm.getAttribute("style").includes("--toolbar-bgcolor: rgba") && pref("Geckium.appearance.choice").tryGet.int() > 1) {
-			docElm.setAttribute("chromemargin", "0,3,3,3")
-		} else {
+		let customThemeMode;
+
+		if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
+			customThemeMode = 0;
 			docElm.setAttribute("chromemargin", "0,0,0,0")
+		} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
+			customThemeMode = 1;
+			docElm.setAttribute("chromemargin", "0,0,0,0")
+		} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
+			customThemeMode = 2;
+			docElm.setAttribute("chromemargin", "0,3,3,3")
 		}
+
+		docElm.setAttribute("customthememode", customThemeMode);
 	}
 
 	if (!window.matchMedia('(-moz-windows-compositor: 1)').matches) {
@@ -94,6 +103,15 @@ const themeObserver = {
 };
 window.addEventListener("load", setThemeAttr);
 Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false)
+
+const customThemeModeObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+		setThemeAttr();
+	}
+};
+window.addEventListener("load", setThemeAttr);
+Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, false)
 
 /* bruni: Automatically apply appearance and theme
 		  attributes when it detecs changes in the pref. */
