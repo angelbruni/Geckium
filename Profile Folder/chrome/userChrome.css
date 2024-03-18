@@ -1849,6 +1849,15 @@ toolbar[overflowable][customizing] > .customization-target {
   text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
 }
 
+#permissions-granted-icon {
+  list-style-image: url(assets/img/chrome-5/toolbar/wrench.png) !important;
+  margin-left: 2px;
+}
+
+.blocked-permission-icon {
+  display: none !important;
+}
+
 :root {
   --toolbar-field-background-color: white !important;
   --toolbar-field-color: black !important;
