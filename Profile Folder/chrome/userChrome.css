@@ -1968,6 +1968,9 @@ toolbar[overflowable][customizing] > .customization-target {
 #nav-bar[securestate=warning] #identity-icon, #nav-bar[securestate=insecure] #identity-icon {
   list-style-image: url(assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
 }
+#nav-bar #identity-box[pageproxystate=valid].notSecure #identity-icon {
+  list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
+}
 
 #custom-identity-label {
   margin-inline-start: 4px !important;
@@ -2515,6 +2518,9 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six][geckium-eleven] #PanelUI-menu-button {
   list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] #nav-bar #identity-box[pageproxystate=valid].notSecure #identity-icon {
+  list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
 }
 
 /* Chrome 12 -> 21 */
