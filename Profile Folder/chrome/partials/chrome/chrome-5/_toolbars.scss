@@ -826,10 +826,11 @@ toolbar[overflowable][customizing] > .customization-target {
 	padding: 0 !important;
 	margin-inline-start: 3px !important;
 	margin-inline-end: 1px !important;
+	height: var(--tab-height);
 
 	.toolbarbutton-badge-stack {
 		background: transparent !important;
-		margin-block-end: -2px;
+		margin-block-end: 7px;
 	}
 
 	.toolbarbutton-badge-stack > vbox,

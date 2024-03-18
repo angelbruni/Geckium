@@ -1553,10 +1553,11 @@ toolbar[overflowable][customizing] > .customization-target {
   padding: 0 !important;
   margin-inline-start: 3px !important;
   margin-inline-end: 1px !important;
+  height: var(--tab-height);
 }
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack {
   background: transparent !important;
-  margin-block-end: -2px;
+  margin-block-end: 7px;
 }
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox,
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
