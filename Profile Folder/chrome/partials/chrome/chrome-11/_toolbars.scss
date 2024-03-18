@@ -27,9 +27,9 @@
 		
 	}
 
-	.toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
-		background: transparent !important;
-
+    .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+        background: transparent !important;
+        
 		
 		&::before {
 			
@@ -171,7 +171,7 @@
 	
 		&#unified-extensions-button,
 		&#PanelUI-menu-button {
-			border: 1px solid var(--toolbarbutton-border-color-normal) !important;
+            border: 1px solid transparent !important;
 			transition: none;
 
 			&::before {
