@@ -1,8 +1,11 @@
 & {
+	--tab-glare-opacity: 0.5;
+	--tab-glare: linear-gradient(90deg, transparent, white, transparent);
     --tab-sides-width: 21px;
 
     --newtab-width: 34px;
-    --newtab-normal: rgb(211, 217, 225, 0.6);
+    //--newtab-normal: rgb(211, 217, 225, 0.6);
+	--newtab-normal: var(--inactive-tab-background-color);
     --newtab-hot: rgb(211, 217, 225, 0.8);
     --newtab-active: rgb(211, 217, 225, 0.4);
 
@@ -38,7 +41,8 @@
 
                 &::before {
                     background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
-                        no-repeat;
+                        		no-repeat;
+					left: -14px;
                 }
             }
 
@@ -74,12 +78,18 @@
             .tab-content {
                 &::before {
                     background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
-                        no-repeat;
+                        		no-repeat;
+
+					/* bruni: This is a very dumb temporary fix for
+							  making the left side not appear very
+							  opaque when compared to the texture
+							  from the right side of the tab.*/
+					opacity: 0.5;
                 }
 
                 &::after {
                     background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
-                        no-repeat;
+                        		no-repeat;
                 }
             }
 
@@ -88,8 +98,8 @@
 
                 &::before {
                     mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-                    left: calc(var(--tab-sides-width) * -1 + 1px);
-                    mask-position: 1px -1px;
+					left: calc(var(--tab-sides-width) * -1 + 6px);
+					mask-position: 1px 0px;
                 }
 
                 &::after {
@@ -109,6 +119,8 @@
             &::before,
             &::after {
                 bottom: 0px;
+
+				width: 15px;
             }
         }
 
@@ -116,4 +128,12 @@
             border-left: 13px solid transparent !important;
         }
     }
+
+	.tab-glare-left {
+		mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+	}
+	
+	.tab-glare-right {
+		mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+	}
 }

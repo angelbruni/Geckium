@@ -6,12 +6,6 @@
     --tab-width: 194px;
     --tab-distance: 4px;
 
-    &[geckium-choice="five"] {
-        .tab-glare-container {
-            transition: opacity 100ms linear !important;
-        }
-    }
-
     --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
     --tabbrowser-tab-selected: linear-gradient(
         to top,
@@ -52,11 +46,13 @@
                         var(--toolbarbutton-icon-fill) 8%,
                         white
                     ),
-                    color-mix(in srgb,
+                    color-mix(
+						in srgb,
 						var(--toolbarbutton-icon-fill) 5%,
 						white
 					)
                 ) !important;
+				--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
             }
 
             @media (prefers-color-scheme: dark) {
@@ -70,11 +66,16 @@
                	 	transparent
                 ) !important;
                 --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
+				--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
             }
 
 			&[customthememode="1"] {
-				.tabbrowser-tab[visuallyselected="true"] {
-					@media not (prefers-color-scheme: dark) {
+				@media not (prefers-color-scheme: dark) {
+					&:not([style*="--toolbarbutton-icon-fill"]) {
+						--tabbrowser-tab-color: black;
+					}
+
+					.tabbrowser-tab[visuallyselected="true"] {
 						--tabbrowser-tab-selected: linear-gradient(
 							to top,
 							color-mix(
@@ -94,17 +95,24 @@
 									white
 								) 70%,
 								transparent
-							),
+							)
 						) !important;
 					}
-	
-					@media (prefers-color-scheme: dark) {
+				}
+
+				@media (prefers-color-scheme: dark) {
+					/*&:not([style*="--toolbarbutton-icon-fill"]) {
+						--tabbrowser-tab-color: white;
+					}*/
+
+					.tabbrowser-tab[visuallyselected="true"] {
 						--tabbrowser-tab-selected: color-mix(
 							in srgb,
 							var(--lwt-accent-color) 70%,
 							transparent
 						) !important;
 					}
+					
 				}
 			}
         }
@@ -129,6 +137,10 @@
             margin-top: -3px !important;
         }
     }
+}
+
+#TabsToolbar-customization-target {
+	align-items: end;
 }
 
 @keyframes geckium-progress-throbber {
@@ -510,6 +522,8 @@
 		}
 	}*/
 
+	border-inline-start: 0 !important;
+
     &:not([secondarytext-unsupported]) {
         .tab-label-container {
             height: 24px !important;
@@ -537,10 +551,6 @@
     opacity: 0;
     margin-top: 4px;
 
-	/* bruni: After reworking tab sizes, the tab-glare needs
-			  fixing, so we are gonna hide it for now. */
-	display: none !important;
-
     /* bruni: In Chrome, the glare hides in a slower
 			  pace when the mouse leaves. */
     transition: opacity 0.5s linear;
@@ -560,13 +570,13 @@
 }
 
 .tab-glare-left {
-    mask-image: url(assets/img/tabbar/tab_alpha_left.png);
+    mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
     mask-position-y: -1px;
     width: var(--tab-sides-width);
 }
 
 .tab-glare-right {
-    mask-image: url(assets/img/tabbar/tab_alpha_right.png);
+    mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
 
     /* bruni: Why are the masks different in size???  */
     mask-position-y: -3px;
@@ -580,7 +590,7 @@
     transform: translateX(-50%);
 
     /* bruni: 	By the way, we are using the glare as background hover
-				for Chrome 5, if we transition the background of the
+				for Chrome 5-6, if we transition the background of the
 				tab it will try to transition from gradient (active) 
 				to colour (inactive), and since gradients are not
 				animatable (at least in Gecko), you will see a transition

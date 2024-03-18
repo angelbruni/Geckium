@@ -3,12 +3,12 @@
 		to bottom,
 		rgb(97,162,241),
 		rgb(72,140,222) 40px
-	) !important;
+	);
 	--titlebar-inactive: linear-gradient(
 		to bottom,
 		rgb(163,201,247),
 		rgb(147,186,234) 40px
-	) !important;
+	);
 
 	&[privatebrowsingmode="temporary"] {
 		--titlebar-active: linear-gradient(
@@ -21,6 +21,10 @@
 			rgb(147,161,178),
 			rgb(128,143,161) 40px
 		) !important;
+
+		#fxa-toolbar-menu-button {
+			display: none !important;
+		}
 	}
 
 	@import "titlebar/nocomp";

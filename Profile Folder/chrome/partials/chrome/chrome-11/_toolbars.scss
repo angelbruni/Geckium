@@ -28,7 +28,7 @@
         border-radius: 5px !important;
     }
 
-    .toolbarbutton-1:not(#tabs-newtab-button, #new-tab-button) {
+    .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
         background: transparent !important;
         border: 1px solid transparent !important;
 
@@ -149,7 +149,7 @@
 
         &#unified-extensions-button,
         &#PanelUI-menu-button {
-            border: 1px solid var(--toolbarbutton-border-color-normal) !important;
+            border: 1px solid transparent !important;
             transition: none;
 
 			&::before {

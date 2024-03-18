@@ -34,36 +34,6 @@
         --toolbarbutton-border-color-active: rgb(58, 58, 58);
     }
 
-	&:-moz-lwtheme {
-        &:not([lwtheme-id*="firefox-compact"]) {
-            @media not (prefers-color-scheme: dark) {
-                --toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 50%,
-                    white
-                );
-				--toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 50%,
-                    black
-                );
-            }
-
-            @media (prefers-color-scheme: dark) {
-                --toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--lwt-accent-color) 70%,
-                    white
-                );
-				--toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 50%,
-                    black
-                );
-            }
-        }
-    }
-
 	#nav-bar {
         &[securestate="secure"],
         &[securestate="ev"] {
