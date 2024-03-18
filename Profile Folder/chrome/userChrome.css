@@ -262,7 +262,7 @@
   }
 }
 @media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: linear-gradient(
     	to top,
     	color-mix(
@@ -287,7 +287,7 @@
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,

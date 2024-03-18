@@ -73,38 +73,39 @@
             }
 
 			&[customthememode="1"] {
-				@media not (prefers-color-scheme: dark) {
-					--tabbrowser-tab-selected: linear-gradient(
-						to top,
-						color-mix(
-							in srgb,
+				.tabbrowser-tab[visuallyselected="true"] {
+					@media not (prefers-color-scheme: dark) {
+						--tabbrowser-tab-selected: linear-gradient(
+							to top,
 							color-mix(
 								in srgb,
-								var(--toolbarbutton-icon-fill) 8%,
-								white
-							) 70%,
-							transparent
-						),
-						color-mix(
-							in srgb,
+								color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 8%,
+									white
+								) 70%,
+								transparent
+							),
 							color-mix(
 								in srgb,
-								var(--toolbarbutton-icon-fill) 5%,
-								white
-							) 70%,
+								color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 5%,
+									white
+								) 70%,
+								transparent
+							),
+						) !important;
+					}
+	
+					@media (prefers-color-scheme: dark) {
+						--tabbrowser-tab-selected: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 70%,
 							transparent
-						),
-					) !important;
+						) !important;
+					}
 				}
-
-				@media (prefers-color-scheme: dark) {
-					--tabbrowser-tab-selected: color-mix(
-						in srgb,
-						var(--lwt-accent-color) 70%,
-						transparent
-					) !important;
-				}
-				
 			}
         }
     }
