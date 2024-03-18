@@ -43,6 +43,7 @@
 
 
 
+	
     --toolbarbutton-active-background: transparent !important;
     --toolbarbutton-radius: 6px;
     --toolbarbutton-disabled-opacity: 1 !important;
@@ -117,11 +118,7 @@
 						var(--toolbarbutton-icon-fill) 10%, 
 						white
 					),
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 2%,
-						white
-					)
+					color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
 				) !important;
 
 				--toolbarbutton-border-color-normal: color-mix(
@@ -174,7 +171,11 @@
 				--toolbarbutton-gradient: linear-gradient(
 					to bottom,
 					rgb(255, 255, 255),
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 10%, white)
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 10%,
+						white
+					)
 				);
 				
 				&:not([style*="--toolbarbutton-icon-fill"]) {
@@ -218,7 +219,11 @@
 						--toolbarbutton-gradient: linear-gradient(
 							to bottom,
 							rgb(255, 255, 255),
-							color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+							color-mix(
+								in srgb,
+								var(--lwt-accent-color) 10%,
+								white
+							)
 						);
 						--toolbarbutton-icon-fill: color-mix(
 							in srgb,
@@ -250,7 +255,8 @@
 								in srgb,
 								var(--toolbarbutton-icon-fill) 5%, 
 								white
-							) 70%,
+							)
+							70%,
 							transparent
 						),
 						color-mix(
@@ -259,7 +265,8 @@
 								in srgb,
 								var(--toolbarbutton-icon-fill) 20%, 
 								white
-							) 70%,
+							)
+							70%,
 							transparent
 						),
 						color-mix(
@@ -268,7 +275,8 @@
 								in srgb,
 								var(--toolbarbutton-icon-fill) 10%, 
 								white
-							) 70%,
+							)
+							70%,
 							transparent
 						)
 					) !important;
@@ -280,7 +288,8 @@
 								in srgb,
 								var(--toolbarbutton-icon-fill) 10%, 
 								white
-							) 70%,
+							)
+							70%,
 							transparent
 						),
 						color-mix(
@@ -289,7 +298,8 @@
 								in srgb,
 								var(--toolbarbutton-icon-fill) 2%, 
 								white
-							) 70%,
+							)
+							70%,
 							transparent
 						)
 					) !important;
@@ -316,15 +326,24 @@
 				&[style*="--lwt-additional-images"] {
 					#nav-bar,
 					#PersonalToolbar {
-						background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
-						background-position: var(--lwt-background-alignment) !important;
-						background-repeat: var(--lwt-background-tiling) !important;
+						background: var(--lwt-additional-images),
+							var(--lwt-accent-color) !important;
+						background-position: var(
+							--lwt-background-alignment
+						) !important;
+						background-repeat: var(
+							--lwt-background-tiling
+						) !important;
 					}
 					#nav-bar {
-						background-position-y: calc(var(--tab-height) * -1) !important;
+						background-position-y: calc(
+							var(--tab-height) * -1
+						) !important;
 					}
 					#PersonalToolbar {
-						background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+						background-position-y: calc(
+							(var(--tab-height) + var(--nav-bar-height)) * -1
+						) !important;
 					}
 				}
 				
@@ -336,10 +355,14 @@
 						background-repeat: no-repeat !important;
 					}
 					#nav-bar {
-						background-position-y: calc(var(--tab-height) * -1) !important;
+						background-position-y: calc(
+							var(--tab-height) * -1
+						) !important;
 					}
 					#PersonalToolbar {
-						background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+						background-position-y: calc(
+							(var(--tab-height) + var(--nav-bar-height)) * -1
+						) !important;
 					}
 				}
 			}
@@ -372,7 +395,7 @@
 			
 		}
 
-		#tabbrowser-arrowscrollbox {
+		.toolbar-items {
 			
 		}
 	}
@@ -885,7 +908,7 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .bookmark-item {
-	//box-shadow: var(--personal-toolbar-item-shadow);
+	
 	
 	
 	border-radius: var(--toolbarbutton-radius) !important;
@@ -896,6 +919,15 @@ toolbar[overflowable][customizing] > .customization-target {
 
 		
 	}
+}
+
+#toolbar-menubar #menubar-items {
+    
+    
+}
+#main-menubar > menu {
+    
+    
 }
 
 

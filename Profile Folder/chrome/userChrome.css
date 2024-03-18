@@ -253,7 +253,7 @@
   }
 }
 @media not (prefers-color-scheme: dark) {
-  :root[customthememode="1"] {
+  :root[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: linear-gradient(
     	to top,
     	color-mix(
@@ -278,7 +278,7 @@
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root[customthememode="1"] {
+  :root[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,
@@ -833,11 +833,7 @@
     		var(--toolbarbutton-icon-fill) 10%,
     		white
     	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 2%,
-    		white
-    	)
+    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
     ) !important;
     --toolbarbutton-border-color-normal: color-mix(
     	in srgb,
@@ -889,7 +885,11 @@
     --toolbarbutton-gradient: linear-gradient(
     	to bottom,
     	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 10%, white)
+    	color-mix(
+    		in srgb,
+    		var(--toolbarbutton-icon-fill) 10%,
+    		white
+    	)
     );
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([style*="--toolbarbutton-icon-fill"]) {
@@ -934,7 +934,11 @@
     --toolbarbutton-gradient: linear-gradient(
     	to bottom,
     	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--lwt-accent-color) 10%, white)
+    	color-mix(
+    		in srgb,
+    		var(--lwt-accent-color) 10%,
+    		white
+    	)
     );
     --toolbarbutton-icon-fill: color-mix(
     	in srgb,
@@ -963,7 +967,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 5%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	),
     	color-mix(
@@ -972,7 +977,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 20%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	),
     	color-mix(
@@ -981,7 +987,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 10%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	)
     ) !important;
@@ -993,7 +1000,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 10%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	),
     	color-mix(
@@ -1002,7 +1010,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 2%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	)
     ) !important;
@@ -1548,9 +1557,13 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   display: none !important;
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
-  --toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+  --toolbar-field-background-color: var(
+  	--urlbar-background-verified-proxystate-valid
+  );
   --protocol-color: var(--urlbar-verified-proxystate-valid);
-  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
+  --protocol-background-color: var(
+  	--urlbar-background-verified-proxystate-valid
+  );
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
@@ -1566,7 +1579,6 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 }
 
 #custom-identity-label {
-  margin: 0 !important;
   color: var(--protocol-color);
 }
 
@@ -1626,10 +1638,6 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 }
 #urlbar-search-mode-indicator #urlbar-search-mode-indicator-title {
   display: block !important;
-}
-
-.urlbarView-row[type=search]:not(:first-child)::before {
-  width: var(--tab-sides-width);
 }
 
 #identity-icon {
@@ -1708,9 +1716,6 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   border-radius: 0 !important;
   border: 0 !important;
   padding-left: 4px !important;
-}
-.urlbarView-row[selected][type=switchtab] .urlbarView-action {
-  color: rgba(255, 255, 255, 0.8) !important;
 }
 .urlbarView-row[selected] .urlbarView-url {
   color: #7ff4b7 !important;
@@ -1836,6 +1841,18 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   rotate: 160deg;
   width: 35px;
   z-index: 100;
+}
+
+.urlbarView-row[type=search]:not(:first-child)::before {
+  width: var(--tab-sides-width);
+}
+
+.urlbarView-row[selected][type=switchtab] .urlbarView-action {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#custom-identity-label {
+  margin: 0 !important;
 }
 
 toolbarpaletteitem[place=palette] {
