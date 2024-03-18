@@ -379,34 +379,37 @@
         }
     }
 
-	&:not([profilepic="firefox"]) {
-		#fxa-toolbar-menu-button {
-			#fxa-avatar-image {
-				display: none !important;
-			}
+    &:not([profilepic="firefox"]) {
+        #fxa-toolbar-menu-button {
+            #fxa-avatar-image {
+                display: none !important;
+            }
 
-			> .toolbarbutton-badge-stack > vbox {
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-position: bottom;
-			}
-		}
+            > .toolbarbutton-badge-stack > vbox {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: bottom;
+            }
+        }
 
-		$profile-pics: 25; // bruni: Set the amount of profile pictures
-		@for $i from 0 through $profile-pics {
-			&[profilepic="#{$i}"] {
-				#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-					background-image: url(assets/img/profile/#{$i}.png);
-				}
-			}
-		}
+        $profile-pics: 25; // bruni: Set the amount of profile pictures
+        @for $i from 0 through $profile-pics {
+            &[profilepic="#{$i}"] {
+                #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+                    background-image: url(assets/img/profile/#{$i}.png);
+                }
+            }
+        }
 
-		&[profilepic="custom"] {
-			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
-			}
-		}
-	}
+        &[profilepic="custom"] {
+            #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+                background-image: var(
+                    --custom-profile-picture,
+                    url(assets/img/profile/0.png)
+                );
+            }
+        }
+    }
 
     &:not([customizing]) {
         .toolbarbutton-1[disabled] {
@@ -437,7 +440,8 @@
 
     &[sizemode="maximized"],
     &[sizemode="fullscreen"] {
-        .browser-toolbar {
+        #nav-bar,
+        #PersonalToolbar {
             margin-inline: 0 !important;
             border-top-left-radius: 0 !important;
             border-top-right-radius: 0 !important;
@@ -489,7 +493,7 @@
     align-items: center;
     padding-inline: var(--toolbar-start-end-padding) !important;
     height: var(--nav-bar-height);
-	box-shadow: none !important;
+    box-shadow: none !important;
 
     &::before,
     &::after {
@@ -529,7 +533,7 @@
     height: 12px !important;
     width: 12px !important;
     padding: 0 !important;
-	margin-inline-end: -2px !important;
+    margin-inline-end: -2px !important;
     margin-top: 2px;
     background-image: url(assets/img/chrome-5/tabbar/tab_close_mask.png);
 
@@ -616,7 +620,11 @@ toolbar[overflowable][customizing] > .customization-target {
     margin: 0 !important;
 }
 
-.toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+.toolbarbutton-1:not(
+        #fxa-toolbar-menu-button,
+        #tabs-newtab-button,
+        #new-tab-button
+    ) {
     position: relative;
     padding: 0 !important;
     background: var(--toolbarbutton-gradient) !important;
@@ -717,7 +725,7 @@ toolbar[overflowable][customizing] > .customization-target {
     .toolbarbutton-badge-stack,
     .toolbarbutton-icon,
     image:first-of-type {
-		border-radius: 0 !important;
+        border-radius: 0 !important;
         padding: 0 !important;
         fill: var(--toolbarbutton-icon-fill) !important;
         transition: 100ms filter linear;
@@ -821,24 +829,24 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #fxa-toolbar-menu-button {
-	border: 0 !important;
-	background: transparent !important;
-	padding: 0 !important;
-	margin-inline-start: 3px !important;
-	margin-inline-end: 1px !important;
-	height: var(--tab-height);
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-inline-start: 3px !important;
+    margin-inline-end: 1px !important;
+    height: var(--tab-height);
 
-	.toolbarbutton-badge-stack {
-		background: transparent !important;
-		margin-block-end: 7px;
-	}
+    .toolbarbutton-badge-stack {
+        background: transparent !important;
+        margin-block-end: 7px;
+    }
 
-	.toolbarbutton-badge-stack > vbox,
-	.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
-		width: 38px !important;
-		height: 38px !important;
-		border-radius: 0 !important;
-	}
+    .toolbarbutton-badge-stack > vbox,
+    .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 0 !important;
+    }
 }
 
 #back-button {
