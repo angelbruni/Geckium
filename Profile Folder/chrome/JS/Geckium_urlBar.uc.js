@@ -83,7 +83,7 @@ function updateProtocol() {
 	}
 
 	const protocol = window.gBrowser.selectedTab.linkedBrowser.currentURI.spec.split(":")[0];
-	if (protocol !== "about") {
+	if (protocol !== "about" && protocol !== "http" ) {
 		document.getElementById("urlbar-protocol").textContent = protocol;
 	} else {
 		document.getElementById("urlbar-protocol").textContent = "";
