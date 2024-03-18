@@ -234,34 +234,32 @@
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --tabbrowser-tab-selected: linear-gradient(
-                   to top,
-                   color-mix(
-                       in srgb,
-                       var(--toolbarbutton-icon-fill) 8%,
-                       white
-                   ),
-                   color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 5%,
-    	white
-    )
-               ) !important;
-    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
+        to top,
+        color-mix(
+            in srgb,
+            var(--toolbarbutton-icon-fill) 8%,
+            white
+        ),
+        color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+    ) !important;
+    --tabbrowser-tab-color: var(
+        --lwt-tab-text,
+        var(--toolbar-color, var(--lwt-text-color, white))
+    );
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --inactive-tab-background-color: color-mix(
-                   in srgb,
-                   color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 80%,
-    	black
-    ) 80%,
-              	 	transparent
-               ) !important;
+        in srgb,
+        color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+        transparent
+    ) !important;
     --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
-    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
+    --tabbrowser-tab-color: var(
+        --lwt-tab-text,
+        var(--toolbar-color, var(--lwt-text-color, black))
+    );
   }
 }
 @media not (prefers-color-scheme: dark) {
@@ -270,25 +268,27 @@
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: linear-gradient(
-    	to top,
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 8%,
-    			white
-    		) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbarbutton-icon-fill) 5%,
-    			white
-    		) 70%,
-    		transparent
-    	)
+        to top,
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 8%,
+                    white
+                )
+                70%,
+            transparent
+        ),
+        color-mix(
+            in srgb,
+            color-mix(
+                    in srgb,
+                    var(--toolbarbutton-icon-fill) 5%,
+                    white
+                )
+                70%,
+            transparent
+        )
     ) !important;
   }
 }
@@ -300,9 +300,9 @@
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	transparent
+        in srgb,
+        var(--lwt-accent-color) 70%,
+        transparent
     ) !important;
   }
 }
@@ -484,6 +484,9 @@
 }
 .tabbrowser-tab:first-of-type {
   margin-left: 9px !important;
+}
+.tabbrowser-tab .tab-secondary-label {
+  display: none !important;
 }
 
 .tab-content::before, .tab-content::after {
