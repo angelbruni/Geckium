@@ -119,6 +119,100 @@ h1 {
 #searchInput {
     margin-block-start: 24px !important;
     margin-block-end: 8px !important;
+    min-height: 24px !important;
+    border-color: rgb(191, 191, 191) !important;
+    border-radius: 2px !important;
+    max-width: 160px !important;
+
+    &[focused] {
+        outline: none !important;
+        border-color: rgb(77, 144, 254) !important;
+    }
+}
+
+h2 {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+checkbox {
+    margin-block: 0 !important;
+
+    &:not([disabled]):hover {
+        .checkbox-check {
+            background: linear-gradient(to top, #e0e0e0, #f5f4f4);
+            box-shadow: 0 1px 1px rgb(0, 0, 0, 14%),
+                inset 0 1px 2px rgb(255, 255, 255, 75%);
+            color: rgb(0, 0, 0) !important;
+        }
+
+        .checkbox-label {
+            color: rgb(0, 0, 0) !important;
+        }
+    }
+    &:not([disabled]):active .checkbox-check {
+        background: linear-gradient(to top, #e0e0e0, #eeeeee);
+        box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent;
+        color: rgb(0, 0, 0) !important;
+    }
+}
+
+.checkbox-check {
+    background: linear-gradient(to top, #e0e0e0, #f0f0f0);
+    border: 1px solid rgb(0, 0, 0, 30%) !important;
+    box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
+        inset 0 1px 2px rgb(255, 255, 255, 75%);
+    height: 13px !important;
+    width: 13px !important;
+}
+.checkbox-label {
+    font-size: 14px !important;
+    color: rgb(48, 57, 66);
+}
+
+.checkbox-check[checked] {
+    background-image: url(assets/img/pages/check.png),
+        linear-gradient(to top, #e0e0e0, #f0f0f0) !important;
+    background-color: transparent !important;
+    background-size: 11px 11px;
+    background-position: center center;
+}
+
+#setDefaultPane {
+    margin-top: -4px !important;
+
+    #isDefaultPane,
+    #isNotDefaultPane {
+        margin-inline-start: 0 !important;
+    }
+
+    .face-smile,
+    .face-sad {
+        display: flex;
+        align-items: center;
+        gap: 4px !important;
+        font-size: 12px !important;
+        margin-left: -1px !important;
+    }
+
+    .face-smile::before {
+        background: url(assets/img/pages/green_check.png) !important;
+        display: block;
+        content: "" !important;
+        background-size: 15px 15px !important;
+        height: 15px !important;
+        width: 15px !important;
+        margin-inline-end: 0 !important;
+    }
+    .face-sad::before {
+        background: url(assets/img/pages/orange_exclamation.png) !important;
+        display: block;
+        content: "" !important;
+        background-size: 15px 15px !important;
+        height: 15px !important;
+        width: 15px !important;
+        margin-inline-end: 0 !important;
+    }
 }
 
 .accessory-button,
@@ -142,6 +236,12 @@ menulist,
         background: linear-gradient(to top, #e0e0e0, #f5f4f4);
         box-shadow: 0 1px 1px rgb(0, 0, 0, 14%),
             inset 0 1px 2px rgb(255, 255, 255, 75%);
+        color: rgb(0, 0, 0) !important;
+    }
+
+    &:active {
+        background: linear-gradient(to top, #e0e0e0, #eeeeee);
+        box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent;
         color: rgb(0, 0, 0) !important;
     }
 }
