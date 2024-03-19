@@ -1,0 +1,98 @@
+@-moz-document url-prefix(about:preferences) {
+    :root {
+        --main-pane-width: 888px !important;
+    }
+
+    .navigation {
+        spacer {
+            display: none !important;
+        }
+
+        #categories {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            width: 155px !important;
+
+            &::before {
+                content: "Chrome";
+                font-size: 20px;
+                padding: 24px;
+                color: rgb(92, 97, 102);
+            }
+
+            .category {
+                margin-inline-start: 0 !important;
+                min-height: 30px !important;
+                padding-inline: 0 !important;
+                transition: none !important;
+                border-radius: 0 !important;
+                border: none !important;
+
+                &:hover,
+                &:active {
+                    background: transparent !important;
+                }
+
+                .category-icon {
+                    display: none;
+                }
+                .category-name {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    border-left: 6px solid transparent !important;
+                    font-size: 14px !important;
+                    color: rgb(153, 153, 153) !important;
+                    padding-inline-start: 18px !important;
+                    cursor: pointer !important;
+                }
+                &:is([selected="true"]) .category-name {
+                    border-left-color: rgb(78, 87, 100) !important;
+                    color: rgb(78, 87, 100) !important;
+                }
+            }
+        }
+
+        .sidebar-footer-list {
+            margin: 0 !important;
+
+            &::before {
+                content: "";
+                height: 1px;
+                background: rgb(0, 0, 0, 10%);
+                margin-block: 14px;
+            }
+
+            .sidebar-footer-link {
+                display: flex;
+                align-items: center;
+                height: 30px !important;
+                border-left: 6px solid transparent !important;
+                font-size: 14px !important;
+                color: rgb(153, 153, 153) !important;
+                padding-inline-start: 18px !important;
+
+                &:hover {
+                    background: transparent !important;
+                }
+            }
+
+            .sidebar-footer-label,
+            .sidebar-footer-link {
+                cursor: pointer !important;
+                margin: 0 !important;
+            }
+
+            .sidebar-footer-icon {
+                display: none !important;
+            }
+
+            &:is([selected="true"]) .sidebar-footer-link {
+                border-left-color: rgb(78, 87, 100) !important;
+                color: rgb(78, 87, 100) !important;
+            }
+        }
+    }
+}
