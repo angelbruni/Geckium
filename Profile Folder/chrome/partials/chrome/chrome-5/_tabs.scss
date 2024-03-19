@@ -135,6 +135,10 @@
         .toolbar-items {
             margin-top: -3px !important;
         }
+
+        #private-browsing-indicator-with-label {
+            margin-top: -6px !important;
+        }
     }
 }
 
@@ -605,4 +609,9 @@
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
     filter: blur(2px);
+}
+
+#private-browsing-indicator-with-label {
+    height: min-content !important;
+    margin-top: auto !important;
 }
