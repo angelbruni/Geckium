@@ -43,7 +43,7 @@
                     align-items: center;
                     height: 100%;
                     border-left: 6px solid transparent !important;
-                    font-size: 14px !important;
+                    font-size: 12px !important;
                     color: rgb(153, 153, 153) !important;
                     padding-inline-start: 18px !important;
                     cursor: pointer !important;
@@ -70,7 +70,7 @@
                 align-items: center;
                 height: 30px !important;
                 border-left: 6px solid transparent !important;
-                font-size: 14px !important;
+                font-size: 12px !important;
                 color: rgb(153, 153, 153) !important;
                 padding-inline-start: 18px !important;
 
@@ -95,4 +95,56 @@
             }
         }
     }
+}
+
+h1 {
+    &[data-l10n-id="pane-general-title"],
+    &[data-l10n-id="pane-home-title"],
+    &[data-l10n-id="pane-search-title"],
+    &[data-l10n-id="privacy-header"],
+    &[data-l10n-id="pane-sync-title3"],
+    &[data-l10n-id="more-from-moz-title"] {
+        position: fixed;
+        top: 24px;
+        z-index: 100;
+        color: rgb(48, 57, 66) !important;
+        font-weight: 500 !important;
+        font-size: 20px !important;
+    }
+}
+.sticky-container {
+    background: rgb(255, 255, 255, 90%) !important;
+    border-bottom: 1px solid rgb(0, 0, 0, 10%);
+}
+#searchInput {
+    margin-block-start: 24px !important;
+    margin-block-end: 8px !important;
+}
+
+.accessory-button,
+menulist,
+.homepage-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 24px !important;
+    padding-block: 4px !important;
+    font-size: 12px !important;
+    background: linear-gradient(to top, #e0e0e0, #f0f0f0);
+    border: 1px solid rgb(0, 0, 0, 30%) !important;
+    box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
+        inset 0 1px 2px rgb(255, 255, 255, 75%);
+    text-shadow: 0 1px 0 rgb(255, 255, 255, 70%) !important;
+    border-radius: 2px !important;
+    color: rgb(68, 68, 68) !important;
+
+    &:hover {
+        background: linear-gradient(to top, #e0e0e0, #f5f4f4);
+        box-shadow: 0 1px 1px rgb(0, 0, 0, 14%),
+            inset 0 1px 2px rgb(255, 255, 255, 75%);
+        color: rgb(0, 0, 0) !important;
+    }
+}
+.homepage-button {
+    margin-block-start: 18px !important;
 }
