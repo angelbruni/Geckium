@@ -174,37 +174,54 @@ h2,
     padding: 0 !important;
 }
 
-checkbox {
+checkbox,
+radio {
     margin-block: 0 !important;
 
     &:not([disabled]):hover {
-        .checkbox-check {
+        .checkbox-check,
+        .radio-check {
             background: linear-gradient(to top, #e0e0e0, #f5f4f4);
             box-shadow: 0 1px 1px rgb(0, 0, 0, 14%),
-                inset 0 1px 2px rgb(255, 255, 255, 75%);
+                inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
             color: rgb(0, 0, 0) !important;
         }
 
-        .checkbox-label {
+        .checkbox-label,
+        .radio-label {
             color: rgb(0, 0, 0) !important;
         }
     }
-    &:not([disabled]):active .checkbox-check {
-        background: linear-gradient(to top, #e0e0e0, #eeeeee);
-        box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent;
-        color: rgb(0, 0, 0) !important;
+    &:not([disabled]):active {
+        .checkbox-check,
+        .radio-check {
+            background: linear-gradient(to top, #e0e0e0, #eeeeee);
+            box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent !important;
+            color: rgb(0, 0, 0) !important;
+        }
+    }
+    &[focused] .radio-check {
+        outline: none !important;
     }
 }
 
-.checkbox-check {
+.checkbox-check,
+.radio-check {
     background: linear-gradient(to top, #e0e0e0, #f0f0f0);
     border: 1px solid rgb(0, 0, 0, 30%) !important;
     box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
-        inset 0 1px 2px rgb(255, 255, 255, 75%);
+        inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+}
+.checkbox-check {
     height: 13px !important;
     width: 13px !important;
 }
-.checkbox-label {
+.radio-check {
+    height: 15px !important;
+    width: 15px !important;
+}
+.checkbox-label,
+.radio-label {
     font-size: 14px !important;
     color: rgb(48, 57, 66);
 }
@@ -213,7 +230,14 @@ checkbox {
     background-image: url(assets/img/pages/check.png),
         linear-gradient(to top, #e0e0e0, #f0f0f0) !important;
     background-color: transparent !important;
-    background-size: 11px 11px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.radio-check[selected] {
+    background-image: url(assets/img/pages/radio.png),
+        linear-gradient(to top, #e0e0e0, #f0f0f0) !important;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
     background-position: center center;
 }
 
@@ -270,7 +294,8 @@ description {
 
 .accessory-button,
 menulist,
-.homepage-button {
+.homepage-button,
+[data-l10n-id="update-checkForUpdatesButton"] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -285,14 +310,14 @@ menulist,
     border-radius: 2px !important;
     color: rgb(68, 68, 68) !important;
 
-    &:hover {
+    &:not([disabled]):hover {
         background: linear-gradient(to top, #e0e0e0, #f5f4f4);
         box-shadow: 0 1px 1px rgb(0, 0, 0, 14%),
             inset 0 1px 2px rgb(255, 255, 255, 75%);
         color: rgb(0, 0, 0) !important;
     }
 
-    &:active {
+    &:not([disabled]):active {
         background: linear-gradient(to top, #e0e0e0, #eeeeee);
         box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent;
         color: rgb(0, 0, 0) !important;
