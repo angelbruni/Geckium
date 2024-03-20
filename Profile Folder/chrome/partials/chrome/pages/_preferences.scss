@@ -116,7 +116,7 @@ h1 {
     background: rgb(255, 255, 255, 90%) !important;
     border-bottom: 1px solid rgb(0, 0, 0, 10%);
 }
-#searchInput {
+search-textbox {
     margin-block-start: 28px !important;
     margin-block-end: 8px !important;
     min-height: 24px !important;
@@ -127,6 +127,11 @@ h1 {
     &[focused] {
         outline: none !important;
         border-color: rgb(77, 144, 254) !important;
+    }
+
+    &#filter {
+        max-width: 100% !important;
+        margin-top: 10px !important;
     }
 }
 
@@ -152,7 +157,7 @@ h2,
 
 [data-l10n-id="applications-description"],
 #performanceGroup {
-    margin-bottom: 8px !important;
+    margin-bottom: 26px !important;
 }
 
 [data-l10n-id="download-header"] {
@@ -248,34 +253,54 @@ radio {
     #isNotDefaultPane {
         margin-inline-start: 0 !important;
     }
+}
 
-    .face-smile,
-    .face-sad {
-        display: flex;
-        align-items: center;
-        gap: 5px !important;
-        font-size: 12px !important;
-        margin-left: -1px !important;
-    }
+.subcategory {
+    margin-top: 0 !important;
+}
 
-    .face-smile::before {
-        background: url(assets/img/pages/green_check.png) !important;
-        display: block;
-        content: "" !important;
-        background-size: 15px 15px !important;
-        height: 15px !important;
-        width: 15px !important;
-        margin-inline-end: 0 !important;
-    }
-    .face-sad::before {
-        background: url(assets/img/pages/orange_exclamation.png) !important;
-        display: block;
-        content: "" !important;
-        background-size: 15px 15px !important;
-        height: 15px !important;
-        width: 15px !important;
-        margin-inline-end: 0 !important;
-    }
+#updateSettingCrossUserWarningDesc {
+    margin-top: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.info-icon {
+    fill: transparent !important;
+    background: url(assets/img/pages/orange_exclamation.png) !important;
+    background-size: 15px 15px !important;
+    height: 15px !important;
+    width: 15px !important;
+    margin: 0 !important;
+}
+
+.face-smile,
+.face-sad {
+    display: flex;
+    align-items: center;
+    gap: 5px !important;
+    font-size: 12px !important;
+    margin-left: -1px !important;
+}
+
+.face-smile::before {
+    background: url(assets/img/pages/green_check.png) !important;
+    display: block;
+    content: "" !important;
+    background-size: 15px 15px !important;
+    height: 15px !important;
+    width: 15px !important;
+    margin-inline-end: 0 !important;
+}
+.face-sad::before {
+    background: url(assets/img/pages/orange_exclamation.png) !important;
+    display: block;
+    content: "" !important;
+    background-size: 15px 15px !important;
+    height: 15px !important;
+    width: 15px !important;
+    margin-inline-end: 0 !important;
 }
 
 description,
@@ -288,12 +313,42 @@ description {
     line-height: 20px !important;
 }
 
-[data-l10n-id="choose-browser-language-description"] {
+[data-l10n-id="choose-browser-language-description"],
+[data-l10n-id="applications-description"] {
     margin-bottom: 8px !important;
 }
 
+#downloadFolder {
+    height: 27px !important;
+    border-radius: 2px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
+        inset 0 1px 2px rgb(255, 255, 255, 75%);
+    margin-block: 0 !important;
+    margin-inline-end: 0 !important;
+    padding-block: 0 !important;
+    cursor: default !important;
+
+    &:focus {
+        outline: none !important;
+        border-color: rgb(77, 144, 254) !important;
+    }
+}
+#chooseFolder {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-left-color: transparent !important;
+    min-width: unset !important;
+    max-width: min-content !important;
+
+    .button-box {
+        max-width: min-content !important;
+    }
+}
+
 .accessory-button,
-menulist,
+menulist:not(.actionsMenu),
 .homepage-button,
 [data-l10n-id="update-checkForUpdatesButton"] {
     display: flex;
@@ -325,4 +380,35 @@ menulist,
 }
 .homepage-button {
     margin-block-start: 18px !important;
+}
+
+listheader,
+richlistbox {
+    border-radius: 2px !important;
+}
+listheader {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+richlistbox:not(#categories) {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+
+    richlistitem[selected] {
+        background: rgb(0, 0, 0, 6%) !important;
+        color: rgb(255, 255, 255) !important;
+    }
+
+    .actionContainer {
+        border: 1px solid transparent;
+    }
+}
+#label-box:not([native]) {
+    font-weight: 500 !important;
+}
+
+menupopup menuitem {
+    &[selected] {
+        color: red !important;
+    }
 }
