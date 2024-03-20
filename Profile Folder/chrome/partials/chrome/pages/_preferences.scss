@@ -105,7 +105,7 @@ h1 {
     &[data-l10n-id="pane-sync-title3"],
     &[data-l10n-id="more-from-moz-title"] {
         position: fixed;
-        top: 24px;
+        top: 22px;
         z-index: 100;
         color: rgb(48, 57, 66) !important;
         font-weight: 500 !important;
@@ -117,7 +117,7 @@ h1 {
     border-bottom: 1px solid rgb(0, 0, 0, 10%);
 }
 #searchInput {
-    margin-block-start: 24px !important;
+    margin-block-start: 28px !important;
     margin-block-end: 8px !important;
     min-height: 24px !important;
     border-color: rgb(191, 191, 191) !important;
@@ -130,9 +130,48 @@ h1 {
     }
 }
 
-h2 {
+h1,
+h2,
+[data-l10n-id="update-application-allow-description"],
+[data-l10n-id="applications-handle-new-file-types-description"] {
     font-size: 16px !important;
+    line-height: 24px !important;
     font-weight: 500 !important;
+    margin-block: 4px !important;
+}
+[data-l10n-id="startup-header"],
+[data-l10n-id="search-bar-header"],
+[data-l10n-id="content-blocking-enhanced-tracking-protection"],
+#fxaGroup {
+    margin-top: 10px !important;
+}
+
+[data-l10n-id="applications-handle-new-file-types-description"] {
+    margin-top: 10px !important;
+}
+
+[data-l10n-id="applications-description"],
+#performanceGroup {
+    margin-bottom: 8px !important;
+}
+
+[data-l10n-id="download-header"] {
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+
+#drmGroup {
+    padding-inline: 0 !important;
+}
+
+[data-l10n-id="performance-use-recommended-settings-desc"] {
+    display: none !important;
+}
+
+.updateSettingCrossUserWarningContainer {
+    background: transparent !important;
+    border: transparent !important;
+    padding: 0 !important;
 }
 
 checkbox {
@@ -190,7 +229,7 @@ checkbox {
     .face-sad {
         display: flex;
         align-items: center;
-        gap: 4px !important;
+        gap: 5px !important;
         font-size: 12px !important;
         margin-left: -1px !important;
     }
@@ -213,6 +252,20 @@ checkbox {
         width: 15px !important;
         margin-inline-end: 0 !important;
     }
+}
+
+description,
+label:not(.sidebar-footer-label),
+[data-l10n-id="preferences-web-appearance-footer"] {
+    color: rgb(48, 57, 66) !important;
+    font-size: 14px !important;
+}
+description {
+    line-height: 20px !important;
+}
+
+[data-l10n-id="choose-browser-language-description"] {
+    margin-bottom: 8px !important;
 }
 
 .accessory-button,
