@@ -1,10 +1,31 @@
 /* bruni: This is the code for the window frame when composition
 		  is disabled. This code is also used by custom themes.*/
-
 &[chromemargin="0,0,0,0"] {
 	&[tabsintitlebar] {
 		#tabbrowser-arrowscrollbox {
 			padding-top: 7px !important;
+		}
+	}
+
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		body {
+			border: 0 !important;
+			border-radius: 0 !important;
+			box-shadow: none !important;
+		}
+
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 0 !important;
+			}
+		}
+	}
+
+	&[sizemode="maximized"] {
+		.titlebar-buttonbox-container {
+			margin-block-start: 0 !important;
+			margin-inline-end: 3px !important;
 		}
 	}
 	
@@ -14,7 +35,7 @@
 		}
 	
 		background: var(--titlebar-active);
-		box-shadow: inset 0 0 1px 0 rgb(255,255,255,.5);
+		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
 		border-top: 1px solid rgb(89,89,89);
 		border-left: 1px solid rgb(89,89,89);
 		border-bottom: 1px solid rgb(68,68,68);
@@ -28,6 +49,12 @@
 		appearance: unset !important;
 	}
 	
+	.titlebar-buttonbox-container {
+		margin: 0 !important;
+		margin-block-start: -3px !important;
+		margin-inline-end: 2px !important;
+	}
+
 	.titlebar-buttonbox {
 		appearance: unset !important;
 		-moz-default-appearance: -moz-window-button-box;
@@ -45,7 +72,7 @@
 			margin: 0 !important;
 			height: 17px;
 			box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
-			margin-top: -1px !important;
+			//margin-top: -1px !important;
 			transition: background-color 100ms linear;
 			background-clip: padding-box;
 	
@@ -91,11 +118,16 @@
 	&[sizemode="fullscreen"] {
 		body {
 			padding: 0 !important;
-			padding-top: 7px !important;
 		}
 	
 		.titlebar-max {
 			display: none !important;
+		}
+	}
+
+	&[sizemode="maximized"] {
+		body {
+			padding-top: 7px !important;
 		}
 	}
 	

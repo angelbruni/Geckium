@@ -67,6 +67,11 @@
         }
     }
 
+	#star-button-box > #star-button,
+	#star-button-box > #star-button[starred] {
+		fill: color-mix(in srgb, color-mix(in srgb, var(--toolbarbutton-icon-fill) 55%, #000) 80%, white) !important;
+	}
+
     #star-button-box {
         padding: 0 !important;
         align-items: center;

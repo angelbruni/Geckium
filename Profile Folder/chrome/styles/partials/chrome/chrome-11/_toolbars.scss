@@ -11,14 +11,14 @@
     --toolbarbutton-menu-width: var(--toolbarbutton-width);
     --toolbarbutton-outer-padding: 0.5px !important;
     --toolbarbutton-border-color-normal: transparent;
-    --toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
-    --toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-    --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-    --toolbarbutton-radius: 5px;
+	--toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
+	--toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+	--toolbarbutton-radius: 5px;
 
-    @media (prefers-color-scheme: dark) {
-        --toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
-        --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
+	@media (prefers-color-scheme: dark) {
+		--toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
+		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
     }
 
     #PersonalToolbar {
@@ -28,11 +28,7 @@
         border-radius: 5px !important;
     }
 
-    .toolbarbutton-1:not(
-            #fxa-toolbar-menu-button,
-            #tabs-newtab-button,
-            #new-tab-button
-        ) {
+    .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
         background: transparent !important;
         border: 1px solid transparent !important;
 
@@ -47,7 +43,7 @@
             transition: all 150ms linear;
             opacity: 0;
             z-index: 1;
-            height: 100%;
+			height: 100%;
         }
 
         &::after {
@@ -62,7 +58,7 @@
                 .toolbarbutton-badge-stack,
                 .toolbarbutton-icon,
                 image:first-of-type {
-                    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
+                    filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
                 }
 
                 &::before {
@@ -74,9 +70,7 @@
             &[open] {
                 background: rgba(0, 0, 0, 0.08) !important;
                 box-shadow: var(--toolbarbutton-shadow-active) !important;
-                border-color: var(
-                    --toolbarbutton-border-color-active
-                ) !important;
+                border-color: var(--toolbarbutton-border-color-active) !important;
 
                 &::before {
                     transition: none !important;
@@ -85,13 +79,13 @@
             }
         }
 
-        .toolbarbutton-badge-stack,
-        .toolbarbutton-icon,
-        image:first-of-type {
-            position: relative;
-            filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
-            z-index: 1;
-        }
+		.toolbarbutton-badge-stack,
+		.toolbarbutton-icon,
+		image:first-of-type {
+			position: relative;
+			filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
+			z-index: 1;
+		}
 
         &#back-button {
             &:not([disabled]) {
@@ -158,14 +152,14 @@
             border: 1px solid transparent !important;
             transition: none;
 
-            &::before {
-                content: "" !important;
-                transition: none;
-            }
+			&::before {
+				content: "" !important;
+				transition: none;
+			}
 
-            &::after {
-                content: unset;
-            }
+			&::after {
+				content: unset;
+			}
 
             &:not([disabled]) {
                 &:hover {
@@ -176,12 +170,12 @@
                     .toolbarbutton-badge-stack,
                     .toolbarbutton-icon,
                     image:first-of-type {
-                        filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
+                        filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
                     }
 
-                    &::before {
-                        opacity: 1;
-                    }
+					&::before {
+						opacity: 1;
+					}
                 }
 
                 &:active,
@@ -190,9 +184,9 @@
                     background-color: rgba(0, 0, 0, 0.08) !important;
                     box-shadow: var(--toolbarbutton-shadow-active) !important;
 
-                    &::before {
-                        content: unset !important;
-                    }
+					&::before {
+						content: unset !important;
+					}
                 }
             }
         }
@@ -204,12 +198,5 @@
 
     #PanelUI-menu-button {
         list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
-    }
-
-    #star-button-box {
-        color: rgb(119, 131, 151) !important;
-        #star-button[starred] {
-            fill: rgb(119, 131, 151) !important;
-        }
     }
 }
