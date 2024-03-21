@@ -1,0 +1,7 @@
+@-moz-document url-prefix(about),
+			   url-prefix(chrome://) {
+	[part="label-box"] > [part="icon"],
+	#defaultEngine .menu-iconic-left {
+		display: none !important;
+	}
+}
