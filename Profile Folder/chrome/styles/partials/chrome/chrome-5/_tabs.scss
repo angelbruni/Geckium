@@ -46,27 +46,25 @@
 
 
 
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 5%,
-						white
-					)
+					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
 				) !important;
 				--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
+
+
+
 			}
 	
 			@media (prefers-color-scheme: dark) {
 				--inactive-tab-background-color: color-mix(
                     in srgb,
-                    color-mix(
-						in srgb,
-						var(--lwt-accent-color) 80%,
-						black
-					) 80%,
+                    color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
                	 	transparent
                 ) !important;
 				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
 				--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
+
+
+
 			}
 		}
 	}
@@ -86,7 +84,8 @@
 							in srgb,
 							var(--toolbarbutton-icon-fill) 8%,
 							white
-						) 70%,
+						)
+						70%,
 						transparent
 					),
 					color-mix(
@@ -95,7 +94,8 @@
 							in srgb,
 							var(--toolbarbutton-icon-fill) 5%,
 							white
-						) 70%,
+						)
+						70%,
 						transparent
 					)
 				) !important;
@@ -137,6 +137,10 @@
 		.toolbar-items {
 			
 		}
+		
+		#private-browsing-indicator-with-label {
+            
+        }
 	}
 }
 
@@ -379,6 +383,10 @@
 	&:first-of-type {
 		margin-left: 9px !important
 	}
+	
+	.tab-secondary-label {
+        
+    }
 }
 
 .tab-content {
@@ -604,6 +612,11 @@
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
 	filter: blur(2px);
+}
+
+#private-browsing-indicator-with-label {
+    
+    
 }
 
 

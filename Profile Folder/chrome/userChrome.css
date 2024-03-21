@@ -37,12 +37,24 @@
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
+:root[chromemargin="0,0,0,0"][sizemode=maximized] body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+:root[chromemargin="0,0,0,0"][sizemode=maximized][tabsintitlebar] #tabbrowser-arrowscrollbox, :root[chromemargin="0,0,0,0"][sizemode=fullscreen][tabsintitlebar] #tabbrowser-arrowscrollbox {
+  padding-top: 0 !important;
+}
+:root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container {
+  margin-block-start: 0 !important;
+  margin-inline-end: 3px !important;
+}
 :root[chromemargin="0,0,0,0"] body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
 :root[chromemargin="0,0,0,0"] body {
   background: var(--titlebar-active);
-  box-shadow: inset 0 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgb(89, 89, 89);
   border-left: 1px solid rgb(89, 89, 89);
   border-bottom: 1px solid rgb(68, 68, 68);
@@ -55,6 +67,11 @@
   -webkit-appearance: unset !important;
      -moz-appearance: unset !important;
           appearance: unset !important;
+}
+:root[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
+  margin: 0 !important;
+  margin-block-start: -3px !important;
+  margin-inline-end: 2px !important;
 }
 :root[chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -webkit-appearance: unset !important;
@@ -75,7 +92,6 @@
     margin: 0 !important;
     height: 17px;
     box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
-    margin-top: -1px !important;
     transition: background-color 100ms linear;
     background-clip: padding-box;
   }
@@ -111,10 +127,12 @@
 }
 :root[chromemargin="0,0,0,0"][sizemode=maximized] body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
   padding: 0 !important;
-  padding-top: 7px !important;
 }
 :root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
+}
+:root[chromemargin="0,0,0,0"][sizemode=maximized] body {
+  padding-top: 7px !important;
 }
 :root[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -181,12 +199,17 @@
   		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
   background: rgba(1, 1, 1, 0.002) !important;
 }
+@media not (-moz-ev-native-controls-patch) {
+  :root:-moz-lwtheme {
+    background: white !important;
+  }
+}
 
 #private-browsing-indicator-with-label {
   align-items: end !important;
   margin-inline: 0 !important;
-  margin-inline-start: 3px !important;
-  margin-inline-end: 1px !important;
+  margin-inline-start: 5px !important;
+  margin-inline-end: -4px !important;
 }
 
 .private-browsing-indicator-icon {
@@ -232,11 +255,7 @@
     --tabbrowser-tab-selected: linear-gradient(
     	to top,
     	color-mix(in srgb, var(--toolbarbutton-icon-fill) 8%, white),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 5%,
-    		white
-    	)
+    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
     ) !important;
     --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
   }
@@ -245,11 +264,7 @@
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
     --inactive-tab-background-color: color-mix(
                     in srgb,
-                    color-mix(
-    		in srgb,
-    		var(--lwt-accent-color) 80%,
-    		black
-    	) 80%,
+                    color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
                	 	transparent
                 ) !important;
     --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
@@ -269,7 +284,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 8%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	),
     	color-mix(
@@ -278,7 +294,8 @@
     			in srgb,
     			var(--toolbarbutton-icon-fill) 5%,
     			white
-    		) 70%,
+    		)
+    		70%,
     		transparent
     	)
     ) !important;
@@ -456,7 +473,6 @@
 .tabbrowser-tab:first-of-type {
   margin-left: 9px !important;
 }
-
 .tab-content::before, .tab-content::after {
   position: absolute;
   width: var(--tab-sides-width);
@@ -717,12 +733,24 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized][tabsintitlebar] #tabbrowser-arrowscrollbox, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen][tabsintitlebar] #tabbrowser-arrowscrollbox {
+  padding-top: 0 !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container {
+  margin-block-start: 0 !important;
+  margin-inline-end: 3px !important;
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] body {
   background: var(--titlebar-active);
-  box-shadow: inset 0 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgb(89, 89, 89);
   border-left: 1px solid rgb(89, 89, 89);
   border-bottom: 1px solid rgb(68, 68, 68);
@@ -734,6 +762,11 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] #titlebar {
   -moz-appearance: unset !important;
        appearance: unset !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
+  margin: 0 !important;
+  margin-block-start: -3px !important;
+  margin-inline-end: 2px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -moz-appearance: unset !important;
@@ -752,7 +785,6 @@
     margin: 0 !important;
     height: 17px;
     box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
-    margin-top: -1px !important;
     -moz-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
     background-clip: padding-box;
@@ -790,10 +822,12 @@
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
   padding: 0 !important;
-  padding-top: 7px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body {
+  padding-top: 7px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -1171,12 +1205,22 @@
 :root[tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 12px !important;
 }
-#navigator-toolbox {
-  background: transparent !important;
-  border-bottom: 0 !important;
+:root[sizemode=fullscreen] #fullscr-toggler {
+  display: none !important;
 }
 
-.browser-toolbar {
+#navigator-toolbox {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+#navigator-toolbox[fullscreenShouldAnimate] {
+  transition: none !important;
+}
+
+#nav-bar,
+#PersonalToolbar {
   margin-inline: 2px;
 }
 
@@ -1419,8 +1463,8 @@ toolbar[overflowable][customizing] > .customization-target {
   border: 0 !important;
   background: transparent !important;
   padding: 0 !important;
-  margin-inline-start: 3px !important;
-  margin-inline-end: 1px !important;
+  margin-inline-start: 5px !important;
+  margin-inline-end: -4px !important;
   height: var(--tab-height);
 }
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack {
@@ -1648,9 +1692,6 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
 }
 #urlbar[focused=true]:not([supress-focus-border]) > #urlbar-background {
   outline: transparent !important;
-}
-#urlbar:not([focused=true]):not([pageproxystate=valid]) #urlbar-protocol {
-  display: none !important;
 }
 #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::before, #urlbar:not([focused=true]) .verifiedDomain[pageproxystate=valid]::after {
   position: absolute;
@@ -1986,6 +2027,10 @@ toolbar .toolbarbutton-1:not([disabled=true], [checked], [open]):active > .toolb
   margin: 0 !important;
 }
 
+#urlbar:not([focused=true]):not([pageproxystate=valid]) #urlbar-protocol {
+  display: none !important;
+}
+
 toolbarpaletteitem[place=palette] {
   justify-content: center;
   align-items: center;
@@ -2087,6 +2132,10 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six] #nav-bar[securestate=insecure] #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
+}
+:root[geckium-five][geckium-six] #star-button-box > #star-button,
+:root[geckium-five][geckium-six] #star-button-box > #star-button[starred] {
+  fill: color-mix(in srgb, color-mix(in srgb, var(--toolbarbutton-icon-fill) 55%, #000) 80%, white) !important;
 }
 :root[geckium-five][geckium-six] #star-button-box {
   padding: 0 !important;

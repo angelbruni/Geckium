@@ -54,13 +54,13 @@
 		}
 	}
 
-	&:not([focused="true"]) {
-		&:not([pageproxystate="valid"]) {
-			#urlbar-protocol {
-				display: none !important;
-			}
+	&:not([pageproxystate="valid"]) {
+		#urlbar-protocol {
+			
 		}
+	}
 
+	&:not([focused="true"]) {
 		.verifiedDomain {
 			&[pageproxystate="valid"] {
 				&::before,
@@ -580,4 +580,18 @@
 
 #custom-identity-label {
 	margin: 0 !important;
+}
+
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+#urlbar {
+	&:not([focused="true"]) {
+		&:not([pageproxystate="valid"]) {
+			#urlbar-protocol {
+				display: none !important;
+			}
+		}
+	}
 }

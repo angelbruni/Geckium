@@ -53,8 +53,12 @@ function applyApperance(choice) {
 
 	dispatchEvent(appearanceChanged);
 }
-applyApperance();
 window.addEventListener("load", applyApperance);
+
+// FIXME: Find the correct event instead of using a timeout initially.
+setTimeout(() => {
+	applyApperance();
+}, 50);
 
 function setThemeAttr() {
 	docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string())
@@ -80,19 +84,13 @@ function setThemeAttr() {
 		docElm.setAttribute("customthememode", customThemeMode);
 	}
 
+	if (navigator.userAgent.includes("Windows NT 10.0") && !window.matchMedia('(-moz-ev-native-controls-patch)').matches) {
+		docElm.setAttribute("chromemargin", "0,0,0,0");
+	}
+	
 	if (!window.matchMedia('(-moz-windows-compositor: 1)').matches) {
 		docElm.setAttribute("chromemargin", "0,0,0,0");
 	}
-
-	/*if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("default-theme") ) {
-		if (window.matchMedia('(-moz-windows-compositor: 1)').matches) {
-			docElm.setAttribute("chromemargin", "0,3,3,3");
-		} else {
-			docElm.setAttribute("chromemargin", "0,0,0,0");
-		}		
-	} else {
-		docElm.setAttribute("chromemargin", "0,0,0,0");
-	}*/
 }
 
 const themeObserver = {

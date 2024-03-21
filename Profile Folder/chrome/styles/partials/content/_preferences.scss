@@ -1,0 +1,469 @@
+@-moz-document url-prefix(about:preferences) {
+    :root {
+        
+    }
+
+    .navigation {
+        spacer {
+            
+        }
+
+        #categories {
+            
+            
+            
+            
+            
+
+            &::before {
+                
+                
+                
+                
+            }
+
+            .category {
+                
+                
+                
+                
+                
+                
+
+                &:hover,
+                &:active {
+                    
+                }
+
+                .category-icon {
+                    
+                }
+                .category-name {
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                &:is([selected="true"]) .category-name {
+                    
+                    
+                }
+            }
+        }
+
+        .sidebar-footer-list {
+            
+
+            &::before {
+                
+                
+                
+                
+            }
+
+            .sidebar-footer-link {
+                
+                
+                
+                
+                
+                
+                
+
+                &:hover {
+                    
+                }
+            }
+
+            .sidebar-footer-label,
+            .sidebar-footer-link {
+                
+                
+            }
+
+            .sidebar-footer-icon {
+                
+            }
+
+            &:is([selected="true"]) .sidebar-footer-link {
+                
+                
+            }
+        }
+    }
+
+	h1 {
+		&[data-l10n-id="pane-general-title"],
+		&[data-l10n-id="pane-home-title"],
+		&[data-l10n-id="pane-search-title"],
+		&[data-l10n-id="privacy-header"],
+		&[data-l10n-id="pane-sync-title3"],
+		&[data-l10n-id="more-from-moz-title"] {
+			
+			
+			
+			
+			
+			
+		}
+	}
+	.sticky-container {
+		
+		
+	}
+	search-textbox {
+		
+		
+		
+		
+		
+		
+		font-size: 9pt !important;
+		padding: 3px !important;
+		padding-bottom: 4px !important;
+		height: 24px !important;
+	
+		&[focused] {
+			
+			
+		}
+	
+		&#filter {
+			
+			
+		}
+	}
+	
+	.textbox-search-sign {
+		display: none !important;
+	}
+	
+	h1,
+	h2,
+	[data-l10n-id="update-application-allow-description"],
+	[data-l10n-id="applications-handle-new-file-types-description"] {
+		
+		
+		
+		
+	}
+	[data-l10n-id="startup-header"],
+	[data-l10n-id="search-bar-header"],
+	[data-l10n-id="content-blocking-enhanced-tracking-protection"],
+	#fxaGroup {
+		
+	}
+	
+	[data-l10n-id="applications-handle-new-file-types-description"] {
+		
+	}
+	
+	[data-l10n-id="applications-description"],
+	#performanceGroup {
+		
+	}
+	
+	[data-l10n-id="download-header"] {
+		font-size: 9pt !important;
+		
+	}
+	
+	#drmGroup {
+		
+	}
+	
+	[data-l10n-id="performance-use-recommended-settings-desc"] {
+		
+	}
+	
+	.updateSettingCrossUserWarningContainer {
+		
+		
+		
+	}
+	
+	checkbox,
+	radio {
+		
+	
+		&:not([disabled]):hover {
+			.checkbox-check,
+			.radio-check {
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+	
+			.checkbox-label,
+			.radio-label {
+				
+			}
+		}
+		&:not([disabled]):active {
+			.checkbox-check,
+			.radio-check {
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
+		&[focused] .radio-check {
+			
+		}
+	}
+	
+	.checkbox-check,
+	.radio-check,
+	input[type="radio"] {
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	.checkbox-check {
+		
+		
+	}
+	.radio-check,
+	input[type="radio"] {
+		
+		
+	}
+	.checkbox-label,
+	.radio-label {
+		font-size: 9pt !important;
+		
+	}
+	
+	.checkbox-check[checked] {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	.radio-check[selected],
+	input[type="radio"]:checked {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	#setDefaultPane {
+		
+	
+		#isDefaultPane,
+		#isNotDefaultPane {
+			
+		}
+	}
+	
+	.subcategory {
+		
+	}
+	
+	#updateSettingCrossUserWarningDesc {
+		
+		
+		
+		
+		
+	}
+	.info-icon {
+		
+		
+		
+		
+		
+		
+	}
+	
+	.face-smile,
+	.face-sad {
+		
+		
+		
+		
+		
+	}
+	
+	.face-smile::before {
+		
+		
+		
+		
+		
+		
+		
+	}
+	.face-sad::before {
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	description,
+	label:not(.sidebar-footer-label),
+	[data-l10n-id="preferences-web-appearance-footer"] {
+		
+		font-size: 9pt !important;	
+	}
+	description {
+		
+	}
+	
+	[data-l10n-id="choose-browser-language-description"],
+	[data-l10n-id="applications-description"] {
+		
+	}
+	
+	#downloadFolder {
+		height: 24px !important;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		box-sizing: border-box;
+	
+		&:focus {
+			
+			
+		}
+	}
+	#chooseFolder {
+		margin-inline-start: 3px !important;
+	}
+	
+	.accessory-button,
+	menulist:not(.actionsMenu),
+	.homepage-button,
+	[data-l10n-id="update-checkForUpdatesButton"] {
+		
+	}
+
+	menulist,
+	button {
+		
+		
+		
+		padding-inline: 10px !important;
+		padding-block: 1px !important;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		font-weight: normal !important;
+
+		&:not([disabled]):hover {
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+
+		&:not([disabled]):active {
+			
+			
+			
+			
+			
+			
+			
+		}
+	}
+	
+	.accessory-button {
+		min-width: 0 !important;
+	}
+	
+	menulist:not(.actionsMenu) {
+		padding-inline: 6px !important;
+	}
+	
+	.homepage-button {
+		
+	}
+	
+	listheader,
+	richlistbox {
+		
+	}
+	listheader {
+		
+		
+	}
+	richlistbox:not(#categories) {
+		
+		
+	
+		richlistitem[selected] {
+			
+			
+		}
+	
+		.actionContainer {
+			
+		}
+	}
+	#label-box:not([native]) {
+		
+	}
+	
+	menupopup menuitem {
+		&[selected] {
+			
+		}
+	}
+	
+	.web-appearance-choice {
+		
+	}
+}

@@ -393,7 +393,10 @@
 
 		&[profilepic="custom"] {
 			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+				background-image: var(
+					--custom-profile-picture,
+					url(assets/img/profile/0.png)
+				);
 			}
 		}
 	}
@@ -427,7 +430,8 @@
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		.browser-toolbar {
+		#nav-bar,
+        #PersonalToolbar {
 			
 			
 			
@@ -460,15 +464,28 @@
   			
   			
 		}
-	} 
+	}
+	
+	&[sizemode="fullscreen"] {
+		#fullscr-toggler {
+			display: none !important;
+		}
+	}
 }
 
 #navigator-toolbox {
 	background: transparent !important;
+	box-shadow: none !important;
+	border-top: 0 !important;
 	border-bottom: 0 !important;
+	
+	&[fullscreenShouldAnimate] {
+		transition: none !important;
+	}
 }
 
-.browser-toolbar {
+#nav-bar,
+#PersonalToolbar {
 	margin-inline: 2px;
 }
 
@@ -792,12 +809,12 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #fxa-toolbar-menu-button {
-	border: 0 !important;
-	background: transparent !important;
-	padding: 0 !important;
-	margin-inline-start: 3px !important;
-	margin-inline-end: 1px !important;
-	height: var(--tab-height);
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-inline-start: 5px !important;
+    margin-inline-end: -4px !important;
+    height: var(--tab-height);
 
 	.toolbarbutton-badge-stack {
 		background: transparent !important;
@@ -975,10 +992,17 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #toolbar-menubar #menubar-items {
     
-    
 }
 #main-menubar > menu {
     
+    
+}
+
+#permissions-granted-icon {
+    
+    
+}
+.blocked-permission-icon {
     
 }
 
