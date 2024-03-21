@@ -1,139 +1,57 @@
 & {
-	--tab-glare-opacity: 0.5;
-	--tab-glare: linear-gradient(90deg, transparent, white, transparent);
-    --tab-sides-width: 21px;
+    --tab-glare-opacity: 0.5;
+    --tab-glare: linear-gradient(90deg, transparent, white, transparent);
 
     --newtab-width: 34px;
     //--newtab-normal: rgb(211, 217, 225, 0.6);
-	--newtab-normal: var(--inactive-tab-background-color);
+    --newtab-normal: var(--inactive-tab-background-color);
     --newtab-hot: rgb(211, 217, 225, 0.8);
     --newtab-active: rgb(211, 217, 225, 0.4);
+}
 
-    .tabbrowser-tab {
-        &:not([visuallyselected="true"]) {
-            --tab-sides-width: 15px;
-
-            &:not(:first-of-type) {
-                .tab-content {
-                    &::before {
-                        background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
-                            no-repeat;
-                        background-position: 0 0px;
-                    }
-                }
-
-                .tab-stack {
-                    &::before {
-                        mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
-                    }
-                }
-
-                .tab-glare-left {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
-                }
-            }
-
-            .tab-content {
-                &::before,
-                &::after {
-                    bottom: -2px;
-                }
-
-                &::before {
-                    background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
-                        		no-repeat;
-					left: -14px;
-                }
-            }
-
-            .tab-stack {
-                &::before {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-                }
-
-                &::after {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-                }
-            }
-
-            .tab-content {
-                &::after {
-                    background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
-                        no-repeat;
-                }
-            }
-
-            .tab-context-line {
-                &::before {
-                    background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
-                        top;
-                }
-            }
-        }
-
-        &[visuallyselected="true"] {
-            position: relative;
-            z-index: 1000;
-
-            .tab-content {
-                &::before {
-                    background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
-                        		no-repeat;
-
-					/* bruni: This is a very dumb temporary fix for
-							  making the left side not appear very
-							  opaque when compared to the texture
-							  from the right side of the tab.*/
-					opacity: 0.5;
-                }
-
-                &::after {
-                    background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
-                        		no-repeat;
-                }
-            }
-
-            .tab-stack {
-                position: relative;
-
-                &::before {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-					left: calc(var(--tab-sides-width) * -1 + 6px);
-					mask-position: 1px 0px;
-                }
-
-                &::after {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-                }
-            }
-
-            .tab-context-line {
-                &::before {
-                    background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
-                        top;
-                }
-            }
-        }
-
-        .tab-stack {
-            &::before,
-            &::after {
-                bottom: 0px;
-
-				width: 15px;
-            }
-        }
-
+.tabbrowser-tab {
+    &:not([visuallyselected]) {
         .tab-content {
-            border-left: 13px solid transparent !important;
+            &::before {
+                background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
+                    no-repeat !important;
+                background-position: -6px 0 !important;
+            }
+            &::after {
+                background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
+                    no-repeat !important;
+                background-position: 0 0 !important;
+            }
+        }
+
+        .tab-context-line {
+            &::before {
+                background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
+                    top;
+                top: 0;
+            }
         }
     }
+    &[visuallyselected] {
+        .tab-content {
+            &::before {
+                background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
+                    no-repeat !important;
+                background-position: -6px 0 !important;
+            }
+            &::after {
+                background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
+                    no-repeat !important;
+                background-position: 0 0 !important;
+            }
+        }
 
-	.tab-glare-left {
-		mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-	}
-	
-	.tab-glare-right {
-		mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-	}
+        .tab-context-line {
+            &::before {
+                background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
+                    top;
+                top: 0;
+            }
+        }
+    }
 }

@@ -476,22 +476,22 @@
         }
     }
 
-	&[sizemode="fullscreen"] {
-		#fullscr-toggler {
-			display: none !important;
-		}
-	}
+    &[sizemode="fullscreen"] {
+        #fullscr-toggler {
+            display: none !important;
+        }
+    }
 }
 
 #navigator-toolbox {
     background: transparent !important;
-	box-shadow: none !important;
-	border-top: 0 !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
     border-bottom: 0 !important;
 
-	&[fullscreenShouldAnimate] {
-		transition: none !important;
-	}
+    &[fullscreenShouldAnimate] {
+        transition: none !important;
+    }
 }
 
 #nav-bar,
@@ -618,8 +618,8 @@ toolbar[overflowable][customizing] > .customization-target {
     &::before {
         content: "";
         position: absolute;
-        left: 2px;
-        right: 1px;
+        left: 3px;
+        right: 3px;
         bottom: -1px;
         height: 23px;
         background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png)
@@ -633,7 +633,11 @@ toolbar[overflowable][customizing] > .customization-target {
     margin: 0 !important;
 }
 
-.toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+.toolbarbutton-1:not(
+        #fxa-toolbar-menu-button,
+        #tabs-newtab-button,
+        #new-tab-button
+    ) {
     position: relative;
     padding: 0 !important;
     background: var(--toolbarbutton-gradient) !important;

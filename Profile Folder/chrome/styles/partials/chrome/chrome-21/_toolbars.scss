@@ -2,14 +2,14 @@
     --toolbarbutton-border-color-hot: rgb(192, 192, 192);
     --toolbarbutton-border-color-active: rgb(125, 125, 125);
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        inset 0 1px 2px rgb(255, 255, 255, 75%);
     --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
     --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
-    --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(66, 66, 66, 20%) !important;
+    --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
     --bookmark-item-color: #000000;
     --bookmark-item-hover-color: #062d75;
     --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
-    --toolbarbutton-radius: 3px;
+    --toolbarbutton-radius: 4px;
 
     &:not(:-moz-lwtheme) {
         --toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
@@ -32,35 +32,21 @@
         }
     }
 
-    .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
-        box-shadow: 0 1px 0 0 transparent !important;
-
-        &:not([disabled]) {
-            &:active,
-            &[open] {
-                background-color: rgba(0, 0, 0, 0.18) !important;
-            }
-
-            &:hover {
-                box-shadow: 0 1px 0 0 rgb(0, 0, 0, 24%) !important;
-                border-top-color: rgb(221, 221, 221) !important;
-            }
+    .toolbarbutton-1:not(
+            #fxa-toolbar-menu-button,
+            #tabs-newtab-button,
+            #new-tab-button
+        ) {
+        box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
+        &:not([disabled]):hover {
+            border-top-color: rgb(221, 221, 221) !important;
+            border-bottom-color: rgb(144, 144, 144) !important;
+            box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
+                inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
         }
-
-        &#unified-extensions-button,
-        &#PanelUI-menu-button {
-            &:not([disabled]) {
-                &:hover {
-                    background-color: transparent !important;
-                    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-                }
-
-                &:active,
-                &[open] {
-                    background-color: rgba(0, 0, 0, 0.18) !important;
-                    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
-                }
-            }
+        &:not([disabled]):active {
+            box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
+            border-color: var(--toolbarbutton-border-color-active) !important;
         }
     }
 
@@ -84,18 +70,17 @@
     box-shadow: var(--personal-toolbar-item-shadow);
     border: 1px solid transparent;
     box-sizing: border-box;
-    transition: none !important;
+    transition: all 150ms linear !important;
 
     &:hover {
         box-shadow: var(--personal-toolbar-item-hover-shadow) !important;
-        border: 1px solid #b0b0b0;
-        border-top-color: #cdcdcc;
+        border: 1px solid rgb(176, 176, 176);
+        border-top-color: rgb(205, 205, 204) !important;
+        border-bottom-color: rgb(144, 144, 144) !important;
         color: var(--bookmark-item-hover-color) !important;
-        transition: all 150ms linear !important;
 
         &::before {
             opacity: 1;
-            transition: all 150ms linear;
         }
     }
 
@@ -107,6 +92,7 @@
         top: 0;
         height: 1px;
         background: rgb(255, 255, 255, 80%);
+        transition: all 150ms linear;
         opacity: 0;
     }
 }
