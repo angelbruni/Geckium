@@ -1,0 +1,30 @@
+@-moz-document url-prefix(about),
+			   url-prefix(chrome://) {
+	.dialogBox,
+	#migrationWizardDialog {
+		border-radius: 3px !important;
+		border: 1px solid rgb(184,184,184) !important;
+	}
+
+	.dialogTitleBar {
+		border-bottom: 0 !important;
+		height: 50px !important;
+	}
+
+	.dialogTitleBar, 
+	.dialogFrame {
+		padding: 0 !important;
+		margin: 0 !important;
+		padding-inline: 18px !important;
+		font-size: 9pt !important;
+	}
+
+	.dialogTitle {
+		font-size: 11pt !important;
+		text-align: start !important;
+	}
+
+	.dialogClose {
+		margin: 0 !important;
+	}
+}

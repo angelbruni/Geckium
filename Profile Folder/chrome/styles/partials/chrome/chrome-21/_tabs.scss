@@ -1,13 +1,68 @@
 & {
 	--tab-glare-opacity: 0.5;
 	--tab-glare: linear-gradient(90deg, transparent, white, transparent);
-    --tab-sides-width: 21px;
 
     --newtab-width: 34px;
     //--newtab-normal: rgb(211, 217, 225, 0.6);
 	--newtab-normal: var(--inactive-tab-background-color);
     --newtab-hot: rgb(211, 217, 225, 0.8);
     --newtab-active: rgb(211, 217, 225, 0.4);
+
+	.tabbrowser-tab {
+		&:not([visuallyselected]) {
+			.tab-content {
+				&::before {
+
+
+
+				}
+				&::after {
+					
+
+					
+				}
+			}
+			
+			.tab-context-line {
+				&::before {
+					
+					
+					
+				}
+			}
+		}
+		
+		&[visuallyselected] {
+			.tab-content {
+				&::before {
+					
+
+					
+				}
+				&::after {
+					
+					
+					
+				}
+			}
+
+			.tab-context-line {
+				&::before {
+					
+					
+					
+				}
+			}
+		}
+	}
+}
+
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+& {
+    --tab-sides-width: 21px;
 
 	.tabbrowser-tab {
 		&:not([visuallyselected="true"]) {

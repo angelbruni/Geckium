@@ -1,0 +1,92 @@
+@-moz-document url-prefix(about),
+			   url-prefix(chrome://) {
+	checkbox,
+	radio {
+		
+
+		&:not([disabled]):hover {
+			.checkbox-check,
+			.radio-check {
+				
+				
+				
+
+				
+				
+
+
+			}
+
+			.checkbox-label,
+			.radio-label {
+				
+			}
+		}
+		&:not([disabled]):active {
+			.checkbox-check,
+			.radio-check {
+				
+
+				
+				
+				
+				
+				
+			}
+		}
+		&[focused] .radio-check {
+			
+		}
+	}
+
+	.checkbox-check,
+	.radio-check,
+	input[type="radio"] {
+		
+		
+		
+
+		
+		
+		
+		
+	}
+	.checkbox-check {
+		
+		
+	}
+	.radio-check,
+	input[type="radio"] {
+		
+		
+	}
+	.checkbox-label,
+	.radio-label {
+		font-size: 9pt !important;
+		
+	}
+
+	.checkbox-check[checked] {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	.radio-check[selected],
+	input[type="radio"]:checked {
+		
+		
+		
+		
+		
+
+		
+		
+		
+	}
+}
