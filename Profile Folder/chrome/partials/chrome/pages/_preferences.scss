@@ -211,7 +211,8 @@ radio {
 }
 
 .checkbox-check,
-.radio-check {
+.radio-check,
+input[type="radio"] {
     background: linear-gradient(to top, #e0e0e0, #f0f0f0);
     border: 1px solid rgb(0, 0, 0, 30%) !important;
     box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
@@ -221,7 +222,8 @@ radio {
     height: 13px !important;
     width: 13px !important;
 }
-.radio-check {
+.radio-check,
+input[type="radio"] {
     height: 15px !important;
     width: 15px !important;
 }
@@ -238,7 +240,8 @@ radio {
     background-repeat: no-repeat;
     background-position: center center;
 }
-.radio-check[selected] {
+.radio-check[selected],
+input[type="radio"]:checked {
     background-image: url(assets/img/pages/radio.png),
         linear-gradient(to top, #e0e0e0, #f0f0f0) !important;
     background-color: transparent !important;
@@ -411,4 +414,8 @@ menupopup menuitem {
     &[selected] {
         color: red !important;
     }
+}
+
+.web-appearance-choice {
+    border-radius: 2px !important;
 }

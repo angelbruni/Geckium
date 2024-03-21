@@ -46,6 +46,12 @@
 
     font-size: 10pt !important;
 
+    &:not([pageproxystate="valid"]) {
+        #urlbar-protocol {
+            display: none !important;
+        }
+    }
+
     &[focused="true"] {
         &:not([supress-focus-border]) {
             > #urlbar-background {
@@ -55,12 +61,6 @@
     }
 
     &:not([focused="true"]) {
-        &:not([pageproxystate="valid"]) {
-            #urlbar-protocol {
-                display: none !important;
-            }
-        }
-
         .verifiedDomain {
             &[pageproxystate="valid"] {
                 &::before,
@@ -175,9 +175,9 @@
         }
     }
 
-	#identity-box[pageproxystate="valid"].notSecure #identity-icon {
-		list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
-	}
+    #identity-box[pageproxystate="valid"].notSecure #identity-icon {
+        list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
+    }
 }
 
 #custom-identity-label {
