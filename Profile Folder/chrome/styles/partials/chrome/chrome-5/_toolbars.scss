@@ -379,6 +379,12 @@
         }
     }
 
+	&[profilepic="disabled"] {
+		#fxa-toolbar-menu-button {
+			display: none !important;
+		}
+	}
+
     &:not([profilepic="firefox"]) {
         #fxa-toolbar-menu-button {
             #fxa-avatar-image {
@@ -468,7 +474,8 @@
             }
         }
 
-        #browser {
+        #browser,
+		#customization-container {
             box-shadow: 0 !important;
             border: none;
             margin: 0;
@@ -582,7 +589,8 @@ toolbar[overflowable][customizing] > .customization-target {
     overflow: visible !important;
 }
 
-#browser {
+#browser,
+#customization-container {
     position: relative;
     border: 1px solid var(--inner-border-color);
     margin: 2px;
@@ -747,6 +755,7 @@ toolbar[overflowable][customizing] > .customization-target {
     .toolbarbutton-icon {
         width: auto !important;
         height: auto !important;
+		max-height: 19px !important;
     }
 
     .toolbarbutton-badge-stack {
@@ -809,11 +818,15 @@ toolbar[overflowable][customizing] > .customization-target {
     }
 
     &#unified-extensions-button,
-    &#PanelUI-menu-button {
-        width: var(--toolbarbutton-menu-width) !important;
+    &#PanelUI-menu-button,
+	&[class*="webextension"] {
         border: 0 !important;
         background: transparent !important;
         transition: background-color 100ms linear;
+		
+		&:not([class*="webextension"]) {
+			width: var(--toolbarbutton-menu-width) !important;
+		}
 
         &::after,
         &::before {
@@ -839,6 +852,14 @@ toolbar[overflowable][customizing] > .customization-target {
             }
         }
     }
+}
+
+.toolbaritem-combined-buttons {
+	margin-inline: 0 !important;
+
+	> separator {
+		display: none !important;
+	}
 }
 
 #fxa-toolbar-menu-button {
