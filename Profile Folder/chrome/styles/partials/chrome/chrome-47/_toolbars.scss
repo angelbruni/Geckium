@@ -24,3 +24,10 @@
         mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
     }
 }
+
+.bookmark-item {
+    transition: all 150ms linear !important;
+    &::before {
+        transition: all 150ms linear !important;
+    }
+}

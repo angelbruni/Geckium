@@ -1,27 +1,30 @@
 & {
-	#nav-bar {
-		&[securestate="secure"],
-		&[securestate="ev"] {
-			#identity-icon {
-				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
-			}
-		}
+    #nav-bar {
+        &[securestate="secure"],
+        &[securestate="ev"] {
+            #identity-icon {
+                list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
+            }
+        }
 
-		&[securestate="warning"] {
-			#identity-icon {
-				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
-			}
-		}
+        &[securestate="warning"] {
+            #identity-icon {
+                list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
+            }
+        }
 
-		&[securestate="insecure"] {
-			#identity-icon {
-				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
-			}
-		}
-	}
+        &[securestate="insecure"] {
+            #identity-icon {
+                list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
+            }
+        }
+    }
 
-	#urlbar-background,
-	#searchbar {
-		outline: 1px solid rgba(255,255,255,.3);
-	}
+    #urlbar-background,
+    #searchbar {
+        outline: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    #urlbar-background {
+        border-radius: 3px !important;
+    }
 }

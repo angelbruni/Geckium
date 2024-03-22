@@ -70,7 +70,7 @@
     box-shadow: var(--personal-toolbar-item-shadow);
     border: 1px solid transparent;
     box-sizing: border-box;
-    transition: all 150ms linear !important;
+    transition: none !important;
 
     &:hover {
         box-shadow: var(--personal-toolbar-item-hover-shadow) !important;
@@ -78,9 +78,11 @@
         border-top-color: rgb(205, 205, 204) !important;
         border-bottom-color: rgb(144, 144, 144) !important;
         color: var(--bookmark-item-hover-color) !important;
+        transition: all 150ms linear !important;
 
         &::before {
             opacity: 1;
+            transition: all 150ms linear !important;
         }
     }
 
@@ -92,7 +94,7 @@
         top: 0;
         height: 1px;
         background: rgb(255, 255, 255, 80%);
-        transition: all 150ms linear;
+        transition: none !important;
         opacity: 0;
     }
 }
