@@ -15,11 +15,12 @@
 		margin-inline: 4px !important;
 	}
 
-	#urlbar-background {
-		background-color: var(--toolbar-field-background-color) !important;
-		border-inline: 1px solid var(--urlbar-border) !important;
-		border-radius: var(--toolbarbutton-radius) !important;
-	}
+    #urlbar-background,
+	#searchbar {
+        background-color: var(--toolbar-field-background-color) !important;
+        border: 1px solid var(--urlbar-border) !important;
+        border-radius: var(--toolbarbutton-radius) !important;
+    }
 
 	.urlbar-input-box {
 		height: calc(var(--urlbar-height-definitive) - 1px) !important;
