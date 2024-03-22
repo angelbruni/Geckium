@@ -404,7 +404,7 @@
   min-width: 0 !important;
   color: var(--tabbrowser-tab-color) !important;
   /* bruni: We are changing the favicon of about pages like
-  		  this so we can have era-specific icons. */
+   this so we can have era-specific icons. */
   /* bruni: This controls the tab "open"/"close" transition. */
   /* bruni: This makes it so the tab does not disappear when it starts "close" transition 
    and it also makes the tab disappear when the background reaches min-width just
@@ -521,7 +521,7 @@
   border-right: 0 !important;
   padding-right: 3px !important;
 }
-.tabbrowser-tab:first-child {
+.tabbrowser-tab:first-of-type {
   margin-left: 11px !important;
 }
 .tabbrowser-tab .tab-secondary-label {
@@ -2845,8 +2845,8 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
   --tab-width: 188px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tabbrowser-tab:first-child {
-  margin-left: 7px !important;
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tabbrowser-tab:first-of-type {
+  margin-left: 11px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-content {
   padding-right: 1px !important;
