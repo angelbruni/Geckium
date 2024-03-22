@@ -30,15 +30,35 @@
 	}
 
 	&:not([visuallyselected]) {
+		&:not(:first-of-type) {
+            .tab-content {
+                &::before {
+                    background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
+                        no-repeat;
+                    background-position: 0 2px;
+                }
+            }
+            .tab-stack {
+                &::before {
+                    mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+                }
+            }
+            .tab-glare-left {
+                mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+                mask-position-y: -1px;
+                width: 12px;
+            }
+        }
+
 		.tab-content {
 			&::before {
-
-
-
+				background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
+					no-repeat;
+				
 			}
 			&::after {
-				
-
+				background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
+					no-repeat;
 				
 			}
 		}
@@ -74,6 +94,13 @@
 			}
 		}
 	}
+}
+
+.tab-glare-left {
+    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+}
+.tab-glare-right {
+    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
 }
 
 
