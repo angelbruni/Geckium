@@ -547,26 +547,6 @@
 }
 
 #tabbrowser-tabs {
-    /* bruni: This will make the alpha for the tabs revert to the normal mask,
-			  however, I found this to look more jarring than with it disabled. */
-    /*&[movingtab] .tabbrowser-tab:not([visuallyselected="true"]):not(:first-of-type) {
-		.tab-content {
-			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
-			}
-		}
-
-		.tab-stack {
-			&::before {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-			}
-		}
-
-		.tab-glare-left {
-			mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-		}
-	}*/
-
     border-inline-start: 0 !important;
 
     &:not([secondarytext-unsupported]) {
@@ -647,6 +627,24 @@
 				sometimes in the middle it produces transparent Y pixels,
 				so we are trying to blur it to make it unnoticeable. */
     filter: blur(2px);
+}
+
+.tab-close-button {
+    list-style-image: none !important;
+    height: 12px !important;
+    width: 12px !important;
+    padding: 0 !important;
+    margin-inline-end: -2px !important;
+    margin-top: 2px;
+    background-image: url(assets/img/chrome-5/tabbar/tab_close_mask.png);
+
+    &:hover {
+        background-image: url(assets/img/chrome-5/tabbar/tab_close_h.png);
+    }
+
+    &:active {
+        background-image: url(assets/img/chrome-5/tabbar/tab_close_p.png);
+    }
 }
 
 #private-browsing-indicator-with-label {

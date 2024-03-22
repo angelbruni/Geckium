@@ -1,0 +1,27 @@
+& {
+	--tab-width: 188px;
+}
+
+.tabbrowser-tab {
+	&:first-child {
+        margin-left: 7px !important;
+    }
+}
+
+.tab-content {
+	padding-right: 1px !important;
+}
+
+.tab-close-button {
+    height: 18px !important;
+    width: 18px !important;
+    background-image: url(assets/img/chrome-47/tabbar/tab_close_mask.png);
+
+    &:hover {
+        background-image: url(assets/img/chrome-47/tabbar/tab_close_h.png);
+    }
+
+    &:active {
+        background-image: url(assets/img/chrome-47/tabbar/tab_close_p.png);
+    }
+}
