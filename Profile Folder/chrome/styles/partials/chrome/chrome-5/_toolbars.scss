@@ -744,6 +744,14 @@ toolbar[overflowable][customizing] > .customization-target {
 		background: transparent !important;
 	}
 
+	.toolbarbutton-badge {
+		margin: 0 !important;
+		margin-block-end: 1px !important;
+		align-self: end !important;
+		justify-self: center !important;
+		z-index: 1;
+	}
+
 	/* bruni: Navigation buttons needs some rethinking. */
 	&#back-button {
 		border-top-right-radius: 0 !important;
@@ -821,6 +829,7 @@ toolbar[overflowable][customizing] > .customization-target {
     padding: 0 !important;
     margin-inline-start: 5px !important;
     margin-inline-end: -4px !important;
+	
     height: var(--tab-height);
 
 	.toolbarbutton-badge-stack {
