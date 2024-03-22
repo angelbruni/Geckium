@@ -1,21 +1,55 @@
 @-moz-document url-prefix(about),
-			   url-prefix(chrome://) {
+			   url-prefix(chrome://browser/content/preferences/dialogs),
+			   url-prefix(chrome://pippki/content),
+			   url-prefix(chrome://mozapps/content/update/history.xhtml),
+			   url-prefix(chrome://browser/content/sanitize.xhtml) {
+
+	:root {
+		--modal-background: rgb(251,251,251) !important;
+		--in-content-font-body-size-base: 9pt !important;
+	}
+
+	@keyframes modal-open {
+		0% {
+			opacity: 0;
+			transform: scale(.95);
+		}
+
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+	
+	.dialogOverlay {
+		background: transparent !important;
+	}
+
 	.dialogBox,
 	#migrationWizardDialog {
+		background-color: var(--modal-background) !important;
 		border-radius: 3px !important;
-		border: 1px solid rgb(184,184,184) !important;
+		border: 1px solid rgb(0,0,0,.3) !important;
+		box-shadow: 0 2px 1px 0 rgba(0,0,0,.2) !important;
+		box-sizing: content-box !important;
+		padding-inline: 18px !important;
+		padding-block-end: 16px !important;
+		background-clip: unset !important;
+		animation: modal-open .3s linear forwards;
 	}
 
 	.dialogTitleBar {
 		border-bottom: 0 !important;
 		height: 50px !important;
+		padding-inline: 18px !important;
 	}
 
 	.dialogTitleBar, 
 	.dialogFrame {
 		padding: 0 !important;
 		margin: 0 !important;
-		padding-inline: 18px !important;
+		min-width: 0 !important;
+		width: auto !important;
 		font-size: 9pt !important;
 	}
 
@@ -26,5 +60,31 @@
 
 	.dialogClose {
 		margin: 0 !important;
+	}
+
+	dialog {
+		background-color: var(--modal-background) !important;
+		padding: 0 !important;
+
+		groupbox > label:first-of-type > h2 {
+			margin: 0 !important;
+		}
+	}
+
+	vbox[part="content-box"] {
+		padding: 0 !important;
+	}
+
+	.dialog-button-box {
+		margin-block-start: 26px;
+		gap: 10px;
+	}
+
+	dialog > hbox {
+		gap: 20px;
+	}
+
+	h2 {
+		font-size: 9pt;
 	}
 }
