@@ -482,6 +482,9 @@
   border-right: 0 !important;
   padding-right: 3px !important;
 }
+.tabbrowser-tab:first-of-type {
+  margin-left: 9px !important;
+}
 .tab-content::before, .tab-content::after {
   position: absolute;
   width: var(--tab-sides-width);
@@ -591,6 +594,7 @@
 }
 
 #tabbrowser-tabs {
+  margin-inline-start: 0 !important;
   border-inline-start: 0 !important;
 }
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
