@@ -235,12 +235,22 @@
     }
 }
 
-#urlbar-background {
+#urlbar-background,
+#searchbar {
     border-inline: 0 !important;
     border-block: 1px solid var(--urlbar-border) !important;
     box-shadow: none !important;
     border-radius: 0 !important;
     height: var(--urlbar-height-definitive);
+}
+
+.searchbar-search-button {
+	justify-content: center !important;
+	margin-inline-end: 3px !important;
+}
+
+.searchbar-search-icon {
+	margin: 0 !important;
 }
 
 #identity-box-button,
@@ -314,12 +324,15 @@
     }
 }
 
+#urlbar-container,
+#search-container {
+	padding: 0 !important;
+    margin-inline: 2px !important;
+}
+
 #urlbar-container {
     --urlbar-container-height: var(--urlbar-height-definitive) !important;
-
-    padding: 0 !important;
-    margin-inline: 2px !important;
-
+	
     &:not([starpos="start"]) {
         #go-button-box {
             display: none;
@@ -331,7 +344,9 @@
     }
 }
 
-#urlbar-input-container {
+#urlbar-input-container,
+#searchbar {
+	min-height: var(--urlbar-height-definitive) !important;
     height: var(--urlbar-height-definitive) !important;
     padding: 0 !important;
     padding-inline-start: 4px !important;
