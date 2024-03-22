@@ -10,27 +10,29 @@
 }
 
 .tabbrowser-tab {
-	/* bruni: We are changing the favicon of about pages like
+    /* bruni: We are changing the favicon of about pages like
 		this so we can have era-specific icons. */
-	&:not([busy]) {
-		&[image="chrome://global/skin/icons/settings.svg"] {
-			.tab-label {
-				&::before {
-					content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
-				}
-			}
-		}
-		&[image="chrome://mozapps/skin/extensions/extension.svg"] {
-			.tab-label {
-				&::before {
-					content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
-				}
-			}
-		}
-	}
+    &:not([busy]) {
+        &[image="chrome://global/skin/icons/settings.svg"]
+        {
+            .tab-label {
+                &::before {
+                    content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
+                }
+            }
+        }
+        &[image="chrome://mozapps/skin/extensions/extension.svg"]
+        {
+            .tab-label {
+                &::before {
+                    content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
+                }
+            }
+        }
+    }
 
     &:not([visuallyselected]) {
-		&:not(:first-of-type) {
+        &:not(:first-of-type) {
             .tab-content {
                 &::before {
                     background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)

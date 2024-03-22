@@ -1615,15 +1615,6 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button) .toolbarbutton-badge {
-  margin: 0 !important;
-  margin-block-end: 1px !important;
-  align-self: end !important;
-  justify-self: center !important;
-  z-index: 1;
-}
-.toolbarbutton-1:not(#fxa-toolbar-menu-button,
-#tabs-newtab-button,
 #new-tab-button)#back-button {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -2851,7 +2842,9 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #urlbar-background,
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #searchbar {
   outline: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: calc(var(--toolbarbutton-radius) - 1) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #urlbar-background {
+  border-radius: 3px !important;
 }
 
 /* Chrome 21 -> ~47 */
