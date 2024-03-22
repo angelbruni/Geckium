@@ -7,51 +7,70 @@
 	--newtab-normal: var(--inactive-tab-background-color);
     --newtab-hot: rgb(211, 217, 225, 0.8);
     --newtab-active: rgb(211, 217, 225, 0.4);
+}
 
-	.tabbrowser-tab {
-		&:not([visuallyselected]) {
-			.tab-content {
+.tabbrowser-tab {
+	/* bruni: We are changing the favicon of about pages like
+		this so we can have era-specific icons. */
+	&:not([busy]) {
+		&[image="chrome://global/skin/icons/settings.svg"] {
+			.tab-label {
 				&::before {
-
-
-
-				}
-				&::after {
-					
-
-					
-				}
-			}
-			
-			.tab-context-line {
-				&::before {
-					
-					
-					
+					content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
 				}
 			}
 		}
-		
-		&[visuallyselected] {
-			.tab-content {
+		&[image="chrome://mozapps/skin/extensions/extension.svg"] {
+			.tab-label {
 				&::before {
-					
-
-					
-				}
-				&::after {
-					
-					
-					
+					content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
 				}
 			}
+		}
+	}
 
-			.tab-context-line {
-				&::before {
-					
-					
-					
-				}
+	&:not([visuallyselected]) {
+		.tab-content {
+			&::before {
+
+
+
+			}
+			&::after {
+				
+
+				
+			}
+		}
+		
+		.tab-context-line {
+			&::before {
+				
+				
+				
+			}
+		}
+	}
+	
+	&[visuallyselected] {
+		.tab-content {
+			&::before {
+				
+
+				
+			}
+			&::after {
+				
+				
+				
+			}
+		}
+
+		.tab-context-line {
+			&::before {
+				
+				
+				
 			}
 		}
 	}
