@@ -407,7 +407,7 @@
     }
 
     &:first-of-type {
-        margin-left: 11px !important;
+        margin-left: 9px !important;
     }
 
     .tab-secondary-label {
@@ -550,6 +550,7 @@
 }
 
 #tabbrowser-tabs {
+	margin-inline-start: 0 !important;
     border-inline-start: 0 !important;
 
     &:not([secondarytext-unsupported]) {

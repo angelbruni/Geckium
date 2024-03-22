@@ -522,7 +522,7 @@
   padding-right: 3px !important;
 }
 .tabbrowser-tab:first-of-type {
-  margin-left: 11px !important;
+  margin-left: 9px !important;
 }
 .tabbrowser-tab .tab-secondary-label {
   display: none !important;
@@ -643,6 +643,7 @@
 }
 
 #tabbrowser-tabs {
+  margin-inline-start: 0 !important;
   border-inline-start: 0 !important;
 }
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
@@ -2862,9 +2863,6 @@ toolbarpaletteitem[place=palette] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
   --tab-width: 188px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tabbrowser-tab:first-of-type {
-  margin-left: 11px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-content {
   padding-right: 1px !important;
