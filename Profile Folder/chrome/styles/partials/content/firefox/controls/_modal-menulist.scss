@@ -1,0 +1,41 @@
+@-moz-document url-prefix(chrome://browser/content/preferences/dialogs),
+			   url-prefix(chrome://pippki/content),
+			   url-prefix(chrome://mozapps/content/update/history.xhtml),
+			   url-prefix(chrome://browser/content/sanitize.xhtml) {
+	menulist,
+	input[type="text"],
+	search-textbox {
+		margin: 0 !important;
+		padding: 0 !important;
+		min-height: 24px !important;
+		border-radius: 0 !important;
+		border: 1px solid rgb(217,217,217) !important;
+		background-color: rgb(251,251,251) !important;
+		box-sizing: border-box !important;
+
+		&:focus {
+			border-color: rgb(62,126,248) !important;
+		}
+
+		&#availableLanguages {
+			margin-inline-end: 10px !important;
+		}
+	}
+
+	input[type="text"],
+	search-textbox {
+		background-color: white !important;
+	}
+
+	hbox[id="label-box"][part="label-box"] {
+		font-weight: normal !important;
+	}
+	
+	#font-chooser-group {
+		gap: 12px 10px;
+	}
+
+	label + menulist {
+		margin-inline-start: 10px !important;
+	}
+}
