@@ -34,19 +34,17 @@
 
     .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
 
-
-
-
-
-		&:not([disabled]):hover {
-            
-            
-            
-            
-        }
-		&:not([disabled]):active {
-            
-            
+		&:not([disabled]) {
+			&:hover {
+				
+				
+				
+				
+			}
+			&:active {
+				
+				
+			}
 		}
 	}
 

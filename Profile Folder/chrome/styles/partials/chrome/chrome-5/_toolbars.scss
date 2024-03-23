@@ -6,22 +6,16 @@
 
 
 	--personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--personal-toolbar-height: 24px;
 	--personal-toolbar-border-bottom: rgb(182, 186, 192);
 	--personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
 		0 0 0 1px transparent, 0 1px 1px 2px transparent,
 		inset 0 0 1px 1px transparent;
     --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
-		rgb(255, 255, 255, 30%),
-		0 0 0 1px rgb(0, 0, 0, 14%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+            rgb(255, 255, 255, 30%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
 		inset 0 0 1px 1px transparent;
+    --personal-toolbar-item-hover-bg: rgba(255,255,255,.5) !important;
     
-    
-    
-    
-    
-    
-    
-
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 2px !important;
 	--inner-border-color: #dfdfdf;
@@ -433,6 +427,12 @@
 			
 		}
 	}
+	&[sizemode="normal"] {
+		#toolbar-menubar:not([inactive]) {
+			margin-block-end: -15px;
+			z-index: 1;
+		}
+	}
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
@@ -536,6 +536,7 @@
 
 #nav-bar-customization-target,
 #PanelUI-button {
+	align-items: center;
     margin-top: -1px;
 }
 
@@ -613,10 +614,6 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
-
-
-
-	
     
     padding: 0 !important;
     background: var(--toolbarbutton-gradient) !important;
@@ -976,7 +973,7 @@ toolbar[overflowable][customizing] > .customization-target {
 #PersonalToolbar {
 
 
-	height: 24px;
+	height: var(--personal-toolbar-height) !important;
 	
 	background: var(--personal-toolbar) !important;
 	
@@ -997,16 +994,27 @@ toolbar[overflowable][customizing] > .customization-target {
 	}
 }
 
+#PlacesToolbar {
+	margin-top: -5px;
+}
+
+#PlacesToolbarItems {
+	gap: 2px;
+}
+
 .bookmark-item {
+	border: 1px solid transparent;
 	
-	
-	
+
+	margin: 0 !important;
 	border-radius: var(--toolbarbutton-radius) !important;
 
 	
 
-	&:hover {
 
+	&:hover {
+		border: 1px solid rgba(0, 0, 0, .14);
+        //box-shadow: var(--personal-toolbar-item-hover-shadow);
 		
 	}
 }
