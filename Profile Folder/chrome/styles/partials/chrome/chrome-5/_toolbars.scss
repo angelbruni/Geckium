@@ -534,8 +534,9 @@
     }
 }
 
-#nav-bar-customization-target {
-	align-items: center;
+#nav-bar-customization-target,
+#PanelUI-button {
+    margin-top: -1px;
 }
 
 .close-icon:hover {
@@ -889,6 +890,10 @@ toolbar[overflowable][customizing] > .customization-target {
     padding: 0 !important;
 	min-height: 19px !important;
 	min-width: 19px !important;
+}
+
+#identity-permission-box {
+	display: none !important;
 }
 
 .identity-box-button,

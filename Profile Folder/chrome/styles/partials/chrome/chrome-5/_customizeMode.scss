@@ -4,3 +4,26 @@ toolbarpaletteitem {
 		align-items: center;
 	}
 }
+
+#wrapper-firefox-view-button,
+[id*="wrapper-customizableui-special-spring"] {
+	display: none !important;
+}
+
+#customization-footer {
+	border-top: 0 !important;
+	padding-block-start: 10px !important;
+	padding-block-end: 19px !important;
+	padding-inline: 21px !important;
+	gap: 10px !important;
+
+	button {
+		min-width: 0 !important;
+		margin: 0 !important;
+	}
+}
+
+#customization-uidensity-button,
+#customization-reset-button {
+	display: none !important;
+}

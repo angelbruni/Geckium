@@ -1,0 +1,50 @@
+& {
+	--urlbarView: white !important;
+}
+
+#urlbar {
+	font-size: 11pt !important;
+}
+
+.urlbarView {
+	margin-top: 5px !important;
+	border-radius: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	padding-block: 3px !important;
+	overflow: visible !important;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		background: white !important;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.3) !important;
+		box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+		height: 100%;
+		top: 0px;
+		z-index: -1;
+	}
+
+	&::before {
+		left: -50%;
+	}
+
+	&::after {
+		right: -50%;
+	}
+}
+
+.urlbarView-body-inner {
+	margin-inline-start: 1px !important;
+	width: calc(100% - 2px) !important;
+}
+
+.urlbarView-row-inner {
+	min-height: 23px !important;
+}
+
+.urlbarView-url {
+	color: rgb(11,128,96) !important;
+}
