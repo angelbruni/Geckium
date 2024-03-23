@@ -10,8 +10,9 @@ const appearanceMap = {
 	1: "six",
 	2: "eleven",
 	3: "twentyone",
-	4: "fortyseven",
-	5: "fifty"
+	4: "twentysix",
+	5: "fortyseven",
+	6: "fifty",
 };
 
 function applyApperance(choice) {
@@ -25,10 +26,9 @@ function applyApperance(choice) {
 
 	// bruni: Let's remove all appearance attributes first.
 	const pastAttrs = docElm.getAttributeNames();
-    pastAttrs.forEach(attr => {
-        if (attr.startsWith("geckium-"))
-            docElm.removeAttribute(attr);
-    });
+	pastAttrs.forEach((attr) => {
+		if (attr.startsWith("geckium-")) docElm.removeAttribute(attr);
+	});
 
 	// bruni: Let's apply the correct appearance attributes.
 	if (typeof choice == "undefined") {
@@ -42,11 +42,11 @@ function applyApperance(choice) {
 	}
 
 	for (let i = 0; i <= choice; i++) {
-        if (appearanceMap[i]) {
-            const attr = "geckium-" + appearanceMap[i];
-            docElm.setAttribute(attr, "");
-        }
-    }
+		if (appearanceMap[i]) {
+			const attr = "geckium-" + appearanceMap[i];
+			docElm.setAttribute(attr, "");
+		}
+	}
 
 	// bruni: Let's also apply the attribute specific to the
 	//		  user choice so we can make unique styles for it.
@@ -64,28 +64,41 @@ setTimeout(() => {
 function setThemeAttr() {
 	docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string())
 
+
+
+
 	if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
+
+
+
+
 		docElm.setAttribute("chromemargin", "0,3,3,3");
 	} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact")) {
+
+
+
+		
 		docElm.setAttribute("chromemargin", "0,3,3,3");
 	} else {
 		let customThemeMode;
 
 		if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
 			customThemeMode = 0;
-			docElm.setAttribute("chromemargin", "0,0,0,0")
+			docElm.setAttribute("chromemargin", "0,0,0,0");
 		} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
 			customThemeMode = 1;
-			docElm.setAttribute("chromemargin", "0,0,0,0")
+			docElm.setAttribute("chromemargin", "0,0,0,0");
 		} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
 			customThemeMode = 2;
-			docElm.setAttribute("chromemargin", "0,3,3,3")
+			docElm.setAttribute("chromemargin", "0,3,3,3");
 		}
 
 		docElm.setAttribute("customthememode", customThemeMode);
 	}
 
 	if (navigator.userAgent.includes("Windows NT 10.0") && !window.matchMedia('(-moz-ev-native-controls-patch)').matches) {
+
+		
 		docElm.setAttribute("chromemargin", "0,0,0,0");
 	}
 	
@@ -96,9 +109,8 @@ function setThemeAttr() {
 
 const themeObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed")
-		setThemeAttr();
-	}
+		if (topic == "nsPref:changed") setThemeAttr();
+	},
 };
 window.addEventListener("load", setThemeAttr);
 Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false)
@@ -111,6 +123,10 @@ const customThemeModeObserver = {
 };
 window.addEventListener("load", setThemeAttr);
 Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, false)
+			
+
+
+
 
 /* bruni: Automatically apply appearance and theme
 		  attributes when it detecs changes in the pref. */
@@ -126,6 +142,8 @@ Services.prefs.addObserver(appearanceMap.appearance, appearanceObserver, false)
 
 function changePrivateBadgePos() {
 	const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");
+
+	
 	const titlebarSpacer = document.querySelector(".titlebar-spacer");
 
 	insertBefore(privateBrowsingIndicatorWithLabel, titlebarSpacer);
