@@ -54,11 +54,11 @@
         }
     }
 
-    &:not([pageproxystate="valid"]) {
-        #urlbar-protocol {
-            display: none !important;
-        }
-    }
+	&:not([pageproxystate="valid"]) {
+		#urlbar-protocol {
+			display: none !important;
+		}
+	}
 
     &:not([focused="true"]) {
         .verifiedDomain {
@@ -175,9 +175,9 @@
         }
     }
 
-    #identity-box[pageproxystate="valid"].notSecure #identity-icon {
-        list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
-    }
+	#identity-box[pageproxystate="valid"].notSecure #identity-icon {
+		list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
+	}
 }
 
 #custom-identity-label {
@@ -245,12 +245,12 @@
 }
 
 .searchbar-search-button {
-    justify-content: center !important;
-    margin-inline-end: 3px !important;
+	justify-content: center !important;
+	margin-inline-end: 3px !important;
 }
 
 .searchbar-search-icon {
-    margin: 0 !important;
+	margin: 0 !important;
 }
 
 #identity-box-button,
@@ -326,13 +326,13 @@
 
 #urlbar-container,
 #search-container {
-    padding: 0 !important;
+	padding: 0 !important;
     margin-inline: 2px !important;
 }
 
 #urlbar-container {
     --urlbar-container-height: var(--urlbar-height-definitive) !important;
-
+	
     &:not([starpos="start"]) {
         #go-button-box {
             display: none;
@@ -346,7 +346,7 @@
 
 #urlbar-input-container,
 #searchbar {
-    min-height: var(--urlbar-height-definitive) !important;
+	min-height: var(--urlbar-height-definitive) !important;
     height: var(--urlbar-height-definitive) !important;
     padding: 0 !important;
     padding-inline-start: 4px !important;
@@ -431,6 +431,14 @@
             fill-opacity: 1;
         }
     }
+
+	&[label] {
+		margin: 0 !important;
+
+		&::before {
+			content: unset !important;
+		}
+	}
 }
 
 .urlbarView-action {
@@ -536,4 +544,8 @@
 
 .urlbarView-dynamic-onboardTabToSearch-action {
     display: none;
+}
+
+.urlbarView-action {
+	display: none !important;
 }

@@ -1,0 +1,34 @@
+#editBookmarkPanel {
+	transform: translateY(-3px) translateX(2px);
+}
+
+#editBookmarkPanelInfoArea {
+	display: none !important;
+}
+
+#editBookmarkPanelContent {
+	padding: 0 !important;
+	grid-template-columns: min-content 238px !important;
+	align-items: center !important;
+	gap: 12px !important;
+
+	.expander-down {
+		display: none !important;
+	}
+
+	label {
+		margin: 0 !important;
+		padding: 0 !important;
+
+		&[data-l10n-id*="bookmark-overlay"] {
+			&::after {
+				content: ":";
+			}
+		}
+	}
+
+}
+
+#editBookmarkPanelBottomContent {
+	display: none !important;
+}

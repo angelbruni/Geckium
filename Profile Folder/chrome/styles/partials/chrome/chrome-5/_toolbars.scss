@@ -379,11 +379,11 @@
         }
     }
 
-    &[profilepic="disabled"] {
-        #fxa-toolbar-menu-button {
-            display: none !important;
-        }
-    }
+	&[profilepic="disabled"] {
+		#fxa-toolbar-menu-button {
+			display: none !important;
+		}
+	}
 
     &:not([profilepic="firefox"]) {
         #fxa-toolbar-menu-button {
@@ -475,7 +475,7 @@
         }
 
         #browser,
-        #customization-container {
+		#customization-container {
             box-shadow: 0 !important;
             border: none;
             margin: 0;
@@ -544,8 +544,9 @@
     }
 }
 
-#nav-bar-customization-target {
-    align-items: center;
+#nav-bar-customization-target,
+#PanelUI-button {
+    margin-top: -1px;
 }
 
 .close-icon:hover {
@@ -737,7 +738,7 @@ toolbar[overflowable][customizing] > .customization-target {
     .toolbarbutton-icon {
         width: auto !important;
         height: auto !important;
-        max-height: 19px !important;
+		max-height: 19px !important;
     }
 
     .toolbarbutton-badge-stack {
@@ -747,6 +748,14 @@ toolbar[overflowable][customizing] > .customization-target {
         align-items: center;
         justify-content: center;
     }
+
+	.toolbarbutton-badge {
+		margin: 0 !important;
+		margin-block-end: 1px !important;
+		align-self: end !important;
+		justify-self: center !important;
+		z-index: 1;
+	}
 
     /* bruni: Navigation buttons needs some rethinking. */
     &#back-button {
@@ -801,14 +810,14 @@ toolbar[overflowable][customizing] > .customization-target {
 
     &#unified-extensions-button,
     &#PanelUI-menu-button,
-    &[class*="webextension"] {
+	&[class*="webextension"] {
         border: 0 !important;
         background: transparent !important;
         transition: background-color 100ms linear;
-
-        &:not([class*="webextension"]) {
-            width: var(--toolbarbutton-menu-width) !important;
-        }
+		
+		&:not([class*="webextension"]) {
+			width: var(--toolbarbutton-menu-width) !important;
+		}
 
         &::after,
         &::before {
@@ -837,11 +846,11 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 .toolbaritem-combined-buttons {
-    margin-inline: 0 !important;
+	margin-inline: 0 !important;
 
-    > separator {
-        display: none !important;
-    }
+	> separator {
+		display: none !important;
+	}
 }
 
 #fxa-toolbar-menu-button {
@@ -850,7 +859,7 @@ toolbar[overflowable][customizing] > .customization-target {
     padding: 0 !important;
     margin-inline-start: 5px !important;
     margin-inline-end: -4px !important;
-    margin-block-start: -2px !important;
+	margin-block-start: -2px !important;
     height: var(--tab-height);
 
     .toolbarbutton-badge-stack {
@@ -911,6 +920,7 @@ toolbar[overflowable][customizing] > .customization-target {
     min-height: 19px !important;
     min-width: 19px !important;
 }
+
 #identity-permission-box {
     display: none !important;
 }

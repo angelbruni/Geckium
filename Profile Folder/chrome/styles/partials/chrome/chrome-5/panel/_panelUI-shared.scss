@@ -1,0 +1,38 @@
+panel toolbarseparator {
+	display: none !important;
+}
+
+panelview {
+	background-color: var(--modal-background) !important;
+}
+
+panelmultiview {
+	toolbarbutton {
+		margin: 0 !important;
+	}
+}
+
+.panel-header {
+	align-items: unset !important;
+	height: 31px !important;
+	padding: 0 !important;
+	min-height: 0 !important;
+	margin-block-end: 11px !important;
+
+	> h1 {
+		font-size: 11pt !important;
+		font-weight: normal !important;
+		text-align: start !important;
+	}
+}
+
+.panel-footer {
+	gap: 10px !important;
+	margin: 0 !important;
+	margin-block-start: 10px !important;
+	margin-inline-end: 2px !important;
+}
+
+.panel-subview-footer-button {
+	margin: 0 !important;
+}
