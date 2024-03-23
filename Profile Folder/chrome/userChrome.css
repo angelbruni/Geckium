@@ -1936,9 +1936,9 @@ panelmultiview toolbarbutton {
   --urlbar-height-definitive: var(--toolbarbutton-height);
   --urlbarView: rgb(255, 255, 255, 94%);
   --autocomplete-popup-hover-background: color-mix(
-      in srgb,
-      -moz-menuhover 20%,
-      white 20%
+  	in srgb,
+  	-moz-menuhover 20%,
+  	white 20%
   ) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
@@ -2027,11 +2027,11 @@ panelmultiview toolbarbutton {
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
   --toolbar-field-background-color: var(
-      --urlbar-background-verified-proxystate-valid
+  	--urlbar-background-verified-proxystate-valid
   );
   --protocol-color: var(--urlbar-verified-proxystate-valid);
   --protocol-background-color: var(
-      --urlbar-background-verified-proxystate-valid
+  	--urlbar-background-verified-proxystate-valid
   );
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
@@ -2960,53 +2960,6 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
 }
 
 /* Chrome 27 -> ~47 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
-  --tab-width: 188px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-content {
-  padding-right: 1px !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button {
-  height: 18px !important;
-  width: 18px !important;
-  background-image: url(assets/img/chrome-47/tabbar/tab_close_mask.png);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button:hover {
-  background-image: url(assets/img/chrome-47/tabbar/tab_close_h.png);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button:active {
-  background-image: url(assets/img/chrome-47/tabbar/tab_close_p.png);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-menu-button {
-  list-style-image: url(assets/img/chrome-47/toolbar/menu.svg) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button {
-  background: url(assets/img/chrome-47/tabbar/newtab_normal.png) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:hover,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:hover {
-  background: url(assets/img/chrome-47/tabbar/newtab_hover.png) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:active,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:active {
-  background: url(assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:active::before,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:active::before {
-  background-color: var(--newtab-active);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button::before,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button::before {
-  -webkit-mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
-          mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .bookmark-item {
-  transition: all 150ms linear !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .bookmark-item::before {
-  transition: all 150ms linear !important;
-}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
   --urlbarView: white !important;
 }

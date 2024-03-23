@@ -1,35 +1,35 @@
 menulist {
-    margin: 0 !important;
-    padding: 0 !important;
-    padding-inline-start: 2px !important;
-    padding-inline-end: 3px !important;
-    min-height: 24px !important;
-    border-radius: 0 !important;
-    border: 1px solid rgb(192, 192, 192) !important;
-    background-color: rgb(251, 251, 251) !important;
-    box-sizing: border-box !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	padding-inline-start: 2px !important;
+	padding-inline-end: 3px !important;
+	min-height: 24px !important;
+	border-radius: 0 !important;
+	border: 1px solid rgb(192, 192, 192) !important;
+	background-color: rgb(251, 251, 251) !important;
+	box-sizing: border-box !important;
 
-    &:focus {
-        border-color: rgb(62, 126, 248) !important;
-    }
+	&:focus {
+		border-color: rgb(62, 126, 248) !important;
+	}
 
-    &#availableLanguages {
-        margin-inline-end: 10px !important;
-    }
+	&#availableLanguages {
+		margin-inline-end: 10px !important;
+	}
 }
 
 hbox[id="label-box"][part="label-box"] {
-    font-weight: normal !important;
+	font-weight: normal !important;
 }
 
 dropmarker[part="dropmarker"][type="menu"] {
-    margin-inline: 6px !important;
+	margin-inline: 6px !important;
 }
 
 link[href="chrome://global/skin/dropmarker.css"] + image[part="icon"]
 {
-    list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAQAAACxSAwfAAAAUklEQVQY02P4z0AMRGZGMaShwCisyhITmb8huMzfEhOxKvuvsGAh208Ik+3ngoX/FbBbClcIUcSAw21QhXxfIIrwKAMpfNsEUYRXGVCEFc6CQwBqq4CCCtU4VgAAAABJRU5ErkJggg==) !important;
-    width: 19px !important;
-    height: 8px !important;
-    align-self: center;
+	list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAQAAACxSAwfAAAAUklEQVQY02P4z0AMRGZGMaShwCisyhITmb8huMzfEhOxKvuvsGAh208Ik+3ngoX/FbBbClcIUcSAw21QhXxfIIrwKAMpfNsEUYRXGVCEFc6CQwBqq4CCCtU4VgAAAABJRU5ErkJggg==) !important;
+	width: 19px !important;
+	height: 8px !important;
+	align-self: center;
 }
