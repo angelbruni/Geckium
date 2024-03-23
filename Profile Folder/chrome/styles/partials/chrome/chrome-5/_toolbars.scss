@@ -1,379 +1,379 @@
 :root {
-    --nav-bar: linear-gradient(
-        to top,
-        rgb(218, 231, 247),
-        rgb(230, 239, 251),
-        rgb(245, 249, 254)
-    );
-    --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--nav-bar: linear-gradient(
+		to top,
+		rgb(218, 231, 247),
+		rgb(230, 239, 251),
+		rgb(245, 249, 254)
+	);
+	--personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
 	--personal-toolbar-height: 24px;
-    --personal-toolbar-border-bottom: rgb(182, 186, 192);
-    --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
-        0 0 0 1px transparent, 0 1px 1px 2px transparent,
-        inset 0 0 1px 1px transparent;
-    --personal-toolbar-item-hover-shadow: inset 0 0 0 1px
-            rgb(255, 255, 255, 30%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
-        inset 0 0 1px 1px transparent;
-    --personal-toolbar-item-hover-bg: rgba(255,255,255,.5) !important;
+	--personal-toolbar-border-bottom: rgb(182, 186, 192);
+	--personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
+		0 0 0 1px transparent, 0 1px 1px 2px transparent,
+		inset 0 0 1px 1px transparent;
+	--personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+			rgb(255, 255, 255, 30%),
+		0 1px 1px 2px rgb(0, 0, 0, 6%), inset 0 0 1px 1px transparent;
+	--personal-toolbar-item-hover-bg: rgba(255, 255, 255, 0.5) !important;
 
-    --chrome-content-separator-color: transparent !important;
-    --toolbar-start-end-padding: 2px !important;
-    --inner-border-color: #dfdfdf;
+	--chrome-content-separator-color: transparent !important;
+	--toolbar-start-end-padding: 2px !important;
+	--inner-border-color: #dfdfdf;
 
-    --nav-bar-height: 37px;
+	--nav-bar-height: 37px;
 
-    --toolbarbutton-width: 29px;
-    --toolbarbutton-menu-width: 36px;
-    --toolbarbutton-height: 27px;
-    --toolbarbutton-inner-padding: 5px !important;
-    --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
-    --toolbarbutton-outer-padding: 3px !important;
-    --toolbarbutton-border-color-normal: rgb(198, 206, 228);
-    --toolbarbutton-border-color-hot: rgb(163, 174, 197);
-    --toolbarbutton-border-color-active: rgb(171, 181, 203);
-    --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-    --toolbarbutton-gradient: linear-gradient(
-        to top,
-        rgb(222, 234, 248),
-        rgb(240, 245, 253)
-    );
-    --toolbarbutton-shadow-active: inset 0 0 0 1px
-        var(--toolbarbutton-inner-border-color-normal);
-    --toolbarbutton-active-background: transparent !important;
-    --toolbarbutton-radius: 6px;
-    --toolbarbutton-disabled-opacity: 1 !important;
-    --navigation-buttons-separator: rgb(221, 229, 243);
+	--toolbarbutton-width: 29px;
+	--toolbarbutton-menu-width: 36px;
+	--toolbarbutton-height: 27px;
+	--toolbarbutton-inner-padding: 5px !important;
+	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+	--toolbarbutton-outer-padding: 3px !important;
+	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
+	--toolbarbutton-border-color-hot: rgb(163, 174, 197);
+	--toolbarbutton-border-color-active: rgb(171, 181, 203);
+	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+	--toolbarbutton-gradient: linear-gradient(
+		to top,
+		rgb(222, 234, 248),
+		rgb(240, 245, 253)
+	);
+	--toolbarbutton-shadow-active: inset 0 0 0 1px
+		var(--toolbarbutton-inner-border-color-normal);
+	--toolbarbutton-active-background: transparent !important;
+	--toolbarbutton-radius: 6px;
+	--toolbarbutton-disabled-opacity: 1 !important;
+	--navigation-buttons-separator: rgb(221, 229, 243);
 
-    --bookmark-item-color: #062d75;
-    --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
+	--bookmark-item-color: #062d75;
+	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
-    @media (prefers-color-scheme: dark) {
-        --nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
-        --personal-toolbar: linear-gradient(
-            to bottom,
-            #4c4c4c,
-            #575757
-        ) !important;
-        --personal-toolbar-border-bottom: rgb(91, 91, 91);
+	@media (prefers-color-scheme: dark) {
+		--nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
+		--personal-toolbar: linear-gradient(
+			to bottom,
+			#4c4c4c,
+			#575757
+		) !important;
+		--personal-toolbar-border-bottom: rgb(91, 91, 91);
 
-        --inner-border-color: rgb(79, 79, 79);
+		--inner-border-color: rgb(79, 79, 79);
 
-        --toolbarbutton-border-color-normal: rgb(190, 190, 190);
-        --toolbarbutton-border-color-hot: rgb(196, 196, 196);
-        --toolbarbutton-border-color-active: rgb(199, 199, 199);
-        --toolbarbutton-gradient: linear-gradient(
-            to top,
-            rgb(209, 209, 209),
-            rgb(255, 255, 255)
-        );
+		--toolbarbutton-border-color-normal: rgb(190, 190, 190);
+		--toolbarbutton-border-color-hot: rgb(196, 196, 196);
+		--toolbarbutton-border-color-active: rgb(199, 199, 199);
+		--toolbarbutton-gradient: linear-gradient(
+			to top,
+			rgb(209, 209, 209),
+			rgb(255, 255, 255)
+		);
 
-        --navigation-buttons-separator: rgb(209, 209, 209);
+		--navigation-buttons-separator: rgb(209, 209, 209);
 
-        --bookmark-item-color: #95b4ee;
-        --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
-    }
+		--bookmark-item-color: #95b4ee;
+		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+	}
 
-    &:not(:-moz-lwtheme) {
-        --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
-    }
+	&:not(:-moz-lwtheme) {
+		--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
+	}
 
-    &:-moz-lwtheme {
-        /* bruni: This entire code takes care of custom themes support for toolbars */
+	&:-moz-lwtheme {
+		/* bruni: This entire code takes care of custom themes support for toolbars */
 
-        &[lwtheme-id*="firefox-compact"] {
-            @media (prefers-color-scheme: dark) {
-                --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
-            }
-        }
-        &:not([lwtheme-id*="firefox-compact"]) {
-            @import "titlebar/nocomp";
+		&[lwtheme-id*="firefox-compact"] {
+			@media (prefers-color-scheme: dark) {
+				--toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+			}
+		}
+		&:not([lwtheme-id*="firefox-compact"]) {
+			@import "titlebar/nocomp";
 
-            @media not (prefers-color-scheme: dark) {
-                --nav-bar: linear-gradient(
-                    to bottom,
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 5%,
-                        white
-                    ),
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 20%,
-                        white
-                    ),
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 10%,
-                        white
-                    )
-                ) !important;
-                --personal-toolbar: linear-gradient(
-                    to bottom,
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 10%,
-                        white
-                    ),
-                    color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-                ) !important;
+			@media not (prefers-color-scheme: dark) {
+				--nav-bar: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 5%,
+						white
+					),
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 20%,
+						white
+					),
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 10%,
+						white
+					)
+				) !important;
+				--personal-toolbar: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 10%,
+						white
+					),
+					color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
+				) !important;
 
-                --toolbarbutton-border-color-normal: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 50%,
-                    white
-                );
-                --toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 40%,
-                    white
-                );
-                --toolbarbutton-border-color-active: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 30%,
-                    white
-                );
-                --toolbarbutton-gradient: linear-gradient(
-                    to bottom,
-                    rgb(255, 255, 255),
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 10%,
-                        white
-                    )
-                );
+				--toolbarbutton-border-color-normal: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 50%,
+					white
+				);
+				--toolbarbutton-border-color-hot: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 40%,
+					white
+				);
+				--toolbarbutton-border-color-active: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 30%,
+					white
+				);
+				--toolbarbutton-gradient: linear-gradient(
+					to bottom,
+					rgb(255, 255, 255),
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 10%,
+						white
+					)
+				);
 
-                .bookmark-item {
-                    color: var(--toolbarbutton-icon-fill) !important;
-                }
-            }
+				.bookmark-item {
+					color: var(--toolbarbutton-icon-fill) !important;
+				}
+			}
 
-            @media (prefers-color-scheme: dark) {
-                --nav-bar: var(--lwt-accent-color) !important;
-                --personal-toolbar: var(--lwt-accent-color) !important;
+			@media (prefers-color-scheme: dark) {
+				--nav-bar: var(--lwt-accent-color) !important;
+				--personal-toolbar: var(--lwt-accent-color) !important;
 
-                --toolbarbutton-border-color-normal: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 50%,
-                    black
-                );
-                --toolbarbutton-border-color-hot: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 40%,
-                    black
-                );
-                --toolbarbutton-border-color-active: color-mix(
-                    in srgb,
-                    var(--toolbarbutton-icon-fill) 30%,
-                    black
-                );
-                --toolbarbutton-gradient: linear-gradient(
-                    to bottom,
-                    rgb(255, 255, 255),
-                    color-mix(
-                        in srgb,
-                        var(--toolbarbutton-icon-fill) 10%,
-                        white
-                    )
-                );
+				--toolbarbutton-border-color-normal: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 50%,
+					black
+				);
+				--toolbarbutton-border-color-hot: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 40%,
+					black
+				);
+				--toolbarbutton-border-color-active: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 30%,
+					black
+				);
+				--toolbarbutton-gradient: linear-gradient(
+					to bottom,
+					rgb(255, 255, 255),
+					color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 10%,
+						white
+					)
+				);
 
-                &:not([style*="--toolbarbutton-icon-fill"]) {
-                    --toolbarbutton-border-color-normal: color-mix(
-                        in srgb,
-                        var(--toolbar-color) 50%,
-                        black
-                    );
-                    --toolbarbutton-border-color-hot: color-mix(
-                        in srgb,
-                        var(--toolbar-color) 40%,
-                        black
-                    );
-                    --toolbarbutton-border-color-active: color-mix(
-                        in srgb,
-                        var(--toolbar-color) 30%,
-                        black
-                    );
-                    --toolbarbutton-gradient: linear-gradient(
-                        to bottom,
-                        rgb(255, 255, 255),
-                        color-mix(in srgb, var(--toolbar-color) 10%, white)
-                    );
-                    --toolbarbutton-icon-fill: var(--toolbar-color) !important;
+				&:not([style*="--toolbarbutton-icon-fill"]) {
+					--toolbarbutton-border-color-normal: color-mix(
+						in srgb,
+						var(--toolbar-color) 50%,
+						black
+					);
+					--toolbarbutton-border-color-hot: color-mix(
+						in srgb,
+						var(--toolbar-color) 40%,
+						black
+					);
+					--toolbarbutton-border-color-active: color-mix(
+						in srgb,
+						var(--toolbar-color) 30%,
+						black
+					);
+					--toolbarbutton-gradient: linear-gradient(
+						to bottom,
+						rgb(255, 255, 255),
+						color-mix(in srgb, var(--toolbar-color) 10%, white)
+					);
+					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
 
-                    &:not([style*="--toolbar-color"]) {
-                        --toolbarbutton-border-color-normal: color-mix(
-                            in srgb,
-                            var(--lwt-accent-color) 50%,
-                            black
-                        );
-                        --toolbarbutton-border-color-hot: color-mix(
-                            in srgb,
-                            var(--lwt-accent-color) 40%,
-                            black
-                        );
-                        --toolbarbutton-border-color-active: color-mix(
-                            in srgb,
-                            var(--lwt-accent-color) 30%,
-                            black
-                        );
-                        --toolbarbutton-gradient: linear-gradient(
-                            to bottom,
-                            rgb(255, 255, 255),
-                            color-mix(
-                                in srgb,
-                                var(--lwt-accent-color) 10%,
-                                white
-                            )
-                        );
-                        --toolbarbutton-icon-fill: color-mix(
-                            in srgb,
-                            var(--lwt-accent-color) 50%,
-                            black
-                        ) !important;
+					&:not([style*="--toolbar-color"]) {
+						--toolbarbutton-border-color-normal: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 50%,
+							black
+						);
+						--toolbarbutton-border-color-hot: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 40%,
+							black
+						);
+						--toolbarbutton-border-color-active: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 30%,
+							black
+						);
+						--toolbarbutton-gradient: linear-gradient(
+							to bottom,
+							rgb(255, 255, 255),
+							color-mix(
+								in srgb,
+								var(--lwt-accent-color) 10%,
+								white
+							)
+						);
+						--toolbarbutton-icon-fill: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 50%,
+							black
+						) !important;
 
-                        &[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
-                            --toolbarbutton-icon-fill: color-mix(
-                                in srgb,
-                                var(--lwt-accent-color) 70%,
-                                white
-                            ) !important;
-                        }
-                    }
-                }
+						&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+							--toolbarbutton-icon-fill: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 70%,
+								white
+							) !important;
+						}
+					}
+				}
 
-                .bookmark-item {
-                    color: var(--tabbrowser-tab-color) !important;
-                }
-            }
+				.bookmark-item {
+					color: var(--tabbrowser-tab-color) !important;
+				}
+			}
 
-            &[customthememode="1"] {
-                @media not (prefers-color-scheme: dark) {
-                    --nav-bar: linear-gradient(
-                        to bottom,
-                        color-mix(
-                            in srgb,
-                            color-mix(
-                                    in srgb,
-                                    var(--toolbarbutton-icon-fill) 5%,
-                                    white
-                                )
-                                70%,
-                            transparent
-                        ),
-                        color-mix(
-                            in srgb,
-                            color-mix(
-                                    in srgb,
-                                    var(--toolbarbutton-icon-fill) 20%,
-                                    white
-                                )
-                                70%,
-                            transparent
-                        ),
-                        color-mix(
-                            in srgb,
-                            color-mix(
-                                    in srgb,
-                                    var(--toolbarbutton-icon-fill) 10%,
-                                    white
-                                )
-                                70%,
-                            transparent
-                        )
-                    ) !important;
-                    --personal-toolbar: linear-gradient(
-                        to bottom,
-                        color-mix(
-                            in srgb,
-                            color-mix(
-                                    in srgb,
-                                    var(--toolbarbutton-icon-fill) 10%,
-                                    white
-                                )
-                                70%,
-                            transparent
-                        ),
-                        color-mix(
-                            in srgb,
-                            color-mix(
-                                    in srgb,
-                                    var(--toolbarbutton-icon-fill) 2%,
-                                    white
-                                )
-                                70%,
-                            transparent
-                        )
-                    ) !important;
-                }
+			&[customthememode="1"] {
+				@media not (prefers-color-scheme: dark) {
+					--nav-bar: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 5%,
+									white
+								)
+								70%,
+							transparent
+						),
+						color-mix(
+							in srgb,
+							color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 20%,
+									white
+								)
+								70%,
+							transparent
+						),
+						color-mix(
+							in srgb,
+							color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 10%,
+									white
+								)
+								70%,
+							transparent
+						)
+					) !important;
+					--personal-toolbar: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 10%,
+									white
+								)
+								70%,
+							transparent
+						),
+						color-mix(
+							in srgb,
+							color-mix(
+									in srgb,
+									var(--toolbarbutton-icon-fill) 2%,
+									white
+								)
+								70%,
+							transparent
+						)
+					) !important;
+				}
 
-                @media (prefers-color-scheme: dark) {
-                    --nav-bar: color-mix(
-                        in srgb,
-                        var(--lwt-accent-color) 70%,
-                        transparent
-                    ) !important;
-                    --personal-toolbar: color-mix(
-                        in srgb,
-                        var(--lwt-accent-color) 70%,
-                        transparent
-                    ) !important;
-                }
-            }
+				@media (prefers-color-scheme: dark) {
+					--nav-bar: color-mix(
+						in srgb,
+						var(--lwt-accent-color) 70%,
+						transparent
+					) !important;
+					--personal-toolbar: color-mix(
+						in srgb,
+						var(--lwt-accent-color) 70%,
+						transparent
+					) !important;
+				}
+			}
 
-            &[customthememode="2"] {
-                body,
-                #navigator-toolbox {
-                    background: transparent !important;
-                }
+			&[customthememode="2"] {
+				body,
+				#navigator-toolbox {
+					background: transparent !important;
+				}
 
-                &[style*="--lwt-additional-images"] {
-                    #nav-bar,
-                    #PersonalToolbar {
-                        background: var(--lwt-additional-images),
-                            var(--lwt-accent-color) !important;
-                        background-position: var(
-                            --lwt-background-alignment
-                        ) !important;
-                        background-repeat: var(
-                            --lwt-background-tiling
-                        ) !important;
-                    }
+				&[style*="--lwt-additional-images"] {
+					#nav-bar,
+					#PersonalToolbar {
+						background: var(--lwt-additional-images),
+							var(--lwt-accent-color) !important;
+						background-position: var(
+							--lwt-background-alignment
+						) !important;
+						background-repeat: var(
+							--lwt-background-tiling
+						) !important;
+					}
 
-                    #nav-bar {
-                        background-position-y: calc(
-                            var(--tab-height) * -1
-                        ) !important;
-                    }
+					#nav-bar {
+						background-position-y: calc(
+							var(--tab-height) * -1
+						) !important;
+					}
 
-                    #PersonalToolbar {
-                        background-position-y: calc(
-                            (var(--tab-height) + var(--nav-bar-height)) * -1
-                        ) !important;
-                    }
-                }
+					#PersonalToolbar {
+						background-position-y: calc(
+							(var(--tab-height) + var(--nav-bar-height)) * -1
+						) !important;
+					}
+				}
 
-                &[style*="--lwt-header-image"] {
-                    #nav-bar,
-                    #PersonalToolbar {
-                        background: var(--lwt-header-image) !important;
-                        background-position: top right !important;
-                        background-repeat: no-repeat !important;
-                    }
+				&[style*="--lwt-header-image"] {
+					#nav-bar,
+					#PersonalToolbar {
+						background: var(--lwt-header-image) !important;
+						background-position: top right !important;
+						background-repeat: no-repeat !important;
+					}
 
-                    #nav-bar {
-                        background-position-y: calc(
-                            var(--tab-height) * -1
-                        ) !important;
-                    }
+					#nav-bar {
+						background-position-y: calc(
+							var(--tab-height) * -1
+						) !important;
+					}
 
-                    #PersonalToolbar {
-                        background-position-y: calc(
-                            (var(--tab-height) + var(--nav-bar-height)) * -1
-                        ) !important;
-                    }
-                }
-            }
-        }
-    }
+					#PersonalToolbar {
+						background-position-y: calc(
+							(var(--tab-height) + var(--nav-bar-height)) * -1
+						) !important;
+					}
+				}
+			}
+		}
+	}
 
 	&[profilepic="disabled"] {
 		#fxa-toolbar-menu-button {
@@ -381,64 +381,64 @@
 		}
 	}
 
-    &:not([profilepic="firefox"]) {
-        #fxa-toolbar-menu-button {
-            #fxa-avatar-image {
-                display: none !important;
-            }
+	&:not([profilepic="firefox"]) {
+		#fxa-toolbar-menu-button {
+			#fxa-avatar-image {
+				display: none !important;
+			}
 
-            > .toolbarbutton-badge-stack > vbox {
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: bottom;
-            }
-        }
+			> .toolbarbutton-badge-stack > vbox {
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: bottom;
+			}
+		}
 
-        $profile-pics: 25; // bruni: Set the amount of profile pictures
-        @for $i from 0 through $profile-pics {
-            &[profilepic="#{$i}"] {
-                #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-                    background-image: url(assets/img/profile/#{$i}.png);
-                }
-            }
-        }
+		$profile-pics: 25; // bruni: Set the amount of profile pictures
+		@for $i from 0 through $profile-pics {
+			&[profilepic="#{$i}"] {
+				#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+					background-image: url(assets/img/profile/#{$i}.png);
+				}
+			}
+		}
 
-        &[profilepic="custom"] {
-            #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-                background-image: var(
-                    --custom-profile-picture,
-                    url(assets/img/profile/0.png)
-                );
-            }
-        }
-    }
+		&[profilepic="custom"] {
+			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+				background-image: var(
+					--custom-profile-picture,
+					url(assets/img/profile/0.png)
+				);
+			}
+		}
+	}
 
-    &:not([customizing]) {
-        .toolbarbutton-1[disabled] {
-            .toolbarbutton-badge-stack,
-            .toolbarbutton-icon,
-            image:first-of-type {
-                opacity: 0.35;
-                filter: saturate(1.5);
-            }
-        }
-    }
+	&:not([customizing]) {
+		.toolbarbutton-1[disabled] {
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon,
+			image:first-of-type {
+				opacity: 0.35;
+				filter: saturate(1.5);
+			}
+		}
+	}
 
-    &[tabsintitlebar] {
-        #tabbrowser-arrowscrollbox {
-            padding-top: 12px !important;
-        }
-    }
+	&[tabsintitlebar] {
+		#tabbrowser-arrowscrollbox {
+			padding-top: 12px !important;
+		}
+	}
 
-    &:not([tabsintitlebar]) {
-        .toolbar-items {
-            padding-top: 0 !important;
-        }
+	&:not([tabsintitlebar]) {
+		.toolbar-items {
+			padding-top: 0 !important;
+		}
 
-        .toolbar-items {
-            margin-top: -3px !important;
-        }
-    }
+		.toolbar-items {
+			margin-top: -3px !important;
+		}
+	}
 	&[sizemode="normal"] {
 		#toolbar-menubar:not([inactive]) {
 			margin-block-end: -15px;
@@ -446,307 +446,311 @@
 		}
 	}
 
-    &[sizemode="maximized"],
-    &[sizemode="fullscreen"] {
-        #nav-bar,
-        #PersonalToolbar {
-            margin-inline: 0 !important;
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
-        }
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		#nav-bar,
+		#PersonalToolbar {
+			margin-inline: 0 !important;
+			border-top-left-radius: 0 !important;
+			border-top-right-radius: 0 !important;
+		}
 
-        &[tabsintitlebar] {
-            #tabbrowser-arrowscrollbox {
-                padding-top: 0px !important;
-            }
-        }
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 0px !important;
+			}
+		}
 
-        #navigator-toolbox-background {
-            &::before {
-                left: 0;
-                right: 0;
-                bottom: 1px;
-            }
-        }
+		#navigator-toolbox-background {
+			&::before {
+				left: 0;
+				right: 0;
+				bottom: 1px;
+			}
+		}
 
-        #nav-bar {
-            &::before,
-            &::after {
-                display: none !important;
-            }
-        }
+		#nav-bar {
+			&::before,
+			&::after {
+				display: none !important;
+			}
+		}
 
-        #browser,
+		#browser,
 		#customization-container {
-            box-shadow: 0 !important;
-            border: none;
-            margin: 0;
-            margin-top: -1px !important;
-        }
-    }
+			box-shadow: 0 !important;
+			border: none;
+			margin: 0;
+			margin-top: -1px !important;
+		}
+	}
 
-    &[sizemode="fullscreen"] {
-        #fullscr-toggler {
-            display: none !important;
-        }
-    }
+	&[sizemode="fullscreen"] {
+		#fullscr-toggler {
+			display: none !important;
+		}
+	}
 }
 
 #navigator-toolbox {
-    background: transparent !important;
-    box-shadow: none !important;
-    border-top: 0 !important;
-    border-bottom: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
 
-    &[fullscreenShouldAnimate] {
-        transition: none !important;
-    }
+	&[fullscreenShouldAnimate] {
+		transition: none !important;
+	}
 }
 
 #nav-bar,
 #PersonalToolbar {
-    margin-inline: 2px;
+	margin-inline: 2px;
 }
 
 #nav-bar {
-    background: var(--nav-bar) !important;
-    border-top-left-radius: 3px !important;
-    border-top-right-radius: 3px !important;
-    align-items: center;
-    padding-inline: var(--toolbar-start-end-padding) !important;
-    height: var(--nav-bar-height);
-    box-shadow: none !important;
+	background: var(--nav-bar) !important;
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+	align-items: center;
+	padding-inline: var(--toolbar-start-end-padding) !important;
+	height: var(--nav-bar-height);
+	box-shadow: none !important;
 
-    &::before,
-    &::after {
-        position: absolute;
-        content: "";
-        height: 39px;
-        width: 3px;
-        top: -2px;
-    }
+	&::before,
+	&::after {
+		position: absolute;
+		content: "";
+		height: 39px;
+		width: 3px;
+		top: -2px;
+	}
 
-    &::before {
-        left: -2px;
-        background: url(assets/img/chrome-5/toolbar/content_top_left_corner.png);
-    }
+	&::before {
+		left: -2px;
+		background: url(assets/img/chrome-5/toolbar/content_top_left_corner.png);
+	}
 
-    &::after {
-        top: -2px;
-        left: calc(100% - 1px);
-        background: url(assets/img/chrome-5/toolbar/content_top_right_corner.png);
-    }
+	&::after {
+		top: -2px;
+		left: calc(100% - 1px);
+		background: url(assets/img/chrome-5/toolbar/content_top_right_corner.png);
+	}
 
-    &:not([urlbar-exceeds-toolbar-bounds]) {
-        overflow: visible !important;
-    }
+	&:not([urlbar-exceeds-toolbar-bounds]) {
+		overflow: visible !important;
+	}
 
-    &:not(:-moz-lwtheme) {
-        box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
-    }
+	&:not(:-moz-lwtheme) {
+		box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
+	}
 }
 
 #nav-bar-customization-target,
 #PanelUI-button {
 	align-items: center;
-    margin-top: -1px;
+	margin-top: -1px;
 }
 
 .close-icon:hover {
-    background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 #navigator-toolbox-background {
-    position: relative;
+	position: relative;
 
-    &::before {
-        content: "";
-        position: absolute;
-        left: 3px;
-        right: 3px;
-        bottom: 1px;
-        height: 1px;
-        box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
-        z-index: 1;
-    }
+	&::before {
+		content: "";
+		position: absolute;
+		left: 3px;
+		right: 3px;
+		bottom: 1px;
+		height: 1px;
+		box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
+		z-index: 1;
+	}
 }
 
 toolbar[overflowable][customizing] > .customization-target {
-    overflow: visible !important;
+	overflow: visible !important;
 }
 
 #browser,
 #customization-container {
-    position: relative;
-    border: 1px solid var(--inner-border-color);
-    margin: 2px;
-    margin-top: -1px;
-    box-shadow: 0 2px 0 0 rgb(0, 0, 0, 24%);
+	position: relative;
+	border: 1px solid var(--inner-border-color);
+	margin: 2px;
+	margin-top: -1px;
+	box-shadow: 0 2px 0 0 rgb(0, 0, 0, 24%);
 
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background-repeat: repeat-y;
-    }
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		background-repeat: repeat-y;
+	}
 
-    &::before {
-        left: -3px;
-        background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
-    }
+	&::before {
+		left: -3px;
+		background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
+	}
 
-    &::after {
-        left: 100%;
-        background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
-    }
+	&::after {
+		left: 100%;
+		background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
+	}
 }
 
 #TabsToolbar {
-    background: transparent !important;
-    position: relative;
-    --toolbarbutton-inner-padding: 0 !important;
+	background: transparent !important;
+	position: relative;
+	--toolbarbutton-inner-padding: 0 !important;
 
-    &::before {
-        content: "";
-        position: absolute;
-        left: 3px;
-        right: 3px;
-        bottom: -1px;
-        height: 23px;
-        background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png)
-            bottom;
-        pointer-events: none;
-        z-index: 100;
-    }
+	&::before {
+		content: "";
+		position: absolute;
+		left: 3px;
+		right: 3px;
+		bottom: -1px;
+		height: 23px;
+		background: url(assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png)
+			bottom;
+		pointer-events: none;
+		z-index: 100;
+	}
 }
 
 #stop-reload-button {
-    margin: 0 !important;
+	margin: 0 !important;
 }
 
-.toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
-    position: relative;
-    padding: 0 !important;
-    background: var(--toolbarbutton-gradient) !important;
-    background-clip: padding-box !important;
-    fill: var(--toolbarbutton-icon-fill) !important;
-    margin: 0 var(--toolbarbutton-outer-padding) !important;
-    width: var(--toolbarbutton-width) !important;
-    height: var(--toolbarbutton-height) !important;
-    align-items: center;
-    justify-content: center;
-    transition: all 150ms linear;
-    border: 1px solid var(--toolbarbutton-border-color-normal);
+.toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button
+	) {
+	position: relative;
+	padding: 0 !important;
+	background: var(--toolbarbutton-gradient) !important;
+	background-clip: padding-box !important;
+	fill: var(--toolbarbutton-icon-fill) !important;
+	margin: 0 var(--toolbarbutton-outer-padding) !important;
+	width: var(--toolbarbutton-width) !important;
+	height: var(--toolbarbutton-height) !important;
+	align-items: center;
+	justify-content: center;
+	transition: all 150ms linear;
+	border: 1px solid var(--toolbarbutton-border-color-normal);
 
-    /* bruni: 	let's separate radius like this so
+	/* bruni: 	let's separate radius like this so
 				we can easily override each individually
 				later when needed.						*/
-    border-top-left-radius: var(--toolbarbutton-radius) !important;
-    border-top-right-radius: var(--toolbarbutton-radius) !important;
-    border-bottom-left-radius: var(--toolbarbutton-radius) !important;
-    border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+	border-top-left-radius: var(--toolbarbutton-radius) !important;
+	border-top-right-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        transition: box-shadow 100ms linear;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		transition: box-shadow 100ms linear;
 
-        border-top-left-radius: calc(
-            var(--toolbarbutton-radius) - 2px
-        ) !important;
-        border-top-right-radius: calc(
-            var(--toolbarbutton-radius) - 2px
-        ) !important;
-        border-bottom-left-radius: calc(
-            var(--toolbarbutton-radius) - 2px
-        ) !important;
-        border-bottom-right-radius: calc(
-            var(--toolbarbutton-radius) - 2px
-        ) !important;
-    }
+		border-top-left-radius: calc(
+			var(--toolbarbutton-radius) - 2px
+		) !important;
+		border-top-right-radius: calc(
+			var(--toolbarbutton-radius) - 2px
+		) !important;
+		border-bottom-left-radius: calc(
+			var(--toolbarbutton-radius) - 2px
+		) !important;
+		border-bottom-right-radius: calc(
+			var(--toolbarbutton-radius) - 2px
+		) !important;
+	}
 
-    &::before {
-        height: 35%;
-        opacity: 0;
-        background: linear-gradient(to top, black, transparent);
-        transition: opacity 100ms linear;
-    }
+	&::before {
+		height: 35%;
+		opacity: 0;
+		background: linear-gradient(to top, black, transparent);
+		transition: opacity 100ms linear;
+	}
 
-    &::after {
-        height: 100%;
-        box-shadow: var(--toolbarbutton-shadow-active);
-    }
+	&::after {
+		height: 100%;
+		box-shadow: var(--toolbarbutton-shadow-active);
+	}
 
-    &:not([disabled]) {
-        &:hover {
-            border: 1px solid var(--toolbarbutton-border-color-hot);
-            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
+	&:not([disabled]) {
+		&:hover {
+			border: 1px solid var(--toolbarbutton-border-color-hot);
+			box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
 
-            &::before {
-                opacity: 0.15;
-            }
+			&::before {
+				opacity: 0.15;
+			}
 
-            &::after {
-                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            }
+			&::after {
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+			}
 
-            .toolbarbutton-badge-stack,
-            .toolbarbutton-icon,
-            image:first-of-type {
-                background-color: transparent !important;
-                filter: saturate(1.5);
-            }
-        }
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon,
+			image:first-of-type {
+				background-color: transparent !important;
+				filter: saturate(1.5);
+			}
+		}
 
-        &:active,
-        &[open] {
-            border: 1px solid var(--toolbarbutton-border-color-active);
-            box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
-                inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
-            transition: none !important;
+		&:active,
+		&[open] {
+			border: 1px solid var(--toolbarbutton-border-color-active);
+			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
+				inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
+			transition: none !important;
 
-            &::before {
-                opacity: 0;
-                transition: none;
-            }
+			&::before {
+				opacity: 0;
+				transition: none;
+			}
 
-            .toolbarbutton-badge-stack,
-            .toolbarbutton-icon image:first-of-type {
-                filter: unset;
-                background: unset !important;
-            }
-        }
-    }
+			.toolbarbutton-badge-stack,
+			.toolbarbutton-icon image:first-of-type {
+				filter: unset;
+				background: unset !important;
+			}
+		}
+	}
 
-    .toolbarbutton-badge-stack,
-    .toolbarbutton-icon,
-    image:first-of-type {
-        border-radius: 0 !important;
-        padding: 0 !important;
-        fill: var(--toolbarbutton-icon-fill) !important;
-        transition: 100ms filter linear;
-    }
+	.toolbarbutton-badge-stack,
+	.toolbarbutton-icon,
+	image:first-of-type {
+		border-radius: 0 !important;
+		padding: 0 !important;
+		fill: var(--toolbarbutton-icon-fill) !important;
+		transition: 100ms filter linear;
+	}
 
-    .toolbarbutton-icon {
-        width: auto !important;
-        height: auto !important;
+	.toolbarbutton-icon {
+		width: auto !important;
+		height: auto !important;
 		max-height: 19px !important;
-    }
+	}
 
-    .toolbarbutton-badge-stack {
-        border-radius: 0 !important;
-        height: inherit;
-        width: inherit;
-        align-items: center;
-        justify-content: center;
-    }
+	.toolbarbutton-badge-stack {
+		border-radius: 0 !important;
+		height: inherit;
+		width: inherit;
+		align-items: center;
+		justify-content: center;
+	}
 
 	.toolbarbutton-badge {
 		margin: 0 !important;
@@ -756,92 +760,92 @@ toolbar[overflowable][customizing] > .customization-target {
 		z-index: 1;
 	}
 
-    /* bruni: Navigation buttons needs some rethinking. */
-    &#back-button {
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        border-right: 1px solid transparent;
+	/* bruni: Navigation buttons needs some rethinking. */
+	&#back-button {
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+		border-right: 1px solid transparent;
 
-        &::before,
-        &::after {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-        }
-    }
+		&::before,
+		&::after {
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+		}
+	}
 
-    &#forward-button {
-        margin-inline-start: -4px !important;
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
-        border-left: 1px solid transparent;
+	&#forward-button {
+		margin-inline-start: -4px !important;
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		border-left: 1px solid transparent;
 
-        &::before,
-        &::after {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-        }
-    }
+		&::before,
+		&::after {
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+		}
+	}
 
-    &#star-button-box {
-        margin: 0 !important;
-        border-top-right-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
+	&#star-button-box {
+		margin: 0 !important;
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
 
-        &::before,
-        &::after {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-        }
-    }
+		&::before,
+		&::after {
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+		}
+	}
 
-    &#go-button-box {
-        margin: 0 !important;
-        border-top-left-radius: 0 !important;
-        border-bottom-left-radius: 0 !important;
-        margin-left: auto !important;
+	&#go-button-box {
+		margin: 0 !important;
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		margin-left: auto !important;
 
-        &::before,
-        &::after {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-        }
-    }
+		&::before,
+		&::after {
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+		}
+	}
 
-    &#unified-extensions-button,
-    &#PanelUI-menu-button,
+	&#unified-extensions-button,
+	&#PanelUI-menu-button,
 	&[class*="webextension"] {
-        border: 0 !important;
-        background: transparent !important;
-        transition: background-color 100ms linear;
-		
+		border: 0 !important;
+		background: transparent !important;
+		transition: background-color 100ms linear;
+
 		&:not([class*="webextension"]) {
 			width: var(--toolbarbutton-menu-width) !important;
 		}
 
-        &::after,
-        &::before {
-            content: unset !important;
-        }
+		&::after,
+		&::before {
+			content: unset !important;
+		}
 
-        &:not([disabled]) {
-            &:hover {
-                border: 1px solid rgb(201, 210, 221);
-                background-color: rgba(255, 255, 255, 0.6) !important;
+		&:not([disabled]) {
+			&:hover {
+				border: 1px solid rgb(201, 210, 221);
+				background-color: rgba(255, 255, 255, 0.6) !important;
 
-                .toolbarbutton-badge-stack,
-                .toolbarbutton-icon,
-                image:first-of-type {
-                    filter: unset;
-                }
-            }
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: unset;
+				}
+			}
 
-            &:active,
-            &[open] {
-                border: 1px solid rgb(201, 210, 221);
-                background-color: rgba(255, 255, 255, 0.3) !important;
-            }
-        }
-    }
+			&:active,
+			&[open] {
+				border: 1px solid rgb(201, 210, 221);
+				background-color: rgba(255, 255, 255, 0.3) !important;
+			}
+		}
+	}
 }
 
 .toolbaritem-combined-buttons {
@@ -853,180 +857,181 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #fxa-toolbar-menu-button {
-    border: 0 !important;
-    background: transparent !important;
-    padding: 0 !important;
-    margin-inline-start: 5px !important;
-    margin-inline-end: -4px !important;
+	border: 0 !important;
+	background: transparent !important;
+	padding: 0 !important;
+	margin-inline-start: 5px !important;
+	margin-inline-end: -4px !important;
 	margin-block-start: -2px !important;
-    height: var(--tab-height);
+	height: var(--tab-height);
 
-    .toolbarbutton-badge-stack {
-        background: transparent !important;
-        margin-block-end: 11px;
-    }
+	.toolbarbutton-badge-stack {
+		background: transparent !important;
+		margin-block-end: 11px;
+	}
 
-    .toolbarbutton-badge-stack > vbox,
-    .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
-        width: 38px !important;
-        height: 38px !important;
-        border-radius: 0 !important;
-    }
+	.toolbarbutton-badge-stack > vbox,
+	.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+		width: 38px !important;
+		height: 38px !important;
+		border-radius: 0 !important;
+	}
 }
 
 #back-button {
-    list-style-image: url(assets/img/toolbar/back.svg) !important;
+	list-style-image: url(assets/img/toolbar/back.svg) !important;
 
-    &::after {
-        border-right: 1px solid var(--navigation-buttons-separator);
-        z-index: 1;
-    }
+	&::after {
+		border-right: 1px solid var(--navigation-buttons-separator);
+		z-index: 1;
+	}
 }
 
 #forward-button {
-    list-style-image: url(assets/img/toolbar/forward.svg) !important;
+	list-style-image: url(assets/img/toolbar/forward.svg) !important;
 }
 
 #reload-button {
-    list-style-image: url(assets/img/toolbar/reload.svg) !important;
+	list-style-image: url(assets/img/toolbar/reload.svg) !important;
 }
 
 #home-button {
-    list-style-image: url(assets/img/toolbar/home.svg) !important;
+	list-style-image: url(assets/img/toolbar/home.svg) !important;
 }
 
 #go-button-box {
-    list-style-image: url(assets/img/toolbar/go.svg);
+	list-style-image: url(assets/img/toolbar/go.svg);
 }
 
 #star-button-box > #star-button {
-    width: fit-content !important;
-    height: fit-content !important;
-    list-style-image: url(assets/img/toolbar/star.svg) !important;
+	width: fit-content !important;
+	height: fit-content !important;
+	list-style-image: url(assets/img/toolbar/star.svg) !important;
 
-    &[starred] {
-        list-style-image: url(assets/img/toolbar/starred.svg) !important;
-    }
+	&[starred] {
+		list-style-image: url(assets/img/toolbar/starred.svg) !important;
+	}
 }
 
 #star-button-box > #star-button,
 #go-button {
-    transform: translateX(1px);
+	transform: translateX(1px);
 }
 
 .identity-box-button {
-    padding: 0 !important;
-    min-height: 19px !important;
-    min-width: 19px !important;
+	padding: 0 !important;
+	min-height: 19px !important;
+	min-width: 19px !important;
 }
 
 #identity-permission-box {
-    display: none !important;
+	display: none !important;
 }
 
 .identity-box-button,
 #tracking-protection-icon-container {
-    &:hover:not([open="true"]),
-    &:hover:active,
-    &[open="true"] {
-        background: transparent !important;
-    }
+	&:hover:not([open="true"]),
+	&:hover:active,
+	&[open="true"] {
+		background: transparent !important;
+	}
 }
 
 #PanelUI-menu-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/menu_chrome.svg) !important;
-    background-position: center;
+	list-style-image: url(assets/img/chrome-5/toolbar/menu_chrome.svg) !important;
+	background-position: center;
 }
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
-    list-style-image: none !important;
-    background-position: 50%;
-    background-size: var(--newtab-width) var(--newtab-height) !important;
+	list-style-image: none !important;
+	background-position: 50%;
+	background-size: var(--newtab-width) var(--newtab-height) !important;
 }
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
-    position: relative;
-    background: url(assets/img/chrome-5/tabbar/newtab.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-top: 7px !important;
-    margin-left: 3px !important;
-    height: var(--newtab-height);
-    width: var(--newtab-width);
-    transition: background-color 100ms linear;
+	position: relative;
+	background: url(assets/img/chrome-5/tabbar/newtab.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 7px !important;
+	margin-left: 3px !important;
+	height: var(--newtab-height);
+	width: var(--newtab-width);
+	transition: background-color 100ms linear;
 
-    &:hover {
-        &::before {
-            background-color: var(--newtab-hot);
-        }
-    }
+	&:hover {
+		&::before {
+			background-color: var(--newtab-hot);
+		}
+	}
 
-    &:active {
-        background: url(assets/img/chrome-5/tabbar/newtab_p.png);
+	&:active {
+		background: url(assets/img/chrome-5/tabbar/newtab_p.png);
 
-        &::before {
-            background-color: transparent;
-            transition: none !important;
-        }
-    }
+		&::before {
+			background-color: transparent;
+			transition: none !important;
+		}
+	}
 
-    &::before {
-        content: "";
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
-        mask-size: var(--newtab-width) var(--newtab-height);
-        background-color: var(--newtab-normal);
-        transition: background-color 100ms linear;
-    }
+	&::before {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+		mask-size: var(--newtab-width) var(--newtab-height);
+		background-color: var(--newtab-normal);
+		transition: background-color 100ms linear;
+	}
 }
 
 #tabs-newtab-button .toolbarbutton-icon {
-    box-shadow: none !important;
-    background: transparent !important;
+	box-shadow: none !important;
+	background: transparent !important;
 }
 
 #stop-button {
-    list-style-image: url(assets/img/toolbar/stop.svg) !important;
+	list-style-image: url(assets/img/toolbar/stop.svg) !important;
 }
 
 #unified-extensions-button {
-    list-style-image: url(assets/img/chrome-5/toolbar/menu_plugin.svg) !important;
+	list-style-image: url(assets/img/chrome-5/toolbar/menu_plugin.svg) !important;
 }
 
 .toolbarbutton-animatable-box {
-    display: none !important;
+	display: none !important;
 }
 
 #PersonalToolbar {
-    position: relative;
-    overflow: visible !important;
-    height: var(--personal-toolbar-height) !important;
-    padding: 3px !important;
-    background: var(--personal-toolbar) !important;
+	position: relative;
+	overflow: visible !important;
+	height: var(--personal-toolbar-height) !important;
+	padding: 3px !important;
+	background: var(--personal-toolbar) !important;
 
-    &::before,
-    &::after {
-        position: absolute;
-        content: "";
-        height: 30px;
-        background-repeat: repeat-y;
-        top: 0;
-        width: 3px;
-    }
+	&::before,
+	&::after {
+		position: absolute;
+		content: "";
+		height: 23px;
+		top: 0;
+		width: 3px;
+	}
 
-    &::before {
-        left: -2px;
-        background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
-    }
+	&::before {
+		top: 1px;
+		left: -2px;
+		background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
+	}
 
-    &::after {
-        left: calc(100% - 1px);
-        background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
-    }
+	&::after {
+		top: 1px;
+		left: calc(100% - 1px);
+		background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
+	}
 }
 
 #PlacesToolbar {
@@ -1039,32 +1044,32 @@ toolbar[overflowable][customizing] > .customization-target {
 
 .bookmark-item {
 	border: 1px solid transparent;
-    box-shadow: var(--personal-toolbar-item-shadow);
-    transition: all 150ms linear;
+	box-shadow: var(--personal-toolbar-item-shadow);
+	transition: all 150ms linear;
 	margin: 0 !important;
-    border-radius: var(--toolbarbutton-radius) !important;
-    color: var(--bookmark-item-color) !important;
-    text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
+	border-radius: var(--toolbarbutton-radius) !important;
+	color: var(--bookmark-item-color) !important;
+	text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
 
-    &:hover {
-		border: 1px solid rgba(0, 0, 0, .14);
-        //box-shadow: var(--personal-toolbar-item-hover-shadow);
-        background: var(--personal-toolbar-item-hover-bg) !important;
-    }
+	&:hover {
+		border: 1px solid rgba(0, 0, 0, 0.14);
+		//box-shadow: var(--personal-toolbar-item-hover-shadow);
+		background: var(--personal-toolbar-item-hover-bg) !important;
+	}
 }
 
 #toolbar-menubar #menubar-items {
-    border-radius: 4px !important;
+	border-radius: 4px !important;
 }
 #main-menubar > menu {
-    appearance: menuitem !important;
-    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+	appearance: menuitem !important;
+	text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
 }
 
 #permissions-granted-icon {
-    list-style-image: url(assets/img/chrome-5/toolbar/wrench.png) !important;
-    margin-left: 2px;
+	list-style-image: url(assets/img/chrome-5/toolbar/wrench.png) !important;
+	margin-left: 2px;
 }
 .blocked-permission-icon {
-    display: none !important;
+	display: none !important;
 }
