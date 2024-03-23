@@ -382,6 +382,18 @@
 		}
 	}
 
+	&[profilepic="firefox"] {
+		#fxa-toolbar-menu-button {
+			.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+				width: 34px !important;
+				height: 34px !important;
+				border-radius: 50px !important;
+				margin-bottom: 4px !important;
+				box-shadow: 0 1px 1px rgb(0, 0, 0, 30%);
+			}
+		}
+	}
+
 	&:not([profilepic="firefox"]) {
 		#fxa-toolbar-menu-button {
 			#fxa-avatar-image {
@@ -889,7 +901,7 @@ toolbar[overflowable][customizing] > .customization-target {
 	.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
 		width: 38px !important;
 		height: 38px !important;
-		border-radius: 0 !important;
+		border-radius: 0px !important;
 	}
 }
 

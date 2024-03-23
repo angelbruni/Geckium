@@ -1209,6 +1209,13 @@
 :root[profilepic=disabled] #fxa-toolbar-menu-button {
   display: none !important;
 }
+:root[profilepic=firefox] #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50px !important;
+  margin-bottom: 4px !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
 :root:not([profilepic=firefox]) #fxa-toolbar-menu-button #fxa-avatar-image {
   display: none !important;
 }
@@ -1810,7 +1817,7 @@ toolbar[overflowable][customizing] > .customization-target {
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
   width: 38px !important;
   height: 38px !important;
-  border-radius: 0 !important;
+  border-radius: 0px !important;
 }
 
 #back-button {
