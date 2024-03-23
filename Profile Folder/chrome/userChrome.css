@@ -2329,8 +2329,8 @@ panelmultiview toolbarbutton {
 }
 
 .urlbarView-row-inner {
-  height: 28px !important;
-  min-height: 28px !important;
+  height: 25px !important;
+  min-height: 25px !important;
   padding-block: 0 !important;
 }
 
@@ -2910,61 +2910,110 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
   margin-top: 3px !important;
 }
 
-/* Chrome 21 -> ~47 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
+/* Chrome 22 -> 26 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] {
   --tab-width: 188px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-content {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .tab-content {
   padding-right: 1px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-close-button {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .tab-close-button {
   height: 18px !important;
   width: 18px !important;
   background-image: url(assets/img/chrome-47/tabbar/tab_close_mask.png);
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-close-button:hover {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .tab-close-button:hover {
   background-image: url(assets/img/chrome-47/tabbar/tab_close_h.png);
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .tab-close-button:active {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .tab-close-button:active {
   background-image: url(assets/img/chrome-47/tabbar/tab_close_p.png);
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #PanelUI-menu-button {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #PanelUI-menu-button {
   list-style-image: url(assets/img/chrome-47/toolbar/menu.svg) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #tabs-newtab-button,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #TabsToolbar #new-tab-button {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #tabs-newtab-button,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #TabsToolbar #new-tab-button {
   background: url(assets/img/chrome-47/tabbar/newtab_normal.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #tabs-newtab-button:hover,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #TabsToolbar #new-tab-button:hover {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #tabs-newtab-button:hover,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #TabsToolbar #new-tab-button:hover {
   background: url(assets/img/chrome-47/tabbar/newtab_hover.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #tabs-newtab-button:active,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #TabsToolbar #new-tab-button:active {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #tabs-newtab-button:active,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #TabsToolbar #new-tab-button:active {
   background: url(assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #tabs-newtab-button:active::before,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #TabsToolbar #new-tab-button:active::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #tabs-newtab-button:active::before,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #TabsToolbar #new-tab-button:active::before {
   background-color: var(--newtab-active);
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #tabs-newtab-button::before,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #TabsToolbar #new-tab-button::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #tabs-newtab-button::before,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] #TabsToolbar #new-tab-button::before {
   -webkit-mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
           mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .bookmark-item {
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .bookmark-item::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] .bookmark-item::before {
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
+
+/* Chrome 27 -> ~47 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
+  --tab-width: 188px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-content {
+  padding-right: 1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button {
+  height: 18px !important;
+  width: 18px !important;
+  background-image: url(assets/img/chrome-47/tabbar/tab_close_mask.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button:hover {
+  background-image: url(assets/img/chrome-47/tabbar/tab_close_h.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .tab-close-button:active {
+  background-image: url(assets/img/chrome-47/tabbar/tab_close_p.png);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-menu-button {
+  list-style-image: url(assets/img/chrome-47/toolbar/menu.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button {
+  background: url(assets/img/chrome-47/tabbar/newtab_normal.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:hover,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:hover {
+  background: url(assets/img/chrome-47/tabbar/newtab_hover.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:active,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:active {
+  background: url(assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button:active::before,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button:active::before {
+  background-color: var(--newtab-active);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #tabs-newtab-button::before,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #TabsToolbar #new-tab-button::before {
+  -webkit-mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
+          mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .bookmark-item {
+  transition: all 150ms linear !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .bookmark-item::before {
+  transition: all 150ms linear !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
   --urlbarView: white !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] #urlbar {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #urlbar {
   font-size: 11pt !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView {
   margin-top: 5px !important;
   border-radius: 0 !important;
   border: 0 !important;
@@ -2972,7 +3021,7 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
   padding-block: 3px !important;
   overflow: visible !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView::after {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -2983,29 +3032,29 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
   top: 0px;
   z-index: -1;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView::before {
   left: -50%;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView::after {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView::after {
   right: -50%;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView-body-inner {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView-body-inner {
   margin-inline-start: 1px !important;
   width: calc(100% - 2px) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView-row-inner {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView-row-inner {
   min-height: 28px !important;
   height: 28px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] .urlbarView-url {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView-url {
   color: rgb(11, 128, 96) !important;
 }
 
 /* Chrome 50 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
   --tab-height: 32px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
   --nav-bar-height: 37px;
   --toolbarbutton-height: 24px;
   --toolbarbutton-radius: 2px;
@@ -3013,16 +3062,16 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
   --urlbar-height-definitive: 28px;
   --personal-toolbar-height: 28px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #tabs-newtab-button,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #TabsToolbar #new-tab-button {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #tabs-newtab-button,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #TabsToolbar #new-tab-button {
   margin-top: 10px !important;
   margin-left: 4px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
   border: 0 !important;
   box-shadow: none !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::before {
   transform: scale(0);
   left: 50% !important;
   top: 50% !important;
@@ -3033,54 +3082,54 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
   background: var(--toolbarbutton-background-hot) !important;
   transition: width 150ms, height 150ms, opacity 150ms !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::after {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::after {
   content: unset;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):hover {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):hover {
   background: var(--toolbarbutton-background-hot) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):hover::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):hover::before {
   opacity: 0;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):active {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):active {
   background: transparent !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):active::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):active::before {
   width: calc(var(--nav-bar-height) - 6px);
   height: calc(var(--nav-bar-height) - 6px);
   opacity: 1;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button:not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button:not([disabled])[open], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button:not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button:not([disabled])[open] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button:not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button:not([disabled])[open], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button:not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button:not([disabled])[open] {
   border: 0 !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#back-button::before {
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#forward-button::before {
   border-top-left-radius: 50% !important;
   border-bottom-left-radius: 50% !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #PlacesToolbarItems {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PlacesToolbarItems {
   gap: 0;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #urlbar {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #urlbar-background,
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] #searchbar {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #urlbar-background,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #searchbar {
   border-radius: calc(var(--toolbarbutton-radius) + 1px) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .urlbarView {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .urlbarView {
   padding-block: 4px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .urlbarView-row {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .urlbarView-row {
   border-radius: 3px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .urlbarView-row-inner {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .urlbarView-row-inner {
   min-height: 25px !important;
   height: 25px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] .urlbarView-url {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] .urlbarView-url {
   color: rgb(41, 93, 204) !important;
 }/*# sourceMappingURL=userChrome.css.map */

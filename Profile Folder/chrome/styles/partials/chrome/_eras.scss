@@ -3,25 +3,30 @@
 
 /* Chrome 6 */
 :root[geckium-five][geckium-six] {
-	@import "chrome-6/final";
+    @import "chrome-6/final";
 }
 
 /* Chrome 7 -> 11 */
 :root[geckium-five][geckium-six][geckium-eleven] {
-	@import "chrome-11/final";
+    @import "chrome-11/final";
 }
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
-	@import "chrome-21/final";
+    @import "chrome-21/final";
 }
 
-/* Chrome 21 -> ~47 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven] {
-	@import "chrome-47/final";
+/* Chrome 22 -> 26 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix] {
+    @import "chrome-26/final";
+}
+
+/* Chrome 27 -> ~47 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
+    @import "chrome-47/final";
 }
 
 /* Chrome 50 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-fortyseven][geckium-fifty] {
-	@import "chrome-50/final";
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
+    @import "chrome-50/final";
 }
