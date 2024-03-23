@@ -1,0 +1,86 @@
+& {
+	--nav-bar-height: 37px;
+
+	--toolbarbutton-height: 24px;
+	--toolbarbutton-radius: 2px;
+	--toolbarbutton-background-hot: rgba(0,0,0,.09);
+
+	--urlbar-height-definitive: 28px;
+
+	--personal-toolbar-height: 28px;
+}
+
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	margin-top: 10px !important;
+	margin-left: 4px !important;
+}
+
+.toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+	border: 0 !important;
+	box-shadow: none !important;
+
+	&::before {
+		transform: scale(0);
+		left: 50% !important;
+		top: 50% !important;
+		transform: translateX(-50%) translateY(-50%) !important;
+		width: 0;
+		height: 0;
+		border-radius: 50% !important;
+		background: var(--toolbarbutton-background-hot) !important;
+		transition: width 150ms, height 150ms, opacity 150ms !important;
+	}
+
+	&::after {
+		content: unset;
+	}
+
+	&:not([disabled]) {
+		&:hover {
+			background: var(--toolbarbutton-background-hot) !important;
+			
+			&::before {
+				opacity: 0;
+			}
+		}
+
+		&:active {
+			background: transparent !important;
+
+			&::before {			
+				width: calc(var(--nav-bar-height) - 6px);
+				height: calc(var(--nav-bar-height) - 6px);
+				opacity: 1;
+			}
+		}
+	}
+
+	&#back-button,
+	&#forward-button {
+		&:not([disabled]) {
+			&:active,
+			&[open] {
+				border: 0 !important;
+			}
+		}
+	}
+
+	&#back-button {
+		&::before {
+			border-top-right-radius: 50% !important;
+			border-bottom-right-radius: 50% !important;
+		}
+	}
+
+	&#forward-button {
+		&::before {
+			border-top-left-radius: 50% !important;
+			border-bottom-left-radius: 50% !important;
+		}
+	}
+}
+
+#PlacesToolbarItems {
+	gap: 0;
+}

@@ -369,6 +369,7 @@
 }
 
 .urlbarView-url {
+	margin-top: 0 !important;
     font-size: unset !important;
 }
 
@@ -520,8 +521,9 @@
 }
 
 .urlbarView-row-inner {
-    padding-block-start: 2px !important;
-    padding-block-end: 3px !important;
+	height: 28px !important;
+	min-height: 28px !important;
+    padding-block: 0 !important;
 }
 
 .urlbarView-dynamic-onboardTabToSearch-no-wrap {
