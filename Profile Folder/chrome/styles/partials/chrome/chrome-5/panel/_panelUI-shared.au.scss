@@ -2,7 +2,7 @@
 	--modal-background: rgb(251,251,251);
 }
 
-:is(panel:not(.autoscroller, #PopupSearchAutoComplete), menupopup)::part(content) {
+:is(panel:not(.autoscroller, #PopupSearchAutoComplete))::part(content) {
 	background-color: var(--modal-background) !important;
 	border: 1px solid rgb(0,0,0,.3) !important;
 	border-radius: 3px !important;
