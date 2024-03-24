@@ -34,7 +34,7 @@
 
         &:not([lwtheme-id*="firefox-compact"]) {
             &[style*="--lwt-additional-images"] {
-                body {
+                &[windowtype="navigator:browser"] > body {
                     background: var(--lwt-additional-images),
                         var(--lwt-accent-color) !important;
                     background-position: var(
@@ -49,14 +49,14 @@
 						   be more appropriate, so we are gonna fix
 						   it like this for now... */
                 &[lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] {
-                    body {
+                    &[windowtype="navigator:browser"] > body {
                         background-position-y: top -65px !important;
                     }
                 }
             }
 
             &[style*="--lwt-header-image"] {
-                body {
+                &[windowtype="navigator:browser"] > body {
                     background: var(--lwt-header-image), var(--lwt-header-image),
                         var(--lwt-additional-images) !important;
                     background-position: top right, bottom right !important;
@@ -75,7 +75,7 @@
             }
 
             &[customthememode="2"] {
-                body,
+                &[windowtype="navigator:browser"] > body,
                 #navigator-toolbox {
                     background: transparent !important;
                 }

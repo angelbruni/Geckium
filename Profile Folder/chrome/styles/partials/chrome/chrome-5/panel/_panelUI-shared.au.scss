@@ -1,12 +1,13 @@
 & {
-	--modal-background: rgb(251,251,251);
+	--modal-background: white;
 }
 
 :is(panel:not(.autoscroller, #PopupSearchAutoComplete))::part(content) {
 	background-color: var(--modal-background) !important;
 	border: 1px solid rgb(0,0,0,.3) !important;
-	border-radius: 3px !important;
+	border-radius: 5px !important;
 	box-shadow: 0 2px 1px 0 rgba(0,0,0,.2) !important;
-	padding-block: 19px !important;
-	padding-inline: 20px !important;
+	padding-block: 6px !important;
+	padding-inline: 7px !important;
+	position: relative !important;
 }

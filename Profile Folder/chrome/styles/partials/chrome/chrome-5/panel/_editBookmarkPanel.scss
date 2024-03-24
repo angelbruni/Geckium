@@ -1,5 +1,33 @@
+:root {
+	&[geckium-choice="five"],
+	&[geckium-choice="six"],
+	&[geckium-choice="eleven"],
+	&[geckium-choice="twentyone"],
+	&[geckium-choice="twentysix"] {
+		#editBookmarkPanelBottomButtons {
+			> button:not(#editBookmarkPanelRemoveButton) {
+				min-width: 87px !important;
+				min-height: 27px !important;
+				font-weight: normal !important;
+			}
+		}
+
+		#editBookmarkPanelRemoveButton {
+			appearance: none !important;
+			position: absolute;
+			top: 7px;
+			right: 7px;
+			color: rgb(0,102,204) !important;
+			text-decoration: underline;
+			padding: 0 !important;
+			background-color: transparent !important;
+		}
+	}
+}
+
 #editBookmarkPanel {
-	transform: translateY(-3px) translateX(2px);
+	//transform: translateY(1px) translateX(5px);
+	transform: none;
 }
 
 #editBookmarkPanelInfoArea {
@@ -8,9 +36,9 @@
 
 #editBookmarkPanelContent {
 	padding: 0 !important;
-	grid-template-columns: min-content 238px !important;
+	grid-template-columns: min-content 180px !important;
 	align-items: center !important;
-	gap: 12px !important;
+	gap: 4px !important;
 
 	.expander-down {
 		display: none !important;
@@ -23,10 +51,10 @@
 		&[data-l10n-id*="bookmark-overlay"] {
 			&::after {
 				content: ":";
+				margin-inline-end: 4px !important;
 			}
 		}
 	}
-
 }
 
 #editBookmarkPanelBottomContent {

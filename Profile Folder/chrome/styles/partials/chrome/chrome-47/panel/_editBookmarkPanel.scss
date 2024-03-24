@@ -1,0 +1,16 @@
+#editBookmarkPanel {
+	transform: translateY(-3px) translateX(2px);
+}
+
+#editBookmarkPanelContent {
+	grid-template-columns: min-content 238px !important;
+	gap: 12px !important;
+
+	label {
+		&[data-l10n-id*="bookmark-overlay"] {
+			&::after {
+				margin-inline-end: 0 !important;
+			}
+		}
+	}
+}

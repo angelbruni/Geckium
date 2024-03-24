@@ -35,7 +35,7 @@
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
-:root[chromemargin="0,0,0,0"][sizemode=maximized] body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -47,7 +47,7 @@
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
 }
-:root[chromemargin="0,0,0,0"] body {
+:root[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
   background: var(--titlebar-active);
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgb(89, 89, 89);
@@ -58,7 +58,7 @@
   padding: 1px !important;
   box-sizing: border-box;
 }
-:root[chromemargin="0,0,0,0"] body:-moz-window-inactive {
+:root[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
 :root[chromemargin="0,0,0,0"] #titlebar {
@@ -123,13 +123,13 @@
   box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
-:root[chromemargin="0,0,0,0"][sizemode=maximized] body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   padding: 0 !important;
 }
 :root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root[chromemargin="0,0,0,0"][sizemode=maximized] body {
+:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
   padding-top: 7px !important;
 }
 :root[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
@@ -170,16 +170,16 @@
   be more appropriate, so we are gonna fix
   it like this for now... */
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"][windowtype="navigator:browser"] > body {
   background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-position-y: top !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"][windowtype="navigator:browser"] > body {
   background-position-y: top -65px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-header-image"] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[style*="--lwt-header-image"][windowtype="navigator:browser"] > body {
   background: var(--lwt-header-image), var(--lwt-header-image), var(--lwt-additional-images) !important;
   background-position: top right, bottom right !important;
   background-position-y: top !important;
@@ -192,7 +192,7 @@
   background-repeat: no-repeat !important;
   box-shadow: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"][windowtype="navigator:browser"] > body,
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[customthememode="2"] #navigator-toolbox {
   background: transparent !important;
 }
@@ -831,7 +831,7 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -843,7 +843,7 @@
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
   background: var(--titlebar-active);
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgb(89, 89, 89);
@@ -854,7 +854,7 @@
   padding: 1px !important;
   box-sizing: border-box;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] body:-moz-window-inactive {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] #titlebar {
@@ -918,13 +918,13 @@
   box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   padding: 0 !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized] body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
   padding-top: 7px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
@@ -1212,7 +1212,7 @@
 :root[profilepic=firefox] #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
   width: 34px !important;
   height: 34px !important;
-  border-radius: 50px !important;
+  border-radius: 50% !important;
   margin-bottom: 2px !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
@@ -1325,8 +1325,10 @@
   z-index: 1;
 }
 :root[sizemode=maximized] #nav-bar,
-:root[sizemode=maximized] #PersonalToolbar, :root[sizemode=fullscreen] #nav-bar,
-:root[sizemode=fullscreen] #PersonalToolbar {
+:root[sizemode=maximized] #PersonalToolbar,
+:root[sizemode=maximized] .notificationbox-stack, :root[sizemode=fullscreen] #nav-bar,
+:root[sizemode=fullscreen] #PersonalToolbar,
+:root[sizemode=fullscreen] .notificationbox-stack {
   margin-inline: 0 !important;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
@@ -1365,7 +1367,8 @@
 }
 
 #nav-bar,
-#PersonalToolbar {
+#PersonalToolbar,
+.notificationbox-stack {
   margin-inline: 2px;
 }
 
@@ -1817,7 +1820,7 @@ toolbar[overflowable][customizing] > .customization-target {
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
   width: 38px !important;
   height: 38px !important;
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 
 #back-button {
@@ -1945,29 +1948,37 @@ toolbar[overflowable][customizing] > .customization-target {
   display: none !important;
 }
 
-#PersonalToolbar {
+#PersonalToolbar,
+.notificationbox-stack {
   position: relative;
+}
+#PersonalToolbar::before, #PersonalToolbar::after,
+.notificationbox-stack::before,
+.notificationbox-stack::after {
+  position: absolute;
+  content: "";
+  width: 3px;
+}
+#PersonalToolbar::before,
+.notificationbox-stack::before {
+  left: -2px;
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
+}
+#PersonalToolbar::after,
+.notificationbox-stack::after {
+  left: calc(100% - 1px);
+  background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
+}
+
+#PersonalToolbar {
   overflow: visible !important;
   height: var(--personal-toolbar-height) !important;
   padding: 3px !important;
   background: var(--personal-toolbar) !important;
 }
 #PersonalToolbar::before, #PersonalToolbar::after {
-  position: absolute;
-  content: "";
+  top: 1px;
   height: 23px;
-  top: 0;
-  width: 3px;
-}
-#PersonalToolbar::before {
-  top: 1px;
-  left: -2px;
-  background: url(assets/img/chrome-5/toolbar/content_bookmark_left.png);
-}
-#PersonalToolbar::after {
-  top: 1px;
-  left: calc(100% - 1px);
-  background: url(assets/img/chrome-5/toolbar/content_bookmark_right.png);
 }
 
 #PlacesToolbar {
@@ -2027,6 +2038,7 @@ panelmultiview toolbarbutton {
 .panel-header {
   align-items: unset !important;
   height: 31px !important;
+  color: rgb(6, 45, 117) !important;
   padding: 0 !important;
   min-height: 0 !important;
   margin-block-end: 11px !important;
@@ -2040,16 +2052,34 @@ panelmultiview toolbarbutton {
 .panel-footer {
   gap: 10px !important;
   margin: 0 !important;
-  margin-block-start: 10px !important;
-  margin-inline-end: 2px !important;
+  margin-block-start: 4px !important;
+  margin-inline-end: 0 !important;
 }
 
 .panel-subview-footer-button {
   margin: 0 !important;
 }
 
+:root[geckium-choice=five] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=six] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=eleven] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=twentyone] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=twentysix] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton) {
+  min-width: 87px !important;
+  min-height: 27px !important;
+  font-weight: normal !important;
+}
+:root[geckium-choice=five] #editBookmarkPanelRemoveButton, :root[geckium-choice=six] #editBookmarkPanelRemoveButton, :root[geckium-choice=eleven] #editBookmarkPanelRemoveButton, :root[geckium-choice=twentyone] #editBookmarkPanelRemoveButton, :root[geckium-choice=twentysix] #editBookmarkPanelRemoveButton {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  color: rgb(0, 102, 204) !important;
+  text-decoration: underline;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
 #editBookmarkPanel {
-  transform: translateY(-3px) translateX(2px);
+  transform: none;
 }
 
 #editBookmarkPanelInfoArea {
@@ -2058,9 +2088,9 @@ panelmultiview toolbarbutton {
 
 #editBookmarkPanelContent {
   padding: 0 !important;
-  grid-template-columns: min-content 238px !important;
+  grid-template-columns: min-content 180px !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 4px !important;
 }
 #editBookmarkPanelContent .expander-down {
   display: none !important;
@@ -2071,6 +2101,7 @@ panelmultiview toolbarbutton {
 }
 #editBookmarkPanelContent label[data-l10n-id*=bookmark-overlay]::after {
   content: ":";
+  margin-inline-end: 4px !important;
 }
 
 #editBookmarkPanelBottomContent {
@@ -2534,80 +2565,114 @@ toolbarpaletteitem[place=palette] {
   display: none !important;
 }
 
-button {
-  padding: 0 !important;
-  padding-block-end: 3px !important;
-  padding-inline: 10px !important;
-  justify-content: center;
-  align-items: center;
-  min-height: 29px !important;
-  font-size: 9pt !important;
-  background-color: rgb(249, 249, 249) !important;
-  border: 1px solid rgb(179, 179, 179) !important;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-  border-radius: 2px !important;
+:root[geckium-choice=five], :root[geckium-choice=six], :root[geckium-choice=eleven], :root[geckium-choice=twentyone], :root[geckium-choice=twentysix] {
+  /* .control-button - Picture-in-Picture buttons. */
+}
+:root[geckium-choice=five] button:not(.control-button), :root[geckium-choice=six] button:not(.control-button), :root[geckium-choice=eleven] button:not(.control-button), :root[geckium-choice=twentyone] button:not(.control-button), :root[geckium-choice=twentysix] button:not(.control-button) {
+  -webkit-appearance: button !important;
+     -moz-appearance: button !important;
+          appearance: button !important;
+  /* TODO: Find the correct colour for buttons. */
   color: black !important;
-  margin-inline: 0 !important;
-  margin-block-end: 1px !important;
-}
-button:not([disabled])[default=true], button:not([disabled]):focus {
-  border-color: rgb(62, 126, 248) !important;
-}
-button:not([disabled]):active {
-  background-color: rgb(230, 230, 230) !important;
-  box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.3);
 }
 
-input[type=text] {
-  margin: 0 !important;
-  padding: 0 !important;
-  padding-inline-start: 3px !important;
-  min-height: 24px !important;
+:root[geckium-choice=five] input[type=text], :root[geckium-choice=six] input[type=text], :root[geckium-choice=eleven] input[type=text], :root[geckium-choice=twentyone] input[type=text], :root[geckium-choice=twentysix] input[type=text] {
+  -webkit-appearance: auto !important;
+     -moz-appearance: auto !important;
+          appearance: auto !important;
   border-radius: 0 !important;
   border: 1px solid rgb(217, 217, 217) !important;
   background-color: white !important;
-  box-sizing: border-box !important;
 }
-input[type=text]:focus, input[type=text]:focus-within {
-  border-color: rgb(62, 126, 248) !important;
+:root[geckium-choice=five] input[type=text]:focus-within, :root[geckium-choice=six] input[type=text]:focus-within, :root[geckium-choice=eleven] input[type=text]:focus-within, :root[geckium-choice=twentyone] input[type=text]:focus-within, :root[geckium-choice=twentysix] input[type=text]:focus-within {
   outline: 0 !important;
 }
-input[type=text]#availableLanguages {
-  margin-inline-end: 10px !important;
-}
 
-menulist {
-  margin: 0 !important;
+:root[geckium-choice=five] menulist, :root[geckium-choice=six] menulist, :root[geckium-choice=eleven] menulist, :root[geckium-choice=twentyone] menulist, :root[geckium-choice=twentysix] menulist {
+  -moz-default-appearance: menulist-button !important;
+  -webkit-appearance: auto !important;
+     -moz-appearance: auto !important;
+          appearance: auto !important;
   padding: 0 !important;
-  padding-inline-start: 2px !important;
-  padding-inline-end: 3px !important;
-  min-height: 24px !important;
-  border-radius: 0 !important;
-  border: 1px solid rgb(192, 192, 192) !important;
-  background-color: rgb(251, 251, 251) !important;
-  box-sizing: border-box !important;
 }
-menulist:focus {
-  border-color: rgb(62, 126, 248) !important;
-}
-menulist#availableLanguages {
-  margin-inline-end: 10px !important;
+:root[geckium-choice=five] dropmarker[part=dropmarker][type=menu], :root[geckium-choice=six] dropmarker[part=dropmarker][type=menu], :root[geckium-choice=eleven] dropmarker[part=dropmarker][type=menu], :root[geckium-choice=twentyone] dropmarker[part=dropmarker][type=menu], :root[geckium-choice=twentysix] dropmarker[part=dropmarker][type=menu] {
+  -webkit-appearance: auto !important;
+     -moz-appearance: auto !important;
+          appearance: auto !important;
+  margin-top: -7px !important;
 }
 
 hbox[id=label-box][part=label-box] {
   font-weight: normal !important;
 }
 
-dropmarker[part=dropmarker][type=menu] {
-  margin-inline: 6px !important;
+.notificationbox-stack {
+  overflow: visible !important;
+  width: calc(100% - 4px) !important;
+}
+.notificationbox-stack::before, .notificationbox-stack::after {
+  top: 0px;
+  height: calc(100% - 1px);
 }
 
-link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
-  list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAQAAACxSAwfAAAAUklEQVQY02P4z0AMRGZGMaShwCisyhITmb8huMzfEhOxKvuvsGAh208Ik+3ngoX/FbBbClcIUcSAw21QhXxfIIrwKAMpfNsEUYRXGVCEFc6CQwBqq4CCCtU4VgAAAABJRU5ErkJggg==) !important;
-  width: 19px !important;
-  height: 8px !important;
-  align-self: center;
+.infobar {
+  margin: -4px !important;
+  min-height: 36px !important;
+  align-items: center !important;
+  padding-block: 0 !important;
+  padding-inline: 8px !important;
+  border-block: 1px solid rgb(182, 186, 192) !important;
+  background: linear-gradient(to bottom, rgb(229, 229, 229), rgb(217, 217, 217)) !important;
+  border-radius: 0 !important;
+  font-size: 11pt !important;
+}
+.infobar::before {
+  content: unset !important;
+}
+.infobar > .icon {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 !important;
+  margin-inline-end: 6px !important;
+}
+.infobar > .icon::after {
+  display: flex;
+  height: 28px;
+  width: 28px;
+}
+.infobar .notification-content {
+  display: flex !important;
+  margin-inline-start: 0 !important;
+}
+.infobar .notification-message {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.infobar .notification-button-container {
+  display: flex !important;
+  gap: 10px;
+  margin-inline: 10px !important;
+}
+.infobar .notification-close {
+  margin: 0 !important;
+}
+
+.notification-button {
+  padding: 0 !important;
+  padding-inline: 5px !important;
+  margin: 0 !important;
+  height: 30px !important;
+  border: 1px solid rgb(137, 137, 137) !important;
+  border-radius: 4px !important;
+  background: linear-gradient(to bottom, rgb(248, 248, 248), rgb(227, 227, 227)) !important;
+  font-size: 11pt !important;
+  font-weight: normal !important;
+}
+.notification-button:hover, .notification-button:active {
+  border-color: rgb(68, 68, 68) !important;
+}
+.notification-button:active {
+  background: linear-gradient(to bottom, rgb(234, 234, 234), rgb(245, 245, 245)) !important;
 }
 
 /* Chrome 6 */
@@ -3121,6 +3186,26 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
 
 /* Chrome 27 -> ~47 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
+  /* .control-button - Picture-in-Picture buttons. */
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .panel-header {
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .panel-footer {
+  margin-block-start: 10px !important;
+  margin-inline-end: 2px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #editBookmarkPanel {
+  transform: translateY(-3px) translateX(2px);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #editBookmarkPanelContent {
+  grid-template-columns: min-content 238px !important;
+  gap: 12px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #editBookmarkPanelContent label[data-l10n-id*=bookmark-overlay]::after {
+  margin-inline-end: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] {
   --urlbarView: white !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #urlbar {
@@ -3161,6 +3246,76 @@ link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] .urlbarView-url {
   color: rgb(11, 128, 96) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] button:not(.control-button) {
+  padding: 0 !important;
+  padding-block-end: 3px !important;
+  padding-inline: 10px !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 29px !important;
+  font-size: 9pt !important;
+  background-color: rgb(249, 249, 249) !important;
+  border: 1px solid rgb(179, 179, 179) !important;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  border-radius: 2px !important;
+  color: black !important;
+  margin-inline: 0 !important;
+  margin-block-end: 1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] button:not(.control-button):not([disabled])[default=true], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] button:not(.control-button):not([disabled]):focus {
+  border-color: rgb(62, 126, 248) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] button:not(.control-button):not([disabled]):active {
+  background-color: rgb(230, 230, 230) !important;
+  box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] input[type=text] {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline-start: 3px !important;
+  min-height: 24px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgb(217, 217, 217) !important;
+  background-color: white !important;
+  box-sizing: border-box !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] input[type=text]:focus, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] input[type=text]:focus-within {
+  border-color: rgb(62, 126, 248) !important;
+  outline: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] input[type=text]#availableLanguages {
+  margin-inline-end: 10px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] menulist {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline-start: 2px !important;
+  padding-inline-end: 3px !important;
+  min-height: 24px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgb(192, 192, 192) !important;
+  background-color: rgb(251, 251, 251) !important;
+  box-sizing: border-box !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] menulist:focus {
+  border-color: rgb(62, 126, 248) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] menulist#availableLanguages {
+  margin-inline-end: 10px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] hbox[id=label-box][part=label-box] {
+  font-weight: normal !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] dropmarker[part=dropmarker][type=menu] {
+  margin-inline: 6px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] link[href="chrome://global/skin/dropmarker.css"] + image[part=icon] {
+  list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAQAAACxSAwfAAAAUklEQVQY02P4z0AMRGZGMaShwCisyhITmb8huMzfEhOxKvuvsGAh208Ik+3ngoX/FbBbClcIUcSAw21QhXxfIIrwKAMpfNsEUYRXGVCEFc6CQwBqq4CCCtU4VgAAAABJRU5ErkJggg==) !important;
+  width: 19px !important;
+  height: 8px !important;
+  align-self: center;
 }
 
 /* Chrome 50 */
