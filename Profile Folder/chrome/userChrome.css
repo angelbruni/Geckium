@@ -1655,6 +1655,10 @@ toolbar[overflowable][customizing] > .customization-target {
   list-style-image: url(assets/img/toolbar/reload.svg) !important;
 }
 
+#stop-button {
+  list-style-image: url(assets/img/toolbar/stop.svg) !important;
+}
+
 #home-button {
   list-style-image: url(assets/img/toolbar/home.svg) !important;
 }
@@ -1745,10 +1749,6 @@ toolbar[overflowable][customizing] > .customization-target {
           mask-size: var(--newtab-width) var(--newtab-height);
   background-color: var(--newtab-normal);
   transition: background-color 100ms linear;
-}
-
-#stop-button {
-  list-style-image: url(assets/img/toolbar/stop.svg) !important;
 }
 
 #unified-extensions-button {
@@ -3243,13 +3243,22 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
   --tab-height: 32px;
+  --tabbrowser-tab-selected: var(--nav-bar);
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
+  --nav-bar: rgb(242,242,242);
   --nav-bar-height: 37px;
   --toolbarbutton-height: 24px;
   --toolbarbutton-radius: 2px;
   --toolbarbutton-background-hot: rgba(0,0,0,.09);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty]:not(:-moz-lwtheme) {
+  --toolbarbutton-icon-fill: #5a5a5a !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
+  --toolbarbutton-outer-padding: 2px !important;
   --urlbar-height-definitive: 28px;
+  --personal-toolbar: var(--nav-bar);
   --personal-toolbar-height: 28px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #tabs-newtab-button,
@@ -3302,6 +3311,24 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PlacesToolbarItems {
   gap: 0;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #back-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/back.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #forward-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/forward.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #reload-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/reload.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #stop-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/stop.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #home-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/home.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PanelUI-menu-button {
+  list-style-image: url(assets/img/chrome-50/toolbar/menu_chrome.svg) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;

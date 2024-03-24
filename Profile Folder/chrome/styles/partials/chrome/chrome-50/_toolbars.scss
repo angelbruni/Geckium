@@ -1,12 +1,18 @@
 & {
+	--nav-bar: rgb(242,242,242);
 	--nav-bar-height: 37px;
 
 	--toolbarbutton-height: 24px;
 	--toolbarbutton-radius: 2px;
 	--toolbarbutton-background-hot: rgba(0,0,0,.09);
+	&:not(:-moz-lwtheme) {
+		--toolbarbutton-icon-fill: #5a5a5a !important;
+	}
+	--toolbarbutton-outer-padding: 2px !important;
 
 	--urlbar-height-definitive: 28px;
 
+	--personal-toolbar: var(--nav-bar);
 	--personal-toolbar-height: 28px;
 }
 
@@ -83,4 +89,28 @@
 
 #PlacesToolbarItems {
 	gap: 0;
+}
+
+#back-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/back.svg) !important;
+}
+
+#forward-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/forward.svg) !important;
+}
+
+#reload-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/reload.svg) !important;
+}
+
+#stop-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/stop.svg) !important;
+}
+
+#home-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/home.svg) !important;
+}
+
+#PanelUI-menu-button {
+	list-style-image: url(assets/img/chrome-50/toolbar/menu_chrome.svg) !important;
 }
