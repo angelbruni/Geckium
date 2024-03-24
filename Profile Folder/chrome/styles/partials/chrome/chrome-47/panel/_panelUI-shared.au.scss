@@ -1,0 +1,10 @@
+& {
+	--modal-background: rgb(251,251,251);
+}
+
+:is(panel:not(.autoscroller, #PopupSearchAutoComplete))::part(content) {
+	border-radius: 3px !important;
+	box-shadow: 0 2px 1px 0 rgba(0,0,0,.2) !important;
+	padding-block: 19px !important;
+	padding-inline: 20px !important;
+}

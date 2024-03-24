@@ -1,0 +1,10 @@
+.notificationbox-stack {
+	overflow: visible !important;
+	width: calc(100% - 4px) !important;
+
+	&::before,
+	&::after {
+		top: 0px;
+		height: calc(100% - 1px);
+	}
+}

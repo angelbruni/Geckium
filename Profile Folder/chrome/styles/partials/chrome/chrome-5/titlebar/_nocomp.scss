@@ -9,7 +9,7 @@
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		body {
+		&[windowtype="navigator:browser"] > body {
 			border: 0 !important;
 			border-radius: 0 !important;
 			box-shadow: none !important;
@@ -29,7 +29,7 @@
 		}
 	}
 	
-	body {
+	&[windowtype="navigator:browser"] > body {
 		&:-moz-window-inactive {
 			background: var(--titlebar-inactive);
 		}
@@ -116,7 +116,7 @@
 	
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		body {
+		&[windowtype="navigator:browser"] > body {
 			padding: 0 !important;
 		}
 	
@@ -126,7 +126,7 @@
 	}
 
 	&[sizemode="maximized"] {
-		body {
+		&[windowtype="navigator:browser"] > body {
 			padding-top: 7px !important;
 		}
 	}

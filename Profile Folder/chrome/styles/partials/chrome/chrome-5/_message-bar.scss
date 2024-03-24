@@ -1,0 +1,69 @@
+.infobar {
+	margin: -4px !important;
+	min-height: 36px !important;
+	align-items: center !important;
+	padding-block: 0 !important;
+	padding-inline: 8px !important;
+	border-block: 1px solid rgb(182,186,192) !important;
+	background: linear-gradient(to bottom, rgb(229,229,229), rgb(217,217,217)) !important;
+	border-radius: 0 !important;
+	font-size: 11pt !important;
+
+	&::before {
+		content: unset !important;
+	}
+
+	> .icon {
+		width: 28px !important;
+		height: 28px !important;
+		margin: 0 !important;
+		margin-inline-end: 6px !important;
+
+		&::after {
+			display: flex;
+			height: 28px;
+			width: 28px;
+		}
+	}
+
+	.notification-content {
+		display: flex !important;
+		margin-inline-start: 0 !important;
+	}
+
+	.notification-message {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.notification-button-container {
+		display: flex !important;
+		gap: 10px;
+		margin-inline: 10px !important;
+	}
+
+	.notification-close {
+		margin: 0 !important;
+	}
+}
+
+.notification-button {
+	padding: 0 !important;
+	padding-inline: 5px !important;
+	margin: 0 !important;
+	height: 30px !important;
+	border: 1px solid rgb(137,137,137) !important;
+	border-radius: 4px !important;
+	background: linear-gradient(to bottom, rgb(248,248,248), rgb(227,227,227)) !important;
+	font-size: 11pt !important;
+	font-weight: normal !important;
+
+	&:hover,
+	&:active {
+		border-color: rgb(68,68,68) !important;
+	}
+
+	&:active {
+		background: linear-gradient(to bottom, rgb(234,234,234), rgb(245,245,245)) !important;
+	}
+}

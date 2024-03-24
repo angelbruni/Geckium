@@ -369,6 +369,18 @@
 			display: none !important;
 		}
 	}
+	
+	&[profilepic="firefox"] {
+		#fxa-toolbar-menu-button {
+			.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+				
+				
+				border-radius: 50% !important;
+				
+				
+			}
+		}
+	}
 
 	&:not([profilepic="firefox"]) {
 		#fxa-toolbar-menu-button {
@@ -438,9 +450,10 @@
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		#nav-bar,
-        #PersonalToolbar {
-			
-			
+		#PersonalToolbar,
+		.notificationbox-stack {
+
+
 			
 		}
 		
@@ -493,7 +506,8 @@
 }
 
 #nav-bar,
-#PersonalToolbar {
+#PersonalToolbar,
+.notificationbox-stack {
 	margin-inline: 2px;
 }
 
@@ -989,19 +1003,15 @@ toolbar[overflowable][customizing] > .customization-target {
 	display: none !important;
 }
 
-#PersonalToolbar {
+#PersonalToolbar,
+.notificationbox-stack {
 
-
-	height: var(--personal-toolbar-height) !important;
-	
-	background: var(--personal-toolbar) !important;
 	
 	&::before,
 	&::after {
-		
-		
-		
-		
+
+
+
 	}
 	&::before {
 		
@@ -1010,6 +1020,19 @@ toolbar[overflowable][customizing] > .customization-target {
 	&::after {
 
 		
+	}
+}
+
+#PersonalToolbar {
+	overflow: visible !important;
+	height: var(--personal-toolbar-height) !important;
+	padding: 3px !important;
+	background: var(--personal-toolbar) !important;
+	
+	&::before,
+	&::after {
+		top: 1px;
+		height: 23px;
 	}
 }
 
