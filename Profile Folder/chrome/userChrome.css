@@ -1910,7 +1910,6 @@ toolbarbutton.subviewbutton#fxa-manage-account-button {
 }
 toolbarbutton.subviewbutton#fxa-manage-account-button::before {
   content: "";
-  background-color: rgb(222, 222, 222);
   background-image: var(--avatar-image-url);
   background-position: center;
   background-repeat: no-repeat;
@@ -3042,6 +3041,7 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
   content: "";
+  background-color: rgb(222, 222, 222);
   border-radius: 50%;
   min-width: 88px;
   min-height: 88px;
