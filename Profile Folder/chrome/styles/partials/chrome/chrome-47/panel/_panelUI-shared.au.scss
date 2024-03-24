@@ -8,3 +8,7 @@
 	padding-block: 19px !important;
 	padding-inline: 20px !important;
 }
+
+:is(panel#customizationui-widget-panel)::part(content) {
+	padding: 0 !important;
+}
