@@ -2226,6 +2226,10 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   color: rgb(127, 129, 130) !important;
 }
 
+#PanelUI-appMenu-fxa-image-last-synced {
+  display: none !important;
+}
+
 :root[geckium-choice=five] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=six] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=eleven] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=twentyone] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton), :root[geckium-choice=twentysix] #editBookmarkPanelBottomButtons > button:not(#editBookmarkPanelRemoveButton) {
   min-width: 87px !important;
   min-height: 27px !important;
@@ -3361,6 +3365,9 @@ hbox[id=label-box][part=label-box] {
   margin-block-start: 10px !important;
   margin-inline-end: 2px !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:last-of-type {
+  margin-block-end: 1px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
   margin-inline-start: 0 !important;
   min-height: 41px !important;
@@ -3368,20 +3375,13 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button)::before {
   content: "";
-  border-radius: 50%;
   width: 16px;
   height: 16px;
   margin-inline-end: 12px;
   text-align: center !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button):last-of-type {
-  margin-block-end: 1px !important;
-}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button)#PanelUI-fxa-menu-syncnow-button::before {
   content: url(assets/img/chrome-47/panel/sync.svg);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button)#PanelUI-fxa-menu-syncnow-button #PanelUI-appMenu-fxa-image-last-synced {
-  display: none !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button)#PanelUI-fxa-menu-connect-device-button::before {
   content: url(assets/img/chrome-47/panel/connect-device.svg);
@@ -3406,11 +3406,11 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
   content: "";
-  background-color: rgb(222, 222, 222);
   border-radius: 50%;
+  background-color: rgb(222, 222, 222);
   min-width: 88px;
   min-height: 88px;
-  margin-block-end: 6px;
+  margin-block-end: 16px;
   margin-inline-end: 0 !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven] toolbarbutton.subviewbutton#fxa-manage-account-button:hover #fxa-menu-header-title {
@@ -3550,6 +3550,59 @@ hbox[id=label-box][part=label-box] {
 }
 
 /* Chrome 50 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:first-of-type {
+  margin-block-start: 10px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:last-of-type {
+  margin-block-end: 10px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
+  min-height: 40px !important;
+  border-block-start: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button)::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 15px;
+  text-align: center !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton {
+  padding-inline: 17px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton:hover {
+  color: FieldText !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button {
+  flex-direction: row !important;
+  padding-block: 16px !important;
+  margin-block-end: 18px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  min-width: 40px;
+  min-height: 40px;
+  margin-block-end: 0 !important;
+  margin-inline-end: 6px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(233, 233, 233);
+  pointer-events: none;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button:hover #fxa-menu-header-title {
+  color: FieldText !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button > vbox {
+  align-items: start !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] toolbarbutton.subviewbutton#fxa-manage-account-button > vbox #fxa-menu-header-description {
+  font-size: 9pt !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentysix][geckium-fortyseven][geckium-fifty] {
   --tab-height: 32px;
 }
