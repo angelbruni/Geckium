@@ -8,49 +8,47 @@
 }
 
 #PanelUI-fxa-menu {
-	> toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
-		margin-inline-start: 0 !important;
-		min-height: 41px !important;
-		border-block-start: 1px solid rgb(233,233,233) !important;
-
-		&::before {
-			content: "";
-			border-radius: 50%;
-			width: 16px;
-			height: 16px;
-			margin-inline-end: 12px;
-			text-align: center !important;
-		}
-
+	> toolbarbutton.subviewbutton {
+		
 		&:last-of-type {
 			margin-block-end: 1px !important;
 		}
 
-		&#PanelUI-fxa-menu-syncnow-button {
+		&:not(#fxa-manage-account-button) {
+			margin-inline-start: 0 !important;
+			min-height: 41px !important;
+			border-block-start: 1px solid rgb(233,233,233) !important;
+	
 			&::before {
-				content: url(assets/img/chrome-47/panel/sync.svg);
+				content: "";
+				width: 16px;
+				height: 16px;
+				margin-inline-end: 12px;
+				text-align: center !important;
 			}
-
-			#PanelUI-appMenu-fxa-image-last-synced {
-				display: none !important;
+	
+			&#PanelUI-fxa-menu-syncnow-button {
+				&::before {
+					content: url(assets/img/chrome-47/panel/sync.svg);
+				}
 			}
-		}
-		
-		&#PanelUI-fxa-menu-connect-device-button {
-			&::before {
-				content: url(assets/img/chrome-47/panel/connect-device.svg);
+			
+			&#PanelUI-fxa-menu-connect-device-button {
+				&::before {
+					content: url(assets/img/chrome-47/panel/connect-device.svg);
+				}
 			}
-		}
-
-		&#PanelUI-fxa-menu-sync-prefs-button {
-			&::before {
-				content: url(assets/img/chrome-47/panel/sync-settings.svg);
+	
+			&#PanelUI-fxa-menu-sync-prefs-button {
+				&::before {
+					content: url(assets/img/chrome-47/panel/sync-settings.svg);
+				}
 			}
-		}
-
-		&#PanelUI-fxa-menu-account-signout-button {
-			&::before {
-				content: url(assets/img/chrome-47/panel/sign-out.svg);
+	
+			&#PanelUI-fxa-menu-account-signout-button {
+				&::before {
+					content: url(assets/img/chrome-47/panel/sign-out.svg);
+				}
 			}
 		}
 	}
@@ -71,11 +69,11 @@ toolbarbutton.subviewbutton {
 
 		&::before {
 			content: "";
-			background-color: rgb(222,222,222);
 			border-radius: 50%;
+			background-color: rgb(222,222,222);
 			min-width: 88px;
 			min-height: 88px;
-			margin-block-end: 6px;
+			margin-block-end: 16px;
 			margin-inline-end: 0 !important;
 		}
 
