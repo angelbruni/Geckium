@@ -6,3 +6,95 @@
 	margin-block-start: 10px !important;
 	margin-inline-end: 2px !important;
 }
+
+#PanelUI-fxa-menu {
+	> toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
+		margin-inline-start: 0 !important;
+		min-height: 41px !important;
+		border-block-start: 1px solid rgb(233,233,233) !important;
+
+		&::before {
+			content: "";
+			border-radius: 50%;
+			width: 16px;
+			height: 16px;
+			margin-inline-end: 12px;
+			text-align: center !important;
+		}
+
+		&:last-of-type {
+			margin-block-end: 1px !important;
+		}
+
+		&#PanelUI-fxa-menu-syncnow-button {
+			&::before {
+				content: url(assets/img/chrome-47/panel/sync.svg);
+			}
+
+			#PanelUI-appMenu-fxa-image-last-synced {
+				display: none !important;
+			}
+		}
+		
+		&#PanelUI-fxa-menu-connect-device-button {
+			&::before {
+				content: url(assets/img/chrome-47/panel/connect-device.svg);
+			}
+		}
+
+		&#PanelUI-fxa-menu-sync-prefs-button {
+			&::before {
+				content: url(assets/img/chrome-47/panel/sync-settings.svg);
+			}
+		}
+
+		&#PanelUI-fxa-menu-account-signout-button {
+			&::before {
+				content: url(assets/img/chrome-47/panel/sign-out.svg);
+			}
+		}
+	}
+}
+
+toolbarbutton.subviewbutton {
+	padding-inline: 22px !important;
+	
+	&:hover {
+		background-color: rgb(234,234,234) !important;
+		color: rgb(6,45,117) !important;
+	}
+
+	&#fxa-manage-account-button {
+		position: relative;
+		flex-direction: column !important;
+		padding-block: 20px !important;
+
+		&::before {
+			content: "";
+			border-radius: 50%;
+			min-width: 88px;
+			min-height: 88px;
+			margin-block-end: 6px;
+			margin-inline-end: 0 !important;
+		}
+
+		&:hover {
+			#fxa-menu-header-title {
+				color: rgb(6,45,117) !important;
+			}
+		}
+
+		> vbox {
+			align-items: center !important;
+
+			#fxa-menu-header-title {
+				color: FieldText !important;
+			}
+
+			#fxa-menu-header-description {
+				font-weight: normal !important;
+				font-size: 11pt !important;
+			}
+		}
+	}
+}

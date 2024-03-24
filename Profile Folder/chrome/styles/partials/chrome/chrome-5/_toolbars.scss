@@ -413,15 +413,29 @@
 				#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
 					background-image: url(assets/img/profile/#{$i}.png);
 				}
+
+				toolbarbutton.subviewbutton {
+					&#fxa-manage-account-button {
+						&::before {
+							background-image: url(assets/img/profile/#{$i}.png);
+							background-size: auto !important;
+						}
+					}
+				}
 			}
 		}
 
 		&[profilepic="custom"] {
 			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-				background-image: var(
-					--custom-profile-picture,
-					url(assets/img/profile/0.png)
-				);
+				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+			}
+
+			toolbarbutton.subviewbutton {
+				&#fxa-manage-account-button {
+					&::before {
+						background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+					}
+				}
 			}
 		}
 	}
