@@ -10,7 +10,7 @@ const appearanceMap = {
 	1: "six",
 	2: "eleven",
 	3: "twentyone",
-	4: "twentysix",
+	4: "twentyfive",
 	5: "fortyseven",
 	6: "fifty",
 };
