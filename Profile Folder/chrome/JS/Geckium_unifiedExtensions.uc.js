@@ -1,7 +1,7 @@
 function hideUnifiedExtensionsButton() {
 	const navBar = document.getElementById("nav-bar");
 	const unifiedExtensionsButton = document.getElementById("unified-extensions-button");
-	const navBarCustomizationTarget = document.getElementById("nav-bar-customization-target");
+	//const navBarCustomizationTarget = document.getElementById("nav-bar-customization-target");
 	const urlbarBackground = document.getElementById("urlbar-background");
 
 	if (pref("Geckium.unifiedExtensions.hide").tryGet.bool()) {
@@ -10,7 +10,7 @@ function hideUnifiedExtensionsButton() {
 		
 	} else {
 		navBar.removeAttribute("unifiedextensions");
-		navBarCustomizationTarget.appendChild(unifiedExtensionsButton);
+		insertBefore(unifiedExtensionsButton, document.getElementById("page-button"))
 	}
 }
 
