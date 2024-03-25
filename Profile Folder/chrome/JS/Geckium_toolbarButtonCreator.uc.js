@@ -93,7 +93,7 @@ function createMenuItem(parentID, type, id, click, label, accesskey, acceltext) 
 	const parent = document.getElementById(parentID);
 	if (parent.tagName == "menupopup") {
 		parent.appendChild(menuItem);
-	} else if (parent.tagName == "menu" && parent.tagName == "toolbarbutton") {
+	} else if (parent.tagName == "menu") {
 		if (parent.querySelector("menupopup")) {
 			parent.querySelector("menupopup").appendChild(menuItem);
 		} else {
