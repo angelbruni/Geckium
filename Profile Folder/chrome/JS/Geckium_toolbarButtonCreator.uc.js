@@ -52,7 +52,9 @@ function createMenu(id, delegatesanchor, label, removable, overflows, area, posi
 	createMenuItemFromObject(parentID, object);
 }
 
-function createMenuItem(parentID, type, id, click, label, accesskey, acceltext) {
+function createMenuItem(parentID, type, id, checkbox, click, label, accesskey, acceltext) {
+	console.log(parentID, type, id, checkbox, click, label, accesskey, acceltext)
+
 	let menuItem;
 
 	switch (type) {
@@ -75,11 +77,15 @@ function createMenuItem(parentID, type, id, click, label, accesskey, acceltext) 
 			return;
 	}
 
+
 	if (type == "menu" || type == "menuitem") {
 		setAttributes(menuItem, {
 			"label": label,
 		});
-		
+
+		if (checkbox)
+			menuItem.setAttribute("type", "checkbox");
+			
 		if (click)
 			menuItem.setAttribute("onclick", click);
 
@@ -105,50 +111,60 @@ function createMenuItem(parentID, type, id, click, label, accesskey, acceltext) 
 }
 
 function createMenuItemFromObject(parentID, object) {
+	if (object.properties) {
+        setAttributes(document.getElementById(parentID), {
+            "onpopupshowing": object.properties.popupshowing,
+            "onpopuphidden": object.properties.popuphidden,
+        });
+    }
+
     for (let key in object) {
-        if (Object.keys(object[key]).length === 0 && object[key].constructor === Object) {
-            // If the item is empty, create a menu separator.
-            createMenuItem(parentID, "menuseparator");
-        } else if (object[key].hasOwnProperty('items')) {
-            // If it has "items", it's a submenu.
-            createMenuItem(parentID, "menu", object[key].id, null, object[key].label, object[key].accesskey, object[key].acceltext);
-            for (let subItem of object[key].items) {
-                createMenuItemFromObject(object[key].id + "-menu", subItem);
-            }
-        } else {
-            // Default: create a regular menu item.
-            createMenuItem(parentID, "menuitem", object[key].id, object[key].click, object[key].label, object[key].accesskey, object[key].acceltext);
-        }
+		if (key !== 'properties') {
+			if (Object.keys(object[key]).length === 0 && object[key].constructor === Object) {
+				// If the item is empty, create a menu separator.
+				createMenuItem(parentID, "menuseparator");
+			} else if (object[key].hasOwnProperty('items')) {
+				// If it has "items", it's a submenu.
+				createMenuItem(parentID, "menu", object[key].id, object[key].checkbox, null, object[key].label, object[key].accesskey, object[key].acceltext);
+				for (let subItem of object[key].items) {
+					createMenuItemFromObject(object[key].id + "-menu", subItem);
+				}
+			} else {
+				// Default: create a regular menu item.
+				createMenuItem(parentID, "menuitem", object[key].id, object[key].checkbox, object[key].click, object[key].label, object[key].accesskey, object[key].acceltext);
+			}
+		}
     }
 }
 
 const menu_chrome = {
 	1: {
-		id: "newtab",
+		id: "newTab",
 		label: "New tab",
 		click: "BrowserOpenTab();",
 		acceltext: "Ctrl+T",
 	},
 	2: {
-		id: "newwindow",
+		id: "newWindow",
 		label: "New window",
 		click: "OpenBrowserWindow();",
 		acceltext: "Ctrl+N",
 	},
 	3: {
-		id: "newincognitowindow",
+		id: "newIncognitoWindow",
 		label: "New incognito window",
 		click: "OpenBrowserWindow({private: true});",
 		acceltext: "Ctrl+Shift+N",
 	},
 	4: {},
 	5: {
-		id: "alwaysshowbookmarksbar",
+		id: "alwaysShowBookmarksBar",
+		checkbox: true,
 		label: "Always show bookmarks bar",
 		acceltext: "Ctrl+B",
 	},
 	6: {
-		id: "fullscreen",
+		id: "fullScreen",
 		label: "Full screen",
 		click: "BrowserFullScreen();",
 		acceltext: "F11",
@@ -160,7 +176,7 @@ const menu_chrome = {
 		acceltext: "Ctrl+H",
 	},
 	9: {
-		id: "bookmarkmanager",
+		id: "bookmarkManager",
 		label: "Bookmark manager",
 		acceltext: "Ctrl+Shift+B",
 	},
@@ -175,7 +191,7 @@ const menu_chrome = {
 	},
 	12: {},
 	13: {
-		id: "setupsync",
+		id: "setupSync",
 		label: "Set up sync...",
 	},
 	14: {},
@@ -184,7 +200,7 @@ const menu_chrome = {
 		label: "Options",
 	},
 	16: {
-		id: "aboutgooglechrome",
+		id: "aboutGoogleChrome",
 		label: "About Google Chrome",
 		click: "openWindow('aboutChromium', 'chrome,centerscreen,dependent,modal')",
 	},
@@ -202,7 +218,7 @@ const menu_chrome = {
 
 const menu_page = {
 	1: {
-		id: "createapplicationshortcuts",
+		id: "createApplicationShortcuts",
 		label: "Create application shortcuts...",
 	},
 	2: {},
@@ -228,7 +244,7 @@ const menu_page = {
 		acceltext: "Ctrl+F",
 	},
 	8: {
-		id: "savepageas",
+		id: "savePageAs",
 		label: "Save page as...",
 		acceltext: "Ctrl+S",
 	},
@@ -267,7 +283,7 @@ const menu_page = {
 		items: [
 			{
 				1: {
-					id: "idkyet",
+					id: "idkYet",
 					label: "idk",
 				}
 			}
@@ -280,22 +296,22 @@ const menu_page = {
 		items: [
 			{
 				1: {
-					id: "viewsource",
+					id: "viewSource",
 					label: "View source",
 					acceltext: "Ctrl+U",
 				},
 				2: {
-					id: "developertools",
+					id: "developerTools",
 					label: "Developer tools",
 					acceltext: "Ctrl+Shift+I",
 				},
 				3: {
-					id: "javascriptconsole",
+					id: "javaScriptConsole",
 					label: "JavaScript console",
 					acceltext: "Ctrl+Shift+J",
 				},
 				4: {
-					id: "taskmanager",
+					id: "taskManager",
 					label: "Task Manager",
 					acceltext: "Shift+Esc",
 				},
@@ -304,7 +320,7 @@ const menu_page = {
 	},
 	15: {},
 	16: {
-		id: "reportbugorbrokenwebsite",
+		id: "reportBugOrBrokenWebsite",
 		label: "Report bug or broken website..."
 	},
 }
