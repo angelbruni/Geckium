@@ -1,0 +1,118 @@
+* {
+	
+}
+
+html,
+body {
+	
+	
+}
+
+.logo {
+	
+	
+}
+
+.tabs {
+	
+	
+}
+.tab-item {
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	&:hover {
+		
+		
+	}
+
+	&.active {
+		
+		
+	}
+}
+
+.footer {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+.right-footer-item {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	&:hover {
+		
+	}
+
+	&[type="menu"] {
+		&::after {
+			
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/more.png");
+			
+			
+			
+		}
+
+		&:not([disbled]) {
+			&:hover {
+				&::after {
+					
+				}
+			}
+		}
+	}
+
+	&.is-webstore {
+		
+
+		&::after {
+			
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
+			
+			
+		}
+	}
+}
+
+.right-footer-item-seperator {
+	
+	
+	
+	
+	
+	
+	
+}
