@@ -150,6 +150,8 @@
         }
 
         &#unified-extensions-button,
+		&#page-button,
+		&#chrome-button,
         &#PanelUI-menu-button,
 		&[class*="webextension"] {
             border: 1px solid transparent !important;
@@ -199,7 +201,12 @@
         list-style-image: url(assets/img/chrome-11/toolbar/menu_plugin.svg) !important;
     }
 
-    #PanelUI-menu-button {
+	#page-button {
+		list-style-image: url(assets/img/chrome-11/toolbar/menu_page.svg) !important;
+	}
+
+    #PanelUI-menu-button,
+	#chrome-button {
         list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
     }
 }

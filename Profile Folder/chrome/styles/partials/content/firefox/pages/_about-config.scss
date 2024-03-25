@@ -1,0 +1,11 @@
+@-moz-document url-prefix(about:config) {
+	#prefs {
+		border: 0 !important;
+		border-radius: 0 !important;
+
+		> tr {
+			background-color: rgb(240,240,240) !important;
+			border-block-end: 1px solid rgb(205,205,205) !important;
+		}
+	}
+}

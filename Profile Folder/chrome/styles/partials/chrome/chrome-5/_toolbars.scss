@@ -595,6 +595,10 @@
 	margin-top: -1px;
 }
 
+#PanelUI-button {
+	display: none !important;
+}
+
 .close-icon:hover {
 	background-color: transparent !important;
 }
@@ -855,6 +859,8 @@ toolbar[overflowable][customizing] > .customization-target {
 	}
 
 	&#unified-extensions-button,
+	&#page-button,
+	&#chrome-button,
 	&#PanelUI-menu-button,
 	&[class*="webextension"] {
 		border: 0 !important;
@@ -984,7 +990,12 @@ toolbar[overflowable][customizing] > .customization-target {
 	}
 }
 
-#PanelUI-menu-button {
+#page-button {
+	list-style-image: url(assets/img/chrome-5/toolbar/menu_page.svg) !important;
+}
+
+#PanelUI-menu-button,
+#chrome-button {
 	list-style-image: url(assets/img/chrome-5/toolbar/menu_chrome.svg) !important;
 	background-position: center;
 }
