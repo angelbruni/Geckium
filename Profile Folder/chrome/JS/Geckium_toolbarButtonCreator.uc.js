@@ -23,9 +23,22 @@ function createToolbarbutton(id, delegatesanchor, label, removable, overflows, a
 function createMenu(id, delegatesanchor, label, removable, overflows, area, position, object) {
 	const parentID = "menu_" + id + "Popup";
 
-	createToolbarbutton(id, delegatesanchor, label, removable, overflows, area);
+	const alreadyExists = document.getElementById(id + "-button");
 
-	const toolbarButton = document.getElementById(id + "-button");
+	let toolbarButton;
+
+	if (alreadyExists) {
+		console.warn("toolbarbutton already exists.")
+
+		toolbarButton = alreadyExists;
+	} else {
+		console.warn("toolbarbutton does not exist.")
+
+		createToolbarbutton(id, delegatesanchor, label, removable, overflows, area);
+
+		toolbarButton = document.getElementById(id + "-button")
+	}
+	
 	toolbarButton.setAttribute("type", "menu");
 
 	const menuPopUp = document.createXULElement("menupopup")
@@ -33,7 +46,7 @@ function createMenu(id, delegatesanchor, label, removable, overflows, area, posi
 		"id": parentID,
 		"position": position
 	});
-
+	
 	toolbarButton.appendChild(menuPopUp);
 	
 	createMenuItemFromObject(parentID, object);
@@ -80,7 +93,7 @@ function createMenuItem(parentID, type, id, click, label, accesskey, acceltext) 
 	const parent = document.getElementById(parentID);
 	if (parent.tagName == "menupopup") {
 		parent.appendChild(menuItem);
-	} else if (parent.tagName == "menu") {
+	} else if (parent.tagName == "menu" && parent.tagName == "toolbarbutton") {
 		if (parent.querySelector("menupopup")) {
 			parent.querySelector("menupopup").appendChild(menuItem);
 		} else {
