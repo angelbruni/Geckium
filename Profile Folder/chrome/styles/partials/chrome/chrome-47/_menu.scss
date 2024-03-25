@@ -1,0 +1,62 @@
+menupopup {
+	> menu,
+	> menuitem {
+		appearance: none !important;
+		padding-inline-start: 4px !important;
+		min-height: 23px !important;
+		z-index: 1;
+	
+		&:not([disabled]) {
+			color: black !important;
+			
+			&[_moz-menuactive] {
+				background-color: rgb(66,129,244) !important;
+				color: white !important;
+
+				&[checked="true"] {
+					&[type="checkbox"] {
+						list-style-image: url(assets/img/chrome-47/menu/checkbox_h.svg) !important;
+					}
+				}
+			}
+
+			&:not([_moz-menuactive]) {
+				.menu-accel-container {
+					color: rgb(161,161,146) !important;
+				}
+			}
+		}
+
+		&[checked="true"] {
+			.menu-iconic-left {
+				appearance: none !important;
+				width: 30px !important;
+
+				.menu-iconic-icon {
+					display: flex !important;
+				}
+			}
+
+			&[type="checkbox"] {
+				list-style-image: url(assets/img/chrome-47/menu/checkbox.svg) !important;
+
+				.menu-iconic-icon {
+					width: 10px !important;
+					height: 8px !important;
+				}
+			}
+		}
+	}
+
+	> menuseparator {
+		appearance: none !important;
+		border-top: 1px solid rgb(233,233,233) !important;
+		border-bottom: 0 !important;
+		padding: 0 !important;
+		margin-block: 5px !important;
+	}
+
+	.menu-text {
+		margin-inline-end: 20px !important;
+	}
+}

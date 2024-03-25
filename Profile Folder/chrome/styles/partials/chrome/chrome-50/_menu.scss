@@ -1,0 +1,39 @@
+menupopup {
+	> menu,
+	> menuitem {
+		padding-inline-start: 4px !important;
+		z-index: unset;
+	
+		&:not([disabled]) {
+			&[_moz-menuactive] {
+				background-color: rgb(235,235,235) !important;
+				color: black !important;
+
+				.menu-accel-container {
+					color: black !important;
+				}
+
+				&[checked="true"] {
+					&[type="checkbox"] {
+						list-style-image: url(assets/img/chrome-50/menu/checkbox.svg) !important;
+					}
+				}
+			}
+		}
+
+		&[checked="true"] {
+			&[type="checkbox"] {
+				list-style-image: url(assets/img/chrome-50/menu/checkbox.svg) !important;
+
+				.menu-iconic-icon {
+					width: 13px !important;
+					height: 10px !important;
+				}
+			}
+		}
+	}
+
+	> menuseparator {
+		margin-inline: 2px !important;
+	}
+}
