@@ -12,3 +12,9 @@
 :is(panel#customizationui-widget-panel)::part(content) {
 	padding: 0 !important;
 }
+
+:is(menupopup)::part(content) {
+	padding-block: 3px !important;
+	background-color: white !important;
+	border: 0 !important;
+}

@@ -118,8 +118,24 @@ function createMenuItem(parentID, type, id, checkbox, click, command, label, acc
 }
 
 function createMenuItemFromObject(parentID, object) {
+	const parent = document.getElementById(parentID);
+
+	function adjustAccelText() {
+		const menuAccelContainers = parent.querySelectorAll("menuitem[acceltext] > .menu-accel-container");
+		
+		if (!parent.querySelector("menuitem[acceltext] > .menu-accel-container[style*='min-width']")) {
+			let maxWidth = 0;
+			menuAccelContainers.forEach(container => {
+				const width = container.clientWidth;
+				maxWidth = Math.max(maxWidth, width);
+				container.style.minWidth = `${maxWidth}px`;
+			});
+		}
+	}
+
+	parent.addEventListener("popupshowing", adjustAccelText)
 	if (object.properties) {
-        setAttributes(document.getElementById(parentID), {
+        setAttributes(parent, {
             "onpopupshowing": object.properties.onpopup,
             "onpopuphidden": object.properties.onpopup,
         });

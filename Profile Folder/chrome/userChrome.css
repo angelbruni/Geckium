@@ -2089,6 +2089,15 @@ toolbar[overflowable][customizing] > .customization-target {
   display: none !important;
 }
 
+menupopup > menu .menu-text,
+menupopup > menuitem .menu-text {
+  margin-inline-end: 48px !important;
+}
+menupopup > menu .menu-accel-container,
+menupopup > menuitem .menu-accel-container {
+  justify-content: end !important;
+}
+
 :root[geckium-choice=five] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=six] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=eleven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyone] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyfive] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
   background-color: transparent !important;
   padding-block: 0 !important;
@@ -3292,6 +3301,74 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
   /* .control-button - Picture-in-Picture buttons. */
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  padding-inline-start: 4px !important;
+  min-height: 23px !important;
+  z-index: 1;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu:not([disabled]),
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem:not([disabled]) {
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu:not([disabled])[_moz-menuactive],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem:not([disabled])[_moz-menuactive] {
+  background-color: rgb(66, 129, 244) !important;
+  color: white !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu:not([disabled])[_moz-menuactive][checked=true][type=checkbox],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem:not([disabled])[_moz-menuactive][checked=true][type=checkbox] {
+  list-style-image: url(assets/img/chrome-47/menu/checkbox_h.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu:not([disabled]):not([_moz-menuactive]) .menu-accel-container,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem:not([disabled]):not([_moz-menuactive]) .menu-accel-container {
+  color: rgb(161, 161, 146) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu[checked=true] .menu-iconic-left,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem[checked=true] .menu-iconic-left {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  width: 30px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu[checked=true] .menu-iconic-left .menu-iconic-icon,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem[checked=true] .menu-iconic-left .menu-iconic-icon {
+  display: flex !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu[checked=true][type=checkbox],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem[checked=true][type=checkbox] {
+  list-style-image: url(assets/img/chrome-47/menu/checkbox.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu[checked=true][type=checkbox] .menu-iconic-icon,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem[checked=true][type=checkbox] .menu-iconic-icon {
+  width: 10px !important;
+  height: 8px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuseparator {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  border-top: 1px solid rgb(233, 233, 233) !important;
+  border-bottom: 0 !important;
+  padding: 0 !important;
+  margin-block: 5px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menu-text {
+  margin-inline-end: 20px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup {
+  border: 0 !important;
+  outline: 1px solid rgb(186, 186, 186) !important;
+  outline-offset: -1px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] .panel-header {
   color: black !important;
 }
@@ -3484,6 +3561,36 @@ hbox[id=label-box][part=label-box] {
 }
 
 /* Chrome 50 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem {
+  padding-inline-start: 4px !important;
+  z-index: unset;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu:not([disabled])[_moz-menuactive],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem:not([disabled])[_moz-menuactive] {
+  background-color: rgb(235, 235, 235) !important;
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu:not([disabled])[_moz-menuactive] .menu-accel-container,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem:not([disabled])[_moz-menuactive] .menu-accel-container {
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu:not([disabled])[_moz-menuactive][checked=true][type=checkbox],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem:not([disabled])[_moz-menuactive][checked=true][type=checkbox] {
+  list-style-image: url(assets/img/chrome-50/menu/checkbox.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu[checked=true][type=checkbox],
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem[checked=true][type=checkbox] {
+  list-style-image: url(assets/img/chrome-50/menu/checkbox.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menu[checked=true][type=checkbox] .menu-iconic-icon,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuitem[checked=true][type=checkbox] .menu-iconic-icon {
+  width: 13px !important;
+  height: 10px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] menupopup > menuseparator {
+  margin-inline: 2px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:first-of-type {
   margin-block-start: 10px !important;
 }
