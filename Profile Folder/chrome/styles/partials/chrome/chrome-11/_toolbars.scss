@@ -23,12 +23,14 @@
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
     }
 
-	#PersonalToolbar {
-		
-	}
-	.bookmark-item {
-		
-	}
+    #PersonalToolbar {
+		&:not([pref="newtab"]) {
+			
+		}
+    }
+    .bookmark-item {
+        
+    }
 
     .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
         background: transparent !important;

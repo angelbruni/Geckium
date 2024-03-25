@@ -45,4 +45,17 @@
             );
         }
     }
+	
+	&[geckium-choice="five"],
+	&[geckium-choice="six"],
+	&[geckium-choice="eleven"],
+	&[geckium-choice="twentyone"],
+	&[geckium-choice="twentyfive"] {
+		#PersonalToolbar {
+			&[pref="newtab"] {
+				border: 1px solid rgb(203,203,203);
+				background: rgb(223,223,223) !important;
+			}
+		}
+	}
 }
