@@ -5,6 +5,8 @@
 // @loadorder   2
 // ==/UserScript==
 
+const appearanceChanged = new CustomEvent("appearanceChanged");
+
 const appearanceMap = {
 	0: "five",
 	1: "six",

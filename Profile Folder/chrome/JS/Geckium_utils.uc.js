@@ -48,4 +48,20 @@ function openWindow(windowName, features) {
 	window.openDialog('chrome://userchrome/content/windows/'+ windowName +'/index.xhtml', '', features);
 }
 
-const appearanceChanged = new CustomEvent("appearanceChanged");
+function bookmarksBarStatus() {
+	const alwaysShowBookmarksBar = document.getElementById('menu_alwaysShowBookmarksBar');
+
+	if (pref('browser.toolbars.bookmarks.visibility').tryGet.string() == 'always') {
+		setAttributes(alwaysShowBookmarksBar, {
+			"checked": true,
+			"data-visibility-enum": "newtab",
+		})
+	} else {
+		setAttributes(alwaysShowBookmarksBar, {
+			"checked": false,
+			"data-visibility-enum": "always",
+		})
+	}
+
+	alwaysShowBookmarksBar.setAttribute("data-bookmarks-toolbar-visibility", true);
+}
