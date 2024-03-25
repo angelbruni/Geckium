@@ -518,6 +518,48 @@
 			display: none !important;
 		}
 	}
+
+	&[geckium-choice="five"],
+	&[geckium-choice="six"] {
+		.toolbarbutton-1:not(#fxa-toolbar-menu-button,#tabs-newtab-button,#new-tab-button) {
+			&#unified-extensions-button,
+			&[type="menu"]:not(#back-button, #forward-button),
+			&#PanelUI-menu-button,
+			&[class*="webextension"] {
+				border: 0 !important;
+				background: transparent !important;
+				transition: background-color 100ms linear;
+	
+				&:not([class*="webextension"]) {
+					width: var(--toolbarbutton-menu-width) !important;
+				}
+	
+				&::after,
+				&::before {
+					content: unset !important;
+				}
+	
+				&:not([disabled]) {
+					&:hover {
+						border: 1px solid rgb(201, 210, 221);
+						background-color: rgba(255, 255, 255, 0.6) !important;
+	
+						.toolbarbutton-badge-stack,
+						.toolbarbutton-icon,
+						image:first-of-type {
+							filter: unset;
+						}
+					}
+	
+					&:active,
+					&[open] {
+						border: 1px solid rgb(201, 210, 221);
+						background-color: rgba(255, 255, 255, 0.3) !important;
+					}
+				}
+			}
+		}
+	}
 }
 
 #navigator-toolbox {
@@ -855,44 +897,6 @@ toolbar[overflowable][customizing] > .customization-target {
 		&::after {
 			border-top-left-radius: 0 !important;
 			border-bottom-left-radius: 0 !important;
-		}
-	}
-
-	&#unified-extensions-button,
-	&#page-button,
-	&#chrome-button,
-	&#PanelUI-menu-button,
-	&[class*="webextension"] {
-		border: 0 !important;
-		background: transparent !important;
-		transition: background-color 100ms linear;
-
-		&:not([class*="webextension"]) {
-			width: var(--toolbarbutton-menu-width) !important;
-		}
-
-		&::after,
-		&::before {
-			content: unset !important;
-		}
-
-		&:not([disabled]) {
-			&:hover {
-				border: 1px solid rgb(201, 210, 221);
-				background-color: rgba(255, 255, 255, 0.6) !important;
-
-				.toolbarbutton-badge-stack,
-				.toolbarbutton-icon,
-				image:first-of-type {
-					filter: unset;
-				}
-			}
-
-			&:active,
-			&[open] {
-				border: 1px solid rgb(201, 210, 221);
-				background-color: rgba(255, 255, 255, 0.3) !important;
-			}
 		}
 	}
 }

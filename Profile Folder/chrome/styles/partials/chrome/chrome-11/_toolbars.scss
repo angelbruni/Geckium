@@ -150,51 +150,11 @@
         }
 
         &#unified-extensions-button,
-		&#page-button,
-		&#chrome-button,
-        &#PanelUI-menu-button,
+		&[type="menu"]:not(#back-button, #forward-button),
+		&#PanelUI-menu-button,
 		&[class*="webextension"] {
-            border: 1px solid transparent !important;
-            transition: none;
-
-			&::before {
-				content: "" !important;
-				transition: none;
-			}
-
-			&::after {
-				content: unset;
-			}
-
-            &:not([disabled]) {
-                &:hover {
-                    border: 1px solid var(--toolbarbutton-border-color-hot) !important;
-                    background-color: transparent !important;
-                    box-shadow: var(--toolbarbutton-shadow-hot);
-
-                    .toolbarbutton-badge-stack,
-                    .toolbarbutton-icon,
-                    image:first-of-type {
-                        filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
-                    }
-
-					&::before {
-						opacity: 1;
-					}
-                }
-
-                &:active,
-                &[open] {
-                    border: 1px solid var(--toolbarbutton-border-color-active) !important;
-                    background-color: rgba(0, 0, 0, 0.08) !important;
-                    box-shadow: var(--toolbarbutton-shadow-active) !important;
-
-					&::before {
-						content: unset !important;
-					}
-                }
-            }
-        }
+			transition: none;
+		}
     }
 
     #unified-extensions-button {
