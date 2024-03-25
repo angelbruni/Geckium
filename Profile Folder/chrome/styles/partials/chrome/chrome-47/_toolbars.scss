@@ -1,0 +1,14 @@
+#PersonalToolbar {
+	&[pref="newtab"] {
+		padding-block: 6px !important;
+		height: calc(var(--personal-toolbar-height) + 16px) !important;
+		background: rgb(241,241,241) !important;
+		border-block-start: 1px solid var(--personal-toolbar-border-bottom) !important;
+
+		&::before,
+		&::after {
+			top: 0px;
+			height: 100%;
+		}
+	}
+}

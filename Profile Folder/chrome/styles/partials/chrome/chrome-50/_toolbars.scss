@@ -115,3 +115,9 @@
 #chrome-button {
 	list-style-image: url(assets/img/chrome-50/toolbar/menu_chrome.svg) !important;
 }
+
+#PersonalToolbar {
+	&[pref="newtab"] {
+		background: white !important;
+	}
+}

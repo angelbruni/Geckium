@@ -1437,6 +1437,8 @@
 :root[sizemode=fullscreen] #PersonalToolbar,
 :root[sizemode=fullscreen] .notificationbox-stack {
   margin-inline: 0 !important;
+}
+:root[sizemode=maximized] #nav-bar, :root[sizemode=fullscreen] #nav-bar {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
@@ -1499,6 +1501,25 @@
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled])[open], :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([disabled])[open], :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled])[open], :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([disabled])[open] {
   border: 1px solid rgb(201, 210, 221);
   background-color: rgba(255, 255, 255, 0.3) !important;
+}
+:root[geckium-choice=five] #PersonalToolbar[pref=newtab], :root[geckium-choice=six] #PersonalToolbar[pref=newtab], :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab], :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab], :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] {
+  position: fixed !important;
+  top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
+  left: 9px;
+  z-index: 1;
+  width: calc(100% - 18px);
+  height: calc(var(--personal-toolbar-height) + 10px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgb(172, 201, 238);
+  border-radius: 6px !important;
+  background: rgb(210, 225, 246) !important;
+}
+:root[geckium-choice=five] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::after {
+  content: unset !important;
+}
+:root[geckium-choice=five] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=six] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] #PlacesToolbarItems {
+  padding: 2px !important;
 }
 
 #navigator-toolbox {
@@ -2045,6 +2066,9 @@ toolbar[overflowable][customizing] > .customization-target {
 #PersonalToolbar::before, #PersonalToolbar::after {
   top: 1px;
   height: 23px;
+}
+#PersonalToolbar[pref=newtab] #PlacesToolbar {
+  margin-top: 0 !important;
 }
 
 #PlacesToolbar {
@@ -2881,6 +2905,10 @@ hbox[id=label-box][part=label-box] {
       --toolbar-field-default-background-color
   );
 }
+:root[geckium-five][geckium-six][geckium-choice=five] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=six] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=eleven] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyone] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] {
+  border: 1px solid rgb(203, 203, 203);
+  background: rgb(223, 223, 223) !important;
+}
 :root[geckium-five][geckium-six] {
   --urlbar-border: rgb(192, 193, 198);
   --urlbar-verified-proxystate-valid: rgb(7, 149, 0);
@@ -2966,7 +2994,7 @@ hbox[id=label-box][part=label-box] {
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
   }
 }
-:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar {
+:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar:not([pref=newtab]) {
   padding-block: 2px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .bookmark-item {
@@ -3199,7 +3227,7 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #star-button-box > #star-button[starred] {
   list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar:not([pref=newtab]) {
   padding: 1px !important;
   padding-inline: 3px !important;
 }
@@ -3452,6 +3480,16 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #editBookmarkPanelContent label[data-l10n-id*=bookmark-overlay]::after {
   margin-inline-end: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab] {
+  padding-block: 6px !important;
+  height: calc(var(--personal-toolbar-height) + 16px) !important;
+  background: rgb(241, 241, 241) !important;
+  border-block-start: 1px solid var(--personal-toolbar-border-bottom) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab]::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab]::after {
+  top: 0px;
+  height: 100%;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
   --urlbarView: white !important;
@@ -3737,6 +3775,9 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PanelUI-menu-button,
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #chrome-button {
   list-style-image: url(assets/img/chrome-50/toolbar/menu_chrome.svg) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PersonalToolbar[pref=newtab] {
+  background: white !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;

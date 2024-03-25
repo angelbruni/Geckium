@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Geckium - Toolbarbutton Creator
 // @author      AngelBruni
-// @loadorder   1
+// @loadorder   3
 // ==/UserScript==
 
 function createToolbarbutton(id, delegatesanchor, label, removable, overflows, area) {

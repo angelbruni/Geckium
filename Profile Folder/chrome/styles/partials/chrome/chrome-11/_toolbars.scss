@@ -24,7 +24,9 @@
     }
 
     #PersonalToolbar {
-        padding-block: 2px !important;
+		&:not([pref="newtab"]) {
+			padding-block: 2px !important;
+		}
     }
     .bookmark-item {
         border-radius: 5px !important;

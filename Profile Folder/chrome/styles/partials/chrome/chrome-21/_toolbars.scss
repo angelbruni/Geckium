@@ -68,8 +68,10 @@
 }
 
 #PersonalToolbar {
-	padding: 1px !important;
-	padding-inline: 3px !important;
+	&:not([pref="newtab"]) {
+		padding: 1px !important;
+		padding-inline: 3px !important;
+	}
 }
 
 .bookmark-item {

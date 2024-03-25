@@ -479,6 +479,9 @@
 		#PersonalToolbar,
 		.notificationbox-stack {
 			margin-inline: 0 !important;
+		}
+
+		#nav-bar {
 			border-top-left-radius: 0 !important;
 			border-top-right-radius: 0 !important;
 		}
@@ -556,6 +559,37 @@
 						border: 1px solid rgb(201, 210, 221);
 						background-color: rgba(255, 255, 255, 0.3) !important;
 					}
+				}
+			}
+		}
+	}
+
+	&[geckium-choice="five"],
+	&[geckium-choice="six"],
+	&[geckium-choice="eleven"],
+	&[geckium-choice="twentyone"],
+	&[geckium-choice="twentyfive"] {
+		#PersonalToolbar {
+			&[pref="newtab"] {
+				position: fixed !important;
+				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
+				left: 9px;
+				z-index: 1;
+				width: calc(100% - 18px);
+				height: calc(var(--personal-toolbar-height) + 10px) !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				border: 1px solid rgb(172,201,238);
+				border-radius: 6px !important;
+				background: rgb(210,225,246) !important;
+		
+				&::before,
+				&::after {
+					content: unset !important;
+				}
+				
+				#PlacesToolbarItems {
+					padding: 2px !important;
 				}
 			}
 		}
@@ -1095,6 +1129,12 @@ toolbar[overflowable][customizing] > .customization-target {
 	&::after {
 		top: 1px;
 		height: 23px;
+	}
+
+	&[pref="newtab"] {
+		#PlacesToolbar {
+			margin-top: 0 !important;
+		}
 	}
 }
 
