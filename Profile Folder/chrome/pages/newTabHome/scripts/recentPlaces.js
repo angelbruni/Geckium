@@ -65,7 +65,7 @@ const websiteColors = {
 };
 
 function retrieveFrequentSites() {
-    document.querySelectorAll('.tileContainer').forEach(element => {
+    document.querySelectorAll('.tile').forEach(element => {
         element.remove();
     });
 
