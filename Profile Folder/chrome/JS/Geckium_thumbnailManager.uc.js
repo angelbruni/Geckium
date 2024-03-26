@@ -17,7 +17,7 @@ addEventListener("resize", setThumbnailResolution)
 function captureCurrentPageThumbnail() {
 	setTimeout(() => {
 		PageThumbs.captureAndStoreIfStale(gBrowser.selectedBrowser);
-	}, 500);
+	}, 4000);
 }
 
 function saveCurrentPageThumbnail() {

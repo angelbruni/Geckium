@@ -13,10 +13,15 @@
 			<div id="login-status-header-container" class="login-status-row" style="background-image: none;">
 				  <div id="login-status-header">Not signed in to Chrome</div>
 			</div>
-			<div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</div>
+			<div id="login-status-sub-header">(You're missing out—<a href="#" class="link-span">sign in</a>)</div>
 		</button>
 		<hbox id="content">
-			<div class="tile-grid"/>
+			<button class="nav-button left"></button>
+			<div id="page-list">
+				<div class="tile-grid" />
+			</div>
+			<button class="nav-button right"></button>
+
 		</hbox>
 		<hbox id="footer">
 			<div id="logo">
@@ -28,7 +33,7 @@
 			</hbox>
 			<hbox>
 				<button type="menu" class="item">
-
+					Recently closed
 				</button>
 				<div class="seperator"/>
 				<a id="webstore-link" class="item" href="https://chromewebstore.google.com/">Web Store</a>

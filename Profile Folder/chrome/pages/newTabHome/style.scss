@@ -35,19 +35,50 @@ hbox {
 }
 
 #login-container {
-	margin-left: 13px;
-	margin-right: 13px;
-	margin-top: 5px;
-	padding: 0;
-	position: absolute;
+	
+	
+	
 	right: 0;
-	text-align: right;
 	top: 0;
+	
+	text-align: right;
+
+
+
 	transition: top 100ms;
+
+	&::before {
+		position: absolute;
+		inset: 0;
+		content: "";
+		background: linear-gradient(to top, transparent 10%, white 90%);
+		height: 200px;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.link-span {
+		
+	}
 }
 
 #content {
 	flex: 1;
+
+	&::before {
+		
+		
+		
+		
+		
+		
+		
+	}
+}
+
+#page-list {
+	flex: 1;
+	display: flex;
 }
 
 .tile-grid {
@@ -66,6 +97,10 @@ hbox {
 		&:not([disabled]) {
 			.thumbnail-shield {
 				background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
+
+
+
+
 				border-radius: 3px;
 				position: absolute;
 				left: 0;
@@ -98,7 +133,7 @@ hbox {
 			}
 		}
 
-		
+
 
 		&[disabled] {
 			pointer-events: none;
@@ -208,7 +243,7 @@ hbox {
 		
 		flex-grow: 1;
 		justify-content: center;
-
+	
 		.item {
 			
 			
@@ -259,7 +294,7 @@ hbox {
 			&:hover {
 				
 			}
-
+		
 			&[type="menu"] {
 				&::after {
 					
@@ -292,7 +327,7 @@ hbox {
 			}
 		}
 
-		.seperator {
+		.separator {
 
 			
 			
@@ -304,6 +339,40 @@ hbox {
 	}
 }
 
+.nav-button {
+		
+		
+		
+		
+		
+
+	&:hover {
+		
+	}
+
+	&::before {
+		
+		
+	}
+
+	&.left {
+		
+		&::before {
+			
+		}
+	}
+	&.right {
+		
+		&::before {
+			
+		}
+	}
+}
+
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
 /*#login-container {
 	margin-left: auto;
 	text-align: right;
@@ -313,3 +382,12 @@ hbox {
 	font-kerning: none;
 	line-height: 11pt;
 }*/
+
+#login-container {
+	margin-left: 13px;
+	margin-right: 13px;
+	margin-top: 5px;
+	padding: 0;
+	position: absolute;
+	transition: top 100ms;
+}

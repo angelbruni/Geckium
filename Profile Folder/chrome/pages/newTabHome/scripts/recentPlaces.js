@@ -71,18 +71,19 @@ function retrieveFrequentSites() {
 
     NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: numTiles })
     .then(result => {
-        // Count the number of websites with no icon or title
-        const websitesWithNoIconOrTitle = result.filter(website => !website.favicon || !website.title || website.title.trim() === "").length;
-		console.log(websitesWithNoIconOrTitle);
+        // Count the number of websites with no title, with searchquery or a cdn.
+        const invalidWebsite = result.filter(website => !website.title || website.title == "" || website.url.includes("?") && website.url.includes("cdn") ).length;
+		console.log(invalidWebsite);
+		
         // Calculate the total number of websites to retrieve
-        const totalTiles = (desiredCols + websitesWithNoIconOrTitle) * desiredRows;
+        const totalTiles = (desiredCols + invalidWebsite) * desiredRows;
 
         // Retrieve websites again, filtering out the ones with no icon or title
-        return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles });
+        return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 16 });
     })
     .then(result => {
-        // Filter out websites with no icon or no title
-        topFrecentSites = result.filter(website => website.favicon && website.title && website.title.trim() !== "");
+        // Filter out websites with no title, with searchquery or a cdn.
+        topFrecentSites = result.filter(website => website.title && website.title.trim() !== "" && !website.url.includes("?") && !website.url.includes("cdn") );
 
         // Sort the topFrecentSites array by frecency in descending order
         topFrecentSites.sort((a, b) => b.frecency - a.frecency);
@@ -95,6 +96,19 @@ function retrieveFrequentSites() {
 }
 
 document.addEventListener("DOMContentLoaded", retrieveFrequentSites);
+
+function deleteHistoryForDomain(domain) {
+    // Create a URI object for the domain
+    let uri = Services.io.newURI(domain, null, null);
+
+    // Create a history query for the domain
+    let options = PlacesUtils.history.getNewQueryOptions();
+    let query = PlacesUtils.history.getNewQuery();
+    query.uri = uri;
+
+    // Delete history visits for the domain
+    PlacesUtils.history.removeVisits(query, options);
+}
 
 function createTile(website) {
     try {
@@ -146,13 +160,21 @@ function createTile(website) {
 			
 			thumbnail.style.backgroundImage = "url(" + PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/") + "), url(" + PageThumbs.getThumbnailURL(website.url)  + "), url(" + PageThumbs.getThumbnailURL(website.url + "/")  + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://www")[1]) + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://")[1]) + ")";
 
-            const favicon = document.createElement('div');
-            favicon.classList.add('favicon');
-            favicon.style.backgroundImage = 'url(' + website.favicon + ')';
+            const favicon = document.createElement("div");
+            favicon.classList.add("favicon");
+
+			if (!website.favicon) {
+				favicon.style.backgroundImage = "url(chrome://userchrome/content/assets/img/toolbar/grayfolder.png)";
+				favicon.style.backgroundSize = "auto";
+			} else {
+				favicon.style.backgroundImage = "url(" + website.favicon + ")";
+			}
+
+            
             thumbnailWrapper.appendChild(favicon);
 
 			const websiteURL = website.url.toLowerCase();
-			const defaultColor = 'rgb(14,108,188)'; // Default color
+			const defaultColor = "rgb(14,108,188)"; // Default color
 			let activityColour = defaultColor;
 
 			for (const key in websiteColors) {
@@ -189,11 +211,7 @@ function populateRecentSitesGrid() {
 			const tile = createTile(topFrecentSites[i]);
 			tileGrid.appendChild(tile);
 		}
-		const remainingSlots = desiredRows * 4 - numTiles;
-		for (let i = 0; i < remainingSlots; i++) {
-			const placeholderTile = createTile(null);
-			tileGrid.appendChild(placeholderTile);
-		}
+
     }
 	console.log(topFrecentSites)
 }
