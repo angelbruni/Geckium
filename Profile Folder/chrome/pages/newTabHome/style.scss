@@ -65,7 +65,9 @@ hbox {
 }
 
 #content {
+	position: relative;
 	flex: 1;
+	overflow: hidden;
 
 	&::before {
 		position: absolute;
@@ -79,8 +81,12 @@ hbox {
 }
 
 #page-list {
-	flex: 1;
 	display: flex;
+
+	> div {
+		display: flex;
+		width: var(--page-width);
+	}
 }
 
 .tile-grid {
@@ -338,12 +344,14 @@ hbox {
 	}
 }
 
-.nav-button {
+.page-switcher {
+	position: absolute !important;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	transition: all 150ms;
-	width: 90px;
+	width: 150px;
+	height: 100%;
 
 	&:hover {
 		background: rgb(0, 0, 0, 6%);
@@ -354,13 +362,13 @@ hbox {
 		color: rgb(0, 0, 0, 50%);
 	}
 
-	&.left {
+	&#page-switcher-start {
 		left: 0;
 		&::before {
 			content: "‹";
 		}
 	}
-	&.right {
+	&#page-switcher-end {
 		right: 0;
 		&::before {
 			content: "›";
