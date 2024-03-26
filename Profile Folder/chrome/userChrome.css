@@ -1823,6 +1823,8 @@ toolbar[overflowable][customizing] > .customization-target {
   border: 1px solid transparent;
   margin: 0 !important;
   border-radius: var(--toolbarbutton-radius) !important;
+  flex-shrink: 0;
+  max-width: 148px !important;
 }
 .bookmark-item:hover {
   border: 1px solid rgba(0, 0, 0, 0.14);

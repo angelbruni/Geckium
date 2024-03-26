@@ -1119,9 +1119,10 @@ toolbar[overflowable][customizing] > .customization-target {
 
 	margin: 0 !important;
 	border-radius: var(--toolbarbutton-radius) !important;
-
 	
-
+	
+	flex-shrink: 0;
+	max-width: 148px !important;
 
 	&:hover {
 		border: 1px solid rgba(0, 0, 0, .14);
