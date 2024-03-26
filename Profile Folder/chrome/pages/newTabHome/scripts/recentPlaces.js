@@ -1,5 +1,9 @@
-let { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
+const { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
 let topFrecentSites;
+
+const desiredRows = 2;
+const desiredCols = 4;
+const numTiles = desiredRows * desiredCols;
 
 const { PageThumbs } = ChromeUtils.importESModule("resource://gre/modules/PageThumbs.sys.mjs");
 
@@ -61,14 +65,21 @@ const websiteColors = {
 };
 
 function retrieveFrequentSites() {
-	document.querySelectorAll('.tileContainer').forEach(element => {
+    document.querySelectorAll('.tileContainer').forEach(element => {
         element.remove();
-    })
-
-    const desiredRows = 2;
-    const numTiles = desiredRows * 4;
+    });
 
     NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: numTiles })
+    .then(result => {
+        // Count the number of websites with no icon or title
+        const websitesWithNoIconOrTitle = result.filter(website => !website.favicon || !website.title || website.title.trim() === "").length;
+		console.log(websitesWithNoIconOrTitle);
+        // Calculate the total number of websites to retrieve
+        const totalTiles = (desiredCols + websitesWithNoIconOrTitle) * desiredRows;
+
+        // Retrieve websites again, filtering out the ones with no icon or title
+        return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles });
+    })
     .then(result => {
         // Filter out websites with no icon or no title
         topFrecentSites = result.filter(website => website.favicon && website.title && website.title.trim() !== "");
@@ -125,8 +136,8 @@ function createTile(website) {
                 'title': 'Remove this page'
             })
             thumbnailWrapper.appendChild(closeBtn);
-
-			thumbnail.style.backgroundImage = "url(" + PageThumbs.getThumbnailURL(website.url)  + ")";
+			
+			thumbnail.style.backgroundImage = "url(" + PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/") + "), url(" + PageThumbs.getThumbnailURL(website.url)  + "), url(" + PageThumbs.getThumbnailURL(website.url + "/")  + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://www")[1]) + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://")[1]) + ")";
 
             const favicon = document.createElement('div');
             favicon.classList.add('favicon');
@@ -154,7 +165,7 @@ function createTile(website) {
             title.textContent = website.title;
             tile.appendChild(title);
         } else {
-			tile.classList.add("filler");
+			tile.setAttribute("disabled", true);
 		}
 
         return tile;
@@ -164,11 +175,8 @@ function createTile(website) {
 }
 
 function populateRecentSitesGrid() {
-    const desiredRows = 2;
-
     if (topFrecentSites) {
         const tileGrid = document.querySelector('.tile-grid');
-		const numTiles = 4 * desiredRows;
 
         for (let i = 0; i < numTiles; i++) {
 			const tile = createTile(topFrecentSites[i]);
@@ -180,4 +188,5 @@ function populateRecentSitesGrid() {
 			tileGrid.appendChild(placeholderTile);
 		}
     }
+	console.log(topFrecentSites)
 }
