@@ -128,14 +128,21 @@ function createTile(website) {
 
         if (website) {
             tile.href = website.url;
+			tile.setAttribute("title", website.title);
 
 			const closeBtn = document.createElement('button');
             closeBtn.classList.add('close-button');
+			closeBtn.addEventListener("click", function(e) {
+				e.stopPropagation();
+				e.preventDefault();
+			})
             setAttributes(closeBtn, {
-                'onclick': 'NewTabUtils.activityStreamLinks.deleteHistoryEntry("' + website.url + '"); setTimeout(() => { retrieveFrequentSites(); }, 20);',
-                'title': 'Remove this page'
+                "onclick": "NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url + "'); setTimeout(() => { retrieveFrequentSites(); }, 20);",
+                "title": "Don't show on this page"
             })
             thumbnailWrapper.appendChild(closeBtn);
+
+			insertAfter(thumbnail, closeBtn);
 			
 			thumbnail.style.backgroundImage = "url(" + PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/") + "), url(" + PageThumbs.getThumbnailURL(website.url)  + "), url(" + PageThumbs.getThumbnailURL(website.url + "/")  + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://www")[1]) + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://")[1]) + ")";
 
