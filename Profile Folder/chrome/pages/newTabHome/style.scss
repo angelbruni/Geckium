@@ -1,11 +1,138 @@
-* {
-	
-}
-
 html,
 body {
 	
 	
+}
+
+html {
+	font-family: "Segoe UI";
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+button {
+	all: unset;
+}
+
+hbox {
+	display: flex;
+}
+
+.content {
+	flex: 1;
+}
+
+.tile-grid {
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 26px;
+
+	.tile {
+		position: relative;
+		width: 214px;
+		height: 165px;
+		text-decoration: none;
+		color: black;
+
+		&:hover {
+			.close-button {
+				transition-delay: 300ms !important;
+				opacity: 1 !important;
+			}
+
+			.thumbnail-shield {
+				background: linear-gradient(
+					rgba(255, 255, 255, 0),
+					rgba(255, 255, 255, 0) 80%,
+					rgba(255, 255, 255, 0.9)
+				) !important;
+			}
+		}
+
+		&.filler {
+			.thumbnail {
+				border: 1px solid white;
+			}
+		}
+
+		.thumbnail-wrapper {
+			position: relative;
+			border-radius: 3px;
+			border: 1px solid transparent;
+			background-color: rgba(150, 150, 150, .3137254901960784);
+
+			.thumbnail {
+				box-sizing: border-box;
+				height: 132px;
+				width: 212px;
+				border-radius: 3px;
+				background-color: #EEE;
+
+				.thumbnail-shield {
+					background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
+					border-radius: 3px;
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.close-button,
+			.favicon {
+				position: absolute;
+			}
+
+			.close-button {
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 16px;
+				height: 16px;
+				transition: opacity 150ms;
+				opacity: 0;
+				display: none; /* bruni: Let's hide it for now, the function is broken. */
+
+				&:hover {
+					transition-delay: 0ms !important;
+				}
+			}
+
+			.favicon {
+				left: 5px;
+				bottom: 7px;
+				height: 18px;
+				width: 18px;
+				background-size: 18px;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
+
+		.color-stripe {
+			position: absolute;
+			bottom: 23px;
+			height: 3px;
+			width: 100%;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			margin-bottom: 8px;
+		}
+
+		.title {
+			text-align: center;
+			font-size: 10pt;
+			height: 23px;
+			padding-top: 8px;
+			margin: 0;
+		}
+	}
 }
 
 .logo {
@@ -16,31 +143,34 @@ body {
 .tabs {
 	
 	
-}
-.tab-item {
-	
-	
-	
+	flex-grow: 1;
+	justify-content: center;
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	&:hover {
+	.item {
 		
 		
-	}
-
-	&.active {
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		&:hover {
+			
+			
+		}
+	
+		&.active {
+			
+			
+		}
 	}
 }
 
@@ -50,69 +180,80 @@ body {
 	
 	
 	
-	
-	
-	
-	
-	
-}
-.right-footer-item {
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	&:hover {
-		
-	}
+	> hbox:last-of-type {
+		.item {
+			text-decoration: none !important;
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
-	&[type="menu"] {
-		&::after {
-			
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/more.png");
-			
-			
-			
-		}
-
-		&:not([disbled]) {
 			&:hover {
+				
+			}
+
+			&[type="menu"] {
 				&::after {
+					
+					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/more.png");
+					
+					
+					
+
+				}
+		
+				&:not([disbled]) {
+					&:hover,
+					&[open] {
+						&::after {
+							
+						}
+					}
+				}
+			}
+		
+			&.is-webstore {
+				
+		
+				&::after {
+					
+					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
+					
 					
 				}
 			}
 		}
-	}
 
-	&.is-webstore {
-		
+		.seperator {
 
-		&::after {
 			
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
+			
+			
+
 			
 			
 		}
 	}
 }
 
-.right-footer-item-seperator {
-	
-	
-	
-	
-	
-	
-	
+#login-container {
+	margin-left: auto;
+	text-align: right;
+	margin-right: 13px;
+	margin-top: 6px;
+	font-size: 9pt;
+	font-kerning: none;
+	line-height: 11pt;
 }
