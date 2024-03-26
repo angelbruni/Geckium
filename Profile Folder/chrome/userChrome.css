@@ -3,6 +3,20 @@
   text-shadow: none !important;
 }
 
+tooltip {
+  -moz-default-appearance: tooltip !important;
+  -webkit-appearance: auto !important;
+     -moz-appearance: auto !important;
+          appearance: auto !important;
+  margin-top: 21px;
+  border: 1px solid InfoText;
+  padding: 2px 3px;
+  max-width: 40em;
+  background-color: InfoBackground;
+  color: InfoText;
+  font: message-box;
+}
+
 :root {
   --titlebar-active: linear-gradient(
       to bottom,

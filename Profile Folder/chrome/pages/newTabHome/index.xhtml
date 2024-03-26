@@ -2,40 +2,60 @@
 
 <?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/style.css" type="text/css"?>
 
-<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns="http://www.w3.org/1999/xhtml">
+<html
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns="http://www.w3.org/1999/xhtml"
+>
 	<head>
-		<meta charset="UTF-8"/>
+		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>New Tab</title>
 	</head>
 	<body>
 		<button id="login-container" class="custom-appearance">
-			<div id="login-status-header-container" class="login-status-row" style="background-image: none;">
-				  <div id="login-status-header">Not signed in to Chrome</div>
+			<div
+				id="login-status-header-container"
+				class="login-status-row"
+				style="background-image: none"
+			>
+				<div id="login-status-header">Not signed in to Chrome</div>
 			</div>
-			<div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</div>
+			<div id="login-status-sub-header">
+				(You're missing out—<a href="#" class="sign-in-link">sign in</a
+				>)
+			</div>
 		</button>
 		<hbox id="content">
-			<div class="tile-grid"/>
+			<div class="tile-grid" />
+			<div class="nav-buttons">
+				<button class="nav-button left"></button>
+				<button class="nav-button right"></button>
+			</div>
 		</hbox>
 		<hbox id="footer">
 			<div id="logo">
-				<img src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png" alt="Google Chrome Logo" />
+				<img
+					src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png"
+					alt="Google Chrome Logo"
+				/>
 			</div>
 			<hbox class="tabs">
 				<button class="item active">Most visited</button>
 				<button class="item">Apps</button>
 			</hbox>
 			<hbox>
-				<button type="menu" class="item">
-					Recently closed
-				</button>
-				<div class="seperator"/>
-				<a id="webstore-link" class="item" href="https://chromewebstore.google.com/">Web Store</a>
+				<button type="menu" class="item">Recently closed</button>
+				<div class="seperator" />
+				<a
+					id="webstore-link"
+					class="item"
+					href="https://chromewebstore.google.com/"
+					>Web Store</a
+				>
 			</hbox>
 		</hbox>
 
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js" />
 	</body>
 </html>
