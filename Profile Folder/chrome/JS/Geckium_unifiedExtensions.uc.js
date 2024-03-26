@@ -1,3 +1,9 @@
+// ==UserScript==
+// @name        Geckium - Unified Extensions
+// @author      AngelBruni
+// @loadorder   3
+// ==/UserScript==
+
 function hideUnifiedExtensionsButton() {
 	const navBar = document.getElementById("nav-bar");
 	const unifiedExtensionsButton = document.getElementById("unified-extensions-button");

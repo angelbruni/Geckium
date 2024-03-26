@@ -475,7 +475,7 @@
 }
 .tabbrowser-tab[visuallyselected=true] {
   position: relative;
-  z-index: 1000;
+  z-index: 1000 !important;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_active_left.png) no-repeat;

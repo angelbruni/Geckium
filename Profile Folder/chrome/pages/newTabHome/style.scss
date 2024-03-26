@@ -63,13 +63,27 @@ hbox {
 		text-decoration: none;
 		color: black;
 
-		&:hover {
-			.close-button {
-				transition-delay: 300ms !important;
-				opacity: 1 !important;
+		&:not([disabled]) {
+			.thumbnail-shield {
+				background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
+				border-radius: 3px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
 			}
 
-			&:not([disabled]) {
+			&:active .close-button:not(:active) + .thumbnail .thumbnail-shield {
+				box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.2);
+			}
+	
+			&:hover {
+				.close-button {
+					transition-delay: 300ms !important;
+					opacity: 1 !important;
+				}
+	
 				.thumbnail-wrapper {
 					background: rgb(150,150,150);
 				}
@@ -84,17 +98,7 @@ hbox {
 			}
 		}
 
-		&:not([disabled]) {
-			.thumbnail-shield {
-				background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
-				border-radius: 3px;
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-			}
-		}
+		
 
 		&[disabled] {
 			pointer-events: none;
@@ -134,10 +138,20 @@ hbox {
 				height: 16px;
 				transition: opacity 150ms;
 				opacity: 0;
-				display: none; /* bruni: Let's hide it for now, the function is broken. */
+				z-index: 1;
+				background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAiElEQVR42r2RsQrDMAxEBRdl8SDcX8lQPGg1GBI6lvz/h7QyRRXV0qUULwfvwZ1tenw5PxToRPWMC52eA9+WDnlh3HFQ/xBQl86NFYJqeGflkiogrOvVlIFhqURFVho3x1moGAa3deMs+LS30CAhBN5nNxeT5hbJ1zwmji2k+aF6NENIPf/hs54f0sZFUVAMigAAAABJRU5ErkJggg==');
+				cursor: default;
 
-				&:hover {
-					transition-delay: 0ms !important;
+				&:not([disabled]) {
+					&:hover {
+						transition-delay: 0ms !important;
+					}
+	
+					&:hover,
+					&:active,
+					&:focus {
+						background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=");
+					}
 				}
 			}
 
