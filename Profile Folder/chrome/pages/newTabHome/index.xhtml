@@ -3,6 +3,9 @@
 <?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/style.css" type="text/css"?>
 
 <html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns="http://www.w3.org/1999/xhtml">
+
+
+
 	<head>
 		<meta charset="UTF-8"/>
 		
@@ -11,40 +14,66 @@
 	<body>
 		<button id="login-container" class="custom-appearance">
 			<div id="login-status-header-container" class="login-status-row" style="background-image: none;">
+
+
+
+
 				  <div id="login-status-header">Not signed in to Chrome</div>
 			</div>
 			<div id="login-status-sub-header">(You're missing out—<a href="#" class="link-span">sign in</a>)</div>
+
+
 		</button>
 		<hbox id="content">
-			<button id="page-switcher-start" class="page-switcher"></button>
 			<div id="page-list">
 				<div id="most-visited-page">
 					<div class="tile-grid" />
+					<button id="page-switcher-end" class="page-switcher"></button>
+
+
+
 				</div>
-				<div id="apps-page" />
+				<div id="apps-page" >
+					<button id="page-switcher-start" class="page-switcher"></button>
+
+
+
+
+
+
+
+				</div>
 			</div>
-			<button id="page-switcher-end" class="page-switcher"></button>
 			
 		</hbox>
 		<hbox id="footer">
 			<div id="logo">
 				<img src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png" alt="Google Chrome Logo" />
+
+
+
 			</div>
 			<hbox class="tabs">
 				<button class="item active">Most visited</button>
+
+
 				<button class="item">Apps</button>
 			</hbox>
 			<hbox>
-				<button type="menu" class="item">
-					Recently closed
-				</button>
+				<button type="menu" class="item">Recently closed</button>
 				<div class="seperator"/>
 				<a id="webstore-link" class="item" href="https://chromewebstore.google.com/">Web Store</a>
+
+
+
+
+
 			</hbox>
 		</hbox>
 
 		<script src="chrome://userchrome/content/pages/newTabHome/scripts/layout.js" />
 		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" />
 		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js" />
+		
 	</body>
 </html>
