@@ -5,13 +5,25 @@ body {
 }
 
 html {
-	font-family: "Segoe UI";
+	font-family: 'Segoe UI', Tahoma, sans-serif;
+	font-size: 9pt;
 }
 
 body {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	transition: height 100ms, padding-top 100ms;
+
+	&[pref="newtab"] {
+		height: calc(100vh - 55px);
+		padding-top: 55px;
+
+		#login-container {
+			top: 55px;
+		}
+	}
 }
 
 button {
@@ -22,10 +34,16 @@ hbox {
 	display: flex;
 }
 
-#header {
-	&[pref="newtab"] {
-		margin-top: 55px;
-	}
+#login-container {
+	margin-left: 13px;
+	margin-right: 13px;
+	margin-top: 5px;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 0;
+	transition: top 100ms;
 }
 
 #content {
@@ -259,7 +277,7 @@ hbox {
 	}
 }
 
-#login-container {
+/*#login-container {
 	margin-left: auto;
 	text-align: right;
 	margin-right: 13px;
@@ -267,4 +285,4 @@ hbox {
 	font-size: 9pt;
 	font-kerning: none;
 	line-height: 11pt;
-}
+}*/
