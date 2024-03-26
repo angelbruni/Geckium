@@ -1,8 +1,7 @@
 function applyBookmarkAttr() {
-	const header = document.getElementById("header");
 	const bookmarkBarPref = pref("browser.toolbars.bookmarks.visibility").tryGet.string();
 
-	header.setAttribute("pref", bookmarkBarPref);
+	document.body.setAttribute("pref", bookmarkBarPref);
 }
 
 const bookmarkBarPrefObserver = {
