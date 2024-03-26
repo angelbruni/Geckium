@@ -4,12 +4,12 @@
 
 <html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>New Tab</title>
 	</head>
 	<body>
-		<hbox class="header">
+		<hbox id="header">
 			<button id="login-container" class="custom-appearance">
 				<div id="login-status-header-container" class="login-status-row" style="background-image: none;">
 				  	<div id="login-status-header">Not signed in to Chrome</div>
@@ -17,11 +17,11 @@
 				<div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</div>
 			</button>
 		</hbox>
-		<hbox class="content">
+		<hbox id="content">
 			<div class="tile-grid"/>
 		</hbox>
-		<hbox class="footer">
-			<div class="logo">
+		<hbox id="footer">
+			<div id="logo">
 				<img src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png" alt="Google Chrome Logo" />
 			</div>
 			<hbox class="tabs">
@@ -32,11 +32,12 @@
 				<button type="menu" class="item">
 					Recently closed
 				</button>
-				<div class="seperator"></div>
-				<a class="item is-webstore" href="https://chromewebstore.google.com/">Web Store</a>
+				<div class="seperator"/>
+				<a id="webstore-link" class="item" href="https://chromewebstore.google.com/">Web Store</a>
 			</hbox>
 		</hbox>
 
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/script.js"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js"/>
 	</body>
 </html>

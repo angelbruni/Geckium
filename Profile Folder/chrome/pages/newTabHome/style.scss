@@ -22,7 +22,13 @@ hbox {
 	display: flex;
 }
 
-.content {
+#header {
+	&[pref="newtab"] {
+		margin-top: 64px;
+	}
+}
+
+#content {
 	flex: 1;
 }
 
@@ -45,12 +51,28 @@ hbox {
 				opacity: 1 !important;
 			}
 
+			&:not(.filler) {
+				&:not([disabled]) {
+					.thumbnail-shield {
+						background: linear-gradient(
+							rgba(255, 255, 255, 0),
+							rgba(255, 255, 255, 0) 80%,
+							rgba(255, 255, 255, 0.9)
+						);
+					}
+				}
+			}
+		}
+
+		&:not(.filler) {
 			.thumbnail-shield {
-				background: linear-gradient(
-					rgba(255, 255, 255, 0),
-					rgba(255, 255, 255, 0) 80%,
-					rgba(255, 255, 255, 0.9)
-				) !important;
+				background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
+				border-radius: 3px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
 			}
 		}
 
@@ -72,16 +94,6 @@ hbox {
 				width: 212px;
 				border-radius: 3px;
 				background-color: #EEE;
-
-				.thumbnail-shield {
-					background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
-					border-radius: 3px;
-					position: absolute;
-					left: 0;
-					top: 0;
-					width: 100%;
-					height: 100%;
-				}
 			}
 
 			.close-button,
@@ -135,51 +147,51 @@ hbox {
 	}
 }
 
-.logo {
+#logo {
 	display: flex;
 	padding-right: 66px;
 }
 
-.tabs {
-	display: flex;
-	gap: 10px;
-	flex-grow: 1;
-	justify-content: center;
-
-	.item {
-		display: flex;
-		appearance: none;
-		border: 0;
-		padding: 0;
-		width: 80px;
-		background: transparent;
-		cursor: pointer;
-		border-top: 5px solid rgb(0, 0, 0, 10%);
-		color: rgb(153, 153, 153);
-		font-weight: 700;
-		font-size: 8pt;
-		padding-top: 5px;
-		padding-left: 3px;
-		transition: all 150ms linear;
-	
-		&:hover {
-			border-color: rgb(178, 178, 178);
-			color: rgb(127, 127, 127);
-		}
-	
-		&.active {
-			border-color: rgb(127, 127, 127);
-			color: rgb(127, 127, 127);
-		}
-	}
-}
-
-.footer {
+#footer {
 	padding-block: 9px;
 	padding-left: 10px;
 	padding-right: 4px;
 	background: linear-gradient(to top, #dfdfdf, #f2f2f2);
 	border-top: 1px solid #d7d7d7;
+
+	> .tabs {
+		display: flex;
+		gap: 10px;
+		flex-grow: 1;
+		justify-content: center;
+	
+		.item {
+			display: flex;
+			appearance: none;
+			border: 0;
+			padding: 0;
+			width: 80px;
+			background: transparent;
+			cursor: pointer;
+			border-top: 5px solid rgb(0, 0, 0, 10%);
+			color: rgb(153, 153, 153);
+			font-weight: 700;
+			font-size: 8pt;
+			padding-top: 5px;
+			padding-left: 3px;
+			transition: all 150ms linear;
+		
+			&:hover {
+				border-color: rgb(178, 178, 178);
+				color: rgb(127, 127, 127);
+			}
+		
+			&.active {
+				border-color: rgb(127, 127, 127);
+				color: rgb(127, 127, 127);
+			}
+		}
+	}
 
 	> hbox:last-of-type {
 		.item {
@@ -223,7 +235,7 @@ hbox {
 				}
 			}
 		
-			&.is-webstore {
+			&#webstore-link {
 				gap: 10px;
 		
 				&::after {
