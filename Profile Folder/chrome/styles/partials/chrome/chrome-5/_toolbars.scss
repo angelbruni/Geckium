@@ -1154,6 +1154,8 @@ toolbar[overflowable][customizing] > .customization-target {
 	border-radius: var(--toolbarbutton-radius) !important;
 	color: var(--bookmark-item-color) !important;
 	text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
+	flex-shrink: 0;
+	max-width: 148px !important;
 
 	&:hover {
 		border: 1px solid rgba(0, 0, 0, 0.14);
