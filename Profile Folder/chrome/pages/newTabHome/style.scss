@@ -63,7 +63,9 @@ hbox {
 }
 
 #content {
+	position: relative;
 	flex: 1;
+	overflow: hidden;
 
 	&::before {
 		
@@ -77,8 +79,12 @@ hbox {
 }
 
 #page-list {
-	flex: 1;
 	display: flex;
+
+	> div {
+		display: flex;
+		width: var(--page-width);
+	}
 }
 
 .tile-grid {
@@ -339,12 +345,14 @@ hbox {
 	}
 }
 
-.nav-button {
+.page-switcher {
+	position: absolute !important;
 		
 		
 		
-		
-		
+	
+	width: 150px;
+	height: 100%;
 
 	&:hover {
 		
@@ -355,13 +363,13 @@ hbox {
 		
 	}
 
-	&.left {
+	&#page-switcher-start {
 		
 		&::before {
 			
 		}
 	}
-	&.right {
+	&#page-switcher-end {
 		
 		&::before {
 			

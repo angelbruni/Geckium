@@ -16,12 +16,15 @@
 			<div id="login-status-sub-header">(You're missing out—<a href="#" class="link-span">sign in</a>)</div>
 		</button>
 		<hbox id="content">
-			<button class="nav-button left"></button>
+			<button id="page-switcher-start" class="page-switcher"></button>
 			<div id="page-list">
-				<div class="tile-grid" />
+				<div id="most-visited-page">
+					<div class="tile-grid" />
+				</div>
+				<div id="apps-page" />
 			</div>
-			<button class="nav-button right"></button>
-
+			<button id="page-switcher-end" class="page-switcher"></button>
+			
 		</hbox>
 		<hbox id="footer">
 			<div id="logo">
@@ -40,7 +43,8 @@
 			</hbox>
 		</hbox>
 
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/layout.js" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js" />
 	</body>
 </html>
