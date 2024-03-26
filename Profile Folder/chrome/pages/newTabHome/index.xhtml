@@ -2,7 +2,6 @@
 
 <?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/style.css" type="text/css"?>
 
-<!DOCTYPE html>
 <html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8" />
@@ -10,23 +9,34 @@
 		<title>New Tab</title>
 	</head>
 	<body>
-		<div class="footer">
+		<hbox class="header">
+			<button id="login-container" class="custom-appearance">
+				<div id="login-status-header-container" class="login-status-row" style="background-image: none;">
+				  	<div id="login-status-header">Not signed in to Chrome</div>
+				</div>
+				<div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</div>
+			</button>
+		</hbox>
+		<hbox class="content">
+			<div class="tile-grid"/>
+		</hbox>
+		<hbox class="footer">
 			<div class="logo">
 				<img src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png" alt="Google Chrome Logo" />
 			</div>
-			<div style="display: flex; flex-grow: 1; justify-content: center">
-				<div class="tabs">
-					<button class="tab-item active">Most visited</button>
-					<button class="tab-item">Apps</button>
-				</div>
-			</div>
-			<div style="display: flex">
-				<button type="menu" class="right-footer-item">
+			<hbox class="tabs">
+				<button class="item active">Most visited</button>
+				<button class="item">Apps</button>
+			</hbox>
+			<hbox>
+				<button type="menu" class="item">
 					Recently closed
 				</button>
-				<div class="right-footer-item-seperator"></div>
-				<button class="right-footer-item is-webstore">Web Store</button>
-			</div>
-		</div>
+				<div class="seperator"></div>
+				<a class="item is-webstore" href="https://chromewebstore.google.com/">Web Store</a>
+			</hbox>
+		</hbox>
+
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/script.js"/>
 	</body>
 </html>

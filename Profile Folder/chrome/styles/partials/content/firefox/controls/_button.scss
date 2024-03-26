@@ -1,4 +1,6 @@
-@-moz-document url-prefix(about) {
+@-moz-document url-prefix(about:preferences),
+               url-prefix(about:config),
+			   url-prefix(about:addons) {
 	menulist,
 	button:not(.toggle-button, [role="menuitem"], [role="menuitemcheckbox"], .menu-item, .dialogClose, .category, .devtools-tab, .devtools-tabbar-button, .devtools-button, .all-tabs-menu, .open-inspector, .compatibility-footer__button, .devtools-searchinput-clear, .breadcrumbs-widget-item, .devtools-togglebutton, .editor-onboarding-dismiss-button, .command-bar-button, .header-buttons > button, .perf-external-link, .perf-photon-button, .perf-photon-button-ghost) {
 		justify-content: center;

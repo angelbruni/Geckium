@@ -1,11 +1,138 @@
-* {
-	font-family: "Segoe UI";
-}
-
 html,
 body {
 	margin: 0;
 	padding: 0;
+}
+
+html {
+	font-family: "Segoe UI";
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+button {
+	all: unset;
+}
+
+hbox {
+	display: flex;
+}
+
+.content {
+	flex: 1;
+}
+
+.tile-grid {
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 26px;
+
+	.tile {
+		position: relative;
+		width: 214px;
+		height: 165px;
+		text-decoration: none;
+		color: black;
+
+		&:hover {
+			.close-button {
+				transition-delay: 300ms !important;
+				opacity: 1 !important;
+			}
+
+			.thumbnail-shield {
+				background: linear-gradient(
+					rgba(255, 255, 255, 0),
+					rgba(255, 255, 255, 0) 80%,
+					rgba(255, 255, 255, 0.9)
+				) !important;
+			}
+		}
+
+		&.filler {
+			.thumbnail {
+				border: 1px solid white;
+			}
+		}
+
+		.thumbnail-wrapper {
+			position: relative;
+			border-radius: 3px;
+			border: 1px solid transparent;
+			background-color: rgba(150, 150, 150, .3137254901960784);
+
+			.thumbnail {
+				box-sizing: border-box;
+				height: 132px;
+				width: 212px;
+				border-radius: 3px;
+				background-color: #EEE;
+
+				.thumbnail-shield {
+					background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.9));
+					border-radius: 3px;
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.close-button,
+			.favicon {
+				position: absolute;
+			}
+
+			.close-button {
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 16px;
+				height: 16px;
+				transition: opacity 150ms;
+				opacity: 0;
+				display: none; /* bruni: Let's hide it for now, the function is broken. */
+
+				&:hover {
+					transition-delay: 0ms !important;
+				}
+			}
+
+			.favicon {
+				left: 5px;
+				bottom: 7px;
+				height: 18px;
+				width: 18px;
+				background-size: 18px;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
+
+		.color-stripe {
+			position: absolute;
+			bottom: 23px;
+			height: 3px;
+			width: 100%;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+			margin-bottom: 8px;
+		}
+
+		.title {
+			text-align: center;
+			font-size: 10pt;
+			height: 23px;
+			padding-top: 8px;
+			margin: 0;
+		}
+	}
 }
 
 .logo {
@@ -16,31 +143,34 @@ body {
 .tabs {
 	display: flex;
 	gap: 10px;
-}
-.tab-item {
-	display: flex;
-	appearance: none;
-	border: 0;
-	padding: 0;
-	width: 80px;
-	background: transparent;
-	cursor: pointer;
-	border-top: 5px solid rgb(0, 0, 0, 10%);
-	color: rgb(153, 153, 153);
-	font-weight: 700;
-	font-size: 8pt;
-	padding-top: 5px;
-	padding-left: 3px;
-	transition: all 150ms linear;
+	flex-grow: 1;
+	justify-content: center;
 
-	&:hover {
-		border-color: rgb(178, 178, 178);
-		color: rgb(127, 127, 127);
-	}
-
-	&.active {
-		border-color: rgb(127, 127, 127);
-		color: rgb(127, 127, 127);
+	.item {
+		display: flex;
+		appearance: none;
+		border: 0;
+		padding: 0;
+		width: 80px;
+		background: transparent;
+		cursor: pointer;
+		border-top: 5px solid rgb(0, 0, 0, 10%);
+		color: rgb(153, 153, 153);
+		font-weight: 700;
+		font-size: 8pt;
+		padding-top: 5px;
+		padding-left: 3px;
+		transition: all 150ms linear;
+	
+		&:hover {
+			border-color: rgb(178, 178, 178);
+			color: rgb(127, 127, 127);
+		}
+	
+		&.active {
+			border-color: rgb(127, 127, 127);
+			color: rgb(127, 127, 127);
+		}
 	}
 }
 
@@ -48,71 +178,81 @@ body {
 	padding-block: 9px;
 	padding-left: 10px;
 	padding-right: 4px;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
 	background: linear-gradient(to top, #dfdfdf, #f2f2f2);
 	border-top: 1px solid #d7d7d7;
-	display: flex;
-}
-.right-footer-item {
-	appearance: none;
-	border: 0;
-	background: transparent;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding-inline: 9px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	gap: 6px;
-	font-size: 8pt;
-	font-weight: 700;
-	height: 100%;
-	color: rgb(127, 127, 127);
 
-	&:hover {
-		color: rgb(102, 102, 102);
-	}
-
-	&[type="menu"] {
-		&::after {
-			content: "";
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/more.png");
-			opacity: 0.5;
-			height: 9px;
-			width: 9px;
-		}
-
-		&:not([disbled]) {
+	> hbox:last-of-type {
+		.item {
+			text-decoration: none !important;
+			appearance: none;
+			border: 0;
+			background: transparent;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding-inline: 9px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			gap: 6px;
+			font-size: 8pt;
+			font-weight: 700;
+			height: 100%;
+			color: rgb(127, 127, 127);
+		
 			&:hover {
+				color: rgb(102, 102, 102);
+			}
+		
+			&[type="menu"] {
 				&::after {
-					opacity: 0.6;
+					content: "";
+					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/more.png");
+					opacity: 0.5;
+					height: 9px;
+					width: 9px;
+				}
+		
+				&:not([disbled]) {
+					&:hover,
+					&[open] {
+						&::after {
+							opacity: 0.6;
+						}
+					}
+				}
+			}
+		
+			&.is-webstore {
+				gap: 10px;
+		
+				&::after {
+					content: "";
+					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
+					height: 24px;
+					width: 24px;
 				}
 			}
 		}
-	}
 
-	&.is-webstore {
-		gap: 10px;
-
-		&::after {
+		.seperator {
+			display: block;
+			align-self: center;
 			content: "";
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
-			height: 24px;
-			width: 24px;
+			height: calc(100% - 8px);
+			margin-inline: 6px;
+			width: 1px;
+			background: rgb(178, 178, 178);
 		}
 	}
 }
 
-.right-footer-item-seperator {
-	display: block;
-	align-self: center;
-	content: "";
-	height: calc(100% - 8px);
-	margin-inline: 6px;
-	width: 1px;
-	background: rgb(178, 178, 178);
+#login-container {
+	margin-left: auto;
+	text-align: right;
+	margin-right: 13px;
+	margin-top: 6px;
+	font-size: 9pt;
+	font-kerning: none;
+	line-height: 11pt;
 }
