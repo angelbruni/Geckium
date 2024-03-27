@@ -20,7 +20,7 @@ function createToolbarbutton(id, delegatesanchor, label, removable, overflows, a
 	});
 }
 
-function createMenu(id, delegatesanchor, label, removable, overflows, area, position, object) {
+function createMenu(id, delegatesanchor, label, removable, overflows, area, position, object, adjustAccelTextWidth) {
 	const parentID = "menu_" + id + "Popup";
 
 	const alreadyExists = document.getElementById(id + "-button");
@@ -49,42 +49,75 @@ function createMenu(id, delegatesanchor, label, removable, overflows, area, posi
 	
 	toolbarButton.appendChild(menuPopUp);
 	
-	createMenuItemFromObject(parentID, object);
+	createMenuItemFromObject(parentID, object, adjustAccelTextWidth);
 }
 
-function createMenuItem(parentID, type, id, checkbox, click, command, label, accesskey, acceltext) {
-	console.log(parentID, type, id, checkbox, click, command, label, accesskey, acceltext)
-
+function createMenuItem(parentID, type, id, icon, checkbox, click, command, label, accesskey, acceltext) {
 	let menuItem;
 
 	switch (type) {
 		case "menu":
 			menuItem = document.createXULElement("menu");
-			setAttributes(menuItem, {
-				"id": id + "-menu",
-			});
+			menuItem.id = id + "-menu";
 			break;
 		case "menuitem":
-			menuItem = document.createXULElement("menuitem");
-			setAttributes(menuItem, {
-				"id": "menu_" + id,
-			});
+			if (document.getElementById(parentID).tagName == "hbox") {
+				menuItem = document.createXULElement("button");
+				menuItem.style.listStyleImage = "none";
+			} else {
+				menuItem = document.createXULElement("menuitem");
+			}
+
+			menuItem.id = "menu_" + id;
 			break;
 		case "menuseparator":
-			menuItem = document.createXULElement("menuseparator");
+			if (document.getElementById(parentID).tagName == "hbox")
+				menuItem = document.createXULElement("separator");
+			else
+				menuItem = document.createXULElement("menuseparator");
+			break;
+		case "menuitemitems":
+			menuItem = document.createXULElement("hbox");
+			menuItem.classList.add("menuitemitems");
+			menuItem.id = "menu_" + id;
+			menuItem.style.alignItems = "center";
+			
+			menuItemLabel = document.createXULElement("label");
+			menuItemLabel.classList.add("menu-text");
+			menuItemLabel.setAttribute("value", label);
+			menuItem.appendChild(menuItemLabel);
+
+			menuItemRightItems = document.createXULElement("hbox");
+			menuItemRightItems.classList.add("menuitem-right-items", "menu-accel")
+			menuItem.appendChild(menuItemRightItems);
 			break;
 		default:
+			console.error("Element of type" + type + "is not supported.")
 			return;
 	}
 
-
-	if (type == "menu" || type == "menuitem") {
-		setAttributes(menuItem, {
-			"label": label,
-		});
-
-		if (checkbox)
+	if (type == "menuitem" || type == "menu" || type == "menuitemitems") {
+		if (checkbox) {
 			menuItem.setAttribute("type", "checkbox");
+			icon = false;
+		}
+
+		if (icon) {
+			switch (type) {
+				case "menuitem":
+					menuItem.classList.add("menuitem-iconic");
+					break;
+				case "menu":
+					menuItem.classList.add("menu-iconic");
+					break;
+			}
+		}
+
+		if (label)
+			menuItem.setAttribute("label", label)
+
+		if (accesskey)
+			menuItem.setAttribute("accesskey", accesskey);
 			
 		if (click)
 			menuItem.setAttribute("onclick", click);
@@ -96,65 +129,77 @@ function createMenuItem(parentID, type, id, checkbox, click, command, label, acc
 				menuItem.addEventListener("command", command);
 		}
 
-		if (accesskey)
-			menuItem.setAttribute("accesskey", accesskey);
-
 		if (acceltext)
 			menuItem.setAttribute("acceltext", acceltext);
 	} 
 
 	const parent = document.getElementById(parentID);
-	if (parent.tagName == "menupopup") {
-		parent.appendChild(menuItem);
-	} else if (parent.tagName == "menu") {
-		if (parent.querySelector("menupopup")) {
-			parent.querySelector("menupopup").appendChild(menuItem);
-		} else {
-			const menuPopUp = document.createXULElement("menupopup");
-			parent.appendChild(menuPopUp);
-			menuPopUp.appendChild(menuItem);
+	
+	if (type == "menuitem" || type == "menu" || type == "menuseparator" || type == "menuitemitems") {
+		if (parent.tagName == "menupopup") {
+			parent.appendChild(menuItem);
+		} else if (parent.tagName == "menu") {
+			if (parent.querySelector("menupopup")) {
+				parent.querySelector("menupopup").appendChild(menuItem);
+			} else {
+				const menuPopUp = document.createXULElement("menupopup");
+				parent.appendChild(menuPopUp);
+				menuPopUp.appendChild(menuItem);
+			}
+		} else if (parent.tagName == "hbox") {
+			parent.querySelector(".menuitem-right-items").appendChild(menuItem);
 		}
 	}
 }
 
-function createMenuItemFromObject(parentID, object) {
+function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 	const parent = document.getElementById(parentID);
 
-	function adjustAccelText() {
-		const menuAccelContainers = parent.querySelectorAll("menuitem[acceltext] > .menu-accel-container");
+	function adjustAccelText(adjustAccelTextWidth) {
+		if (adjustAccelTextWidth) {
+			const menuAccelContainers = parent.querySelectorAll("menuitem[acceltext] > .menu-accel-container");
 		
-		if (!parent.querySelector("menuitem[acceltext] > .menu-accel-container[style*='min-width']")) {
-			let maxWidth = 0;
-			menuAccelContainers.forEach(container => {
-				const width = container.clientWidth;
-				maxWidth = Math.max(maxWidth, width);
-				container.style.minWidth = `${maxWidth}px`;
-			});
+			if (!parent.querySelector("menuitem[acceltext] > .menu-accel-container[style*='min-width']")) {
+				let maxWidth = 0;
+				menuAccelContainers.forEach(container => {
+					const width = container.clientWidth;
+					maxWidth = Math.max(maxWidth, width);
+					container.style.minWidth = `${maxWidth}px`;
+				});
+			}
 		}
 	}
 
-	parent.addEventListener("popupshowing", adjustAccelText)
-	if (object.properties) {
-        setAttributes(parent, {
-            "onpopupshowing": object.properties.onpopup,
-            "onpopuphidden": object.properties.onpopup,
-        });
-    }
+	if (parent.tagName == "menupopup") {
+		parent.addEventListener("popupshowing", adjustAccelText)
+		if (object.properties) {
+			setAttributes(parent, {
+				"onpopupshowing": object.properties.onpopup,
+				"onpopuphidden": object.properties.onpopup,
+			});
+		}
+	}
 
     for (let key in object) {
 		if (key !== 'properties') {
 			if (Object.keys(object[key]).length === 0 && object[key].constructor === Object) {
 				// If the item is empty, create a menu separator.
 				createMenuItem(parentID, "menuseparator");
+			} else if (object[key].hasOwnProperty('subItems')) {
+				// If it has "subItems", it's a submenu.
+				createMenuItem(parentID, "menu", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				for (let subItem of object[key].subItems) {
+					createMenuItemFromObject(object[key].id + "-menu", subItem, adjustAccelTextWidth);
+				}
 			} else if (object[key].hasOwnProperty('items')) {
-				// If it has "items", it's a submenu.
-				createMenuItem(parentID, "menu", object[key].id, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
-				for (let subItem of object[key].items) {
-					createMenuItemFromObject(object[key].id + "-menu", subItem);
+				// If it has "items", it's a menuitem with buttons.
+				createMenuItem(parentID, "menuitemitems", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				for (let item of object[key].items) {
+					createMenuItemFromObject("menu_" + object[key].id, item, false);
 				}
 			} else {
 				// Default: create a regular menu item.
-				createMenuItem(parentID, "menuitem", object[key].id, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				createMenuItem(parentID, "menuitem", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
 			}
 		}
     }
@@ -162,7 +207,7 @@ function createMenuItemFromObject(parentID, object) {
 
 const menu_chrome = {
 	properties: {
-		onpopup: "bookmarksBarStatus();",
+		onpopup: "bookmarksBarStatus(); updateZoomLabel();",
 	},
 	1: {
 		id: "newTab",
@@ -175,6 +220,7 @@ const menu_chrome = {
 		label: "New window",
 		command: "cmd_newNavigator",
 		acceltext: "Ctrl+N",
+		icon: true,
 	},
 	3: {
 		id: "newIncognitoWindow",
@@ -184,67 +230,117 @@ const menu_chrome = {
 	},
 	4: {},
 	5: {
+		id: "edit",
+		label: "Edit",
+		items: [
+			{
+				1: {
+					id: "cut11",
+					label: "Cut",
+					command: "cmd_cut",
+				},
+				2: {
+					id: "copy11",
+					label: "Copy",
+					command: "cmd_copy",
+				},
+				3: {
+					id: "paste11",
+					label: "Paste",
+					command: "cmd_paste",
+				},
+			}
+		]
+	},
+	6: {},
+	7: {
+		id: "zoom11",
+		label: "Zoom",
+		items: [
+			{
+				1: {
+					id: "larger11",
+					command: "cmd_fullZoomEnlarge",
+				},
+				2: {
+					id: "normal11",
+					command: "cmd_fullZoomReset",
+				},
+				3: {
+					id: "smaller11",
+					command: "cmd_fullZoomReduce",
+				},
+				4: {},
+				5: {
+					id: "fullScreen11",
+					click: "BrowserFullScreen();",
+				}
+			}
+		]
+	},
+	8: {},
+	9: {
 		id: "alwaysShowBookmarksBar",
 		checkbox: true,
 		label: "Always show bookmarks bar",
 		command: onViewToolbarCommand,
 		acceltext: "Ctrl+B",
 	},
-	6: {
+	10: {
 		id: "fullScreen",
 		label: "Full screen",
 		click: "BrowserFullScreen();",
 		acceltext: "F11",
 	},
-	7: {},
-	8: {
+	11: {},
+	12: {
 		id: "history",
 		label: "History",
 		command: "Browser:ShowAllHistory",
 		acceltext: "Ctrl+H",
 	},
-	9: {
+	13: {
 		id: "bookmarkManager",
 		label: "Bookmark manager",
 		command: "Browser:ShowAllBookmarks",
 		acceltext: "Ctrl+Shift+B",
 	},
-	10: {
+	14: {
 		id: "downloads",
 		label: "Downloads",
 		command: "Tools:Downloads",
 		acceltext: "Ctrl+J",
 	},
-	11: {
+	15: {
 		id: "extensions",
 		label: "Extensions",
 		command: "Tools:Addons"
 	},
-	12: {},
-	13: {
+	16: {},
+	17: {
 		id: "setupSync",
 		label: "Set up sync...",
 		click: "gSync.openPrefsFromFxaMenu('sync_settings', this);",
 	},
-	14: {},
-	15: {
+	18: {},
+	19: {
 		id: "options",
 		label: "Options",
 		click: "openPreferences()",
 	},
-	16: {
+	20: {
 		id: "aboutGoogleChrome",
 		label: "About Google Chrome",
 		click: "openWindow('aboutChromium', 'chrome,centerscreen,dependent,modal')",
 	},
-	17: {
+	21: {
 		id: "help",
 		label: "Help",
 		click: "openHelpLink('firefox-help')",
 		acceltext: "F1",
 	},
-	18: {},
-	19: {
+	22: {},
+	23: {
 		id: "exit",
 		label: "Exit",
 		command: "cmd_quitApplication",
@@ -298,7 +394,7 @@ const menu_page = {
 	11: {
 		id: "zoom",
 		label: "Zoom",
-		items: [
+		subItems: [
 			{
 				1: {
 					id: "larger",
@@ -324,7 +420,7 @@ const menu_page = {
 	/*12: {
 		id: "encoding",
 		label: "Encoding",
-		items: [
+		subItems: [
 			{
 				1: {
 					id: "idkYet",
@@ -337,7 +433,7 @@ const menu_page = {
 	14: {
 		id: "developer",
 		label: "Developer",
-		items: [
+		subItems: [
 			{
 				1: {
 					id: "viewSource",
@@ -373,7 +469,24 @@ const menu_page = {
 	},
 }
 
+function geckiumCreateMenu(id, label, object) {
+	/* Does the same as createMenu() but sets predefined arguments
+	   that will be used for every menu in Geckium. */
+
+	createMenu(
+		id,
+		false,
+		label,
+		false,
+		false,
+		CustomizableUI.AREA_NAVBAR,
+		"bottomright topright",
+		object,
+		true
+	)
+}
+
 window.addEventListener("load", function() {
-	createMenu("page", false, "Control the current page", false, false, CustomizableUI.AREA_NAVBAR, "bottomright topright", menu_page);
-	createMenu("chrome", false, "Customize and control Google Chrome", false, false, CustomizableUI.AREA_NAVBAR, "bottomright topright", menu_chrome);
+	geckiumCreateMenu("page", "Control the current page", menu_page);
+	geckiumCreateMenu("chrome", "Customize and control Google Chrome", menu_chrome);
 })
