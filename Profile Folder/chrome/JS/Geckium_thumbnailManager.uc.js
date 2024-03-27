@@ -13,8 +13,13 @@ to save a thumbnail, so instead, for now, I will force capture thumbnails.
 
 const { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
 
-// Set thumbnail resolution to the same as page resolution.
 function setThumbnailResolution() {
+	/* Set thumbnail resolution to the same as page resolution.
+   
+   	   Australis used to have the thumbnail resolution set to the
+   	   one in newTab.css, but that stylesheet does not exist anymore
+	   and as fallback they also had these prefs that exist til this day. */
+
 	const browserPage = document.querySelector(".browserStack > browser");
 
 	pref("toolkit.pageThumbs.minWidth").set.int(browserPage.clientWidth);
