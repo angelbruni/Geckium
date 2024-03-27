@@ -207,7 +207,7 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 
 const menu_chrome = {
 	properties: {
-		onpopup: "bookmarksBarStatus(); updateZoomLabel();",
+		onpopup: "bookmarksBarStatus();",
 	},
 	1: {
 		id: "newTab",
@@ -261,14 +261,17 @@ const menu_chrome = {
 				1: {
 					id: "larger11",
 					command: "cmd_fullZoomEnlarge",
+					click: "",
 				},
 				2: {
 					id: "normal11",
 					command: "cmd_fullZoomReset",
+					click: "",
 				},
 				3: {
 					id: "smaller11",
 					command: "cmd_fullZoomReduce",
+					click: "",
 				},
 				4: {},
 				5: {
