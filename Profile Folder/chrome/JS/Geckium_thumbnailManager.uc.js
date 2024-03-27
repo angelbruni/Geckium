@@ -73,7 +73,7 @@ function saveCurrentPageThumbnail() {
 					} else {
 						/* If nothing matches at all, do not capture a thumbnail.
 						   we don't want to take screenshots of websites that is not in
-						   the frecency list, it's unnecessary and we don't want to feel
+						   the frecency list, it's unnecessary and we don't want to fill
 						   the user's storage. */
 
 						console.error("websiteURLnoWWW does not match currentURInoWWW:", websiteURLnoWWW);
