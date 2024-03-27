@@ -54,6 +54,8 @@ function updateZoomLabel() {
 
 	document.getElementById("menu_normal11").setAttribute('label', currentZoomLevel);
 }
+window.addEventListener("FullZoomChange", updateZoomLabel);
+window.addEventListener("TabAttrModified", updateZoomLabel);
 
 function bookmarksBarStatus() {
 	const alwaysShowBookmarksBar = document.getElementById('menu_alwaysShowBookmarksBar');
