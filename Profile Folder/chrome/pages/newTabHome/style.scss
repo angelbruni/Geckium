@@ -379,3 +379,49 @@ hbox {
 	position: relative !important;
 	transition: all 200ms;
 }
+
+// Apps
+
+#apps-page {
+	height: 100%;
+	width: 100%;
+
+	.apps-wrapper {
+		max-width: 1000px;
+		flex-grow: 1;
+		margin: auto;
+
+		.apps-grid {
+			display: flex;
+			margin-left: -26px;
+
+			.app-cell {
+				width: 16.66%;
+				padding-inline: 12px;
+				margin-inline: 14px;
+				cursor: pointer;
+
+				&:active {
+					scale: 1.1;
+				}
+
+				.app {
+					display: flex;
+					flex-direction: column;
+					text-decoration: none;
+					text-align: center;
+					pointer-events: none;
+					user-select: none;
+
+					.app-icon {
+						margin-inline: auto;
+					}
+					.app-title {
+						font-size: 10.5pt;
+						color: rgb(0, 0, 0);
+					}
+				}
+			}
+		}
+	}
+}
