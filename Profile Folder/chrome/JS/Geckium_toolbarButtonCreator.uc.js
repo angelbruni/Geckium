@@ -63,6 +63,7 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 		case "menuitem":
 			if (document.getElementById(parentID).tagName == "hbox") {
 				menuItem = document.createXULElement("button");
+				menuItem.classList.add("menuitem-button");
 				menuItem.style.listStyleImage = "none";
 			} else {
 				menuItem = document.createXULElement("menuitem");
@@ -132,6 +133,11 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 		if (acceltext)
 			menuItem.setAttribute("acceltext", acceltext);
 	} 
+
+	if (type == "menuitem") {
+		if (!command && !click)
+			menuItem.disabled = true;
+	}
 
 	const parent = document.getElementById(parentID);
 	
@@ -259,19 +265,17 @@ const menu_chrome = {
 		items: [
 			{
 				1: {
-					id: "larger11",
-					command: "cmd_fullZoomEnlarge",
-					click: "",
+					id: "smaller11",
+					command: "cmd_fullZoomReduce",
+					label: "-",
 				},
 				2: {
 					id: "normal11",
-					command: "cmd_fullZoomReset",
-					click: "",
 				},
 				3: {
-					id: "smaller11",
-					command: "cmd_fullZoomReduce",
-					click: "",
+					id: "larger11",
+					command: "cmd_fullZoomEnlarge",
+					label: "+",
 				},
 				4: {},
 				5: {

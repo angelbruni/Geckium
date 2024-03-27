@@ -13,4 +13,9 @@ menupopup {
 			justify-content: end !important;
 		}
 	}
+
+	> .menuitemitems,
+	> .menuitemitems + menuseparator {
+		display: none !important;
+	}
 }

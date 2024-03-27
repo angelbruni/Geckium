@@ -1,0 +1,66 @@
+menupopup {
+	button {
+		appearance: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		padding-inline: 5px !important;
+		min-height: 22px !important;
+		min-width: 21px !important;
+		background-color: rgb(245,245,245) !important;
+		border-radius: 3px !important;
+		border: 1px solid rgb(205,205,205) !important;
+		color: black !important;
+
+		&:not([disabled]) {
+			&:hover {
+				background-color: rgb(251,251,251) !important;
+				border-color: rgb(171,171,171) !important;
+				color: rgb(6,45,117) !important;
+				z-index: 1 !important;
+			}
+		}
+
+		&#menu_cut11,
+		&#menu_smaller11 {
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+			margin-right: -1px !important;
+		}
+
+		&#menu_copy11,
+		&#menu_normal11 {
+			border-radius: 0 !important;
+		}
+
+		&#menu_paste11,
+		&#menu_larger11 {
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			margin-left: -1px !important;
+		}
+
+		&#menu_fullScreen11 {
+			list-style-image: url(assets/img/chrome-11/menu/fullscreen_menu_button.png) !important;
+		}
+	}
+
+	separator {
+		width: 6px;
+	}
+
+	> menu,
+	> menuitem {
+		&:not([disabled]) {
+			&:not([_moz-menuactive]) {
+				.menu-accel-container {
+					color: rgb(161,161,146) !important;
+				}
+			}
+		}
+	}
+
+	> .menuitemitems,
+	> .menuitemitems + menuseparator {
+		display: flex !important;
+	}
+}
