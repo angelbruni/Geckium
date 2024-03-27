@@ -2,6 +2,13 @@
 // @name        Geckium - Thumbnail Manager
 // @author      AngelBruni
 // @loadorder   3
+// @long-description
+/*
+The purpose of this is to save thumbnails of websites in the internal frecency list.
+
+It was made because I don't understand the requirements that Firefox needs to meet
+to save a thumbnail, so instead, for now, I will force capture thumbnails.
+*/
 // ==/UserScript==
 
 const { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
@@ -15,13 +22,14 @@ function setThumbnailResolution() {
 addEventListener("resize", setThumbnailResolution) 
 
 function captureCurrentPageThumbnail() {
+	/* Add a timeout because sometimes the capture happens while the
+	   page is still loading even though the tab is not busy anymore. */
 	setTimeout(() => {
 		PageThumbs.captureAndStoreIfStale(gBrowser.selectedBrowser);
 	}, 4000);
 }
 
 function saveCurrentPageThumbnail() {
-
 	// If the page is still loading, do not save a thumbnail.
 	if (gBrowser.selectedTab.hasAttribute("busy"))
 		return;
@@ -29,44 +37,45 @@ function saveCurrentPageThumbnail() {
 	const currentURI = gBrowser.selectedBrowser.currentURI.spec;
 
 	NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: 8 }).then(topSites => {
-		// Check if topSites is not empty or undefined
+		// Check if topSites is not empty or undefined.
 		if (topSites && topSites.length > 0) {
-			// Iterate through the top sites
+			// Iterate through the top sites.
 			for (let i = 0; i < topSites.length; i++) {
 				let website = topSites[i];
 
 				const websiteURL = website.url;
 	
-				// Check if website URL matches the current URI
+				/* Check if website URL matches the current URI and capture
+				   a screenshot if so. */
 				if (websiteURL === currentURI) {
-					// Do something if the URLs match
-					console.log("websiteURL matches currentURI:", websiteURL);
-
 					captureCurrentPageThumbnail();
 				} else {
-					console.error("websiteURL does not match currentURI:", websiteURL);
-
+					/* This has some really dumb code because sometimes the 
+					   webpage in frecency is missing the "www" subdomain but 
+					   the actual loaded page has it. */
+					   
 					let websiteURLnoWWW = websiteURL.split("://")[1];
 					const currentURInoWWW = gBrowser.selectedBrowser.currentURI.displayHost.split("www.")[1];
 
-					if (websiteURLnoWWW.includes("www")) {
+					if (websiteURLnoWWW.includes("www"))
 						websiteURLnoWWW = websiteURL.split("://www")[1];
-					} else {
+					else
 						websiteURLnoWWW = websiteURL.split("://")[1];
-					}
 					
 					if (websiteURLnoWWW === currentURInoWWW) {
-						console.log("websiteURLnoWWW matches currentURInoWWW:", websiteURLnoWWW);
 						captureCurrentPageThumbnail();
-						console.log(gBrowser.selectedBrowser.currentURI.spec)
 					} else {
+						/* If nothing matches at all, do not capture a thumbnail.
+						   we don't want to take screenshots of websites that is not in
+						   the frecency list, it's unnecessary and we don't want to feel
+						   the user's storage. */
+
 						console.error("websiteURLnoWWW does not match currentURInoWWW:", websiteURLnoWWW);
 					}
 				}
 			}
 		} else {
 			console.error("Top sites list is empty or undefined.");
-			// Handle this case as needed
 		}
 	}).catch(error => {
 		console.error("Error retrieving top sites:", error);
