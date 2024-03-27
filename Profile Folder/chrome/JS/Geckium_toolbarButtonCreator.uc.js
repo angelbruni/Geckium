@@ -97,6 +97,8 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 			return;
 	}
 
+	const parent = document.getElementById(parentID);
+
 	if (type == "menuitem" || type == "menu" || type == "menuitemitems") {
 		if (checkbox) {
 			menuItem.setAttribute("type", "checkbox");
@@ -119,6 +121,11 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 
 		if (accesskey)
 			menuItem.setAttribute("accesskey", accesskey);
+
+		if (type == "menuitem") {
+			if (!command && !click)
+				menuItem.disabled = true;
+		}
 			
 		if (click)
 			menuItem.setAttribute("onclick", click);
@@ -132,14 +139,7 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 
 		if (acceltext)
 			menuItem.setAttribute("acceltext", acceltext);
-	} 
-
-	if (type == "menuitem") {
-		if (!command && !click)
-			menuItem.disabled = true;
-	}
-
-	const parent = document.getElementById(parentID);
+	} 	
 	
 	if (type == "menuitem" || type == "menu" || type == "menuseparator" || type == "menuitemitems") {
 		if (parent.tagName == "menupopup") {
