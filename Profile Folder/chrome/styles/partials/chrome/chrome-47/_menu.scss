@@ -1,8 +1,52 @@
 menupopup {
+	.menuitem-right-items {
+		margin: 0 !important;
+	}
+
+	button {
+		margin: 0 !important;
+		padding: 0 !important;
+		padding-inline: 15px !important;
+		height: 100% !important;
+		background-color: transparent !important;
+		border-radius: 0 !important;
+		border: 1px solid rgb(205,205,205) !important;
+		color: black !important;
+
+		&:not([disabled]) {
+			&:hover {
+				background-color: rgb(66,129,244) !important;
+				border-color: rgb(171,171,171) !important;
+				color: white !important;
+
+				z-index: 1 !important;
+			}
+		}
+
+		&#menu_cut11,
+		&#menu_smaller11 {
+			margin-right: -1px !important;
+		}
+
+		&#menu_paste11,
+		&#menu_larger11 {
+			margin-left: -1px !important;
+		}
+	}
+
+	separator {
+		display: none !important;
+	}
+
+	> menu,
+	> menuitem,
+	> .menuitemitems {
+		padding-inline-start: 4px !important;
+	}
+
 	> menu,
 	> menuitem {
 		appearance: none !important;
-		padding-inline-start: 4px !important;
 		min-height: 23px !important;
 		z-index: 1;
 	

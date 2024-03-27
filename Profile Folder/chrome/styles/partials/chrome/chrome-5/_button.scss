@@ -5,7 +5,7 @@
 	&[geckium-choice="twentyone"],
 	&[geckium-choice="twentyfive"] {
 		/* .control-button - Picture-in-Picture buttons. */
-		button:not(.control-button) {
+		button:not(.control-button, .menuitem-button) {
 			appearance: button !important;
 
 			/* TODO: Find the correct colour for buttons. */

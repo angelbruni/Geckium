@@ -2140,6 +2140,10 @@ menupopup > menu .menu-accel-container,
 menupopup > menuitem .menu-accel-container {
   justify-content: end !important;
 }
+menupopup > .menuitemitems,
+menupopup > .menuitemitems + menuseparator {
+  display: none !important;
+}
 
 :root[geckium-choice=five] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=six] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=eleven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyone] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyfive] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
   background-color: transparent !important;
@@ -2755,7 +2759,7 @@ toolbarpaletteitem[place=palette] {
 :root[geckium-choice=five], :root[geckium-choice=six], :root[geckium-choice=eleven], :root[geckium-choice=twentyone], :root[geckium-choice=twentyfive] {
   /* .control-button - Picture-in-Picture buttons. */
 }
-:root[geckium-choice=five] button:not(.control-button), :root[geckium-choice=six] button:not(.control-button), :root[geckium-choice=eleven] button:not(.control-button), :root[geckium-choice=twentyone] button:not(.control-button), :root[geckium-choice=twentyfive] button:not(.control-button) {
+:root[geckium-choice=five] button:not(.control-button, .menuitem-button), :root[geckium-choice=six] button:not(.control-button, .menuitem-button), :root[geckium-choice=eleven] button:not(.control-button, .menuitem-button), :root[geckium-choice=twentyone] button:not(.control-button, .menuitem-button), :root[geckium-choice=twentyfive] button:not(.control-button, .menuitem-button) {
   -webkit-appearance: button !important;
      -moz-appearance: button !important;
           appearance: button !important;
@@ -3118,6 +3122,53 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #PlacesToolbarItems {
   padding-block-end: 2px;
 }
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button {
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline: 5px !important;
+  min-height: 22px !important;
+  min-width: 21px !important;
+  background-color: rgb(245, 245, 245) !important;
+  border-radius: 3px !important;
+  border: 1px solid rgb(205, 205, 205) !important;
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button:not([disabled]):hover {
+  background-color: rgb(251, 251, 251) !important;
+  border-color: rgb(171, 171, 171) !important;
+  color: rgb(6, 45, 117) !important;
+  z-index: 1 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_cut11, :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_smaller11 {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  margin-right: -1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_copy11, :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_normal11 {
+  border-radius: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_paste11, :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_larger11 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  margin-left: -1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_fullScreen11 {
+  list-style-image: url(assets/img/chrome-11/menu/fullscreen_menu_button.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup separator {
+  width: 6px;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup > menu:not([disabled]):not([_moz-menuactive]) .menu-accel-container,
+:root[geckium-five][geckium-six][geckium-eleven] menupopup > menuitem:not([disabled]):not([_moz-menuactive]) .menu-accel-container {
+  color: rgb(161, 161, 146) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] menupopup > .menuitemitems,
+:root[geckium-five][geckium-six][geckium-eleven] menupopup > .menuitemitems + menuseparator {
+  display: flex !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven] #nav-bar #identity-box[pageproxystate=valid].notSecure #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
 }
@@ -3362,12 +3413,44 @@ hbox[id=label-box][part=label-box] {
      -moz-appearance: none !important;
           appearance: none !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menuitem-right-items {
+  margin: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline: 15px !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: 1px solid rgb(205, 205, 205) !important;
+  color: black !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button:not([disabled]):hover {
+  background-color: rgb(66, 129, 244) !important;
+  border-color: rgb(171, 171, 171) !important;
+  color: white !important;
+  z-index: 1 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_cut11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_smaller11 {
+  margin-right: -1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_paste11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_larger11 {
+  margin-left: -1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup separator {
+  display: none !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem,
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > .menuitemitems {
+  padding-inline-start: 4px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menu,
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup > menuitem {
   -webkit-appearance: none !important;
      -moz-appearance: none !important;
           appearance: none !important;
-  padding-inline-start: 4px !important;
   min-height: 23px !important;
   z-index: 1;
 }
@@ -3555,7 +3638,7 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] .urlbarView-url {
   color: rgb(11, 128, 96) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button) {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button, .menuitem-button) {
   padding: 0 !important;
   padding-block-end: 3px !important;
   padding-inline: 10px !important;
@@ -3572,10 +3655,10 @@ hbox[id=label-box][part=label-box] {
   margin-inline: 0 !important;
   margin-block-end: 1px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button):not([disabled])[default=true], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button):not([disabled]):focus {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button, .menuitem-button):not([disabled])[default=true], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button, .menuitem-button):not([disabled]):focus {
   border-color: rgb(62, 126, 248) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button):not([disabled]):active {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] button:not(.control-button, .menuitem-button):not([disabled]):active {
   background-color: rgb(230, 230, 230) !important;
   box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.3);
 }
