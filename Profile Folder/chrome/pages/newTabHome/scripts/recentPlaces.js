@@ -84,7 +84,7 @@ function retrieveFrequentSites() {
 			
 			// Calculate the total number of websites to retrieve again, filtering out the ones with no icon or title.
 			const totalTiles = (desiredCols + invalidWebsite) * desiredRows;
-			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles });
+			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 4  });
 		})
 		.then(result => {
 			// Filter out websites with no title, with searchquery or a cdn.
