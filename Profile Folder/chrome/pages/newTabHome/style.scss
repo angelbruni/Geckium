@@ -42,7 +42,7 @@ hbox {
 	flex-direction: column;
 	right: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 2;
 	text-align: right;
 	font-size: 9pt;
 	font-kerning: none;
@@ -242,7 +242,7 @@ hbox {
 	background: linear-gradient(to top, #dfdfdf, #f2f2f2);
 	border-top: 1px solid #d7d7d7;
 
-	> .tabs {
+	> #tabs {
 		display: flex;
 		gap: 10px;
 		flex-grow: 1;
@@ -350,9 +350,15 @@ hbox {
 	transition: all 150ms;
 	width: 90px;
 	height: 100%;
+	z-index: 1;
 
-	&:hover {
-		background: rgb(0, 0, 0, 6%);
+	&[disabled] {
+		display: none;
+	}
+	&:not([disabled]) {
+		&:hover {
+			background: rgb(0, 0, 0, 6%);
+		}
 	}
 
 	&::before {
@@ -374,8 +380,7 @@ hbox {
 	}
 }
 
-#most-visited-page,
-#apps-page {
+#page-list {
 	position: relative !important;
 	transition: all 200ms;
 }
@@ -410,7 +415,6 @@ hbox {
 					flex-direction: column;
 					text-decoration: none;
 					text-align: center;
-					//pointer-events: none;
 					user-select: none;
 
 					.app-icon {

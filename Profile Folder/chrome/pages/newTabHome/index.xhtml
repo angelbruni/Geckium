@@ -25,19 +25,15 @@
 			</div>
 		</button>
 		<hbox id="content">
+			<button
+				id="page-switcher-start"
+				class="page-switcher"
+			></button>
 			<div id="page-list">
-				<div id="most-visited-page" class="page">
+				<div id="most-visited-page" class="page active">
 					<div class="tile-grid" />
-					<button
-						id="page-switcher-end"
-						class="page-switcher"
-					></button>
 				</div>
 				<div id="apps-page" class="page">
-					<button
-						id="page-switcher-start"
-						class="page-switcher"
-					></button>
 					<div class="apps-wrapper">
 						<div class="apps-grid">
 							<div class="app-cell">
@@ -110,6 +106,10 @@
 					</div>
 				</div>
 			</div>
+			<button
+				id="page-switcher-end"
+				class="page-switcher"
+			></button>
 		</hbox>
 		<hbox id="footer">
 			<div id="logo">
@@ -118,12 +118,7 @@
 					alt="Google Chrome Logo"
 				/>
 			</div>
-			<hbox class="tabs">
-				<button class="item active" id="most-visited-tab">
-					Most visited
-				</button>
-				<button class="item" id="apps-tab">Apps</button>
-			</hbox>
+			<hbox id="tabs" />
 			<hbox>
 				<button type="menu" class="item">Recently closed</button>
 				<div class="separator" />
@@ -135,11 +130,12 @@
 				>
 			</hbox>
 		</hbox>
+		<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js"/>
 
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/layout.js" />
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" />
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/pageSwitcher.js" />
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js" />
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/apps.js" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/layout.js" defer="true"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" defer="true"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/pageSwitcher.js" defer="true"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentPlaces.js" defer="true"/>
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/apps.js" defer="true"/>
 	</body>
 </html>
