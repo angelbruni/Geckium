@@ -245,7 +245,6 @@ const menu_chrome = {
 		label: "New window",
 		command: "cmd_newNavigator",
 		acceltext: "Ctrl+N",
-		icon: true,
 	},
 	3: {
 		id: "newIncognitoWindow",

@@ -76,15 +76,15 @@ function saveCurrentPageThumbnail() {
 						   the frecency list, it's unnecessary and we don't want to fill
 						   the user's storage. */
 
-						console.error("websiteURLnoWWW does not match currentURInoWWW:", websiteURLnoWWW);
+						//console.error("websiteURLnoWWW does not match currentURInoWWW:", websiteURLnoWWW);
 					}
 				}
 			}
 		} else {
-			console.error("Top sites list is empty or undefined.");
+			//console.error("Top sites list is empty or undefined.");
 		}
 	}).catch(error => {
-		console.error("Error retrieving top sites:", error);
+		//console.error("Error retrieving top sites:", error);
 	});
 }
 
