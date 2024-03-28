@@ -60,7 +60,8 @@ function switchTab(direction, static, id) {
 	updateIndicators();
 	pref("Geckium.newTabHome.defaultTab").set.int(desiredTab);
 }
-if (defaultTab)
+
+if (defaultTab !== "" || defaultTab !== "undefined")
 	switchTab("", true, defaultTab)
 else
 	switchTab("", true, 1)

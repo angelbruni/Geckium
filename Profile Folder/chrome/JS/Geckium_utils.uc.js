@@ -6,15 +6,15 @@
 // @include     *
 // ==/UserScript==
 
-const prefType = {
+var prefType = {
 	appearance: "Geckium.appearance."
 }
 
-const prefMap = {
+var prefMap = {
 	appearance: prefType.appearance + "choice"
 }
 
-const docElm = document.documentElement;
+var docElm = document.documentElement;
 
 function setAttributes(elm, attrs) {
 	for (var key in attrs) {
