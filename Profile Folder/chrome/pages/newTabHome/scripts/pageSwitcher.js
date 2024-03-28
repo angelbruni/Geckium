@@ -47,7 +47,7 @@ tabItems.forEach((tabItem) => {
 	});
 });
 
-function SwitchTab(id, static = false) {
+function switchTab(id, static = false) {
 	if (id == 1) {
 		mostVisitedPage.style.transform = "translateX(0)";
 		appsPage.style.transform = "translateX(0)";

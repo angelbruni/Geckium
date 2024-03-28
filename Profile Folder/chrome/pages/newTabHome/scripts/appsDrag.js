@@ -1,4 +1,9 @@
 let apps = document.querySelectorAll(".app-cell");
+let allowDragging; // bruni: only allow dragging after it's being dragged for a while.
+const allowDraggingPxOffset = 4;
+
+let initialMouseX;
+let initialMouseY;
 
 apps.forEach((app) => {
 	let isDragging = false;
@@ -6,6 +11,9 @@ apps.forEach((app) => {
 	let offsetY;
 
 	app.addEventListener("mousedown", (event) => {
+		initialMouseX = event.clientX;
+		initialMouseY = event.clientY;
+		
 		isDragging = true;
 		offsetX = event.clientX;
 		offsetY = event.clientY;
@@ -19,11 +27,16 @@ apps.forEach((app) => {
 			let posX = mouseX - offsetX;
 			let posY = mouseY - offsetY;
 
-			app.style.transform = `translate(${posX}px, ${posY}px)`;
+			if (mouseX > initialMouseX + allowDraggingPxOffset || mouseX < initialMouseX - allowDraggingPxOffset || mouseY > initialMouseY + allowDraggingPxOffset || mouseY < initialMouseY - allowDraggingPxOffset)
+				allowDragging = true;
+
+			if (allowDragging)
+				app.style.transform = `translate(${posX}px, ${posY}px)`;
 		}
 	});
 
 	window.addEventListener("mouseup", () => {
+		allowDragging = false;
 		isDragging = false;
 		app.style.transform = "";
 	});
