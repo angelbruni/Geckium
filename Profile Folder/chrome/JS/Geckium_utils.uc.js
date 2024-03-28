@@ -3,7 +3,7 @@
 // @description Utilities for making coding easier. Taken from BeautyFox.
 // @author      AngelBruni
 // @loadorder   1
-// @include           *
+// @include     *
 // ==/UserScript==
 
 const prefType = {

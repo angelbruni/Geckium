@@ -40,7 +40,7 @@ hbox {
 	
 	right: 0;
 	top: 0;
-	
+	z-index: 2;
 	text-align: right;
 
 
@@ -244,7 +244,7 @@ hbox {
 	
 	
 
-	> .tabs {
+	> #tabs {
 		
 		
 		flex-grow: 1;
@@ -353,9 +353,15 @@ hbox {
 	
 	width: 150px;
 	height: 100%;
+	z-index: 1;
 
-	&:hover {
-		
+	&[disabled] {
+		display: none;
+	}
+	&:not([disabled]) {
+		&:hover {
+			background: rgb(0, 0, 0, 6%);
+		}
 	}
 
 	&::before {
@@ -375,6 +381,11 @@ hbox {
 			
 		}
 	}
+}
+
+#page-list {
+	
+	
 }
 
 // Apps
@@ -407,7 +418,6 @@ hbox {
 					
 					
 					
-					//pointer-events: none;
 					
 
 					.app-icon {
