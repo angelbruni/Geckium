@@ -4,12 +4,12 @@
 // @loadorder   3
 // ==/UserScript==
 
-function createToolbarbutton(id, delegatesanchor, label, removable, overflows, area) {
+function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area) {
 	CustomizableUI.createWidget({
 		id: id + "-button",
 		removable: removable,
 		label: label,
-		tooltiptext: label,
+		tooltiptext: tooltip,
 		overflows: overflows,
 		defaultArea: area,
 
@@ -20,7 +20,7 @@ function createToolbarbutton(id, delegatesanchor, label, removable, overflows, a
 	});
 }
 
-function createMenu(id, delegatesanchor, label, removable, overflows, area, position, object, adjustAccelTextWidth) {
+function createMenu(id, delegatesanchor, label, tooltip, removable, overflows, area, position, object, adjustAccelTextWidth) {
 	const parentID = "menu_" + id + "Popup";
 
 	const alreadyExists = document.getElementById(id + "-button");
@@ -34,7 +34,7 @@ function createMenu(id, delegatesanchor, label, removable, overflows, area, posi
 	} else {
 		console.warn("toolbarbutton does not exist.")
 
-		createToolbarbutton(id, delegatesanchor, label, removable, overflows, area);
+		createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area);
 
 		toolbarButton = document.getElementById(id + "-button")
 	}
@@ -171,6 +171,7 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 					const width = container.clientWidth;
 					maxWidth = Math.max(maxWidth, width);
 					container.style.minWidth = `${maxWidth}px`;
+					container.style.justifyContent = "end";
 				});
 			}
 		}
@@ -209,6 +210,24 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 			}
 		}
     }
+}
+
+function geckiumCreateMenu(id, label, tooltip, object) {
+	/* Does the same as createMenu() but sets predefined arguments
+	   that will be used for every menu in Geckium. */
+
+	createMenu(
+		id,
+		false,
+		label,
+		tooltip,
+		false,
+		false,
+		CustomizableUI.AREA_NAVBAR,
+		"bottomright topright",
+		object,
+		true
+	)
 }
 
 const menu_chrome = {
@@ -476,24 +495,7 @@ const menu_page = {
 	},
 }
 
-function geckiumCreateMenu(id, label, object) {
-	/* Does the same as createMenu() but sets predefined arguments
-	   that will be used for every menu in Geckium. */
-
-	createMenu(
-		id,
-		false,
-		label,
-		false,
-		false,
-		CustomizableUI.AREA_NAVBAR,
-		"bottomright topright",
-		object,
-		true
-	)
-}
-
 window.addEventListener("load", function() {
-	geckiumCreateMenu("page", "Control the current page", menu_page);
-	geckiumCreateMenu("chrome", "Customize and control Google Chrome", menu_chrome);
+	geckiumCreateMenu("page", "Page Menu", "Control the current page", menu_page);
+	geckiumCreateMenu("chrome", "Chrome Menu", "Customize and control Google Chrome", menu_chrome);
 })
