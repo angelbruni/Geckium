@@ -6,16 +6,16 @@ menupopup {
 		padding-inline: 5px !important;
 		min-height: 22px !important;
 		min-width: 21px !important;
-		background-color: rgb(245,245,245) !important;
+		background-color: rgb(245, 245, 245) !important;
 		border-radius: 3px !important;
-		border: 1px solid rgb(205,205,205) !important;
+		border: 1px solid rgb(205, 205, 205) !important;
 		color: black !important;
 
 		&:not([disabled]) {
 			&:hover {
-				background-color: rgb(251,251,251) !important;
-				border-color: rgb(171,171,171) !important;
-				color: rgb(6,45,117) !important;
+				background-color: rgb(251, 251, 251) !important;
+				border-color: rgb(171, 171, 171) !important;
+				color: rgb(6, 45, 117) !important;
 				z-index: 1 !important;
 			}
 		}
@@ -57,7 +57,7 @@ menupopup {
 		&:not([disabled]) {
 			&:not([_moz-menuactive]) {
 				.menu-accel-container {
-					color: rgb(161,161,146) !important;
+					color: rgb(161, 161, 146) !important;
 				}
 			}
 		}
@@ -67,4 +67,21 @@ menupopup {
 	> .menuitemitems + menuseparator {
 		display: flex !important;
 	}
+}
+
+#menu_extensions5,
+#menu_bookmarkManager5,
+#menu_fullScreen5,
+#menu_alwaysShowBookmarksBar5,
+#menu_options5 {
+	display: none;
+}
+
+#menu_find11,
+#menu_savePage11,
+#menu_print11,
+#tools11-menu,
+#menu_settings11,
+#bookmarks-menu {
+	display: flex !important;
 }

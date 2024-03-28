@@ -2141,6 +2141,15 @@ menupopup > .menuitemitems + menuseparator {
   display: none !important;
 }
 
+#menu_find11,
+#menu_savePage11,
+#menu_print11,
+#tools11-menu,
+#menu_settings11,
+#bookmarks-menu {
+  display: none;
+}
+
 :root[geckium-choice=five] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=six] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=eleven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyone] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyfive] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
   background-color: transparent !important;
   padding-block: 0 !important;
@@ -3146,6 +3155,9 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_copy11, :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_normal11 {
   border-radius: 0 !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_normal11 {
+  width: 40px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_paste11, :root[geckium-five][geckium-six][geckium-eleven] menupopup button#menu_larger11 {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
@@ -3163,6 +3175,21 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven] menupopup > .menuitemitems,
 :root[geckium-five][geckium-six][geckium-eleven] menupopup > .menuitemitems + menuseparator {
+  display: flex !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] #menu_extensions5,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_bookmarkManager5,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_fullScreen5,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_alwaysShowBookmarksBar5,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_options5 {
+  display: none;
+}
+:root[geckium-five][geckium-six][geckium-eleven] #menu_find11,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_savePage11,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_print11,
+:root[geckium-five][geckium-six][geckium-eleven] #tools11-menu,
+:root[geckium-five][geckium-six][geckium-eleven] #menu_settings11,
+:root[geckium-five][geckium-six][geckium-eleven] #bookmarks-menu {
   display: flex !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] #nav-bar #identity-box[pageproxystate=valid].notSecure #identity-icon {
