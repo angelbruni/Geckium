@@ -5,10 +5,14 @@ const allowDraggingPxOffset = 4;
 let initialMouseX;
 let initialMouseY;
 
-apps.forEach((app) => {
+apps.forEach(app => {
 	let isDragging = false;
 	let offsetX;
 	let offsetY;
+
+	const appLink = app.querySelector("a");
+
+	appLink.setAttribute("draggable", false);
 
 	app.addEventListener("mousedown", (event) => {
 		initialMouseX = event.clientX;
@@ -30,14 +34,17 @@ apps.forEach((app) => {
 			if (mouseX > initialMouseX + allowDraggingPxOffset || mouseX < initialMouseX - allowDraggingPxOffset || mouseY > initialMouseY + allowDraggingPxOffset || mouseY < initialMouseY - allowDraggingPxOffset)
 				allowDragging = true;
 
-			if (allowDragging)
+			if (allowDragging) {
 				app.style.transform = `translate(${posX}px, ${posY}px)`;
+				appLink.style.pointerEvents = "none";
+			}
 		}
 	});
 
 	window.addEventListener("mouseup", () => {
 		allowDragging = false;
 		isDragging = false;
-		app.style.transform = "";
+		app.style.transform = null;
+		appLink.style.pointerEvents = null;
 	});
 });
