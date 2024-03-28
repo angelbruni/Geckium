@@ -84,7 +84,7 @@ function retrieveFrequentSites() {
 			
 			// Calculate the total number of websites to retrieve again, filtering out the ones with no icon or title.
 			const totalTiles = (desiredCols + invalidWebsite) * desiredRows;
-			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 4  });
+			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 4 });
 		})
 		.then(result => {
 			// Filter out websites with no title, with searchquery or a cdn.
@@ -130,7 +130,7 @@ function createTile(website) {
 				e.preventDefault();
 			})
             setAttributes(closeBtn, {
-                "onclick": "NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url + "'); setTimeout(() => { retrieveFrequentSites(); }, 20);",
+                "onclick": "NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url + "'); NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "'); setTimeout(() => { retrieveFrequentSites(); }, 20);",
                 "title": "Don't show on this page"
             })
             thumbnailWrapper.appendChild(closeBtn);
