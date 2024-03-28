@@ -63,7 +63,7 @@ function switchTab(direction, static, id) {
 if (defaultTab)
 	switchTab("", true, defaultTab)
 else
-	switchTab("", true, 0)
+	switchTab("", true, 1)
 
 function updateNavButtons() {
     const currentTabIndex = parseInt(pageContainer.querySelector(".page.active").getAttribute("data-page"));
