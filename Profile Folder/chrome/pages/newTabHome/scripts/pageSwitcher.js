@@ -53,7 +53,7 @@ function switchTab(direction, static, id) {
 			indicators.forEach((indicator) => {
 				indicator.transition = null;
 			});
-		}, 1);
+		}, 500);
 	}
 
 	updateNavButtons();

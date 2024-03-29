@@ -190,7 +190,7 @@ hbox {
 
 					&:hover,
 					&:active,
-					&:focus {
+					&[open] {
 						background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=");
 					}
 				}
@@ -235,6 +235,70 @@ hbox {
 	padding-right: 66px;
 }
 
+#footer-menu-container {
+	position: relative !important;
+
+	&:not([open]) {
+		> .footer-menu {
+			display: none !important;
+		}
+	}
+	&[open] {
+		color: #666 !important;
+	}
+}
+
+.footer-menu {
+	position: absolute;
+	bottom: calc(100% + 9px);
+	min-width: 150px;
+	right: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .50);
+	background: white;
+	color: black;
+	cursor: default;
+	margin: 0;
+	outline: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 6px 8px;
+	white-space: nowrap;
+	z-index: 10;
+}
+
+.footer-menu-item {
+	align-items: center;
+	display: flex;
+
+	margin-inline-end: 8px;
+	margin-inline-start: 0;
+	padding-inline-end: 0;
+	line-height: 1.5em;
+	margin-bottom: 0.25em;
+	margin-top: 0.25em;
+	max-width: 450px;
+	outline: none;
+	overflow: hidden;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 9pt;
+	color: hsl(213, 90%, 24%);
+
+	image {
+		height: 16px;
+		width: 16px;
+		margin-inline-end: 6px;
+	}
+
+	label {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 #footer {
 	padding-block: 9px;
 	padding-left: 10px;
@@ -247,56 +311,49 @@ hbox {
 		gap: 10px;
 		flex-grow: 1;
 		justify-content: center;
-
-		.item {
-			display: flex;
-			appearance: none;
-			border: 0;
-			padding: 0;
-			width: 80px;
-			background: transparent;
-			cursor: pointer;
-			border-top: 5px solid rgb(0, 0, 0, 10%);
-			color: rgb(153, 153, 153);
-			font-weight: 700;
-			font-size: 8pt;
-			padding-top: 5px;
-			padding-left: 3px;
-			transition: all 150ms linear;
-
-			&:hover {
-				border-color: rgb(178, 178, 178);
-				color: rgb(127, 127, 127);
-			}
-
-			&.active {
-				border-color: rgb(127, 127, 127);
-				color: rgb(127, 127, 127);
-			}
-		}
 	}
 
-	> hbox:last-of-type {
-		.item {
-			text-decoration: none !important;
-			appearance: none;
-			border: 0;
-			background: transparent;
-			cursor: pointer;
-			display: flex;
-			align-items: center;
-			padding-inline: 9px;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-			gap: 6px;
-			font-size: 8pt;
-			font-weight: 700;
-			height: 100%;
-			color: rgb(127, 127, 127);
+	.item {
+		display: flex;
+		appearance: none;
+		border: 0;
+		padding: 0;
+		align-items: center;
+		background: transparent;
+		cursor: pointer;
+		color: rgb(153, 153, 153);
+		font-weight: 700;
+		font-size: 8pt;
+		text-decoration: none;
 
-			&:hover {
-				color: rgb(102, 102, 102);
+		&[data-page] {
+			padding-top: 5px;
+			padding-left: 3px;
+			width: 80px;
+			border-top: 5px solid rgb(0, 0, 0, 10%);
+			transition: all 150ms linear;
+
+			&:not([disabled]) {
+				&:hover {
+					border-color: rgb(178, 178, 178);
+					color: rgb(127, 127, 127);
+				}
+		
+				&.active {
+					border-color: rgb(127, 127, 127) !important;
+					color: rgb(127, 127, 127);
+				}
+			}
+		}
+		&:not([data-page]) {
+			color: #7F7F7F;
+			padding-inline-end: 15px;
+			padding-inline-start: 9px;
+			
+			&:not([disabled]) {
+				&:hover {
+					color: #666;
+				}
 			}
 
 			&[type="menu"] {
@@ -306,39 +363,41 @@ hbox {
 					opacity: 0.5;
 					height: 9px;
 					width: 9px;
+					margin-inline-start: 5px;
 				}
 
 				&:not([disbled]) {
-					&:hover,
-					&[open] {
+					&:hover {
 						&::after {
 							opacity: 0.6;
 						}
 					}
 				}
 			}
+		}
 
-			&#webstore-link {
-				gap: 10px;
+		&#webstore-link {
+			padding-inline-end: 12px;
+			padding-inline-start: 15px;
+			gap: 10px;
 
-				&::after {
-					content: "";
-					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
-					height: 24px;
-					width: 24px;
-				}
+			&::after {
+				content: "";
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/img/webstore.png");
+				height: 24px;
+				width: 24px;
 			}
 		}
+	}
 
-		.separator {
-			display: block;
-			align-self: center;
-			content: "";
-			height: calc(100% - 8px);
-			margin-inline: 6px;
-			width: 1px;
-			background: rgb(178, 178, 178);
-		}
+	.separator {
+		display: block;
+		align-self: center;
+		content: "";
+		height: calc(100% - 8px);
+		//margin-inline: 6px;
+		width: 1px;
+		background: rgb(178, 178, 178);
 	}
 }
 
