@@ -1,0 +1,87 @@
+#google-search,
+#mv-tiles {
+	margin-inline: auto;
+	width: 664px;
+}
+
+#google-bar {
+	gap: 15px;
+	margin-block-start: 15px;
+	margin-inline-end: 15px;
+	align-items: center;
+	justify-content: end;
+
+	a {
+		color: rgba(0,0,0,.87);
+		text-decoration: none;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	#google-apps-link {
+		width: 30px;
+		height: 30px;
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/v1_ff29c1d8.png");
+		background-size: 92px 3767px;
+		background-position: -35px -3668px;
+		opacity: .55;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				opacity: .85;
+			}
+		}
+	}
+}
+
+#google-search {
+	align-items: center;
+	margin-block-start: 115px;
+
+	#hplogo {
+		margin-block-end: 24px;
+	}
+
+	form {
+		width: 100%;
+	}
+
+	#google-input {
+		all: unset;
+
+		width: 100%;
+		background-color: #fff;
+		border: 1px solid #d2d2d2;
+		border-radius: 1px;
+		border-top-color: #70757a;
+		padding-inline: 9px;
+		margin-block-end: 64px;
+		cursor: text;
+		display: inline-block;
+		font-family: arial, sans-serif;
+		height: 36px;
+		line-height: 36px;
+		max-width: 672px;
+		font-size: 12pt;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		box-sizing: border-box;
+
+		&:not([disabled]) {
+			&:focus {
+				border-color: rgb(66,133,244);
+			}
+		}
+
+		&::placeholder {
+			opacity: 1;
+			color: #dadce0;
+		}
+	}
+}

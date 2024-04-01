@@ -1,34 +1,90 @@
-let pageSwitchers = document.querySelectorAll(".page-switcher");
-const pageSwitcherStart = document.getElementById("page-switcher-start");
-const pageSwitcherEnd = document.getElementById("page-switcher-end");
+function setUpPages() {
+	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
 
-let pageContainer = document.getElementById("page-list");
-const pages = document.querySelectorAll("#page-list > .page");
-const totalPages = pages.length - 1; // - 1 to start from 0.
+	if (appearanceChoice == 3 || appearanceChoice == 4) {
+		const pageSwitcherStart = document.getElementById("page-switcher-start");
+		const pageSwitcherEnd = document.getElementById("page-switcher-end");
 
-let tabItems = document.querySelectorAll(".tabs .item");
-let currentTabIndex;
-let desiredTab;
+		let pageContainer = document.getElementById("page-list");
+		const pages = pageContainer.querySelectorAll(".tile-page");
 
-const defaultTab = pref("Geckium.newTabHome.defaultTab").tryGet.int();
+		console.log(pages)
 
-pages.forEach((page, index) => {
-	page.setAttribute("data-page", index);
-	createIndicator(index);
-});
+		let tabItems = document.querySelectorAll("#dot-list > .dot");
+
+		const defaultTab = pref("Geckium.newTabHome.defaultTab").tryGet.int();
+
+		/*pages.forEach((page, index) => {
+			page.setAttribute("data-page", index);
+			createDots(index);
+		});*/
+
+		if (defaultTab !== "" || defaultTab !== "undefined")
+			switchTab("", true, defaultTab)
+		else
+			switchTab("", true, 1)
+
+		/*function createDots(index) {
+			const dotList = document.getElementById("dot-list");
+			const dot = document.createElement("button");
+
+			dot.classList.add("item");
+			dot.setAttribute("data-page", index)
+			
+			if (index == 0)
+				dot.innerText = "Most visited";
+			else
+				dot.innerText = "Apps";
+
+			dotList.appendChild(dot);
+
+			dot.setAttribute("onclick", "switchTab('', false, "+ index +")")
+		}*/
+
+		pageSwitcherStart.addEventListener("click", () => {
+			switchTab("back")
+		})
+		pageSwitcherEnd.addEventListener("click", () => {
+			switchTab()
+		})
+	}
+}
+
+function updateNavButtons() {
+	const currentTabIndex = parseInt(document.querySelector("#page-list > .selected").getAttribute("data-page"));
+	const nextPageExists = !!document.querySelector("#page-list > [data-page='" + (currentTabIndex + 1) + "']");
+
+	const pageSwitcherStart = document.getElementById("page-switcher-start");
+	const pageSwitcherEnd = document.getElementById("page-switcher-end");
+	
+	pageSwitcherStart.disabled = currentTabIndex === 0;
+	pageSwitcherEnd.disabled = !nextPageExists;
+
+	console.log(currentTabIndex, !nextPageExists)
+}
 
 function switchTab(direction, static, id) {
-	const indicators = document.querySelectorAll("#tabs > .item");
+	const pages = document.querySelectorAll("#page-list > .tile-page");
+	const totalPages = pages.length - 1; // - 1 to start from 0.
 
-    currentTabIndex = parseInt(pageContainer.querySelector(".page.active").getAttribute("data-page"));
+	const dots = document.querySelectorAll("#dot-list > .dot");
 
-    if (id !== undefined && (id === 0 || (id > 0 && id <= totalPages)))
-        desiredTab = id;
-    else if (!id)
-        desiredTab = direction === "back" ? currentTabIndex - 1 : currentTabIndex + 1;
+	let desiredTab;
+	let currentTabIndex;
+	let pageContainer = document.getElementById("page-list");
+	currentTabIndex = parseInt(pageContainer.querySelector("#page-list > .selected").getAttribute("data-page"));
 
-    if (desiredTab < 0 || desiredTab > totalPages)
-        return; // Exit the function if the desired tab index is out of bounds.
+	if (id)
+		desiredTab = id;
+	else if (!id)
+		desiredTab = direction === "back" ? currentTabIndex - 1 : currentTabIndex + 1;
+
+	//if (desiredTab < 0 || desiredTab > totalPages)
+		//return; // Exit the function if the desired tab index is out of bounds.*/
+
+		//desiredTab = id;
+
+	console.log(currentTabIndex, id)
 
 	if (id !== 0)
 		pageContainer.style.transform = "translateX(calc(var(--page-width) * -1 * " + desiredTab + "))";
@@ -36,75 +92,47 @@ function switchTab(direction, static, id) {
 		pageContainer.style.transform = null;
 
 	pages.forEach((page) => {
-		page.classList.remove("active");
+		page.classList.remove("selected");
 	});
-	pageContainer.querySelector(".page[data-page='" + desiredTab + "']").classList.add("active");
+
+	console.log(pageContainer.querySelector("[data-page='" + desiredTab + "']"));
+
+	if (id !== 0)
+		pageContainer.querySelector("[data-page='" + desiredTab + "']").classList.add("selected");
+	else
+		pageContainer.querySelector("[data-page='" + 0 + "']").classList.add("selected");
 
 	if (static) {
 		pageContainer.style.transition = "none";
 
-		indicators.forEach((indicator) => {
+		dots.forEach((indicator) => {
 			indicator.transition = "none";
 		});
 
 		setTimeout(() => {
 			pageContainer.style.transition = null;
 
-			indicators.forEach((indicator) => {
+			dots.forEach((indicator) => {
 				indicator.transition = null;
 			});
 		}, 500);
 	}
 
 	updateNavButtons();
-	updateIndicators();
-	pref("Geckium.newTabHome.defaultTab").set.int(desiredTab);
-}
-
-if (defaultTab !== "" || defaultTab !== "undefined")
-	switchTab("", true, defaultTab)
-else
-	switchTab("", true, 1)
-
-function updateNavButtons() {
-    const currentTabIndex = parseInt(pageContainer.querySelector(".page.active").getAttribute("data-page"));
-    const nextPageExists = !!pageContainer.querySelector(".page[data-page='" + (currentTabIndex + 1) + "']");
-    
-    pageSwitcherStart.disabled = currentTabIndex === 0;
-    pageSwitcherEnd.disabled = !nextPageExists;
-}
-updateNavButtons()
-
-function createIndicator(index) {
-	const indicatorsContainer = document.getElementById("tabs");
-	const indicator = document.createElement("button");
-
-	indicator.classList.add("item");
-	indicator.setAttribute("data-page", index)
+	updateDots();
 	
-	if (index == 0)
-		indicator.innerText = "Most visited";
+	if (id !== 0)
+		pref("Geckium.newTabHome.defaultTab").set.int(desiredTab);
 	else
-		indicator.innerText = "Apps";
-
-	indicatorsContainer.appendChild(indicator);
-
-	indicator.setAttribute("onclick", "switchTab('', false, "+ index +")")
+		pref("Geckium.newTabHome.defaultTab").set.int(0);
 }
 
-function updateIndicators() {
-	const indicators = document.querySelectorAll("#tabs > .item");
-	indicators.forEach((indicator) => {
-		indicator.classList.remove("active");
-
-		document.querySelector(".item[data-page='"+ desiredTab +"']").classList.add("active");
+function updateDots() {
+	const dots = document.querySelectorAll("#dot-list > .dot");
+	
+	dots.forEach((dot) => {
+		dot.classList.remove("selected");
 	});
-}
-updateIndicators();
 
-pageSwitcherStart.addEventListener("click", () => {
-	switchTab("back")
-})
-pageSwitcherEnd.addEventListener("click", () => {
-	switchTab()
-})
+	document.querySelector(".dot[data-page='"+ parseInt(document.querySelector("#page-list > .selected").getAttribute("data-page")) +"']").classList.add("selected");
+}

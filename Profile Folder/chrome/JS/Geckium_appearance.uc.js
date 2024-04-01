@@ -17,30 +17,42 @@ const appearanceMap = {
 	6: "fifty",
 };
 
+let previousChoice;
+
 function applyApperance(choice) {
+	const prefChoice = pref(prefMap.appearance).tryGet.int();
+
+	if (prefChoice == previousChoice) {
+		console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
+		return;
+	} else {
+		console.log("Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+	}
+
 	// bruni: We get the first and last available keys so
 	//		  we don't hardcode the values in the code.
 	const mapKeys = Object.keys(appearanceMap).map(Number);
 	const firstKey = Math.min(...mapKeys);
 	const lastKey = Math.max(...mapKeys);
 
-	const prefChoice = pref(prefMap.appearance).tryGet.int();
-
 	// bruni: Let's remove all appearance attributes first.
 	const pastAttrs = docElm.getAttributeNames();
 	pastAttrs.forEach((attr) => {
-		if (attr.startsWith("geckium-")) docElm.removeAttribute(attr);
+		if (attr.startsWith("geckium-"))
+			docElm.removeAttribute(attr);
 	});
 
 	// bruni: Let's apply the correct appearance attributes.
-	if (typeof choice == "undefined") {
+	
+	if (typeof choice === "number") {
 		if (prefChoice > lastKey) {
 			choice = lastKey;
 		} else if (prefChoice < firstKey || prefChoice == null) {
 			choice = firstKey;
-		} else {
-			choice = pref(prefMap.appearance).tryGet.int();
 		}
+		console.log(choice)
+	} else {
+		choice = prefChoice;
 	}
 
 	for (let i = 0; i <= choice; i++) {
@@ -54,8 +66,12 @@ function applyApperance(choice) {
 	//		  user choice so we can make unique styles for it.
 	docElm.setAttribute("geckium-choice", appearanceMap[choice]);
 
-	dispatchEvent(appearanceChanged);
+	previousChoice = prefChoice;
+	
+	if (window.location.href == "chrome://browser/content/browser.xhtml")
+		dispatchEvent(appearanceChanged);	
 }
+
 window.addEventListener("load", applyApperance);
 
 // FIXME: Find the correct event instead of using a timeout initially.
@@ -112,7 +128,9 @@ function setThemeAttr() {
 
 const themeObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") setThemeAttr();
+		if (topic == "nsPref:changed") {
+			setThemeAttr();
+		}
 	},
 };
 window.addEventListener("load", setThemeAttr);
@@ -120,7 +138,9 @@ Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false);
 
 const customThemeModeObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") setThemeAttr();
+		if (topic == "nsPref:changed") {
+			setThemeAttr();
+		}
 	},
 };
 window.addEventListener("load", setThemeAttr);

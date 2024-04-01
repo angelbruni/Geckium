@@ -1,0 +1,34 @@
+& {
+	font-family: 'Segoe UI', Tahoma, sans-serif
+}
+
+#other-sessions-menu-button {
+	display: none !important;
+}
+
+.tile-grid {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	gap: 32px;
+}
+
+.tile-container {
+	all: unset;
+	font-size: 10.5pt;
+	width: 160px;
+	height: 147px;
+
+	&:not([disabled]) {
+		cursor: pointer;
+	}
+
+	hbox {
+		flex-direction: column;
+	}
+}
+
+@import "login";
+@import "card-slider-frame";
+@import "most-visited";
+@import "footer";

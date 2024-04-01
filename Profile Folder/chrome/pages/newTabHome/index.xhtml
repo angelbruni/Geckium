@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 
-<?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/style.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/eras.css" type="text/css"?>
 
 <html
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns="http://www.w3.org/1999/xhtml"
+	preload="true"
 >
 	<head>
 		<meta charset="UTF-8" />
@@ -12,128 +13,15 @@
 		<title>New Tab</title>
 	</head>
 	<body>
-		<button id="login-container" class="custom-appearance">
-			<div
-				id="login-status-header-container"
-				class="login-status-row"
-				style="background-image: none"
-			>
-				<div id="login-status-header">Not signed in to Chrome</div>
-			</div>
-			<div id="login-status-sub-header">
-				(You're missing out—<a href="#" class="link-span">sign in</a>)
-			</div>
-		</button>
-		<hbox id="content">
-			<button
-				id="page-switcher-start"
-				class="page-switcher"
-			></button>
-			<div id="page-list">
-				<div id="most-visited-page" class="page active">
-					<div class="tile-grid" />
-				</div>
-				<div id="apps-page" class="page">
-					<div class="apps-wrapper">
-						<div class="apps-grid">
-							<div class="app-cell">
-								<a href="https://chrome.google.com/webstore" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/extensions.png"
-										alt="Chrome Web Store"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">Chrome Web Store</div>
-								</a>
-							</div>
-							<div class="app-cell">
-								<a href="https://docs.google.com/" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/docs.png"
-										alt="Google Docs"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">Docs</div>
-								</a>
-							</div>
-							<div class="app-cell">
-								<a href="https://drive.google.com/" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/drive.png"
-										alt="Google Drive"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">Google Drive</div>
-								</a>
-							</div>
-							<div class="app-cell">
-								<a href="https://www.google.com/" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/google.png"
-										alt="Google Search"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">Google Search</div>
-								</a>
-							</div>
-							<div class="app-cell">
-								<a href="https://www.youtube.com/" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/youtube.png"
-										alt="YouTube"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">YouTube</div>
-								</a>
-							</div>
-							<div class="app-cell">
-								<a href="https://mail.google.com/" class="app">
-									<img
-										src="chrome://userchrome/content/pages/newTabHome/assets/img/gmail.png"
-										alt="Gmail"
-										class="app-icon"
-										width="128px"
-									/>
-									<div class="app-title">Gmail</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<button
-				id="page-switcher-end"
-				class="page-switcher"
-			></button>
-		</hbox>
-		<hbox id="footer">
-			<div id="logo">
-				<img
-					src="chrome://userchrome/content/pages/newTabHome/assets/img/logo.png"
-					alt="Google Chrome Logo"
-				/>
-			</div>
-			<hbox id="tabs" />
-			<div class="separator" />
-			<a
-				id="webstore-link"
-				class="item"
-				href="https://chromewebstore.google.com/"
-				>Web Store</a
-			>
-		</hbox>
-		<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js"/>
+		<vbox id="main-container"></vbox>
 
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/layout.js" defer="true"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/bookmarksBar.js" defer="true"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/pageSwitcher.js" defer="true"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/mostVisited.js" defer="true"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/apps.js" defer="true"/>
-		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentlyClosed.js" defer="true"/>
+		<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" />
+
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/mainLayout.js" defer="true" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/mostVisited.js" defer="true" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/pageSwitcher.js" defer="true" />
+		<script src="chrome://userchrome/content/pages/newTabHome/scripts/recentlyClosed.js" defer="true" />
+
+		<script src="chrome://userchrome/content/pages/scripts/appearance.js" defer="true" />
 	</body>
 </html>

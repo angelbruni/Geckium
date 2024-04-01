@@ -1,0 +1,55 @@
+:root {
+	&,
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		height: 100vh;
+		display: flex;
+	}
+
+	vbox,
+	hbox {
+		display: flex;
+	}
+
+	vbox {
+		flex-direction: column;
+	}
+
+	hbox {
+		flex-direction: row;
+	}
+
+	spacer {
+		flex: 1;
+	}
+
+	#main-container {
+		flex: 1;
+	}
+
+	.favicon,
+	.mv-favicon {
+		width: 16px;
+		height: 16px;
+	}
+
+	&[geckium-five] {
+		@import "partials/chrome-5/final";
+	}
+
+	&[geckium-five][geckium-six][geckium-eleven] {
+		@import "partials/chrome-11/final";
+	}
+
+	&[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+		@import "partials/chrome-21/final";
+	}
+
+	&[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+		@import "partials/chrome-47/final";
+	}
+}

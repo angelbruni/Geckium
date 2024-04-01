@@ -1,0 +1,20 @@
+& {
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+#main {
+	margin-inline: auto;
+	width: 920px;
+}
+
+&[geckium-choice="five"],
+&[geckium-choice="six"] {
+	#main {
+		background: url(assets/chrome-5/product_logo.png) no-repeat 0px 8px;
+	}
+}
+
+@import "most-visited";
+@import "recently-closed";
+@import "footer";

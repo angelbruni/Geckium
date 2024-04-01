@@ -1,0 +1,21 @@
+#login-container {
+	all: unset;
+
+	color: inherit;
+	cursor: pointer;
+	position: fixed;
+	right: 13px;
+	top: 5px;
+	z-index: 1;
+
+	.login-status-row,
+	#login-status-sub-header {
+		display: flex;
+		justify-content: end;
+	}
+}
+
+.link-span {
+	color: rgba(102,102,102,1);
+	text-decoration: underline;
+}

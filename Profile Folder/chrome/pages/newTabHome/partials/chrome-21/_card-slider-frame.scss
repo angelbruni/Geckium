@@ -1,0 +1,72 @@
+#card-slider-frame {
+	overflow: hidden;
+	position: relative;
+	flex: 1;
+}
+
+#page-list {
+	//overflow: hidden;
+	max-width: var(--page-width);
+
+	transition: transform 200ms ease-in-out;
+}
+
+#most-visited-page {
+	//display: none;
+}
+
+.page-switcher {
+	all: unset;
+	
+	display: flex;
+	position: absolute;
+	min-width: 90px;
+	max-width: 150px;
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	color: rgba(0,0,0, 0.5);
+	z-index: 1;
+	
+	transition: width 150ms, background-color 150ms;
+	
+	&:not([disabled]) {
+		&:hover,
+		&:focus {
+			background-color: rgba(0,0,0, 0.06);
+		}
+	}
+
+	&[disabled] {
+		display: none;
+	}
+
+	&[id*="start"] {
+		left: 0;
+		height: 100%;
+	}
+
+	&[id*="end"] {
+		right: 0;
+		height: 100%;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				background: linear-gradient(
+					to bottom,
+					rgba(0,0,0, 0) 0,
+					rgba(0,0,0, .01) 60px,
+					rgba(0,0,0, .06) 183px
+				);
+			}
+		}
+	}
+}
+
+.tile-page {
+	min-width: var(--page-width);
+
+	.tile-page-content {
+		margin: auto;
+	}
+}

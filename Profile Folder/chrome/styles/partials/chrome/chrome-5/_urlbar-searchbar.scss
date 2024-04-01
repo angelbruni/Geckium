@@ -16,7 +16,7 @@
 	}
 
 	--urlbarView: rgb(255, 255, 255, 94%);
-
+	
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
 		-moz-menuhover 20%,
@@ -32,6 +32,12 @@
 	&:not([uidensity="compact"]) {
 		.urlbarView-row:not([type="tip"], [type="dynamic"]) {
 			min-height: 0 !important;
+		}
+	}
+
+	&[geckium-choice="five"] {
+		#star-button-box {
+			display: flex !important;
 		}
 	}
 }
