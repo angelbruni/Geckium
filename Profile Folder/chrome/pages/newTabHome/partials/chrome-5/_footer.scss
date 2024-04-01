@@ -1,0 +1,16 @@
+#footer {
+	margin-top: auto;
+}
+
+&[geckium-choice="five"],
+&[geckium-choice="six"] {
+	#footer {
+		align-items: end;
+	}
+}
+
+#extensions-link {
+	> img {
+		display: block;
+	}
+}

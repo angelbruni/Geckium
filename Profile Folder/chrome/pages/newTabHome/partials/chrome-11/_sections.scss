@@ -1,0 +1,63 @@
+.sections {
+	.section {
+		margin-inline-start: -14px;
+		margin-inline-end: -21px;
+		align-items: center;
+		font-size: 12pt;
+
+		&.collapsed {
+			+ div {
+				display: flex;
+				flex-direction: row;
+				gap: 20px;
+
+				.item {
+					display: flex;
+					align-items: center;
+					color: rgba(0, 102, 204, 1);
+					max-width: 114px;
+
+					image {
+						width: 16px;
+						height: 16px;
+						margin-inline-end: 3px;
+					}
+
+					label {
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+			}
+		}
+
+		.disclosure {
+			width: 9px;
+			height: 9px;
+			margin-inline-end: 5px;
+		}
+
+		spacer {
+			height: 1px;
+			background-color: rgb(229, 229, 229);
+			margin-inline: 4px;
+		}
+
+		button {
+			all: unset;
+		}
+
+		.section-close-button {
+			width: 21px;
+			height: 21px;
+		}
+	}
+}
+
+#apps-content,
+#most-viewed-content,
+#recently-closed-content {
+	padding-block-start: 9px;
+	margin-block-end: 30px;
+}

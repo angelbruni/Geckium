@@ -1,0 +1,59 @@
+&[geckium-choice="five"],
+&[geckium-choice="six"] {
+	#recently-closed {
+		box-sizing: unset;
+		background-color: #E5EFFE;
+		border: 1px solid rgba(75, 140, 220, 0.3125);
+		border-radius: 5px;
+		margin-block-start: 34px;
+		padding-block: 5px;
+		padding-inline: 10px;
+		align-items: center;
+		color: black;
+		height: 24px;
+		gap: 20px;
+	
+		> label:first-child {
+			font-weight: bold;
+		}
+	
+		.items {
+			gap: 20px;
+		}
+	
+		.item {
+			all: unset;
+			display: flex;
+			max-width: 114px;
+			align-items: center;
+			color: #063774;
+			text-decoration: underline;
+			cursor: pointer;
+	
+			&#nav {
+				image {
+					display: none;
+				}
+	
+				label {
+					&::after {
+						content: "\00bb";
+						margin-inline-start: 2px;
+					}
+				}
+			}
+	
+			image {
+				width: 16px;
+				height: 16px;
+				margin-right: 2px;
+			}
+	
+			label {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+	}
+}

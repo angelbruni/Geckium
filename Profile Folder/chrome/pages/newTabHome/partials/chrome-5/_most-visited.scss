@@ -1,0 +1,316 @@
+#view-toolbar {
+	margin-block: 15px;
+	justify-content: end;
+	gap: 5px;
+
+	> input,
+	> button {
+		all: unset;
+
+		position: relative;
+		box-sizing: border-box;
+		width: 19px;
+		height: 17px;
+		border-radius: 4px;
+		background-color: rgb(134,177,231);
+
+		&#thumb-checkbox {
+			background-image: url(assets/chrome-5/imgs/newtab_thumb_off.png);
+
+			&:not([disabled]) {
+				&:hover {
+					background-image: url(assets/chrome-5/imgs/newtab_thumb_off_h.png);
+				}
+
+				&:active {
+					background-image: url(assets/chrome-5/imgs/newtab_thumb_off_p.png);
+				}
+
+				&:checked {
+					background-image: url(assets/chrome-5/imgs/newtab_thumb_on.png);
+	
+					&:not([disabled]) {
+						&:hover {
+							background-image: url(assets/chrome-5/imgs/newtab_thumb_on_h.png);
+						}
+	
+						&:active {
+							background-image: url(assets/chrome-5/imgs/newtab_thumb_on_p.png);
+						}
+					}
+				}
+			}
+		}
+
+		&#list-checkbox {
+			background-image: url(assets/chrome-5/imgs/newtab_list_off.png);
+
+			&:not([disabled]) {
+				&:hover {
+					background-image: url(assets/chrome-5/imgs/newtab_list_off_h.png);
+				}
+
+				&:active {
+					background-image: url(assets/chrome-5/imgs/newtab_list_off_p.png);
+				}
+
+				&:checked {
+					background-image: url(assets/chrome-5/imgs/newtab_list_on.png);
+	
+					&:not([disabled]) {
+						&:hover {
+							background-image: url(assets/chrome-5/imgs/newtab_list_on_h.png);
+						}
+					}
+				}
+			}
+		}
+
+		&#option-button {
+			background-image: url(assets/chrome-5/imgs/newtab_option.png);
+
+			&:not([disabled]) {
+				&:hover {
+					background-image: url(assets/chrome-5/imgs/newtab_option_h.png);
+				}
+
+				&:active {
+					background-image: url(assets/chrome-5/imgs/newtab_option_p.png);
+				}
+
+				&[open] {
+					background-image: url(assets/chrome-5/imgs/newtab_option_p.png);
+				}
+			}
+		}
+	}
+}
+
+.window-menu-button {
+	&:not([disabled]) {
+		&[open] {
+			.window-menu {
+				display: flex;
+			}
+		}
+	}
+
+	.window-menu {
+		display: none;
+		position: absolute;
+		top: 18px;
+		right: -1px;
+		min-width: 175px;
+		box-shadow: rgba(0, 0, 0, 0.296875) 2px 2px 3px;
+		background-color: white;
+		border: 1px solid #999;
+		border-radius: 4px;
+		padding: 2px;
+	
+		> *:not(separator) {
+			cursor: default;
+			padding: 3px 8px;
+	
+			&:hover {
+				background-color: rgb(134,177,231);
+				color: white;
+			}
+		}
+	
+		.checkbox-check {
+			width: 12px;
+		}
+	}
+}
+
+#most-visited,
+#most-viewed-content,
+#most-visited-page .tile-grid,
+#mv-tiles {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0 20px;
+	margin-block-end: 34px;
+
+	&.collapsed {
+		display: none;
+	}
+
+	&.list {
+		display: block;
+		margin-top: 22px;
+
+		.thumbnail-container {
+			text-decoration: underline;
+			color: #06C;
+			font-size: 12pt;
+
+			.edit-mode-border {
+				display: none;
+			}
+
+			.title {
+				height: 34px;
+			}
+		}
+	}
+}
+
+.thumbnail-container {
+	color: black;
+	text-decoration: none;
+
+	&:not([disabled]) {
+		&:hover,
+		&:focus {
+			.edit-bar {
+				margin-block-start: 0px;
+				margin-block-end: 0px;
+				background-color: rgb(75,140,220); /* COLOR_NTP_HEADER */
+				background-image: linear-gradient(
+					to bottom,
+					rgb(134,177,231), /* color_header_gradient_light */
+					rgb(75,140,220)
+				); /* COLOR_NTP_HEADER */
+				background-color: hsl(213, 66%, 57%);
+				background-image: linear-gradient(
+					to bottom,
+					hsl(213, 87%, 67%),
+					hsl(213, 66%, 57%)
+				);
+				box-shadow: 0px 2px 2px hsla(0, 0%, 0%, .5);
+				
+				transition-delay: .5s, .5s, .5s;
+			}
+
+			.thumbnail {
+				border-color: rgb(75,140,220);
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				background-image: linear-gradient(
+					to bottom,
+					hsla(0, 0%, 0%, 0) 0%,
+					hsla(0, 0%, 47%, 0) 85%,
+					hsla(0, 0%, 47%, 0.2) 100%
+				);
+				box-shadow: 0px 2px 2px hsla(0, 0%, 0%, .5);
+
+				/* delay border radius transition as much as the edit bar slide delay */
+				transition-delay: 0s, 0s, .5s;
+			}
+		}
+	}
+	&[disabled] {
+		.thumbnail-wrapper {
+			border: solid #DFEAF7;
+		}
+
+		.thumbnail {
+			background-color: #DFEAF7;
+			border: 1px solid white;
+			padding: 0;
+		}
+	}
+
+	&.pinned {
+		.pin {
+			list-style-image: url(assets/chrome-5/imgs/newtab_pin_on.png);
+
+			&:hover {
+				list-style-image: url(assets/chrome-5/imgs/newtab_pin_on_h.png);
+			}
+
+			&:active {
+				list-style-image: url(assets/chrome-5/imgs/newtab_pin_on_p.png);
+			}
+		}
+	}
+
+	.edit-mode-border {
+		border-radius: 4px;
+	}
+
+	.edit-bar {
+		box-sizing: unset;
+
+		background: hsl(213, 54%, 95%);
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		height: 17px;
+		margin-block-start: 21px;
+		margin-block-end: -21px;
+		padding-block-start: 3px;
+		padding-inline: 3px;
+		cursor: move;
+
+		transition: margin .15s, background-color .15s, box-shadow .15s;
+
+		button {
+			all: unset;
+
+			cursor: pointer;
+			width: 16px;
+			height: 16px;
+
+			&.pin {
+				list-style-image: url(assets/chrome-5/imgs/newtab_pin_off.png);
+		
+				&:hover {
+					list-style-image: url(assets/chrome-5/imgs/newtab_pin_off_h.png);
+				}
+		
+				&:active {
+					list-style-image: url(assets/chrome-5/imgs/newtab_pin_off_p.png);
+				}
+			}
+		
+			&.remove {
+				list-style-image: url(assets/chrome-5/imgs/newtab_close.png);
+		
+				&:hover {
+					list-style-image: url(assets/chrome-5/imgs/newtab_close_h.png);
+				}
+		
+				&:active {
+					list-style-image: url(assets/chrome-5/imgs/newtab_close_p.png);
+				}
+			}
+		}
+	}
+
+	.thumbnail-wrapper {
+		background: white;
+		border-radius: 5px;
+		background-position: top center;
+		background-size: cover;
+	}
+
+	.thumbnail {
+		width: 207px;
+		height: 129px;
+		border-width: 3px;
+		border-style: solid;
+		border-color: #E5EFFE;
+		border-radius: 5px;
+		padding: 1px;
+
+		transition: border-color .15s, box-shadow .15s, border-radius .15s;
+	}
+
+	.title {
+		padding-block-start: 4px;
+		padding-inline-start: 3px;
+		padding-inline-end: 5px;
+		height: 16px;
+
+		label {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	.favicon {
+		margin-inline-end: 4px;
+	}
+}

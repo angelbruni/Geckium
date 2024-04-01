@@ -100,93 +100,191 @@ function retrieveFrequentSites() {
 		});
 }
 
-document.addEventListener("DOMContentLoaded", retrieveFrequentSites);
-
 function createTile(website) {
+	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+
     try {
-        const tile = document.createElement('a');
-        tile.classList.add('tile');
-
-		const thumbnailWrapper = document.createXULElement('vbox');
-		thumbnailWrapper.classList.add("thumbnail-wrapper");
-		tile.appendChild(thumbnailWrapper);
-
-		const thumbnail = document.createElement("div");
-		thumbnail.classList.add("thumbnail");
-		thumbnailWrapper.appendChild(thumbnail);
-
-		const thumbnailShield = document.createElement("div");
-		thumbnailShield.classList.add("thumbnail-shield");
-		thumbnail.appendChild(thumbnailShield);
+		let tile;
 
         if (website) {
-            tile.href = website.url;
-			tile.setAttribute("title", website.title);
+			let favicon;
+		
+			const thumbnailImageFb1 = PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/");
+			const thumbnailImageFb2 = PageThumbs.getThumbnailURL(website.url);
+			const thumbnailImageFb3 = PageThumbs.getThumbnailURL(website.url + "/");
+			const thumbnailImageFb4 = PageThumbs.getThumbnailURL(website.url.split("://www")[1]);
+			const thumbnailImageFb5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
+			const thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 
-			const closeBtn = document.createElement('button');
-            closeBtn.classList.add('close-button');
-			closeBtn.addEventListener("click", function(e) {
-				e.stopPropagation();
-				e.preventDefault();
-			})
-            setAttributes(closeBtn, {
-                "onclick": "NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url + "'); NewTabUtils.activityStreamLinks.deleteHistoryEntry('" + website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "'); setTimeout(() => { retrieveFrequentSites(); }, 20);",
-                "title": "Don't show on this page"
-            })
-            thumbnailWrapper.appendChild(closeBtn);
-
-			insertAfter(thumbnail, closeBtn);
-			
-			/* These URLs are to cover most possible combinations of the URL s
-			   we have fallbacks for the thumbnail image. */
-			thumbnail.style.backgroundImage = "url(" + PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/") + "), url(" + PageThumbs.getThumbnailURL(website.url)  + "), url(" + PageThumbs.getThumbnailURL(website.url + "/")  + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://www")[1]) + "), url(" + PageThumbs.getThumbnailURL(website.url.split("://")[1]) + ")";
-
-            const favicon = document.createElement("div");
-            favicon.classList.add("favicon");
 			if (!website.favicon) {
-				favicon.style.backgroundImage = "url(chrome://userchrome/content/assets/img/toolbar/grayfolder.png)";
-				favicon.style.backgroundSize = "auto";
+				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
 			} else {
-				favicon.style.backgroundImage = "url(" + website.favicon + ")";
+				favicon = website.favicon;
 			}
-            thumbnailWrapper.appendChild(favicon);
 
-			const websiteURL = website.url.toLowerCase();
-			const defaultColor = "rgb(14,108,188)"; // Default color
-			let activityColour = defaultColor;
-			for (const key in websiteColors) {
-				if (websiteURL.includes(key)) {
-					activityColour = websiteColors[key];
-					break;
+			if (appearanceChoice <= 2) {
+				tile = `
+				<html:a class="thumbnail-container" href="${website.url}">
+					<vbox class="edit-mode-border">
+						<hbox class="edit-bar">
+							<button class="pin" title="Keep on this page"></button>
+							<spacer></spacer>
+							<button class="remove" title="Don't show on this page"></button>
+						</hbox>
+						<html:div class="thumbnail-wrapper">
+							<html:div class="thumbnail"></html:div>
+						</html:div>
+					</vbox>
+					<html:div class="title">
+						<hbox style="list-style-image: url('${favicon}')">
+							<image class="favicon"></image>
+							<label>${website.title}</label>
+						</hbox>
+					</html:div>
+				</html:a>
+				`
+
+				waitForElm(".thumbnail-container[href='"+ website.url +"']").then(function() {
+					const thumbnail = document.querySelector(".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper");
+		
+					for (let i = 0; i < numTiles; i++) {
+						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
+					}
+				});
+			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+				for (const key in websiteColors) {
+					const websiteURL = website.url.toLowerCase();
+
+					if (websiteURL.includes(key)) {
+						activityColour = websiteColors[key];
+						break;
+					}
 				}
+
+				tile = `
+				<html:div class="tile">
+					<html:a class="most-visited" href="${website.url}">
+						<html:div class="thumbnail-wrapper">
+							<html:button class="close-button" title="Don't show on this page"></html:button>
+							<html:div class="thumbnail">
+								<html:div class="thumbnail-shield"></html:div>
+							</html:div>
+							<html:img class="favicon" src="${favicon}"></html:img>
+						</html:div>
+						<html:div class="color-stripe" style="background-color: ${activityColour}"></html:div>
+						<html:p class="title">${website.title}</html:p>
+					</html:a>
+				</html:div>
+				`
+
+				waitForElm(".most-visited[href='"+ website.url +"']").then(function() {
+					const thumbnail = document.querySelector(".most-visited[href='"+ website.url +"'] .thumbnail");
+		
+					for (let i = 0; i < numTiles; i++) {
+						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + ")";
+					}
+				});
+			} else {
+				tile = `
+				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${website.title}">
+					<hbox class="title-container">
+						<image class="mv-favicon"></image>
+						<label class="mv-title">${website.title}</label>
+						<html:button class="mv-x"></html:button>
+					</hbox>
+					<html:div class="mv-thumb"></html:div>
+				</html:a>
+				`
+
+				waitForElm(".mv-tile[href='"+ website.url +"']").then(function() {
+					const thumbnail = document.querySelector(".mv-tile[href='"+ website.url +"'] .mv-thumb");
+		
+					for (let i = 0; i < numTiles; i++) {
+						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + ")";
+					}
+				});
 			}
-
-			const colourStripe = document.createElement("div");
-			colourStripe.classList.add("color-stripe");
-			colourStripe.style.backgroundColor = activityColour;
-			tile.appendChild(colourStripe);
-
-            const title = document.createElement('p');
-            title.classList.add('title');
-            title.textContent = website.title;
-            tile.appendChild(title);
         } else {
-			tile.setAttribute("disabled", true);
+			if (appearanceChoice <= 2) {
+				tile = `
+				<html:a class="thumbnail-container" disabled="true">
+					<vbox class="edit-mode-border">
+						<hbox class="edit-bar">
+							<button class="pin" title="Keep on this page"></button>
+							<spacer></spacer>
+							<button class="remove" title="Don't show on this page"></button>
+						</hbox>
+						<html:div class="thumbnail-wrapper">
+							<html:div class="thumbnail"></html:div>
+						</html:div>
+					</vbox>
+					<html:div class="title">
+						<hbox>
+							<image></image>
+							<label></label>
+						</hbox>
+					</html:div>
+				</html:a>
+				`
+			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+				tile = `
+				<html:div class="tile">
+					<html:a class="most-visited" disabled="true">
+						<html:div class="thumbnail-wrapper">
+							<html:button class="close-button" title="Don't show on this page"></html:button>
+							<html:div class="thumbnail">
+								<html:div class="thumbnail-shield"></html:div>
+							</html:div>
+							<html:img class="favicon"></html:img>
+						</html:div>
+						<html:div class="color-stripe"></html:div>
+						<html:p class=""></html:p>
+					</html:a>
+				</html:div>
+				`
+			} else {
+				tile = `
+				<html:a class="mv-tile" disabled="true"></html:a>
+				`
+			}
 		}
 
-        return tile;
+        return MozXULElement.parseXULToFragment(tile);
     } catch (error) {
         console.error(error);
     }
 }
 
 function populateRecentSitesGrid() {
-    if (topFrecentSites) {
-        const tileGrid = document.querySelector('.tile-grid');
+	let mostViewed;
 
-        for (let i = 0; i < numTiles; i++) {
-			const tile = createTile(topFrecentSites[i]);
-			tileGrid.appendChild(tile);
+    if (topFrecentSites) {
+		const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int()
+		
+		if (appearanceChoice <= 1) {
+			mostViewed = "#most-visited";
+		} else if (appearanceChoice == 2) {
+			mostViewed = "#most-viewed-content";
+		} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+			mostViewed = "#most-visited-page .tile-grid";
+		} else {
+			mostViewed = "#mv-tiles";
 		}
+
+		waitForElm(mostViewed).then(function() {
+			let mostVisited;
+
+			mostVisited = document.querySelector(mostViewed);
+
+			for (let i = 0; i < numTiles; i++) {
+				const tile = createTile(topFrecentSites[i]);
+
+				try {
+					mostVisited.appendChild(tile);
+				} catch (e) {
+					console.error(e)
+				}
+			}
+		});
     }
 }

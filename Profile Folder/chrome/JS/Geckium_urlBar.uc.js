@@ -13,22 +13,24 @@ function styleURLBar() {
 	const pageActionButtons = document.getElementById("page-action-buttons");
 	const urlbarLabelBox = document.getElementById("urlbar-label-box");
 
-	if (!document.getElementById("go-button-box")) {
-		const goButtonBox = document.createXULElement("hbox");
-		goButtonBox.id = "go-button-box";
-		const goButton = document.createXULElement("image");
-		goButton.id = "go-button";
-		urlbarContainer.appendChild(goButtonBox);
-		goButtonBox.classList.add("toolbarbutton-1");
-		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
-		goButtonBox.appendChild(goButton);
-	}
-
 	if (pref(prefMap.appearance).tryGet.int() == 0) {
-		urlbarContainer.setAttribute("starpos", "start");
-		insertBefore(starButtonBox, urlbar);
-		starButtonBox.classList.add("toolbarbutton-1");
-		insertAfter(identityBox, pageActionButtons)
+		waitForElm("#page-action-buttons > #star-button-box").then(function() {
+			if (!document.getElementById("go-button-box")) {
+				const goButtonBox = document.createXULElement("hbox");
+				goButtonBox.id = "go-button-box";
+				const goButton = document.createXULElement("image");
+				goButton.id = "go-button";
+				urlbarContainer.appendChild(goButtonBox);
+				goButtonBox.classList.add("toolbarbutton-1");
+				goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
+				goButtonBox.appendChild(goButton);
+			}
+
+			urlbarContainer.setAttribute("starpos", "start");
+			insertBefore(starButtonBox, urlbar);
+			starButtonBox.classList.add("toolbarbutton-1");
+			insertAfter(identityBox, pageActionButtons)
+		});
 	} else {
 		urlbarContainer.setAttribute("starpos", "end");
 		insertAfter(starButtonBox, pageActionButton);
@@ -36,6 +38,7 @@ function styleURLBar() {
 		insertBefore(identityBox, urlbarLabelBox);
 	}
 }
+window.addEventListener("load", styleURLBar);
 window.addEventListener("appearanceChanged", styleURLBar);
 
 function updateProtocol() {
