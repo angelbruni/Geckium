@@ -20,13 +20,21 @@ const appearanceMap = {
 let previousChoice;
 
 function applyApperance(choice) {
+	try {
+		pref(prefMap.appearance).tryGet.int();
+	} catch (e) {
+		return;
+	}
+
 	const prefChoice = pref(prefMap.appearance).tryGet.int();
 
-	if (prefChoice == previousChoice) {
-		console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
-		return;
-	} else {
-		console.log("Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+	if (isBrowserWindow) {
+		if (prefChoice == previousChoice) {
+			console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
+			return;
+		} else {
+			console.log("Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+		}
 	}
 
 	// bruni: We get the first and last available keys so
@@ -68,7 +76,7 @@ function applyApperance(choice) {
 
 	previousChoice = prefChoice;
 	
-	if (window.location.href == "chrome://browser/content/browser.xhtml")
+	if (isBrowserWindow)
 		dispatchEvent(appearanceChanged);	
 }
 
@@ -80,49 +88,38 @@ setTimeout(() => {
 }, 50);
 
 function setThemeAttr() {
-	docElm.setAttribute(
-		"lwtheme-id",
-		pref("extensions.activeThemeID").tryGet.string()
-	);
+	if (typeof docElm !== "undefined") {
+		docElm.setAttribute("lwtheme-id",pref("extensions.activeThemeID").tryGet.string());
 
-	if (
-		pref("extensions.activeThemeID")
-			.tryGet.string()
-			.includes("default-theme")
-	) {
-		docElm.setAttribute("chromemargin", "0,3,3,3");
-	} else if (
-		pref("extensions.activeThemeID")
-			.tryGet.string()
-			.includes("firefox-compact")
-	) {
-		docElm.setAttribute("chromemargin", "0,3,3,3");
-	} else {
-		let customThemeMode;
-
-		if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
-			customThemeMode = 0;
-			docElm.setAttribute("chromemargin", "0,0,0,0");
-		} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
-			customThemeMode = 1;
-			docElm.setAttribute("chromemargin", "0,0,0,0");
-		} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
-			customThemeMode = 2;
+		if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
+		} else if (
+			pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact")) {
+			docElm.setAttribute("chromemargin", "0,3,3,3");
+		} else {
+			let customThemeMode;
+
+			if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
+				customThemeMode = 0;
+				docElm.setAttribute("chromemargin", "0,0,0,0");
+			} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
+				customThemeMode = 1;
+				docElm.setAttribute("chromemargin", "0,0,0,0");
+			} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
+				customThemeMode = 2;
+				docElm.setAttribute("chromemargin", "0,3,3,3");
+			}
+
+			docElm.setAttribute("customthememode", customThemeMode);
 		}
 
-		docElm.setAttribute("customthememode", customThemeMode);
-	}
+		if (navigator.userAgent.includes("Windows NT 10.0") && !window.matchMedia("(-moz-ev-native-controls-patch)").matches) {
+			docElm.setAttribute("chromemargin", "0,0,0,0");
+		}
 
-	if (
-		navigator.userAgent.includes("Windows NT 10.0") &&
-		!window.matchMedia("(-moz-ev-native-controls-patch)").matches
-	) {
-		docElm.setAttribute("chromemargin", "0,0,0,0");
-	}
-
-	if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
-		docElm.setAttribute("chromemargin", "0,0,0,0");
+		if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
+			docElm.setAttribute("chromemargin", "0,0,0,0");
+		}
 	}
 }
 
@@ -163,11 +160,13 @@ const appearanceObserver = {
 Services.prefs.addObserver(appearanceMap.appearance, appearanceObserver, false);
 
 function changePrivateBadgePos() {
-	const privateBrowsingIndicatorWithLabel = document.getElementById(
-		"private-browsing-indicator-with-label"
-	);
-	const titlebarSpacer = document.querySelector(".titlebar-spacer");
-
-	insertBefore(privateBrowsingIndicatorWithLabel, titlebarSpacer);
+	if (typeof docElm !== "undefined") {
+		if (docElm.hasAttribute("privatebrowsingmode")) {
+			const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");
+			const titlebarSpacer = document.querySelector(".titlebar-spacer");
+	
+			insertBefore(privateBrowsingIndicatorWithLabel, titlebarSpacer);
+		}
+	}
 }
 window.addEventListener("load", changePrivateBadgePos);
