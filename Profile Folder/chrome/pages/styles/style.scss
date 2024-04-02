@@ -1,0 +1,22 @@
+:root,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+vbox,
+hbox {
+	display: flex;
+}
+
+vbox {
+	flex-direction: column;
+}
+
+hbox {
+	flex-direction: row;
+}
+
+spacer {
+	flex: 1;
+}

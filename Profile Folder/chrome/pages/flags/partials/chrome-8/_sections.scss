@@ -1,0 +1,62 @@
+#flagsExperimentTemplate {
+	margin-block-start: 24px;
+
+	> vbox {
+		margin-block-end: 10px;
+	}
+}
+
+.section-header {
+	box-sizing: border-box;
+	align-items: center;
+	background: #EBEFF9;
+	border-top: 1px solid #B5C7DE;
+	padding-block-start: 3px;
+	padding-block-end: 2px;
+	padding-inline-start: 5px;
+	margin-block-end: 5px;
+	font-size: 10pt;
+	font-weight: bold;
+	height: 22px;
+}
+
+.experiment {
+	color: black;
+	border-bottom: 1px solid #CDCDCD;
+	padding-block-start: 4px;
+	padding-block-end: 5px;
+	padding-inline-start: 5px;
+	align-items: start;
+
+	.experiment-text {
+		margin-block-end: 2px;
+	}
+
+	.experiment-header {
+		gap: 9px;
+	}
+
+	.experiment-name {
+		color: black;
+		font-weight: bold;
+	}
+
+	.experiment-platforms {
+		color: #A0A0A0;
+	}
+
+	.permalink {
+		margin-inline-start: 3px;
+	}
+
+	button {
+		all: unset;
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
+
+.permalink {
+	color: #A0A0A0;
+}

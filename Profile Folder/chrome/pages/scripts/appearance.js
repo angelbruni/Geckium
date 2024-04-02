@@ -4,15 +4,18 @@ function appearance() {
 	const prefChoice = pref(prefMap.appearance).tryGet.int();
 
 	if (prefChoice == previousChoice) {
-		console.log("NEWTABHOME: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
+		console.log("TAB PAGE: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
 	} else {
-		console.log("NEWTABHOME: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
-	
-		createMainLayout();
-		retrieveFrequentSites();
-		createRecentlyClosed();
-		setUpPages();
-		setupApps();
+		console.log("TAB PAGE: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+
+		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
+			retrieveFrequentSites();
+			createRecentlyClosed();
+			setUpPages();
+			setUpApps();
+		} else if (document.URL == "about:flags") {
+			setUpExperiments();
+		}
 	}
 }
 document.addEventListener("DOMContentLoaded", appearance)

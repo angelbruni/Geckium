@@ -1,4 +1,4 @@
-function setupApps() {
+function setUpApps() {
 	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
 
 	let appsContainer;
