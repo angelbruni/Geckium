@@ -12,6 +12,7 @@ function appearance() {
 		retrieveFrequentSites();
 		createRecentlyClosed();
 		setUpPages();
+		setupApps();
 	}
 }
 document.addEventListener("DOMContentLoaded", appearance)

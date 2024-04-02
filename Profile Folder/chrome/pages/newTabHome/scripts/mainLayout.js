@@ -194,11 +194,7 @@ function createMainLayout() {
 				</vbox>
 				<vbox class="tile-page" id="apps-page" data-page="1">
 					<vbox class="tile-page-content">
-						<html:div class="tile-grid">
-						<button class="tile-container" style="list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png)" label="Chrome Web Store">
-
-						</button>
-						</html:div>
+						<html:div class="tile-grid"></html:div>
 					</vbox>
 				</vbox>
 			</hbox>

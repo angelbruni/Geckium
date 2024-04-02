@@ -15,12 +15,24 @@
 
 .tile-container {
 	all: unset;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	font-size: 10.5pt;
 	width: 160px;
 	height: 147px;
+	user-select: none;
+
+	transition: transform 50ms;
 
 	&:not([disabled]) {
 		cursor: pointer;
+
+		&:active {
+			transform: scale(1.1);
+			transition: none;
+		}
 	}
 
 	hbox {
