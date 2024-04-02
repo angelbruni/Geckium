@@ -2330,6 +2330,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 :root:not([uidensity=compact]) .urlbarView-row:not([type=tip], [type=dynamic]) {
   min-height: 0 !important;
 }
+:root[geckium-choice=five] #star-button-box {
+  display: flex !important;
+}
 
 .verifiedDomain {
   position: relative;
