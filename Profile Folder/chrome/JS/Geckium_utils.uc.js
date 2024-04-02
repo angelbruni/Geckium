@@ -6,6 +6,8 @@
 // @include     *
 // ==/UserScript==
 
+const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml";
+
 var prefType = {
 	appearance: "Geckium.appearance."
 }
