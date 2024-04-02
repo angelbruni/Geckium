@@ -69,11 +69,6 @@ const websiteColors = {
 };
 
 function retrieveFrequentSites() {
-	// Delete the tiles to update with new information (there might be a better way to do this).
-    document.querySelectorAll('.tile').forEach(element => {
-        element.remove();
-    });
-
     NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: numTiles })
 		.then(result => {
 			/* Count the number of websites with no title, with
@@ -108,13 +103,16 @@ function createTile(website) {
 
         if (website) {
 			let favicon;
+
+			let close;
+			let thumbnail;
 		
 			const thumbnailImageFb1 = PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/");
 			const thumbnailImageFb2 = PageThumbs.getThumbnailURL(website.url);
 			const thumbnailImageFb3 = PageThumbs.getThumbnailURL(website.url + "/");
 			const thumbnailImageFb4 = PageThumbs.getThumbnailURL(website.url.split("://www")[1]);
 			const thumbnailImageFb5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
-			const thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
+			let thumbnailImageFb6;
 
 			if (!website.favicon) {
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
@@ -144,13 +142,10 @@ function createTile(website) {
 				</html:a>
 				`
 
-				waitForElm(".thumbnail-container[href='"+ website.url +"']").then(function() {
-					const thumbnail = document.querySelector(".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper");
-		
-					for (let i = 0; i < numTiles; i++) {
-						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
-					}
-				});
+				close = ".thumbnail-container[href='"+ website.url +"'] .remove";
+
+				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
+				thumbnail = ".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper";
 			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
 				for (const key in websiteColors) {
 					const websiteURL = website.url.toLowerCase();
@@ -177,13 +172,9 @@ function createTile(website) {
 				</html:div>
 				`
 
-				waitForElm(".most-visited[href='"+ website.url +"']").then(function() {
-					const thumbnail = document.querySelector(".most-visited[href='"+ website.url +"'] .thumbnail");
-		
-					for (let i = 0; i < numTiles; i++) {
-						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + ")";
-					}
-				});
+				close = ".most-visited[href='"+ website.url +"'] .close-button";
+				
+				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
 			} else {
 				tile = `
 				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${website.title}">
@@ -196,14 +187,32 @@ function createTile(website) {
 				</html:a>
 				`
 
-				waitForElm(".mv-tile[href='"+ website.url +"']").then(function() {
-					const thumbnail = document.querySelector(".mv-tile[href='"+ website.url +"'] .mv-thumb");
-		
-					for (let i = 0; i < numTiles; i++) {
-						thumbnail.style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + ")";
-					}
-				});
+				close = ".mv-tile[href='" + website.url + "'] .mv-x";
+
+				thumbnail = ".mv-tile[href='"+ website.url +"'] .mv-thumb";
 			}
+
+			waitForElm(close).then(function() {
+				document.querySelector(close).addEventListener("click", function(e) {
+					e.stopPropagation();
+					e.preventDefault();
+	
+					NewTabUtils.activityStreamLinks.deleteHistoryEntry(website.url);
+					NewTabUtils.activityStreamLinks.deleteHistoryEntry(website.url.split("://")[0] + "://www." + website.url.split("://")[1]);
+					
+					setTimeout(() => {
+						retrieveFrequentSites();
+					},20);
+				})
+			});
+
+			waitForElm(thumbnail).then(function() {
+				for (let i = 0; i < numTiles; i++) {
+					document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
+				}
+			});
+
+			console.log(close)
         } else {
 			if (appearanceChoice <= 2) {
 				tile = `
@@ -256,20 +265,25 @@ function createTile(website) {
 }
 
 function populateRecentSitesGrid() {
+	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int()
 	let mostViewed;
 
+	if (appearanceChoice <= 1) {
+		mostViewed = "#most-visited";
+	} else if (appearanceChoice == 2) {
+		mostViewed = "#most-viewed-content";
+	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+		mostViewed = "#most-visited-page .tile-grid";
+	} else {
+		mostViewed = "#mv-tiles";
+	}
+
+	// Delete the tiles to update with new information (there might be a better way to do this).
+    document.querySelectorAll(mostViewed + "> *").forEach(element => {
+        element.remove();
+    });
+
     if (topFrecentSites) {
-		const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int()
-		
-		if (appearanceChoice <= 1) {
-			mostViewed = "#most-visited";
-		} else if (appearanceChoice == 2) {
-			mostViewed = "#most-viewed-content";
-		} else if (appearanceChoice == 3 || appearanceChoice == 4) {
-			mostViewed = "#most-visited-page .tile-grid";
-		} else {
-			mostViewed = "#mv-tiles";
-		}
 
 		waitForElm(mostViewed).then(function() {
 			let mostVisited;
