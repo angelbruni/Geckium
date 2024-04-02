@@ -7,7 +7,8 @@ function createRecentlyClosed() {
 	let title;
 	let favicon;
 
-	const maxEntries = 5;
+	let recentlyClosedEntriesAmount;
+	let recentlyClosedContainer;
 
 	if (closedTabsList.length !== 0) {
 		const visitedURLs = new Set();
@@ -19,8 +20,13 @@ function createRecentlyClosed() {
 
 			url = state.entries[0].url;
 
+			if (appearanceChoice <= 2)
+				recentlyClosedEntriesAmount = 5;
+			else if (appearanceChoice == 3 || appearanceChoice == 4)
+				recentlyClosedEntriesAmount = 10;
+
 			// If the visitedURLs Set has more than 10 items, remove the oldest URL
-			if (visitedURLs.size >= maxEntries) {
+			if (visitedURLs.size >= recentlyClosedEntriesAmount) {
 				return; // Return early if we already have 10 visited URLs
 			}
 
@@ -47,9 +53,7 @@ function createRecentlyClosed() {
 				</html:a>
 				`
 
-				waitForElm("#recently-closed").then(function() {
-					document.querySelector("#recently-closed > .items").appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
-				});
+				recentlyClosedContainer = "#recently-closed > .items"
 			} else if (appearanceChoice == 2) {
 				recentlyClosedItem = `
 				<html:a class="item" href="${url}" style="list-style-image: url('${favicon}')">
@@ -57,10 +61,8 @@ function createRecentlyClosed() {
 					<label>${title}</label>
 				</html:a>
 				`
-				
-				waitForElm("#recently-closed-content").then(function() {
-					document.querySelector("#recently-closed-content").appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
-				});
+
+				recentlyClosedContainer = "#recently-closed-content"
 			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
 				recentlyClosedItem = `
 				<html:a class="footer-menu-item" href="${url}" style="list-style-image: url('${favicon}')">
@@ -69,8 +71,12 @@ function createRecentlyClosed() {
 				</html:a>
 				`
 				
-				waitForElm("#recently-closed-menu-button .footer-menu").then(function() {
-					document.querySelector("#recently-closed-menu-button .footer-menu").appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
+				recentlyClosedContainer = "#recently-closed-menu-button .footer-menu"
+			}
+
+			if (appearanceChoice <= 4) {
+				waitForElm(recentlyClosedContainer).then(function() {
+					document.querySelector(recentlyClosedContainer).appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
 				});
 			}
 			// #endregion
