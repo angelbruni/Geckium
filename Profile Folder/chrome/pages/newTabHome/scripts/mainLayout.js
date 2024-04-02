@@ -168,9 +168,10 @@ function createMainLayout() {
 		</vbox>
 		`
 	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+		// Chrome 21 - 45
+
 		menuBtnsContainer = "#footer-menu-container";
 
-		// #region Header
 		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
@@ -179,7 +180,6 @@ function createMainLayout() {
 			<html:div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</html:div>
 		</button>
 		`
-		// #endregion
 
 		main = `
 		<hbox id="card-slider-frame">
@@ -239,6 +239,8 @@ function createMainLayout() {
 		</vbox>
 		`
 	} else {
+		// Chrome 47 - 50
+
 		header = `
 		<hbox id="google-bar">
 			<html:a href="https://mail.google.com/mail">Gmail</html:a>
