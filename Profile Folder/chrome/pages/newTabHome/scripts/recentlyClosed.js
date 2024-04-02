@@ -30,8 +30,6 @@ function createRecentlyClosed() {
 
 			visitedURLs.add(url);
 
-			console.log(visitedURLs)
-
 			title = state.entries[0].title;
 
 			if (!state.image) {
@@ -75,8 +73,6 @@ function createRecentlyClosed() {
 					document.querySelector("#recently-closed-menu-button .footer-menu").appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
 				});
 			}
-
-			console.log(recentlyClosedItem)
 			// #endregion
 		});
 	}
