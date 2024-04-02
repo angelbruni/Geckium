@@ -25,9 +25,8 @@ function createRecentlyClosed() {
 			else if (appearanceChoice == 3 || appearanceChoice == 4)
 				recentlyClosedEntriesAmount = 10;
 
-			// If the visitedURLs Set has more than 10 items, remove the oldest URL
 			if (visitedURLs.size >= recentlyClosedEntriesAmount) {
-				return; // Return early if we already have 10 visited URLs
+				return; // Return early if we already reached max amount of recently closed entries.
 			}
 
 			if (visitedURLs.has(url)) {
