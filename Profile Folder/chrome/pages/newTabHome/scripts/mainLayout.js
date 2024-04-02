@@ -62,6 +62,7 @@ function createMainLayout() {
 		entry.remove();
 	})
 	
+	let	header = ``;
 	let	main = ``;
 	let footer = ``;
 
@@ -71,7 +72,6 @@ function createMainLayout() {
 		// Chrome 0 - 5
 		menuBtnsContainer = "#view-toolbar";
 		
-		// #region Main
 		main = `
 		<vbox id="main">
 			<hbox id="view-toolbar">
@@ -93,9 +93,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`
-		// #endregion
 
-		// #region Footer
 		footer = `
 		<vbox id="footer">
 			<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
@@ -122,9 +120,9 @@ function createMainLayout() {
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 		});
-		// #endregion
 	} else if (appearanceChoice == 2) {
 		// Chrome 11
+
 		main = `
 		<vbox id="main">
 			<vbox class="sections">
@@ -172,13 +170,18 @@ function createMainLayout() {
 	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
 		menuBtnsContainer = "#footer-menu-container";
 
-		main = `
+		// #region Header
+		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
 				<html:div id="login-status-header">Not signed in to Chrome</html:div>
 			</html:div>
 			<html:div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</html:div>
 		</button>
+		`
+		// #endregion
+
+		main = `
 		<hbox id="card-slider-frame">
 			<button id="page-switcher-start" class="page-switcher" label="‹" disabled="true"></button>
 			<hbox id="page-list">
@@ -236,7 +239,7 @@ function createMainLayout() {
 		</vbox>
 		`
 	} else {
-		main = `
+		header = `
 		<hbox id="google-bar">
 			<html:a href="https://mail.google.com/mail">Gmail</html:a>
 			<html:a href="https://www.google.com/imghp">Images</html:a>
@@ -248,6 +251,9 @@ function createMainLayout() {
 				<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
 			</html:form>
 		</vbox>
+
+		`
+		main = `
 		<html:div id="mv-tiles"></html:div>
 		`
 
@@ -267,6 +273,7 @@ function createMainLayout() {
 		elm.remove();
 	});
 
+	container.appendChild(MozXULElement.parseXULToFragment(header))
 	container.appendChild(MozXULElement.parseXULToFragment(main))
 	container.appendChild(MozXULElement.parseXULToFragment(footer))
 
