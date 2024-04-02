@@ -1,25 +1,18 @@
 :root {
 	body {
-		height: 100vh;
-		display: flex;
-	}
-	
-	#main-container {
-		flex: 1;
+		margin: 10px;
 	}
 
-	.favicon,
-	.mv-favicon {
-		width: 16px;
-		height: 16px;
+	#header {
+		align-items: center;
+
+		h1 {
+			margin: 0;
+		}
 	}
 
 	&[geckium-five] {
-		@import "partials/chrome-5/final";
-	}
-
-	&[geckium-five][geckium-six][geckium-eleven] {
-		@import "partials/chrome-11/final";
+		@import "partials/chrome-8/final";
 	}
 
 	&[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {

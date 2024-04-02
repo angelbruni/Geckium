@@ -7,6 +7,8 @@
 const customAboutPages = {
 	"home": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
 	"newtab": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+
+	"flags": 	"chrome://userchrome/content/pages/flags/index.xhtml",
 };
 
 function customAboutPage(urlString) {
