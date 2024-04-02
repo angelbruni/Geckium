@@ -38,9 +38,9 @@ function pref(prefName) {
             string: function (string) { Services.prefs.setStringPref(prefName, string); }
         },
         tryGet: {
-            bool: function () { try { return Services.prefs.getBoolPref(prefName); } catch (e) { console.log('Setting not found: '+ e) } },
-            int: function () { try { return Services.prefs.getIntPref(prefName); } catch (e) { console.log('Setting not found: '+ e) } },
-            string: function () { try { return Services.prefs.getStringPref(prefName); } catch (e) { console.log('Setting not found: '+ e) } }
+            bool: function () { try { return Services.prefs.getBoolPref(prefName); } catch (e) { console.log('Setting not found: ', e) } },
+            int: function () { try { return Services.prefs.getIntPref(prefName); } catch (e) { console.log('Setting not found: ', e) } },
+            string: function () { try { return Services.prefs.getStringPref(prefName); } catch (e) { console.log('Setting not found: ', e) } }
         }
     }
 };

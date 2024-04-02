@@ -5,15 +5,14 @@ function appearance() {
 
 	if (prefChoice == previousChoice) {
 		console.log("NEWTABHOME: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
-		return;
 	} else {
 		console.log("NEWTABHOME: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+	
+		createMainLayout();
+		retrieveFrequentSites();
+		createRecentlyClosed();
+		setUpPages();
 	}
-
-	createMainLayout();
-	retrieveFrequentSites();
-	createRecentlyClosed();
-	setUpPages();
 }
 document.addEventListener("DOMContentLoaded", appearance)
 

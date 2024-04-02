@@ -114,11 +114,10 @@ function createTile(website) {
 			const thumbnailImageFb5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
 			let thumbnailImageFb6;
 
-			if (!website.favicon) {
+			if (!website.favicon)
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
-			} else {
+			else
 				favicon = website.favicon;
-			}
 
 			if (appearanceChoice <= 2) {
 				tile = `
@@ -211,8 +210,6 @@ function createTile(website) {
 					document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
 				}
 			});
-
-			console.log(close)
         } else {
 			if (appearanceChoice <= 2) {
 				tile = `
@@ -259,8 +256,8 @@ function createTile(website) {
 		}
 
         return MozXULElement.parseXULToFragment(tile);
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+        console.error(e);
     }
 }
 
@@ -268,15 +265,14 @@ function populateRecentSitesGrid() {
 	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int()
 	let mostViewed;
 
-	if (appearanceChoice <= 1) {
+	if (appearanceChoice <= 1)
 		mostViewed = "#most-visited";
-	} else if (appearanceChoice == 2) {
+	else if (appearanceChoice == 2)
 		mostViewed = "#most-viewed-content";
-	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+	else if (appearanceChoice == 3 || appearanceChoice == 4)
 		mostViewed = "#most-visited-page .tile-grid";
-	} else {
+	else
 		mostViewed = "#mv-tiles";
-	}
 
 	// Delete the tiles to update with new information (there might be a better way to do this).
     document.querySelectorAll(mostViewed + "> *").forEach(element => {
@@ -284,7 +280,6 @@ function populateRecentSitesGrid() {
     });
 
     if (topFrecentSites) {
-
 		waitForElm(mostViewed).then(function() {
 			let mostVisited;
 
