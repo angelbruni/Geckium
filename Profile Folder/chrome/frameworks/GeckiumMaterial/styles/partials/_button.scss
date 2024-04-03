@@ -1,0 +1,131 @@
+button {
+	&.button {
+		all: unset;
+
+		display: flex;
+		position: relative;
+		align-items: center;
+		overflow: hidden;
+		
+		margin-block: 6px;
+		margin-inline: 3px;
+		
+		border-radius: 2px;
+		min-height: 36px;
+
+		text-transform: uppercase;
+		font-weight: 500;
+
+		transition: background-color 155ms, box-shadow 155ms;
+		
+		&.raised {
+			&:not([disabled]) {
+				&:active {
+					box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+				}
+			}
+		}
+
+		&.flat {
+			&.color {
+				&:not([disabled]) {
+					&:active {
+						background: color-mix(in srgb, var(--accent-color) 40%, transparent);
+					}
+				}	
+			}
+
+			&:not([disabled]) {
+				&:active {
+					background: rgba(153, 153, 153, .4);
+				}
+			}
+		}
+
+		&.ripple {
+			&:not([disabled]) {
+				&:active {
+					transition: background-color 0ms, box-shadow 155ms;
+				}
+			}
+	
+			&.raised {
+				&:not(.desktop) {
+					box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
+				}
+	
+				&:not([disabled]) {
+					&:not(:active) {
+						&:hover {
+							box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
+						}
+					}
+				}
+			}
+	
+			&:not(.flat) {
+				padding-inline: 16px;
+				background: var(--accent-color);
+
+				&:not([disabled]) {
+					.ripple {
+						background: rgba(255, 255, 255, .3);
+					}
+				}
+	
+				color: white;
+			}
+			&.flat {
+				padding-inline: 8px;
+				background: transparent;
+	
+				color: rgb(33,33,33);
+
+				&.color {
+					color: var(--accent-color);
+	
+					&:not([disabled]) {
+						&:hover,
+						&:focus {
+							background: color-mix(in srgb, var(--accent-color) 20%, transparent);
+						}
+
+						.ripple {
+							background: color-mix(in srgb, var(--accent-color) 40%, transparent)
+						}
+					}
+				}
+	
+				&:not([disabled]) {
+					&:hover,
+					&:focus {
+						background: rgba(153, 153, 153, .2);
+					}
+
+					.ripple {
+						background: rgba(153, 153, 153, .4);
+					}
+				}
+			}
+		}
+
+		&[disabled] {
+			&.raised {
+				box-shadow: none;
+			}
+
+			label {
+				color: rgba(0,0,0,.26)
+			}
+		}
+
+		.ripple {
+			position: absolute;
+			border-radius: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			min-width: 0px;
+			min-height: 0px;
+			pointer-events: none;
+		}
+	}
+}
