@@ -1,3 +1,27 @@
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../fonts/Roboto-Regular.woff2") format("woff2");
+}
+  
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("../fonts/Roboto-Medium.woff2") format("woff2");
+}
+  
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("../fonts/Roboto-Bold.woff2") format("woff2");
+}
+
 :root {
 	--accent-color: rgb(51,103,213);
 	
@@ -34,4 +58,6 @@ spacer {
 
 @import "partials/window";
 @import "partials/button";
+@import "partials/navigation-drawer";
+@import "partials/pages";
 @import "partials/footer";

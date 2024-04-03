@@ -6,10 +6,10 @@
 
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		windowtype="geckiumw:zoo"
+		windowtype="geckiummaterial:zoo"
 		title="Controls Zoo"
-		height="580"
-		width="680"
+		width="1145"
+		height="710"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
 		<vbox id="window">
@@ -26,40 +26,58 @@
 				<spacer />
 				<button id="window-info-button" />
 			</hbox>
-			<vbox id="window-content">
-				<header>
-
-				</header>
-				<vbox class="content">
-					<h4>Raised Desktop</h4>
-					<hbox>
-						<button class="button ripple raised desktop" label="Default Raised Desktop" />
-						<button class="button ripple flat color raised desktop" label="Flat Colorized Raised Desktop" />
-						<button class="button ripple flat raised desktop" label="Flat Raised Desktop" />
-					</hbox>
-					<h4>Raised</h4>
-					<hbox>
-						<button class="button ripple raised" label="Default Raised" />
-						<button class="button ripple flat color raised" label="Flat Colorized Raised" />
-						<button class="button ripple flat raised" label="Flat Raised" />
-					</hbox>
-					<h4>Flat</h4>
-					<hbox>
-						<button class="button ripple flat color" label="Flat Colorized" />
-						<button class="button ripple flat" label="Flat" />
-					</hbox>
-					<h4>Disabled</h4>
-					<hbox>
-						<button class="button flat" label="Disabled" disabled="true" />
-					</hbox>
-				</vbox>
-				<footer>
-					
-				</footer>
-			</vbox>
+			<hbox id="window-content">
+				<div class="pages">
+					<vbox id="navigation-drawer" class="iconic">
+						<h4>Controls</h4>
+						<button class="item ripple-enabled icon-smart-button" data-page="0" align="center" pack="start" label="Buttons" />
+						<button class="item ripple-enabled icon-edit" data-page="1" align="center" pack="start" label="Inputs" />
+						<separator />
+						<h4>Extras</h4>
+						<button class="item ripple-enabled icon-auto-awesome" data-page="2" align="center" pack="start" label="Fun" />
+						<button class="item ripple-enabled icon-info" data-page="3" align="center" pack="start" label="About" />
+					</vbox>
+					<vbox class="pages-container">
+						<vbox class="page" data-page="0">
+							<h4>Raised Desktop</h4>
+							<hbox>
+								<button class="button ripple-enabled raised desktop" label="Default Raised Desktop" />
+								<button class="button ripple-enabled flat color raised desktop" label="Flat Colorized Raised Desktop" />
+								<button class="button ripple-enabled flat raised desktop" label="Flat Raised Desktop" />
+							</hbox>
+							<h4>Raised</h4>
+							<hbox>
+								<button class="button ripple-enabled raised" label="Default Raised" />
+								<button class="button ripple-enabled flat color raised" label="Flat Colorized Raised" />
+								<button class="button ripple-enabled flat raised" label="Flat Raised" />
+							</hbox>
+							<h4>Flat</h4>
+							<hbox>
+								<button class="button ripple-enabled flat color" label="Flat Colorized" />
+								<button class="button ripple-enabled flat" label="Flat" />
+							</hbox>
+							<h4>Disabled</h4>
+							<hbox>
+								<button class="button ripple-enabled flat" label="Disabled" disabled="true" />
+							</hbox>
+						</vbox>
+						<vbox class="page" data-page="1">
+							<h4>Input</h4>
+							
+						</vbox>
+						<vbox class="page" data-page="2">
+							<button class="button ripple-enabled flat color" style="flex: 1;" label="Ripple Madness!!!" />
+						</vbox>
+						<vbox class="page" data-page="3">
+							<label>That is a fine look about.</label>
+						</vbox>
+					</vbox>
+				</div>
+			</hbox>
 		</vbox>
 	</html:div>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/button.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
 </window>

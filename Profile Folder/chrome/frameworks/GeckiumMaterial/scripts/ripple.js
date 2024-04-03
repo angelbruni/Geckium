@@ -1,10 +1,10 @@
 function rippleEffect() {
-    document.querySelectorAll(".button.ripple").forEach(button => {
-        button.addEventListener("mousedown", (e) => {
+    document.querySelectorAll(".ripple-enabled").forEach(rippledElm => {
+        rippledElm.addEventListener("mousedown", (e) => {
             const ripple = document.createElement("div");
             ripple.classList.add("ripple");
 
-            const rect = button.getBoundingClientRect();
+            const rect = rippledElm.getBoundingClientRect();
             const posX = e.clientX;
             const posY = e.clientY;
 
@@ -12,7 +12,7 @@ function rippleEffect() {
             ripple.style.top = (posY - rect.y) + "px";
             ripple.style.opacity = 1;
 
-            button.appendChild(ripple);
+            rippledElm.appendChild(ripple);
 
             let maxSize;
             const rectWidth = rect.width;
@@ -27,7 +27,7 @@ function rippleEffect() {
 
             function animate(currentTime) {
                 const elapsedTime = currentTime - animationStart;
-                const progress = Math.min(elapsedTime / maxSize / 1.5 , 1);
+                const progress = Math.min(elapsedTime / (maxSize / .8) , 1);
 
                 const newSize = progress * maxSize;
                 ripple.style.width = newSize + "px";

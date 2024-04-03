@@ -1,0 +1,13 @@
+.pages {
+	> .pages-container {
+		> .page {
+			display: none;
+			flex: 1;
+			padding: var(--inner-padding);
+			
+			&[selected="true"] {
+				display: flex;
+			}
+		}
+	}
+}
