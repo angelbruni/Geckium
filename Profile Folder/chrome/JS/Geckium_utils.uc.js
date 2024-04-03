@@ -48,7 +48,7 @@ function pref(prefName) {
 };
 
 function openWindow(windowName, features) {
-	window.openDialog('chrome://userchrome/content/windows/'+ windowName +'/index.xhtml', '', features);
+	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);
 }
 
 function updateZoomLabel() {

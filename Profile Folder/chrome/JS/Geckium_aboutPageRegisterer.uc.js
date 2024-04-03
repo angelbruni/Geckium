@@ -1,10 +1,12 @@
 // ==UserScript==
-// @name           Geckium - About Page Replacer
+// @name           Geckium - About Page Registerer
 // @author         AngelBruni
 // @description    Registers custom about: pages with desired URLs.
 // ==/UserScript==
 
 const customAboutPages = {
+	"zoo": 	"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
+
 	"home": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
 	"newtab": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
 

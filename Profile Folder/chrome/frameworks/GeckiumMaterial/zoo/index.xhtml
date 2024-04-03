@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/styles/final.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/style.css" type="text/css"?>
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		windowtype="geckiumw:zoo"
+		title="Controls Zoo"
+		height="580"
+		width="680"
+		chromemargin="0,0,0,0">
+	<html:div id="window-container">
+		<vbox id="window">
+			<hbox id="window-titlebar">
+				<hbox id="window-caption-buttons-container">
+					<hbox id="window-caption-buttons">
+						<button id="window-minimise-button" onclick="window.minimize();" />
+                        <button id="window-close-button" onclick="window.close();" />
+					</hbox>
+				</hbox>
+			</hbox>
+			<hbox id="window-top-bar">
+				<h3 />
+				<spacer />
+				<button id="window-info-button" />
+			</hbox>
+			<vbox id="window-content">
+				<header>
+
+				</header>
+				<vbox class="content">
+					<h4>Raised Desktop</h4>
+					<hbox>
+						<button class="button ripple raised desktop" label="Default Raised Desktop" />
+						<button class="button ripple flat color raised desktop" label="Flat Colorized Raised Desktop" />
+						<button class="button ripple flat raised desktop" label="Flat Raised Desktop" />
+					</hbox>
+					<h4>Raised</h4>
+					<hbox>
+						<button class="button ripple raised" label="Default Raised" />
+						<button class="button ripple flat color raised" label="Flat Colorized Raised" />
+						<button class="button ripple flat raised" label="Flat Raised" />
+					</hbox>
+					<h4>Flat</h4>
+					<hbox>
+						<button class="button ripple flat color" label="Flat Colorized" />
+						<button class="button ripple flat" label="Flat" />
+					</hbox>
+					<h4>Disabled</h4>
+					<hbox>
+						<button class="button flat" label="Disabled" disabled="true" />
+					</hbox>
+				</vbox>
+				<footer>
+					
+				</footer>
+			</vbox>
+		</vbox>
+	</html:div>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/button.js" type="text/javascript" defer="true"/>
+</window>
