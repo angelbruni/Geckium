@@ -1,28 +1,3 @@
-@font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url("../fonts/Roboto-Regular.woff2") format("woff2");
-}
-  
-@font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 500;
-	font-display: swap;
-	src: url("../fonts/Roboto-Medium.woff2") format("woff2");
-}
-  
-@font-face {
-	font-family: "Roboto";
-	font-style: normal;
-	font-weight: 600;
-	font-display: swap;
-	src: url("../fonts/Roboto-Bold.woff2") format("woff2");
-}
-  
-
 :root,
 window {
 	background: transparent;
@@ -75,6 +50,7 @@ window {
 	align-items: center;
 	font-size: 13pt;
 	padding-inline-start: 22px;
+	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
 	-moz-window-dragging: drag;
 
 	*:not(h3) {
@@ -87,6 +63,11 @@ window {
 		width: 56px;
 		height: 56px;
 	}
+}
+
+#window-titlebar,
+#window-top-bar {
+	z-index: 1;
 }
 
 #window-content {

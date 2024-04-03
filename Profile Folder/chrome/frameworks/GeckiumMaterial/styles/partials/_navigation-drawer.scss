@@ -1,0 +1,87 @@
+#navigation-drawer {
+	border-right: 1px solid rgb(215,215,215);
+	padding-block-start: 8px;
+	background: white;
+	width: 256px;
+
+	&.iconic {
+		.item {
+			&::before {
+				content: "";
+				width: 24px;
+				height: 24px;
+				margin-inline-end: 32px;
+				mask-position: center;
+				mask-repeat: no-repeat;
+				background-color: rgba(0,0,0,.54);
+			}
+
+			&.icon-edit {
+				&::before {
+					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/edit.svg");
+				}
+			}
+
+			&.icon-smart-button {
+				&::before {
+					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/smart-button.svg");
+				}
+			}
+
+			&.icon-info {
+				&::before {
+					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info.svg");
+				}
+			}
+
+			&.icon-auto-awesome {
+				&::before {
+					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/auto-awesome.svg");
+				}
+			}
+		}
+	}
+
+	.item {
+		all: unset;
+
+		position: relative;
+		overflow: hidden;
+
+		transition: background-color 155ms;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				background: rgba(153, 153, 153, .2);
+			}
+
+			.ripple {
+				background: rgba(153, 153, 153, .4);
+			}
+
+			&[selected] {
+				background: rgba(153, 153, 153, .2);
+				color: var(--accent-color);
+
+				&::before {
+					background: var(--accent-color);
+				}
+			}
+		}
+	}
+
+	h4,
+	.item {
+		display: flex;
+
+		height: 48px;
+		padding-inline: 16px;
+	}
+
+	separator {
+		height: 1px;
+		background-color: rgb(230,230,230);
+		margin-block: 8px;
+	}
+}

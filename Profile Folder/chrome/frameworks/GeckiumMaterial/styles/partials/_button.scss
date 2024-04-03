@@ -42,7 +42,7 @@ button {
 			}
 		}
 
-		&.ripple {
+		&.ripple-enabled {
 			&:not([disabled]) {
 				&:active {
 					transition: background-color 0ms, box-shadow 155ms;
@@ -118,14 +118,14 @@ button {
 				color: rgba(0,0,0,.26)
 			}
 		}
-
-		.ripple {
-			position: absolute;
-			border-radius: 50%;
-			transform: translateX(-50%) translateY(-50%);
-			min-width: 0px;
-			min-height: 0px;
-			pointer-events: none;
-		}
 	}
+}
+
+.ripple {
+	position: absolute;
+	border-radius: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	min-width: 0px;
+	min-height: 0px;
+	pointer-events: none;
 }
