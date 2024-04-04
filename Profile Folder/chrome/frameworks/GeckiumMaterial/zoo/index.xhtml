@@ -8,120 +8,530 @@
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		windowtype="geckiummaterial:zoo"
 		title="Controls Zoo"
-		width="1145"
-		height="710"
+		width="1180"
+		height="730"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
-		<vbox id="window">
-			<hbox id="window-titlebar">
-				<hbox id="window-caption-buttons-container">
-					<hbox id="window-caption-buttons">
-						<button id="window-minimise-button" onclick="window.minimize();" />
-                        <button id="window-close-button" onclick="window.close();" />
+		<hbox id="window" class="accent-color" style="--primary-color: rgb(55,103,212)">
+			<vbox id="navigation-drawer" class="iconic">
+				<vbox class="window-top-bars">
+					<hbox class="window-titlebar"></hbox>
+					<vbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3 id="window-title"/>
+							<spacer />
+							<button />
+						</hbox>
+					</vbox>
+				</vbox>
+				<h4>Controls</h4>
+				<button class="item ripple-enabled icon-smart-button" data-page-container="main" data-page="0" align="center" pack="start" label="Buttons" selected="true" />
+				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="1" align="center" pack="start" label="Inputs" />
+				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="2" align="center" pack="start" label="Cards" />
+				<separator />
+				<h4>Style</h4>
+				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" align="center" pack="start" label="Colors" />
+				<separator />
+				<h4>Extras</h4>
+				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="20" align="center" pack="start" label="Fun" />
+				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="21" align="center" pack="start" label="About" />
+			</vbox>
+			<vbox id="window-content-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-titlebar">
+						<hbox id="window-caption-buttons-container">
+							<hbox id="window-caption-buttons">
+								<button id="window-minimise-button" onclick="window.minimize();" />
+								<button id="window-close-button" onclick="window.close();" />
+							</hbox>
+						</hbox>
 					</hbox>
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3 id="page-title" data-page-container="main"/>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<hbox id="window-content">
+					<div class="pages">
+						<vbox class="pages-container" data-page-container="main">
+							<vbox class="page" data-page="0" selected="true">
+								<hbox class="tabs no-shadow light">
+									<div class="indicator"/>
+									<button class="tab ripple-enabled" label="Normal Buttons" data-page-container="buttons" data-page="0" selected="true" />
+									<button class="tab ripple-enabled" label="Floating Action Buttons" data-page-container="buttons" data-page="1" />
+								</hbox>
+								<vbox class="content-container">
+									<hbox class="content" data-page-container="buttons">
+										<vbox class="tab-page" data-page="0" selected="true">
+											<h4>Raised Desktop</h4>
+											<div>
+												<button class="button ripple-enabled raised desktop" label="Default Raised Desktop" />
+												<button class="button ripple-enabled flat color raised desktop" label="Flat Colorized Raised Desktop" />
+												<button class="button ripple-enabled flat raised desktop" label="Flat Raised Desktop" />
+											</div>
+											<h4>Raised</h4>
+											<div>
+												<button class="button ripple-enabled raised" label="Default Raised" />
+												<button class="button ripple-enabled flat color raised" label="Flat Colorized Raised" />
+												<button class="button ripple-enabled flat raised" label="Flat Raised" />
+											</div>
+											<h4>Flat</h4>
+											<div>
+												<button class="button ripple-enabled flat color" label="Flat Colorized" />
+												<button class="button ripple-enabled flat" label="Flat" />
+											</div>
+											<h4>Disabled</h4>
+											<div>
+												<button class="button ripple-enabled flat" label="Disabled" disabled="true" />
+											</div>
+										</vbox>
+										<vbox class="tab-page" data-page="1">
+											<button class="floating-action-button ripple-enabled icon-add" label="+" />
+										</vbox>
+									</hbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="1">
+								<vbox class="content-container">
+									<vbox class="content">
+										<div style="display: grid; gap: 10px; grid-template-rows: auto 25%;">
+											<h4>Textboxes</h4>
+											<div style="display: flex; flex-direction: column; gap: 10px;">
+												<div class="input-parent size-md">
+													<html:input type="text" class="input" id="example" name="example" required="true"/>
+													<label class="placeholder">Example Input</label>
+													<label for="example" class="helper">Helper message</label>
+												</div>
+												<div class="input-parent input-error size-md">
+													<html:input type="text" class="input" id="example" name="example" required="true"/>
+													<label class="placeholder">Example Input</label>
+													<label for="example" class="helper">Helper message</label>
+												</div>
+											</div>
+											<h4>Checkbox</h4>
+											<div style="display: flex; gap: 20px;">
+												<div class="checkbox-parent">
+													<html:input class="checkbox" type="checkbox" id="checked_check" name="checked_check" checked="true" />
+													<div class="gutter" for="checked_check"></div>
+													<html:label for="checked_check" class="label">Checked</html:label>
+												</div>
+												<div class="checkbox-parent">
+													<html:input class="checkbox" type="checkbox" id="normal_check" name="normal_check" />
+													<div class="gutter" for="normal_check"></div>
+													<html:label for="normal_check" class="label">Normal</html:label>
+												</div>
+												<div class="checkbox-parent" disabled="true">
+													<html:input class="checkbox" type="checkbox" id="disabled_check" name="disabled_check" disabled="true" />
+													<div class="gutter" for="disabled_check"></div>
+													<html:label for="disabled_check" class="label">Disabled</html:label>
+												</div>
+											</div>
+											<h4>Switch</h4>
+											<div style="display: flex; gap: 20px;">
+												<div class="switch-parent">
+													<html:input class="switch" type="checkbox" id="switched_switch" name="switched_switch" checked="true"/>
+													<html:label class="gutter" for="switched_switch"></html:label>
+													<html:label for="switched_switch" class="label">Switched</html:label>
+												</div>
+												<div class="switch-parent">
+													<html:input class="switch" type="checkbox" id="normal_switch" name="normal_switch" />
+													<html:label class="gutter" for="normal_switch"></html:label>
+													<html:label for="normal_switch" class="label">Normal</html:label>
+												</div>
+												<div class="switch-parent" disabled="true">
+													<html:input class="switch" type="checkbox" id="disabled_switch" name="disabled_switch" disabled="true" />
+													<html:label class="gutter" for="disabled_switch"></html:label>
+													<html:label for="disabled_switch" class="label">Disabled</html:label>
+												</div>
+											</div>
+										</div>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="2">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="card">
+											<label>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, dolorem placeat corporis nostrum expedita voluptatum dolor hic mollitia architecto natus iure cum accusamus esse facilis. Odio, in inventore! Pariatur, quisquam?</label>
+											<footer>
+												<button class="button ripple-enabled flat color" label="This is a card button" />
+											</footer>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="10">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox id="current-color" class="card no-shadow accent-color" style="margin-block-end: 24px">
+											<hbox class="color-tag light" style="background: var(--color-tone-500);">
+												<label>Current Color</label>
+												<spacer />
+												<label>500</label>
+											</hbox>
+											<hbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</hbox>
+										</vbox>
+										<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+											<vbox class="card no-shadow accent-color accent-color-red">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Red</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-pink">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Pink</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag light" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-purple">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Purple</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag light" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-deep-purple">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Deep Purple</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag light" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-indigo">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Indigo</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-blue">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Blue</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-light-blue">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Light Blue</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-cyan">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Cyan</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-teal">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Teal</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-green">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Green</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-light-green">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Light Green</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-lime">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Lime</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-yellow">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Yellow</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-amber">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Amber</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-orange">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Orange</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-deep-orange">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Deep Orange</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-brown">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Brown</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag light" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-grey">
+												<vbox class="color-tag" style="background: var(--color-tone-500);">
+													<label>Grey</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+											<vbox class="card no-shadow accent-color accent-color-blue-grey">
+												<vbox class="color-tag light" style="background: var(--color-tone-500);">
+													<label>Blue Grey</label>
+													<spacer />
+													<label>500</label>
+												</vbox>
+												<div class="color-tag" style="background: var(--color-tone-50);">50</div>
+												<div class="color-tag" style="background: var(--color-tone-100);">100</div>
+												<div class="color-tag" style="background: var(--color-tone-200);">200</div>
+												<div class="color-tag" style="background: var(--color-tone-300);">300</div>
+												<div class="color-tag light" style="background: var(--color-tone-400);">400</div>
+												<div class="color-tag light" style="background: var(--color-tone-500);">500</div>
+												<div class="color-tag light" style="background: var(--color-tone-600);">600</div>
+												<div class="color-tag light" style="background: var(--color-tone-700);">700</div>
+												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
+												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
+											</vbox>
+										</div>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="20">
+								<vbox class="content-container">
+									<vbox class="content" style="flex: 1;">
+										<button class="button ripple-enabled flat color" style="flex: 1;" label="Ripple Madness!!!" />
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="21">
+								<vbox class="content-container">
+									<vbox class="content">
+										<label>That is a fine looking about.</label>
+									</vbox>
+								</vbox>
+							</vbox>
+						</vbox>
+					</div>
 				</hbox>
-			</hbox>
-			<hbox id="window-top-bar">
-				<h3 />
-				<spacer />
-				<button id="window-info-button" />
-			</hbox>
-			<hbox id="window-content">
-				<div class="pages">
-					<vbox id="navigation-drawer" class="iconic">
-						<h4>Controls</h4>
-						<button class="item ripple-enabled icon-smart-button" data-page="0" align="center" pack="start" label="Buttons" />
-						<button class="item ripple-enabled icon-edit" data-page="1" align="center" pack="start" label="Inputs" />
-						<separator />
-						<h4>Extras</h4>
-						<button class="item ripple-enabled icon-auto-awesome" data-page="2" align="center" pack="start" label="Fun" />
-						<button class="item ripple-enabled icon-info" data-page="3" align="center" pack="start" label="About" />
-					</vbox>
-					<vbox class="pages-container">
-						<vbox class="page" data-page="0">
-							<h4>Raised Desktop</h4>
-							<hbox>
-								<button class="button ripple-enabled raised desktop" label="Default Raised Desktop" />
-								<button class="button ripple-enabled flat color raised desktop" label="Flat Colorized Raised Desktop" />
-								<button class="button ripple-enabled flat raised desktop" label="Flat Raised Desktop" />
-							</hbox>
-							<h4>Raised</h4>
-							<hbox>
-								<button class="button ripple-enabled raised" label="Default Raised" />
-								<button class="button ripple-enabled flat color raised" label="Flat Colorized Raised" />
-								<button class="button ripple-enabled flat raised" label="Flat Raised" />
-							</hbox>
-							<h4>Flat</h4>
-							<hbox>
-								<button class="button ripple-enabled flat color" label="Flat Colorized" />
-								<button class="button ripple-enabled flat" label="Flat" />
-							</hbox>
-							<h4>Disabled</h4>
-							<hbox>
-								<button class="button ripple-enabled flat" label="Disabled" disabled="true" />
-							</hbox>
-						</vbox>
-						<vbox class="page" data-page="1">
-							<h4>Input</h4>
-							<div style="display: flex; flex-direction: column; gap: 10px;">
-								<div class="input-parent size-md">
-									<html:input type="text" class="input" id="example" name="example" required="true"/>
-									<label class="placeholder">Example Input</label>
-									<label for="example" class="helper">Helper message</label>
-								</div>
-								<div class="input-parent input-error size-md">
-									<html:input type="text" class="input" id="example" name="example" required="true"/>
-									<label class="placeholder">Example Input</label>
-									<label for="example" class="helper">Helper message</label>
-								</div>
-							</div>
-							<h4>Checkbox</h4>
-							<div style="display: flex; gap: 20px;">
-								<div class="checkbox-parent">
-									<html:input class="checkbox" type="checkbox" id="checked_check" name="checked_check" checked="true" />
-									<div class="gutter" for="checked_check"></div>
-									<html:label for="checked_check" class="label">Checked</html:label>
-								</div>
-								<div class="checkbox-parent">
-									<html:input class="checkbox" type="checkbox" id="normal_check" name="normal_check" />
-									<div class="gutter" for="normal_check"></div>
-									<html:label for="normal_check" class="label">Normal</html:label>
-								</div>
-								<div class="checkbox-parent" disabled="true">
-									<html:input class="checkbox" type="checkbox" id="disabled_check" name="disabled_check" disabled="true" />
-									<div class="gutter" for="disabled_check"></div>
-									<html:label for="disabled_check" class="label">Disabled</html:label>
-								</div>
-							</div>
-							<h4>Switch</h4>
-							<div style="display: flex; gap: 20px;">
-								<div class="switch-parent">
-									<html:input class="switch" type="checkbox" id="switched_switch" name="switched_switch" checked="true"/>
-									<html:label class="gutter" for="switched_switch"></html:label>
-									<html:label for="switched_switch" class="label">Switched</html:label>
-								</div>
-								<div class="switch-parent">
-									<html:input class="switch" type="checkbox" id="normal_switch" name="normal_switch" />
-									<html:label class="gutter" for="normal_switch"></html:label>
-									<html:label for="normal_switch" class="label">Normal</html:label>
-								</div>
-								<div class="switch-parent" disabled="true">
-									<html:input class="switch" type="checkbox" id="disabled_switch" name="disabled_switch" disabled="true" />
-									<html:label class="gutter" for="disabled_switch"></html:label>
-									<html:label for="disabled_switch" class="label">Disabled</html:label>
-								</div>
-							</div>
-						</vbox>
-						<vbox class="page" data-page="2">
-							<button class="button ripple-enabled flat color" style="flex: 1;" label="Ripple Madness!!!" />
-						</vbox>
-						<vbox class="page" data-page="3">
-							<label>That is a fine look about.</label>
-						</vbox>
-					</vbox>
-				</div>
-			</hbox>
-		</vbox>
+			</vbox>
+		</hbox>
 	</html:div>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>

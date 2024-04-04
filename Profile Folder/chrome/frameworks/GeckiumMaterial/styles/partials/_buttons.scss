@@ -1,10 +1,11 @@
 button {
-	&.button {
-		all: unset;
+	all: unset;
 
-		display: flex;
-		position: relative;
-		align-items: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	&.button {
 		overflow: hidden;
 		
 		margin-block: 6px;
@@ -30,7 +31,7 @@ button {
 			&.color {
 				&:not([disabled]) {
 					&:active {
-						background: color-mix(in srgb, var(--accent-color) 40%, transparent);
+						background: color-mix(in srgb, var(--primary-color) 40%, transparent);
 					}
 				}	
 			}
@@ -65,7 +66,7 @@ button {
 	
 			&:not(.flat) {
 				padding-inline: 16px;
-				background: var(--accent-color);
+				background: var(--primary-color);
 
 				&:not([disabled]) {
 					.ripple {
@@ -82,16 +83,16 @@ button {
 				color: rgb(33,33,33);
 
 				&.color {
-					color: var(--accent-color);
+					color: var(--primary-color);
 	
 					&:not([disabled]) {
 						&:hover,
 						&:focus {
-							background: color-mix(in srgb, var(--accent-color) 20%, transparent);
+							background: color-mix(in srgb, var(--primary-color) 20%, transparent);
 						}
 
 						.ripple {
-							background: color-mix(in srgb, var(--accent-color) 40%, transparent)
+							background: color-mix(in srgb, var(--primary-color) 40%, transparent)
 						}
 					}
 				}
@@ -119,13 +120,34 @@ button {
 			}
 		}
 	}
-}
 
-.ripple {
-	position: absolute;
-	border-radius: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	min-width: 0px;
-	min-height: 0px;
-	pointer-events: none;
+	&.floating-action-button {
+		margin: 16px;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		justify-content: center;
+		background: var(--primary-color);
+		box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+
+		&::before {
+			content: "";
+			width: 24px;
+			height: 24px;
+			background: white;
+		}
+
+		&.mini {
+			width: 40px;
+			height: 40px;
+		}
+
+		.button-box {
+			display: none;
+		}
+
+		.ripple {
+			background: rgba(255, 255, 255, .3);
+		}
+	}
 }

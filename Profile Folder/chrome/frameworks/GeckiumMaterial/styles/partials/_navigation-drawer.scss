@@ -1,10 +1,76 @@
+#window > #navigation-drawer {
+	padding-block-start: 0px;
+
+	&.card {
+		height: auto;
+		margin: 0;
+	}
+
+	.window-top-bars {
+		margin-block-end: 8px;
+		
+		&::after {
+			content: "";
+			height: 1px;
+			margin-block-start: -1px;
+			background-color: rgb(230,230,230);
+		}
+	}
+
+	+ vbox {
+		overflow: hidden;
+	}
+}
+
 #navigation-drawer {
 	border-right: 1px solid rgb(215,215,215);
 	padding-block-start: 8px;
 	background: white;
+	color: black;
 	width: 256px;
+	
+	&.card {
+		height: fit-content;
+		margin: 24px;
+	}
+
+	&.mini {
+		width: auto;
+
+		.item label,
+		h4 {
+			display: none;
+		}
+
+		&.iconic {
+			.item {
+				&::before {
+					margin-inline-end: 0;
+				}
+			}
+		}
+	}
+
+	&.color {
+		.item {
+			&:not([disabled]) {
+				.ripple {
+					background: color-mix(in srgb, var(--primary-color) 40%, transparent)
+				}
+			}
+		}
+	}
 
 	&.iconic {
+		&.desktop {
+			.item {
+				&::before {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+
 		.item {
 			&::before {
 				content: "";
@@ -12,32 +78,9 @@
 				height: 24px;
 				margin-inline-end: 32px;
 				mask-position: center;
+				mask-size: contain;
 				mask-repeat: no-repeat;
 				background-color: rgba(0,0,0,.54);
-			}
-
-			&.icon-edit {
-				&::before {
-					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/edit.svg");
-				}
-			}
-
-			&.icon-smart-button {
-				&::before {
-					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/smart-button.svg");
-				}
-			}
-
-			&.icon-info {
-				&::before {
-					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info.svg");
-				}
-			}
-
-			&.icon-auto-awesome {
-				&::before {
-					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/auto-awesome.svg");
-				}
 			}
 		}
 	}
@@ -61,11 +104,11 @@
 			}
 
 			&[selected] {
-				background: rgba(153, 153, 153, .2);
-				color: var(--accent-color);
+				background: rgba(153, 153, 153, .1);
+				color: var(--primary-color);
 
 				&::before {
-					background: var(--accent-color);
+					background: var(--primary-color);
 				}
 			}
 		}

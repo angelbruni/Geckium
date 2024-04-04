@@ -98,8 +98,8 @@
         border-radius: 2px;
 
         &:checked {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
+            background: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
         &:checked + .gutter::before {
@@ -195,12 +195,12 @@
         }
 
         &:not([disabled="true"]):checked {
-            background: color-mix(in srgb, var(--accent-color), transparent 80%);
+            background: color-mix(in srgb, var(--primary-color), transparent 80%);
         }
 
         &:not([disabled="true"]):checked + .gutter {
             transform: translateX(calc(100% - 2px));
-            background: var(--accent-color);
+            background: var(--primary-color);
         }
 
         &[disabled="true"] {

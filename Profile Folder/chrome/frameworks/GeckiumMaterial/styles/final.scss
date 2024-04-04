@@ -23,14 +23,12 @@
 }
 
 :root {
-	--accent-color: rgb(51,103,213);
-	
 	--inner-padding: 16px;
-}
 
-:root,
-body {
-	font-size: 10pt;
+	&,
+	body {
+		font-size: 10pt;
+	}
 }
 
 label,
@@ -50,15 +48,25 @@ h4 {
 	font-size: 10pt;
 	height: 48px;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 spacer {
 	flex: 1;
 }
 
+.no-shadow {
+	box-shadow: none !important;
+}
+
+@import "partials/icons";
+@import "partials/colors";
 @import "partials/window";
-@import "partials/button";
-@import "partials/navigation-drawer";
+@import "partials/tabs";
 @import "partials/pages";
 @import "partials/footer";
+@import "partials/buttons";
 @import "partials/input";
+@import "partials/card";
+@import "partials/navigation-drawer";
+@import "partials/ripple";

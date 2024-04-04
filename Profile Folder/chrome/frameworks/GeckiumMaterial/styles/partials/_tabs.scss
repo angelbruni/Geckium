@@ -1,0 +1,44 @@
+.tabs {
+	z-index: 1;
+	position: relative;
+
+	height: 48px;
+	background: var(--primary-color);
+	-moz-window-dragging: drag;
+	
+	font-weight: 500;
+	text-transform: uppercase;
+
+	box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+
+	.indicator {
+		position: absolute;
+		bottom: 0;
+		z-index: 1;
+		height: 2px;
+		background: white;
+		transition-property: left, width;
+		transition-duration: 200ms;
+		transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+	}
+}
+
+.tab {
+	overflow: hidden;
+	padding-inline: 12px;
+	-moz-window-dragging: no-drag;
+
+	&:not([selected]) {
+		label {
+			opacity: .6;
+		}
+	}
+
+	.ripple {
+		background: rgba(255, 255, 255, .3);
+	}
+}
+
+.tab-page {
+	min-width: 100%;
+}

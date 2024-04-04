@@ -1,22 +1,41 @@
 .pages {
+	position: relative;
+	flex: 1;
+	
 	> .pages-container {
 		position: relative;
+		flex: 1;
+
 		> .page {
-			display: flex;
-			opacity: 0;
-			transform: translateY(40px);
-			visibility: hidden;
 			position: absolute;
-			transition: all 100ms cubic-bezier(0.4, 0.0, 1, 1) !important;
-			inset: 0;
-			flex: 1;
-			padding: var(--inner-padding);
+			display: flex;
+			height: 100%;
+			width: 100%;
+			visibility: hidden;
+			overflow: hidden;
+			
+			.content-container {
+				flex: 1;
+				position: relative;
+				overflow: hidden auto;
+			}
 			
 			&[selected="true"] {
-				transform: none;
 				visibility: visible;
-				transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-				opacity: 1;
+				
+				.content {
+					transform: none;
+					transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+					opacity: 1;
+				}
+			}
+
+			.content {
+				opacity: 0;
+				transform: translateY(40px);
+				
+				transition: all 100ms cubic-bezier(0.4, 0.0, 1, 1) !important;
+				inset: 0;
 			}
 		}
 	}

@@ -1,5 +1,5 @@
-function topBarText() {
-	document.querySelector("#window-top-bar > h3").textContent = docElm.getAttribute("title");
+function windowTitle() {
+	document.getElementById("window-title").textContent = docElm.getAttribute("title");
 }
 
-document.addEventListener("DOMContentLoaded", topBarText);
+document.addEventListener("DOMContentLoaded", windowTitle);
