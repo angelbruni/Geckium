@@ -7,7 +7,7 @@
 			transform: translateY(40px);
 			visibility: hidden;
 			position: absolute;
-			transition: all 150ms linear;
+			transition: all 100ms cubic-bezier(0.4, 0.0, 1, 1) !important;
 			inset: 0;
 			flex: 1;
 			padding: var(--inner-padding);
@@ -15,6 +15,7 @@
 			&[selected="true"] {
 				transform: none;
 				visibility: visible;
+				transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
 				opacity: 1;
 			}
 		}
