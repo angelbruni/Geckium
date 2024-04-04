@@ -39,7 +39,8 @@
             border-width: 2px;
         }
 
-        &:focus + .placeholder, &:valid + .placeholder {
+        &:focus + .placeholder,
+		&:valid + .placeholder {
             font-size: 12px;
             background: rgb(245, 245, 245);
             top: -8px;
