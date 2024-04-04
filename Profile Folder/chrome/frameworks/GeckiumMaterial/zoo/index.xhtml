@@ -63,7 +63,18 @@
 						</vbox>
 						<vbox class="page" data-page="1">
 							<h4>Input</h4>
-							
+							<div style="display: grid; gap: 10px; grid-template-rows: auto 25%;">
+								<div class="input-parent size-md">
+									<html:input type="text" class="input" id="example" name="example" required="true"/>
+									<label class="placeholder">Example Input</label>
+									<label for="example" class="helper">Helper message</label>
+								</div>
+								<div class="input-parent input-error size-md">
+									<html:input type="text" class="input" id="example" name="example" required="true"/>
+									<label class="placeholder">Example Input</label>
+									<label for="example" class="helper">Helper message</label>
+								</div>
+							</div>
 						</vbox>
 						<vbox class="page" data-page="2">
 							<button class="button ripple-enabled flat color" style="flex: 1;" label="Ripple Madness!!!" />

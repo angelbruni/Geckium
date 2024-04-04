@@ -1,12 +1,21 @@
 .pages {
 	> .pages-container {
+		position: relative;
 		> .page {
-			display: none;
+			display: flex;
+			opacity: 0;
+			transform: translateY(40px);
+			visibility: hidden;
+			position: absolute;
+			transition: all 150ms linear;
+			inset: 0;
 			flex: 1;
 			padding: var(--inner-padding);
 			
 			&[selected="true"] {
-				display: flex;
+				transform: none;
+				visibility: visible;
+				opacity: 1;
 			}
 		}
 	}
