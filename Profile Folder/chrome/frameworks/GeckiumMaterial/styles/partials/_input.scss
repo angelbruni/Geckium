@@ -73,3 +73,154 @@
         cursor: textN;
     }
 }
+
+.checkbox-parent {
+    --checkbox-border-color: rgb(0, 0, 0, 22%);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &[disabled="true"] {
+        opacity: 0.5;
+    }
+
+    .checkbox {
+        position: relative;
+        z-index: 2;
+        all: unset;
+        appearance: none;
+        height: 14px;
+        width: 14px;
+        cursor: pointer;
+        border: 2px solid var(--checkbox-border-color);
+        border-radius: 2px;
+
+        &:checked {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        &:checked + .gutter::before {
+            content: "";
+            height: 14px;
+            width: 14px;
+            scale: 0.6;
+            mask-image: url(chrome://userchrome/content/frameworks/GeckiumMaterial/icons/check.svg);
+            mask-size: 12px 12px;
+            mask-position: center;
+            background-color: white;
+            z-index: 2;
+            pointer-events: none;
+        }
+        &:checked + .gutter {
+            scale: 2.4;
+        }
+        
+        &:not([disabled="true"]):hover + .gutter {
+            background: rgb(0, 0, 0, 5%);
+            scale: 2.4;
+        }
+        &:not([disabled="true"]):active + .gutter {
+            background: rgb(0, 0, 0, 12%);
+            scale: 2.4;
+        }
+
+        &[disabled="true"] {
+            cursor: default;
+        }
+    }
+        
+    .gutter {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        height: 14px;
+        width: 14px;
+        scale: 0;
+        left: 2px;
+        background: transparent;
+        border-radius: 9999px;
+        transition: all 150ms ease-in;
+    }
+
+    .label {
+        font-size: 16px;
+    }
+}
+
+.switch-parent {
+    --switch-inactive-background: rgb(0, 0, 0, 20%);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &[disabled="true"] {
+        opacity: 0.5;
+    }
+
+    .switch {
+        all: unset;
+        appearance: none;
+        height: 14px;
+        width: 36px;
+        background: var(--switch-inactive-background);
+        border-radius: 9999px;
+        transition: all 150ms ease-in;
+        cursor: pointer;
+
+        & + .gutter {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            top: -1px;
+            box-shadow: 0 -1px 0 0 rgb(0, 0, 0, 6%), 0 2px 2px rgb(0, 0, 0, 32%);
+            border-radius: 9999px;
+            position: absolute;
+            left: 0;
+            background: white;
+            transition: all 150ms ease-in;
+            pointer-events: none;
+        }
+
+        &:not([disabled="true"]):hover + .gutter::before {
+            background: rgb(0, 0, 0, 5%);
+            scale: 1.7;
+        }
+        &:not([disabled="true"]):active + .gutter::before {
+            background: rgb(0, 0, 0, 12%);
+        }
+
+        &:not([disabled="true"]):checked {
+            background: color-mix(in srgb, var(--accent-color), transparent 80%);
+        }
+
+        &:not([disabled="true"]):checked + .gutter {
+            transform: translateX(calc(100% - 2px));
+            background: var(--accent-color);
+        }
+
+        &[disabled="true"] {
+            cursor: default;
+        }
+    }
+
+    .gutter::before {
+        content: "";
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        top: 0.5px;
+        background: transparent;
+        border-radius: 9999px;
+        transition: all 150ms ease-in-out;
+        scale: 0;
+    }
+
+    .label {
+        font-size: 16px;
+    }
+}

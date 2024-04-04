@@ -63,7 +63,7 @@
 						</vbox>
 						<vbox class="page" data-page="1">
 							<h4>Input</h4>
-							<div style="display: grid; gap: 10px; grid-template-rows: auto 25%;">
+							<div style="display: flex; flex-direction: column; gap: 10px;">
 								<div class="input-parent size-md">
 									<html:input type="text" class="input" id="example" name="example" required="true"/>
 									<label class="placeholder">Example Input</label>
@@ -73,6 +73,42 @@
 									<html:input type="text" class="input" id="example" name="example" required="true"/>
 									<label class="placeholder">Example Input</label>
 									<label for="example" class="helper">Helper message</label>
+								</div>
+							</div>
+							<h4>Checkbox</h4>
+							<div style="display: flex; gap: 20px;">
+								<div class="checkbox-parent">
+									<html:input class="checkbox" type="checkbox" id="checked_check" name="checked_check" checked="true" />
+									<div class="gutter" for="checked_check"></div>
+									<html:label for="checked_check" class="label">Checked</html:label>
+								</div>
+								<div class="checkbox-parent">
+									<html:input class="checkbox" type="checkbox" id="normal_check" name="normal_check" />
+									<div class="gutter" for="normal_check"></div>
+									<html:label for="normal_check" class="label">Normal</html:label>
+								</div>
+								<div class="checkbox-parent" disabled="true">
+									<html:input class="checkbox" type="checkbox" id="disabled_check" name="disabled_check" disabled="true" />
+									<div class="gutter" for="disabled_check"></div>
+									<html:label for="disabled_check" class="label">Disabled</html:label>
+								</div>
+							</div>
+							<h4>Switch</h4>
+							<div style="display: flex; gap: 20px;">
+								<div class="switch-parent">
+									<html:input class="switch" type="checkbox" id="switched_switch" name="switched_switch" checked="true"/>
+									<html:label class="gutter" for="switched_switch"></html:label>
+									<html:label for="switched_switch" class="label">Switched</html:label>
+								</div>
+								<div class="switch-parent">
+									<html:input class="switch" type="checkbox" id="normal_switch" name="normal_switch" />
+									<html:label class="gutter" for="normal_switch"></html:label>
+									<html:label for="normal_switch" class="label">Normal</html:label>
+								</div>
+								<div class="switch-parent" disabled="true">
+									<html:input class="switch" type="checkbox" id="disabled_switch" name="disabled_switch" disabled="true" />
+									<html:label class="gutter" for="disabled_switch"></html:label>
+									<html:label for="disabled_switch" class="label">Disabled</html:label>
 								</div>
 							</div>
 						</vbox>
