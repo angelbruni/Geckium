@@ -24,10 +24,11 @@ function rippleEffect() {
                 maxSize = rectWidth * 2.1;
 
             const animationStart = performance.now();
+			const duration = 500;
 
             function animate(currentTime) {
                 const elapsedTime = currentTime - animationStart;
-                const progress = Math.min(elapsedTime / (maxSize / .8) , 1);
+                const progress = Math.min(elapsedTime / duration, 1);
 
                 const newSize = progress * maxSize;
                 ripple.style.width = newSize + "px";
