@@ -25,9 +25,10 @@
 					</vbox>
 				</vbox>
 				<h4>Controls</h4>
-				<button class="item ripple-enabled icon-smart-button" data-page-container="main" data-page="0" align="center" pack="start" label="Buttons" selected="true" />
+				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="0" align="center" pack="start" label="Buttons" selected="true" />
 				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="1" align="center" pack="start" label="Inputs" />
 				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="2" align="center" pack="start" label="Cards" />
+				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="3" align="center" pack="start" label="Dialogs" />
 				<separator />
 				<h4>Style</h4>
 				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" align="center" pack="start" label="Colors" />
@@ -513,6 +514,32 @@
 									</vbox>
 								</vbox>
 							</vbox>
+							<vbox class="page" data-page="3">
+								<vbox class="content-container">
+									<vbox class="content" style="flex: 1">
+										<h4>Dialog</h4>
+										<div style="display: flex;">
+											<button class="button ripple-enabled raised" label="Open Example Dialog" data-toggle-modal="example_modal"/>
+											<div class="modal" data-modal="example_modal">
+												<div class="wrapper">
+													<div class="card">
+														<vbox class="body">
+															<div class="header">Dialog header</div>
+															<div class="description">
+																This is a fine lookin' dialog body text, isn't it betty...?
+															</div>
+															<div class="footer">
+																<button class="button ripple-enabled flat color" label="Cancel" data-toggle-modal="example_modal"/>
+																<button class="button ripple-enabled flat color" label="OK" data-toggle-modal="example_modal" />
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
+										</div>
+									</vbox>
+								</vbox>
+							</vbox>
 							<vbox class="page" data-page="20">
 								<vbox class="content-container">
 									<vbox class="content" style="flex: 1;">
@@ -537,4 +564,5 @@
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
 </window>

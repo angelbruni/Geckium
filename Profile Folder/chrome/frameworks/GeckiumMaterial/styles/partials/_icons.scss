@@ -4,6 +4,18 @@
 	}
 }
 
+.icon-chat {
+	&::before {
+		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/chat.svg");
+	}
+}
+
+.icon-click {
+	&::before {
+		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/click.svg");
+	}
+}
+
 .icon-smart-button {
 	&::before {
 		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/smart-button.svg");
