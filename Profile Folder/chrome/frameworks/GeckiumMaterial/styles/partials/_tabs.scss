@@ -4,7 +4,6 @@
 
 	height: 48px;
 	background: var(--primary-color);
-	-moz-window-dragging: drag;
 	
 	font-weight: 500;
 	text-transform: uppercase;
@@ -26,7 +25,6 @@
 .tab {
 	overflow: hidden;
 	padding-inline: 12px;
-	-moz-window-dragging: no-drag;
 
 	&:not([selected]) {
 		label {
