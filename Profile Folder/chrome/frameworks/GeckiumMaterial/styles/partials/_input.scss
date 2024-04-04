@@ -73,3 +73,152 @@
         
     }
 }
+
+.checkbox-parent {
+    
+
+    
+    
+    
+    
+
+    &[disabled="true"] {
+        
+    }
+
+    .checkbox {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        &:checked {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        &:checked + .gutter::before {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        &:checked + .gutter {
+            
+        }
+        
+        &:not([disabled="true"]):hover + .gutter {
+            
+            
+        }
+        &:not([disabled="true"]):active + .gutter {
+            
+            
+        }
+
+        &[disabled="true"] {
+            
+        }
+    }
+        
+    .gutter {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    .label {
+        
+    }
+}
+.switch-parent {
+    
+
+    
+    
+    
+    
+
+    &[disabled="true"] {
+        
+    }
+
+    .switch {
+        
+        
+        
+        
+        
+        
+        
+        
+
+        & + .gutter {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        &:not([disabled="true"]):hover + .gutter::before {
+            
+            
+        }
+        &:not([disabled="true"]):active + .gutter::before {
+            
+        }
+
+        &:not([disabled="true"]):checked {
+            background: color-mix(in srgb, var(--primary-color), transparent 80%);
+        }
+
+        &:not([disabled="true"]):checked + .gutter {
+            
+            background: var(--primary-color);
+        }
+
+        &[disabled="true"] {
+            
+        }
+    }
+
+    .gutter::before {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    .label {
+        
+    }
+}

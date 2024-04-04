@@ -4,23 +4,31 @@ function rippleEffect() {
             const ripple = document.createElement("div");
             ripple.classList.add("ripple");
 
-            const rect = rippledElm.getBoundingClientRect();
-            const posX = e.clientX;
-            const posY = e.clientY;
+			const rect = rippledElm.getBoundingClientRect();
+			let maxSize;
+            const rectWidth = rect.width;
+            const rectHeight = rect.height;
 
-            ripple.style.left = (posX - rect.x) + "px";
-            ripple.style.top = (posY - rect.y) + "px";
+			let posX;
+			let posY;
+            
+			/*if (rippledElm.classList.contains("floating-action-button")) {
+				posX = rectWidth / 2;
+				posY = rectHeight / 2;
+			} else {*/
+				posX = e.clientX - rect.x;
+				posY = e.clientY - rect.y;
+			//}
+
+            ripple.style.left = posX + "px";
+            ripple.style.top = posY + "px";
             ripple.style.opacity = 1;
 
             rippledElm.appendChild(ripple);
 
-            let maxSize;
-            const rectWidth = rect.width;
-            const rectHeight = rect.height;
-
             if (rectWidth < rectHeight)
                 maxSize = rectHeight * 2.1;
-            else if (rectHeight < rectWidth)
+            else
                 maxSize = rectWidth * 2.1;
 
             const animationStart = performance.now();

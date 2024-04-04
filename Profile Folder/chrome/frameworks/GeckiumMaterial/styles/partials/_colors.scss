@@ -1,0 +1,140 @@
+:root {
+	--red:			#F44336;
+	--pink:			#E91E63;
+	--purple:		#9C27B0;
+	--deep-purple:	#673AB7;
+	--indigo:		#3F51B5;
+	--blue:			#2196F3;
+	--light-blue:	#03A9F4;
+	--cyan:			#00BCD4;
+	--teal:			#009688;
+	--green:		#4CAF50;
+	--light-green:	#8BC34A;
+	--lime:			#CDDC39;
+	--yellow:		#FFEB3B;
+	--amber:		#FFC107;
+	--orange:		#FF9800;
+	--deep-orange:	#FF5722;
+	--brown:		#795548;
+	--grey:			#9E9E9E;
+	--blue-grey:	#607D8B;	
+}
+
+.accent-color {
+	--color-tone-50:	color-mix(in srgb, var(--color-tone-500), #ffffff 83.5%);
+	--color-tone-100:	color-mix(in srgb, var(--color-tone-500), #ffffff 66.8%);
+	--color-tone-200:	color-mix(in srgb, var(--color-tone-500), #ffffff 50.1%);
+	--color-tone-300:	color-mix(in srgb, var(--color-tone-500), #ffffff 33.4%);
+	--color-tone-400:	color-mix(in srgb, var(--color-tone-500), #ffffff 16.7%);
+	--color-tone-500:	var(--primary-color);
+	--color-tone-600:	color-mix(in srgb, var(--color-tone-500), #000000 5%);
+	--color-tone-700:	color-mix(in srgb, var(--color-tone-500), #000000 10%);
+	--color-tone-800:	color-mix(in srgb, var(--color-tone-500), #000000 15%);
+	--color-tone-900:	color-mix(in srgb, var(--color-tone-500), #000000 20%);
+
+	.light {
+		color: white;
+	}
+
+	&.accent-color-red {
+		--primary-color: var(--red);
+	}
+
+	&.accent-color-pink {
+		--primary-color: var(--pink);
+	}
+
+	&.accent-color-purple {
+		--primary-color: var(--purple);
+	}
+
+	&.accent-color-deep-purple {
+		--primary-color: var(--deep-purple);
+	}
+
+	&.accent-color-indigo {
+		--primary-color: var(--indigo);
+	}
+
+	&.accent-color-blue {
+		--primary-color: var(--blue);
+	}
+
+	&.accent-color-light-blue {
+		--primary-color: var(--light-blue);
+	}
+
+	&.accent-color-cyan {
+		--primary-color: var(--cyan);
+	}
+
+	&.accent-color-teal {
+		--primary-color: var(--teal);
+	}
+
+	&.accent-color-green {
+		--primary-color: var(--green);
+	}
+
+	&.accent-color-light-green {
+		--primary-color: var(--light-green);
+	}
+
+	&.accent-color-lime {
+		--primary-color: var(--lime);
+	}
+
+	&.accent-color-yellow {
+		--primary-color: var(--yellow);
+	}
+
+	&.accent-color-amber {
+		--primary-color: var(--amber);
+	}
+
+	&.accent-color-orange {
+		--primary-color: var(--orange);
+	}
+
+	&.accent-color-deep-orange {
+		--primary-color: var(--deep-orange);
+	}
+
+	&.accent-color-brown {
+		--primary-color: var(--brown);
+	}
+
+	&.accent-color-grey {
+		--primary-color: var(--grey);
+	}
+
+	&.accent-color-blue-grey {
+		--primary-color: var(--blue-grey);
+	}
+}
+
+
+
+#current-color {
+	.color-tag {
+		flex: 1;
+
+		&:first-child {
+			height: auto;
+		}
+	}
+}
+
+.color-tag {
+	height: 45px;
+	padding: 10px 15px 11px;
+	font-weight: 500;
+
+	&:first-child {
+		height: 122px;
+	}
+	
+	&:not(vbox) {
+		align-items: center;
+	}
+}

@@ -1,20 +1,42 @@
 .pages {
+	position: relative;
+	flex: 1;
+	
 	> .pages-container {
+
+		flex: 1;
+
 		> .page {
+			position: absolute;
 			display: none;
+			height: 100%;
+			width: 100%;
 
+			overflow: hidden;
 
-
-
-
-
-			flex: 1;
-			padding: var(--inner-padding);
+			.content-container {
+				flex: 1;
+				position: relative;
+				overflow: hidden auto;
+			}
 			
 			&[selected="true"] {
 				display: flex;
-
 				
+				
+				.content {
+					transform: none;
+					transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+					opacity: 1;
+				}
+			}
+
+			.content {
+				opacity: 0;
+				transform: translateY(40px);
+
+				transition: all 100ms cubic-bezier(0.4, 0.0, 1, 1) !important;
+				inset: 0;
 			}
 		}
 	}
