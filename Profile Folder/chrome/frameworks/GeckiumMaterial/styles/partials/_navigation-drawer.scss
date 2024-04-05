@@ -30,6 +30,17 @@
 	background: white;
 	color: black;
 	width: 256px;
+
+	&:not(.rail) {
+		&.item-radius {
+			.item {
+				height: 40px;
+				border-radius: 4px;
+				margin-inline: 8px;
+				margin-block: 4px;
+			}
+		}	
+	}
 	
 	&.card {
 		height: fit-content;
@@ -39,16 +50,22 @@
 	&.color {
 		.item {
 			&:not([disabled]) {
-				&:hover {
-					background: color-mix(in srgb, var(--primary-color) 20%, transparent);
-				}
-
 				&[selected] {
 					background: color-mix(in srgb, var(--primary-color) 10%, transparent);
 				}
 
 				.ripple {
 					background: color-mix(in srgb, var(--primary-color) 40%, transparent)
+				}
+			}
+		}
+
+		&:not(.item-radius) {
+			.item {
+				&:not([disabled]) {
+					&:hover {
+						background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+					}
 				}
 			}
 		}
