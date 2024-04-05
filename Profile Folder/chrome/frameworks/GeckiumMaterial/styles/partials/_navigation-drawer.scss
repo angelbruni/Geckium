@@ -134,3 +134,22 @@
 		margin-block: 8px;
 	}
 }
+
+#navigation-drawer {
+	&.rail {
+		width: auto;
+
+		.item label,
+		h4 {
+			display: none;
+		}
+
+		&.iconic {
+			.item {
+				&::before {
+					margin-inline-end: 0;
+				}
+			}
+		}
+	}
+}

@@ -3,6 +3,17 @@
 	height: 710px;
 }
 
+@media not (-moz-platform: windows) {
+	#window {
+		
+		
+	}
+	#window-container {
+		
+		
+	}
+}
+
 .content {
 	&:not([data-page-container]) {
 		padding: var(--inner-padding);

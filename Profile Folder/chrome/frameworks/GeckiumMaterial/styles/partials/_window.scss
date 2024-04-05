@@ -12,6 +12,12 @@ window {
 	font-family: "Roboto", sans-serif !important;
 }
 
+@media (-moz-platform: macos) {
+	.hide-mac {
+		
+	}
+}
+
 #window {
 	overflow: hidden;
 	background: transparent;
@@ -25,19 +31,113 @@ window {
 }
 
 .window-titlebar {
+	--caption-button-color: white;
+
 	z-index: 2;
 	height: 32px;
 	background-color: var(--color-tone-700);
 	justify-content: end;
 	-moz-window-dragging: drag;
+
+	@media (-moz-platform: macos) {
+		justify-content: start;
+	}
+	
+	.caption-button {
+		&.close, &.minimize {
+			&::before, &::after {
+				
+			}
+		}
+		&.maximize, &.restore {
+			&::before, &::after {
+				
+			}
+		}
+	}
 }
 
 #window-caption-buttons-container {
-	button {
+	.caption-button {
 		all: unset;
+
+		
 
 		height: 24px;
 		width: 24px;
+		
+		
+
+		&:hover {
+			
+		}
+		
+		&.close {
+			&::before, &::after {
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			&::before {
+				
+			}
+			&::after {
+				
+			}
+		}
+		&.restore {
+			&::before {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			&::after {
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
+		&.maximize {
+			&::before {
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
+		&.minimize {
+			&::before {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
 	}
 }
 
@@ -65,6 +165,8 @@ window {
 
 #navigation-drawer {
 	.window-titlebar {
+		--caption-button-color: rgb(102, 102, 102) !important;
+
 		background: rgb(0,0,0,.1);
 	}
 
@@ -87,4 +189,13 @@ window {
 	flex: 1;
 	background: rgb(245,245,245);
 	color: black;
+}
+
+#window-caption-buttons-container {
+	button {
+		all: unset;
+
+		height: 24px;
+		width: 24px;
+	}
 }
