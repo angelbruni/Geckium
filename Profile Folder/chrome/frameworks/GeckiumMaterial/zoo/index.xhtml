@@ -13,7 +13,7 @@
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
 		<hbox id="window" class="accent-color" style="--primary-color: rgb(55,103,212)">
-			<vbox id="navigation-drawer" class="iconic">
+			<vbox id="navigation-drawer" class="selected iconic">
 				<vbox class="window-top-bars">
 					<hbox class="window-titlebar">
 						<hbox id="window-caption-buttons-container" class="show-mac">
@@ -33,20 +33,20 @@
 						</hbox>
 					</vbox>
 				</vbox>
-				<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" align="center" pack="start" label="Welcome" selected="true" />
+				<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" align="auto" pack="auto" label="Welcome" selected="true" />
 				<separator />
 				<h4>Controls</h4>
-				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" align="center" pack="start" label="Buttons" />
-				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="11" align="center" pack="start" label="Inputs" />
-				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="12" align="center" pack="start" label="Cards" />
-				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="13" align="center" pack="start" label="Dialogs" />
+				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" align="auto" pack="auto" label="Buttons" />
+				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="11" align="auto" pack="auto" label="Inputs" />
+				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="12" align="auto" pack="auto" label="Cards" />
+				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="13" align="auto" pack="auto" label="Dialogs" />
 				<separator />
 				<h4>Style</h4>
-				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" align="center" pack="start" label="Colors" />
+				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" align="auto" pack="auto" label="Colors" />
 				<separator />
 				<h4>Extras</h4>
-				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" align="center" pack="start" label="Fun" />
-				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" align="center" pack="start" label="About" />
+				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" align="auto" pack="auto" label="Fun" />
+				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" align="auto" pack="auto" label="About" />
 			</vbox>
 			<vbox id="window-content-container">
 				<vbox class="window-top-bars light">
@@ -186,7 +186,7 @@
 							</vbox>
 							<vbox class="page" data-page="13">
 								<vbox class="content-container">
-									<vbox class="content" style="flex: 1">
+									<vbox class="content">
 										<h4>Dialog</h4>
 										<div style="display: flex;">
 											<button class="button ripple-enabled raised" label="Open Example Dialog" data-toggle-modal="example_modal"/>
