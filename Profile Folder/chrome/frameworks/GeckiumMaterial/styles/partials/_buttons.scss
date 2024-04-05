@@ -27,7 +27,7 @@ button {
 			}
 		}
 
-		&.flat {
+		&.text {
 			&.color {
 				&:not([disabled]) {
 					&:active {
@@ -64,7 +64,7 @@ button {
 				}
 			}
 	
-			&:not(.flat) {
+			&:not(.text) {
 				padding-inline: 16px;
 				background: var(--primary-color);
 
@@ -76,8 +76,9 @@ button {
 	
 				color: white;
 			}
-			&.flat {
-				padding-inline: 8px;
+
+			&.text,
+			&.outlined {
 				background: transparent;
 	
 				color: rgb(33,33,33);
@@ -107,6 +108,17 @@ button {
 						background: rgba(153, 153, 153, .4);
 					}
 				}
+			}
+
+			&.text {
+				padding-inline: 8px;
+			}
+
+			&.outlined {
+				border-width: 1px;
+				border-style: solid;
+				border-color: rgba(0,0,0,.15);
+				border-radius: 4px;
 			}
 		}
 

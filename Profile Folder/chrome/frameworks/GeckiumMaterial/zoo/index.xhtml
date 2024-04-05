@@ -13,7 +13,7 @@
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
 		<hbox id="window" class="accent-color" style="--primary-color: rgb(55,103,212)">
-			<vbox id="navigation-drawer" class="color iconic">
+			<vbox id="navigation-drawer" class="color iconic item-radius">
 				<vbox class="window-top-bars">
 					<hbox class="window-titlebar">
 						<hbox id="window-caption-buttons-container" class="show-mac">
@@ -33,20 +33,20 @@
 						</hbox>
 					</vbox>
 				</vbox>
-				<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" align="auto" pack="auto" label="Welcome" selected="true" />
+				<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
 				<separator />
 				<h4>Controls</h4>
-				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" align="auto" pack="auto" label="Buttons" />
-				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="11" align="auto" pack="auto" label="Inputs" />
-				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="12" align="auto" pack="auto" label="Cards" />
-				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="13" align="auto" pack="auto" label="Dialogs" />
+				<html:button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" label="Buttons" />
+				<html:button class="item ripple-enabled icon-edit" data-page-container="main" data-page="11" label="Inputs" />
+				<html:button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="12" label="Cards" />
+				<html:button class="item ripple-enabled icon-chat" data-page-container="main" data-page="13" label="Dialogs" />
 				<separator />
 				<h4>Style</h4>
-				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" align="auto" pack="auto" label="Colors" />
+				<html:button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" label="Colors" />
 				<separator />
 				<h4>Extras</h4>
-				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" align="auto" pack="auto" label="Fun" />
-				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" align="auto" pack="auto" label="About" />
+				<html:button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" label="Fun" />
+				<html:button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" label="About" />
 			</vbox>
 			<vbox id="window-content-container">
 				<vbox class="window-top-bars light">
@@ -79,7 +79,7 @@
 								</vbox>
 							</vbox>
 							<vbox class="page" data-page="10">
-								<hbox class="tabs no-shadow light">
+								<hbox class="tabs light">
 									<div class="indicator"/>
 									<button class="tab ripple-enabled" label="Normal Buttons" data-page-container="buttons" data-page="0" selected="true" />
 									<button class="tab ripple-enabled" label="Floating Action Buttons" data-page-container="buttons" data-page="1" />
@@ -90,23 +90,28 @@
 											<h4>Raised Desktop</h4>
 											<div>
 												<button class="button ripple-enabled raised desktop" label="Default Raised Desktop" />
-												<button class="button ripple-enabled flat color raised desktop" label="Flat Colorized Raised Desktop" />
-												<button class="button ripple-enabled flat raised desktop" label="Flat Raised Desktop" />
+												<button class="button ripple-enabled text color raised desktop" label="Text Colorized Raised Desktop" />
+												<button class="button ripple-enabled text raised desktop" label="Text Raised Desktop" />
 											</div>
 											<h4>Raised</h4>
 											<div>
 												<button class="button ripple-enabled raised" label="Default Raised" />
-												<button class="button ripple-enabled flat color raised" label="Flat Colorized Raised" />
-												<button class="button ripple-enabled flat raised" label="Flat Raised" />
+												<button class="button ripple-enabled text color raised" label="Text Colorized Raised" />
+												<button class="button ripple-enabled text raised" label="Text Raised" />
 											</div>
-											<h4>Flat</h4>
+											<h4>Outlined</h4>
 											<div>
-												<button class="button ripple-enabled flat color" label="Flat Colorized" />
-												<button class="button ripple-enabled flat" label="Flat" />
+												<button class="button ripple-enabled outlined color" label="Outlined Colorized" />
+												<button class="button ripple-enabled outlined" label="Outlined" />
+											</div>
+											<h4>Text</h4>
+											<div>
+												<button class="button ripple-enabled text color" label="Text Colorized" />
+												<button class="button ripple-enabled text" label="Text" />
 											</div>
 											<h4>Disabled</h4>
 											<div>
-												<button class="button ripple-enabled flat" label="Disabled" disabled="true" />
+												<button class="button ripple-enabled text" label="Disabled" disabled="true" />
 											</div>
 										</vbox>
 										<vbox class="tab-page" data-page="1">
