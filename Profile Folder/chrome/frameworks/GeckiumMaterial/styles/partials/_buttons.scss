@@ -135,23 +135,48 @@ button {
 
 	&.floating-action-button {
 		margin: 16px;
-		width: 56px;
-		height: 56px;
+		padding: 16px;
 		border-radius: 50%;
 		justify-content: center;
 		background: var(--primary-color);
 		box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+		color: white;
+		text-transform: uppercase;
+		font-weight: 500;
+		box-sizing: border-box;
+		overflow: hidden;
 
-		&::before {
-			content: "";
-			width: 24px;
-			height: 24px;
-			background: white;
+		&.leading-icon {
+			&::before {
+				content: "";
+				width: 24px;
+				height: 24px;
+				background: white;
+			}
+		}
+
+		&:not(.mini) {
+			width: 56px;
+			height: 56px;
+
+			&.extended {
+				border-radius: 28px;
+				width: fit-content;
+
+				&::before {
+					margin-inline-end: 16px;
+				}
+
+				&::after {
+					content: attr(label);
+				}
+			}
 		}
 
 		&.mini {
 			width: 40px;
 			height: 40px;
+			padding: 8px;
 		}
 
 		.button-box {
