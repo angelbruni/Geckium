@@ -59,6 +59,19 @@ spacer {
 	box-shadow: none !important;
 }
 
+.show-mac {
+	display: none;
+}
+
+@media (-moz-platform: macos) {
+	.show-mac {
+		display: flex;
+	}
+	.hide-mac {
+		display: none;
+	}
+}
+
 @import "partials/icons";
 @import "partials/colors";
 @import "partials/window";

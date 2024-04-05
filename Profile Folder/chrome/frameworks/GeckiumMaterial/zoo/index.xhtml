@@ -15,8 +15,8 @@
 		<hbox id="window" class="accent-color" style="--primary-color: rgb(55,103,212)">
 			<vbox id="navigation-drawer" class="iconic">
 				<vbox class="window-top-bars">
-					<hbox class="window-titlebar show-mac">
-						<hbox id="window-caption-buttons-container">
+					<hbox class="window-titlebar">
+						<hbox id="window-caption-buttons-container" class="show-mac">
 							<hbox id="window-caption-buttons">
 								<button class="caption-button close" id="window-close-button" onclick="window.close();" />
 								<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
@@ -33,18 +33,20 @@
 						</hbox>
 					</vbox>
 				</vbox>
+				<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" align="center" pack="start" label="Welcome" selected="true" />
+				<separator />
 				<h4>Controls</h4>
-				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="0" align="center" pack="start" label="Buttons" selected="true" />
-				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="1" align="center" pack="start" label="Inputs" />
-				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="2" align="center" pack="start" label="Cards" />
-				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="3" align="center" pack="start" label="Dialogs" />
+				<button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" align="center" pack="start" label="Buttons" />
+				<button class="item ripple-enabled icon-edit" data-page-container="main" data-page="11" align="center" pack="start" label="Inputs" />
+				<button class="item ripple-enabled icon-dashboard" data-page-container="main" data-page="12" align="center" pack="start" label="Cards" />
+				<button class="item ripple-enabled icon-chat" data-page-container="main" data-page="13" align="center" pack="start" label="Dialogs" />
 				<separator />
 				<h4>Style</h4>
-				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" align="center" pack="start" label="Colors" />
+				<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" align="center" pack="start" label="Colors" />
 				<separator />
 				<h4>Extras</h4>
-				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="20" align="center" pack="start" label="Fun" />
-				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="21" align="center" pack="start" label="About" />
+				<button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" align="center" pack="start" label="Fun" />
+				<button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" align="center" pack="start" label="About" />
 			</vbox>
 			<vbox id="window-content-container">
 				<vbox class="window-top-bars light">
@@ -70,6 +72,13 @@
 					<div class="pages">
 						<vbox class="pages-container" data-page-container="main">
 							<vbox class="page" data-page="0" selected="true">
+								<vbox class="content-container">
+									<vbox class="content">
+										<h4>Yo</h4>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="10">
 								<hbox class="tabs no-shadow light">
 									<div class="indicator"/>
 									<button class="tab ripple-enabled" label="Normal Buttons" data-page-container="buttons" data-page="0" selected="true" />
@@ -106,7 +115,7 @@
 									</hbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="1">
+							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
 										<div style="display: grid; gap: 10px; grid-template-rows: auto 25%;">
@@ -163,7 +172,7 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="2">
+							<vbox class="page" data-page="12">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="card">
@@ -175,7 +184,33 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="10">
+							<vbox class="page" data-page="13">
+								<vbox class="content-container">
+									<vbox class="content" style="flex: 1">
+										<h4>Dialog</h4>
+										<div style="display: flex;">
+											<button class="button ripple-enabled raised" label="Open Example Dialog" data-toggle-modal="example_modal"/>
+											<div class="modal" data-modal="example_modal">
+												<div class="wrapper">
+													<div class="card">
+														<vbox class="body">
+															<div class="header">Dialog header</div>
+															<div class="description">
+																This is a fine lookin' dialog body text, isn't it betty...?
+															</div>
+															<div class="footer">
+																<button class="button ripple-enabled flat color" label="Cancel" data-toggle-modal="example_modal"/>
+																<button class="button ripple-enabled flat color" label="OK" data-toggle-modal="example_modal" />
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
+										</div>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="20">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox id="current-color" class="card no-shadow accent-color" style="margin-block-end: 24px">
@@ -525,40 +560,14 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="3">
-								<vbox class="content-container">
-									<vbox class="content" style="flex: 1">
-										<h4>Dialog</h4>
-										<div style="display: flex;">
-											<button class="button ripple-enabled raised" label="Open Example Dialog" data-toggle-modal="example_modal"/>
-											<div class="modal" data-modal="example_modal">
-												<div class="wrapper">
-													<div class="card">
-														<vbox class="body">
-															<div class="header">Dialog header</div>
-															<div class="description">
-																This is a fine lookin' dialog body text, isn't it betty...?
-															</div>
-															<div class="footer">
-																<button class="button ripple-enabled flat color" label="Cancel" data-toggle-modal="example_modal"/>
-																<button class="button ripple-enabled flat color" label="OK" data-toggle-modal="example_modal" />
-															</div>
-														</vbox>
-													</div>
-												</div>
-											</div>
-										</div>
-									</vbox>
-								</vbox>
-							</vbox>
-							<vbox class="page" data-page="20">
+							<vbox class="page" data-page="30">
 								<vbox class="content-container">
 									<vbox class="content" style="flex: 1;">
 										<button class="button ripple-enabled flat color" style="flex: 1;" label="Ripple Madness!!!" />
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="21">
+							<vbox class="page" data-page="31">
 								<vbox class="content-container">
 									<vbox class="content">
 										<label>That is a fine looking about.</label>
