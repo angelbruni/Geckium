@@ -12,6 +12,12 @@ window {
 	font-family: "Roboto", sans-serif !important;
 }
 
+@media (-moz-platform: macos) {
+	.hide-mac {
+		display: none !important;
+	}
+}
+
 #window {
 	overflow: hidden;
 	background: transparent;
@@ -28,16 +34,106 @@ window {
 	z-index: 2;
 	height: 32px;
 	background-color: var(--color-tone-700);
-	justify-content: end;
+	justify-content: start;
 	-moz-window-dragging: drag;
+
+	.caption-button {
+		--caption-button-color: rgb(102, 102, 102);
+
+		&.close, &.minimize {
+			&::before, &::after {
+				background: var(--caption-button-color) !important;
+			}
+		}
+		&.maximize, &.restore {
+			&::before, &::after {
+				border-color: var(--caption-button-color) !important;
+			}
+		}
+	}
 }
 
 #window-caption-buttons-container {
-	button {
+	.caption-button {
 		all: unset;
+		
+		position: relative;
 
-		height: 24px;
-		width: 24px;
+		height: 32px;
+		width: 32px;
+		border-radius: 9999px;
+		transition: all 150ms ease-in;
+
+		&:hover {
+			background: rgb(0, 0, 0, 10%);
+		}
+		
+		&.close {
+			&::before, &::after {
+				position: absolute;
+				top: 15px;
+				left: 8px;
+				display: block;
+				content: "";
+				height: 2px;
+				width: 16px;
+				background: white;
+			}
+			&::before {
+				transform: rotate(45deg);
+			}
+			&::after {
+				transform: rotate(-45deg);
+			}
+		}
+		&.restore {
+			&::before {
+				position: absolute;
+				left: 8px;
+				top: 14px;
+				content: "";
+				height: 10px;
+				width: 10px;
+				border-bottom: 2px solid white;
+				border-left: 2px solid white;
+				box-sizing: border-box;
+			}
+			&::after {
+				position: absolute;
+				left: 13px;
+				top: 9.5px;
+				content: "";
+				height: 10px;
+				width: 10px;
+				border: 2px solid white;
+				box-sizing: border-box;
+			}
+		}
+		&.maximize {
+			&::before {
+				position: absolute;
+				left: 10px;
+				top: 9.5px;
+				content: "";
+				height: 13px;
+				width: 13px;
+				border: 2px solid white;
+				box-sizing: border-box;
+			}
+		}
+		&.minimize {
+			&::before {
+				display: block;
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+				content: "";
+				height: 2px;
+				width: 13px;
+				background: white;
+				box-sizing: border-box;
+			}
+		}
 	}
 }
 

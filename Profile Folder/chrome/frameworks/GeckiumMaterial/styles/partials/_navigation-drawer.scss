@@ -9,13 +9,11 @@
 	.window-top-bars {
 		margin-block-end: 8px;
 		
-		&.separator {
-			&::after {
-				content: "";
-				height: 1px;
-				margin-block-start: -1px;
-				background-color: rgb(230,230,230);
-			}
+		&::after {
+			content: "";
+			height: 1px;
+			margin-block-start: -1px;
+			background-color: rgb(230,230,230);
 		}
 	}
 
@@ -36,7 +34,7 @@
 		margin: 24px;
 	}
 
-	&.rail {
+	&.mini {
 		width: auto;
 
 		.item label,
@@ -50,10 +48,6 @@
 					margin-inline-end: 0;
 				}
 			}
-		}
-
-		.window-top-bar {
-			display: none;
 		}
 	}
 

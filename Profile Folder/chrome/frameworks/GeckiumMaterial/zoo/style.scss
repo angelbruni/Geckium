@@ -2,6 +2,17 @@
 	width: 1160px;
 	height: 710px;
 }
+@media (-moz-platform: macos) {
+	#window {
+		width: 100%;
+		height: 100%;
+	}
+
+	#window-container {
+		flex: 1;
+		height: 100%;
+	}
+}
 
 .content {
 	&:not([data-page-container]) {
