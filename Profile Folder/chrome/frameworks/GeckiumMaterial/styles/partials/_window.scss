@@ -44,6 +44,8 @@ window {
 	}
 	
 	.caption-button {
+		-moz-window-dragging: no-drag;
+
 		&.close, &.minimize {
 			&::before, &::after {
 				
@@ -59,8 +61,6 @@ window {
 
 #window-caption-buttons-container {
 	.caption-button {
-		all: unset;
-
 		
 
 		height: 24px;
@@ -71,10 +71,21 @@ window {
 		&:hover {
 			
 		}
+
+		&.close,
+		&.restore,
+		&.maximize,
+		&.minimize {
+			&::before,
+			&::after {
+				content: "";
+
+				position: absolute;
+			}
+		}
 		
 		&.close {
 			&::before, &::after {
-				
 				
 				
 				
@@ -99,12 +110,8 @@ window {
 				
 				
 				
-				
-				
 			}
 			&::after {
-				
-				
 				
 				
 				
@@ -121,15 +128,11 @@ window {
 				
 				
 				
-				
-				
 			}
 		}
 		&.minimize {
 			&::before {
-				
-				
-				
+					
 				
 				
 				

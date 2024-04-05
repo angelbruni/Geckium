@@ -32,7 +32,7 @@ function rippleEffect() {
                 maxSize = rectWidth * 2.1;
 
             const animationStart = performance.now();
-			const duration = 500;
+			const duration = 400;
 
             function animate(currentTime) {
                 const elapsedTime = currentTime - animationStart;
