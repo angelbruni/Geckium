@@ -25,6 +25,14 @@
 .tab {
 	overflow: hidden;
 	padding-inline: 12px;
+	transition: background-color 155ms;
+
+	&:not([disabled]) {
+		&:hover,
+		&:focus {
+			background: rgba(255, 255, 255, .05);
+		}
+	}
 
 	&:not([selected]) {
 		label {
