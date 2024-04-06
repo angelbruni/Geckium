@@ -14,12 +14,24 @@ button {
 		margin-inline: 3px;
 		
 		border-radius: 2px;
+		min-width: 64px;
 		height: 36px;
 
 		text-transform: uppercase;
 		font-weight: 500;
 
 		transition: background-color 155ms, box-shadow 155ms;
+
+		&[class*="icon"] {
+			&::before {
+				content: "";
+				width: 18px;
+				height: 18px;
+				mask-size: 18px;
+				margin-right: 8px;
+				background-color: black;
+			}
+		}
 		
 		&.raised {
 			&:not([disabled]) {
@@ -35,7 +47,7 @@ button {
 					&:active {
 						background: color-mix(in srgb, var(--primary-color) 40%, transparent);
 					}
-				}	
+				}
 			}
 
 			&:not([disabled]) {
@@ -74,6 +86,12 @@ button {
 				padding-inline: 16px;
 				background: var(--primary-color);
 
+				&[class*="icon"] {
+					&::before {
+						background-color: white;
+					}
+				}
+
 				&:not([disabled]) {
 					.ripple {
 						background: rgba(255, 255, 255, .3);
@@ -92,6 +110,12 @@ button {
 				background: transparent;
 	
 				color: rgb(33,33,33);
+
+				&[class*="icon"] {
+					&::before {
+						background-color: var(--primary-color);
+					}
+				}
 
 				&.color {
 					color: var(--primary-color);

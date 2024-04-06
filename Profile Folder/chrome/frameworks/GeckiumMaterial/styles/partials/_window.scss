@@ -87,6 +87,18 @@ window {
 	}
 }
 
+@media not (-moz-platform: windows) {
+	#window {
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+	#window-container {
+		flex: 1 !important;
+		height: 100% !important;
+	}
+}
+
 .window-titlebar {
 	--caption-button-color: white;
 
