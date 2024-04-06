@@ -5,6 +5,29 @@
 	}
 
 	.window-top-bars {
+		&.banner {
+			position: relative;
+			color: white;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			&::after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				bottom: 0;
+				height: 56px;
+				background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.15));
+			}
+
+			.window-top-bar {
+				height: 56px;
+				padding-top: 56px;
+				box-sizing: unset;
+			}
+		}
+
 		&.separator {
 			&::after {
 				content: "";
@@ -21,10 +44,21 @@
 }
 
 #navigation-drawer {
-	border-right: 1px solid rgb(215,215,215);
+	position: relative;
+	//border-right: 1px solid rgb(215,215,215);
 	background: white;
 	color: black;
 	width: 256px;
+
+	&::after {
+		content: "";
+		position: absolute;
+		right: -1px;
+		top: 0;
+		width: 1px;
+		height: 100%;
+		background: rgb(215,215,215);
+	}
 
 	&:not(.rail) {
 		&.item-radius {
