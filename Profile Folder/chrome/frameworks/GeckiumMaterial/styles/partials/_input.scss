@@ -33,19 +33,19 @@
         
         
 
-        &:focus {
+        &:focus-visible {
               
             
             
         }
 
-        &:focus + .placeholder,
+        &:focus-visible + .placeholder,
 		&:valid + .placeholder {
             
             
             
         }
-        &:focus + .placeholder {
+        &:focus-visible + .placeholder {
             
         }
     }

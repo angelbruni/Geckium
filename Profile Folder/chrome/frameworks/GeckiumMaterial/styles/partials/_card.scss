@@ -12,7 +12,7 @@
 
 	&:not([disabled], .outlined) {
 		&:hover,
-		&:focus {
+		&:focus-visible {
 			box-shadow: var(--elevation-8);
 		}
 	}

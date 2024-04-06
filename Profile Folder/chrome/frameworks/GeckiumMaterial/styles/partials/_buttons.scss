@@ -122,7 +122,7 @@ button {
 	
 					&:not([disabled]) {
 						&:hover,
-						&:focus {
+						&:focus-visible {
 							background: color-mix(in srgb, var(--primary-color) 20%, transparent);
 						}
 
@@ -134,7 +134,7 @@ button {
 	
 				&:not([disabled]) {
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						background: rgba(153, 153, 153, .2);
 					}
 
@@ -228,18 +228,42 @@ button {
 	}
 
 	&.link {
+		flex-direction: row;
 		border-radius: 2px;
 		background-color: white;
 		padding: 16px 20px 12px;
+		padding-block-end: 32px;
 		box-shadow: var(--elevation-2);
 		overflow: hidden;
 		align-items: start;
 		cursor: pointer;
 		transition: background-color 155ms, box-shadow 155ms;
 
-		&::after {
-			content: attr(label);
+		vbox > label {
 			font-weight: 500;
+			margin-block-end: 8px;
+		}
+
+		p {
+			margin-block-end: 14px;
+			color: #616161;
+		}
+
+		hbox {
+			position: absolute;
+			bottom: 14px;
+			color: #616161;
+			width: calc(100% - 20 * 2px);
+		}
+
+		.icon {
+			mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/arrow-forward.svg");
+			mask-size: 14px;
+			width: 14px;
+			height: 14px;
+			background: #616161;
+			transform: rotate(-45deg);
+			flex-shrink: 0;
 		}
 
 		&:not([disabled]) {
@@ -248,7 +272,7 @@ button {
 			}
 
 			&:hover,
-			&:focus {
+			&:focus-visible {
 				background: rgba(153, 153, 153, .2);
 			}
 		}
@@ -261,11 +285,24 @@ button {
 				mask-size: 44px;
 				margin-right: 20px;
 				background-color: black;
+				flex-shrink: 0;
 			}
 		}
 
 		.ripple {
 			background: rgba(153, 153, 153, .4);
 		}
+	}
+}
+
+.link-container {
+	gap: 16px;
+
+	> hbox {
+		gap: 16px;
+	}
+
+	.link {
+		flex: 1;
 	}
 }
