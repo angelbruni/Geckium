@@ -1,14 +1,10 @@
 #window > #navigation-drawer {
-	padding-block-start: 0px;
-
 	&.card {
 		height: auto;
 		margin: 0;
 	}
 
 	.window-top-bars {
-		margin-block-end: 8px;
-		
 		&.separator {
 			&::after {
 				content: "";
@@ -26,7 +22,6 @@
 
 #navigation-drawer {
 	border-right: 1px solid rgb(215,215,215);
-	padding-block-start: 8px;
 	background: white;
 	color: black;
 	width: 256px;
@@ -149,12 +144,18 @@
 		}
 	}
 
+	.navigation-items {
+		padding-block: 8px;
+		overflow-y: auto;
+	}
+
 	.item {
 		all: unset;
 
 		position: relative;
 		overflow: hidden;
 		align-items: center;
+		flex-shrink: 0;
 
 		transition: background-color 155ms;
 
