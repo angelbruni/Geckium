@@ -26,21 +26,32 @@ function rippleEffect() {
 
             rippledElm.appendChild(ripple);
 
-            if (rectWidth < rectHeight)
+			let duration = 320;
+
+			if (rectWidth === rectHeight) {
+				maxSize = rectWidth * 1.412;
+				duration = duration - duration / 4;
+			} else {
+				maxSize = Math.sqrt(rectWidth * rectWidth + rectHeight * rectHeight);
+			}
+
+			console.log(maxSize)
+
+            /*if (rectWidth < rectHeight)
                 maxSize = rectHeight * 2.1;
             else
-                maxSize = rectWidth * 2.1;
+                maxSize = rectWidth * 2.1;*/
 
-            const animationStart = performance.now();
-			const duration = 400;
+			const animationStart = performance.now();
+				
 
             function animate(currentTime) {
                 const elapsedTime = currentTime - animationStart;
                 const progress = Math.min(elapsedTime / duration, 1);
 
                 const newSize = progress * maxSize;
-                ripple.style.width = newSize + "px";
-                ripple.style.height = newSize + "px";
+                ripple.style.width = newSize * 2 + "px";
+                ripple.style.height = newSize * 2 + "px";
                 ripple.style.opacity = 1 - progress;
 
                 if (progress < 1)
