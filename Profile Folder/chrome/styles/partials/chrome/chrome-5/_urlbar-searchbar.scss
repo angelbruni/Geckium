@@ -16,7 +16,7 @@
 	}
 
 	--urlbarView: rgb(255, 255, 255, 94%);
-	
+
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
 		-moz-menuhover 20%,
@@ -97,9 +97,11 @@
 
 	#urlbar-protocol {
 		position: absolute;
-		height: 100%;
+		height: calc(100% - 2px);
+		display: flex;
+		align-items: center;
+		align-self: center;
 		margin: 0 !important;
-		transform: translateY(3px);
 		pointer-events: none;
 		background: var(--protocol-background-color) !important;
 		color: var(--protocol-color);
@@ -351,7 +353,7 @@
 }
 
 #urlbar-search-splitter {
-	height: var(--toolbarbutton-height)!important;
+	height: var(--toolbarbutton-height) !important;
 	min-width: 5px !important;
 	margin-inline: -4px -2px !important;
 }

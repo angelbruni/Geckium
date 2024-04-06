@@ -353,6 +353,9 @@ tooltip {
 :root[sizemode=maximized] .toolbar-items {
   margin-top: -3px !important;
 }
+:root[sizemode=maximized] .tabbrowser-tab:first-of-type {
+  margin-left: 6px !important;
+}
 :root[sizemode=maximized] #private-browsing-indicator-with-label {
   margin-top: -6px !important;
 }
@@ -2361,9 +2364,11 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 #urlbar #urlbar-protocol {
   position: absolute;
-  height: 100%;
+  height: calc(100% - 2px);
+  display: flex;
+  align-items: center;
+  align-self: center;
   margin: 0 !important;
-  transform: translateY(3px);
   pointer-events: none;
   background: var(--protocol-background-color) !important;
   color: var(--protocol-color);
@@ -3273,6 +3278,8 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
   	inset 0 1px 2px rgb(255, 255, 255, 75%);
   --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --toolbarbutton-width: 27px;
+  --toolbarbutton-height: 27px;
   --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
   --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
   --bookmark-item-color: #000000;
@@ -3361,6 +3368,9 @@ hbox[id=label-box][part=label-box] {
   background: rgba(255, 255, 255, 0.8);
   transition: none !important;
   opacity: 0;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+  --urlbar-height-definitive: 25px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=secure] #identity-icon, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
