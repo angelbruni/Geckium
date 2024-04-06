@@ -3,18 +3,6 @@
 	height: 710px;
 }
 
-@media not (-moz-platform: windows) {
-	#window {
-		width: 100%;
-		height: 100%;
-	}
-
-	#window-container {
-		flex: 1;
-		height: 100%;
-	}
-}
-
 .content {
 	&:not([data-page-container]) {
 		padding: var(--inner-padding);

@@ -1,75 +1,52 @@
+$elevation-1: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
+$elevation-2: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);
+$elevation-3: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+$elevation-4: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+$elevation-6: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+$elevation-8: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
+$elevation-9: 0 9px 12px 1px rgba(0,0,0,0.14), 0 3px 16px 2px rgba(0,0,0,0.12), 0 5px 6px -3px rgba(0,0,0,0.20);
+$elevation-12: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+$elevation-16: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.20);
+$elevation-24: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
+
+@mixin elevation($elevation) {
+	box-shadow: $elevation;
+}
+
 :root {
-	/* Shadow 1dp */
-	--elevation-1: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20);
-
-	/* Shadow 2dp */
-	--elevation-2: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);
-
-	/* Shadow 3dp */
-	--elevation-3: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
-
-	/* Shadow 4dp */
-	--elevation-4: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
-
-	/* Shadow 6dp */
-	--elevation-6: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
-
-	/* Shadow 8dp */
-	--elevation-8: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
-
-	/* Shadow 9dp */
-	--elevation-9: 0 9px 12px 1px rgba(0,0,0,0.14), 0 3px 16px 2px rgba(0,0,0,0.12), 0 5px 6px -3px rgba(0,0,0,0.20);
-
-	/* Shadow 12dp */
-	--elevation-12: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
-
-	/* Shadow 16dp */
-	--elevation-16: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.20);
-
-	/* Shadow 24dp */
-	--elevation-24: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
+	@each $elevation, $value in (
+		1: $elevation-1,
+		2: $elevation-2,
+		3: $elevation-3,
+		4: $elevation-4,
+		6: $elevation-6,
+		8: $elevation-8,
+		9: $elevation-9,
+		12: $elevation-12,
+		16: $elevation-16,
+		24: $elevation-24
+	) {
+		--elevation-#{$elevation}: #{$value};
+	}
 }
 
 .elevation-0 {
 	box-shadow: none !important;
 }
 
-.elevation-1 {
-	box-shadow: var(--elevation-1) !important;
-}
-
-.elevation-2 {
-	box-shadow: var(--elevation-2) !important;
-}
-
-.elevation-3 {
-	box-shadow: var(--elevation-3) !important;
-}
-
-.elevation-4 {
-	box-shadow: var(--elevation-4) !important;
-}
-
-.elevation-6 {
-	box-shadow: var(--elevation-6) !important;
-}
-
-.elevation-8 {
-	box-shadow: var(--elevation-8) !important;
-}
-
-.elevation-9 {
-	box-shadow: var(--elevation-9) !important;
-}
-
-.elevation-12 {
-	box-shadow: var(--elevation-12) !important;
-}
-
-.elevation-16 {
-	box-shadow: var(--elevation-16) !important;
-}
-
-.elevation-24 {
-	box-shadow: var(--elevation-24) !important;
+@each $elevation, $value in (
+	1: $elevation-1,
+	2: $elevation-2,
+	3: $elevation-3,
+	4: $elevation-4,
+	6: $elevation-6,
+	8: $elevation-8,
+	9: $elevation-9,
+	12: $elevation-12,
+	16: $elevation-16,
+	24: $elevation-24
+) {
+	.elevation-#{$elevation} {
+		@include elevation($value);
+	}
 }
