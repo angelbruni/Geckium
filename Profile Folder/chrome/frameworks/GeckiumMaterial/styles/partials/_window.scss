@@ -16,6 +16,59 @@ window {
 	.hide-mac {
 		display: none !important;
 	}
+
+	#window-caption-buttons-container {
+		display: flex;
+		align-items: center;
+		padding-left: 8px;
+
+		&:hover {
+			.caption-button {
+				&.close {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close-hover.svg");
+				}
+				&.minimize {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize-hover.svg");
+				}
+				&.maximize {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize-hover.svg");
+				}
+			}
+		}
+
+		.caption-button {
+			height: 12px !important;
+			width: 12px !important;
+			margin-right: 7px;
+			filter: saturate(1.2);
+			transition: none !important;
+			background-size: 100%;
+			background-repeat: no-repeat;
+	
+			&:hover {
+				background-color: transparent !important;
+			}
+	
+			&.close {
+				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close.svg");
+				&:active {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close-active.svg");
+				}
+			}
+			&.minimize {
+				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize.svg");
+				&:active {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize-active.svg");
+				}
+			}
+			&.maximize {
+				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize.svg");
+				&:active {
+					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize-active.svg");
+				}
+			}
+		}
+	}
 }
 
 #window {
@@ -88,63 +141,6 @@ window {
 			}
 		}
 		
-		&.close {
-			&::before, &::after {
-				top: 15px;
-				left: 8px;
-				display: block;
-				
-				height: 2px;
-				width: 16px;
-				background: white;
-			}
-			&::before {
-				transform: rotate(45deg);
-			}
-			&::after {
-				transform: rotate(-45deg);
-			}
-		}
-		&.restore {
-			&::before {
-				left: 8px;
-				top: 14px;
-				height: 10px;
-				width: 10px;
-				border-bottom: 2px solid white;
-				border-left: 2px solid white;
-				box-sizing: border-box;
-			}
-			&::after {
-				left: 13px;
-				top: 9.5px;
-				height: 10px;
-				width: 10px;
-				border: 2px solid white;
-				box-sizing: border-box;
-			}
-		}
-		&.maximize {
-			&::before {
-				left: 10px;
-				top: 9.5px;
-				height: 13px;
-				width: 13px;
-				border: 2px solid white;
-				box-sizing: border-box;
-			}
-		}
-		&.minimize {
-			&::before {
-				display: block;
-				left: 10px;
-				bottom: 10px;
-				height: 2px;
-				width: 13px;
-				background: white;
-				box-sizing: border-box;
-			}
-		}
 	}
 }
 
