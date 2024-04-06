@@ -16,6 +16,59 @@ window {
 	.hide-mac {
 		
 	}
+
+	#window-caption-buttons-container {
+		
+		
+		
+
+		&:hover {
+			.caption-button {
+				&.close {
+					
+				}
+				&.minimize {
+					
+				}
+				&.maximize {
+					
+				}
+			}
+		}
+
+		.caption-button {
+			
+			
+			
+			
+			
+			
+			
+	
+			&:hover {
+				
+			}
+	
+			&.close {
+				
+				&:active {
+					
+				}
+			}
+			&.minimize {
+				
+				&:active {
+					
+				}
+			}
+			&.maximize {
+				
+				&:active {
+					
+				}
+			}
+		}
+	}
 }
 
 #window {
@@ -85,64 +138,6 @@ window {
 				content: "";
 
 				position: absolute;
-			}
-		}
-		
-		&.close {
-			&::before, &::after {
-				
-				
-				
-				
-				
-				
-				
-			}
-			&::before {
-				
-			}
-			&::after {
-				
-			}
-		}
-		&.restore {
-			&::before {
-				
-				
-				
-				
-				
-				
-				
-			}
-			&::after {
-				
-				
-				
-				
-				
-				
-			}
-		}
-		&.maximize {
-			&::before {
-				
-				
-				
-				
-				
-				
-			}
-		}
-		&.minimize {
-			&::before {
-					
-				
-				
-				
-				
-				
-				
 			}
 		}
 	}
