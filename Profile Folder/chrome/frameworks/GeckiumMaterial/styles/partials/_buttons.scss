@@ -44,6 +44,10 @@ button {
 			}
 		}
 
+		&.md2-radius {
+			border-radius: 4px;
+		}
+
 		&.ripple-enabled {
 			&:not([disabled]) {
 				&:active {
@@ -123,7 +127,6 @@ button {
 				border-width: 1px;
 				border-style: solid;
 				border-color: rgba(0,0,0,.15);
-				border-radius: 4px;
 			}
 		}
 
