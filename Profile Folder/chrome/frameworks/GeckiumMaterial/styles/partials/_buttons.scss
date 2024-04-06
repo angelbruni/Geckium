@@ -7,12 +7,13 @@ button {
 
 	&.button {
 		overflow: hidden;
+		box-sizing: border-box;
 		
 		margin-block: 6px;
 		margin-inline: 3px;
 		
 		border-radius: 2px;
-		min-height: 36px;
+		height: 36px;
 
 		text-transform: uppercase;
 		font-weight: 500;
@@ -75,6 +76,10 @@ button {
 				}
 	
 				color: white;
+
+				&.dense {
+					height: 32px;
+				}
 			}
 
 			&.text,
@@ -143,7 +148,6 @@ button {
 		color: white;
 		text-transform: uppercase;
 		font-weight: 500;
-		box-sizing: border-box;
 		overflow: hidden;
 
 		&.leading-icon {
