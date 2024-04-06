@@ -84,12 +84,13 @@
 							<vbox class="page" data-page="10">
 								<hbox class="tabs light">
 									<div class="indicator"/>
-									<button class="tab ripple-enabled" label="Normal Buttons" data-page-container="buttons" data-page="0" selected="true" />
+									<button class="tab ripple-enabled" label="Normal Buttons" data-page-container="buttons" data-page="0" />
 									<button class="tab ripple-enabled" label="Floating Action Buttons" data-page-container="buttons" data-page="1" />
+									<button class="tab ripple-enabled" label="Link Buttons" data-page-container="buttons" data-page="2" />
 								</hbox>
 								<vbox class="content-container">
 									<hbox class="content" data-page-container="buttons">
-										<vbox class="tab-page" data-page="0" selected="true">
+										<vbox class="tab-page" data-page="0">
 											<h4>Raised Desktop</h4>
 											<div>
 												<button class="button ripple-enabled raised desktop" label="Default Raised Desktop" />
@@ -126,6 +127,9 @@
 											<button class="floating-action-button ripple-enabled leading-icon icon-add" label="Normal FAB" />
 											<button class="floating-action-button ripple-enabled leading-icon icon-add extended" label="Extended FAB with icon and label" />
 											<button class="floating-action-button ripple-enabled extended" label="Extended FAB with label" />
+										</vbox>
+										<vbox class="tab-page" data-page="2">
+											<html:button class="link icon-tungsten ripple-enabled" label="Link Button" />
 										</vbox>
 									</hbox>
 								</vbox>
@@ -648,5 +652,7 @@
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
+
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
 </window>

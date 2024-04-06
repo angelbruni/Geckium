@@ -202,4 +202,46 @@ button {
 			background: rgba(255, 255, 255, .3);
 		}
 	}
+
+	&.link {
+		border-radius: 2px;
+		background-color: white;
+		padding: 16px 20px 12px;
+		box-shadow: var(--elevation-2);
+		overflow: hidden;
+		align-items: start;
+		cursor: pointer;
+		transition: background-color 155ms, box-shadow 155ms;
+
+		&::after {
+			content: attr(label);
+			font-weight: 500;
+		}
+
+		&:not([disabled]) {
+			&:active {
+				box-shadow: var(--elevation-8);
+			}
+
+			&:hover,
+			&:focus {
+				background: rgba(153, 153, 153, .2);
+			}
+		}
+
+		&[class*="icon"] {
+			&::before {
+				content: "";
+				width: 44px;
+				height: 44px;
+				mask-size: 44px;
+				margin-right: 20px;
+				background-color: black;
+			}
+		}
+
+		.ripple {
+			background: rgba(153, 153, 153, .4);
+		}
+	}
 }
