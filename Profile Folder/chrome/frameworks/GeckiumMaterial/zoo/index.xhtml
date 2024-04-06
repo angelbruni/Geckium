@@ -43,6 +43,7 @@
 				<separator />
 				<h4>Style</h4>
 				<html:button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" label="Colors" />
+				<html:button class="item ripple-enabled icon-layers" data-page-container="main" data-page="21" label="Elevations" />
 				<separator />
 				<h4>Extras</h4>
 				<html:button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" label="Fun" />
@@ -231,7 +232,7 @@
 							<vbox class="page" data-page="20">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox id="current-color" class="card no-shadow accent-color" style="margin-block-end: 24px">
+										<vbox id="current-color" class="card elevation-0 accent-color" style="margin-block-end: 24px">
 											<hbox class="color-tag light" style="background: var(--color-tone-500);">
 												<label>Current Color</label>
 												<spacer />
@@ -251,7 +252,7 @@
 											</hbox>
 										</vbox>
 										<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
-											<vbox class="card no-shadow accent-color accent-color-red">
+											<vbox class="card elevation-0 accent-color accent-color-red">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Red</label>
 													<spacer />
@@ -268,7 +269,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-pink">
+											<vbox class="card elevation-0 accent-color accent-color-pink">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Pink</label>
 													<spacer />
@@ -285,7 +286,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-purple">
+											<vbox class="card elevation-0 accent-color accent-color-purple">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Purple</label>
 													<spacer />
@@ -302,7 +303,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-deep-purple">
+											<vbox class="card elevation-0 accent-color accent-color-deep-purple">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Deep Purple</label>
 													<spacer />
@@ -319,7 +320,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-indigo">
+											<vbox class="card elevation-0 accent-color accent-color-indigo">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Indigo</label>
 													<spacer />
@@ -336,7 +337,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-blue">
+											<vbox class="card elevation-0 accent-color accent-color-blue">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Blue</label>
 													<spacer />
@@ -353,7 +354,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-light-blue">
+											<vbox class="card elevation-0 accent-color accent-color-light-blue">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Light Blue</label>
 													<spacer />
@@ -370,7 +371,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-cyan">
+											<vbox class="card elevation-0 accent-color accent-color-cyan">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Cyan</label>
 													<spacer />
@@ -387,7 +388,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-teal">
+											<vbox class="card elevation-0 accent-color accent-color-teal">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Teal</label>
 													<spacer />
@@ -404,7 +405,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-green">
+											<vbox class="card elevation-0 accent-color accent-color-green">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Green</label>
 													<spacer />
@@ -421,7 +422,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-light-green">
+											<vbox class="card elevation-0 accent-color accent-color-light-green">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Light Green</label>
 													<spacer />
@@ -438,7 +439,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-lime">
+											<vbox class="card elevation-0 accent-color accent-color-lime">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Lime</label>
 													<spacer />
@@ -455,7 +456,7 @@
 												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-yellow">
+											<vbox class="card elevation-0 accent-color accent-color-yellow">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Yellow</label>
 													<spacer />
@@ -472,7 +473,7 @@
 												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-amber">
+											<vbox class="card elevation-0 accent-color accent-color-amber">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Amber</label>
 													<spacer />
@@ -489,7 +490,7 @@
 												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-orange">
+											<vbox class="card elevation-0 accent-color accent-color-orange">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Orange</label>
 													<spacer />
@@ -506,7 +507,7 @@
 												<div class="color-tag" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-deep-orange">
+											<vbox class="card elevation-0 accent-color accent-color-deep-orange">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Deep Orange</label>
 													<spacer />
@@ -523,7 +524,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-brown">
+											<vbox class="card elevation-0 accent-color accent-color-brown">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Brown</label>
 													<spacer />
@@ -540,7 +541,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-grey">
+											<vbox class="card elevation-0 accent-color accent-color-grey">
 												<vbox class="color-tag" style="background: var(--color-tone-500);">
 													<label>Grey</label>
 													<spacer />
@@ -557,7 +558,7 @@
 												<div class="color-tag light" style="background: var(--color-tone-800);">800</div>
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
-											<vbox class="card no-shadow accent-color accent-color-blue-grey">
+											<vbox class="card elevation-0 accent-color accent-color-blue-grey">
 												<vbox class="color-tag light" style="background: var(--color-tone-500);">
 													<label>Blue Grey</label>
 													<spacer />
@@ -575,6 +576,27 @@
 												<div class="color-tag light" style="background: var(--color-tone-900);">900</div>
 											</vbox>
 										</div>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="21">
+								<vbox class="content-container">
+									<vbox class="content">
+										<hbox>
+											<div class="card elevation-0"/>
+											<div class="card elevation-1"/>
+											<div class="card elevation-2"/>
+											<div class="card elevation-3"/>
+											<div class="card elevation-4"/>
+											<div class="card elevation-6"/>
+										</hbox>
+										<hbox>
+											<div class="card elevation-8"/>
+											<div class="card elevation-9"/>
+											<div class="card elevation-12"/>
+											<div class="card elevation-16"/>
+											<div class="card elevation-24"/>
+										</hbox>
 									</vbox>
 								</vbox>
 							</vbox>
