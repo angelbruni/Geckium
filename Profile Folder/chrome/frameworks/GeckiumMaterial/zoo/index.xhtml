@@ -34,7 +34,7 @@
 					</vbox>
 				</vbox>
 				<vbox class="navigation-items">
-					<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
+					<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" data-page-title="Welcome to the GeckiumMaterial showcase" label="Welcome" selected="true" />
 					<separator />
 					<h4>Controls</h4>
 					<html:button class="item ripple-enabled icon-click" data-page-container="main" data-page="10" label="Buttons" />
@@ -46,9 +46,8 @@
 					<html:button class="item ripple-enabled icon-palette" data-page-container="main" data-page="20" label="Colors" />
 					<html:button class="item ripple-enabled icon-layers" data-page-container="main" data-page="21" label="Elevations" />
 					<separator />
-					<h4>Extras</h4>
+					<h4>Miscelleneous</h4>
 					<html:button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" label="Fun" />
-					<html:button class="item ripple-enabled icon-info" data-page-container="main" data-page="31" label="About" />
 				</vbox>
 			</vbox>
 			<vbox id="window-content-container">
@@ -77,7 +76,101 @@
 							<vbox class="page" data-page="0" selected="true">
 								<vbox class="content-container">
 									<vbox class="content">
-										<h4>Yo</h4>
+										<p class="body-2">This is a fine looking about.</p>
+										<p class="body-2">GeckiumMaterial is a framework designed to power Geckium's UI for custom window content, drawing inspiration from Google's Material Design principles.</p>
+										<h4>Controls</h4>
+										<vbox class="link-container">
+											<hbox>
+												<html:button class="link icon-click ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label>Buttons</label>
+														<p>Showcase of different types of buttons.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+												<html:button class="link icon-edit ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label>Inputs</label>
+														<p>Showcase of different types of inputs, namely, Textboxes, Checkboxes, Switches.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+											</hbox>
+											<hbox>
+												<html:button class="link icon-dashboard ripple-enabled" onclick="skipToPage('main', 12)">
+													<vbox>
+														<label>Cards</label>
+														<p>Showcase of different types of cards.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+												<html:button class="link icon-chat ripple-enabled" onclick="skipToPage('main', 13)">
+													<vbox>
+														<label>Dialogs</label>
+														<p>Showcase of different types of dialogs.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+											</hbox>
+										</vbox>
+										<h4>Style</h4>
+										<vbox class="link-container">
+											<hbox>
+												<html:button class="link icon-palette ripple-enabled" onclick="skipToPage('main', 20)">
+													<vbox>
+														<label>Colors</label>
+														<p>Showcase of the color palette.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+												<html:button class="link icon-layers ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label>Elevation</label>
+														<p>Showcase of different shadows depending on an element's elevation.</p>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+											</hbox>
+										</vbox>
+										<h4>Miscelleneous</h4>
+										<vbox class="link-container">
+											<hbox>
+												<html:button class="link icon-auto-awesome ripple-enabled" onclick="skipToPage('main', 20)">
+													<vbox>
+														<label>Fun</label>
+													</vbox>
+													<hbox>
+														<label>Go to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+											</hbox>
+										</vbox>
 									</vbox>
 								</vbox>
 							</vbox>
@@ -129,7 +222,17 @@
 											<button class="floating-action-button ripple-enabled extended" label="Extended FAB with label" />
 										</vbox>
 										<vbox class="tab-page" data-page="2">
-											<html:button class="link icon-tungsten ripple-enabled" label="Link Button" />
+											<html:button class="link icon-tungsten ripple-enabled">
+												<vbox>
+													<label>Name</label>
+													<p>Description</p>
+												</vbox>
+												<hbox>
+													<label>Related article</label>
+													<spacer />
+													<div class="icon" />
+												</hbox>
+											</html:button>
 										</vbox>
 									</hbox>
 								</vbox>
@@ -632,13 +735,6 @@
 								<vbox class="content-container">
 									<vbox class="content" style="flex: 1;">
 										<button class="button ripple-enabled text color" style="flex: 1;" label="Ripple Madness!!!" />
-									</vbox>
-								</vbox>
-							</vbox>
-							<vbox class="page" data-page="31">
-								<vbox class="content-container">
-									<vbox class="content">
-										<label>That is a fine looking about.</label>
 									</vbox>
 								</vbox>
 							</vbox>

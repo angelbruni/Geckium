@@ -33,19 +33,19 @@
         appearance: none;
         box-sizing: border-box;
 
-        &:focus {
+        &:focus-visible {
             outline: none;  
             border-color: var(--input-focus-color);
             border-width: 2px;
         }
 
-        &:focus + .placeholder,
+        &:focus-visible + .placeholder,
 		&:valid + .placeholder {
             font-size: 12px;
             background: rgb(245, 245, 245);
             top: -8px;
         }
-        &:focus + .placeholder {
+        &:focus-visible + .placeholder {
             color: var(--input-focus-color);
         }
     }

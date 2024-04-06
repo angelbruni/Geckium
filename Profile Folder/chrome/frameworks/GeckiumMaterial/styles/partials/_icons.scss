@@ -1,65 +1,22 @@
-.icon-edit {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/edit.svg");
-	}
-}
+$icon-data: (
+  edit: "edit",
+  chat: "chat",
+  click: "click",
+  smart-button: "smart-button",
+  info: "info",
+  auto-awesome: "auto-awesome",
+  palette: "palette",
+  dashboard: "dashboard",
+  add: "add",
+  tungsten: "tungsten",
+  layers: "layers",
+  arrow-forward: "arrow-forward"
+);
 
-.icon-chat {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/chat.svg");
-	}
-}
-
-.icon-click {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/click.svg");
-	}
-}
-
-.icon-smart-button {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/smart-button.svg");
-	}
-}
-
-.icon-info {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info.svg");
-	}
-}
-
-.icon-auto-awesome {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/auto-awesome.svg");
-	}
-}
-
-.icon-palette {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/palette.svg");
-	}
-}
-
-.icon-dashboard {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/dashboard.svg");
-	}
-}
-
-.icon-add {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/add.svg");
-	}
-}
-
-.icon-tungsten {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/tungsten.svg");
-	}
-}
-
-.icon-layers {
-	&::before {
-		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/layers.svg");
+@each $icon, $file in $icon-data {
+	.icon-#{$icon} {
+		&::before {
+			mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/#{$file}.svg");
+		}
 	}
 }

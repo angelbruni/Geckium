@@ -20,8 +20,12 @@ function skipToPage(pageContainer, targetPage) {
 		page.setAttribute("selected", true);
 
 		const pageTitle = document.querySelector("#page-title[data-page-container='" + pageContainer + "']");
-		if (pageTitle)
-			pageTitle.textContent = pageBtn.getAttribute("label");
+		if (pageTitle) {
+			if (pageBtn.dataset.pageTitle)
+				pageTitle.textContent = pageBtn.dataset.pageTitle;
+			else
+				pageTitle.textContent = pageBtn.getAttribute("label");
+		}
 
 		// Additional Logic for Tabs
 		if (pageBtn.classList.contains("tab")) {
