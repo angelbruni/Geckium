@@ -1,13 +1,14 @@
 button {
 	all: unset;
 
+	box-sizing: border-box;
+
 	position: relative;
 	display: flex;
 	align-items: center;
 
 	&.button {
 		overflow: hidden;
-		box-sizing: border-box;
 		
 		margin-block: 6px;
 		margin-inline: 3px;
@@ -23,7 +24,7 @@ button {
 		&.raised {
 			&:not([disabled]) {
 				&:active {
-					box-shadow: var(--elevation-3);
+					box-shadow: var(--elevation-8);
 				}
 			}
 		}
@@ -57,13 +58,13 @@ button {
 	
 			&.raised {
 				&:not(.desktop) {
-					box-shadow: var(--elevation-1);
+					box-shadow: var(--elevation-2);
 				}
 	
 				&:not([disabled]) {
 					&:not(:active) {
 						&:hover {
-							box-shadow: var(--elevation-1);
+							box-shadow: var(--elevation-2);
 						}
 					}
 				}
@@ -147,11 +148,18 @@ button {
 		border-radius: 50%;
 		justify-content: center;
 		background: var(--primary-color);
-		box-shadow: var(--elevation-3);
+		box-shadow: var(--elevation-6);
 		color: white;
 		text-transform: uppercase;
 		font-weight: 500;
 		overflow: hidden;
+		transition: box-shadow 155ms;
+
+		&:not([disabled]) {
+			&:active {
+				box-shadow: var(--elevation-12);
+			}
+		}
 
 		&.leading-icon {
 			&::before {
