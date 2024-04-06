@@ -17,9 +17,13 @@
 		height: 2px;
 		background: white;
 		transition-property: left, width;
-		transition-duration: 200ms;
-		transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+		transition-duration: 250ms;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
+}
+
+.indicator {
+	pointer-events: none;
 }
 
 .tab {
