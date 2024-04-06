@@ -427,7 +427,7 @@ tooltip {
   		  and it also makes the tab disappear when the background reaches min-width just
   		  like real Chrome. */
 }
-.tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-image, .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-image {
+.tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-image, .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-image, .tabbrowser-tab:not([busy])[image="chrome://branding/content/icon32.png"] .tab-icon-image {
   display: none !important;
 }
 .tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-label::before {
