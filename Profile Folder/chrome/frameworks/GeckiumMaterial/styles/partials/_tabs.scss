@@ -15,7 +15,7 @@
 		bottom: 0;
 		z-index: 1;
 		height: 2px;
-		background: white;
+		background: var(--secondary-color, white);
 		transition-property: left, width;
 		transition-duration: 250ms;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

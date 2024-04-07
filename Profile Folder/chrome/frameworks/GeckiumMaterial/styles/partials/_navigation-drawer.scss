@@ -79,11 +79,11 @@
 		.item {
 			&:not([disabled]) {
 				&[selected] {
-					background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+					background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 10%, transparent);
 				}
 
 				.ripple {
-					background: color-mix(in srgb, var(--primary-color) 40%, transparent)
+					background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent)
 				}
 			}
 		}
@@ -92,7 +92,7 @@
 			.item {
 				&:not([disabled]) {
 					&:hover {
-						background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+						background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 20%, transparent);
 					}
 				}
 			}
@@ -204,10 +204,10 @@
 
 			&[selected] {
 				background: rgba(153, 153, 153, .1);
-				color: var(--primary-color);
+				color: var(--secondary-color, var(--primary-color));
 
 				&::before {
-					background: var(--primary-color);
+					background: var(--secondary-color, var(--primary-color));
 				}
 			}
 		}
