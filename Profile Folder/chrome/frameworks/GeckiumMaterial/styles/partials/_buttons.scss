@@ -45,7 +45,7 @@ button {
 			&.color {
 				&:not([disabled]) {
 					&:active {
-						background: color-mix(in srgb, var(--primary-color) 40%, transparent);
+						background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent);
 					}
 				}
 			}
@@ -84,7 +84,7 @@ button {
 	
 			&:not(.text) {
 				padding-inline: 16px;
-				background: var(--primary-color);
+				background: var(--secondary-color, var(--primary-color));
 
 				&[class*="icon"] {
 					&::before {
@@ -113,21 +113,21 @@ button {
 
 				&[class*="icon"] {
 					&::before {
-						background-color: var(--primary-color);
+						background-color: var(--secondary-color, var(--primary-color));
 					}
 				}
 
 				&.color {
-					color: var(--primary-color);
+					color: var(--secondary-color, var(--primary-color));
 	
 					&:not([disabled]) {
 						&:hover,
 						&:focus-visible {
-							background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+							background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 20%, transparent);
 						}
 
 						.ripple {
-							background: color-mix(in srgb, var(--primary-color) 40%, transparent)
+							background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent)
 						}
 					}
 				}
@@ -171,7 +171,7 @@ button {
 		padding: 16px;
 		border-radius: 50%;
 		justify-content: center;
-		background: var(--primary-color);
+		background: var(--secondary-color, var(--primary-color));
 		box-shadow: var(--elevation-6);
 		color: white;
 		text-transform: uppercase;

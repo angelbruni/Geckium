@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $colors: (
 	"red": #F44336,
 	"pink": #E91E63,
@@ -26,20 +28,20 @@ $colors: (
 	}
 }
   
-.accent-color {
-	--color-tone-50:	color-mix(in srgb, var(--color-tone-500), #ffffff 83.5%);
-	--color-tone-100:	color-mix(in srgb, var(--color-tone-500), #ffffff 66.8%);
-	--color-tone-200:	color-mix(in srgb, var(--color-tone-500), #ffffff 50.1%);
-	--color-tone-300:	color-mix(in srgb, var(--color-tone-500), #ffffff 33.4%);
-	--color-tone-400:	color-mix(in srgb, var(--color-tone-500), #ffffff 16.7%);
-	--color-tone-500:	var(--primary-color);
-	--color-tone-600:	color-mix(in srgb, var(--color-tone-500), #000000 5%);
-	--color-tone-700:	color-mix(in srgb, var(--color-tone-500), #000000 10%);
-	--color-tone-800:	color-mix(in srgb, var(--color-tone-500), #000000 15%);
-	--color-tone-900:	color-mix(in srgb, var(--color-tone-500), #000000 20%);
+.primary-color {
+	--primary-color-tone-50:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 83.5%);
+	--primary-color-tone-100:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 66.8%);
+	--primary-color-tone-200:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 50.1%);
+	--primary-color-tone-300:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 33.4%);
+	--primary-color-tone-400:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 16.7%);
+	--primary-color-tone-500:	var(--primary-color);
+	--primary-color-tone-600:	color-mix(in srgb, var(--primary-color-tone-500), #000000 5%);
+	--primary-color-tone-700:	color-mix(in srgb, var(--primary-color-tone-500), #000000 10%);
+	--primary-color-tone-800:	color-mix(in srgb, var(--primary-color-tone-500), #000000 15%);
+	--primary-color-tone-900:	color-mix(in srgb, var(--primary-color-tone-500), #000000 20%);
 
 	@each $name, $color in $colors {
-		&.accent-color-#{$name} {
+		&.primary-color-#{$name} {
 			--primary-color: var(--#{$name});
 		}
 	}
