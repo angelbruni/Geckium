@@ -1,7 +1,6 @@
 function windowTitle() {
-	document.getElementById("window-title").textContent = docElm.getAttribute("title");
+	document.getElementById("window-title").textContent = document.documentElement.getAttribute("title");
 }
-
 document.addEventListener("DOMContentLoaded", windowTitle);
 
 let maximizeButtons = document.querySelectorAll(".maximize");
