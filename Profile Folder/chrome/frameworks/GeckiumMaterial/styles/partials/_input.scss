@@ -2,7 +2,7 @@
 	--input-padding: 16px;
     --input-border-color: rgb(0, 0, 0, 18%);
     --input-placeholder-color: rgb(0, 0, 0, 30%);
-    --input-focus-color: rgb(51, 102, 212);
+    //--input-focus-color: var(--secondary-color, var(--primary-color));
     --helper-text-color: rgb(0, 0, 0, 60%);
 }
 
@@ -22,6 +22,16 @@
         --input-placeholder-color: rgb(176, 0, 32) !important;
         --input-focus-color: rgb(176, 0, 32) !important;
         --helper-text-color: rgb(176, 0, 32) !important;
+
+		.input {
+			&:focus-visible {
+				border-color: var(--input-focus-color);
+			}
+
+			&:focus-visible + .placeholder {
+				color: var(--input-border-color);
+			}
+		}
     }
 
     .input {
@@ -37,7 +47,7 @@
 
         &:focus-visible {
             outline: none;  
-            border-color: var(--input-focus-color);
+            border-color: var(--secondary-color, var(--primary-color));;
             border-width: 2px;
         }
 
@@ -48,7 +58,7 @@
             top: -8px;
         }
         &:focus-visible + .placeholder {
-            color: var(--input-focus-color);
+            color: var(--secondary-color, var(--primary-color));;
         }
     }
 
