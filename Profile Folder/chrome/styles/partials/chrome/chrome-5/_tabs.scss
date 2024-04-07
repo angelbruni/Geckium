@@ -230,6 +230,9 @@
 			.tab-icon-stack {
 				display: none;
 			}
+			.tab-label-container {
+				padding-left: 4px;
+			}
 		}
 
 		&[image="chrome://global/skin/icons/settings.svg"]
@@ -316,6 +319,7 @@
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+				z-index: -1;
 			}
 		}
 
@@ -357,6 +361,7 @@
 				background: url(assets/img/chrome-5/tabbar/tab_active_right.png)
 					no-repeat;
 				background-position: 0 2px;
+				z-index: 2;
 			}
 		}
 
@@ -372,6 +377,7 @@
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+				z-index: -1;
 			}
 		}
 
@@ -620,8 +626,6 @@
 
 .tab-glare-right {
 	mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-
-	/* bruni: Why are the masks different in size???  */
 	mask-position-y: -3px;
 	width: var(--tab-sides-width);
 }

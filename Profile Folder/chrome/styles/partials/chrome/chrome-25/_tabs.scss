@@ -1,5 +1,5 @@
 & {
-	--tab-width: 188px;
+	--tab-width: 192px;
 }
 
 .tab-content {
@@ -7,15 +7,22 @@
 }
 
 .tab-close-button {
-	height: 18px !important;
-	width: 18px !important;
-	background-image: url(assets/img/chrome-47/tabbar/tab_close_mask.png);
+	height: 19px !important;
+	width: 19px !important;
+	margin-top: 4px;
+	mask-image: url(assets/img/chrome-25/tabbar/tab_close_mask.png);
+	mask-size: 18px 18px;
+	background-color: black;
+	background-size: 18px 18px;
 
 	&:hover {
-		background-image: url(assets/img/chrome-47/tabbar/tab_close_h.png);
+		background-image: url(assets/img/chrome-25/tabbar/tab_close_hover.png);
+		mask-image: none;
 	}
 
 	&:active {
-		background-image: url(assets/img/chrome-47/tabbar/tab_close_p.png);
+		background-image: url(assets/img/chrome-25/tabbar/tab_close_pressed.png);
+		background-color: transparent;
+		mask-image: none;
 	}
 }

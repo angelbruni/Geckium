@@ -1,26 +1,34 @@
 & {
-    --tab-glare-opacity: 0.5;
-    --tab-glare: linear-gradient(90deg, transparent, white, transparent);
+	--tab-glare-opacity: 0.5;
+	--tab-glare: linear-gradient(90deg, transparent, white, transparent);
 
-    --newtab-width: 34px;
-    //--newtab-normal: rgb(211, 217, 225, 0.6);
-    --newtab-normal: var(--inactive-tab-background-color);
-    --newtab-hot: rgb(211, 217, 225, 0.8);
-    --newtab-active: rgb(211, 217, 225, 0.4);
+	--newtab-width: 34px;
+	//--newtab-normal: rgb(211, 217, 225, 0.6);
+	--newtab-normal: var(--inactive-tab-background-color);
+	--newtab-hot: rgb(211, 217, 225, 0.8);
+	--newtab-active: rgb(211, 217, 225, 0.4);
 }
 
 .tabbrowser-tab {
+	.tab-stack {
+		&::after {
+			mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+			z-index: -1;
+		}
+	}
 	/* bruni: We are changing the favicon of about pages like
 		this so we can have era-specific icons. */
 	&:not([busy]) {
-		&[image="chrome://global/skin/icons/settings.svg"] {
+		&[image="chrome://global/skin/icons/settings.svg"]
+		{
 			.tab-label {
 				&::before {
 					content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
 				}
 			}
 		}
-		&[image="chrome://mozapps/skin/extensions/extension.svg"] {
+		&[image="chrome://mozapps/skin/extensions/extension.svg"]
+		{
 			.tab-label {
 				&::before {
 					content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
@@ -29,79 +37,99 @@
 		}
 	}
 
-    &:not([visuallyselected]) {
+	&:not([visuallyselected]) {
 		&:not(:first-of-type) {
-            .tab-content {
-                &::before {
-                    background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
-                        no-repeat;
-                    background-position: 0 2px;
-                }
-            }
+			.tab-content {
+				&::before {
+					background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
+						no-repeat;
+					background-position: 0 2px;
+				}
+			}
 
-            .tab-stack {
-                &::before {
-                    mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
-                }
-            }
+			.tab-stack {
+				&::before {
+					mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+				}
+			}
 
-            .tab-glare-left {
-                mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
-                mask-position-y: -1px;
-                width: 12px;
-            }
-        }
+			.tab-glare-left {
+				mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+				mask-position-y: -1px;
+				width: 12px;
+			}
+		}
 
-        .tab-content {
-            &::before {
-                background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
-                    no-repeat;
-                background-position: -6px 0 !important;
-            }
-            &::after {
-                background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
-                    no-repeat;
-                background-position: 0 0 !important;
-            }
-        }
+		.tab-content {
+			&::before {
+				background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
+					no-repeat;
+				background-position: -6px 0 !important;
+			}
+			&::after {
+				background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
+					no-repeat;
+				background-position: 0 0 !important;
+			}
+		}
 
-        .tab-context-line {
-            &::before {
-                background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
-                    top;
-                top: 0;
-            }
-        }
-    }
+		.tab-context-line {
+			&::before {
+				background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
+					top;
+				top: 0;
+			}
+		}
+	}
 
-    &[visuallyselected] {
-        .tab-content {
-            &::before {
-                background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
-                    no-repeat !important;
-                background-position: -6px 0 !important;
-            }
-            &::after {
-                background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
-                    no-repeat !important;
-                background-position: 0 0 !important;
-            }
-        }
+	&[visuallyselected] {
+		.tab-content {
+			&::before {
+				background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
+					no-repeat !important;
+				background-position: -6px 0 !important;
+			}
+			&::after {
+				background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
+					no-repeat !important;
+				background-position: 0 0 !important;
+				z-index: 2;
+			}
+		}
 
-        .tab-context-line {
-            &::before {
-                background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
-                    top;
-                top: 0;
-            }
-        }
-    }
+		.tab-context-line {
+			&::before {
+				background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
+					top;
+				top: 0;
+			}
+		}
+	}
+
+	.tab-throbber,
+	.tab-icon-pending,
+	.tab-icon-image,
+	.tab-sharing-icon-overlay,
+	.tab-icon-overlay {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.tab-icon-stack {
+		margin-top: 4px;
+		margin-inline-end: 4px !important;
+	}
+	.tab-content {
+		padding-inline: 1px !important;
+	}
 }
 
 .tab-glare-left {
-    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+	z-index: -1;
 }
 
 .tab-glare-right {
-    mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+	position: relative;
+	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+	z-index: -1;
 }

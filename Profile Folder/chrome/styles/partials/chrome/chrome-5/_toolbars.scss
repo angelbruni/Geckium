@@ -427,13 +427,19 @@
 
 		&[profilepic="custom"] {
 			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+				background-image: var(
+					--custom-profile-picture,
+					url(assets/img/profile/0.png)
+				);
 			}
 
 			toolbarbutton.subviewbutton {
 				&#fxa-manage-account-button {
 					&::before {
-						background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+						background-image: var(
+							--custom-profile-picture,
+							url(assets/img/profile/0.png)
+						);
 					}
 				}
 			}
@@ -524,7 +530,11 @@
 
 	&[geckium-choice="five"],
 	&[geckium-choice="six"] {
-		.toolbarbutton-1:not(#fxa-toolbar-menu-button,#tabs-newtab-button,#new-tab-button) {
+		.toolbarbutton-1:not(
+				#fxa-toolbar-menu-button,
+				#tabs-newtab-button,
+				#new-tab-button
+			) {
 			&#unified-extensions-button,
 			&[type="menu"]:not(#back-button, #forward-button),
 			&#PanelUI-menu-button,
@@ -532,28 +542,28 @@
 				border: 0 !important;
 				background: transparent !important;
 				transition: background-color 100ms linear;
-	
+
 				&:not([class*="webextension"]) {
 					width: var(--toolbarbutton-menu-width) !important;
 				}
-	
+
 				&::after,
 				&::before {
 					content: unset !important;
 				}
-	
+
 				&:not([disabled]) {
 					&:hover {
 						border: 1px solid rgb(201, 210, 221);
 						background-color: rgba(255, 255, 255, 0.6) !important;
-	
+
 						.toolbarbutton-badge-stack,
 						.toolbarbutton-icon,
 						image:first-of-type {
 							filter: unset;
 						}
 					}
-	
+
 					&:active,
 					&[open] {
 						border: 1px solid rgb(201, 210, 221);
@@ -572,22 +582,25 @@
 		#PersonalToolbar {
 			&[pref="newtab"] {
 				position: fixed !important;
-				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
+				top: calc(
+					var(--tab-height) + var(--nav-bar-height) +
+						var(--personal-toolbar-height) - 1px
+				);
 				left: 9px;
 				z-index: 1;
 				width: calc(100% - 18px);
 				height: calc(var(--personal-toolbar-height) + 10px) !important;
 				margin: 0 !important;
 				padding: 0 !important;
-				border: 1px solid rgb(172,201,238);
+				border: 1px solid rgb(172, 201, 238);
 				border-radius: 6px !important;
-				background: rgb(210,225,246) !important;
-		
+				background: rgb(210, 225, 246) !important;
+
 				&::before,
 				&::after {
 					content: unset !important;
 				}
-				
+
 				#PlacesToolbarItems {
 					padding: 2px !important;
 				}
@@ -661,7 +674,7 @@
 	}
 
 	&:not(:-moz-lwtheme) {
-		box-shadow: 0 -1px 0 rgb(0, 0, 0, 30%) !important;
+		box-shadow: none !important;
 	}
 }
 
