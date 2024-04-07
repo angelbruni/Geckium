@@ -1,10 +1,12 @@
-.input-parent {
-    --input-padding: 16px;
+:root {
+	--input-padding: 16px;
     --input-border-color: rgb(0, 0, 0, 18%);
     --input-placeholder-color: rgb(0, 0, 0, 30%);
     --input-focus-color: rgb(51, 102, 212);
     --helper-text-color: rgb(0, 0, 0, 60%);
+}
 
+.input-parent {
     position: relative;
     display: flex;
     flex-direction: column;
