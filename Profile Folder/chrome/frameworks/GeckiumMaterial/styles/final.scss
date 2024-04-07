@@ -31,6 +31,19 @@
 	}
 }
 
+vbox,
+hbox {
+	display: flex;
+}
+
+vbox {
+	flex-direction: column;
+}
+
+hbox {
+	flex-direction: row;
+}
+
 label,
 p,
 span,
@@ -92,5 +105,6 @@ spacer {
 @import "partials/input";
 @import "partials/card";
 @import "partials/navigation-drawer";
-@import "partials/ripple";
+@import "partials/menu";
 @import "partials/dialog";
+@import "partials/ripple";

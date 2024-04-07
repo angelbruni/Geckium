@@ -1,0 +1,123 @@
+.menu {
+	display: flex;
+	align-items: center;
+	position: relative;
+	border-radius: 4px;
+	border: 1.5px solid var(--input-border-color);
+	padding-left: var(--input-padding);
+	transition: border-color 0.2s;
+	font-size: 16px;
+	width: 100%;
+	appearance: none;
+	box-sizing: border-box;
+
+	&:not([open]) {
+		.list {
+			pointer-events: none;
+			opacity: 0;
+
+			&[position="top"] {
+				transform: translateY(-8px);
+			}
+			&[position="bottom"] {
+				transform: translateY(8px);
+			}
+		}
+	}
+	&[open] {
+		outline: none;  
+		border-color: var(--input-focus-color);
+		border-width: 2px;
+
+		padding-left: calc(var(--input-padding) - 1px);
+		
+		&::after {
+			transform: rotate(180deg) translateX(1px);
+			margin-inline-end: 10px;
+
+			background: var(--input-focus-color);
+		}
+
+		.placeholder {
+			color: var(--input-focus-color);
+			top: -9px;
+			left: -1px;
+		}
+	}
+
+	&.size-md {
+		height: 56px;
+	}
+
+	&::after {
+		content: "";
+		width: 20px;
+		aspect-ratio: 1 / 1;
+		background: black;
+		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/arrow-drop-down.svg");
+		mask-position: center;
+		mask-repeat: no-repeat;
+		mask-size: 20px;
+		margin-block: 4px;
+		margin-inline-start: auto;
+		margin-inline-end: 12px;
+	}
+
+	.placeholder {
+		position: absolute;
+		left: 0;
+		top: -8px;
+		font-size: 12px;
+		display: flex;
+		align-items: center;
+		width: max-content;
+		pointer-events: none;
+		color: var(--input-placeholder-color);
+		margin-left: calc(var(--input-padding) - 6px);
+		padding-inline: 6px;
+		background: rgb(245, 245, 245);
+		transition: color 0.2s;
+		z-index: 1;
+	}
+
+	.list {
+		position: fixed;
+		left: 0;
+		top: 0;
+		background: white;
+		padding-block: 8px;
+		border-radius: 2px;
+		z-index: 2;
+		box-shadow: var(--elevation-8);
+		transform: translateY(0);
+		transition-property: opacity, transform;
+		transition-duration: 80ms;
+		transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
+
+		.item {
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding-inline-start: 16px;
+			padding-inline-end: 8px;
+			height: 48px;
+			overflow: hidden;
+			transition: background-color 155ms;
+
+			&:not([disabled]) {	
+				&[selected] {
+					background-color: rgba(153, 153, 153, .1);
+				}
+
+				&:hover,
+				&:focus-visible {
+					background: rgba(153, 153, 153, .2);
+				}
+			}
+
+			.ripple {
+				background: rgba(153, 153, 153, .4);
+			}
+		}
+	}
+}

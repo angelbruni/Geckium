@@ -238,20 +238,20 @@
 							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
-										<div>
+										<vbox>
 											<h4>Textboxes</h4>
-											<div>
-												<div class="input-parent size-md">
+											<hbox style="gap: 16px">
+												<div class="input-parent size-md" flex="1">
 													
 													
 													
 												</div>
-												<div class="input-parent input-error size-md">
+												<div class="input-parent input-error size-md" flex="1">
 													
 													
 													
 												</div>
-											</div>
+											</hbox>
 											
 											<div>
 												<div class="checkbox-parent">
@@ -270,6 +270,31 @@
 													
 												</div>
 											</div>
+											<h4>Menu</h4>
+											<hbox style="gap: 16px;">
+												<html:button class="menu size-md" data-name="Pets" id="pet-select">
+													<label class="placeholder" />
+													<label class="selected" />
+													<vbox class="list">
+														<hbox class="item ripple-enabled" value="dog">Dog</hbox>
+														<hbox class="item ripple-enabled" value="cat">Cat</hbox>
+														<hbox class="item ripple-enabled" value="hamster">Hamster</hbox>
+														<hbox class="item ripple-enabled" value="parrot">Parrot</hbox>
+														<hbox class="item ripple-enabled" value="spider">Spider</hbox>
+														<hbox class="item ripple-enabled" value="goldfish">Goldfish</hbox>
+													</vbox>
+												</html:button>
+												<html:button class="menu size-md" data-name="Cars" id="cars-select">
+													<label class="placeholder" />
+													<label class="selected" />
+													<vbox class="list">
+														<hbox class="item ripple-enabled" value="volvo">Volvo</hbox>
+														<hbox class="item ripple-enabled" value="saab">Saab</hbox>
+														<hbox class="item ripple-enabled" value="mercedes">Mercedes</hbox>
+														<hbox class="item ripple-enabled" value="audi" selected="true">Audi</hbox>
+													</vbox>
+												</html:button>
+											</hbox>
 											
 											<div>
 												<div class="switch-parent">
@@ -287,7 +312,7 @@
 													
 												</div>
 											</div>
-										</div>
+										</vbox>
 									</vbox>
 								</vbox>
 							</vbox>
@@ -745,6 +770,7 @@
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
