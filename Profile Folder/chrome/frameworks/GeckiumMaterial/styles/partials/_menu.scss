@@ -35,7 +35,7 @@
 			transform: rotate(180deg) translateX(1px);
 			margin-inline-end: 10px;
 
-			background: var(--input-focus-color);
+			background: var(--secondary-color, var(--primary-color));
 		}
 
 		.placeholder {
@@ -61,6 +61,10 @@
 		margin-block: 4px;
 		margin-inline-start: auto;
 		margin-inline-end: 12px;
+
+		@media (prefers-color-scheme: dark) {
+			background: white;
+		}
 	}
 
 	.placeholder {
@@ -78,6 +82,10 @@
 		background: rgb(245, 245, 245);
 		transition: color 0.2s;
 		z-index: 1;
+
+		@media (prefers-color-scheme: dark) {
+			background: #212121;
+		}
 	}
 
 	.list {
@@ -93,6 +101,10 @@
 		transition-property: opacity, transform;
 		transition-duration: 80ms;
 		transition-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
+
+		@media (prefers-color-scheme: dark) {
+			background: #212121;
+		}
 
 		.item {
 			position: relative;

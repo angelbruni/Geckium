@@ -34,6 +34,10 @@
 				height: 1px;
 				margin-block-start: -1px;
 				background-color: rgb(230,230,230);
+
+				@media (prefers-color-scheme: dark) {
+					background-color: rgb(87,87,87);
+				}
 			}
 		}
 	}
@@ -46,8 +50,11 @@
 #navigation-drawer {
 	position: relative;
 	background: white;
-	color: black;
 	width: 256px;
+
+	@media (prefers-color-scheme: dark) {
+		background: hsl(0, 0%, 22%);
+	}
 
 	&::after {
 		content: "";
@@ -57,6 +64,10 @@
 		width: 1px;
 		height: 100%;
 		background: rgb(215,215,215);
+
+		@media (prefers-color-scheme: dark) {
+			background: rgb(87,87,87);
+		}
 	}
 
 	&:not(.rail) {
@@ -173,6 +184,10 @@
 				mask-size: contain;
 				mask-repeat: no-repeat;
 				background-color: rgba(0,0,0,.54);
+
+				@media (prefers-color-scheme: dark) {
+					background: rgba(255,255,255,.54);
+				}
 			}
 		}
 	}
@@ -234,5 +249,9 @@
 		background-color: rgb(230,230,230);
 		margin-block: 8px;
 		flex-shrink: 0;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: rgb(87,87,87);
+		}
 	}
 }

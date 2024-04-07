@@ -111,6 +111,10 @@ button {
 	
 				color: rgb(33,33,33);
 
+				@media (prefers-color-scheme: dark) {
+					color: rgb(224,224,224);
+				}
+
 				&[class*="icon"] {
 					&::before {
 						background-color: var(--secondary-color, var(--primary-color));
@@ -152,6 +156,10 @@ button {
 				border-width: 1px;
 				border-style: solid;
 				border-color: rgba(0,0,0,.15);
+
+				@media (prefers-color-scheme: dark) {
+					border-color: rgb(255,255,255,.15);
+				}
 			}
 		}
 
@@ -161,7 +169,11 @@ button {
 			}
 
 			label {
-				color: rgba(0,0,0,.26)
+				color: rgba(0,0,0,.26);
+
+				@media (prefers-color-scheme: dark) {
+					color: rgb(255,255,255,.26);
+				}
 			}
 		}
 	}
@@ -239,6 +251,10 @@ button {
 		cursor: pointer;
 		transition: background-color 155ms, box-shadow 155ms;
 
+		@media (prefers-color-scheme: dark) {
+			background: rgb(30,30,30);
+		}
+		
 		vbox > label {
 			font-weight: 500;
 			margin-block-end: 8px;
@@ -286,6 +302,10 @@ button {
 				margin-right: 20px;
 				background-color: black;
 				flex-shrink: 0;
+
+				@media (prefers-color-scheme: dark) {
+					background-color: white;
+				}
 			}
 		}
 

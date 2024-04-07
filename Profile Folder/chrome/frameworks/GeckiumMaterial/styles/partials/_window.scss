@@ -203,5 +203,8 @@ window {
 	overflow: hidden;
 	flex: 1;
 	background: rgb(245,245,245);
-	color: black;
+
+	@media (prefers-color-scheme: dark) {
+		background: #212121;
+	}
 }

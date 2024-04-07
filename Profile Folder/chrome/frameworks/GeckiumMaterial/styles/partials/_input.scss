@@ -4,6 +4,12 @@
     --input-placeholder-color: rgb(0, 0, 0, 30%);
     //--input-focus-color: var(--secondary-color, var(--primary-color));
     --helper-text-color: rgb(0, 0, 0, 60%);
+
+	@media (prefers-color-scheme: dark) {
+		--input-border-color: rgba(255, 255, 255, 18%);
+		--input-placeholder-color: rgba(255, 255, 255, 50%);
+		--helper-text-color: rgba(255, 255, 255, 60%);
+	}
 }
 
 .input-parent {
@@ -22,6 +28,13 @@
         --input-placeholder-color: rgb(176, 0, 32) !important;
         --input-focus-color: rgb(176, 0, 32) !important;
         --helper-text-color: rgb(176, 0, 32) !important;
+
+		@media (prefers-color-scheme: dark) {
+			--input-border-color: rgb(207,102,121) !important;
+			--input-placeholder-color: rgb(207,102,121) !important;
+			--input-focus-color: rgb(207,102,121) !important;
+			--helper-text-color: rgb(207,102,121) !important;
+		}
 
 		.input {
 			&:focus-visible {
@@ -56,6 +69,10 @@
             font-size: 12px;
             background: rgb(245, 245, 245);
             top: -8px;
+
+			@media (prefers-color-scheme: dark) {
+				background: #212121;
+			}
         }
         &:focus-visible + .placeholder {
             color: var(--secondary-color, var(--primary-color));;
@@ -87,7 +104,11 @@
 }
 
 .checkbox-parent {
-    --checkbox-border-color: rgb(0, 0, 0, 22%);
+    --checkbox-border-color: rgba(0, 0, 0, 22%);
+
+	@media (prefers-color-scheme: dark) {
+		--checkbox-border-color: rgba(255, 255, 255, 22%);
+	}
 
     position: relative;
     display: flex;
@@ -131,12 +152,20 @@
         }
         
         &:not([disabled="true"]):hover + .gutter {
-            background: rgb(0, 0, 0, 5%);
+            background: rgba(0, 0, 0, 5%);
             scale: 2.4;
+
+			@media (prefers-color-scheme: dark) {
+				background: rgba(255,255,255,.10);
+			}
         }
         &:not([disabled="true"]):active + .gutter {
-            background: rgb(0, 0, 0, 12%);
+            background: rgba(0, 0, 0, 12%);
             scale: 2.4;
+
+			@media (prefers-color-scheme: dark) {
+				background: rgba(255,255,255,.15);
+			}
         }
 
         &[disabled="true"] {
@@ -164,6 +193,10 @@
 
 .switch-parent {
     --switch-inactive-background: rgb(0, 0, 0, 20%);
+
+	@media (prefers-color-scheme: dark) {
+		--switch-inactive-background: rgb(255, 255, 255, 20%);
+	}
 
     position: relative;
     display: flex;
@@ -196,15 +229,28 @@
             background: white;
             transition: all 150ms ease-in;
             pointer-events: none;
+
+			@media (prefers-color-scheme: dark) {
+				background: hsl(0,0,80%);
+			}
         }
 
         &:not([disabled="true"]):hover + .gutter::before {
-            background: rgb(0, 0, 0, 5%);
+            background: rgba(0, 0, 0, 5%);
             scale: 1.7;
+
+			@media (prefers-color-scheme: dark) {
+				background: rgba(255,255,255,.10);
+			}
         }
+
         &:not([disabled="true"]):active + .gutter::before {
-            background: rgb(0, 0, 0, 12%);
-        }
+            background: rgba(0, 0, 0, 12%);
+
+			@media (prefers-color-scheme: dark) {
+				background: rgba(255,255,255,.15);
+			}
+        }	
 
         &:not([disabled="true"]):checked {
             background: color-mix(in srgb, var(--secondary-color, var(--primary-color)), transparent 80%);
