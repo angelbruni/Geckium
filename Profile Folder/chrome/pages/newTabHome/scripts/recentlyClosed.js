@@ -37,6 +37,9 @@ function createRecentlyClosed() {
 
 			title = state.entries[0].title;
 
+			if (title == undefined)
+				return;
+
 			if (!state.image) {
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
 			} else {
