@@ -5,6 +5,8 @@
 // ==/UserScript==
 
 const customAboutPages = {
+	"places": "chrome://browser/content/places/places.xhtml",
+
 	"zoo": 	"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
 
 	"home": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
