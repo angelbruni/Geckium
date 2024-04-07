@@ -7,6 +7,15 @@ const numTiles = desiredRows * desiredCols;
 
 const { PageThumbs } = ChromeUtils.importESModule("resource://gre/modules/PageThumbs.sys.mjs");
 
+// Map of special characters and their corresponding HTML entities
+const specialCharacters = {
+	"&": "&amp;",
+	"<": "&lt;",
+	">": "&gt;",
+	'"': "&quot;",
+	"'": "&#39;",
+};
+
 /* Temporary code for webpage colours until I pick a colour with canvas.
 
    These colours are based from the ones Internet Explorer 9 picked up.
@@ -118,6 +127,9 @@ function createTile(website) {
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
 			else
 				favicon = website.favicon;
+			
+			// Replace special characters with their corresponding HTML entities.
+			const title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			if (appearanceChoice <= 2) {
 				tile = `
@@ -135,7 +147,7 @@ function createTile(website) {
 					<html:div class="title">
 						<hbox style="list-style-image: url('${favicon}')">
 							<image class="favicon"></image>
-							<label>${website.title}</label>
+							<label>${title}</label>
 						</hbox>
 					</html:div>
 				</html:a>
@@ -166,7 +178,7 @@ function createTile(website) {
 							<html:img class="favicon" src="${favicon}"></html:img>
 						</html:div>
 						<html:div class="color-stripe" style="background-color: ${activityColour}"></html:div>
-						<html:p class="title">${website.title}</html:p>
+						<html:p class="title">${title}</html:p>
 					</html:a>
 				</html:div>
 				`
@@ -179,7 +191,7 @@ function createTile(website) {
 				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${website.title}">
 					<hbox class="title-container">
 						<image class="mv-favicon"></image>
-						<label class="mv-title">${website.title}</label>
+						<label class="mv-title">${title}</label>
 						<html:button class="mv-x"></html:button>
 					</hbox>
 					<html:div class="mv-thumb"></html:div>
@@ -254,6 +266,8 @@ function createTile(website) {
 				`
 			}
 		}
+
+		console.log(tile);
 
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {
