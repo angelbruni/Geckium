@@ -4,6 +4,12 @@
     
     //--input-focus-color: var(--secondary-color, var(--primary-color));
     
+
+	@media (prefers-color-scheme: dark) {
+		--input-border-color: rgba(255, 255, 255, 18%);
+		--input-placeholder-color: rgba(255, 255, 255, 50%);
+		--helper-text-color: rgba(255, 255, 255, 60%);
+	}
 }
 
 .input-parent {
@@ -22,6 +28,13 @@
         
         
         
+
+		@media (prefers-color-scheme: dark) {
+			--input-border-color: rgb(207,102,121) !important;
+			--input-placeholder-color: rgb(207,102,121) !important;
+			--input-focus-color: rgb(207,102,121) !important;
+			--helper-text-color: rgb(207,102,121) !important;
+		}
 
 		.input {
 			&:focus-visible {
@@ -56,6 +69,10 @@
             
             
             
+
+			@media (prefers-color-scheme: dark) {
+				background: #212121;
+			}
         }
         &:focus-visible + .placeholder {
             color: var(--secondary-color, var(--primary-color));;
@@ -87,7 +104,11 @@
 }
 
 .checkbox-parent {
-    
+    --checkbox-border-color: rgba(0, 0, 0, 22%);
+
+	@media (prefers-color-scheme: dark) {
+		--checkbox-border-color: rgba(255, 255, 255, 22%);
+	}
 
     
     
@@ -131,12 +152,20 @@
         }
         
         &:not([disabled="true"]):hover + .gutter {
+            background: rgba(0, 0, 0, 5%);
+
             
-            
+            @media (prefers-color-scheme: dark) {
+                background: rgba(255,255,255,.10);
+            }
         }
         &:not([disabled="true"]):active + .gutter {
+            background: rgba(0, 0, 0, 12%);
             
             
+            @media (prefers-color-scheme: dark) {
+				background: rgba(255,255,255,.15);
+			}
         }
 
         &[disabled="true"] {
@@ -163,10 +192,14 @@
 .switch-parent {
     
 
+	@media (prefers-color-scheme: dark) {
+		--switch-inactive-background: rgb(255, 255, 255, 20%);
+	}
+
     
     
     
-    
+
 
     &[disabled="true"] {
         
@@ -194,14 +227,27 @@
             
             
             
+
+            @media (prefers-color-scheme: dark) {
+				background: hsl(0,0,80%);
+			}
         }
 
         &:not([disabled="true"]):hover + .gutter::before {
+            background: rgba(0, 0, 0, 5%);
+
             
-            
+            @media (prefers-color-scheme: dark) {
+                background: rgba(255,255,255,.10);
+            }
         }
+
         &:not([disabled="true"]):active + .gutter::before {
+            background: rgba(0, 0, 0, 12%);
             
+            @media (prefers-color-scheme: dark) {
+                background: rgba(255,255,255,.15);
+            }
         }
 
         &:not([disabled="true"]):checked {

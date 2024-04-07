@@ -202,14 +202,8 @@ window {
 	overflow: hidden;
 	flex: 1;
 	background: rgb(245,245,245);
-	color: black;
-}
 
-#window-caption-buttons-container {
-	button {
-		all: unset;
-
-		height: 24px;
-		width: 24px;
+	@media (prefers-color-scheme: dark) {
+		background: #212121;
 	}
 }

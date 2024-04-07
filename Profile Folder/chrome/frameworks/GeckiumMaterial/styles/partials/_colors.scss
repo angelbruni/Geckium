@@ -27,6 +27,14 @@ $colors: (
 	 	--#{$name}: #{$color};
 	}
 }
+
+#window {
+	--secondary-color: var(--chosen-secondary-color);
+
+	@media (prefers-color-scheme: dark) {
+		--secondary-color: color-mix(in srgb, var(--chosen-secondary-color), #ffffff 16.7%);
+	}
+}
   
 .primary-color {
 	--primary-color-tone-50:	color-mix(in srgb, var(--primary-color-tone-500), #ffffff 83.5%);
@@ -48,7 +56,7 @@ $colors: (
 }
 
 .light {
-	color: white;
+	color: white !important;
 }
   
 #current-color {
@@ -65,6 +73,7 @@ $colors: (
 	height: 45px;
 	padding: 10px 15px 11px;
 	font-weight: 500;
+	color: black;
 
 	&:first-child {
 		height: 122px;
