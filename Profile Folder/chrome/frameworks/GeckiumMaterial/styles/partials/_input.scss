@@ -2,7 +2,7 @@
 	
     
     
-    
+    //--input-focus-color: var(--secondary-color, var(--primary-color));
     
 }
 
@@ -22,6 +22,16 @@
         
         
         
+
+		.input {
+			&:focus-visible {
+				border-color: var(--input-focus-color);
+			}
+
+			&:focus-visible + .placeholder {
+				color: var(--input-border-color);
+			}
+		}
     }
 
     .input {
@@ -37,7 +47,7 @@
 
         &:focus-visible {
               
-            
+            border-color: var(--secondary-color, var(--primary-color));;
             
         }
 
@@ -48,7 +58,7 @@
             
         }
         &:focus-visible + .placeholder {
-            
+            color: var(--secondary-color, var(--primary-color));;
         }
     }
 

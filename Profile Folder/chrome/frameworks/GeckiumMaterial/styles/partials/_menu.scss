@@ -26,7 +26,7 @@
 	}
 	&[open] {
 		outline: none;  
-		border-color: var(--input-focus-color);
+		border-color: var(--secondary-color, var(--primary-color));
 		border-width: 2px;
 
 		padding-left: calc(var(--input-padding) - 1px);
@@ -39,7 +39,7 @@
 		}
 
 		.placeholder {
-			color: var(--input-focus-color);
+			color: var(--secondary-color, var(--primary-color));;
 			top: -9px;
 			left: -1px;
 		}
