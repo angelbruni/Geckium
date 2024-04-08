@@ -4,8 +4,12 @@
 		margin: 0;
 	}
 
-	.window-top-bars {
-		&.banner {
+	&.banner {
+		&::after {
+			top: calc(var(--titlebar-height) + var(--toolbar-height));
+		}
+
+		.window-top-bars {
 			position: relative;
 			color: white;
 			background-position: center;
@@ -25,7 +29,7 @@
 				height: 56px;
 				padding-top: 56px;
 				box-sizing: unset;
-			}
+			}	
 		}
 
 		&.separator {
@@ -64,6 +68,7 @@
 		width: 1px;
 		height: 100%;
 		background: rgb(215,215,215);
+		z-index: 2;
 
 		@media (prefers-color-scheme: dark) {
 			background: rgb(87,87,87);

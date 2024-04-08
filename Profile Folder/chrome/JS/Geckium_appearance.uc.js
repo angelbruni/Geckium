@@ -12,7 +12,7 @@ var { AppConstants } = ChromeUtils.importESModule(
 const forkName = AppConstants.MOZ_APP_NAME;
 const unsupportedForks = {
 	"superfox": true,
-	"r3dfox": true,
+	"r3dfox": true
 }
 
 const appearanceChanged = new CustomEvent("appearanceChanged");
@@ -47,6 +47,8 @@ if (unsupportedForks[forkName]) {
 		  	}],
 		}
 	);
+
+	docElm.setAttribute("unsupported-fork", true);
 }	
 
 function applyApperance(choice) {

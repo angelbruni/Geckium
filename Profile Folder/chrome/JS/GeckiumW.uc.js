@@ -7,5 +7,9 @@
 // ==/UserScript==
 
 function openZoo() {
-	window.openDialog("about:zoo", "", "centerscreen");
+	window.openDialog("about:gmzoo", "", "centerscreen");
+}
+
+function openSettings() {
+	window.openDialog("about:gsettings", "", "centerscreen");
 }
