@@ -16,7 +16,7 @@ document.querySelectorAll(".menu").forEach(btn => {
 		btn.setAttribute("value", defaultItem.getAttribute("value"));
 		defaultItem.setAttribute("selected", true);
 	}
-	
+
 	btn.addEventListener("click", (e) => {
 		const windowHeight = document.querySelector("#window").getBoundingClientRect().height;
 
@@ -39,7 +39,7 @@ document.querySelectorAll(".menu").forEach(btn => {
 			list.style.top = btnY - listHeight + "px";
 			list.setAttribute("position", "bottom");
 		}
-			
+
 
 		if (!btn.hasAttribute("open"))
 			btn.setAttribute("open", true); // Add the "open" attribute to the button
@@ -65,5 +65,18 @@ document.querySelectorAll(".menu").forEach(btn => {
 			menuText.textContent = item.textContent;
 			item.setAttribute("selected", true);
 		})
-	})
-})
+	});
+
+	// Method to set value programmatically
+	btn.setValue = function(value) {
+		const selectedItem = btn.querySelector(`.item[value="${value}"]`);
+		if (selectedItem) {
+			items.forEach(item => {
+				item.removeAttribute("selected");
+			});
+			selectedItem.setAttribute("selected", true);
+			btn.setAttribute("value", value);
+			menuText.textContent = selectedItem.textContent;
+		}
+	};
+});

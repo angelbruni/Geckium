@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/styles/final.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/windows/settings/style.css" type="text/css"?>
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		windowtype="geckiummaterial:settings"
+		title="Geckium Settings"
+		width="1180"
+		height="730"
+		chromemargin="0,0,0,0">
+	<html:div id="window-container">
+		<hbox id="window" class="primary-color" style="--primary-color: rgb(55,103,212); --chosen-secondary-color: var(--pink)" preview-pane="false">
+			<hbox class="window-titlebar">
+				<hbox id="window-caption-buttons-container">
+					<hbox id="window-caption-buttons">
+						<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
+						<button class="caption-button maximize" id="window-maximize-button" onclick="window.maximize();" />
+						<button class="caption-button restore" id="window-restore-button" onclick="window.restore();" />
+						<button class="caption-button close" id="window-close-button" onclick="window.close();" />
+					</hbox>
+				</hbox>
+			</hbox>
+			<vbox id="navigation-drawer" class="color iconic item-radius">
+				<vbox class="window-top-bars">
+					<vbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3 id="window-title"/>
+							<spacer />
+							<button />
+						</hbox>
+					</vbox>
+				</vbox>
+				<vbox class="navigation-items">
+					<button class="item ripple-enabled icon-home" data-page-container="main" data-page="0" label="Home" selected="true" />
+				</vbox>
+			</vbox>
+			<vbox id="window-content-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3 id="page-title" data-page-container="main"/>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<hbox id="window-content">
+					<div class="pages">
+						<vbox class="pages-container" data-page-container="main">
+							<vbox class="page" data-page="0" selected="true">
+								<vbox class="content-container">
+									<vbox class="content">
+										
+									</vbox>
+								</vbox>
+							</vbox>
+						</vbox>
+					</div>
+				</hbox>
+			</vbox>
+			<vbox id="preview-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3>Preview</h3>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<vbox class="content">
+					
+				</vbox>
+			</vbox>
+		</hbox>
+	</html:div>
+
+	<script src="chrome://userchrome/content/windows/settings/scripts/settings.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
+</window>

@@ -1,0 +1,36 @@
+#window:not([preview-pane="true"]) {
+	#preview-container {
+		display: none;
+	}
+}
+
+#preview-container {
+	position: relative;
+	background: var(--primary-color-tone-700);
+	z-index: 0;
+	min-width: 320px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: calc(var(--titlebar-height) + var(--toolbar-height));
+		width: 1px;
+		height: 100%;
+		background: rgb(215,215,215);
+		z-index: 2;
+
+		@media (prefers-color-scheme: dark) {
+			background: rgb(87,87,87);
+		}
+	}
+
+	.window-top-bar {
+		background: var(--primary-color-tone-700);
+	}
+
+	> .content {
+		flex: 1;
+		background: #E0E0E0;
+	}
+}

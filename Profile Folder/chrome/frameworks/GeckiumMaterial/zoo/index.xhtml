@@ -12,19 +12,19 @@
 		height="730"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
-		<hbox id="window" class="primary-color" style="--primary-color: rgb(55,103,212); --chosen-secondary-color: var(--pink)">
-			<vbox id="navigation-drawer" class="color iconic item-radius">
-				<vbox class="window-top-bars banner">
-					<hbox class="window-titlebar">
-						<hbox id="window-caption-buttons-container" class="show-mac">
-							<hbox id="window-caption-buttons">
-								<button class="caption-button close" id="window-close-button" onclick="window.close();" />
-								<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
-								<button class="caption-button maximize" id="window-maximize-button" onclick="window.maximize();" />
-								<button class="caption-button restore" id="window-restore-button" onclick="window.restore();" />
-							</hbox>
-						</hbox>
+		<hbox id="window" class="primary-color" style="--primary-color: rgb(55,103,212); --chosen-secondary-color: var(--pink)" preview-pane="true">
+			<hbox class="window-titlebar">
+				<hbox id="window-caption-buttons-container">
+					<hbox id="window-caption-buttons">
+						<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
+						<button class="caption-button maximize" id="window-maximize-button" onclick="window.maximize();" />
+						<button class="caption-button restore" id="window-restore-button" onclick="window.restore();" />
+						<button class="caption-button close" id="window-close-button" onclick="window.close();" />
 					</hbox>
+				</hbox>
+			</hbox>
+			<vbox id="navigation-drawer" class="banner color iconic item-radius">
+				<vbox class="window-top-bars">
 					<vbox class="window-top-bar">
 						<hbox class="window-toolbar">
 							<h3 id="window-title"/>
@@ -52,16 +52,6 @@
 			</vbox>
 			<vbox id="window-content-container">
 				<vbox class="window-top-bars light">
-					<hbox class="window-titlebar">
-						<hbox id="window-caption-buttons-container" class="hide-mac">
-							<hbox id="window-caption-buttons">
-								<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
-								<button class="caption-button maximize" id="window-maximize-button" onclick="window.maximize();" />
-								<button class="caption-button restore" id="window-restore-button" onclick="window.restore();" />
-								<button class="caption-button close" id="window-close-button" onclick="window.close();" />
-							</hbox>
-						</hbox>
-					</hbox>
 					<hbox class="window-top-bar">
 						<hbox class="window-toolbar">
 							<h3 id="page-title" data-page-container="main"/>
@@ -766,6 +756,20 @@
 						</vbox>
 					</div>
 				</hbox>
+			</vbox>
+			<vbox id="preview-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3>Preview</h3>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<vbox class="content">
+					
+				</vbox>
 			</vbox>
 		</hbox>
 	</html:div>
