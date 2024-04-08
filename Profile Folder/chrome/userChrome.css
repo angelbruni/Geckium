@@ -412,6 +412,7 @@ tooltip {
   margin-left: -13px !important;
   padding: 0;
   overflow: hidden !important;
+  z-index: 1;
 }
 
 .tabbrowser-tab {
@@ -438,6 +439,9 @@ tooltip {
 }
 .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-label::before {
   content: url(assets/img/chrome-5/tabbar/plugin.png);
+}
+.tabbrowser-tab:not([visuallyselected=true]) {
+  z-index: 500 !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
@@ -480,7 +484,6 @@ tooltip {
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-  z-index: -1;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::after {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png) no-repeat;
@@ -505,7 +508,6 @@ tooltip {
 .tabbrowser-tab[visuallyselected=true] .tab-content::after {
   background: url(assets/img/chrome-5/tabbar/tab_active_right.png) no-repeat;
   background-position: 0 2px;
-  z-index: 2;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-stack::before, .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
   background: var(--tabbrowser-tab-selected) !important;
@@ -517,7 +519,6 @@ tooltip {
 .tabbrowser-tab[visuallyselected=true] .tab-stack::after {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-  z-index: -1;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-context-line::before {
   background: url(assets/img/chrome-5/tabbar/tab_active_center.png) top;
@@ -591,6 +592,7 @@ tooltip {
 .tab-stack {
   margin-inline-start: calc(var(--tab-distance) + 1px) !important;
   margin-inline-end: var(--tab-distance) !important;
+  z-index: 1;
 }
 .tab-stack::before, .tab-stack::after {
   position: absolute;
@@ -723,6 +725,7 @@ tooltip {
 .tab-glare-right {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+  mask-position-x: -2px;
   mask-position-y: -3px;
   width: var(--tab-sides-width);
 }
@@ -3485,7 +3488,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab .tab-stack::after {
   -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-  z-index: -1;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-label::before {
   content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
@@ -3526,7 +3528,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected] .tab-content::after {
   background: url(assets/img/chrome-21/tabbar/tab_active_right.png) no-repeat !important;
   background-position: 0 0 !important;
-  z-index: 2;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab[visuallyselected] .tab-context-line::before {
   background: url(assets/img/chrome-21/tabbar/tab_active_center.png) top;
@@ -3535,13 +3536,11 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tab-glare-left {
   -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
           mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-  z-index: -1;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tab-glare-right {
   position: relative;
   -webkit-mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
           mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-  z-index: -1;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
   --toolbarbutton-border-color-hot: rgb(192, 192, 192);

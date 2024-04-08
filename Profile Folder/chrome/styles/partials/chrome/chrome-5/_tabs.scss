@@ -205,6 +205,7 @@
 	margin-left: -13px !important;
 	padding: 0;
 	overflow: hidden !important;
+	z-index: 1;
 }
 
 .tabbrowser-tab {
@@ -252,6 +253,8 @@
 	}
 
 	&:not([visuallyselected="true"]) {
+		z-index: 500 !important;
+
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
@@ -306,18 +309,15 @@
 				background-color: var(
 					--inactive-tab-background-color
 				) !important;
-				//transition: 100ms background-color linear;
 			}
 
 			&::before {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-				//backdrop-filter: blur(400px);
 				left: calc(var(--tab-sides-width) * -1);
 			}
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-				z-index: -1;
 			}
 		}
 
@@ -340,7 +340,6 @@
 
 		.tab-background {
 			background: var(--inactive-tab-background-color) !important;
-			//transition: 100ms background-color linear;
 		}
 	}
 
@@ -359,7 +358,6 @@
 				background: url(assets/img/chrome-5/tabbar/tab_active_right.png)
 					no-repeat;
 				background-position: 0 2px;
-				z-index: 2;
 			}
 		}
 
@@ -375,7 +373,6 @@
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-				z-index: -1;
 			}
 		}
 
@@ -481,6 +478,7 @@
 .tab-stack {
 	margin-inline-start: calc(var(--tab-distance) + 1px) !important;
 	margin-inline-end: var(--tab-distance) !important;
+	z-index: 1;
 
 	&::before,
 	&::after {
@@ -625,6 +623,7 @@
 
 .tab-glare-right {
 	mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+	mask-position-x: -2px;
 	mask-position-y: -3px;
 	width: var(--tab-sides-width);
 }

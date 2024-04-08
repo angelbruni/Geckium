@@ -3,7 +3,6 @@
 	--tab-glare: linear-gradient(90deg, transparent, white, transparent);
 
 	--newtab-width: 34px;
-	//--newtab-normal: rgb(211, 217, 225, 0.6);
 	--newtab-normal: var(--inactive-tab-background-color);
 	--newtab-hot: rgb(211, 217, 225, 0.8);
 	--newtab-active: rgb(211, 217, 225, 0.4);
@@ -13,7 +12,6 @@
 	.tab-stack {
 		&::after {
 			mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-			z-index: -1;
 		}
 	}
 	/* bruni: We are changing the favicon of about pages like
@@ -42,7 +40,7 @@
 			.tab-content {
 				&::before {
 					background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
-						no-repeat;
+								no-repeat;
 					background-position: 0 2px;
 				}
 			}
@@ -63,12 +61,12 @@
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
-					no-repeat;
+							no-repeat;
 				background-position: -6px 0 !important;
 			}
 			&::after {
 				background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
-					no-repeat;
+							no-repeat;
 				background-position: 0 0 !important;
 			}
 		}
@@ -86,14 +84,13 @@
 		.tab-content {
 			&::before {
 				background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
-					no-repeat !important;
+							no-repeat !important;
 				background-position: -6px 0 !important;
 			}
 			&::after {
 				background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
-					no-repeat !important;
+							no-repeat !important;
 				background-position: 0 0 !important;
-				z-index: 2;
 			}
 		}
 
@@ -109,11 +106,9 @@
 
 .tab-glare-left {
 	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
-	z-index: -1;
 }
 
 .tab-glare-right {
 	position: relative;
 	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
-	z-index: -1;
 }
