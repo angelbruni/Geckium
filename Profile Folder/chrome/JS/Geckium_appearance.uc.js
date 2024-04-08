@@ -32,7 +32,7 @@ let previousChoice;
 if (unsupportedForks[forkName]) {
 	_ucUtils.showNotification(
 		{
-		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " fork will receive no support from the Geckium team. Please download a recommended fork.",  // text shown in the notification
+		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " browser will receive no support from the Geckium team. Please download a recommended fork.",  // text shown in the notification
 		  	type : "unsupported-fork",         // opt identifier for this notification
 		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
 		  	buttons: [{
