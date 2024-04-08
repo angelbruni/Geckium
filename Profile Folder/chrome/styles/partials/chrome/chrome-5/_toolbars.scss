@@ -416,12 +416,18 @@
 		&[profilepic="custom"] {
 			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
 				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+
+
+
 			}
 
 			toolbarbutton.subviewbutton {
 				&#fxa-manage-account-button {
 					&::before {
 						background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+
+
+
 					}
 				}
 			}
@@ -513,6 +519,10 @@
 	&[geckium-choice="five"],
 	&[geckium-choice="six"] {
 		.toolbarbutton-1:not(#fxa-toolbar-menu-button,#tabs-newtab-button,#new-tab-button) {
+
+
+
+
 			&#unified-extensions-button,
 			&[type="menu"]:not(#back-button, #forward-button),
 			&#PanelUI-menu-button,
@@ -561,6 +571,9 @@
 			&[pref="newtab"] {
 				position: fixed !important;
 				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
+
+
+
 				left: 9px;
 				z-index: 1;
 				width: calc(100% - 18px);
@@ -1126,7 +1139,6 @@ toolbar[overflowable][customizing] > .customization-target {
 
 	&:hover {
 		border: 1px solid rgba(0, 0, 0, .14);
-        //box-shadow: var(--personal-toolbar-item-hover-shadow);
 		
 	}
 }

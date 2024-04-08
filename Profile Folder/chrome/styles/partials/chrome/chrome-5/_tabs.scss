@@ -201,6 +201,7 @@
 	margin-left: -15px !important;
 	padding: 0;
 	overflow: hidden !important;
+	z-index: 1;
 }
 
 .tabbrowser-tab {
@@ -214,10 +215,18 @@
 			  this so we can have era-specific icons. */
 	&:not([busy]) {
 		&[image="chrome://global/skin/icons/settings.svg"],
-		&[image="chrome://mozapps/skin/extensions/extension.svg"]
+		&[image="chrome://mozapps/skin/extensions/extension.svg"],
+		&[image="chrome://branding/content/icon32.png"]
 		{
-			.tab-icon-image {
-				display: none !important;
+			.tab-icon-stack {
+				
+			}
+		}
+
+		&[image="chrome://branding/content/icon32.png"]
+		{
+			.tab-label-container {
+				
 			}
 		}
 
@@ -240,6 +249,8 @@
 	}
 	
 	&:not([visuallyselected="true"]) {
+		z-index: 500 !important;
+
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
@@ -294,12 +305,10 @@
 				background-color: var(--inactive-tab-background-color) !important;
 
 
-				//transition: 100ms background-color linear;
 			}
 
 			&::before {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
-				//backdrop-filter: blur(400px);
 				left: calc(var(--tab-sides-width) * -1);
 			}
 
@@ -327,7 +336,6 @@
 
 		.tab-background {
 			background: var(--inactive-tab-background-color) !important;
-			//transition: 100ms background-color linear;
 		}
 	}
 
@@ -361,7 +369,6 @@
 
 			&::after {
 				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-
 			}
 		}
 
@@ -407,7 +414,8 @@
         padding: 0 !important;
         border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
         border-right: 0 !important;
-        padding-right: 3px !important;
+        
+
     }
 
     &:first-of-type {
@@ -467,6 +475,7 @@
 .tab-stack {
 	margin-inline-start: calc(var(--tab-distance) + 1px) !important;
 	margin-inline-end: var(--tab-distance) !important;
+	z-index: 1;
 
 	&::before,
 	&::after {
@@ -609,9 +618,8 @@
 }
 
 .tab-glare-right {
-    mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
-
-	/* bruni: Why are the masks different in size???  */
+	mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+	mask-position-x: -2px;
 	mask-position-y: -3px;
 	width: var(--tab-sides-width);
 }
@@ -660,6 +668,19 @@
     
 }
 
+.tab-throbber,
+.tab-icon-pending,
+.tab-icon-image,
+.tab-sharing-icon-overlay,
+.tab-icon-overlay {
+
+
+}
+.tab-icon-stack {
+
+
+}
+
 
 
 // FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
@@ -671,5 +692,19 @@
 .tabbrowser-tab {
 	&:first-of-type {
 		margin-left: 9px !important
+	}
+	
+	.tab-content {
+        padding-right: 3px !important;
+    }
+	
+	&:not([busy]) {
+		&[image="chrome://global/skin/icons/settings.svg"],
+		&[image="chrome://mozapps/skin/extensions/extension.svg"]
+		{
+			.tab-icon-image {
+				display: none !important;
+			}
+		}
 	}
 }

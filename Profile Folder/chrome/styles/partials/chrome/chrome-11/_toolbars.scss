@@ -26,6 +26,7 @@
     #PersonalToolbar {
 		&:not([pref="newtab"]) {
 			
+
 		}
     }
     .bookmark-item {
@@ -33,6 +34,10 @@
     }
 
     .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
+
+
+
+
         background: transparent !important;
         
 		
@@ -74,7 +79,9 @@
             &[open] {
                 
 				box-shadow: var(--toolbarbutton-shadow-active) !important;
-                border-color: var(--toolbarbutton-border-color-active) !important;
+                border-color: var(
+					--toolbarbutton-border-color-active
+				) !important;
 				
                 &::before {
                     
@@ -171,6 +178,12 @@
 				border-bottom-left-radius: var(--toolbarbutton-radius) !important;
 
 
+			}
+		}
+		
+		&#home-button {
+			.toolbarbutton-icon {
+				
 			}
 		}
 	

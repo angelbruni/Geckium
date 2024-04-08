@@ -95,6 +95,16 @@
 		}
 	}
 
+	&:not(.searchButton) {
+		> #urlbar-input-container {
+			> #identity-box[pageproxystate="invalid"] {
+				#identity-icon {
+					
+				}
+			}
+		}
+	}
+
 	#urlbar-protocol {
 		
 		
