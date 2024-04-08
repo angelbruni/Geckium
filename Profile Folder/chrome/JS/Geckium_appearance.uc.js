@@ -5,6 +5,16 @@
 // @loadorder   2
 // ==/UserScript==
 
+var { AppConstants } = ChromeUtils.importESModule(
+	"resource://gre/modules/AppConstants.sys.mjs"
+);
+
+const forkName = AppConstants.MOZ_APP_NAME;
+const unsupportedForks = {
+	"superfox": true,
+	"r3dfox": true,
+}
+
 const appearanceChanged = new CustomEvent("appearanceChanged");
 
 const appearanceMap = {
@@ -19,7 +29,30 @@ const appearanceMap = {
 
 let previousChoice;
 
+if (unsupportedForks[forkName]) {
+	_ucUtils.showNotification(
+		{
+		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " fork will receive no support from the Geckium team. Please download a recommended fork",  // text shown in the notification
+		  	type : "unsupported-fork",         // opt identifier for this notification
+		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
+		  	buttons: [{
+			label: "Recommended forks",
+			callback: (notification) => {
+			  	notification.ownerGlobal.openWebLinkIn(
+					"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
+					"tab"
+			  	);
+			  	return false
+				}
+		  	}],
+		}
+	);
+}	
+
 function applyApperance(choice) {
+	if (unsupportedForks[forkName])
+		return;
+
 	try {
 		pref(prefMap.appearance).tryGet.int();
 	} catch (e) {
@@ -88,6 +121,9 @@ setTimeout(() => {
 }, 50);
 
 function setThemeAttr() {
+	if (unsupportedForks[forkName])
+		return;
+
 	if (typeof docElm !== "undefined") {
 		docElm.setAttribute("lwtheme-id",pref("extensions.activeThemeID").tryGet.string());
 
