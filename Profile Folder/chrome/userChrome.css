@@ -440,9 +440,6 @@ tooltip {
 .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-label::before {
   content: url(assets/img/chrome-5/tabbar/plugin.png);
 }
-.tabbrowser-tab:not([visuallyselected=true]) {
-  z-index: 500 !important;
-}
 .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
   background-position: 0 2px;

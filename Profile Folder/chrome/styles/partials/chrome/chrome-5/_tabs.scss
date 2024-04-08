@@ -253,8 +253,6 @@
 	}
 
 	&:not([visuallyselected="true"]) {
-		z-index: 500 !important;
-
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
