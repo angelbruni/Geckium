@@ -422,7 +422,8 @@
 		padding: 0 !important;
 		border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
 		border-right: 0 !important;
-		padding-right: 3px !important;
+		padding-inline-start: 1px !important;
+		padding-inline-end: 2px !important;
 	}
 
 	&:first-of-type {
@@ -657,7 +658,7 @@
 	width: 12px !important;
 	padding: 0 !important;
 	margin-inline-end: -2px !important;
-	margin-top: 2px;
+	margin-top: 4px;
 	background-image: url(assets/img/chrome-5/tabbar/tab_close_mask.png);
 
 	&:hover {
@@ -672,4 +673,17 @@
 #private-browsing-indicator-with-label {
 	height: min-content !important;
 	margin-top: auto !important;
+}
+
+.tab-throbber,
+.tab-icon-pending,
+.tab-icon-image,
+.tab-sharing-icon-overlay,
+.tab-icon-overlay {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.tab-icon-stack {
+	margin-top: 4px;
+	margin-inline-end: 4px !important;
 }

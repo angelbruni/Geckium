@@ -1,16 +1,16 @@
 & {
-    &:not(:-moz-lwtheme) {
-        --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
-    }
+	&:not(:-moz-lwtheme) {
+		--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+	}
 
-    --toolbar-start-end-padding: 3px !important;
+	--toolbar-start-end-padding: 3px !important;
 
-    --nav-bar-height: 36px;
+	--nav-bar-height: 36px;
 
-    --toolbarbutton-width: var(--toolbarbutton-height);
-    --toolbarbutton-menu-width: var(--toolbarbutton-width);
-    --toolbarbutton-outer-padding: 0.5px !important;
-    --toolbarbutton-border-color-normal: transparent;
+	--toolbarbutton-width: var(--toolbarbutton-height);
+	--toolbarbutton-menu-width: var(--toolbarbutton-width);
+	--toolbarbutton-outer-padding: 0.5px !important;
+	--toolbarbutton-border-color-normal: transparent;
 	--toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
 	--toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
@@ -21,143 +21,156 @@
 	@media (prefers-color-scheme: dark) {
 		--toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
-    }
+	}
 
-    #PersonalToolbar {
+	#PersonalToolbar {
 		&:not([pref="newtab"]) {
-			padding-block: 2px !important;
+			padding: 1px !important;
+			padding-inline: 3px !important;
 		}
-    }
-    .bookmark-item {
-        border-radius: 5px !important;
-    }
+	}
+	.bookmark-item {
+		border-radius: 5px !important;
+	}
 
-    .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
-        background: transparent !important;
-        border: 1px solid transparent !important;
+	.toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button
+		) {
+		background: transparent !important;
+		border: 1px solid transparent !important;
 
-        &::before {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                transparent,
-                var(--toolbarbutton-gradient-hot)
-            ) !important;
-            transition: all 150ms linear;
-            opacity: 0;
-            z-index: 1;
+		&::before {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to top,
+				transparent,
+				var(--toolbarbutton-gradient-hot)
+			) !important;
+			transition: all 150ms linear;
+			opacity: 0;
+			z-index: 1;
 			height: 100%;
-        }
+		}
 
-        &::after {
-            content: unset;
-        }
+		&::after {
+			content: unset;
+		}
 
-        &:not([disabled]) {
-            &:hover {
-                box-shadow: var(--toolbarbutton-shadow-hot) !important;
-                border-color: var(--toolbarbutton-border-color-hot) !important;
+		&:not([disabled]) {
+			&:hover {
+				box-shadow: var(--toolbarbutton-shadow-hot) !important;
+				border-color: var(--toolbarbutton-border-color-hot) !important;
 
-                .toolbarbutton-badge-stack,
-                .toolbarbutton-icon,
-                image:first-of-type {
-                    filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
-                }
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
+				}
 
-                &::before {
-                    opacity: 1;
-                }
-            }
+				&::before {
+					opacity: 1;
+				}
+			}
 
-            &:active,
-            &[open] {
-                background: rgba(0, 0, 0, 0.08) !important;
-                box-shadow: var(--toolbarbutton-shadow-active) !important;
-                border-color: var(--toolbarbutton-border-color-active) !important;
+			&:active,
+			&[open] {
+				background: rgba(0, 0, 0, 0.08) !important;
+				box-shadow: var(--toolbarbutton-shadow-active) !important;
+				border-color: var(
+					--toolbarbutton-border-color-active
+				) !important;
 
-                &::before {
-                    transition: none !important;
-                    opacity: 0;
-                }
-            }
-        }
+				&::before {
+					transition: none !important;
+					opacity: 0;
+				}
+			}
+		}
 
 		.toolbarbutton-badge-stack,
 		.toolbarbutton-icon,
 		image:first-of-type {
 			position: relative;
-			filter: drop-shadow(0 1px 0 rgba(255,255,255,.3));
+			filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
 			z-index: 1;
 		}
 
-        &#back-button {
-            &:not([disabled]) {
-                &:hover {
-                    border: 1px solid var(--toolbarbutton-border-color-hot);
-                }
+		&#back-button {
+			&:not([disabled]) {
+				&:hover {
+					border: 1px solid var(--toolbarbutton-border-color-hot);
+				}
 
-                &:active,
-                &[open] {
-                    border: 1px solid var(--toolbarbutton-border-color-active) !important;
-                }
-            }
-        }
+				&:active,
+				&[open] {
+					border: 1px solid var(--toolbarbutton-border-color-active) !important;
+				}
+			}
+		}
 
-        &#forward-button {
-            &:not([disabled]) {
-                &:hover {
-                    border: 1px solid var(--toolbarbutton-border-color-hot);
-                }
+		&#forward-button {
+			&:not([disabled]) {
+				&:hover {
+					border: 1px solid var(--toolbarbutton-border-color-hot);
+				}
 
-                &:active,
-                &[open] {
-                    border: 1px solid var(--toolbarbutton-border-color-active) !important;
-                }
-            }
-        }
+				&:active,
+				&[open] {
+					border: 1px solid var(--toolbarbutton-border-color-active) !important;
+				}
+			}
+		}
 
-        /* bruni: Navigation buttons needs some rethinking. */
-        &#back-button {
-            border-top-right-radius: var(--toolbarbutton-radius) !important;
-            border-bottom-right-radius: var(--toolbarbutton-radius) !important;
-            border-right: 1px solid var(--toolbarbutton-border-color-normal);
+		/* bruni: Navigation buttons needs some rethinking. */
+		&#back-button {
+			border-top-right-radius: var(--toolbarbutton-radius) !important;
+			border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+			border-right: 1px solid var(--toolbarbutton-border-color-normal);
 
-            &::before,
-            &::after {
-                border-top-right-radius: var(--toolbarbutton-radius) !important;
-                border-bottom-right-radius: var(
-                    --toolbarbutton-radius
-                ) !important;
-            }
+			&::before,
+			&::after {
+				border-top-right-radius: var(--toolbarbutton-radius) !important;
+				border-bottom-right-radius: var(
+					--toolbarbutton-radius
+				) !important;
+			}
 
-            &::after {
-                border-right: 0;
-            }
-        }
+			&::after {
+				border-right: 0;
+			}
+		}
 
-        &#forward-button {
-            margin-inline-start: var(--toolbarbutton-outer-padding) !important;
-            border-top-left-radius: var(--toolbarbutton-radius) !important;
-            border-bottom-left-radius: var(--toolbarbutton-radius) !important;
-            border-left: 1px solid var(--toolbarbutton-border-color-normal);
+		&#forward-button {
+			margin-inline-start: var(--toolbarbutton-outer-padding) !important;
+			border-top-left-radius: var(--toolbarbutton-radius) !important;
+			border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+			border-left: 1px solid var(--toolbarbutton-border-color-normal);
 
-            &::before,
-            &::after {
-                border-top-left-radius: var(--toolbarbutton-radius) !important;
-                border-bottom-left-radius: var(
-                    --toolbarbutton-radius
-                ) !important;
-            }
-        }
+			&::before,
+			&::after {
+				border-top-left-radius: var(--toolbarbutton-radius) !important;
+				border-bottom-left-radius: var(
+					--toolbarbutton-radius
+				) !important;
+			}
+		}
 
-        &#unified-extensions-button,
+		&#home-button {
+			.toolbarbutton-icon {
+				margin-bottom: 2px !important;
+			}
+		}
+
+		&#unified-extensions-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"] {
 			transition: none;
 		}
-    }
+	}
 }
 
 #unified-extensions-button {
