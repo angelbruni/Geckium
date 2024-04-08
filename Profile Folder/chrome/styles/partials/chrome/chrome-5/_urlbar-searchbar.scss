@@ -95,6 +95,16 @@
 		}
 	}
 
+	&:not(.searchButton) {
+		> #urlbar-input-container {
+			> #identity-box[pageproxystate="invalid"] {
+				#identity-icon {
+					list-style-image: url("assets/img/chrome-5/toolbar/search.png") !important;
+				}
+			}
+		}
+	}
+
 	#urlbar-protocol {
 		position: absolute;
 		height: calc(100% - 2px);

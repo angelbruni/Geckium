@@ -427,10 +427,7 @@ tooltip {
   		  and it also makes the tab disappear when the background reaches min-width just
   		  like real Chrome. */
 }
-.tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-image, .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-image {
-  display: none;
-}
-.tabbrowser-tab:not([busy])[image="chrome://branding/content/icon32.png"] .tab-icon-stack {
+.tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-stack, .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-stack {
   display: none;
 }
 .tabbrowser-tab:not([busy])[image="chrome://branding/content/icon32.png"] .tab-label-container {
@@ -2545,6 +2542,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=invalid] #identity-icon, #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=valid].chromeUI #identity-icon {
   list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
 }
+#urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=invalid] #identity-icon {
+  list-style-image: url("assets/img/chrome-5/toolbar/search.png") !important;
+}
 #urlbar #urlbar-protocol {
   position: absolute;
   height: calc(100% - 2px);
@@ -3462,6 +3462,12 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #urlbar-container {
   margin-inline: 3px !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven] #urlbar-input::-moz-placeholder {
+  color: transparent !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] #urlbar-input::placeholder {
+  color: transparent !important;
+}
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
@@ -3671,6 +3677,9 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #chrome-button {
   margin-inline: 0px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate=invalid] #identity-icon {
+  list-style-image: url("assets/img/chrome-21/toolbar/search.png") !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .urlbarView {
   margin-top: 3px !important;
