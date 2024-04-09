@@ -41,9 +41,17 @@ function pref(prefName) {
         },
         tryGet: {
             bool: function () { try { return Services.prefs.getBoolPref(prefName); } catch (e) { console.log('Setting not found: ', e) } },
-            int: function () { try { return Services.prefs.getIntPref(prefName); } catch (e) { console.log('Setting not found: ', e) } },
+            int: function () { try { return parseInt(Services.prefs.getIntPref(prefName)); } catch (e) { console.log('Setting not found: ', e) } },
             string: function () { try { return Services.prefs.getStringPref(prefName); } catch (e) { console.log('Setting not found: ', e) } }
-        }
+        },
+		toggle: {
+			bool: function () {
+				if (pref(prefName).tryGet.bool() == true)
+					pref(prefName).set.bool(false);
+				else
+					pref(prefName).set.bool(true);
+			}
+		}
     }
 };
 

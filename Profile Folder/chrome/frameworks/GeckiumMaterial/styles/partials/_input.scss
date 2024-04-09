@@ -103,6 +103,85 @@
     }
 }
 
+.radio-parent {
+	
+
+	@media (prefers-color-scheme: dark) {
+		
+	}
+	
+	
+	
+	
+
+	.radio {
+		
+		
+		
+		
+		
+		
+		
+
+		&:checked {
+			
+
+			& + .gutter {
+				
+				&::before {
+					
+				}
+			}
+		}
+
+		&:not([disabled="true"]):hover + .gutter {
+			
+			
+
+			@media (prefers-color-scheme: dark) {
+				
+			}
+		}
+		&:not([disabled="true"]):active + .gutter {
+			
+			
+
+			@media (prefers-color-scheme: dark) {
+				
+			}
+		}
+	}
+
+	.gutter {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		&::before {
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+	}
+
+	.label {
+		
+		
+	}
+}
+
 .checkbox-parent {
     --checkbox-border-color: rgba(0, 0, 0, 22%);
 
@@ -187,6 +266,7 @@
     }
     .label {
         
+
     }
 }
 .switch-parent {
@@ -252,6 +332,10 @@
 
         &:not([disabled="true"]):checked {
             background: color-mix(in srgb, var(--secondary-color, var(--primary-color)), transparent 80%);
+
+
+
+
         }
 
         &:not([disabled="true"]):checked + .gutter {
@@ -278,5 +362,6 @@
     
     .label {
         
+
     }
 }

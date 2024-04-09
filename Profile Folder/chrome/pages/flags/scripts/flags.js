@@ -22,6 +22,13 @@ const experiments = {
 		description: "Places a search button in the Omnibox.",
 		from: 5, // Needs to be 33+ only.
 		to: 5,
+		values: {
+			0: "Default",
+			1: "Disabled",
+			2: "Enabled on search result pages",
+			3: "Enabled on search result pages or when input in progress",
+			4: "Enabled on all pages",
+		}
 	},
 	"enable-icon-ntp": {
 		name: "Enable large icons on the New Tab",
@@ -61,42 +68,106 @@ const experiments = {
 	},
 }
 
+function updateFlags() {
+	const flagItems = document.querySelectorAll("#available-experiments .content-container .experiment");
+	flagItems.forEach(flagItem => {
+		const flag = "Geckium.crflag." + flagItem.id.replace(/-/g, ".");
+		const toggleBtn = flagItem.querySelector("button");
+		const multipleSelect = flagItem.querySelector("select");
+
+		if (toggleBtn) {
+			if (pref(flag).tryGet.bool())
+				toggleBtn.setAttribute("label", "Disable")
+			else
+				toggleBtn.setAttribute("label", "Enable")
+		} else if (multipleSelect) {
+			multipleSelect.value = pref(flag).tryGet.int();
+
+			console.log(flag, pref(flag).tryGet.int(), multipleSelect, multipleSelect.value)
+		}
+	})
+}
+
 function setUpExperiments() {
     const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+    const content = "#available-experiments .content-container";
 
-    const content = "#available-experiments .content";
+    document.querySelector(content).querySelectorAll(".experiment").forEach(experiment => {
+        experiment.remove();
+    });
 
-	document.querySelectorAll("#available-experiments .content .experiment").forEach(experiment => {
-		experiment.remove();
-	})
-	
     for (const key in experiments) {
         if (experiments.hasOwnProperty(key)) {
             const experiment = experiments[key];
 
-            if (appearanceChoice < experiment.from || appearanceChoice > experiment.to) {
+            if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)
                 continue; // Skip adding experiment to UI if appearance choice is outside range
-            }
 
             const experimentItem = `
                 <vbox class="experiment" id="${key}">
                     <hbox class="experiment-header">
                         <label class="experiment-name">${experiment.name}</label>
-                        <!--<label class="experiment-platforms">Mac, Windows, Linux, Chrome OS, Android</label>-->
                     </hbox>
                     <html:div class="experiment-text">
                         <html:label>${experiment.description}</html:label>
                         <html:a class="permalink" href="#${key}">#${key}</html:a>
                     </html:div>
                     <html:div class="experiment-actions">
-                        <button label="Enable"></button>
+                        
                     </html:div>
                 </vbox>
             `;
 
+            const experimentItemActions = ".experiment#" + key + " .experiment-actions";
+
+            let actions = ``;
+
+            if (experiment.values) {
+                // Use select element if experiment has multiple values
+                actions = `
+                    <html:select name="select-${key}" id="select-${key}">
+                        ${Object.keys(experiment.values).map(value => `<html:option value="${value}">${experiment.values[value]}</html:option>`).join('')}
+                    </html:select>
+                `;
+
+                // Add event listener to toggle experiment based on select change
+                waitForElm("select#select-" + key).then(function() {
+                    document.querySelector("select#select-" + key).addEventListener("change", () => {
+                        const selectedValue = document.querySelector("select#select-" + key).value;
+                        pref("Geckium.crflag." + key.replace(/-/g, ".")).set.int(selectedValue);
+						console.log("Geckium.crflag." + key.replace(/-/g, "."))
+                        updateFlags();
+                    });
+                });
+            } else {
+                // Use button element if experiment has single value
+                actions = `
+                    <button id="toggle-${key}"></button>
+                `;
+
+                // Add event listener to toggle experiment based on button click
+                waitForElm("button#toggle-" + key).then(function() {
+                    document.querySelector("button#toggle-" + key).addEventListener("click", () => {
+                        pref("Geckium.crflag." + key.replace(/-/g, ".")).toggle.bool();
+
+						updateFlags();
+                    });
+                });
+            }
+
+            // Append actions to experiment item
+            waitForElm(experimentItemActions).then(function() {
+                document.querySelector(experimentItemActions).appendChild(MozXULElement.parseXULToFragment(actions));
+
+				updateFlags();
+            });
+
+            // Append experiment item to UI
             waitForElm(content).then(function() {
                 document.querySelector(content).appendChild(MozXULElement.parseXULToFragment(experimentItem));
             });
+
+            updateFlags();
         }
     }
 }

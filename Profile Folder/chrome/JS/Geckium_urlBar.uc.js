@@ -4,6 +4,36 @@
 // @loadorder   3
 // ==/UserScript==
 
+function changeGoButton() {
+	const urlbarContainer = document.getElementById("urlbar-container");
+	const urlbarInputContainer = document.getElementById("urlbar-input-container");
+
+	if (!document.getElementById("go-button-box")) {
+		const goButtonBox = document.createXULElement("hbox");
+		goButtonBox.id = "go-button-box";
+		const goButton = document.createXULElement("image");
+		goButton.id = "go-button";
+		
+		goButtonBox.classList.add("toolbarbutton-1");
+		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
+		goButtonBox.appendChild(goButton);
+
+		if (pref(prefMap.appearance).tryGet.int() == 0) {
+			urlbarContainer.appendChild(goButtonBox);
+		} else if (pref(prefMap.appearance).tryGet.int() == 5) {
+			urlbarInputContainer.appendChild(goButtonBox);
+		}
+	} else {
+		const goButtonBox = document.getElementById("go-button-box");
+
+		if (pref(prefMap.appearance).tryGet.int() == 0) {
+			urlbarContainer.appendChild(goButtonBox);
+		} else if (pref(prefMap.appearance).tryGet.int() == 5) {
+			urlbarInputContainer.appendChild(goButtonBox);
+		}
+	}
+}
+
 function styleURLBar() {
 	const urlbarContainer = document.getElementById("urlbar-container");
 	const starButtonBox = document.getElementById("star-button-box");
@@ -15,17 +45,6 @@ function styleURLBar() {
 
 	if (pref(prefMap.appearance).tryGet.int() == 0) {
 		waitForElm("#page-action-buttons > #star-button-box").then(function() {
-			if (!document.getElementById("go-button-box")) {
-				const goButtonBox = document.createXULElement("hbox");
-				goButtonBox.id = "go-button-box";
-				const goButton = document.createXULElement("image");
-				goButton.id = "go-button";
-				urlbarContainer.appendChild(goButtonBox);
-				goButtonBox.classList.add("toolbarbutton-1");
-				goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
-				goButtonBox.appendChild(goButton);
-			}
-
 			urlbarContainer.setAttribute("starpos", "start");
 			insertBefore(starButtonBox, urlbar);
 			starButtonBox.classList.add("toolbarbutton-1");
@@ -36,6 +55,12 @@ function styleURLBar() {
 		insertAfter(starButtonBox, pageActionButton);
 		starButtonBox.classList.remove("toolbarbutton-1");
 		insertBefore(identityBox, urlbarLabelBox);
+	}
+
+	if (pref(prefMap.appearance).tryGet.int() == 0 || pref(prefMap.appearance).tryGet.int() == 5) {
+		waitForElm("#page-action-buttons").then(function() {
+			changeGoButton();
+		});
 	}
 }
 window.addEventListener("load", styleURLBar);
