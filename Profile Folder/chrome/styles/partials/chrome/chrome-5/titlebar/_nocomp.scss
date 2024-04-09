@@ -62,11 +62,18 @@
 		box-shadow: 1px 1px 0px 0px rgba(255,255,255,0.2);
 		border-bottom-left-radius: 4px;
 		border-bottom-right-radius: 4px;
+
+		@media (-moz-platform: linux) {
+			margin-block-start: 2px;
+			gap: 2px;
+			box-shadow: none;
+		}
 	}
 	
 	@media 	(-moz-platform: windows-win7),
 			(-moz-platform: windows-win8) {
 		.titlebar-button {
+			position: relative;
 			appearance: unset !important;
 			display: flex !important;
 			margin: 0 !important;
@@ -74,6 +81,23 @@
 			box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
 			transition: background-color 100ms linear;
 			background-clip: padding-box;
+
+			@media (-moz-platform: linux) {
+				height: 18px;
+				box-shadow: none;
+
+				&::before {
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					border-radius: 3px;
+					border: 1px solid rgba(255,255,255,0.3);
+					box-sizing: border-box;
+				}
+			}
 	
 			&:active {
 				transition: none;
@@ -161,5 +185,25 @@
 		border-bottom-left-radius: 5px;
 		width: 25px;
 		list-style-image: url(assets/img/titlebar/minimize.svg);
+	}
+
+	@media (-moz-platform: linux) {
+		.titlebar-close,
+		.titlebar-max,
+		.titlebar-restore,
+		.titlebar-min {
+			width: 24px;
+			border-radius: 2px;
+
+			border: 1px solid rgba(0, 0, 0, 0.35);
+		}
+
+		.titlebar-close {
+			border-top-right-radius: 4.5px;
+	
+			&::before {
+				border-top-right-radius: 4.5px;
+			}
+		}
 	}
 }
