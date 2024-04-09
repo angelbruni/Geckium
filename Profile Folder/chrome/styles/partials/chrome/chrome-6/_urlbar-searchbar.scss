@@ -1,87 +1,92 @@
 & {
-    --urlbar-border: rgb(192, 193, 198);
-    --urlbar-verified-proxystate-valid: rgb(7, 149, 0);
-    --urlbar-verified-proxystate-valid-overridden: rgb(162, 0, 58);
+	--urlbar-border: rgb(192, 193, 198);
+	--urlbar-verified-proxystate-valid: rgb(7, 149, 0);
+	--urlbar-verified-proxystate-valid-overridden: rgb(162, 0, 58);
 
-    #urlbar {
-        &[breakout],
-        &[breakout][breakout-extend] {
-            left: 0 !important;
-            width: 100% !important;
-        }
-    }
+	#urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			left: 0 !important;
+			width: 100% !important;
+		}
+	}
 
-    #urlbar-container {
-        margin-inline: 4px !important;
-    }
+	#urlbar-container {
+		margin-inline: 4px !important;
+	}
 
-    #urlbar-background,
+	#urlbar-background,
 	#searchbar {
-        background-color: var(--toolbar-field-background-color) !important;
-        border: 1px solid var(--urlbar-border) !important;
-        border-radius: var(--toolbarbutton-radius) !important;
-    }
+		background-color: var(--toolbar-field-background-color) !important;
+		border: 1px solid var(--urlbar-border) !important;
+		border-radius: var(--toolbarbutton-radius) !important;
+	}
 
-    .urlbar-input-box {
-        height: calc(var(--urlbar-height-definitive) - 1px) !important;
-    }
+	.urlbar-input-box {
+		height: calc(var(--urlbar-height-definitive) - 1px) !important;
+	}
 
-    #urlbar-input {
-        &::placeholder {
-            text-align: start;
-        }
-    }
+	#urlbar-input {
+		&::placeholder {
+			text-align: start;
+			color: transparent;
+		}
+	}
 
-    .urlbarView {
-        transform: unset;
-        width: 100% !important;
-    }
+	.urlbarView {
+		transform: unset;
+		width: 100% !important;
+	}
 
-    #nav-bar {
-        &[securestate="chrome"] {
-            #identity-box {
-                display: flex !important;
-            }
-        }
+	#nav-bar {
+		&[securestate="chrome"] {
+			#identity-box {
+				display: flex !important;
+			}
+		}
 
-        &[securestate="secure"],
-        &[securestate="ev"] {
-            #identity-icon {
-                list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
-            }
-        }
+		&[securestate="secure"],
+		&[securestate="ev"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
+			}
+		}
 
-        &[securestate="warning"] {
-            #identity-icon {
-                list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
-            }
-        }
+		&[securestate="warning"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
+			}
+		}
 
-        &[securestate="insecure"] {
-            #identity-icon {
-                list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
-            }
-        }
+		&[securestate="insecure"] {
+			#identity-icon {
+				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
+			}
+		}
 
-        #custom-identity-label {
-            display: none;
-        }
-    }
+		#custom-identity-label {
+			display: none;
+		}
+	}
 
 	#star-button-box > #star-button,
 	#star-button-box > #star-button[starred] {
-		fill: color-mix(in srgb, color-mix(in srgb, var(--toolbarbutton-icon-fill) 55%, #000) 80%, white) !important;
+		fill: color-mix(
+			in srgb,
+			color-mix(in srgb, var(--toolbarbutton-icon-fill) 55%, #000) 80%,
+			white
+		) !important;
 	}
 
-    #star-button-box {
-        padding: 0 !important;
-        align-items: center;
-        justify-content: center;
+	#star-button-box {
+		padding: 0 !important;
+		align-items: center;
+		justify-content: center;
 
-        &:hover,
-        &:active,
-        &[open] {
-            background-color: transparent !important;
-        }
-    }
+		&:hover,
+		&:active,
+		&[open] {
+			background-color: transparent !important;
+		}
+	}
 }

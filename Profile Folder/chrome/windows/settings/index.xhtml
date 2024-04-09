@@ -7,7 +7,7 @@
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		windowtype="geckiummaterial:settings"
-		title="Geckium Settings"
+		title="Geckium Flags"
 		width="1180"
 		height="730"
 		chromemargin="0,0,0,0">
@@ -17,8 +17,6 @@
 				<hbox id="window-caption-buttons-container">
 					<hbox id="window-caption-buttons">
 						<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
-						<button class="caption-button maximize" id="window-maximize-button" onclick="window.maximize();" />
-						<button class="caption-button restore" id="window-restore-button" onclick="window.restore();" />
 						<button class="caption-button close" id="window-close-button" onclick="window.close();" />
 					</hbox>
 				</hbox>
@@ -52,8 +50,147 @@
 						<vbox class="pages-container" data-page-container="main">
 							<vbox class="page" data-page="0" selected="true">
 								<vbox class="content-container">
-									<vbox class="content">
-										
+									<vbox class="content" style="flex: 1; padding: 10px;">
+										<h4>
+											Google Chrome Visual Style 
+											<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
+										</h4>
+										<div class="modal" data-modal="aboutVisualStyles_modal">
+											<div class="wrapper">
+												<div class="card">
+													<vbox class="body">
+														<div class="header">About Google Chrome Visual Styles</div>
+														<div class="description">
+															Choose from 6 different visual styles the browser has had throughout the years, from Google Chrome version 5 all the way until version 55.
+														</div>
+														<div class="footer">
+															<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
+														</div>
+													</vbox>
+												</div>
+											</div>
+										</div>
+										<hbox style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;">
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-5" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-5.png');"
+												>
+													<html:label class="wrapper" chrome="5">
+														<div class="year">2010</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-5" selected="true"/>
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-5" class="label">Chrome 5</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-6" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-6.png');"
+												>
+													<html:label class="wrapper" for="chrome-6">
+														<div class="year">2010</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-6" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-6" class="label">Chrome 6</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-11" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-11.png');"
+												>
+													<html:label class="wrapper" for="chrome-11">
+														<div class="year">2011</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-11" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-11" class="label">Chrome 11</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-21" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-21.png');"
+												>
+													<html:label class="wrapper" for="chrome-21">
+														<div class="year">2012</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-21" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-21" class="label">Chrome 21</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-25" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-25.png');"
+												>
+													<html:label class="wrapper" for="chrome-25">
+														<div class="year">2013</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-25" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-25" class="label">Chrome 25</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-47" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-47.png');"
+												>
+													<html:label class="wrapper" for="chrome-47">
+														<div class="year">2015</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-47" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-47" class="label">Chrome 47</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+											<div style="width: 33.33%; padding-inline: 5px">
+												<html:button class="link chrome-appearance ripple-enabled" 
+												for="chrome-55" 
+												style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-55.png');"
+												>
+													<html:label class="wrapper" for="chrome-55">
+														<div class="year">2016</div>
+														<div class="identifier">
+															<div class="radio-parent">
+																<html:input class="radio" type="radio" name="chrome_appearance" id="chrome-55" />
+																<div class="gutter" for="checked_check"></div>
+																<html:label for="chrome-55" class="label">Chrome 55</html:label>
+															</div>
+														</div>
+													</html:label>
+												</html:button>
+											</div>
+										</hbox>
 									</vbox>
 								</vbox>
 							</vbox>
@@ -77,6 +214,11 @@
 			</vbox>
 		</hbox>
 	</html:div>
+	<script>
+		function toggleRadioAppearance() {
+			const radio = document.querySelectorAll('')
+		}
+	</script>
 
 	<script src="chrome://userchrome/content/windows/settings/scripts/settings.js" type="text/javascript" defer="true"/>
 
