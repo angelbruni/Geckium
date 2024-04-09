@@ -81,7 +81,7 @@ function applyApperance(choice) {
 	// bruni: Let's remove all appearance attributes first.
 	const pastAttrs = docElm.getAttributeNames();
 	pastAttrs.forEach((attr) => {
-		if (attr.startsWith("geckium-"))
+		if (attr.startsWith("geckium-") && !attr.includes("crflag"))
 			docElm.removeAttribute(attr);
 	});
 

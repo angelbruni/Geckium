@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Geckium - Utils
+// @name        GeckiumMaterial - Temporary Functions
 // @description Utilities for making coding easier. Taken from BeautyFox.
 // @author      AngelBruni
 // @loadorder   2

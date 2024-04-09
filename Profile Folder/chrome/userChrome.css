@@ -2058,7 +2058,8 @@ toolbar[overflowable][customizing] > .customization-target {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
-.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+
+:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#go-button-box {
   margin: 0 !important;
@@ -2066,9 +2067,9 @@ toolbar[overflowable][customizing] > .customization-target {
   border-bottom-left-radius: 0 !important;
   margin-left: auto !important;
 }
-.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#go-button-box::before, .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#go-button-box::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#go-button-box::after {
   border-top-left-radius: 0 !important;
@@ -3935,6 +3936,44 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
   --urlbarView: white !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box {
+  width: 56px !important;
+  height: var(--urlbar-height-definitive) !important;
+  background-color: rgb(77, 144, 254) !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-width: 1px !important;
+  border-left-width: 0px !important;
+  border-right-width: 1px !important;
+  border-bottom: 1px !important;
+  border-color: rgb(56, 115, 209) !important;
+  border-style: solid !important;
+  list-style-image: url(assets/img/chrome-47/toolbar/go.svg);
+  box-shadow: none !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box::before {
+  background: linear-gradient(to bottom, transparent, rgb(64, 132, 246)) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box:not([disabled]):active {
+  background-color: rgb(62, 120, 217) !important;
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05) inset !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box:not([disabled]):hover {
+  border-color: rgb(53, 108, 197) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box #go-button {
+  fill: white !important;
+  filter: unset;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #urlbar-input-container[pageproxystate=invalid] > #go-button-box {
+  list-style-image: url(assets/img/chrome-47/toolbar/search.svg);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven][geckium-crflag-search-button-in-omnibox="3"] #urlbar-input-container[pageproxystate=invalid] #go-button-box {
+  display: flex !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven][geckium-crflag-search-button-in-omnibox="4"] #urlbar-input-container #go-button-box {
+  display: flex !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #urlbar {
   font-size: 11pt !important;

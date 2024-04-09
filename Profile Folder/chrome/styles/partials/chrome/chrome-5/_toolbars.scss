@@ -933,17 +933,25 @@ toolbar[overflowable][customizing] > .customization-target {
 			border-bottom-right-radius: 0 !important;
 		}
 	}
+}
 
-	&#go-button-box {
-		margin: 0 !important;
-		border-top-left-radius: 0 !important;
-		border-bottom-left-radius: 0 !important;
-		margin-left: auto !important;
-
-		&::before,
-		&::after {
+:root[geckium-choice="five"] {
+	.toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button
+	) {
+		&#go-button-box {
+			margin: 0 !important;
 			border-top-left-radius: 0 !important;
 			border-bottom-left-radius: 0 !important;
+			margin-left: auto !important;
+
+			&::before,
+			&::after {
+				border-top-left-radius: 0 !important;
+				border-bottom-left-radius: 0 !important;
+			}
 		}
 	}
 }

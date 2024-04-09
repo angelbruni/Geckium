@@ -1,5 +1,69 @@
 & {
 	--urlbarView: white !important;
+
+	&[geckium-choice="fortyseven"] {
+		#go-button-box {
+			width: 56px !important;
+			height: var(--urlbar-height-definitive) !important;
+			background-color: rgb(77,144,254) !important;
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			border-top-width: 1px !important;
+			border-left-width: 0px !important;
+			border-right-width: 1px !important;
+			border-bottom: 1px !important;
+			border-color: rgb(56,115,209) !important;
+			border-style: solid !important;
+			list-style-image: url(assets/img/chrome-47/toolbar/go.svg);
+			box-shadow: none !important;
+
+			&::before {
+				background: linear-gradient(
+					to bottom,
+					transparent,
+					rgb(64,132,246)
+				) !important;
+			}
+
+			&:not([disabled]) {
+				&:active {
+					background-color: rgb(62,120,217) !important;
+					box-shadow: 0px 1px 0px 0px rgba(0,0,0,.05) inset !important;
+				}
+
+				&:hover {
+					border-color: rgb(53,108,197) !important;
+				}
+			}
+
+			#go-button {
+				fill: white !important;
+				filter: unset;
+			}
+		}
+
+		#urlbar-input-container[pageproxystate="invalid"] {
+			> #go-button-box {
+				list-style-image: url(assets/img/chrome-47/toolbar/search.svg);
+			}
+		}
+
+		&[geckium-crflag-search-button-in-omnibox="3"] {
+			#urlbar-input-container[pageproxystate="invalid"] {
+				#go-button-box {
+					display: flex !important;
+				}
+			}
+		}
+
+		&[geckium-crflag-search-button-in-omnibox="4"] {
+			#urlbar-input-container {
+				#go-button-box {
+					display: flex !important;
+				}
+			}
+		}
+	}	
 }
 
 #urlbar {
