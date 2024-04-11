@@ -49,6 +49,10 @@ hbox {
 	flex-direction: row;
 }
 
+grid {
+	display: grid;
+}
+
 label,
 p,
 span,
@@ -109,6 +113,7 @@ spacer {
 @import "partials/buttons";
 @import "partials/input";
 @import "partials/card";
+@import "partials/list";
 @import "partials/navigation-drawer";
 @import "partials/menu";
 @import "partials/dialog";
