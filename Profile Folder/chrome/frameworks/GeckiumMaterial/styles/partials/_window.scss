@@ -185,7 +185,7 @@ window {
 	background: var(--primary-color);
 	font-weight: 500;
 	font-size: 13pt;
-	padding-inline-start: 22px;
+	padding-inline: 22px;
 	box-shadow: var(--elevation-4);
 	-moz-window-dragging: drag;
 
@@ -195,11 +195,23 @@ window {
 		width: 56px;
 		height: 56px;
 	}
+
+	.switch-parent {
+		.switch {
+			&:not([disabled="true"]):checked {
+				background: color-mix(
+					in srgb,
+					white,
+					transparent 80%
+				);
+			}
+		}
+	}
 }
 
 .window-toolbar {
 	align-items: center;
-	height: 100%;
+	flex: 1;
 }
 
 #navigation-drawer {
@@ -218,6 +230,10 @@ window {
 
 	flex: 1;
 	z-index: 1;
+
+	> .window-top-bars {
+		z-index: 2;
+	}
 }
 
 #window-container {

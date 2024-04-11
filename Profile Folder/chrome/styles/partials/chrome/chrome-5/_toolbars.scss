@@ -407,8 +407,8 @@
 			}
 		}
 
-		$profile-pics: 25; // bruni: Set the amount of profile pictures
-		@for $i from 0 through $profile-pics {
+		$profile-pictures: 25; // bruni: Set the amount of profile pictures
+		@for $i from 0 through $profile-pictures {
 			&[profilepic="#{$i}"] {
 				#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
 					background-image: url(assets/img/profile/#{$i}.png);

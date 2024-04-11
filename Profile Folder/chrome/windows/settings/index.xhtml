@@ -21,36 +21,44 @@
 					</hbox>
 				</hbox>
 			</hbox>
-			<vbox id="navigation-drawer" class="color iconic item-radius">
-				<vbox class="window-top-bars">
-					<vbox class="window-top-bar">
-						<hbox class="window-toolbar">
-							<h3 id="window-title"/>
-							<spacer />
-							<button />
-						</hbox>
-					</vbox>
-				</vbox>
-				<vbox class="navigation-items">
-					<button class="item ripple-enabled icon-home" data-page-container="main" data-page="0" label="Home" selected="true" />
-				</vbox>
-			</vbox>
 			<vbox id="window-content-container">
 				<vbox class="window-top-bars light">
 					<hbox class="window-top-bar">
 						<hbox class="window-toolbar">
-							<h3 id="page-title" data-page-container="main"/>
+							<h3 id="window-title" data-page-container="main"/>
 							<spacer />
 							<button />
 						</hbox>
 					</hbox>
 				</vbox>
 				<hbox id="window-content">
+					<vbox id="navigation-drawer" class="color iconic item-radius">
+						<!--<vbox class="window-top-bars">
+							<vbox class="window-top-bar">
+								<hbox class="window-toolbar">
+									<h3 id="window-title"/>
+									<spacer />
+									<button />
+								</hbox>
+							</vbox>
+						</vbox>-->
+						<vbox class="navigation-items">
+							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="0" label="Main Interface" selected="true" />
+							<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="1" label="Caption Buttons" />
+							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="2" label="People Button" />
+							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="3" label="Pages" />
+							<separator />
+							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="10" label="Chromium Experiments" />
+							<separator />
+							<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="20" label="Settings" />
+							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="21" label="About" />
+						</vbox>
+					</vbox>
 					<div class="pages">
 						<vbox class="pages-container" data-page-container="main">
 							<vbox class="page" data-page="0" selected="true">
 								<vbox class="content-container">
-									<vbox class="content" style="flex: 1; padding: 10px;">
+									<vbox class="content">
 										<h4>
 											Google Chrome Visual Style 
 											<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
@@ -194,6 +202,268 @@
 									</vbox>
 								</vbox>
 							</vbox>
+							<vbox class="page" data-page="1">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<vbox class="item">
+													<vbox>
+														<label class="name">Caption Button Style</label>
+														<label class="description">Depending on the operating system, Chromium had different styles for the caption buttons.</label>
+													</vbox>
+													<div class="radio-parent">
+														<html:input class="radio" type="radio" id="option0" name="caption-buttons-style" checked="true"/>
+														<div class="gutter"></div>
+														<html:label class="label" for="option0">Automatic</html:label>
+													</div>
+													<div class="radio-parent">
+														<html:input class="radio" type="radio" id="option1" name="caption-buttons-style"/>
+														<div class="gutter"></div>
+														<html:label class="label" for="option1">Windows</html:label>
+													</div>
+													<div class="radio-parent">
+														<html:input class="radio" type="radio" id="option2" name="caption-buttons-style"/>
+														<div class="gutter"></div>
+														<html:label class="label" for="option2">Linux</html:label>
+													</div>
+													<div class="radio-parent">
+														<html:input class="radio" type="radio" id="option3" name="caption-buttons-style"/>
+														<div class="gutter"></div>
+														<html:label class="label" for="option3">
+															<html:button class="menu" data-name="pfp-pos" id="pfp-pos-select" style="width: 200px">
+															<label class="placeholder" />
+															<label class="selected" />
+															<vbox class="list">
+																<hbox class="item ripple-enabled" value="1">macOS version-0</hbox>
+																<hbox class="item ripple-enabled" value="2">macOS version-1</hbox>
+																<hbox class="item ripple-enabled" value="3">macOS version-2</hbox>
+																<hbox class="item ripple-enabled" value="4">macOS version-3</hbox>
+															</vbox>
+														</html:button>
+														</html:label>
+													</div>
+												</vbox>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="2">
+								<vbox class="content-container">
+									<vbox class="window-top-bars light">
+										<hbox class="window-top-bar">
+											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
+												<h3>On</h3>
+												<spacer />
+												<div class="switch-parent">
+													<html:input class="switch" type="checkbox" id="people_switch" name="people_switch" checked="true" />
+													<html:label class="gutter" for="people_switch" />
+												</div>
+											</hbox>
+										</hbox>
+									</vbox>
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Button Position</label>
+														<label class="description">The people button has had different positions throughout the years.</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="pfp-pos" id="pfp-pos-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">Tabs Toolbar</hbox>
+															<hbox class="item ripple-enabled" value="1">Caption Buttons</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+											</vbox>
+
+											<h4>Pick an avatar</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Avatar Mode</label>
+														<!--<label class="description"></label>-->
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="pfp-mode" id="pfp-mode-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="chrome">Chrome</hbox>
+															<hbox class="item ripple-enabled" value="firefox">Firefox Sync</hbox>
+															<hbox class="item ripple-enabled" value="custom">Custom</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<vbox class="item" flex="1">
+													<h4>Choose a picture</h4>
+													<grid id="profile-pictures-grid" style="margin-block-end: 19px; grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
+												</vbox>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="3">
+								<vbox class="content-container">
+									<vbox class="content">
+										<h4>
+											New Tab Page Visual Style 
+										</h4>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="10">
+
+							</vbox>
+							<vbox class="page" data-page="20">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>Primary color</h4>
+											<vbox class="card">
+
+											</vbox>
+											<h4>Secondary color</h4>
+											<vbox class="card">
+
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="21">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<hbox style="/*display: none*/" class="banner">
+													<image style="width: 200px;"></image>
+													<label style="font-size: 32pt;">Geckium</label>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label id="gk-version" class="description">indev_version</label>
+													</vbox>
+													<spacer />
+													<button class="button ripple-enabled text color" label="Check for Updates" />
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Automatic Update Checker</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<html:button class="item ripple-enabled" data-toggle-modal="aboutBranch_modal">
+													<vbox>
+														<label class="name">Branch</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<div class="modal" data-modal="aboutBranch_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Geckium Branches</div>
+																<vbox class="description" style="gap: 16px">
+																	<html:p>
+																		The different Geckium branches are for different forks of Firefox, some change the UI too heavily meaning that we have to do some things differently.
+																	</html:p>
+																	<html:p>
+																		Current Branch: <html:span id="gk-branch">Normal</html:span>
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutBranch_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Credits</label>
+														<label class="description">List of developers, contributors and testers.</label>
+													</vbox>
+													<spacer />
+												</html:button>
+											</vbox>
+											<h4 id="fork-name">fork_name</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Version</label>
+														<label id="fork-version" class="description">version</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Update Channel</label>
+														<label id="fork-update-channel" class="description">update_channel</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Based on version</label>
+														<label id="fork-based-on" class="description">based_on_version</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Architecture</label>
+														<label id="fork-architecture" class="description">architecture</label>
+													</vbox>
+													<spacer />
+												</html:button>
+											</vbox>
+											<h4 id="os-name">operating_system</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Version</label>
+														<label id="os-version" class="description">version</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Architecture</label>
+														<label id="os-architecture" class="description">architecture</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">UxTheme</label>
+														<label id="os-ux" class="description">status</label>
+													</vbox>
+													<spacer />
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<vbox>
+														<label class="name">Compositor</label>
+														<label id="os-comp" class="description">status</label>
+													</vbox>
+													<spacer />
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
 						</vbox>
 					</div>
 				</hbox>
@@ -220,7 +490,8 @@
 		}
 	</script>
 
-	<script src="chrome://userchrome/content/windows/settings/scripts/settings.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/settings/scripts/people.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/settings/scripts/about.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>

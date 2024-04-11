@@ -1,0 +1,79 @@
+.list-container {
+	margin-inline: auto;
+	width: 680px;
+
+	> .card {
+		margin-inline: 0;
+		min-height: 46px;
+
+		> .item {
+			box-sizing: border-box;
+			overflow: hidden;
+			padding-inline: 19px;
+			transition: background-color 155ms;
+			
+			&:is(hbox) {
+				align-items: center;
+			}
+			
+			&:not(:last-child) {
+				border-bottom: 1px solid rgb(240,240,240);
+			}
+
+			&.ripple-enabled {
+				&:not([disabled]) {
+					&:hover,
+					&:focus-visible {
+						background: rgba(153, 153, 153, .1);
+					}
+				}
+			}
+
+			> vbox > label {
+				&:first-of-type {
+					margin-block-start: 13px;
+				}
+
+				&:last-of-type {
+					margin-block-end: 15px;
+				}
+			}
+
+			> .menu {
+				.placeholder {
+					display: none;
+				}
+			}
+
+			.description {
+				&:not(:first-of-type) {
+					margin-block-start: 4px;
+				}
+
+				color: rgb(117,117,121)
+			}
+
+			.ripple {
+				background: rgba(153, 153, 153, .4);
+			}
+
+			> .radio-parent {
+				margin-inline-start: 64px;
+				height: 32px;
+
+				.radio:not(:checked) ~ .label .menu {
+					pointer-events: none;
+					opacity: .5;
+				}
+
+				&:last-of-type {
+					margin-block-end: 15px;
+				}
+
+				.placeholder {
+					display: none;
+				}
+			}
+		}
+	}
+}
