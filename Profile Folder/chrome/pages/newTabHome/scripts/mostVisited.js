@@ -188,7 +188,7 @@ function createTile(website) {
 				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
 			} else {
 				tile = `
-				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${website.title}">
+				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}">
 					<hbox class="title-container">
 						<image class="mv-favicon"></image>
 						<label class="mv-title">${title}</label>
