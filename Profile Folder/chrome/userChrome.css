@@ -1551,7 +1551,6 @@ tooltip {
   margin-top: -3px !important;
 }
 :root[sizemode=normal] #toolbar-menubar:not([inactive]) {
-  margin-block-end: -15px;
   z-index: 1;
 }
 :root[sizemode=maximized] #nav-bar,
@@ -3554,8 +3553,8 @@ hbox[id=label-box][part=label-box] {
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
-  --tab-glare-opacity: 0.5;
-  --tab-glare: linear-gradient(90deg, transparent, white, transparent);
+  --tab-glare-opacity: 0.7;
+  --tab-glare: linear-gradient(90deg, rgba(255,255,255,.4) 30%, white 50%, rgba(255,255,255,.4) 70%);
   --newtab-width: 34px;
   --newtab-normal: var(--inactive-tab-background-color);
   --newtab-hot: rgb(211, 217, 225, 0.8);
