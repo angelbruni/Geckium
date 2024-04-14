@@ -16,6 +16,11 @@ const experiments = {
 		description: "Enable or disable the \"Action Box\" experimental toolbar UI.",
 		from: 3,
 		to: 4,
+		values: {
+			0: "Default",
+			1: "Enabled",
+			2: "Disabled",
+		}
 	},
 	"search-button-in-omnibox": {
 		name: "Enable search button in Omnibox",
@@ -41,12 +46,22 @@ const experiments = {
 		description: "If enabled, Settings will be shown in a dedicated window instead of as a browser tab.",
 		from: 5,
 		to: 6,
+		values: {
+			0: "Default",
+			1: "Enabled",
+			2: "Disabled",
+		}
 	},
 	"omnibox-ui-show-suggestion-favicons": {
 		name: "Omnibox UI Show Suggestion Favicons",
 		description: "Shows favicons instead of generic vector icons for URL suggestions in the Omnibox dropdown.",
 		from: 6,
 		to: 6,
+		values: {
+			0: "Default",
+			1: "Enabled",
+			2: "Disabled",
+		}
 	},
 	"omnibox-ui-vertical-layout": {
 		name: "Omnibox UI Vertical Layout",
@@ -59,12 +74,28 @@ const experiments = {
 		description: "Changes the vertical margin in the Omnibox UI.",
 		from: 6,
 		to: 6,
+		values: {
+			0: "Default",
+			1: "Enabled",
+			2: "Enabled 4px vertical margin",
+			3: "Enabled 6px vertical margin",
+			4: "Enabled 8px vertical margin",
+			5: "Enabled 10px vertical margin",
+			6: "Enabled 12px vertical margin",
+			7: "Enabled 14px vertical margin",
+			8: "Disabled",
+		}
 	},
 	"omnibox-ui-swap-title-and-url": {
 		name: "Omnibox UI Swap Title and URL",
 		description: "In the omnibox dropdown, shows titles before URLs when both are available.",
 		from: 6,
 		to: 6,
+		values: {
+			0: "Default",
+			1: "Enabled",
+			2: "Disabled",
+		}
 	},
 }
 
