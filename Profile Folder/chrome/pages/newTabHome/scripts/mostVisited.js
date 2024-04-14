@@ -187,16 +187,28 @@ function createTile(website) {
 				
 				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
 			} else {
-				tile = `
-				<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}">
-					<hbox class="title-container">
+				if (pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+					document.documentElement.setAttribute("icon-ntp", true);
+
+					tile = `
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}" data-letter="${Array.from(title)[0]}">
 						<image class="mv-favicon"></image>
 						<label class="mv-title">${title}</label>
 						<html:button class="mv-x"></html:button>
-					</hbox>
-					<html:div class="mv-thumb"></html:div>
-				</html:a>
-				`
+					</html:a>
+					`
+				} else {
+					tile = `
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}">
+						<hbox class="title-container">
+							<image class="mv-favicon"></image>
+							<label class="mv-title">${title}</label>
+							<html:button class="mv-x"></html:button>
+						</hbox>
+						<html:div class="mv-thumb"></html:div>
+					</html:a>
+					`
+				}
 
 				close = ".mv-tile[href='" + website.url + "'] .mv-x";
 
@@ -217,11 +229,13 @@ function createTile(website) {
 				})
 			});
 
-			waitForElm(thumbnail).then(function() {
-				for (let i = 0; i < numTiles; i++) {
-					document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
-				}
-			});
+			if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+				waitForElm(thumbnail).then(function() {
+					for (let i = 0; i < numTiles; i++) {
+						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
+					}
+				});
+			}
         } else {
 			if (appearanceChoice <= 2) {
 				tile = `

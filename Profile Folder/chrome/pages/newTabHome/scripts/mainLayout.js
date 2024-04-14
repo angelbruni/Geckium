@@ -237,20 +237,32 @@ function createMainLayout() {
 	} else {
 		// Chrome 47 - 50
 
-		header = `
-		<hbox id="google-bar">
-			<html:a href="https://mail.google.com/mail">Gmail</html:a>
-			<html:a href="https://www.google.com/imghp">Images</html:a>
-			<html:a id="google-apps-link" href="https://www.google.pt/intl/pt-PT/about/products?tab=rh"></html:a>
-		</hbox>
-		<vbox id="google-search">
-			<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
-			<html:form>
-				<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
-			</html:form>
-		</vbox>
+		if (pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+			header = `
+			<vbox id="google-search">
+				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
+				<html:form>
+					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
+				</html:form>
+			</vbox>
+			`
+		} else {
+			header = `
+			<hbox id="google-bar">
+				<html:a href="https://mail.google.com/mail">Gmail</html:a>
+				<html:a href="https://www.google.com/imghp">Images</html:a>
+				<html:a id="google-apps-link" href="https://www.google.pt/intl/pt-PT/about/products?tab=rh"></html:a>
+			</hbox>
+			<vbox id="google-search">
+				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
+				<html:form>
+					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
+				</html:form>
+			</vbox>
+			`
+		}
 
-		`
+		
 		main = `
 		<html:div id="mv-tiles"></html:div>
 		`
