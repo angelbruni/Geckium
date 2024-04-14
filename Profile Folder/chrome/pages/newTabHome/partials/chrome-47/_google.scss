@@ -42,7 +42,6 @@
 
 #google-search {
 	align-items: center;
-	margin-block-start: 115px;
 
 	#hplogo {
 		margin-block-end: 24px;
@@ -57,15 +56,10 @@
 
 		width: 100%;
 		background-color: #fff;
-		border: 1px solid #d2d2d2;
-		border-radius: 1px;
-		border-top-color: #70757a;
 		padding-inline: 9px;
-		margin-block-end: 64px;
 		cursor: text;
 		display: inline-block;
 		font-family: arial, sans-serif;
-		height: 36px;
 		line-height: 36px;
 		max-width: 672px;
 		font-size: 12pt;
@@ -81,7 +75,39 @@
 
 		&::placeholder {
 			opacity: 1;
-			color: #dadce0;
+		}
+	}
+}
+
+&:not([icon-ntp]) {
+	#google-search {
+		margin-block-start: 115px;
+		
+		#google-input {
+			border: 1px solid #d2d2d2;
+			border-radius: 1px;
+			border-top-color: #70757a;
+			height: 36px;
+			margin-block-end: 64px;
+
+			&::placeholder {
+				color: #dadce0;
+			}
+		}
+	}
+}
+&[icon-ntp] {
+	#google-search {
+		margin-block-start: 150px;
+
+		#google-input {
+			border: 1px solid rgb(169,169,169);
+			height: 38px;
+			margin-block-end: 100px;
+
+			&::placeholder {
+				color: #bbb;
+			}
 		}
 	}
 }
