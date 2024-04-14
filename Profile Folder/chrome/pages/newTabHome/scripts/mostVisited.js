@@ -275,9 +275,11 @@ function createTile(website) {
 				</html:div>
 				`
 			} else {
-				tile = `
-				<html:a class="mv-tile" disabled="true"></html:a>
-				`
+				if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+					tile = `
+					<html:a class="mv-tile" disabled="true"></html:a>
+					`
+				}
 			}
 		}
 
