@@ -19,13 +19,36 @@
 			}
 
 			margin-inline-start: 22px;
-			color: black;
 		}
 
 		.urlbarView-url {
 			order: 2;
 			padding: 0 !important;
 			margin-inline-start: 22px;
+		}
+	}
+	&:not([geckium-crflag-omnibox-ui-vertical-layout="true"]) {
+		&[geckium-crflag-omnibox-ui-swap-title-and-url="1"] {
+			.urlbarView-row-inner {
+				flex-direction: row-reverse;
+			}
+	
+			.urlbarView-title {
+				margin-inline-start: 22px;
+	
+				&::before {
+					content: unset;
+				}
+			}
+	
+			.urlbarView-url {
+				padding: 0 !important;
+	
+				&::before {
+					content: "-";
+					padding: 0 4px;
+				}
+			}
 		}
 	}
 
@@ -85,4 +108,8 @@
 
 .urlbarView-url {
 	color: rgb(41,93,204) !important;
+}
+
+.urlbarView-title {
+	color: black;
 }
