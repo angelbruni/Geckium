@@ -2,6 +2,7 @@
 	--nav-bar: rgb(242,242,242);
 	--nav-bar-height: 37px;
 
+	--toolbarbutton-width: 24px;
 	--toolbarbutton-height: 24px;
 	--toolbarbutton-radius: 2px;
 	--toolbarbutton-background-hot: rgba(0,0,0,.09);
@@ -9,8 +10,6 @@
 		--toolbarbutton-icon-fill: #5a5a5a !important;
 	}
 	--toolbarbutton-outer-padding: 2px !important;
-
-	--urlbar-height-definitive: 28px;
 
 	--personal-toolbar: var(--nav-bar);
 	--personal-toolbar-height: 28px;
@@ -84,6 +83,14 @@
 			border-top-left-radius: 50% !important;
 			border-bottom-left-radius: 50% !important;
 		}
+	}
+}
+
+&#back-button,
+&#forward-button {
+	.toolbarbutton-icon {
+		width: 14px !important;
+		height: 14px !important;
 	}
 }
 
