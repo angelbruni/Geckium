@@ -5,9 +5,7 @@
 // @loadorder   2
 // ==/UserScript==
 
-var { AppConstants } = ChromeUtils.importESModule(
-	"resource://gre/modules/AppConstants.sys.mjs"
-);
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 
 const forkName = AppConstants.MOZ_APP_NAME;
 const unsupportedForks = {
@@ -36,13 +34,13 @@ if (unsupportedForks[forkName]) {
 		  	type : "unsupported-fork",         // opt identifier for this notification
 		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
 		  	buttons: [{
-			label: "Recommended forks",
-			callback: (notification) => {
-			  	notification.ownerGlobal.openWebLinkIn(
-					"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
-					"tab"
-			  	);
-			  	return false
+				label: "Recommended forks",
+				callback: (notification) => {
+				  	notification.ownerGlobal.openWebLinkIn(
+						"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
+						"tab"
+				  	);
+				  	return false
 				}
 		  	}],
 		}

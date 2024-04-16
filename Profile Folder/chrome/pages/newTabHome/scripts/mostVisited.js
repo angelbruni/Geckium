@@ -229,7 +229,7 @@ function createTile(website) {
 				})
 			});
 
-			if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+			if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool() || !(appearanceChoice >= 5)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < numTiles; i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
