@@ -2780,16 +2780,16 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   display: none !important;
 }
 
-.urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]), .urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
+.urlbarView-favicon[src="chrome://global/skin/icons/search-glass.svg"], .urlbarView-favicon[src="chrome://browser/skin/history.svg"] {
   fill: transparent;
   height: 19px !important;
   width: 19px !important;
   background-size: 19px 19px !important;
 }
-.urlbarView-favicon:is([src="chrome://global/skin/icons/search-glass.svg"]) {
-  background-image: url(assets/img/toolbar/search.png);
+.urlbarView-favicon[src="chrome://global/skin/icons/search-glass.svg"] {
+  background-image: url("assets/img/chrome-5/toolbar/search.png");
 }
-.urlbarView-favicon:is([src="chrome://browser/skin/history.svg"]) {
+.urlbarView-favicon[src="chrome://browser/skin/history.svg"] {
   background-image: url(assets/img/toolbar/clock.png);
   opacity: 0.8;
 }
@@ -2880,6 +2880,19 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   padding: 0 !important;
 }
 
+#urlbar-results > .urlbarView-row:first-of-type .urlbarView-no-wrap::before {
+  content: url("assets/img/chrome-5/toolbar/search.png");
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#urlbar-results > .urlbarView-row:first-of-type .urlbarView-favicon {
+  display: none;
+}
+
 .urlbarView-row {
   border-radius: 0 !important;
   border: 0 !important;
@@ -2908,6 +2921,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 .urlbarView-row[type=search] .urlbarView-title::before {
   display: none;
+}
+.urlbarView-row[type=dynamic] {
+  display: none !important;
 }
 .urlbarView-row:is([row-selectable]:hover, [selected]) > .urlbarView-button {
   background-color: transparent !important;
@@ -2955,7 +2971,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 
 .urlbarView-url {
-  color: #4c9817 !important;
+  color: rgb(11, 133, 14) !important;
   flex-grow: 0 !important;
   padding-left: 24px !important;
   order: 1 !important;
@@ -2963,7 +2979,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 
 .urlbarView-favicon {
   position: absolute;
-  left: 8px;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .urlbarView-no-wrap {
@@ -2986,6 +3004,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 
 .urlbarView-row-inner {
+  position: relative !important;
   height: 25px !important;
   min-height: 25px !important;
   padding-block: 0 !important;
@@ -3549,6 +3568,9 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven] #urlbar-container {
   margin-inline: 3px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven] .urlbarView-url {
+  color: #4c9817 !important;
 }
 
 /* Chrome 12 -> 21 */
@@ -4344,6 +4366,26 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PersonalToolbar[pref=newtab] {
   background: white !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-row-inner {
+  min-height: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  flex-direction: column-reverse;
+  align-items: start !important;
+  justify-content: center !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title {
+  margin-inline-start: 22px;
+  color: black;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title::before {
+  content: unset;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-url {
+  order: 2;
+  padding: 0 !important;
+  margin-inline-start: 22px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;

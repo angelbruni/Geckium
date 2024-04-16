@@ -1,3 +1,31 @@
+& {
+	&[geckium-crflag-omnibox-ui-vertical-layout="true"] {
+		.urlbarView-row-inner {
+			min-height: 48px !important;
+			height: 48px !important;
+			display: flex !important;
+			flex-direction: column-reverse;
+			align-items: start !important;
+			justify-content: center !important;
+		}
+
+		.urlbarView-title {
+			&::before {
+				content: unset;
+			}
+
+			margin-inline-start: 22px;
+			color: black;
+		}
+
+		.urlbarView-url {
+			order: 2;
+			padding: 0 !important;
+			margin-inline-start: 22px;
+		}
+	}
+}
+
 #urlbar {
 	font-size: 10pt !important;
 }
