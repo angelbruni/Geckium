@@ -3,6 +3,12 @@
 		#identity-box[pageproxystate="valid"].notSecure #identity-icon {
 			list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
 		}
+
+		&[securestate="ev"] {
+			#identity-icon-box {
+				margin-block-start: 0;
+			}
+		}
 	}
 
 	#urlbar-background {

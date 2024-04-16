@@ -2706,6 +2706,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   margin-inline-start: 4px !important;
   margin-inline-end: 6px !important;
   color: var(--protocol-color);
+  font-size: 11pt !important;
 }
 
 #searchbar:focus-within {
@@ -3273,6 +3274,24 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six] #nav-bar[securestate=secure] #identity-icon, :root[geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
 }
+:root[geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon-box {
+  align-self: center;
+  margin-block-start: 1px;
+  margin-inline-start: -2px;
+  padding-inline: 1px !important;
+  height: calc(var(--urlbar-height-definitive) - 4px);
+  border-radius: calc(var(--toolbarbutton-border-radius) - 1px) !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(133, 193, 133);
+  background: linear-gradient(to bottom, white 1px, rgb(237, 255, 237) 2px, rgb(201, 242, 201));
+}
+:root[geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon {
+  margin-inline-end: 3px;
+}
+:root[geckium-five][geckium-six] #nav-bar[securestate=ev] #custom-identity-label {
+  display: flex;
+}
 :root[geckium-five][geckium-six] #nav-bar[securestate=warning] #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
 }
@@ -3293,6 +3312,10 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six] #star-button-box:hover, :root[geckium-five][geckium-six] #star-button-box:active, :root[geckium-five][geckium-six] #star-button-box[open] {
   background-color: transparent !important;
+}
+:root[geckium-five][geckium-six] #custom-identity-label {
+  margin: 0 !important;
+  font-size: 9pt !important;
 }
 
 /* Chrome 7 -> 11 */
@@ -3564,6 +3587,9 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #nav-bar #identity-box[pageproxystate=valid].notSecure #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven] #nav-bar[securestate=ev] #identity-icon-box {
+  margin-block-start: 0;
+}
 :root[geckium-five][geckium-six][geckium-eleven] #urlbar-background {
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
 }
@@ -3763,6 +3789,9 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=secure] #identity-icon, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=ev] #identity-icon-box {
+  border-radius: calc(var(--toolbarbutton-border-radius) - 2px) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=warning] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
