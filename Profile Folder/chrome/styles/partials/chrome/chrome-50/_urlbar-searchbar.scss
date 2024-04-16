@@ -1,5 +1,9 @@
 & {
+	--urlbarView-row-height: 25px;
+
 	&[geckium-crflag-omnibox-ui-vertical-layout="true"] {
+		--urlbarView-row-height: 48px;
+
 		.urlbarView-row-inner {
 			min-height: 48px !important;
 			height: 48px !important;
@@ -22,6 +26,37 @@
 			order: 2;
 			padding: 0 !important;
 			margin-inline-start: 22px;
+		}
+	}
+
+	&[geckium-crflag-omnibox-ui-vertical-margin="3"] {
+		.urlbarView-row-inner {
+			min-height: calc(var(--urlbarView-row-height) + 2px) !important;
+			height: calc(var(--urlbarView-row-height) + 2px) !important;
+		}
+	}
+	&[geckium-crflag-omnibox-ui-vertical-margin="4"] {
+		.urlbarView-row-inner {
+			min-height: calc(var(--urlbarView-row-height) + 6px) !important;
+			height: calc(var(--urlbarView-row-height) + 6px) !important;
+		}
+	}
+	&[geckium-crflag-omnibox-ui-vertical-margin="5"] {
+		.urlbarView-row-inner {
+			min-height: calc(var(--urlbarView-row-height) + 10px) !important;
+			height: calc(var(--urlbarView-row-height) + 10px) !important;
+		}
+	}
+	&[geckium-crflag-omnibox-ui-vertical-margin="6"] {
+		.urlbarView-row-inner {
+			min-height: calc(var(--urlbarView-row-height) + 14px) !important;
+			height: calc(var(--urlbarView-row-height) + 14px) !important;
+		}
+	}
+	&[geckium-crflag-omnibox-ui-vertical-margin="7"] {
+		.urlbarView-row-inner {
+			min-height: calc(var(--urlbarView-row-height) + 18px) !important;
+			height: calc(var(--urlbarView-row-height) + 18px) !important;
 		}
 	}
 }

@@ -2577,6 +2577,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   --urlbar-verified-proxystate-valid: rgb(10, 155, 38);
   --urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
   --urlbar-height-definitive: var(--toolbarbutton-height);
+  --urlbarView-row-height: 25px;
   --urlbarView: rgb(255, 255, 255, 94%);
   --autocomplete-popup-hover-background: color-mix(
   	in srgb,
@@ -3005,8 +3006,8 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 
 .urlbarView-row-inner {
   position: relative !important;
-  height: 25px !important;
-  min-height: 25px !important;
+  height: var(--urlbarView-row-height) !important;
+  min-height: var(--urlbarView-row-height) !important;
   padding-block: 0 !important;
 }
 
@@ -4043,6 +4044,7 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
   --urlbarView: white !important;
+  --urlbarView-row-height: 28px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-choice=fortyseven] #go-button-box {
   width: 56px !important;
@@ -4113,10 +4115,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] .urlbarView-body-inner {
   margin-inline-start: 1px !important;
   width: calc(100% - 2px) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] .urlbarView-row-inner {
-  min-height: 28px !important;
-  height: 28px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] .urlbarView-url {
   color: rgb(11, 128, 96) !important;
@@ -4367,6 +4365,12 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PersonalToolbar[pref=newtab] {
   background: white !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] {
+  --urlbarView-row-height: 25px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] {
+  --urlbarView-row-height: 48px;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-row-inner {
   min-height: 48px !important;
   height: 48px !important;
@@ -4386,6 +4390,26 @@ hbox[id=label-box][part=label-box] {
   order: 2;
   padding: 0 !important;
   margin-inline-start: 22px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="3"] .urlbarView-row-inner {
+  min-height: calc(var(--urlbarView-row-height) + 2px) !important;
+  height: calc(var(--urlbarView-row-height) + 2px) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="4"] .urlbarView-row-inner {
+  min-height: calc(var(--urlbarView-row-height) + 6px) !important;
+  height: calc(var(--urlbarView-row-height) + 6px) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="5"] .urlbarView-row-inner {
+  min-height: calc(var(--urlbarView-row-height) + 10px) !important;
+  height: calc(var(--urlbarView-row-height) + 10px) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="6"] .urlbarView-row-inner {
+  min-height: calc(var(--urlbarView-row-height) + 14px) !important;
+  height: calc(var(--urlbarView-row-height) + 14px) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="7"] .urlbarView-row-inner {
+  min-height: calc(var(--urlbarView-row-height) + 18px) !important;
+  height: calc(var(--urlbarView-row-height) + 18px) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;

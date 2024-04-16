@@ -11,6 +11,8 @@
 	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 
+	--urlbarView-row-height: 25px;
+
 	@media (prefers-color-scheme: dark) {
 		--toolbar-field-color: black !important;
 	}
@@ -570,8 +572,8 @@
 
 .urlbarView-row-inner {
 	position: relative !important;
-	height: 25px !important;
-	min-height: 25px !important;
+	height: var(--urlbarView-row-height) !important;
+	min-height: var(--urlbarView-row-height) !important;
 	padding-block: 0 !important;
 }
 
