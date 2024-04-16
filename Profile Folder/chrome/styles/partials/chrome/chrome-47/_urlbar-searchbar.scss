@@ -1,5 +1,6 @@
 & {
 	--urlbarView: white !important;
+	--urlbarView-row-height: 28px;
 
 	&[geckium-choice="fortyseven"] {
 		#go-button-box {
@@ -103,11 +104,6 @@
 .urlbarView-body-inner {
 	margin-inline-start: 1px !important;
 	width: calc(100% - 2px) !important;
-}
-
-.urlbarView-row-inner {
-	min-height: 28px !important;
-	height: 28px !important;
 }
 
 .urlbarView-url {

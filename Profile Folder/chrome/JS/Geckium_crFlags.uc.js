@@ -16,7 +16,7 @@ const crflags = {
     "enable-settings-window": "bool",
     "omnibox-ui-show-suggestion-favicons": "bool",
     "omnibox-ui-vertical-layout": "bool",
-    "omnibox-ui-vertical-margin": "bool",
+    "omnibox-ui-vertical-margin": "int",
     "omnibox-ui-swap-title-and-url": "bool",
 };
 
