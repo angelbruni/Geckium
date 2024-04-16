@@ -4368,10 +4368,10 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] {
   --urlbarView-row-height: 25px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) {
   --urlbarView-row-height: 48px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-row-inner {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) .urlbarView-row-inner {
   min-height: 48px !important;
   height: 48px !important;
   display: flex !important;
@@ -4379,32 +4379,16 @@ hbox[id=label-box][part=label-box] {
   align-items: start !important;
   justify-content: center !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) .urlbarView-title {
   margin-inline-start: 22px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) .urlbarView-title::before {
   content: unset;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-url {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) .urlbarView-url {
   order: 2;
   padding: 0 !important;
   margin-inline-start: 22px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-row-inner {
-  flex-direction: row-reverse;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title {
-  margin-inline-start: 22px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title::before {
-  content: unset;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url {
-  padding: 0 !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url::before {
-  content: "-";
-  padding: 0 4px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="3"] .urlbarView-row-inner {
   min-height: calc(var(--urlbarView-row-height) + 2px) !important;
@@ -4425,6 +4409,22 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="7"] .urlbarView-row-inner {
   min-height: calc(var(--urlbarView-row-height) + 18px) !important;
   height: calc(var(--urlbarView-row-height) + 18px) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-row-inner {
+  flex-direction: row-reverse;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title {
+  margin-inline-start: 22px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title::before {
+  content: unset;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url {
+  padding: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url::before {
+  content: "-";
+  padding: 0 4px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #urlbar {
   font-size: 10pt !important;

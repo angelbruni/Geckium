@@ -7,14 +7,14 @@
 
 // Trying something here, wondering if this will cause performance issues...
 
-const crflags = {
-    "compact-navigation": "bool",
-    "experimental-new-tab-page": "bool",
-    "action-box": "bool",
+const crFlags = {
+    //"compact-navigation": "bool",
+    //"experimental-new-tab-page": "bool",
+    //"action-box": "bool",
     "search-button-in-omnibox": "int",
     "enable-icon-ntp": "bool",
-    "enable-settings-window": "bool",
-    "omnibox-ui-show-suggestion-favicons": "bool",
+    //"enable-settings-window": "bool",
+    //"omnibox-ui-show-suggestion-favicons": "bool",
     "omnibox-ui-vertical-layout": "bool",
     "omnibox-ui-vertical-margin": "int",
     "omnibox-ui-swap-title-and-url": "int",
@@ -31,16 +31,16 @@ function observePreferences() {
         },
     };
 
-    for (const key in crflags) {
+    for (const key in crFlags) {
         const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
         prefBranch.addObserver(prefName, observer, false);
     }
 }
 
 function flagsAttrs() {
-    for (const key in crflags) {
+    for (const key in crFlags) {
         const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
-        const valueType = crflags[key];
+        const valueType = crFlags[key];
 
         let prefValue;
         if (valueType === "bool") {
