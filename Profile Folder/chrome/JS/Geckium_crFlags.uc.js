@@ -17,7 +17,7 @@ const crflags = {
     "omnibox-ui-show-suggestion-favicons": "bool",
     "omnibox-ui-vertical-layout": "bool",
     "omnibox-ui-vertical-margin": "int",
-    "omnibox-ui-swap-title-and-url": "bool",
+    "omnibox-ui-swap-title-and-url": "int",
 };
 
 function observePreferences() {

@@ -4381,7 +4381,6 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title {
   margin-inline-start: 22px;
-  color: black;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true] .urlbarView-title::before {
   content: unset;
@@ -4390,6 +4389,22 @@ hbox[id=label-box][part=label-box] {
   order: 2;
   padding: 0 !important;
   margin-inline-start: 22px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-row-inner {
+  flex-direction: row-reverse;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title {
+  margin-inline-start: 22px;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-title::before {
+  content: unset;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url {
+  padding: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]:not([geckium-crflag-omnibox-ui-vertical-layout=true])[geckium-crflag-omnibox-ui-swap-title-and-url="1"] .urlbarView-url::before {
+  content: "-";
+  padding: 0 4px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-margin="3"] .urlbarView-row-inner {
   min-height: calc(var(--urlbarView-row-height) + 2px) !important;
@@ -4430,4 +4445,7 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] .urlbarView-url {
   color: rgb(41, 93, 204) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] .urlbarView-title {
+  color: black;
 }/*# sourceMappingURL=userChrome.css.map */
