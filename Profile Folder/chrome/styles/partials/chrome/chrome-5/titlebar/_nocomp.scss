@@ -85,6 +85,10 @@
 			@media (-moz-platform: linux) {
 				height: 18px;
 				box-shadow: none;
+				width: 24px !important;
+				border-radius: 2px !important;
+
+				border: 1px solid rgba(0, 0, 0, 0.15) !important;
 
 				&::before {
 					content: "";
@@ -94,7 +98,7 @@
 					top: 0;
 					left: 0;
 					border-radius: 3px;
-					border: 1px solid rgba(255,255,255,0.3);
+					border: 1px solid rgba(255,255,255,0.15);
 					box-sizing: border-box;
 				}
 			}
@@ -112,6 +116,10 @@
 		border-bottom-right-radius: 5px;
 		width: 43px;
 		list-style-image: url(assets/img/titlebar/close.svg);
+
+		@media (-moz-platform: linux) {
+			list-style-image: url(assets/img/titlebar/linux/close.svg);
+		}
 	
 		&:hover {
 			background-color: rgb(217,76,74);
@@ -169,10 +177,18 @@
 	
 	.titlebar-max {
 		list-style-image: url(assets/img/titlebar/maximize.svg);
+
+		@media (-moz-platform: linux) {
+			list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+		}
 	}
 	
 	.titlebar-restore {
 		list-style-image: url(assets/img/titlebar/restore.svg);
+
+		@media (-moz-platform: linux) {
+			list-style-image: url(assets/img/titlebar/linux/restore.svg);
+		}
 	
 		.toolbarbutton-icon {
 			transform: translateX(-1px);
@@ -185,24 +201,18 @@
 		border-bottom-left-radius: 5px;
 		width: 25px;
 		list-style-image: url(assets/img/titlebar/minimize.svg);
+
+		@media (-moz-platform: linux) {
+			list-style-image: url(assets/img/titlebar/linux/minimize.svg);
+		}
 	}
 
 	@media (-moz-platform: linux) {
-		.titlebar-close,
-		.titlebar-max,
-		.titlebar-restore,
-		.titlebar-min {
-			width: 24px;
-			border-radius: 2px;
-
-			border: 1px solid rgba(0, 0, 0, 0.35);
-		}
-
 		.titlebar-close {
-			border-top-right-radius: 4.5px;
+			border-top-right-radius: 4.5px !important;
 	
 			&::before {
-				border-top-right-radius: 4.5px;
+				border-top-right-radius: 4.5px !important;
 			}
 		}
 	}

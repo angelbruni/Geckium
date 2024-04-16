@@ -108,6 +108,9 @@
   :root[chromemargin="0,0,0,0"] .titlebar-button {
     height: 18px;
     box-shadow: none;
+    width: 24px !important;
+    border-radius: 2px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
   :root[chromemargin="0,0,0,0"] .titlebar-button::before {
     content: "";
@@ -117,7 +120,7 @@
     top: 0;
     left: 0;
     border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-sizing: border-box;
   }
 }
@@ -133,6 +136,11 @@
   border-bottom-right-radius: 5px;
   width: 43px;
   list-style-image: url(assets/img/titlebar/close.svg);
+}
+@media (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"] .titlebar-close {
+    list-style-image: url(assets/img/titlebar/linux/close.svg);
+  }
 }
 :root[chromemargin="0,0,0,0"] .titlebar-close:hover {
   background-color: rgb(217, 76, 74);
@@ -173,8 +181,18 @@
 :root[chromemargin="0,0,0,0"] .titlebar-max {
   list-style-image: url(assets/img/titlebar/maximize.svg);
 }
+@media (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"] .titlebar-max {
+    list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+  }
+}
 :root[chromemargin="0,0,0,0"] .titlebar-restore {
   list-style-image: url(assets/img/titlebar/restore.svg);
+}
+@media (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"] .titlebar-restore {
+    list-style-image: url(assets/img/titlebar/linux/restore.svg);
+  }
 }
 :root[chromemargin="0,0,0,0"] .titlebar-restore .toolbarbutton-icon {
   transform: translateX(-1px);
@@ -187,19 +205,16 @@
   list-style-image: url(assets/img/titlebar/minimize.svg);
 }
 @media (-moz-platform: linux) {
-  :root[chromemargin="0,0,0,0"] .titlebar-close,
-  :root[chromemargin="0,0,0,0"] .titlebar-max,
-  :root[chromemargin="0,0,0,0"] .titlebar-restore,
   :root[chromemargin="0,0,0,0"] .titlebar-min {
-    width: 24px;
-    border-radius: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.35);
+    list-style-image: url(assets/img/titlebar/linux/minimize.svg);
   }
+}
+@media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"] .titlebar-close {
-    border-top-right-radius: 4.5px;
+    border-top-right-radius: 4.5px !important;
   }
   :root[chromemargin="0,0,0,0"] .titlebar-close::before {
-    border-top-right-radius: 4.5px;
+    border-top-right-radius: 4.5px !important;
   }
 }
 :root:-moz-lwtheme {
@@ -875,6 +890,9 @@
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-button {
     height: 18px;
     box-shadow: none;
+    width: 24px !important;
+    border-radius: 2px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-button::before {
     content: "";
@@ -884,7 +902,7 @@
     top: 0;
     left: 0;
     border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-sizing: border-box;
   }
 }
@@ -901,6 +919,11 @@
   border-bottom-right-radius: 5px;
   width: 43px;
   list-style-image: url(assets/img/titlebar/close.svg);
+}
+@media (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-close {
+    list-style-image: url(assets/img/titlebar/linux/close.svg);
+  }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-close:hover {
   background-color: rgb(217, 76, 74);
@@ -941,8 +964,18 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-max {
   list-style-image: url(assets/img/titlebar/maximize.svg);
 }
+@media (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-max {
+    list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+  }
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-restore {
   list-style-image: url(assets/img/titlebar/restore.svg);
+}
+@media (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-restore {
+    list-style-image: url(assets/img/titlebar/linux/restore.svg);
+  }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-restore .toolbarbutton-icon {
   transform: translateX(-1px);
@@ -955,19 +988,16 @@
   list-style-image: url(assets/img/titlebar/minimize.svg);
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-close,
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-max,
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-restore,
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-min {
-    width: 24px;
-    border-radius: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.35);
+    list-style-image: url(assets/img/titlebar/linux/minimize.svg);
   }
+}
+@media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-close {
-    border-top-right-radius: 4.5px;
+    border-top-right-radius: 4.5px !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"] .titlebar-close::before {
-    border-top-right-radius: 4.5px;
+    border-top-right-radius: 4.5px !important;
   }
 }
 @media not (prefers-color-scheme: dark) {
