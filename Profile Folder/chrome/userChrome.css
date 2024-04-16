@@ -3199,6 +3199,9 @@ hbox[id=label-box][part=label-box] {
   background-color: rgba(0, 0, 0, 0.18) !important;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+  --urlbar-height-definitive: 25px;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=secure] #identity-icon, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_valid.png) !important;
 }
@@ -3652,6 +3655,7 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] {
   --nav-bar: rgb(242,242,242);
   --nav-bar-height: 37px;
+  --toolbarbutton-width: 24px;
   --toolbarbutton-height: 24px;
   --toolbarbutton-radius: 2px;
   --toolbarbutton-background-hot: rgba(0,0,0,.09);
@@ -3661,7 +3665,6 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] {
   --toolbarbutton-outer-padding: 2px !important;
-  --urlbar-height-definitive: 28px;
   --personal-toolbar: var(--nav-bar);
   --personal-toolbar-height: 28px;
 }
@@ -3713,6 +3716,10 @@ hbox[id=label-box][part=label-box] {
   border-top-left-radius: 50% !important;
   border-bottom-left-radius: 50% !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]#back-button .toolbarbutton-icon, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty]#forward-button .toolbarbutton-icon {
+  width: 14px !important;
+  height: 14px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PlacesToolbarItems {
   gap: 0;
 }
@@ -3739,6 +3746,7 @@ hbox[id=label-box][part=label-box] {
   background: white !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] {
+  --urlbar-height-definitive: calc(var(--toolbarbutton-height) + 4px);
   --urlbarView-row-height: 25px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][geckium-crflag-omnibox-ui-vertical-layout=true]:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) {
