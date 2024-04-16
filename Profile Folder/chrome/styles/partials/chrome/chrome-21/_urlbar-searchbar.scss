@@ -12,6 +12,12 @@
 			}
 		}
 
+		&[securestate="ev"] {
+			#identity-icon-box {
+				border-radius: calc(var(--toolbarbutton-border-radius) - 2px) !important;
+			}
+		}
+
 		&[securestate="warning"] {
 			#identity-icon {
 				list-style-image: url(assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;

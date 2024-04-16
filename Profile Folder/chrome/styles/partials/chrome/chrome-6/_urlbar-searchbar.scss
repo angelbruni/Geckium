@@ -52,6 +52,29 @@
 			}
 		}
 
+		&[securestate="ev"] {
+			#identity-icon-box {
+				align-self: center;
+				margin-block-start: 1px;
+				margin-inline-start: -2px;
+				padding-inline: 1px !important;
+				height: calc(var(--urlbar-height-definitive) - 4px);
+				border-radius: calc(var(--toolbarbutton-border-radius) - 1px) !important;
+				border-width: 1px;
+				border-style: solid;
+				border-color: rgb(133,193,133);
+				background: linear-gradient(to bottom, white 1px, rgb(237,255,237) 2px, rgb(201,242,201));
+			}
+			
+			#identity-icon {
+				margin-inline-end: 3px;
+			}
+
+			#custom-identity-label {
+				display: flex;
+			}
+		}
+
 		&[securestate="warning"] {
 			#identity-icon {
 				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
@@ -88,5 +111,10 @@
 		&[open] {
 			background-color: transparent !important;
 		}
+	}
+
+	#custom-identity-label {
+		margin: 0 !important;
+		font-size: 9pt !important;
 	}
 }
