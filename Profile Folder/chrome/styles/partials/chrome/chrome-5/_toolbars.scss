@@ -863,6 +863,14 @@ toolbar[overflowable][customizing] > .customization-target {
 			}
 		}
 	}
+	&[disabled] {
+		.toolbarbutton-icon,
+		image:first-of-type {
+			opacity: 1 !important;
+
+			fill: color-mix(in srgb, var(--toolbarbutton-icon-fill) 20%, transparent) !important;
+		}
+	}
 
 	.toolbarbutton-badge-stack,
 	.toolbarbutton-icon,

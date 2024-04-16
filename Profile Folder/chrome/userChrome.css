@@ -2090,6 +2090,15 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
+#new-tab-button)[disabled] .toolbarbutton-icon,
+.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)[disabled] image:first-of-type {
+  opacity: 1 !important;
+  fill: color-mix(in srgb, var(--toolbarbutton-icon-fill) 20%, transparent) !important;
+}
+.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
 #new-tab-button) .toolbarbutton-badge-stack,
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
