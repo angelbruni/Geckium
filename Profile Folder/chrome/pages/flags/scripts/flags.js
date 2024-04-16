@@ -1,17 +1,17 @@
 const experiments = {
-	"compact-navigation": {
+	/*"compact-navigation": {
 		name: "Compact Navigation",
 		description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",
 		from: 2,
 		to: 2,
-	},
-	"experimental-new-tab-page": {
+	},*/
+	/*"experimental-new-tab-page": {
 		name: "Experimental new tab page",
 		description: "Enables an in-development redesign of the new tab page.",
 		from: 2,
 		to: 2,
-	},
-	"action-box": {
+	},*/
+	/*"action-box": {
 		name: "Action box",
 		description: "Enable or disable the \"Action Box\" experimental toolbar UI.",
 		from: 3,
@@ -21,7 +21,7 @@ const experiments = {
 			1: "Enabled",
 			2: "Disabled",
 		}
-	},
+	},*/
 	"search-button-in-omnibox": {
 		name: "Enable search button in Omnibox",
 		description: "Places a search button in the Omnibox.",
@@ -41,7 +41,7 @@ const experiments = {
 		from: 5,
 		to: 6,
 	},
-	"enable-settings-window": {
+	/*"enable-settings-window": {
 		name: "Show settings in a window",
 		description: "If enabled, Settings will be shown in a dedicated window instead of as a browser tab.",
 		from: 5,
@@ -51,8 +51,8 @@ const experiments = {
 			1: "Enabled",
 			2: "Disabled",
 		}
-	},
-	"omnibox-ui-show-suggestion-favicons": {
+	},*/
+	/*"omnibox-ui-show-suggestion-favicons": {
 		name: "Omnibox UI Show Suggestion Favicons",
 		description: "Shows favicons instead of generic vector icons for URL suggestions in the Omnibox dropdown.",
 		from: 6,
@@ -62,7 +62,7 @@ const experiments = {
 			1: "Enabled",
 			2: "Disabled",
 		}
-	},
+	},*/
 	"omnibox-ui-vertical-layout": {
 		name: "Omnibox UI Vertical Layout",
 		description: "Displays Omnibox sugestions in 2 lines - title over origin.",
