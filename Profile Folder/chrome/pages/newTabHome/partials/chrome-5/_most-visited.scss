@@ -1,3 +1,50 @@
+& {
+	--view-toolbar-buttons-bg: rgb(134,177,231);
+	--window-menu-item-hover-bg: rgb(134,177,231);
+
+	--thumbnail-border-color-normal: #E5EFFE;
+	--thumbnail-border-color-hot: rgb(75,140,220);
+	--thumbnail-container-color: black;
+	--edit-bar-background-color-hot: hsl(213, 66%, 57%);
+	--edit-bar-background-hot: linear-gradient(
+		to bottom,
+		hsl(213, 87%, 67%),
+		var(--edit-bar-background-color-hot)
+	);
+
+	--link-color: #06C;
+
+	@media (prefers-color-scheme: dark) {
+		--thumbnail-border-color-normal: #617796;
+		--thumbnail-container-color: white;
+
+		--link-color: #acc0da;
+	}
+
+	// Custom theme support
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
+	&[lwtheme-id*="{"] {
+		--view-toolbar-buttons-bg: var(--lwt-text-color) !important;
+		--window-menu-item-hover-bg: var(--lwt-text-color) !important;
+
+		--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
+		--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
+		--thumbnail-container-color: var(--link-color) !important;
+		--edit-bar-background-color-hot: var(--toolbar-color) !important;
+		--edit-bar-background-hot: linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+			var(--edit-bar-background-color-hot)
+		) !important;
+
+		--link-color: var(--lwt-accent-color) !important;
+
+		&[style*="--arrowpanel-background"] {
+			--link-color: var(--arrowpanel-color, var(--lwt-accent-color)) !important;
+		}
+	}
+}
+
 #view-toolbar {
 	margin-block: 15px;
 	justify-content: end;
@@ -12,7 +59,7 @@
 		width: 19px;
 		height: 17px;
 		border-radius: 4px;
-		background-color: rgb(134,177,231);
+		background-color: var(--view-toolbar-buttons-bg);
 
 		&#thumb-checkbox {
 			background-image: url(assets/chrome-5/imgs/newtab_thumb_off.png);
@@ -113,7 +160,7 @@
 			padding: 3px 8px;
 	
 			&:hover {
-				background-color: rgb(134,177,231);
+				background-color: var(--window-menu-item-hover-bg);
 				color: white;
 			}
 		}
@@ -143,12 +190,8 @@
 
 		.thumbnail-container {
 			text-decoration: underline;
-			color: #06C;
+			color: var(--link-color);
 			font-size: 12pt;
-
-			@media (prefers-color-scheme: dark) {
-				color: #acc0da;
-			}
 
 			.edit-mode-border {
 				display: none;
@@ -162,7 +205,7 @@
 }
 
 .thumbnail-container {
-	color: black;
+	color: var(--thumbnail-container-color);
 	text-decoration: none;
 
 	@media (prefers-color-scheme: dark) {
@@ -175,19 +218,15 @@
 			.edit-bar {
 				margin-block-start: 0px;
 				margin-block-end: 0px;
-				background-color: hsl(213, 66%, 57%);
-				background-image: linear-gradient(
-					to bottom,
-					hsl(213, 87%, 67%),
-					hsl(213, 66%, 57%)
-				);
+				background-color: var(--edit-bar-background-color-hot);
+				background-image: var(--edit-bar-background-hot);
 				box-shadow: 0px 2px 2px hsla(0, 0%, 0%, .5);
 				
 				transition-delay: .5s, .5s, .5s;
 			}
 
 			.thumbnail {
-				border-color: rgb(75,140,220);
+				border-color: var(--thumbnail-border-color-hot);
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;
 				background-image: linear-gradient(
@@ -297,13 +336,9 @@
 		height: 129px;
 		border-width: 3px;
 		border-style: solid;
-		border-color: #E5EFFE;
+		border-color: var(--thumbnail-border-color-normal);
 		border-radius: 5px;
 		padding: 1px;
-
-		@media (prefers-color-scheme: dark) {
-			border-color: #617796;
-		}
 
 		transition: border-color .15s, box-shadow .15s, border-radius .15s;
 	}

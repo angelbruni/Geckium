@@ -1,3 +1,7 @@
+& {
+	--page-switcher-color: color-mix(in srgb, var(--link-color) 50%, transparent);
+}
+
 #card-slider-frame {
 	overflow: hidden;
 	position: relative;
@@ -19,12 +23,8 @@
 	max-width: 150px;
 	font-family: Arial, sans-serif;
 	font-size: 40px;
-	color: rgba(0,0,0,.5);
+	color: var(--page-switcher-color);
 	z-index: 1;
-
-	@media (prefers-color-scheme: dark) {
-		color: rgba(255,255,255,.5);
-	}
 	
 	transition: width 150ms, background-color 150ms;
 	

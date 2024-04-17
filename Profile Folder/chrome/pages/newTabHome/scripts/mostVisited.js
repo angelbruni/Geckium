@@ -283,7 +283,7 @@ function createTile(website) {
 			}
 		}
 
-		console.log(tile);
+		//console.log(tile);
 
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {

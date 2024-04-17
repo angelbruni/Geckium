@@ -125,7 +125,7 @@ function setThemeAttr() {
 		return;
 
 	if (typeof docElm !== "undefined") {
-		docElm.setAttribute("lwtheme-id",pref("extensions.activeThemeID").tryGet.string());
+		docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
 
 		if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
@@ -159,15 +159,8 @@ function setThemeAttr() {
 	}
 }
 
-const themeObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			setThemeAttr();
-		}
-	},
-};
 window.addEventListener("load", setThemeAttr);
-Services.prefs.addObserver("extensions.activeThemeID", themeObserver, false);
+Services.obs.addObserver(setThemeAttr, "lightweight-theme-styling-update");
 
 const customThemeModeObserver = {
 	observe: function (subject, topic, data) {

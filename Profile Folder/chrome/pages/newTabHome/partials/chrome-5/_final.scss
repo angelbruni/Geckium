@@ -1,6 +1,34 @@
 & {
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
+
+	// Custom theme support
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
+	&[lwtheme-id*="{"] {
+		body {
+			background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, black);
+		}
+	}
+
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {
+		body {
+			background-image: var(--lwt-additional-images);
+			background-position: var(--lwt-background-alignment);
+			background-repeat: var(--lwt-background-tiling);
+		}
+	}
+
+	&[lwtheme-id*="{"] {
+		body {
+			background-image: var(--lwt-newtab-image);
+			image-rendering: var(--lwt-newtab-image-rendering);
+		}
+	}
+}
+
+body {
+	background-position: center;
+	background-size: cover;
 }
 
 #main {

@@ -9,14 +9,10 @@
 	.most-visited {
 		display: block;
 		position: relative;
-		color: black;
+		color: var(--link-color);
 		width: 214px;
 		height: 165px;
 		text-decoration: none;
-
-		@media (prefers-color-scheme: dark) {
-			color: white;
-		}
 
 		&:not([disabled]) {
 			&:hover,
