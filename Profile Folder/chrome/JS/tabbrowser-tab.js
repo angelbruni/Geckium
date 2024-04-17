@@ -21,38 +21,37 @@
 			<hbox class="tab-glare-right">
 				<hbox class="tab-glare"/>
 			</hbox>
-		   </hbox>
+		</hbox>
 	   <stack class="tab-stack" flex="1">
-	   
-		 <vbox class="tab-background">
-		   <hbox class="tab-context-line"/>
-		   <hbox class="tab-loading-burst" flex="1"/>
-		 </vbox>
-		 <hbox class="tab-content" align="center">
-		   <stack class="tab-icon-stack">
-			 <hbox class="tab-throbber"/>
-			 <hbox class="tab-icon-pending"/>
-			 <html:img class="tab-icon-image" role="presentation" decoding="sync" />
-			 <image class="tab-sharing-icon-overlay" role="presentation"/>
-			 <image class="tab-icon-overlay" role="presentation"/>
-		   </stack>
-		   <vbox class="tab-label-container"
-				 onoverflow="this.setAttribute('textoverflow', 'true');"
-				 onunderflow="this.removeAttribute('textoverflow');"
-				 align="start"
-				 pack="center"
-				 flex="1">
-			 <label class="tab-text tab-label" role="presentation"/>
-			 <hbox class="tab-secondary-label">
-			   <label class="tab-icon-sound-label tab-icon-sound-playing-label" data-l10n-id="browser-tab-audio-playing2" role="presentation"/>
-			   <label class="tab-icon-sound-label tab-icon-sound-muted-label" data-l10n-id="browser-tab-audio-muted2" role="presentation"/>
-			   <label class="tab-icon-sound-label tab-icon-sound-blocked-label" data-l10n-id="browser-tab-audio-blocked" role="presentation"/>
-			   <label class="tab-icon-sound-label tab-icon-sound-pip-label" data-l10n-id="browser-tab-audio-pip" role="presentation"/>
-			   <label class="tab-icon-sound-label tab-icon-sound-tooltip-label" role="presentation"/>
-			 </hbox>
-		   </vbox>
-		   <image class="tab-close-button close-icon" role="presentation"/>
-		 </hbox>
+		 	<vbox class="tab-background">
+		 	  	<hbox class="tab-context-line"/>
+		 	  	<hbox class="tab-loading-burst" flex="1"/>
+		 	</vbox>
+		 	<hbox class="tab-content" align="center">
+		 	  	<stack class="tab-icon-stack">
+					<hbox class="tab-throbber"/>
+					<hbox class="tab-icon-pending"/>
+					<html:img class="tab-icon-image" role="presentation" decoding="sync" />
+					<image class="tab-sharing-icon-overlay" role="presentation"/>
+					<image class="tab-icon-overlay" role="presentation"/>
+		 	  	</stack>
+		 	  	<vbox class="tab-label-container"
+					  onoverflow="this.setAttribute('textoverflow', 'true');"
+					  onunderflow="this.removeAttribute('textoverflow');"
+					  align="start"
+					  pack="center"
+					  flex="1">
+					<label class="tab-text tab-label" role="presentation"/>
+					<hbox class="tab-secondary-label">
+					   	<label class="tab-icon-sound-label tab-icon-sound-playing-label" data-l10n-id="browser-tab-audio-playing2" role="presentation"/>
+					   	<label class="tab-icon-sound-label tab-icon-sound-muted-label" data-l10n-id="browser-tab-audio-muted2" role="presentation"/>
+					   	<label class="tab-icon-sound-label tab-icon-sound-blocked-label" data-l10n-id="browser-tab-audio-blocked" role="presentation"/>
+					   	<label class="tab-icon-sound-label tab-icon-sound-pip-label" data-l10n-id="browser-tab-audio-pip" role="presentation"/>
+					   	<label class="tab-icon-sound-label tab-icon-sound-tooltip-label" role="presentation"/>
+					</hbox>
+		 	  	</vbox>
+		 	  	<image class="tab-close-button close-icon" role="presentation"/>
+		 	</hbox>
 	   </stack>
 	   `;
 

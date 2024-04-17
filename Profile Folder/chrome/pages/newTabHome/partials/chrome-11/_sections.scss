@@ -4,6 +4,11 @@
 		margin-inline-end: -21px;
 		align-items: center;
 		font-size: 12pt;
+		color: black;
+
+		@media (prefers-color-scheme: dark) {
+			color: white;
+		}
 
 		&.collapsed {
 			+ div {
@@ -16,6 +21,10 @@
 					align-items: center;
 					color: rgba(0, 102, 204, 1);
 					max-width: 114px;
+
+					@media (prefers-color-scheme: dark) {
+						color: #acc0da;
+					}
 
 					image {
 						width: 16px;
@@ -42,6 +51,10 @@
 			height: 1px;
 			background-color: rgb(229, 229, 229);
 			margin-inline: 4px;
+			
+			@media (prefers-color-scheme: dark) {
+				background-color: rgb(61, 61, 61);
+			}
 		}
 
 		button {

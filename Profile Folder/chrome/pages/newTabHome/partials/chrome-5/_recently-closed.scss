@@ -13,6 +13,12 @@
 		color: black;
 		height: 24px;
 		gap: 20px;
+
+		@media (prefers-color-scheme: dark) {
+			color: white;
+			border: 1px solid rgba(206, 220, 236, 0.313);
+			background-color: #415470;
+		}
 	
 		> label:first-child {
 			font-weight: bold;
@@ -30,6 +36,10 @@
 			color: #063774;
 			text-decoration: underline;
 			cursor: pointer;
+
+			@media (prefers-color-scheme: dark) {
+				color: #acc0da;
+			}
 	
 			&#nav {
 				image {

@@ -18,6 +18,10 @@
 
 		.thumbnail {
 			border-color: rgb(229, 229, 229);
+
+			@media (prefers-color-scheme: dark) {
+				border-color: rgb(88, 88, 88);
+			}
 		}
 	}
 	&[disabled] {

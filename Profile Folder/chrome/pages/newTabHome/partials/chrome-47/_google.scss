@@ -15,6 +15,10 @@
 		color: rgba(0,0,0,.87);
 		text-decoration: none;
 
+		@media (prefers-color-scheme: dark) {
+			color: rgba(255,255,255,.87);
+		}
+
 		&:not([disabled]) {
 			&:hover,
 			&:focus {
@@ -30,6 +34,10 @@
 		background-size: 92px 3767px;
 		background-position: -35px -3668px;
 		opacity: .55;
+
+		@media (prefers-color-scheme: dark) {
+			filter: invert(1);
+		}
 
 		&:not([disabled]) {
 			&:hover,
@@ -67,6 +75,10 @@
 		white-space: nowrap;
 		box-sizing: border-box;
 
+		@media (prefers-color-scheme: dark) {
+			background-color: #353535;
+		}
+
 		&:not([disabled]) {
 			&:focus {
 				border-color: rgb(66,133,244);
@@ -84,14 +96,25 @@
 		margin-block-start: 115px;
 		
 		#google-input {
-			border: 1px solid #d2d2d2;
 			border-radius: 1px;
+			border-width: 1px;
+			border-style: solid;
+			border-color: #d2d2d2;
 			border-top-color: #70757a;
 			height: 36px;
 			margin-block-end: 64px;
 
+			@media (prefers-color-scheme: dark) {
+				border-color: #575757;
+				border-top-color: #666666;
+			}
+
 			&::placeholder {
 				color: #dadce0;
+
+				@media (prefers-color-scheme: dark) {
+					color: #818181;
+				}
 			}
 		}
 	}
@@ -101,12 +124,22 @@
 		margin-block-start: 150px;
 
 		#google-input {
-			border: 1px solid rgb(169,169,169);
+			border-width: 1px;
+			border-style: solid;
+			border-color: rgb(169,169,169);
 			height: 38px;
 			margin-block-end: 100px;
 
+			@media (prefers-color-scheme: dark) {
+				border-color: #575757;
+			}
+
 			&::placeholder {
 				color: #bbb;
+
+				@media (prefers-color-scheme: dark) {
+					color: #818181;
+				}
 			}
 		}
 	}
