@@ -14,6 +14,10 @@
 		height: 165px;
 		text-decoration: none;
 
+		@media (prefers-color-scheme: dark) {
+			color: white;
+		}
+
 		&:not([disabled]) {
 			&:hover,
 			&:focus,
@@ -25,6 +29,15 @@
 						rgba(255, 255, 255, 0) 80%,
 						rgba(255, 255, 255, 0.9)
 					);
+
+					@media (prefers-color-scheme: dark) {
+						background: linear-gradient(
+							to bottom,
+							rgba(114, 114, 114, 0),
+							rgba(114, 114, 114, 0) 80%,
+							rgba(114, 114, 114, 0.9)
+						);
+					}
 				}
 			}
 
@@ -126,6 +139,16 @@
 			rgba(255, 255, 255, 0) 50%,
 			rgba(255, 255, 255, 0.9)
 		);
+
+		@media (prefers-color-scheme: dark) {
+			background: linear-gradient(
+				to bottom,
+				rgba(114, 114, 114, 0),
+				rgba(114, 114, 114, 0) 50%,
+				rgba(114, 114, 114, 0.9)
+			);
+		}
+
 		border-radius: 3px;
 	}
 

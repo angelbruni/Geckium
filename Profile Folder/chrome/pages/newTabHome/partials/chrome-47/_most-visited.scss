@@ -130,6 +130,10 @@
 		font-size: 9pt;
 		width: 84px;
 
+		@media (prefers-color-scheme: dark) {
+			color: rgb(170, 170, 170);
+		}
+
 		&:not([disabled]) {
 			&:hover,
 			&:focus {

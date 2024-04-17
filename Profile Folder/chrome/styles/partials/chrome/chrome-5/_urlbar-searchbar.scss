@@ -216,6 +216,11 @@
 	color: var(--toolbar-field-color) !important;
 }
 
+#urlbar:is([focused="true"], [open]) > #urlbar-background,
+#searchbar:focus-within {
+ 	background-color: white !important;
+}
+
 #urlbar[breakout][breakout-extend] > #urlbar-background,
 #urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
 	/*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),

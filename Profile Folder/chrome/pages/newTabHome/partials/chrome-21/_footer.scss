@@ -12,6 +12,16 @@
 		rgba(222, 222, 222, 0.9)
 	);
 	color: #7F7F7F;
+
+	@media (prefers-color-scheme: dark) {
+		background-image: linear-gradient(
+			to bottom,
+			rgba(53, 53, 53, 0.9),
+			rgba(31, 31, 31, 0.9)
+		);
+		color: #b8b8b8;
+	}
+
 	font-weight: bold;
 
 	#footer-border {
@@ -62,6 +72,10 @@
 		text-align: start;
 		align-items: start;
 
+		@media (prefers-color-scheme: dark) {
+			color: rgba(255,255,255,.2);
+		}
+
 		transition: color 200ms;
 
 		&:not([disbled]) {
@@ -69,18 +83,30 @@
 			&:focus,
 			&.selected {
 				color: #7f7f7f;
+
+				@media (prefers-color-scheme: dark) {
+					color: #9e9e9e;
+				}
 			}
 
 			&:hover,
 			&:focus {
 				.selection-bar {
 					background-color: #b2b2b2;
+
+					@media (prefers-color-scheme: dark) {
+						background-color: #535353;
+					}
 				}
 			}
 
 			&.selected {
 				.selection-bar {
 					background-color: #7f7f7f;
+
+					@media (prefers-color-scheme: dark) {
+						background-color: #9e9e9e;
+					}
 				}
 			}
 		}
@@ -90,6 +116,10 @@
 			height: 5px;
 			background-color: rgba(0, 0, 0, 0.1);
 			margin-block-end: 5px;
+
+			@media (prefers-color-scheme: dark) {
+				background-color: rgba(255,255,255,.1);
+			}
 
 			transition: background-color 200ms;
 		}
@@ -139,6 +169,11 @@
 			height: 9px;
 			width: 9px;
 			background-color: #7F7F7F;
+
+			@media (prefers-color-scheme: dark) {
+				background-color: #b8b8b8;
+			}
+
 			mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAJUlEQVQYV2NgoDuYSQSGK/RB0+yDrACbQqwKkBUW41OArJB0AAACXws0ERupuAAAAABJRU5ErkJggg==");
 		}
 	}
@@ -161,6 +196,11 @@
 		min-width: 150px;
 		bottom: 32px;
 		right: 0;
+
+		@media (prefers-color-scheme: dark) {
+			background: rgb(54, 54, 54);
+			color: white;
+		}
 	}
 
 	.footer-menu-item {
@@ -183,6 +223,12 @@
 		font-weight: normal;
 		font-size: 9pt;
 		align-items: center;
+		-moz-context-properties: fill, fill-opacity;
+
+		@media (prefers-color-scheme: dark) {
+			color: #acc0da !important;
+			fill: white;
+		}
 
 		&:not([disabled]) {
 			&:hover {
@@ -207,6 +253,10 @@
 		background-color: rgb(178, 178, 178);
 		height: 20px;
 		width: 1px;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: rgb(100, 100, 100);
+		}
 	}
 
 	#chrome-web-store-link {
