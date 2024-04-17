@@ -13,6 +13,10 @@
 		font-size: 9pt;
 		transition-duration: 200ms;
 		transition-property: border, box-shadow;
+
+		@media (prefers-color-scheme: dark) {
+			color: white;
+		}
 	
 		&[disabled] {
 			background: rgb(242,242,242);
@@ -20,6 +24,10 @@
 		&:not([disabled]) {
 			border: 1px solid rgba(150,150,150,0.3137254901960784);
 			background: rgb(242,242,242);
+
+			@media (prefers-color-scheme: dark) {
+				background: rgb(77, 77, 77);
+			}
 	
 			&:hover,
 			&:focus {
@@ -71,6 +79,15 @@
 				rgb(242,242,242) 60%,
 				transparent
 			);
+
+			@media (prefers-color-scheme: dark) {
+				background: linear-gradient(
+					to left,
+					rgb(77, 77, 77) 60%,
+					transparent
+				);
+			}
+
 			opacity: 0;
 	
 			transition: opacity 150ms;
@@ -84,6 +101,10 @@
 				mask-position: center;
 				mask-repeat: no-repeat;
 				background-color: rgba(90,90,90,0.7);
+
+				@media (prefers-color-scheme: dark) {
+					background-color: rgba(201, 201, 201, 0.7);
+				}
 			}
 	
 			&:not([disabled]) {
@@ -93,6 +114,10 @@
 	
 					&::after {
 						background-color: rgb(90,90,90);
+
+						@media (prefers-color-scheme: dark) {
+							background-color: rgba(235, 235, 235, 0.7);
+						}
 					}
 				}
 	
