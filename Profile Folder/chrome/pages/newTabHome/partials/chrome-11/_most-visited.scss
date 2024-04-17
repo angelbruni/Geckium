@@ -1,36 +1,15 @@
-.thumbnail-container {
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			.edit-bar {
-				background-color: rgba(150,150,150,1); /* COLOR_NTP_HEADER */
-				background-image: linear-gradient(
-					to bottom,
-					rgba(185,185,185,1), /* COLOR_HEADER_GRADIENT_LIGHT */
-					rgba(150,150,150,1)
-				)
-			}
+& {
+	--thumbnail-border-color-normal: rgb(229, 229, 229);
+	--thumbnail-border-color-hot: rgb(150,150,150);
+	--thumbnail-container-color: black;
+	--edit-bar-background-color-hot: rgb(150,150,150);
+	--edit-bar-background-hot: linear-gradient(
+		to bottom,
+		rgba(185,185,185),
+		var(--edit-bar-background-color-hot)
+	);
 
-			.thumbnail {
-				border-color: rgb(150,150,150); /* COLOR_NTP_HEADER */
-			}
-		}
-
-		.thumbnail {
-			border-color: rgb(229, 229, 229);
-
-			@media (prefers-color-scheme: dark) {
-				border-color: rgb(88, 88, 88);
-			}
-		}
-	}
-	&[disabled] {
-		.thumbnail-wrapper {
-			border: solid rgb(229,229,229);
-		}
-
-		.thumbnail {
-			background-color: rgb(229,229,229);
-		}
+	@media (prefers-color-scheme: dark) {
+		--thumbnail-border-color-normal: rgb(88, 88, 88);
 	}
 }

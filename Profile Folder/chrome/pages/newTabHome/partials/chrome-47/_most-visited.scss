@@ -9,14 +9,10 @@
 		height: 126px;
 		padding-inline: 3px;
 		text-decoration: none;
-		color: black;
+		color: var(--link-color);
 		font-size: 9pt;
 		transition-duration: 200ms;
 		transition-property: border, box-shadow;
-
-		@media (prefers-color-scheme: dark) {
-			color: white;
-		}
 	
 		&[disabled] {
 			background: rgb(242,242,242);

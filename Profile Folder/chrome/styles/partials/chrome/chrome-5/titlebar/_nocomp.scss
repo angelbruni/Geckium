@@ -1,218 +1,236 @@
 /* bruni: This is the code for the window frame when composition
 		  is disabled. This code is also used by custom themes.*/
-&[chromemargin="0,0,0,0"] {
-	&[tabsintitlebar] {
-		#tabbrowser-arrowscrollbox {
-			padding-top: 7px !important;
-		}
-	}
 
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		&[windowtype="navigator:browser"] > body {
-			border: 0 !important;
-			border-radius: 0 !important;
-			box-shadow: none !important;
-		}
-
-		&[tabsintitlebar] {
-			#tabbrowser-arrowscrollbox {
-				padding-top: 0 !important;
-			}
-		}
-	}
-
-	&[sizemode="maximized"] {
-		.titlebar-buttonbox-container {
-			margin-block-start: 0 !important;
-			margin-inline-end: 3px !important;
-		}
-	}
+& {
+	--titlebar-buttonbox-background-color: transparent;
 	
-	&[windowtype="navigator:browser"] > body {
-		&:-moz-window-inactive {
-			background: var(--titlebar-inactive);
-		}
+	&:not([customthememode="2"]) {
+		&:-moz-lwtheme {
+			/* bruni: This entire code takes care of custom themes support for titlebar */
 	
-		background: var(--titlebar-active);
-		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
-		border-top: 1px solid rgb(89,89,89);
-		border-left: 1px solid rgb(89,89,89);
-		border-bottom: 1px solid rgb(68,68,68);
-		border-right: 1px solid rgb(68,68,68);
-		border-radius: 5px;
-		padding: 1px !important;
-		box-sizing: border-box;
-	}
-	
-	#titlebar {
-		appearance: unset !important;
-	}
-	
-	.titlebar-buttonbox-container {
-		margin: 0 !important;
-		margin-block-start: -2px !important;
-		margin-inline-end: 2px !important;
-	}
-
-	.titlebar-buttonbox {
-		appearance: unset !important;
-		-moz-default-appearance: -moz-window-button-box;
-		margin-right: 1px !important;
-		box-shadow: 1px 1px 0px 0px rgba(255,255,255,0.2);
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
-
-		@media (-moz-platform: linux) {
-			margin-block-start: 2px;
-			gap: 2px;
-			box-shadow: none;
-		}
-	}
-	
-	@media 	(-moz-platform: windows-win7),
-			(-moz-platform: windows-win8) {
-		.titlebar-button {
-			position: relative;
-			appearance: unset !important;
-			display: flex !important;
-			margin: 0 !important;
-			height: 17px;
-			box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
-			transition: background-color 100ms linear;
-			background-clip: padding-box;
-
-			@media (-moz-platform: linux) {
-				height: 18px;
-				box-shadow: none;
-				width: 24px !important;
-				border-radius: 2px !important;
-
-				border: 1px solid rgba(0, 0, 0, 0.15) !important;
-
-				&::before {
-					content: "";
-					position: absolute;
-					width: 100%;
-					height: 100%;
-					top: 0;
-					left: 0;
-					border-radius: 3px;
-					border: 1px solid rgba(255,255,255,0.15);
-					box-sizing: border-box;
+			@media (-moz-platform: windows) {
+				&:not([lwtheme-id*="firefox-compact"]) {
+					--titlebar-buttonbox-background-color: var(--lwt-accent-color);
 				}
 			}
-	
-			&:active {
-				transition: none;
+		}
+	}
+
+	&[chromemargin="0,0,0,0"] {
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 7px !important;
 			}
 		}
-	}
 	
-	.titlebar-close {
-		border-left: 1px solid rgb(0,0,0,.35);
-		border-bottom: 1px solid rgb(0,0,0,.35);
-		border-right: 1px solid rgb(0,0,0,.35);
-		border-bottom-right-radius: 5px;
-		width: 43px;
-		list-style-image: url(assets/img/titlebar/close.svg);
-
-		@media (-moz-platform: linux) {
-			list-style-image: url(assets/img/titlebar/linux/close.svg);
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				border: 0 !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+			}
+	
+			&[tabsintitlebar] {
+				#tabbrowser-arrowscrollbox {
+					padding-top: 0 !important;
+				}
+			}
 		}
 	
-		&:hover {
-			background-color: rgb(217,76,74);
+		&[sizemode="maximized"] {
+			.titlebar-buttonbox-container {
+				margin-block-start: 0 !important;
+				margin-inline-end: 3px !important;
+			}
 		}
 		
-		&:active {
-			box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2),
-						inset 1px 0px 0px 0px rgba(255,255,255,0.15);
-			background-color: rgb(213,58,63);
-		}
-	}
-	
-	.titlebar-max,
-	.titlebar-restore,
-	.titlebar-min {
-		&:hover {
-			background-color: rgba(255,255,255,.3);
-		}
-	
-		&:active {
-			box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
-			background-color: rgba(255,255,255,.2);
-		}
-	}
-	
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
 		&[windowtype="navigator:browser"] > body {
-			padding: 0 !important;
+			&:-moz-window-inactive {
+				background: var(--titlebar-inactive);
+			}
+		
+			background: var(--titlebar-active);
+			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
+			border-top: 1px solid rgb(89,89,89);
+			border-left: 1px solid rgb(89,89,89);
+			border-bottom: 1px solid rgb(68,68,68);
+			border-right: 1px solid rgb(68,68,68);
+			border-radius: 5px;
+			padding: 1px !important;
+			box-sizing: border-box;
+		}
+		
+		#titlebar {
+			appearance: unset !important;
+		}
+		
+		.titlebar-buttonbox-container {
+			margin: 0 !important;
+			margin-block-start: -2px !important;
+			margin-inline-end: 2px !important;
 		}
 	
-		.titlebar-max {
-			display: none !important;
-		}
-	}
-
-	&[sizemode="maximized"] {
-		&[windowtype="navigator:browser"] > body {
-			padding-top: 7px !important;
-		}
-	}
+		.titlebar-buttonbox {
+			appearance: unset !important;
+			-moz-default-appearance: -moz-window-button-box;
+			margin-right: 1px !important;
+			background-color: var(--titlebar-buttonbox-background-color);
+			box-shadow: 1px 1px 0px 0px rgba(255,255,255,0.2);
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
 	
-	&[sizemode="normal"] {
-		.titlebar-restore {
-			display: none !important;
+			@media (-moz-platform: linux) {
+				margin-block-start: 2px;
+				gap: 2px;
+				box-shadow: none;
+			}
 		}
-	}
+		
+		@media 	(-moz-platform: windows-win7),
+				(-moz-platform: windows-win8) {
+			.titlebar-button {
+				position: relative;
+				appearance: unset !important;
+				display: flex !important;
+				margin: 0 !important;
+				height: 17px;
+				box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
+				transition: background-color 100ms linear;
+				background-clip: padding-box;
 	
-	.titlebar-max,
-	.titlebar-restore {
-		border-left: 1px solid rgb(0,0,0,.35);
-		border-bottom: 1px solid rgb(0,0,0,.35);
-		width: 25px;
-	}
+				@media (-moz-platform: linux) {
+					height: 18px;
+					box-shadow: none;
+					width: 24px !important;
+					border-radius: 2px !important;
 	
-	.titlebar-max {
-		list-style-image: url(assets/img/titlebar/maximize.svg);
-
-		@media (-moz-platform: linux) {
-			list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+					border: 1px solid rgba(0, 0, 0, 0.15) !important;
+	
+					&::before {
+						content: "";
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						left: 0;
+						border-radius: 3px;
+						border: 1px solid rgba(255,255,255,0.15);
+						box-sizing: border-box;
+					}
+				}
+		
+				&:active {
+					transition: none;
+				}
+			}
 		}
-	}
-	
-	.titlebar-restore {
-		list-style-image: url(assets/img/titlebar/restore.svg);
-
-		@media (-moz-platform: linux) {
-			list-style-image: url(assets/img/titlebar/linux/restore.svg);
-		}
-	
-		.toolbarbutton-icon {
-			transform: translateX(-1px);
-		}
-	}
-	
-	.titlebar-min {
-		border-left: 1px solid rgb(0,0,0,.35);
-		border-bottom: 1px solid rgb(0,0,0,.35);
-		border-bottom-left-radius: 5px;
-		width: 25px;
-		list-style-image: url(assets/img/titlebar/minimize.svg);
-
-		@media (-moz-platform: linux) {
-			list-style-image: url(assets/img/titlebar/linux/minimize.svg);
-		}
-	}
-
-	@media (-moz-platform: linux) {
+		
 		.titlebar-close {
-			border-top-right-radius: 4.5px !important;
+			border-left: 1px solid rgb(0,0,0,.35);
+			border-bottom: 1px solid rgb(0,0,0,.35);
+			border-right: 1px solid rgb(0,0,0,.35);
+			border-bottom-right-radius: 5px;
+			width: 43px;
+			list-style-image: url(assets/img/titlebar/close.svg);
 	
-			&::before {
+			@media (-moz-platform: linux) {
+				list-style-image: url(assets/img/titlebar/linux/close.svg);
+			}
+		
+			&:hover {
+				background-color: rgb(217,76,74);
+			}
+			
+			&:active {
+				box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2),
+							inset 1px 0px 0px 0px rgba(255,255,255,0.15);
+				background-color: rgb(213,58,63);
+			}
+		}
+		
+		.titlebar-max,
+		.titlebar-restore,
+		.titlebar-min {
+			&:hover {
+				background-color: rgba(255,255,255,.3);
+			}
+		
+			&:active {
+				box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+				background-color: rgba(255,255,255,.2);
+			}
+		}
+		
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				padding: 0 !important;
+			}
+		
+			.titlebar-max {
+				display: none !important;
+			}
+		}
+	
+		&[sizemode="maximized"] {
+			&[windowtype="navigator:browser"] > body {
+				padding-top: 7px !important;
+			}
+		}
+		
+		&[sizemode="normal"] {
+			.titlebar-restore {
+				display: none !important;
+			}
+		}
+		
+		.titlebar-max,
+		.titlebar-restore {
+			border-left: 1px solid rgb(0,0,0,.35);
+			border-bottom: 1px solid rgb(0,0,0,.35);
+			width: 25px;
+		}
+		
+		.titlebar-max {
+			list-style-image: url(assets/img/titlebar/maximize.svg);
+	
+			@media (-moz-platform: linux) {
+				list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+			}
+		}
+		
+		.titlebar-restore {
+			list-style-image: url(assets/img/titlebar/restore.svg);
+	
+			@media (-moz-platform: linux) {
+				list-style-image: url(assets/img/titlebar/linux/restore.svg);
+			}
+		
+			.toolbarbutton-icon {
+				transform: translateX(-1px);
+			}
+		}
+		
+		.titlebar-min {
+			border-left: 1px solid rgb(0,0,0,.35);
+			border-bottom: 1px solid rgb(0,0,0,.35);
+			border-bottom-left-radius: 5px;
+			width: 25px;
+			list-style-image: url(assets/img/titlebar/minimize.svg);
+	
+			@media (-moz-platform: linux) {
+				list-style-image: url(assets/img/titlebar/linux/minimize.svg);
+			}
+		}
+	
+		@media (-moz-platform: linux) {
+			.titlebar-close {
 				border-top-right-radius: 4.5px !important;
+		
+				&::before {
+					border-top-right-radius: 4.5px !important;
+				}
 			}
 		}
 	}

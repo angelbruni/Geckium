@@ -1,24 +1,53 @@
+& {
+	--recently-closed-background: #E5EFFE;
+	--recently-closed-border-color: rgba(75, 140, 220, 0.3125);
+	--recently-closed-color: black;
+	--recently-closed-item-color: #063774;
+
+	@media (prefers-color-scheme: dark) {
+		--recently-closed-background: #415470;
+		--recently-closed-border-color: rgba(206, 220, 236, 0.313);
+		--recently-closed-color: white;
+		--recently-closed-item-color: #acc0da;
+	}
+
+	// Custom theme support
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
+	&[lwtheme-id*="{"] {
+		--recently-closed-background: color-mix(
+			in srgb,
+			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
+			transparent
+		);
+		--recently-closed-border-color: color-mix(
+			in srgb,
+			var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
+			transparent
+		);
+		--recently-closed-color: var(--recently-closed-item-color);
+		--recently-closed-item-color: var(--toolbarbutton-icon-fill, var(--lwt-text-color));
+
+		&[style*="--arrowpanel-background"] {
+			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-fill, var(--lwt-text-color)));
+		}
+	}
+}
+
 &[geckium-choice="five"],
 &[geckium-choice="six"] {
 	#recently-closed {
 		box-sizing: unset;
-		background-color: #E5EFFE;
-		border: 1px solid rgba(75, 140, 220, 0.3125);
+		background-color: var(--recently-closed-background);
+		border: 1px solid var(--recently-closed-border-color);
 		border-radius: 5px;
 		margin-block-start: 34px;
 		padding-block: 5px;
 		padding-inline: 10px;
 		align-items: center;
 		font-size: 10pt;
-		color: black;
+		color: var(--recently-closed-color);
 		height: 24px;
 		gap: 20px;
-
-		@media (prefers-color-scheme: dark) {
-			color: white;
-			border: 1px solid rgba(206, 220, 236, 0.313);
-			background-color: #415470;
-		}
 	
 		> label:first-child {
 			font-weight: bold;
@@ -33,13 +62,9 @@
 			display: flex;
 			max-width: 114px;
 			align-items: center;
-			color: #063774;
+			color: var(--recently-closed-item-color);
 			text-decoration: underline;
 			cursor: pointer;
-
-			@media (prefers-color-scheme: dark) {
-				color: #acc0da;
-			}
 	
 			&#nav {
 				image {

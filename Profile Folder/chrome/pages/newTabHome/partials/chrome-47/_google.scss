@@ -12,12 +12,8 @@
 	justify-content: end;
 
 	a {
-		color: rgba(0,0,0,.87);
+		color: color-mix(in srgb, var(--link-color) 87%, transparent);
 		text-decoration: none;
-
-		@media (prefers-color-scheme: dark) {
-			color: rgba(255,255,255,.87);
-		}
 
 		&:not([disabled]) {
 			&:hover,
@@ -30,10 +26,11 @@
 	#google-apps-link {
 		width: 30px;
 		height: 30px;
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/v1_ff29c1d8.png");
-		background-size: 92px 3767px;
-		background-position: -35px -3668px;
+		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/v1_ff29c1d8.png");
+		mask-size: 92px 3767px;
+		mask-position: -35px -3668px;
 		opacity: .55;
+		background-color: var(--link-color);
 
 		@media (prefers-color-scheme: dark) {
 			filter: invert(1);

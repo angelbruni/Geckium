@@ -34,6 +34,17 @@
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
 }
+:root {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root:not([customthememode="2"]):-moz-lwtheme {
+  /* bruni: This entire code takes care of custom themes support for titlebar */
+}
+@media (-moz-platform: windows) {
+  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --titlebar-buttonbox-background-color: var(--lwt-accent-color);
+  }
+}
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
@@ -79,6 +90,7 @@
           appearance: unset !important;
   -moz-default-appearance: -moz-window-button-box;
   margin-right: 1px !important;
+  background-color: var(--titlebar-buttonbox-background-color);
   box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -818,6 +830,17 @@
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([customthememode="2"]):-moz-lwtheme {
+  /* bruni: This entire code takes care of custom themes support for titlebar */
+}
+@media (-moz-platform: windows) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]) {
+    --titlebar-buttonbox-background-color: var(--lwt-accent-color);
+  }
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
@@ -861,6 +884,7 @@
        appearance: unset !important;
   -moz-default-appearance: -moz-window-button-box;
   margin-right: 1px !important;
+  background-color: var(--titlebar-buttonbox-background-color);
   box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;

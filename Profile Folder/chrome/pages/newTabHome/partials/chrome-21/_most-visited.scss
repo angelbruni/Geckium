@@ -9,14 +9,11 @@
 	.most-visited {
 		display: block;
 		
+		color: var(--link-color);
 		
 		
 		
 		
-
-		@media (prefers-color-scheme: dark) {
-			color: white;
-		}
 
 		&:not([disabled]) {
 			&:hover,

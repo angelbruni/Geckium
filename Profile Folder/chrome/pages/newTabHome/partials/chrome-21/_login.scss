@@ -1,16 +1,12 @@
 #login-container {
 	all: unset;
 
-	color: black;
+	color: var(--link-color);
 	cursor: pointer;
 	position: fixed;
 	right: 13px;
 	top: 5px;
 	z-index: 1;
-
-	@media (prefers-color-scheme: dark) {
-		color: white;
-	}
 
 	.login-status-row,
 	#login-status-sub-header {
