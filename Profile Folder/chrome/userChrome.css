@@ -1999,6 +1999,10 @@ toolbar[overflowable][customizing] > .customization-target {
   margin: 0 !important;
 }
 
+toolbarspring {
+  height: var(--toolbarbutton-height);
+}
+
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button) {
@@ -3104,9 +3108,11 @@ toolbarpaletteitem[place=palette] {
   justify-content: center;
   align-items: center;
 }
+toolbarpaletteitem > toolbarspring {
+  outline-color: var(--toolbarbutton-icon-fill) !important;
+}
 
-#wrapper-firefox-view-button,
-[id*=wrapper-customizableui-special-spring] {
+#wrapper-firefox-view-button {
   display: none !important;
 }
 

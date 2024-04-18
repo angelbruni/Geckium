@@ -1,7 +1,10 @@
 function appearance() {
 	let previousChoice;
 
-	const prefChoice = pref(prefMap.appearance).tryGet.int();
+	let prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+
+	if (!prefChoice)
+		prefChoice = 0;
 
 	if (prefChoice == previousChoice) {
 		console.log("TAB PAGE: Choice same as previous choice, ignoring.", prefChoice, previousChoice)

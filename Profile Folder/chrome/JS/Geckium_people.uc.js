@@ -13,6 +13,8 @@ function setProfilePic() {
 	} else if (prefSetting == "custom") {
 		docElm.setAttribute(attr, "custom");
 		docElm.style.setProperty("--custom-profile-picture", "url(file:///" + pref('Geckium.profilepic.path').tryGet.string().replace(/\\/g, "/").replace(" ", "%20") + ")");
+	} else if (prefSetting == undefined) {
+		docElm.setAttribute(attr, "disabled");
 	} else {
 		docElm.setAttribute(attr, prefSetting);
 	}

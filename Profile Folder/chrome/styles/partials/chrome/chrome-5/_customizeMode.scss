@@ -3,10 +3,14 @@ toolbarpaletteitem {
 		justify-content: center;
 		align-items: center;
 	}
+
+	> toolbarspring {
+		outline-color: var(--toolbarbutton-icon-fill) !important;
+	}
 }
 
-#wrapper-firefox-view-button,
-[id*="wrapper-customizableui-special-spring"] {
+#wrapper-firefox-view-button/*,
+[id*="wrapper-customizableui-special-spring"]*/ {
 	display: none !important;
 }
 

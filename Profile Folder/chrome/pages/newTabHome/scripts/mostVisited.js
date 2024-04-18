@@ -292,7 +292,8 @@ function createTile(website) {
 }
 
 function populateRecentSitesGrid() {
-	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int()
+	let appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+
 	let mostViewed;
 
 	if (appearanceChoice <= 1)

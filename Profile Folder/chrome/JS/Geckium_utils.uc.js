@@ -35,14 +35,41 @@ function insertAfter(newNode, existingNode) {
 function pref(prefName) {
     return {
         set: {
-            bool: function (value) { Services.prefs.setBoolPref(prefName, value); },
-            int: function (value) { Services.prefs.setIntPref(prefName, value); },
-            string: function (string) { Services.prefs.setStringPref(prefName, string); }
+            bool: function(value) { 
+				Services.prefs.setBoolPref(prefName, value);
+			},
+            int: function(value) { 
+				Services.prefs.setIntPref(prefName, value);
+			},
+            string: function(string) { 
+				Services.prefs.setStringPref(prefName, string);
+			}
         },
         tryGet: {
-            bool: function () { try { return Services.prefs.getBoolPref(prefName); } catch (e) { console.log('Setting not found: ', e) } },
-            int: function () { try { return parseInt(Services.prefs.getIntPref(prefName)); } catch (e) { console.log('Setting not found: ', e) } },
-            string: function () { try { return Services.prefs.getStringPref(prefName); } catch (e) { console.log('Setting not found: ', e) } }
+            bool: function() {
+				try {
+					return Services.prefs.getBoolPref(prefName);
+				} catch (e) {
+					//console.log('Setting not found: ', e)
+					return false;
+				}
+			},
+            int: function() {
+				try {
+					return parseInt(Services.prefs.getIntPref(prefName));
+				} catch (e) {
+					//console.log('Setting not found: ', e)
+					return 0;
+				}
+			},
+            string: function() {
+				try {
+					return Services.prefs.getStringPref(prefName);
+				} catch (e) {
+					//console.log('Setting not found: ', e)
+					return "";
+				}
+			}
         },
 		toggle: {
 			bool: function () {
