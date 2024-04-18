@@ -20,6 +20,9 @@ function setMostVisitedLayout(layout) {
 
 	mostVisitedLayout = pref("Geckium.newTabHome.mostVisitedLayout").tryGet.int();
 
+	if (!mostVisitedLayout)
+		mostVisitedLayout = 1;
+
 	switch (layout) {
 		case 0:
 			mostVisited.classList.add("collapsed");
@@ -56,7 +59,7 @@ function setMostVisitedLayout(layout) {
 }
 
 function createMainLayout() {
-	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+	let appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
 
 	document.querySelectorAll("#recently-closed > .items > .item").forEach(entry => {
 		entry.remove();

@@ -25,13 +25,11 @@ function createRecentlyClosed() {
 			else if (appearanceChoice == 3 || appearanceChoice == 4)
 				recentlyClosedEntriesAmount = 10;
 
-			if (visitedURLs.size >= recentlyClosedEntriesAmount) {
+			if (visitedURLs.size >= recentlyClosedEntriesAmount)
 				return; // Return early if we already reached max amount of recently closed entries.
-			}
 
-			if (visitedURLs.has(url)) {
+			if (visitedURLs.has(url))
 				return;
-			}
 
 			visitedURLs.add(url);
 
@@ -40,11 +38,10 @@ function createRecentlyClosed() {
 			if (title == undefined)
 				return;
 
-			if (!state.image) {
+			if (!state.image)
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
-			} else {
+			else
 				favicon = state.image;
-			}
 
 			// #region Recently closed items
 			if (appearanceChoice <= 1) {

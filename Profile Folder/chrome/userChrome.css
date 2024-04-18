@@ -1663,6 +1663,10 @@ toolbar[overflowable][customizing] > .customization-target {
   margin-right: 0 !important;
 }
 
+toolbarspring {
+  height: var(--toolbarbutton-height);
+}
+
 .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
   padding: 0 !important;
   background: var(--toolbarbutton-gradient) !important;
@@ -2657,6 +2661,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 toolbarpaletteitem[place=palette] {
   justify-content: center;
   align-items: center;
+}
+toolbarpaletteitem > toolbarspring {
+  outline-color: var(--toolbarbutton-icon-fill) !important;
 }
 
 #customization-footer {

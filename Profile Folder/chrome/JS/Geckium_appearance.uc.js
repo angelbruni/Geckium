@@ -52,14 +52,11 @@ if (unsupportedForks[forkName]) {
 function applyApperance(choice) {
 	if (unsupportedForks[forkName])
 		return;
+	
+	let prefChoice = pref("Geckium.appearance.choice").tryGet.int();
 
-	try {
-		pref(prefMap.appearance).tryGet.int();
-	} catch (e) {
-		return;
-	}
-
-	const prefChoice = pref(prefMap.appearance).tryGet.int();
+	if (!prefChoice)
+		prefChoice = 0;
 
 	if (isBrowserWindow) {
 		if (prefChoice == previousChoice) {
