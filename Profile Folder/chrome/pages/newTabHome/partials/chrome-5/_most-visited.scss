@@ -30,12 +30,16 @@
 		--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
 		--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
 		--thumbnail-container-color: var(--link-color) !important;
-		--edit-bar-background-color-hot: var(--toolbar-color) !important;
-		--edit-bar-background-hot: linear-gradient(
-			to bottom,
-			color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
-			var(--edit-bar-background-color-hot)
-		) !important;
+		&:not([style*="--toolbar-color: white"]),
+		&:not([style*="--toolbar-color: rgb(255,255,255)"]),
+		&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
+			--edit-bar-background-color-hot: var(--toolbar-color, var(--lwt-accent-color)) !important;
+			--edit-bar-background-hot: linear-gradient(
+				to bottom,
+				color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+				var(--edit-bar-background-color-hot)
+			) !important;
+		}
 
 		--link-color: var(--lwt-accent-color) !important;
 
