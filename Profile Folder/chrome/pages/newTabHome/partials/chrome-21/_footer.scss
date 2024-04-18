@@ -48,30 +48,32 @@
 	// Custom theme support
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
 	&[lwtheme-id*="{"] {
-		--footer-border: linear-gradient(
-			to left,
-			color-mix(in srgb, var(--lwt-accent-color) 20%, transparent), /* COLOR_NTP_SECTION_BORDER */
-			color-mix(in srgb, var(--lwt-accent-color) 30%, transparent) 20%, /* COLOR_NTP_SECTION_BORDER */
-			color-mix(in srgb, var(--lwt-accent-color) 30%, transparent) 80%, /* COLOR_NTP_SECTION_BORDER */
-			color-mix(in srgb, var(--lwt-accent-color) 20%, transparent)
-		);
-		--footer-background: linear-gradient(
-			to bottom,
-			color-mix(in srgb, var(--lwt-accent-color) 90%, transparent),
-			color-mix(in srgb, var(--lwt-accent-color) 90%, transparent)
-		);
-		--footer-color: var(--lwt-text-color);
+		&:not([lwtheme-id*="#{$gtkplus}"]) {
+			--footer-border: linear-gradient(
+				to left,
+				color-mix(in srgb, var(--lwt-accent-color) 20%, transparent), /* COLOR_NTP_SECTION_BORDER */
+				color-mix(in srgb, var(--lwt-accent-color) 30%, transparent) 20%, /* COLOR_NTP_SECTION_BORDER */
+				color-mix(in srgb, var(--lwt-accent-color) 30%, transparent) 80%, /* COLOR_NTP_SECTION_BORDER */
+				color-mix(in srgb, var(--lwt-accent-color) 20%, transparent)
+			);
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(in srgb, var(--lwt-accent-color) 90%, transparent),
+				color-mix(in srgb, var(--lwt-accent-color) 90%, transparent)
+			);
+			--footer-color: var(--lwt-text-color);
 
-		--dot-color-normal: color-mix(in srgb, var(--lwt-text-color) 20%, gray);
-		--dot-color-hot: var(--lwt-text-color);
-		--selection-bar-background-color-normal: color-mix(in srgb, var(--lwt-text-color) 20%, transparent);
-		--selection-bar-background-color-hot: color-mix(in srgb, var(--lwt-text-color) 40%, transparent);
-		--selection-bar-background-color-active: var(--lwt-text-color);
+			--dot-color-normal: color-mix(in srgb, var(--lwt-text-color) 20%, gray);
+			--dot-color-hot: var(--lwt-text-color);
+			--selection-bar-background-color-normal: color-mix(in srgb, var(--lwt-text-color) 20%, transparent);
+			--selection-bar-background-color-hot: color-mix(in srgb, var(--lwt-text-color) 40%, transparent);
+			--selection-bar-background-color-active: var(--lwt-text-color);
 
-		--footer-item-color-hot: color-mix(in srgb, var(--lwt-text-color) 90%, black);
-		--footer-menu-button-glyph-background-color-normal: var(--lwt-text-color);
-		--footer-menu-item-link-color: var(--lwt-accent-color);
-		--footer-vertical-separator-background-color: color-mix(in srgb, var(--lwt-text-color) 40%, transparent);
+			--footer-item-color-hot: color-mix(in srgb, var(--lwt-text-color) 90%, black);
+			--footer-menu-button-glyph-background-color-normal: var(--lwt-text-color);
+			--footer-menu-item-link-color: var(--lwt-accent-color);
+			--footer-vertical-separator-background-color: color-mix(in srgb, var(--lwt-text-color) 40%, transparent);
+		}
 	}
 }
 

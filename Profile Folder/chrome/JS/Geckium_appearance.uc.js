@@ -126,9 +126,16 @@ function setThemeAttr() {
 
 		if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
-		} else if (
-			pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact")) {
+		} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("#{$gtkplus}")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
+
+			if (pref("extensions.activeThemeID").tryGet.string().includes("#{$gtkplus}")) {
+				docElm.style.removeProperty("--lwt-accent-color")
+				docElm.style.removeProperty("--lwt-text-color")
+				docElm.style.removeProperty("--lwt-additional-images")
+				docElm.style.removeProperty("--lwt-background-alignment")
+				docElm.style.removeProperty("--lwt-background-tiling")
+			}
 		} else {
 			let customThemeMode;
 

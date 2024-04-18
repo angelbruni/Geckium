@@ -12,7 +12,7 @@ function setProperties() {
 		document.documentElement.style.removeProperty("--toolbar-color");
 		document.documentElement.style.removeProperty("--lwt-newtab-image");
 		document.documentElement.style.removeProperty("--lwt-newtab-image-rendering");
-
+		
 		const lwThemeResource = LightweightThemeManager.themeData.theme;
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
 		const toolbarText = lwThemeResource.toolbar_text;

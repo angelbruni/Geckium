@@ -5,8 +5,10 @@
 	// Custom theme support
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
 	&[lwtheme-id*="{"] {
-		body {
-			background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, black);
+		&:not([lwtheme-id*="#{$gtkplus}"]) {
+			body {
+				background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, black);
+			}
 		}
 	}
 
@@ -19,9 +21,11 @@
 	}
 
 	&[lwtheme-id*="{"] {
-		body {
-			background-image: var(--lwt-newtab-image);
-			image-rendering: var(--lwt-newtab-image-rendering);
+		&:not([lwtheme-id*="#{$gtkplus}"]) {
+			body {
+				background-image: var(--lwt-newtab-image);
+				image-rendering: var(--lwt-newtab-image-rendering);
+			}
 		}
 	}
 }
