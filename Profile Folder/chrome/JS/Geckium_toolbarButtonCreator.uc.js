@@ -4,7 +4,16 @@
 // @loadorder   3
 // ==/UserScript==
 
-function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area) {
+function createToolbarbutton(
+	id,
+	delegatesanchor,
+	label,
+	tooltip,
+	removable,
+	overflows,
+	area,
+	onclick
+) {
 	CustomizableUI.createWidget({
 		id: id + "-button",
 		removable: removable,
@@ -15,8 +24,14 @@ function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, ove
 
 		onCreated: function(toolbarButton) {
 			if (!delegatesanchor)
-				toolbarButton.removeAttribute("delegatesanchor")
-		}
+				toolbarButton.removeAttribute("delegatesanchor");
+
+			if (!tooltip)
+				toolbarButton.setAttribute("tooltiptext", label);
+
+			if (onclick)
+				toolbarButton.addEventListener("click", onclick);
+		},
 	});
 }
 
@@ -495,6 +510,17 @@ const menu_page = {
 }
 
 window.addEventListener("load", function() {
+	createToolbarbutton("gsettings", "", "Geckium Settings", "", true, false, CustomizableUI.AREA_NAVBAR, openSettings)
 	geckiumCreateMenu("page", "Page Menu", "Control the current page", menu_page);
+
+
+
+
+
 	geckiumCreateMenu("chrome", "Chrome Menu", "Customize and control Google Chrome", menu_chrome);
-})
+
+
+
+
+	
+});
