@@ -11,7 +11,8 @@ function createToolbarbutton(
 	tooltip,
 	removable,
 	overflows,
-	area
+	area,
+	onclick
 ) {
 	CustomizableUI.createWidget({
 		id: id + "-button",
@@ -24,6 +25,12 @@ function createToolbarbutton(
 		onCreated: function (toolbarButton) {
 			if (!delegatesanchor)
 				toolbarButton.removeAttribute("delegatesanchor");
+
+			if (!tooltip)
+				toolbarButton.setAttribute("tooltiptext", label);
+
+			if (onclick)
+				toolbarButton.addEventListener("click", onclick);
 		},
 	});
 }
@@ -699,6 +706,7 @@ const menu_page = {
 };
 
 window.addEventListener("load", function () {
+	createToolbarbutton("gsettings", "", "Geckium Settings", "", true, false, CustomizableUI.AREA_NAVBAR, openSettings)
 	geckiumCreateMenu(
 		"page",
 		"Page Menu",
