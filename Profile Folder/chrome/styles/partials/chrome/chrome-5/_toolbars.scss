@@ -18,21 +18,15 @@
 	--toolbarbutton-inner-padding: 5px !important;
 	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
 	--toolbarbutton-outer-padding: 3px !important;
-	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
-	--toolbarbutton-border-color-hot: rgb(163, 174, 197);
-	--toolbarbutton-border-color-active: rgb(171, 181, 203);
-	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
 	--toolbarbutton-gradient: linear-gradient(
 		to top,
 		rgb(222, 234, 248),
 		rgb(240, 245, 253)
 	);
-	--toolbarbutton-shadow-active: inset 0 0 0 1px
-		var(--toolbarbutton-inner-border-color-normal);
+	--toolbarbutton-shadow-active: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 	--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
-	--navigation-buttons-separator: rgb(221, 229, 243);
 
 	--personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
 	--personal-toolbar-height: 25px;
@@ -62,16 +56,68 @@
 		--toolbarbutton-border-color-normal: rgb(190, 190, 190);
 		--toolbarbutton-border-color-hot: rgb(196, 196, 196);
 		--toolbarbutton-border-color-active: rgb(199, 199, 199);
-		--toolbarbutton-gradient: linear-gradient(
-			to top,
-			rgb(209, 209, 209),
-			rgb(255, 255, 255)
-		);
 
 		--navigation-buttons-separator: rgb(209, 209, 209);
 
 		--bookmark-item-color: #95b4ee;
 		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+	}
+
+	&:not([lwtheme-id*="#{$gtkplus}"]) {
+		--toolbarbutton-border-color-normal: rgb(198, 206, 228);
+		--toolbarbutton-border-color-hot: rgb(163, 174, 197);
+		--toolbarbutton-border-color-active: rgb(171, 181, 203);
+		--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+		--toolbarbutton-gradient: linear-gradient(
+			to top,
+			rgb(209, 209, 209),
+			rgb(255, 255, 255)
+		);
+		--navigation-buttons-separator: rgb(221, 229, 243);
+	}
+	&[lwtheme-id="#{$gtkplus}"] {
+		--nav-bar: -moz-dialog !important;
+
+		--toolbarbutton-gradient: var(--nav-bar) !important;
+		--toolbarbutton-icon-fill: -moz-dialogtext !important;
+
+		--personal-toolbar: var(--nav-bar) !important;
+		--bookmark-item-color: -moz-dialogtext !important;
+
+		.toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button
+		) {
+			&[disabled] {
+				opacity: .3 !important;
+			}
+
+			.toolbarbutton-icon {
+				max-width: 24px !important;
+				max-height: 24px !important;
+			}
+		}
+
+		#back-button {
+			list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
+		}
+		
+		#forward-button {
+			list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+		}
+		
+		#reload-button {
+			list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
+		}
+		
+		#stop-button {
+			list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
+		}
+		
+		#home-button {
+			list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
+		}
 	}
 
 	&:not(:-moz-lwtheme) {
@@ -86,289 +132,291 @@
 			}
 		}
 		&:not([lwtheme-id*="firefox-compact"]) {
-			@import "titlebar/nocomp";
+			&:not([lwtheme-id*="#{$gtkplus}"]) {
+				@import "titlebar/nocomp";
 
-			@media not (prefers-color-scheme: dark) {
-				--nav-bar: linear-gradient(
-					to bottom,
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 5%,
-						white
-					),
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 20%,
-						white
-					),
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
-						white
-					)
-				) !important;
-				--personal-toolbar: linear-gradient(
-					to bottom,
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
-						white
-					),
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-				) !important;
-
-				--toolbarbutton-border-color-normal: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 50%,
-					white
-				);
-				--toolbarbutton-border-color-hot: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 40%,
-					white
-				);
-				--toolbarbutton-border-color-active: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 30%,
-					white
-				);
-				--toolbarbutton-gradient: linear-gradient(
-					to bottom,
-					rgb(255, 255, 255),
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
-						white
-					)
-				);
-
-				.bookmark-item {
-					color: var(--toolbarbutton-icon-fill) !important;
-				}
-			}
-
-			@media (prefers-color-scheme: dark) {
-				--nav-bar: var(--lwt-accent-color) !important;
-				--personal-toolbar: var(--lwt-accent-color) !important;
-
-				--toolbarbutton-border-color-normal: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 50%,
-					black
-				);
-				--toolbarbutton-border-color-hot: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 40%,
-					black
-				);
-				--toolbarbutton-border-color-active: color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 30%,
-					black
-				);
-				--toolbarbutton-gradient: linear-gradient(
-					to bottom,
-					rgb(255, 255, 255),
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
-						white
-					)
-				);
-
-				&:not([style*="--toolbarbutton-icon-fill"]) {
-					--toolbarbutton-border-color-normal: color-mix(
-						in srgb,
-						var(--toolbar-color) 50%,
-						black
-					);
-					--toolbarbutton-border-color-hot: color-mix(
-						in srgb,
-						var(--toolbar-color) 40%,
-						black
-					);
-					--toolbarbutton-border-color-active: color-mix(
-						in srgb,
-						var(--toolbar-color) 30%,
-						black
-					);
-					--toolbarbutton-gradient: linear-gradient(
-						to bottom,
-						rgb(255, 255, 255),
-						color-mix(in srgb, var(--toolbar-color) 10%, white)
-					);
-					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
-
-					&:not([style*="--toolbar-color"]) {
-						--toolbarbutton-border-color-normal: color-mix(
-							in srgb,
-							var(--lwt-accent-color) 50%,
-							black
-						);
-						--toolbarbutton-border-color-hot: color-mix(
-							in srgb,
-							var(--lwt-accent-color) 40%,
-							black
-						);
-						--toolbarbutton-border-color-active: color-mix(
-							in srgb,
-							var(--lwt-accent-color) 30%,
-							black
-						);
-						--toolbarbutton-gradient: linear-gradient(
-							to bottom,
-							rgb(255, 255, 255),
-							color-mix(
-								in srgb,
-								var(--lwt-accent-color) 10%,
-								white
-							)
-						);
-						--toolbarbutton-icon-fill: color-mix(
-							in srgb,
-							var(--lwt-accent-color) 50%,
-							black
-						) !important;
-
-						&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
-							--toolbarbutton-icon-fill: color-mix(
-								in srgb,
-								var(--lwt-accent-color) 70%,
-								white
-							) !important;
-						}
-					}
-				}
-
-				.bookmark-item {
-					color: var(--tabbrowser-tab-color) !important;
-				}
-			}
-
-			&[customthememode="1"] {
 				@media not (prefers-color-scheme: dark) {
 					--nav-bar: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
-							color-mix(
-									in srgb,
-									var(--toolbarbutton-icon-fill) 5%,
-									white
-								)
-								70%,
-							transparent
+							var(--toolbarbutton-icon-fill) 5%,
+							white
 						),
 						color-mix(
 							in srgb,
-							color-mix(
-									in srgb,
-									var(--toolbarbutton-icon-fill) 20%,
-									white
-								)
-								70%,
-							transparent
+							var(--toolbarbutton-icon-fill) 20%,
+							white
 						),
 						color-mix(
 							in srgb,
-							color-mix(
-									in srgb,
-									var(--toolbarbutton-icon-fill) 10%,
-									white
-								)
-								70%,
-							transparent
+							var(--toolbarbutton-icon-fill) 10%,
+							white
 						)
 					) !important;
 					--personal-toolbar: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
-							color-mix(
-									in srgb,
-									var(--toolbarbutton-icon-fill) 10%,
-									white
-								)
-								70%,
-							transparent
+							var(--toolbarbutton-icon-fill) 10%,
+							white
 						),
+						color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
+					) !important;
+
+					--toolbarbutton-border-color-normal: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 50%,
+						white
+					);
+					--toolbarbutton-border-color-hot: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 40%,
+						white
+					);
+					--toolbarbutton-border-color-active: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 30%,
+						white
+					);
+					--toolbarbutton-gradient: linear-gradient(
+						to bottom,
+						rgb(255, 255, 255),
 						color-mix(
 							in srgb,
-							color-mix(
-									in srgb,
-									var(--toolbarbutton-icon-fill) 2%,
-									white
-								)
-								70%,
-							transparent
+							var(--toolbarbutton-icon-fill) 10%,
+							white
 						)
-					) !important;
+					);
+
+					.bookmark-item {
+						color: var(--toolbarbutton-icon-fill) !important;
+					}
 				}
 
 				@media (prefers-color-scheme: dark) {
-					--nav-bar: color-mix(
+					--nav-bar: var(--lwt-accent-color) !important;
+					--personal-toolbar: var(--lwt-accent-color) !important;
+
+					--toolbarbutton-border-color-normal: color-mix(
 						in srgb,
-						var(--lwt-accent-color) 70%,
-						transparent
-					) !important;
-					--personal-toolbar: color-mix(
+						var(--toolbarbutton-icon-fill) 50%,
+						black
+					);
+					--toolbarbutton-border-color-hot: color-mix(
 						in srgb,
-						var(--lwt-accent-color) 70%,
-						transparent
-					) !important;
+						var(--toolbarbutton-icon-fill) 40%,
+						black
+					);
+					--toolbarbutton-border-color-active: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 30%,
+						black
+					);
+					--toolbarbutton-gradient: linear-gradient(
+						to bottom,
+						rgb(255, 255, 255),
+						color-mix(
+							in srgb,
+							var(--toolbarbutton-icon-fill) 10%,
+							white
+						)
+					);
+
+					&:not([style*="--toolbarbutton-icon-fill"]) {
+						--toolbarbutton-border-color-normal: color-mix(
+							in srgb,
+							var(--toolbar-color) 50%,
+							black
+						);
+						--toolbarbutton-border-color-hot: color-mix(
+							in srgb,
+							var(--toolbar-color) 40%,
+							black
+						);
+						--toolbarbutton-border-color-active: color-mix(
+							in srgb,
+							var(--toolbar-color) 30%,
+							black
+						);
+						--toolbarbutton-gradient: linear-gradient(
+							to bottom,
+							rgb(255, 255, 255),
+							color-mix(in srgb, var(--toolbar-color) 10%, white)
+						);
+						--toolbarbutton-icon-fill: var(--toolbar-color) !important;
+
+						&:not([style*="--toolbar-color"]) {
+							--toolbarbutton-border-color-normal: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 50%,
+								black
+							);
+							--toolbarbutton-border-color-hot: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 40%,
+								black
+							);
+							--toolbarbutton-border-color-active: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 30%,
+								black
+							);
+							--toolbarbutton-gradient: linear-gradient(
+								to bottom,
+								rgb(255, 255, 255),
+								color-mix(
+									in srgb,
+									var(--lwt-accent-color) 10%,
+									white
+								)
+							);
+							--toolbarbutton-icon-fill: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 50%,
+								black
+							) !important;
+
+							&[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+								--toolbarbutton-icon-fill: color-mix(
+									in srgb,
+									var(--lwt-accent-color) 70%,
+									white
+								) !important;
+							}
+						}
+					}
+
+					.bookmark-item {
+						color: var(--tabbrowser-tab-color) !important;
+					}
 				}
-			}
 
-			&[customthememode="2"] {
-				body,
-				#navigator-toolbox {
-					background: transparent !important;
+				&[customthememode="1"] {
+					@media not (prefers-color-scheme: dark) {
+						--nav-bar: linear-gradient(
+							to bottom,
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--toolbarbutton-icon-fill) 5%,
+										white
+									)
+									70%,
+								transparent
+							),
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--toolbarbutton-icon-fill) 20%,
+										white
+									)
+									70%,
+								transparent
+							),
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--toolbarbutton-icon-fill) 10%,
+										white
+									)
+									70%,
+								transparent
+							)
+						) !important;
+						--personal-toolbar: linear-gradient(
+							to bottom,
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--toolbarbutton-icon-fill) 10%,
+										white
+									)
+									70%,
+								transparent
+							),
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--toolbarbutton-icon-fill) 2%,
+										white
+									)
+									70%,
+								transparent
+							)
+						) !important;
+					}
+
+					@media (prefers-color-scheme: dark) {
+						--nav-bar: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 70%,
+							transparent
+						) !important;
+						--personal-toolbar: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 70%,
+							transparent
+						) !important;
+					}
 				}
 
-				&[style*="--lwt-additional-images"] {
-					#nav-bar,
-					#PersonalToolbar {
-						background: var(--lwt-additional-images),
-							var(--lwt-accent-color) !important;
-						background-position: var(
-							--lwt-background-alignment
-						) !important;
-						background-repeat: var(
-							--lwt-background-tiling
-						) !important;
+				&[customthememode="2"] {
+					body,
+					#navigator-toolbox {
+						background: transparent !important;
 					}
 
-					#nav-bar {
-						background-position-y: calc(
-							var(--tab-height) * -1
-						) !important;
+					&[style*="--lwt-additional-images"] {
+						#nav-bar,
+						#PersonalToolbar {
+							background: var(--lwt-additional-images),
+								var(--lwt-accent-color) !important;
+							background-position: var(
+								--lwt-background-alignment
+							) !important;
+							background-repeat: var(
+								--lwt-background-tiling
+							) !important;
+						}
+
+						#nav-bar {
+							background-position-y: calc(
+								var(--tab-height) * -1
+							) !important;
+						}
+
+						#PersonalToolbar {
+							background-position-y: calc(
+								(var(--tab-height) + var(--nav-bar-height)) * -1
+							) !important;
+						}
 					}
 
-					#PersonalToolbar {
-						background-position-y: calc(
-							(var(--tab-height) + var(--nav-bar-height)) * -1
-						) !important;
-					}
-				}
+					&[style*="--lwt-header-image"] {
+						#nav-bar,
+						#PersonalToolbar {
+							background: var(--lwt-header-image) !important;
+							background-position: top right !important;
+							background-repeat: no-repeat !important;
+						}
 
-				&[style*="--lwt-header-image"] {
-					#nav-bar,
-					#PersonalToolbar {
-						background: var(--lwt-header-image) !important;
-						background-position: top right !important;
-						background-repeat: no-repeat !important;
-					}
+						#nav-bar {
+							background-position-y: calc(
+								var(--tab-height) * -1
+							) !important;
+						}
 
-					#nav-bar {
-						background-position-y: calc(
-							var(--tab-height) * -1
-						) !important;
-					}
-
-					#PersonalToolbar {
-						background-position-y: calc(
-							(var(--tab-height) + var(--nav-bar-height)) * -1
-						) !important;
+						#PersonalToolbar {
+							background-position-y: calc(
+								(var(--tab-height) + var(--nav-bar-height)) * -1
+							) !important;
+						}
 					}
 				}
 			}
@@ -671,7 +719,8 @@
 		overflow: visible !important;
 	}
 
-	&:not(:-moz-lwtheme) {
+	&:not(:-moz-lwtheme),
+	&[lwtheme-id="#{$gtkplus}"] {
 		box-shadow: none !important;
 	}
 }
@@ -692,6 +741,10 @@
 
 #navigator-toolbox-background {
 	position: relative;
+
+	@media (-moz-platform: linux) {
+		appearance: none !important;
+	}
 
 	&::before {
 		content: "";

@@ -34,83 +34,91 @@
 		--tabbrowser-tab-color: white;
 	}
 
+	&[lwtheme-id="#{$gtkplus}"] {
+		--inactive-tab-background-color: color-mix(in srgb, -moz-dialog 80%, transparent) !important;
+		--tabbrowser-tab-selected: var(--nav-bar) !important;
+		--tabbrowser-tab-color: -moz-dialogtext !important;
+	}
+
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for tabs */
 
 		&:not([lwtheme-id*="firefox-compact"]) {
-			@media not (prefers-color-scheme: dark) {
-				--tabbrowser-tab-selected: linear-gradient(
-					to top,
-					color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill) 8%,
-						white
-					),
-					color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
-				) !important;
-				--tabbrowser-tab-color: var(
-					--lwt-tab-text,
-					var(--toolbar-color, var(--lwt-text-color, white))
-				);
-			}
-
-			@media (prefers-color-scheme: dark) {
-				--inactive-tab-background-color: color-mix(
-					in srgb,
-					color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
-					transparent
-				) !important;
-				--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
-				--tabbrowser-tab-color: var(
-					--lwt-tab-text,
-					var(--toolbar-color, var(--lwt-text-color, black))
-				);
-			}
-
-			&[customthememode="1"] {
+			&:not([lwtheme-id="#{$gtkplus}"]) {
 				@media not (prefers-color-scheme: dark) {
-					&:not([style*="--toolbarbutton-icon-fill"]) {
-						--tabbrowser-tab-color: black;
-					}
-
-					.tabbrowser-tab[visuallyselected="true"] {
-						--tabbrowser-tab-selected: linear-gradient(
-							to top,
-							color-mix(
-								in srgb,
-								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 8%,
-										white
-									)
-									70%,
-								transparent
-							),
-							color-mix(
-								in srgb,
-								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 5%,
-										white
-									)
-									70%,
-								transparent
-							)
-						) !important;
-					}
-				}
-
-				@media (prefers-color-scheme: dark) {
-					/*&:not([style*="--toolbarbutton-icon-fill"]) {
-						--tabbrowser-tab-color: white;
-					}*/
-
-					.tabbrowser-tab[visuallyselected="true"] {
-						--tabbrowser-tab-selected: color-mix(
+					--tabbrowser-tab-selected: linear-gradient(
+						to top,
+						color-mix(
 							in srgb,
-							var(--lwt-accent-color) 70%,
-							transparent
-						) !important;
+							var(--toolbarbutton-icon-fill) 8%,
+							white
+						),
+						color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
+					) !important;
+					--tabbrowser-tab-color: var(
+						--lwt-tab-text,
+						var(--toolbar-color, var(--lwt-text-color, white))
+					);
+				}
+	
+				@media (prefers-color-scheme: dark) {
+					--inactive-tab-background-color: color-mix(
+						in srgb,
+						color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+						transparent
+					) !important;
+					--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
+					--tabbrowser-tab-color: var(
+						--lwt-tab-text,
+						var(--toolbar-color, var(--lwt-text-color, black))
+					);
+				}
+	
+				&[customthememode="1"] {
+					@media not (prefers-color-scheme: dark) {
+						&:not([style*="--toolbarbutton-icon-fill"]) {
+							--tabbrowser-tab-color: black;
+						}
+	
+						.tabbrowser-tab[visuallyselected="true"] {
+							--tabbrowser-tab-selected: linear-gradient(
+								to top,
+								color-mix(
+									in srgb,
+									color-mix(
+											in srgb,
+											var(--toolbarbutton-icon-fill) 8%,
+											white
+										)
+										70%,
+									transparent
+								),
+								color-mix(
+									in srgb,
+									color-mix(
+											in srgb,
+											var(--toolbarbutton-icon-fill) 5%,
+											white
+										)
+										70%,
+									transparent
+								)
+							) !important;
+						}
+					}
+	
+					@media (prefers-color-scheme: dark) {
+						/*&:not([style*="--toolbarbutton-icon-fill"]) {
+							--tabbrowser-tab-color: white;
+						}*/
+	
+						.tabbrowser-tab[visuallyselected="true"] {
+							--tabbrowser-tab-selected: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 70%,
+								transparent
+							) !important;
+						}
 					}
 				}
 			}

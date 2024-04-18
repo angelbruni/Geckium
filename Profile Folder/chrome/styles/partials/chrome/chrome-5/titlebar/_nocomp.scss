@@ -10,7 +10,9 @@
 	
 			@media (-moz-platform: windows) {
 				&:not([lwtheme-id*="firefox-compact"]) {
-					--titlebar-buttonbox-background-color: var(--lwt-accent-color);
+					&:not([lwtheme-id="#{$gtkplus}"]) {
+						--titlebar-buttonbox-background-color: var(--lwt-accent-color);
+					}
 				}
 			}
 		}
@@ -46,12 +48,8 @@
 		}
 		
 		&[windowtype="navigator:browser"] > body {
-			&:-moz-window-inactive {
-				background: var(--titlebar-inactive);
-			}
-		
 			background: var(--titlebar-active);
-			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.3);
+			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, .25);
 			border-top: 1px solid rgb(89,89,89);
 			border-left: 1px solid rgb(89,89,89);
 			border-bottom: 1px solid rgb(68,68,68);
@@ -59,6 +57,10 @@
 			border-radius: 5px;
 			padding: 1px !important;
 			box-sizing: border-box;
+
+			&:-moz-window-inactive {
+				background: var(--titlebar-inactive);
+			}
 		}
 		
 		#titlebar {
@@ -73,6 +75,7 @@
 	
 		.titlebar-buttonbox {
 			appearance: unset !important;
+			align-items: start !important;
 			-moz-default-appearance: -moz-window-button-box;
 			margin-right: 1px !important;
 			background-color: var(--titlebar-buttonbox-background-color);
@@ -81,48 +84,46 @@
 			border-bottom-right-radius: 4px;
 	
 			@media (-moz-platform: linux) {
-				margin-block-start: 2px;
+				margin-block-start: 3px;
+				margin-right: 0px !important;
 				gap: 2px;
 				box-shadow: none;
 			}
 		}
 		
-		@media 	(-moz-platform: windows-win7),
-				(-moz-platform: windows-win8) {
-			.titlebar-button {
-				position: relative;
-				appearance: unset !important;
-				display: flex !important;
-				margin: 0 !important;
-				height: 17px;
-				box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
-				transition: background-color 100ms linear;
-				background-clip: padding-box;
-	
-				@media (-moz-platform: linux) {
-					height: 18px;
-					box-shadow: none;
-					width: 24px !important;
-					border-radius: 2px !important;
-	
-					border: 1px solid rgba(0, 0, 0, 0.15) !important;
-	
-					&::before {
-						content: "";
-						position: absolute;
-						width: 100%;
-						height: 100%;
-						top: 0;
-						left: 0;
-						border-radius: 3px;
-						border: 1px solid rgba(255,255,255,0.15);
-						box-sizing: border-box;
-					}
+		.titlebar-button {
+			position: relative;
+			appearance: unset !important;
+			display: flex !important;
+			margin: 0 !important;
+			height: 17px;
+			box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.3);
+			transition: background-color 100ms linear;
+			background-clip: padding-box;
+
+			@media (-moz-platform: linux) {
+				height: 18px;
+				box-shadow: none;
+				width: 24px !important;
+				border-radius: 2px !important;
+
+				border: 1px solid rgba(0, 0, 0, 0.15) !important;
+
+				&::before {
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					border-radius: 3px;
+					border: 1px solid rgba(255,255,255,0.15);
+					box-sizing: border-box;
 				}
-		
-				&:active {
-					transition: none;
-				}
+			}
+	
+			&:active {
+				transition: none;
 			}
 		}
 		
@@ -135,7 +136,7 @@
 			list-style-image: url(assets/img/titlebar/close.svg);
 	
 			@media (-moz-platform: linux) {
-				list-style-image: url(assets/img/titlebar/linux/close.svg);
+				list-style-image: url(assets/img/titlebar/linux/close.svg) !important;
 			}
 		
 			&:hover {
@@ -196,7 +197,7 @@
 			list-style-image: url(assets/img/titlebar/maximize.svg);
 	
 			@media (-moz-platform: linux) {
-				list-style-image: url(assets/img/titlebar/linux/maximize.svg);
+				list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
 			}
 		}
 		
@@ -204,7 +205,7 @@
 			list-style-image: url(assets/img/titlebar/restore.svg);
 	
 			@media (-moz-platform: linux) {
-				list-style-image: url(assets/img/titlebar/linux/restore.svg);
+				list-style-image: url(assets/img/titlebar/linux/restore.svg) !important;
 			}
 		
 			.toolbarbutton-icon {
@@ -220,7 +221,7 @@
 			list-style-image: url(assets/img/titlebar/minimize.svg);
 	
 			@media (-moz-platform: linux) {
-				list-style-image: url(assets/img/titlebar/linux/minimize.svg);
+				list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
 			}
 		}
 	

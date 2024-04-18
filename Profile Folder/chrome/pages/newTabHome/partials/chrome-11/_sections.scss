@@ -10,8 +10,10 @@
 	// Custom theme support
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
 	&[lwtheme-id*="{"] {
-		--section-color: var(--toolbar-color);
-		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+		&:not([lwtheme-id*="#{$gtkplus}"]) {
+			--section-color: var(--toolbar-color);
+			--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+		}
 	}
 }
 

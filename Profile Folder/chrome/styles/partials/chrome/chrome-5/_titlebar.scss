@@ -9,6 +9,28 @@
         rgb(163, 201, 247),
         rgb(147, 186, 234) 40px
     );
+	
+	@media (-moz-platform: linux) {
+		--titlebar-active: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				ActiveCaption 90%,
+				white
+			),
+			ActiveCaption 40px
+		) !important;
+
+		--titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				InactiveCaption 90%,
+				white
+			),
+			InactiveCaption 40px
+		) !important;
+	}
 
     &[privatebrowsingmode="temporary"] {
         --titlebar-active: linear-gradient(
@@ -28,57 +50,72 @@
     }
 
     @import "titlebar/nocomp";
+	&:not(:-moz-lwtheme) {
+		body {
+			background: transparent !important;
 
+			@media (-moz-platform: linux) {
+				background: var(--titlebar-active) !important;
+
+				&:-moz-window-inactive {
+					background: var(--titlebar-inactive) !important;
+				}
+			}
+		}
+	}
     &:-moz-lwtheme {
         /* bruni: This entire code takes care of custom themes support for titlebar */
 
         &:not([lwtheme-id*="firefox-compact"]) {
-            &[style*="--lwt-additional-images"] {
-                &[windowtype="navigator:browser"] > body {
-                    background: var(--lwt-additional-images),
-                        var(--lwt-accent-color) !important;
-                    background-position: var(
-                        --lwt-background-alignment
-                    ) !important;
-                    background-position-y: top !important;
-                    background-repeat: var(--lwt-background-tiling) !important;
-                }
-
-                /* 	bruni: I like this theme but this theme doesn't
-						   make use of the header image, which would
-						   be more appropriate, so we are gonna fix
-						   it like this for now... */
-                &[lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] {
-                    &[windowtype="navigator:browser"] > body {
-                        background-position-y: top -65px !important;
-                    }
-                }
-            }
-
-            &[style*="--lwt-header-image"] {
-                &[windowtype="navigator:browser"] > body {
-                    background: var(--lwt-header-image), var(--lwt-header-image),
-                        var(--lwt-additional-images) !important;
-                    background-position: top right, bottom right !important;
-                    background-position-y: top !important;
-                    background-size: auto, 100% 1px !important;
-                    background-repeat: no-repeat, repeat-y !important;
-                }
-
-                #navigator-toolbox {
-                    background: var(--lwt-header-image) !important;
-                    background-position: top right !important;
-                    background-repeat: no-repeat !important;
-                    box-shadow: none !important;
-                }
-            }
-
-            &[customthememode="2"] {
-                &[windowtype="navigator:browser"] > body,
-                #navigator-toolbox {
-                    background: transparent !important;
-                }
-            }
+			&:not([lwtheme-id="#{$gtkplus}"]) {
+				&[style*="--lwt-additional-images"] {
+					&[windowtype="navigator:browser"] > body {
+						background: var(--lwt-additional-images),
+							var(--lwt-accent-color) !important;
+						background-position: var(
+							--lwt-background-alignment
+						) !important;
+						background-position-y: top !important;
+						background-repeat: var(--lwt-background-tiling) !important;
+					}
+	
+					/* 	bruni: I like this theme but this theme doesn't
+							   make use of the header image, which would
+							   be more appropriate, so we are gonna fix
+							   it like this for now... */
+					&[lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] {
+						&[windowtype="navigator:browser"] > body {
+							background-position-y: top -65px !important;
+						}
+					}
+				}
+	
+				&[style*="--lwt-header-image"] {
+					&[windowtype="navigator:browser"] > body {
+						background: var(--lwt-header-image), var(--lwt-header-image),
+							var(--lwt-additional-images) !important;
+						background-position: top right, bottom right !important;
+						background-position-y: top !important;
+						background-size: auto, 100% 1px !important;
+						background-repeat: no-repeat, repeat-y !important;
+					}
+	
+					#navigator-toolbox {
+						background: var(--lwt-header-image) !important;
+						background-position: top right !important;
+						background-repeat: no-repeat !important;
+						box-shadow: none !important;
+					}
+				}
+	
+				&[customthememode="2"] {
+					&[windowtype="navigator:browser"] > body,
+					#navigator-toolbox {
+						background: transparent !important;
+					}
+				}
+			}
+            
         }
 
         /* bruni: Firefox is weird, if we set the root to be transparent,

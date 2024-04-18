@@ -1,5 +1,6 @@
 & {
-	&:not(:-moz-lwtheme) {
+	&:not(:-moz-lwtheme),
+	&[lwtheme-id="#{$gtkplus}"] {
 		--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
 	}
 

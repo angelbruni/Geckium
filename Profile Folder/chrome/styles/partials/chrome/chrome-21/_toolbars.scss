@@ -13,7 +13,8 @@
 	--personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
 	--toolbarbutton-radius: 4px;
 
-	&:not(:-moz-lwtheme) {
+	&:not(:-moz-lwtheme),
+	&[lwtheme-id="#{$gtkplus}"] {
 		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
 	}
 
@@ -62,15 +63,15 @@
 		&#back-button,
 		&#forward-button {
 			.toolbarbutton-icon {
-				width: 15px !important;
-				height: 13px !important;
+				/*width: 15px !important;
+				height: 13px !important;*/
 			}
 		}
 		&#reload-button,
 		&#home-button {
 			.toolbarbutton-icon {
-				width: 15px !important;
-				height: 15px !important;
+				/*width: 15px !important;
+				height: 15px !important;*/
 				margin-bottom: 0 !important;
 			}
 		}
