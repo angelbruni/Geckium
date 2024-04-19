@@ -5,12 +5,9 @@ function loadSelectorSetting() {
 		selector.querySelectorAll(".list .item").forEach(item => {
 			
 			item.addEventListener("click", () => {
-				console.log("trying to set")
 				pref(`Geckium.${selector.dataset.pref}`).set.string(`${item.getAttribute("value")}`)
 			})
 		})
-
-		console.log(selector, selector.dataset.pref)
 	})
 }
 document.addEventListener("DOMContentLoaded", loadSelectorSetting);

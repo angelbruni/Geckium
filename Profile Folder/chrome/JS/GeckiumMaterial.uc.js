@@ -6,9 +6,17 @@
 // ==/UserScript==
 
 function openZoo() {
-	window.openDialog("about:gmzoo", "", "centerscreen");
+	const gmZoo = window.openDialog("about:gmzoo", "", "centerscreen");
+
+	gmZoo.onload = () => {
+		gmZoo.document.documentElement.setAttribute("containertype", "window");
+	}
 }
 
 function openGFlags() {
-	window.openDialog("about:gflags", "", "centerscreen");
+	const gFlags = window.openDialog("about:gflags", "", "centerscreen");
+
+	gFlags.onload = () => {
+		gFlags.document.documentElement.setAttribute("containertype", "window");
+	}
 }

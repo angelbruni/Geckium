@@ -34,6 +34,21 @@
 			color: white;
 		}
 	}
+
+	&[containertype="page"] {
+		--titlebar-height: 0px;
+
+		#window {
+			width: 100vw !important;
+			height: 100vh !important;
+			border-radius: 0;
+			box-shadow: none;
+		}
+
+		.window-titlebar {
+			display: none;
+		}
+	}
 }
 
 vbox,
