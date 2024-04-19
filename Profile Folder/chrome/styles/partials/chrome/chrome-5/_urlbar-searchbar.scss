@@ -25,6 +25,14 @@
 
 
     --autocomplete-popup-highlight-background: -moz-menuhover !important;
+	@media (-moz-platform: linux) {
+		
+		
+		
+		
+		
+		
+	}
     --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
 	@media (prefers-color-scheme: dark) {
@@ -301,17 +309,20 @@
 
 .urlbarView-favicon {
 	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
-	&:is([src="chrome://browser/skin/history.svg"]) {
+	&:is([src="chrome://browser/skin/history.svg"])
+	{
 		
 
 
 
 	}
 
-	&:is([src="chrome://global/skin/icons/search-glass.svg"]) {
+	&:is([src="chrome://global/skin/icons/search-glass.svg"])
+	{
         background-image: url("assets/img/chrome-5/toolbar/search.png");
     }
-    &:is([src="chrome://browser/skin/history.svg"]) {
+    &:is([src="chrome://browser/skin/history.svg"])
+	{
 
         
     }

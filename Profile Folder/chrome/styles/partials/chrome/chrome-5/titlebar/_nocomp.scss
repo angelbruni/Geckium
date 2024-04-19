@@ -17,6 +17,12 @@
 			}
 		}
 	}
+	
+	@media (-moz-platform: linux) {
+		&#main-window {
+			
+		}
+	}
 
 	&[chromemargin="0,0,0,0"] {
 		&[tabsintitlebar] {
@@ -58,6 +64,19 @@
 			padding: 1px !important;
 			box-sizing: border-box;
 
+			@media (-moz-platform: linux) {
+				& {
+					
+					
+					
+					
+					
+					
+					
+					
+				}
+			}
+
 			&:-moz-window-inactive {
 				background: var(--titlebar-inactive);
 			}
@@ -88,6 +107,9 @@
 				margin-right: 0px !important;
 				gap: 2px;
 				box-shadow: none;
+				@media (-moz-gtk-csd-reversed-placement) {
+					
+				}
 			}
 		}
 		
@@ -176,7 +198,9 @@
 	
 		&[sizemode="maximized"] {
 			&[windowtype="navigator:browser"] > body {
-				padding-top: 7px !important;
+				@media not (-moz-platform: linux) {
+					padding-top: 7px !important;
+				}
 			}
 		}
 		
@@ -201,6 +225,13 @@
 			}
 		}
 		
+		@media not (-moz-gtk-csd-maximize-button) {
+			.titlebar-max,
+			.titlebar-restore {
+				display: none !important;
+			}
+		}
+		
 		.titlebar-restore {
 			list-style-image: url(assets/img/titlebar/restore.svg);
 	
@@ -222,16 +253,45 @@
 	
 			@media (-moz-platform: linux) {
 				list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
+				
+				@media not (-moz-gtk-csd-minimize-button) {
+					display: none !important;
+				}
 			}
 		}
-	
-		@media (-moz-platform: linux) {
-			.titlebar-close {
-				border-top-right-radius: 4.5px !important;
 		
-				&::before {
-					border-top-right-radius: 4.5px !important;
+		@media (-moz-platform: linux) {
+			@media (-moz-gtk-csd-reversed-placement) {
+				.titlebar-close {
+					border-top-left-radius: 4.5px !important;
+					
+					&::before {
+						border-top-left-radius: 4.5px !important;
+					}
 				}
+			}
+			
+			@media not (-moz-gtk-csd-reversed-placement) {
+				.titlebar-close {
+					border-top-right-radius: 4.5px !important;
+					
+					&::before {
+						border-top-right-radius: 4.5px !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+& {
+	&[chromemargin="0,0,0,0"] {
+		&[sizemode="maximized"] {
+			&[windowtype="navigator:browser"] > body {
+				padding-top: 7px !important;
 			}
 		}
 	}

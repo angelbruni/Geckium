@@ -199,8 +199,10 @@
 :root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
-  padding-top: 7px !important;
+@media not (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+    padding-top: 7px !important;
+  }
 }
 :root[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -217,6 +219,12 @@
 @media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"] .titlebar-max {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
+  }
+}
+@media not (-moz-gtk-csd-maximize-button) {
+  :root[chromemargin="0,0,0,0"] .titlebar-max,
+  :root[chromemargin="0,0,0,0"] .titlebar-restore {
+    display: none !important;
   }
 }
 :root[chromemargin="0,0,0,0"] .titlebar-restore {
@@ -242,13 +250,29 @@
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
-@media (-moz-platform: linux) {
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
+  :root[chromemargin="0,0,0,0"] .titlebar-min {
+    display: none !important;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root[chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-left-radius: 4.5px !important;
+  }
+  :root[chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-left-radius: 4.5px !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
   :root[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
   :root[chromemargin="0,0,0,0"] .titlebar-close::before {
     border-top-right-radius: 4.5px !important;
   }
+}
+:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+  padding-top: 7px !important;
 }
 :root:not(:-moz-lwtheme) body {
   background: transparent !important;
@@ -1097,8 +1121,10 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
-  padding-top: 7px !important;
+@media not (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+    padding-top: 7px !important;
+  }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -1115,6 +1141,12 @@
 @media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
+  }
+}
+@media not (-moz-gtk-csd-maximize-button) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max,
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+    display: none !important;
   }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
@@ -1140,13 +1172,29 @@
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
-@media (-moz-platform: linux) {
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min {
+    display: none !important;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-left-radius: 4.5px !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-left-radius: 4.5px !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
     border-top-right-radius: 4.5px !important;
   }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+  padding-top: 7px !important;
 }
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
@@ -2367,6 +2415,8 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   --urlbarView: var(--protocol-background-color);
   --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
+}
+:root {
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 }
 @media (prefers-color-scheme: dark) {

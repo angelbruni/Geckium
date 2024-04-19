@@ -20,6 +20,19 @@
 	}
 
 	.urlbarView-url {
+		&:not([selected]) {
+			.urlbarView-url {
+				
+			}
+		}
+	}
+}
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+& {
+	.urlbarView-url {
 		color: #4c9817 !important;
 	}
 }

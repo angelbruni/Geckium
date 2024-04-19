@@ -18,6 +18,10 @@
 			
 			&:not(:last-child) {
 				border-bottom: 1px solid rgb(240,240,240);
+				
+				@media (prefers-color-scheme: dark) {
+					border-bottom: 1px solid rgb(54, 54, 54);
+				}
 			}
 
 			&.ripple-enabled {
