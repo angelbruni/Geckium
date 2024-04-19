@@ -76,7 +76,7 @@ tooltip {
   /* bruni: This entire code takes care of custom themes support for titlebar */
 }
 @media (-moz-platform: windows) {
-  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --titlebar-buttonbox-background-color: var(--lwt-accent-color);
   }
 }
@@ -280,36 +280,36 @@ tooltip {
   alpha is 0.002 for that bug (assuming it's one) to not happen. */
   background: rgba(1, 1, 1, 0.002) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[style*="--lwt-additional-images"] {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"] {
   /* 	bruni: I like this theme but this theme doesn't
   		   make use of the header image, which would
   		   be more appropriate, so we are gonna fix
   		   it like this for now... */
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[style*="--lwt-additional-images"][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"][windowtype="navigator:browser"] > body {
   background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-position-y: top !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"][windowtype="navigator:browser"] > body {
   background-position-y: top -65px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[style*="--lwt-header-image"][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-header-image"][windowtype="navigator:browser"] > body {
   background: var(--lwt-header-image), var(--lwt-header-image), var(--lwt-additional-images) !important;
   background-position: top right, bottom right !important;
   background-position-y: top !important;
   background-size: auto, 100% 1px !important;
   background-repeat: no-repeat, repeat-y !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[style*="--lwt-header-image"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-header-image"] #navigator-toolbox {
   background: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
   box-shadow: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][windowtype="navigator:browser"] > body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][windowtype="navigator:browser"] > body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] #navigator-toolbox {
   background: transparent !important;
 }
 @media not (-moz-ev-native-controls-patch) {
@@ -368,7 +368,7 @@ tooltip {
     --tabbrowser-tab-color: white;
   }
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --inactive-tab-background-color: color-mix(in srgb, -moz-dialog 80%, transparent) !important;
   --tabbrowser-tab-selected: var(--nav-bar) !important;
   --tabbrowser-tab-color: -moz-dialogtext !important;
@@ -377,7 +377,7 @@ tooltip {
   /* bruni: This entire code takes care of custom themes support for tabs */
 }
 @media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --tabbrowser-tab-selected: linear-gradient(
     	to top,
     	color-mix(
@@ -394,7 +394,7 @@ tooltip {
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --inactive-tab-background-color: color-mix(
     	in srgb,
     	color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
@@ -408,10 +408,10 @@ tooltip {
   }
 }
 @media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"]:not([style*="--toolbarbutton-icon-fill"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([style*="--toolbarbutton-icon-fill"]) {
     --tabbrowser-tab-color: black;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: linear-gradient(
     	to top,
     	color-mix(
@@ -438,12 +438,12 @@ tooltip {
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
     /*&:not([style*="--toolbarbutton-icon-fill"]) {
     	--tabbrowser-tab-color: white;
     }*/
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
     --tabbrowser-tab-selected: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,
@@ -946,44 +946,44 @@ tooltip {
     --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
   }
 }
-:root:not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+:root:not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --toolbarbutton-border-color-normal: rgb(198, 206, 228);
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
   --navigation-buttons-separator: rgb(221, 229, 243);
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --nav-bar: -moz-dialog !important;
   --toolbarbutton-gradient: var(--nav-bar) !important;
   --toolbarbutton-icon-fill: -moz-dialogtext !important;
   --personal-toolbar: var(--nav-bar) !important;
   --bookmark-item-color: -moz-dialogtext !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)[disabled] {
   opacity: 0.3 !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button) .toolbarbutton-icon {
   max-width: 24px !important;
   max-height: 24px !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] #back-button {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #back-button {
   list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] #forward-button {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #forward-button {
   list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] #reload-button {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #reload-button {
   list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] #stop-button {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #stop-button {
   list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
 }
-:root[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] #home-button {
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #home-button {
   list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
 }
 :root:not(:-moz-lwtheme) {
@@ -997,37 +997,37 @@ tooltip {
     --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --titlebar-buttonbox-background-color: transparent;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]):not([customthememode="2"]):-moz-lwtheme {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for titlebar */
 }
 @media (-moz-platform: windows) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --titlebar-buttonbox-background-color: var(--lwt-accent-color);
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][tabsintitlebar] #tabbrowser-arrowscrollbox, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][tabsintitlebar] #tabbrowser-arrowscrollbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][tabsintitlebar] #tabbrowser-arrowscrollbox, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 0 !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container {
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
   background: var(--titlebar-active);
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
   border-top: 1px solid rgb(89, 89, 89);
@@ -1038,19 +1038,19 @@ tooltip {
   padding: 1px !important;
   box-sizing: border-box;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] #titlebar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] #titlebar {
   -moz-appearance: unset !important;
        appearance: unset !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
   margin: 0 !important;
   margin-block-start: -2px !important;
   margin-inline-end: 2px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -moz-appearance: unset !important;
        appearance: unset !important;
   align-items: start !important;
@@ -1062,14 +1062,14 @@ tooltip {
   border-bottom-right-radius: 4px;
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
     margin-block-start: 3px;
     margin-right: 0px !important;
     gap: 2px;
     box-shadow: none;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button {
   position: relative;
   -moz-appearance: unset !important;
        appearance: unset !important;
@@ -1082,14 +1082,14 @@ tooltip {
   background-clip: padding-box;
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button {
     height: 18px;
     box-shadow: none;
     width: 24px !important;
     border-radius: 2px !important;
     border: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button::before {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -1101,11 +1101,11 @@ tooltip {
     box-sizing: border-box;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button:active {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button:active {
   -moz-transition: none;
   transition: none;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
   border-left: 1px solid rgba(0, 0, 0, 0.35);
   border-bottom: 1px solid rgba(0, 0, 0, 0.35);
   border-right: 1px solid rgba(0, 0, 0, 0.35);
@@ -1114,66 +1114,66 @@ tooltip {
   list-style-image: url(assets/img/titlebar/close.svg);
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
     list-style-image: url(assets/img/titlebar/linux/close.svg) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close:hover {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close:hover {
   background-color: rgb(217, 76, 74);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close:active {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close:active {
   box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
   background-color: rgb(213, 58, 63);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max:hover,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore:hover,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min:hover {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore:hover,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max:active,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore:active,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min:active {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore:active,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min:active {
   box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
   padding: 0 !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
   padding-top: 7px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
   border-left: 1px solid rgba(0, 0, 0, 0.35);
   border-bottom: 1px solid rgba(0, 0, 0, 0.35);
   width: 25px;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max {
   list-style-image: url(assets/img/titlebar/maximize.svg);
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
   list-style-image: url(assets/img/titlebar/restore.svg);
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
     list-style-image: url(assets/img/titlebar/linux/restore.svg) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore .toolbarbutton-icon {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore .toolbarbutton-icon {
   transform: translateX(-1px);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min {
   border-left: 1px solid rgba(0, 0, 0, 0.35);
   border-bottom: 1px solid rgba(0, 0, 0, 0.35);
   border-bottom-left-radius: 5px;
@@ -1181,20 +1181,20 @@ tooltip {
   list-style-image: url(assets/img/titlebar/minimize.svg);
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min {
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
     border-top-right-radius: 4.5px !important;
   }
 }
 @media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --nav-bar: linear-gradient(
     	to bottom,
     	color-mix(
@@ -1247,12 +1247,12 @@ tooltip {
     	)
     );
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) .bookmark-item {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item {
     color: var(--toolbarbutton-icon-fill) !important;
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --nav-bar: var(--lwt-accent-color) !important;
     --personal-toolbar: var(--lwt-accent-color) !important;
     --toolbarbutton-border-color-normal: color-mix(
@@ -1280,7 +1280,7 @@ tooltip {
     	)
     );
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]):not([style*="--toolbarbutton-icon-fill"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]) {
     --toolbarbutton-border-color-normal: color-mix(
     	in srgb,
     	var(--toolbar-color) 50%,
@@ -1303,7 +1303,7 @@ tooltip {
     );
     --toolbarbutton-icon-fill: var(--toolbar-color) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"]) {
     --toolbarbutton-border-color-normal: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 50%,
@@ -1334,19 +1334,19 @@ tooltip {
     	black
     ) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
     --toolbarbutton-icon-fill: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,
     	white
     ) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) .bookmark-item {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item {
     color: var(--tabbrowser-tab-color) !important;
   }
 }
 @media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
     --nav-bar: linear-gradient(
     	to bottom,
     	color-mix(
@@ -1406,7 +1406,7 @@ tooltip {
   }
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="1"] {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
     --nav-bar: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,
@@ -1419,32 +1419,32 @@ tooltip {
     ) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"] body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] #navigator-toolbox {
   background: transparent !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
   background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
   background: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[profilepic=disabled] #fxa-toolbar-menu-button {
@@ -1977,7 +1977,7 @@ tooltip {
 #nav-bar:not([urlbar-exceeds-toolbar-bounds]) {
   overflow: visible !important;
 }
-#nav-bar:not(:-moz-lwtheme), #nav-bar[lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] {
+#nav-bar:not(:-moz-lwtheme), #nav-bar[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   box-shadow: none !important;
 }
 
@@ -3357,7 +3357,7 @@ hbox[id=label-box][part=label-box] {
   --bookmark-item-color-shadow: transparent !important;
   --toolbar-field-default-background-color: white;
 }
-:root[geckium-five][geckium-six]:not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"]) {
+:root[geckium-five][geckium-six]:not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --toolbarbutton-border-color-normal: rgb(198,198,198);
   --toolbarbutton-border-color-hot: rgb(203, 203, 203);
   --toolbarbutton-border-color-active: rgb(159, 159, 159);
@@ -3486,7 +3486,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-radius: 5px;
   --personal-toolbar-height: 24px;
 }
-:root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] {
+:root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
 }
 @media (prefers-color-scheme: dark) {
@@ -3836,7 +3836,7 @@ hbox[id=label-box][part=label-box] {
   --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
   --toolbarbutton-radius: 4px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #tabs-newtab-button,
