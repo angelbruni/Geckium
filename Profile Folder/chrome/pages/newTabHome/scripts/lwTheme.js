@@ -12,6 +12,7 @@ const themeFooterObs = {
 		}
 	},
 };
+document.addEventListener("DOMContentLoaded", setFooterChoice);
 Services.prefs.addObserver("Geckium.newTabHome.themeFooter", themeFooterObs, false);
 
 function setProperties() {
