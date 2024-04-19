@@ -231,10 +231,12 @@
 			}
 		}
 
-		@media not (-moz-gtk-csd-maximize-button) {
-			.titlebar-max,
-			.titlebar-restore {
-				display: none !important;
+		@media (-moz-platform: linux) {
+			@media not (-moz-gtk-csd-maximize-button) {
+				.titlebar-max,
+				.titlebar-restore {
+					display: none !important;
+				}
 			}
 		}
 
