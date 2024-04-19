@@ -141,16 +141,24 @@ h4 {
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	color: white;
+	color: black;
 	list-style-image: url('chrome://userchrome/content/windows/gflags/imgs/logo.svg');
-	fill: var(--secondary-color, var(--primary-color));
+	fill: #209f43;
 	-moz-context-properties: fill, fill-opacity;
 	padding: var(--inner-padding);
 	align-items: center;
 	font-weight: 500;
 	gap: 32px;
 
-	> * {
+	> image {
 		filter: drop-shadow(0px 1px 2px rgba(0,0,0,.5));
+	}
+}
+
+#ntp-visual-styles-grid {
+	> [for="chrome-6"],
+	> [for="chrome-26"],
+	> [for="chrome-50"] {
+		display: none;
 	}
 }
