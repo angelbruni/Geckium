@@ -11,7 +11,9 @@
 			@media (-moz-platform: windows) {
 				&:not([lwtheme-id*="firefox-compact"]) {
 					&:not([lwtheme-id="#{$gtkplus}"]) {
-						--titlebar-buttonbox-background-color: var(--lwt-accent-color);
+						--titlebar-buttonbox-background-color: var(
+							--lwt-accent-color
+						);
 					}
 				}
 			}
@@ -66,6 +68,11 @@
 
 			@media (-moz-platform: linux) {
 				& {
+					
+
+
+
+
 					
 					
 					
@@ -224,11 +231,13 @@
 				list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
 			}
 		}
-		
-		@media not (-moz-gtk-csd-maximize-button) {
-			.titlebar-max,
-			.titlebar-restore {
-				display: none !important;
+
+		@media (-moz-platform: linux) {
+			@media not (-moz-gtk-csd-maximize-button) {
+				.titlebar-max,
+				.titlebar-restore {
+					display: none !important;
+				}
 			}
 		}
 		

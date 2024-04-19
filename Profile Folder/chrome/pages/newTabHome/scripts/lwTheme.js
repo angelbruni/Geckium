@@ -2,11 +2,23 @@ const { LightweightThemeConsumer } = ChromeUtils.importESModule("resource://gre/
 const { LightweightThemeManager } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeManager.sys.mjs");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-const profRootDir = FileUtils.getDir("ProfD", [])
+function setFooterChoice() {
+	document.documentElement.setAttribute("footer-themable", pref("Geckium.newTabHome.themeFooter").tryGet.bool())
+}
+const themeFooterObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			setFooterChoice();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.newTabHome.themeFooter", themeFooterObs, false);
+
+function setProperties() {
+	const profRootDir = FileUtils.getDir("ProfD", [])
 					.path
 					.replace(/\\/g, "/");
 
-function setProperties() {
 	setTimeout(() => {
 		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
 		document.documentElement.style.removeProperty("--toolbar-color");

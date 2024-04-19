@@ -65,7 +65,9 @@
 }
 @media (-moz-platform: windows) {
   :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(--lwt-accent-color);
+    --titlebar-buttonbox-background-color: var(
+    	--lwt-accent-color
+    );
   }
 }
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
@@ -221,7 +223,7 @@
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
   }
 }
-@media not (-moz-gtk-csd-maximize-button) {
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
   :root[chromemargin="0,0,0,0"] .titlebar-max,
   :root[chromemargin="0,0,0,0"] .titlebar-restore {
     display: none !important;
@@ -988,7 +990,9 @@
 }
 @media (-moz-platform: windows) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(--lwt-accent-color);
+    --titlebar-buttonbox-background-color: var(
+    	--lwt-accent-color
+    );
   }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
@@ -1143,7 +1147,7 @@
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
   }
 }
-@media not (-moz-gtk-csd-maximize-button) {
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max,
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
     display: none !important;

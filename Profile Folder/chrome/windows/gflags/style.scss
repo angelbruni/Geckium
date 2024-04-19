@@ -144,13 +144,38 @@ label {
 		&.ripple-enabled {
 			.ripple {
 				background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent);
+
+
+
+
 			}
 		}
 	}
 
 	&:checked {
-		outline: 2px solid var(--secondary-color, var(--primary-color));	
-		outline-offset: 2px;
+		outline: 2px solid var(--secondary-color, var(--primary-color));
+		&::before {
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		&::after {
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 	}
 }
 
@@ -179,6 +204,10 @@ label {
 	> [for="chrome-25"],
 	> [for="chrome-50"] {
 		display: none;
+	}
+
+	.link.chrome-appearance {
+		height: 163px;
 	}
 }
 
@@ -233,5 +262,14 @@ label {
 	#os-ux-button,
 	#os-comp-button {
 		display: none;
+	}
+}
+
+
+// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
+
+.people-picture {
+	&:checked {
+		outline-offset: 2px;
 	}
 }
