@@ -9,7 +9,7 @@ const appearanceMap = {
 	6: { style: 50, year: 2016, name: "Chrome 50" },
 };
 
-function insertVisualStyles() {
+function insertMainVisualStyles() {
 	// Get the container element where you want to insert the HTML
 	var container = document.getElementById("appearance-container");
 
@@ -27,12 +27,12 @@ function insertVisualStyles() {
 			<html:button data-appearance="${i}"
 					class="link chrome-appearance ripple-enabled" 
 					for="chrome-${appearance.style}" 
-					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/chrome-${appearance.style}.png');">
+					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.style}.png');">
 				<html:label class="wrapper" chrome="${appearance.style}">
 					<div class="year">${appearance.year}</div>
 					<div class="identifier">
 						<div class="radio-parent">
-							<html:input data-appearance="${i}" class="radio" type="radio" name="chrome_appearance" id="chrome-${appearance.style}"></html:input>
+							<html:input data-appearance="${i}" class="radio" type="radio" name="main-visual-style" id="chrome-${appearance.style}"></html:input>
 							<div class="gutter" for="checked_check"></div>
 							<html:label for="chrome-${appearance.style}" class="label">${appearance.name}</html:label>
 						</div>
@@ -48,12 +48,12 @@ function insertVisualStyles() {
 	// Set the innerHTML of the container to the constructed HTML
 	container.appendChild(MozXULElement.parseXULToFragment(chromeAppearanceCard))
 
-	document.querySelector(`input[data-appearance="${pref("Geckium.appearance.choice").tryGet.int()}"]`).checked = true;
+	document.querySelector(`#appearance-container input[data-appearance="${pref("Geckium.appearance.choice").tryGet.int()}"]`).checked = true;
 
-	document.querySelectorAll(`input[data-appearance]`).forEach(appearance => {
+	document.querySelectorAll(`#appearance-container input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
 			pref("Geckium.appearance.choice").set.int(appearance.dataset.appearance);
 		})
 	})
 }
-document.addEventListener("DOMContentLoaded", insertVisualStyles);
+document.addEventListener("DOMContentLoaded", insertMainVisualStyles);

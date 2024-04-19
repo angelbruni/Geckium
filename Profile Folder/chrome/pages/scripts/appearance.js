@@ -1,8 +1,21 @@
 function appearance() {
 	let previousChoice;
 
-	let prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+	let prefChoice;
 
+	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
+		switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+			case "forced":
+				prefChoice = pref("Geckium.newTabHome.style").tryGet.int();
+				break;
+			default:
+				prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+				break;
+		}
+	} else {
+		prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+	}
+	
 	if (!prefChoice)
 		prefChoice = 0;
 
@@ -34,3 +47,5 @@ const appearanceObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.newTabHome.styleMode", appearanceObs, false);
+Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);

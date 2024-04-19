@@ -105,7 +105,16 @@ function retrieveFrequentSites() {
 }
 
 function createTile(website) {
-	const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+	let appearanceChoice;
+
+	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+		case "forced":
+			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			break;
+		default:
+			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			break;
+	}
 
     try {
 		let tile;
@@ -292,7 +301,16 @@ function createTile(website) {
 }
 
 function populateRecentSitesGrid() {
-	let appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+	let appearanceChoice;
+
+	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+		case "forced":
+			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			break;
+		default:
+			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			break;
+	}
 
 	let mostViewed;
 

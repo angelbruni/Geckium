@@ -6,6 +6,7 @@ const experiments = {
 		to: 2,
 	},*/
 	/*"experimental-new-tab-page": {
+		type: "ntp",
 		name: "Experimental new tab page",
 		description: "Enables an in-development redesign of the new tab page.",
 		from: 2,
@@ -36,6 +37,7 @@ const experiments = {
 		}
 	},
 	"enable-icon-ntp": {
+		type: "ntp",
 		name: "Enable large icons on the New Tab",
 		description: "Enable the experimental New Tab page using large icons.",
 		from: 5,
@@ -120,7 +122,7 @@ function updateFlags() {
 }
 
 function setUpExperiments() {
-    const appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+    let appearanceChoice;
     const content = "#available-experiments .content-container";
 
     document.querySelector(content).querySelectorAll(".experiment").forEach(experiment => {
@@ -130,6 +132,23 @@ function setUpExperiments() {
     for (const key in experiments) {
         if (experiments.hasOwnProperty(key)) {
             const experiment = experiments[key];
+
+			
+
+			if (experiment.type == "ntp") {
+				switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+					case "forced":
+						appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+						break;
+					default:
+						appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+						break;
+				}
+			} else {
+				appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			}
+
+			console.log(key, experiment.type, appearanceChoice, experiment.from, experiment.to)
 
             if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)
                 continue; // Skip adding experiment to UI if appearance choice is outside range
