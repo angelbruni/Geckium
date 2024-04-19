@@ -47,6 +47,16 @@ body {
 	}
 }
 
+#bookmarksbar-spacing {
+	flex-shrink: 0;
+}
+
+&[pref="newtab"] {
+	#bookmarksbar-spacing {
+		height: 49px;
+	}
+}
+
 @import "most-visited";
 @import "recently-closed";
 @import "footer";

@@ -1713,16 +1713,13 @@
   width: calc(100% - 18px);
   height: calc(var(--personal-toolbar-height) + 10px) !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 2px !important;
   border: 1px solid rgb(172, 201, 238);
   border-radius: 6px !important;
   background: rgb(210, 225, 246) !important;
 }
 :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::after {
   content: unset !important;
-}
-:root[geckium-choice=five] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=six] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] #PlacesToolbarItems {
-  padding: 2px !important;
 }
 
 #navigator-toolbox {
@@ -2165,9 +2162,8 @@ toolbarspring {
 #PersonalToolbar[pref=newtab] #PlacesToolbar {
   margin-top: 0 !important;
 }
-
-#PlacesToolbar {
-  margin-top: -5px;
+#PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -5px !important;
 }
 
 #PlacesToolbarItems {
@@ -3147,6 +3143,10 @@ hbox[id=label-box][part=label-box] {
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
   }
 }
+:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -4px !important;
+  margin-bottom: 2px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
   background: transparent !important;
 }
@@ -3241,12 +3241,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #PanelUI-menu-button,
 :root[geckium-five][geckium-six][geckium-eleven] #chrome-button {
   list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven] #PlacesToolbar {
-  margin-top: -4px;
-}
-:root[geckium-five][geckium-six][geckium-eleven] #PlacesToolbarItems {
-  padding-block-end: 2px;
 }
 :root[geckium-five][geckium-six][geckium-eleven] menupopup button {
   -webkit-appearance: none !important;
@@ -3447,6 +3441,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
   							inset 0 0 0 1px rgba(255,255,255,0.3);
   --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --toolbarbutton-height: 27px;
   --toolbarbutton-radius: 3px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
@@ -3482,6 +3477,10 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #star-button-box > #star-button[starred] {
   list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -5px !important;
+  margin-bottom: 1px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button):not([disabled])[open] {
   background-color: rgba(0, 0, 0, 0.18) !important;

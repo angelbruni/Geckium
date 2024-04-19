@@ -40,6 +40,16 @@
 	}
 }
 
+&[pref="newtab"] {
+	#bookmarksbar-spacing {
+		height: 43px;
+	}
+
+	#login-container {
+		top: 43px;
+	}
+}
+
 @import "login";
 @import "card-slider-frame";
 @import "most-visited";
