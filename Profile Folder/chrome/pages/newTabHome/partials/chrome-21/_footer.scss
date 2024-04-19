@@ -1,10 +1,10 @@
 & {
 	--footer-border: linear-gradient(
 		to left,
-		rgba(150,150,150, 0.2), /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150, 0.3) 20%, /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150, 0.3) 80%, /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150, 0.2)
+		rgba(150,150,150,.2), /* COLOR_NTP_SECTION_BORDER */
+		rgba(150,150,150,.3) 20%, /* COLOR_NTP_SECTION_BORDER */
+		rgba(150,150,150,.3) 80%, /* COLOR_NTP_SECTION_BORDER */
+		rgba(150,150,150,.2)
 	);
 	--footer-background: linear-gradient(
 		to bottom,
@@ -52,22 +52,38 @@
 					to left,
 					color-mix(
 						in srgb,
-						var(--lwt-accent-color) 20%,
+						color-mix(
+							in srgb,
+							var(--lwt-accent-color) 10%,
+							black
+						) 20%,
 						transparent
 					), /* COLOR_NTP_SECTION_BORDER */
 					color-mix(
 						in srgb,
-						var(--lwt-accent-color) 30%,
+						color-mix(
+							in srgb,
+							var(--lwt-accent-color) 10%,
+							black
+						) 30%,
 						transparent
 					) 20%, /* COLOR_NTP_SECTION_BORDER */
 					color-mix(
 						in srgb,
-						var(--lwt-accent-color) 30%,
+						color-mix(
+							in srgb,
+							var(--lwt-accent-color) 10%,
+							black
+						) 30%,
 						transparent
 					) 80%, /* COLOR_NTP_SECTION_BORDER */
 					color-mix(
 						in srgb,
-						var(--lwt-accent-color) 20%,
+						color-mix(
+							in srgb,
+							var(--lwt-accent-color) 10%,
+							black
+						) 20%,
 						transparent
 					)
 				);
