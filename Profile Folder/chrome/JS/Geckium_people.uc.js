@@ -6,17 +6,22 @@
 
 function setProfilePic() {
 	const attr = "profilepic";
-	const prefSetting = pref("Geckium.profilepic.mode").tryGet.string();
+	const prefSetting = pref("Geckium.profilepic.mode").tryGet.int();
 
-	if (prefSetting == "" || pref == "firefox") {
-		docElm.setAttribute(attr, "firefox");
-	} else if (prefSetting == "custom") {
-		docElm.setAttribute(attr, "custom");
-		docElm.style.setProperty("--custom-profile-picture", "url(file:///" + pref('Geckium.profilepic.path').tryGet.string().replace(/\\/g, "/").replace(" ", "%20") + ")");
-	} else if (prefSetting == undefined) {
-		docElm.setAttribute(attr, "disabled");
-	} else {
-		docElm.setAttribute(attr, prefSetting);
+	docElm.setAttribute("profilepicbutton", pref("Geckium.profilepic.button").tryGet.bool())
+
+	switch (prefSetting) {
+		case 0:
+			docElm.setAttribute(attr, "chromium");
+			docElm.setAttribute("profilepicchromium", pref("Geckium.profilepic.chromiumIndex").tryGet.int());
+			break;
+		case 1:
+			docElm.setAttribute(attr, "firefox");
+			break;
+		case 2:
+			docElm.setAttribute(attr, "custom");
+			docElm.style.setProperty("--custom-profile-picture", "url(file:///" + pref('Geckium.profilepic.customPath').tryGet.string().replace(/\\/g, "/").replace(" ", "%20") + ")");
+			break;
 	}
 }
 
@@ -29,6 +34,8 @@ const profilePictureObserver = {
 		}
 	}
 };
+Services.prefs.addObserver("Geckium.profilepic.button", profilePictureObserver, false)
 Services.prefs.addObserver("Geckium.profilepic.mode", profilePictureObserver, false)
-Services.prefs.addObserver("Geckium.profilepic.path", profilePictureObserver, false)
+Services.prefs.addObserver("Geckium.profilepic.chromiumIndex", profilePictureObserver, false)
+Services.prefs.addObserver("Geckium.profilepic.customPath", profilePictureObserver, false)
 window.addEventListener("load", setProfilePic);

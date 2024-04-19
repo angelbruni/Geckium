@@ -422,56 +422,43 @@
 			}
 		}
 	}
-
-	&[profilepic="disabled"] {
-		#fxa-toolbar-menu-button {
-			display: none !important;
-		}
-	}
 	
-	&[profilepic="firefox"] {
-		#fxa-toolbar-menu-button {
-			.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
-				
-				
-				border-radius: 50% !important;
-				
-				
-			}
-		}
-	}
-
-	&:not([profilepic="firefox"]) {
-		#fxa-toolbar-menu-button {
-			#fxa-avatar-image {
-				display: none !important;
-			}
-
-			> .toolbarbutton-badge-stack > vbox {
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-position: bottom;
-			}
-		}
-
-		$profile-pictures: 25; // bruni: Set the amount of profile pictures
-		@for $i from 0 through $profile-pictures {
-			&[profilepic="#{$i}"] {
-				#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-					background-image: url(assets/img/profile/#{$i}.png);
+	&[profilepicbutton="true"] {
+		&[profilepic="chromium"],
+		&[profilepic="custom"] {
+			#fxa-toolbar-menu-button {
+				> .toolbarbutton-badge-stack > vbox {
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: bottom;
 				}
 
-				toolbarbutton.subviewbutton {
-					&#fxa-manage-account-button {
-						&::before {
-							background-image: url(assets/img/profile/#{$i}.png);
-							background-size: auto !important;
+				#fxa-avatar-image {
+					display: none !important;
+				}
+			}
+		}
+
+		&[profilepic="chromium"] {
+			$profile-pictures: 25; // bruni: Set the amount of profile pictures
+			@for $i from 0 through $profile-pictures {
+				&[profilepicchromium="#{$i}"] {
+					#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+						background-image: url(assets/img/profile/#{$i}.png);
+					}
+	
+					toolbarbutton.subviewbutton {
+						&#fxa-manage-account-button {
+							&::before {
+								background-image: url(assets/img/profile/#{$i}.png);
+								background-size: auto !important;
+							}
 						}
 					}
 				}
 			}
 		}
-
+	
 		&[profilepic="custom"] {
 			#fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
 				background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
@@ -479,7 +466,7 @@
 
 
 			}
-
+	
 			toolbarbutton.subviewbutton {
 				&#fxa-manage-account-button {
 					&::before {
@@ -490,6 +477,23 @@
 					}
 				}
 			}
+		}
+	
+		&[profilepic="firefox"] {
+			#fxa-toolbar-menu-button {
+				.toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+					
+					
+					border-radius: 50% !important;
+					
+					
+				}
+			}
+		}
+	}
+	&[profilepicbutton="false"] {
+		#fxa-toolbar-menu-button {
+			display: none !important;
 		}
 	}
 
