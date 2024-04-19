@@ -7,6 +7,7 @@
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		windowtype="geckiummaterial:zoo"
+		containertype="page"
 		title="Controls Zoo"
 		width="1180"
 		height="730"
@@ -48,7 +49,6 @@
 					<separator />
 					<h4>Miscelleneous</h4>
 					<html:button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="30" label="Fun" />
-					<html:button class="item ripple-enabled icon-auto-awesome" data-page-container="main" data-page="31" label="Welcome" />
 				</vbox>
 			</vbox>
 			<vbox id="window-content-container">
@@ -769,49 +769,6 @@
 								<vbox class="content-container">
 									<vbox class="content" style="flex: 1;">
 										<button class="button ripple-enabled text color" style="flex: 1;" label="Ripple Madness!!!" />
-									</vbox>
-								</vbox>
-							</vbox>
-							<vbox class="page" data-page="31">
-								<vbox class="content-container">
-									<vbox class="content" style="flex: 1;">
-										<hbox>
-											<div style="width: 33.33%;">
-												<html:label class="card ripple-enabled"
-												for="chrome5_appearance"
-												style="
-													position: relative;
-													display: block;
-													width: 100%;
-													height: 140px;
-													background-image: url('chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/test.png');
-													background-size: cover;
-													cursor: pointer;
-												">
-													<div 
-													style="
-														position: absolute;
-														left: 0;
-														right: 0;
-														bottom: 0;
-														height: 80px;
-														display: flex;
-														align-items: end;
-														padding-block-end: 10px;
-														padding-inline: 20px;
-														font-size: 22px;
-														color: rgb(255, 255, 255);
-														background: linear-gradient(to top, rgb(0, 0, 0, 40%), transparent);
-													">
-														<div class="checkbox-parent">
-															<html:input class="checkbox light" type="checkbox" id="chrome5_appearance" name="checked_check" />
-															<div class="gutter" for="checked_check"></div>
-															<html:label for="chrome5_appearance" class="label">Chrome 5</html:label>
-														</div>
-													</div>
-												</html:label>
-											</div>
-										</hbox>
 									</vbox>
 								</vbox>
 							</vbox>
