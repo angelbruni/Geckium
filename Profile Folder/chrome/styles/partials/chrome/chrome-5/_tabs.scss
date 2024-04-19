@@ -55,23 +55,21 @@
 						),
 						color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
 					) !important;
-					--tabbrowser-tab-color: var(
-						--lwt-tab-text,
-						var(--toolbar-color, var(--lwt-text-color, white))
-					);
+					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
 				}
 	
 				@media (prefers-color-scheme: dark) {
 					--inactive-tab-background-color: color-mix(
 						in srgb,
-						color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+						color-mix(
+							in srgb,
+							var(--lwt-accent-color) 80%,
+							black
+						) 80%,
 						transparent
 					) !important;
 					--tabbrowser-tab-selected: var(--lwt-accent-color) !important;
-					--tabbrowser-tab-color: var(
-						--lwt-tab-text,
-						var(--toolbar-color, var(--lwt-text-color, black))
-					);
+					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
 				}
 	
 				&[customthememode="1"] {

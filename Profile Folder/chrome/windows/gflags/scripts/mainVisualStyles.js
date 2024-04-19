@@ -23,23 +23,21 @@ function insertMainVisualStyles() {
 
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `
-		<div style="width: 25%; padding-inline: 5px">
-			<html:button data-appearance="${i}"
-					class="link chrome-appearance ripple-enabled" 
-					for="chrome-${appearance.style}" 
-					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.style}.png');">
-				<html:label class="wrapper" chrome="${appearance.style}">
-					<div class="year">${appearance.year}</div>
-					<div class="identifier">
-						<div class="radio-parent">
-							<html:input data-appearance="${i}" class="radio" type="radio" name="main-visual-style" id="chrome-${appearance.style}"></html:input>
-							<div class="gutter" for="checked_check"></div>
-							<html:label for="chrome-${appearance.style}" class="label">${appearance.name}</html:label>
-						</div>
+		<html:button data-appearance="${i}"
+				class="link chrome-appearance ripple-enabled" 
+				for="chrome-${appearance.style}" 
+				style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.style}.png');">
+			<html:label class="wrapper" chrome="${appearance.style}">
+				<div class="year">${appearance.year}</div>
+				<div class="identifier">
+					<div class="radio-parent">
+						<html:input data-appearance="${i}" class="radio" type="radio" name="main-visual-style" id="chrome-${appearance.style}"></html:input>
+						<div class="gutter" for="checked_check"></div>
+						<html:label for="chrome-${appearance.style}" class="label">${appearance.name}</html:label>
 					</div>
-				</html:label>
-			</html:button>
-		</div>
+				</div>
+			</html:label>
+		</html:button>
 		`;
 
 		
