@@ -26,6 +26,7 @@ function updateProfilePictures() {
 		pfPRadio.type = "radio";
 		pfPRadio.name = "pfp-chromium"
 		pfPRadio.classList.add("people-picture", "ripple-enabled");
+		pfPRadio.dataset.index = i;
 
 		pfPRadio.addEventListener("click", () => {
 			pref("Geckium.profilepic.chromiumIndex").set.int(i);
@@ -37,6 +38,8 @@ function updateProfilePictures() {
 
 		gridPfPs.appendChild(pfPRadio);
 	}
+
+	document.querySelector(`input.people-picture[data-index="${pref("Geckium.profilepic.chromiumIndex").tryGet.int()}"]`).checked = true;
 
 	menu.addEventListener("change", updateProfilePictures);
 }
