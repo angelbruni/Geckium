@@ -126,6 +126,9 @@ label {
 }
 
 .people-picture {
+	appearance: none;
+	display: flex;
+	position: relative;
 	width: 58px;
 	aspect-ratio: 1 / 1;
 	align-items: center;
@@ -170,6 +173,53 @@ label {
 	> [for="chrome-25"],
 	> [for="chrome-50"] {
 		display: none;
+	}
+}
+
+#profile-pic-content {
+	&[profile-pic-button="false"] {
+		pointer-events: none;
+		opacity: .5;
+	}
+}
+
+.profile-mode-option {
+	display: none;
+}
+
+#card-avatar {
+	&:not([profile-pic-mode="1"]) {
+		padding-block-end: 19px;
+	}
+
+	> .item:nth-child(2) {
+		display: none;
+	}
+
+	&[profile-pic-mode="0"] {
+		> .item:nth-child(2) {
+			display: flex;
+		}
+	
+		#profile-pictures-grid {
+			display: grid;
+		}
+	}
+
+	&[profile-pic-mode="1"] {
+		> .item:nth-child(1) {
+			border-bottom: 0;
+		}
+	}
+
+	&[profile-pic-mode="2"] {
+		> .item:nth-child(2) {
+			display: flex;
+		}
+	
+		#profile-pictures-path {
+			display: flex;
+		}
 	}
 }
 

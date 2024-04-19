@@ -36,7 +36,7 @@
 					<vbox id="navigation-drawer" class="color iconic item-radius">
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="0" label="Main Interface" selected="true" />
-							<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="1" label="Titlebar" />
+							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="1" label="Titlebar" />-->
 							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="2" label="People" />
 							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="3" label="Pages" />
 							<separator />
@@ -128,18 +128,18 @@
 									<vbox class="window-top-bars light">
 										<hbox class="window-top-bar">
 											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
-												<h3>On</h3>
+												<!--<h3 for="people-switch"/>-->
 												<spacer />
 												<div class="switch-parent">
-													<html:input class="switch" type="checkbox" id="people_switch" name="people_switch" checked="true" />
-													<html:label class="gutter" for="people_switch" />
+													<html:input class="switch" data-pref="profilepic.button" type="checkbox" id="people-switch" name="people-switch" />
+													<html:label class="gutter" for="people-switch" />
 												</div>
 											</hbox>
 										</hbox>
 									</vbox>
 									<vbox class="content">
-										<vbox class="list-container">
-											<h4>Button</h4>
+										<vbox class="list-container" id="profile-pic-content">
+											<!--<h4>Button</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
@@ -157,29 +157,33 @@
 														</vbox>
 													</html:button>
 												</hbox>
-											</vbox>
+											</vbox>-->
 
 											<h4>Pick an avatar</h4>
-											<vbox class="card">
+											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
 														<label class="name">Avatar Mode</label>
 														<!--<label class="description"></label>-->
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="pfp-mode" id="pfp-mode-select" style="width: 200px">
+													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="chrome">Chrome</hbox>
-															<hbox class="item ripple-enabled" value="firefox">Firefox Sync</hbox>
-															<hbox class="item ripple-enabled" value="custom">Custom</hbox>
+															<hbox class="item ripple-enabled" value="0">Chrome</hbox>
+															<hbox class="item ripple-enabled" value="1">Firefox Sync</hbox>
+															<hbox class="item ripple-enabled" value="2">Custom</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1">
 													<h4>Choose a picture</h4>
-													<grid id="profile-pictures-grid" style="margin-block-end: 19px; grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
+													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
+													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
+														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true"/>
+														<label class="placeholder">Image Path</label>
+													</div>
 												</vbox>
 											</vbox>
 										</vbox>
@@ -220,17 +224,6 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name"><div class="year">2015</div> Theme tiles according to applied custom theme</label>
-														
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
 											</vbox>
 										</vbox>
 									</vbox>
@@ -258,11 +251,16 @@
 							<vbox class="page" data-page="21">
 								<vbox class="content-container">
 									<vbox class="content">
-										<h4>Frequently Asked Questions</h4>
-										<p class="headline-5">Q: WindowBli-</p>
-										<p><html:strong>A: NO.</html:strong></p>
-										<p class="headline-5">Q: Why does about:flag not show any flags?</p>
-										<p><html:strong>A: Currently, only some of the visual styles have flags available.</html:strong></p>
+										<vbox class="list-container" id="profile-pic-content">
+											<h4>Frequently Asked Questions</h4>
+											<vbox class="card" style="padding: 16px; padding-block-start: 0">
+												<p class="headline-5">Q: WindowBli-</p>
+												<p><html:strong>A: NO.</html:strong></p>
+												<p class="headline-5">Q: Why is about:flag showing only some or no flags?</p>
+												<p><html:strong>A: Currently, only some of the visual styles have flags available.</html:strong></p>
+											</vbox>
+										</vbox>	
+										
 									</vbox>
 								</vbox>
 							</vbox>
@@ -433,5 +431,5 @@
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
 
-	<script src="chrome://userchrome/content/windows/gflags/scripts/selectorSettings.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/settingsLoader.js" type="text/javascript" defer="true"/>
 </window>
