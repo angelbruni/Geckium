@@ -14,7 +14,7 @@ const customAboutPages = {
 
 	"flags": 		"chrome://userchrome/content/pages/flags/index.xhtml",
 
-	"gsettings": 	"chrome://userchrome/content/windows/settings/index.xhtml",
+	"gflags": 	"chrome://userchrome/content/windows/gflags/index.xhtml",
 };
 
 function customAboutPage(urlString) {
