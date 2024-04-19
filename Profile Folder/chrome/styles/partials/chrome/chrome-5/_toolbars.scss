@@ -623,16 +623,13 @@
 		#PersonalToolbar {
 			&[pref="newtab"] {
 				position: fixed !important;
-				top: calc(
-					var(--tab-height) + var(--nav-bar-height) +
-						var(--personal-toolbar-height) - 1px
-				);
+				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
 				left: 9px;
 				z-index: 1;
 				width: calc(100% - 18px);
 				height: calc(var(--personal-toolbar-height) + 10px) !important;
 				margin: 0 !important;
-				padding: 0 !important;
+				padding: 2px !important;
 				border: 1px solid rgb(172, 201, 238);
 				border-radius: 6px !important;
 				background: rgb(210, 225, 246) !important;
@@ -640,10 +637,6 @@
 				&::before,
 				&::after {
 					content: unset !important;
-				}
-
-				#PlacesToolbarItems {
-					padding: 2px !important;
 				}
 			}
 		}
@@ -1219,10 +1212,11 @@ toolbarspring {
 			margin-top: 0 !important;
 		}
 	}
-}
-
-#PlacesToolbar {
-	margin-top: -5px;
+	&:not([pref="newtab"]) {
+		> * {
+			margin-top: -5px !important;
+		}	
+	}
 }
 
 #PlacesToolbarItems {

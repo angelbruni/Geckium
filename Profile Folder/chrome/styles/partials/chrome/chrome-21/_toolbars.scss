@@ -6,6 +6,7 @@
 	--toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 	--toolbarbutton-width: 27px;
 	--toolbarbutton-height: 27px;
+	--personal-toolbar-height: 23px;
 	--personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
 	--personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
 	--bookmark-item-color: #000000;
@@ -82,6 +83,15 @@
 
 		&[starred] {
 			list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
+		}
+	}
+
+	#PersonalToolbar {
+		&:not([pref="newtab"]) {
+			> * {
+				margin-top: -5px !important;
+				margin-bottom: 1px !important;
+			}
 		}
 	}
 }

@@ -1997,16 +1997,13 @@ tooltip {
   width: calc(100% - 18px);
   height: calc(var(--personal-toolbar-height) + 10px) !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 2px !important;
   border: 1px solid rgb(172, 201, 238);
   border-radius: 6px !important;
   background: rgb(210, 225, 246) !important;
 }
 :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::after {
   content: unset !important;
-}
-:root[geckium-choice=five] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=six] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab] #PlacesToolbarItems, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] #PlacesToolbarItems {
-  padding: 2px !important;
 }
 
 #navigator-toolbox {
@@ -2582,9 +2579,8 @@ toolbarspring {
 #PersonalToolbar[pref=newtab] #PlacesToolbar {
   margin-top: 0 !important;
 }
-
-#PlacesToolbar {
-  margin-top: -5px;
+#PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -5px !important;
 }
 
 #PlacesToolbarItems {
@@ -3596,6 +3592,10 @@ hbox[id=label-box][part=label-box] {
   padding: 1px !important;
   padding-inline: 3px !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -4px !important;
+  margin-bottom: 2px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven] .bookmark-item {
   border-radius: 5px !important;
 }
@@ -3761,12 +3761,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #chrome-button {
   list-style-image: url(assets/img/chrome-11/toolbar/menu_chrome.svg) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven] #PlacesToolbar {
-  margin-top: -4px;
-}
-:root[geckium-five][geckium-six][geckium-eleven] #PlacesToolbarItems {
-  padding-block-end: 2px;
-}
 :root[geckium-five][geckium-six][geckium-eleven] menupopup button {
   -webkit-appearance: none !important;
      -moz-appearance: none !important;
@@ -3926,6 +3920,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
   --toolbarbutton-width: 27px;
   --toolbarbutton-height: 27px;
+  --personal-toolbar-height: 23px;
   --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
   --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
   --bookmark-item-color: #000000;
@@ -3995,6 +3990,10 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #star-button-box > #star-button[starred] {
   list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar:not([pref=newtab]) > * {
+  margin-top: -5px !important;
+  margin-bottom: 1px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item {
   position: relative;

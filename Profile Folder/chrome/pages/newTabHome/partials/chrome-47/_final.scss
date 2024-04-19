@@ -2,5 +2,11 @@
 	font: small arial,sans-serif;
 }
 
+&[pref="newtab"] {
+	#bookmarksbar-spacing {
+		display: none;
+	}
+}
+
 @import "google";
 @import "most-visited";
