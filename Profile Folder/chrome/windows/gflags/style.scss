@@ -39,6 +39,17 @@ h4 {
 	}
 }
 
+.year {
+	font-size: 10px;
+	padding-inline: 4px;
+	padding-block: 2px;
+	color: white;
+	font-weight: 500;
+	background: var(--secondary-color);
+	box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
+	border-radius: 2px;
+}
+
 .link {
 	&.chrome-appearance {
 		position: relative;
@@ -68,14 +79,6 @@ h4 {
 			position: absolute;
 			top: 10px;
 			right: 10px;
-			font-size: 10px;
-			padding-inline: 4px;
-			padding-block: 2px;
-			color: white;
-			font-weight: 500;
-			background: var(--secondary-color);
-			box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
-			border-radius: 2px;
 		}
 
 		.identifier {
@@ -112,6 +115,13 @@ h4 {
 				}
 			}
 		}
+	}
+}
+
+label {
+	.year {
+		display: inline-block;
+		margin-inline-end: 5px;
 	}
 }
 
@@ -157,7 +167,7 @@ h4 {
 
 #ntp-visual-styles-grid {
 	> [for="chrome-6"],
-	> [for="chrome-26"],
+	> [for="chrome-25"],
 	> [for="chrome-50"] {
 		display: none;
 	}
