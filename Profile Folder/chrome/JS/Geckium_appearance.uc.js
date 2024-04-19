@@ -126,10 +126,10 @@ function setThemeAttr() {
 
 		if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
-		} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("#{$gtkplus}")) {
+		} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
 
-			if (pref("extensions.activeThemeID").tryGet.string().includes("#{$gtkplus}")) {
+			if (pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
 				docElm.style.removeProperty("--lwt-accent-color")
 				docElm.style.removeProperty("--lwt-text-color")
 				docElm.style.removeProperty("--lwt-additional-images")
