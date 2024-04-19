@@ -706,7 +706,7 @@ const menu_page = {
 };
 
 window.addEventListener("load", function () {
-	createToolbarbutton("gsettings", "", "Geckium Settings", "", true, false, CustomizableUI.AREA_NAVBAR, openSettings)
+	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags)
 	geckiumCreateMenu(
 		"page",
 		"Page Menu",

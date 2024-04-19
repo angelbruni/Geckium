@@ -9,6 +9,6 @@ function openZoo() {
 	window.openDialog("about:gmzoo", "", "centerscreen");
 }
 
-function openSettings() {
-	window.openDialog("about:gsettings", "", "centerscreen");
+function openGFlags() {
+	window.openDialog("about:gflags", "", "centerscreen");
 }

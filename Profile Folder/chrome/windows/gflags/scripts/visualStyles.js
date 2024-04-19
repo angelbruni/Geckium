@@ -27,7 +27,7 @@ function insertVisualStyles() {
 			<html:button data-appearance="${i}"
 					class="link chrome-appearance ripple-enabled" 
 					for="chrome-${appearance.style}" 
-					style="background-image: url('chrome://userchrome/content/windows/settings/imgs/chrome-${appearance.style}.png');">
+					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/chrome-${appearance.style}.png');">
 				<html:label class="wrapper" chrome="${appearance.style}">
 					<div class="year">${appearance.year}</div>
 					<div class="identifier">

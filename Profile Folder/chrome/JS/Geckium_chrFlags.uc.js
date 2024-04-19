@@ -7,7 +7,7 @@
 
 // Trying something here, wondering if this will cause performance issues...
 
-const crFlags = {
+const chrFlags = {
     //"compact-navigation": "bool",
     //"experimental-new-tab-page": "bool",
     //"action-box": "bool",
@@ -31,16 +31,16 @@ function observePreferences() {
         },
     };
 
-    for (const key in crFlags) {
+    for (const key in chrFlags) {
         const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
         prefBranch.addObserver(prefName, observer, false);
     }
 }
 
 function flagsAttrs() {
-    for (const key in crFlags) {
+    for (const key in chrFlags) {
         const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
-        const valueType = crFlags[key];
+        const valueType = chrFlags[key];
 
         let prefValue;
         if (valueType === "bool") {
