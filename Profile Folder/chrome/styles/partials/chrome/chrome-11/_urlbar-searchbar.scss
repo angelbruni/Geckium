@@ -1,25 +1,29 @@
 & {
-	#nav-bar {
-		#identity-box[pageproxystate="valid"].notSecure #identity-icon {
-			list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
-		}
+  #nav-bar {
+    #identity-box[pageproxystate="valid"].notSecure #identity-icon {
+      list-style-image: url(assets/img/chrome-11/toolbar/omnibox_http.png) !important;
+    }
 
-		&[securestate="ev"] {
-			#identity-icon-box {
-				margin-block-start: 0;
-			}
-		}
-	}
+    &[securestate="ev"] {
+      #identity-icon-box {
+        margin-block-start: 0;
+      }
+    }
+  }
 
-	#urlbar-background {
-		box-shadow: 0 1px 0 0 rgb(255, 255, 255, 20%) !important;
-	}
+  #urlbar-background {
+    box-shadow: 0 1px 0 0 rgb(255, 255, 255, 20%) !important;
+  }
 
-	#urlbar-container {
-		margin-inline: 3px !important;
-	}
+  #urlbar-container {
+    margin-inline: 3px !important;
+  }
 
-	.urlbarView-url {
-		color: #4c9817 !important;
-	}
+  .urlbarView-row {
+    &:not([selected]) {
+      .urlbarView-url {
+        color: #4c9817 !important;
+      }
+    }
+  }
 }

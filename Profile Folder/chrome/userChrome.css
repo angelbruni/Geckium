@@ -80,6 +80,11 @@ tooltip {
     --titlebar-buttonbox-background-color: var(--lwt-accent-color);
   }
 }
+@media (-moz-platform: linux) {
+  :root#main-window {
+    background: rgba(0, 0, 0, 0.002) !important;
+  }
+}
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
@@ -105,6 +110,18 @@ tooltip {
   border-radius: 5px;
   padding: 1px !important;
   box-sizing: border-box;
+}
+@media (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+    border: 1px solid ThreeDShadow !important;
+    box-shadow: none !important;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    transition: background 0.15s linear;
+    padding: 2px !important;
+  }
 }
 :root[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
   background: var(--titlebar-inactive);
@@ -137,6 +154,11 @@ tooltip {
     margin-right: 0px !important;
     gap: 2px;
     box-shadow: none;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root[chromemargin="0,0,0,0"] .titlebar-buttonbox {
+    margin-inline-start: 3px !important;
   }
 }
 :root[chromemargin="0,0,0,0"] .titlebar-button {
@@ -211,8 +233,10 @@ tooltip {
 :root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-:root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
-  padding-top: 7px !important;
+@media not (-moz-platform: linux) {
+  :root[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+    padding-top: 7px !important;
+  }
 }
 :root[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -229,6 +253,12 @@ tooltip {
 @media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"] .titlebar-max {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
+  }
+}
+@media not (-moz-gtk-csd-maximize-button) {
+  :root[chromemargin="0,0,0,0"] .titlebar-max,
+  :root[chromemargin="0,0,0,0"] .titlebar-restore {
+    display: none !important;
   }
 }
 :root[chromemargin="0,0,0,0"] .titlebar-restore {
@@ -254,7 +284,20 @@ tooltip {
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
-@media (-moz-platform: linux) {
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
+  :root[chromemargin="0,0,0,0"] .titlebar-min {
+    display: none !important;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root[chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-left-radius: 4.5px !important;
+  }
+  :root[chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-left-radius: 4.5px !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
   :root[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
@@ -1012,7 +1055,16 @@ tooltip {
     --titlebar-buttonbox-background-color: var(--lwt-accent-color);
   }
 }
+<<<<<<< Updated upstream
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
+=======
+@media (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])#main-window {
+    background: rgba(0, 0, 0, 0.002) !important;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
+>>>>>>> Stashed changes
   padding-top: 7px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
@@ -1038,7 +1090,24 @@ tooltip {
   padding: 1px !important;
   box-sizing: border-box;
 }
+<<<<<<< Updated upstream
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
+=======
+@media (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+    border: 1px solid ThreeDShadow !important;
+    box-shadow: none !important;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    -moz-transition: background 0.15s linear;
+    transition: background 0.15s linear;
+    padding: 2px !important;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
+>>>>>>> Stashed changes
   background: var(--titlebar-inactive);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] #titlebar {
@@ -1069,7 +1138,16 @@ tooltip {
     box-shadow: none;
   }
 }
+<<<<<<< Updated upstream
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button {
+=======
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
+    margin-inline-start: 3px !important;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button {
+>>>>>>> Stashed changes
   position: relative;
   -moz-appearance: unset !important;
        appearance: unset !important;
@@ -1142,8 +1220,15 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
+<<<<<<< Updated upstream
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
   padding-top: 7px !important;
+=======
+@media not (-moz-platform: linux) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+    padding-top: 7px !important;
+  }
+>>>>>>> Stashed changes
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -1162,7 +1247,17 @@ tooltip {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
   }
 }
+<<<<<<< Updated upstream
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+=======
+@media not (-moz-gtk-csd-maximize-button) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max,
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+    display: none !important;
+  }
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+>>>>>>> Stashed changes
   list-style-image: url(assets/img/titlebar/restore.svg);
 }
 @media (-moz-platform: linux) {
@@ -1185,8 +1280,26 @@ tooltip {
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
+<<<<<<< Updated upstream
 @media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
+=======
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min {
+    display: none !important;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-left-radius: 4.5px !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-left-radius: 4.5px !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+>>>>>>> Stashed changes
     border-top-right-radius: 4.5px !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
@@ -2722,9 +2835,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   --urlbarView-row-height: 25px;
   --urlbarView: rgb(255, 255, 255, 94%);
   --autocomplete-popup-hover-background: color-mix(
-  	in srgb,
-  	-moz-menuhover 20%,
-  	white 20%
+    in srgb,
+    -moz-menuhover 20%,
+    white 20%
   ) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
@@ -2732,6 +2845,16 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 @media (prefers-color-scheme: dark) {
   :root {
     --toolbar-field-color: black !important;
+  }
+}
+@media (-moz-platform: linux) {
+  :root {
+    --autocomplete-popup-hover-background: color-mix(
+      in srgb,
+      AccentColor 20%,
+      white 20%
+    ) !important;
+    --autocomplete-popup-highlight-background: AccentColor !important;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -2821,11 +2944,11 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
   --toolbar-field-background-color: var(
-  	--urlbar-background-verified-proxystate-valid
+    --urlbar-background-verified-proxystate-valid
   );
   --protocol-color: var(--urlbar-verified-proxystate-valid);
   --protocol-background-color: var(
-  	--urlbar-background-verified-proxystate-valid
+    --urlbar-background-verified-proxystate-valid
   );
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
@@ -3747,7 +3870,7 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] #urlbar-container {
   margin-inline: 3px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven] .urlbarView-url {
+:root[geckium-five][geckium-six][geckium-eleven] .urlbarView-row:not([selected]) .urlbarView-url {
   color: #4c9817 !important;
 }
 
