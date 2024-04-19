@@ -179,20 +179,6 @@ function setThemeAttr() {
 window.addEventListener("load", setThemeAttr);
 Services.obs.addObserver(setThemeAttr, "lightweight-theme-styling-update");
 
-const customThemeModeObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			setThemeAttr();
-		}
-	},
-};
-window.addEventListener("load", setThemeAttr);
-Services.prefs.addObserver(
-	"Geckium.customtheme.mode",
-	customThemeModeObserver,
-	false
-);
-
 /* bruni: Automatically apply appearance and theme
 		  attributes when it detecs changes in the pref. */
 const appearanceObserver = {
@@ -216,3 +202,27 @@ function changePrivateBadgePos() {
 	}
 }
 window.addEventListener("load", changePrivateBadgePos);
+
+function customThemeColorizeTabGlare() {
+	docElm.setAttribute("customthemecolorizetabglare", pref("Geckium.appearance.customThemeColorizeTabGlare").tryGet.bool())
+}
+const customThemeModeObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			setThemeAttr();
+			customThemeColorizeTabGlare();
+		}
+	},
+};
+window.addEventListener("load", setThemeAttr);
+window.addEventListener("load", customThemeColorizeTabGlare);
+Services.prefs.addObserver(
+	"Geckium.customtheme.mode",
+	customThemeModeObserver,
+	false
+);
+Services.prefs.addObserver(
+	"Geckium.appearance.customThemeColorizeTabGlare",
+	customThemeModeObserver,
+	false
+);

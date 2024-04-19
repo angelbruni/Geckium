@@ -52,15 +52,33 @@
 							<vbox class="page" data-page="0" selected="true">
 								<vbox class="content-container">
 									<vbox class="content">
-										<h4>
-											Google Chrome Visual Style 
-											<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
-										</h4>
+										<vbox class="list-container">
+											<!--<h4>New Tab Page</h4>-->
+											<vbox class="card">
+												<vbox class="item" flex="1">
+													<h4>
+														Main Visual Style Mode
+														<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
+													</h4>
+													<grid id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">2012+</div>Colorize tab glare effect according to custom theme</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="appearance.customThemeColorizeTabGlare" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+										</vbox>
 										<div class="modal" data-modal="aboutVisualStyles_modal">
 											<div class="wrapper">
 												<div class="card">
 													<vbox class="body">
-														<div class="header">About Google Chrome Visual Styles</div>
+														<div class="header">About Chromium Visual Styles</div>
 														<div class="description">
 															Choose from 6 different visual styles the browser has had throughout the years, from Google Chrome version 5 all the way until version 55.
 														</div>
@@ -216,7 +234,7 @@
 												</vbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">2012</div> Theme footer according to applied custom theme</label>
+														<label class="name"><div class="year">2012</div>Theme footer according to applied custom theme</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">

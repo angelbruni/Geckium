@@ -431,24 +431,22 @@ tooltip {
     	),
     	color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
     ) !important;
-    --tabbrowser-tab-color: var(
-    	--lwt-tab-text,
-    	var(--toolbar-color, var(--lwt-text-color, white))
-    );
+    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --inactive-tab-background-color: color-mix(
     	in srgb,
-    	color-mix(in srgb, var(--lwt-accent-color) 80%, black) 80%,
+    	color-mix(
+    		in srgb,
+    		var(--lwt-accent-color) 80%,
+    		black
+    	) 80%,
     	transparent
     ) !important;
     --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
-    --tabbrowser-tab-color: var(
-    	--lwt-tab-text,
-    	var(--toolbar-color, var(--lwt-text-color, black))
-    );
+    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
   }
 }
 @media not (prefers-color-scheme: dark) {
@@ -3847,11 +3845,32 @@ hbox[id=label-box][part=label-box] {
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
   --tab-glare-opacity: 0.7;
-  --tab-glare: linear-gradient(90deg, rgba(255,255,255,.4) 30%, white 50%, rgba(255,255,255,.4) 70%);
+  --tab-glare-color: white;
+  --tab-glare: linear-gradient(
+  	90deg,
+  	color-mix(
+  		in srgb,
+  		var(--tab-glare-color) 40%,
+  		transparent
+  	) 30%,
+  	var(--tab-glare-color) 50%,
+  	color-mix(
+  		in srgb,
+  		var(--tab-glare-color) 40%,
+  		transparent
+  	) 70%
+  );
   --newtab-width: 34px;
   --newtab-normal: var(--inactive-tab-background-color);
   --newtab-hot: rgb(211, 217, 225, 0.8);
   --newtab-active: rgb(211, 217, 225, 0.4);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthemecolorizetabglare=true] {
+  /* bruni: This entire code takes care of custom themes support for tabs */
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthemecolorizetabglare=true]:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --tab-glare-color: var(--tabbrowser-tab-color);
+  --tab-glare-opacity: 1;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab {
   /* bruni: We are changing the favicon of about pages like
