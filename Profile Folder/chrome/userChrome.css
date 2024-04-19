@@ -1055,16 +1055,12 @@ tooltip {
     --titlebar-buttonbox-background-color: var(--lwt-accent-color);
   }
 }
-<<<<<<< Updated upstream
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
-=======
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])#main-window {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])#main-window {
     background: rgba(0, 0, 0, 0.002) !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
->>>>>>> Stashed changes
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
@@ -1090,11 +1086,8 @@ tooltip {
   padding: 1px !important;
   box-sizing: border-box;
 }
-<<<<<<< Updated upstream
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
-=======
 @media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
     border: 1px solid ThreeDShadow !important;
     box-shadow: none !important;
     border-top-left-radius: 6px !important;
@@ -1106,8 +1099,7 @@ tooltip {
     padding: 2px !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
->>>>>>> Stashed changes
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
   background: var(--titlebar-inactive);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] #titlebar {
@@ -1138,16 +1130,12 @@ tooltip {
     box-shadow: none;
   }
 }
-<<<<<<< Updated upstream
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button {
-=======
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
     margin-inline-start: 3px !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-button {
->>>>>>> Stashed changes
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button {
   position: relative;
   -moz-appearance: unset !important;
        appearance: unset !important;
@@ -1220,15 +1208,10 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
   display: none !important;
 }
-<<<<<<< Updated upstream
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
-  padding-top: 7px !important;
-=======
 @media not (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
     padding-top: 7px !important;
   }
->>>>>>> Stashed changes
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
   display: none !important;
@@ -1247,17 +1230,13 @@ tooltip {
     list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
   }
 }
-<<<<<<< Updated upstream
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
-=======
 @media not (-moz-gtk-csd-maximize-button) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-max,
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-max,
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
     display: none !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-restore {
->>>>>>> Stashed changes
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-restore {
   list-style-image: url(assets/img/titlebar/restore.svg);
 }
 @media (-moz-platform: linux) {
@@ -1280,26 +1259,21 @@ tooltip {
     list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
   }
 }
-<<<<<<< Updated upstream
-@media (-moz-platform: linux) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
-=======
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-min {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-min {
     display: none !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-left-radius: 4.5px !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
     border-top-left-radius: 4.5px !important;
   }
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{bfc9afce-a697-4db7-b3ce-4f44796189ac}"])[chromemargin="0,0,0,0"] .titlebar-close {
->>>>>>> Stashed changes
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-close::before {
