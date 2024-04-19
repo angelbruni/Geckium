@@ -1534,211 +1534,211 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
-:root[profilepic=disabled] #fxa-toolbar-menu-button {
+:root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+:root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button #fxa-avatar-image, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button #fxa-avatar-image {
   display: none !important;
 }
-:root[profilepic=firefox] #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="0"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/0.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="0"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/0.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="1"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/1.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="1"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/1.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="2"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/2.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="2"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/2.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="3"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/3.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="3"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/3.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="4"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/4.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="4"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/4.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="5"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/5.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="5"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/5.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="6"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/6.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="6"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/6.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="7"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/7.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="7"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/7.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="8"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/8.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="8"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/8.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="9"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/9.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="9"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/9.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="10"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/10.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="10"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/10.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="11"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/11.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="11"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/11.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="12"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/12.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="12"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/12.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="13"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/13.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="13"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/13.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="14"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/14.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="14"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/14.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="15"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/15.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="15"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/15.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="16"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/16.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="16"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/16.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="17"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/17.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="17"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/17.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="18"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/18.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="18"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/18.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="19"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/19.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="19"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/19.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="20"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/20.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="20"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/20.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="21"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/21.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="21"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/21.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="22"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/22.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="22"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/22.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="23"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/23.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="23"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/23.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="24"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/24.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="24"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/24.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="25"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: url(assets/img/profile/25.png);
+}
+:root[profilepicbutton=true][profilepic=chromium][profilepicchromium="25"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: url(assets/img/profile/25.png);
+  background-size: auto !important;
+}
+:root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
+  background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+}
+:root[profilepicbutton=true][profilepic=custom] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
+  background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
+}
+:root[profilepicbutton=true][profilepic=firefox] #fxa-toolbar-menu-button .toolbarbutton-badge-stack > vbox > #fxa-avatar-image {
   width: 34px !important;
   height: 34px !important;
   border-radius: 50% !important;
   margin-bottom: 2px !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
-:root:not([profilepic=firefox]) #fxa-toolbar-menu-button #fxa-avatar-image {
+:root[profilepicbutton=false] #fxa-toolbar-menu-button {
   display: none !important;
-}
-:root:not([profilepic=firefox]) #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom;
-}
-:root:not([profilepic=firefox])[profilepic="0"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/0.png);
-}
-:root:not([profilepic=firefox])[profilepic="0"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/0.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="1"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/1.png);
-}
-:root:not([profilepic=firefox])[profilepic="1"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/1.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="2"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/2.png);
-}
-:root:not([profilepic=firefox])[profilepic="2"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/2.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="3"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/3.png);
-}
-:root:not([profilepic=firefox])[profilepic="3"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/3.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="4"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/4.png);
-}
-:root:not([profilepic=firefox])[profilepic="4"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/4.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="5"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/5.png);
-}
-:root:not([profilepic=firefox])[profilepic="5"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/5.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="6"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/6.png);
-}
-:root:not([profilepic=firefox])[profilepic="6"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/6.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="7"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/7.png);
-}
-:root:not([profilepic=firefox])[profilepic="7"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/7.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="8"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/8.png);
-}
-:root:not([profilepic=firefox])[profilepic="8"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/8.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="9"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/9.png);
-}
-:root:not([profilepic=firefox])[profilepic="9"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/9.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="10"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/10.png);
-}
-:root:not([profilepic=firefox])[profilepic="10"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/10.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="11"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/11.png);
-}
-:root:not([profilepic=firefox])[profilepic="11"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/11.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="12"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/12.png);
-}
-:root:not([profilepic=firefox])[profilepic="12"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/12.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="13"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/13.png);
-}
-:root:not([profilepic=firefox])[profilepic="13"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/13.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="14"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/14.png);
-}
-:root:not([profilepic=firefox])[profilepic="14"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/14.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="15"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/15.png);
-}
-:root:not([profilepic=firefox])[profilepic="15"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/15.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="16"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/16.png);
-}
-:root:not([profilepic=firefox])[profilepic="16"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/16.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="17"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/17.png);
-}
-:root:not([profilepic=firefox])[profilepic="17"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/17.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="18"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/18.png);
-}
-:root:not([profilepic=firefox])[profilepic="18"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/18.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="19"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/19.png);
-}
-:root:not([profilepic=firefox])[profilepic="19"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/19.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="20"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/20.png);
-}
-:root:not([profilepic=firefox])[profilepic="20"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/20.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="21"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/21.png);
-}
-:root:not([profilepic=firefox])[profilepic="21"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/21.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="22"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/22.png);
-}
-:root:not([profilepic=firefox])[profilepic="22"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/22.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="23"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/23.png);
-}
-:root:not([profilepic=firefox])[profilepic="23"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/23.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="24"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/24.png);
-}
-:root:not([profilepic=firefox])[profilepic="24"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/24.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic="25"] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: url(assets/img/profile/25.png);
-}
-:root:not([profilepic=firefox])[profilepic="25"] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: url(assets/img/profile/25.png);
-  background-size: auto !important;
-}
-:root:not([profilepic=firefox])[profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
-  background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
-}
-:root:not([profilepic=firefox])[profilepic=custom] toolbarbutton.subviewbutton#fxa-manage-account-button::before {
-  background-image: var(--custom-profile-picture, url(assets/img/profile/0.png));
 }
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-badge-stack,
 :root:not([customizing]) .toolbarbutton-1[disabled] .toolbarbutton-icon,
