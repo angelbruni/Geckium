@@ -2,6 +2,14 @@ const { ctypes } = Components.utils.import("resource://gre/modules/ctypes.jsm", 
 
 const { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 
+const { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+XPCOMUtils.defineLazyServiceGetter(
+	this,
+	"ProfileService",
+	"@mozilla.org/toolkit/profile-service;1",
+	"nsIToolkitProfileService"
+)
+
 function isUxThemeActive() {
     const user32 = ctypes.open("user32.dll");
     const uxtheme = ctypes.open("uxtheme.dll");
@@ -41,12 +49,14 @@ function getInfo() {
 	const forkUpdateChannelElm = document.getElementById("fork-update-channel");
 	const forkBasedOnVersionElm = document.getElementById("fork-based-on");
 	const forkArchitectureElm = document.getElementById("fork-architecture");
+	const profileNameElm = document.getElementById("profile-name");
 
 	forkNameElm.textContent = AppConstants.MOZ_APP_NAME.charAt(0).toUpperCase() + AppConstants.MOZ_APP_NAME.slice(1);
 	forkVersionElm.textContent = AppConstants.MOZ_APP_VERSION_DISPLAY.replace("esr", "");
 	forkUpdateChannelElm.textContent = AppConstants.MOZ_UPDATE_CHANNEL;
 	forkBasedOnVersionElm.textContent = Services.appinfo.version;
 	forkArchitectureElm.textContent = Services.appinfo.XPCOMABI;
+	profileNameElm.textContent = ProfileService.currentProfile.name;
 
 
 	const osNameElm = document.getElementById("os-name");
@@ -60,9 +70,15 @@ function getInfo() {
 		osName = "Windows NT"
 	else
 		osName = AppConstants.platform;
-	osNameElm.textContent = osName;
+	osNameElm.textContent = osName.charAt(0).toUpperCase() + osName.slice(1);
 	osVersionElm.textContent = Services.sysinfo.getProperty("version");
-	osArchitectureElm.textContent = navigator.oscpu.split(';')[2].replaceAll(" ", "");
+
+	let osArchitecture;
+	if (AppConstants.platform == "linux")
+		osArchitecture = navigator.oscpu.split(' ')[1].replaceAll(" ", "")
+	else
+		osArchitecture = navigator.oscpu.split(';')[2].replaceAll(" ", "");
+	osArchitectureElm.textContent = osArchitecture;
 	
 	if (AppConstants.platform == "win") {
 		osUxElm.textContent = isUxThemeActive();

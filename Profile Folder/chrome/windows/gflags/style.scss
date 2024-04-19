@@ -172,3 +172,10 @@ label {
 		display: none;
 	}
 }
+
+@media not (-moz-platform: windows) {
+	#os-ux-button,
+	#os-comp-button {
+		display: none;
+	}
+}
