@@ -12,13 +12,16 @@ function setProfilePic() {
 
 	switch (prefSetting) {
 		case 0:
+			docElm.setAttribute(attr, "geckium");
+			break;
+		case 1:
 			docElm.setAttribute(attr, "chromium");
 			docElm.setAttribute("profilepicchromium", pref("Geckium.profilepic.chromiumIndex").tryGet.int());
 			break;
-		case 1:
+		case 2:
 			docElm.setAttribute(attr, "firefox");
 			break;
-		case 2:
+		case 3:
 			docElm.setAttribute(attr, "custom");
 			docElm.style.setProperty("--custom-profile-picture", "url(file:///" + pref('Geckium.profilepic.customPath').tryGet.string().replace(/\\/g, "/").replace(" ", "%20") + ")");
 			break;

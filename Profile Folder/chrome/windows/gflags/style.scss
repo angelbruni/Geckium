@@ -230,7 +230,7 @@ label {
 }
 
 #card-avatar {
-	&:not([profile-pic-mode="1"]) {
+	&:not([profile-pic-mode="0"], [profile-pic-mode="2"]) {
 		padding-block-end: 19px;
 	}
 
@@ -238,7 +238,8 @@ label {
 		display: none;
 	}
 
-	&[profile-pic-mode="0"] {
+
+	&[profile-pic-mode="1"] {
 		> .item:nth-child(2) {
 			display: flex;
 		}
@@ -248,13 +249,14 @@ label {
 		}
 	}
 
-	&[profile-pic-mode="1"] {
+	&[profile-pic-mode="0"],
+	&[profile-pic-mode="2"] {
 		> .item:nth-child(1) {
 			border-bottom: 0;
 		}
 	}
 
-	&[profile-pic-mode="2"] {
+	&[profile-pic-mode="3"] {
 		> .item:nth-child(2) {
 			display: flex;
 		}

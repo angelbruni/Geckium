@@ -436,6 +436,12 @@
 			}
 		}
 
+		&[profilepic="geckium"] {
+			#fxa-avatar-image {
+				list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg") !important;
+			}
+		}
+
 		&[profilepic="chromium"] {
 			$profile-pictures: 25; // bruni: Set the amount of profile pictures
 			@for $i from 0 through $profile-pictures {
@@ -1113,7 +1119,7 @@ toolbarspring {
 }
 
 #gflags-button {
-	list-style-image: url(assets/img/toolbar/gflags.svg);
+	list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg");
 }
 
 #page-button {
