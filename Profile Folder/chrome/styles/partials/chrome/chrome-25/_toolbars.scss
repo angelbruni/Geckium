@@ -26,9 +26,11 @@
 	}
 }
 
-.bookmark-item {
-	transition: all 150ms linear !important;
-	&::before {
+#PersonalToolbar {
+	.bookmark-item {
 		transition: all 150ms linear !important;
+		&::before {
+			transition: all 150ms linear !important;
+		}
 	}
 }

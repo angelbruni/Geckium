@@ -42,6 +42,8 @@
 	--bookmark-item-color: #062d75;
 	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
+	--placed-chevron-width: 15px;
+
 	@media (prefers-color-scheme: dark) {
 		--nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
 		--personal-toolbar: linear-gradient(
@@ -186,7 +188,7 @@
 						)
 					);
 
-					.bookmark-item {
+					.bookmark-item:not(.menuitem-iconic) {
 						color: var(--toolbarbutton-icon-fill) !important;
 					}
 				}
@@ -284,7 +286,7 @@
 						}
 					}
 
-					.bookmark-item {
+					.bookmark-item:not(.menuitem-iconic) {
 						color: var(--tabbrowser-tab-color) !important;
 					}
 				}
@@ -603,7 +605,7 @@
 				background: transparent !important;
 				transition: background-color 100ms linear;
 
-				&:not([class*="webextension"]) {
+				&:not([class*="webextension"], #PlacesChevron) {
 					width: var(--toolbarbutton-menu-width) !important;
 				}
 
@@ -1003,6 +1005,15 @@ toolbarspring {
 			border-bottom-right-radius: 0 !important;
 		}
 	}
+
+	&#PlacesChevron {
+		width: var(--placed-chevron-width) !important;
+
+		.toolbarbutton-icon {
+			width: 12px !important;
+			height: 8px !important;
+		}
+	}
 }
 
 :root[geckium-choice="five"] {
@@ -1235,27 +1246,27 @@ toolbarspring {
 			margin-top: -5px !important;
 		}	
 	}
+
+	.bookmark-item:not(.menuitem-iconic) {
+		border: 1px solid transparent;
+		box-shadow: var(--personal-toolbar-item-shadow);
+		transition: all 150ms linear;
+		margin: 0 !important;
+		border-radius: var(--toolbarbutton-radius) !important;
+		color: var(--bookmark-item-color) !important;
+		text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
+		flex-shrink: 0;
+		max-width: 148px !important;
+	
+		&:hover {
+			border: 1px solid rgba(0, 0, 0, 0.14);
+			background: var(--personal-toolbar-item-hover-bg) !important;
+		}
+	}
 }
 
 #PlacesToolbarItems {
 	gap: 2px;
-}
-
-.bookmark-item {
-	border: 1px solid transparent;
-	box-shadow: var(--personal-toolbar-item-shadow);
-	transition: all 150ms linear;
-	margin: 0 !important;
-	border-radius: var(--toolbarbutton-radius) !important;
-	color: var(--bookmark-item-color) !important;
-	text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
-	flex-shrink: 0;
-	max-width: 148px !important;
-
-	&:hover {
-		border: 1px solid rgba(0, 0, 0, 0.14);
-		background: var(--personal-toolbar-item-hover-bg) !important;
-	}
 }
 
 #toolbar-menubar #menubar-items {

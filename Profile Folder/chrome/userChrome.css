@@ -972,6 +972,7 @@ tooltip {
   --personal-toolbar-item-hover-bg: rgba(255, 255, 255, 0.5) !important;
   --bookmark-item-color: #062d75;
   --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
+  --placed-chevron-width: 15px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -1339,7 +1340,7 @@ tooltip {
     	)
     );
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item:not(.menuitem-iconic) {
     color: var(--toolbarbutton-icon-fill) !important;
   }
 }
@@ -1433,7 +1434,7 @@ tooltip {
     	white
     ) !important;
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item:not(.menuitem-iconic) {
     color: var(--tabbrowser-tab-color) !important;
   }
 }
@@ -1828,21 +1829,21 @@ tooltip {
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#unified-extensions-button:not([class*=webextension]), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension]), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#PanelUI-menu-button:not([class*=webextension]), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension]), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#unified-extensions-button:not([class*=webextension]), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension]), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#PanelUI-menu-button:not([class*=webextension]), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension]) {
+#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron) {
   width: var(--toolbarbutton-menu-width) !important;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -2379,6 +2380,17 @@ toolbarspring {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
+.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#PlacesChevron {
+  width: var(--placed-chevron-width) !important;
+}
+.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#PlacesChevron .toolbarbutton-icon {
+  width: 12px !important;
+  height: 8px !important;
+}
 
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -2595,12 +2607,7 @@ toolbarspring {
 #PersonalToolbar:not([pref=newtab]) > * {
   margin-top: -5px !important;
 }
-
-#PlacesToolbarItems {
-  gap: 2px;
-}
-
-.bookmark-item {
+#PersonalToolbar .bookmark-item:not(.menuitem-iconic) {
   border: 1px solid transparent;
   box-shadow: var(--personal-toolbar-item-shadow);
   transition: all 150ms linear;
@@ -2611,9 +2618,13 @@ toolbarspring {
   flex-shrink: 0;
   max-width: 148px !important;
 }
-.bookmark-item:hover {
+#PersonalToolbar .bookmark-item:not(.menuitem-iconic):hover {
   border: 1px solid rgba(0, 0, 0, 0.14);
   background: var(--personal-toolbar-item-hover-bg) !important;
+}
+
+#PlacesToolbarItems {
+  gap: 2px;
 }
 
 #toolbar-menubar #menubar-items {
@@ -3609,7 +3620,7 @@ hbox[id=label-box][part=label-box] {
   margin-top: -4px !important;
   margin-bottom: 2px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven] .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar .bookmark-item {
   border-radius: 5px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4029,7 +4040,7 @@ hbox[id=label-box][part=label-box] {
   margin-top: -5px !important;
   margin-bottom: 1px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar .bookmark-item:not(.menuitem-iconic) {
   position: relative;
   overflow: hidden;
   border-radius: var(--toolbarbutton-radius) !important;
@@ -4038,7 +4049,7 @@ hbox[id=label-box][part=label-box] {
   box-sizing: border-box;
   transition: none !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item:hover {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar .bookmark-item:not(.menuitem-iconic):hover {
   box-shadow: var(--personal-toolbar-item-hover-shadow) !important;
   border: 1px solid rgb(176, 176, 176);
   border-top-color: rgb(205, 205, 204) !important;
@@ -4046,11 +4057,11 @@ hbox[id=label-box][part=label-box] {
   color: var(--bookmark-item-hover-color) !important;
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item:hover::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar .bookmark-item:not(.menuitem-iconic):hover::before {
   opacity: 1;
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .bookmark-item::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar .bookmark-item:not(.menuitem-iconic)::before {
   content: "";
   position: absolute;
   left: 0;
@@ -4153,10 +4164,10 @@ hbox[id=label-box][part=label-box] {
   -webkit-mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
           mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item {
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] .bookmark-item::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item::before {
   transition: all 150ms linear !important;
 }
 
