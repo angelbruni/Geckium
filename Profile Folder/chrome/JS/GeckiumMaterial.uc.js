@@ -6,17 +6,45 @@
 // ==/UserScript==
 
 function openZoo() {
-	const gmZoo = window.openDialog("about:gmzoo", "", "centerscreen");
+	const url = "about:gmzoo";
 
-	gmZoo.onload = () => {
-		gmZoo.document.documentElement.setAttribute("containertype", "window");
+	if (pref("Geckium.gmWindow.newTab").tryGet.bool()) {
+		openTrustedLinkIn(url, "tab")
+	} else {
+		for (let win of Services.wm.getEnumerator("geckiummaterial:zoo")) {
+			if (win.closed)
+				continue;
+			else
+				win.focus();
+			return;
+		}
+		
+		const gmWindow = window.openDialog(url, "", "centerscreen,dependent");
+
+		gmWindow.onload = () => {
+			gmWindow.document.documentElement.setAttribute("containertype", "window");
+		}	
 	}
 }
 
 function openGFlags() {
-	const gFlags = window.openDialog("about:gflags", "", "centerscreen");
+	const url = "about:gflags";
 
-	gFlags.onload = () => {
-		gFlags.document.documentElement.setAttribute("containertype", "window");
+	if (pref("Geckium.gmWindow.newTab").tryGet.bool()) {
+		openTrustedLinkIn(url, "tab")
+	} else {
+		for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
+			if (win.closed)
+				continue;
+			else
+				win.focus();
+			return;
+		}
+		
+		const gmWindow = window.openDialog(url, "", "centerscreen,dependent");
+
+		gmWindow.onload = () => {
+			gmWindow.document.documentElement.setAttribute("containertype", "window");
+		}
 	}
 }
