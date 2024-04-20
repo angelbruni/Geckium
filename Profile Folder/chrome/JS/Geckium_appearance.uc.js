@@ -226,3 +226,20 @@ Services.prefs.addObserver(
 	customThemeModeObserver,
 	false
 );
+
+function enableMoreGTKIcons() {
+	docElm.setAttribute("moregtkicons", pref("Geckium.appearance.moreGTKIcons").tryGet.bool());
+}
+window.addEventListener("load", enableMoreGTKIcons);
+const moreGTKIconsObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			enableMoreGTKIcons();
+		}
+	},
+};
+Services.prefs.addObserver(
+	"Geckium.appearance.moreGTKIcons",
+	moreGTKIconsObserver,
+	false
+);
