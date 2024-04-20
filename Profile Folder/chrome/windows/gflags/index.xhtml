@@ -80,7 +80,19 @@
 													<spacer />
 												</hbox>
 											</vbox>
-											<vbox class="link-container" style="margin-top: 16px;">
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Open this in a new tab next time</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="gmWindow.newTab" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
 													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 10)">
 														<vbox>
