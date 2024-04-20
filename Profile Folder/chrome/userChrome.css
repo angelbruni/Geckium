@@ -3620,7 +3620,7 @@ hbox[id=label-box][part=label-box] {
   margin-top: -4px !important;
   margin-bottom: 2px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar .bookmark-item:not(.menuitem-iconic) {
   border-radius: 5px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4164,10 +4164,10 @@ hbox[id=label-box][part=label-box] {
   -webkit-mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
           mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item:not(.menuitem-iconic) {
   transition: all 150ms linear !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item::before {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive] #PersonalToolbar .bookmark-item:not(.menuitem-iconic)::before {
   transition: all 150ms linear !important;
 }
 

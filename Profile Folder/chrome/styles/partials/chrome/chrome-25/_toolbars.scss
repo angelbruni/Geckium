@@ -27,7 +27,7 @@
 }
 
 #PersonalToolbar {
-	.bookmark-item {
+	.bookmark-item:not(.menuitem-iconic) {
 		transition: all 150ms linear !important;
 		&::before {
 			transition: all 150ms linear !important;
