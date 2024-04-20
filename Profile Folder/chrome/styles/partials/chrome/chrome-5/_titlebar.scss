@@ -66,6 +66,10 @@
     &:-moz-lwtheme {
         /* bruni: This entire code takes care of custom themes support for titlebar */
 
+		#navigator-toolbox {
+			padding-top: 0 !important;
+		}
+
         &:not([lwtheme-id*="firefox-compact"]) {
 			&:not([lwtheme-id="#{$gtkplus}"]) {
 				&[style*="--lwt-additional-images"] {

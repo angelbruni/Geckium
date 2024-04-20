@@ -290,6 +290,9 @@
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for titlebar */
 }
+:root:-moz-lwtheme #navigator-toolbox {
+  padding-top: 0 !important;
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"][windowtype="navigator:browser"] > body {
   background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
   background-position: var(--lwt-background-alignment) !important;
