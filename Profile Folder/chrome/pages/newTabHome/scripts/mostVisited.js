@@ -119,7 +119,7 @@ function createTile(website) {
     try {
 		let tile;
 
-        if (website) {
+        if (website !== undefined) {
 			let favicon;
 
 			let close;
@@ -288,11 +288,13 @@ function createTile(website) {
 					tile = `
 					<html:a class="mv-tile" disabled="true"></html:a>
 					`
+				} else {
+					tile = ``;
 				}
 			}
 		}
 
-		//console.log(tile);
+		console.log(tile);
 
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {
