@@ -447,13 +447,36 @@
 														</div>
 													</div>
 												</div>
-												<html:button class="item ripple-enabled">
+												<html:button class="item ripple-enabled" data-toggle-modal="aboutCredits_modal">
 													<vbox>
 														<label class="name">Credits</label>
 														<label class="description">List of developers, contributors and testers.</label>
 													</vbox>
 													<spacer />
 												</html:button>
+												<div class="modal" data-modal="aboutCredits_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Credits</div>
+																<vbox class="description" style="gap: 8px">
+																	<html:p>
+																		AngelBruni
+																	</html:p>
+																	<html:p>
+																		nabrious
+																	</html:p>
+																	<html:p>
+																		Dominic Hayes
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutCredits_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
 											</vbox>
 											<h4 id="fork-name">fork_name</h4>
 											<vbox class="card">
