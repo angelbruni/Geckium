@@ -43,6 +43,8 @@
     --bookmark-item-color: #062d75;
     --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
+	--placed-chevron-width: 15px;
+
 	@media (prefers-color-scheme: dark) {
 		--nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
         --personal-toolbar: linear-gradient(
@@ -191,7 +193,7 @@
 						)
 					);
 
-					.bookmark-item {
+					.bookmark-item:not(.menuitem-iconic) {
 						color: var(--toolbarbutton-icon-fill) !important;
 					}
 				}
@@ -289,7 +291,7 @@
 						}
 					}
 
-					.bookmark-item {
+					.bookmark-item:not(.menuitem-iconic) {
 						color: var(--tabbrowser-tab-color) !important;
 					}
 				}
@@ -607,8 +609,8 @@
 				border: 0 !important;
 				background: transparent !important;
 				transition: background-color 100ms linear;
-	
-				&:not([class*="webextension"]) {
+
+				&:not([class*="webextension"], #PlacesChevron) {
 					width: var(--toolbarbutton-menu-width) !important;
 				}
 	
@@ -1014,6 +1016,15 @@ toolbarspring {
 			
 		}
 	}
+
+	&#PlacesChevron {
+		width: var(--placed-chevron-width) !important;
+
+		.toolbarbutton-icon {
+			width: 12px !important;
+			height: 8px !important;
+		}
+	}
 }
 
 :root[geckium-choice="five"] {
@@ -1263,27 +1274,27 @@ toolbarspring {
 			margin-top: -5px !important;
 		}	
 	}
+
+	.bookmark-item:not(.menuitem-iconic) {
+		border: 1px solid transparent;
+		
+		
+		margin: 0 !important;
+		border-radius: var(--toolbarbutton-radius) !important;
+		
+		
+		flex-shrink: 0;
+		max-width: 148px !important;
+	
+		&:hover {
+			border: 1px solid rgba(0, 0, 0, 0.14);
+			
+		}
+	}
 }
 
 #PlacesToolbarItems {
 	gap: 2px;
-}
-
-.bookmark-item {
-	border: 1px solid transparent;
-	
-
-	margin: 0 !important;
-	border-radius: var(--toolbarbutton-radius) !important;
-	
-	
-	flex-shrink: 0;
-	max-width: 148px !important;
-
-	&:hover {
-		border: 1px solid rgba(0, 0, 0, .14);
-		
-	}
 }
 
 #toolbar-menubar #menubar-items {
