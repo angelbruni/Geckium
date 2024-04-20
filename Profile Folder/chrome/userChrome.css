@@ -1668,6 +1668,12 @@
 :root[sizemode=normal] #toolbar-menubar:not([inactive]) {
   z-index: 1;
 }
+:root[sizemode=maximized] #fxa-toolbar-menu-button, :root[sizemode=fullscreen] #fxa-toolbar-menu-button {
+  height: calc(var(--tab-height) - 9px);
+  margin-inline-start: 3px !important;
+  margin-inline-end: 5px !important;
+  margin-block-start: -2px !important;
+}
 :root[sizemode=fullscreen] #fullscr-toggler {
   display: none !important;
 }
@@ -2009,8 +2015,8 @@ toolbarspring {
   border: 0 !important;
   background: transparent !important;
   padding: 0 !important;
-  margin-inline-start: 5px !important;
-  margin-inline-end: -4px !important;
+  margin-inline-start: 6px !important;
+  margin-inline-end: 2px !important;
   height: var(--tab-height);
 }
 #fxa-toolbar-menu-button .toolbarbutton-badge-stack {
