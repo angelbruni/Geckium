@@ -223,7 +223,7 @@
 					list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
 				}
 			}
-			
+
 			&[moregtkicons="true"] {
 				.toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
@@ -255,19 +255,19 @@
 						list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
 					}
 
-					&#star-button-box {
-						#star-button {
-							&:not([starred="true"]) {
-								list-style-image: url(moz-icon://stock/bookmark-missing?size=toolbar) !important;
-							}
-							&[starred="true"] {
-								list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
-							}
-						}
-					}
-
 					&#go-button-box{
 						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+					}
+				}
+
+				#star-button-box {
+					#star-button {
+						&:not([starred="true"]) {
+							list-style-image: url(moz-icon://stock/bookmark-missing?size=toolbar) !important;
+						}
+						&[starred="true"] {
+							list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
+						}
 					}
 				}
 			}
