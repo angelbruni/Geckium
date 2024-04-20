@@ -154,24 +154,27 @@ label {
 
 	&:checked {
 		outline: 2px solid var(--secondary-color, var(--primary-color));
+		outline-offset: -2px;
+
+		&::before,
+		&::after {
+			content: "";
+			
+			
+			
+		}
+
 		&::before {
 			
 			
 			
 			
 			
-			
-			
-			
-			
 		}
+
 		&::after {
 			
-			
-			
-			
-			
-			
+			mask-size: 32px 32px;
 			
 			
 			
