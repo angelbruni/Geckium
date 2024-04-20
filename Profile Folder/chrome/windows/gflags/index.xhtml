@@ -13,7 +13,7 @@
 		height="730"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
-		<hbox id="window" class="primary-color" style="--primary-color: rgb(55,103,212); --chosen-secondary-color: var(--pink)" preview-pane="false">
+		<hbox id="window" class="primary-color" style="--primary-color: AccentColor; --chosen-secondary-color: var(--pink)" preview-pane="false">
 			<hbox class="window-titlebar">
 				<hbox id="window-caption-buttons-container">
 					<hbox id="window-caption-buttons">
@@ -35,16 +35,18 @@
 				<hbox id="window-content">
 					<vbox id="navigation-drawer" class="color iconic item-radius">
 						<vbox class="navigation-items">
-							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="0" label="Main Interface" selected="true" />
-							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="1" label="Titlebar" />-->
-							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="2" label="People" />
-							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="3" label="Pages" />
+							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
 							<separator />
-							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="10" label="Chromium Experiments" />
+							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="10" label="Main Interface" selected="true" />
+							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="11" label="Titlebar" />-->
+							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="12" label="People" />
+							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="Pages" />
+							<separator />
+							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="20" label="Chromium Experiments" />
 							<separator />-->
-							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="20" label="Settings" />-->
-							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="21" label="Help" />
-							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="22" label="About" />
+							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="Settings" />-->
+							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="31" label="Help" />
+							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="32" label="About" />
 						</vbox>
 					</vbox>
 					<div class="pages">
@@ -53,15 +55,121 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<!--<h4>New Tab Page</h4>-->
 											<vbox class="card">
+												<hbox class="banner">
+													<image style="width: 200px;"></image>
+													<vbox>
+														<label style="font-size: 16pt;">Welcome to</label>
+														<label style="font-size: 32pt;">Geckium</label>
+														<h4 style="height: 20px;">indev_version</h4>
+														<hbox>
+															
+														</hbox>
+														<hbox style="margin-block-start: -7px;">
+															
+														</hbox>
+													</vbox>
+												</hbox>
+												<hbox class="item">
+													<spacer />
+													<label class="button ripple-enabled text color" is="text-link" href="https://ko-fi.com/">Support the project</label>
+													<label class="button ripple-enabled text color" is="text-link" href="https://github.com/kitchenfox/geckium">GitHub</label>
+													<label class="button ripple-enabled text color" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 31)">Help</html:button>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 32)">About</html:button>
+													<spacer />
+												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 16px;">
+												<hbox>
+													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 10)">
+														<vbox>
+															<label>Main Interface</label>
+															<p>Customize your main interface settings such as visual style choice and custom theme modes.</p>
+														</vbox>
+														<hbox>
+															<label>Go to page</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 12)">
+														<vbox>
+															<label>People</label>
+															<p>Choose how you want the people button to look like.</p>
+														</vbox>
+														<hbox>
+															<label>Go to page</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+												</hbox>
+												<hbox>
+													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
+														<vbox>
+															<label>Pages</label>
+															<p>Select your favourite page visual style and change custom theme settings.</p>
+														</vbox>
+														<hbox>
+															<label>Go to page</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+												</hbox>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="10">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>
+												Visual Style
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
+												<div class="modal" data-modal="aboutVisualStyles_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">About Chromium Visual Styles</div>
+																<div class="description">
+																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 5 all the way until version 50.
+																</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</h4>
+											<vbox class="card" style="padding-block-start: 19px">
 												<vbox class="item" flex="1">
-													<h4>
-														Main Visual Style Mode
-														<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
-													</h4>
 													<grid id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
+											</vbox>
+											<h4>
+												Custom Theme Support
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Custom theme mode</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 208px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">Solid colored toolbars</hbox>
+															<hbox class="item ripple-enabled" value="1">Transluscent toolbars</hbox>
+															<hbox class="item ripple-enabled" value="2">Themed toolbars-only</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
 												<hbox class="item">
 													<vbox>
 														<label class="name"><div class="year">2012+</div>Colorize tab glare effect according to custom theme</label>
@@ -74,26 +182,11 @@
 												</hbox>
 											</vbox>
 										</vbox>
-										<div class="modal" data-modal="aboutVisualStyles_modal">
-											<div class="wrapper">
-												<div class="card">
-													<vbox class="body">
-														<div class="header">About Chromium Visual Styles</div>
-														<div class="description">
-															Choose from 6 different visual styles the browser has had throughout the years, from Google Chrome version 5 all the way until version 55.
-														</div>
-														<div class="footer">
-															<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
-														</div>
-													</vbox>
-												</div>
-											</div>
-										</div>
 										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="1">
+							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -141,7 +234,7 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="2">
+							<vbox class="page" data-page="12">
 								<vbox class="content-container">
 									<vbox class="window-top-bars light">
 										<hbox class="window-top-bar">
@@ -208,7 +301,7 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="3">
+							<vbox class="page" data-page="13">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -247,10 +340,10 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="10">
+							<vbox class="page" data-page="20">
 
 							</vbox>
-							<vbox class="page" data-page="20">
+							<vbox class="page" data-page="30">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -266,10 +359,24 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="21">
+							<vbox class="page" data-page="31">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" id="profile-pic-content">
+											<h4>Useful links</h4>
+											
+											<vbox class="card">
+												<label class="item ripple-enabled" is="text-link" href="https://github.com/kitchenfox/geckium">
+													<vbox>
+														<label class="name">GitHub</label>
+													</vbox>
+												</label>
+												<label class="item ripple-enabled" is="text-link" href="https://discord.gg/XFAdeUSWyb">
+													<vbox>
+														<label class="name">Discord</label>
+													</vbox>
+												</label>
+											</vbox>
 											<h4>Frequently Asked Questions</h4>
 											<vbox class="card" style="padding: 16px; padding-block-start: 0">
 												<p class="headline-5">Q: WindowBli-</p>
@@ -282,12 +389,12 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="22">
+							<vbox class="page" data-page="32">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
 											<vbox class="card">
-												<hbox style="/*display: none*/" class="banner">
+												<hbox class="banner">
 													<image style="width: 200px;"></image>
 													<label style="font-size: 32pt;">Geckium</label>
 												</hbox>

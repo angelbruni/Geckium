@@ -11,6 +11,14 @@
 			overflow: hidden;
 			padding-inline: 19px;
 			transition: background-color 155ms;
+			margin: 0 !important;
+			text-decoration: none;
+			color: black;
+			cursor: default;
+
+			@media (prefers-color-scheme: dark) {
+				color: white;
+			}
 			
 			&:is(hbox) {
 				align-items: center;
