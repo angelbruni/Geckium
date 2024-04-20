@@ -324,6 +324,9 @@ tooltip {
   alpha is 0.002 for that bug (assuming it's one) to not happen. */
   background: rgba(1, 1, 1, 0.002) !important;
 }
+:root:-moz-lwtheme #navigator-toolbox {
+  padding-top: 0 !important;
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"] {
   /* 	bruni: I like this theme but this theme doesn't
   		   make use of the header image, which would
