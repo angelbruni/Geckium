@@ -949,6 +949,9 @@ tooltip {
   --toolbarbutton-menu-width: 36px;
   --toolbarbutton-height: 27px;
   --toolbarbutton-inner-padding: 5px !important;
+  --toolbarbutton-border-color-normal: rgb(198, 206, 228);
+  --toolbarbutton-border-color-hot: rgb(163, 174, 197);
+  --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
   --toolbarbutton-outer-padding: 3px !important;
   --toolbarbutton-gradient: linear-gradient(
@@ -993,20 +996,36 @@ tooltip {
   }
 }
 :root:not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --toolbarbutton-border-color-normal: rgb(198, 206, 228);
-  --toolbarbutton-border-color-hot: rgb(163, 174, 197);
-  --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
   --navigation-buttons-separator: rgb(221, 229, 243);
 }
 :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --nav-bar: -moz-dialog !important;
+  --toolbarbutton-border-color-normal: -moz-dialogtext;
+  --toolbarbutton-border-color-hot: -moz-dialogtext;
+  --toolbarbutton-border-color-active: -moz-dialogtext;
   --toolbarbutton-gradient: var(--nav-bar) !important;
   --toolbarbutton-icon-fill: -moz-dialogtext !important;
   --personal-toolbar: var(--nav-bar) !important;
   --bookmark-item-color: -moz-dialogtext !important;
 }
+:root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] #urlbar-container {
+  --toolbarbutton-radius: 4px;
+}
 @media (-moz-platform: linux) {
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#back-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#forward-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#reload-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#stop-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#home-button {
+    border: 0 !important;
+  }
   :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
   #new-tab-button)#back-button[disabled], :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1059,6 +1078,23 @@ tooltip {
   #new-tab-button)#home-button {
     list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
   }
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#star-button-box, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#go-button-box {
+    background: var(--urlbarView) !important;
+  }
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#star-button-box {
+    border-right: 0 !important;
+  }
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#go-button-box {
+    border-left: 0 !important;
+  }
   :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
   #new-tab-button)#PanelUI-menu-button[disabled], :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1071,6 +1107,15 @@ tooltip {
   #tabs-newtab-button,
   #new-tab-button)#go-button-box[disabled] {
     opacity: 0.3 !important;
+  }
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#PanelUI-menu-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#chrome-button, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#page-button {
+    border: 0 !important;
   }
   :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
@@ -1087,17 +1132,7 @@ tooltip {
   #new-tab-button)#page-button .toolbarbutton-icon,
   :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
-  #new-tab-button)#page-button image:first-child, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-  #tabs-newtab-button,
-  #new-tab-button)#star-button-box .toolbarbutton-icon,
-  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-  #tabs-newtab-button,
-  #new-tab-button)#star-button-box image:first-child, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-  #tabs-newtab-button,
-  #new-tab-button)#go-button-box .toolbarbutton-icon,
-  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-  #tabs-newtab-button,
-  #new-tab-button)#go-button-box image:first-child {
+  #new-tab-button)#page-button image:first-child {
     max-width: 24px !important;
     max-height: 24px !important;
   }
@@ -1112,6 +1147,20 @@ tooltip {
   #tabs-newtab-button,
   #new-tab-button)#page-button {
     list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
+  }
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#star-button-box .toolbarbutton-icon,
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#star-button-box image:first-child, :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#go-button-box .toolbarbutton-icon,
+  :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+  #tabs-newtab-button,
+  #new-tab-button)#go-button-box image:first-child {
+    max-width: 16px !important;
+    max-height: 16px !important;
   }
   :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"][moregtkicons=true] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
@@ -2924,9 +2973,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   --urlbarView-row-height: 25px;
   --urlbarView: rgb(255, 255, 255, 94%);
   --autocomplete-popup-hover-background: color-mix(
-    in srgb,
-    -moz-menuhover 20%,
-    white 20%
+  	in srgb,
+  	-moz-menuhover 20%,
+  	white 20%
   ) !important;
   --autocomplete-popup-highlight-background: -moz-menuhover !important;
   --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
@@ -2939,9 +2988,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 @media (-moz-platform: linux) {
   :root {
     --autocomplete-popup-hover-background: color-mix(
-      in srgb,
-      AccentColor 20%,
-      white 20%
+    	in srgb,
+    	AccentColor 20%,
+    	white 20%
     ) !important;
     --autocomplete-popup-highlight-background: AccentColor !important;
   }
@@ -3032,13 +3081,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
   display: none !important;
 }
 #nav-bar[securestate=secure], #nav-bar[securestate=ev] {
-  --toolbar-field-background-color: var(
-    --urlbar-background-verified-proxystate-valid
-  );
+  --toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
   --protocol-color: var(--urlbar-verified-proxystate-valid);
-  --protocol-background-color: var(
-    --urlbar-background-verified-proxystate-valid
-  );
+  --protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 }
 #nav-bar[securestate=secure] #identity-icon, #nav-bar[securestate=ev] #identity-icon {
   list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
@@ -3080,7 +3125,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 #urlbar[breakout][breakout-extend] > #urlbar-background,
 #urlbar[focused=true] > #urlbar-background #searchbar:focus-within {
   /*box-shadow: 0 1px 0 0 rgb(255, 255, 255, 40%),
-  inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
+  	inset 0 1px 1px rgb(0, 0, 0, 10%) !important;*/
   box-shadow: none !important;
 }
 

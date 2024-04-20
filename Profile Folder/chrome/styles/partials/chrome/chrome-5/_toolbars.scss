@@ -16,6 +16,9 @@
 	--toolbarbutton-menu-width: 36px;
 	--toolbarbutton-height: 27px;
 	--toolbarbutton-inner-padding: 5px !important;
+	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
+	--toolbarbutton-border-color-hot: rgb(163, 174, 197);
+	--toolbarbutton-border-color-active: rgb(171, 181, 203);
 	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
 	--toolbarbutton-outer-padding: 3px !important;
 	--toolbarbutton-gradient: linear-gradient(
@@ -66,20 +69,24 @@
 	}
 
 	&:not([lwtheme-id="#{$gtkplus}"]) {
-		--toolbarbutton-border-color-normal: rgb(198, 206, 228);
-		--toolbarbutton-border-color-hot: rgb(163, 174, 197);
-		--toolbarbutton-border-color-active: rgb(171, 181, 203);
 		--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
 		--navigation-buttons-separator: rgb(221, 229, 243);
 	}
 	&[lwtheme-id="#{$gtkplus}"] {
 		--nav-bar: -moz-dialog !important;
 
+		--toolbarbutton-border-color-normal: -moz-dialogtext;
+		--toolbarbutton-border-color-hot: -moz-dialogtext;
+		--toolbarbutton-border-color-active: -moz-dialogtext;
 		--toolbarbutton-gradient: var(--nav-bar) !important;
 		--toolbarbutton-icon-fill: -moz-dialogtext !important;
 
 		--personal-toolbar: var(--nav-bar) !important;
 		--bookmark-item-color: -moz-dialogtext !important;
+
+		#urlbar-container {
+			--toolbarbutton-radius: 4px;
+		}
 		
 		@media (-moz-platform: linux) {
 			.toolbarbutton-1:not(
@@ -87,12 +94,13 @@
 				#tabs-newtab-button,
 				#new-tab-button
 			) {
-				
 				&#back-button,
 				&#forward-button,
 				&#reload-button,
 				&#stop-button,
 				&#home-button {
+					border: 0 !important;
+
 					&[disabled] {
 						opacity: .3 !important;
 					}
@@ -122,6 +130,19 @@
 				&#home-button {
 					list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
 				}
+
+				&#star-button-box,
+				&#go-button-box {
+					background: var(--urlbarView) !important;
+				}
+
+				&#star-button-box {
+					border-right: 0 !important;
+				}
+
+				&#go-button-box {
+					border-left: 0 !important;
+				}
 			}
 			
 			&[moregtkicons="true"] {
@@ -138,7 +159,13 @@
 						&[disabled] {
 							opacity: .3 !important;
 						}
-	
+					}
+
+					&#PanelUI-menu-button,
+					&#chrome-button,
+					&#page-button {
+						border: 0 !important;
+
 						.toolbarbutton-icon,
 						image:first-child {
 							max-width: 24px !important;
@@ -154,6 +181,15 @@
 					&#page-button {
 						list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
 					}
+
+					&#star-button-box,
+					&#go-button-box {
+						.toolbarbutton-icon,
+						image:first-child {
+							max-width: 16px !important;
+							max-height: 16px !important;
+						}
+					}
 	
 					&#star-button-box {
 						#star-button {
@@ -166,7 +202,7 @@
 						}
 					}
 	
-					&#go-button-box{
+					&#go-button-box {
 						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
 					}
 				}
