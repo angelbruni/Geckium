@@ -87,14 +87,22 @@
 				#tabs-newtab-button,
 				#new-tab-button
 			) {
-				&[disabled] {
-					opacity: .3 !important;
-				}
+				
+				&#back-button,
+				&#forward-button,
+				&#reload-button,
+				&#stop-button,
+				&#home-button {
+					&[disabled] {
+						opacity: .3 !important;
+					}
 
-				.toolbarbutton-icon {
-					max-width: 24px !important;
-					max-height: 24px !important;
+					.toolbarbutton-icon {
+						max-width: 24px !important;
+						max-height: 24px !important;
+					}
 				}
+				
 			}
 
 			#back-button {
@@ -115,6 +123,48 @@
 			
 			#home-button {
 				list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
+			}
+
+			&[moregtkicons="true"] {
+				&#PanelUI-menu-button,
+				&#chrome-button,
+				&#page-button,
+				&#star-button-box,
+				&#go-button-box {
+					&[disabled] {
+						opacity: .3 !important;
+					}
+
+					.toolbarbutton-icon,
+					image:first-child {
+						max-width: 24px !important;
+						max-height: 24px !important;
+					}
+				}
+				
+				#PanelUI-menu-button,
+				#chrome-button {
+					list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
+				}
+
+				#page-button {
+					list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
+				}
+
+				#star-button-box {
+					#star-button {
+						&:not([starred="true"]) {
+							list-style-image: url(moz-icon://stock/bookmark-missing?size=toolbar) !important;
+						}
+						&[starred="true"] {
+							list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
+						}
+					}
+				}
+
+				#go-button-box{
+					list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+				}
 			}
 		}
 	}
