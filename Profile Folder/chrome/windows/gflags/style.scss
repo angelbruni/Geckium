@@ -154,27 +154,34 @@ label {
 
 	&:checked {
 		outline: 2px solid var(--secondary-color, var(--primary-color));
-		&::before {
+		outline-offset: -2px;
+
+		&::before,
+		&::after {
+			content: "";
 			position: absolute;
 			inset: 0;
 			display: block;
+		}
+
+		&::before {
 			background-color: color-mix(
 				in srgb,
-				color-mix(in srgb, var(--secondary-color), transparent 60%),
+				color-mix(
+					in srgb,
+					var(--secondary-color, var(--primary-color)),
+					transparent 60%
+				),
 				rgb(0, 0, 0, 20%)
 			);
-			content: "";
 		}
+
 		&::after {
-			position: absolute;
-			inset: 0;
-			display: block;
 			mask-image: url(chrome://userchrome/content/frameworks/GeckiumMaterial/icons/check.svg);
-			mask-size: 40px 40px;
+			mask-size: 32px 32px;
 			mask-position: center center;
 			mask-repeat: no-repeat;
 			background: rgb(255, 255, 255);
-			content: "";
 		}
 	}
 }
