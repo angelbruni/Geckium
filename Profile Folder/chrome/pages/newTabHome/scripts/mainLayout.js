@@ -1,12 +1,17 @@
 function setPageWidth() {
-	document.documentElement.style.setProperty("--page-width", document.documentElement.clientWidth + "px");	
+	document.documentElement.style.setProperty(
+		"--page-width",
+		document.documentElement.clientWidth + "px"
+	);
 }
 addEventListener("resize", setPageWidth);
 addEventListener("DOMContentLoaded", setPageWidth);
 
-const { SessionStore } = ChromeUtils.importESModule("resource:///modules/sessionstore/SessionStore.sys.mjs");
+const { SessionStore } = ChromeUtils.importESModule(
+	"resource:///modules/sessionstore/SessionStore.sys.mjs"
+);
 
-function setMostVisitedLayout(layout) {	
+function setMostVisitedLayout(layout) {
 	const mostVisited = document.getElementById("most-visited");
 
 	const thumbCheckbox = document.getElementById("thumb-checkbox");
@@ -18,10 +23,11 @@ function setMostVisitedLayout(layout) {
 		pref("Geckium.newTabHome.mostVisitedLayout").set.int(layout);
 	}
 
-	mostVisitedLayout = pref("Geckium.newTabHome.mostVisitedLayout").tryGet.int();
+	mostVisitedLayout = pref(
+		"Geckium.newTabHome.mostVisitedLayout"
+	).tryGet.int();
 
-	if (!mostVisitedLayout)
-		mostVisitedLayout = 1;
+	if (!mostVisitedLayout) mostVisitedLayout = 1;
 
 	switch (layout) {
 		case 0:
@@ -70,12 +76,14 @@ function createMainLayout() {
 			break;
 	}
 
-	document.querySelectorAll("#recently-closed > .items > .item").forEach(entry => {
-		entry.remove();
-	})
-	
-	let	header = ``;
-	let	main = ``;
+	document
+		.querySelectorAll("#recently-closed > .items > .item")
+		.forEach((entry) => {
+			entry.remove();
+		});
+
+	let header = ``;
+	let main = ``;
 	let footer = ``;
 
 	let menuBtnsContainer;
@@ -83,7 +91,7 @@ function createMainLayout() {
 	if (appearanceChoice <= 1) {
 		// Chrome 0 - 5
 		menuBtnsContainer = "#view-toolbar";
-		
+
 		main = `
 		<vbox id="main">
 			<hbox id="view-toolbar">
@@ -104,7 +112,7 @@ function createMainLayout() {
 				<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
 			</hbox>
 		</vbox>
-		`
+		`;
 
 		footer = `
 		<vbox id="footer">
@@ -112,22 +120,20 @@ function createMainLayout() {
 				<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-5/newtab_extensions_promo.png"></html:img>
 			</html:a>
 		</vbox>
-		`
+		`;
 
 		waitForElm(menuBtnsContainer).then(() => {
 			const thumbCheckbox = document.getElementById("thumb-checkbox");
 			const listCheckbox = document.getElementById("list-checkbox");
-	
+
 			thumbCheckbox.addEventListener("change", () => {
-				if (thumbCheckbox.checked == true)
-					setMostVisitedLayout(1);
+				if (thumbCheckbox.checked == true) setMostVisitedLayout(1);
 				else if (!thumbCheckbox.checked && !listCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
-	
+
 			listCheckbox.addEventListener("change", () => {
-				if (listCheckbox.checked == true)
-					setMostVisitedLayout(2);
+				if (listCheckbox.checked == true) setMostVisitedLayout(2);
 				else if (!thumbCheckbox.checked && !listCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
@@ -172,13 +178,16 @@ function createMainLayout() {
 				</vbox>
 			</vbox>
 		</vbox>
-		`
+		`;
 
 		footer = `
 		<vbox id="footer">
-			<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO.png"></html:img>
+			<div id="logo-img">
+				<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_ICON.png"></html:img>
+				<div id="logo_wordmark"></div>
+			</div>
 		</vbox>
-		`
+		`;
 	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
 		// Chrome 21 - 45
 
@@ -191,7 +200,7 @@ function createMainLayout() {
 			</html:div>
 			<html:div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</html:div>
 		</button>
-		`
+		`;
 
 		main = `
 		<hbox id="card-slider-frame">
@@ -212,13 +221,16 @@ function createMainLayout() {
 			</hbox>
 			<button id="page-switcher-end" class="page-switcher" label="›"></button>
 		</hbox>
-		`
+		`;
 
 		footer = `
 		<vbox id="footer">
 			<html:div id="footer-border"></html:div>
 			<hbox id="footer-content">
-				<html:img id="logo-img" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO.png"></html:img>
+				<div id="logo-img">
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_ICON.png"></html:img>
+					<div id="logo_wordmark"></div>
+				</div>
 				<hbox id="dot-list">
 					<button onclick="switchTab('', false, 0)" class="dot selected" label="Most visited" data-page="0">
 						<html:div class="selection-bar"></html:div>
@@ -245,7 +257,7 @@ function createMainLayout() {
 				</html:a>
 			</hbox>
 		</vbox>
-		`
+		`;
 	} else {
 		// Chrome 47 - 50
 
@@ -257,7 +269,7 @@ function createMainLayout() {
 					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
 				</html:form>
 			</vbox>
-			`
+			`;
 		} else {
 			header = `
 			<hbox id="google-bar">
@@ -271,19 +283,20 @@ function createMainLayout() {
 					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
 				</html:form>
 			</vbox>
-			`
+			`;
 		}
 
-		
 		main = `
 		<html:div id="mv-tiles"></html:div>
-		`
+		`;
 
 		waitForElm("#google-search").then(() => {
 			const form = document.querySelector("#google-search > form");
-			form.addEventListener('submit', event => {
+			form.addEventListener("submit", (event) => {
 				event.preventDefault();
-				location.href = 'https://www.google.com/search?q=' + form.querySelector("input").value;
+				location.href =
+					"https://www.google.com/search?q=" +
+					form.querySelector("input").value;
 			});
 		});
 	}
@@ -291,41 +304,46 @@ function createMainLayout() {
 	// Create contents
 	const container = document.querySelector("#main-container");
 
-	Array.from(container.childNodes).forEach(elm => {
+	Array.from(container.childNodes).forEach((elm) => {
 		elm.remove();
 	});
 
-	container.appendChild(MozXULElement.parseXULToFragment(header))
-	container.appendChild(MozXULElement.parseXULToFragment(main))
-	container.appendChild(MozXULElement.parseXULToFragment(footer))
+	container.appendChild(MozXULElement.parseXULToFragment(header));
+	container.appendChild(MozXULElement.parseXULToFragment(main));
+	container.appendChild(MozXULElement.parseXULToFragment(footer));
 
 	waitForElm("#most-visited").then(() => {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 1 || appearanceChoice == 3 || appearanceChoice == 4) {
+	if (
+		appearanceChoice <= 1 ||
+		appearanceChoice == 3 ||
+		appearanceChoice == 4
+	) {
 		waitForElm(menuBtnsContainer).then(() => {
-			document.querySelectorAll('[type="menu"]').forEach(menuBtn => {
-				menuBtn.addEventListener("click", function(event) {
+			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
+				menuBtn.addEventListener("click", function (event) {
 					if (!menuBtn.hasAttribute("open"))
-						menuBtn.setAttribute("open", true); // Add the "open" attribute to the button
-					else
-						menuBtn.removeAttribute("open"); // Add the "open" attribute to the button
-			
+						menuBtn.setAttribute("open", true);
+					// Add the "open" attribute to the button
+					else menuBtn.removeAttribute("open"); // Add the "open" attribute to the button
+
 					// Stop the event from propagating further to prevent triggering the document click listener
 					event.stopPropagation();
 				});
-			
+
 				// Add event listener to the document to listen for clicks outside of the button
-				document.addEventListener("click", function(event) {
+				document.addEventListener("click", function (event) {
 					// Check if the clicked element is the button or one of its children
-					const isClickedInsideButton = menuBtn.contains(event.target);
-			
+					const isClickedInsideButton = menuBtn.contains(
+						event.target
+					);
+
 					// If the click is not inside the button or its children, remove the "open" attribute
-					if (!isClickedInsideButton)
-						menuBtn.removeAttribute("open");
+					if (!isClickedInsideButton) menuBtn.removeAttribute("open");
 				});
-			
+
 				// Add event listeners to children of the button to prevent propagation to the document click listener
 				/*menuBtn.querySelectorAll("*").forEach(child => {
 					child.addEventListener("click", function(event) {
@@ -333,7 +351,7 @@ function createMainLayout() {
 						event.stopPropagation();
 					});
 				});*/
-			});			
+			});
 		});
 	}
 }

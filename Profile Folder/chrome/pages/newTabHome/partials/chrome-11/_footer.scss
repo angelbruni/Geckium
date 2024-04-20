@@ -1,8 +1,28 @@
+& {
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
+	&[lwtheme-id*="{"] {
+		&:not([lwtheme-id*="#{$gtkplus}"]) {
+			#logo_wordmark {
+				background: var(--lwt-text-color) !important;
+			}
+		}
+	}
+}
+
 #footer {
-	img {
-		height: fit-content;
-		width: fit-content;
+	#logo-img {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		height: 100%;
 		padding-block: 5px;
 		padding-inline: 8px;
+	}
+	#logo_wordmark {
+		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_TEXT.png");
+		height: 32px;
+		width: 136px;
+		mask-size: cover;
+		background: rgb(120, 120, 125);
 	}
 }
