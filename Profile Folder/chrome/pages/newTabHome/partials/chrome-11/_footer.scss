@@ -1,9 +1,13 @@
-& {
-	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
-	&[lwtheme-id*="{"] {
-		&:not([lwtheme-id*="#{$gtkplus}"]) {
-			#logo_wordmark {
-				background: var(--lwt-text-color) !important;
+&:not([lwtheme-id*="default-theme"]) {
+	&:not([lwtheme-id*="firefox-compact"]) {
+		&[lwtheme-id*="{"],
+		&[lwtheme-id*="@mozilla.org"] {
+			&:not([lwtheme-id*="#{$gtkplus}"]) {
+				&[footer-themable="true"] {
+					#logo_wordmark {
+						background: var(--lwt-text-color) !important;
+					}
+				}
 			}
 		}
 	}
@@ -18,6 +22,7 @@
 		padding-block: 5px;
 		padding-inline: 8px;
 	}
+
 	#logo_wordmark {
 		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_TEXT.png");
 		height: 32px;
