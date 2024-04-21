@@ -337,7 +337,7 @@ tooltip {
   position: absolute;
   top: 1px;
   left: 1px;
-  height: calc(24px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
+  height: calc(32px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
   width: calc(100% - 2px);
   border-radius: 5px 5px 0 0;
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
@@ -465,7 +465,7 @@ tooltip {
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for tabs */
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+:root:-moz-lwtheme:not([customthememode="2"]):not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --inactive-tab-background-color: color-mix(
   	in srgb,
   	color-mix(
@@ -935,6 +935,8 @@ tooltip {
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+  --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+  --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
   --toolbarbutton-outer-padding: 3px !important;
   --toolbarbutton-gradient: linear-gradient(
   	to top,
@@ -945,6 +947,7 @@ tooltip {
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
+  --navigation-buttons-separator: rgb(221, 229, 243);
   --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
   --personal-toolbar-height: 25px;
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
@@ -969,18 +972,20 @@ tooltip {
     ) !important;
     --personal-toolbar-border-bottom: rgb(91, 91, 91);
     --inner-border-color: rgb(79, 79, 79);
-    --toolbarbutton-border-color-normal: rgb(190, 190, 190);
-    --toolbarbutton-border-color-hot: rgb(196, 196, 196);
-    --toolbarbutton-border-color-active: rgb(199, 199, 199);
-    --navigation-buttons-separator: rgb(209, 209, 209);
+    --toolbarbutton-border-color-normal: rgb(90, 90, 90);
+    --toolbarbutton-border-color-hot: rgb(112, 112, 112);
+    --toolbarbutton-border-color-active: rgb(136, 136, 136);
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	#5d5d5d,
+    	#4c4c4c
+    );
+    --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.1);
+    --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+    --navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
     --bookmark-item-color: #95b4ee;
     --bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
   }
-}
-:root:not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-  --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
-  --navigation-buttons-separator: rgb(221, 229, 243);
 }
 :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --nav-bar: -moz-dialog !important;
@@ -988,7 +993,10 @@ tooltip {
   --toolbarbutton-border-color-hot: -moz-dialogtext;
   --toolbarbutton-border-color-active: -moz-dialogtext;
   --toolbarbutton-gradient: var(--nav-bar) !important;
+  --toolbarbutton-inner-border-color-normal: transparent;
+  --toolbarbutton-inner-border-color-hot: transparent;
   --toolbarbutton-icon-fill: -moz-dialogtext !important;
+  --navigation-buttons-separator: transparent;
   --personal-toolbar: var(--nav-bar) !important;
   --bookmark-item-color: -moz-dialogtext !important;
 }
@@ -1161,67 +1169,20 @@ tooltip {
     list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
   }
 }
-:root:not(:-moz-lwtheme) {
+:root[customthememode="2"], :root:not(:-moz-lwtheme) {
   --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
 }
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for toolbars */
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme[lwtheme-id*=firefox-compact] {
-    --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+  :root:-moz-lwtheme[customthememode="2"], :root:-moz-lwtheme[lwtheme-id*=firefox-compact] {
+    --toolbarbutton-icon-fill: rgb(211, 211, 211) !important;
   }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
-  --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
-  --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-  --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-  --toolbarbutton-border-color-normal: color-mix(
-  	in srgb,
-  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-  	white
-  ) !important;
-  --toolbarbutton-border-color-hot: color-mix(
-  	in srgb,
-  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
-  	white
-  ) !important;
-  --toolbarbutton-border-color-active: color-mix(
-  	in srgb,
-  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
-  	white
-  ) !important;
-  --toolbarbutton-inner-border-color-normal: color-mix(
-  	in srgb,
-  	var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 30%,
-  	transparent
-  ) !important;
-  --toolbarbutton-inner-border-color-hot: color-mix(
-  	in srgb,
-  	var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
-  	transparent
-  ) !important;
-  --toolbarbutton-gradient: linear-gradient(
-  	to bottom,
-  	color-mix(
-  		in srgb,
-  		var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-  		white
-  	),
-  	color-mix(
-  		in srgb,
-  		var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-  		white
-  	)
-  ) !important;
-  --navigation-buttons-separator: color-mix(
-  	in srgb,
-  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-  	white
-  ) !important;
-  --urlbar-border: var(--toolbarbutton-border-color-normal) !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --titlebar-buttonbox-background-color: transparent;
@@ -1461,7 +1422,56 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
+  --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
+  --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --toolbarbutton-border-color-normal: color-mix(
+  	in srgb,
+  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+  	white
+  ) !important;
+  --toolbarbutton-border-color-hot: color-mix(
+  	in srgb,
+  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
+  	white
+  ) !important;
+  --toolbarbutton-border-color-active: color-mix(
+  	in srgb,
+  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+  	white
+  ) !important;
+  --toolbarbutton-inner-border-color-normal: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 30%,
+  	transparent
+  ) !important;
+  --toolbarbutton-inner-border-color-hot: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
+  	transparent
+  ) !important;
+  --toolbarbutton-gradient: linear-gradient(
+  	to bottom,
+  	color-mix(
+  		in srgb,
+  		var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+  		white
+  	),
+  	color-mix(
+  		in srgb,
+  		var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+  		white
+  	)
+  ) !important;
+  --navigation-buttons-separator: color-mix(
+  	in srgb,
+  	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+  	white
+  ) !important;
+  --urlbar-border: var(--toolbarbutton-border-color-normal) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
   --toolbar-bgcolor: color-mix(
   	in srgb,
   	color-mix(
@@ -1472,7 +1482,7 @@ tooltip {
   transparent
   ) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[personalbar=newtab] {
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --personal-toolbar-border: color-mix(
   	in srgb,
@@ -1480,37 +1490,37 @@ tooltip {
   	black
   ) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) #urlbar-background {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) #urlbar-background {
   color: var(--lwt-text-color) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"] #navigator-toolbox {
   background: transparent !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-additional-images) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
@@ -1772,7 +1782,9 @@ tooltip {
 :root[sizemode=maximized] #customization-container, :root[sizemode=fullscreen] #browser,
 :root[sizemode=fullscreen] #customization-container {
   box-shadow: 0 !important;
-  border: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
   margin: 0;
   margin-top: -1px !important;
 }
@@ -1806,25 +1818,25 @@ tooltip {
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#unified-extensions-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#gflags-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#unified-extensions-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)#PanelUI-menu-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron) {
+#new-tab-button)#gflags-button:not([class*=webextension], #gflags-button, #PlacesChevron) {
   width: var(--toolbarbutton-menu-width) !important;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -2125,6 +2137,16 @@ tooltip {
 
 #navigator-toolbox-background {
   position: relative;
+  /*&::before {
+  	content: "";
+  	position: absolute;
+  	left: 3px;
+  	right: 3px;
+  	bottom: 1px;
+  	height: 1px;
+  	box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
+  	z-index: 1;
+  }*/
 }
 @media (-moz-platform: linux) {
   #navigator-toolbox-background {
@@ -2132,16 +2154,6 @@ tooltip {
        -moz-appearance: none !important;
             appearance: none !important;
   }
-}
-#navigator-toolbox-background::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  right: 3px;
-  bottom: 1px;
-  height: 1px;
-  box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
-  z-index: 1;
 }
 
 toolbar[overflowable][customizing] > .customization-target {
@@ -2151,7 +2163,10 @@ toolbar[overflowable][customizing] > .customization-target {
 #browser,
 #customization-container {
   position: relative;
-  border: 1px solid var(--inner-border-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--inner-border-color);
+  border-top-color: var(--personal-toolbar-border-bottom);
   margin: 2px;
   margin-top: -1px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.24);
@@ -3741,7 +3756,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-radius: 5px;
   --personal-toolbar-height: 24px;
 }
-:root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
+:root[geckium-five][geckium-six][geckium-eleven][customthememode="2"], :root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
 }
 @media (prefers-color-scheme: dark) {
@@ -4232,7 +4247,7 @@ hbox[id=label-box][part=label-box] {
   --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
   --toolbarbutton-radius: 4px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthememode="2"], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #tabs-newtab-button,

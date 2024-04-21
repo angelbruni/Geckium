@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", loadTextFieldSetting);
 
 function loadSwitchSetting() {
 	document.querySelectorAll('input.switch[data-pref]').forEach(input => {
-		input.checked = pref(`Geckium.${input.dataset.pref}`).tryGet.bool();
+		input.checked = pref(`${input.dataset.pref}`).tryGet.bool();
 
 		input.addEventListener("input", () => {
-			pref(`Geckium.${input.dataset.pref}`).set.bool(input.checked);
+			pref(`${input.dataset.pref}`).set.bool(input.checked);
 		})
 	})
 }

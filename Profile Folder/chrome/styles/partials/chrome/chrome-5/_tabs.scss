@@ -43,21 +43,24 @@
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for tabs */
 
-		&:not([lwtheme-id*="firefox-compact"]) {
-			&:not([lwtheme-id="#{$gtkplus}"]) {
-				--inactive-tab-background-color: color-mix(
-					in srgb,
-					color-mix(
+		&:not([customthememode="2"]) {
+			&:not([lwtheme-id*="firefox-compact"]) {
+				&:not([lwtheme-id="#{$gtkplus}"]) {
+					--inactive-tab-background-color: color-mix(
 						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-						black
-					) 80%,
-					transparent
-				) !important;
-				--tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-				--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+						color-mix(
+							in srgb,
+							var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+							black
+						) 80%,
+						transparent
+					) !important;
+					--tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+				}
 			}
 		}
+		
 	}
 
 	&:not([tabsintitlebar]) {

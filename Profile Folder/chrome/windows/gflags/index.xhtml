@@ -81,7 +81,7 @@
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
-														<html:input class="switch" data-pref="gmWindow.newTab" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:input class="switch" data-pref="Geckium.gmWindow.newTab" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
@@ -134,6 +134,31 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
+												Browser Preferences
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">Needs restart</div>Disable tab manager</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="browser.tabs.tabmanager.enabled" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Hide extensions menu button</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.unifiedExtensions.hide" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<h4>
 												Visual Style
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
 												<div class="modal" data-modal="aboutVisualStyles_modal">
@@ -166,12 +191,13 @@
 														<label class="name">Custom theme mode</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 208px">
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Solid colored toolbars</hbox>
-															<hbox class="item ripple-enabled" value="1">Themed toolbars-only</hbox>
+															<hbox class="item ripple-enabled" value="0">Theme window frame and toolbars</hbox>
+															<hbox class="item ripple-enabled" value="1">Theme toolbars</hbox>
+															<hbox class="item ripple-enabled" value="2">Theme window frame</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
@@ -181,7 +207,7 @@
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
-														<html:input class="switch" data-pref="appearance.customThemeColorizeTabGlare" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:input class="switch" data-pref="Geckium.appearance.customThemeColorizeTabGlare" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
@@ -192,7 +218,7 @@
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
-														<html:input class="switch" data-pref="appearance.moreGTKIcons" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:input class="switch" data-pref="Geckium.appearance.moreGTKIcons" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
@@ -258,7 +284,7 @@
 												<!--<h3 for="people-switch"/>-->
 												<spacer />
 												<div class="switch-parent">
-													<html:input class="switch" data-pref="profilepic.button" type="checkbox" id="people-switch" name="people-switch" />
+													<html:input class="switch" data-pref="Geckium.profilepic.button" type="checkbox" id="people-switch" name="people-switch" />
 													<html:label class="gutter" for="people-switch" />
 												</div>
 											</hbox>
@@ -348,7 +374,7 @@
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
-														<html:input class="switch" data-pref="newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
