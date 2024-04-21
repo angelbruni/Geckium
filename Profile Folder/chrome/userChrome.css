@@ -65,9 +65,10 @@
 }
 @media (-moz-platform: windows) {
   :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(
-    	--lwt-accent-color
-    );
+    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
+  }
+  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
   }
 }
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
@@ -310,6 +311,10 @@
   background-image: var(--lwt-additional-images);
   background-repeat: var(--lwt-background-tiling);
   background-position: var(--lwt-background-alignment);
+  background-position-y: -9px;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-background-alignment: right center"] body::before {
+  background-position-y: calc(50% - 9px);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=maximized] body::before, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=fullscreen] body::before {
   box-shadow: 0;
@@ -321,8 +326,36 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[lwtheme-image] body::before {
   background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
   background-repeat: no-repeat, var(--lwt-background-tiling);
-  background-position: right top, var(--lwt-background-alignment) !important;
+  background-position: right top, var(--lwt-background-alignment);
+  background-position-y: -9px;
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]):not([privatebrowsingmode=temporary]), :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"])[privatebrowsingmode=temporary] {
+  --titlebar-active: linear-gradient(
+  	to bottom,
+  	color-mix(
+  		in srgb,
+  		var(--lwt-accent-color) 90%,
+  		white
+  	),
+  	var(--lwt-accent-color) 40px
+  ) !important;
+  --titlebar-inactive: linear-gradient(
+  	to bottom,
+  	color-mix(
+  		in srgb,
+  		var(--lwt-accent-color) 70%,
+  		white
+  	),
+  	color-mix(
+  		in srgb,
+  		var(--lwt-accent-color) 80%,
+  		white
+  	)
+  ) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) body::before {
+  content: unset;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][windowtype="navigator:browser"] > body,
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] #navigator-toolbox {
@@ -390,32 +423,25 @@
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for tabs */
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --inactive-tab-background-color: color-mix(
+  	in srgb,
+  	color-mix(
+  		in srgb,
+  		var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+  		black
+  	) 80%,
+  	transparent
+  ) !important;
+  --tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+}
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --tabbrowser-tab-selected: linear-gradient(
-    	to top,
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 8%,
-    		white
-    	),
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 5%, white)
-    ) !important;
     --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
   }
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --inactive-tab-background-color: color-mix(
-    	in srgb,
-    	color-mix(
-    		in srgb,
-    		var(--lwt-accent-color) 80%,
-    		black
-    	) 80%,
-    	transparent
-    ) !important;
-    --tabbrowser-tab-selected: var(--lwt-accent-color) !important;
     --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
   }
 }
@@ -429,21 +455,19 @@
     	color-mix(
     		in srgb,
     		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 8%,
-    				white
-    			)
-    			70%,
+    			in srgb,
+    			var(--toolbar-bgcolor, var(--lwt-accent-color)) 8%,
+    			white
+    		) 70%,
     		transparent
     	),
     	color-mix(
     		in srgb,
     		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 5%,
-    				white
-    			)
-    			70%,
+    			in srgb,
+    			var(--toolbar-bgcolor, var(--lwt-accent-color)) 5%,
+    			white
+    		) 70%,
     		transparent
     	)
     ) !important;
@@ -1142,9 +1166,10 @@
 }
 @media (-moz-platform: windows) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(
-    	--lwt-accent-color
-    );
+    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
   }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
@@ -1354,7 +1379,7 @@
 }
 @media not (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --nav-bar: linear-gradient(
+    /*--nav-bar: linear-gradient(
     	to bottom,
     	color-mix(
     		in srgb,
@@ -1380,7 +1405,9 @@
     		white
     	),
     	color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-    ) !important;
+    ) !important;*/
+    --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
     --personal-toolbar: color-mix(
@@ -1426,14 +1453,14 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --nav-bar: var(--lwt-accent-color) !important;
-    --personal-toolbar: var(--lwt-accent-color) !important;
+    --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
-    --personal-toolbar: var(--lwt-accent-color) !important;
+    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
     --personal-toolbar-border: color-mix(
     	in srgb,
-    	var(--lwt-accent-color) 80%,
+    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
     	black
     ) !important;
   }
@@ -1534,32 +1561,17 @@
     	to bottom,
     	color-mix(
     		in srgb,
-    		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 5%,
-    				white
-    			)
-    			70%,
+    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     		transparent
     	),
     	color-mix(
     		in srgb,
-    		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 20%,
-    				white
-    			)
-    			70%,
+    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     		transparent
     	),
     	color-mix(
     		in srgb,
-    		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 10%,
-    				white
-    			)
-    			70%,
+    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     		transparent
     	)
     ) !important;
@@ -1569,22 +1581,12 @@
     	to bottom,
     	color-mix(
     		in srgb,
-    		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 10%,
-    				white
-    			)
-    			70%,
+    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     		transparent
     	),
     	color-mix(
     		in srgb,
-    		color-mix(
-    				in srgb,
-    				var(--toolbarbutton-icon-fill) 2%,
-    				white
-    			)
-    			70%,
+    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     		transparent
     	)
     ) !important;
@@ -1594,14 +1596,14 @@
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
     --nav-bar: color-mix(
     	in srgb,
-    	var(--lwt-accent-color) 70%,
+    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     	transparent
     ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([personalbar=newtab]) {
     --personal-toolbar: color-mix(
     	in srgb,
-    	var(--lwt-accent-color) 70%,
+    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
     	transparent
     ) !important;
   }
@@ -1612,7 +1614,7 @@
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar,
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
-  background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
+  background: var(--lwt-additional-images), var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
