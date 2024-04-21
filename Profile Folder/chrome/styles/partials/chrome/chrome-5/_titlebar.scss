@@ -51,7 +51,7 @@
 
     @import "titlebar/nocomp";
 	&:not(:-moz-lwtheme) {
-		body {
+		&[windowtype="navigator:browser"] > body {
 			background: transparent !important;
 
 			@media (-moz-platform: linux) {
@@ -79,7 +79,7 @@
 				}
 
 				// Themes with image header/additional images
-				body {
+				&[windowtype="navigator:browser"] > body {
 					&::before {
 						content: "";
 						position: absolute;
@@ -99,7 +99,7 @@
 				}
 
 				&[style*="--lwt-background-alignment: right center"] {
-					body {
+					&[windowtype="navigator:browser"] > body {
 						&::before {
 							background-position-y: calc(50% - 9px);
 						}
@@ -108,7 +108,7 @@
 
 				&[sizemode="maximized"],
 				&[sizemode="fullscreen"] {
-					body {
+					&[windowtype="navigator:browser"] > body {
 						&::before {
 							box-shadow: 0;
 							top: -9px;
@@ -117,7 +117,7 @@
 				}
 
 				&[lwtheme-image] {
-					body {
+					&[windowtype="navigator:browser"] > body {
 						position: relative;
 
 						&::before {
@@ -163,7 +163,7 @@
 							) !important;
 						}
 
-						body {
+						&[windowtype="navigator:browser"] > body {
 							&::before {
 								content: unset;
 							}
@@ -175,6 +175,12 @@
 					&[windowtype="navigator:browser"] > body,
 					#navigator-toolbox {
 						background: transparent !important;
+					}
+
+					&[windowtype="navigator:browser"] > body {
+						&::before {
+							content: unset;
+						}
 					}
 				}
 			}
