@@ -128,10 +128,6 @@
 							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
 						}
 					}
-
-					#navigator-toolbox {
-						box-shadow: none !important;
-					}
 				}
 
 				// Themes without image header/additional images
@@ -182,6 +178,10 @@
 							content: unset;
 						}
 					}
+				}
+
+				#navigator-toolbox {
+					box-shadow: none !important;
 				}
 			}
         }

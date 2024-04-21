@@ -3,29 +3,27 @@
 	font-size: 9pt;
 
 	// Custom theme support
-	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
-	&[lwtheme-id*="{"] {
-		&:not([lwtheme-id*="#{$gtkplus}"]) {
-			body {
-				background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, black);
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					body {
+						background-color: color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%, black);
+						background-image: var(--lwt-newtab-image);
+						image-rendering: var(--lwt-newtab-image-rendering);
+					}
+				}
 			}
 		}
 	}
+	
 
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {
 		body {
 			background-image: var(--lwt-additional-images);
 			background-position: var(--lwt-background-alignment);
 			background-repeat: var(--lwt-background-tiling);
-		}
-	}
-
-	&[lwtheme-id*="{"] {
-		&:not([lwtheme-id*="#{$gtkplus}"]) {
-			body {
-				background-image: var(--lwt-newtab-image);
-				image-rendering: var(--lwt-newtab-image-rendering);
-			}
 		}
 	}
 }

@@ -71,6 +71,7 @@
 	// if !gtkplus
 	&:not([lwtheme-id="#{$gtkplus}"]) {
 		--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
 		--navigation-buttons-separator: rgb(221, 229, 243);
 	}
 	// else
@@ -228,48 +229,83 @@
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
 				@import "titlebar/nocomp";
 				
-				--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color)));
+				--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
 				--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 				--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
-				&[personalbar="newtab"] {
-					--personal-toolbar: color-mix(
+				// if toolbar-bgcolor = transparent
+				&[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
+					--toolbar-bgcolor: color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
-						white
+						color-mix(
+							in srgb,
+							var(--toolbar-color) 45%,
+							black
+						) 70%,
+					transparent
 					) !important;
+				}
+
+				&[personalbar="newtab"] {
+					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 					--personal-toolbar-border: color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-fill) 80%,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
 						black
 					) !important;
 				}
 
 				--toolbarbutton-border-color-normal: color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill) 50%,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
 					white
-				);
+				) !important;
 				--toolbarbutton-border-color-hot: color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill) 40%,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
 					white
-				);
+				) !important;
 				--toolbarbutton-border-color-active: color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill) 30%,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
 					white
-				);
+				) !important;
+				--toolbarbutton-inner-border-color-normal: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 30%,
+					transparent
+				) !important;
+				--toolbarbutton-inner-border-color-hot: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
+					transparent
+				) !important;
 				--toolbarbutton-gradient: linear-gradient(
 					to bottom,
-					rgb(255, 255, 255),
 					color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-fill) 10%,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
 						white
 					)
-				);
+				) !important;
+
+				--navigation-buttons-separator: color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+					white
+				) !important;
+
+				#urlbar-background {
+					color: var(--lwt-text-color) !important;
+				}
+
+				--urlbar-border: var(--toolbarbutton-border-color-normal) !important;
 
 				&[customthememode="1"] {
 					body,
@@ -542,7 +578,7 @@
 		&[geckium-choice="twentyfive"] {
 			#PersonalToolbar {
 				position: fixed !important;
-				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
+				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 3px);
 				left: 9px;
 				z-index: 1;
 				width: calc(100% - 18px);
@@ -556,7 +592,13 @@
 				&::after {
 					content: unset !important;
 				}
-			}	
+			}
+
+			&[sizemode="maximized"] {
+				#PersonalToolbar {
+					top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 14px);
+				}
+			}
 		}
 	}
 
@@ -810,7 +852,7 @@ toolbarspring {
 			}
 
 			&::after {
-				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+				box-shadow: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
 			}
 
 			.toolbarbutton-badge-stack,
@@ -825,7 +867,7 @@ toolbarspring {
 		&[open] {
 			border: 1px solid var(--toolbarbutton-border-color-active);
 			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
-				inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
+						inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
 			transition: none !important;
 
 			&::before {

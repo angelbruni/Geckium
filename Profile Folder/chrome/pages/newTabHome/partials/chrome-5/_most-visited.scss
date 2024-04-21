@@ -22,45 +22,50 @@
 	}
 
 	// Custom theme support
-	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
-	&[lwtheme-id*="{"] {
-		&:not([lwtheme-id*="#{$gtkplus}"]) {
-			--view-toolbar-buttons-bg: var(--lwt-text-color) !important;
-			--window-menu-item-hover-bg: var(--lwt-text-color) !important;
-
-			--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
-			--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
-			--thumbnail-container-color: var(--link-color) !important;
-			&:not([style*="--toolbar-color: white"]),
-			&:not([style*="--toolbar-color: rgb(255,255,255)"]),
-			&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
-				--edit-bar-background-color-hot: var(--toolbar-color, var(--lwt-accent-color)) !important;
-				--edit-bar-background-hot: linear-gradient(
-					to bottom,
-					color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
-					var(--edit-bar-background-color-hot)
-				) !important;
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
+					--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
+		
+					--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
+					--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--thumbnail-container-color: var(--link-color) !important;
+					
+					&:not([style*="--toolbar-color: white"]),
+					&:not([style*="--toolbar-color: rgb(255,255,255)"]),
+					&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
+						--edit-bar-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+						--edit-bar-background-hot: linear-gradient(
+							to bottom,
+							color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+							var(--edit-bar-background-color-hot)
+						) !important;
+					}
+		
+					--link-color: var(--lwt-accent-color) !important;
+		
+					&[style*="--arrowpanel-background"] {
+						--link-color: var(--arrowpanel-color, var(--lwt-accent-color)) !important;
+					}
+				}
+				&[lwtheme-id*="#{$gtkplus}"] {
+					--view-toolbar-buttons-bg: AccentColor !important;
+					--window-menu-item-hover-bg: AccentColor !important;
+		
+					--thumbnail-border-color-normal: color-mix(in srgb, ActiveCaption 10%, white) !important;
+					--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
+					--thumbnail-container-color: -moz-dialogtext;
+					--edit-bar-background-color-hot: color-mix(in srgb, AccentColor 85%, black) !important;
+					--edit-bar-background-hot: linear-gradient(
+						to bottom,
+						color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+						var(--edit-bar-background-color-hot)
+					) !important;
+				}
 			}
-
-			--link-color: var(--lwt-accent-color) !important;
-
-			&[style*="--arrowpanel-background"] {
-				--link-color: var(--arrowpanel-color, var(--lwt-accent-color)) !important;
-			}
-		}
-		&[lwtheme-id*="#{$gtkplus}"] {
-			--view-toolbar-buttons-bg: AccentColor !important;
-			--window-menu-item-hover-bg: AccentColor !important;
-
-			--thumbnail-border-color-normal: color-mix(in srgb, ActiveCaption 10%, white) !important;
-			--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
-			--thumbnail-container-color: -moz-dialogtext;
-			--edit-bar-background-color-hot: color-mix(in srgb, AccentColor 85%, black) !important;
-			--edit-bar-background-hot: linear-gradient(
-				to bottom,
-				color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
-				var(--edit-bar-background-color-hot)
-			) !important;
 		}
 	}
 }
