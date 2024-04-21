@@ -1,5 +1,5 @@
 function setPageWidth() {
-	document.documentElement.style.setProperty("--page-width", document.documentElement.clientWidth + "px");	
+	document.documentElement.style.setProperty("--page-width",document.documentElement.clientWidth + "px");
 }
 addEventListener("resize", setPageWidth);
 addEventListener("DOMContentLoaded", setPageWidth);
@@ -14,9 +14,8 @@ function setMostVisitedLayout(layout) {
 
 	let mostVisitedLayout;
 
-	if (typeof layout !== "undefined" && typeof layout !== "string") {
+	if (typeof layout !== "undefined" && typeof layout !== "string")
 		pref("Geckium.newTabHome.mostVisitedLayout").set.int(layout);
-	}
 
 	mostVisitedLayout = pref("Geckium.newTabHome.mostVisitedLayout").tryGet.int();
 
@@ -70,12 +69,12 @@ function createMainLayout() {
 			break;
 	}
 
-	document.querySelectorAll("#recently-closed > .items > .item").forEach(entry => {
+	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
 		entry.remove();
-	})
-	
-	let	header = ``;
-	let	main = ``;
+	});
+
+	let header = ``;
+	let main = ``;
 	let footer = ``;
 
 	let menuBtnsContainer;
@@ -283,7 +282,7 @@ function createMainLayout() {
 			const form = document.querySelector("#google-search > form");
 			form.addEventListener('submit', event => {
 				event.preventDefault();
-				location.href = 'https://www.google.com/search?q=' + form.querySelector("input").value;
+				location.href = "https://www.google.com/search?q=" + form.querySelector("input").value;
 			});
 		});
 	}
@@ -308,10 +307,10 @@ function createMainLayout() {
 			document.querySelectorAll('[type="menu"]').forEach(menuBtn => {
 				menuBtn.addEventListener("click", function(event) {
 					if (!menuBtn.hasAttribute("open"))
-						menuBtn.setAttribute("open", true); // Add the "open" attribute to the button
+						menuBtn.setAttribute("open", true);
 					else
 						menuBtn.removeAttribute("open"); // Add the "open" attribute to the button
-			
+
 					// Stop the event from propagating further to prevent triggering the document click listener
 					event.stopPropagation();
 				});
