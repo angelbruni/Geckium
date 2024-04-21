@@ -157,9 +157,12 @@ function setThemeAttr() {
 			if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
 				customThemeMode = 0;
 				docElm.setAttribute("chromemargin", "0,0,0,0");
-			} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 1) {
+			} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
 				customThemeMode = 1;
 				docElm.setAttribute("chromemargin", "0,3,3,3");
+			} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
+				customThemeMode = 2;
+				docElm.setAttribute("chromemargin", "0,0,0,0");
 			}
 
 			docElm.setAttribute("customthememode", customThemeMode);

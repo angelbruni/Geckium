@@ -303,7 +303,7 @@
   position: absolute;
   top: 1px;
   left: 1px;
-  height: calc(24px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
+  height: calc(32px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
   width: calc(100% - 2px);
   border-radius: 5px 5px 0 0;
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
@@ -429,7 +429,7 @@
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for tabs */
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+:root:-moz-lwtheme:not([customthememode="2"]):not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --inactive-tab-background-color: color-mix(
   	in srgb,
   	color-mix(
@@ -887,10 +887,13 @@
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
   --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+  --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+  --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
   --toolbarbutton-gradient: linear-gradient(to top, rgb(222,234,248), rgb(240,245,253));
   --toolbarbutton-active-background: transparent !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
+  --navigation-buttons-separator: rgb(221, 229, 243);
   --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
   --personal-toolbar-height: 25px;
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
@@ -913,12 +916,18 @@
     	#4c4c4c,
     	#575757
     ) !important;
+    --toolbarbutton-border-color-normal: rgb(90, 90, 90);
+    --toolbarbutton-border-color-hot: rgb(112, 112, 112);
+    --toolbarbutton-border-color-active: rgb(136, 136, 136);
+    --toolbarbutton-gradient: linear-gradient(
+    	to bottom,
+    	#5d5d5d,
+    	#4c4c4c
+    );
+    --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.1);
+    --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+    --navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
   }
-}
-:root:not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-  --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
-  --navigation-buttons-separator: rgb(221, 229, 243);
 }
 :root[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --nav-bar: -moz-dialog !important;
@@ -926,7 +935,10 @@
   --toolbarbutton-border-color-hot: -moz-dialogtext;
   --toolbarbutton-border-color-active: -moz-dialogtext;
   --toolbarbutton-gradient: var(--nav-bar) !important;
+  --toolbarbutton-inner-border-color-normal: transparent;
+  --toolbarbutton-inner-border-color-hot: transparent;
   --toolbarbutton-icon-fill: -moz-dialogtext !important;
+  --navigation-buttons-separator: transparent;
   --personal-toolbar: var(--nav-bar) !important;
   --bookmark-item-color: -moz-dialogtext !important;
 }
@@ -1099,15 +1111,15 @@
     list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
   }
 }
-:root:not(:-moz-lwtheme) {
+:root[customthememode="2"], :root:not(:-moz-lwtheme) {
   --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
 }
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for toolbars */
 }
 @media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme[lwtheme-id*=firefox-compact] {
-    --toolbarbutton-icon-fill: rgb(49, 49, 49) !important;
+  :root:-moz-lwtheme[customthememode="2"], :root:-moz-lwtheme[lwtheme-id*=firefox-compact] {
+    --toolbarbutton-icon-fill: rgb(211, 211, 211) !important;
   }
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
@@ -1333,12 +1345,12 @@
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
   padding-top: 7px !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
   --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
   --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
   --toolbar-bgcolor: color-mix(
   	in srgb,
   	color-mix(
@@ -1349,7 +1361,7 @@
   transparent
   ) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[personalbar=newtab] {
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --personal-toolbar-border: color-mix(
   	in srgb,
@@ -1357,7 +1369,7 @@
   	black
   ) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
   --toolbarbutton-border-color-normal: color-mix(
   	in srgb,
   	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
@@ -1402,40 +1414,40 @@
   	white
   ) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) #urlbar-background {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) #urlbar-background {
   color: var(--lwt-text-color) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
   --urlbar-border: var(--toolbarbutton-border-color-normal) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"] #navigator-toolbox {
   background: transparent !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-additional-images) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
@@ -1661,6 +1673,13 @@
   margin-inline-end: 5px !important;
   margin-block-start: -2px !important;
 }
+:root[sizemode=maximized] #browser,
+:root[sizemode=maximized] #customization-container, :root[sizemode=fullscreen] #browser,
+:root[sizemode=fullscreen] #customization-container {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
 :root[sizemode=fullscreen] #fullscr-toggler {
   display: none !important;
 }
@@ -1669,7 +1688,7 @@
   background: transparent !important;
   transition: background-color 100ms linear;
 }
-:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron) {
+:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button):not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]:not([class*=webextension], #gflags-button, #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button:not([class*=webextension], #gflags-button, #PlacesChevron) {
   width: var(--toolbarbutton-menu-width) !important;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button)::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button)::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#unified-extensions-button::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button)::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[type=menu]:not(#back-button, #forward-button)::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#PanelUI-menu-button::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)[class*=webextension]::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)#gflags-button::before {
@@ -1818,15 +1837,17 @@
             appearance: none !important;
   }
 }
-#navigator-toolbox-background::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  right: 3px;
-  bottom: 0;
-  height: 1px;
-  box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
-  z-index: 1;
+#navigator-toolbox-background {
+  /*&::before {
+  	content: "";
+  	position: absolute;
+  	left: 3px;
+  	right: 3px;
+  	bottom: 0;
+  	height: 1px;
+  	box-shadow: 0 1px 0 0 var(--personal-toolbar-border-bottom) !important;
+  	z-index: 1;
+  }*/
 }
 
 toolbar[overflowable][customizing] > .customization-target {
@@ -1835,7 +1856,10 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #browser,
 #customization-container {
-  border: 1px solid var(--inner-border-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--inner-border-color);
+  border-top-color: var(--personal-toolbar-border-bottom);
   margin: 2px;
   margin-top: -1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
@@ -3713,7 +3737,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-height: 27px;
   --toolbarbutton-radius: 3px;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthememode="2"], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
   --toolbarbutton-icon-fill: rgb(111,111,111) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #tabs-newtab-button,
