@@ -142,7 +142,7 @@ function setThemeAttr() {
 		} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
 			docElm.setAttribute("chromemargin", "0,3,3,3");
 
-			if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
+			/*if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
 				if (pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
 					docElm.style.removeProperty("--lwt-accent-color");
 					docElm.style.removeProperty("--lwt-text-color");
@@ -150,7 +150,7 @@ function setThemeAttr() {
 					docElm.style.removeProperty("--lwt-background-alignment");
 					docElm.style.removeProperty("--lwt-background-tiling");
 				}
-			}
+			}*/
 		} else {
 			let customThemeMode;
 

@@ -21,18 +21,23 @@ function setProperties() {
 					.replace(/\\/g, "/");
 
 	setTimeout(() => {
-		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
-		document.documentElement.style.removeProperty("--toolbar-color");
 		document.documentElement.style.removeProperty("--lwt-newtab-image");
 		document.documentElement.style.removeProperty("--lwt-newtab-image-rendering");
 		
 		const lwThemeResource = LightweightThemeManager.themeData.theme;
+
+		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
-		const toolbarText = lwThemeResource.toolbar_text;
-
 		if (toolbarButtonIconFill)
-			document.documentElement.style.setProperty("--toolbarbutton-icon-fill", toolbarButtonIconFill);			
+			document.documentElement.style.setProperty("--toolbarbutton-icon-fill", toolbarButtonIconFill);	
+		
+		document.documentElement.style.removeProperty("--toolbar-bgcolor");
+		const toolbarColor = lwThemeResource.toolbarColor;
+		if (toolbarColor)
+			document.documentElement.style.setProperty("--toolbar-bgcolor", toolbarColor);
 
+		document.documentElement.style.removeProperty("--toolbar-color");
+		const toolbarText = lwThemeResource.toolbar_text;
 		if (toolbarText)
 			document.documentElement.style.setProperty("--toolbar-color", toolbarText);
 
