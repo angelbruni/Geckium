@@ -472,7 +472,8 @@
 					&[style*="--lwt-additional-images"] {
 						#nav-bar,
 						#PersonalToolbar {
-							background: var(--lwt-additional-images), var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+							background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+							background-image: var(--lwt-additional-images) !important;
 							background-position: var(--lwt-background-alignment) !important;
 							background-repeat: var(--lwt-background-tiling) !important;
 						}
@@ -489,7 +490,8 @@
 					&[style*="--lwt-header-image"] {
 						#nav-bar,
 						#PersonalToolbar {
-							background: var(--lwt-header-image) !important;
+							background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+							background-image: var(--lwt-header-image) !important;
 							background-position: top right !important;
 							background-repeat: no-repeat !important;
 						}
