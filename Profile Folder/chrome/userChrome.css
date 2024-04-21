@@ -72,14 +72,14 @@ tooltip {
 :root {
   --titlebar-buttonbox-background-color: transparent;
 }
-:root:not([customthememode="2"]):-moz-lwtheme {
+:root:not([customthememode="1"]):-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for titlebar */
 }
 @media (-moz-platform: windows) {
-  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  :root:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
   }
-  :root:not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  :root:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
     --titlebar-buttonbox-background-color: transparent;
   }
 }
@@ -394,11 +394,11 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"])[windowtype="navigator:browser"] > body::before {
   content: unset;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][windowtype="navigator:browser"] > body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][windowtype="navigator:browser"] > body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] #navigator-toolbox {
   background: transparent !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][windowtype="navigator:browser"] > body::before {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][windowtype="navigator:browser"] > body::before {
   content: unset;
 }
 @media not (-moz-ev-native-controls-patch) {
@@ -476,58 +476,7 @@ tooltip {
   	transparent
   ) !important;
   --tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-}
-@media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, white)));
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color, black)));
-  }
-}
-@media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([style*="--toolbarbutton-icon-fill"]) {
-    --tabbrowser-tab-color: black;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
-    --tabbrowser-tab-selected: linear-gradient(
-    	to top,
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbar-bgcolor, var(--lwt-accent-color)) 8%,
-    			white
-    		) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		color-mix(
-    			in srgb,
-    			var(--toolbar-bgcolor, var(--lwt-accent-color)) 5%,
-    			white
-    		) 70%,
-    		transparent
-    	)
-    ) !important;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
-    /*&:not([style*="--toolbarbutton-icon-fill"]) {
-    	--tabbrowser-tab-color: white;
-    }*/
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] .tabbrowser-tab[visuallyselected=true] {
-    --tabbrowser-tab-selected: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	transparent
-    ) !important;
-  }
+  --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
 }
 :root:not([tabsintitlebar]) .titlebar-items {
   margin-top: -7px !important;
@@ -1225,18 +1174,45 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
+  --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color)));
+  --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --toolbarbutton-border-color-normal: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill) 50%,
+  	white
+  );
+  --toolbarbutton-border-color-hot: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill) 40%,
+  	white
+  );
+  --toolbarbutton-border-color-active: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill) 30%,
+  	white
+  );
+  --toolbarbutton-gradient: linear-gradient(
+  	to bottom,
+  	rgb(255, 255, 255),
+  	color-mix(
+  		in srgb,
+  		var(--toolbarbutton-icon-fill) 10%,
+  		white
+  	)
+  );
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --titlebar-buttonbox-background-color: transparent;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for titlebar */
 }
 @media (-moz-platform: windows) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
     --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
     --titlebar-buttonbox-background-color: transparent;
   }
 }
@@ -1464,261 +1440,46 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
-@media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    /*--nav-bar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 5%,
-    		white
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 20%,
-    		white
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	)
-    ) !important;
-    --personal-toolbar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	),
-    	color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-    ) !important;*/
-    --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-    --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 50%,
-    	white
-    );
-    --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 40%,
-    	white
-    );
-    --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 30%,
-    	white
-    );
-    --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	)
-    );
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
-    --personal-toolbar: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 10%,
-    	white
-    ) !important;
-    --personal-toolbar-border: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 80%,
-    	black
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item:not(.menuitem-iconic) {
-    color: var(--toolbarbutton-icon-fill) !important;
-  }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
+  --personal-toolbar: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill) 10%,
+  	white
+  ) !important;
+  --personal-toolbar-border: color-mix(
+  	in srgb,
+  	var(--toolbarbutton-icon-fill) 80%,
+  	black
+  ) !important;
 }
-@media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-    --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 50%,
-    	black
-    );
-    --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 40%,
-    	black
-    );
-    --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbarbutton-icon-fill) 30%,
-    	black
-    );
-    --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(
-    		in srgb,
-    		var(--toolbarbutton-icon-fill) 10%,
-    		white
-    	)
-    );
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
-    --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-    --personal-toolbar-border: color-mix(
-    	in srgb,
-    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-    	black
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]) {
-    --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 50%,
-    	black
-    );
-    --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 40%,
-    	black
-    );
-    --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--toolbar-color) 30%,
-    	black
-    );
-    --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(in srgb, var(--toolbar-color) 10%, white)
-    );
-    --toolbarbutton-icon-fill: var(--toolbar-color) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"]) {
-    --toolbarbutton-border-color-normal: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	black
-    );
-    --toolbarbutton-border-color-hot: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 40%,
-    	black
-    );
-    --toolbarbutton-border-color-active: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 30%,
-    	black
-    );
-    --toolbarbutton-gradient: linear-gradient(
-    	to bottom,
-    	rgb(255, 255, 255),
-    	color-mix(
-    		in srgb,
-    		var(--lwt-accent-color) 10%,
-    		white
-    	)
-    );
-    --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 50%,
-    	black
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]):not([style*="--toolbar-color"])[style*="--lwt-accent-color: rgb(0, 0, 0)"] {
-    --toolbarbutton-icon-fill: color-mix(
-    	in srgb,
-    	var(--lwt-accent-color) 70%,
-    	white
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item:not(.menuitem-iconic) {
-    color: var(--tabbrowser-tab-color) !important;
-  }
-}
-@media not (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
-    --nav-bar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    		transparent
-    	)
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([personalbar=newtab]) {
-    --personal-toolbar: linear-gradient(
-    	to bottom,
-    	color-mix(
-    		in srgb,
-    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    		transparent
-    	),
-    	color-mix(
-    		in srgb,
-    		var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    		transparent
-    	)
-    ) !important;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] {
-    --nav-bar: color-mix(
-    	in srgb,
-    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    	transparent
-    ) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([personalbar=newtab]) {
-    --personal-toolbar: color-mix(
-    	in srgb,
-    	var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-    	transparent
-    ) !important;
-  }
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] body,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"] #navigator-toolbox {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] body,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"] #navigator-toolbox {
   background: transparent !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-additional-images) !important;
   background-position: var(--lwt-background-alignment) !important;
   background-repeat: var(--lwt-background-tiling) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-additional-images"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-additional-images"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar,
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar,
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-color: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   background-image: var(--lwt-header-image) !important;
   background-position: top right !important;
   background-repeat: no-repeat !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #nav-bar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #nav-bar {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][style*="--lwt-header-image"] #PersonalToolbar {
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
@@ -4379,7 +4140,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-border-color-hot: rgb(192, 192, 192);
   --toolbarbutton-border-color-active: rgb(125, 125, 125);
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
-  	inset 0 1px 2px rgb(255, 255, 255, 75%);
+  							inset 0 1px 2px rgb(255, 255, 255, 75%);
   --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
   --toolbarbutton-width: 27px;
   --toolbarbutton-height: 27px;
