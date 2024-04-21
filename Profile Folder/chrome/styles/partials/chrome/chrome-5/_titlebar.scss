@@ -1,14 +1,14 @@
 :root {
-    --titlebar-active: linear-gradient(
-        to bottom,
-        rgb(97, 162, 241),
-        rgb(72, 140, 222) 40px
-    );
-    --titlebar-inactive: linear-gradient(
-        to bottom,
-        rgb(163, 201, 247),
-        rgb(147, 186, 234) 40px
-    );
+	--titlebar-active: linear-gradient(
+		to bottom,
+		rgb(97, 162, 241),
+		rgb(72, 140, 222) 40px
+	);
+	--titlebar-inactive: linear-gradient(
+		to bottom,
+		rgb(163, 201, 247),
+		rgb(147, 186, 234) 40px
+	);
 	
 	@media (-moz-platform: linux) {
 		--titlebar-active: linear-gradient(
@@ -78,6 +78,7 @@
 					--titlebar-inactive: var(--titlebar-active) !important;
 				}
 
+				// Themes with image header/additional images
 				body {
 					&::before {
 						content: "";
@@ -93,6 +94,15 @@
 						background-image: var(--lwt-additional-images);
 						background-repeat: var(--lwt-background-tiling);
 						background-position: var(--lwt-background-alignment);
+						background-position-y: -9px;
+					}
+				}
+
+				&[style*="--lwt-background-alignment: right center"] {
+					body {
+						&::before {
+							background-position-y: calc(50% - 9px);
+						}
 					}
 				}
 
@@ -113,13 +123,51 @@
 						&::before {
 							background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
 							background-repeat: no-repeat, var(--lwt-background-tiling);
-							background-position: right top, var(--lwt-background-alignment) !important;
+							background-position: right top, var(--lwt-background-alignment);
+							background-position-y: -9px;
 							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
 						}
 					}
 
 					#navigator-toolbox {
 						box-shadow: none !important;
+					}
+				}
+
+				// Themes without image header/additional images
+				&:not([style*="--lwt-additional-images"]) {
+					&:not([style*="--lwt-header-image"]) {
+						&:not([privatebrowsingmode="temporary"]),
+						&[privatebrowsingmode="temporary"] {
+							--titlebar-active: linear-gradient(
+								to bottom,
+								color-mix(
+									in srgb,
+									var(--lwt-accent-color) 90%,
+									white
+								),
+								var(--lwt-accent-color) 40px
+							) !important;
+							--titlebar-inactive: linear-gradient(
+								to bottom,
+								color-mix(
+									in srgb,
+									var(--lwt-accent-color) 70%,
+									white
+								),
+								color-mix(
+									in srgb,
+									var(--lwt-accent-color) 80%,
+									white
+								)
+							) !important;
+						}
+
+						body {
+							&::before {
+								content: unset;
+							}
+						}
 					}
 				}
 	

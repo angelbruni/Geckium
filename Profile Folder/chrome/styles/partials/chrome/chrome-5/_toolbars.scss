@@ -226,7 +226,7 @@
 				@import "titlebar/nocomp";
 
 				@media not (prefers-color-scheme: dark) {
-					--nav-bar: linear-gradient(
+					/*--nav-bar: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
@@ -252,7 +252,10 @@
 							white
 						),
 						color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
-					) !important;
+					) !important;*/
+
+					--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
 					&[personalbar="newtab"] {
 						--personal-toolbar: color-mix(
@@ -298,14 +301,14 @@
 				}
 
 				@media (prefers-color-scheme: dark) {
-					--nav-bar: var(--lwt-accent-color) !important;
-					--personal-toolbar: var(--lwt-accent-color) !important;
+					--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
 					&[personalbar="newtab"] {
-						--personal-toolbar: var(--lwt-accent-color) !important;
+						--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 						--personal-toolbar-border: color-mix(
 							in srgb,
-							var(--lwt-accent-color) 80%,
+							var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
 							black
 						) !important;
 					}
@@ -410,32 +413,17 @@
 							to bottom,
 							color-mix(
 								in srgb,
-								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 5%,
-										white
-									)
-									70%,
+								var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 								transparent
 							),
 							color-mix(
 								in srgb,
-								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 20%,
-										white
-									)
-									70%,
+								var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 								transparent
 							),
 							color-mix(
 								in srgb,
-								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 10%,
-										white
-									)
-									70%,
+								var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 								transparent
 							)
 						) !important;
@@ -445,22 +433,12 @@
 								to bottom,
 								color-mix(
 									in srgb,
-									color-mix(
-											in srgb,
-											var(--toolbarbutton-icon-fill) 10%,
-											white
-										)
-										70%,
+									var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 									transparent
 								),
 								color-mix(
 									in srgb,
-									color-mix(
-											in srgb,
-											var(--toolbarbutton-icon-fill) 2%,
-											white
-										)
-										70%,
+									var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 									transparent
 								)
 							) !important;
@@ -471,14 +449,14 @@
 					@media (prefers-color-scheme: dark) {
 						--nav-bar: color-mix(
 							in srgb,
-							var(--lwt-accent-color) 70%,
+							var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 							transparent
 						) !important;
 
 						&:not([personalbar="newtab"]) {
 							--personal-toolbar: color-mix(
 								in srgb,
-								var(--lwt-accent-color) 70%,
+								var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
 								transparent
 							) !important;
 						}
@@ -494,26 +472,17 @@
 					&[style*="--lwt-additional-images"] {
 						#nav-bar,
 						#PersonalToolbar {
-							background: var(--lwt-additional-images),
-								var(--lwt-accent-color) !important;
-							background-position: var(
-								--lwt-background-alignment
-							) !important;
-							background-repeat: var(
-								--lwt-background-tiling
-							) !important;
+							background: var(--lwt-additional-images), var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+							background-position: var(--lwt-background-alignment) !important;
+							background-repeat: var(--lwt-background-tiling) !important;
 						}
 
 						#nav-bar {
-							background-position-y: calc(
-								var(--tab-height) * -1
-							) !important;
+							background-position-y: calc(var(--tab-height) * -1) !important;
 						}
 
 						#PersonalToolbar {
-							background-position-y: calc(
-								(var(--tab-height) + var(--nav-bar-height)) * -1
-							) !important;
+							background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 						}
 					}
 
@@ -526,15 +495,11 @@
 						}
 
 						#nav-bar {
-							background-position-y: calc(
-								var(--tab-height) * -1
-							) !important;
+							background-position-y: calc(var(--tab-height) * -1) !important;
 						}
 
 						#PersonalToolbar {
-							background-position-y: calc(
-								(var(--tab-height) + var(--nav-bar-height)) * -1
-							) !important;
+							background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 						}
 					}
 				}

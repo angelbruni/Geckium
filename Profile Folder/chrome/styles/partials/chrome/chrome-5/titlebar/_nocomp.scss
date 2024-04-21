@@ -11,9 +11,14 @@
 			@media (-moz-platform: windows) {
 				&:not([lwtheme-id*="firefox-compact"]) {
 					&:not([lwtheme-id="#{$gtkplus}"]) {
-						--titlebar-buttonbox-background-color: var(
-							--lwt-accent-color
-						);
+						--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
+
+						// Themes without image header/additional images
+						&:not([style*="--lwt-additional-images"]) {
+							&:not([style*="--lwt-header-image"]) {
+								--titlebar-buttonbox-background-color: transparent;
+							}
+						}
 					}
 				}
 			}
