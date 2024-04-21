@@ -1,3 +1,43 @@
+& {
+	--tile-background: rgb(242,242,242);
+	--tile-background-disabled: var(--tile-background);
+	--tile-border-color-normal: rgba(150,150,150,0.3137254901960784);
+	--tile-border-color-hot: rgba(150,150,150,1);
+	--tile-close-background-color-normal: rgba(90,90,90,0.7);
+	--tile-close-background-color-hot: rgb(90,90,90);
+	--tile-close-background-color-active: rgb(66,133,244);
+	--tile-thumbnail-background-color: white;
+
+	@media (prefers-color-scheme: dark) {
+		--tile-background: rgb(77, 77, 77);
+		--tile-close-background-color-normal: rgba(201, 201, 201, 0.7);
+		--tile-close-background-color-hot: rgba(235, 235, 235, 0.7);
+	}
+
+	// Custom theme support
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--tile-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+					--tile-border-color-normal: color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+						white
+					);
+					--tile-border-color-hot: color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+						white
+					);
+					--tile-close-background-color-active: var(--thumbnail-container-color);
+				}
+			}
+		}
+	}
+}
+
 &:not([icon-ntp]) {
 	#mv-tiles {
 		gap: 16px;
@@ -15,19 +55,15 @@
 		transition-property: border, box-shadow;
 	
 		&[disabled] {
-			background: rgb(242,242,242);
+			background: var(--tile-background-disabled);
 		}
 		&:not([disabled]) {
-			border: 1px solid rgba(150,150,150,0.3137254901960784);
-			background: rgb(242,242,242);
-
-			@media (prefers-color-scheme: dark) {
-				background: rgb(77, 77, 77);
-			}
+			border: 1px solid var(--tile-border-color-normal);
+			background: var(--tile-background);
 	
 			&:hover,
 			&:focus {
-				border-color: rgba(150,150,150,1);
+				border-color: var(--tile-border-color-hot);
 				box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 4px 8px 0 rgba(0,0,0,0.2);
 				
 				.mv-x {
@@ -72,18 +108,9 @@
 			height: 32px;
 			background: linear-gradient(
 				to left,
-				rgb(242,242,242) 60%,
+				var(--tile-background) 60%,
 				transparent
 			);
-
-			@media (prefers-color-scheme: dark) {
-				background: linear-gradient(
-					to left,
-					rgb(77, 77, 77) 60%,
-					transparent
-				);
-			}
-
 			opacity: 0;
 	
 			transition: opacity 150ms;
@@ -96,11 +123,7 @@
 				mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/close_3_mask.png");
 				mask-position: center;
 				mask-repeat: no-repeat;
-				background-color: rgba(90,90,90,0.7);
-
-				@media (prefers-color-scheme: dark) {
-					background-color: rgba(201, 201, 201, 0.7);
-				}
+				background-color: var(--tile-close-background-color-normal);
 			}
 	
 			&:not([disabled]) {
@@ -109,24 +132,20 @@
 					transition: none;
 	
 					&::after {
-						background-color: rgb(90,90,90);
-
-						@media (prefers-color-scheme: dark) {
-							background-color: rgba(235, 235, 235, 0.7);
-						}
+						background-color: var(--tile-close-background-color-hot);
 					}
 				}
 	
 				&:active {
 					&::after {
-						background-color: rgb(66,133,244);
+						background-color: var(--tile-close-background-color-active)
 					}
 				}
 			}
 		}
 	
 		.mv-thumb {
-			background-color: #fff;
+			background-color: var(--tile-thumbnail-background-color);
 			background-position: top center;
 			background-size: cover;
 			height: 94px;
