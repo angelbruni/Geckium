@@ -1787,7 +1787,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension], :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -1795,7 +1797,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension] {
+#new-tab-button)[class*=webextension], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button {
   border: 0 !important;
   background: transparent !important;
   transition: background-color 100ms linear;
@@ -1808,7 +1812,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -1816,7 +1822,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron) {
+#new-tab-button)[class*=webextension]:not([class*=webextension], #PlacesChevron), :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([class*=webextension], #PlacesChevron) {
   width: var(--toolbarbutton-menu-width) !important;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1835,7 +1843,11 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)[class*=webextension]::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]::before, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button::after, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -1851,7 +1863,11 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)[class*=webextension]::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]::before {
+#new-tab-button)[class*=webextension]::before, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button::after, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button::before {
   content: unset !important;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1862,7 +1878,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button:not([disabled]):hover, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled]):hover, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([disabled]):hover, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button:not([disabled]):hover, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -1870,7 +1888,9 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button:not([disabled]):hover, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled]):hover {
+#new-tab-button)[class*=webextension]:not([disabled]):hover, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover {
   border: 1px solid rgb(201, 210, 221);
   background-color: rgba(255, 255, 255, 0.6) !important;
 }
@@ -1906,7 +1926,15 @@ tooltip {
 #new-tab-button)[class*=webextension]:not([disabled]):hover .toolbarbutton-icon,
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled]):hover image:first-of-type, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([disabled]):hover image:first-of-type, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover .toolbarbutton-badge-stack,
+:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover .toolbarbutton-icon,
+:root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover image:first-of-type, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button:not([disabled]):hover .toolbarbutton-badge-stack,
 :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1938,7 +1966,15 @@ tooltip {
 #new-tab-button)[class*=webextension]:not([disabled]):hover .toolbarbutton-icon,
 :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled]):hover image:first-of-type {
+#new-tab-button)[class*=webextension]:not([disabled]):hover image:first-of-type, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover .toolbarbutton-badge-stack,
+:root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover .toolbarbutton-icon,
+:root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):hover image:first-of-type {
   filter: unset;
 }
 :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -1957,7 +1993,11 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)[class*=webextension]:not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#new-tab-button)[class*=webextension]:not([disabled])[open], :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):active, :root[geckium-choice=five] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)#unified-extensions-button:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -1973,7 +2013,11 @@ tooltip {
 #tabs-newtab-button,
 #new-tab-button)[class*=webextension]:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension]:not([disabled])[open] {
+#new-tab-button)[class*=webextension]:not([disabled])[open], :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled]):active, :root[geckium-choice=six] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button:not([disabled])[open] {
   border: 1px solid rgb(201, 210, 221);
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
@@ -3865,7 +3909,9 @@ hbox[id=label-box][part=label-box] {
 #tabs-newtab-button,
 #new-tab-button)#PanelUI-menu-button, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
-#new-tab-button)[class*=webextension] {
+#new-tab-button)[class*=webextension], :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button {
   transition: none;
 }
 @media (-moz-platform: linux) {

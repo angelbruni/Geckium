@@ -176,7 +176,8 @@
 		&#unified-extensions-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
-		&[class*="webextension"] {
+		&[class*="webextension"],
+		&#gflags-button {
 			transition: none;
 		}
 	}
