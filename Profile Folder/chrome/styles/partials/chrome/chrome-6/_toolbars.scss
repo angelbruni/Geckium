@@ -53,11 +53,9 @@
 	&[geckium-choice="eleven"],
 	&[geckium-choice="twentyone"],
 	&[geckium-choice="twentyfive"] {
-		#PersonalToolbar {
-			&[pref="newtab"] {
-				border: 1px solid rgb(203,203,203);
-				background: rgb(223,223,223) !important;
-			}
+		&[personalbar="newtab"] {
+			--personal-toolbar: rgb(223,223,223) !important;
+			--personal-toolbar-border: rgb(203,203,203) !important;
 		}
 	}
 

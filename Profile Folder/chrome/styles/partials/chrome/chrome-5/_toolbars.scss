@@ -254,6 +254,19 @@
 						color-mix(in srgb, var(--toolbarbutton-icon-fill) 2%, white)
 					) !important;
 
+					&[personalbar="newtab"] {
+						--personal-toolbar: color-mix(
+							in srgb,
+							var(--toolbarbutton-icon-fill) 10%,
+							white
+						) !important;
+						--personal-toolbar-border: color-mix(
+							in srgb,
+							var(--toolbarbutton-icon-fill) 80%,
+							black
+						) !important;
+					}
+
 					--toolbarbutton-border-color-normal: color-mix(
 						in srgb,
 						var(--toolbarbutton-icon-fill) 50%,
@@ -287,6 +300,15 @@
 				@media (prefers-color-scheme: dark) {
 					--nav-bar: var(--lwt-accent-color) !important;
 					--personal-toolbar: var(--lwt-accent-color) !important;
+
+					&[personalbar="newtab"] {
+						--personal-toolbar: var(--lwt-accent-color) !important;
+						--personal-toolbar-border: color-mix(
+							in srgb,
+							var(--lwt-accent-color) 80%,
+							black
+						) !important;
+					}
 
 					--toolbarbutton-border-color-normal: color-mix(
 						in srgb,
@@ -417,29 +439,33 @@
 								transparent
 							)
 						) !important;
-						--personal-toolbar: linear-gradient(
-							to bottom,
-							color-mix(
-								in srgb,
+
+						&:not([personalbar="newtab"]) {
+							--personal-toolbar: linear-gradient(
+								to bottom,
 								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 10%,
-										white
-									)
-									70%,
-								transparent
-							),
-							color-mix(
-								in srgb,
+									in srgb,
+									color-mix(
+											in srgb,
+											var(--toolbarbutton-icon-fill) 10%,
+											white
+										)
+										70%,
+									transparent
+								),
 								color-mix(
-										in srgb,
-										var(--toolbarbutton-icon-fill) 2%,
-										white
-									)
-									70%,
-								transparent
-							)
-						) !important;
+									in srgb,
+									color-mix(
+											in srgb,
+											var(--toolbarbutton-icon-fill) 2%,
+											white
+										)
+										70%,
+									transparent
+								)
+							) !important;
+						}
+						
 					}
 
 					@media (prefers-color-scheme: dark) {
@@ -448,11 +474,14 @@
 							var(--lwt-accent-color) 70%,
 							transparent
 						) !important;
-						--personal-toolbar: color-mix(
-							in srgb,
-							var(--lwt-accent-color) 70%,
-							transparent
-						) !important;
+
+						&:not([personalbar="newtab"]) {
+							--personal-toolbar: color-mix(
+								in srgb,
+								var(--lwt-accent-color) 70%,
+								transparent
+							) !important;
+						}
 					}
 				}
 
@@ -727,13 +756,16 @@
 		}
 	}
 
-	&[geckium-choice="five"],
-	&[geckium-choice="six"],
-	&[geckium-choice="eleven"],
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		#PersonalToolbar {
-			&[pref="newtab"] {
+	&[personalbar="newtab"] {
+		--personal-toolbar: rgb(210, 225, 246) !important;
+		--personal-toolbar-border: rgb(172, 201, 238) !important;
+
+		&[geckium-choice="five"],
+		&[geckium-choice="six"],
+		&[geckium-choice="eleven"],
+		&[geckium-choice="twentyone"],
+		&[geckium-choice="twentyfive"] {
+			#PersonalToolbar {
 				position: fixed !important;
 				top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
 				left: 9px;
@@ -742,16 +774,30 @@
 				height: calc(var(--personal-toolbar-height) + 10px) !important;
 				margin: 0 !important;
 				padding: 2px !important;
-				border: 1px solid rgb(172, 201, 238);
+				border: 1px solid var(--personal-toolbar-border) !important;
 				border-radius: 6px !important;
-				background: rgb(210, 225, 246) !important;
-
+	
 				&::before,
 				&::after {
 					content: unset !important;
 				}
+			}	
+		}
+	}
+
+	&[personalbar="newtab"] {
+		#PersonalToolbar {
+			#PlacesToolbar {
+				margin-top: 0 !important;
 			}
 		}
+	}
+	&:not([personalbar="newtab"]) {
+		#PersonalToolbar {
+			> * {
+				margin-top: -5px !important;
+			}
+		}	
 	}
 }
 
@@ -1325,17 +1371,6 @@ toolbarspring {
 	&::after {
 		top: 1px;
 		height: 23px;
-	}
-
-	&[pref="newtab"] {
-		#PlacesToolbar {
-			margin-top: 0 !important;
-		}
-	}
-	&:not([pref="newtab"]) {
-		> * {
-			margin-top: -5px !important;
-		}	
 	}
 
 	.bookmark-item:not(.menuitem-iconic) {

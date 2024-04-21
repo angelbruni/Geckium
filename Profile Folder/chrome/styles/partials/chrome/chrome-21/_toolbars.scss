@@ -181,14 +181,16 @@
 		}
 	}
 
-	#PersonalToolbar {
-		&:not([pref="newtab"]) {
+	&:not([personalbar="newtab"]) {
+		#PersonalToolbar {
 			> * {
 				margin-top: -5px !important;
 				margin-bottom: 1px !important;
 			}
 		}
+	}
 
+	#PersonalToolbar {
 		.bookmark-item:not(.menuitem-iconic) {
 			position: relative;
 			overflow: hidden;

@@ -72,42 +72,53 @@
 
         &:not([lwtheme-id*="firefox-compact"]) {
 			&:not([lwtheme-id="#{$gtkplus}"]) {
-				&[style*="--lwt-additional-images"] {
-					&[windowtype="navigator:browser"] > body {
-						background: var(--lwt-additional-images),
-							var(--lwt-accent-color) !important;
-						background-position: var(
-							--lwt-background-alignment
-						) !important;
-						background-position-y: top !important;
-						background-repeat: var(--lwt-background-tiling) !important;
+				&:not([privatebrowsingmode="temporary"]),
+				&[privatebrowsingmode="temporary"] {
+					--titlebar-active: var(--lwt-accent-color) !important;
+					--titlebar-inactive: var(--titlebar-active) !important;
+				}
+
+				body {
+					&::before {
+						content: "";
+						position: absolute;
+						top: 1px;
+						left: 1px;
+						height: calc(24px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
+						width: calc(100% - 2px);
+						border-radius: 5px 5px 0 0;
+
+						box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+						background-color: var(--lwt-accent-color);
+						background-image: var(--lwt-additional-images);
+						background-repeat: var(--lwt-background-tiling);
+						background-position: var(--lwt-background-alignment);
 					}
-	
-					/* 	bruni: I like this theme but this theme doesn't
-							   make use of the header image, which would
-							   be more appropriate, so we are gonna fix
-							   it like this for now... */
-					&[lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"] {
-						&[windowtype="navigator:browser"] > body {
-							background-position-y: top -65px !important;
+				}
+
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					body {
+						&::before {
+							box-shadow: 0;
+							top: -9px;
 						}
 					}
 				}
-	
-				&[style*="--lwt-header-image"] {
-					&[windowtype="navigator:browser"] > body {
-						background: var(--lwt-header-image), var(--lwt-header-image),
-							var(--lwt-additional-images) !important;
-						background-position: top right, bottom right !important;
-						background-position-y: top !important;
-						background-size: auto, 100% 1px !important;
-						background-repeat: no-repeat, repeat-y !important;
+
+				&[lwtheme-image] {
+					body {
+						position: relative;
+
+						&::before {
+							background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
+							background-repeat: no-repeat, var(--lwt-background-tiling);
+							background-position: right top, var(--lwt-background-alignment) !important;
+							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+						}
 					}
-	
+
 					#navigator-toolbox {
-						background: var(--lwt-header-image) !important;
-						background-position: top right !important;
-						background-repeat: no-repeat !important;
 						box-shadow: none !important;
 					}
 				}
@@ -119,7 +130,6 @@
 					}
 				}
 			}
-            
         }
 
         /* bruni: Firefox is weird, if we set the root to be transparent,

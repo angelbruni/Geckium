@@ -134,7 +134,7 @@ tooltip {
 }
 :root[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
   margin: 0 !important;
-  margin-block-start: -2px !important;
+  margin-block-start: -1px !important;
   margin-inline-end: 2px !important;
 }
 :root[chromemargin="0,0,0,0"] .titlebar-buttonbox {
@@ -327,32 +327,38 @@ tooltip {
 :root:-moz-lwtheme #navigator-toolbox {
   padding-top: 0 !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"] {
-  /* 	bruni: I like this theme but this theme doesn't
-  		   make use of the header image, which would
-  		   be more appropriate, so we are gonna fix
-  		   it like this for now... */
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([privatebrowsingmode=temporary]), :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[privatebrowsingmode=temporary] {
+  --titlebar-active: var(--lwt-accent-color) !important;
+  --titlebar-inactive: var(--titlebar-active) !important;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"][windowtype="navigator:browser"] > body {
-  background: var(--lwt-additional-images), var(--lwt-accent-color) !important;
-  background-position: var(--lwt-background-alignment) !important;
-  background-position-y: top !important;
-  background-repeat: var(--lwt-background-tiling) !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) body::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: calc(24px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
+  width: calc(100% - 2px);
+  border-radius: 5px 5px 0 0;
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+  background-color: var(--lwt-accent-color);
+  background-image: var(--lwt-additional-images);
+  background-repeat: var(--lwt-background-tiling);
+  background-position: var(--lwt-background-alignment);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-additional-images"][lwtheme-id="{49aa8e5f-f9d6-4556-a881-010b048e8636}"][windowtype="navigator:browser"] > body {
-  background-position-y: top -65px !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=maximized] body::before, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=fullscreen] body::before {
+  box-shadow: 0;
+  top: -9px;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-header-image"][windowtype="navigator:browser"] > body {
-  background: var(--lwt-header-image), var(--lwt-header-image), var(--lwt-additional-images) !important;
-  background-position: top right, bottom right !important;
-  background-position-y: top !important;
-  background-size: auto, 100% 1px !important;
-  background-repeat: no-repeat, repeat-y !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[lwtheme-image] body {
+  position: relative;
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[style*="--lwt-header-image"] #navigator-toolbox {
-  background: var(--lwt-header-image) !important;
-  background-position: top right !important;
-  background-repeat: no-repeat !important;
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[lwtheme-image] body::before {
+  background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
+  background-repeat: no-repeat, var(--lwt-background-tiling);
+  background-position: right top, var(--lwt-background-alignment) !important;
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[lwtheme-image] #navigator-toolbox {
   box-shadow: none !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="2"][windowtype="navigator:browser"] > body,
@@ -1258,7 +1264,7 @@ tooltip {
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
   margin: 0 !important;
-  margin-block-start: -2px !important;
+  margin-block-start: -1px !important;
   margin-inline-end: 2px !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
@@ -1484,6 +1490,18 @@ tooltip {
     	)
     );
   }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
+    --personal-toolbar: color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 10%,
+    	white
+    ) !important;
+    --personal-toolbar-border: color-mix(
+    	in srgb,
+    	var(--toolbarbutton-icon-fill) 80%,
+    	black
+    ) !important;
+  }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) .bookmark-item:not(.menuitem-iconic) {
     color: var(--toolbarbutton-icon-fill) !important;
   }
@@ -1516,6 +1534,14 @@ tooltip {
     		white
     	)
     );
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[personalbar=newtab] {
+    --personal-toolbar: var(--lwt-accent-color) !important;
+    --personal-toolbar-border: color-mix(
+    	in srgb,
+    	var(--lwt-accent-color) 80%,
+    	black
+    ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--toolbarbutton-icon-fill"]) {
     --toolbarbutton-border-color-normal: color-mix(
@@ -1617,6 +1643,8 @@ tooltip {
     		transparent
     	)
     ) !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([personalbar=newtab]) {
     --personal-toolbar: linear-gradient(
     	to bottom,
     	color-mix(
@@ -1649,6 +1677,8 @@ tooltip {
     	var(--lwt-accent-color) 70%,
     	transparent
     ) !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[customthememode="1"]:not([personalbar=newtab]) {
     --personal-toolbar: color-mix(
     	in srgb,
     	var(--lwt-accent-color) 70%,
@@ -2148,7 +2178,11 @@ tooltip {
   border: 1px solid rgb(201, 210, 221);
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
-:root[geckium-choice=five] #PersonalToolbar[pref=newtab], :root[geckium-choice=six] #PersonalToolbar[pref=newtab], :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab], :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab], :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] {
+:root[personalbar=newtab] {
+  --personal-toolbar: rgb(210, 225, 246) !important;
+  --personal-toolbar-border: rgb(172, 201, 238) !important;
+}
+:root[personalbar=newtab][geckium-choice=five] #PersonalToolbar, :root[personalbar=newtab][geckium-choice=six] #PersonalToolbar, :root[personalbar=newtab][geckium-choice=eleven] #PersonalToolbar, :root[personalbar=newtab][geckium-choice=twentyone] #PersonalToolbar, :root[personalbar=newtab][geckium-choice=twentyfive] #PersonalToolbar {
   position: fixed !important;
   top: calc(var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height) - 1px);
   left: 9px;
@@ -2157,12 +2191,17 @@ tooltip {
   height: calc(var(--personal-toolbar-height) + 10px) !important;
   margin: 0 !important;
   padding: 2px !important;
-  border: 1px solid rgb(172, 201, 238);
+  border: 1px solid var(--personal-toolbar-border) !important;
   border-radius: 6px !important;
-  background: rgb(210, 225, 246) !important;
 }
-:root[geckium-choice=five] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=five] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=six] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=eleven] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyone] #PersonalToolbar[pref=newtab]::after, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::before, :root[geckium-choice=twentyfive] #PersonalToolbar[pref=newtab]::after {
+:root[personalbar=newtab][geckium-choice=five] #PersonalToolbar::before, :root[personalbar=newtab][geckium-choice=five] #PersonalToolbar::after, :root[personalbar=newtab][geckium-choice=six] #PersonalToolbar::before, :root[personalbar=newtab][geckium-choice=six] #PersonalToolbar::after, :root[personalbar=newtab][geckium-choice=eleven] #PersonalToolbar::before, :root[personalbar=newtab][geckium-choice=eleven] #PersonalToolbar::after, :root[personalbar=newtab][geckium-choice=twentyone] #PersonalToolbar::before, :root[personalbar=newtab][geckium-choice=twentyone] #PersonalToolbar::after, :root[personalbar=newtab][geckium-choice=twentyfive] #PersonalToolbar::before, :root[personalbar=newtab][geckium-choice=twentyfive] #PersonalToolbar::after {
   content: unset !important;
+}
+:root[personalbar=newtab] #PersonalToolbar #PlacesToolbar {
+  margin-top: 0 !important;
+}
+:root:not([personalbar=newtab]) #PersonalToolbar > * {
+  margin-top: -5px !important;
 }
 
 #navigator-toolbox {
@@ -2744,12 +2783,6 @@ toolbarspring {
 #PersonalToolbar::before, #PersonalToolbar::after {
   top: 1px;
   height: 23px;
-}
-#PersonalToolbar[pref=newtab] #PlacesToolbar {
-  margin-top: 0 !important;
-}
-#PersonalToolbar:not([pref=newtab]) > * {
-  margin-top: -5px !important;
 }
 #PersonalToolbar .bookmark-item:not(.menuitem-iconic) {
   border: 1px solid transparent;
@@ -3639,9 +3672,9 @@ hbox[id=label-box][part=label-box] {
       --toolbar-field-default-background-color
   );
 }
-:root[geckium-five][geckium-six][geckium-choice=five] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=six] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=eleven] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyone] #PersonalToolbar[pref=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyfive] #PersonalToolbar[pref=newtab] {
-  border: 1px solid rgb(203, 203, 203);
-  background: rgb(223, 223, 223) !important;
+:root[geckium-five][geckium-six][geckium-choice=five][personalbar=newtab], :root[geckium-five][geckium-six][geckium-choice=six][personalbar=newtab], :root[geckium-five][geckium-six][geckium-choice=eleven][personalbar=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyone][personalbar=newtab], :root[geckium-five][geckium-six][geckium-choice=twentyfive][personalbar=newtab] {
+  --personal-toolbar: rgb(223,223,223) !important;
+  --personal-toolbar-border: rgb(203,203,203) !important;
 }
 @media (-moz-platform: linux) {
   :root[geckium-five][geckium-six][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -3871,11 +3904,11 @@ hbox[id=label-box][part=label-box] {
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
   }
 }
-:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar:not([pref=newtab]) {
+:root[geckium-five][geckium-six][geckium-eleven]:not([personalbar=newtab]) #PersonalToolbar {
   padding: 1px !important;
   padding-inline: 3px !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven] #PersonalToolbar:not([pref=newtab]) > * {
+:root[geckium-five][geckium-six][geckium-eleven]:not([personalbar=newtab]) #PersonalToolbar > * {
   margin-top: -4px !important;
   margin-bottom: 2px !important;
 }
@@ -4533,7 +4566,7 @@ hbox[id=label-box][part=label-box] {
     list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
   }
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #PersonalToolbar:not([pref=newtab]) > * {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not([personalbar=newtab]) #PersonalToolbar > * {
   margin-top: -5px !important;
   margin-bottom: 1px !important;
 }
@@ -4969,13 +5002,15 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #editBookmarkPanelContent label[data-l10n-id*=bookmark-overlay]::after {
   margin-inline-end: 0 !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab] {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][personalbar=newtab] {
+  --personal-toolbar: rgb(241,241,241) !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][personalbar=newtab] #PersonalToolbar {
   padding-block: 6px !important;
   height: calc(var(--personal-toolbar-height) + 16px) !important;
-  background: rgb(241, 241, 241) !important;
   border-block-start: 1px solid var(--personal-toolbar-border-bottom) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab]::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] #PersonalToolbar[pref=newtab]::after {
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][personalbar=newtab] #PersonalToolbar::before, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][personalbar=newtab] #PersonalToolbar::after {
   top: 0px;
   height: 100%;
 }
@@ -5301,8 +5336,8 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #chrome-button {
   list-style-image: url(assets/img/chrome-50/toolbar/menu_chrome.svg) !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty] #PersonalToolbar[pref=newtab] {
-  background: white !important;
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][personalbar=newtab] {
+  --personal-toolbar: white !important;
 }
 @media (-moz-platform: linux) {
   :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-fifty][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,

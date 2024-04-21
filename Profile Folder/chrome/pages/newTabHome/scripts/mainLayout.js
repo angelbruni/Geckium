@@ -1,15 +1,10 @@
 function setPageWidth() {
-	document.documentElement.style.setProperty(
-		"--page-width",
-		document.documentElement.clientWidth + "px"
-	);
+	document.documentElement.style.setProperty("--page-width",document.documentElement.clientWidth + "px");
 }
 addEventListener("resize", setPageWidth);
 addEventListener("DOMContentLoaded", setPageWidth);
 
-const { SessionStore } = ChromeUtils.importESModule(
-	"resource:///modules/sessionstore/SessionStore.sys.mjs"
-);
+const { SessionStore } = ChromeUtils.importESModule("resource:///modules/sessionstore/SessionStore.sys.mjs");
 
 function setMostVisitedLayout(layout) {
 	const mostVisited = document.getElementById("most-visited");
@@ -19,15 +14,13 @@ function setMostVisitedLayout(layout) {
 
 	let mostVisitedLayout;
 
-	if (typeof layout !== "undefined" && typeof layout !== "string") {
+	if (typeof layout !== "undefined" && typeof layout !== "string")
 		pref("Geckium.newTabHome.mostVisitedLayout").set.int(layout);
-	}
 
-	mostVisitedLayout = pref(
-		"Geckium.newTabHome.mostVisitedLayout"
-	).tryGet.int();
+	mostVisitedLayout = pref("Geckium.newTabHome.mostVisitedLayout").tryGet.int();
 
-	if (!mostVisitedLayout) mostVisitedLayout = 1;
+	if (!mostVisitedLayout)
+		mostVisitedLayout = 1;
 
 	switch (layout) {
 		case 0:
@@ -76,11 +69,9 @@ function createMainLayout() {
 			break;
 	}
 
-	document
-		.querySelectorAll("#recently-closed > .items > .item")
-		.forEach((entry) => {
-			entry.remove();
-		});
+	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
+		entry.remove();
+	});
 
 	let header = ``;
 	let main = ``;
@@ -127,13 +118,15 @@ function createMainLayout() {
 			const listCheckbox = document.getElementById("list-checkbox");
 
 			thumbCheckbox.addEventListener("change", () => {
-				if (thumbCheckbox.checked == true) setMostVisitedLayout(1);
+				if (thumbCheckbox.checked == true)
+					setMostVisitedLayout(1);
 				else if (!thumbCheckbox.checked && !listCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 
 			listCheckbox.addEventListener("change", () => {
-				if (listCheckbox.checked == true) setMostVisitedLayout(2);
+				if (listCheckbox.checked == true)
+					setMostVisitedLayout(2);
 				else if (!thumbCheckbox.checked && !listCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
@@ -294,9 +287,7 @@ function createMainLayout() {
 			const form = document.querySelector("#google-search > form");
 			form.addEventListener("submit", (event) => {
 				event.preventDefault();
-				location.href =
-					"https://www.google.com/search?q=" +
-					form.querySelector("input").value;
+				location.href = "https://www.google.com/search?q=" + form.querySelector("input").value;
 			});
 		});
 	}
@@ -316,18 +307,14 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (
-		appearanceChoice <= 1 ||
-		appearanceChoice == 3 ||
-		appearanceChoice == 4
-	) {
+	if (appearanceChoice <= 1 || appearanceChoice == 3 || appearanceChoice == 4) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {
 					if (!menuBtn.hasAttribute("open"))
 						menuBtn.setAttribute("open", true);
-					// Add the "open" attribute to the button
-					else menuBtn.removeAttribute("open"); // Add the "open" attribute to the button
+					else
+						menuBtn.removeAttribute("open"); // Add the "open" attribute to the button
 
 					// Stop the event from propagating further to prevent triggering the document click listener
 					event.stopPropagation();
@@ -336,12 +323,11 @@ function createMainLayout() {
 				// Add event listener to the document to listen for clicks outside of the button
 				document.addEventListener("click", function (event) {
 					// Check if the clicked element is the button or one of its children
-					const isClickedInsideButton = menuBtn.contains(
-						event.target
-					);
+					const isClickedInsideButton = menuBtn.contains(event.target);
 
 					// If the click is not inside the button or its children, remove the "open" attribute
-					if (!isClickedInsideButton) menuBtn.removeAttribute("open");
+					if (!isClickedInsideButton)
+						menuBtn.removeAttribute("open");
 				});
 
 				// Add event listeners to children of the button to prevent propagation to the document click listener
