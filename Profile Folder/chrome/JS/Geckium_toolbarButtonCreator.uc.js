@@ -66,7 +66,7 @@ function createMenu(id, delegatesanchor, label, tooltip, removable, overflows, a
 	createMenuItemFromObject(parentID, object, adjustAccelTextWidth);
 }
 
-function createMenuItem(parentID, type, id, icon, checkbox, click, command, label, accesskey, acceltext) {
+function createMenuItem(parentID, type, id, icon, checkbox, click, command, label, accesskey, key, acceltext) {
 	let menuItem;
 
 	switch (type) {
@@ -151,11 +151,18 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 				menuItem.addEventListener("command", command);
 		}
 
-		if (acceltext)
+		if (key)
+			menuItem.setAttribute("key", key);
+		else if (acceltext)
 			menuItem.setAttribute("acceltext", acceltext);
-	} 	
-	
-	if (type == "menuitem" || type == "menu" || type == "menuseparator" || type == "menuitemitems") {
+	}
+
+	if (
+		type == "menuitem" ||
+		type == "menu" ||
+		type == "menuseparator" ||
+		type == "menuitemitems"
+	) {
 		if (parent.tagName == "menupopup") {
 			parent.appendChild(menuItem);
 		} else if (parent.tagName == "menu") {
@@ -208,19 +215,55 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 				createMenuItem(parentID, "menuseparator");
 			} else if (object[key].hasOwnProperty('subItems')) {
 				// If it has "subItems", it's a submenu.
-				createMenuItem(parentID, "menu", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				createMenuItem(
+					parentID,
+					"menu",
+					object[key].id,
+					object[key].icon,
+					object[key].checkbox,
+					object[key].click,
+					object[key].command,
+					object[key].label,
+					object[key].accesskey,
+					object[key].key,
+					object[key].acceltext
+				);
 				for (let subItem of object[key].subItems) {
 					createMenuItemFromObject(object[key].id + "-menu", subItem, adjustAccelTextWidth);
 				}
 			} else if (object[key].hasOwnProperty('items')) {
 				// If it has "items", it's a menuitem with buttons.
-				createMenuItem(parentID, "menuitemitems", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				createMenuItem(
+					parentID,
+					"menuitemitems",
+					object[key].id,
+					object[key].icon,
+					object[key].checkbox,
+					object[key].click,
+					object[key].command,
+					object[key].label,
+					object[key].accesskey,
+					object[key].key,
+					object[key].acceltext
+				);
 				for (let item of object[key].items) {
 					createMenuItemFromObject("menu_" + object[key].id, item, false);
 				}
 			} else {
 				// Default: create a regular menu item.
-				createMenuItem(parentID, "menuitem", object[key].id, object[key].icon, object[key].checkbox, object[key].click, object[key].command, object[key].label, object[key].accesskey, object[key].acceltext);
+				createMenuItem(
+					parentID,
+					"menuitem",
+					object[key].id,
+					object[key].icon,
+					object[key].checkbox,
+					object[key].click,
+					object[key].command,
+					object[key].label,
+					object[key].accesskey,
+					object[key].key,
+					object[key].acceltext
+				);
 			}
 		}
     }
@@ -252,13 +295,13 @@ const menu_chrome = {
 		id: "newTab",
 		label: "New tab",
 		command: "cmd_newNavigatorTab",
-		acceltext: "Ctrl+T",
+		key: "key_newNavigatorTab",
 	},
 	2: {
 		id: "newWindow",
 		label: "New window",
 		command: "cmd_newNavigator",
-		acceltext: "Ctrl+N",
+		key: "key_newNavigator",
 	},
 	3: {
 		id: "newIncognitoWindow",
@@ -279,23 +322,22 @@ const menu_chrome = {
 					acceltext: "Ctrl+Shift+B",
 				},
 				2: {
-					id: "bookmarkmgr",
+					id: "bookmarkMgr",
 					label: "Bookmark manager",
 					command: "Browser:ShowAllBookmarks",
-					acceltext: "Ctrl+Shift+O",
+					key: "manBookmarkKb",
 				},
 				3: {
-					id: "bookmarkimport",
+					id: "bookmarkImport",
 					label: "Import bookmarks and settings...",
 					command: "OrganizerCommand_browserImport",
-					acceltext: "",
 				},
 				4: {},
 				5: {
-					id: "bookmarkpage",
+					id: "bookmarkPage",
 					label: "Bookmark this page",
 					command: "Browser:AddBookmarkAs",
-					acceltext: "Ctrl+D",
+					key: "addBookmarkAsKb",
 				},
 			},
 		],
@@ -356,19 +398,19 @@ const menu_chrome = {
 		id: "savePage11",
 		label: "Save page as...",
 		command: "Browser:SavePage",
-		acceltext: "Ctrl+S",
+		key: "key_savePage",
 	},
 	11: {
 		id: "find11",
 		label: "Find...",
 		command: "cmd_find",
-		acceltext: "Ctrl+F",
+		key: "key_find",
 	},
 	12: {
 		id: "print11",
 		label: "Print...",
 		command: "cmd_print",
-		acceltext: "Ctrl+P",
+		key: "printKb",
 	},
 	13: {
 		id: "tools11",
@@ -378,48 +420,43 @@ const menu_chrome = {
 				/*1: {
 					id: "createShortcut",
 					label: "Create application shortcuts...",
-					command: "?",
-					acceltext: "",
 				},
 				2: {},*/
 				3: {
 					id: "extensions",
 					label: "Extensions",
 					command: "Tools:Addons",
-					acceltext: "",
 				},
 				4: {
 					id: "taskmgr",
 					label: "Task manager",
 					command: "View:AboutProcesses",
-					acceltext: "Shift+Esc",
+					key: "key_aboutProcesses",
 				},
 				5: {
 					id: "cleardata",
 					label: "Clear browsing data...",
 					command: "Tools:Sanitize",
-					acceltext: "Ctrl+Shift+Del",
+					key: "key_sanitize",
 				},
 				6: {},
 				7: {
 					id: "reportIssue",
 					label: "Report an issue...",
 					command: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
-					acceltext: "",
 				},
 				8: {},
 				9: {
 					id: "viewSource",
 					label: "View Source",
-					command: "?",
-					acceltext: "Ctrl+U",
+					command: "View:PageSource",
+					key: "key_viewSource",
 				},
-				10: {
+				/*10: {
 					id: "devTools",
 					label: "Developer tools",
-					command: "BrowserViewSource(gContextMenu.browser)",
-					acceltext: "Ctrl+Shift+I",
-				},
+					key: "key_toggleToolbox",
+				},*/
 				/*11: {
 					id: "javaScriptTools",
 					label: "JavaScript console",
@@ -440,7 +477,7 @@ const menu_chrome = {
 		id: "fullScreen",
 		label: "Full screen",
 		click: "BrowserFullScreen();",
-		acceltext: "F11",
+		key: "key_enterFullScreen",
 	},
 	11: {},
 	12: {
@@ -459,7 +496,7 @@ const menu_chrome = {
 		id: "downloads",
 		label: "Downloads",
 		command: "Tools:Downloads",
-		acceltext: "Ctrl+J",
+		key: "key_openDownloads",
 	},
 	15: {
 		id: "extensions",
@@ -507,38 +544,38 @@ const menu_page = {
 		id: "cut",
 		label: "Cut",
 		command: "cmd_cut",
-		acceltext: "Ctrl+X",
+		key: "key_cut",
 	},
 	4: {
 		id: "copy",
 		label: "Copy",
 		command: "cmd_copy",
-		acceltext: "Ctrl+C",
+		key: "key_copy",
 	},
 	5: {
 		id: "paste",
 		label: "Paste",
 		command: "cmd_paste",
-		acceltext: "Ctrl+V",
+		key: "key_paste",
 	},
 	6: {},
 	7: {
 		id: "find",
 		label: "Find...",
 		command: "cmd_find",
-		acceltext: "Ctrl+F",
+		key: "key_find",
 	},
 	8: {
 		id: "savePageAs",
 		label: "Save page as...",
 		command: "Browser:SavePage",
-		acceltext: "Ctrl+S",
+		key: "key_savePage",
 	},
 	9: {
 		id: "print",
 		label: "Print...",
 		command: "cmd_print",
-		acceltext: "Ctrl+P",
+		key: "printKb",
 	},
 	10: {},
 	11: {
@@ -550,19 +587,19 @@ const menu_page = {
 					id: "larger",
 					label: "Larger",
 					command: "cmd_fullZoomEnlarge",
-					acceltext: "Ctrl++",
+					key: "key_fullZoomEnlarge",
 				},
 				2: {
 					id: "normal",
 					label: "Normal",
 					command: "cmd_fullZoomReset",
-					acceltext: "Ctrl+0",
+					key: "key_fullZoomReset",
 				},
 				3: {
 					id: "smaller",
 					label: "Smaller",
 					command: "cmd_fullZoomReduce",
-					acceltext: "Ctrl+-",
+					key: "key_fullZoomReduce",
 				},
 			}
 		]
@@ -588,8 +625,8 @@ const menu_page = {
 				1: {
 					id: "viewSource",
 					label: "View source",
-					click: "BrowserViewSource(gContextMenu.browser);",
-					acceltext: "Ctrl+U",
+					command: "View:PageSource",
+					key: "key_viewSource",
 				},
 				/*2: {
 					id: "developerTools",
@@ -605,7 +642,7 @@ const menu_page = {
 					id: "taskManager",
 					label: "Task Manager",
 					command: "View:AboutProcesses",
-					acceltext: "Shift+Esc",
+					key: "key_aboutProcesses",
 				},
 			}
 		]
@@ -615,6 +652,8 @@ const menu_page = {
 		id: "reportBugOrBrokenWebsite",
 		label: "Report bug or broken website...",
 		click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
+	},
+};
 
 window.addEventListener("load", function () {
 	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags);
