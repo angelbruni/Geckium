@@ -89,7 +89,7 @@ function openWindow(windowName, features) {
 function updateZoomLabel() {
 	const currentZoomLevel = gBrowser.ownerGlobal.gNavigatorBundle.getFormattedString("zoom-button.label", [ Math.round(gBrowser.ownerGlobal.ZoomManager.zoom * 100), ]); 
 
-	//document.getElementById("menu_normal11").setAttribute('label', currentZoomLevel);
+	document.getElementById("menu_normal11").setAttribute('label', currentZoomLevel);
 }
 window.addEventListener("FullZoomChange", updateZoomLabel);
 window.addEventListener("TabAttrModified", updateZoomLabel);
