@@ -4,35 +4,34 @@
 // @loadorder   3
 // ==/UserScript==
 
-function createToolbarbutton(
-	id,
-	delegatesanchor,
-	label,
-	tooltip,
-	removable,
-	overflows,
-	area,
-	onclick
-) {
-	CustomizableUI.createWidget({
-		id: id + "-button",
-		removable: removable,
-		label: label,
-		tooltiptext: tooltip,
-		overflows: overflows,
-		defaultArea: area,
+function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area, onclick) {
+	const alreadyExists = document.getElementById(id + "-button");
 
-		onCreated: function (toolbarButton) {
-			if (!delegatesanchor)
-				toolbarButton.removeAttribute("delegatesanchor");
+	if (alreadyExists) {
+		console.log("toolbarbutton already exists.");
+	} else {
+		console.log("toolbarbutton does not exist.");
 
-			if (!tooltip)
-				toolbarButton.setAttribute("tooltiptext", label);
-
-			if (onclick)
-				toolbarButton.addEventListener("click", onclick);
-		},
-	});
+		CustomizableUI.createWidget({
+			id: id + "-button",
+			removable: removable,
+			label: label,
+			tooltiptext: tooltip,
+			overflows: overflows,
+			defaultArea: area,
+	
+			onCreated: function (toolbarButton) {
+				if (!delegatesanchor)
+					toolbarButton.removeAttribute("delegatesanchor");
+	
+				if (!tooltip)
+					toolbarButton.setAttribute("tooltiptext", label);
+	
+				if (onclick)
+					toolbarButton.addEventListener("click", onclick);
+			},
+		});
+	}
 }
 
 function createMenu(
@@ -50,25 +49,17 @@ function createMenu(
 	const parentID = "menu_" + id + "Popup";
 
 	const alreadyExists = document.getElementById(id + "-button");
-
+	
 	let toolbarButton;
 
 	if (alreadyExists) {
-		console.warn("toolbarbutton already exists.");
+		console.log("toolbarbutton already exists.");
 
 		toolbarButton = alreadyExists;
 	} else {
-		console.warn("toolbarbutton does not exist.");
+		console.log("toolbarbutton does not exist.");
 
-		createToolbarbutton(
-			id,
-			delegatesanchor,
-			label,
-			tooltip,
-			removable,
-			overflows,
-			area
-		);
+		createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area);
 
 		toolbarButton = document.getElementById(id + "-button");
 	}
@@ -86,18 +77,7 @@ function createMenu(
 	createMenuItemFromObject(parentID, object, adjustAccelTextWidth);
 }
 
-function createMenuItem(
-	parentID,
-	type,
-	id,
-	icon,
-	checkbox,
-	click,
-	command,
-	label,
-	accesskey,
-	acceltext
-) {
+function createMenuItem(parentID, type, id, icon, checkbox, click, command, label, accesskey, acceltext) {
 	let menuItem;
 
 	switch (type) {
@@ -119,7 +99,8 @@ function createMenuItem(
 		case "menuseparator":
 			if (document.getElementById(parentID).tagName == "hbox")
 				menuItem = document.createXULElement("separator");
-			else menuItem = document.createXULElement("menuseparator");
+			else
+				menuItem = document.createXULElement("menuseparator");
 			break;
 		case "menuitemitems":
 			menuItem = document.createXULElement("hbox");
@@ -133,10 +114,7 @@ function createMenuItem(
 			menuItem.appendChild(menuItemLabel);
 
 			menuItemRightItems = document.createXULElement("hbox");
-			menuItemRightItems.classList.add(
-				"menuitem-right-items",
-				"menu-accel"
-			);
+			menuItemRightItems.classList.add("menuitem-right-items", "menu-accel");
 			menuItem.appendChild(menuItemRightItems);
 			break;
 		default:
@@ -163,20 +141,24 @@ function createMenuItem(
 			}
 		}
 
-		if (label) menuItem.setAttribute("label", label);
+		if (label)
+			menuItem.setAttribute("label", label);
 
-		if (accesskey) menuItem.setAttribute("accesskey", accesskey);
+		if (accesskey)
+			menuItem.setAttribute("accesskey", accesskey);
 
 		if (type == "menuitem") {
 			if (!command && !click) menuItem.disabled = true;
 		}
 
-		if (click) menuItem.setAttribute("onclick", click);
+		if (click)
+			menuItem.setAttribute("onclick", click);
 
 		if (command) {
 			if (typeof command === "string")
 				menuItem.setAttribute("command", command);
-			else menuItem.addEventListener("command", command);
+			else
+				menuItem.addEventListener("command", command);
 		}
 
 		if (acceltext) menuItem.setAttribute("acceltext", acceltext);
@@ -363,20 +345,20 @@ const menu_chrome = {
 				2: {
 					id: "bookmarkmgr",
 					label: "Bookmark manager",
-					command: "?",
+					command: "Browser:ShowAllBookmarks",
 					acceltext: "Ctrl+Shift+O",
 				},
 				3: {
 					id: "bookmarkimport",
 					label: "Import bookmarks and settings...",
-					command: "?",
+					command: "OrganizerCommand_browserImport",
 					acceltext: "",
 				},
 				4: {},
 				5: {
 					id: "bookmarkpage",
 					label: "Bookmark this page",
-					command: "?",
+					command: "Browser:AddBookmarkAs",
 					acceltext: "Ctrl+D",
 				},
 			},
@@ -437,19 +419,19 @@ const menu_chrome = {
 	10: {
 		id: "savePage11",
 		label: "Save page as...",
-		command: "?",
+		command: "Browser:SavePage",
 		acceltext: "Ctrl+S",
 	},
 	11: {
 		id: "find11",
 		label: "Find...",
-		command: "?",
+		command: "cmd_find",
 		acceltext: "Ctrl+F",
 	},
 	12: {
 		id: "print11",
 		label: "Print...",
-		command: "?",
+		command: "cmd_print",
 		acceltext: "Ctrl+P",
 	},
 	13: {
@@ -457,36 +439,36 @@ const menu_chrome = {
 		label: "Tools",
 		subItems: [
 			{
-				1: {
+				/*1: {
 					id: "createShortcut",
 					label: "Create application shortcuts...",
 					command: "?",
 					acceltext: "",
 				},
-				2: {},
+				2: {},*/
 				3: {
 					id: "extensions",
 					label: "Extensions",
-					command: "?",
+					command: "Tools:Addons",
 					acceltext: "",
 				},
 				4: {
 					id: "taskmgr",
 					label: "Task manager",
-					command: "?",
+					command: "View:AboutProcesses",
 					acceltext: "Shift+Esc",
 				},
 				5: {
 					id: "cleardata",
 					label: "Clear browsing data...",
-					command: "?",
+					command: "Tools:Sanitize",
 					acceltext: "Ctrl+Shift+Del",
 				},
 				6: {},
 				7: {
 					id: "reportIssue",
 					label: "Report an issue...",
-					command: "?",
+					command: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
 					acceltext: "",
 				},
 				8: {},
@@ -499,15 +481,15 @@ const menu_chrome = {
 				10: {
 					id: "devTools",
 					label: "Developer tools",
-					command: "?",
+					command: "BrowserViewSource(gContextMenu.browser)",
 					acceltext: "Ctrl+Shift+I",
 				},
-				11: {
+				/*11: {
 					id: "javaScriptTools",
 					label: "JavaScript console",
 					command: "?",
 					acceltext: "Ctrl+Shift+J",
-				},
+				},*/
 			},
 		],
 	},
@@ -706,17 +688,7 @@ const menu_page = {
 };
 
 window.addEventListener("load", function () {
-	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags)
-	geckiumCreateMenu(
-		"page",
-		"Page Menu",
-		"Control the current page",
-		menu_page
-	);
-	geckiumCreateMenu(
-		"chrome",
-		"Chrome Menu",
-		"Customize and control Google Chrome",
-		menu_chrome
-	);
+	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags);
+	geckiumCreateMenu("page", "Page Menu", "Control the current page", menu_page);
+	geckiumCreateMenu("chrome", "Chrome Menu", "Customize and control Google Chrome", menu_chrome);
 });

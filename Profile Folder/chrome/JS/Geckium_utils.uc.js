@@ -89,13 +89,13 @@ function openWindow(windowName, features) {
 function updateZoomLabel() {
 	const currentZoomLevel = gBrowser.ownerGlobal.gNavigatorBundle.getFormattedString("zoom-button.label", [ Math.round(gBrowser.ownerGlobal.ZoomManager.zoom * 100), ]); 
 
-	document.getElementById("menu_normal11").setAttribute('label', currentZoomLevel);
+	//document.getElementById("menu_normal11").setAttribute('label', currentZoomLevel);
 }
 window.addEventListener("FullZoomChange", updateZoomLabel);
 window.addEventListener("TabAttrModified", updateZoomLabel);
 
 function bookmarksBarStatus() {
-	const alwaysShowBookmarksBar = document.getElementById('menu_alwaysShowBookmarksBar');
+	const alwaysShowBookmarksBar = document.getElementById('menu_alwaysShowBookmarksBar5');
 
 	if (pref('browser.toolbars.bookmarks.visibility').tryGet.string() == 'always') {
 		setAttributes(alwaysShowBookmarksBar, {
@@ -110,6 +110,22 @@ function bookmarksBarStatus() {
 	}
 
 	alwaysShowBookmarksBar.setAttribute("data-bookmarks-toolbar-visibility", true);
+
+	const menuShowBookmarks = document.getElementById('menu_showBookmarks');
+
+	if (pref('browser.toolbars.bookmarks.visibility').tryGet.string() == 'always') {
+		setAttributes(menuShowBookmarks, {
+			"checked": true,
+			"data-visibility-enum": "newtab",
+		})
+	} else {
+		setAttributes(menuShowBookmarks, {
+			"checked": false,
+			"data-visibility-enum": "always",
+		})
+	}
+
+	menuShowBookmarks.setAttribute("data-bookmarks-toolbar-visibility", true);
 }
 
 function waitForElm(selector) {
