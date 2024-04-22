@@ -4,50 +4,49 @@
 // @loadorder   3
 // ==/UserScript==
 
-function createToolbarbutton(
-	id,
-	delegatesanchor,
-	label,
-	tooltip,
-	removable,
-	overflows,
-	area,
-	onclick
-) {
-	CustomizableUI.createWidget({
-		id: id + "-button",
-		removable: removable,
-		label: label,
-		tooltiptext: tooltip,
-		overflows: overflows,
-		defaultArea: area,
+function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area, onclick) {
+	const alreadyExists = document.getElementById(id + "-button");
 
-		onCreated: function(toolbarButton) {
-			if (!delegatesanchor)
-				toolbarButton.removeAttribute("delegatesanchor");
+	if (alreadyExists) {
+		console.log("toolbarbutton already exists.");
+	} else {
+		console.log("toolbarbutton does not exist.");
 
-			if (!tooltip)
-				toolbarButton.setAttribute("tooltiptext", label);
-
-			if (onclick)
-				toolbarButton.addEventListener("click", onclick);
-		},
-	});
+		CustomizableUI.createWidget({
+			id: id + "-button",
+			removable: removable,
+			label: label,
+			tooltiptext: tooltip,
+			overflows: overflows,
+			defaultArea: area,
+	
+			onCreated: function (toolbarButton) {
+				if (!delegatesanchor)
+					toolbarButton.removeAttribute("delegatesanchor");
+	
+				if (!tooltip)
+					toolbarButton.setAttribute("tooltiptext", label);
+	
+				if (onclick)
+					toolbarButton.addEventListener("click", onclick);
+			},
+		});
+	}
 }
 
 function createMenu(id, delegatesanchor, label, tooltip, removable, overflows, area, position, object, adjustAccelTextWidth) {
 	const parentID = "menu_" + id + "Popup";
 
 	const alreadyExists = document.getElementById(id + "-button");
-
+	
 	let toolbarButton;
 
 	if (alreadyExists) {
-		console.warn("toolbarbutton already exists.")
+		console.log("toolbarbutton already exists.");
 
 		toolbarButton = alreadyExists;
 	} else {
-		console.warn("toolbarbutton does not exist.")
+		console.log("toolbarbutton does not exist.");
 
 		createToolbarbutton(id, delegatesanchor, label, tooltip, removable, overflows, area);
 
@@ -104,7 +103,7 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 			menuItem.appendChild(menuItemLabel);
 
 			menuItemRightItems = document.createXULElement("hbox");
-			menuItemRightItems.classList.add("menuitem-right-items", "menu-accel")
+			menuItemRightItems.classList.add("menuitem-right-items", "menu-accel");
 			menuItem.appendChild(menuItemRightItems);
 			break;
 		default:
@@ -132,7 +131,7 @@ function createMenuItem(parentID, type, id, icon, checkbox, click, command, labe
 		}
 
 		if (label)
-			menuItem.setAttribute("label", label)
+			menuItem.setAttribute("label", label);
 
 		if (accesskey)
 			menuItem.setAttribute("accesskey", accesskey);
@@ -267,8 +266,42 @@ const menu_chrome = {
 		command: "Tools:PrivateBrowsing",
 		acceltext: "Ctrl+Shift+N",
 	},
-	4: {},
-	5: {
+	4: {
+		id: "bookmarks",
+		label: "Bookmarks",
+		subItems: [
+			{
+				1: {
+					id: "showBookmarks",
+					label: "Show bookmarks bar",
+					checkbox: true,
+					command: onViewToolbarCommand,
+					acceltext: "Ctrl+Shift+B",
+				},
+				2: {
+					id: "bookmarkmgr",
+					label: "Bookmark manager",
+					command: "Browser:ShowAllBookmarks",
+					acceltext: "Ctrl+Shift+O",
+				},
+				3: {
+					id: "bookmarkimport",
+					label: "Import bookmarks and settings...",
+					command: "OrganizerCommand_browserImport",
+					acceltext: "",
+				},
+				4: {},
+				5: {
+					id: "bookmarkpage",
+					label: "Bookmark this page",
+					command: "Browser:AddBookmarkAs",
+					acceltext: "Ctrl+D",
+				},
+			},
+		],
+	},
+	5: {},
+	6: {
 		id: "edit",
 		label: "Edit",
 		items: [
@@ -318,9 +351,86 @@ const menu_chrome = {
 			}
 		]
 	},
-	8: {},
-	9: {
-		id: "alwaysShowBookmarksBar",
+	9: {},
+	10: {
+		id: "savePage11",
+		label: "Save page as...",
+		command: "Browser:SavePage",
+		acceltext: "Ctrl+S",
+	},
+	11: {
+		id: "find11",
+		label: "Find...",
+		command: "cmd_find",
+		acceltext: "Ctrl+F",
+	},
+	12: {
+		id: "print11",
+		label: "Print...",
+		command: "cmd_print",
+		acceltext: "Ctrl+P",
+	},
+	13: {
+		id: "tools11",
+		label: "Tools",
+		subItems: [
+			{
+				/*1: {
+					id: "createShortcut",
+					label: "Create application shortcuts...",
+					command: "?",
+					acceltext: "",
+				},
+				2: {},*/
+				3: {
+					id: "extensions",
+					label: "Extensions",
+					command: "Tools:Addons",
+					acceltext: "",
+				},
+				4: {
+					id: "taskmgr",
+					label: "Task manager",
+					command: "View:AboutProcesses",
+					acceltext: "Shift+Esc",
+				},
+				5: {
+					id: "cleardata",
+					label: "Clear browsing data...",
+					command: "Tools:Sanitize",
+					acceltext: "Ctrl+Shift+Del",
+				},
+				6: {},
+				7: {
+					id: "reportIssue",
+					label: "Report an issue...",
+					command: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
+					acceltext: "",
+				},
+				8: {},
+				9: {
+					id: "viewSource",
+					label: "View Source",
+					command: "?",
+					acceltext: "Ctrl+U",
+				},
+				10: {
+					id: "devTools",
+					label: "Developer tools",
+					command: "BrowserViewSource(gContextMenu.browser)",
+					acceltext: "Ctrl+Shift+I",
+				},
+				/*11: {
+					id: "javaScriptTools",
+					label: "JavaScript console",
+					command: "?",
+					acceltext: "Ctrl+Shift+J",
+				},*/
+			},
+		],
+	},
+	14: {
+		id: "alwaysShowBookmarksBar5",
 		checkbox: true,
 		label: "Always show bookmarks bar",
 		command: onViewToolbarCommand,
@@ -506,21 +616,8 @@ const menu_page = {
 		label: "Report bug or broken website...",
 		click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
 
-	},
-}
-
-window.addEventListener("load", function() {
-	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags)
+window.addEventListener("load", function () {
+	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags);
 	geckiumCreateMenu("page", "Page Menu", "Control the current page", menu_page);
-
-
-
-
-
 	geckiumCreateMenu("chrome", "Chrome Menu", "Customize and control Google Chrome", menu_chrome);
-
-
-
-
-	
 });
