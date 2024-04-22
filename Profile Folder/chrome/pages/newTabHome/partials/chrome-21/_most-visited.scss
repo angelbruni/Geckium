@@ -1,3 +1,20 @@
+& {
+	--thumbnail-border-color: white;
+	--thumbnail-background-color: #EEE;
+
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--thumbnail-border-color: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
+					--thumbnail-background-color: color-mix(in srgb, var(--edit-bar-background-color-hot) 80%, white) !important;
+				}
+			}
+		}
+	}
+}
+
 #most-visited-page .tile-grid {
 	gap: 26px;
 }
@@ -75,7 +92,7 @@
 			.thumbnail {
 				border-width: 1px;
 				border-style: solid;
-				border-color: white;
+				border-color: var(--thumbnail-border-color);
 			}
 		}
 	}
@@ -116,7 +133,7 @@
 		position: relative;
 		box-sizing: border-box;
 		background: no-repeat;
-		background-color: #EEE;
+		background-color: var(--thumbnail-background-color);
 		background-size: cover;
 		background-position: top center;
 		border-radius: 3px;
