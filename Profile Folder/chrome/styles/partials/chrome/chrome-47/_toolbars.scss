@@ -1,6 +1,19 @@
 &[personalbar="newtab"] {
 	--personal-toolbar: rgb(241,241,241) !important;
 
+	// Custom theme support
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--personal-toolbar-border-bottom: var(--personal-toolbar-border) !important;
+				}
+			}
+		}
+	}
+
 	#PersonalToolbar {
 		padding-block: 6px !important;
 		height: calc(var(--personal-toolbar-height) + 16px) !important;

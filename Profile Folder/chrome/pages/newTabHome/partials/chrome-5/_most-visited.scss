@@ -5,6 +5,7 @@
 	--thumbnail-border-color-normal: #E5EFFE;
 	--thumbnail-border-color-hot: rgb(75,140,220);
 	--thumbnail-container-color: black;
+	--thumbnail-disabled-color: #DFEAF7;
 	--edit-bar-background-color-hot: hsl(213, 66%, 57%);
 	--edit-bar-background-hot: linear-gradient(
 		to bottom,
@@ -269,11 +270,11 @@
 	}
 	&[disabled] {
 		.thumbnail-wrapper {
-			border: solid #DFEAF7;
+			border: solid var(--thumbnail-disabled-color);
 		}
 
 		.thumbnail {
-			background-color: #DFEAF7;
+			background-color: var(--thumbnail-disabled-color);
 			border: 1px solid white;
 			padding: 0;
 		}
