@@ -269,9 +269,9 @@
 #searchbar {
 	border-inline: 0 !important;
 	border-block: 1px solid var(--urlbar-border) !important;
-	box-shadow: none !important;
 	border-radius: 0 !important;
 	height: var(--urlbar-height-definitive);
+	background-clip: content-box !important;
 }
 
 .searchbar-search-button {
@@ -337,7 +337,7 @@
 }
 
 .urlbar-input-box {
-	height: calc(var(--urlbar-height-definitive) - 2px) !important;
+	height: var(--urlbar-height-definitive) !important;
 	font-size: 11pt !important;
 	margin-inline: 3px;
 	overflow: hidden;
@@ -355,6 +355,11 @@
 #search-container {
 	padding: 0 !important;
 	margin-inline: 2px !important;
+	box-shadow: 0 0 0 1px rgba(255,255,255,.4) !important;
+	border-top-left-radius: var(--toolbarbutton-radius) !important;
+	border-top-right-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+	border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 }
 
 #urlbar-container {

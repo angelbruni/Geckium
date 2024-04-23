@@ -1,11 +1,12 @@
 & {
-	--footer-border: linear-gradient(
+	--default-footer-border: linear-gradient(
 		to left,
 		rgba(150, 150, 150, 0.2),
 		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 20%,
 		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 80%,
 		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.2)
 	);
+	--footer-border: var(--default-footer-border);
 	--footer-background: linear-gradient(
 		to bottom,
 		rgba(242, 242, 242, 0.9),
@@ -24,76 +25,60 @@
 	--footer-menu-item-link-color: #063874;
 	--footer-vertical-separator-background-color: rgb(178, 178, 178);
 
-	&[footer-themable="true"] {
-		@media (prefers-color-scheme: dark) {
-			--footer-background: linear-gradient(
-				to bottom,
-				rgba(53, 53, 53, 0.9),
-				rgba(31, 31, 31, 0.9)
-			);
-			--footer-color: #b8b8b8;
-
-			--dot-color-normal: rgba(255, 255, 255, 0.2);
-			--dot-color-hot: #9e9e9e;
-			--selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
-			--selection-bar-background-color-hot: #535353;
-			--selection-bar-background-color-active: #9e9e9e;
-
-			--footer-menu-button-glyph-background-color-normal: #b8b8b8;
-			--footer-menu-item-link-color: #acc0da;
-			--footer-vertical-separator-background-color: rgb(100, 100, 100);
-		}
-
-		// Custom theme support
-		&:not([lwtheme-id*="default-theme"]) {
-			&:not([lwtheme-id*="firefox-compact"]) {
-				&[lwtheme-id*="{"],
-				&[lwtheme-id*="@mozilla.org"] {
-					&:not([lwtheme-id*="#{$gtkplus}"]) {
-						--footer-border: linear-gradient(
-							to left,
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--footer-border: linear-gradient(
+						to left,
+						color-mix(
+							in srgb,
+							color-mix(in srgb, var(--lwt-accent-color) 10%, black)
+								20%,
+							transparent
+						),
+						/* COLOR_NTP_SECTION_BORDER */
 							color-mix(
 								in srgb,
-								color-mix(in srgb, var(--lwt-accent-color) 10%, black)
+								color-mix(
+										in srgb,
+										var(--lwt-accent-color) 10%,
+										black
+									)
+									30%,
+								transparent
+							)
+							20%,
+						/* COLOR_NTP_SECTION_BORDER */
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--lwt-accent-color) 10%,
+										black
+									)
+									30%,
+								transparent
+							)
+							80%,
+						/* COLOR_NTP_SECTION_BORDER */
+							color-mix(
+								in srgb,
+								color-mix(
+										in srgb,
+										var(--lwt-accent-color) 10%,
+										black
+									)
 									20%,
 								transparent
-							),
-							/* COLOR_NTP_SECTION_BORDER */
-								color-mix(
-									in srgb,
-									color-mix(
-											in srgb,
-											var(--lwt-accent-color) 10%,
-											black
-										)
-										30%,
-									transparent
-								)
-								20%,
-							/* COLOR_NTP_SECTION_BORDER */
-								color-mix(
-									in srgb,
-									color-mix(
-											in srgb,
-											var(--lwt-accent-color) 10%,
-											black
-										)
-										30%,
-									transparent
-								)
-								80%,
-							/* COLOR_NTP_SECTION_BORDER */
-								color-mix(
-									in srgb,
-									color-mix(
-											in srgb,
-											var(--lwt-accent-color) 10%,
-											black
-										)
-										20%,
-									transparent
-								)
-						);
+							)
+					);
+					
+
+					&[footer-themable="true"] {
 						--footer-background: linear-gradient(
 							to bottom,
 							color-mix(
@@ -142,10 +127,61 @@
 							var(--lwt-text-color) 40%,
 							transparent
 						);
+
+						@media (prefers-color-scheme: dark) {
+							--footer-background: linear-gradient(
+								to bottom,
+								rgba(53, 53, 53, 0.9),
+								rgba(31, 31, 31, 0.9)
+							);
+							--footer-color: #b8b8b8;
+				
+							--dot-color-normal: rgba(255, 255, 255, 0.2);
+							--dot-color-hot: #9e9e9e;
+							--selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
+							--selection-bar-background-color-hot: #535353;
+							--selection-bar-background-color-active: #9e9e9e;
+				
+							--footer-menu-button-glyph-background-color-normal: #b8b8b8;
+							--footer-menu-item-link-color: #acc0da;
+							--footer-vertical-separator-background-color: rgb(100, 100, 100);
+						}
 					}
 				}
 			}
 		}
+	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				var(--chrt-ntp-header) 20%,
+				transparent
+			),
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrt-ntp-header) 30%,
+					transparent
+				)
+				20%,
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrt-ntp-header) 30%,
+					transparent
+				)
+				80%,
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrt-ntp-header) 20%,
+					transparent
+				)
+		) !important;
 	}
 }
 

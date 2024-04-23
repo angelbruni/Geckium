@@ -1,9 +1,9 @@
 & {
-	--thumbnail-border-color-normal: rgb(229, 229, 229);
-	--thumbnail-border-color-hot: rgb(150,150,150);
-	--thumbnail-disabled-color: rgba(229, 229, 229, 1);
-	--edit-bar-background-color-hot: rgb(150,150,150);
-	--edit-bar-background-hot: linear-gradient(
+	--default-thumbnail-border-color-normal: rgb(229, 229, 229);
+	--default-thumbnail-border-color-hot: rgb(150,150,150);
+	--default-thumbnail-disabled-color: rgba(229, 229, 229, 1);
+	--default-edit-bar-background-color-hot: rgb(150,150,150);
+	--default-edit-bar-background-hot: linear-gradient(
 		to bottom,
 		rgba(185,185,185),
 		var(--edit-bar-background-color-hot)
@@ -12,5 +12,9 @@
 	@media (prefers-color-scheme: dark) {
 		--thumbnail-border-color-normal: rgb(88, 88, 88);
 		--thumbnail-container-color: white;
+	}
+
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--thumbnail-disabled-color: var(--chrt-ntp-section, var(--default-thumbnail-disabled-color)) !important;
 	}
 }

@@ -1,3 +1,17 @@
+& {
+	--default-link-color: rgb(102,102,102);
+	--link-color: var(--default-link-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-link-color: rgb(138, 138, 138);
+	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--link-color: var(--chrt-ntp-text, var(--default-link-color));
+	}
+}
+
 #login-container {
 	all: unset;
 
@@ -16,10 +30,6 @@
 }
 
 .link-span {
-	color: rgb(102,102,102);
+	color: var(--link-color);
 	text-decoration: underline;
-
-	@media (prefers-color-scheme: dark) {
-		color: rgb(138, 138, 138);
-	}
 }

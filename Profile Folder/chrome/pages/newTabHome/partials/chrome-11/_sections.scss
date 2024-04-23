@@ -1,6 +1,8 @@
 & {
-	--section-color: black;
-	--spacer-background-color: rgb(229, 229, 229);
+	--default-section-color: black;
+	--section-color: var(--default-section-color);
+	--default-spacer-background-color: rgb(229, 229, 229);
+	--spacer-background-color: var(--default-spacer-background-color);
 
 	@media (prefers-color-scheme: dark) {
 		--section-color: white;
@@ -8,12 +10,19 @@
 	}
 
 	// Custom theme support
+	// lwtheme
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
 	&[lwtheme-id*="{"] {
 		&:not([lwtheme-id*="#{$gtkplus}"]) {
 			--section-color: var(--toolbar-color);
 			--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
 		}
+	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--section-color: var(--chrt-ntp-text, var(--default-section-color));
+		--spacer-background-color: var(--chrt-ntp-section, var(--default-spacer-background-color));
 	}
 }
 

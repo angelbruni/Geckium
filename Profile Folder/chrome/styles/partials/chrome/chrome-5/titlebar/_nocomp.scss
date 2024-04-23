@@ -23,6 +23,11 @@
 				}
 			}
 		}
+		&:not(:-moz-lwtheme)[chrtheme="true"] {
+			@media (-moz-platform: windows) {
+				--titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
+			}
+		}
 	}
 
 	@media (-moz-platform: linux) {

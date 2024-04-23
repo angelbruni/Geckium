@@ -1,11 +1,20 @@
 & {
 	font: small arial,sans-serif;
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--link-color: var(--default-link-color);
+	}
 }
 
 &[pref="newtab"] {
 	#bookmarksbar-spacing {
 		display: none;
 	}
+}
+
+#attribution {
+	margin-block-start: auto;
 }
 
 @import "google";

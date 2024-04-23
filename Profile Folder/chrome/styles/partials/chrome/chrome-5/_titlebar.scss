@@ -1,14 +1,18 @@
 :root {
-	--titlebar-active: linear-gradient(
+	--chrt-theme-frame-overlay: 0;
+
+	--default-titlebar-active: linear-gradient(
 		to bottom,
 		rgb(97, 162, 241),
 		rgb(72, 140, 222) 40px
 	);
-	--titlebar-inactive: linear-gradient(
+	--titlebar-active: var(--default-titlebar-active);
+	--default-titlebar-inactive: linear-gradient(
 		to bottom,
 		rgb(163, 201, 247),
 		rgb(147, 186, 234) 40px
 	);
+	--titlebar-inactive: var(--default-titlebar-inactive);
 	
 	@media (-moz-platform: linux) {
 		--titlebar-active: linear-gradient(
@@ -50,7 +54,7 @@
     }
 
     @import "titlebar/nocomp";
-	&:not(:-moz-lwtheme) {
+	&:not([chrtheme="true"]):not(:-moz-lwtheme) {
 		&[windowtype="navigator:browser"] > body {
 			background: transparent !important;
 
@@ -185,16 +189,54 @@
 				}
 			}
         }
-
-        /* bruni: Firefox is weird, if we set the root to be transparent,
-				  then it takes body's background. The lowest we can go in
-				  alpha is 0.002 for that bug (assuming it's one) to not happen. */
-		background: rgba(1, 1, 1, 0.002) !important;
 		
 		@media not (-moz-ev-native-controls-patch) {
 			background: white !important;
 		}
     }
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
+		--titlebar-inactive: color-mix(
+			in srgb,
+			var(--chrt-frame, var(--default-titlebar-inactive)) 40%,
+			white
+		) !important;
+
+		&[windowtype="navigator:browser"] > body {
+			&::before {
+				content: "";
+				top: 1px;
+				left: 1px;
+				position: absolute;
+				width: calc(100% - 2px);
+				height: 100%;
+				border-radius: 5px 5px 0 0;
+				background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
+				
+			}
+
+			&:-moz-window-inactive {
+				&::before {
+					opacity: .5;
+				}
+			}
+		}
+
+		&[chromemargin="0,0,0,0"] {
+			&[windowtype="navigator:browser"] > body {
+				&::before {
+					box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+				}
+			}
+		}
+	}
+	&:-moz-lwtheme,
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		/* bruni: Firefox is weird, if we set the root to be transparent,
+				  then it takes body's background. The lowest we can go in
+				  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+		background: rgba(1, 1, 1, 0.002) !important;
+	}
 }
 
 #private-browsing-indicator-with-label {

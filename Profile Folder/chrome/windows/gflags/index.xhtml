@@ -42,8 +42,9 @@
 							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="12" label="People" />
 							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="Pages" />
 							<separator />
-							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="20" label="Chromium Experiments" />
-							<separator />-->
+							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="Chromium Themes" />
+							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />-->
+							<separator />
 							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="Settings" />-->
 							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="31" label="Help" />
 							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="32" label="About" />
@@ -384,7 +385,70 @@
 								</vbox>
 							</vbox>
 							<vbox class="page" data-page="20">
+								<vbox class="content-container">
+									<vbox class="window-top-bars light">
+										<hbox class="window-top-bar">
+											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
+												<!--<h3 for="people-switch"/>-->
+												<spacer />
+												<div class="switch-parent">
+													<html:input class="switch" data-pref="Geckium.chrTheme.status" type="checkbox" id="people-switch" name="people-switch" />
+													<html:label class="gutter" for="people-switch" />
+												</div>
+											</hbox>
+										</hbox>
+									</vbox>
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<label class="item ripple-enabled" is="text-link" href="https://chrome.google.com/webstore/category/themes">
+													<vbox>
+														<label class="name">Get more Chromium themes</label>
+													</vbox>
+												</label>
+												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
+													<vbox>
+														<label class="name">Open themes folder</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
+													<vbox>
+														<label class="name">Refresh list</label>
+													</vbox>
+												</html:button>
+											</vbox>
+											<h4>
+												Available Themes
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
+												<div class="modal" data-modal="aboutChrThemes_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Chromium Themes</div>
+																<vbox class="description" style="gap: 16px">
+																	<html:p>
+																		If you don't see your theme, try extracting it and recompressing as .zip, then change the format to .crx by renaming the file.
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutChrThemes_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</h4>
+											<vbox class="card" id="chrthemes-list" />
+											<!--<h4>Unavailable Themes</h4>
+											<vbox class="card">
 
+											</vbox>-->
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="21">
+								
 							</vbox>
 							<vbox class="page" data-page="30">
 								<vbox class="content-container">
@@ -407,7 +471,6 @@
 									<vbox class="content">
 										<vbox class="list-container" id="profile-pic-content">
 											<h4>Useful links</h4>
-											
 											<vbox class="card">
 												<label class="item ripple-enabled" is="text-link" href="https://github.com/kitchenfox/geckium">
 													<vbox>
@@ -613,6 +676,9 @@
 	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/chrThemes.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>

@@ -19,16 +19,19 @@ tooltip {
 }
 
 :root {
-  --titlebar-active: linear-gradient(
+  --chrt-theme-frame-overlay: 0;
+  --default-titlebar-active: linear-gradient(
   	to bottom,
   	rgb(97, 162, 241),
   	rgb(72, 140, 222) 40px
   );
-  --titlebar-inactive: linear-gradient(
+  --titlebar-active: var(--default-titlebar-active);
+  --default-titlebar-inactive: linear-gradient(
   	to bottom,
   	rgb(163, 201, 247),
   	rgb(147, 186, 234) 40px
   );
+  --titlebar-inactive: var(--default-titlebar-inactive);
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
 }
@@ -81,6 +84,11 @@ tooltip {
   }
   :root:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
     --titlebar-buttonbox-background-color: transparent;
+  }
+}
+@media (-moz-platform: windows) {
+  :root:not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
   }
 }
 @media (-moz-platform: linux) {
@@ -307,23 +315,19 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
-:root:not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
+:root:not([chrtheme=true]):not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
   background: transparent !important;
 }
 @media (-moz-platform: linux) {
-  :root:not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
+  :root:not([chrtheme=true]):not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
     background: var(--titlebar-active) !important;
   }
-  :root:not(:-moz-lwtheme)[windowtype="navigator:browser"] > body:-moz-window-inactive {
+  :root:not([chrtheme=true]):not(:-moz-lwtheme)[windowtype="navigator:browser"] > body:-moz-window-inactive {
     background: var(--titlebar-inactive) !important;
   }
 }
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for titlebar */
-  /* bruni: Firefox is weird, if we set the root to be transparent,
-  then it takes body's background. The lowest we can go in
-  alpha is 0.002 for that bug (assuming it's one) to not happen. */
-  background: rgba(1, 1, 1, 0.002) !important;
 }
 :root:-moz-lwtheme #navigator-toolbox {
   padding-top: 0 !important;
@@ -406,6 +410,36 @@ tooltip {
     background: white !important;
   }
 }
+:root:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
+  --titlebar-inactive: color-mix(
+  	in srgb,
+  	var(--chrt-frame, var(--default-titlebar-inactive)) 40%,
+  	white
+  ) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][windowtype="navigator:browser"] > body::before {
+  content: "";
+  top: 1px;
+  left: 1px;
+  position: absolute;
+  width: calc(100% - 2px);
+  height: 100%;
+  border-radius: 5px 5px 0 0;
+  background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][windowtype="navigator:browser"] > body:-moz-window-inactive::before {
+  opacity: 0.5;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body::before {
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+:root:-moz-lwtheme, :root:not(:-moz-lwtheme)[chrtheme=true] {
+  /* bruni: Firefox is weird, if we set the root to be transparent,
+  		  then it takes body's background. The lowest we can go in
+  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+  background: rgba(1, 1, 1, 0.002) !important;
+}
 
 #private-browsing-indicator-with-label {
   align-items: end !important;
@@ -426,24 +460,36 @@ tooltip {
 
 :root {
   --tab-glare-opacity: 1;
-  --tab-glare: rgb(211, 217, 225, 0.45);
+  --default-tab-glare: rgb(211, 217, 225, 0.45);
+  --tab-glare: var(--default-tab-glare);
+  --tab-glare-hover-timer: 0.1s;
+  --tab-glare: var(--default-tab-glare);
+  --tab-glare-unhover-timer: 0.1s;
   --tab-sides-width: 15px;
   --tab-width: 194px;
   --tab-distance: 4px;
-  --inactive-tab-background-color: rgb(211, 217, 225, 0.8);
-  --tabbrowser-tab-selected: linear-gradient(
+  --default-tab-background-color: rgb(211, 217, 225, 0.8);
+  --inactive-tab-background-color: var(--default-tab-background-color);
+  --default-tabbrowser-tab-selected: linear-gradient(
   	to top,
   	rgb(243, 248, 253),
   	rgb(252, 254, 255)
   );
+  --tabbrowser-tab-selected: var(--default-tabbrowser-tab-selected);
   --tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
-  --tabbrowser-tab-color: black;
+  --default-tabbrowser-tab-color: rgba(0,0,0,.6);
+  --tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
+  --default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
+  --tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
   --tab-transition-time: 220ms;
   --tab-height: 28px;
   --newtab-width: 28px;
   --newtab-height: 18px;
-  --newtab-normal: rgba(255, 255, 255, 0.01);
+  --theme-newtab: transparent;
+  --default-newtab-normal: rgba(255, 255, 255, 0.01);
+  --newtab-normal: var(--default-newtab-normal);
   --newtab-hot: rgba(255, 255, 255, 0.1);
+  /* bruni: This entire code takes care of custom themes support for tabs */
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -462,9 +508,6 @@ tooltip {
   --tabbrowser-tab-selected: var(--nav-bar) !important;
   --tabbrowser-tab-color: -moz-dialogtext !important;
 }
-:root:-moz-lwtheme {
-  /* bruni: This entire code takes care of custom themes support for tabs */
-}
 :root:-moz-lwtheme:not([customthememode="2"]):not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
   --inactive-tab-background-color: color-mix(
   	in srgb,
@@ -477,6 +520,24 @@ tooltip {
   ) !important;
   --tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+}
+:root:not(:-moz-lwtheme)[chrtheme=true] {
+  --tab-glare-opacity: .5 !important;
+  --inactive-tab-background-color: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-tab-background-color))) !important;
+  --tabbrowser-tab-selected: var(--nav-bar, black) !important;
+  --tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
+  --tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
+  --theme-newtab: var(--chrt-control-background, transparent) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=five], :root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=six], :root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=eleven] {
+  --tab-glare: var(--tabbrowser-tab-selected) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][style*="--chrt-tints-background-tab"] {
+  --inactive-tab-background-color: color-mix(
+  	in srgb,
+  	var(--chrt-frame, var(--default-tab-background-color)),
+  	black 50%
+  ) !important;
 }
 :root:not([tabsintitlebar]) .titlebar-items {
   margin-top: -7px !important;
@@ -574,6 +635,9 @@ tooltip {
 .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-label::before {
   content: url(assets/img/chrome-5/tabbar/plugin.png);
 }
+.tabbrowser-tab:not([visuallyselected=true]) {
+  color: var(--tabbrowser-tab-color) !important;
+}
 .tabbrowser-tab:not([visuallyselected=true]):not(:first-of-type) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png) no-repeat;
   background-position: 0 2px;
@@ -591,7 +655,9 @@ tooltip {
 .tabbrowser-tab:not([visuallyselected=true]):hover .tab-glare-container {
   opacity: var(--tab-glare-opacity);
   /* bruni: In Chrome, the glare shows up faster when hovering. */
-  transition: opacity 0.2s linear;
+  transition-property: opacity;
+  transition-duration: var(--tab-glare-hover-timer);
+  transition-timing-function: linear;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png) no-repeat;
@@ -605,7 +671,7 @@ tooltip {
   opacity: 0.6 !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before, .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::after {
-  background-color: var(--inactive-tab-background-color) !important;
+  background: var(--inactive-tab-background-color) !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]) .tab-stack::before {
   -webkit-mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
@@ -631,6 +697,7 @@ tooltip {
 .tabbrowser-tab[visuallyselected=true] {
   position: relative;
   z-index: 1000 !important;
+  color: var(--tabbrowser-tab-color-active) !important;
 }
 .tabbrowser-tab[visuallyselected=true] .tab-content::before {
   background: url(assets/img/chrome-5/tabbar/tab_active_left.png) no-repeat;
@@ -827,9 +894,10 @@ tooltip {
   overflow: hidden;
   opacity: 0;
   margin-top: 4px;
+  z-index: 2;
   /* bruni: In Chrome, the glare hides in a slower
   		  pace when the mouse leaves. */
-  transition: opacity 0.5s linear;
+  transition: opacity var(--tab-glare-unhover-timer) linear;
 }
 
 .tab-glare-middle {
@@ -917,12 +985,13 @@ tooltip {
 }
 
 :root {
-  --nav-bar: linear-gradient(
+  --default-nav-bar: linear-gradient(
   	to top,
   	rgb(218, 231, 247),
   	rgb(230, 239, 251),
   	rgb(245, 249, 254)
   );
+  --nav-bar: var(--default-nav-bar);
   --chrome-content-separator-color: transparent !important;
   --toolbar-start-end-padding: 2px !important;
   --inner-border-color: #dfdfdf;
@@ -934,21 +1003,26 @@ tooltip {
   --toolbarbutton-border-color-normal: rgb(198, 206, 228);
   --toolbarbutton-border-color-hot: rgb(163, 174, 197);
   --toolbarbutton-border-color-active: rgb(171, 181, 203);
-  --toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+  --toolbarbutton-active-background: rgb(0, 0, 0, .05) !important;
   --toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
   --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
   --toolbarbutton-outer-padding: 3px !important;
-  --toolbarbutton-gradient: linear-gradient(
+  --default-toolbarbutton-texture: linear-gradient(
   	to top,
   	rgb(222, 234, 248),
   	rgb(240, 245, 253)
   );
-  --toolbarbutton-shadow-active: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
-  --toolbarbutton-active-background: transparent !important;
+  --toolbarbutton-texture: var(--default-toolbarbutton-texture);
+  --toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
+  --toolbarbutton-shadow-hot: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+  --toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
-  --navigation-buttons-separator: rgb(221, 229, 243);
-  --personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+  --default-toolbarbutton-icon-fill: rgb(65, 99, 154);
+  --default-navigation-buttons-separator: rgb(221, 229, 243);
+  --navigation-buttons-separator: var(--default-navigation-buttons-separator);
+  --default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+  --personal-toolbar: var(--default-personal-toolbar);
   --personal-toolbar-height: 25px;
   --personal-toolbar-border-bottom: rgb(182, 186, 192);
   --personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
@@ -958,9 +1032,15 @@ tooltip {
   		rgb(255, 255, 255, 30%),
   	0 1px 1px 2px rgb(0, 0, 0, 6%), inset 0 0 1px 1px transparent;
   --personal-toolbar-item-hover-bg: rgba(255, 255, 255, 0.5) !important;
-  --bookmark-item-color: #062d75;
+  --default-bookmark-item-color: #062d75;
+  --bookmark-item-color: var(--default-bookmark-item-color);
   --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
   --placed-chevron-width: 15px;
+  /*&[customthememode="2"],
+  &:not(:-moz-lwtheme),
+  &:not([chrtheme="true"]) {
+  	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+  }*/
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -975,7 +1055,7 @@ tooltip {
     --toolbarbutton-border-color-normal: rgb(90, 90, 90);
     --toolbarbutton-border-color-hot: rgb(112, 112, 112);
     --toolbarbutton-border-color-active: rgb(136, 136, 136);
-    --toolbarbutton-gradient: linear-gradient(
+    --toolbarbutton-texture: linear-gradient(
     	to bottom,
     	#5d5d5d,
     	#4c4c4c
@@ -992,7 +1072,7 @@ tooltip {
   --toolbarbutton-border-color-normal: -moz-dialogtext;
   --toolbarbutton-border-color-hot: -moz-dialogtext;
   --toolbarbutton-border-color-active: -moz-dialogtext;
-  --toolbarbutton-gradient: var(--nav-bar) !important;
+  --toolbarbutton-texture: var(--nav-bar) !important;
   --toolbarbutton-inner-border-color-normal: transparent;
   --toolbarbutton-inner-border-color-hot: transparent;
   --toolbarbutton-icon-fill: -moz-dialogtext !important;
@@ -1169,9 +1249,6 @@ tooltip {
     list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
   }
 }
-:root[customthememode="2"], :root:not(:-moz-lwtheme) {
-  --toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
-}
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for toolbars */
 }
@@ -1196,6 +1273,11 @@ tooltip {
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
     --titlebar-buttonbox-background-color: transparent;
+  }
+}
+@media (-moz-platform: windows) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
   }
 }
 @media (-moz-platform: linux) {
@@ -1425,6 +1507,7 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
   --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
   --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --toolbarbutton-border-color-normal: color-mix(
   	in srgb,
@@ -1451,7 +1534,7 @@ tooltip {
   	var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
   	transparent
   ) !important;
-  --toolbarbutton-gradient: linear-gradient(
+  --toolbarbutton-texture: linear-gradient(
   	to bottom,
   	color-mix(
   		in srgb,
@@ -1521,6 +1604,301 @@ tooltip {
   background-position-y: calc(var(--tab-height) * -1) !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[customthememode="1"][style*="--lwt-header-image"] #PersonalToolbar {
+  background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true] {
+  --nav-bar: var(--chrt-theme-toolbar, var(--chrt-toolbar, var(--default-nav-bar))) !important;
+  --toolbarbutton-border-color-normal: color-mix(
+  	in srgb,
+  	var(--chrt-toolbar) 85%,
+  	black
+  ) !important;
+  --toolbarbutton-border-color-hot: color-mix(
+  	in srgb,
+  	var(--chrt-toolbar) 70%,
+  	black
+  ) !important;
+  --toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
+  --toolbarbutton-texture: var(--chrt-theme-button-background, var(--default-toolbarbutton-texture)) !important;
+  --toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
+  --toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
+  --toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
+  --toolbarbutton-icon-fill: var(--chrt-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
+  --navigation-buttons-separator: var(--chrt-toolbar, var(--default-navigation-buttons-separator)) !important;
+  --personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
+  --bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
+  --bookmark-item-color-shadow: none !important;
+  /* bruni: This is the code for the window frame when composition
+  		  is disabled. This code is also used by custom themes.*/
+}
+:root:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):-moz-lwtheme {
+  /* bruni: This entire code takes care of custom themes support for titlebar */
+}
+@media (-moz-platform: windows) {
+  :root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+}
+@media (-moz-platform: windows) {
+  :root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
+  }
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true]#main-window {
+    background: rgba(0, 0, 0, 0.002) !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
+  padding-top: 7px !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized][tabsintitlebar] #tabbrowser-arrowscrollbox, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen][tabsintitlebar] #tabbrowser-arrowscrollbox {
+  padding-top: 0 !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container {
+  margin-block-start: 0 !important;
+  margin-inline-end: 3px !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+  background: var(--titlebar-active);
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgb(89, 89, 89);
+  border-left: 1px solid rgb(89, 89, 89);
+  border-bottom: 1px solid rgb(68, 68, 68);
+  border-right: 1px solid rgb(68, 68, 68);
+  border-radius: 5px;
+  padding: 1px !important;
+  box-sizing: border-box;
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
+    border: 1px solid color-mix(in srgb, var(--lwt-accent-color) 50%, rgb(0, 0, 0) 40%) !important;
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    -moz-transition: background 0.15s linear;
+    transition: background 0.15s linear;
+    padding: 2px !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body:-moz-window-inactive {
+  background: var(--titlebar-inactive);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] #titlebar {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-buttonbox-container {
+  margin: 0 !important;
+  margin-block-start: -1px !important;
+  margin-inline-end: 2px !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-buttonbox {
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+  align-items: start !important;
+  -moz-default-appearance: -moz-window-button-box;
+  margin-right: 1px !important;
+  background-color: var(--titlebar-buttonbox-background-color);
+  box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-buttonbox {
+    margin-block-start: 3px;
+    margin-right: 0px !important;
+    gap: 2px;
+    box-shadow: none;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-buttonbox {
+    margin-inline-start: 3px !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button {
+  position: relative;
+  -moz-appearance: unset !important;
+       appearance: unset !important;
+  display: flex !important;
+  margin: 0 !important;
+  height: 17px;
+  box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+  -moz-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+  background-clip: padding-box;
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button {
+    height: 18px;
+    box-shadow: none;
+    width: 24px !important;
+    border-radius: 3px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-sizing: border-box;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button:active {
+  -moz-transition: none;
+  transition: none;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-right: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-right-radius: 5px;
+  width: 43px;
+  list-style-image: url(assets/img/titlebar/close.svg);
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close {
+    list-style-image: url(assets/img/titlebar/linux/close.svg) !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close:hover {
+  background-color: rgb(217, 76, 74) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close:active {
+  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
+  background-color: rgb(213, 58, 63) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max:hover,
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore:hover,
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-min:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max:active,
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore:active,
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-min:active {
+  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body {
+  padding: 0 !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-max, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-max {
+  display: none !important;
+}
+@media not (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body {
+    padding-top: 7px !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=normal] .titlebar-restore {
+  display: none !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max,
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  width: 25px;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max {
+  list-style-image: url(assets/img/titlebar/maximize.svg);
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max {
+    list-style-image: url(assets/img/titlebar/linux/maximize.svg) !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-max,
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore {
+    display: none !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore {
+  list-style-image: url(assets/img/titlebar/restore.svg);
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore {
+    list-style-image: url(assets/img/titlebar/linux/restore.svg) !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-restore .toolbarbutton-icon {
+  transform: translateX(-1px);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-min {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  border-bottom-left-radius: 5px;
+  width: 25px;
+  list-style-image: url(assets/img/titlebar/minimize.svg);
+}
+@media (-moz-platform: linux) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-min {
+    list-style-image: url(assets/img/titlebar/linux/minimize.svg) !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-minimize-button)) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-min {
+    display: none !important;
+  }
+}
+@media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-left-radius: 4.5px !important;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-left-radius: 4.5px !important;
+  }
+}
+@media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true]:not([style*="--chrt-toolbar-button-icon"])[style*="--chrt-tints-buttons"]:not([style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"]) {
+  --toolbarbutton-icon-fill: color-mix(
+  	in srgb,
+  	var(--chrt-toolbar) 80%,
+  	black
+  ) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true]:not([style*="--chrt-toolbar-button-icon"])[style*="--chrt-tints-buttons"]:not([style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"])[style*="--chrt-toolbar: rgb(0, 0, 0)"] {
+  --toolbarbutton-icon-fill: color-mix(
+  	in srgb,
+  	var(--chrt-frame) 80%,
+  	black
+  ) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true]:not([style*="--chrt-toolbar-button-icon"])[style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"] {
+  --toolbarbutton-icon-fill: color-mix(
+  	in srgb,
+  	var(--default-toolbarbutton-icon-fill) 80%,
+  	black
+  ) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true] #nav-bar {
+  background-position-y: calc(var(--tab-height) * -1) !important;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true] #PersonalToolbar {
   background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 }
 :root[profilepicbutton=true][profilepic=chromium] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox, :root[profilepicbutton=true][profilepic=custom] #fxa-toolbar-menu-button > .toolbarbutton-badge-stack > vbox {
@@ -2222,7 +2600,7 @@ toolbarspring {
 #new-tab-button) {
   position: relative;
   padding: 0 !important;
-  background: var(--toolbarbutton-gradient) !important;
+  background: var(--toolbarbutton-texture) !important;
   background-clip: padding-box !important;
   fill: var(--toolbarbutton-icon-fill) !important;
   margin: 0 var(--toolbarbutton-outer-padding) !important;
@@ -2252,40 +2630,40 @@ toolbarspring {
   left: 0;
   width: 100%;
   transition: box-shadow 100ms linear;
-  border-top-left-radius: calc(var(--toolbarbutton-radius) - 2px) !important;
-  border-top-right-radius: calc(var(--toolbarbutton-radius) - 2px) !important;
-  border-bottom-left-radius: calc(var(--toolbarbutton-radius) - 2px) !important;
-  border-bottom-right-radius: calc(var(--toolbarbutton-radius) - 2px) !important;
+  border-top-left-radius: var(--toolbarbutton-radius) !important;
+  border-top-right-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)::before {
-  height: 35%;
+  height: 100%;
   opacity: 0;
-  background: linear-gradient(to top, black, transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.8));
+  mix-blend-mode: hard-light;
   transition: opacity 100ms linear;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button)::after {
   height: 100%;
-  box-shadow: var(--toolbarbutton-shadow-active);
+  box-shadow: var(--toolbarbutton-shadow-normal);
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover {
   border: 1px solid var(--toolbarbutton-border-color-hot);
-  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover::before {
-  opacity: 0.15;
+  opacity: 1;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover::after {
-  box-shadow: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+  box-shadow: var(--toolbarbutton-shadow-hot);
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -2297,7 +2675,7 @@ toolbarspring {
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover image:first-of-type {
   background-color: transparent !important;
-  filter: saturate(1.5);
+  filter: saturate(1.5) drop-shadow(0 0 1px rgba(255, 255, 255, 0.7));
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -2313,8 +2691,16 @@ toolbarspring {
 #new-tab-button):not([disabled]):active::before, .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled])[open]::before {
-  opacity: 0;
+  opacity: 1;
+  background: var(--toolbarbutton-active-background);
   transition: none;
+}
+.toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button):not([disabled]):active::after, .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button):not([disabled])[open]::after {
+  box-shadow: none;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -2351,6 +2737,7 @@ toolbarspring {
   border-radius: 0 !important;
   padding: 0 !important;
   fill: var(--toolbarbutton-icon-fill) !important;
+  filter: saturate(1) drop-shadow(0 0 1px rgba(255, 255, 255, 0.7));
   transition: 100ms filter linear;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -2564,7 +2951,14 @@ toolbarspring {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
   position: relative;
-  background: url(assets/img/chrome-5/tabbar/newtab.png);
+  -webkit-mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+          mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+          mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+  background-color: var(--theme-newtab);
+  background-image: url(assets/img/chrome-5/tabbar/newtab.png);
   background-position: center;
   background-repeat: no-repeat;
   margin-top: 7px !important;
@@ -2592,10 +2986,6 @@ toolbarspring {
   position: absolute;
   height: 100%;
   width: 100%;
-  -webkit-mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
-          mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
-  -webkit-mask-size: var(--newtab-width) var(--newtab-height);
-          mask-size: var(--newtab-width) var(--newtab-height);
   background-color: var(--newtab-normal);
   transition: background-color 100ms linear;
 }
@@ -2659,6 +3049,7 @@ toolbarspring {
 #PersonalToolbar .bookmark-item:not(.menuitem-iconic):hover {
   border: 1px solid rgba(0, 0, 0, 0.14);
   background: var(--personal-toolbar-item-hover-bg) !important;
+  color: var(--default-bookmark-item-color) !important;
 }
 
 #PlacesToolbarItems {
@@ -2683,6 +3074,10 @@ toolbarspring {
 
 .blocked-permission-icon {
   display: none !important;
+}
+
+#urlbar-background {
+  box-shadow: none !important;
 }
 
 menupopup button {
@@ -3049,9 +3444,9 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 #searchbar {
   border-inline: 0 !important;
   border-block: 1px solid var(--urlbar-border) !important;
-  box-shadow: none !important;
   border-radius: 0 !important;
   height: var(--urlbar-height-definitive);
+  background-clip: content-box !important;
 }
 
 .searchbar-search-button {
@@ -3108,7 +3503,7 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 }
 
 .urlbar-input-box {
-  height: calc(var(--urlbar-height-definitive) - 2px) !important;
+  height: var(--urlbar-height-definitive) !important;
   font-size: 11pt !important;
   margin-inline: 3px;
   overflow: hidden;
@@ -3130,6 +3525,11 @@ toolbarbutton.subviewbutton .fxa-menu-header-description {
 #search-container {
   padding: 0 !important;
   margin-inline: 2px !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  border-top-left-radius: var(--toolbarbutton-radius) !important;
+  border-top-right-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+  border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 }
 
 #urlbar-container {
@@ -3512,7 +3912,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-border-color-normal: rgb(198,198,198);
   --toolbarbutton-border-color-hot: rgb(203, 203, 203);
   --toolbarbutton-border-color-active: rgb(159, 159, 159);
-  --toolbarbutton-gradient: linear-gradient(
+  --toolbarbutton-texture: linear-gradient(
   	to bottom,
   	rgb(245,245,245),
   	rgb(232,232,232)
@@ -3744,24 +4144,28 @@ hbox[id=label-box][part=label-box] {
   transition: opacity 100ms linear !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] {
+  /*&[customthememode="2"],
+  &:not(:-moz-lwtheme),
+  &[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"],
+  &:not([chrtheme="true"]) {
+  	--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+  }*/
   --toolbar-start-end-padding: 3px !important;
   --nav-bar-height: 36px;
+  --toolbarbutton-radius: 5px;
   --toolbarbutton-width: var(--toolbarbutton-height);
   --toolbarbutton-menu-width: var(--toolbarbutton-width);
   --toolbarbutton-outer-padding: 0.5px !important;
   --toolbarbutton-border-color-normal: transparent;
-  --toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
-  --toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  --toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
+  --toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-  --toolbarbutton-radius: 5px;
+  --default-toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
   --personal-toolbar-height: 24px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][customthememode="2"], :root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
-  --toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
 }
 @media (prefers-color-scheme: dark) {
   :root[geckium-five][geckium-six][geckium-eleven] {
-    --toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
+    --toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
     --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
   }
 }
@@ -3788,7 +4192,7 @@ hbox[id=label-box][part=label-box] {
 #new-tab-button)::before {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, transparent, var(--toolbarbutton-gradient-hot)) !important;
+  background: linear-gradient(to top, transparent, var(--toolbarbutton-texture-hot)) !important;
   transition: all 150ms linear;
   opacity: 0;
   z-index: 1;
@@ -3802,7 +4206,6 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover {
-  box-shadow: var(--toolbarbutton-shadow-hot) !important;
   border-color: var(--toolbarbutton-border-color-hot) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -3827,7 +4230,7 @@ hbox[id=label-box][part=label-box] {
 #tabs-newtab-button,
 #new-tab-button):not([disabled])[open] {
   background: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: var(--toolbarbutton-shadow-active) !important;
+  box-shadow: var(--toolbarbutton-shadow-normal) !important;
   border-color: var(--toolbarbutton-border-color-active) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4142,7 +4545,7 @@ hbox[id=label-box][part=label-box] {
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
-  --tab-glare-opacity: 0.7;
+  --tab-glare-opacity: .2;
   --tab-glare-color: white;
   --tab-glare: linear-gradient(
   	90deg,
@@ -4162,6 +4565,9 @@ hbox[id=label-box][part=label-box] {
   --newtab-normal: var(--inactive-tab-background-color);
   --newtab-hot: rgb(211, 217, 225, 0.8);
   --newtab-active: rgb(211, 217, 225, 0.4);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme)[chrtheme=true] {
+  --tab-glare-opacity: .1 !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthemecolorizetabglare=true] {
   /* bruni: This entire code takes care of custom themes support for tabs */
@@ -4232,23 +4638,27 @@ hbox[id=label-box][part=label-box] {
           mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+  --toolbarbutton-radius: 4px;
   --toolbarbutton-border-color-hot: rgb(192, 192, 192);
   --toolbarbutton-border-color-active: rgb(125, 125, 125);
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
   							inset 0 1px 2px rgb(255, 255, 255, 75%);
-  --toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
   --toolbarbutton-width: 27px;
   --toolbarbutton-height: 27px;
+  --default-toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
   --personal-toolbar-height: 23px;
   --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
   --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
   --bookmark-item-color: #000000;
   --bookmark-item-hover-color: #062d75;
   --personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
-  --toolbarbutton-radius: 4px;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthememode="2"], :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme), :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
-  --toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
+  /*&[customthememode="2"],
+  &:not(:-moz-lwtheme),
+  &[lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"],
+  &:not([chrtheme="true"]) {
+  	--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
+  }*/
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #tabs-newtab-button,
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] #TabsToolbar #new-tab-button {
@@ -5124,7 +5534,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-height: 24px;
   --toolbarbutton-radius: 2px;
   --toolbarbutton-background-hot: rgba(0,0,0,.09);
-  --toolbarbutton-icon-fill: #5a5a5a !important;
+  --default-toolbarbutton-icon-fill: #5a5a5a !important;
   --toolbarbutton-outer-padding: 2px !important;
   --personal-toolbar: var(--nav-bar);
   --personal-toolbar-height: 28px;

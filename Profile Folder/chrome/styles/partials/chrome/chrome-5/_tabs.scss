@@ -1,25 +1,36 @@
 :root {
 	--tab-glare-opacity: 1;
-	--tab-glare: rgb(211, 217, 225, 0.45);
+	--default-tab-glare: rgb(211, 217, 225, 0.45);
+	--tab-glare: var(--default-tab-glare);
+	--tab-glare-hover-timer: 0.1s;
+	--tab-glare: var(--default-tab-glare);
+	--tab-glare-unhover-timer: 0.1s; // 0.5s
 
 	--tab-sides-width: 15px;
 	--tab-width: 194px;
 	--tab-distance: 4px;
 
-	--inactive-tab-background-color: rgb(211, 217, 225, 0.8);
-	--tabbrowser-tab-selected: linear-gradient(
+	--default-tab-background-color: rgb(211, 217, 225, 0.8);
+	--inactive-tab-background-color: var(--default-tab-background-color);
+	--default-tabbrowser-tab-selected: linear-gradient(
 		to top,
 		rgb(243, 248, 253),
 		rgb(252, 254, 255)
 	);
+	--tabbrowser-tab-selected: var(--default-tabbrowser-tab-selected);
 	--tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
-	--tabbrowser-tab-color: black;
+	--default-tabbrowser-tab-color: rgba(0,0,0,.6);
+	--tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
+	--default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
+	--tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
 	--tab-transition-time: 220ms;
 	--tab-height: 28px;
 
 	--newtab-width: 28px;
 	--newtab-height: 18px;
-	--newtab-normal: rgba(255, 255, 255, 0.01);
+	--theme-newtab: transparent;
+	--default-newtab-normal: rgba(255, 255, 255, 0.01);
+	--newtab-normal: var(--default-newtab-normal);
 	--newtab-hot: rgba(255, 255, 255, 0.1);
 
 	@media (prefers-color-scheme: dark) {
@@ -34,15 +45,15 @@
 		--tabbrowser-tab-color: white;
 	}
 
+	/* bruni: This entire code takes care of custom themes support for tabs */
+	// if lwtheme == gtkplus
 	&[lwtheme-id="#{$gtkplus}"] {
 		--inactive-tab-background-color: color-mix(in srgb, -moz-dialog 80%, transparent) !important;
 		--tabbrowser-tab-selected: var(--nav-bar) !important;
 		--tabbrowser-tab-color: -moz-dialogtext !important;
 	}
-
+	// else if lwtheme
 	&:-moz-lwtheme {
-		/* bruni: This entire code takes care of custom themes support for tabs */
-
 		&:not([customthememode="2"]) {
 			&:not([lwtheme-id*="firefox-compact"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
@@ -60,7 +71,33 @@
 				}
 			}
 		}
+	}
+	// else if chrtheme
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--tab-glare-opacity: .5 !important;
 		
+		&[geckium-choice="five"],
+		&[geckium-choice="six"],
+		&[geckium-choice="eleven"] {
+			--tab-glare: var(--tabbrowser-tab-selected) !important;
+		}
+		
+		--inactive-tab-background-color: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-tab-background-color))) !important;
+
+		&[style*="--chrt-tints-background-tab"] {
+			--inactive-tab-background-color: color-mix(
+				in srgb,
+				var(--chrt-frame, var(--default-tab-background-color)),
+				black 50%
+			) !important;
+		}
+
+		--tabbrowser-tab-selected: var(--nav-bar, black) !important;
+
+		--tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
+		--tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
+
+		--theme-newtab: var(--chrt-control-background, transparent) !important;
 	}
 
 	&:not([tabsintitlebar]) {
@@ -199,6 +236,8 @@
 	}
 
 	&:not([visuallyselected="true"]) {
+		color: var(--tabbrowser-tab-color) !important;
+
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
@@ -226,7 +265,9 @@
 				opacity: var(--tab-glare-opacity);
 
 				/* bruni: In Chrome, the glare shows up faster when hovering. */
-				transition: opacity 0.2s linear;
+				transition-property: opacity;
+				transition-duration: var(--tab-glare-hover-timer);
+				transition-timing-function: linear;
 			}
 		}
 
@@ -250,7 +291,7 @@
 		.tab-stack {
 			&::before,
 			&::after {
-				background-color: var(
+				background: var(
 					--inactive-tab-background-color
 				) !important;
 			}
@@ -290,6 +331,7 @@
 	&[visuallyselected="true"] {
 		position: relative;
 		z-index: 1000 !important;
+		color: var(--tabbrowser-tab-color-active) !important;
 
 		.tab-content {
 			&::before {
@@ -540,10 +582,11 @@
 	overflow: hidden;
 	opacity: 0;
 	margin-top: 4px;
+	z-index: 2;
 
 	/* bruni: In Chrome, the glare hides in a slower
 			  pace when the mouse leaves. */
-	transition: opacity 0.5s linear;
+	transition: opacity var(--tab-glare-unhover-timer) linear;
 }
 
 .tab-glare-middle {

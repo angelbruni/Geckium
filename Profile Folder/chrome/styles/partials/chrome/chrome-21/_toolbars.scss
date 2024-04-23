@@ -1,24 +1,28 @@
 & {
+	--toolbarbutton-radius: 4px;
 	--toolbarbutton-border-color-hot: rgb(192, 192, 192);
 	--toolbarbutton-border-color-active: rgb(125, 125, 125);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
 								inset 0 1px 2px rgb(255, 255, 255, 75%);
-	--toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	--toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 	--toolbarbutton-width: 27px;
 	--toolbarbutton-height: 27px;
+	--default-toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
+
 	--personal-toolbar-height: 23px;
 	--personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
 	--personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
 	--bookmark-item-color: #000000;
 	--bookmark-item-hover-color: #062d75;
 	--personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
-	--toolbarbutton-radius: 4px;
+	
 
-	&[customthememode="2"],
+	/*&[customthememode="2"],
 	&:not(:-moz-lwtheme),
-	&[lwtheme-id="#{$gtkplus}"] {
+	&[lwtheme-id="#{$gtkplus}"],
+	&:not([chrtheme="true"]) {
 		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
-	}
+	}*/
 
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {

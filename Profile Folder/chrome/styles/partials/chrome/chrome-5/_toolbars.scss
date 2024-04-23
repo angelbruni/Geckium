@@ -1,10 +1,12 @@
 :root {
-	--nav-bar: linear-gradient(
+	--default-nav-bar: linear-gradient(
 		to top,
 		rgb(218, 231, 247),
 		rgb(230, 239, 251),
 		rgb(245, 249, 254)
 	);
+
+	--nav-bar: var(--default-nav-bar);
 
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 2px !important;
@@ -19,22 +21,28 @@
 	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
 	--toolbarbutton-border-color-hot: rgb(163, 174, 197);
 	--toolbarbutton-border-color-active: rgb(171, 181, 203);
-	--toolbarbutton-active-background: rgb(0, 0, 0, 10%) !important;
+	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important;
 	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
 	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
 	--toolbarbutton-outer-padding: 3px !important;
-	--toolbarbutton-gradient: linear-gradient(
+	--default-toolbarbutton-texture: linear-gradient(
 		to top,
 		rgb(222, 234, 248),
 		rgb(240, 245, 253)
 	);
-	--toolbarbutton-shadow-active: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
-	--toolbarbutton-active-background: transparent !important;
+	--toolbarbutton-texture: var(--default-toolbarbutton-texture);
+	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
+	--toolbarbutton-shadow-hot: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+	//--toolbarbutton-active-background: transparent !important;
+	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
-	--navigation-buttons-separator: rgb(221, 229, 243);
+	--default-toolbarbutton-icon-fill: rgb(65, 99, 154);
+	--default-navigation-buttons-separator: rgb(221, 229, 243);
+	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
-	--personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--personal-toolbar: var(--default-personal-toolbar);
 	--personal-toolbar-height: 25px;
 	--personal-toolbar-border-bottom: rgb(182, 186, 192);
 	--personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
@@ -45,7 +53,8 @@
 		0 1px 1px 2px rgb(0, 0, 0, 6%), inset 0 0 1px 1px transparent;
 	--personal-toolbar-item-hover-bg: rgba(255, 255, 255, 0.5) !important;
 
-	--bookmark-item-color: #062d75;
+	--default-bookmark-item-color: #062d75;
+	--bookmark-item-color: var(--default-bookmark-item-color);
 	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
 	--placed-chevron-width: 15px;
@@ -64,7 +73,7 @@
 		--toolbarbutton-border-color-normal: rgb(90, 90, 90);
 		--toolbarbutton-border-color-hot: rgb(112, 112, 112);
 		--toolbarbutton-border-color-active: rgb(136, 136, 136);
-		--toolbarbutton-gradient: linear-gradient(
+		--toolbarbutton-texture: linear-gradient(
 			to bottom,
 			#5d5d5d,
 			#4c4c4c
@@ -78,14 +87,14 @@
 		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
 	}
 
-	// if gtkplus
+	// if lwtheme == gtkplus
 	&[lwtheme-id="#{$gtkplus}"] {
 		--nav-bar: -moz-dialog !important;
 
 		--toolbarbutton-border-color-normal: -moz-dialogtext;
 		--toolbarbutton-border-color-hot: -moz-dialogtext;
 		--toolbarbutton-border-color-active: -moz-dialogtext;
-		--toolbarbutton-gradient: var(--nav-bar) !important;
+		--toolbarbutton-texture: var(--nav-bar) !important;
 		--toolbarbutton-inner-border-color-normal: transparent;
 		--toolbarbutton-inner-border-color-hot: transparent;
 		--toolbarbutton-icon-fill: -moz-dialogtext !important;
@@ -219,13 +228,13 @@
 			}
 		}
 	}
-
-	// if !lwtheme
-	&[customthememode="2"],
-	&:not(:-moz-lwtheme) {
-		--toolbarbutton-icon-fill: rgb(65, 99, 154) !important;
-	}
-	// else
+	// else if !lwtheme
+	/*&[customthememode="2"],
+	&:not(:-moz-lwtheme),
+	&:not([chrtheme="true"]) {
+		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+	}*/
+	// else if lwtheme
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
 		&[customthememode="2"],
@@ -242,6 +251,8 @@
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
 					--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
+
 					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
 					// if toolbar-bgcolor = transparent
@@ -291,7 +302,7 @@
 						var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
 						transparent
 					) !important;
-					--toolbarbutton-gradient: linear-gradient(
+					--toolbarbutton-texture: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
@@ -362,6 +373,69 @@
 				}
 				
 			}
+		}
+	}
+	// else if chrtheme
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--nav-bar: var(--chrt-theme-toolbar, var(--chrt-toolbar, var(--default-nav-bar))) !important;
+		--toolbarbutton-border-color-normal: color-mix(
+			in srgb,
+			var(--chrt-toolbar) 85%,
+			black
+		) !important;
+		--toolbarbutton-border-color-hot: color-mix(
+			in srgb,
+			var(--chrt-toolbar) 70%,
+			black
+		) !important;
+		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
+		--toolbarbutton-texture: var(--chrt-theme-button-background, var(--default-toolbarbutton-texture)) !important;
+		--toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
+		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
+		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
+		--toolbarbutton-icon-fill: var(--chrt-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
+		--navigation-buttons-separator: var(--chrt-toolbar, var(--default-navigation-buttons-separator)) !important;
+
+		--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
+		--bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
+		--bookmark-item-color-shadow: none !important;
+
+		@import "titlebar/nocomp";
+
+		&:not([style*="--chrt-toolbar-button-icon"]) {
+			&[style*="--chrt-tints-buttons"] {
+				&:not([style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"]) {
+					--toolbarbutton-icon-fill: color-mix(
+						in srgb,
+						var(--chrt-toolbar) 80%,
+						black
+					) !important;
+
+					&[style*="--chrt-toolbar: rgb(0, 0, 0)"] {
+						--toolbarbutton-icon-fill: color-mix(
+							in srgb,
+							var(--chrt-frame) 80%,
+							black
+						) !important;
+					}
+				}
+			}
+			&[style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"] {
+				--toolbarbutton-icon-fill: color-mix(
+					in srgb,
+					var(--default-toolbarbutton-icon-fill) 80%,
+					black
+				) !important;
+			}
+		}
+		
+
+		#nav-bar {
+			background-position-y: calc(var(--tab-height) * -1) !important;
+		}
+
+		#PersonalToolbar {
+			background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
 		}
 	}
 	
@@ -806,7 +880,7 @@ toolbarspring {
 	) {
 	position: relative;
 	padding: 0 !important;
-	background: var(--toolbarbutton-gradient) !important;
+	background: var(--toolbarbutton-texture) !important;
 	background-clip: padding-box !important;
 	fill: var(--toolbarbutton-icon-fill) !important;
 	margin: 0 var(--toolbarbutton-outer-padding) !important;
@@ -834,50 +908,43 @@ toolbarspring {
 		width: 100%;
 		transition: box-shadow 100ms linear;
 
-		border-top-left-radius: calc(
-			var(--toolbarbutton-radius) - 2px
-		) !important;
-		border-top-right-radius: calc(
-			var(--toolbarbutton-radius) - 2px
-		) !important;
-		border-bottom-left-radius: calc(
-			var(--toolbarbutton-radius) - 2px
-		) !important;
-		border-bottom-right-radius: calc(
-			var(--toolbarbutton-radius) - 2px
-		) !important;
+		border-top-left-radius: var(--toolbarbutton-radius) !important;
+		border-top-right-radius: var(--toolbarbutton-radius) !important;
+		border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+		border-bottom-right-radius: var(--toolbarbutton-radius) !important;
 	}
 
 	&::before {
-		height: 35%;
+		height: 100%;
 		opacity: 0;
-		background: linear-gradient(to top, black, transparent);
+		background: linear-gradient(to top, rgba(0,0,0,.1), rgba(255,255,255,.8));
+		mix-blend-mode: hard-light;
 		transition: opacity 100ms linear;
 	}
 
 	&::after {
 		height: 100%;
-		box-shadow: var(--toolbarbutton-shadow-active);
+		box-shadow: var(--toolbarbutton-shadow-normal);
 	}
 
 	&:not([disabled]) {
 		&:hover {
 			border: 1px solid var(--toolbarbutton-border-color-hot);
-			box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.05);
 
 			&::before {
-				opacity: 0.15;
+				opacity: 1;
 			}
 
 			&::after {
-				box-shadow: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+				box-shadow: var(--toolbarbutton-shadow-hot);
 			}
 
 			.toolbarbutton-badge-stack,
 			.toolbarbutton-icon,
 			image:first-of-type {
 				background-color: transparent !important;
-				filter: saturate(1.5);
+				filter: saturate(1.5)
+						drop-shadow(0 0 1px rgba(255,255,255,.7));
 			}
 		}
 
@@ -889,8 +956,13 @@ toolbarspring {
 			transition: none !important;
 
 			&::before {
-				opacity: 0;
+				opacity: 1;
+				background: var(--toolbarbutton-active-background);
 				transition: none;
+			}
+
+			&::after {
+				box-shadow: none;
 			}
 
 			.toolbarbutton-badge-stack,
@@ -915,6 +987,8 @@ toolbarspring {
 		border-radius: 0 !important;
 		padding: 0 !important;
 		fill: var(--toolbarbutton-icon-fill) !important;
+		filter: saturate(1)
+				drop-shadow(0 0 1px rgba(255,255,255,.7));
 		transition: 100ms filter linear;
 	}
 
@@ -1125,7 +1199,11 @@ toolbarspring {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: relative;
-	background: url(assets/img/chrome-5/tabbar/newtab.png);
+	mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
+	mask-position: center;
+	mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+	background-color: var(--theme-newtab);
+	background-image: url(assets/img/chrome-5/tabbar/newtab.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	margin-top: 7px !important;
@@ -1154,8 +1232,6 @@ toolbarspring {
 		position: absolute;
 		height: 100%;
 		width: 100%;
-		mask-image: url(assets/img/chrome-5/tabbar/newtab_button_mask.png);
-		mask-size: var(--newtab-width) var(--newtab-height);
 		background-color: var(--newtab-normal);
 		transition: background-color 100ms linear;
 	}
@@ -1222,6 +1298,7 @@ toolbarspring {
 		&:hover {
 			border: 1px solid rgba(0, 0, 0, 0.14);
 			background: var(--personal-toolbar-item-hover-bg) !important;
+			color: var(--default-bookmark-item-color) !important;
 		}
 	}
 }
@@ -1244,4 +1321,8 @@ toolbarspring {
 }
 .blocked-permission-icon {
 	display: none !important;
+}
+
+#urlbar-background {
+	box-shadow: none !important;
 }

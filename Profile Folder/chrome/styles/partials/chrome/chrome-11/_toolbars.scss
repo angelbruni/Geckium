@@ -1,27 +1,29 @@
 & {
-	&[customthememode="2"],
+	/*&[customthememode="2"],
 	&:not(:-moz-lwtheme),
-	&[lwtheme-id="#{$gtkplus}"] {
+	&[lwtheme-id="#{$gtkplus}"],
+	&:not([chrtheme="true"]) {
 		--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
-	}
+	}*/
 
 	--toolbar-start-end-padding: 3px !important;
 
 	--nav-bar-height: 36px;
 
+	--toolbarbutton-radius: 5px;
 	--toolbarbutton-width: var(--toolbarbutton-height);
 	--toolbarbutton-menu-width: var(--toolbarbutton-width);
 	--toolbarbutton-outer-padding: 0.5px !important;
 	--toolbarbutton-border-color-normal: transparent;
-	--toolbarbutton-gradient-hot: rgb(255, 255, 255, 80%);
-	--toolbarbutton-shadow-active: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	--toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
+	--toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-	--toolbarbutton-radius: 5px;
+	--default-toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
 
 	--personal-toolbar-height: 24px;
 
 	@media (prefers-color-scheme: dark) {
-		--toolbarbutton-gradient-hot: rgb(255, 255, 255, 15%);
+		--toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
 	}
 
@@ -57,7 +59,7 @@
 			background: linear-gradient(
 				to top,
 				transparent,
-				var(--toolbarbutton-gradient-hot)
+				var(--toolbarbutton-texture-hot)
 			) !important;
 			transition: all 150ms linear;
 			opacity: 0;
@@ -71,7 +73,6 @@
 
 		&:not([disabled]) {
 			&:hover {
-				box-shadow: var(--toolbarbutton-shadow-hot) !important;
 				border-color: var(--toolbarbutton-border-color-hot) !important;
 
 				.toolbarbutton-badge-stack,
@@ -88,7 +89,7 @@
 			&:active,
 			&[open] {
 				background: rgba(0, 0, 0, 0.08) !important;
-				box-shadow: var(--toolbarbutton-shadow-active) !important;
+				box-shadow: var(--toolbarbutton-shadow-normal) !important;
 				border-color: var(
 					--toolbarbutton-border-color-active
 				) !important;

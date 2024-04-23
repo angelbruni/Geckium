@@ -1,19 +1,28 @@
 & {
-	--view-toolbar-buttons-bg: rgb(134,177,231);
-	--window-menu-item-hover-bg: rgb(134,177,231);
+	--default-view-toolbar-buttons-bg: rgb(134,177,231);
+	--view-toolbar-buttons-bg: var(--default-view-toolbar-buttons-bg);
+	--default-window-menu-item-hover-bg: rgb(134,177,231);
+	--window-menu-item-hover-bg: var(--default-window-menu-item-hover-bg);
 
-	--thumbnail-border-color-normal: #E5EFFE;
-	--thumbnail-border-color-hot: rgb(75,140,220);
-	--thumbnail-container-color: black;
-	--thumbnail-disabled-color: #DFEAF7;
-	--edit-bar-background-color-hot: hsl(213, 66%, 57%);
-	--edit-bar-background-hot: linear-gradient(
+	--default-thumbnail-border-color-normal: #E5EFFE;
+	--thumbnail-border-color-normal: var(--default-thumbnail-border-color-normal);
+	--default-thumbnail-border-color-hot: rgb(75,140,220);
+	--thumbnail-border-color-hot: var(--default-thumbnail-border-color-hot);
+	--default-thumbnail-container-color: black;
+	--thumbnail-container-color: var(--default-thumbnail-container-color);
+	--default-thumbnail-disabled-color: #DFEAF7;
+	--thumbnail-disabled-color: var(--default-thumbnail-disabled-color);
+	--default-edit-bar-background-color-hot: hsl(213, 66%, 57%);
+	--edit-bar-background-color-hot: var(--default-edit-bar-background-color-hot);
+	--default-edit-bar-background-hot: linear-gradient(
 		to bottom,
 		hsl(213, 87%, 67%),
 		var(--edit-bar-background-color-hot)
 	);
+	--edit-bar-background-hot: var(--default-edit-bar-background-hot);
 
-	--link-color: #06C;
+	--default-link-color: #06C;
+	--link-color: var(--default-link-color);
 
 	@media (prefers-color-scheme: dark) {
 		--thumbnail-border-color-normal: #617796;
@@ -24,6 +33,7 @@
 	}
 
 	// Custom theme support
+	// lwtheme
 	&:not([lwtheme-id*="default-theme"]) {
 		&:not([lwtheme-id*="firefox-compact"]) {
 			&[lwtheme-id*="{"],
@@ -70,6 +80,38 @@
 				}
 			}
 		}
+	}
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		/*&[style*="--chrt-ntp-section"] {
+			--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
+			--view-toolbar-buttons-bg: color-mix(
+				in srgb,
+				var(--manually-adapted-header) 70%,
+				white
+			);
+			--thumbnail-border-color-normal: color-mix(
+				in srgb,
+				var(--manually-adapted-header) 20%,
+				white
+			) !important;
+			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot)) !important;
+		}*/
+		--thumbnail-border-color-normal: var(--chrt-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
+		--thumbnail-border-color-hot: var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot)) !important;
+		--thumbnail-container-color: var(--chrt-ntp-text, var(--default-thumbnail-container-color)) !important;
+		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg)) !important;
+		
+		--edit-bar-background-color-hot: var(--thumbnail-border-color-hot, var(--default-thumbnail-border-color-hot)) !important;
+		--edit-bar-background-hot: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				var(--edit-bar-background-color-hot) 70%,
+				white
+			),
+			var(--edit-bar-background-color-hot)
+		) !important;
 	}
 }
 
@@ -355,8 +397,9 @@
 	.thumbnail-wrapper {
 		background: white;
 		border-radius: 5px;
-		background-position: top center;
-		background-size: cover;
+		background-size: 209px 132px;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	.thumbnail {

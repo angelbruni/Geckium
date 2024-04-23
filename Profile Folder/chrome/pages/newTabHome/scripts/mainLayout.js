@@ -102,6 +102,10 @@ function createMainLayout() {
 				<hbox class="items"></hbox>
 				<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
 			</hbox>
+			<vbox id="attribution">
+				<label>Theme created by</label>
+				<html:div id="attribution-img"></html:div>
+			</vbox>
 		</vbox>
 		`;
 
@@ -174,6 +178,10 @@ function createMainLayout() {
 		`;
 
 		footer = `
+		<vbox id="attribution">
+			<label>Theme created by</label>
+			<html:div id="attribution-img"></html:div>
+		</vbox>
 		<vbox id="footer">
 			<div id="logo-img">
 				<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_ICON.png"></html:img>
@@ -217,6 +225,10 @@ function createMainLayout() {
 		`;
 
 		footer = `
+		<vbox id="attribution">
+			<label>Theme created by</label>
+			<html:div id="attribution-img"></html:div>
+		</vbox>
 		<vbox id="footer">
 			<html:div id="footer-border"></html:div>
 			<hbox id="footer-content">
@@ -281,6 +293,10 @@ function createMainLayout() {
 
 		main = `
 		<html:div id="mv-tiles"></html:div>
+		<vbox id="attribution">
+			<label>Theme created by</label>
+			<html:div id="attribution-img"></html:div>
+		</vbox>
 		`;
 
 		waitForElm("#google-search").then(() => {

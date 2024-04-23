@@ -20,7 +20,6 @@ function openZoo() {
 		}
 		
 		const gmWindow = window.openDialog(url, "", "centerscreen");
-
 		gmWindow.onload = () => {
 			gmWindow.document.documentElement.setAttribute("containertype", "window");
 		}	
@@ -42,7 +41,6 @@ function openGFlags() {
 		}
 		
 		const gmWindow = window.openDialog(url, "", "centerscreen");
-
 		gmWindow.onload = () => {
 			gmWindow.document.documentElement.setAttribute("containertype", "window");
 		}
