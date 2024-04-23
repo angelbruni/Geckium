@@ -1,0 +1,52 @@
+.steppers {
+	box-shadow: var(--elevation-1);
+	justify-content: center;
+	align-items: center;
+
+	> .step {
+		&:not(:last-of-type) {
+			&::after {
+				content: "";
+				height: 2px;
+				width: 50px;
+				background-color: lightgray;
+				margin-block: auto;
+				margin-inline: 8px;
+				flex: 1;
+			}
+		}
+
+		> div {
+			display: flex;
+			flex-shrink: 0;
+			align-items: center;
+			justify-content: center;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			margin-inline-end: 8px;
+		}
+
+		> label {
+			white-space: nowrap;
+		}
+		
+
+		&.active {
+			> div {
+				background: var(--secondary-color, var(--primary-color));
+				color: white;
+			}
+		}
+	}
+}
+
+hbox.steppers {
+	height: 68px;
+	flex: 1;
+	padding-inline: 32px;
+}
+
+vbox.steppers {
+	
+}
