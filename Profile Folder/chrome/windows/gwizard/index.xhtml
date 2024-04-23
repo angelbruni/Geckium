@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/styles/final.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/windows/gwizard/style.css" type="text/css"?>
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		windowtype="geckiummaterial:gwizard"
+		containertype="page"
+		title="Geckium Wizard"
+		width="860"
+		height="644"
+		chromemargin="0,0,0,0">
+	<html:div id="window-container">
+		<hbox id="window" class="primary-color" style="--primary-color: AccentColor; --chosen-secondary-color: var(--pink)" preview-pane="false">
+			<hbox class="window-titlebar">
+				<hbox id="window-caption-buttons-container">
+					<hbox id="window-caption-buttons">
+						<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
+						<button class="caption-button close" id="window-close-button" onclick="window.close();" />
+					</hbox>
+				</hbox>
+			</hbox>
+			<vbox id="window-content-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3 id="window-title" data-page-container="main"/>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<hbox id="window-content">
+					<div class="pages">
+						<vbox class="pages-container" data-page-container="main">
+							<vbox class="page" data-page="0" selected="true">
+								<vbox class="content-container">
+									<header>
+										<hbox class="steppers">
+											<hbox class="step active">
+												<html:div>
+													1
+												</html:div>
+												<label>First Step</label>
+											</hbox>
+											<hbox class="step">
+												<html:div>
+													2
+												</html:div>
+												<label>Second Step</label>
+											</hbox>
+										</hbox>
+									</header>
+									<vbox class="content">
+										
+									</vbox>
+									<footer>
+										<hbox class="item">
+											<spacer />
+											<button class="button ripple-enabled text" label="Cancel" />
+										</hbox>
+										<spacer />
+										<hbox class="item">
+											<spacer />
+											<button class="button ripple-enabled text color" label="Continue" />
+										</hbox>
+									</footer>
+								</vbox>
+							</vbox>
+						</vbox>
+					</div>
+				</hbox>
+			</vbox>
+			<vbox id="preview-container">
+				<vbox class="window-top-bars light">
+					<hbox class="window-top-bar">
+						<hbox class="window-toolbar">
+							<h3>Preview</h3>
+							<spacer />
+							<button />
+						</hbox>
+					</hbox>
+				</vbox>
+				<vbox class="content">
+					
+				</vbox>
+			</vbox>
+		</hbox>
+	</html:div>
+
+	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/chrThemes.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/windows/gflags/scripts/settingsLoader.js" type="text/javascript" defer="true"/>
+</window>

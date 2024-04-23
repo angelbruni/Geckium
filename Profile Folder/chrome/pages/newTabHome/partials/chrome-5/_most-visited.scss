@@ -98,7 +98,7 @@
 			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot)) !important;
 		}*/
 		--thumbnail-border-color-normal: var(--chrt-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
-		--thumbnail-border-color-hot: var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot)) !important;
+		--thumbnail-border-color-hot: var(--chrt-ntp-header, var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot))) !important;
 		--thumbnail-container-color: var(--chrt-ntp-text, var(--default-thumbnail-container-color)) !important;
 		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg)) !important;
 		

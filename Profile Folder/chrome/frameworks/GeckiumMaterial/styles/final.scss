@@ -52,7 +52,8 @@
 }
 
 vbox,
-hbox {
+hbox,
+header {
 	display: flex;
 }
 
@@ -60,7 +61,8 @@ vbox {
 	flex-direction: column;
 }
 
-hbox {
+hbox,
+header {
 	flex-direction: row;
 }
 
@@ -136,6 +138,7 @@ spacer {
 @import "partials/list";
 @import "partials/navigation-drawer";
 @import "partials/menu";
+@import "partials/steppers";
 @import "partials/dialog";
 @import "partials/preview";
 @import "partials/ripple";
