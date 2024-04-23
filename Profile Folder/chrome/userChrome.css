@@ -895,6 +895,7 @@ tooltip {
   opacity: 0;
   margin-top: 4px;
   z-index: 2;
+  pointer-events: none;
   /* bruni: In Chrome, the glare hides in a slower
   		  pace when the mouse leaves. */
   transition: opacity var(--tab-glare-unhover-timer) linear;
