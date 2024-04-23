@@ -21,9 +21,7 @@ h4 {
 		transition: all 150ms ease-in;
 		border-radius: 9999px;
 		overflow: hidden;
-		&:hover {
-			background: rgb(0, 0, 0, 6%);
-		}
+		
 		&::before {
 			content: "";
 			height: 18px;
@@ -33,6 +31,11 @@ h4 {
 			mask-position: center center;
 			background: rgb(126, 126, 126);
 		}
+
+		&:hover {
+			background: rgb(0, 0, 0, 6%);
+		}
+
 		.ripple {
 			background: rgb(0, 0, 0, 20%);
 		}

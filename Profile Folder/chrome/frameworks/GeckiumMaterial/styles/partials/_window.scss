@@ -192,8 +192,34 @@ window {
 	button {
 		all: unset;
 
-		width: 56px;
-		height: 56px;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		display: flex;
+		position: relative;
+		overflow: hidden;
+		
+		&:first-of-type {
+			margin-inline-start: -11px;
+			margin-inline-end: 11px;
+		}
+
+		&[class*="icon-"] {
+			&::before {
+				content: "";
+				background-color: white;
+				mask-position: center;
+				mask-repeat: no-repeat;
+				flex: 1;
+			}
+		}
+
+		&:not([disabled]) {
+			.ripple {
+				background: rgba(255, 255, 255, .3);
+			}
+		}
+
 	}
 
 	.switch-parent {
