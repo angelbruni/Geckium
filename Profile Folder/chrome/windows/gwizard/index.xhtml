@@ -26,52 +26,96 @@
 				<vbox class="window-top-bars light">
 					<hbox class="window-top-bar">
 						<hbox class="window-toolbar">
+							<html:button id="btn-back" class="ripple-enabled text color icon-arrow-back" />
 							<h3 id="window-title" data-page-container="main"/>
 							<spacer />
-							<button />
 						</hbox>
 					</hbox>
 				</vbox>
-				<hbox id="window-content">
+				<vbox id="window-content">
+					<hbox class="steppers">
+						<hbox class="step active">
+							<html:div>
+								1
+							</html:div>
+							<label>Welcome</label>
+						</hbox>
+						<hbox class="step">
+							<html:div>
+								2
+							</html:div>
+							<label>Choose a visual style</label>
+						</hbox>
+						<hbox class="step">
+							<html:div>
+								3
+							</html:div>
+							<label>Additional settings</label>
+						</hbox>
+						<hbox class="step">
+							<html:div>
+								4
+							</html:div>
+							<label>Finish</label>
+						</hbox>
+					</hbox>
 					<div class="pages">
 						<vbox class="pages-container" data-page-container="main">
 							<vbox class="page" data-page="0" selected="true">
 								<vbox class="content-container">
-									<header>
-										<hbox class="steppers">
-											<hbox class="step active">
-												<html:div>
-													1
-												</html:div>
-												<label>First Step</label>
-											</hbox>
-											<hbox class="step">
-												<html:div>
-													2
-												</html:div>
-												<label>Second Step</label>
-											</hbox>
+									<vbox class="content" flex="1">
+										<hbox class="banner">
+											<image style="width: 200px;"></image>
+											<vbox>
+												<label style="font-size: 16pt;">Welcome to</label>
+												<label style="font-size: 32pt;">Geckium</label>
+												<h4 style="height: 20px; margin-inline-start: 1px;">indev_version</h4>
+											</vbox>
 										</hbox>
-									</header>
-									<vbox class="content">
-										
 									</vbox>
-									<footer>
-										<hbox class="item">
-											<spacer />
-											<button class="button ripple-enabled text" label="Cancel" />
-										</hbox>
-										<spacer />
-										<hbox class="item">
-											<spacer />
-											<button class="button ripple-enabled text color" label="Continue" />
-										</hbox>
-									</footer>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="1">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container" style="margin-top: 5%">
+											<vbox class="card" style="padding: 16px">
+												random ahh yapping
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="2">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container" style="margin-top: 5%">
+											<vbox class="card" style="padding: 16px">
+												random ahh yapping
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="3">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container" style="margin-top: 5%">
+											<vbox class="card" style="padding: 16px">
+												random ahh yapping
+											</vbox>
+										</vbox>
+									</vbox>
 								</vbox>
 							</vbox>
 						</vbox>
 					</div>
-				</hbox>
+					<footer>
+						<button id="btn-cancel" class="button ripple-enabled text" label="Cancel" />
+						<spacer />
+						<button id="btn-next" class="button ripple-enabled text color" label="Next" />
+					</footer>
+				</vbox>
 			</vbox>
 			<vbox id="preview-container">
 				<vbox class="window-top-bars light">
@@ -90,13 +134,7 @@
 		</hbox>
 	</html:div>
 
-	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gflags/scripts/chrThemes.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gwizard/scripts/pages.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
@@ -105,6 +143,4 @@
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
-
-	<script src="chrome://userchrome/content/windows/gflags/scripts/settingsLoader.js" type="text/javascript" defer="true"/>
 </window>

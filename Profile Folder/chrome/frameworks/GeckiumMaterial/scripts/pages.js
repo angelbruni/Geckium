@@ -8,10 +8,11 @@ function skipToPage(pageContainer, targetPage) {
 		})
 
 		const pageBtn = document.querySelector("button[data-page-container='" + pageContainer + "'][data-page='"+ targetPage +"']");
-		pageBtn.setAttribute("selected", true);
+		if (pageBtn)
+			pageBtn.setAttribute("selected", true);
 
 		// Page
-		const page = document.querySelector("[data-page-container='" + pageContainer + "'] vbox[data-page='" + targetPage +"']");
+		const page = document.querySelector(".pages-container[data-page-container='" + pageContainer + "'] vbox[data-page='" + targetPage +"']");
 		const pageList = page.parentNode.querySelectorAll("vbox[data-page]");
 
 		pageList.forEach(pages => {
@@ -21,24 +22,29 @@ function skipToPage(pageContainer, targetPage) {
 
 		const pageTitle = document.querySelector("#page-title[data-page-container='" + pageContainer + "']");
 		if (pageTitle) {
-			if (pageBtn.dataset.pageTitle)
-				pageTitle.textContent = pageBtn.dataset.pageTitle;
-			else
-				pageTitle.textContent = pageBtn.getAttribute("label");
+			if (pageBtn) {
+				if (pageBtn.dataset.pageTitle)
+					pageTitle.textContent = pageBtn.dataset.pageTitle;
+				else
+					pageTitle.textContent = pageBtn.getAttribute("label");
+			}
+			
 		}
 
 		// Additional Logic for Tabs
-		if (pageBtn.classList.contains("tab")) {
-			// Indicator
-			const indicator = pageBtn.parentNode.querySelector(".indicator");
-			const pageBtnRect = pageBtn.getBoundingClientRect()
-
-			indicator.style.left = pageBtnRect.x - pageBtn.parentNode.getBoundingClientRect().x + "px";
-			indicator.style.width = pageBtnRect.width + "px";
-
-			// Page
-			const pagesContainer = page.parentNode;
-			pagesContainer.style.transform = "translateX(calc(-100% * " + targetPage + "))";
+		if (pageBtn) {
+			if (pageBtn.classList.contains("tab")) {
+				// Indicator
+				const indicator = pageBtn.parentNode.querySelector(".indicator");
+				const pageBtnRect = pageBtn.getBoundingClientRect()
+	
+				indicator.style.left = pageBtnRect.x - pageBtn.parentNode.getBoundingClientRect().x + "px";
+				indicator.style.width = pageBtnRect.width + "px";
+	
+				// Page
+				const pagesContainer = page.parentNode;
+				pagesContainer.style.transform = "translateX(calc(-100% * " + targetPage + "))";
+			}
 		}
 	}
 }
