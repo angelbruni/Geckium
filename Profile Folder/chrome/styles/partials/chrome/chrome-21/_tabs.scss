@@ -1,5 +1,5 @@
 & {
-	--tab-glare-opacity: 0.7;
+	--tab-glare-opacity: .2;
 	--tab-glare-color: white;
 	--tab-glare: linear-gradient(
 		90deg,
@@ -15,6 +15,11 @@
 			transparent
 		) 70%
 	);
+
+	// else if chrtheme
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--tab-glare-opacity: .1 !important;
+	}
 
 	--newtab-width: 34px;
 	--newtab-normal: var(--inactive-tab-background-color);

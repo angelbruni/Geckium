@@ -1,22 +1,25 @@
 & {
+	--toolbarbutton-radius: 4px;
 	--toolbarbutton-border-color-hot: rgb(142,142,142);
 	--toolbarbutton-border-color-active: rgb(125,125,125);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
 								inset 0 0 0 1px rgba(255,255,255,0.3);
-	--toolbarbutton-shadow-active: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	--toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 
 	--toolbarbutton-height: 27px;
+	--default-toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
 
 
 
 
-	--toolbarbutton-radius: 3px;
+	
 
-	&[customthememode="2"],
+	/*&[customthememode="2"],
 	&:not(:-moz-lwtheme),
-	&[lwtheme-id="#{$gtkplus}"] {
-		--toolbarbutton-icon-fill: rgb(111,111,111) !important;
-	}
+	&[lwtheme-id="#{$gtkplus}"],
+	&:not([chrtheme="true"]) {
+		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
+	}*/
 
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {

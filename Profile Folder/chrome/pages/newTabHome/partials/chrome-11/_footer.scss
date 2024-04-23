@@ -1,3 +1,11 @@
+&[geckium-choice="eleven"] {
+	&[style*="--chrt-theme-ntp-attribution"] {
+		#footer {
+			display: none !important;
+		}
+	}
+}
+
 &:not([lwtheme-id*="default-theme"]) {
 	&:not([lwtheme-id*="firefox-compact"]) {
 		&[lwtheme-id*="{"],

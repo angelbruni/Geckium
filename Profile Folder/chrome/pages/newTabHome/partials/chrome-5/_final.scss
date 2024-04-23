@@ -1,8 +1,12 @@
 & {
+	--chrt-ntp-background-alignment: 50% 100%;
+	--chrt-ntp-background-repeat: no-repeat;
+
 	font-family: Arial, sans-serif;
 	font-size: 9pt;
 
 	// Custom theme support
+	// lwtheme
 	&:not([lwtheme-id*="default-theme"]) {
 		&:not([lwtheme-id*="firefox-compact"]) {
 			&[lwtheme-id*="{"],
@@ -17,8 +21,6 @@
 			}
 		}
 	}
-	
-
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {
 		body {
 			background-image: var(--lwt-additional-images);
@@ -26,11 +28,32 @@
 			background-repeat: var(--lwt-background-tiling);
 		}
 	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		body {
+			background-color: var(--chrt-ntp-background);
+			background-image: var(--chrt-theme-ntp-background) !important;
+		}
+
+		#attribution-img {
+			background-image: var(--chrt-theme-ntp-attribution) !important;
+			width: var(--chrt-theme-ntp-attribution-width) !important;
+			height: var(--chrt-theme-ntp-attribution-height) !important;
+		}
+
+		&[style*="--chrt-theme-ntp-attribution"] {
+			#attribution {
+				display: flex !important;
+			}
+		}
+	}
 }
 
 body {
-	background-position: center;
-	background-size: cover;
+	background-size: unset;
+	background-repeat: var(--chrt-ntp-background-repeat);
+	background-position: var(--chrt-ntp-background-alignment);
 }
 
 #main {
@@ -53,6 +76,14 @@ body {
 	#bookmarksbar-spacing {
 		height: 49px;
 	}
+}
+
+#attribution {
+	display: none;
+	align-items: end;
+	margin-block: 10px;
+	color: var(--link-color);
+	font-size: 10pt;
 }
 
 @import "most-visited";

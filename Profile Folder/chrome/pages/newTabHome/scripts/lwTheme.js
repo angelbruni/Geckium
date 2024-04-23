@@ -1,6 +1,5 @@
 const { LightweightThemeConsumer } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeConsumer.sys.mjs");
 const { LightweightThemeManager } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeManager.sys.mjs");
-Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
 function setFooterChoice() {
 	document.documentElement.setAttribute("footer-themable", pref("Geckium.newTabHome.themeFooter").tryGet.bool())
@@ -16,10 +15,6 @@ document.addEventListener("DOMContentLoaded", setFooterChoice);
 Services.prefs.addObserver("Geckium.newTabHome.themeFooter", themeFooterObs, false);
 
 function setProperties() {
-	const profRootDir = FileUtils.getDir("ProfD", [])
-					.path
-					.replace(/\\/g, "/");
-
 	setTimeout(() => {
 		document.documentElement.style.removeProperty("--lwt-newtab-image");
 		document.documentElement.style.removeProperty("--lwt-newtab-image-rendering");
@@ -42,13 +37,11 @@ function setProperties() {
 			document.documentElement.style.setProperty("--toolbar-color", toolbarText);
 
 		// New Tab Background code
-        const activeThemeID = pref("extensions.activeThemeID").tryGet.string()
-                                .replace("{", "")
-                                .replace("}", "");
+        const activeThemeID = pref("extensions.activeThemeID").tryGet.string();
 
-        const imagePath = `file:///${profRootDir}/chrome/lwThemes/${activeThemeID}/image`;
+        const imagePath = `chrome://userchrome/content/lwThemes/${activeThemeID}/image`;
 		
-		const imageConfigPath = `file:///${profRootDir}/chrome/lwThemes/${activeThemeID}/config.json`;
+		const imageConfigPath = `chrome://userchrome/content/lwThemes/${activeThemeID}/config.json`;
 		fetch(imageConfigPath)
 			.then((response) => response.json())
 			.then((json) => {
@@ -57,7 +50,7 @@ function setProperties() {
 			});
 
         // Check for supported image formats and set the background image accordingly
-        const supportedFormats = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        const supportedFormats = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
 
         // Function to check if an image exists
         const imageExists = (src, callback) => {

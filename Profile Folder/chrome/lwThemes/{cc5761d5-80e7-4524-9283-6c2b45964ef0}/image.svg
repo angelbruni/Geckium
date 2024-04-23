@@ -1,0 +1,519 @@
+<svg preserveAspectRatio="xMidYMid slice" id="aurora" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<style>
+@keyframes anim1 {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes anim2 {
+    from {opacity: 1;}
+    to {opacity: 0.1;}
+}
+
+@keyframes anim3 {
+    from {transform: translate(686px, 17.98px);}
+    to {transform: translate(700px, 17.98px);}
+}
+
+@keyframes anim4 {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes anim5 {
+    from {opacity: .6;}
+    to {opacity: .2;}
+}
+
+@keyframes anim6 {
+    from {transform: translateX(0);}
+    to {transform: translateX(15px);}
+}
+
+@keyframes anim7 {
+    from {transform: translateX(690px) translateY(201.98px);}
+    to {transform: translateX(705px) translateY(201.98px);}
+}
+
+@keyframes anim8 {
+    from {transform: translateX(630px);}
+    to {transform: translateX(615px);}
+}
+
+@keyframes anim9 {
+    from {transform: translateX(0);}
+    to {transform: translateX(200px);}
+}
+
+@keyframes anim10 {
+    from {opacity: .7;}
+    to {opacity:.1;}
+}
+
+@keyframes anim11 {
+    from {opacity: 0}
+    to {opacity: .5;}
+}
+
+@keyframes anim12 {
+    from {transform: translateX(0);}
+    to {transform: translateX(-10px);}
+}
+
+@keyframes anim13 {
+    from {transform: translateX(0);}
+    to {transform: translateX(-10px);}
+}
+
+@keyframes anim14 {
+    from {transform: translateX(-10px);}
+    to {transform: translateX(10px);}
+}
+</style>
+    <defs>
+        <linearGradient id="rect1">
+            <stop offset="0%"  stop-color="#675BE6" />
+            <stop offset="25%" stop-color="rgba(161,130,236,0.678)" />
+            <stop offset="40%" stop-color="#2212CB" />
+            <stop offset="70%" stop-color="rgba(200,0,163,0.956)" />
+        </linearGradient>
+        <linearGradient id="rect2">
+            <stop offset="0%"  stop-color="rgba(0,0,0,0)" />
+            <stop offset="25%" stop-color="#FF6868" />
+            <stop offset="40%" stop-color="rgba(0,0,0,0)" />
+            <stop offset="70%" stop-color="#131028" />
+        </linearGradient>
+        <linearGradient id="rect3">
+            <stop offset="0%"  stop-color="rgba(0,0,0,0.933)" />
+            <stop offset="25%" stop-color="rgba(0,0,0,0)" />
+            <stop offset="40%" stop-color="#D400FF" />
+            <stop offset="70%" stop-color="rgba(0,0,0,0)" />
+        </linearGradient>
+        <linearGradient id="rect4" gradientTransform="rotate(90)">
+            <stop offset="0%"  stop-color="#221797" />
+            <stop offset="67%" stop-color="rgba(123,114,217,0.388)" />
+            <stop offset="82%" stop-color="rgba(119,109,222,0.737)" />
+            <stop offset="100%" stop-color="#221797" />
+        </linearGradient>
+
+        <linearGradient id="path1">
+            <stop offset="0%" stop-color="rgba(18,18,126,1)" />
+            <stop offset="100%" stop-color="rgba(18,18,126,0)" />
+        </linearGradient>
+
+        <linearGradient id="path2">
+            <stop offset="0%" stop-color="rgba(0,0,0,0.6)" />
+            <stop offset="100%" stop-color="rgba(18,18,126,0)" />
+        </linearGradient>
+
+        <linearGradient id="path3" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="rgba(18,18,126,0.823)" />
+            <stop offset="58%" stop-color="rgba(18,18,126,0)" />
+        </linearGradient>
+
+        <linearGradient id="path4" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="rgba(0,0,0,0.4)" />
+            <stop offset="58%" stop-color="rgba(18,18,126,0)" />
+        </linearGradient>
+
+        <linearGradient id="path5" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="#23159E" />
+            <stop offset="40%" stop-color="rgba(55,42,180,0.588)" />
+            <stop offset="100%" stop-color="rgba(84,72,212,0)" />
+        </linearGradient>
+
+        <linearGradient id="path6">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="30%" stop-color="rgba(158,172,254,0.27)" />
+            <stop offset="71%" stop-color="rgba(158,172,254,0.356)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="strokepath7">
+            <stop offset="0%" stop-color="rgba(103,91,230,0)" />
+            <stop offset="40%" stop-color="rgba(103,91,230,0.619)" />
+            <stop offset="75%" stop-color="rgba(174,167,242,0.619)" />
+            <stop offset="100%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+        <linearGradient id="path7" gradientTransform="rotate(0.46)">
+            <stop offset="0%" stop-color="rgba(153,145,238,0.796)" />
+            <stop offset="79%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+
+        <linearGradient id="path8" gradientTransform="rotate(0.03)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0.549)" />
+            <stop offset="45%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path9">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="31%" stop-color="rgba(158,172,254,.227)" />
+            <stop offset="84%" stop-color="rgba(158,172,254,.329)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path10">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="24%" stop-color="rgba(158,172,254,.137)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,.152)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path10">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="24%" stop-color="rgba(158,172,254,.137)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,.152)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path11" gradientTransform="rotate(154)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="23%" stop-color="rgba(158,172,254,.286)" />
+            <stop offset="93%" stop-color="rgba(158,172,254,.694)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path12">
+            <stop offset="1%" stop-color="rgba(158,172,254,0.549)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path13">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="27%" stop-color="rgba(158,172,254,.184)" />
+            <stop offset="69%" stop-color="rgba(158,172,254,.168)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path14" gradientTransform="rotate(130)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="25%" stop-color="rgba(158,172,254,.152)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,.356)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path15" gradientTransform="rotate(125)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="35%" stop-color="rgba(158,172,254,.152)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,.356)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="strokepath16" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="rgba(103,91,230,0)" />
+            <stop offset="12%" stop-color="rgba(174,167,242,0.721)" />
+            <stop offset="77%" stop-color="rgba(103,91,230,0.619)" />
+            <stop offset="100%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+
+        <linearGradient id="path17" gradientTransform="rotate(0)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0.329)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path18" gradientTransform="rotate(-43.71)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,1)" />
+        </linearGradient>
+
+        <linearGradient id="path19" gradientTransform="rotate(145)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="25%" stop-color="rgba(158,172,254,0.152)" />
+            <stop offset="77%" stop-color="rgba(158,172,254,0.356)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path20">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="29%" stop-color="rgba(158,172,254,0.227)" />
+            <stop offset="67%" stop-color="rgba(158,172,254,0.239)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path21">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0.152)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path22">
+            <stop offset="27%" stop-color="rgba(158,172,254,.05)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0.066)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path23" gradientTransform="rotate(-50)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="34%" stop-color="rgba(158,172,254,0.356)" />
+            <stop offset="92%" stop-color="rgba(158,172,254,0.956)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path24">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="29%" stop-color="rgba(158,172,254,0.458)" />
+            <stop offset="67%" stop-color="rgba(158,172,254,0.329)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path25" gradientTransform="rotate(0.03)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0.549)" />
+            <stop offset="45%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path26" gradientTransform="rotate(0.07)">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.796)" />
+            <stop offset="46%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path27" gradientTransform="rotate(0.03)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0.329)" />
+            <stop offset="45%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path28" gradientTransform="rotate(0.03)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0.254)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path29" gradientTransform="rotate(-1.06)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="30%" stop-color="rgba(158,172,254,0.082)" />
+            <stop offset="84%" stop-color="rgba(158,172,254,0.196)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path30">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="25%" stop-color="rgba(158,172,254,0.184)" />
+            <stop offset="73%" stop-color="rgba(158,172,254,0.168)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="strokepath31">
+            <stop offset="0%" stop-color="rgba(103,91,230,0)" />
+            <stop offset="40%" stop-color="rgba(103,91,230,0.619)" />
+            <stop offset="75%" stop-color="rgba(174,167,242,0.619)" />
+            <stop offset="100%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+        <linearGradient id="path31" gradientTransform="rotate(50)">
+            <stop offset="0%" stop-color="rgba(153,145,238,0.796)" />
+            <stop offset="79%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+
+        <linearGradient id="path32" gradientTransform="rotate(0.07)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0.549)" />
+            <stop offset="64%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path33">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="30%" stop-color="rgba(158,172,254,0.27)" />
+            <stop offset="71%" stop-color="rgba(158,172,254,0.356)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path34">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="27%" stop-color="rgba(158,172,254,0.05)" />
+            <stop offset="69%" stop-color="rgba(158,172,254,0.066)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path35">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="29%" stop-color="rgba(158,172,254,0.458)" />
+            <stop offset="67%" stop-color="rgba(158,172,254,0.329)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path36">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="53%" stop-color="rgba(158,172,254,0.254)" />
+            <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path37" gradientTransform="rotate(-1)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="30%" stop-color="rgba(158,172,254,0.082)" />
+            <stop offset="84%" stop-color="rgba(158,172,254,0.196)" />                <stop offset="100%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path38" gradientTransform="translate(0 0) rotate(45.5)">
+            <stop offset="72%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="75%" stop-color="rgba(158,172,254,0.5)" />
+            <stop offset="80%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path39" gradientTransform="rotate(45)">
+            <stop offset="71%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="74%" stop-color="rgba(158,172,254,0.239)" />
+            <stop offset="78%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path40" gradientTransform="rotate(45)">
+            <stop offset="71%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="74%" stop-color="rgba(158,172,254,0.345)" />
+            <stop offset="78%" stop-color="rgba(158,172,254,0)" />
+        </linearGradient>
+
+        <linearGradient id="path41" gradientTransform="rotate(10)">
+            <stop offset="24%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="56%" stop-color="rgba(185,195,254,0.109)" />
+        </linearGradient>
+
+        <linearGradient id="path42" gradientTransform="rotate(50)">
+            <stop offset="24%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="56%" stop-color="rgba(185,195,254,0.196)" />
+            <stop offset="80%" stop-color="rgba(185,195,254,0.27)" />
+        </linearGradient>
+
+        <linearGradient id="path43" gradientTransform="rotate(6.87)">
+            <stop offset="41%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="72%" stop-color="rgba(185,195,254,0.109)" />
+        </linearGradient>
+
+        <linearGradient id="strokepath44" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="rgba(103,91,230,0)" />
+            <stop offset="40%" stop-color="rgba(103,91,230,0.619)" />
+            <stop offset="75%" stop-color="rgba(174,167,242,0.619)" />
+            <stop offset="100%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+        <linearGradient id="path44" gradientTransform="rotate(0.46)">
+            <stop offset="0%" stop-color="rgba(158,172,254,0.356)" />
+            <stop offset="79%" stop-color="rgba(174,167,242,0)" />
+        </linearGradient>
+
+        <linearGradient id="path45" gradientTransform="rotate(50)">
+            <stop offset="67%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="100%" stop-color="rgba(207,214,254,0.56)" />
+        </linearGradient>
+
+        <linearGradient id="path46" gradientTransform="rotate(3.5)">
+            <stop offset="24%" stop-color="rgba(158,172,254,0)" />
+            <stop offset="56%" stop-color="rgba(185,195,254,0.109)" />
+            <stop offset="80%" stop-color="rgba(233,236,255,0.298)" />
+        </linearGradient>
+
+    </defs>
+    <rect fill="url('#rect1')" x="0" y="0" width="100%" height="100%"/>
+    <rect fill="url('#rect2')" x="0" y="0" width="100%" height="100%" style="animation: anim1 5s linear alternate infinite"/>
+    <rect fill="url('#rect3')" x="0" y="0" width="100%" height="100%" style="animation: anim2 6s linear alternate infinite"/>
+    <rect fill="url('#rect4')" x="0" y="0" width="100%" height="100%"/>
+    <g style="animation: anim2 4s linear alternate infinite;">
+        <path fill="url(#path6)" d="M 0 0 L 61 0 L 61 426 L 0 426 Z" transform="translate(370.5 2.86)"/>
+
+        <path fill="url(#path7)" stroke="url('#strokepath7')" stroke-width="1.33333337306976" d="M 9.69 0 C 0.64 53.14 -2.18 106.47 1.69 160" transform="translate(600.80 98.98)"/>
+
+        <path fill="url(#path8)" d="M 10.53 0 C -0.60 85.75 -2.66 182.15 3.19 287.87" transform="translate(600.45 -28.78) rotate(-2.51 606 115)"/>
+
+        <path fill="url(#path9)" d="M 0 0 L 61 0 L 61 426 L 0 426 Z" transform="translate(230.5 -3.13)"/>
+    </g>
+
+    <path fill="url('#path10')" d="M 0 0 L 21.06 0 L 21.06 430.12 L 0 430.12 Z" transform="rotate(2.23 544 207) translate(534.23 -8.22)"/>
+
+    <g style="animation: anim2 4s linear alternate infinite;">
+        <path fill="url('#path11')" d="M 0.61 -2.25E-08 L 162.61 8.37 L 161.99 233.17 L 0 224.79 Z" transform="rotate(-6 140 330) translate(59.19 213.21)"/>
+
+        <path fill="url('#path12')" d="M 17.23 0 C -0.98 102.77 -4.36 218.30 5.23 345" transform="translate(643.26 10.98)"/>
+
+        <path fill="url('#path13')" d="M 0 0 L 57.81 0 L 57.81 431 L 0 431 Z" transform="rotate(0.96 662.58 225) translate(633.68 9.86)"/>
+
+        <path fill="url('#path14')" d="M 0.54 0.58 L 36.59 0 L 36.04 272.11 L -1.94E-08 272.70 Z" transform="rotate(2.23 662.6 225.4) translate(556.23 149.4)"/>
+
+        <path fill="url('#path15')" d="M 1.10 -7.64E-16 L 292.18 10.45 L 291.07 291.15 L 0 280.69 Z" transform="rotate(-5.29 137.8 301) translate(-38.31 155.35)"/>
+
+        <g style="animation: anim1 2s linear alternate infinite">
+            <path fill="transparent" stroke="url('#strokepath16')" d="M 89 0 C 31.87 89.58 1.44 209.78 0 365" stroke-width="1.33333337306976" style="animation: anim3 4s linear infinite" transform="translate(686.5 17.98)"/>
+        </g>
+    </g>
+
+    <g style="animation: anim4 3s linear alternate infinite;">
+        <path fill="url('#path17')" d="M 0 0 L 32.57 0 L 32.57 436.93 L 0 436.93 Z" transform="rotate(1.76 446.8 208) translate(430.49 -10.21)"/>
+        <path fill="url('#path18')" d="M 1.42E-14 5.51 L 105.41 0 L 120.61 298.07 L 15.19 303.58 Z" transform="rotate(182 222 299) translate(162 147) "/>
+        <path fill="url('#path19')" d="M 0.54 0.58 L 36.59 0 L 36.04 272.11 L -1.94E-08 272.70 Z" transform="rotate(2.23 299 286) translate(281.23 149.4)"/>
+        <path fill="url('#path20')" d="M 0 0 L 57.63 0 L 57.63 432.10 L 0 432.10 Z" transform="translate(124.72 -12.49)"/>
+    </g>
+
+    <g style="animation: anim5 2s linear alternate infinite;">
+        <path fill="url('#path21')" d="M 1.99 0 L 25.55 0 L 23.55 431.45 L 0 431.45 Z" transform="rotate(2 519 208) translate(506 -8.4)"/>
+        <path fill="url('#path22')" d="M 0 0 L 57.81 0 L 57.81 447.96 L 0 447.96 Z" transform="rotate(1 663 217) translate(633.82 -7.1)"/>
+        <path fill="url('#path23')" d="M -3.59E-07 4.93 L 105.41 0 L 120.61 266.64 L 15.19 271.57 Z" transform="rotate(-180 161 311) translate(100.38 174.9)"/>
+        <path fill="url('#path24')" d="M 0 0 L 107.80 0 L 107.80 432.10 L 0 432.10 Z" transform="rotate(4 344 208) translate(290.5 -8.5)"/>
+        <path fill="url('#path25')" d="M 10.53 0 C -0.60 132.99 -2.66 282.51 3.19 446.47" transform="rotate(-2.5 629 206) translate(623.92 -17)"/>
+        <path fill="url('#path26')" d="M 21.01 0 C 2.79 102.77 -5.58 256.30 4.01 382.99" transform="translate(637.48 -24)"/>
+        <g style="animation: anim1 3s linear alternate infinite;">
+            <g style="animation: anim6 6s linear infinite">
+                <path fill="url('#path27')" d="M 10.53 0 C -0.60 132.99 -2.66 282.51 3.19 446.47" transform="rotate(3 613 206) translate(608 -17)"/>
+            </g>
+        </g>
+    </g>
+
+    <g style="animation: anim1 3s linear alternate infinite;">
+        <path fill="url('#path28')" d="M 0 0 L 23.94 0 L 26.05 428.14 L 2.10 428.14 Z" transform="rotate(2 507 206) translate(494.44 -8.25)"/>
+        <path fill="url('#path29')" d="M 0 0 L 40.14 0.06 L 40.14 396.06 L 0 396 Z" transform="rotate(-179 475 231) translate(455.35 32.8)"/>
+        <path fill="url('#path30')" d="M 0 0 L 53.42 0 L 53.42 431 L 0 431 Z" transform="rotate(2 712 218) translate(685.5 2.9)"/>
+        <path fill="url('#path31')" stroke="url('#strokepath31')" stroke-width="1.33333337306976" d="M 24.39 0 C 4.33 60.95 -3.45 123.60 1.39 188" style="animation: anim7 6s linear infinite"/>
+        <g style="animation: anim1 2s linear infinite">
+            <g style="animation: anim8 4s linear infinite">
+                <path fill="url('#path32')" d="M 10.53 0 C -0.60 111.71 -2.66 237.30 3.19 375.02" transform="rotate(-3 635 299) translate(629 11)"/>
+            </g>
+        </g>
+    </g>
+
+    <g id="MovingRays" style="animation: anim1 10s linear alternate infinite;">
+        <g style="animation: anim9 20s linear infinite;">
+            <path fill="url('#path33')" d="M 0 0 L 61 0 L 61 426 L 0 426 Z" transform="translate(370.5 2.86)"/>
+            <path fill="url('#path34')" d="M 0 0 L 57.81 0 L 57.81 447.96 L 0 447.96 Z" transform="rotate(1 663 217) translate(634 -7)"/>
+            <path fill="url('#path35')" d="M 0 0 L 107.80 0 L 107.80 432.10 L 0 432.10 Z" transform="rotate(4.5 58 217) translate(291 -8)"/>
+            <path fill="url('#path36')" d="M 0 0 L 23.94 0 L 26.05 428.14 L 2.10 428.14 Z" transform="rotate(2 507 216) translate(494.4 -8)"/>
+            <path fill="url('#path37')" d="M 0 0 L 40.14 0.06 L 40.14 396.06 L 0 396 Z" transform="rotate(-179 475 230) translate(455.3 33)"/>
+        </g>
+    </g>
+
+    <g id="LargeForegrounds">
+        <path fill="url('#path1')" d="M 0 0 L 516.96 0 L 516.96 164.00 L 0 164.00 Z" transform="translate(0.5 436.86)"/>
+        <path fill="url('#path2')" d="M 0 0 L 516.96 0 L 516.96 164.00 L 0 164.00 Z" transform="translate(0.5 436.86)" style="animation: anim1 5s linear alternate infinite"/>
+        <path fill="url('#path3')" d="M 0 8.01 C 263.35 -2.65 530.64 -2.68 802 8.01 L 802 185.00 L 0 185.00 Z" transform="translate(-0.5 415.85)"/>
+        <path fill="url('#path4')" d="M 0 8.01 C 263.35 -2.65 530.64 -2.68 802 8.01 L 802 185.00 L 0 185.00 Z" transform="translate(-0.5 415.85)" style="animation: anim1 4s linear alternate infinite"/>
+        <path fill="url('#path5')" d="M 0 0 L 802 0 L 802 212.55 L 0 212.55 Z" transform="translate(-0.5 -0.13)"/>
+    </g>
+
+    <g id="ThinRays">
+        <g id="BottomLights" style="animation: anim10 6s linear alternate infinite;">
+            <path fill="url('#path38')" d="M 361.96 -1.53E-07 C 400.82 61.96 75.41 695.61 -1.33E-07 770.20" transform="rotate(122 305 500) scale(-1 1) translate(-400 0)"/>
+            <path fill="url('#path39')" d="M 361.96 7.77E-08 C 400.82 61.96 75.41 695.61 -1.24E-07 770.20" transform="rotate(-61 408 480) translate(225.34 65.3) scale(1 -1) translate(0 -800)"/>
+            <path fill="url('#path40')" d="M 361.96 7.77E-08 C 400.82 61.96 75.41 695.61 -1.24E-07 770.20" transform="rotate(-62 529 441) translate(346 34.3) scale(1 -1) translate(0,-800)"/>
+
+            <path fill="url('#path41')" d="M 105.08 0 C 88.41 94.60 28.55 211.61 0 258.66" transform="rotate(-6.61 123.3 158) translate(70.77 28.63)"/>
+        </g>
+
+        <g style="animation: anim11 2s linear alternate infinite">
+            <g style="animation: anim12 4s linear infinite">
+                <path fill="url('#path42')" d="M 105.08 0 C 88.41 94.60 28.55 211.61 0 258.66" transform="rotate(-8.3 123.3 275) translate(70.77 145.63)"/>
+            </g>
+        </g>
+
+        <g style="animation: anim1 2s linear alternate infinite">
+            <g style="animation: anim13 4s linear infinite;">
+                <path fill="url('#path43')" d="M 103.66 7.18E-09 C 83.93 110.48 33.79 250.38 0 305.33" transform="rotate(169 145.4 202.5) translate(93.6 49.8)"/>
+            </g>
+        </g>
+
+        <g id="Lights" style="animation: anim1 3s linear alternate infinite">
+            <g style="animation: anim14 6s linear infinite">
+                <path fill="url('#path44')" stroke="url('#strokepath44')" stroke-width="1.33333337306976" d="M 9.69 0 C 0.64 53.14 -2.18 106.47 1.69 160" transform="translate(600.8 99)"/>
+
+                <path fill="url('#path45')" d="M 128.31 1.05E-08 C 93.69 110.82 33.79 246.63 0 301.57" transform="rotate(-15.27 121.83 125.5) translate(57.7 -25.33)"/>
+            </g>
+        </g>
+
+        <g id="TopLeft2" style="animation: anim1 2s linear alternate infinite;">
+            <path fill="url('#path46')" d="M 87.63 -3.94E-31 C 55.64 145.88 32.61 231.90 4.30E-09 310.56" transform="rotate(-13.05 140.35 183.8) translate(96.54 28.53)"/>
+        </g>
+
+    </g>
+
+</svg>
