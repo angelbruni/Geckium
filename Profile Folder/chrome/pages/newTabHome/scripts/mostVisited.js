@@ -294,8 +294,6 @@ function createTile(website) {
 			}
 		}
 
-		console.log(tile);
-
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {
         console.error(e);

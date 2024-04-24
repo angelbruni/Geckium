@@ -170,13 +170,12 @@ class gkLWTheme {
 
 	static setCustomThemeModeAttrs() {
 		const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
+		if (typeof docElm !== "undefined") {
+			docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
 
-		if (!isChromeTheme) {
-			if (typeof docElm !== "undefined") {
-				docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
-	
+			if (!isChromeTheme) {
 				const customThemeModePref = gkLWTheme.getCustomThemeMode;
-	
+
 				switch (customThemeModePref) {
 					case 0:
 						gkLWTheme.classicWindowFrame.enable();
