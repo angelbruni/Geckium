@@ -38,12 +38,12 @@ document.addEventListener("pageChanged", () => {
 	else
 		backElm.style.display = null;
 
-	if (currentPageIndex == 3)
+	if (currentPageIndex == 2)
 		nextElm.style.display = "none";
 	else
 		nextElm.style.display = null;
 
-	if (currentPageIndex == 3)
+	if (currentPageIndex == 2)
 		finishElm.style.display = null;
 	else
 		finishElm.style.display = "none";
