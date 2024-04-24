@@ -236,14 +236,31 @@ h4 {
 	}
 }
 
+
+#chrthemes-list {
+	
+	
+	
+	
+	
+	
+}
+.chrthemewrapper {
+	
+	
+}
 .item.chrtheme {
+	
+	
+	
+	
+
 	.banner {
 		padding: 0 !important;
 		margin-inline: -19px;
 
-		&:not([style="background-image: url()"]) {
-			height: 150px;
-		}
+		
+		
 	}
 
 	.icon {
@@ -258,6 +275,27 @@ h4 {
 			opacity: .5;
 		}
 	}
+
+	.name, .description {
+		
+		
+		
+		
+		
+	}
+	.version {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}	
 }
 
 @media not (-moz-platform: windows) {
@@ -273,5 +311,13 @@ h4 {
 .people-picture {
 	&:checked {
 		outline-offset: 2px;
+	}
+}
+
+.item.chrtheme {
+	.banner {
+		&:not([style="background-image: url()"]) {
+			height: 150px;
+		}
 	}
 }

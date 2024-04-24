@@ -9,7 +9,7 @@ function loadWizard() {
 		return;
 
 	if (!pref("Geckium.firstRun.complete").tryGet.bool())
-		openGWizard();
+		openGSplash();
 }
 
 window.addEventListener("load", loadWizard);

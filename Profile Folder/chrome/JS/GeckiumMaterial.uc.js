@@ -26,10 +26,27 @@ function openZoo() {
 	}
 }
 
+function openGSplash() {
+	const url = "about:gsplash";
+
+	for (let win of Services.wm.getEnumerator("geckiummaterial:gsplash")) {
+		if (win.closed)
+			continue;
+		else
+			win.focus();
+		return;
+	}
+	
+	const gmWindow = window.openDialog(url, "", "centerscreen");
+	gmWindow.onload = () => {
+		gmWindow.document.documentElement.setAttribute("containertype", "window");
+	}
+}
+
 function openGWizard() {
 	const url = "about:gwizard";
 
-	for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
+	for (let win of Services.wm.getEnumerator("geckiummaterial:gwizard")) {
 		if (win.closed)
 			continue;
 		else

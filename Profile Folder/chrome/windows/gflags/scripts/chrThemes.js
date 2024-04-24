@@ -51,6 +51,10 @@ async function populateChrThemesList() {
 		`
 
 		chrThemesList.appendChild(MozXULElement.parseXULToFragment(themeElm))
+		
+		
+
+		
 	}
 
 	chrThemesList.querySelectorAll("label.item").forEach(item => {

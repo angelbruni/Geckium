@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/styles/final.css" type="text/css"?>
+<?xml-stylesheet href="chrome://userchrome/content/windows/gsplash/style.css" type="text/css"?>
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		windowtype="geckiummaterial:gsplash"
+		containertype="page"
+		title="Get Started"
+		width="575"
+		height="536"
+		chromemargin="0,0,0,0">
+	<html:div id="window-container">
+		<hbox id="window" class="primary-color" style="--primary-color: AccentColor; --chosen-secondary-color: var(--pink)" preview-pane="false">
+			<vbox id="window-content-container">
+				<vbox id="window-content">
+					<vbox class="content">
+						<vbox class="banner">
+							<image style="width: 200px;"></image>
+							<vbox id="splash-text" style="align-items: center;">
+								<label style="font-size: 16pt;">Welcome to</label>
+								<label style="font-size: 32pt;">Geckium</label>
+								<h4 style="height: 20px; margin-inline-start: 1px;">indev_version</h4>
+							</vbox>
+						</vbox>
+						<button class="button ripple-enabled raised desktop" label="Get Started" flex="0" onclick="openWizardFromSplash()" />
+					</vbox>
+				</vbox>
+			</vbox>
+		</hbox>
+	</html:div>
+
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/windows/gsplash/script.js" type="text/javascript" defer="true"/>
+</window>

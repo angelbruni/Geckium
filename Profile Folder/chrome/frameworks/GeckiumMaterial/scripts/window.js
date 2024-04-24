@@ -1,6 +1,9 @@
 class gkWindow {
 	static setTitle() {
-		document.getElementById("window-title").textContent = document.documentElement.getAttribute("title");
+		const titleElm = document.getElementById("window-title");
+
+		if (titleElm)
+			titleElm.textContent = document.documentElement.getAttribute("title");
 	}
 
 	static close() {
@@ -11,7 +14,6 @@ class gkWindow {
 		}, 300);
 	}
 }
-
 
 document.addEventListener("DOMContentLoaded", gkWindow.setTitle);
 
