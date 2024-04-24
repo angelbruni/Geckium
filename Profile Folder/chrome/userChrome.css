@@ -88,7 +88,7 @@ tooltip {
 }
 @media (-moz-platform: windows) {
   :root:not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
 }
 @media (-moz-platform: linux) {
@@ -1288,7 +1288,7 @@ tooltip {
 }
 @media (-moz-platform: windows) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
 }
 @media (-moz-platform: linux) {
@@ -1657,7 +1657,7 @@ tooltip {
 }
 @media (-moz-platform: windows) {
   :root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, transparent) !important;
+    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
 }
 @media (-moz-platform: linux) {
