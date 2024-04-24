@@ -144,10 +144,13 @@ class chrTheme {
 					if (isBrowserWindow) {
 						const themeFrame = theme.theme.images.theme_frame;
 
-						if (themeFrame)
+						console.log(themeFrame);
+
+						if (themeFrame) {
 							gkLWTheme.classicWindowFrame.enable();
-						else
+						} else {
 							gkLWTheme.classicWindowFrame.disable();
+						}
 					}
 
 					const attributionImg = theme.theme.images.theme_ntp_attribution;
