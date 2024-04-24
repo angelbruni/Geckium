@@ -357,8 +357,10 @@ tooltip {
   background-position-y: calc(50% - 9px);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=maximized][windowtype="navigator:browser"] > body::before, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[sizemode=fullscreen][windowtype="navigator:browser"] > body::before {
-  box-shadow: 0;
+  box-shadow: none;
+  width: 100%;
   top: -9px;
+  left: 0px;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[lwtheme-image][windowtype="navigator:browser"] > body {
   position: relative;
@@ -435,6 +437,12 @@ tooltip {
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body::before {
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized][windowtype="navigator:browser"] > body::before, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen][windowtype="navigator:browser"] > body::before {
+  box-shadow: none;
+  width: 100%;
+  top: 0px;
+  left: 0px;
 }
 :root:-moz-lwtheme, :root:not(:-moz-lwtheme)[chrtheme=true] {
   /* bruni: Firefox is weird, if we set the root to be transparent,

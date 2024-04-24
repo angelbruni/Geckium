@@ -117,8 +117,10 @@
 				&[sizemode="fullscreen"] {
 					&[windowtype="navigator:browser"] > body {
 						&::before {
-							box-shadow: 0;
+							box-shadow: none;
+							width: 100%;
 							top: -9px;
+							left: 0px;
 						}
 					}
 				}
@@ -229,6 +231,18 @@
 			&[windowtype="navigator:browser"] > body {
 				&::before {
 					box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+				}
+			}
+
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				&[windowtype="navigator:browser"] > body {
+					&::before {
+						box-shadow: none;
+						width: 100%;
+						top: 0px;
+						left: 0px;
+					}
 				}
 			}
 		}
