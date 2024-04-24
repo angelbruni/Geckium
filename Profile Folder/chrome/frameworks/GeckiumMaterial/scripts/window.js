@@ -1,15 +1,19 @@
-function windowTitle() {
-	document.getElementById("window-title").textContent = document.documentElement.getAttribute("title");
-}
-document.addEventListener("DOMContentLoaded", windowTitle);
+class gkWindow {
+	static setTitle() {
+		document.getElementById("window-title").textContent = document.documentElement.getAttribute("title");
+	}
 
-function windowClose() {
-	document.getElementById("window").classList.add("closing");
+	static close() {
+		document.getElementById("window").classList.add("closing");
 
-	setTimeout(() => {
-		window.close();
-	}, 300);
+		setTimeout(() => {
+			window.close();
+		}, 300);
+	}
 }
+
+
+document.addEventListener("DOMContentLoaded", gkWindow.setTitle);
 
 let closeButton = document.querySelector(".caption-button.close");
 let maximizeButton = document.querySelector(".caption-button.maximize");
@@ -21,11 +25,8 @@ window.addEventListener('load', function() {
 		restoreButton.style.display = "none";
 });
 
-if (closeButton) {
-	closeButton.addEventListener("click", () => {
-		windowClose();
-	});
-}
+if (closeButton)
+	closeButton.addEventListener("click", gkWindow.close);
 
 if (maximizeButton) {
 	maximizeButton.addEventListener("click", () => {
@@ -42,8 +43,5 @@ if (restoreButton) {
 	});
 }
 
-if (minimizeButton) {
-	minimizeButton.addEventListener("click", () => {
-		window.minimize();
-	});
-}
+if (minimizeButton)
+	minimizeButton.addEventListener("click", window.minimize);

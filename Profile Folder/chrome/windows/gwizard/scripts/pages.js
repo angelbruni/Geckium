@@ -25,7 +25,7 @@ nextElm.addEventListener("click", () => {
 
 finishElm.addEventListener("click", () => {
 	pref("Geckium.firstRun.complete").set.bool(true);
-	windowClose();
+	gkWindow.close();
 })
 
 document.addEventListener("pageChanged", () => {
