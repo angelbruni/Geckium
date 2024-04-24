@@ -240,14 +240,30 @@ h4 {
 	}
 }
 
+#chrthemes-list {
+	display: flex;
+	background: transparent !important; 
+	box-shadow: none !important; 
+	flex-wrap: wrap;
+	margin-inline: -10px;
+	gap: 20px 0;
+}
+.chrthemewrapper {
+	padding-inline: 10px;
+	width: calc(50% - 20px);
+}
 .item.chrtheme {
+	position: relative;
+	display: block;
+	cursor: pointer !important;
+	padding-inline: 10px;
+
 	.banner {
 		padding: 0 !important;
 		margin-inline: -19px;
 
-		&:not([style="background-image: url()"]) {
-			height: 150px;
-		}
+		height: 150px;
+		background-color: rgb(0, 0, 0, 10%);
 	}
 
 	.icon {
@@ -262,6 +278,28 @@ h4 {
 			opacity: .5;
 		}
 	}
+
+	.name, .description {
+		display: block;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		margin: 0 !important;
+	}
+
+	.version {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		font-size: 10px;
+		padding-inline: 4px;
+		padding-block: 2px;
+		color: white;
+		font-weight: 500;
+		background: var(--secondary-color);
+		box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
+		border-radius: 2px;
+	}	
 }
 
 @media not (-moz-platform: windows) {

@@ -10,7 +10,7 @@ async function populateChrThemesList() {
 
 		let themeDescription = theme.description;
 		if (!themeDescription)
-			themeDescription = "";
+			themeDescription = "This theme has no description.";
 
 		const themeFile = theme.file.replace(".crx", "");
 
@@ -28,17 +28,17 @@ async function populateChrThemesList() {
 		const themeVersion = theme.version;
 		
 		let themeElm = `
-		<html:label class="card item ripple-enabled chrtheme"
+		<html:label class="card item chrtheme ripple-enabled"
 					 for="theme-${themeFile}"
 					 data-theme-name="${themeFile}">
 			<vbox flex="1">
 				<html:div class="banner" style="background-image: url(${themeBannerPath})"></html:div>
-				<hbox style="align-items: center;">
-					<image class="icon" style="width: 48px; height: 48px;" src="${themeIconPath}" />
-					<vbox>
+				<hbox style="align-items: center; padding-block: 6px">
+					<image class="icon" style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" />
+					<vbox style="min-width: 0">
 						<label class="name">${themeName}</label>
 						<label class="description">${themeDescription}</label>
-						<label class="description">Version: ${themeVersion}</label>
+						<label class="version">V${themeVersion}</label>
 					</vbox>
 					<spacer />
 					<div class="radio-parent">
@@ -50,7 +50,11 @@ async function populateChrThemesList() {
 		</html:label>
 		`
 
-		chrThemesList.appendChild(MozXULElement.parseXULToFragment(themeElm))
+		const themeElmWrapper = document.createElement("div");
+		themeElmWrapper.classList.add("chrthemewrapper");
+		chrThemesList.appendChild(themeElmWrapper);
+
+		themeElmWrapper.appendChild(MozXULElement.parseXULToFragment(themeElm));
 	}
 
 	chrThemesList.querySelectorAll("label.item").forEach(item => {
