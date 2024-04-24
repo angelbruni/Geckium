@@ -539,7 +539,7 @@ tooltip {
   --tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
   --theme-newtab: var(--chrt-control-background, transparent) !important;
 }
-:root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=five], :root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=six], :root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=eleven] {
+:root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=five], :root:not(:-moz-lwtheme)[chrtheme=true][geckium-choice=six] {
   --tab-glare: var(--tabbrowser-tab-selected) !important;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][style*="--chrt-tints-background-tab"] {
@@ -4149,8 +4149,34 @@ hbox[id=label-box][part=label-box] {
 }
 
 /* Chrome 7 -> 11 */
-:root[geckium-five][geckium-six][geckium-eleven] .tab-glare-container {
-  transition: opacity 100ms linear !important;
+:root[geckium-five][geckium-six][geckium-eleven] {
+  --tab-glare-opacity: .2;
+  --tab-glare-color: white;
+  --tab-glare: linear-gradient(
+  	90deg,
+  	color-mix(
+  		in srgb,
+  		var(--tab-glare-color) 40%,
+  		transparent
+  	) 30%,
+  	var(--tab-glare-color) 50%,
+  	color-mix(
+  		in srgb,
+  		var(--tab-glare-color) 40%,
+  		transparent
+  	) 70%
+  );
+  --tab-glare-unhover-timer: .5s;
+}
+:root[geckium-five][geckium-six][geckium-eleven]:not(:-moz-lwtheme)[chrtheme=true] {
+  --tab-glare-opacity: .1 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][customthemecolorizetabglare=true] {
+  /* bruni: This entire code takes care of custom themes support for tabs */
+}
+:root[geckium-five][geckium-six][geckium-eleven][customthemecolorizetabglare=true]:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --tab-glare-color: var(--tabbrowser-tab-color);
+  --tab-glare-opacity: 1;
 }
 :root[geckium-five][geckium-six][geckium-eleven] {
   /*&[customthememode="2"],
@@ -4555,37 +4581,10 @@ hbox[id=label-box][part=label-box] {
 
 /* Chrome 12 -> 21 */
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
-  --tab-glare-opacity: .2;
-  --tab-glare-color: white;
-  --tab-glare: linear-gradient(
-  	90deg,
-  	color-mix(
-  		in srgb,
-  		var(--tab-glare-color) 40%,
-  		transparent
-  	) 30%,
-  	var(--tab-glare-color) 50%,
-  	color-mix(
-  		in srgb,
-  		var(--tab-glare-color) 40%,
-  		transparent
-  	) 70%
-  );
-  --tab-glare-unhover-timer: .5s;
   --newtab-width: 34px;
   --newtab-normal: var(--inactive-tab-background-color);
   --newtab-hot: rgb(211, 217, 225, 0.8);
   --newtab-active: rgb(211, 217, 225, 0.4);
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone]:not(:-moz-lwtheme)[chrtheme=true] {
-  --tab-glare-opacity: .1 !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthemecolorizetabglare=true] {
-  /* bruni: This entire code takes care of custom themes support for tabs */
-}
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][customthemecolorizetabglare=true]:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --tab-glare-color: var(--tabbrowser-tab-color);
-  --tab-glare-opacity: 1;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .tabbrowser-tab {
   /* bruni: We are changing the favicon of about pages like

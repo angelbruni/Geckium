@@ -1,3 +1,37 @@
-.tab-glare-container {
-	transition: opacity 100ms linear !important;
+& {
+	--tab-glare-opacity: .2;
+	--tab-glare-color: white;
+	--tab-glare: linear-gradient(
+		90deg,
+		color-mix(
+			in srgb,
+			var(--tab-glare-color) 40%,
+			transparent
+		) 30%,
+		var(--tab-glare-color) 50%,
+		color-mix(
+			in srgb,
+			var(--tab-glare-color) 40%,
+			transparent
+		) 70%
+	);
+	--tab-glare-unhover-timer: .5s;
+
+	// else if chrtheme
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--tab-glare-opacity: .1 !important;
+	}
+
+	&[customthemecolorizetabglare="true"] {
+		/* bruni: This entire code takes care of custom themes support for tabs */
+		
+		&:-moz-lwtheme {
+			&:not([lwtheme-id*="firefox-compact"]) {
+				&:not([lwtheme-id="#{$gtkplus}"]) {
+					--tab-glare-color: var(--tabbrowser-tab-color);
+					--tab-glare-opacity: 1;
+				}
+			}
+		}
+	}
 }
