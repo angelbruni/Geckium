@@ -1,3 +1,31 @@
+:root {
+	&[contentmode="wizard"] {
+		.disable-in-wizard {
+			pointer-events: none;
+			opacity: .5;
+
+			&#appearance-container {
+				max-height: 100px;
+				mask-image: linear-gradient(to bottom, black, transparent);
+			}
+		}
+
+		.show-in-wizard {
+			display: flex;
+		}
+
+		.content:not([data-page-container]) {
+			padding-block-end: 91px !important;
+		}
+	}
+
+	&:not([contentmode="wizard"]) {
+		.show-in-wizard {
+			display: none;
+		}
+	}
+}
+
 #window {
 	width: 1160px;
 	height: 710px;
@@ -39,92 +67,6 @@ h4 {
 		.ripple {
 			
 		}
-	}
-}
-
-.year {
-	font-size: 10px;
-	padding-inline: 4px;
-	padding-block: 2px;
-	color: white;
-	font-weight: 500;
-	background: var(--secondary-color);
-	box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
-	border-radius: 2px;
-}
-
-.link {
-	&.chrome-appearance {
-		
-		
-		
-		
-		
-		
-		
-
-		&:hover {
-			
-			
-		}
-
-		.ripple {
-			
-		}
-
-		.wrapper {
-			
-			
-			
-		}
-
-		.year {
-			
-			
-			
-		}
-
-		.identifier {
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
-			.radio {
-				
-
-				&:checked {
-					&:not([disabled="true"]):hover + .gutter {
-						
-					}
-					&:not([disabled="true"]):active + .gutter {
-						
-					}
-				}
-				
-				&:not([disabled="true"]):hover + .gutter {
-					
-				}
-				&:not([disabled="true"]):active + .gutter {
-					
-				}
-			}
-		}
-	}
-}
-
-label {
-	.year {
-		display: inline-block;
-		margin-inline-end: 5px;
 	}
 }
 
@@ -262,6 +204,28 @@ label {
 	
 		#profile-pictures-path {
 			display: flex;
+		}
+	}
+}
+
+#gk_version {
+	position: relative;
+	overflow: hidden;
+	padding-inline: 8px;
+	border-radius: 9999px;
+	width: fit-content;
+	transition: background-color 155ms;
+
+	&:not([disabled]) {
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible {
+			background: rgba(153, 153, 153, .2);
+		}
+
+		.ripple {
+			background: rgba(153, 153, 153, .4);
 		}
 	}
 }

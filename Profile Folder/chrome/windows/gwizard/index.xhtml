@@ -10,14 +10,14 @@
 		containertype="page"
 		title="Geckium Wizard"
 		width="860"
-		height="644"
+		height="788"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
 		<hbox id="window" class="primary-color" style="--primary-color: AccentColor; --chosen-secondary-color: var(--pink)" preview-pane="false">
 			<hbox class="window-titlebar">
 				<hbox id="window-caption-buttons-container">
 					<hbox id="window-caption-buttons">
-						<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />
+						<!--<button class="caption-button minimize" id="window-minimise-button" onclick="window.minimize();" />-->
 						<button class="caption-button close" id="window-close-button" onclick="window.close();" />
 					</hbox>
 				</hbox>
@@ -33,28 +33,31 @@
 					</hbox>
 				</vbox>
 				<vbox id="window-content">
-					<hbox class="steppers">
-						<hbox class="step active">
+					<hbox class="stepper">
+						<hbox class="step ripple-enabled active" data-page="0">
 							<html:div>
-								1
+								<html:p>1</html:p>
 							</html:div>
 							<label>Welcome</label>
 						</hbox>
-						<hbox class="step">
+						<spacer />
+						<hbox class="step ripple-enabled" data-page="1">
 							<html:div>
-								2
+								<html:p>2</html:p>
 							</html:div>
 							<label>Choose a visual style</label>
 						</hbox>
-						<hbox class="step">
+						<spacer />
+						<hbox class="step ripple-enabled" data-page="2">
 							<html:div>
-								3
+								<html:p>3</html:p>
 							</html:div>
 							<label>Additional settings</label>
 						</hbox>
-						<hbox class="step">
+						<spacer />
+						<hbox class="step ripple-enabled" data-page="3">
 							<html:div>
-								4
+								<html:p>4</html:p>
 							</html:div>
 							<label>Finish</label>
 						</hbox>
@@ -79,8 +82,10 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" style="margin-top: 5%">
-											<vbox class="card" style="padding: 16px">
-												random ahh yapping
+											<vbox class="card" style="padding-block-start: 19px">
+												<vbox class="item" flex="1">
+													<grid id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
 											</vbox>
 										</vbox>
 									</vbox>
@@ -89,10 +94,29 @@
 							<vbox class="page" data-page="2">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" style="margin-top: 5%">
-											<vbox class="card" style="padding: 16px">
-												random ahh yapping
-											</vbox>
+										<vbox class="list-container" style="margin-top: 5%; gap: 8px;">
+											<html:button class="link icon-web-asset ripple-enabled" onclick="openGFlags('wizard')">
+												<vbox>
+													<label>Geckium Flags</label>
+													<p>Make your Geckium truly unique.</p>
+												</vbox>
+												<hbox>
+													<label>Launch</label>
+													<spacer />
+													<div class="icon" />
+												</hbox>
+											</html:button>
+											<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 10)" disabled="true">
+												<vbox>
+													<label>Chromium Flags</label>
+													<p>Chromium Flags ported over to Geckium. Available in "about:flags".</p>
+												</vbox>
+												<hbox>
+													<label>Go to page</label>
+													<spacer />
+													<div class="icon" />
+												</hbox>
+											</html:button>
 										</vbox>
 									</vbox>
 								</vbox>
@@ -102,7 +126,12 @@
 									<vbox class="content">
 										<vbox class="list-container" style="margin-top: 5%">
 											<vbox class="card" style="padding: 16px">
-												random ahh yapping
+												<html:p class="headline-5" style="margin-block-start: 0">
+													You're all set!
+												</html:p>
+												<html:p>
+													You can reach Geckium Flags at any time by clicking the <html:span class="gklogo"/> button.
+												</html:p>
 											</vbox>
 										</vbox>
 									</vbox>
@@ -111,9 +140,10 @@
 						</vbox>
 					</div>
 					<footer>
-						<button id="btn-cancel" class="button ripple-enabled text" label="Cancel" />
+						<!--<button id="btn-cancel" class="button ripple-enabled text" label="Cancel" />-->
 						<spacer />
 						<button id="btn-next" class="button ripple-enabled text color" label="Next" />
+						<button id="btn-finish" class="button ripple-enabled text color" label="Finish"/>
 					</footer>
 				</vbox>
 			</vbox>
@@ -135,6 +165,8 @@
 	</html:div>
 
 	<script src="chrome://userchrome/content/windows/gwizard/scripts/pages.js" type="text/javascript" defer="true"/>
+
+	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>

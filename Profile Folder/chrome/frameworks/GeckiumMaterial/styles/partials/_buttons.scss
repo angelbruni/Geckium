@@ -253,7 +253,6 @@ label {
 		box-shadow: var(--elevation-2);
 		overflow: hidden;
 		align-items: start;
-		cursor: pointer;
 		transition: background-color 155ms, box-shadow 155ms;
 
 		@media (prefers-color-scheme: dark) {
@@ -288,6 +287,8 @@ label {
 		}
 
 		&:not([disabled]) {
+			cursor: pointer;
+
 			&:active {
 				box-shadow: var(--elevation-8);
 			}
@@ -296,6 +297,10 @@ label {
 			&:focus-visible {
 				background: rgba(153, 153, 153, .2);
 			}
+		}
+
+		&[disabled] {
+			opacity: .5;
 		}
 
 		&[class*="icon"] {

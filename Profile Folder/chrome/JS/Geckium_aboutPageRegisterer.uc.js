@@ -5,14 +5,14 @@
 // ==/UserScript==
 
 const customAboutPages = {
-	"places": 		"chrome://browser/content/places/places.xhtml",
+	"places": 	"chrome://browser/content/places/places.xhtml",
 
-	"gmzoo": 		"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
+	"gmzoo": 	"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
 
-	"home": 		"chrome://userchrome/content/pages/newTabHome/index.xhtml",
-	"newtab": 		"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+	"home": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+	"newtab": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
 
-	"flags": 		"chrome://userchrome/content/pages/flags/index.xhtml",
+	"flags": 	"chrome://userchrome/content/pages/flags/index.xhtml",
 
 	"gwizard": 	"chrome://userchrome/content/windows/gwizard/index.xhtml",
 	"gflags": 	"chrome://userchrome/content/windows/gflags/index.xhtml",

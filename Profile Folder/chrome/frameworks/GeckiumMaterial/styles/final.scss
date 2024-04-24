@@ -85,6 +85,22 @@ h4 {
 label {
 	align-items: center;
 	display: flex;
+
+	.year {
+		display: inline-block;
+		margin-inline-end: 5px;
+	}
+}
+
+.year {
+	font-size: 10px;
+	padding-inline: 4px;
+	padding-block: 2px;
+	color: white;
+	font-weight: 500;
+	background: var(--secondary-color);
+	box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
+	border-radius: 2px;
 }
 
 h4 {
@@ -141,4 +157,5 @@ spacer {
 @import "partials/steppers";
 @import "partials/dialog";
 @import "partials/preview";
+@import "partials/snackbars";
 @import "partials/ripple";

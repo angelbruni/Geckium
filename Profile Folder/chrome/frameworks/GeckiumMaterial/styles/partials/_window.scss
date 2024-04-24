@@ -198,6 +198,8 @@ window {
 		display: flex;
 		position: relative;
 		overflow: hidden;
+		transition: background-color 155ms;
+		-moz-window-dragging: no-drag;
 		
 		&:first-of-type {
 			margin-inline-start: -11px;
@@ -215,6 +217,10 @@ window {
 		}
 
 		&:not([disabled]) {
+			&:hover {
+				background: rgba(255, 255, 255, .1);
+			}
+
 			.ripple {
 				background: rgba(255, 255, 255, .3);
 			}
