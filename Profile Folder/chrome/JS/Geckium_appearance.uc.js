@@ -169,24 +169,28 @@ class gkLWTheme {
 	}
 
 	static setCustomThemeModeAttrs() {
-		if (typeof docElm !== "undefined") {
-			docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
+		const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
 
-			const customThemeModePref = gkLWTheme.getCustomThemeMode;
-
-			switch (customThemeModePref) {
-				case 0:
-					gkLWTheme.classicWindowFrame.enable();
-					break;
-				case 1:
-					gkLWTheme.classicWindowFrame.disable();
-					break;
-				case 2:
-					gkLWTheme.classicWindowFrame.enable();
-					break;
+		if (!isChromeTheme) {
+			if (typeof docElm !== "undefined") {
+				docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
+	
+				const customThemeModePref = gkLWTheme.getCustomThemeMode;
+	
+				switch (customThemeModePref) {
+					case 0:
+						gkLWTheme.classicWindowFrame.enable();
+						break;
+					case 1:
+						gkLWTheme.classicWindowFrame.disable();
+						break;
+					case 2:
+						gkLWTheme.classicWindowFrame.enable();
+						break;
+				}
+	
+				docElm.setAttribute("customthememode", customThemeModePref);
 			}
-
-			docElm.setAttribute("customthememode", customThemeModePref);
 		}
 	}
 }
@@ -204,9 +208,7 @@ function setThemeAttr() {
 		const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
 
 		if (!isChromeTheme) {
-			if (isDefaultLWTheme) {
-				gkLWTheme.classicWindowFrame.disable();
-			} else if (isDefaultLightDarkLWTheme || isGTKPlus) {
+			if (isDefaultLWTheme || isDefaultLightDarkLWTheme || isGTKPlus) {
 				gkLWTheme.classicWindowFrame.disable();
 			}
 		}
