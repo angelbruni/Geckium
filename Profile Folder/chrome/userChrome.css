@@ -3705,6 +3705,7 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::before {
   background: linear-gradient(to top, transparent, var(--toolbarbutton-texture-hot)) !important;
+  mix-blend-mode: unset !important;
   height: 100%;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button)::after {

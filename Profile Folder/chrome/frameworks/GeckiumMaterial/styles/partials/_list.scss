@@ -6,7 +6,7 @@
 		margin-inline: 0;
 		min-height: 46px;
 
-		> .item {
+		.item {
 			box-sizing: border-box;
 			overflow: hidden;
 			padding-inline: 19px;
@@ -15,6 +15,11 @@
 			text-decoration: none;
 			color: black;
 			cursor: default;
+
+			&.card {
+				min-height: 0;
+				transition: background-color 155ms, box-shadow 155ms;
+			}
 
 			@media (prefers-color-scheme: dark) {
 				color: white;
@@ -41,7 +46,7 @@
 				}
 			}
 
-			> vbox > label {
+			vbox > label {
 				&:first-of-type {
 					margin-block-start: 13px;
 				}
@@ -51,7 +56,7 @@
 				}
 			}
 
-			> .menu {
+			.menu {
 				.placeholder {
 					display: none;
 				}
@@ -69,7 +74,7 @@
 				background: rgba(153, 153, 153, .4);
 			}
 
-			> .radio-parent {
+			.radio-parent {
 				margin-inline-start: 64px;
 				height: 32px;
 
