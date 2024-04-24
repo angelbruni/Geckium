@@ -124,7 +124,6 @@ tooltip {
 }
 @media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
-    border: 1px solid color-mix(in srgb, var(--lwt-accent-color) 50%, rgb(0, 0, 0) 40%) !important;
     border-top-left-radius: 6px !important;
     border-top-right-radius: 6px !important;
     border-bottom-left-radius: 0 !important;
@@ -1317,7 +1316,6 @@ tooltip {
 }
 @media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
-    border: 1px solid color-mix(in srgb, var(--lwt-accent-color) 50%, rgb(0, 0, 0) 40%) !important;
     border-top-left-radius: 6px !important;
     border-top-right-radius: 6px !important;
     border-bottom-left-radius: 0 !important;
@@ -1687,7 +1685,6 @@ tooltip {
 }
 @media (-moz-platform: linux) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][windowtype="navigator:browser"] > body {
-    border: 1px solid color-mix(in srgb, var(--lwt-accent-color) 50%, rgb(0, 0, 0) 40%) !important;
     border-top-left-radius: 6px !important;
     border-top-right-radius: 6px !important;
     border-bottom-left-radius: 0 !important;
@@ -4200,6 +4197,7 @@ hbox[id=label-box][part=label-box] {
   transition: all 150ms linear;
   opacity: 0;
   z-index: 1;
+  mix-blend-mode: unset !important;
   height: 100%;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,

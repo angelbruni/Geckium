@@ -234,6 +234,30 @@ h4 {
 	}
 }
 
+.item.chrtheme {
+	.banner {
+		padding: 0 !important;
+		margin-inline: -19px;
+
+		&:not([style="background-image: url()"]) {
+			height: 150px;
+		}
+	}
+
+	.icon {
+		margin-inline-end: 16px;
+		width: 48px;
+		height: 48px;
+
+		&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
+			filter: saturate(0);
+			fill: #209f43;
+			-moz-context-properties: fill, fill-opacity;
+			opacity: .5;
+		}
+	}
+}
+
 @media not (-moz-platform: windows) {
 	#os-ux-button,
 	#os-comp-button {

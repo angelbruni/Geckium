@@ -9,8 +9,12 @@ const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
 const chrThemesFolderName = "chrThemes";
 
 class chrTheme {
+	static get chrThemesFolderPath() {
+		return `file:///${profRootDir}/chrome/${chrThemesFolderName}`;
+	}
+
 	static get chrThemeFileUtilsPath() {
-		return Services.io.newURI(`file:///${profRootDir}/chrome/${chrThemesFolderName}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
+		return Services.io.newURI(chrTheme.chrThemesFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
 
 	static async getThemesList() {
@@ -33,7 +37,27 @@ class chrTheme {
                     const fetchPromise = fetch(themeManifest)
                         .then((response) => response.json())
                         .then((theme) => {
+							let themeBanner;
+							try {
+								themeBanner = theme.theme.images.theme_ntp_background;
+							} catch (error) {
+								themeBanner = "";
+							}
+
+							let themeIcon;
+							try {
+								themeIcon = theme.theme.icons[48];
+							} catch (error) {
+								try {
+									themeIcon = theme.icons[48];
+								} catch (error) {
+									themeIcon = "";
+								}
+							}
+
                             themes[theme.name] = {
+								banner: themeBanner,
+								icon: themeIcon,
                                 description: theme.description,
 								file: file.leafName,
                                 version: theme.version
