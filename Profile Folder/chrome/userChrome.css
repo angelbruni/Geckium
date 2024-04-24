@@ -4657,7 +4657,7 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
   --toolbarbutton-radius: 3px;
-  --toolbarbutton-border-color-hot: rgb(192, 192, 192);
+  --toolbarbutton-border-color-hot: rgb(134, 134, 134);
   --toolbarbutton-border-color-active: rgb(125, 125, 125);
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
   							inset 0 1px 2px rgb(255, 255, 255, 75%);
@@ -4705,11 +4705,12 @@ hbox[id=label-box][part=label-box] {
 #tabs-newtab-button,
 #new-tab-button)::before {
   background: rgb(255, 255, 255) !important;
+  border-radius: var(--toolbarbutton-radius) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover {
-  border-top-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 100%, white) !important;
+  border-top-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 30%, white) !important;
   border-bottom-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 80%, black) !important;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.14), inset 0 1px 2px rgba(255, 255, 255, 0.75) !important;
 }
