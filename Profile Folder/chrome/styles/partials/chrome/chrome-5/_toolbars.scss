@@ -969,7 +969,6 @@ toolbarspring {
 			.toolbarbutton-badge-stack,
 			.toolbarbutton-icon image:first-of-type {
 				filter: unset;
-				background: unset !important;
 			}
 		}
 	}
@@ -997,6 +996,7 @@ toolbarspring {
 		width: auto !important;
 		height: auto !important;
 		max-height: 19px !important;
+		background: transparent !important;
 	}
 
 	.toolbarbutton-badge-stack {

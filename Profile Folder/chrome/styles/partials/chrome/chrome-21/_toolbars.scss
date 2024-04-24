@@ -1,5 +1,5 @@
 & {
-	--toolbarbutton-radius: 4px;
+	--toolbarbutton-radius: 3px;
 	--toolbarbutton-border-color-hot: rgb(192, 192, 192);
 	--toolbarbutton-border-color-active: rgb(125, 125, 125);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
@@ -49,11 +49,15 @@
 		) {
 		box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
 
+		&::before {
+			background: rgba(255,255,255,1) !important;
+		}
+
 		&:not([disabled]) {
 			&:hover {
 				border-top-color: color-mix(
 					in srgb,
-					var(--toolbarbutton-border-color-hot) 70%,
+					var(--toolbarbutton-border-color-hot) 100%,
 					white
 				) !important;
 				border-bottom-color: color-mix(
@@ -63,10 +67,23 @@
 				) !important;
 				box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
 							inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+
+				&::before {
+					opacity: .3;
+				}
 			}
 
 			&:active,
 			&[open] {
+				&::before {
+					content: unset;
+				}
+
+				background: linear-gradient(
+					to bottom,
+					rgb(0,0,0,.4),
+					rgb(0,0,0,.1) 1%,
+				) !important;
 				box-shadow: 0 1px 0 0 transparent,
 					inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
 				border-color: var(
