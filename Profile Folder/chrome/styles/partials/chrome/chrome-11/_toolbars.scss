@@ -18,7 +18,13 @@
 	--toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
 	--toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+	--toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
+	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
 	--default-toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
+
+	&:not([lwtheme-id*="#{$gtkplus}"]) {
+		--toolbarbutton-border-color-hot: rgb(172, 172, 172);
+	}
 
 	--personal-toolbar-height: 24px;
 
@@ -57,9 +63,9 @@
 			position: absolute;
 			inset: 0;
 			background: linear-gradient(
-				to top,
-				transparent,
-				var(--toolbarbutton-texture-hot)
+				to bottom,
+				var(--toolbarbutton-texture-hot),
+				transparent
 			) !important;
 			transition: all 150ms linear;
 			opacity: 0;
@@ -74,26 +80,28 @@
 
 		&:not([disabled]) {
 			&:hover {
-				border-color: var(--toolbarbutton-border-color-hot) !important;
-
-				.toolbarbutton-badge-stack,
-				.toolbarbutton-icon,
-				image:first-of-type {
-					filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
-				}
+				border-color: color-mix(
+					in srgb,
+					var(--toolbarbutton-border-color-hot) 45%,
+					transparent
+				) !important;
+				box-shadow: 0 1px 0 0 rgba(255,255,255,.3);
 
 				&::before {
-					opacity: 1;
+					opacity: .8;
 				}
 			}
 
 			&:active,
 			&[open] {
-				background: rgba(0, 0, 0, 0.08) !important;
-				box-shadow: var(--toolbarbutton-shadow-normal) !important;
-				border-color: var(
-					--toolbarbutton-border-color-active
+				background: linear-gradient(
+					to bottom,
+					rgb(120,120,120,.4),
+					rgb(200,200,200,.35) 10%,
+					rgb(120,120,120,.25)
 				) !important;
+				box-shadow: none !important;
+				border-color: var(--toolbarbutton-border-color-active) !important;
 
 				&::before {
 					transition: none !important;
@@ -106,7 +114,6 @@
 		.toolbarbutton-icon,
 		image:first-of-type {
 			position: relative;
-			filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
 			z-index: 1;
 		}
 

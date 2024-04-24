@@ -37,6 +37,7 @@
 	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
+	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px rgba(255,255,255,.7));
 	--default-toolbarbutton-icon-fill: rgb(65, 99, 154);
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
@@ -944,7 +945,7 @@ toolbarspring {
 			image:first-of-type {
 				background-color: transparent !important;
 				filter: saturate(1.5)
-						drop-shadow(0 0 1px rgba(255,255,255,.7));
+						var(--toolbarbutton-icon-drop-shadow);
 			}
 		}
 
@@ -988,7 +989,7 @@ toolbarspring {
 		padding: 0 !important;
 		fill: var(--toolbarbutton-icon-fill) !important;
 		filter: saturate(1)
-				drop-shadow(0 0 1px rgba(255,255,255,.7));
+				var(--toolbarbutton-icon-drop-shadow);
 		transition: 100ms filter linear;
 	}
 

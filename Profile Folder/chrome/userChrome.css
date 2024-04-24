@@ -1029,6 +1029,7 @@ tooltip {
   --toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
+  --toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px rgba(255,255,255,.7));
   --default-toolbarbutton-icon-fill: rgb(65, 99, 154);
   --default-navigation-buttons-separator: rgb(221, 229, 243);
   --navigation-buttons-separator: var(--default-navigation-buttons-separator);
@@ -2684,7 +2685,7 @@ toolbarspring {
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover image:first-of-type {
   background-color: transparent !important;
-  filter: saturate(1.5) drop-shadow(0 0 1px rgba(255, 255, 255, 0.7));
+  filter: saturate(1.5) var(--toolbarbutton-icon-drop-shadow);
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
@@ -2746,7 +2747,7 @@ toolbarspring {
   border-radius: 0 !important;
   padding: 0 !important;
   fill: var(--toolbarbutton-icon-fill) !important;
-  filter: saturate(1) drop-shadow(0 0 1px rgba(255, 255, 255, 0.7));
+  filter: saturate(1) var(--toolbarbutton-icon-drop-shadow);
   transition: 100ms filter linear;
 }
 .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4195,8 +4196,13 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
   --toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
   --toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+  --toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
+  --toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
   --default-toolbarbutton-icon-fill: rgb(78, 91, 116) !important;
   --personal-toolbar-height: 24px;
+}
+:root[geckium-five][geckium-six][geckium-eleven]:not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --toolbarbutton-border-color-hot: rgb(172, 172, 172);
 }
 @media (prefers-color-scheme: dark) {
   :root[geckium-five][geckium-six][geckium-eleven] {
@@ -4227,7 +4233,7 @@ hbox[id=label-box][part=label-box] {
 #new-tab-button)::before {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, transparent, var(--toolbarbutton-texture-hot)) !important;
+  background: linear-gradient(to bottom, var(--toolbarbutton-texture-hot), transparent) !important;
   transition: all 150ms linear;
   opacity: 0;
   z-index: 1;
@@ -4242,31 +4248,21 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover {
-  border-color: var(--toolbarbutton-border-color-hot) !important;
-}
-:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-#tabs-newtab-button,
-#new-tab-button):not([disabled]):hover .toolbarbutton-badge-stack,
-:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-#tabs-newtab-button,
-#new-tab-button):not([disabled]):hover .toolbarbutton-icon,
-:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
-#tabs-newtab-button,
-#new-tab-button):not([disabled]):hover image:first-of-type {
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
+  border-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 45%, transparent) !important;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.3);
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover::before {
-  opacity: 1;
+  opacity: 0.8;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled])[open] {
-  background: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: var(--toolbarbutton-shadow-normal) !important;
+  background: linear-gradient(to bottom, rgba(120, 120, 120, 0.4), rgba(200, 200, 200, 0.35) 10%, rgba(120, 120, 120, 0.25)) !important;
+  box-shadow: none !important;
   border-color: var(--toolbarbutton-border-color-active) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4287,7 +4283,6 @@ hbox[id=label-box][part=label-box] {
 #tabs-newtab-button,
 #new-tab-button) image:first-of-type {
   position: relative;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.3));
   z-index: 1;
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -4670,6 +4665,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-width: 27px;
   --toolbarbutton-height: 27px;
   --default-toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
+  --toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
   --personal-toolbar-height: 23px;
   --personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
   --personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
@@ -4708,8 +4704,8 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled]):hover {
-  border-top-color: rgb(221, 221, 221) !important;
-  border-bottom-color: rgb(144, 144, 144) !important;
+  border-top-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 70%, white) !important;
+  border-bottom-color: color-mix(in srgb, var(--toolbarbutton-border-color-hot) 80%, black) !important;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.14), inset 0 1px 2px rgba(255, 255, 255, 0.75) !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
@@ -5559,6 +5555,7 @@ hbox[id=label-box][part=label-box] {
   --toolbarbutton-background-hot: rgba(0,0,0,.09);
   --default-toolbarbutton-icon-fill: #5a5a5a !important;
   --toolbarbutton-outer-padding: 2px !important;
+  --toolbarbutton-icon-drop-shadow: drop-shadow();
   --personal-toolbar: var(--nav-bar);
   --personal-toolbar-height: 28px;
 }
