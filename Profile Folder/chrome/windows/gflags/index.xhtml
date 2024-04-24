@@ -28,11 +28,15 @@
 						<hbox class="window-toolbar">
 							<h3 id="window-title" data-page-container="main"/>
 							<spacer />
-							<button />
 						</hbox>
 					</hbox>
 				</vbox>
 				<hbox id="window-content">
+					<hbox class="snackbar show-in-wizard">
+						<vbox>
+							<label>Some options were disabled due to being launched from wizard.</label>
+						</vbox>
+					</hbox>
 					<vbox id="navigation-drawer" class="color iconic item-radius">
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
@@ -46,8 +50,9 @@
 							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />-->
 							<separator />
 							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="Settings" />-->
-							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="31" label="Help" />
-							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="32" label="About" />
+							<button class="item ripple-enabled icon-science" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="Developer Options" />
+							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="Help" />
+							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="About" />
 						</vbox>
 					</vbox>
 					<div class="pages">
@@ -67,16 +72,16 @@
 												</hbox>
 												<hbox class="item">
 													<spacer />
-													<label class="button ripple-enabled text color" is="text-link" href="https://ko-fi.com/">Support the project</label>
-													<label class="button ripple-enabled text color" is="text-link" href="https://github.com/kitchenfox/geckium">GitHub</label>
-													<label class="button ripple-enabled text color" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
-													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 31)">Help</html:button>
-													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 32)">About</html:button>
+													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://ko-fi.com/">Support the project</label>
+													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/kitchenfox/geckium">GitHub</label>
+													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 32)">Help</html:button>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 33)">About</html:button>
 													<spacer />
 												</hbox>
 											</vbox>
 											<vbox class="card">
-												<hbox class="item">
+												<hbox class="item disable-in-wizard">
 													<vbox>
 														<label class="name">Open this in a new tab next time</label>
 													</vbox>
@@ -140,7 +145,7 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Needs restart</div>Disable tab manager</label>
+														<label class="name"><div class="year">Needs restart</div>Enable tab manager</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -180,7 +185,7 @@
 											</h4>
 											<vbox class="card" style="padding-block-start: 19px">
 												<vbox class="item" flex="1">
-													<grid id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
 											<h4>
@@ -470,14 +475,80 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" id="profile-pic-content">
+											<vbox class="card">
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="wizard_modal">
+													<vbox>
+														<label class="name">Clear startup cache and restart with Wizard</label>
+													</vbox>
+												</html:button>
+												
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="restart_modal">
+													<vbox>
+														<label class="name">Restart browser</label>
+													</vbox>
+												</html:button>
+												
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="clearcache_modal">
+													<vbox>
+														<label class="name">Clear startup cache and restart browser</label>
+													</vbox>
+												</html:button>
+												<div class="modal" data-modal="wizard_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Are you sure?</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="wizard_modal" />
+																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="wizard_modal" onclick="pref('Geckium.firstRun.complete').set.bool(false); _ucUtils.restart(true);"/>
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+												<div class="modal" data-modal="restart_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Are you sure?</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="restart_modal" />
+																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();"/>
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+												<div class="modal" data-modal="clearcache_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Are you sure?</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="clearcache_modal" />
+																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);"/>
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</vbox>
+										</vbox>	
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="32">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container" id="profile-pic-content">
 											<h4>Useful links</h4>
 											<vbox class="card">
-												<label class="item ripple-enabled" is="text-link" href="https://github.com/kitchenfox/geckium">
+												<label class="item ripple-enabled disable-in-wizard" is="text-link" href="https://github.com/kitchenfox/geckium">
 													<vbox>
 														<label class="name">GitHub</label>
 													</vbox>
 												</label>
-												<label class="item ripple-enabled" is="text-link" href="https://discord.gg/XFAdeUSWyb">
+												<label class="item ripple-enabled disable-in-wizard" is="text-link" href="https://discord.gg/XFAdeUSWyb">
 													<vbox>
 														<label class="name">Discord</label>
 													</vbox>
@@ -495,7 +566,7 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="32">
+							<vbox class="page" data-page="33">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -504,7 +575,7 @@
 													<image style="width: 200px;"></image>
 													<vbox>
 														<label style="font-size: 32pt;">Geckium</label>
-														<h4 style="height: 20px; margin-inline-start: 1px;">indev_version</h4>
+														<h4 class="ripple-enabled" style="height: 20px; margin-inline-start: 1px;" id="gk_version">indev_version</h4>
 													</vbox>
 												</hbox>
 												<hbox class="item">
@@ -675,6 +746,7 @@
 	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/developerOptions.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>

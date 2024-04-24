@@ -1,0 +1,26 @@
+.snackbar {
+	min-width: 344px;
+	min-height: 48px;
+	align-items: center;
+	padding-block: 6px;
+	padding-inline-start: 16px;
+	padding-inline-end: 8px;
+	background-color: rgb(50, 50, 50);
+	box-shadow: var(--elevation-6);
+	border-radius: 4px;
+	color: white;
+	margin: 16px;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1;
+
+	> vbox {
+		margin-right: 8px;
+	}
+	
+	> .button {
+		margin: 0 !important;
+		margin-inline-start: 8px !important;
+	}
+}

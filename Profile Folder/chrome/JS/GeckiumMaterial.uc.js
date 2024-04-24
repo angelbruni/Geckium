@@ -29,28 +29,24 @@ function openZoo() {
 function openGWizard() {
 	const url = "about:gwizard";
 
-	if (pref("Geckium.gmWindow.newTab").tryGet.bool()) {
-		openTrustedLinkIn(url, "tab")
-	} else {
-		for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
-			if (win.closed)
-				continue;
-			else
-				win.focus();
-			return;
-		}
-		
-		const gmWindow = window.openDialog(url, "", "centerscreen");
-		gmWindow.onload = () => {
-			gmWindow.document.documentElement.setAttribute("containertype", "window");
-		}
+	for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
+		if (win.closed)
+			continue;
+		else
+			win.focus();
+		return;
+	}
+	
+	const gmWindow = window.openDialog(url, "", "centerscreen");
+	gmWindow.onload = () => {
+		gmWindow.document.documentElement.setAttribute("containertype", "window");
 	}
 }
 
-function openGFlags() {
+function openGFlags(mode) {
 	const url = "about:gflags";
 
-	if (pref("Geckium.gmWindow.newTab").tryGet.bool()) {
+	if (pref("Geckium.gmWindow.newTab").tryGet.bool() && mode !== "wizard") {
 		openTrustedLinkIn(url, "tab")
 	} else {
 		for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
@@ -64,6 +60,9 @@ function openGFlags() {
 		const gmWindow = window.openDialog(url, "", "centerscreen");
 		gmWindow.onload = () => {
 			gmWindow.document.documentElement.setAttribute("containertype", "window");
+
+			if (mode)
+				gmWindow.document.documentElement.setAttribute("contentmode", mode);
 		}
 	}
 }

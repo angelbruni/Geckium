@@ -1,6 +1,7 @@
 const cancelElm = document.getElementById("btn-cancel");
 const backElm = document.getElementById("btn-back");
 const nextElm = document.getElementById("btn-next");
+const finishElm = document.getElementById("btn-finish");
 
 function goToPage(direction) {
 	const currentPage = document.querySelector('.pages .page[selected="true"]');
@@ -20,4 +21,30 @@ backElm.addEventListener("click", () => {
 
 nextElm.addEventListener("click", () => {
 	goToPage("next");
+})
+
+finishElm.addEventListener("click", () => {
+	pref("Geckium.firstRun.complete").set.bool(true);
+	window.close();
+})
+
+document.addEventListener("pageChanged", () => {
+	const currentPage = document.querySelector('.pages .page[selected="true"]');
+	const currentPageIndex = parseInt(currentPage.dataset.page);
+	console.log(currentPageIndex);
+
+	if (currentPageIndex == 0)
+		backElm.style.display = "none";
+	else
+		backElm.style.display = null;
+
+	if (currentPageIndex == 3)
+		nextElm.style.display = "none";
+	else
+		nextElm.style.display = null;
+
+	if (currentPageIndex == 3)
+		finishElm.style.display = null;
+	else
+		finishElm.style.display = "none";
 })

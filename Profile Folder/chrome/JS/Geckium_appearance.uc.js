@@ -47,7 +47,7 @@ if (unsupportedForks[forkName]) {
 	);
 
 	docElm.setAttribute("unsupported-fork", true);
-}	
+}
 
 function applyApperance(choice) {
 	if (unsupportedForks[forkName])

@@ -1,22 +1,31 @@
-.steppers {
+.stepper {
 	box-shadow: var(--elevation-1);
 	justify-content: center;
 	align-items: center;
 
 	> .step {
-		&:not(:last-of-type) {
-			&::after {
-				content: "";
-				height: 2px;
-				width: 50px;
-				background-color: lightgray;
-				margin-block: auto;
-				margin-inline: 8px;
-				flex: 1;
+		position: relative;
+		padding: 4px;
+		cursor: pointer;
+		border-radius: 9999px;
+		transition: background-color 155ms;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus-visible {
+				background: rgba(153, 153, 153, .2);
+			}
+
+			.ripple {
+				background: rgba(153, 153, 153, .4);
 			}
 		}
 
-		> div {
+		&:not(.done) {
+			pointer-events: none;
+		}
+
+		> div:first-of-type  {
 			display: flex;
 			flex-shrink: 0;
 			align-items: center;
@@ -25,6 +34,7 @@
 			height: 24px;
 			border-radius: 50%;
 			margin-inline-end: 8px;
+			transition: background-color 100ms, color 100ms;
 		}
 
 		> label {
@@ -33,19 +43,44 @@
 		
 
 		&.active {
-			> div {
+			> div:first-of-type  {
 				background: var(--secondary-color, var(--primary-color));
 				color: white;
 			}
 		}
+
+		&.done {
+			> div:first-of-type {
+				&::before {
+					content: "";
+					width: 16px;
+					height: 16px;
+					mask-position: center;
+					mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/check.svg");
+					mask-repeat: no-repeat;
+					mask-size: contain;
+					background-color: white;
+				}
+
+				> p {
+					display: none;
+				}
+			}
+		}
+	}
+
+	> spacer {
+		height: 2px;
+		background-color: lightgray;
+		margin-inline: 8px;
 	}
 }
 
-hbox.steppers {
+hbox.stepper {
 	height: 68px;
 	padding-inline: 32px;
 }
 
-vbox.steppers {
+vbox.stepper {
 	
 }
