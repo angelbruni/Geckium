@@ -130,11 +130,65 @@ setTimeout(() => {
 	applyApperance();
 }, 50);
 
-function disableClassicWindowframe() {
-	docElm.setAttribute("chromemargin", "0,3,3,3");
-}
-function enableClassicWindowframe() {
-	docElm.setAttribute("chromemargin", "0,0,0,0");
+class gkLWTheme {
+	static get classicWindowFrame() {
+		return {
+			enable: function() {
+				if (isBrowserWindow) {
+					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
+						docElm.setAttribute("chromemargin", "0,0,0,0");
+					} else {
+						docElm.setAttribute("chromemargin", "0,0,0,0");
+					}
+				}
+			},
+			disable: function() {
+				if (isBrowserWindow) {
+					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
+						docElm.setAttribute("chromemargin", "0,0,0,0");
+					} else {
+						docElm.setAttribute("chromemargin", "0,3,3,3");
+					}
+				}
+			}
+		}
+	}
+
+	static get getCustomThemeMode() {
+		const customThemeModePref = pref("Geckium.customtheme.mode").tryGet.int();
+		let customThemeMode;
+
+		if (customThemeModePref <= 0)
+			customThemeMode = 0;
+		else if (customThemeModePref == 1)
+			customThemeMode = 1;
+		else if (customThemeModePref >= 2)
+			customThemeMode = 2;
+
+		return customThemeMode;
+	}
+
+	static setCustomThemeModeAttrs() {
+		if (typeof docElm !== "undefined") {
+			docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
+
+			const customThemeModePref = gkLWTheme.getCustomThemeMode;
+
+			switch (customThemeModePref) {
+				case 0:
+					gkLWTheme.classicWindowFrame.enable();
+					break;
+				case 1:
+					gkLWTheme.classicWindowFrame.disable();
+					break;
+				case 2:
+					gkLWTheme.classicWindowFrame.enable();
+					break;
+			}
+
+			docElm.setAttribute("customthememode", customThemeModePref);
+		}
+	}
 }
 
 function setThemeAttr() {
@@ -142,53 +196,18 @@ function setThemeAttr() {
 		return;
 
 	if (typeof docElm !== "undefined") {
-		docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
+		gkLWTheme.setCustomThemeModeAttrs();
 
-		if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
-			/*if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-				if (pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
-					docElm.style.removeProperty("--lwt-accent-color");
-					docElm.style.removeProperty("--lwt-text-color");
-					docElm.style.removeProperty("--lwt-additional-images");
-					docElm.style.removeProperty("--lwt-background-alignment");
-					docElm.style.removeProperty("--lwt-background-tiling");
-				}
-			}*/
-		} else {
-			let customThemeMode;
+		const isDefaultLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("default-theme");
+		const isDefaultLightDarkLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact");
+		const isGTKPlus = pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
+		const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
 
-			if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
-				customThemeMode = 0;
-			} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
-				customThemeMode = 1;
-			} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
-				customThemeMode = 2;
-			}
-
-			docElm.setAttribute("customthememode", customThemeMode);
-		}
-
-		if (!pref("Geckium.chrTheme.status").tryGet.bool()) {
-			if (pref("extensions.activeThemeID").tryGet.string().includes("default-theme")) {
-				disableClassicWindowframe();
-			} else if (pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact") || pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}")) {
-				disableClassicWindowframe();
-			} else {
-				if (pref("Geckium.customtheme.mode").tryGet.int() <= 0) {
-					enableClassicWindowframe();
-				} else if (pref("Geckium.customtheme.mode").tryGet.int() == 1) {
-					disableClassicWindowframe();
-				} else if (pref("Geckium.customtheme.mode").tryGet.int() >= 2) {
-					enableClassicWindowframe();
-				}
-			}
-	
-			if (navigator.userAgent.includes("Windows NT 10.0") && !window.matchMedia("(-moz-ev-native-controls-patch)").matches) {
-				enableClassicWindowframe();
-			}
-	
-			if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
-				enableClassicWindowframe();
+		if (!isChromeTheme) {
+			if (isDefaultLWTheme) {
+				gkLWTheme.classicWindowFrame.disable();
+			} else if (isDefaultLightDarkLWTheme || isGTKPlus) {
+				gkLWTheme.classicWindowFrame.disable();
 			}
 		}
 	}

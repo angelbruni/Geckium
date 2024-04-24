@@ -55,9 +55,12 @@
 
     @import "titlebar/nocomp";
 	&:not([chrtheme="true"]):not(:-moz-lwtheme) {
+		/* bruni: I forgot why this is here but it seems to cause issues.
 		&[windowtype="navigator:browser"] > body {
 			background: transparent !important;
+		}*/
 
+		&[windowtype="navigator:browser"] > body {
 			@media (-moz-platform: linux) {
 				background: var(--titlebar-active) !important;
 

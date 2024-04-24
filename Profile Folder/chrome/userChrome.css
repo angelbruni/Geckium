@@ -315,8 +315,11 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
-:root:not([chrtheme=true]):not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
-  background: transparent !important;
+:root:not([chrtheme=true]):not(:-moz-lwtheme) {
+  /* bruni: I forgot why this is here but it seems to cause issues.
+  &[windowtype="navigator:browser"] > body {
+  	background: transparent !important;
+  }*/
 }
 @media (-moz-platform: linux) {
   :root:not([chrtheme=true]):not(:-moz-lwtheme)[windowtype="navigator:browser"] > body {
