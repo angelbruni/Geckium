@@ -214,6 +214,10 @@
 		&[class*="webextension"],
 		&#gflags-button {
 			transition: none;
+
+			&::before {
+				transition: none;
+			}
 		}
 	}
 
