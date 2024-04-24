@@ -1,6 +1,26 @@
 :root {
 	--titlebar-height: 32px;
 	--toolbar-height: 64px;
+
+	&[containertype="window"] {
+		#window {
+			@media (-moz-platform: windows) {
+				// prepare for animation
+				opacity: 0;
+		
+				// animation settings
+				animation-name: windowOpen;
+				animation-duration: 300ms;
+				animation-fill-mode: forwards;
+
+				&.closing {
+					opacity: 1;
+
+					animation-name: windowClose !important;
+				}
+			}
+		}
+	}
 }
 
 :root,
