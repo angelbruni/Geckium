@@ -39,6 +39,7 @@ async function populateChrThemesList() {
 	chrThemesList.querySelectorAll("label.item").forEach(item => {
 		item.addEventListener("click", () => {
 			chrTheme.enable(item.dataset.themeName);
+			document.getElementById("chrTheme-switch").checked = true;
 		})
 	})
 

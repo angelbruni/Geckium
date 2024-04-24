@@ -121,9 +121,9 @@ class chrTheme {
 						const themeFrame = theme.theme.images.theme_frame;
 
 						if (themeFrame)
-							enableClassicWindowframe();
+							gkLWTheme.classicWindowFrame.enable();
 						else
-							disableClassicWindowframe();
+							gkLWTheme.classicWindowFrame.disable();
 					}
 
 					const attributionImg = theme.theme.images.theme_ntp_attribution;
@@ -172,7 +172,7 @@ class chrTheme {
 		docElm.setAttribute("chrtheme", chrThemeStatus);
 
 		if (isBrowserWindow)
-			disableClassicWindowframe();
+			gkLWTheme.classicWindowFrame.disable();
 
 		chrTheme.removeProperties();
 	}
