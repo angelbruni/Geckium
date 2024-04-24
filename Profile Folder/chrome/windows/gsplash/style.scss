@@ -1,0 +1,65 @@
+#window {
+	width: 555px;
+	height: 516px;
+}
+
+#window-content-container {
+	padding: 0 !important;
+}
+
+.content {
+	margin: auto;
+	width: 541px;
+	height: 313px;
+	justify-content: center;
+	align-items: center;
+}
+
+.banner {
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: fit-content;
+	margin: auto;
+	color: black;
+	list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg");
+	fill: #209f43;
+	-moz-context-properties: fill, fill-opacity;
+	padding: var(--inner-padding);
+	align-items: center;
+	font-weight: 500;
+
+	> image {
+		filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
+		opacity: 0;
+
+		// animation settings
+		animation-name: splashScreenLogo;
+		animation-delay: 500ms;
+		animation-duration: 2000ms;
+		animation-fill-mode: forwards;
+		z-index: 1;
+	}
+}
+
+#splash-text {
+	// animation settings
+	opacity: 0;
+	margin-block-start: -169px;
+	animation-name: splashScreenText;
+	animation-delay: 2000ms;
+	animation-duration: 1000ms;
+	animation-fill-mode: forwards;
+}
+
+.button {
+	width: fit-content;
+
+	// animation settings
+	opacity: 0;
+	animation-name: fadeIn;
+	animation-delay: 3000ms;
+	animation-duration: 500ms;
+	animation-fill-mode: forwards;
+}

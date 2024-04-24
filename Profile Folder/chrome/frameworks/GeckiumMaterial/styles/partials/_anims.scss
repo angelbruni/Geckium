@@ -19,3 +19,41 @@
 	  	transform: scale(0.95);
 	}
 }
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes splashScreenLogo {
+	0% {
+		opacity: 0;
+		transform: scale(0) rotate(0deg);
+		filter: saturate(0)
+	}
+	50% {
+		opacity: 1;
+		transform: scale(.5) rotate(0);
+		filter: saturate(0)
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1) rotate(360deg);
+		filter: saturate(1);
+	}
+}
+
+@keyframes splashScreenText {
+	0% {
+		opacity: 0;
+		margin-block-start: -169px;
+	}
+	100% {
+		opacity: 1;
+		margin-block-start: 0;
+	}
+}

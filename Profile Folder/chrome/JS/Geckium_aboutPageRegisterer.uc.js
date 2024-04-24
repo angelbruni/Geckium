@@ -14,6 +14,7 @@ const customAboutPages = {
 
 	"flags": 	"chrome://userchrome/content/pages/flags/index.xhtml",
 
+	"gsplash": 	"chrome://userchrome/content/windows/gsplash/index.xhtml",
 	"gwizard": 	"chrome://userchrome/content/windows/gwizard/index.xhtml",
 	"gflags": 	"chrome://userchrome/content/windows/gflags/index.xhtml",
 };
