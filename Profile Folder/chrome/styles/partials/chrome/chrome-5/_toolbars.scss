@@ -10,7 +10,8 @@
 
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 2px !important;
-	--inner-border-color: #dfdfdf;
+	--default-inner-border-color: #dfdfdf;
+	--inner-border-color: var8(--default-inner-border-color);
 
 	--nav-bar-height: 37px;
 
@@ -256,6 +257,8 @@
 
 					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
+					--inner-border-color: var(--nav-bar) !important;
+
 					// if toolbar-bgcolor = transparent
 					&[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
 						--toolbar-bgcolor: color-mix(
@@ -400,6 +403,8 @@
 		--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
 		--bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
 		--bookmark-item-color-shadow: none !important;
+		
+		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
 
 		@import "titlebar/nocomp";
 

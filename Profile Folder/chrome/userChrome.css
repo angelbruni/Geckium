@@ -1005,7 +1005,8 @@ tooltip {
   --nav-bar: var(--default-nav-bar);
   --chrome-content-separator-color: transparent !important;
   --toolbar-start-end-padding: 2px !important;
-  --inner-border-color: #dfdfdf;
+  --default-inner-border-color: #dfdfdf;
+  --inner-border-color: var8(--default-inner-border-color);
   --nav-bar-height: 37px;
   --toolbarbutton-width: 29px;
   --toolbarbutton-menu-width: 36px;
@@ -1520,6 +1521,7 @@ tooltip {
   --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --toolbarbutton-icon-fill: var(--toolbar-color) !important;
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+  --inner-border-color: var(--nav-bar) !important;
   --toolbarbutton-border-color-normal: color-mix(
   	in srgb,
   	var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
@@ -1639,6 +1641,7 @@ tooltip {
   --personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
   --bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
   --bookmark-item-color-shadow: none !important;
+  --inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
   /* bruni: This is the code for the window frame when composition
   		  is disabled. This code is also used by custom themes.*/
 }
