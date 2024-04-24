@@ -4368,6 +4368,19 @@ hbox[id=label-box][part=label-box] {
 #new-tab-button)#gflags-button {
   transition: none;
 }
+:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#unified-extensions-button::before, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)[type=menu]:not(#back-button, #forward-button)::before, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#PanelUI-menu-button::before, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)[class*=webextension]::before, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button)#gflags-button::before {
+  transition: none;
+}
 @media (-moz-platform: linux) {
   :root[geckium-five][geckium-six][geckium-eleven][lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
   #tabs-newtab-button,
