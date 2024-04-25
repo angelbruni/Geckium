@@ -8,8 +8,23 @@
 // Trying something here, wondering if this will cause performance issues...
 
 class chrFlags {
+
+	/**
+	 * getFlagsList - Gets a list of the available flags.
+	 * 
+	 * @vSInt: If not null it gets the list of all available flags for the specified visual style, otherwise, it gets the entire list.
+	 */
+
 	static getFlagsList(vSInt) {
 		const flags = {
+			/**
+			 * name		   - Human readable name.
+			 * 
+			 * description - Flag description.
+			 * 
+			 * styleints   - Specifies in which styles the flag is available.
+			 */
+
 			/*"compact-navigation": {
 				name: "Compact Navigation",
 				description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",

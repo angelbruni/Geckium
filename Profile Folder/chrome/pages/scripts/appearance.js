@@ -1,6 +1,5 @@
 function appearance() {
 	let previousChoice;
-
 	let prefChoice;
 
 	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
@@ -25,6 +24,7 @@ function appearance() {
 		console.log("TAB PAGE: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
 
 		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
+			gkVisualStyles.setVisualStyle();
 			createMainLayout();
 			retrieveFrequentSites();
 			createRecentlyClosed();
