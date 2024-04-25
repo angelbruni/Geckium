@@ -18,54 +18,59 @@ const appearanceChanged = new CustomEvent("appearanceChanged");
 class gkVisualStyles {
 	static get getVisualStyles() {
 		return {
+			/*0: {
+				int: 2,
+				year: [2008, 2010],
+				number: "two",
+				styles: ["chrome", "page"],
+			}
 			0: {
-				name: "Chrome 5",
-				fromYear: 2008,
-				toYear: 2010,
+				int: 3,
+				year: [2008, 2010],
+				number: "three",
+				styles: ["page"],
+			}*/
+			0: {
 				int: 5,
+				year: [2008, 2010],
 				number: "five",
+				styles: ["chrome", "page"],
 			},
 			1: {
-				name: "Chrome 6",
-				fromYear: 2010,
-				toYear: 2010,
 				int: 6,
+				year: [2010],
 				number: "six",
+				styles: ["chrome"],
 			},
 			2: {
-				name: "Chrome 11",
-				fromYear: 2010,
-				toYear: 2011,
 				int: 11,
+				year: [2010, 2011],
 				number: "eleven",
+				styles: ["chrome", "page"],
 			},
 			3: {
-				name: "Chrome 21",
-				fromYear: 2011,
-				toYear: 2012,
 				int: 21,
+				year: [2011, 2012],
 				number: "twentyone",
+				styles: ["chrome", "page"],
 			},
 			4: {
-				name: "Chrome 25",
-				fromYear: 2012,
-				toYear: 2013,
 				int: 25,
+				year: [2012, 2013],
 				number: "twentyfive",
+				styles: ["chrome"],
 			},
 			5: {
-				name: "Chrome 47",
-				fromYear: 2013,
-				toYear: 2015,
 				int: 47,
+				year: [2013, 2015],
 				number: "fortyseven",
+				styles: ["chrome", "page"],
 			},
 			6: {
-				name: "Chrome 68",
-				fromYear: 2015,
-				toYear: 2018,
 				int: 68,
 				number: "sixtyeight",
+				year: [2015, 2018],
+				styles: ["chrome", "page"],
 			},
 		}
 	}
