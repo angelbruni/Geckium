@@ -135,6 +135,11 @@ class gkLWTheme {
 		return {
 			enable: function() {
 				if (isBrowserWindow) {
+					if (pref("Geckium.appearance.forceClassicTheme").tryGet.bool()) {
+						docElm.setAttribute("chromemargin", "0,0,0,0");
+						return;
+					}
+
 					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
 						docElm.setAttribute("chromemargin", "0,0,0,0");
 					} else {
@@ -144,6 +149,11 @@ class gkLWTheme {
 			},
 			disable: function() {
 				if (isBrowserWindow) {
+					if (pref("Geckium.appearance.forceClassicTheme").tryGet.bool()) {
+						docElm.setAttribute("chromemargin", "0,0,0,0");
+						return;
+					}
+
 					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
 						docElm.setAttribute("chromemargin", "0,0,0,0");
 					} else {

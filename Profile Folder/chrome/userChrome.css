@@ -79,6 +79,12 @@
     --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
 }
+:root#main-window {
+  /* bruni: Firefox is weird, if we set the root to be transparent,
+  		  then it takes body's background. The lowest we can go in
+  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+  background: rgba(0, 0, 0, 0.002) !important;
+}
 :root[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
@@ -414,12 +420,6 @@
   width: 100%;
   top: 0px;
   left: 0px;
-}
-:root:-moz-lwtheme, :root:not(:-moz-lwtheme)[chrtheme=true] {
-  /* bruni: Firefox is weird, if we set the root to be transparent,
-  		  then it takes body's background. The lowest we can go in
-  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
-  background: rgba(1, 1, 1, 0.002) !important;
 }
 
 #private-browsing-indicator-with-label {
@@ -1258,6 +1258,12 @@
     --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])#main-window {
+  /* bruni: Firefox is weird, if we set the root to be transparent,
+  		  then it takes body's background. The lowest we can go in
+  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+  background: rgba(0, 0, 0, 0.002) !important;
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
 }
@@ -1614,6 +1620,12 @@
   :root:not(:-moz-lwtheme)[chrtheme=true]:not([customthememode="1"]):not(:-moz-lwtheme)[chrtheme=true] {
     --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
   }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true]#main-window {
+  /* bruni: Firefox is weird, if we set the root to be transparent,
+  		  then it takes body's background. The lowest we can go in
+  		  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+  background: rgba(0, 0, 0, 0.002) !important;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][tabsintitlebar] #tabbrowser-arrowscrollbox {
   padding-top: 7px !important;
