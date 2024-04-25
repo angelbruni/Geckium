@@ -295,7 +295,6 @@ const appearanceObserver = {
 		if (topic == "nsPref:changed") {
 			gkVisualStyles.setVisualStyle();
 			gkLWTheme.setCustomThemeModeAttrs();
-			console.log("AAAAAAAAAAAAAAAAAAAAAA")
 		}
 	},
 };
