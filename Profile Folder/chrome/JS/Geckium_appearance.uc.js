@@ -215,7 +215,6 @@ class gkLWTheme {
 	static setCustomThemeModeAttrs() {
 		if (typeof docElm !== "undefined") {
 			docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
-
 			
 			const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
 			if (!isChromeTheme) {
@@ -262,6 +261,7 @@ const appearanceObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, false);
+Services.prefs.addObserver("Geckium.appearance.forceClassicTheme", appearanceObserver, false);
 
 function changePrivateBadgePos() {
 	if (typeof docElm !== "undefined") {
@@ -289,7 +289,7 @@ const customThemeModeObserver = {
 window.addEventListener("load", gkLWTheme.setCustomThemeModeAttrs);
 window.addEventListener("load", customThemeColorizeTabGlare);
 Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, false);
-Services.prefs.addObserver( "Geckium.appearance.customThemeColorizeTabGlare", customThemeModeObserver, false);
+Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customThemeModeObserver, false);
 
 function enableMoreGTKIcons() {
 	docElm.setAttribute("moregtkicons", pref("Geckium.appearance.moreGTKIcons").tryGet.bool());
