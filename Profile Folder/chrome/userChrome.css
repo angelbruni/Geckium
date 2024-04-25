@@ -628,7 +628,7 @@ tooltip {
   		  and it also makes the tab disappear when the background reaches min-width just
   		  like real Chrome. */
 }
-.tabbrowser-tab:not([busy])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-stack, .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-stack, .tabbrowser-tab:not([busy])[image="chrome://branding/content/icon32.png"] .tab-icon-stack {
+.tabbrowser-tab:not([busy]):not([pinned])[image="chrome://global/skin/icons/settings.svg"] .tab-icon-stack, .tabbrowser-tab:not([busy]):not([pinned])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-icon-stack, .tabbrowser-tab:not([busy]):not([pinned])[image="chrome://branding/content/icon32.png"] .tab-icon-stack {
   display: none;
 }
 .tabbrowser-tab:not([busy])[image="chrome://branding/content/icon32.png"] .tab-label-container {
@@ -639,6 +639,9 @@ tooltip {
 }
 .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-label::before {
   content: url(assets/img/chrome-5/tabbar/plugin.png);
+}
+.tabbrowser-tab [pinned] .tab-icon-stack {
+  margin-inline-end: 0 !important;
 }
 .tabbrowser-tab:not([visuallyselected=true]) {
   color: var(--tabbrowser-tab-color) !important;

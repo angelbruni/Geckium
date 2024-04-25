@@ -200,12 +200,13 @@
 	/* bruni: We are changing the favicon of about pages like
 			  this so we can have era-specific icons. */
 	&:not([busy]) {
-		&[image="chrome://global/skin/icons/settings.svg"],
-		&[image="chrome://mozapps/skin/extensions/extension.svg"],
-		&[image="chrome://branding/content/icon32.png"]
-		{
-			.tab-icon-stack {
-				display: none;
+		&:not([pinned]) {
+			&[image="chrome://global/skin/icons/settings.svg"],
+			&[image="chrome://mozapps/skin/extensions/extension.svg"],
+			&[image="chrome://branding/content/icon32.png"] {
+				.tab-icon-stack {
+					display: none;
+				}
 			}
 		}
 
@@ -231,6 +232,12 @@
 					content: url(assets/img/chrome-5/tabbar/plugin.png);
 				}
 			}
+		}
+	}
+
+	[pinned] {
+		.tab-icon-stack {
+			margin-inline-end: 0 !important;
 		}
 	}
 
