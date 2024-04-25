@@ -622,6 +622,9 @@
 .tabbrowser-tab:not([busy])[image="chrome://mozapps/skin/extensions/extension.svg"] .tab-label::before {
   content: url(assets/img/chrome-5/tabbar/plugin.png);
 }
+.tabbrowser-tab [pinned] .tab-icon-stack {
+  margin-inline-end: 0 !important;
+}
 .tabbrowser-tab:not([visuallyselected=true]) {
   color: var(--tabbrowser-tab-color) !important;
 }
