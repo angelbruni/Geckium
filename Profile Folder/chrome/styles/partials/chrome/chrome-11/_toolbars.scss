@@ -86,9 +86,15 @@
 					transparent
 				) !important;
 				box-shadow: 0 1px 0 0 rgba(255,255,255,.3);
-
+				
 				&::before {
 					opacity: .8;
+				}
+
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: var(--toolbarbutton-icon-drop-shadow);
 				}
 			}
 

@@ -1,8 +1,4 @@
 menupopup {
-	.menuitem-right-items {
-		margin: 0 !important;
-	}
-
 	button {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -32,6 +28,29 @@ menupopup {
 		&#menu_larger11 {
 			margin-left: -1px !important;
 		}
+
+		&#menu_smaller11 {
+			border-right: 0 !important;
+		}
+
+		&#menu_normal11 {
+			border: 0 !important;
+			padding: 0 !important;
+			width: 34px !important;
+		}
+
+		&#menu_larger11,
+		&#menu_fullScreen11 {
+			border-left: 0 !important;
+		}
+
+		&#menu_cut11,
+		&#menu_copyt11,
+		&#menu_paste11 {
+			width: 57px !important;
+		}
+
+		
 	}
 
 	separator {
@@ -102,5 +121,16 @@ menupopup {
 
 	.menu-text {
 		margin-inline-end: 20px !important;
+	}
+
+	.menuitem-right-items {
+		margin: 0 !important;
+		height: 35px !important;
+		margin-block: -6px !important;
+
+		.menuitem-button {
+			border-top: 0 !important;
+			border-bottom: 0 !important;
+		}
 	}
 }

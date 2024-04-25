@@ -4262,6 +4262,17 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
+#new-tab-button):not([disabled]):hover .toolbarbutton-badge-stack,
+:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button):not([disabled]):hover .toolbarbutton-icon,
+:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
+#new-tab-button):not([disabled]):hover image:first-of-type {
+  filter: var(--toolbarbutton-icon-drop-shadow);
+}
+:root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
+#tabs-newtab-button,
 #new-tab-button):not([disabled]):active, :root[geckium-five][geckium-six][geckium-eleven] .toolbarbutton-1:not(#fxa-toolbar-menu-button,
 #tabs-newtab-button,
 #new-tab-button):not([disabled])[open] {
@@ -5144,9 +5155,6 @@ hbox[id=label-box][part=label-box] {
      -moz-appearance: none !important;
           appearance: none !important;
 }
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menuitem-right-items {
-  margin: 0 !important;
-}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button {
   margin: 0 !important;
   padding: 0 !important;
@@ -5168,6 +5176,20 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_paste11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_larger11 {
   margin-left: -1px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_smaller11 {
+  border-right: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_normal11 {
+  border: 0 !important;
+  padding: 0 !important;
+  width: 34px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_larger11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_fullScreen11 {
+  border-left: 0 !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_cut11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_copyt11, :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button#menu_paste11 {
+  width: 57px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup separator {
   display: none !important;
@@ -5233,6 +5255,15 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menu-text {
   margin-inline-end: 20px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menuitem-right-items {
+  margin: 0 !important;
+  height: 35px !important;
+  margin-block: -6px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup .menuitem-right-items .menuitem-button {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup {
   border: 0 !important;
@@ -5519,6 +5550,10 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup > menuseparator {
   margin-inline: 2px !important;
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup button:not([disabled]):hover {
+  background-color: rgb(235, 235, 235) !important;
+  color: black !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:first-of-type {
   margin-block-start: 10px !important;
