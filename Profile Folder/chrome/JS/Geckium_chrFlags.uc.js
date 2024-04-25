@@ -116,19 +116,6 @@ class chrFlags {
 	}
 }
 
-/*const chrFlags = {
-    //"compact-navigation": "bool",
-    //"experimental-new-tab-page": "bool",
-    //"action-box": "bool",
-    "search-button-in-omnibox": "int",
-    "enable-icon-ntp": "bool",
-    //"enable-settings-window": "bool",
-    //"omnibox-ui-show-suggestion-favicons": "bool",
-    "omnibox-ui-vertical-layout": "bool",
-    "omnibox-ui-vertical-margin": "int",
-    "omnibox-ui-swap-title-and-url": "int",
-};*/
-
 function observePreferences() {
     const prefBranch = Services.prefs;
 
