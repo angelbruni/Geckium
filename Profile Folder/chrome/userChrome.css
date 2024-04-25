@@ -5609,6 +5609,9 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] .tabbrowser-tab .tab-icon-stack {
   margin-inline-start: 5px !important;
 }
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] .tabbrowser-tab .tab-label::before {
+  margin-inline-start: 5px !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] .tabbrowser-tab .tab-stack::before {
   -webkit-mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.svg);
           mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.svg);
