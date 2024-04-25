@@ -16,20 +16,20 @@ const unsupportedForks = {
 const appearanceChanged = new CustomEvent("appearanceChanged");
 
 class gkVisualStyles {
-	static get getVisualStyles() {
-		return {
+	static getVisualStyles(style) {
+		const visualStyles = {
 			/*0: {
 				int: 2,
 				year: [2008, 2010],
 				number: "two",
 				styles: ["chrome", "page"],
-			}
+			},
 			0: {
 				int: 3,
 				year: [2008, 2010],
 				number: "three",
 				styles: ["page"],
-			}*/
+			},*/
 			0: {
 				int: 5,
 				year: [2008, 2010],
@@ -73,6 +73,11 @@ class gkVisualStyles {
 				styles: ["chrome", "page"],
 			},
 		}
+
+		if (style == "chrome" || style == "page")
+			return Object.values(visualStyles).filter(item => item.styles.includes(style));
+		else
+			return visualStyles;
 	}
 
 	static setVisualStyle(vSKey) {
@@ -105,7 +110,7 @@ class gkVisualStyles {
 
 		// bruni: We get the first and last available keys so
 		//		  we don't hardcode the values in the code.
-		const mapKeys = Object.keys(gkVisualStyles.getVisualStyles).map(Number);
+		const mapKeys = Object.keys(gkVisualStyles.getVisualStyles()).map(Number);
 		const firstKey = Math.min(...mapKeys);
 		const lastKey = Math.max(...mapKeys);
 
@@ -130,15 +135,15 @@ class gkVisualStyles {
 		}
 
 		for (let i = 0; i <= vSKey; i++) {
-			if (gkVisualStyles.getVisualStyles[i]) {
-				const attr = "geckium-" + gkVisualStyles.getVisualStyles[i].number;
+			if (gkVisualStyles.getVisualStyles()[i]) {
+				const attr = "geckium-" + gkVisualStyles.getVisualStyles()[i].number;
 				docElm.setAttribute(attr, "");
 			}
 		}
 
 		// bruni: Let's also apply the attribute specific to the
 		//		  user choice so we can make unique styles for it.
-		docElm.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles[vSKey].number);
+		docElm.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles()[vSKey].number);
 
 		previousChoice = prefChoice;
 		
