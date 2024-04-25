@@ -16,8 +16,24 @@ const unsupportedForks = {
 const appearanceChanged = new CustomEvent("appearanceChanged");
 
 class gkVisualStyles {
+
+	/**
+	 * getVisualStyles - Gets a list of the available visual styles.
+	 * 
+	 * @style: If specified, it gets a list of visual styles of only a specific thing.
+	 */
+
 	static getVisualStyles(style) {
 		const visualStyles = {
+			/**
+			 * int	  - The number used in the preference.
+			 * 
+			 * number - The identifier used in the style attribute.
+			 * 
+			 * styles - "chrome": browser UI
+			 * 		    "page":   browser internal pages. Examples: "about:newtab", "about:flags", etc...
+			 */
+
 			/*0: {
 				int: 2,
 				year: [2008, 2010],
@@ -60,6 +76,12 @@ class gkVisualStyles {
 				number: "twentyfive",
 				styles: ["chrome"],
 			},
+			/*0: {
+				int: 30,
+				year: [2012, 2013],
+				number: "thirty",
+				styles: ["chrome"],
+			},*/
 			5: {
 				int: 47,
 				year: [2013, 2015],
@@ -80,7 +102,14 @@ class gkVisualStyles {
 			return visualStyles;
 	}
 
-	static setVisualStyle(vSKey) {
+
+	/**
+	 * setVisualStyle - Sets the specified visual styles.
+	 * 
+	 * @vSInt: If not null it sets the specified visual styles, otherwise, it default to 0.
+	 */
+
+	static setVisualStyle(vSInt) {
 		let prefChoice = pref("Geckium.appearance.choice").tryGet.int();
 
 		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
@@ -122,19 +151,18 @@ class gkVisualStyles {
 		});
 
 		// bruni: Let's apply the correct appearance attributes.
-		
-		if (typeof vSKey === "number") {
+		if (typeof vSInt === "number") {
 			if (prefChoice > lastKey) {
-				vSKey = lastKey;
+				vSInt = lastKey;
 			} else if (prefChoice < firstKey || prefChoice == null) {
-				vSKey = firstKey;
+				vSInt = firstKey;
 			}
-			console.log(vSKey)
+			console.log(vSInt)
 		} else {
-			vSKey = prefChoice;
+			vSInt = prefChoice;
 		}
 
-		for (let i = 0; i <= vSKey; i++) {
+		for (let i = 0; i <= vSInt; i++) {
 			if (gkVisualStyles.getVisualStyles()[i]) {
 				const attr = "geckium-" + gkVisualStyles.getVisualStyles()[i].number;
 				docElm.setAttribute(attr, "");
@@ -143,7 +171,7 @@ class gkVisualStyles {
 
 		// bruni: Let's also apply the attribute specific to the
 		//		  user choice so we can make unique styles for it.
-		docElm.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles()[vSKey].number);
+		docElm.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles()[vSInt].number);
 
 		previousChoice = prefChoice;
 		
@@ -267,6 +295,7 @@ const appearanceObserver = {
 		if (topic == "nsPref:changed") {
 			gkVisualStyles.setVisualStyle();
 			gkLWTheme.setCustomThemeModeAttrs();
+			console.log("AAAAAAAAAAAAAAAAAAAAAA")
 		}
 	},
 };
