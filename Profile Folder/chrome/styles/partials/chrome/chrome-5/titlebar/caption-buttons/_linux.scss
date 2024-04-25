@@ -1,0 +1,111 @@
+& {
+	--titlebar-buttonbox-gap: 2px;
+	
+	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+	--titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
+	--titlebar-button-height: 18px;
+	--titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
+	--titlebar-button-background-active: rgba(255, 255, 255, 0.2);
+
+	--titlebar-close-width: 24px;
+	--titlebar-close-background-hot: rgb(217, 76, 74);
+	--titlebar-close-background-active: rgb(213, 58, 63);
+	--titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
+
+	--titlebar-max-restore-width: var(--titlebar-close-width);
+	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
+	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+	--titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
+	--titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
+
+	--titlebar-min-width: var(--titlebar-close-width);
+	--titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+
+.titlebar-buttonbox-container {
+	margin-inline-end: 1px;
+
+	@media not (-moz-platform: linux) {
+		margin-inline-end: 2px;
+	}
+}
+
+.titlebar-buttonbox {
+	margin-block-start: 1px;
+	margin-inline-end: 0;
+	box-shadow: none;
+
+	@media (-moz-platform: linux) {
+		margin-block-start: 0;
+
+		@media (-moz-gtk-csd-reversed-placement) {
+			margin-inline-start: 3px !important;
+		}
+	}
+}
+
+&[sizemode="maximized"] {
+	.titlebar-buttonbox {
+		margin-block-start: 2px;
+
+		@media (-moz-platform: linux) {
+			margin-block-start: 1px;
+		}
+	}
+}
+
+.titlebar-button {
+	box-shadow: none;
+	border-radius: 2.5px !important;
+	border: var(--titlebar-button-outer-border) !important;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		border-radius: 2.5px;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		box-sizing: border-box;
+	}
+}
+
+@media (-moz-platform: linux) {
+	@media not (-moz-gtk-csd-maximize-button) {
+		.titlebar-max,
+		.titlebar-restore {
+			display: none !important;
+		}
+	}
+}
+
+.titlebar-min {
+	@media (-moz-platform: linux) {
+		@media not (-moz-gtk-csd-minimize-button) {
+			display: none !important;
+		}
+	}
+}
+
+@media (-moz-platform: linux) {
+	@media (-moz-gtk-csd-reversed-placement) {
+		.titlebar-close {
+			border-top-left-radius: 4.5px !important;
+
+			&::before {
+				border-top-left-radius: 4.5px !important;
+			}
+		}
+	}
+	@media not (-moz-gtk-csd-reversed-placement) {
+		.titlebar-close {
+			border-top-right-radius: 4.5px !important;
+
+			&::before {
+				border-top-right-radius: 4.5px !important;
+			}
+		}
+	}
+}

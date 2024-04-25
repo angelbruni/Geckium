@@ -1,0 +1,191 @@
+/* bruni: This is the code for the window frame when Chromium's classic
+		  theme is enabled. This code is also used by custom themes. */
+
+& {
+	--titlebar-buttonbox-background-color: transparent;
+
+	&#main-window {
+		/* bruni: Firefox is weird, if we set the root to be transparent,
+				  then it takes body's background. The lowest we can go in
+				  alpha is 0.002 for that bug (assuming it's one) to not
+				  happen. */
+		background: rgba(0,0,0,.002) !important;
+	}
+
+	&[chromemargin="0,0,0,0"] {
+		&[tabsintitlebar] {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 7px !important;
+			}
+		}
+
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				border: 0 !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+			}
+
+			&[tabsintitlebar] {
+				#tabbrowser-arrowscrollbox {
+					padding-top: 0 !important;
+				}
+			}
+		}
+
+		&[windowtype="navigator:browser"] > body {
+			background: var(--titlebar-active);
+			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+			border-top: 1px solid rgb(89, 89, 89);
+			border-left: 1px solid rgb(89, 89, 89);
+			border-bottom: 1px solid rgb(68, 68, 68);
+			border-right: 1px solid rgb(68, 68, 68);
+			border-radius: 5px;
+			padding: 1px !important;
+			box-sizing: border-box;
+
+			@media (-moz-platform: linux) {
+				& {
+					border-top-left-radius: 6px !important;
+					border-top-right-radius: 6px !important;
+					border-bottom-left-radius: 0 !important;
+					border-bottom-right-radius: 0 !important;
+					transition: background 0.15s linear;
+					padding: 2px !important;
+				}
+			}
+
+			&:-moz-window-inactive {
+				background: var(--titlebar-inactive);
+			}
+		}
+
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				padding: 0 !important;
+			}
+		}
+
+		&[sizemode="maximized"] {
+			&[windowtype="navigator:browser"] > body {
+				@media not (-moz-platform: linux) {
+					padding-top: 7px !important;
+				}
+			}
+		}
+
+		&[sizemode="normal"] {
+			.titlebar-restore {
+				display: none !important;
+			}
+		}
+		
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-max {
+				display: none !important;
+			}
+		}
+
+		#titlebar {
+			appearance: unset !important;
+		}
+
+		.titlebar-buttonbox-container {
+			width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
+		}
+
+		.titlebar-buttonbox {
+			appearance: unset !important;
+			align-items: start !important;
+			height: var(--titlebar-button-height);
+			-moz-default-appearance: -moz-window-button-box !important;
+			background-color: var(--titlebar-buttonbox-background-color);
+			gap: var(--titlebar-buttonbox-gap);
+		}
+
+		.titlebar-button {
+			margin: 0 !important;
+			display: flex !important;
+			appearance: unset !important;
+			border-radius: 0 !important;
+			position: relative;
+			background-clip: padding-box;
+			height: var(--titlebar-button-height);
+			box-shadow: var(--titlebar-button-inner-shadow-normal);
+			transition: background-color 100ms linear;
+
+			&:active {
+				transition: none;
+			}
+		}
+
+		.titlebar-close {
+			width: var(--titlebar-close-width);
+			list-style-image: var(--titlebar-close-glyph) !important;
+
+			&:hover {
+				background-color: var(--titlebar-close-background-hot) !important;
+			}
+
+			&:active {
+				background-color: var(--titlebar-close-background-active) !important;
+			}
+		}
+
+		.titlebar-max,
+		.titlebar-restore,
+		.titlebar-min {
+			&:hover {
+				background-color: var(--titlebar-max-restore-background-hot) !important;
+			}
+
+			&:active {
+				background-color: var(--titlebar-max-restore-background-active) !important;
+			}
+		}
+
+		.titlebar-max,
+		.titlebar-restore {
+			width: var(--titlebar-max-restore-width) !important;
+		}
+
+		.titlebar-max {
+			list-style-image: var(--titlebar-max-glyph) !important;
+		}
+
+		.titlebar-restore {
+			list-style-image: var(--titlebar-restore-glyph) !important;
+		}
+
+		.titlebar-min {
+			width: var(--titlebar-min-width) !important;
+			list-style-image: var(--titlebar-min-glyph) !important;
+		}
+
+		&[gkforcecaptionbuttonstyle="auto"] {
+			@media not ((-moz-platform: linux) or (-moz-platform: macos)) {
+				@import "caption-buttons/windows";
+			}
+			
+			@media (-moz-platform: linux) {
+				@import "caption-buttons/linux";
+			}
+	
+			@media (-moz-platform: macos) {
+				@import "caption-buttons/macos";
+			}
+		}
+		&[gkforcecaptionbuttonstyle="windows"] {
+			@import "caption-buttons/windows";
+		}
+		&[gkforcecaptionbuttonstyle="linux"] {
+			@import "caption-buttons/linux";
+		}
+		&[gkforcecaptionbuttonstyle="macos"] {
+			@import "caption-buttons/macos";
+		}
+	}
+}

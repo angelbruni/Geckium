@@ -15,12 +15,12 @@ async function populateChrThemesList() {
 		const themeFile = theme.file.replace(".crx", "");
 
 		let themeBanner = theme.banner;
-		let themeBannerPath = `jar:${chrTheme.chrThemesFolderPath}/${themeFile}.crx!/${themeBanner}`;
+		let themeBannerPath = `jar:${chrTheme.getFolderPath}/${themeFile}.crx!/${themeBanner}`;
 		if (!themeBanner)
 			themeBannerPath = "";
 
 		let themeIcon = theme.icon;``
-		let themeIconPath = `jar:${chrTheme.chrThemesFolderPath}/${themeFile}.crx!/${themeIcon}`;
+		let themeIconPath = `jar:${chrTheme.getFolderPath}/${themeFile}.crx!/${themeIcon}`;
 
 		if (themeIcon == "")
 			themeIconPath = "chrome://userchrome/content/windows/gflags/imgs/logo.svg";
@@ -72,7 +72,7 @@ function openChrThemesDir() {
 	const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
 
 	// Specify the path of the directory you want to open
-	const directoryPath = chrTheme.chrThemeFileUtilsPath;
+	const directoryPath = chrTheme.getFolderFileUtilsPath;
 
 	try {
 		// Create a file object representing the directory

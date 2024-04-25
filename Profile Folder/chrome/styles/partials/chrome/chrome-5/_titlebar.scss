@@ -53,7 +53,8 @@
         }
     }
 
-    @import "titlebar/nocomp";
+    @import "titlebar/classic";
+	
 	&:not([chrtheme="true"]):not(:-moz-lwtheme) {
 		/* bruni: I forgot why this is here but it seems to cause issues.
 		&[windowtype="navigator:browser"] > body {

@@ -245,7 +245,7 @@
 		}
 		&:not([lwtheme-id*="firefox-compact"]) {
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				@import "titlebar/nocomp";
+				@import "titlebar/classic";
 				
 				&:not([customthememode="2"]) {
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
@@ -407,7 +407,7 @@
 		
 		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
 
-		@import "titlebar/nocomp";
+		@import "titlebar/classic";
 
 		&:not([style*="--chrt-toolbar-button-icon"]) {
 			&[style*="--chrt-tints-buttons"] {

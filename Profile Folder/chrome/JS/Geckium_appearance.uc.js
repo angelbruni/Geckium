@@ -214,12 +214,12 @@ setTimeout(() => {
 class gkLWTheme {
 	static get classicWindowFrame() {
 		return {
-			enable: function() {
+			enable() {
 				if (isBrowserWindow) {
 					docElm.setAttribute("chromemargin", "0,0,0,0");
 				}
 			},
-			disable: function() {
+			disable() {
 				if (isBrowserWindow) {
 					if (pref("Geckium.appearance.forceClassicTheme").tryGet.bool()) {
 						docElm.setAttribute("chromemargin", "0,0,0,0");
@@ -232,6 +232,16 @@ class gkLWTheme {
 						docElm.setAttribute("chromemargin", "0,3,3,3");
 					}
 				}
+			},
+			setCaptionButtonsStyle(style) {
+				const preference = "Geckium.appearance.classicCaptionButtonsStyle";
+
+				if (style == "auto" || style == "windows" || style == "linux" || style == "macos")
+					pref(preference).set.string(style);
+				else if (!pref(preference).tryGet.string())
+					pref(preference).set.string("auto");
+
+				docElm.setAttribute("gkforcecaptionbuttonstyle", pref(preference).tryGet.string());
 			}
 		}
 	}
@@ -251,26 +261,28 @@ class gkLWTheme {
 	}
 
 	static setCustomThemeModeAttrs() {
-		if (typeof docElm !== "undefined") {
-			docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
-			
-			const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
-			if (!isChromeTheme) {
-				const customThemeModePref = gkLWTheme.getCustomThemeMode;
-				switch (customThemeModePref) {
-					case 0:
-						gkLWTheme.classicWindowFrame.enable();
-						break;
-					case 1:
-						gkLWTheme.classicWindowFrame.disable();
-						break;
-					case 2:
-						gkLWTheme.classicWindowFrame.enable();
-						break;
-				}
-				docElm.setAttribute("customthememode", customThemeModePref);
+		if (typeof docElm !== "undefined") {	
+			setTimeout(() => {
+				docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
 
-				setTimeout(() => {
+				console.log("b", pref("extensions.activeThemeID").tryGet.string())
+
+				const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
+				if (!isChromeTheme) {
+					const customThemeModePref = gkLWTheme.getCustomThemeMode;
+					switch (customThemeModePref) {
+						case 0:
+							gkLWTheme.classicWindowFrame.enable();
+							break;
+						case 1:
+							gkLWTheme.classicWindowFrame.disable();
+							break;
+						case 2:
+							gkLWTheme.classicWindowFrame.enable();
+							break;
+					}
+					docElm.setAttribute("customthememode", customThemeModePref);
+
 					const isDefaultLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("default-theme");
 					const isDefaultLightDarkLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact");
 					const isGTKPlus = pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
@@ -279,8 +291,8 @@ class gkLWTheme {
 						gkLWTheme.classicWindowFrame.disable();
 						return
 					}
-				}, 0);
-			}
+				}
+			}, 0);
 		}
 	}
 }
@@ -341,3 +353,13 @@ const moreGTKIconsObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", moreGTKIconsObserver, false);
+
+window.addEventListener("load", gkLWTheme.classicWindowFrame.setCaptionButtonsStyle);
+const classicCaptionBtnsStyleObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkLWTheme.classicWindowFrame.setCaptionButtonsStyle();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.classicCaptionButtonsStyle", classicCaptionBtnsStyleObs, false);

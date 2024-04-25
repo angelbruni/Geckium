@@ -9,19 +9,19 @@ const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
 const chrThemesFolderName = "chrThemes";
 
 class chrTheme {
-	static get chrThemesFolderPath() {
+	static get getFolderPath() {
 		return `file:///${profRootDir}/chrome/${chrThemesFolderName}`;
 	}
 
-	static get chrThemeFileUtilsPath() {
-		return Services.io.newURI(chrTheme.chrThemesFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
+	static get getFolderFileUtilsPath() {
+		return Services.io.newURI(chrTheme.getFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
 
 	static async getThemesList() {
         const themes = {};
 
         try {
-            const directoryPath = chrTheme.chrThemeFileUtilsPath;
+            const directoryPath = chrTheme.getFolderFileUtilsPath;
 
             const directory = FileUtils.File(directoryPath);
 
