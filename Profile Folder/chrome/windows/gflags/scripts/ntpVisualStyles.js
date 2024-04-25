@@ -6,7 +6,7 @@
 	3: { style: 21, year: 2012, name: "Chrome 21" },
 	4: { style: 25, year: 2013, name: "Chrome 25" },
 	5: { style: 47, year: 2015, name: "Chrome 47" },
-	6: { style: 50, year: 2016, name: "Chrome 50" },
+	6: { style: 70, year: 2018, name: "Chrome 70" },
 };*/
 
 function insertNTPVisualStyles() {
