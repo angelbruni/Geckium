@@ -3885,12 +3885,12 @@ hbox[id=label-box][part=label-box] {
 
 /* Chrome 6 */
 :root[geckium-five][geckium-six] {
-  --titlebar-active: linear-gradient(
+  --default-titlebar-active: linear-gradient(
   	to bottom,
   	rgb(98,147,221),
   	rgb(66,113,201) 40px
   );
-  --titlebar-inactive: linear-gradient(
+  --default-titlebar-inactive: linear-gradient(
   	to bottom,
   	rgb(169,195,231),
   	rgb(153,178,221) 40px
@@ -5482,6 +5482,14 @@ hbox[id=label-box][part=label-box] {
 }
 
 /* Chrome 70 */
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-seventy] {
+  --default-titlebar-active: rgb(204,204,204);
+  --default-titlebar-inactive: rgb(245,245,245);
+}
+:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-seventy][privatebrowsingmode=temporary] {
+  --titlebar-active: rgb(40,43,45) !important;
+  --titlebar-inactive: rgb(56,59,61) !important;
+}
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-seventy] menupopup > menu,
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-seventy] menupopup > menuitem {
   padding-inline-start: 4px !important;
