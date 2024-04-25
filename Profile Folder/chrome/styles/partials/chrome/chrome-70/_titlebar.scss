@@ -1,0 +1,9 @@
+& {
+	--default-titlebar-active: rgb(204,204,204);
+	--default-titlebar-inactive: rgb(245,245,245);
+
+	&[privatebrowsingmode="temporary"] {
+        --titlebar-active: rgb(40,43,45) !important;
+        --titlebar-inactive: rgb(56,59,61) !important;
+    }
+}
