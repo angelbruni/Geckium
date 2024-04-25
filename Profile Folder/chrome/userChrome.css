@@ -5709,13 +5709,21 @@ hbox[id=label-box][part=label-box] {
   top: 3px;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] .tab-glare-left {
-  -webkit-mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.png);
-          mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.png);
+  -webkit-mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.svg);
+          mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.svg);
+  -webkit-mask-position: 0;
+          mask-position: 0;
+  mask-position-x: 1px;
+  width: var(--tab-sides-width);
+  margin-inline-start: 2px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] .tab-glare-right {
   position: relative;
-  -webkit-mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.png);
-          mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.png);
+  -webkit-mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.svg);
+          mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.svg);
+  -webkit-mask-position: 0;
+          mask-position: 0;
+  margin-right: 3px !important;
 }
 :root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] {
   --nav-bar: rgb(242,242,242);

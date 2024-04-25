@@ -148,10 +148,16 @@
 }
 
 .tab-glare-left {
-	mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.png);
+	mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_left.svg);
+	mask-position: 0;
+	mask-position-x: 1px;
+	width: var(--tab-sides-width);
+	margin-inline-start: 2px !important;
 }
 
 .tab-glare-right {
 	position: relative;
-	mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.png);
+	mask-image: url(assets/img/chrome-68/tabbar/tab_alpha_right.svg);
+	mask-position: 0;
+	margin-right: 3px !important;
 }
