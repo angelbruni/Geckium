@@ -35,7 +35,6 @@
 	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 	--toolbarbutton-shadow-hot: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
 	//--toolbarbutton-active-background: transparent !important;
-	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px rgba(255,255,255,.7));
@@ -231,11 +230,10 @@
 		}
 	}
 	// else if !lwtheme
-	/*&[customthememode="2"],
-	&:not(:-moz-lwtheme),
-	&:not([chrtheme="true"]) {
+	&[customthememode="2"],
+	&:not(:-moz-lwtheme) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-	}*/
+	}
 	// else if lwtheme
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
@@ -253,7 +251,10 @@
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
 					--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
+
+					&:not([style*="--toolbarbutton-icon-fill"]) {
+						--toolbarbutton-icon-fill: var(--toolbar-color) !important;
+					}
 
 					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 

@@ -1026,7 +1026,6 @@ tooltip {
   --toolbarbutton-texture: var(--default-toolbarbutton-texture);
   --toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
   --toolbarbutton-shadow-hot: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
-  --toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
   --toolbarbutton-radius: 6px;
   --toolbarbutton-disabled-opacity: 1 !important;
   --toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px rgba(255,255,255,.7));
@@ -1048,11 +1047,6 @@ tooltip {
   --bookmark-item-color: var(--default-bookmark-item-color);
   --bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
   --placed-chevron-width: 15px;
-  /*&[customthememode="2"],
-  &:not(:-moz-lwtheme),
-  &:not([chrtheme="true"]) {
-  	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-  }*/
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -1260,6 +1254,9 @@ tooltip {
   #new-tab-button)#go-button-box {
     list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
   }
+}
+:root[customthememode="2"], :root:not(:-moz-lwtheme) {
+  --toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 }
 :root:-moz-lwtheme {
   /* bruni: This entire code takes care of custom themes support for toolbars */
@@ -1519,7 +1516,6 @@ tooltip {
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]) {
   --bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
   --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
   --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
   --inner-border-color: var(--nav-bar) !important;
   --toolbarbutton-border-color-normal: color-mix(
@@ -1566,6 +1562,9 @@ tooltip {
   	white
   ) !important;
   --urlbar-border: var(--toolbarbutton-border-color-normal) !important;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"]):not([style*="--toolbarbutton-icon-fill"]) {
+  --toolbarbutton-icon-fill: var(--toolbar-color) !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([customthememode="2"])[style*="--toolbar-bgcolor: rgba(0, 0, 0, 0)"] {
   --toolbar-bgcolor: color-mix(
