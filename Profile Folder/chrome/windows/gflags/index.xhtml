@@ -194,6 +194,23 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Classic Caption Buttons</label>
+														<label class="description">Chromium had different styles depending on the system.</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="classiccaptionbuttons-style" data-pref="appearance.classicCaptionButtonsStyle" id="classiccaptionbuttons-style-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="auto">Automatic</hbox>
+															<hbox class="item ripple-enabled" value="windows">Windows</hbox>
+															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
+															<!-- <hbox class="item ripple-enabled" value="macos">macOS</hbox> -->
+														</vbox>
+													</html:button>
+												</hbox>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
@@ -256,54 +273,6 @@
 											</vbox>
 										</vbox>
 										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
-									</vbox>
-								</vbox>
-							</vbox>
-							<vbox class="page" data-page="11">
-								<vbox class="content-container">
-									<vbox class="content">
-										<vbox class="list-container">
-											<h4>Caption Buttons</h4>
-											<vbox class="card">
-												<vbox class="item">
-													<vbox>
-														<label class="name">Style</label>
-														<label class="description">Depending on the operating system, Chromium had different styles for the caption buttons.</label>
-													</vbox>
-													<div class="radio-parent">
-														<html:input class="radio" type="radio" id="option0" name="caption-buttons-style" checked="true"/>
-														<div class="gutter"></div>
-														<html:label class="label" for="option0">Automatic</html:label>
-													</div>
-													<div class="radio-parent">
-														<html:input class="radio" type="radio" id="option1" name="caption-buttons-style"/>
-														<div class="gutter"></div>
-														<html:label class="label" for="option1">Windows</html:label>
-													</div>
-													<div class="radio-parent">
-														<html:input class="radio" type="radio" id="option2" name="caption-buttons-style"/>
-														<div class="gutter"></div>
-														<html:label class="label" for="option2">Linux</html:label>
-													</div>
-													<div class="radio-parent">
-														<html:input class="radio" type="radio" id="option3" name="caption-buttons-style"/>
-														<div class="gutter"></div>
-														<html:label class="label" for="option3">
-															<html:button class="menu" data-name="pfp-pos" id="pfp-pos-select" style="width: 200px">
-															<label class="placeholder" />
-															<label class="selected" />
-															<vbox class="list">
-																<hbox class="item ripple-enabled" value="1">macOS version-0</hbox>
-																<hbox class="item ripple-enabled" value="2">macOS version-1</hbox>
-																<hbox class="item ripple-enabled" value="3">macOS version-2</hbox>
-																<hbox class="item ripple-enabled" value="4">macOS version-3</hbox>
-															</vbox>
-														</html:button>
-														</html:label>
-													</div>
-												</vbox>
-											</vbox>
-										</vbox>
 									</vbox>
 								</vbox>
 							</vbox>
