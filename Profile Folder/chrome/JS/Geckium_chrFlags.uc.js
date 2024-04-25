@@ -140,22 +140,26 @@ function observePreferences() {
         },
     };
 
-    for (const key in chrFlags) {
+    for (const key in chrFlags.getFlagsList()) {
         const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
         prefBranch.addObserver(prefName, observer, false);
     }
 }
 
 function flagsAttrs() {
-    for (const key in chrFlags) {
-        const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
-        const valueType = chrFlags[key];
+    const flagsList = chrFlags.getFlagsList();
 
+    for (const key in flagsList) {
+        const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
+        const flag = flagsList[key];
+        
         let prefValue;
-        if (valueType === "bool") {
-            prefValue = pref(prefName).tryGet.bool();
-        } else if (valueType === "int") {
+        if (flag.values && Object.keys(flag.values).length > 1) {
+            // If the flag has multiple values, consider it as an integer type
             prefValue = pref(prefName).tryGet.int();
+        } else {
+            // Otherwise, consider it as a boolean type
+            prefValue = pref(prefName).tryGet.bool();
         }
 
         // Add attribute to root
