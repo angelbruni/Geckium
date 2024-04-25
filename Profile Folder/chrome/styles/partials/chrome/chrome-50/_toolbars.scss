@@ -12,12 +12,19 @@
 
 	--personal-toolbar: var(--nav-bar);
 	--personal-toolbar-height: 28px;
+	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
+	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
 }
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	margin-top: 10px !important;
-	margin-left: 4px !important;
+	margin-left: 3px !important;
+}
+
+#nav-bar {
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
 }
 
 .toolbarbutton-1:not(#fxa-toolbar-menu-button, #tabs-newtab-button, #new-tab-button) {
@@ -25,6 +32,7 @@
 	box-shadow: none !important;
 
 	&::before {
+		content: "";
 		transform: scale(0);
 		left: 50% !important;
 		top: 50% !important;
@@ -90,6 +98,24 @@
 	.toolbarbutton-icon {
 		width: 14px !important;
 		height: 14px !important;
+	}
+}
+
+#PlacesToolbar {
+	padding-block: 3px;
+
+	.bookmark-item:not(.menuitem-iconic) {
+		&:active {
+			background: var(--personal-toolbar-item-active-bg) !important;
+
+			transition: background-color 100ms linear !important;
+		}
+
+		&::before {
+			content: unset
+		}
+
+		border: 0;
 	}
 }
 

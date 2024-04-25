@@ -1,6 +1,7 @@
 & {
 	--urlbar-height-definitive: calc(var(--toolbarbutton-height) + 4px);
 	--urlbarView-row-height: 25px;
+	--urlbar-border: rgb(169,169,169);
 
 	&[geckium-crflag-omnibox-ui-vertical-layout="true"] {
 		&:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) {
@@ -80,6 +81,17 @@
 				padding: 0 4px;
 			}
 		}
+	}
+	
+	#urlbar-container {
+		box-shadow: none !important;
+	}
+
+	#urlbar-background,
+	#searchbar {
+		outline: 0;
+		border-color: var(--urlbar-border) !important;
+		box-shadow: none !important;
 	}
 }
 

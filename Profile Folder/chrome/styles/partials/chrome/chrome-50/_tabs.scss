@@ -1,4 +1,147 @@
 & {
 	--tab-height: 32px;
 	--tabbrowser-tab-selected: var(--nav-bar);
+	--tab-sides-width: 13px;
+
+	--newtab-normal: rgb(219,219,219.66);
+	--newtab-hot: rgb(234,234,234,.66);
+	--newtab-active: rgb(0, 0, 0, .04);
+	--newtab-height: 17px;
+	--newtab-width: 34px;
+
+	#tabs-newtab-button,
+	#TabsToolbar #new-tab-button {
+		background: url(assets/img/chrome-50/tabbar/newtab_views.svg) !important;
+		mask-size: calc(var(--newtab-width) + 8px) calc(var(--newtab-height) + 8px);
+
+		&:active {
+			background: url(assets/img/chrome-50/tabbar/newtab_p_views.svg) !important;
+
+			&::before {
+				background-color: var(--newtab-active);
+			}
+		}
+
+		&::before {
+			mask-image: url(assets/img/chrome-50/tabbar/newtab_button_mask_views.svg) !important;
+		}
+	}
+}
+
+.tabbrowser-tab {
+	&:first-of-type {
+		margin-left: 12px !important;
+	}
+	
+	.tab-stack {
+		&::before {
+			mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_left.svg);
+			bottom: -1px;
+		}
+		&::after {
+			mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_right.svg);
+			bottom: -3px;
+		}
+	}
+	/* bruni: We are changing the favicon of about pages like
+		this so we can have era-specific icons. */
+	&:not([busy]) {
+		&[image="chrome://global/skin/icons/settings.svg"]
+		{
+			.tab-label {
+				&::before {
+					content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
+				}
+			}
+		}
+		&[image="chrome://mozapps/skin/extensions/extension.svg"]
+		{
+			.tab-label {
+				&::before {
+					content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
+				}
+			}
+		}
+	}
+
+	&:not([visuallyselected]) {
+		&:not(:first-of-type) {
+			.tab-content {
+				&::before {
+					background: url(assets/img/chrome-50/tabbar/tab_inactive2_left.svg)
+								no-repeat;
+					background-position: 0 2px;
+				}
+			}
+
+			.tab-stack {
+				&::before {
+					mask-image: url(assets/img/chrome-50/tabbar/tab_inactive2_alpha_left.svg);
+				}
+			}
+
+			.tab-glare-left {
+				mask-image: url(assets/img/chrome-50/tabbar/tab_inactive2_alpha_left.svg);
+				mask-position-y: -1px;
+				width: 12px;
+			}
+		}
+
+		.tab-content {
+			&::before {
+				background: url(assets/img/chrome-50/tabbar/tab_inactive_left.svg)
+							no-repeat;
+				background-position-x: 0px !important;
+				background-position-y: bottom 1px !important;
+			}
+			&::after {
+				background: url(assets/img/chrome-50/tabbar/tab_inactive_right.svg)
+							no-repeat;
+				background-position-x: 0px !important;
+				background-position-y: bottom 1px !important;
+			}
+		}
+
+		.tab-context-line {
+			&::before {
+				background: url(assets/img/chrome-50/tabbar/tab_inactive_center.svg)
+							top;
+				top: 3px;
+			}
+		}
+	}
+
+	&[visuallyselected] {
+		.tab-content {
+			&::before {
+				background: url(assets/img/chrome-50/tabbar/tab_active_left.svg)
+							no-repeat !important;
+				background-position-x: 0px !important;
+				background-position-y: bottom 1px !important;
+			}
+			&::after {
+				background: url(assets/img/chrome-50/tabbar/tab_active_right.svg)
+							no-repeat !important;
+				background-position-x: 0px !important;
+				background-position-y: bottom 1px !important;
+			}
+		}
+
+		.tab-context-line {
+			&::before {
+				background: url(assets/img/chrome-50/tabbar/tab_active_center.svg)
+					top;
+				top: 3px;
+			}
+		}
+	}
+}
+
+.tab-glare-left {
+	mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_left.png);
+}
+
+.tab-glare-right {
+	position: relative;
+	mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_right.png);
 }
