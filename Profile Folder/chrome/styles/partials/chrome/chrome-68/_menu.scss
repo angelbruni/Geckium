@@ -36,4 +36,13 @@ menupopup {
 	> menuseparator {
 		margin-inline: 2px !important;
 	}
+
+	button {
+		&:not([disabled]) {
+			&:hover {
+				background-color: rgb(235,235,235) !important;
+				color: black !important;
+			}
+		}
+	}
 }
