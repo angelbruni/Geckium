@@ -183,8 +183,18 @@
 													</div>
 												</div>
 											</h4>
-											<vbox class="card" style="padding-block-start: 19px">
-												<vbox class="item" flex="1">
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Force Classic Window Frame</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.appearance.forceClassicTheme" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>

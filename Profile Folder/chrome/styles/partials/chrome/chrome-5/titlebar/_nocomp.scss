@@ -30,10 +30,11 @@
 		}
 	}
 
-	@media (-moz-platform: linux) {
-		&#main-window {
-			background: rgba(0, 0, 0, 0.002) !important;
-		}
+	&#main-window {
+		/* bruni: Firefox is weird, if we set the root to be transparent,
+				  then it takes body's background. The lowest we can go in
+				  alpha is 0.002 for that bug (assuming it's one) to not happen. */
+		background: rgba(0,0,0,.002) !important;
 	}
 
 	&[chromemargin="0,0,0,0"] {

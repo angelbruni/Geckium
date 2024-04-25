@@ -247,13 +247,6 @@
 			}
 		}
 	}
-	&:-moz-lwtheme,
-	&:not(:-moz-lwtheme)[chrtheme="true"] {
-		/* bruni: Firefox is weird, if we set the root to be transparent,
-				  then it takes body's background. The lowest we can go in
-				  alpha is 0.002 for that bug (assuming it's one) to not happen. */
-		background: rgba(1, 1, 1, 0.002) !important;
-	}
 }
 
 #private-browsing-indicator-with-label {
