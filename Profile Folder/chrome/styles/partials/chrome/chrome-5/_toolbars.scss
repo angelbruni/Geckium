@@ -10,8 +10,8 @@
 
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 2px !important;
-	--default-inner-border-color: #dfdfdf;
-	--inner-border-color: var8(--default-inner-border-color);
+	--default-inner-border-color: rgb(242, 242, 242);
+	--inner-border-color: var(--default-inner-border-color);
 
 	--nav-bar-height: 37px;
 
@@ -1286,8 +1286,8 @@ toolbarspring {
 
 	&::before,
 	&::after {
-		top: 1px;
-		height: 23px;
+		top: 0px;
+		height: var(--personal-toolbar-height);
 	}
 
 	.bookmark-item:not(.menuitem-iconic) {
