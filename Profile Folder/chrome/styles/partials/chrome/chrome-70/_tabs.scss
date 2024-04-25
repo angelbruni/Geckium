@@ -11,11 +11,11 @@
 
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {
-		background: url(assets/img/chrome-50/tabbar/newtab_views.svg) !important;
+		background: url(assets/img/chrome-70/tabbar/newtab_views.svg) !important;
 		mask-size: calc(var(--newtab-width) + 8px) calc(var(--newtab-height) + 8px);
 
 		&:active {
-			background: url(assets/img/chrome-50/tabbar/newtab_p_views.svg) !important;
+			background: url(assets/img/chrome-70/tabbar/newtab_p_views.svg) !important;
 
 			&::before {
 				background-color: var(--newtab-active);
@@ -23,7 +23,7 @@
 		}
 
 		&::before {
-			mask-image: url(assets/img/chrome-50/tabbar/newtab_button_mask_views.svg) !important;
+			mask-image: url(assets/img/chrome-70/tabbar/newtab_button_mask_views.svg) !important;
 		}
 	}
 }
@@ -39,11 +39,11 @@
 	
 	.tab-stack {
 		&::before {
-			mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_left.svg);
+			mask-image: url(assets/img/chrome-70/tabbar/tab_alpha_left.svg);
 			bottom: -1px;
 		}
 		&::after {
-			mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_right.svg);
+			mask-image: url(assets/img/chrome-70/tabbar/tab_alpha_right.svg);
 			bottom: -3px;
 		}
 	}
@@ -72,7 +72,7 @@
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
-					background: url(assets/img/chrome-50/tabbar/tab_inactive2_left.svg)
+					background: url(assets/img/chrome-70/tabbar/tab_inactive2_left.svg)
 								no-repeat;
 					background-position: 0 2px;
 				}
@@ -80,12 +80,12 @@
 
 			.tab-stack {
 				&::before {
-					mask-image: url(assets/img/chrome-50/tabbar/tab_inactive2_alpha_left.svg);
+					mask-image: url(assets/img/chrome-70/tabbar/tab_inactive2_alpha_left.svg);
 				}
 			}
 
 			.tab-glare-left {
-				mask-image: url(assets/img/chrome-50/tabbar/tab_inactive2_alpha_left.svg);
+				mask-image: url(assets/img/chrome-70/tabbar/tab_inactive2_alpha_left.svg);
 				mask-position-y: -1px;
 				width: 12px;
 			}
@@ -93,13 +93,13 @@
 
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-50/tabbar/tab_inactive_left.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_inactive_left.svg)
 							no-repeat;
 				background-position-x: 0px !important;
 				background-position-y: bottom 1px !important;
 			}
 			&::after {
-				background: url(assets/img/chrome-50/tabbar/tab_inactive_right.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_inactive_right.svg)
 							no-repeat;
 				background-position-x: 0px !important;
 				background-position-y: bottom 1px !important;
@@ -108,7 +108,7 @@
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-50/tabbar/tab_inactive_center.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_inactive_center.svg)
 							top;
 				top: 3px;
 			}
@@ -118,13 +118,13 @@
 	&[visuallyselected] {
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-50/tabbar/tab_active_left.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_active_left.svg)
 							no-repeat !important;
 				background-position-x: 0px !important;
 				background-position-y: bottom 1px !important;
 			}
 			&::after {
-				background: url(assets/img/chrome-50/tabbar/tab_active_right.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_active_right.svg)
 							no-repeat !important;
 				background-position-x: 0px !important;
 				background-position-y: bottom 1px !important;
@@ -133,7 +133,7 @@
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-50/tabbar/tab_active_center.svg)
+				background: url(assets/img/chrome-70/tabbar/tab_active_center.svg)
 					top;
 				top: 3px;
 			}
@@ -142,10 +142,10 @@
 }
 
 .tab-glare-left {
-	mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_left.png);
+	mask-image: url(assets/img/chrome-70/tabbar/tab_alpha_left.png);
 }
 
 .tab-glare-right {
 	position: relative;
-	mask-image: url(assets/img/chrome-50/tabbar/tab_alpha_right.png);
+	mask-image: url(assets/img/chrome-70/tabbar/tab_alpha_right.png);
 }

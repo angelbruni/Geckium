@@ -22,7 +22,7 @@ const appearanceMap = {
 	3: "twentyone",
 	4: "twentyfive",
 	5: "fortyseven",
-	6: "fifty",
+	6: "seventy",
 };
 
 let previousChoice;
