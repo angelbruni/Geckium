@@ -1,9 +1,14 @@
-/* Chrome 0 -> 5 */
-:root[geckium-five] {
+/* Chrome 0 -> 3 */
+:root[geckium-four] {
+	@import "chrome-5/final.au";
+}
+
+/* Chrome 5 */
+:root[geckium-four][geckium-five] {
 	@import "chrome-5/final.au";
 }
 
 /* Chrome 27 -> ~47 */
-:root[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+:root[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
 	@import "chrome-47/final.au";
 }

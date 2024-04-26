@@ -41,10 +41,11 @@
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
 							<separator />
-							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="10" label="Main Interface" selected="true" />
-							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="11" label="Titlebar" />-->
-							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="12" label="People" />
+							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="Global" />
+							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="Main Interface" />
+							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="12" label="Titlebar" />-->
 							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="Pages" />
+							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="People" />
 							<separator />
 							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="Chromium Themes" />
 							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />-->
@@ -94,7 +95,18 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 10)">
+													<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
+														<vbox>
+															<label>Global</label>
+															<p>Choose your preferred visual style globally.</p>
+														</vbox>
+														<hbox>
+															<label>Go to page</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 11)">
 														<vbox>
 															<label>Main Interface</label>
 															<p>Customize your main interface settings such as visual style choice and custom theme modes.</p>
@@ -105,10 +117,13 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 12)">
+													
+												</hbox>
+												<hbox>
+													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
 														<vbox>
-															<label>People</label>
-															<p>Choose how you want the people button to look like.</p>
+															<label>Pages</label>
+															<p>Select your favourite page visual style and change custom theme settings.</p>
 														</vbox>
 														<hbox>
 															<label>Go to page</label>
@@ -116,12 +131,10 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-												</hbox>
-												<hbox>
-													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
+													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 14)">
 														<vbox>
-															<label>Pages</label>
-															<p>Select your favourite page visual style and change custom theme settings.</p>
+															<label>People</label>
+															<p>Choose how you want the people button to look like.</p>
 														</vbox>
 														<hbox>
 															<label>Go to page</label>
@@ -136,6 +149,58 @@
 								</vbox>
 							</vbox>
 							<vbox class="page" data-page="10">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>
+												Visual Style
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
+												<div class="modal" data-modal="aboutVisualStyles_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">About Chromium Visual Styles</div>
+																<div class="description">
+																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 5 all the way until version 50.
+																</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</h4>
+											<vbox class="card">
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+											</vbox>
+											<h4>
+												Quick Access
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label class="name">Main Interface settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
+													<vbox>
+														<label class="name">Page settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
+													<vbox>
+														<label class="name">Chromium Theme settings</label>
+													</vbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -165,23 +230,25 @@
 												</hbox>
 											</vbox>
 											<h4>
-												Visual Style
-												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
-												<div class="modal" data-modal="aboutVisualStyles_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<div class="header">About Chromium Visual Styles</div>
-																<div class="description">
-																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 5 all the way until version 50.
-																</div>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
+												Visual Styles
+											</h4>
+											<vbox class="card">
+												<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name" style="font-weight: 500">Main interface settings were moved to Global tab for the time being</label>
+														<p class="description" style="font-weight: 500">The idea is that this will show only the options available for the UI while the global one will show all options.</p>
+														<p class="description" style="font-weight: 500">Some only modify the page such as the upcoming "Chrome 3" and the new "Chrome 4" which already show properly in the Pages tab and thus shouldn't be here.</p>
+														<p class="description" style="font-weight: 500">The system for this concept is still being built.</p>
+													</vbox>
+													<hbox>
+														<label>Go global to page</label>
+														<spacer />
+														<div class="icon" />
+													</hbox>
+												</html:button>
+											</vbox>
+											<h4>
+												Classic Window Frame
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -211,9 +278,6 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
 											</vbox>
 											<h4>
 												Custom Theme Support (Firefox Themes only)
@@ -260,6 +324,11 @@
 												Quick Access
 											</h4>
 											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">Global settings</label>
+													</vbox>
+												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
 														<label class="name">Page settings</label>
@@ -276,7 +345,66 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="12">
+							<vbox class="page" data-page="13">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>New Tab Page</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Visual Style Mode</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="ntp-styleMode" data-pref="newTabHome.styleMode" id="ntp-styleMode-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="auto">Automatic</hbox>
+															<hbox class="item ripple-enabled" value="forced">Force</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<vbox class="item" flex="1">
+													<h4>Forced Style</h4>
+													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">2011 - 2012</div>Theme footer according to applied custom theme</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<h4>
+												Quick Access
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">Global settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label class="name">Main Interface settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
+													<vbox>
+														<label class="name">Chromium Theme settings</label>
+													</vbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="14">
 								<vbox class="content-container">
 									<vbox class="window-top-bars light">
 										<hbox class="window-top-bar">
@@ -344,60 +472,7 @@
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="13">
-								<vbox class="content-container">
-									<vbox class="content">
-										<vbox class="list-container">
-											<h4>New Tab Page</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">Visual Style Mode</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="ntp-styleMode" data-pref="newTabHome.styleMode" id="ntp-styleMode-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">Automatic</hbox>
-															<hbox class="item ripple-enabled" value="forced">Force</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<vbox class="item" flex="1">
-													<h4>Forced Style</h4>
-													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name"><div class="year">2011 - 2012</div>Theme footer according to applied custom theme</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-											</vbox>
-											<h4>
-												Quick Access
-											</h4>
-											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name">Main Interface settings</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">Chromium Theme settings</label>
-													</vbox>
-												</html:button>
-											</vbox>
-										</vbox>
-									</vbox>
-								</vbox>
-							</vbox>
+							
 							<vbox class="page" data-page="20">
 								<vbox class="content-container">
 									<vbox class="window-top-bars light">
@@ -462,6 +537,11 @@
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">Global settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
 														<label class="name">Main Interface settings</label>
 													</vbox>
@@ -767,12 +847,13 @@
 		</hbox>
 	</html:div>
 
+	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
+
 	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/developerOptions.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/chrThemes.js" type="text/javascript" defer="true"/>
 

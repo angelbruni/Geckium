@@ -37,7 +37,7 @@ if (unsupportedForks[forkName]) {
 		}
 	);
 
-	docElm.setAttribute("unsupported-fork", true);
+	document.documentElement.setAttribute("unsupported-fork", true);
 }
 
 const appearanceChanged = new CustomEvent("appearanceChanged");
@@ -51,7 +51,7 @@ class gkVisualStyles {
 	 */
 
 	static getVisualStyles(style) {
-		const visualStyles = {
+		const visualStyles = [
 			/**
 			 * int	  - The number used in the preference.
 			 * 
@@ -61,67 +61,84 @@ class gkVisualStyles {
 			 * 		    "page":   browser internal pages. Examples: "about:newtab", "about:flags", etc...
 			 */
 
-			/*0: {
+			/*{
+				id: 0,
 				int: 2,
 				year: [2008, 2010],
 				number: "two",
 				styles: ["chrome", "page"],
-			},
-			0: {
+			},*/
+			/*{
+				id: 0,
 				int: 3,
 				year: [2008, 2010],
 				number: "three",
-				styles: ["page"],
+				styles: ["chrome", "page"],
 			},*/
-			0: {
+			{
+				id: 0,
+				int: 4,
+				year: [2008, 2010],
+				number: "four",
+				styles: ["chrome", "page"],
+			},
+			{
+				id: 1,
 				int: 5,
 				year: [2008, 2010],
 				number: "five",
 				styles: ["chrome", "page"],
 			},
-			1: {
+			{
+				id: 2,
 				int: 6,
 				year: [2010],
 				number: "six",
 				styles: ["chrome"],
 			},
-			2: {
+			{
+				id: 3,
 				int: 11,
 				year: [2010, 2011],
 				number: "eleven",
 				styles: ["chrome", "page"],
 			},
-			3: {
+			{
+				id: 4,
 				int: 21,
 				year: [2011, 2012],
 				number: "twentyone",
 				styles: ["chrome", "page"],
 			},
-			4: {
+			{
+				id: 5,
 				int: 25,
 				year: [2012, 2013],
 				number: "twentyfive",
 				styles: ["chrome"],
 			},
-			/*0: {
+			/*{
+				id: 0,
 				int: 30,
 				year: [2012, 2013],
 				number: "thirty",
 				styles: ["chrome"],
 			},*/
-			5: {
+			{
+				id: 6,
 				int: 47,
 				year: [2013, 2015],
 				number: "fortyseven",
 				styles: ["chrome", "page"],
 			},
-			6: {
+			{
+				id: 7,
 				int: 68,
 				number: "sixtyeight",
 				year: [2015, 2018],
 				styles: ["chrome", "page"],
 			},
-		}
+		]
 
 		if (style == "chrome" || style == "page")
 			return Object.values(visualStyles).filter(item => item.styles.includes(style));
@@ -137,76 +154,78 @@ class gkVisualStyles {
 	 */
 
 	static setVisualStyle(vSInt) {
-		let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+		if (!document.URL.includes("about:g")) {
+			let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 
-		if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
-			switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
-				case "forced":
-					prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-					break;
-				default:
-					prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-					break;
-			}
-		} else if (document.URL == "about:preferences" || document.URL == "about:addons") {
-			// Prepare setting for forcing the style for these pages individually
-			prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-		} else {
-			prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-		}
-
-		if (!prefChoice)
-			prefChoice = 0;
-
-		if (document.URL == "chrome://browser/content/browser.xhtml") {
-			if (prefChoice == previousChoice) {
-				console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
-				return;
+			if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+				switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
+					case "forced":
+						prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+						break;
+					default:
+						prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+						break;
+				}
+			} else if (document.URL == "about:preferences" || document.URL == "about:addons") {
+				// Prepare setting for forcing the style for these pages individually
+				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			} else {
-				console.log("Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			}
-		}
 
-		// bruni: We get the first and last available keys so
-		//		  we don't hardcode the values in the code.
-		const mapKeys = Object.keys(gkVisualStyles.getVisualStyles()).map(Number);
-		const firstKey = Math.min(...mapKeys);
-		const lastKey = Math.max(...mapKeys);
+			if (!prefChoice)
+				prefChoice = 0;
 
-		// bruni: Let's remove all appearance attributes first.
-		const pastAttrs = docElm.getAttributeNames();
-		pastAttrs.forEach((attr) => {
-			if (attr.startsWith("geckium-") && !attr.includes("crflag"))
-				docElm.removeAttribute(attr);
-		});
-
-		// bruni: Let's apply the correct appearance attributes.
-		if (typeof vSInt === "number") {
-			if (prefChoice > lastKey) {
-				vSInt = lastKey;
-			} else if (prefChoice < firstKey || prefChoice == null) {
-				vSInt = firstKey;
+			if (document.URL == "chrome://browser/content/browser.xhtml") {
+				if (prefChoice == previousChoice) {
+					console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
+					return;
+				} else {
+					console.log("Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+				}
 			}
-			console.log(vSInt)
-		} else {
-			vSInt = prefChoice;
-		}
 
-		for (let i = 0; i <= vSInt; i++) {
-			if (gkVisualStyles.getVisualStyles()[i]) {
-				const attr = "geckium-" + gkVisualStyles.getVisualStyles()[i].number;
-				docElm.setAttribute(attr, "");
+			// bruni: We get the first and last available keys so
+			//		  we don't hardcode the values in the code.
+			const mapKeys = Object.keys(gkVisualStyles.getVisualStyles()).map(Number);
+			const firstKey = Math.min(...mapKeys);
+			const lastKey = Math.max(...mapKeys);
+
+			// bruni: Let's remove all appearance attributes first.
+			const pastAttrs = document.documentElement.getAttributeNames();
+			pastAttrs.forEach((attr) => {
+				if (attr.startsWith("geckium-") && !attr.includes("crflag"))
+					document.documentElement.removeAttribute(attr);
+			});
+
+			// bruni: Let's apply the correct appearance attributes.
+			if (typeof vSInt === "number") {
+				if (prefChoice > lastKey) {
+					vSInt = lastKey;
+				} else if (prefChoice < firstKey || prefChoice == null) {
+					vSInt = firstKey;
+				}
+				console.log(vSInt)
+			} else {
+				vSInt = prefChoice;
 			}
+
+			for (let i = 0; i <= vSInt; i++) {
+				if (gkVisualStyles.getVisualStyles()[i]) {
+					const attr = "geckium-" + gkVisualStyles.getVisualStyles()[i].number;
+					document.documentElement.setAttribute(attr, "");
+				}
+			}
+
+			// bruni: Let's also apply the attribute specific to the
+			//		  user choice so we can make unique styles for it.
+			document.documentElement.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles()[vSInt].number);
+
+			previousChoice = prefChoice;
+			
+			if (isBrowserWindow)
+				dispatchEvent(appearanceChanged);
 		}
-
-		// bruni: Let's also apply the attribute specific to the
-		//		  user choice so we can make unique styles for it.
-		docElm.setAttribute("geckium-choice", gkVisualStyles.getVisualStyles()[vSInt].number);
-
-		previousChoice = prefChoice;
-		
-		if (isBrowserWindow)
-			dispatchEvent(appearanceChanged);	
 	}
 }
 
@@ -220,20 +239,20 @@ class gkLWTheme {
 		return {
 			enable() {
 				if (isBrowserWindow) {
-					docElm.setAttribute("chromemargin", "0,0,0,0");
+					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 				}
 			},
 			disable() {
 				if (isBrowserWindow) {
 					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
-						docElm.setAttribute("chromemargin", "0,0,0,0");
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 						return;
 					}
 
 					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
-						docElm.setAttribute("chromemargin", "0,0,0,0");
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 					} else {
-						docElm.setAttribute("chromemargin", "0,3,3,3");
+						document.documentElement.setAttribute("chromemargin", "0,3,3,3");
 					}
 				}
 			},
@@ -245,7 +264,7 @@ class gkLWTheme {
 				else if (!gkPrefUtils.tryGet(preference).string)
 					gkPrefUtils.set(preference).string("auto");
 
-				docElm.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
+				document.documentElement.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
 			}
 		}
 	}
@@ -265,9 +284,9 @@ class gkLWTheme {
 	}
 
 	static setCustomThemeModeAttrs() {
-		if (typeof docElm !== "undefined") {	
+		if (typeof document.documentElement !== "undefined") {	
 			setTimeout(() => {
-				docElm.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
+				document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
 				
 				const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 				if (!isChromeTheme) {
@@ -283,7 +302,7 @@ class gkLWTheme {
 							gkLWTheme.classicWindowFrame.enable();
 							break;
 					}
-					docElm.setAttribute("customthememode", customThemeModePref);
+					document.documentElement.setAttribute("customthememode", customThemeModePref);
 
 					const isDefaultLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
 					const isDefaultLightDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
@@ -316,8 +335,8 @@ Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, fals
 Services.prefs.addObserver("Geckium.appearance.forceClassicTheme", appearanceObserver, false);
 
 function changePrivateBadgePos() {
-	if (typeof docElm !== "undefined") {
-		if (docElm.hasAttribute("privatebrowsingmode")) {
+	if (typeof document.documentElement !== "undefined") {
+		if (document.documentElement.hasAttribute("privatebrowsingmode")) {
 			const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");
 			const titlebarSpacer = document.querySelector(".titlebar-spacer");
 	
@@ -328,7 +347,7 @@ function changePrivateBadgePos() {
 window.addEventListener("load", changePrivateBadgePos);
 
 function customThemeColorizeTabGlare() {
-	docElm.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool)
+	document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool)
 }
 const customThemeModeObserver = {
 	observe: function (subject, topic, data) {
@@ -344,7 +363,7 @@ Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, 
 Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customThemeModeObserver, false);
 
 function enableMoreGTKIcons() {
-	docElm.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);
+	document.documentElement.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);
 }
 window.addEventListener("load", enableMoreGTKIcons);
 const moreGTKIconsObserver = {

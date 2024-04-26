@@ -76,6 +76,7 @@
 	&:not(:-moz-lwtheme)[chrtheme="true"] {
 		--tab-glare-opacity: .5 !important;
 		
+		&[geckium-choice="four"],
 		&[geckium-choice="five"],
 		&[geckium-choice="six"] {
 			--tab-glare: var(--tabbrowser-tab-selected) !important;

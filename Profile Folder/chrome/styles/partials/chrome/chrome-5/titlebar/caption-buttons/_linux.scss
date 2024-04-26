@@ -1,8 +1,7 @@
 & {
 	--titlebar-buttonbox-gap: 2px;
-
-	--titlebar-button-outer-border: 1px solid
-		var(--titlebar-button-outer-border-color);
+	
+	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
 	--titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
 	--titlebar-button-height: 18px;
 	--titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -14,12 +13,8 @@
 	--titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
 
 	--titlebar-max-restore-width: var(--titlebar-close-width);
-	--titlebar-max-restore-background-hot: var(
-		--titlebar-button-background-hot
-	);
-	--titlebar-max-restore-background-active: var(
-		--titlebar-button-background-active
-	);
+	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
+	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
 	--titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
 	--titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
 
@@ -28,7 +23,6 @@
 }
 
 .titlebar-buttonbox-container {
-	justify-content: end;
 	margin-inline-end: 1px;
 
 	@media not (-moz-platform: linux) {

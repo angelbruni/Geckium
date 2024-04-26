@@ -23,25 +23,29 @@ $gtkplus: "{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}";
 		height: 16px;
 	}
 
-	&:not([geckium-five]) {
+	&:not([geckium-four]) {
 		* {
 			visibility: hidden;
 		}
 	}
 
-	&[geckium-five] {
+	&[geckium-four] {
+		@import "partials/chrome-4/final";
+	}
+
+	&[geckium-four][geckium-five] {
 		@import "partials/chrome-5/final";
 	}
 
-	&[geckium-five][geckium-six][geckium-eleven] {
+	&[geckium-four][geckium-five][geckium-six][geckium-eleven] {
 		@import "partials/chrome-11/final";
 	}
 
-	&[geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
 		@import "partials/chrome-21/final";
 	}
 
-	&[geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
 		@import "partials/chrome-47/final";
 	}
 }

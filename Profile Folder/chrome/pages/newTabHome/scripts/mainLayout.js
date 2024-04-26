@@ -79,43 +79,81 @@ function createMainLayout() {
 
 	let menuBtnsContainer;
 
-	if (appearanceChoice <= 1) {
-		// Chrome 0 - 5
-		menuBtnsContainer = "#view-toolbar";
-
-		main = `
-		<vbox id="main">
-			<hbox id="view-toolbar">
-				<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
-				<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
-				<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
-					<vbox id="option-menu" class="window-menu">
-						<checkbox id="THUMB" label="Most visited"></checkbox>
-						<checkbox id="RECENT" label="Recently closed"></checkbox>
-						<checkbox id="TIPS" label="Tips"></checkbox>
-					</vbox>
-				</html:button>
-			</hbox>
-			<div id="most-visited"></div>
-			<hbox id="recently-closed">
-				<label value="Recently closed"></label>
-				<hbox class="items"></hbox>
-				<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
-			</hbox>
-			<vbox id="attribution">
-				<label>Theme created by</label>
-				<html:div id="attribution-img"></html:div>
+	if (appearanceChoice <= 2) {
+		if (appearanceChoice <= 0) {
+			// Chrome 0 - 5
+			menuBtnsContainer = "#view-toolbar";
+	
+			main = `
+			<vbox id="main">
+				<hbox id="view-toolbar">
+					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+						<vbox id="option-menu" class="window-menu">
+							<checkbox id="THUMB" label="Most visited"></checkbox>
+							<checkbox id="RECENT" label="Recently closed"></checkbox>
+						</vbox>
+					</html:button>
+				</hbox>
+				<div id="most-visited"></div>
+				<hbox id="recently-closed">
+					<label value="Recently closed"></label>
+					<hbox class="items"></hbox>
+					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
+				</hbox>
+				<vbox id="attribution">
+					<label>Theme created by</label>
+					<html:div id="attribution-img"></html:div>
+				</vbox>
 			</vbox>
-		</vbox>
-		`;
-
-		footer = `
-		<vbox id="footer">
-			<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
-				<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-5/newtab_extensions_promo.png"></html:img>
-			</html:a>
-		</vbox>
-		`;
+			`;
+	
+			footer = `
+			<vbox id="footer">
+				<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
+					<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-4/newtab_themes_promo.png"></html:img>
+				</html:a>
+			</vbox>
+			`;
+		} else if (appearanceChoice <= 2) {
+			// Chrome 0 - 5
+			menuBtnsContainer = "#view-toolbar";
+	
+			main = `
+			<vbox id="main">
+				<hbox id="view-toolbar">
+					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+						<vbox id="option-menu" class="window-menu">
+							<checkbox id="THUMB" label="Most visited"></checkbox>
+							<checkbox id="RECENT" label="Recently closed"></checkbox>
+							<checkbox id="TIPS" label="Tips"></checkbox>
+						</vbox>
+					</html:button>
+				</hbox>
+				<div id="most-visited"></div>
+				<hbox id="recently-closed">
+					<label value="Recently closed"></label>
+					<hbox class="items"></hbox>
+					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
+				</hbox>
+				<vbox id="attribution">
+					<label>Theme created by</label>
+					<html:div id="attribution-img"></html:div>
+				</vbox>
+			</vbox>
+			`;
+	
+			footer = `
+			<vbox id="footer">
+				<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
+					<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-5/newtab_extensions_promo.png"></html:img>
+				</html:a>
+			</vbox>
+			`;
+		}
 
 		waitForElm(menuBtnsContainer).then(() => {
 			const thumbCheckbox = document.getElementById("thumb-checkbox");
@@ -135,7 +173,7 @@ function createMainLayout() {
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 		});
-	} else if (appearanceChoice == 2) {
+	} else if (appearanceChoice == 3) {
 		// Chrome 11
 
 		main = `
@@ -189,7 +227,7 @@ function createMainLayout() {
 			</div>
 		</vbox>
 		`;
-	} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+	} else if (appearanceChoice == 4 || appearanceChoice == 5) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
@@ -323,7 +361,7 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 1 || appearanceChoice == 3 || appearanceChoice == 4) {
+	if (appearanceChoice <= 2 || appearanceChoice == 4 || appearanceChoice == 5) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {
