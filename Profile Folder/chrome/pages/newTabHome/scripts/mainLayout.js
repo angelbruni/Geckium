@@ -15,9 +15,9 @@ function setMostVisitedLayout(layout) {
 	let mostVisitedLayout;
 
 	if (typeof layout !== "undefined" && typeof layout !== "string")
-		pref("Geckium.newTabHome.mostVisitedLayout").set.int(layout);
+		gkPrefUtils.set("Geckium.newTabHome.mostVisitedLayout").int(layout);
 
-	mostVisitedLayout = pref("Geckium.newTabHome.mostVisitedLayout").tryGet.int();
+	mostVisitedLayout = gkPrefUtils.tryGet("Geckium.newTabHome.mostVisitedLayout").int;
 
 	if (!mostVisitedLayout)
 		mostVisitedLayout = 1;
@@ -60,12 +60,12 @@ function setMostVisitedLayout(layout) {
 function createMainLayout() {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 
@@ -266,7 +266,7 @@ function createMainLayout() {
 	} else {
 		// Chrome 47 - 50
 
-		if (pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+		if (gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
 			header = `
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>

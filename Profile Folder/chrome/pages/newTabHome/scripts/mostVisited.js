@@ -107,12 +107,12 @@ function retrieveFrequentSites() {
 function createTile(website) {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 
@@ -196,7 +196,7 @@ function createTile(website) {
 				
 				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
 			} else {
-				if (pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+				if (gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
@@ -238,7 +238,7 @@ function createTile(website) {
 				})
 			});
 
-			if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool() || !(appearanceChoice >= 5)) {
+			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 5)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < numTiles; i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
@@ -284,7 +284,7 @@ function createTile(website) {
 				</html:div>
 				`
 			} else {
-				if (!pref("Geckium.crflag.enable.icon.ntp").tryGet.bool()) {
+				if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
 					tile = `
 					<html:a class="mv-tile" disabled="true"></html:a>
 					`
@@ -303,12 +303,12 @@ function createTile(website) {
 function populateRecentSitesGrid() {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 

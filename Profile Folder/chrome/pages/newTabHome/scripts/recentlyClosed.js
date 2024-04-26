@@ -1,12 +1,12 @@
 function createRecentlyClosed() {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 

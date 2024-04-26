@@ -92,15 +92,15 @@ class chrTheme {
 	static enable(desiredCRX) {
 		let crx = desiredCRX;
 		setTimeout(() => {
-			let storedCRX = pref("Geckium.chrTheme.fileName").tryGet.string();
+			let storedCRX = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 
 			console.log(crx, desiredCRX, storedCRX);
 
 			if (!desiredCRX) {
-				if (!pref("Geckium.chrTheme.status").tryGet.bool())
+				if (!gkPrefUtils.tryGet("Geckium.chrTheme.status").bool)
 					return;
 
-				if (pref("extensions.activeThemeID").tryGet.string() !== "default-theme@mozilla.org")
+				if (gkPrefUtils.tryGet("extensions.activeThemeID").string !== "default-theme@mozilla.org")
 					return;
 
 				if (storedCRX) {
@@ -112,14 +112,13 @@ class chrTheme {
 			}
 			let filePath = `file:///${profRootDir}/chrome/${chrThemesFolderName}/${crx}.crx`;
 
-			pref("Geckium.chrTheme.status").set.bool(true);
-			const chrThemeStatus = pref("Geckium.chrTheme.status").tryGet.bool();
+			gkPrefUtils.set("Geckium.chrTheme.status").bool(true);
+			const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 
-			pref("Geckium.chrTheme.filePath").set.string(filePath);
-			const chrThemeFilePath = pref("Geckium.chrTheme.filePath").tryGet.string();
+			gkPrefUtils.set("Geckium.chrTheme.filePath").string(filePath);
 
-			pref("Geckium.chrTheme.fileName").set.string(crx);
-			const chrThemeFileName = pref("Geckium.chrTheme.fileName").tryGet.string();
+			gkPrefUtils.set("Geckium.chrTheme.fileName").string(crx);
+			const chrThemeFileName = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 			docElm.setAttribute("chrtheme-file", chrThemeFileName);
 
 			chrTheme.removeProperties();
@@ -193,9 +192,9 @@ class chrTheme {
 	}
 
 	static disable() {
-		pref("Geckium.chrTheme.status").set.bool(false);
+		gkPrefUtils.set("Geckium.chrTheme.status").bool(false);
 
-		const chrThemeStatus = pref("Geckium.chrTheme.status").tryGet.bool();
+		const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 		docElm.setAttribute("chrtheme", chrThemeStatus);
 
 		if (isBrowserWindow)
@@ -210,8 +209,7 @@ window.addEventListener("load", () => {
 const chrThemeObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			console.log(pref("Geckium.chrTheme.status").tryGet.bool())
-			if (pref("Geckium.chrTheme.status").tryGet.bool() == true)
+			if (gkPrefUtils.tryGet("Geckium.chrTheme.status").bool == true)
 				chrTheme.enable();
 			else
 				chrTheme.disable();

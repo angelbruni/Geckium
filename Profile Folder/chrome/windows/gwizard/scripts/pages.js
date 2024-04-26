@@ -24,7 +24,7 @@ nextElm.addEventListener("click", () => {
 })
 
 finishElm.addEventListener("click", () => {
-	pref("Geckium.firstRun.complete").set.bool(true);
+	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
 	gkWindow.close();
 })
 

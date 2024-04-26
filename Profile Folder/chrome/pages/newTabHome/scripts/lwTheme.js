@@ -2,7 +2,7 @@ const { LightweightThemeConsumer } = ChromeUtils.importESModule("resource://gre/
 const { LightweightThemeManager } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeManager.sys.mjs");
 
 function setFooterChoice() {
-	document.documentElement.setAttribute("footer-themable", pref("Geckium.newTabHome.themeFooter").tryGet.bool())
+	document.documentElement.setAttribute("footer-themable", gkPrefUtils.tryGet("Geckium.newTabHome.themeFooter").bool)
 }
 const themeFooterObs = {
 	observe: function (subject, topic, data) {
@@ -37,7 +37,7 @@ function setProperties() {
 			document.documentElement.style.setProperty("--toolbar-color", toolbarText);
 
 		// New Tab Background code
-        const activeThemeID = pref("extensions.activeThemeID").tryGet.string();
+        const activeThemeID = gkPrefUtils.tryGet("extensions.activeThemeID").string;
 
         const imagePath = `chrome://userchrome/content/lwThemes/${activeThemeID}/image`;
 		

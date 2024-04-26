@@ -67,7 +67,7 @@ function createMenu(
 	toolbarButton.setAttribute("type", "menu");
 
 	const menuPopUp = document.createXULElement("menupopup");
-	setAttributes(menuPopUp, {
+	gkSetAttributes(menuPopUp, {
 		id: parentID,
 		position: position,
 	});
@@ -217,7 +217,7 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 	if (parent.tagName == "menupopup") {
 		parent.addEventListener("popupshowing", adjustAccelText);
 		if (object.properties) {
-			setAttributes(parent, {
+			gkSetAttributes(parent, {
 				onpopupshowing: object.properties.onpopup,
 				onpopuphidden: object.properties.onpopup,
 			});

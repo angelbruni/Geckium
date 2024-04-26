@@ -13,6 +13,30 @@ const unsupportedForks = {
 	"r3dfox": true
 }
 
+let previousChoice;
+
+if (unsupportedForks[forkName]) {
+	_ucUtils.showNotification(
+		{
+		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " browser will receive no support from the Geckium team. Please download a recommended fork.",  // text shown in the notification
+		  	type : "unsupported-fork",         // opt identifier for this notification
+		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
+		  	buttons: [{
+				label: "Recommended forks",
+				callback: (notification) => {
+				  	notification.ownerGlobal.openWebLinkIn(
+						"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
+						"tab"
+				  	);
+				  	return false
+				}
+		  	}],
+		}
+	);
+
+	docElm.setAttribute("unsupported-fork", true);
+}
+
 const appearanceChanged = new CustomEvent("appearanceChanged");
 
 class gkVisualStyles {
@@ -110,25 +134,25 @@ class gkVisualStyles {
 	 */
 
 	static setVisualStyle(vSInt) {
-		let prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+		let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 
-		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-			switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+		if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+			switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 				case "forced":
-					prefChoice = pref("Geckium.newTabHome.style").tryGet.int();
+					prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 					break;
 				default:
-					prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+					prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 					break;
 			}
 		} else {
-			prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+			prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 		}
 
 		if (!prefChoice)
 			prefChoice = 0;
 
-		if (isBrowserWindow) {
+		if (document.URL == "chrome://browser/content/browser.xhtml") {
 			if (prefChoice == previousChoice) {
 				console.log("Choice same as previous choice, ignoring.", prefChoice, previousChoice)
 				return;
@@ -180,36 +204,10 @@ class gkVisualStyles {
 	}
 }
 
-let previousChoice;
-
-if (unsupportedForks[forkName]) {
-	_ucUtils.showNotification(
-		{
-		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " browser will receive no support from the Geckium team. Please download a recommended fork.",  // text shown in the notification
-		  	type : "unsupported-fork",         // opt identifier for this notification
-		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
-		  	buttons: [{
-				label: "Recommended forks",
-				callback: (notification) => {
-				  	notification.ownerGlobal.openWebLinkIn(
-						"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
-						"tab"
-				  	);
-				  	return false
-				}
-		  	}],
-		}
-	);
-
-	docElm.setAttribute("unsupported-fork", true);
-}
-
 window.addEventListener("load", gkVisualStyles.setVisualStyle);
 
 // FIXME: Find the correct event instead of using a timeout initially.
-setTimeout(() => {
-	gkVisualStyles.setVisualStyle();
-}, 50);
+setTimeout(gkVisualStyles.setVisualStyle, 50);
 
 class gkLWTheme {
 	static get classicWindowFrame() {
@@ -221,7 +219,7 @@ class gkLWTheme {
 			},
 			disable() {
 				if (isBrowserWindow) {
-					if (pref("Geckium.appearance.forceClassicTheme").tryGet.bool()) {
+					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
 						docElm.setAttribute("chromemargin", "0,0,0,0");
 						return;
 					}
@@ -237,17 +235,17 @@ class gkLWTheme {
 				const preference = "Geckium.appearance.classicCaptionButtonsStyle";
 
 				if (style == "auto" || style == "windows" || style == "linux" || style == "macos")
-					pref(preference).set.string(style);
-				else if (!pref(preference).tryGet.string())
-					pref(preference).set.string("auto");
+					gkPrefUtils.set(preference).string(style);
+				else if (!gkPrefUtils.tryGet(preference).string)
+					gkPrefUtils.set(preference).string("auto");
 
-				docElm.setAttribute("gkforcecaptionbuttonstyle", pref(preference).tryGet.string());
+				docElm.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
 			}
 		}
 	}
 
 	static get getCustomThemeMode() {
-		const customThemeModePref = pref("Geckium.customtheme.mode").tryGet.int();
+		const customThemeModePref = gkPrefUtils.tryGet("Geckium.customtheme.mode").int;
 		let customThemeMode;
 
 		if (customThemeModePref <= 0)
@@ -263,11 +261,9 @@ class gkLWTheme {
 	static setCustomThemeModeAttrs() {
 		if (typeof docElm !== "undefined") {	
 			setTimeout(() => {
-				docElm.setAttribute("lwtheme-id", pref("extensions.activeThemeID").tryGet.string());
-
-				console.log("b", pref("extensions.activeThemeID").tryGet.string())
-
-				const isChromeTheme = pref("Geckium.chrTheme.status").tryGet.bool();
+				docElm.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
+				
+				const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 				if (!isChromeTheme) {
 					const customThemeModePref = gkLWTheme.getCustomThemeMode;
 					switch (customThemeModePref) {
@@ -283,9 +279,9 @@ class gkLWTheme {
 					}
 					docElm.setAttribute("customthememode", customThemeModePref);
 
-					const isDefaultLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("default-theme");
-					const isDefaultLightDarkLWTheme = pref("extensions.activeThemeID").tryGet.string().includes("firefox-compact");
-					const isGTKPlus = pref("extensions.activeThemeID").tryGet.string().includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
+					const isDefaultLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
+					const isDefaultLightDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
+					const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
 
 					if (isDefaultLWTheme || isDefaultLightDarkLWTheme || isGTKPlus) {
 						gkLWTheme.classicWindowFrame.disable();
@@ -319,14 +315,14 @@ function changePrivateBadgePos() {
 			const privateBrowsingIndicatorWithLabel = document.getElementById("private-browsing-indicator-with-label");
 			const titlebarSpacer = document.querySelector(".titlebar-spacer");
 	
-			insertBefore(privateBrowsingIndicatorWithLabel, titlebarSpacer);
+			gkInsertElm.before(privateBrowsingIndicatorWithLabel, titlebarSpacer);
 		}
 	}
 }
 window.addEventListener("load", changePrivateBadgePos);
 
 function customThemeColorizeTabGlare() {
-	docElm.setAttribute("customthemecolorizetabglare", pref("Geckium.appearance.customThemeColorizeTabGlare").tryGet.bool())
+	docElm.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool)
 }
 const customThemeModeObserver = {
 	observe: function (subject, topic, data) {
@@ -342,7 +338,7 @@ Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, 
 Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customThemeModeObserver, false);
 
 function enableMoreGTKIcons() {
-	docElm.setAttribute("moregtkicons", pref("Geckium.appearance.moreGTKIcons").tryGet.bool());
+	docElm.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);
 }
 window.addEventListener("load", enableMoreGTKIcons);
 const moreGTKIconsObserver = {

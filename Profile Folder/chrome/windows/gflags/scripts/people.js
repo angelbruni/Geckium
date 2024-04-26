@@ -1,7 +1,7 @@
 function updateProfilePictureSettingsState() {
 	const container = document.getElementById("profile-pic-content");
 
-	container.setAttribute("profile-pic-button", pref("Geckium.profilepic.button").tryGet.bool())
+	container.setAttribute("profile-pic-button", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
 }
 const profilePictureStateObserver = {
 	observe: function (subject, topic, data) {
@@ -29,7 +29,7 @@ function updateProfilePictures() {
 		pfPRadio.dataset.index = i;
 
 		pfPRadio.addEventListener("click", () => {
-			pref("Geckium.profilepic.chromiumIndex").set.int(i);
+			gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(i);
 		})
 
 		const pfPImage = document.createXULElement("image");
@@ -39,7 +39,7 @@ function updateProfilePictures() {
 		gridPfPs.appendChild(pfPRadio);
 	}
 
-	document.querySelector(`input.people-picture[data-index="${pref("Geckium.profilepic.chromiumIndex").tryGet.int()}"]`).checked = true;
+	document.querySelector(`input.people-picture[data-index="${gkPrefUtils.tryGet("Geckium.profilepic.chromiumIndex").int}"]`).checked = true;
 
 	menu.addEventListener("change", updateProfilePictures);
 }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", updateProfilePictures);
 function updateProfilePictureChoiceOption() {
 	const container = document.getElementById("card-avatar");
 
-	container.setAttribute("profile-pic-mode", pref("Geckium.profilepic.mode").tryGet.int());
+	container.setAttribute("profile-pic-mode", gkPrefUtils.tryGet("Geckium.profilepic.mode").int);
 }
 const profilePictureObserver = {
 	observe: function (subject, topic, data) {

@@ -10,13 +10,13 @@ function hideUnifiedExtensionsButton() {
 	//const navBarCustomizationTarget = document.getElementById("nav-bar-customization-target");
 	const urlbarBackground = document.getElementById("urlbar-background");
 
-	if (pref("Geckium.unifiedExtensions.hide").tryGet.bool()) {
+	if (gkPrefUtils.tryGet("Geckium.unifiedExtensions.hide").bool) {
 		navBar.setAttribute("unifiedextensions", "hide");
-		insertAfter(unifiedExtensionsButton, urlbarBackground);
+		gkInsertElm.after(unifiedExtensionsButton, urlbarBackground);
 		
 	} else {
 		navBar.removeAttribute("unifiedextensions");
-		insertBefore(unifiedExtensionsButton, document.getElementById("page-button"))
+		gkInsertElm.after(unifiedExtensionsButton, document.getElementById("page-button"))
 	}
 }
 

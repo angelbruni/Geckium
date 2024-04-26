@@ -64,7 +64,7 @@ async function populateChrThemesList() {
 		})
 	})
 
-	chrThemesList.querySelector(`label.item[data-theme-name="${pref("Geckium.chrTheme.fileName").tryGet.string()}"] input[type="radio"]`).checked = true;
+	chrThemesList.querySelector(`label.item[data-theme-name="${gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string}"] input[type="radio"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
 
