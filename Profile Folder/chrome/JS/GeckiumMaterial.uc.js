@@ -8,7 +8,7 @@
 function openZoo() {
 	const url = "about:gmzoo";
 
-	if (pref("Geckium.gmWindow.newTab").tryGet.bool()) {
+	if (gkPrefUtils.tryGet("Geckium.gmWindow.newTab").bool) {
 		openTrustedLinkIn(url, "tab")
 	} else {
 		for (let win of Services.wm.getEnumerator("geckiummaterial:zoo")) {
@@ -63,7 +63,7 @@ function openGWizard() {
 function openGFlags(mode) {
 	const url = "about:gflags";
 
-	if (pref("Geckium.gmWindow.newTab").tryGet.bool() && mode !== "wizard") {
+	if (gkPrefUtils.tryGet("Geckium.gmWindow.newTab").bool && mode !== "wizard") {
 		openTrustedLinkIn(url, "tab")
 	} else {
 		for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {

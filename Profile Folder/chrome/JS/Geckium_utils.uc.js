@@ -6,81 +6,11 @@
 // @include     *
 // ==/UserScript==
 
+const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
+
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml";
 
-var prefType = {
-	appearance: "Geckium.appearance."
-}
-
-var prefMap = {
-	appearance: prefType.appearance + "choice"
-}
-
 var docElm = document.documentElement;
-
-function setAttributes(elm, attrs) {
-	for (var key in attrs) {
-		elm.setAttribute(key, attrs[key]);
-	}
-}
-
-function insertBefore(newNode, existingNode) {
-	existingNode.parentNode.insertBefore(newNode, existingNode);
-}
-
-function insertAfter(newNode, existingNode) {
-	existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-}
-
-function pref(prefName) {
-    return {
-        set: {
-            bool: function(value) { 
-				Services.prefs.setBoolPref(prefName, value);
-			},
-            int: function(value) { 
-				Services.prefs.setIntPref(prefName, value);
-			},
-            string: function(string) { 
-				Services.prefs.setStringPref(prefName, string);
-			}
-        },
-        tryGet: {
-            bool: function() {
-				try {
-					return Services.prefs.getBoolPref(prefName);
-				} catch (e) {
-					//console.log('Setting not found: ', e)
-					return false;
-				}
-			},
-            int: function() {
-				try {
-					return parseInt(Services.prefs.getIntPref(prefName));
-				} catch (e) {
-					//console.log('Setting not found: ', e)
-					return 0;
-				}
-			},
-            string: function() {
-				try {
-					return Services.prefs.getStringPref(prefName);
-				} catch (e) {
-					//console.log('Setting not found: ', e)
-					return "";
-				}
-			}
-        },
-		toggle: {
-			bool: function () {
-				if (pref(prefName).tryGet.bool() == true)
-					pref(prefName).set.bool(false);
-				else
-					pref(prefName).set.bool(true);
-			}
-		}
-    }
-};
 
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);
@@ -97,13 +27,13 @@ window.addEventListener("TabAttrModified", updateZoomLabel);
 function bookmarksBarStatus() {
 	const alwaysShowBookmarksBar = document.getElementById('menu_alwaysShowBookmarksBar5');
 
-	if (pref('browser.toolbars.bookmarks.visibility').tryGet.string() == 'always') {
-		setAttributes(alwaysShowBookmarksBar, {
+	if (gkPrefUtils.tryGet("browser.toolbars.bookmarks.visibility").string == 'always') {
+		gkSetAttributes(alwaysShowBookmarksBar, {
 			"checked": true,
 			"data-visibility-enum": "newtab",
 		})
 	} else {
-		setAttributes(alwaysShowBookmarksBar, {
+		gkSetAttributes(alwaysShowBookmarksBar, {
 			"checked": false,
 			"data-visibility-enum": "always",
 		})
@@ -113,13 +43,13 @@ function bookmarksBarStatus() {
 
 	const menuShowBookmarks = document.getElementById('menu_showBookmarks');
 
-	if (pref('browser.toolbars.bookmarks.visibility').tryGet.string() == 'always') {
-		setAttributes(menuShowBookmarks, {
+	if (gkPrefUtils.tryGet('browser.toolbars.bookmarks.visibility').string == 'always') {
+		gkSetAttributes(menuShowBookmarks, {
 			"checked": true,
 			"data-visibility-enum": "newtab",
 		})
 	} else {
-		setAttributes(menuShowBookmarks, {
+		gkSetAttributes(menuShowBookmarks, {
 			"checked": false,
 			"data-visibility-enum": "always",
 		})

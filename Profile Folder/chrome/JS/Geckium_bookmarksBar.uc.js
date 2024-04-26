@@ -5,7 +5,7 @@
 // ==/UserScript==
 
 function applyBookmarkAttr() {
-	const bookmarkBarPref = pref("browser.toolbars.bookmarks.visibility").tryGet.string();
+	const bookmarkBarPref = gkPrefUtils.tryGet("browser.toolbars.bookmarks.visibility").string;
 
 	docElm.setAttribute("personalbar", bookmarkBarPref);
 }

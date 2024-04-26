@@ -6,9 +6,9 @@
 
 function setProfilePic() {
 	const attr = "profilepic";
-	const prefSetting = pref("Geckium.profilepic.mode").tryGet.int();
+	const prefSetting = gkPrefUtils.tryGet("Geckium.profilepic.mode").int;
 
-	docElm.setAttribute("profilepicbutton", pref("Geckium.profilepic.button").tryGet.bool())
+	docElm.setAttribute("profilepicbutton", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
 
 	switch (prefSetting) {
 		case 0:
@@ -16,14 +16,14 @@ function setProfilePic() {
 			break;
 		case 1:
 			docElm.setAttribute(attr, "chromium");
-			docElm.setAttribute("profilepicchromium", pref("Geckium.profilepic.chromiumIndex").tryGet.int());
+			docElm.setAttribute("profilepicchromium", gkPrefUtils.tryGet("Geckium.profilepic.chromiumIndex").int);
 			break;
 		case 2:
 			docElm.setAttribute(attr, "firefox");
 			break;
 		case 3:
 			docElm.setAttribute(attr, "custom");
-			docElm.style.setProperty("--custom-profile-picture", "url(file:///" + pref('Geckium.profilepic.customPath').tryGet.string().replace(/\\/g, "/").replace(" ", "%20") + ")");
+			docElm.style.setProperty("--custom-profile-picture", "url(file:///" + gkPrefUtils.tryGet("Geckium.profilepic.customPath").string.replace(/\\/g, "/").replace(" ", "%20") + ")");
 			break;
 	}
 }

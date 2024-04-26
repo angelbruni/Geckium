@@ -1,12 +1,12 @@
 function setUpApps() {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 
@@ -19,7 +19,7 @@ function setUpApps() {
 	let type;
 	let url;
 
-	const appsList = JSON.parse(pref("Geckium.newTabHome.appsList").tryGet.string());
+	const appsList = JSON.parse(gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string);
 	const appsListArray = Object.values(appsList);
 	appsListArray.sort((a, b) => a.pos - b.pos);
 

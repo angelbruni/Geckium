@@ -8,7 +8,7 @@ function loadWizard() {
 	if (unsupportedForks[forkName])
 		return;
 
-	if (!pref("Geckium.firstRun.complete").tryGet.bool())
+	if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool)
 		openGSplash();
 }
 

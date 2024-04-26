@@ -109,14 +109,14 @@ function updateFlags() {
 		const multipleSelect = flagItem.querySelector("select");
 
 		if (toggleBtn) {
-			if (pref(flag).tryGet.bool())
+			if (gkPrefUtils.tryGet(flag).bool)
 				toggleBtn.setAttribute("label", "Disable")
 			else
 				toggleBtn.setAttribute("label", "Enable")
 		} else if (multipleSelect) {
-			multipleSelect.value = pref(flag).tryGet.int();
+			multipleSelect.value = gkPrefUtils.tryGet(flag).int;
 
-			console.log(flag, pref(flag).tryGet.int(), multipleSelect, multipleSelect.value)
+			console.log(flag, gkPrefUtils.tryGet(flag).int, multipleSelect, multipleSelect.value)
 		}
 	})
 }
@@ -136,16 +136,16 @@ function setUpExperiments() {
 			
 
 			if (experiment.type == "ntp") {
-				switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+				switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 					case "forced":
-						appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+						appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 						break;
 					default:
-						appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+						appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 						break;
 				}
 			} else {
-				appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+				appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			}
 
 			console.log(key, experiment.type, appearanceChoice, experiment.from, experiment.to)
@@ -198,7 +198,7 @@ function setUpExperiments() {
                 // Add event listener to toggle experiment based on button click
                 waitForElm("button#toggle-" + key).then(function() {
                     document.querySelector("button#toggle-" + key).addEventListener("click", () => {
-                        pref("Geckium.crflag." + key.replace(/-/g, ".")).toggle.bool();
+                        gkPrefUtils.toggle("Geckium.crflag." + key.replace(/-/g, ".")).bool();
 
 						updateFlags();
                     });

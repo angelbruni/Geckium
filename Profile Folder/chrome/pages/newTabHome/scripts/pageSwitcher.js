@@ -1,12 +1,12 @@
 function setUpPages() {
 	let appearanceChoice;
 
-	switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 		case "forced":
-			appearanceChoice = pref("Geckium.newTabHome.style").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 			break;
 		default:
-			appearanceChoice = pref("Geckium.appearance.choice").tryGet.int();
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			break;
 	}
 
@@ -21,7 +21,7 @@ function setUpPages() {
 
 		let tabItems = document.querySelectorAll("#dot-list > .dot");
 
-		const defaultTab = pref("Geckium.newTabHome.defaultTab").tryGet.int();
+		const defaultTab = gkPrefUtils.tryGet("Geckium.newTabHome.defaultTab").int;
 
 		/*pages.forEach((page, index) => {
 			page.setAttribute("data-page", index);
@@ -131,9 +131,9 @@ function switchTab(direction, static, id) {
 	updateDots();
 	
 	if (id !== 0)
-		pref("Geckium.newTabHome.defaultTab").set.int(desiredTab);
+		gkPrefUtils.set("Geckium.newTabHome.defaultTab").int(desiredTab);
 	else
-		pref("Geckium.newTabHome.defaultTab").set.int(0);
+		gkPrefUtils.set("Geckium.newTabHome.defaultTab").int(0);
 }
 
 function updateDots() {

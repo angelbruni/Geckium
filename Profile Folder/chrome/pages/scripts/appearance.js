@@ -3,16 +3,16 @@ function appearance() {
 	let prefChoice;
 
 	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-		switch (pref("Geckium.newTabHome.styleMode").tryGet.string()) {
+		switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
 			case "forced":
-				prefChoice = pref("Geckium.newTabHome.style").tryGet.int();
+				prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 				break;
 			default:
-				prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 				break;
 		}
 	} else {
-		prefChoice = pref("Geckium.appearance.choice").tryGet.int();
+		prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 	}
 	
 	if (!prefChoice)

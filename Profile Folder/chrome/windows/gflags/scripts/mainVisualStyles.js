@@ -46,11 +46,11 @@ function insertMainVisualStyles() {
 	// Set the innerHTML of the container to the constructed HTML
 	container.appendChild(MozXULElement.parseXULToFragment(chromeAppearanceCard))
 
-	document.querySelector(`#appearance-container input[data-appearance="${pref("Geckium.appearance.choice").tryGet.int()}"]`).checked = true;
+	document.querySelector(`#appearance-container input[data-appearance="${gkPrefUtils.tryGet("Geckium.appearance.choice").int}"]`).checked = true;
 
 	document.querySelectorAll(`#appearance-container input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
-			pref("Geckium.appearance.choice").set.int(appearance.dataset.appearance);
+			gkPrefUtils.set("Geckium.appearance.choice").int(appearance.dataset.appearance);
 		})
 	})
 }

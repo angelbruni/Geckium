@@ -44,11 +44,11 @@ function insertNTPVisualStyles() {
 	// Set the innerHTML of the container to the constructed HTML
 	container.appendChild(MozXULElement.parseXULToFragment(chromeAppearanceCard))
 
-	document.querySelector(`#ntp-visual-styles-grid input[data-appearance="${pref("Geckium.newTabHome.style").tryGet.int()}"]`).checked = true;
+	document.querySelector(`#ntp-visual-styles-grid input[data-appearance="${gkPrefUtils.tryGet("Geckium.newTabHome.style").int}"]`).checked = true;
 
 	document.querySelectorAll(`#ntp-visual-styles-grid input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
-			pref("Geckium.newTabHome.style").set.int(appearance.dataset.appearance);
+			gkPrefUtils.set("Geckium.newTabHome.style").int(appearance.dataset.appearance);
 		})
 	})
 }

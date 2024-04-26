@@ -22,8 +22,8 @@ function setThumbnailResolution() {
 
 	const browserPage = document.querySelector(".browserStack > browser");
 
-	pref("toolkit.pageThumbs.minWidth").set.int(browserPage.clientWidth);
-	pref("toolkit.pageThumbs.minHeight").set.int(browserPage.clientHeight);
+	gkPrefUtils.set("toolkit.pageThumbs.minWidth").int(browserPage.clientWidth);
+	gkPrefUtils.set("toolkit.pageThumbs.minHeight").int(browserPage.clientHeight);
 }
 addEventListener("resize", setThumbnailResolution);
 

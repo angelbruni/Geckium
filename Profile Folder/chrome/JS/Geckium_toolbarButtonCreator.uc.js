@@ -55,10 +55,10 @@ function createMenu(id, delegatesanchor, label, tooltip, removable, overflows, a
 	
 	toolbarButton.setAttribute("type", "menu");
 
-	const menuPopUp = document.createXULElement("menupopup")
-	setAttributes(menuPopUp, {
-		"id": parentID,
-		"position": position
+	const menuPopUp = document.createXULElement("menupopup");
+	gkSetAttributes(menuPopUp, {
+		id: parentID,
+		position: position,
 	});
 	
 	toolbarButton.appendChild(menuPopUp);
@@ -201,9 +201,9 @@ function createMenuItemFromObject(parentID, object, adjustAccelTextWidth) {
 	if (parent.tagName == "menupopup") {
 		parent.addEventListener("popupshowing", adjustAccelText)
 		if (object.properties) {
-			setAttributes(parent, {
-				"onpopupshowing": object.properties.onpopup,
-				"onpopuphidden": object.properties.onpopup,
+			gkSetAttributes(parent, {
+				onpopupshowing: object.properties.onpopup,
+				onpopuphidden: object.properties.onpopup,
 			});
 		}
 	}
