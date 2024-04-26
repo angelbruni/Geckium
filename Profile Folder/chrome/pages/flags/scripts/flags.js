@@ -136,8 +136,8 @@ function setUpExperiments() {
 			
 
 			if (experiment.type == "ntp") {
-				switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
-					case "forced":
+				switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
+					case true:
 						appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 						break;
 					default:

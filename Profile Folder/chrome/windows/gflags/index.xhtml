@@ -173,7 +173,7 @@
 											</h4>
 											<vbox class="card">
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
 											<h4>
@@ -233,6 +233,21 @@
 												Visual Styles
 											</h4>
 											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Override global style</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.main.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid class="disable-in-wizard" id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+											</vbox>
+											<!--<vbox class="card">
 												<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
 														<label class="name" style="font-weight: 500">Main interface settings were moved to Global tab for the time being</label>
@@ -246,7 +261,7 @@
 														<div class="icon" />
 													</hbox>
 												</html:button>
-											</vbox>
+											</vbox>-->
 											<h4>
 												Classic Window Frame
 											</h4>
@@ -353,17 +368,13 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Visual Style Mode</label>
+														<label class="name">Override global style</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="ntp-styleMode" data-pref="newTabHome.styleMode" id="ntp-styleMode-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">Automatic</hbox>
-															<hbox class="item ripple-enabled" value="forced">Force</hbox>
-														</vbox>
-													</html:button>
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
 												</hbox>
 												<vbox class="item" flex="1">
 													<h4>Forced Style</h4>
@@ -849,6 +860,7 @@
 
 	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
 
+	<script src="chrome://userchrome/content/windows/gflags/scripts/globalVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
