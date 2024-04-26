@@ -3,6 +3,9 @@
 // @author		AngelBruni
 // @description	Settings the desired appearance chosen by the user accordingly.
 // @loadorder   2
+// @include		main
+// @include		about:preferences
+// @include		about:addons
 // ==/UserScript==
 
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
@@ -145,6 +148,9 @@ class gkVisualStyles {
 					prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 					break;
 			}
+		} else if (document.URL == "about:preferences" || document.URL == "about:addons") {
+			// Prepare setting for forcing the style for these pages individually
+			prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 		} else {
 			prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 		}
