@@ -82,9 +82,9 @@ class chrTheme {
     }
 
 	static removeProperties() {
-		Array.from(getComputedStyle(docElm)).forEach(propertyName => {
+		Array.from(getComputedStyle(document.documentElement)).forEach(propertyName => {
 			if (propertyName.startsWith('--chrt')) {
-				docElm.style.removeProperty(propertyName);
+				document.documentElement.style.removeProperty(propertyName);
 			}
 		});
 	}
@@ -119,7 +119,7 @@ class chrTheme {
 
 			gkPrefUtils.set("Geckium.chrTheme.fileName").string(crx);
 			const chrThemeFileName = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
-			docElm.setAttribute("chrtheme-file", chrThemeFileName);
+			document.documentElement.setAttribute("chrtheme-file", chrThemeFileName);
 
 			chrTheme.removeProperties();
 
@@ -137,7 +137,7 @@ class chrTheme {
 
 					// Convert images to CSS custom properties
 					Object.entries(theme.theme.images).map(([key, value]) => {
-						docElm.style.setProperty(`${setStyleProperty(key)}`, `url('${file}/${value}')`);
+						document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `url('${file}/${value}')`);
 					}).join('\n');
 
 					if (isBrowserWindow) {
@@ -159,22 +159,22 @@ class chrTheme {
 						var img = new Image();
 						img.src = imagePath;
 						img.onload = function() {
-							docElm.style.setProperty("--chrt-theme-ntp-attribution-width", `${this.width}px`);
-							docElm.style.setProperty("--chrt-theme-ntp-attribution-height", `${this.height}px`);
+							document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-width", `${this.width}px`);
+							document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-height", `${this.height}px`);
 						};
 					}
 					
 					// Convert colors to CSS custom properties
 					if (theme.theme.colors) {
 						Object.entries(theme.theme.colors).map(([key, value]) => {
-							docElm.style.setProperty(`${setStyleProperty(key)}`, `rgb(${value.join(', ')})`);
+							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `rgb(${value.join(', ')})`);
 						}).join('\n');
 					}
 
 					// Convert properties to CSS custom properties
 					if (theme.theme.properties) {
 						Object.entries(theme.theme.properties).map(([key, value]) => {
-							docElm.style.setProperty(`${setStyleProperty(key)}`, value);
+							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, value);
 						}).join('\n');
 					}
 
@@ -182,11 +182,11 @@ class chrTheme {
 					if (theme.theme.tints) {
 						Object.entries(theme.theme.tints).map(([key, value]) => {
 							const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
-							docElm.style.setProperty(`${setStyleProperty("tints-" + key)}`, `hsl(${percentageValue.join(' ')})`);
+							document.documentElement.style.setProperty(`${setStyleProperty("tints-" + key)}`, `hsl(${percentageValue.join(' ')})`);
 						}).join('\n');
 					}
 
-					docElm.setAttribute("chrtheme", chrThemeStatus);
+					document.documentElement.setAttribute("chrtheme", chrThemeStatus);
 				});
 		}, 0);
 	}
@@ -195,7 +195,7 @@ class chrTheme {
 		gkPrefUtils.set("Geckium.chrTheme.status").bool(false);
 
 		const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
-		docElm.setAttribute("chrtheme", chrThemeStatus);
+		document.documentElement.setAttribute("chrtheme", chrThemeStatus);
 
 		if (isBrowserWindow)
 			gkLWTheme.classicWindowFrame.disable();

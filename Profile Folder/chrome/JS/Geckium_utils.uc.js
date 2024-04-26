@@ -10,8 +10,6 @@ const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule
 
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml";
 
-var docElm = document.documentElement;
-
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);
 }

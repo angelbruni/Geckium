@@ -84,9 +84,66 @@
 	}
 }
 
+&[geckium-choice="four"],
 &[geckium-choice="five"],
 &[geckium-choice="six"] {
 	#recently-closed {
-		padding-block: 5px;
+		box-sizing: unset;
+		background-color: var(--recently-closed-background);
+		border: 1px solid var(--recently-closed-border-color);
+		border-radius: 5px;
+		margin-block-start: 34px;
+		padding-block: 3px;
+		padding-inline: 10px;
+		align-items: center;
+		font-size: 10pt;
+		color: var(--recently-closed-color);
+		height: 24px;
+		gap: 20px;
+	
+		> label:first-child {
+			font-weight: bold;
+		}
+	
+		.items {
+			gap: 20px;
+		}
+	
+		.item {
+			all: unset;
+			display: flex;
+			max-width: 114px;
+			align-items: center;
+			-moz-context-properties: fill, fill-opacity;
+			fill: var(--recently-closed-item-color);
+			color: var(--recently-closed-item-color);
+			text-decoration: underline;
+			cursor: pointer;
+	
+			&#nav {
+				image {
+					display: none;
+				}
+	
+				label {
+					&::after {
+						content: "\00bb";
+						margin-inline-start: 2px;
+					}
+				}
+			}
+	
+			image {
+				width: 16px;
+				height: 16px;
+				margin-right: 2px;
+			}
+	
+			label {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
 	}
 }

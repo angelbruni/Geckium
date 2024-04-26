@@ -140,7 +140,7 @@ function createTile(website) {
 			// Replace special characters with their corresponding HTML entities.
 			const title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice <= 2) {
+			if (appearanceChoice <= 3) {
 				tile = `
 				<html:a class="thumbnail-container" href="${website.url}">
 					<vbox class="edit-mode-border">
@@ -166,7 +166,7 @@ function createTile(website) {
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 				thumbnail = ".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper";
-			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+			} else if (appearanceChoice == 4 || appearanceChoice == 5) {
 				for (const key in websiteColors) {
 					const websiteURL = website.url.toLowerCase();
 
@@ -238,7 +238,7 @@ function createTile(website) {
 				})
 			});
 
-			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 5)) {
+			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 6)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < numTiles; i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
@@ -246,7 +246,7 @@ function createTile(website) {
 				});
 			}
         } else {
-			if (appearanceChoice <= 2) {
+			if (appearanceChoice <= 3) {
 				tile = `
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
@@ -267,7 +267,7 @@ function createTile(website) {
 					</html:div>
 				</html:a>
 				`
-			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+			} else if (appearanceChoice == 4 || appearanceChoice == 5) {
 				tile = `
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
@@ -314,11 +314,11 @@ function populateRecentSitesGrid() {
 
 	let mostViewed;
 
-	if (appearanceChoice <= 1)
+	if (appearanceChoice <= 2)
 		mostViewed = "#most-visited";
-	else if (appearanceChoice == 2)
+	else if (appearanceChoice == 3)
 		mostViewed = "#most-viewed-content";
-	else if (appearanceChoice == 3 || appearanceChoice == 4)
+	else if (appearanceChoice == 4 || appearanceChoice == 5)
 		mostViewed = "#most-visited-page .tile-grid";
 	else
 		mostViewed = "#mv-tiles";

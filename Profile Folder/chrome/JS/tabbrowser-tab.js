@@ -93,7 +93,8 @@
 
 		static get inheritedAttributes() {
 			return {
-				".tab-background": "selected=visuallyselected,fadein,multiselected",
+				".tab-background":
+					"selected=visuallyselected,fadein,multiselected",
 				".tab-line": "selected=visuallyselected,multiselected",
 				".tab-loading-burst": "pinned,bursting,notselectedsinceload",
 				".tab-content":
@@ -106,7 +107,8 @@
 					"fadein,pinned,busy,progress,selected=visuallyselected,pendingicon",
 				".tab-icon-image":
 					"src=image,triggeringprincipal=iconloadingprincipal,requestcontextid,fadein,pinned,selected=visuallyselected,busy,crashed,sharing,pictureinpicture",
-				".tab-sharing-icon-overlay": "sharing,selected=visuallyselected,pinned",
+				".tab-sharing-icon-overlay":
+					"sharing,selected=visuallyselected,pinned",
 				".tab-icon-overlay":
 					"sharing,pictureinpicture,crashed,busy,soundplaying,soundplaying-scheduledremoval,pinned,muted,blocked,selected=visuallyselected,activemedia-blocked,indicator-replaces-favicon",
 				".tab-label-container":
@@ -255,7 +257,9 @@
 		}
 
 		get lastAccessed() {
-			return this._lastAccessed == Infinity ? Date.now() : this._lastAccessed;
+			return this._lastAccessed == Infinity
+				? Date.now()
+				: this._lastAccessed;
 		}
 
 		get _overPlayingIcon() {
@@ -292,7 +296,10 @@
 
 		updateLastUnloadedByTabUnloader() {
 			this._lastUnloaded = Date.now();
-			Services.telemetry.scalarAdd("browser.engagement.tab_unload_count", 1);
+			Services.telemetry.scalarAdd(
+				"browser.engagement.tab_unload_count",
+				1
+			);
 		}
 
 		recordTimeFromUnloadToReload() {
@@ -557,10 +564,15 @@
 				l10nID
 			);
 
-			const tooltipEl = this.querySelector(".tab-icon-sound-tooltip-label");
+			const tooltipEl = this.querySelector(
+				".tab-icon-sound-tooltip-label"
+			);
 
 			if (l10nArgs) {
-				tooltipEl.setAttribute("data-l10n-args", JSON.stringify(l10nArgs));
+				tooltipEl.setAttribute(
+					"data-l10n-args",
+					JSON.stringify(l10nArgs)
+				);
 			} else {
 				tooltipEl.removeAttribute("data-l10n-args");
 			}
@@ -578,9 +590,15 @@
 			}
 
 			if (
-				!TelemetryStopwatch.running("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this)
+				!TelemetryStopwatch.running(
+					"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+					this
+				)
 			) {
-				TelemetryStopwatch.start("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this);
+				TelemetryStopwatch.start(
+					"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+					this
+				);
 			}
 
 			if (this._hoverTabTimer) {
@@ -600,9 +618,15 @@
 			// remove it if we get "mouseover" within very short period.
 			this._hoverTabTimer = setTimeout(() => {
 				if (
-					TelemetryStopwatch.running("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this)
+					TelemetryStopwatch.running(
+						"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+						this
+					)
 				) {
-					TelemetryStopwatch.cancel("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this);
+					TelemetryStopwatch.cancel(
+						"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+						this
+					);
 				}
 			}, 100);
 		}
@@ -610,9 +634,15 @@
 		finishUnselectedTabHoverTimer() {
 			// Stop timer when the tab is opened.
 			if (
-				TelemetryStopwatch.running("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this)
+				TelemetryStopwatch.running(
+					"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+					this
+				)
 			) {
-				TelemetryStopwatch.finish("HOVER_UNTIL_UNSELECTED_TAB_OPENED", this);
+				TelemetryStopwatch.finish(
+					"HOVER_UNTIL_UNSELECTED_TAB_OPENED",
+					this
+				);
 			}
 		}
 
@@ -656,7 +686,10 @@
 		setUserContextId(aUserContextId) {
 			if (aUserContextId) {
 				if (this.linkedBrowser) {
-					this.linkedBrowser.setAttribute("usercontextid", aUserContextId);
+					this.linkedBrowser.setAttribute(
+						"usercontextid",
+						aUserContextId
+					);
 				}
 				this.setAttribute("usercontextid", aUserContextId);
 			} else {

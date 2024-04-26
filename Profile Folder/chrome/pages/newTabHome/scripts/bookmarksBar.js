@@ -1,7 +1,7 @@
 function applyBookmarkAttr() {;
 	const bookmarkBarPref = gkPrefUtils.tryGet("browser.toolbars.bookmarks.visibility").string;
 
-	docElm.setAttribute("pref", bookmarkBarPref);
+	document.documentElement.setAttribute("pref", bookmarkBarPref);
 }
 
 const bookmarkBarPrefObserver = {

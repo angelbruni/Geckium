@@ -7,7 +7,7 @@
 function applyBookmarkAttr() {
 	const bookmarkBarPref = gkPrefUtils.tryGet("browser.toolbars.bookmarks.visibility").string;
 
-	docElm.setAttribute("personalbar", bookmarkBarPref);
+	document.documentElement.setAttribute("personalbar", bookmarkBarPref);
 }
 
 const bookmarkBarPrefObserver = {

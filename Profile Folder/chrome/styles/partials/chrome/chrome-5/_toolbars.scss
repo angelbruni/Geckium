@@ -613,11 +613,11 @@
 
 		#browser,
 		#customization-container {
-			
-			border-left: none;
-			border-right: none;
-			border-bottom: none;
   			
+			border-left: none !important;
+			border-right: none !important;
+			border-bottom: none !important;
+			margin: 0 !important;
   			
 		}
 	}
@@ -628,6 +628,7 @@
 		}
 	}
 
+	&[geckium-choice="four"],
 	&[geckium-choice="five"],
 	&[geckium-choice="six"] {
 		.toolbarbutton-1:not(#fxa-toolbar-menu-button,#tabs-newtab-button,#new-tab-button) {
@@ -679,6 +680,7 @@
 		--personal-toolbar: rgb(210, 225, 246) !important;
 		--personal-toolbar-border: rgb(172, 201, 238) !important;
 
+		&[geckium-choice="four"],
 		&[geckium-choice="five"],
 		&[geckium-choice="six"],
 		&[geckium-choice="eleven"],
@@ -1102,8 +1104,8 @@ toolbarspring {
 	
 	&#go-button-box {
 		margin: 0 !important;
-		border-top-left-radius: 0 !important;
-		border-bottom-left-radius: 0 !important;
+		
+		
 		margin-left: auto !important;
 		
 		&::before,
@@ -1116,6 +1118,13 @@ toolbarspring {
 			&::after {
 				border-top-left-radius: 0 !important;
 				border-bottom-left-radius: 0 !important;
+				margin-left: auto !important;
+
+				&::before,
+				&::after {
+					border-top-left-radius: 0 !important;
+					border-bottom-left-radius: 0 !important;
+				}
 			}
 		}
 	}

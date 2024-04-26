@@ -18,17 +18,17 @@ function changeGoButton() {
 		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
 		goButtonBox.appendChild(goButton);
 
-		if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 0) {
+		if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 1) {
 			urlbarContainer.appendChild(goButtonBox);
-		} else if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 5) {
+		} else if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 6) {
 			urlbarInputContainer.appendChild(goButtonBox);
 		}
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
-		if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 0) {
+		if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 1) {
 			urlbarContainer.appendChild(goButtonBox);
-		} else if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 5) {
+		} else if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 6) {
 			urlbarInputContainer.appendChild(goButtonBox);
 		}
 	}
@@ -43,21 +43,27 @@ function styleURLBar() {
 	const pageActionButtons = document.getElementById("page-action-buttons");
 	const urlbarLabelBox = document.getElementById("urlbar-label-box");
 
-	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 0) {
+	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 1) {
 		waitForElm("#page-action-buttons > #star-button-box").then(function() {
-			urlbarContainer.setAttribute("starpos", "start");
-			gkInsertElm.before(starButtonBox, urlbar);
-			starButtonBox.classList.add("toolbarbutton-1");
-			gkInsertElm.after(identityBox, pageActionButtons)
+			if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 1) {
+				urlbarContainer.setAttribute("starpos", "start");
+				gkInsertElm.before(starButtonBox, urlbar);
+				starButtonBox.classList.add("toolbarbutton-1");
+				gkInsertElm.after(identityBox, pageActionButtons)
+
+				console.log(gkPrefUtils.tryGet("Geckium.appearance.choice").int, urlbarContainer, starButtonBox, urlbar, identityBox, pageActionButtons)
+			}
 		});
 	} else {
 		urlbarContainer.setAttribute("starpos", "end");
 		gkInsertElm.after(starButtonBox, pageActionButton);
 		starButtonBox.classList.remove("toolbarbutton-1");
 		gkInsertElm.before(identityBox, urlbarLabelBox);
+
+		console.log(gkPrefUtils.tryGet("Geckium.appearance.choice").int, urlbarContainer, starButtonBox, urlbar, identityBox, pageActionButtons)
 	}
 
-	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int == 0 || gkPrefUtils.tryGet("Geckium.appearance.choice").int == 5) {
+	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 1 || gkPrefUtils.tryGet("Geckium.appearance.choice").int == 6) {
 		waitForElm("#page-action-buttons").then(changeGoButton);
 	}
 }
