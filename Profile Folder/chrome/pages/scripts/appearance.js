@@ -3,8 +3,8 @@ function appearance() {
 	let prefChoice;
 
 	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-		switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
-			case "forced":
+		switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
+			case true:
 				prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 				break;
 			default:
@@ -47,5 +47,7 @@ const appearanceObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObs, false);
-Services.prefs.addObserver("Geckium.newTabHome.styleMode", appearanceObs, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObs, false);
+Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
+Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);

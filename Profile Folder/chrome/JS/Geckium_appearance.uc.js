@@ -80,7 +80,7 @@ class gkVisualStyles {
 				int: 4,
 				year: [2008, 2010],
 				number: "four",
-				styles: ["chrome", "page"],
+				styles: ["page"],
 			},
 			{
 				id: 1,
@@ -158,8 +158,8 @@ class gkVisualStyles {
 			let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 
 			if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
-				switch (gkPrefUtils.tryGet("Geckium.newTabHome.styleMode").string) {
-					case "forced":
+				switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
+					case true:
 						prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
 						break;
 					default:
@@ -170,7 +170,14 @@ class gkVisualStyles {
 				// Prepare setting for forcing the style for these pages individually
 				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			} else {
-				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+				switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
+					case true:
+						prefChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+						break;
+					default:
+						prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+						break;
+				}
 			}
 
 			if (!prefChoice)
@@ -332,6 +339,8 @@ const appearanceObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserver, false);
+Services.prefs.addObserver("Geckium.main.style", appearanceObserver, false);
 Services.prefs.addObserver("Geckium.appearance.forceClassicTheme", appearanceObserver, false);
 
 function changePrivateBadgePos() {
