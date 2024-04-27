@@ -252,59 +252,107 @@ h4 {
 	padding-inline: 10px;
 	width: calc(50% - 20px);
 }
-.item.chrtheme {
-	position: relative;
-	display: block;
-	cursor: pointer !important;
-	padding-inline: 10px;
+.item {
+	&.app {
+		padding-block: 6px;
 
-	.banner {
-		padding: 0 !important;
-		margin-inline: -19px;
+		image {
+			width: 48px;
+			height: 48px;
+			margin-inline-start: -8px;
+		}
 
-		height: 150px;
-		background-color: rgb(0, 0, 0, 10%);
-	}
-
-	.icon {
-		margin-inline-end: 16px;
-		width: 48px;
-		height: 48px;
-
-		&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
-			filter: saturate(0);
-			fill: #209f43;
-			-moz-context-properties: fill, fill-opacity;
-			opacity: .5;
+		label {
+			margin-inline-start: 8px;
 		}
 	}
 
-	.name, .description {
+	&.chrtheme {
+		position: relative;
 		display: block;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-		margin: 0 !important;
+		cursor: pointer !important;
+		padding-inline: 10px;
+	
+		.banner {
+			padding: 0 !important;
+			margin-inline: -19px;
+	
+			height: 150px;
+			background-color: rgb(0, 0, 0, 10%);
+		}
+	
+		.icon {
+			margin-inline-end: 16px;
+			width: 48px;
+			height: 48px;
+	
+			&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
+				filter: saturate(0);
+				fill: #209f43;
+				-moz-context-properties: fill, fill-opacity;
+				opacity: .5;
+			}
+		}
+	
+		.name, .description {
+			display: block;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			margin: 0 !important;
+		}
+	
+		.version {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			font-size: 10px;
+			padding-inline: 4px;
+			padding-block: 2px;
+			color: white;
+			font-weight: 500;
+			background: var(--secondary-color);
+			box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
+			border-radius: 2px;
+		}	
 	}
-
-	.version {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		font-size: 10px;
-		padding-inline: 4px;
-		padding-block: 2px;
-		color: white;
-		font-weight: 500;
-		background: var(--secondary-color);
-		box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
-		border-radius: 2px;
-	}	
 }
 
 @media not (-moz-platform: windows) {
 	#os-ux-button,
 	#os-comp-button {
 		display: none;
+	}
+}
+
+.icon-picker {
+	height: fit-content;
+	align-items: center;
+
+	button {
+		min-width: 0;
+		min-height: 0;
+		padding: 8px;
+		box-sizing: content-box;
+	}
+
+	&.favicon {
+		button {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&.icon {
+		button {
+			width: 128px;
+			height: 128px;
+		}
+	}
+}
+
+#app-name {
+	&::before {
+		content: "\00a0";
 	}
 }

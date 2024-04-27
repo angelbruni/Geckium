@@ -201,7 +201,7 @@ class gkVisualStyles {
 			// bruni: Let's remove all appearance attributes first.
 			const pastAttrs = document.documentElement.getAttributeNames();
 			pastAttrs.forEach((attr) => {
-				if (attr.startsWith("geckium-") && !attr.includes("crflag"))
+				if (attr.startsWith("geckium-") && !attr.includes("chrflag"))
 					document.documentElement.removeAttribute(attr);
 			});
 

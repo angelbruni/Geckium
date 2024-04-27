@@ -3,16 +3,15 @@ let modals = document.querySelectorAll('[data-modal]');
 let mainWindow = document.querySelector('#window');
 
 modalToggles.forEach(modalToggle => {
-  modalToggle.addEventListener('click', function() {
-    let modalId = modalToggle.dataset.toggleModal;
-    let modalTarget = document.querySelector(`[data-modal="${modalId}"]`);
+	modalToggle.addEventListener('click', function() {
+		let modalId = modalToggle.dataset.toggleModal;
+		let modalTarget = document.querySelector(`[data-modal="${modalId}"]`);
 
-    if (modalTarget.classList.contains('active')) {
-      modalTarget.classList.remove('active');
-    } else {
-      modalTarget.classList.add('active');
-    }
-  });
+		if (modalTarget.classList.contains('active'))
+			modalTarget.classList.remove('active');
+		else
+			modalTarget.classList.add('active');
+	});
 });
 
 modals.forEach(modal => {
@@ -25,8 +24,8 @@ modals.forEach(modal => {
     });
 });
 
-window.addEventListener('load', function() {
-  modals.forEach(modal => {
-    mainWindow.appendChild(modal);
-  });
+window.addEventListener('load', () => {
+	modals.forEach(modal => {
+		mainWindow.appendChild(modal);
+	});
 });

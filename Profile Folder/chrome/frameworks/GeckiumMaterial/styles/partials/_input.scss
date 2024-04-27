@@ -16,6 +16,11 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	color: black;
+
+	@media (prefers-color-scheme: dark) {
+		color: white;
+	}
 
 	&.size-md {
 		.input {
