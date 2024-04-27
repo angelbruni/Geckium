@@ -9825,7 +9825,7 @@ hbox[id=label-box][part=label-box] {
   margin-inline-start: -2px;
   padding-inline: 1px !important;
   height: calc(var(--urlbar-height-definitive) - 4px);
-  border-radius: calc(var(--toolbarbutton-border-radius) - 1px) !important;
+  border-radius: var(--toolbarbutton-border-radius) !important;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(133, 193, 133);
