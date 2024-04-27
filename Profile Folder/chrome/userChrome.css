@@ -9840,6 +9840,14 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-four][geckium-five][geckium-six] #nav-bar[securestate=ev] #custom-identity-label {
   display: flex;
 }
+:root[geckium-four][geckium-five][geckium-six] #nav-bar #identity-box:not([pageproxystate=valid]) #identity-icon-box {
+  background: transparent;
+  margin: 0;
+  border: 0;
+}
+:root[geckium-four][geckium-five][geckium-six] #nav-bar #identity-box:not([pageproxystate=valid]) #custom-identity-label {
+  display: none;
+}
 :root[geckium-four][geckium-five][geckium-six] #nav-bar[securestate=warning] #identity-icon {
   list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
 }

@@ -92,6 +92,17 @@
 			}
 		}
 
+		#identity-box:not([pageproxystate="valid"]) {
+			#identity-icon-box {
+				background: transparent;
+				margin: 0;
+				border: 0;
+			}
+			#custom-identity-label {
+				display: none;
+			}
+		}
+
 		&[securestate="warning"] {
 			#identity-icon {
 				list-style-image: url(assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
