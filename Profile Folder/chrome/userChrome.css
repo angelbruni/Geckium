@@ -9831,6 +9831,9 @@ hbox[id=label-box][part=label-box] {
   border-color: rgb(133, 193, 133);
   background: linear-gradient(to bottom, white 1px, rgb(237, 255, 237) 2px, rgb(201, 242, 201));
 }
+:root[geckium-four][geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon-box:hover, :root[geckium-four][geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon-box[open] {
+  background: linear-gradient(to bottom, white 1px, rgb(237, 255, 237) 2px, rgb(201, 242, 201)) !important;
+}
 :root[geckium-four][geckium-five][geckium-six] #nav-bar[securestate=ev] #identity-icon {
   margin-inline-end: 3px;
 }
