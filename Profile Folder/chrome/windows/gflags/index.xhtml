@@ -159,7 +159,7 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">About Chromium Visual Style PResets</div>
+																<div class="header">About Chromium Visual Style Presets</div>
 																<div class="description">
 																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 1 all the way until version 68.
 																</div>
@@ -354,7 +354,7 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>New Tab Page</h4>
+											<h4>New Tab</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
@@ -381,6 +381,64 @@
 													</div>
 												</hbox>
 											</vbox>
+											<h4>Apps List</h4>
+											<vbox class="card" id="apps-list">
+												
+											</vbox>
+											<div class="modal" data-modal="editApp_modal">
+												<div class="wrapper">
+													<div class="card">
+														<vbox class="body">
+															<div class="header">
+																Edit
+																<span id="app-name">
+
+																</span>
+															</div>
+															<vbox class="description">
+																<hbox style="gap: 24px">
+																	<hbox style="gap: 8px; align-items: center;">
+																		<vbox class="icon-picker favicon">
+																			<html:button id="image-app-old-favicon" class="button raised text ripple-enabled">
+																				<image />
+																			</html:button>
+																			<label>Old favicon</label>
+																		</vbox>
+																		<vbox class="icon-picker icon">
+																			<html:button id="image-app-old-icon" class="button raised text ripple-enabled">
+																				<image />
+																			</html:button>
+																			<label>Old icon</label>
+																		</vbox>
+																	</hbox>
+																	<hbox>
+																		<vbox class="icon-picker icon">
+																			<html:button id="image-app-new-icon" class="button raised text ripple-enabled">
+																				<image />
+																			</html:button>
+																			<label>New icon*</label>
+																		</vbox>
+																	</hbox>
+																</hbox>
+																<vbox style="margin-block-start: 16px; gap: 16px;">
+																	<div class="input-parent size-md" flex="1">
+																		<html:input type="text" class="input" id="input-app-old-name" name="example" required="true"/>
+																		<label class="placeholder">Old name</label>
+																	</div>
+																	<div class="input-parent size-md" flex="1">
+																		<html:input type="text" class="input" id="input-app-new-name" name="example" required="true"/>
+																		<label class="placeholder">New name*</label>
+																	</div>
+																</vbox>
+															</vbox>
+															<div class="footer">
+																<button id="cancelBtn" class="button ripple-enabled text" label="Cancel" data-toggle-modal="editApp_modal" />
+																<button id="OKBtn" class="button ripple-enabled text color" label="OK" data-toggle-modal="editApp_modal" />
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
 											<h4>
 												Quick Access
 											</h4>
@@ -854,6 +912,7 @@
 	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/people.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/apps.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/developerOptions.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>

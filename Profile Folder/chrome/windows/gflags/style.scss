@@ -249,53 +249,70 @@ h4 {
 	
 	
 }
-.item.chrtheme {
-	
-	
-	
-	
+.item {
+	&.app {
+		padding-block: 6px;
 
-	.banner {
-		padding: 0 !important;
-		margin-inline: -19px;
+		image {
+			width: 48px;
+			height: 48px;
+			margin-inline-start: -8px;
+		}
 
-		
-		
-	}
-
-	.icon {
-		margin-inline-end: 16px;
-		width: 48px;
-		height: 48px;
-
-		&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
-			filter: saturate(0);
-			fill: #209f43;
-			-moz-context-properties: fill, fill-opacity;
-			opacity: .5;
+		label {
+			margin-inline-start: 8px;
 		}
 	}
 
-	.name, .description {
+	&.chrtheme {
 		
 		
 		
 		
-		
+	
+		.banner {
+			padding: 0 !important;
+			margin-inline: -19px;
+	
+			height: 150px;
+			background-color: rgb(0, 0, 0, 10%);
+		}
+	
+		.icon {
+			margin-inline-end: 16px;
+			width: 48px;
+			height: 48px;
+	
+			&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
+				filter: saturate(0);
+				fill: #209f43;
+				-moz-context-properties: fill, fill-opacity;
+				opacity: .5;
+			}
+		}
+	
+		.name, .description {
+			
+			
+			
+			
+			
+		}
+	
+		.version {
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}	
 	}
-	.version {
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}	
 }
 
 @media not (-moz-platform: windows) {
@@ -305,6 +322,37 @@ h4 {
 	}
 }
 
+.icon-picker {
+	height: fit-content;
+	align-items: center;
+
+	button {
+		min-width: 0;
+		min-height: 0;
+		padding: 8px;
+		box-sizing: content-box;
+	}
+
+	&.favicon {
+		button {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&.icon {
+		button {
+			width: 128px;
+			height: 128px;
+		}
+	}
+}
+
+#app-name {
+	&::before {
+		content: "\00a0";
+	}
+}
 
 // FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
 

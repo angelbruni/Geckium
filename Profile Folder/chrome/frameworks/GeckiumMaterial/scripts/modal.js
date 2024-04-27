@@ -25,8 +25,8 @@ modals.forEach(modal => {
     });
 });
 
-window.addEventListener('load', function() {
-  modals.forEach(modal => {
-    
-  });
+window.addEventListener('load', () => {
+	modals.forEach(modal => {
+		
+	});
 });

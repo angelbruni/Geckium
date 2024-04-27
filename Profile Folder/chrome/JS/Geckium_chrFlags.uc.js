@@ -21,7 +21,7 @@ function observePreferences() {
     };
 
     for (const key in chrFlags.getFlagsList()) {
-        const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
+        const prefName = "Geckium.chrflag." + key.replace(/-/g, ".");
         prefBranch.addObserver(prefName, observer, false);
     }
 }
@@ -30,7 +30,7 @@ function flagsAttrs() {
     const flagsList = chrFlags.getFlagsList();
 
     for (const key in flagsList) {
-        const prefName = "Geckium.crflag." + key.replace(/-/g, ".");
+        const prefName = "Geckium.chrflag." + key.replace(/-/g, ".");
         const flag = flagsList[key];
         
         let prefValue;
@@ -43,7 +43,7 @@ function flagsAttrs() {
         }
 
         // Add attribute to root
-        document.documentElement.setAttribute("geckium-crflag-" + key, prefValue);
+        document.documentElement.setAttribute("geckium-chrflag-" + key, prefValue);
     }
 }
 

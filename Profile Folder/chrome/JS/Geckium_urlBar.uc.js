@@ -18,6 +18,8 @@ function changeGoButton() {
 			break;
 	}
 
+	console.log(document.getElementById("go-button-box"))
+
 	if (!document.getElementById("go-button-box")) {
 		const goButtonBox = document.createXULElement("hbox");
 		goButtonBox.id = "go-button-box";
@@ -28,19 +30,17 @@ function changeGoButton() {
 		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
 		goButtonBox.appendChild(goButton);
 
-		if (appearanceChoice <= 2) {
+		if (appearanceChoice <= 3)
 			urlbarContainer.appendChild(goButtonBox);
-		} else if (appearanceChoice == 6) {
+		else if (appearanceChoice == 8)
 			urlbarInputContainer.appendChild(goButtonBox);
-		}
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
-		if (appearanceChoice <= 2) {
+		if (appearanceChoice <= 3)
 			urlbarContainer.appendChild(goButtonBox);
-		} else if (appearanceChoice == 6) {
+		else if (appearanceChoice == 8)
 			urlbarInputContainer.appendChild(goButtonBox);
-		}
 	}
 }
 
@@ -70,22 +70,17 @@ function styleURLBar() {
 				gkInsertElm.before(starButtonBox, urlbar);
 				starButtonBox.classList.add("toolbarbutton-1");
 				gkInsertElm.after(identityBox, pageActionButtons)
-	
-				console.log(previousChoice, appearanceChoice, urlbarContainer, starButtonBox, urlbar, identityBox, pageActionButtons)
 			});
 		} else {
 			urlbarContainer.setAttribute("starpos", "end");
 			gkInsertElm.after(starButtonBox, pageActionButton);
 			starButtonBox.classList.remove("toolbarbutton-1");
 			gkInsertElm.before(identityBox, urlbarLabelBox);
-	
-			console.log(appearanceChoice, urlbarContainer, starButtonBox, urlbar, identityBox, pageActionButtons)
 		}
 	}, 10);
 
-	if (appearanceChoice <= 3 || appearanceChoice == 7) {
-		waitForElm("#page-action-buttons").then(changeGoButton);
-	}
+	if (appearanceChoice <= 3 || appearanceChoice == 8)
+		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);
 window.addEventListener("appearanceChanged", styleURLBar);
