@@ -289,7 +289,8 @@ tooltip {
 @media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -299,12 +300,31 @@ tooltip {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -325,6 +345,7 @@ tooltip {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -347,6 +368,7 @@ tooltip {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -471,7 +493,8 @@ tooltip {
 }
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -481,12 +504,31 @@ tooltip {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -504,6 +546,7 @@ tooltip {
 @media (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -523,6 +566,7 @@ tooltip {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
@@ -1734,7 +1778,8 @@ tooltip {
 @media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -1744,12 +1789,31 @@ tooltip {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -1770,6 +1834,7 @@ tooltip {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -1792,6 +1857,7 @@ tooltip {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -1916,7 +1982,8 @@ tooltip {
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -1926,12 +1993,31 @@ tooltip {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -1949,6 +2035,7 @@ tooltip {
 @media (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -1968,6 +2055,7 @@ tooltip {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
@@ -2355,7 +2443,8 @@ tooltip {
 @media (-moz-platform: linux) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -2365,12 +2454,31 @@ tooltip {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -2391,6 +2499,7 @@ tooltip {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -2413,6 +2522,7 @@ tooltip {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -2537,7 +2647,8 @@ tooltip {
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -2547,12 +2658,31 @@ tooltip {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -2570,6 +2700,7 @@ tooltip {
 @media (-moz-platform: linux) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -2589,6 +2720,7 @@ tooltip {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
@@ -5034,7 +5166,8 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -5044,12 +5177,31 @@ hbox[id=label-box][part=label-box] {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -5070,6 +5222,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -5092,6 +5245,7 @@ hbox[id=label-box][part=label-box] {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -5216,7 +5370,8 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -5226,12 +5381,31 @@ hbox[id=label-box][part=label-box] {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -5249,6 +5423,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -5268,6 +5443,7 @@ hbox[id=label-box][part=label-box] {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root[geckium-four][geckium-five] :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
@@ -6442,7 +6618,8 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -6452,12 +6629,31 @@ hbox[id=label-box][part=label-box] {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -6478,6 +6674,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -6500,6 +6697,7 @@ hbox[id=label-box][part=label-box] {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -6624,7 +6822,8 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -6634,12 +6833,31 @@ hbox[id=label-box][part=label-box] {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -6657,6 +6875,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -6676,6 +6895,7 @@ hbox[id=label-box][part=label-box] {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root[geckium-four][geckium-five] :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
@@ -7063,7 +7283,8 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
     --titlebar-buttonbox-gap: 2px;
-    --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+    --titlebar-button-outer-border: 1px solid
+    	var(--titlebar-button-outer-border-color);
     --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
     --titlebar-button-height: 18px;
     --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -7073,12 +7294,31 @@ hbox[id=label-box][part=label-box] {
     --titlebar-close-background-active: rgb(213, 58, 63);
     --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
     --titlebar-max-restore-width: var(--titlebar-close-width);
-    --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-    --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+    --titlebar-max-restore-background-hot: var(
+    	--titlebar-button-background-hot
+    );
+    --titlebar-max-restore-background-active: var(
+    	--titlebar-button-background-active
+    );
     --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
     --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
     --titlebar-min-width: var(--titlebar-close-width);
     --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+  }
+  :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+    --titlebar-buttonbox-background-color: var(
+    	--toolbar-bgcolor,
+    	var(--lwt-accent-color)
+    );
+  }
+  :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+    --titlebar-buttonbox-background-color: transparent;
+  }
+  :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
+    --titlebar-buttonbox-background-color: var(
+    	--chrt-control-background,
+    	var(--chrt-button-background, transparent)
+    ) !important;
   }
   :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox-container {
     margin-inline-end: 1px;
@@ -7099,6 +7339,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) and (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -7121,6 +7362,7 @@ hbox[id=label-box][part=label-box] {
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
+    background: var(--titlebar-buttonbox-background-color);
   }
   :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
     content: "";
@@ -7245,7 +7487,8 @@ hbox[id=label-box][part=label-box] {
 }
 :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] {
   --titlebar-buttonbox-gap: 2px;
-  --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
+  --titlebar-button-outer-border: 1px solid
+  	var(--titlebar-button-outer-border-color);
   --titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
   --titlebar-button-height: 18px;
   --titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -7255,12 +7498,31 @@ hbox[id=label-box][part=label-box] {
   --titlebar-close-background-active: rgb(213, 58, 63);
   --titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
   --titlebar-max-restore-width: var(--titlebar-close-width);
-  --titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-  --titlebar-max-restore-background-active: var(--titlebar-button-background-active);
+  --titlebar-max-restore-background-hot: var(
+  	--titlebar-button-background-hot
+  );
+  --titlebar-max-restore-background-active: var(
+  	--titlebar-button-background-active
+  );
   --titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
   --titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
   --titlebar-min-width: var(--titlebar-close-width);
   --titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+}
+:root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-background-color: var(
+  	--toolbar-bgcolor,
+  	var(--lwt-accent-color)
+  );
+}
+:root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-background-color: transparent;
+}
+:root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux]:not(:-moz-lwtheme)[chrtheme=true] {
+  --titlebar-buttonbox-background-color: var(
+  	--chrt-control-background,
+  	var(--chrt-button-background, transparent)
+  ) !important;
 }
 :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox-container {
   margin-inline-end: 1px;
@@ -7278,6 +7540,7 @@ hbox[id=label-box][part=label-box] {
 @media (-moz-platform: linux) {
   :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-buttonbox {
     margin-block-start: 0;
+    background: transparent !important;
   }
 }
 @media (-moz-platform: linux) and (-moz-gtk-csd-reversed-placement) {
@@ -7297,6 +7560,7 @@ hbox[id=label-box][part=label-box] {
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
+  background: var(--titlebar-buttonbox-background-color);
 }
 :root[geckium-four][geckium-five] :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
   content: "";
