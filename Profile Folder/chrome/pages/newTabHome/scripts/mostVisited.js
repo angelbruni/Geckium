@@ -241,8 +241,8 @@ function createTile(website) {
 				close = ".most-visited[href='"+ website.url +"'] .close-button";
 				
 				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
-			} else {
-				if (gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
+			} else if (appearanceChoice >= 8) {
+				if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
@@ -284,7 +284,7 @@ function createTile(website) {
 				})
 			});
 
-			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 7)) {
+			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 7)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < getTilesAmount(); i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
@@ -333,18 +333,17 @@ function createTile(website) {
 					</html:a>
 				</html:div>
 				`
-			} else {
-				if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
+			}  else if (appearanceChoice >= 8) {
+				if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+					tile = ``;
+				} else {
 					tile = `
 					<html:a class="mv-tile" disabled="true"></html:a>
 					`
-				} else {
-					tile = ``;
 				}
 			}
 		}
-		
-		console.log(tile)
+
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {
         console.error(e);
@@ -373,7 +372,7 @@ function populateRecentSitesGrid() {
 		mostViewed = "#most-viewed-content";
 	else if (appearanceChoice == 6 || appearanceChoice == 7)
 		mostViewed = "#most-visited-page .tile-grid";
-	else
+	else if (appearanceChoice >= 8)
 		mostViewed = "#mv-tiles";
 
 	// Delete the tiles to update with new information (there might be a better way to do this).

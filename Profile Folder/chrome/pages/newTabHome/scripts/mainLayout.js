@@ -402,10 +402,9 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else {
+	} else if (appearanceChoice >= 8) {
 		// Chrome 47 - 50
-
-		if (gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool) {
+		if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 			header = `
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
