@@ -26,8 +26,8 @@ const experiments = {
 	"search-button-in-omnibox": {
 		name: "Enable search button in Omnibox",
 		description: "Places a search button in the Omnibox.",
-		from: 5, // Needs to be 33+ only.
-		to: 5,
+		from: 8, // Needs to be 33+ only.
+		to: 8,
 		values: {
 			0: "Default",
 			1: "Disabled",
@@ -40,8 +40,8 @@ const experiments = {
 		type: "ntp",
 		name: "Enable large icons on the New Tab",
 		description: "Enable the experimental New Tab page using large icons.",
-		from: 5,
-		to: 6,
+		from: 8,
+		to: 8,
 	},
 	/*"enable-settings-window": {
 		name: "Show settings in a window",
@@ -68,14 +68,14 @@ const experiments = {
 	"omnibox-ui-vertical-layout": {
 		name: "Omnibox UI Vertical Layout",
 		description: "Displays Omnibox sugestions in 2 lines - title over origin.",
-		from: 6,
-		to: 6,
+		from: 9,
+		to: 9,
 	},
 	"omnibox-ui-vertical-margin": {
 		name: "Omnibox UI Vertical Margin",
 		description: "Changes the vertical margin in the Omnibox UI.",
-		from: 6,
-		to: 6,
+		from: 9,
+		to: 9,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -91,8 +91,8 @@ const experiments = {
 	"omnibox-ui-swap-title-and-url": {
 		name: "Omnibox UI Swap Title and URL",
 		description: "In the omnibox dropdown, shows titles before URLs when both are available.",
-		from: 6,
-		to: 6,
+		from: 9,
+		to: 9,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -104,7 +104,7 @@ const experiments = {
 function updateFlags() {
 	const flagItems = document.querySelectorAll("#available-experiments .content-container .experiment");
 	flagItems.forEach(flagItem => {
-		const flag = "Geckium.crflag." + flagItem.id.replace(/-/g, ".");
+		const flag = "Geckium.chrflag." + flagItem.id.replace(/-/g, ".");
 		const toggleBtn = flagItem.querySelector("button");
 		const multipleSelect = flagItem.querySelector("select");
 
@@ -143,7 +143,14 @@ function setUpExperiments() {
 						break;
 				}
 			} else {
-				appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+				switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
+					case true:
+						appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+						break;
+					default:
+						appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+						break;
+				}
 			}
 
             if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)
@@ -180,8 +187,8 @@ function setUpExperiments() {
                 waitForElm("select#select-" + key).then(function() {
                     document.querySelector("select#select-" + key).addEventListener("change", () => {
                         const selectedValue = document.querySelector("select#select-" + key).value;
-                        gkPrefUtils.set("Geckium.crflag." + key.replace(/-/g, ".")).int(selectedValue);
-						console.log("Geckium.crflag." + key.replace(/-/g, "."))
+                        gkPrefUtils.set("Geckium.chrflag." + key.replace(/-/g, ".")).int(selectedValue);
+						console.log("Geckium.chrflag." + key.replace(/-/g, "."))
                         updateFlags();
                     });
                 });
@@ -194,7 +201,7 @@ function setUpExperiments() {
                 // Add event listener to toggle experiment based on button click
                 waitForElm("button#toggle-" + key).then(function() {
                     document.querySelector("button#toggle-" + key).addEventListener("click", () => {
-                        gkPrefUtils.toggle("Geckium.crflag." + key.replace(/-/g, ".")).bool();
+                        gkPrefUtils.toggle("Geckium.chrflag." + key.replace(/-/g, "."));
 
 						updateFlags();
                     });

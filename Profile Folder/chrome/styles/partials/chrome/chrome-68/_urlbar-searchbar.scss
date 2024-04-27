@@ -3,8 +3,8 @@
 	--urlbarView-row-height: 25px;
 	--urlbar-border: rgb(169,169,169);
 
-	&[geckium-crflag-omnibox-ui-vertical-layout="true"] {
-		&:not([geckium-crflag-omnibox-ui-swap-title-and-url="1"]) {
+	&[geckium-chrflag-omnibox-ui-vertical-layout="true"] {
+		&:not([geckium-chrflag-omnibox-ui-swap-title-and-url="1"]) {
 			--urlbarView-row-height: 48px;
 
 			.urlbarView-row-inner {
@@ -30,37 +30,37 @@
 		}
 	}
 
-	&[geckium-crflag-omnibox-ui-vertical-margin="3"] {
+	&[geckium-chrflag-omnibox-ui-vertical-margin="3"] {
 		.urlbarView-row-inner {
 			min-height: calc(var(--urlbarView-row-height) + 2px) !important;
 			height: calc(var(--urlbarView-row-height) + 2px) !important;
 		}
 	}
-	&[geckium-crflag-omnibox-ui-vertical-margin="4"] {
+	&[geckium-chrflag-omnibox-ui-vertical-margin="4"] {
 		.urlbarView-row-inner {
 			min-height: calc(var(--urlbarView-row-height) + 6px) !important;
 			height: calc(var(--urlbarView-row-height) + 6px) !important;
 		}
 	}
-	&[geckium-crflag-omnibox-ui-vertical-margin="5"] {
+	&[geckium-chrflag-omnibox-ui-vertical-margin="5"] {
 		.urlbarView-row-inner {
 			min-height: calc(var(--urlbarView-row-height) + 10px) !important;
 			height: calc(var(--urlbarView-row-height) + 10px) !important;
 		}
 	}
-	&[geckium-crflag-omnibox-ui-vertical-margin="6"] {
+	&[geckium-chrflag-omnibox-ui-vertical-margin="6"] {
 		.urlbarView-row-inner {
 			min-height: calc(var(--urlbarView-row-height) + 14px) !important;
 			height: calc(var(--urlbarView-row-height) + 14px) !important;
 		}
 	}
-	&[geckium-crflag-omnibox-ui-vertical-margin="7"] {
+	&[geckium-chrflag-omnibox-ui-vertical-margin="7"] {
 		.urlbarView-row-inner {
 			min-height: calc(var(--urlbarView-row-height) + 18px) !important;
 			height: calc(var(--urlbarView-row-height) + 18px) !important;
 		}
 	}
-	&[geckium-crflag-omnibox-ui-swap-title-and-url="1"] {
+	&[geckium-chrflag-omnibox-ui-swap-title-and-url="1"] {
 		.urlbarView-row-inner {
 			flex-direction: row-reverse;
 		}
