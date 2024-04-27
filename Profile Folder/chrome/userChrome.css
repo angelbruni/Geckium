@@ -18,6 +18,15 @@ tooltip {
   font: message-box;
 }
 
+@media (-moz-platform: linux) {
+  menupopup {
+    --panel-background: Field !important;
+    --panel-color: FieldText !important;
+    --panel-border-color: ThreeDShadow !important;
+    --panel-border-radius: 0 !important;
+    --panel-padding-block: 0 !important;
+  }
+}
 :root {
   --chrt-theme-frame-overlay: 0;
   --default-titlebar-active: linear-gradient(
@@ -4894,6 +4903,15 @@ hbox[id=label-box][part=label-box] {
   background-color: InfoBackground;
   color: InfoText;
   font: message-box;
+}
+@media (-moz-platform: linux) {
+  :root[geckium-four][geckium-five] menupopup {
+    --panel-background: Field !important;
+    --panel-color: FieldText !important;
+    --panel-border-color: ThreeDShadow !important;
+    --panel-border-radius: 0 !important;
+    --panel-padding-block: 0 !important;
+  }
 }
 :root[geckium-four][geckium-five] :root {
   --chrt-theme-frame-overlay: 0;
