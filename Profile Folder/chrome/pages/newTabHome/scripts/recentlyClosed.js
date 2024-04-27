@@ -27,11 +27,11 @@ function createRecentlyClosed() {
 
 			const state = tab.state;
 
-			url = state.entries[0].url;
+			url = state.entries[0].url.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice <= 2)
+			if (appearanceChoice <= 4)
 				recentlyClosedEntriesAmount = 5;
-			else if (appearanceChoice == 3 || appearanceChoice == 4)
+			else if (appearanceChoice == 6 || appearanceChoice == 7)
 				recentlyClosedEntriesAmount = 10;
 
 			if (visitedURLs.size >= recentlyClosedEntriesAmount)
@@ -42,7 +42,7 @@ function createRecentlyClosed() {
 
 			visitedURLs.add(url);
 
-			title = state.entries[0].title;
+			title = state.entries[0].title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			if (title == undefined)
 				return;
@@ -50,10 +50,20 @@ function createRecentlyClosed() {
 			if (!state.image)
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
 			else
-				favicon = state.image;
+				favicon = state.image.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			// #region Recently closed items
-			if (appearanceChoice <= 1) {
+			if (appearanceChoice == 0) {
+				recentlyClosedItem = `
+				<html:a class="recent-bookmark" href="${url}" style="list-style-image: url('${favicon}')">
+					<image></image>
+					<label>${title}</label>
+				</html:a>
+				`
+				
+				recentlyClosedContainer = "#recentlyClosedContainer";
+			}
+			else if (appearanceChoice == 1 || appearanceChoice <= 4 || appearanceChoice <= 5) {
 				recentlyClosedItem = `
 				<html:a class="item" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -61,17 +71,13 @@ function createRecentlyClosed() {
 				</html:a>
 				`
 
-				recentlyClosedContainer = "#recently-closed > .items"
-			} else if (appearanceChoice == 2) {
-				recentlyClosedItem = `
-				<html:a class="item" href="${url}" style="list-style-image: url('${favicon}')">
-					<image></image>
-					<label>${title}</label>
-				</html:a>
-				`
-
-				recentlyClosedContainer = "#recently-closed-content"
-			} else if (appearanceChoice == 3 || appearanceChoice == 4) {
+				if (appearanceChoice == 1)
+					recentlyClosedContainer = "#tab-items"
+				else if (appearanceChoice <= 4)
+					recentlyClosedContainer = "#recently-closed > .items"
+				else
+					recentlyClosedContainer = "#recently-closed-content"
+			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
 				recentlyClosedItem = `
 				<html:a class="footer-menu-item" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -82,7 +88,7 @@ function createRecentlyClosed() {
 				recentlyClosedContainer = "#recently-closed-menu-button .footer-menu"
 			}
 
-			if (appearanceChoice <= 4) {
+			if (appearanceChoice <= 7) {
 				waitForElm(recentlyClosedContainer).then(function() {
 					document.querySelector(recentlyClosedContainer).appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
 				});

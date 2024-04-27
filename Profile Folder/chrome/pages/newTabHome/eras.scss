@@ -12,7 +12,7 @@ $gtkplus: "{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}";
 			background-color: rgb(32, 32, 32);
 		}
 	}
-
+	
 	#main-container {
 		flex: 1;
 	}
@@ -23,29 +23,41 @@ $gtkplus: "{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}";
 		height: 16px;
 	}
 
-	&:not([geckium-four]) {
+	&:not([geckium-one]) {
 		* {
 			visibility: hidden;
 		}
 	}
 
-	&[geckium-four] {
+	&[geckium-one] {
+		@import "partials/chrome-1/final";
+	}
+
+	&[geckium-one][geckium-three] {
+		@import "partials/chrome-3/final";
+	}
+
+	&[geckium-one][geckium-three][geckium-four] {
 		@import "partials/chrome-4/final";
 	}
 
-	&[geckium-four][geckium-five] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five] {
 		@import "partials/chrome-5/final";
 	}
 
-	&[geckium-four][geckium-five][geckium-six][geckium-eleven] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven] {
 		@import "partials/chrome-11/final";
 	}
 
-	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
 		@import "partials/chrome-21/final";
 	}
 
-	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
 		@import "partials/chrome-47/final";
+	}
+
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] {
+		@import "partials/chrome-68/final";
 	}
 }

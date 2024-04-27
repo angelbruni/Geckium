@@ -17,7 +17,7 @@
 		--toolbar-field-color: black !important;
 	}
 
-	--urlbarView: rgb(255, 255, 255, 94%);
+	--urlbarView: white;
 
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
@@ -45,10 +45,32 @@
 		}
 	}
 
+	&[geckium-choice="one"],
+	&[geckium-choice="three"],
 	&[geckium-choice="four"],
 	&[geckium-choice="five"] {
 		#star-button-box {
 			display: flex !important;
+		}
+	}
+
+	&[geckium-choice="one"] {
+		.urlbarView-no-wrap {
+			&::before {
+				content: unset !important;
+			}
+		}
+		
+		.urlbarView-favicon {
+			display: none;
+		}
+
+		.urlbarView-url {
+			width: 50%;
+			overflow: hidden !important;
+			text-overflow: ellipsis;
+			padding-inline-end: 8px;
+			box-sizing: border-box;
 		}
 	}
 }
@@ -396,15 +418,10 @@
 	display: block;
 	background: var(--urlbarView) !important;
 	border: 1px solid rgba(0, 0, 0, 0.3) !important;
-	margin-top: 4px !important;
 	margin-inline: 0 !important;
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
-	border-radius: 5px;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .5);
 	padding: 0;
-
-	/* bruni: Let's make the urlbar menu width from star button to go button. */
-	transform: translateX(calc(var(--toolbarbutton-width) * -1));
-	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+	width: 100% !important;
 }
 
 .urlbarView-url {
@@ -461,7 +478,7 @@
 				padding-left: 24px;
 
 				&::before {
-				display: none;
+					display: none;
 				}
 			}
 		}
@@ -551,7 +568,6 @@
 .urlbarView-url {
 	color: rgb(11, 133, 14) !important;
 	flex-grow: 0 !important;
-	padding-left: 24px !important;
 	order: 1 !important;
 }
 
@@ -576,12 +592,7 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	min-width: 0;
-	color: rgb(131, 133, 133);
-
-	&::before {
-		content: "-";
-		padding: 0 4px;
-	}
+	color: black;
 }
 
 .urlbarView-row-inner {

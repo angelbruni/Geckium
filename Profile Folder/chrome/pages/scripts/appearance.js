@@ -27,6 +27,7 @@ function appearance() {
 			gkVisualStyles.setVisualStyle();
 			createMainLayout();
 			retrieveFrequentSites();
+			getRecentBookmarks();
 			createRecentlyClosed();
 			setUpPages();
 			setUpApps();

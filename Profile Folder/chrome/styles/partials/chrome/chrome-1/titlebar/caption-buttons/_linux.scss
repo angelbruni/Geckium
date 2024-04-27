@@ -1,8 +1,7 @@
 & {
 	--titlebar-buttonbox-gap: 2px;
-
-	--titlebar-button-outer-border: 1px solid
-		var(--titlebar-button-outer-border-color);
+	
+	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
 	--titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
 	--titlebar-button-height: 18px;
 	--titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
@@ -14,43 +13,33 @@
 	--titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
 
 	--titlebar-max-restore-width: var(--titlebar-close-width);
-	--titlebar-max-restore-background-hot: var(
-		--titlebar-button-background-hot
-	);
-	--titlebar-max-restore-background-active: var(
-		--titlebar-button-background-active
-	);
+	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
+	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
 	--titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
 	--titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
 
 	--titlebar-min-width: var(--titlebar-close-width);
 	--titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
-}
 
-&:not([customthememode="1"]) {
-	&:-moz-lwtheme {
-		&:not([lwtheme-id*="firefox-compact"]) {
-			&:not([lwtheme-id="#{$gtkplus}"]) {
-				--titlebar-buttonbox-background-color: var(
-					--toolbar-bgcolor,
-					var(--lwt-accent-color)
-				);
-
-				// Themes without image header/additional images
-				&:not([style*="--lwt-additional-images"]) {
-					&:not([style*="--lwt-header-image"]) {
-						--titlebar-buttonbox-background-color: transparent;
+	&:not([customthememode="1"]) {
+		&:-moz-lwtheme {
+			&:not([lwtheme-id*="firefox-compact"]) {
+				&:not([lwtheme-id="#{$gtkplus}"]) {
+					--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
+	
+					// Themes without image header/additional images
+					&:not([style*="--lwt-additional-images"]) {
+						&:not([style*="--lwt-header-image"]) {
+							--titlebar-buttonbox-background-color: transparent;
+						}
 					}
 				}
 			}
 		}
 	}
-}
-&:not(:-moz-lwtheme)[chrtheme="true"] {
-	--titlebar-buttonbox-background-color: var(
-		--chrt-control-background,
-		var(--chrt-button-background, transparent)
-	) !important;
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
+	}
 }
 
 .titlebar-buttonbox-container {
@@ -65,10 +54,10 @@
 	margin-block-start: 1px;
 	margin-inline-end: 0;
 	box-shadow: none;
+	background: transparent !important;
 
 	@media (-moz-platform: linux) {
 		margin-block-start: 0;
-		background: transparent !important;
 
 		@media (-moz-gtk-csd-reversed-placement) {
 			margin-inline-start: 3px !important;

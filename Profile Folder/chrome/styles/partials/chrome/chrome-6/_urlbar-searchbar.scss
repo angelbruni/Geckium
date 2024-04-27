@@ -62,25 +62,27 @@
 				border-radius: var(--toolbarbutton-border-radius) !important;
 				border-width: 1px;
 				border-style: solid;
-				border-color: rgb(133, 193, 133);
+				border-color: rgb(133,193,133);
 				background: linear-gradient(
 					to bottom,
 					white 1px,
-					rgb(237, 255, 237) 2px,
-					rgb(201, 242, 201)
+					rgb(237,255,237) 2px,
+					rgb(201,242,201)
 				);
-
-				&:hover,
-				&[open] {
-					background: linear-gradient(
-						to bottom,
-						white 1px,
-						rgb(237, 255, 237) 2px,
-						rgb(201, 242, 201)
-					) !important;
+			
+				&:not([disabled]) {
+					&:hover,
+					&[open] {
+						background: linear-gradient(
+							to bottom,
+							white 1px,
+							rgb(237, 255, 237) 2px,
+							rgb(201, 242, 201)
+						) !important;
+					}
 				}
 			}
-
+			
 			#identity-icon {
 				margin-inline-end: 3px;
 			}

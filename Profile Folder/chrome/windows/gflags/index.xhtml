@@ -41,7 +41,7 @@
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
 							<separator />
-							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="Global" />
+							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="Visual Style presets" />
 							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="Main Interface" />
 							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="12" label="Titlebar" />-->
 							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="Pages" />
@@ -97,7 +97,7 @@
 												<hbox>
 													<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
 														<vbox>
-															<label>Global</label>
+															<label>Visual style presets</label>
 															<p>Choose your preferred visual style globally.</p>
 														</vbox>
 														<hbox>
@@ -153,15 +153,15 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
-												Visual Style
+												Available Presets
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
 												<div class="modal" data-modal="aboutVisualStyles_modal">
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">About Chromium Visual Styles</div>
+																<div class="header">About Chromium Visual Style PResets</div>
 																<div class="description">
-																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 5 all the way until version 50.
+																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 1 all the way until version 68.
 																</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
@@ -172,6 +172,11 @@
 												</div>
 											</h4>
 											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="disableOverrides()">
+													<vbox>
+														<label class="name">Reset overrides</label>
+													</vbox>
+												</html:button>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
@@ -235,7 +240,7 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Override global style</label>
+														<label class="name">Override visual style preset</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -244,24 +249,9 @@
 													</div>
 												</hbox>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
-											<!--<vbox class="card">
-												<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name" style="font-weight: 500">Main interface settings were moved to Global tab for the time being</label>
-														<p class="description" style="font-weight: 500">The idea is that this will show only the options available for the UI while the global one will show all options.</p>
-														<p class="description" style="font-weight: 500">Some only modify the page such as the upcoming "Chrome 3" and the new "Chrome 4" which already show properly in the Pages tab and thus shouldn't be here.</p>
-														<p class="description" style="font-weight: 500">The system for this concept is still being built.</p>
-													</vbox>
-													<hbox>
-														<label>Go to Global page</label>
-														<spacer />
-														<div class="icon" />
-													</hbox>
-												</html:button>
-											</vbox>-->
 											<h4>
 												Classic Window Frame
 											</h4>
@@ -341,7 +331,7 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Global settings</label>
+														<label class="name">Visual style presets</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
@@ -368,7 +358,7 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Override global style</label>
+														<label class="name">Override visual style preset</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -378,11 +368,11 @@
 												</hbox>
 												<vbox class="item" flex="1">
 													<h4>Forced Style</h4>
-													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">2011 - 2012</div>Theme footer according to applied custom theme</label>
+														<label class="name"><div class="year">2010 - 2011</div>Theme footer according to applied custom theme</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -397,7 +387,7 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Global settings</label>
+														<label class="name">Visual style presets</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
@@ -549,7 +539,7 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Global settings</label>
+														<label class="name">Visual style presets</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
@@ -615,7 +605,7 @@
 																<div class="header">Are you sure?</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="wizard_modal" onclick="pref('Geckium.firstRun.complete').set.bool(false); _ucUtils.restart(true);"/>
+																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);"/>
 																</div>
 															</vbox>
 														</div>

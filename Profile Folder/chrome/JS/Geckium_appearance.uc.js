@@ -61,57 +61,57 @@ class gkVisualStyles {
 			 * 		    "page":   browser internal pages. Examples: "about:newtab", "about:flags", etc...
 			 */
 
-			/*{
+			{
 				id: 0,
-				int: 2,
+				int: 1,
 				year: [2008, 2010],
-				number: "two",
+				number: "one",
 				styles: ["chrome", "page"],
-			},*/
-			/*{
-				id: 0,
+			},
+			{
+				id: 1,
 				int: 3,
 				year: [2008, 2010],
 				number: "three",
-				styles: ["chrome", "page"],
-			},*/
+				styles: ["page"],
+			},
 			{
-				id: 0,
+				id: 2,
 				int: 4,
 				year: [2008, 2010],
 				number: "four",
 				styles: ["page"],
 			},
 			{
-				id: 1,
+				id: 3,
 				int: 5,
 				year: [2008, 2010],
 				number: "five",
 				styles: ["chrome", "page"],
 			},
 			{
-				id: 2,
+				id: 4,
 				int: 6,
 				year: [2010],
 				number: "six",
 				styles: ["chrome"],
 			},
 			{
-				id: 3,
+				id: 5,
 				int: 11,
 				year: [2010, 2011],
 				number: "eleven",
 				styles: ["chrome", "page"],
 			},
 			{
-				id: 4,
+				id: 6,
 				int: 21,
 				year: [2011, 2012],
 				number: "twentyone",
 				styles: ["chrome", "page"],
 			},
 			{
-				id: 5,
+				id: 7,
 				int: 25,
 				year: [2012, 2013],
 				number: "twentyfive",
@@ -125,14 +125,14 @@ class gkVisualStyles {
 				styles: ["chrome"],
 			},*/
 			{
-				id: 6,
+				id: 8,
 				int: 47,
 				year: [2013, 2015],
 				number: "fortyseven",
 				styles: ["chrome", "page"],
 			},
 			{
-				id: 7,
+				id: 9,
 				int: 68,
 				number: "sixtyeight",
 				year: [2015, 2018],

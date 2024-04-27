@@ -11,16 +11,13 @@
 		}
 	}
 
-	&[geckium-four] {
+	&[geckium-one] {
 		@import "partials/chrome-8/final";
 	}
-	&[geckium-four][geckium-five] {
-		@import "partials/chrome-8/final";
-	}
-	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
 		@import "partials/chrome-21/final";
 	}
-	&[geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
 		@import "partials/chrome-47/final";
 	}
 }

@@ -28,7 +28,7 @@ function createToolbarbutton(id, delegatesanchor, label, tooltip, removable, ove
 					toolbarButton.setAttribute("tooltiptext", label);
 	
 				if (onclick)
-					toolbarButton.addEventListener("click", onclick);
+					toolbarButton.setAttribute("onclick", onclick);
 			},
 		});
 	}
@@ -688,7 +688,7 @@ const menu_page = {
 };
 
 window.addEventListener("load", function () {
-	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, openGFlags);
+	createToolbarbutton("gflags", "", "Geckium Flags", "", true, false, CustomizableUI.AREA_NAVBAR, "openGFlags()");
 	geckiumCreateMenu("page", "Page Menu", "Control the current page", menu_page);
 	geckiumCreateMenu("chrome", "Chrome Menu", "Customize and control Google Chrome", menu_chrome);
 });

@@ -79,8 +79,109 @@ function createMainLayout() {
 
 	let menuBtnsContainer;
 
-	if (appearanceChoice <= 2) {
-		if (appearanceChoice <= 0) {
+	if (appearanceChoice == 0) {
+		main = `
+		<hbox id="main">
+			<vbox flex="1">
+				<vbox id="mostvisited">
+					<html:div class="section-title">Most visited</html:div>
+					<html:div id="mostvisitedintro">
+						<!--<html:div class="most-visited-text">
+							The "Most visited" area shows the websites that you use most often. After using Google Chrome for a while, you will see your most visited sites whenever you open a new tab. You can learn more about this and other features on the
+							<html:a href="http://tools.google.com/chrome/intl/en-US/welcome.html">Getting Started page</html:a>
+							.
+						</html:div>-->
+						<html:div>
+							<html:div id="mostvisitedtiles" />
+						</html:div>
+					</html:div>
+				</vbox>
+				<html:button class="manage" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">
+					<html:span>Show full history</html:span>
+					»
+				</html:button>
+			</vbox>
+			<vbox id="sidebar">
+				<vbox id="logo">
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo.png" width="145" height="52" />
+				</vbox>
+				<vbox id="searches" class="sidebar">
+					<html:div class="section-title">Searches</html:div>
+					<html:form>
+						<html:input type="text" class="hint" name="search" placeholder="Search your history" />
+					</html:form>
+					<html:div id="search-entries" />
+				</vbox>
+				<vbox id="recentlyBookmarked" class="sidebar">
+					<html:span class="section-title">Recent bookmarks</html:span>
+					<vbox id="recentlyBookmarkedContainer">
+
+					</vbox>
+				</vbox>
+				<vbox id="recentlyClosedTabs" class="sidebar">
+					<html:div class="section-title">Recently closed tabs</html:div>
+					<vbox id="recentlyClosedContainer">
+
+					</vbox>
+				</vbox>
+			</vbox>
+		</hbox>
+		`
+	} else if (appearanceChoice <= 4) {
+		if (appearanceChoice == 1) {
+			// Chrome 0 - 5
+			menuBtnsContainer = "#view-toolbar";
+	
+			main = `
+			<vbox id="main">
+				<hbox id="view-toolbar">
+					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+						<vbox id="option-menu" class="window-menu">
+							<checkbox id="THUMB" label="Most visited"></checkbox>
+							<checkbox id="RECENT" label="Recently closed"></checkbox>
+						</vbox>
+					</html:button>
+				</hbox>
+				<div id="most-visited"></div>
+				<hbox id="lower-sections">
+					<vbox id="recent-activities" class="section">
+						<h2>Recent activities</h2>
+						<hbox>
+							<vbox id="recent-tabs">
+								<h3>Recently closed</h3>
+								<vbox class="item-container">
+									<vbox id="tab-items" />
+									<vbox>
+										<html:button class="item nav" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">View full history</html:button>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox id="downloads">
+								<h3>Downloads</h3>
+								<vbox class="item-container">
+									<vbox id="download-items" />
+									<vbox>
+										<html:a href="about:downloads" class="item nav">View all downloads</html:a>
+									</vbox>
+								</vbox>
+							</vbox>
+						</hbox>
+					</vbox>
+					<vbox id="tips" class="section">
+						<h2>Tips and Suggestions</h2>
+						<hbox>
+							<vbox id="tip-items">
+								<div class="tips-title item">Watch this space for tips and suggestions for better browsing!</div>
+								<vbox class="tips-container item-container"/>
+							</vbox>
+						</hbox>
+					</vbox>
+				</hbox>
+			</vbox>
+			`;
+		} else if (appearanceChoice <= 2) {
 			// Chrome 0 - 5
 			menuBtnsContainer = "#view-toolbar";
 	
@@ -116,7 +217,7 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 2) {
+		} else if (appearanceChoice <= 4) {
 			// Chrome 0 - 5
 			menuBtnsContainer = "#view-toolbar";
 	
@@ -173,7 +274,7 @@ function createMainLayout() {
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 		});
-	} else if (appearanceChoice == 3) {
+	} else if (appearanceChoice == 5) {
 		// Chrome 11
 
 		main = `
@@ -227,7 +328,7 @@ function createMainLayout() {
 			</div>
 		</vbox>
 		`;
-	} else if (appearanceChoice == 4 || appearanceChoice == 5) {
+	} else if (appearanceChoice == 6 || appearanceChoice == 7) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
@@ -361,7 +462,7 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 2 || appearanceChoice == 4 || appearanceChoice == 5) {
+	if (appearanceChoice <= 4 || appearanceChoice == 6 || appearanceChoice == 7) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {

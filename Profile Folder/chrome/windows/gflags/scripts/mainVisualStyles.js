@@ -5,17 +5,16 @@ function insertGlobalVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	// Loop to create seven instances starting from 0 to 6
-	for (var i = 0; i < 7; i++) {
+	for (var i = 0; i < 8; i++) {
 		// Get the appearance details from the map
 		var appearance = gkVisualStyles.getVisualStyles("chrome")[i];
 
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `
 		<html:button data-appearance="${appearance.id}"
-				class="link chrome-appearance ripple-enabled" 
-				for="chrome-${appearance.int}" 
-				style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.int}.png');">
+					class="link chrome-appearance ripple-enabled" 
+					for="chrome-${appearance.int}" 
+					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.int}.png');">
 			<html:label class="wrapper" chrome="${appearance.int}">
 				<div class="year">${appearance.year[0]}</div>
 				<div class="identifier">

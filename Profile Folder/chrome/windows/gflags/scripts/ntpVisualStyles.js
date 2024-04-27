@@ -5,8 +5,7 @@ function insertNTPVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	// Loop to create seven instances starting from 0 to 6
-	for (var i = 0; i < 6; i++) {
+	for (var i = 0; i < 8; i++) {
 		// Get the appearance details from the map
 		var appearance = gkVisualStyles.getVisualStyles("page")[i];
 
@@ -15,7 +14,7 @@ function insertNTPVisualStyles() {
 		<html:button data-appearance="${appearance.id}"
 					class="link chrome-appearance ripple-enabled" 
 					for="chrome-${appearance.int}" 
-					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/ntp/chrome-${appearance.int}.png');">
+					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/ntp/chrome-${appearance.int}.png'); background-position: top center;">
 			<html:label class="wrapper" chrome="${appearance.int}">
 				<div class="year">${appearance.year[0]}</div>
 				<div class="identifier">
@@ -37,6 +36,7 @@ function insertNTPVisualStyles() {
 
 	document.querySelectorAll(`#ntp-visual-styles-grid input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
+			console.log(appearance.dataset.appearance)
 			gkPrefUtils.set("Geckium.newTabHome.style").int(appearance.dataset.appearance);
 		})
 	})

@@ -1,4 +1,12 @@
 menupopup {
+	@media (-moz-platform: linux) {
+		--panel-background: Field !important;
+		--panel-color: FieldText !important;
+		--panel-border-color: ThreeDShadow !important;
+		--panel-border-radius: 0 !important;
+		--panel-padding-block: 0 !important;
+	}
+
 	button {
 		min-width: 0 !important;
 	}

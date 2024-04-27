@@ -1,0 +1,83 @@
+#lower-sections {
+	gap: 20px;
+
+	> .section {
+		flex: 1;
+		border: 1px solid rgb(222, 234, 248);
+		border-radius: 4px;
+		padding-block-end: 5px;
+		overflow: hidden;
+		height: 198px;
+
+		> hbox {
+			> vbox {
+				flex: 1;
+			}
+		}
+
+		h2 {
+			background-image: linear-gradient(
+				to bottom,
+				rgb(98, 164, 245),
+				rgb(73, 138, 218)
+			);
+			padding: 4px 8px;
+			font-size: 10pt;
+			font-weight: bold;
+			color: white;
+		}
+
+		h3 {
+			margin-inline-start: 3px;
+			padding: 8px 5px;
+			padding-block-end: 0;
+			font-size: 8pt;
+		}
+
+		.item-container {
+			margin-inline-start: 5px;
+		}
+
+		.item {
+			all: unset;
+
+			display: flex;
+			font-size: 10pt;
+			margin-block: 2px;
+			padding-block: 2px;
+
+			image {
+				width: 16px;
+				height: 16px;
+			}
+
+			label {
+				margin-inline-start: 2px;
+			}
+
+			&.nav {
+				padding-inline-start: 18px;
+
+				&:after {
+					content: "\00bb";
+					margin-inline-start: 2px;
+				}
+			}
+		}
+
+		a,
+		button {
+			&.item {
+				cursor: pointer;
+				color: rgb(6, 55, 116);
+				text-decoration: underline;
+			}
+		}
+
+		.tips-title {
+			padding: 2px;
+			padding-block-start: 9px;
+			padding-inline-start: 18px;
+		}
+	}
+}
