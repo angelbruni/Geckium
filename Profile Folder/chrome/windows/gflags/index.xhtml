@@ -381,7 +381,7 @@
 													</div>
 												</hbox>
 											</vbox>
-											<h4>Apps List</h4>
+											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> Apps List</h4>
 											<vbox class="card" id="apps-list">
 												
 											</vbox>
@@ -399,41 +399,53 @@
 																<hbox style="gap: 24px">
 																	<hbox style="gap: 8px; align-items: center;">
 																		<vbox class="icon-picker favicon">
-																			<html:button id="image-app-old-favicon" class="button raised text ripple-enabled">
+																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-old-favicon" style="display: none;" />
+																			<html:label class="button raised text ripple-enabled" for="image-app-old-favicon">
 																				<image />
-																			</html:button>
+																			</html:label>
 																			<label>Old favicon</label>
 																		</vbox>
 																		<vbox class="icon-picker icon">
-																			<html:button id="image-app-old-icon" class="button raised text ripple-enabled">
+																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-old-icon" style="display: none;" />
+																			<html:label class="button raised text ripple-enabled" for="image-app-old-icon">
 																				<image />
-																			</html:button>
+																			</html:label>
 																			<label>Old icon</label>
 																		</vbox>
 																	</hbox>
 																	<hbox>
 																		<vbox class="icon-picker icon">
-																			<html:button id="image-app-new-icon" class="button raised text ripple-enabled">
+																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-new-icon" style="display: none;" />
+																			<html:label class="button raised text ripple-enabled" for="image-app-new-icon">
 																				<image />
-																			</html:button>
+																			</html:label>
 																			<label>New icon*</label>
 																		</vbox>
 																	</hbox>
 																</hbox>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
 																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-old-name" name="example" required="true"/>
+																		<html:input type="text" class="input" id="input-app-old-name" name="app" required="true"/>
 																		<label class="placeholder">Old name</label>
 																	</div>
 																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-new-name" name="example" required="true"/>
+																		<html:input type="text" class="input" id="input-app-new-name" name="app" required="true"/>
 																		<label class="placeholder">New name*</label>
+																	</div>
+																</vbox>
+																<vbox style="margin-block-start: 16px; gap: 16px;">
+																	<div class="input-parent size-md" flex="1">
+																		<html:input type="text" class="input" id="input-app-url" name="app" required="true"/>
+																		<label class="placeholder">URL*</label>
 																	</div>
 																</vbox>
 															</vbox>
 															<div class="footer">
+																<button id="deleteBtn" class="button ripple-enabled text" label="Delete" data-toggle-modal="editApp_modal" />
 																<button id="cancelBtn" class="button ripple-enabled text" label="Cancel" data-toggle-modal="editApp_modal" />
+																<spacer />
 																<button id="OKBtn" class="button ripple-enabled text color" label="OK" data-toggle-modal="editApp_modal" />
+																<button id="createBtn" class="button ripple-enabled text color" label="Create" data-toggle-modal="editApp_modal" />
 															</div>
 														</vbox>
 													</div>
