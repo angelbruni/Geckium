@@ -30,7 +30,7 @@ function setUpApps() {
 			pos = app.pos;
 			url = app.url;
 
-			if (appearanceChoice == 3) {
+			if (appearanceChoice == 5) {
 				appsContainer = "#apps-content";
 
 				icon = app.oldIcon;
@@ -49,7 +49,7 @@ function setUpApps() {
 				`
 			}
 		
-			if (appearanceChoice == 4 || appearanceChoice == 5) {
+			if (appearanceChoice == 6 || appearanceChoice == 7) {
 				appsContainer = "#apps-page .tile-grid";
 
 				icon = app.newIcon;

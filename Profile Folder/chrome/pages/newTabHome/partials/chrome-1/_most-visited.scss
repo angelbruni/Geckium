@@ -1,0 +1,53 @@
+#mostvisited {
+	padding-block-end: 12px;
+}
+
+#mostvisitedintro {
+	position: relative;
+}
+
+.most-visited-text {
+	position: absolute;
+	margin: 15px;
+	padding: 20px;
+	background-color: white;
+	box-shadow: 5px 5px 10px rgb(204, 204, 204);
+}
+
+#mostvisitedtiles {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 10px;
+
+	.thumbnail-title {
+		margin-block-start: 6px;
+		padding: 1px 0px 4px 0;
+		color: rgb(0, 0, 204);
+
+		image {
+			width: 16px;
+			height: 16px;
+			margin-inline-end: 6px;
+		}
+	}
+
+	.thumbnail {
+		background-position: top center;
+		background-size: cover;
+		background-color: rgb(238, 238, 238);
+		border: 1px solid rgb(204, 204, 204);
+		height: 136px;
+		width: 195px;
+	}
+}
+
+.manage {
+	all: unset;
+
+	color: rgb(119, 119, 204);
+	line-height: 19pt;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-decoration: underline;
+	cursor: pointer;
+}

@@ -1,0 +1,48 @@
+#sidebar {
+	width: 230px;
+	gap: 10px;
+}
+
+.sidebar {
+	padding: 3px 10px 3px 9px;
+}
+
+#searches,
+#recentlyBookmarked {
+	border-radius: 5px;
+	background-color: rgb(225, 236, 254);
+}
+
+.recent-bookmark {
+	display: flex;
+	height: 21px;
+	color: rgb(0, 0, 204);
+
+	image {
+		width: 16px;
+		height: 16px;
+		margin-inline-end: 6px;
+	}
+
+	label {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+}
+
+.hint {
+	all: unset;
+
+	height: 28px;
+	background-color: white;
+	border: 1px solid rgb(127,157,185);
+	box-sizing: border-box;
+	width: 100%;
+	margin-block-end: 8px;
+	padding-left: 23px;
+	background-image: url("chrome://userchrome/content/assets/img/toolbar/grayfolder.png");
+	background-position-x: 4px;
+	background-position-y: center;
+	background-repeat: no-repeat;
+}

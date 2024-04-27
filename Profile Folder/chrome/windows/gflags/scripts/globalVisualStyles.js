@@ -5,8 +5,7 @@ function insertGlobalVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	// Loop to create seven instances starting from 0 to 6
-	for (var i = 0; i < 8; i++) {
+	for (var i = 0; i < 10; i++) {
 		// Get the appearance details from the map
 		var appearance = gkVisualStyles.getVisualStyles()[i];
 
@@ -42,3 +41,10 @@ function insertGlobalVisualStyles() {
 	document.querySelector(`#global-appearance-container input[data-appearance="${gkPrefUtils.tryGet("Geckium.appearance.choice").int}"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", insertGlobalVisualStyles);
+
+function disableOverrides() {
+	document.querySelector('input[data-pref="Geckium.main.overrideStyle"]').checked = false;
+	gkPrefUtils.set("Geckium.main.overrideStyle").bool(false);
+	document.querySelector('input[data-pref="Geckium.newTabHome.overrideStyle"]').checked = false;
+	gkPrefUtils.set("Geckium.newTabHome.overrideStyle").bool(false);
+}

@@ -63,7 +63,24 @@
 				border-width: 1px;
 				border-style: solid;
 				border-color: rgb(133,193,133);
-				background: linear-gradient(to bottom, white 1px, rgb(237,255,237) 2px, rgb(201,242,201));
+				background: linear-gradient(
+					to bottom,
+					white 1px,
+					rgb(237,255,237) 2px,
+					rgb(201,242,201)
+				);
+
+				&:not([disabled]) {
+					&:hover,
+					&[open] {
+						
+						
+						
+						
+						
+						
+					}
+				}
 			}
 			
 			#identity-icon {
@@ -72,6 +89,18 @@
 
 			#custom-identity-label {
 				display: flex;
+			}
+		}
+
+		#identity-box:not([pageproxystate="valid"]) {
+			#identity-icon-box {
+				
+				
+				
+
+			}
+			#custom-identity-label {
+				
 			}
 		}
 

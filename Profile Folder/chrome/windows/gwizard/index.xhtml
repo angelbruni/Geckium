@@ -9,7 +9,7 @@
 		windowtype="geckiummaterial:gwizard"
 		containertype="page"
 		title="Geckium Wizard"
-		width="860"
+		width="2000"
 		height="788"
 		chromemargin="0,0,0,0">
 	<html:div id="window-container">
@@ -60,10 +60,10 @@
 							<vbox class="page" data-page="0">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" style="margin-top: 5%">
+										<vbox class="list-container" style="margin-top: 4%;">
 											<vbox class="card" style="padding-block-start: 19px">
 												<vbox class="item" flex="1">
-													<grid id="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
 										</vbox>
@@ -73,7 +73,7 @@
 							<vbox class="page" data-page="1">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" style="margin-top: 5%; gap: 8px;">
+										<vbox class="list-container" style="margin-top: 4%; gap: 8px;">
 											<html:button class="link icon-web-asset ripple-enabled" onclick="openGFlags('wizard')">
 												<vbox>
 													<label>Geckium Flags</label>
@@ -103,7 +103,7 @@
 							<vbox class="page" data-page="2">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" style="margin-top: 5%">
+										<vbox class="list-container" style="margin-top: 4%;">
 											<vbox class="card" style="padding: 16px">
 												<html:p class="headline-5" style="margin-block-start: 0">
 													You're all set!
@@ -143,9 +143,11 @@
 		</hbox>
 	</html:div>
 
+	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
+
 	<script src="chrome://userchrome/content/windows/gwizard/scripts/pages.js" type="text/javascript" defer="true"/>
 
-	<script src="chrome://userchrome/content/windows/gflags/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/globalVisualStyles.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>

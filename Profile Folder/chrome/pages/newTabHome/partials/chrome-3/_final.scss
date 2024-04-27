@@ -1,0 +1,78 @@
+& {
+	font-size: 9pt;
+
+	--chrt-ntp-background-alignment: 50% 100%;
+	--chrt-ntp-background-repeat: no-repeat;
+
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					body {
+						background-color: color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%, black);
+						background-image: var(--lwt-newtab-image);
+						image-rendering: var(--lwt-newtab-image-rendering);
+					}
+				}
+			}
+		}
+	}
+	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {
+		body {
+			background-image: var(--lwt-additional-images);
+			background-position: var(--lwt-background-alignment);
+			background-repeat: var(--lwt-background-tiling);
+		}
+	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		body {
+			background-color: var(--chrt-ntp-background);
+			background-image: var(--chrt-theme-ntp-background) !important;
+		}
+
+		#attribution-img {
+			background-image: var(--chrt-theme-ntp-attribution) !important;
+			width: var(--chrt-theme-ntp-attribution-width) !important;
+			height: var(--chrt-theme-ntp-attribution-height) !important;
+		}
+
+		&[style*="--chrt-theme-ntp-attribution"] {
+			#attribution {
+				display: flex !important;
+			}
+		}
+	}
+}
+
+body {
+	background-size: unset;
+	background-repeat: var(--chrt-ntp-background-repeat);
+	background-position: var(--chrt-ntp-background-alignment);
+}
+
+#main {
+	margin-inline: auto;
+	width: 920px;
+}
+
+
+&[geckium-choice="three"] {
+	#main {
+		background: url(assets/chrome-3/product_logo.png) no-repeat 0px 8px;
+	}
+}
+
+#bookmarksbar-spacing {
+	flex-shrink: 0;
+}
+
+
+@import "most-visited";
+@import "recently-closed";
+@import "lower-sections";
+@import "footer";

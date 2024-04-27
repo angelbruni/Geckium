@@ -1,0 +1,85 @@
+& {
+	--default-recently-closed-background: #E5EFFE;
+	--recently-closed-background: var(--default-recently-closed-background);
+	--default-recently-closed-border-color: rgba(75, 140, 220, 0.3125);
+	--recently-closed-border-color: var(--default-recently-closed-border-color);
+	--default-recently-closed-color: black;
+	--recently-closed-color: var(--default-recently-closed-color);
+	--default-recently-closed-item-color: #063774;
+	--recently-closed-item-color: var(--default-recently-closed-item-color);
+
+	@media (prefers-color-scheme: dark) {
+		--recently-closed-background: #415470;
+		--recently-closed-border-color: rgba(206, 220, 236, 0.313);
+		--recently-closed-color: white;
+		--recently-closed-item-color: #acc0da;
+	}
+
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--recently-closed-background: color-mix(
+						in srgb,
+						var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
+						transparent
+					);
+					--recently-closed-border-color: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
+						transparent
+					);
+					--recently-closed-color: var(--recently-closed-item-color);
+					--recently-closed-item-color: var(--toolbarbutton-icon-fill, var(--lwt-text-color));
+
+					&[style*="--arrowpanel-background"] {
+						--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-fill, var(--lwt-text-color)));
+					}
+				}
+				&[lwtheme-id*="#{$gtkplus}"] {
+					--recently-closed-item-color: rgb(40,40,238);
+		
+					--recently-closed-background: color-mix(
+						in srgb,
+						ActiveCaption 10%,
+						transparent
+					);
+					--recently-closed-border-color: color-mix(
+						in srgb,
+						color-mix(
+							in srgb,
+							AccentColor 85%,
+							black
+						) 50%,
+						transparent
+					) !important;
+				}
+			}
+		}
+	}
+
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--recently-closed-background: var(--chrt-ntp-section, var(--default-recently-closed-background)) !important;
+		
+		&[style*="--chrt-ntp-section"] {
+			--recently-closed-border-color: color-mix(
+				in srgb,
+				var(--recently-closed-background) 31%,
+				transparent
+			) !important;
+		}
+
+		&[style*="--chrt-ntp-header"] {
+			--recently-closed-border-color: var(--chrt-ntp-header, var(--default-recently-closed-border-color)) !important;
+		}
+		
+		--recently-closed-color: var(--chrt-ntp-section-text, var(--default-recently-closed-color)) !important;
+		--recently-closed-item-color: var(--chrt-ntp-section-link, var(--default-recently-closed-item-color)) !important;
+
+		--link-color: var(--chrt-ntp-section-link, var(--default-link-color));
+	}
+}

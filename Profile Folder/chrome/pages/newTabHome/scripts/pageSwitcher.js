@@ -10,7 +10,7 @@ function setUpPages() {
 			break;
 	}
 
-	if (appearanceChoice == 3 || appearanceChoice == 4) {
+	if (appearanceChoice == 6 || appearanceChoice == 7) {
 		const pageSwitcherStart = document.getElementById("page-switcher-start");
 		const pageSwitcherEnd = document.getElementById("page-switcher-end");
 

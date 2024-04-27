@@ -1,0 +1,33 @@
+& {
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+}
+
+#main {
+	margin-block-start: 10px;
+	margin-inline: auto;
+	width: 864px;
+	gap: 10px;
+}
+
+#logo {
+	align-items: end;
+}
+
+.section-title {
+	color: black;
+	font-size: 11pt;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+	margin-block-end: 4px;
+}
+
+&[pref="newtab"] {
+	#bookmarksbar-spacing {
+		height: 49px;
+	}
+}
+
+@import "Most-visited";
+@import "sidebar";

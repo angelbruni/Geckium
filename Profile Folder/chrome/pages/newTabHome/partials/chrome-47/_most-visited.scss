@@ -1,17 +1,17 @@
 & {
 	--tile-background: rgb(242,242,242);
 	--tile-background-disabled: var(--tile-background);
-	--tile-border-color-normal: rgba(150,150,150,0.3137254901960784);
+	--tile-border-color-normal: rgba(150,150,150,.3137254901960784);
 	--tile-border-color-hot: rgba(150,150,150,1);
-	--tile-close-background-color-normal: rgba(90,90,90,0.7);
+	--tile-close-background-color-normal: rgba(90,90,90,.7);
 	--tile-close-background-color-hot: rgb(90,90,90);
 	--tile-close-background-color-active: rgb(66,133,244);
 	--tile-thumbnail-background-color: white;
 
 	@media (prefers-color-scheme: dark) {
 		--tile-background: rgb(77, 77, 77);
-		--tile-close-background-color-normal: rgba(201, 201, 201, 0.7);
-		--tile-close-background-color-hot: rgba(235, 235, 235, 0.7);
+		--tile-close-background-color-normal: rgba(201,201,201,.7);
+		--tile-close-background-color-hot: rgba(235,235,235,.7);
 	}
 
 	// Custom theme support

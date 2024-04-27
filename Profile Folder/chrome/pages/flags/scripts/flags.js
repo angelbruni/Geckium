@@ -133,8 +133,6 @@ function setUpExperiments() {
         if (experiments.hasOwnProperty(key)) {
             const experiment = experiments[key];
 
-			
-
 			if (experiment.type == "ntp") {
 				switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 					case true:
@@ -147,8 +145,6 @@ function setUpExperiments() {
 			} else {
 				appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
 			}
-
-			console.log(key, experiment.type, appearanceChoice, experiment.from, experiment.to)
 
             if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)
                 continue; // Skip adding experiment to UI if appearance choice is outside range
@@ -184,7 +180,7 @@ function setUpExperiments() {
                 waitForElm("select#select-" + key).then(function() {
                     document.querySelector("select#select-" + key).addEventListener("change", () => {
                         const selectedValue = document.querySelector("select#select-" + key).value;
-                        pref("Geckium.crflag." + key.replace(/-/g, ".")).set.int(selectedValue);
+                        gkPrefUtils.set("Geckium.crflag." + key.replace(/-/g, ".")).int(selectedValue);
 						console.log("Geckium.crflag." + key.replace(/-/g, "."))
                         updateFlags();
                     });

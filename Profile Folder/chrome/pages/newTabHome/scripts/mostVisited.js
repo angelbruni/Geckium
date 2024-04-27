@@ -1,9 +1,7 @@
 const { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
 let topFrecentSites;
 
-const desiredRows = 2;
-const desiredCols = 4;
-const numTiles = desiredRows * desiredCols;
+
 
 const { PageThumbs } = ChromeUtils.importESModule("resource://gre/modules/PageThumbs.sys.mjs");
 
@@ -77,8 +75,44 @@ const websiteColors = {
 	'searx':				'rgb(11,11,11)',
 };
 
+function getTilesAmount(string) {
+	let appearanceChoice;
+
+	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
+		case true:
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			break;
+		default:
+			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			break;
+	}
+	
+	let desiredRows;
+	let desiredCols;
+	
+	if (appearanceChoice == 0) {
+		desiredRows = 3;
+		desiredCols = 3;
+	} else {
+		desiredRows = 2;
+		desiredCols = 4;
+	}
+
+	switch (string) {
+		case "rows":
+			return desiredRows;
+			break;
+		case "cols":
+			return desiredCols;
+			break;
+		default:
+			return desiredRows * desiredCols;
+			break;
+	}
+}
+
 function retrieveFrequentSites() {
-    NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: numTiles })
+    NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: getTilesAmount() })
 		.then(result => {
 			/* Count the number of websites with no title, with
 			   searchquery or a cdn to prevent duplicates in new tab
@@ -87,7 +121,7 @@ function retrieveFrequentSites() {
 			const invalidWebsite = result.filter(website => !website.title || website.title == "" || website.url.includes("?") && website.url.includes("cdn") ).length;
 			
 			// Calculate the total number of websites to retrieve again, filtering out the ones with no icon or title.
-			const totalTiles = (desiredCols + invalidWebsite) * desiredRows;
+			const totalTiles = (getTilesAmount("cols") + invalidWebsite) * getTilesAmount("rows");
 			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 4 });
 		})
 		.then(result => {
@@ -140,7 +174,19 @@ function createTile(website) {
 			// Replace special characters with their corresponding HTML entities.
 			const title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice <= 3) {
+			if (appearanceChoice == 0) {
+				tile = `
+				<html:a href="${website.url}" title="${title}">
+					<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
+						<image />
+						<label>${title}</label>
+					</hbox>
+					<image class="thumbnail" />
+				</html:a>
+				`
+
+				thumbnail = "a[href='"+ website.url +"'] .thumbnail";
+			} else if (appearanceChoice <= 5) {
 				tile = `
 				<html:a class="thumbnail-container" href="${website.url}">
 					<vbox class="edit-mode-border">
@@ -166,7 +212,7 @@ function createTile(website) {
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 				thumbnail = ".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper";
-			} else if (appearanceChoice == 4 || appearanceChoice == 5) {
+			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
 				for (const key in websiteColors) {
 					const websiteURL = website.url.toLowerCase();
 
@@ -238,15 +284,19 @@ function createTile(website) {
 				})
 			});
 
-			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 6)) {
+			if (!gkPrefUtils.tryGet("Geckium.crflag.enable.icon.ntp").bool || !(appearanceChoice >= 7)) {
 				waitForElm(thumbnail).then(function() {
-					for (let i = 0; i < numTiles; i++) {
+					for (let i = 0; i < getTilesAmount(); i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
 					}
 				});
 			}
         } else {
-			if (appearanceChoice <= 3) {
+			if (appearanceChoice == 0) {
+				tile = `
+				<!--<html:div class="thumbnail" />-->
+				`
+			} else if (appearanceChoice <= 5) {
 				tile = `
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
@@ -267,7 +317,7 @@ function createTile(website) {
 					</html:div>
 				</html:a>
 				`
-			} else if (appearanceChoice == 4 || appearanceChoice == 5) {
+			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
 				tile = `
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
@@ -293,7 +343,8 @@ function createTile(website) {
 				}
 			}
 		}
-
+		
+		console.log(tile)
         return MozXULElement.parseXULToFragment(tile);
     } catch (e) {
         console.error(e);
@@ -314,18 +365,20 @@ function populateRecentSitesGrid() {
 
 	let mostViewed;
 
-	if (appearanceChoice <= 2)
+	if (appearanceChoice == 0)
+		mostViewed = "#mostvisitedtiles";
+	else if (appearanceChoice <= 4)
 		mostViewed = "#most-visited";
-	else if (appearanceChoice == 3)
+	else if (appearanceChoice == 5)
 		mostViewed = "#most-viewed-content";
-	else if (appearanceChoice == 4 || appearanceChoice == 5)
+	else if (appearanceChoice == 6 || appearanceChoice == 7)
 		mostViewed = "#most-visited-page .tile-grid";
 	else
 		mostViewed = "#mv-tiles";
 
 	// Delete the tiles to update with new information (there might be a better way to do this).
-    document.querySelectorAll(mostViewed + "> *").forEach(element => {
-        element.remove();
+    document.querySelectorAll(mostViewed + "> *").forEach(elm => {
+        elm.remove();
     });
 
     if (topFrecentSites) {
@@ -334,7 +387,7 @@ function populateRecentSitesGrid() {
 
 			mostVisited = document.querySelector(mostViewed);
 
-			for (let i = 0; i < numTiles; i++) {
+			for (let i = 0; i < getTilesAmount(); i++) {
 				const tile = createTile(topFrecentSites[i]);
 
 				try {

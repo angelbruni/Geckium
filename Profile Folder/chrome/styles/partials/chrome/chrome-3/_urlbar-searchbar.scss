@@ -1,0 +1,26 @@
+& {
+	--urlbarView: rgb(255, 255, 255, 94%);
+}
+
+.urlbarView {
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+	margin-top: 4px !important;
+	border-radius: 5px;
+
+	/* bruni: Let's make the urlbar menu width from star button to go button. */
+	transform: translateX(calc(var(--toolbarbutton-width) * -1));
+	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
+}
+
+.urlbarView-url {
+	padding-left: 24px !important;
+}
+
+.urlbarView-title {
+	color: rgb(131, 133, 133);
+
+	&::before {
+		content: "-";
+		padding: 0 4px;
+	}
+}
