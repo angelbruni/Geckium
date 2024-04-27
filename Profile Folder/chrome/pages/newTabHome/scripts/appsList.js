@@ -25,6 +25,8 @@ function setUpApps() {
 
 	if (appsListArray.length !== 0) {
 		appsListArray.forEach(app => {
+			console.log(app)
+
 			let tile;
 
 			pos = app.pos;
@@ -66,8 +68,17 @@ function setUpApps() {
 					<label>${name}</label>
 				</html:button>
 				`
-				waitForElm(appsContainer + "> [data-url='" + url + "'").then(function() {
-					let apps = document.querySelectorAll(appsContainer + "> [data-url='" + url + "'");
+			}
+
+			document.querySelectorAll(appsContainer + "> *").forEach(app => {
+				app.remove();
+			})
+
+			waitForElm(appsContainer).then(function() {
+				document.querySelector(appsContainer).appendChild(MozXULElement.parseXULToFragment(tile));
+
+				if (appearanceChoice == 6 || appearanceChoice == 7) {
+					let apps = document.querySelectorAll(appsContainer + "> .tile-container");
 					apps.forEach(app => {
 						// #region App Dragging
 						let allowDragging; // Only allow dragging after it's being dragged for a while.
@@ -109,6 +120,7 @@ function setUpApps() {
 							setTimeout(() => {
 								allowDragging = false;
 							}, 0);
+
 							isDragging = false;
 							app.style.transform = null;
 							app.style.pointerEvents = null;
@@ -117,6 +129,8 @@ function setUpApps() {
 
 						// #region App Opening
 						app.addEventListener("click", () => {
+							console.log("WHAT")
+
 							if (!allowDragging) {
 								if (!app.dataset.type || app.dataset.type == 0 || app.dataset.type == 1) {
 									/*	If app opens as a regular tab or pinned tab
@@ -128,15 +142,8 @@ function setUpApps() {
 						});
 						// #endregion
 					});
-				});
-			}
-
-			document.querySelectorAll(appsContainer + "> *").forEach(app => {
-				app.remove();
-			})
-
-			waitForElm(appsContainer).then(function() {
-				document.querySelector(appsContainer).appendChild(MozXULElement.parseXULToFragment(tile));
+				}
+				
 			});
 		})
 	}
