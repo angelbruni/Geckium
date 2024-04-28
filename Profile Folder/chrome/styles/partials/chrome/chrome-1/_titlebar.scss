@@ -266,3 +266,13 @@
 [data-l10n-id="private-browsing-indicator-label"] {
     display: none !important;
 }
+
+@media (-moz-platform: windows) {
+	.titlebar-buttonbox-container {
+		&::before {
+			content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/google.png");
+			margin-block-start: 3px;
+			margin-inline-end: 6px;
+		}
+	}
+}

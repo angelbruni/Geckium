@@ -1,0 +1,7 @@
+@media (-moz-platform: windows) {
+	.titlebar-buttonbox-container {
+		&::before {
+			content: unset !important;
+		}
+	}
+}
