@@ -1,7 +1,5 @@
 const { ctypes } = Components.utils.import("resource://gre/modules/ctypes.jsm", {});
 
-const { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
-
 const { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 XPCOMUtils.defineLazyServiceGetter(
 	this,

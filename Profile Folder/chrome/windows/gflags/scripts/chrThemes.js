@@ -6,11 +6,14 @@ async function populateChrThemesList() {
 	chrThemesList.innerHTML = ``;
 
 	for (const themeName in themes) {
-		const theme = themes[themeName];
+		let theme = themes[themeName];
 
-		let themeDescription = theme.description;
+		let themeDescription;
 		if (!themeDescription)
 			themeDescription = "This theme has no description.";
+		else
+			themeDescription = theme.description.replace(/[&<>"']/g, match => specialCharacters[match]);
+
 
 		const themeFile = theme.file.replace(".crx", "");
 
@@ -36,7 +39,7 @@ async function populateChrThemesList() {
 				<hbox style="align-items: center; padding-block: 6px">
 					<image class="icon" style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" />
 					<vbox style="min-width: 0">
-						<label class="name">${themeName}</label>
+						<label class="name">${themeName.replace(/[&<>"']/g, match => specialCharacters[match])}</label>
 						<label class="description">${themeDescription}</label>
 						<label class="version">V${themeVersion}</label>
 					</vbox>
