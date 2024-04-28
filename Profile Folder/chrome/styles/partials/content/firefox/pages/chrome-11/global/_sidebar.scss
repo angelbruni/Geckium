@@ -58,6 +58,13 @@
 			background: transparent !important;
 		}
 
+		&:active,
+		&[selected="true"],
+		&[aria-selected="true"] {
+			border-bottom: 1px solid #8FAAD9 !important;
+			border-top: 1px solid #8FAAD9 !important;
+		}
+
 		&[selected="true"],
 		&[aria-selected="true"] {
 			box-shadow: 0px 1px 0px #F7F7F7;
@@ -67,8 +74,6 @@
 				#BBCEE9 97%,
 				#AABEDC
 			) !important;
-			border-bottom: 1px solid #8FAAD9 !important;
-			border-top: 1px solid #8FAAD9 !important;
 
 			.category-name {
 				color: black !important;
