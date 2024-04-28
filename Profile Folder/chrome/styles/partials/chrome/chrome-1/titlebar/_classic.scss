@@ -96,6 +96,14 @@
 		.titlebar-buttonbox-container {
 			justify-content: end;
 			width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
+
+			@media (-moz-platform: windows) {
+				&::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/google-alternate.png");
+					margin-block-start: 2px;
+					margin-inline-end: 7px;
+				}
+			}
 		}
 
 		.titlebar-buttonbox {
