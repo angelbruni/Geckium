@@ -1,121 +1,14 @@
 @-moz-document url-prefix(about:preferences),
 			   url-prefix(about:addons) {
-	:root {
-		--in-content-font-body-size-base: 9pt !important;
-		--sidebar-width: 155px !important;
+
+	& {
 		--main-pane-width-final: 718px;
-		--main-pane-width: var(--main-pane-width-final) !important;
-		--section-width: var(--main-pane-width-final) !important;
-	}
-
-	body {
-		--main-pane-width: var(--main-pane-width-final) !important;
-	}
-
-	#content {
-		width: var(--main-pane-width);
-	}
-
-	.navigation,
-	#sidebar {
-		width: var(--sidebar-width) !important;
-
-		> spacer,
-		> .spacer {
-            
-        }
-	}
-
-	#categories,
-	categories-box {
-		width: auto !important;
-		
-		
-
-		&::before {
-			
-			line-height: 11pt;
-			font-size: 14pt;
-			margin-inline-start: 23px;
-			margin-block-start: 22px;
-			margin-block-end: 19px;
-			
-		}
-	}
-
-	.category,
-	.sidebar-footer-link {
-		
-		
-		
-		padding-block: 0 !important;
-		
-		
-		
-		background-image: none !important;
-
-		&:hover,
-		&:active {
-			
-		}
-
-		&[selected="true"],
-		&[aria-selected="true"] {
-			.category-name {
-				
-				
-			}
-		}
-
-		.category-icon {
-			
-		}
-
-		.category-name,
-		.sidebar-footer-label {
-			
-			
-			
-			
-			
-			
-			
-			
-		}
-	}
-
-	.sidebar-footer-list {
-		display: flex !important;
-		flex-direction: column;
-		
-		margin-block-start: 27px !important;
-	}
-
-	.sidebar-footer-link {
-		
-		
-		
-		
-		
-
-		&:hover {
-			
-		}
-	}
-
-	.sidebar-footer-label,
-	.sidebar-footer-link {
-		
-		
-	}
-
-	.sidebar-footer-icon {
-		
 	}
 
 	.sticky-container {
+		display: flex !important;
 		
-		
+
 		width: 100% !important;
 		margin-inline: 0 !important;
 		padding-inline: 0 !important;
@@ -146,11 +39,11 @@
 	h1[data-l10n-id="pane-sync-title3"],
 	h1[data-l10n-id="more-from-moz-title"],
 	.main-heading > .header-name {
-		z-index: 100;
 		color: rgb(48, 57, 66) !important;
-		font-weight: 500 !important;
 		font-size: 14pt !important;
-		margin: 0 !important;
+		padding: 0 !important;
+		border-block-end: 0 !important;
+		flex: 0 !important;
 	}
 
 	[data-l10n-id="startup-header"],
@@ -205,13 +98,6 @@
 		display: none !important;
 	}
 
-	.main-content,
-	#content > #main {
-		overflow-x: hidden !important;
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-
 	h1,
 	h2,
 	[data-l10n-id="update-application-allow-description"],
@@ -228,5 +114,38 @@
 	recommended-themes-section,
 	.view-footer-item {
 		display: none !important;
+	}
+
+	.main-content > .pane-container,
+	#content > #main {
+		padding-inline: 0 !important;
+
+		groupbox {
+			border-block-end: 0 !important;
+			padding-inline-start: 0 !important;
+			margin: 0 !important;
+
+			h2 {
+				position: unset;
+				height: unset;
+				width: unset;
+			}
+		}
+	}
+
+	h1[data-l10n-id="pane-general-title"],
+	h1[data-l10n-id="pane-home-title"],
+	h1[data-l10n-id="pane-search-title"],
+	h1[data-l10n-id="privacy-header"],
+	h1[data-l10n-id="pane-sync-title3"],
+	h1[data-l10n-id="more-from-moz-title"],
+	.main-heading > .header-name {
+		flex: 1 !important;
+		color: black !important;
+	}
+
+	.main-search,
+	.main-heading {
+		width: 100% !important;
 	}
 }

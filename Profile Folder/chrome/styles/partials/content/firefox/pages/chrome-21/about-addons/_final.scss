@@ -1,0 +1,26 @@
+@-moz-document url-prefix(about:addons) {
+	.theme-disabled-section {
+		display: flex;
+		flex-direction: column;
+
+		.list-section-heading {
+			order: -5;
+		}
+
+		[addon-id="default-theme@mozilla.org"] {
+			order: -4;
+		}
+
+		[addon-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"] {
+			order: -3;
+		}
+
+		[addon-id="firefox-compact-light@mozilla.org"] {
+			order: -2;
+		}
+
+		[addon-id="firefox-compact-dark@mozilla.org"] {
+			order: -1;
+		}
+	}
+}

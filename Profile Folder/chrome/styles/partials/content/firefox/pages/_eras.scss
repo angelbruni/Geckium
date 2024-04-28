@@ -1,0 +1,25 @@
+@import "about-config";
+
+:root {
+	@-moz-document url-prefix(about:preferences),
+			   	   url-prefix(about:addons) {
+		&:not([geckium-one]) {
+			* {
+				visibility: hidden;
+			}
+		}
+	}
+	
+
+	&[geckium-one] {
+		@import "chrome-11/global/final";
+		@import "chrome-11/about-addons/final";
+		@import "chrome-11/about-preferences/final";
+	}
+
+	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+		@import "chrome-21/global/final";
+		@import "chrome-21/about-addons/final";
+		@import "chrome-21/about-preferences/final";
+	}
+}

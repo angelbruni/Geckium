@@ -4,11 +4,9 @@
 // @description	Settings the desired appearance chosen by the user accordingly.
 // @loadorder   2
 // @include		main
-// @include		about:preferences
-// @include		about:addons
+// @include		about:preferences*
+// @include		about:addons*
 // ==/UserScript==
-
-var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 
 const forkName = AppConstants.MOZ_APP_NAME;
 const unsupportedForks = {

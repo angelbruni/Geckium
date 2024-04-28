@@ -1,0 +1,17 @@
+@import "sidebar";
+@import "main";
+
+@-moz-document url-prefix(about:preferences),
+			   url-prefix(about:addons) {
+	& {
+		--in-content-font-body-size-base: 9pt !important;
+		--main-pane-width: var(--main-pane-width-final) !important;
+		--section-width: var(--main-pane-width-final) !important;
+	}
+	
+	body {
+		--main-pane-width: var(--main-pane-width-final) !important;
+
+		font-family: Arial, sans-serif;
+	}
+}
