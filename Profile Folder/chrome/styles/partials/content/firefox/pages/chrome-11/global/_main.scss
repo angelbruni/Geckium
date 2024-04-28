@@ -1,0 +1,75 @@
+@-moz-document url-prefix(about:preferences),
+			   url-prefix(about:addons) {
+
+	& {
+		--main-pane-width-final: 888px;
+	}
+
+	.sticky-container {
+		display: none !important;
+	}
+	
+	#content {
+		width: var(--main-pane-width);
+	}
+
+	.main-content {
+		padding: 0 !important;
+	}
+
+	.main-content > .pane-container,
+	#content > #main {
+		padding: 0 !important;
+		margin: 0 !important;
+
+		padding-inline: 24px !important;
+
+		.subcategory {
+			padding: 0 !important;
+			margin: 0 !important;
+			border: 0 !important;
+
+			&:not(#generalCategory, #firefoxHomeCategory, #searchCategory, #browserPrivacyCategory, #firefoxAccountCategory, #moreFromMozillaCategory-header) {
+				h1 {
+					display: none !important;
+				}
+			}
+		}
+
+		groupbox {
+			position: relative;
+			margin: 0 !important;
+			margin-block-start: 17px !important;
+			padding-inline-start: 148px !important;
+			padding-block-end: 20px !important;
+			border-block-end: 1px solid #EEE !important;
+
+			h2 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				height: 100%;
+				width: 140px;
+				margin: 0 !important;
+			}
+		}
+	}
+
+	h1[data-l10n-id="pane-general-title"],
+	h1[data-l10n-id="pane-home-title"],
+	h1[data-l10n-id="pane-search-title"],
+	h1[data-l10n-id="privacy-header"],
+	h1[data-l10n-id="pane-sync-title3"],
+	h1[data-l10n-id="more-from-moz-title"],
+	.main-heading > .header-name {
+		z-index: 100;
+		color: rgb(83,99,125) !important;
+		font-weight: 500 !important;
+		font-size: 19pt !important;
+		margin: 0 !important;
+		padding-block-start: 13px !important;
+		padding-block-end: 4px !important;
+		border-block-end: 1px solid #EEE !important;
+		flex: 1 !important;
+	}
+}

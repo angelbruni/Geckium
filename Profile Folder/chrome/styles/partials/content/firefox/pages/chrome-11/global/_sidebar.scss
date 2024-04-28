@@ -1,0 +1,126 @@
+@-moz-document url-prefix(about:preferences),
+			   url-prefix(about:addons) {
+
+	& {
+		--sidebar-width: 217px !important;
+	}
+
+	.navigation,
+	#sidebar {
+		padding-block-start: 97px;
+		border-inline-end: 1px solid #C6C9CE;
+		width: var(--sidebar-width) !important;
+		background: 
+			linear-gradient(
+				rgba(234, 238, 243, 0.2),
+				#EAEEF3
+			),
+			linear-gradient(
+				to right,
+				#EAEEF3,
+				#EAEEF3 97%,
+				#D3D7DB
+			);
+	
+		> spacer,
+		> .spacer {
+			display: none !important;
+		}
+
+		> #categories {
+			padding: 0 !important;
+			width: var(--sidebar-width) !important;
+		}
+	}
+
+	#categories,
+	categories-box {
+		width: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.category,
+	.sidebar-footer-link {
+		margin-inline-start: 0 !important;
+		min-height: 32px !important;
+		padding-inline: 0 !important;
+		padding-block: 0 !important;
+		transition: none !important;
+		border-radius: 0 !important;
+		border: none !important;
+		background-image: none !important;
+		border-bottom: 1px solid transparent !important;
+		border-top: 1px solid transparent !important;
+
+		&:hover,
+		&:active {
+			background: transparent !important;
+		}
+
+		&[selected="true"],
+		&[aria-selected="true"] {
+			box-shadow: 0px 1px 0px #F7F7F7;
+			background: linear-gradient(
+				to right,
+				#BBCEE9,
+				#BBCEE9 97%,
+				#AABEDC
+			) !important;
+			border-bottom: 1px solid #8FAAD9 !important;
+			border-top: 1px solid #8FAAD9 !important;
+
+			.category-name {
+				color: black !important;
+				text-shadow: #BBCEE9 0 1px 1px;
+			}
+		}
+		
+		.category-icon {
+			display: none;
+		}
+
+		.category-name,
+		.sidebar-footer-label {
+			display: flex;
+			flex: 1;
+			align-items: center;
+			height: 100%;
+			border-left: 6px solid transparent !important;
+			font-size: 10pt !important;
+			justify-content: end;
+			padding-inline-end: 24px !important;
+			cursor: pointer !important;
+			color: #426DC9 !important;
+		}
+	}
+
+	.sidebar-footer-list {
+		display: flex !important;
+		flex-direction: column;
+		margin: 0 !important;
+		margin-block-start: 27px !important;
+	}
+
+	.sidebar-footer-link {
+		display: flex;
+		align-items: center;
+		height: 30px !important;
+		font-size: 12px !important;
+		color: #426DC9 !important;
+
+		&:hover {
+			background: transparent !important;
+		}
+	}
+
+	.sidebar-footer-label,
+	.sidebar-footer-link {
+		cursor: pointer !important;
+		margin: 0 !important;
+	}
+
+	.sidebar-footer-icon {
+		display: none !important;
+	}
+}
