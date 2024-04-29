@@ -133,7 +133,19 @@
 			background-clip: padding-box;
 			height: var(--titlebar-button-height);
 			box-shadow: var(--titlebar-button-inner-shadow-normal);
+			overflow: hidden;
 			transition: background-color 100ms linear;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-pseudo-background);
+				z-index: -1;
+			}
 
 			&:active {
 				transition: none;

@@ -149,7 +149,18 @@
   background-clip: padding-box;
   height: var(--titlebar-button-height);
   box-shadow: var(--titlebar-button-inner-shadow-normal);
+  overflow: hidden;
   transition: background-color 100ms linear;
+}
+:root[chromemargin="0,0,0,0"] .titlebar-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--titlebar-buttonbox-pseudo-background);
+  z-index: -1;
 }
 :root[chromemargin="0,0,0,0"] .titlebar-button:active {
   transition: none;
@@ -211,18 +222,6 @@
     --titlebar-min-background-active: var(--titlebar-button-background-active);
     --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
   }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
-    /* bruni: This entire code takes care of custom themes support for titlebar */
-  }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-  }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-    --titlebar-buttonbox-background-color: transparent;
-  }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-  }
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto][sizemode=maximized] .titlebar-buttonbox-container {
     margin-block-start: 0 !important;
     margin-inline-end: 3px !important;
@@ -251,9 +250,6 @@
     border-bottom: var(--titlebar-button-outer-border);
     border-right: var(--titlebar-button-outer-border);
     border-bottom-right-radius: 5px !important;
-  }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close:active {
-    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
   }
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-max:active,
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-restore:active,
@@ -347,17 +343,7 @@
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
-  }
-  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 2.5px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-sizing: border-box;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
@@ -409,18 +395,6 @@
   --titlebar-min-background-active: var(--titlebar-button-background-active);
   --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
 }
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
-  /* bruni: This entire code takes care of custom themes support for titlebar */
-}
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-}
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-  --titlebar-buttonbox-background-color: transparent;
-}
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not(:-moz-lwtheme)[chrtheme=true] {
-  --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-}
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows][sizemode=maximized] .titlebar-buttonbox-container {
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
@@ -447,9 +421,6 @@
   border-bottom: var(--titlebar-button-outer-border);
   border-right: var(--titlebar-button-outer-border);
   border-bottom-right-radius: 5px !important;
-}
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-close:active {
-  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
 }
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-max:active,
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-restore:active,
@@ -535,17 +506,7 @@
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
-}
-:root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 2.5px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-sizing: border-box;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-max,
@@ -594,6 +555,9 @@
 :root:-moz-lwtheme #navigator-toolbox {
   padding-top: 0 !important;
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
+  --titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([privatebrowsingmode=temporary]), :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[privatebrowsingmode=temporary] {
   --titlebar-active: var(--lwt-accent-color) !important;
   --titlebar-inactive: var(--titlebar-active) !important;
@@ -631,6 +595,9 @@
   background-position: right top, var(--lwt-background-alignment);
   background-position-y: -9px;
   box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
+  --titlebar-buttonbox-pseudo-background: transparent;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]):not([privatebrowsingmode=temporary]), :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"])[privatebrowsingmode=temporary] {
   --titlebar-active: linear-gradient(
@@ -681,6 +648,7 @@
   	var(--chrt-frame, var(--default-titlebar-inactive)) 40%,
   	white
   ) !important;
+  --titlebar-buttonbox-pseudo-background: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][windowtype="navigator:browser"] > body::before {
   content: "";
@@ -1616,8 +1584,19 @@
   background-clip: padding-box;
   height: var(--titlebar-button-height);
   box-shadow: var(--titlebar-button-inner-shadow-normal);
+  overflow: hidden;
   -moz-transition: background-color 100ms linear;
   transition: background-color 100ms linear;
+}
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--titlebar-buttonbox-pseudo-background);
+  z-index: -1;
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-button:active {
   -moz-transition: none;
@@ -1680,18 +1659,6 @@
     --titlebar-min-background-active: var(--titlebar-button-background-active);
     --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
   }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
-    /* bruni: This entire code takes care of custom themes support for titlebar */
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-    --titlebar-buttonbox-background-color: transparent;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-  }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto][sizemode=maximized] .titlebar-buttonbox-container {
     margin-block-start: 0 !important;
     margin-inline-end: 3px !important;
@@ -1720,9 +1687,6 @@
     border-bottom: var(--titlebar-button-outer-border);
     border-right: var(--titlebar-button-outer-border);
     border-bottom-right-radius: 5px !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close:active {
-    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
   }
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-max:active,
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-restore:active,
@@ -1816,17 +1780,7 @@
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
-  }
-  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 2.5px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-sizing: border-box;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
@@ -1878,18 +1832,6 @@
   --titlebar-min-background-active: var(--titlebar-button-background-active);
   --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
 }
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
-  /* bruni: This entire code takes care of custom themes support for titlebar */
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-  --titlebar-buttonbox-background-color: transparent;
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not(:-moz-lwtheme)[chrtheme=true] {
-  --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows][sizemode=maximized] .titlebar-buttonbox-container {
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
@@ -1916,9 +1858,6 @@
   border-bottom: var(--titlebar-button-outer-border);
   border-right: var(--titlebar-button-outer-border);
   border-bottom-right-radius: 5px !important;
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-close:active {
-  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
 }
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-max:active,
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-restore:active,
@@ -2004,17 +1943,7 @@
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
-}
-:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 2.5px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-sizing: border-box;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-max,
@@ -2266,8 +2195,19 @@
   background-clip: padding-box;
   height: var(--titlebar-button-height);
   box-shadow: var(--titlebar-button-inner-shadow-normal);
+  overflow: hidden;
   -moz-transition: background-color 100ms linear;
   transition: background-color 100ms linear;
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--titlebar-buttonbox-pseudo-background);
+  z-index: -1;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-button:active {
   -moz-transition: none;
@@ -2330,18 +2270,6 @@
     --titlebar-min-background-active: var(--titlebar-button-background-active);
     --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
   }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] {
-    /* bruni: This entire code takes care of custom themes support for titlebar */
-  }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-    --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-  }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-    --titlebar-buttonbox-background-color: transparent;
-  }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto]:not(:-moz-lwtheme)[chrtheme=true] {
-    --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-  }
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto][sizemode=maximized] .titlebar-buttonbox-container {
     margin-block-start: 0 !important;
     margin-inline-end: 3px !important;
@@ -2370,9 +2298,6 @@
     border-bottom: var(--titlebar-button-outer-border);
     border-right: var(--titlebar-button-outer-border);
     border-bottom-right-radius: 5px !important;
-  }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close:active {
-    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
   }
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-max:active,
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-restore:active,
@@ -2466,17 +2391,7 @@
     box-shadow: none;
     border-radius: 2.5px !important;
     border: var(--titlebar-button-outer-border) !important;
-  }
-  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-button::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 2.5px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-sizing: border-box;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
   }
 }
 @media (-moz-platform: linux) and (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
@@ -2528,18 +2443,6 @@
   --titlebar-min-background-active: var(--titlebar-button-background-active);
   --titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
 }
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
-  /* bruni: This entire code takes care of custom themes support for titlebar */
-}
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]) {
-  --titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-}
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not([customthememode="1"]):-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"]):not([style*="--lwt-additional-images"]):not([style*="--lwt-header-image"]) {
-  --titlebar-buttonbox-background-color: transparent;
-}
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows]:not(:-moz-lwtheme)[chrtheme=true] {
-  --titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-}
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows][sizemode=maximized] .titlebar-buttonbox-container {
   margin-block-start: 0 !important;
   margin-inline-end: 3px !important;
@@ -2566,9 +2469,6 @@
   border-bottom: var(--titlebar-button-outer-border);
   border-right: var(--titlebar-button-outer-border);
   border-bottom-right-radius: 5px !important;
-}
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-close:active {
-  box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2), inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-max:active,
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] .titlebar-restore:active,
@@ -2654,17 +2554,7 @@
   box-shadow: none;
   border-radius: 2.5px !important;
   border: var(--titlebar-button-outer-border) !important;
-}
-:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-button::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 2.5px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-sizing: border-box;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-maximize-button)) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-max,
