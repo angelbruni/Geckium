@@ -119,3 +119,13 @@
 		}
 	}
 }
+
+@media not (-moz-platform: linux) {
+	.titlebar-close {
+		border-top-right-radius: 4.5px !important;
+
+		&::before {
+			border-top-right-radius: 4.5px !important;
+		}
+	}
+}

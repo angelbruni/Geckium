@@ -393,6 +393,14 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
+@media (-moz-platform: linux) and (not (-moz-platform: linux)) {
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
 :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
   --titlebar-buttonbox-gap: 0px;
   --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
@@ -546,6 +554,14 @@ tooltip {
   }
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
+@media not (-moz-platform: linux) {
   :root[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
@@ -1846,6 +1862,14 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
+@media (-moz-platform: linux) and (not (-moz-platform: linux)) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
   --titlebar-buttonbox-gap: 0px;
   --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
@@ -1999,6 +2023,14 @@ tooltip {
   }
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
+@media not (-moz-platform: linux) {
   :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
@@ -2458,6 +2490,14 @@ tooltip {
     border-top-right-radius: 4.5px !important;
   }
 }
+@media (-moz-platform: linux) and (not (-moz-platform: linux)) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=auto] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=windows] {
   --titlebar-buttonbox-gap: 0px;
   --titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
@@ -2611,6 +2651,14 @@ tooltip {
   }
 }
 @media (-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement)) {
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
+    border-top-right-radius: 4.5px !important;
+  }
+  :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close::before {
+    border-top-right-radius: 4.5px !important;
+  }
+}
+@media not (-moz-platform: linux) {
   :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][gkforcecaptionbuttonstyle=linux] .titlebar-close {
     border-top-right-radius: 4.5px !important;
   }
