@@ -147,6 +147,9 @@ tooltip {
     margin-inline-end: 7px;
   }
 }
+:root[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container::before, :root[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-buttonbox-container::before {
+  content: unset !important;
+}
 :root[chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -webkit-appearance: unset !important;
      -moz-appearance: unset !important;
@@ -745,6 +748,9 @@ tooltip {
     margin-block-start: 3px;
     margin-inline-end: 6px;
   }
+  :root[sizemode=maximized] .titlebar-buttonbox-container::before, :root[sizemode=fullscreen] .titlebar-buttonbox-container::before {
+    content: unset !important;
+  }
 }
 :root {
   --tab-glare-opacity: 1;
@@ -765,7 +771,7 @@ tooltip {
   );
   --tabbrowser-tab-selected: var(--default-tabbrowser-tab-selected);
   --tab-selected-bgcolor: var(--tabbrowser-tab-selected) !important;
-  --default-tabbrowser-tab-color: rgba(0,0,0,.6);
+  --default-tabbrowser-tab-color: black;
   --tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
   --default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
   --tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
@@ -1628,6 +1634,9 @@ tooltip {
     margin-inline-end: 7px;
   }
 }
+:root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container::before, :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-buttonbox-container::before {
+  content: unset !important;
+}
 :root:-moz-lwtheme:not([lwtheme-id*=firefox-compact]):not([lwtheme-id*="{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}"])[chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -moz-appearance: unset !important;
        appearance: unset !important;
@@ -2277,6 +2286,9 @@ tooltip {
     margin-block-start: 2px;
     margin-inline-end: 7px;
   }
+}
+:root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=maximized] .titlebar-buttonbox-container::before, :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"][sizemode=fullscreen] .titlebar-buttonbox-container::before {
+  content: unset !important;
 }
 :root:not(:-moz-lwtheme)[chrtheme=true][chromemargin="0,0,0,0"] .titlebar-buttonbox {
   -moz-appearance: unset !important;
