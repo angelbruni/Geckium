@@ -22,6 +22,10 @@ menupopup {
 	> .menuitemitems + menuseparator {
 		display: none !important;
 	}
+
+	#context-sep-navigation {
+		margin: 0 !important;
+	}
 }
 
 #menu_find11,
@@ -31,4 +35,25 @@ menupopup {
 #menu_settings11,
 #bookmarks-menu {
 	display: none;
+}
+
+#context-navigation {
+	background: transparent !important;
+	flex-wrap: wrap;
+
+	.menuitem-iconic {
+		display: block;
+		width: 100%;
+		flex: unset !important;
+		list-style-image: none !important;
+		height: 20px !important;
+
+		&::before {
+			content: attr(aria-label);
+			transform: translateX(34px);
+			display: flex;
+			align-items: center;
+			height: 100%;
+		}
+	}
 }

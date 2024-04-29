@@ -4240,6 +4240,9 @@ menupopup > .menuitemitems,
 menupopup > .menuitemitems + menuseparator {
   display: none !important;
 }
+menupopup #context-sep-navigation {
+  margin: 0 !important;
+}
 
 #menu_find11,
 #menu_savePage11,
@@ -4248,6 +4251,25 @@ menupopup > .menuitemitems + menuseparator {
 #menu_settings11,
 #bookmarks-menu {
   display: none;
+}
+
+#context-navigation {
+  background: transparent !important;
+  flex-wrap: wrap;
+}
+#context-navigation .menuitem-iconic {
+  display: block;
+  width: 100%;
+  flex: unset !important;
+  list-style-image: none !important;
+  height: 20px !important;
+}
+#context-navigation .menuitem-iconic::before {
+  content: attr(aria-label);
+  transform: translateX(34px);
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 :root[geckium-choice=one] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=three] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=four] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=five] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=six] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=eleven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyone] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyfive] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
