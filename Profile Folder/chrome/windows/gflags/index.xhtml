@@ -4,6 +4,13 @@
 <?xml-stylesheet href="chrome://userchrome/content/frameworks/GeckiumMaterial/styles/final.css" type="text/css"?>
 <?xml-stylesheet href="chrome://userchrome/content/windows/gflags/style.css" type="text/css"?>
 
+<!DOCTYPE window [
+    <!ENTITY % dialog SYSTEM "chrome://geckium/locale/dtd/dialog.dtd">
+    %dialog;
+    <!ENTITY % gflags SYSTEM "chrome://geckium/locale/dtd/gflags.dtd">
+    %gflags;
+]>
+
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		windowtype="geckiummaterial:gflags"
@@ -34,26 +41,25 @@
 				<hbox id="window-content">
 					<hbox class="snackbar show-in-wizard">
 						<vbox>
-							<label>Some options were disabled due to being launched from wizard.</label>
+							<label>&gflags.disabledWizardNotice;</label>
 						</vbox>
 					</hbox>
 					<vbox id="navigation-drawer" class="color iconic item-radius">
 						<vbox class="navigation-items">
-							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="Welcome" selected="true" />
+							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="&gflags.welcome;" selected="true" />
 							<separator />
-							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="Visual Style presets" />
-							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="Main Interface" />
-							<!--<button class="item ripple-enabled icon-pending" data-page-container="main" data-page="12" label="Titlebar" />-->
-							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="Pages" />
-							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="People" />
+							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="&gflags.visualStylePresets;" />
+							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="&gflags.mainInterface;" />
+							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="&gflags.pages;" />
+							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="&gflags.people;" />
 							<separator />
-							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="Chromium Themes" />
-							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />
+							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="&gflags.chromiumThemes;" />
+							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="&gflags.chromiumExperiments;" />
 							<separator />
-							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="Settings" />-->
-							<button class="item ripple-enabled icon-science" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="Developer Options" />
-							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="Help" />
-							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="About" />
+							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="&gflags.settings;" />-->
+							<button class="item ripple-enabled icon-science" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="&gflags.developerOptions;" />
+							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="&gflags.help;" />
+							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="&gflags.about;" />
 						</vbox>
 					</vbox>
 					<div class="pages">
@@ -73,18 +79,18 @@
 												</hbox>
 												<hbox class="item">
 													<spacer />
-													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://ko-fi.com/">Support the project</label>
+													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://ko-fi.com/">&gflags.supportTheProject;</label>
 													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/kitchenfox/geckium">GitHub</label>
 													<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
-													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 32)">Help</html:button>
-													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 33)">About</html:button>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 32)">&gflags.help;</html:button>
+													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 33)">&gflags.about;</html:button>
 													<spacer />
 												</hbox>
 											</vbox>
 											<vbox class="card">
 												<hbox class="item disable-in-wizard">
 													<vbox>
-														<label class="name">Open this in a new tab next time</label>
+														<label class="name">&gflags.openInTabNext;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -97,22 +103,22 @@
 												<hbox>
 													<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
 														<vbox>
-															<label>Visual style presets</label>
-															<p>Choose your preferred visual style globally.</p>
+															<label>&gflags.visualStylePresets;</label>
+															<p>&gflags.visualStylePresetsDescription;</p>
 														</vbox>
 														<hbox>
-															<label>Go to page</label>
+															<label>&gm.goToPage;</label>
 															<spacer />
 															<div class="icon" />
 														</hbox>
 													</html:button>
 													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 11)">
 														<vbox>
-															<label>Main Interface</label>
-															<p>Customize your main interface settings such as visual style choice and custom theme modes.</p>
+															<label>&gflags.mainInterface;</label>
+															<p>&gflags.mainInterfaceDescription;</p>
 														</vbox>
 														<hbox>
-															<label>Go to page</label>
+															<label>&gm.goToPage;</label>
 															<spacer />
 															<div class="icon" />
 														</hbox>
@@ -122,22 +128,22 @@
 												<hbox>
 													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
 														<vbox>
-															<label>Pages</label>
-															<p>Select your favourite page visual style and change custom theme settings.</p>
+															<label>&gflags.pages;</label>
+															<p>&gflags.pagesDescription;</p>
 														</vbox>
 														<hbox>
-															<label>Go to page</label>
+															<label>&gm.goToPage;</label>
 															<spacer />
 															<div class="icon" />
 														</hbox>
 													</html:button>
 													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 14)">
 														<vbox>
-															<label>People</label>
-															<p>Choose how you want the people button to look like.</p>
+															<label>&gflags.people;</label>
+															<p>&gflags.peopleDescription;</p>
 														</vbox>
 														<hbox>
-															<label>Go to page</label>
+															<label>&gm.goToPage;</label>
 															<spacer />
 															<div class="icon" />
 														</hbox>
@@ -159,12 +165,12 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">About Chromium Visual Style Presets</div>
+																<div class="header">&gflags.modalChromiumVisualStylePresetsTitle;</div>
 																<div class="description">
-																	Choose from a selection of different visual styles that the browser has had throughout the years, from Chrome version 1 all the way until version 68.
+																	&gflags.modalChromiumVisualStylePresetsDescription;
 																</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutVisualStyles_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutVisualStyles_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -174,7 +180,7 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="disableOverrides()">
 													<vbox>
-														<label class="name">Reset overrides</label>
+														<label class="name">&gflags.resetOverrides;</label>
 													</vbox>
 												</html:button>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
@@ -182,27 +188,27 @@
 												</vbox>
 											</vbox>
 											<h4>
-												Quick Access
+												&gflags.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">Main Interface settings</label>
+														<label class="name">&gflags.mainInterfaceSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">Page settings</label>
+														<label class="name">&gflags.pageSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
 													<vbox>
-														<label class="name">Chromium Theme settings</label>
+														<label class="name">&gflags.chromiumThemeSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">Chromium Flags</label>
+														<label class="name">&gflags.chromiumExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -215,12 +221,12 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
-												Browser Preferences
+												&gflags.browserPreferences;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Needs restart</div>Enable tab manager</label>
+														<label class="name"><div class="year">&gflags.needsRestart;</div>&gflags.enableTabManager;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -230,7 +236,7 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name">Hide extensions menu button</label>
+														<label class="name">&gflags.hideExtensionsMenuButton;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -245,7 +251,7 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Override visual style preset</label>
+														<label class="name">&gflags.overrideVisualStylePreset;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -281,7 +287,7 @@
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">Automatic</hbox>
+															<hbox class="item ripple-enabled" value="auto">&gflags.automatic;</hbox>
 															<hbox class="item ripple-enabled" value="windows">Windows</hbox>
 															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
 															<!-- <hbox class="item ripple-enabled" value="macos">macOS</hbox> -->
@@ -290,27 +296,27 @@
 												</hbox>
 											</vbox>
 											<h4>
-												Custom Theme Support (Firefox Themes only)
+												&gflags.customThemeSupport;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Custom theme mode</label>
+														<label class="name">&gflags.customThemeMode;</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Theme window frame and toolbars</hbox>
-															<hbox class="item ripple-enabled" value="1">Theme toolbars</hbox>
-															<hbox class="item ripple-enabled" value="2">Theme window frame</hbox>
+															<hbox class="item ripple-enabled" value="0">&gflags.themeWindowFramesAndToolbars;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gflags.themeToolbars;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gflags.themeWindowFrame;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">2012+</div>Colorize tab glare effect according to custom theme</label>
+														<label class="name"><div class="year">2012+</div>&gflags.colorizeTabGlareEffect;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -320,8 +326,8 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Linux</div>GTK icons in every toolbar item</label>
-														<label class="description">Only when GTK+ theme is enabled</label>
+														<label class="name"><div class="year">Linux</div>&gflags.gtkIconsInAllToolbarItemsTitle;</label>
+														<label class="description">&gflags.gtkIconsInAllToolbarItemsNotice;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -331,27 +337,27 @@
 												</hbox>
 											</vbox>
 											<h4>
-												Quick Access
+												&gflags.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Visual style presets</label>
+														<label class="name">&gflags.visualStylePresets;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">Page settings</label>
+														<label class="name">&gflags.pageSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
 													<vbox>
-														<label class="name">Chromium Theme settings</label>
+														<label class="name">&gflags.chromiumThemeSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">Chromium Flags</label>
+														<label class="name">&gflags.chromiumExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -364,11 +370,11 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>New Tab</h4>
+											<h4>&gflags.newTab;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Override visual style preset</label>
+														<label class="name">&gflags.overrideVisualStylePreset;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -377,12 +383,12 @@
 													</div>
 												</hbox>
 												<vbox class="item" flex="1">
-													<h4>Forced Style</h4>
+													<h4>&gflags.forcedStyle;</h4>
 													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">2010 - 2011</div>Theme footer according to applied custom theme</label>
+														<label class="name"><div class="year">2010 - 2011</div>&gflags.themeFooterAccordingToCustomTheme;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -391,19 +397,15 @@
 													</div>
 												</hbox>
 											</vbox>
-											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> Apps List</h4>
-											<vbox class="card" id="apps-list">
-												
-											</vbox>
+											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gflags.appsList;</h4>
+											<vbox class="card" id="apps-list" />
 											<div class="modal" data-modal="editApp_modal">
 												<div class="wrapper">
 													<div class="card">
 														<vbox class="body">
 															<div class="header">
-																Edit
-																<span id="app-name">
-
-																</span>
+																&gflags.modalEditAppTitle;
+																<span id="app-name" />
 															</div>
 															<vbox class="description">
 																<hbox style="gap: 24px">
@@ -413,14 +415,14 @@
 																			<html:label class="button raised text ripple-enabled" for="image-app-old-favicon">
 																				<image />
 																			</html:label>
-																			<label>Old favicon</label>
+																			<label>&gflags.modalEditAppOldFavicon;</label>
 																		</vbox>
 																		<vbox class="icon-picker icon">
 																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-old-icon" style="display: none;" />
 																			<html:label class="button raised text ripple-enabled" for="image-app-old-icon">
 																				<image />
 																			</html:label>
-																			<label>Old icon</label>
+																			<label>&gflags.modalEditAppOldIcon;</label>
 																		</vbox>
 																	</hbox>
 																	<hbox>
@@ -429,18 +431,18 @@
 																			<html:label class="button raised text ripple-enabled" for="image-app-new-icon">
 																				<image />
 																			</html:label>
-																			<label>New icon*</label>
+																			<label>&gflags.modalEditAppNewIcon;*</label>
 																		</vbox>
 																	</hbox>
 																</hbox>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
 																	<div class="input-parent size-md" flex="1">
 																		<html:input type="text" class="input" id="input-app-old-name" name="app" required="true"/>
-																		<label class="placeholder">Old name</label>
+																		<label class="placeholder">&gflags.modalEditAppOldName;</label>
 																	</div>
 																	<div class="input-parent size-md" flex="1">
 																		<html:input type="text" class="input" id="input-app-new-name" name="app" required="true"/>
-																		<label class="placeholder">New name*</label>
+																		<label class="placeholder">&gflags.modalEditAppNewName;*</label>
 																	</div>
 																</vbox>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
@@ -451,38 +453,38 @@
 																</vbox>
 															</vbox>
 															<div class="footer">
-																<button id="deleteBtn" class="button ripple-enabled text" label="Delete" data-toggle-modal="editApp_modal" />
-																<button id="cancelBtn" class="button ripple-enabled text" label="Cancel" data-toggle-modal="editApp_modal" />
+																<button id="deleteBtn" class="button ripple-enabled text" label="&gflags.delete;" data-toggle-modal="editApp_modal" />
+																<button id="cancelBtn" class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="editApp_modal" />
 																<spacer />
-																<button id="OKBtn" class="button ripple-enabled text color" label="OK" data-toggle-modal="editApp_modal" />
-																<button id="createBtn" class="button ripple-enabled text color" label="Create" data-toggle-modal="editApp_modal" />
+																<button id="OKBtn" class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="editApp_modal" />
+																<button id="createBtn" class="button ripple-enabled text color" label="&gflags.create;" data-toggle-modal="editApp_modal" />
 															</div>
 														</vbox>
 													</div>
 												</div>
 											</div>
 											<h4>
-												Quick Access
+												&gflags.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Visual style presets</label>
+														<label class="name">&gflags.visualStylePresets;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">Main Interface settings</label>
+														<label class="name">&gflags.mainInterface;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
 													<vbox>
-														<label class="name">Chromium Theme settings</label>
+														<label class="name">&gflags.chromiumThemeSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">Chromium Flags</label>
+														<label class="name">&gflags.chromiumExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -510,15 +512,15 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Position</label>
-														<label class="description">The people button has had different positions throughout the years.</label>
+														<label class="name">&gflags.peoplePositionTitle;</label>
+														<label class="description">&gflags.peoplePositionDescription;</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="pfp-pos" id="pfp-pos-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Automatic</hbox>
+															<hbox class="item ripple-enabled" value="0">&gflags.automatic;</hbox>
 															<hbox class="item ripple-enabled" value="1">Tabs Toolbar</hbox>
 															<hbox class="item ripple-enabled" value="2">Caption Buttons</hbox>
 														</vbox>
@@ -526,11 +528,11 @@
 												</hbox>
 											</vbox>-->
 
-											<h4>Pick an avatar</h4>
+											<h4>&gflags.pickAnAvatar;</h4>
 											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
-														<label class="name">Avatar Mode</label>
+														<label class="name">&gflags.avatarMode;</label>
 														<!--<label class="description"></label>-->
 													</vbox>
 													<spacer />
@@ -541,16 +543,16 @@
 															<hbox class="item ripple-enabled" value="0">Geckium</hbox>
 															<hbox class="item ripple-enabled" value="1">Chromium</hbox>
 															<hbox class="item ripple-enabled" value="2">Firefox Sync</hbox>
-															<hbox class="item ripple-enabled" value="3">Custom</hbox>
+															<hbox class="item ripple-enabled" value="3">&gflags.custom;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1">
-													<h4>Choose a picture</h4>
+													<h4>&gflags.chooseAPicture;</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
 														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true"/>
-														<label class="placeholder">Image Path</label>
+														<label class="placeholder">&gflags.imagePath;</label>
 													</div>
 												</vbox>
 											</vbox>
@@ -578,40 +580,40 @@
 											<vbox class="card">
 												<label class="item ripple-enabled" is="text-link" href="https://chrome.google.com/webstore/category/themes">
 													<vbox>
-														<label class="name">Get more Google Chrome themes</label>
+														<label class="name">&gflags.getMoreGoogleChromeThemes;</label>
 													</vbox>
 												</label>
 												<label class="item ripple-enabled" is="text-link" href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
 													<vbox>
-														<label class="name">Get more Microsoft Edge themes</label>
+														<label class="name">&gflags.getMoreMicrosoftEdgeThemes;</label>
 													</vbox>
 												</label>
 												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
 													<vbox>
-														<label class="name">Open themes folder</label>
+														<label class="name">&gflags.openThemesFolder;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
 													<vbox>
-														<label class="name">Refresh list</label>
+														<label class="name">&gflags.refreshList;</label>
 													</vbox>
 												</html:button>
 											</vbox>
 											<h4>
-												Available Themes
+												&gflags.availableThemes;
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
 												<div class="modal" data-modal="aboutChrThemes_modal">
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Chromium Themes</div>
+																<div class="header">&gflags.chromiumThemes;</div>
 																<vbox class="description" style="gap: 16px">
 																	<html:p>
-																		If you don't see your theme, try extracting it and recompressing as .zip, then change the format to .crx by renaming the file.
+																		&gflags.modalChromiumThemesDescription;
 																	</html:p>
 																</vbox>
 																<div class="footer">
-																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutChrThemes_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -619,32 +621,32 @@
 												</div>
 											</h4>
 											<div class="card" id="chrthemes-list"></div>
-											<!--<h4>Unavailable Themes</h4>
+											<!--<h4>&gflags.unavailableThemes;</h4>
 											<vbox class="card">
 
 											</vbox>-->
 											<h4>
-												Quick Access
+												&gflags.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Visual style presets</label>
+														<label class="name">&gflags.visualStylePresets;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">Main Interface settings</label>
+														<label class="name">&gflags.mainInterface;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">Page settings</label>
+														<label class="name">&gflags.pageSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">Chromium Flags</label>
+														<label class="name">&gflags.chromiumExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -656,32 +658,30 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>Flags - also available via "about:flags"</h4>
-											<vbox class="card" id="flags-container">
-												
-											</vbox>
+											<h4>&gflags.flags;"</h4>
+											<vbox class="card" id="flags-container" />
 											<h4>
-												Quick Access
+												&gflags.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">Visual style presets</label>
+														<label class="name">&gflags.visualStylePresets;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">Main Interface settings</label>
+														<label class="name">&gflags.mainInterface;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">Page settings</label>
+														<label class="name">&gflags.pageSettings;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
 													<vbox>
-														<label class="name">Chromium Theme settings</label>
+														<label class="name">&gflags.chromiumThemeSettings;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -712,29 +712,29 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="wizard_modal">
 													<vbox>
-														<label class="name">Clear startup cache and restart with Wizard</label>
+														<label class="name">&gflags.clearStartupCacheAndRestartWithWizard;</label>
 													</vbox>
 												</html:button>
 												
 												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="restart_modal">
 													<vbox>
-														<label class="name">Restart browser</label>
+														<label class="name">&gflags.restartBrowser;</label>
 													</vbox>
 												</html:button>
 												
 												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="clearcache_modal">
 													<vbox>
-														<label class="name">Clear startup cache and restart browser</label>
+														<label class="name">&gflags.clearStartupCacheAndRestartBrowser;</label>
 													</vbox>
 												</html:button>
 												<div class="modal" data-modal="wizard_modal">
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Are you sure?</div>
+																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);"/>
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="wizard_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);"/>
 																</div>
 															</vbox>
 														</div>
@@ -744,10 +744,10 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Are you sure?</div>
+																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="restart_modal" />
-																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();"/>
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="restart_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();"/>
 																</div>
 															</vbox>
 														</div>
@@ -757,10 +757,10 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Are you sure?</div>
+																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="Cancel" data-toggle-modal="clearcache_modal" />
-																	<button class="button ripple-enabled text color" label="Yes" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);"/>
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="clearcache_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);"/>
 																</div>
 															</vbox>
 														</div>
@@ -775,7 +775,7 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" id="profile-pic-content">
-											<h4>Useful links</h4>
+											<h4>&gflags.usefulLinks;</h4>
 											<vbox class="card">
 												<label class="item ripple-enabled disable-in-wizard" is="text-link" href="https://github.com/kitchenfox/geckium">
 													<vbox>
@@ -788,12 +788,12 @@
 													</vbox>
 												</label>
 											</vbox>
-											<h4>Frequently Asked Questions</h4>
+											<h4>&gflags.faq;</h4>
 											<vbox class="card" style="padding: 16px; padding-block-start: 0">
-												<p class="headline-5">Q: WindowBli-</p>
-												<p><html:strong>A: NO.</html:strong></p>
-												<p class="headline-5">Q: Why is about:flag showing only some or no flags?</p>
-												<p><html:strong>A: Currently, only some of the visual styles have flags available.</html:strong></p>
+												<p class="headline-5">&gflags.faqWindowBlindsQuestion;</p>
+												<p><html:strong>&gflags.faqWindowBlindsAnswer;</html:strong></p>
+												<p class="headline-5">&gflags.aboutFlagsQuestion;</p>
+												<p><html:strong>&gflags.aboutFlagsAnswer;</html:strong></p>
 											</vbox>
 										</vbox>	
 										
@@ -818,7 +818,7 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name">Automatic Update Checker</label>
+														<label class="name">&gflags.automaticUpdateChecker;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -828,7 +828,7 @@
 												</hbox>
 												<html:button class="item ripple-enabled" data-toggle-modal="aboutBranch_modal">
 													<vbox>
-														<label class="name">Branch</label>
+														<label class="name">&gflags.branch;</label>
 													</vbox>
 													<spacer />
 												</html:button>
@@ -836,17 +836,17 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Geckium Branches</div>
+																<div class="header">&gflags.modalGkBranchesTitle;</div>
 																<vbox class="description" style="gap: 16px">
 																	<html:p>
-																		The different Geckium branches are for different forks of Firefox, some change the UI too heavily meaning that we have to do some things differently.
+																		&gflags.modalGkBranchesDescription;
 																	</html:p>
 																	<html:p>
-																		Current Branch: <html:span id="gk-branch">Normal</html:span>
+																		&gflags.modalGkBranchesCurrent; <html:span id="gk-branch">Normal</html:span>
 																	</html:p>
 																</vbox>
 																<div class="footer">
-																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutBranch_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutBranch_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -854,8 +854,8 @@
 												</div>
 												<html:button class="item ripple-enabled" data-toggle-modal="aboutCredits_modal">
 													<vbox>
-														<label class="name">Credits</label>
-														<label class="description">List of developers, contributors and testers.</label>
+														<label class="name">&gflags.creditsTitle;</label>
+														<label class="description">&gflags.creditsDescription;</label>
 													</vbox>
 													<spacer />
 												</html:button>
@@ -863,7 +863,7 @@
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
-																<div class="header">Credits</div>
+																<div class="header">&gflags.creditsTitle;</div>
 																<vbox class="description" style="gap: 8px">
 																	<html:p>
 																		AngelBruni
@@ -876,7 +876,7 @@
 																	</html:p>
 																</vbox>
 																<div class="footer">
-																	<button class="button ripple-enabled text color" label="OK" data-toggle-modal="aboutCredits_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutCredits_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -887,35 +887,35 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Version</label>
+														<label class="name">&gflags.version;</label>
 														<label id="fork-version" class="description">version</label>
 													</vbox>
 													<spacer />
 												</html:button>
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Update Channel</label>
+														<label class="name">&gflags.updateChannel;</label>
 														<label id="fork-update-channel" class="description">update_channel</label>
 													</vbox>
 													<spacer />
 												</html:button>
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Based on version</label>
+														<label class="name">&gflags.basedOnVersion;</label>
 														<label id="fork-based-on" class="description">based_on_version</label>
 													</vbox>
 													<spacer />
 												</html:button>
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Architecture</label>
+														<label class="name">&gflags.architecture;</label>
 														<label id="fork-architecture" class="description">architecture</label>
 													</vbox>
 													<spacer />
 												</html:button>
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Profile Name</label>
+														<label class="name">&gflags.profileName;</label>
 														<label id="profile-name" class="description">profile</label>
 													</vbox>
 													<spacer />
@@ -925,14 +925,14 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Version</label>
+														<label class="name">&gflags.version;</label>
 														<label id="os-version" class="description">version</label>
 													</vbox>
 													<spacer />
 												</html:button>
 												<html:button class="item ripple-enabled">
 													<vbox>
-														<label class="name">Architecture</label>
+														<label class="name">&gflags.architecture;</label>
 														<label id="os-architecture" class="description">architecture</label>
 													</vbox>
 													<spacer />
@@ -959,20 +959,6 @@
 						</vbox>
 					</div>
 				</hbox>
-			</vbox>
-			<vbox id="preview-container">
-				<vbox class="window-top-bars light">
-					<hbox class="window-top-bar">
-						<hbox class="window-toolbar">
-							<h3>Preview</h3>
-							<spacer />
-							<button />
-						</hbox>
-					</hbox>
-				</vbox>
-				<vbox class="content">
-					
-				</vbox>
 			</vbox>
 		</hbox>
 	</html:div>

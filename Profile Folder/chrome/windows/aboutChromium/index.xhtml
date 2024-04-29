@@ -2,12 +2,19 @@
 
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 
+<!DOCTYPE window [
+    <!ENTITY % dialog SYSTEM "chrome://geckium/locale/dtd/dialog.dtd">
+    %dialog;
+    <!ENTITY % gflags SYSTEM "chrome://geckium/locale/dtd/about.dtd">
+    %about;
+]>
+
 <window
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="aboutChrome"
 	windowtype="browser:aboutChrome"
-	title="About Google Chrome"
+	title="&window.title;"
 	role="dialog"
 >
 	<vbox style="height: 256px; width: 516px">
@@ -57,7 +64,7 @@
 			</div>
 			<div>
 				Google Chrome
-				<a href="#" style="margin-left: 4px">Terms of Service</a>
+				<a href="#" style="margin-left: 4px">&about.termsofservice;</a>
 			</div>
 		</vbox>
 		<hbox
@@ -90,7 +97,7 @@
 				"
 				onclick="window.close();"
 			>
-				OK
+				&dialog.ok;
 			</button>
 		</hbox>
 	</vbox>

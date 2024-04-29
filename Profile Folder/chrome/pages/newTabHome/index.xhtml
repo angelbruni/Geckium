@@ -3,6 +3,8 @@
 <?xml-stylesheet href="chrome://userchrome/content/pages/styles/style.css" type="text/css"?>
 <?xml-stylesheet href="chrome://userchrome/content/pages/newTabHome/eras.css" type="text/css"?>
 
+<!DOCTYPE window SYSTEM "chrome://geckium/locale/dtd/ntp.dtd">
+
 <html
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns="http://www.w3.org/1999/xhtml"
@@ -11,7 +13,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>New Tab</title>
+		<title>&page.title;</title>
 		<link rel="icon" type="image/png" href="chrome://branding/content/icon32.png" />
 	</head>
 	<body>
@@ -20,6 +22,7 @@
 
 		<script>
 			var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+			const ntpBundle = Services.strings.createBundle("chrome://geckium/locale/properties/ntp.properties");
 		</script>
 
 		<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" />

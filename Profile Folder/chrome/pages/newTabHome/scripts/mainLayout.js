@@ -84,7 +84,7 @@ function createMainLayout() {
 		<hbox id="main">
 			<vbox flex="1">
 				<vbox id="mostvisited">
-					<html:div class="section-title">Most visited</html:div>
+					<html:div class="section-title">${ntpBundle.GetStringFromName("mostVisited")}</html:div>
 					<html:div id="mostvisitedintro">
 						<!--<html:div class="most-visited-text">
 							The "Most visited" area shows the websites that you use most often. After using Google Chrome for a while, you will see your most visited sites whenever you open a new tab. You can learn more about this and other features on the
@@ -97,7 +97,7 @@ function createMainLayout() {
 					</html:div>
 				</vbox>
 				<html:button class="manage" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">
-					<html:span>Show full history</html:span>
+					<html:span>${ntpBundle.GetStringFromName("showFullHistory")}</html:span>
 					»
 				</html:button>
 			</vbox>
@@ -106,20 +106,20 @@ function createMainLayout() {
 					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo.png" width="145" height="52" />
 				</vbox>
 				<vbox id="searches" class="sidebar">
-					<html:div class="section-title">Searches</html:div>
+					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
 					<html:form>
-						<html:input type="text" class="hint" name="search" placeholder="Search your history" />
+						<html:input type="text" class="hint" name="search" placeholder="${ntpBundle.GetStringFromName("searchYourHistory")}" />
 					</html:form>
 					<html:div id="search-entries" />
 				</vbox>
 				<vbox id="recentlyBookmarked" class="sidebar">
-					<html:span class="section-title">Recent bookmarks</html:span>
+					<html:span class="section-title">${ntpBundle.GetStringFromName("recentBookmarks")}</html:span>
 					<vbox id="recentlyBookmarkedContainer">
 
 					</vbox>
 				</vbox>
 				<vbox id="recentlyClosedTabs" class="sidebar">
-					<html:div class="section-title">Recently closed tabs</html:div>
+					<html:div class="section-title">${ntpBundle.GetStringFromName("recentlyClosedTabs")}</html:div>
 					<vbox id="recentlyClosedContainer">
 
 					</vbox>
@@ -135,45 +135,45 @@ function createMainLayout() {
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
-					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
-					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
-					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+					<html:input type="checkbox" id="thumb-checkbox" title="${ntpBundle.GetStringFromName("thumbnailView")}"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="${ntpBundle.GetStringFromName("listView")}"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="${ntpBundle.GetStringFromName("changePageLayout")}">
 						<vbox id="option-menu" class="window-menu">
-							<checkbox id="THUMB" label="Most visited"></checkbox>
-							<checkbox id="RECENT" label="Recently closed"></checkbox>
+							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
+							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
 						</vbox>
 					</html:button>
 				</hbox>
 				<div id="most-visited"></div>
 				<hbox id="lower-sections">
 					<vbox id="recent-activities" class="section">
-						<h2>Recent activities</h2>
+						<h2>${ntpBundle.GetStringFromName("recentActivities")}</h2>
 						<hbox>
 							<vbox id="recent-tabs">
-								<h3>Recently closed</h3>
+								<h3>${ntpBundle.GetStringFromName("recentlyClosed")}</h3>
 								<vbox class="item-container">
 									<vbox id="tab-items" />
 									<vbox>
-										<html:button class="item nav" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">View full history</html:button>
+										<html:button class="item nav" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">${ntpBundle.GetStringFromName("viewFullHistory")}</html:button>
 									</vbox>
 								</vbox>
 							</vbox>
 							<vbox id="downloads">
-								<h3>Downloads</h3>
+								<h3>${ntpBundle.GetStringFromName("downloads")}</h3>
 								<vbox class="item-container">
 									<vbox id="download-items" />
 									<vbox>
-										<html:a href="about:downloads" class="item nav">View all downloads</html:a>
+										<html:a href="about:downloads" class="item nav">${ntpBundle.GetStringFromName("viewAllDownloads")}</html:a>
 									</vbox>
 								</vbox>
 							</vbox>
 						</hbox>
 					</vbox>
 					<vbox id="tips" class="section">
-						<h2>Tips and Suggestions</h2>
+						<h2>${ntpBundle.GetStringFromName("tipsAndSuggestions")}</h2>
 						<hbox>
 							<vbox id="tip-items">
-								<div class="tips-title item">Watch this space for tips and suggestions for better browsing!</div>
+								<div class="tips-title item">${ntpBundle.GetStringFromName("tipsAndSuggestionsWatch")}</div>
 								<vbox class="tips-container item-container"/>
 							</vbox>
 						</hbox>
@@ -188,23 +188,23 @@ function createMainLayout() {
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
-					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
-					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
-					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+					<html:input type="checkbox" id="thumb-checkbox" title="${ntpBundle.GetStringFromName("thumbnailView")}"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="${ntpBundle.GetStringFromName("listView")}"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="${ntpBundle.GetStringFromName("changePageLayout")}">
 						<vbox id="option-menu" class="window-menu">
-							<checkbox id="THUMB" label="Most visited"></checkbox>
-							<checkbox id="RECENT" label="Recently closed"></checkbox>
+							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
+							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
 						</vbox>
 					</html:button>
 				</hbox>
 				<div id="most-visited"></div>
 				<hbox id="recently-closed">
-					<label value="Recently closed"></label>
+					<label value="${ntpBundle.GetStringFromName("recentlyClosed")}"></label>
 					<hbox class="items"></hbox>
-					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
+					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>
 				<vbox id="attribution">
-					<label>Theme created by</label>
+					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
 					<html:div id="attribution-img"></html:div>
 				</vbox>
 			</vbox>
@@ -224,24 +224,24 @@ function createMainLayout() {
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
-					<html:input type="checkbox" id="thumb-checkbox" title="Thumbnail View"></html:input>
-					<html:input type="checkbox" id="list-checkbox" title="List View"></html:input>
-					<html:button id="option-button" type="menu" class="window-menu-button" title="Change page layout">
+					<html:input type="checkbox" id="thumb-checkbox" title="${ntpBundle.GetStringFromName("thumbnailView")}"></html:input>
+					<html:input type="checkbox" id="list-checkbox" title="${ntpBundle.GetStringFromName("listView")}"></html:input>
+					<html:button id="option-button" type="menu" class="window-menu-button" title="${ntpBundle.GetStringFromName("changePageLayout")}">
 						<vbox id="option-menu" class="window-menu">
-							<checkbox id="THUMB" label="Most visited"></checkbox>
-							<checkbox id="RECENT" label="Recently closed"></checkbox>
-							<checkbox id="TIPS" label="Tips"></checkbox>
+							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
+							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
+							<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>
 						</vbox>
 					</html:button>
 				</hbox>
 				<div id="most-visited"></div>
 				<hbox id="recently-closed">
-					<label value="Recently closed"></label>
+					<label value="${ntpBundle.GetStringFromName("recentlyClosed")}"></label>
 					<hbox class="items"></hbox>
-					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="View full history"></button>
+					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>
 				<vbox id="attribution">
-					<label>Theme created by</label>
+					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
 					<html:div id="attribution-img"></html:div>
 				</vbox>
 			</vbox>
@@ -283,21 +283,16 @@ function createMainLayout() {
 				<vbox id="apps">
 					<hbox class="section collapsed">
 						<image class="disclosure"></image>
-						<label>Apps</label>
+						<label>${ntpBundle.GetStringFromName("apps")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
 					</hbox>
-					<html:div id="apps-content">
-						<html:a class="item" style="list-style-image: url('chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png')" href="https://chrome.google.com/webstore">
-							<image></image>
-							<label>Web Store</label>
-						</html:a>
-					</html:div>
+					<html:div id="apps-content" />
 				</vbox>
 				<vbox id="most-viewed">
 					<hbox class="section">
 						<image class="disclosure"></image>
-						<label>Most visited</label>
+						<label>${ntpBundle.GetStringFromName("mostVisited")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
 					</hbox>
@@ -306,7 +301,7 @@ function createMainLayout() {
 				<vbox id="recently-closed">
 					<hbox class="section collapsed">
 						<image class="disclosure"></image>
-						<label>Recently closed</label>
+						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
 					</hbox>
@@ -318,7 +313,7 @@ function createMainLayout() {
 
 		footer = `
 		<vbox id="attribution">
-			<label>Theme created by</label>
+			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
 			<html:div id="attribution-img"></html:div>
 		</vbox>
 		<vbox id="footer">
@@ -336,7 +331,7 @@ function createMainLayout() {
 		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
-				<html:div id="login-status-header">Not signed in to Chrome</html:div>
+				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo")}</html:div>
 			</html:div>
 			<html:div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</html:div>
 		</button>
@@ -365,7 +360,7 @@ function createMainLayout() {
 
 		footer = `
 		<vbox id="attribution">
-			<label>Theme created by</label>
+			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
 			<html:div id="attribution-img"></html:div>
 		</vbox>
 		<vbox id="footer">
@@ -376,19 +371,19 @@ function createMainLayout() {
 					<div id="logo_wordmark"></div>
 				</div>
 				<hbox id="dot-list">
-					<button onclick="switchTab('', false, 0)" class="dot selected" label="Most visited" data-page="0">
+					<button onclick="switchTab('', false, 0)" class="dot selected" label="${ntpBundle.GetStringFromName("mostVisited")}" data-page="0">
 						<html:div class="selection-bar"></html:div>
 					</button>
-					<button onclick="switchTab('', false, 1)" class="dot" label="Apps" data-page="1">
+					<button onclick="switchTab('', false, 1)" class="dot" label="${ntpBundle.GetStringFromName("apps")}" data-page="1">
 						<html:div class="selection-bar"></html:div>
 					</button>
 				</hbox>
 				<hbox id="footer-menu-container">
 					<html:button id="other-sessions-menu-button" class="footer-menu-button" type="menu">
-						<label>Other devices</label>
+						<label>${ntpBundle.GetStringFromName("otherDevices")}</label>
 					</html:button>
 					<html:button id="recently-closed-menu-button" class="footer-menu-button" type="menu">
-						<label>Recently closed</label>
+						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
 						<vbox class="footer-menu">
 							
 						</vbox>
@@ -409,7 +404,7 @@ function createMainLayout() {
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
 				<html:form>
-					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
+					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
 			</vbox>
 			`;
@@ -417,13 +412,13 @@ function createMainLayout() {
 			header = `
 			<hbox id="google-bar">
 				<html:a href="https://mail.google.com/mail">Gmail</html:a>
-				<html:a href="https://www.google.com/imghp">Images</html:a>
+				<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
 				<html:a id="google-apps-link" href="https://www.google.pt/intl/pt-PT/about/products?tab=rh"></html:a>
 			</hbox>
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
 				<html:form>
-					<html:input id="google-input" placeholder="Search Google or type URL"></html:input>
+					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
 			</vbox>
 			`;
@@ -432,7 +427,7 @@ function createMainLayout() {
 		main = `
 		<html:div id="mv-tiles"></html:div>
 		<vbox id="attribution">
-			<label>Theme created by</label>
+			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
 			<html:div id="attribution-img"></html:div>
 		</vbox>
 		`;

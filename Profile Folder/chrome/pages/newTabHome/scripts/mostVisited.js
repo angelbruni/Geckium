@@ -191,9 +191,9 @@ function createTile(website) {
 				<html:a class="thumbnail-container" href="${website.url}">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<button class="pin" title="Keep on this page"></button>
+							<button class="pin" title="${ntpBundle.GetStringFromName("keepOnThisPage")}"></button>
 							<spacer></spacer>
-							<button class="remove" title="Don't show on this page"></button>
+							<button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></button>
 						</hbox>
 						<html:div class="thumbnail-wrapper">
 							<html:div class="thumbnail"></html:div>
@@ -226,7 +226,7 @@ function createTile(website) {
 				<html:div class="tile">
 					<html:a class="most-visited" href="${website.url}">
 						<html:div class="thumbnail-wrapper">
-							<html:button class="close-button" title="Don't show on this page"></html:button>
+							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 							<html:div class="thumbnail">
 								<html:div class="thumbnail-shield"></html:div>
 							</html:div>
@@ -301,9 +301,9 @@ function createTile(website) {
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<button class="pin" title="Keep on this page"></button>
+							<button class="pin" title="${ntpBundle.GetStringFromName("keepOnThisPage")}"></button>
 							<spacer></spacer>
-							<button class="remove" title="Don't show on this page"></button>
+							<button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></button>
 						</hbox>
 						<html:div class="thumbnail-wrapper">
 							<html:div class="thumbnail"></html:div>
@@ -322,7 +322,7 @@ function createTile(website) {
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
 						<html:div class="thumbnail-wrapper">
-							<html:button class="close-button" title="Don't show on this page"></html:button>
+							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 							<html:div class="thumbnail">
 								<html:div class="thumbnail-shield"></html:div>
 							</html:div>

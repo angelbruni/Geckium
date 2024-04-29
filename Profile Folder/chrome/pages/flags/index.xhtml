@@ -3,6 +3,8 @@
 <?xml-stylesheet href="chrome://userchrome/content/pages/styles/style.css" type="text/css"?>
 <?xml-stylesheet href="chrome://userchrome/content/pages/flags/eras.css" type="text/css"?>
 
+<!DOCTYPE window SYSTEM "chrome://geckium/locale/dtd/flags.dtd">
+
 <html
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns="http://www.w3.org/1999/xhtml"
@@ -74,16 +76,16 @@
 			-->
 
 			<hbox id="header">
-				<h1>Careful, these experiments may bite</h1>
+				<h1>&warning.header;</h1>
 			</hbox>
 			<div class="blurb-container">
-				<span id="blurb-warning">WARNING</span>
-				<span>These experimental features may change, break, or disappear at any time. We make absolutely no guarantees about what may happen if you turn one of these experiments on, and your browser may even spontaneously combust. Jokes aside, your browser may delete all your data, or your security and privacy could be compromised in unexpected ways. Any experiments you enable will be enabled for all users of this browser. Please proceed with caution.</span>
+				<span id="blurb-warning">&warning.title;</span>
+				<span>&warning.description;</span>
 			</div>
 			<vbox id="flagsExperimentTemplate">
 				<vbox id="available-experiments">
 					<hbox class="section-header">
-						<label class="section-header-title">Experiments</label>
+						<label class="section-header-title">&experiments.available.title;</label>
 						<spacer />
 						<!--<button id="experiment-reset-all">Reset all to default</button>-->
 					</hbox>
@@ -93,7 +95,7 @@
 				</vbox>
 				<!--<vbox id="unavailable-experiments">
 					<hbox class="section-header">
-						<span class="section-header-title">Unavailable Experiments</span>
+						<span class="section-header-title">&experiments.unavailable.title;</span>
 					</hbox>
 					<vbox class="content-container">
 						
