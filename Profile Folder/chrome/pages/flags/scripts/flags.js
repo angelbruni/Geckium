@@ -1,3 +1,5 @@
+const flagsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/flags.properties");
+
 const experiments = {
 	/*"compact-navigation": {
 		name: "Compact Navigation",
@@ -110,9 +112,9 @@ function updateFlags() {
 
 		if (toggleBtn) {
 			if (gkPrefUtils.tryGet(flag).bool)
-				toggleBtn.setAttribute("label", "Disable")
+				toggleBtn.setAttribute("label", flagsBundle.GetStringFromName("disableGenericFlagOption"));
 			else
-				toggleBtn.setAttribute("label", "Enable")
+				toggleBtn.setAttribute("label", flagsBundle.GetStringFromName("enableGenericFlagOption"));
 		} else if (multipleSelect) {
 			multipleSelect.value = gkPrefUtils.tryGet(flag).int;
 

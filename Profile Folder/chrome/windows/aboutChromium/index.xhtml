@@ -2,12 +2,19 @@
 
 <?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
 
+<!DOCTYPE window [
+    <!ENTITY % dialog SYSTEM "chrome://geckium/locale/dtd/dialog.dtd">
+    %dialog;
+    <!ENTITY % gflags SYSTEM "chrome://geckium/locale/dtd/about.dtd">
+    %about;
+]>
+
 <window
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="aboutChromium"
 	windowtype="browser:aboutChromium"
-	title="About Geckium"
+	title="&window.title;"
 	role="dialog"
 >
     <vbox style="height: 266px; width: 516px">
@@ -46,52 +53,52 @@
 				border-top: 1px solid white;
 			"
 		/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-
-
-
-		
-    </vbox>
+		<vbox
+			
+		>
+			
+			
+			
+			
+			
+			
+			<div>
+				
+				<a href="#" style="margin-left: 4px">&about.termsofservice;</a>
+			</div>
+		</vbox>
+		<hbox
+			style="
+				padding-inline-start: 14px;
+				padding-inline-end: 2px;
+				align-items: center;
+			"
+		>
+			<hbox>
+				
+					
+					
+					
+					
+					
+					
+					
+				
+				
+			</hbox>
+			<button
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			>
+				&dialog.ok;
+			</button>
+		</hbox>
+	</vbox>
 </window>
