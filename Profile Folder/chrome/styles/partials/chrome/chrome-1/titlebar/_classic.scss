@@ -106,6 +106,15 @@
 			}
 		}
 
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-buttonbox-container {
+				&::before {
+					content: unset !important;
+				}
+			}
+		}
+
 		.titlebar-buttonbox {
 			appearance: unset !important;
 			align-items: start !important;

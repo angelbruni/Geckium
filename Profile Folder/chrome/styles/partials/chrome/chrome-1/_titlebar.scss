@@ -279,4 +279,15 @@
 			margin-inline-end: 6px;
 		}
 	}
+
+	:root {
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-buttonbox-container {
+				&::before {
+					content: unset !important;
+				}
+			}
+		}
+	}
 }
