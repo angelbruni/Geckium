@@ -40,7 +40,7 @@ export class chrFlags {
 			"search-button-in-omnibox": {
 				name: "Enable search button in Omnibox",
 				description: "Places a search button in the Omnibox.",
-				styleints: [5],
+				styleints: [8],
 				values: {
 					0: "Default",
 					1: "Disabled",
@@ -53,7 +53,7 @@ export class chrFlags {
 				type: "ntp",
 				name: "Enable large icons on the New Tab",
 				description: "Enable the experimental New Tab page using large icons.",
-				styleints: [5, 6],
+				styleints: [8],
 			},
 			/*"enable-settings-window": {
 				name: "Show settings in a window",
@@ -78,13 +78,12 @@ export class chrFlags {
 			"omnibox-ui-vertical-layout": {
 				name: "Omnibox UI Vertical Layout",
 				description: "Displays Omnibox sugestions in 2 lines - title over origin.",
-				styleints: [6],
+				styleints: [9],
 			},
 			"omnibox-ui-vertical-margin": {
 				name: "Omnibox UI Vertical Margin",
 				description: "Changes the vertical margin in the Omnibox UI.",
-				from: 6,
-				to: 6,
+				styleints: [9],
 				values: {
 					0: "Default",
 					1: "Enabled",
@@ -100,7 +99,7 @@ export class chrFlags {
 			"omnibox-ui-swap-title-and-url": {
 				name: "Omnibox UI Swap Title and URL",
 				description: "In the omnibox dropdown, shows titles before URLs when both are available.",
-				styleints: [6],
+				styleints: [9],
 				values: {
 					0: "Default",
 					1: "Enabled",
@@ -111,10 +110,10 @@ export class chrFlags {
 
 		if (vSInt) {
             return Object.values(flags).filter(flag => {
-                if (flag.styleints) {
+                if (flag.styleints)
                     return flag.styleints.includes(vSInt) || (flag.styleints.length > 1 && vSInt >= flag.styleints[0] && vSInt <= flag.styleints[1]);
-                }
-                return false;
+                
+				return false;
             });
         } else {
             return flags;

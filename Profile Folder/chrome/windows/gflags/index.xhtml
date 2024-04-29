@@ -48,7 +48,7 @@
 							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="People" />
 							<separator />
 							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="Chromium Themes" />
-							<!--<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />-->
+							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="Chromium Experiments" />
 							<separator />
 							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="Settings" />-->
 							<button class="item ripple-enabled icon-science" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="Developer Options" />
@@ -200,6 +200,11 @@
 														<label class="name">Chromium Theme settings</label>
 													</vbox>
 												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">Chromium Flags</label>
+													</vbox>
+												</html:button>
 											</vbox>
 										</vbox>
 									</vbox>
@@ -344,6 +349,11 @@
 														<label class="name">Chromium Theme settings</label>
 													</vbox>
 												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">Chromium Flags</label>
+													</vbox>
+												</html:button>
 											</vbox>
 										</vbox>
 										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
@@ -468,6 +478,11 @@
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
 													<vbox>
 														<label class="name">Chromium Theme settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">Chromium Flags</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -627,13 +642,52 @@
 														<label class="name">Page settings</label>
 													</vbox>
 												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">Chromium Flags</label>
+													</vbox>
+												</html:button>
 											</vbox>
 										</vbox>
 									</vbox>
 								</vbox>
 							</vbox>
 							<vbox class="page" data-page="21">
-								
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>Flags - also available via "about:flags"</h4>
+											<vbox class="card" id="flags-container">
+												
+											</vbox>
+											<h4>
+												Quick Access
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">Visual style presets</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label class="name">Main Interface settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
+													<vbox>
+														<label class="name">Page settings</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
+													<vbox>
+														<label class="name">Chromium Theme settings</label>
+													</vbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
 							</vbox>
 							<vbox class="page" data-page="30">
 								<vbox class="content-container">
@@ -938,6 +992,7 @@
 	<script src="chrome://userchrome/content/windows/gflags/scripts/about.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gflags/scripts/chrThemes.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gflags/scripts/chrFlags.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>

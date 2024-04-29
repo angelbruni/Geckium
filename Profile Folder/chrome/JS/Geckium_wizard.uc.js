@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Geckium - URL bar
+// @name        Geckium - Wizard
 // @author		AngelBruni
 // @loadorder   3
 // ==/UserScript==
