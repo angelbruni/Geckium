@@ -25,27 +25,6 @@
 	--titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
 }
 
-/* bruni: This entire code takes care of custom themes support for titlebar */
-&:not([customthememode="1"]) {
-	&:-moz-lwtheme {
-		&:not([lwtheme-id*="firefox-compact"]) {
-			&:not([lwtheme-id="#{$gtkplus}"]) {
-				--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-
-				// Themes without image header/additional images
-				&:not([style*="--lwt-additional-images"]) {
-					&:not([style*="--lwt-header-image"]) {
-						--titlebar-buttonbox-background-color: transparent;
-					}
-				}
-			}
-		}
-	}
-}
-&:not(:-moz-lwtheme)[chrtheme="true"] {
-	--titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-}
-
 &[sizemode="maximized"] {
 	.titlebar-buttonbox-container {
 		margin-block-start: 0 !important;
@@ -76,11 +55,6 @@
 	border-bottom: var(--titlebar-button-outer-border);
 	border-right: var(--titlebar-button-outer-border);
 	border-bottom-right-radius: 5px !important;
-
-	&:active {
-		box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2),
-					inset 1px 0px 0px 0px rgba(255, 255, 255, 0.15);
-	}
 }
 
 .titlebar-max,

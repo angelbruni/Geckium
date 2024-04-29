@@ -80,6 +80,9 @@
 
         &:not([lwtheme-id*="firefox-compact"]) {
 			&:not([lwtheme-id="#{$gtkplus}"]) {
+				--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+
+
 				&:not([privatebrowsingmode="temporary"]),
 				&[privatebrowsingmode="temporary"] {
 					--titlebar-active: var(--lwt-accent-color) !important;
@@ -143,6 +146,8 @@
 				// Themes without image header/additional images
 				&:not([style*="--lwt-additional-images"]) {
 					&:not([style*="--lwt-header-image"]) {
+						--titlebar-buttonbox-pseudo-background: transparent;
+
 						&:not([privatebrowsingmode="temporary"]),
 						&[privatebrowsingmode="temporary"] {
 							--titlebar-active: linear-gradient(
@@ -207,6 +212,8 @@
 			var(--chrt-frame, var(--default-titlebar-inactive)) 40%,
 			white
 		) !important;
+
+		--titlebar-buttonbox-pseudo-background: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
 
 		&[windowtype="navigator:browser"] > body {
 			&::before {
