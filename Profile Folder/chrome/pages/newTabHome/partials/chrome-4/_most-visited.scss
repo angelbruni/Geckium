@@ -56,13 +56,14 @@
 	}
 	// chrtheme
 	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
+		--view-toolbar-buttons-bg: color-mix(
+			in srgb,
+			var(--manually-adapted-header) 70%,
+			white
+		);
+		
 		/*&[style*="--chrt-ntp-section"] {
-			--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
-			--view-toolbar-buttons-bg: color-mix(
-				in srgb,
-				var(--manually-adapted-header) 70%,
-				white
-			);
 			--thumbnail-border-color-normal: color-mix(
 				in srgb,
 				var(--manually-adapted-header) 20%,
