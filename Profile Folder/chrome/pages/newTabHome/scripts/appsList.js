@@ -143,7 +143,6 @@ function setUpApps() {
 						// #endregion
 					});
 				}
-				
 			});
 		})
 	}
