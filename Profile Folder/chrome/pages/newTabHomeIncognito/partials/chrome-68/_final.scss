@@ -1,0 +1,88 @@
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("chrome://userchrome/content/frameworks/GeckiumMaterial/fonts/Roboto-Regular.woff2") format("woff2");
+}
+  
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("chrome://userchrome/content/frameworks/GeckiumMaterial/fonts/Roboto-Medium.woff2") format("woff2");
+}
+  
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("chrome://userchrome/content/frameworks/GeckiumMaterial/fonts/Roboto-Bold.woff2") format("woff2");
+}
+
+& {
+	background-color: #303030;
+}
+
+body {
+	color: rgba(255, 255, 255, 0.7);
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+}
+
+.content {
+	box-shadow: none;
+	background: transparent;
+	flex-direction: column;
+	max-width: 545px;
+	font-size: 10pt;
+	box-sizing: content-box;
+	margin-top: 40px;
+
+	.icon,
+	h1,
+	#subtitle {
+		margin-block: 1.5rem !important;
+	}
+
+	.icon {
+		content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48ZyBvcGFjaXR5PSIuOCIgZmlsbD0iI0ZGRiI+PHBhdGggZD0iTTEyMSAwQzUzLjktLjYtLjYgNTMuOSAwIDEyMWMuNiA2NS4yIDUzLjggMTE4LjQgMTE5IDExOSA2Ny4xLjYgMTIxLjYtNTMuOSAxMjEtMTIxQzIzOS40IDUzLjggMTg2LjIuNiAxMjEgMHpNOTAuNSA1OWMuMy0uOSAxLTEuNSAyLjItMS4yIDIuMi41IDE5LjkgNC4zIDE5LjkgNC4zczM2LjgtNS42IDM4LjEtNS45YzEuMS0uMiAxLjkuNCAyLjEgMS40LjEuNCA2LjMgMjEuMyAxMS43IDM5LjVINzguM0M4My45IDc5LjYgOTAuMSA2MCA5MC41IDU5em04NS45IDEwMy4zYy0uOCAxMi4yLTEwLjcgMjIuMS0yMi45IDIyLjktMTQuMy45LTI2LjEtMTAuNC0yNi4xLTI0LjUgMC0uNyAwLTEuNC4xLTIuMS0yLS43LTQuMi0xLTYuNC0xLTIuMyAwLTQuNS40LTYuNyAxLjEuMS43LjEgMS4zLjEgMiAwIDE0LjEtMTEuOCAyNS40LTI2LjEgMjQuNS0xMi4yLS44LTIyLjEtMTAuNy0yMi45LTIyLjktLjgtMTQuMiAxMC41LTI2LjEgMjQuNS0yNi4xIDEwLjIgMCAxOSA2LjMgMjIuNyAxNS4yIDIuNy0uOCA1LjUtMS4zIDguNC0xLjMgMi44IDAgNS41LjQgOC4xIDEuMiAzLjctOC45IDEyLjQtMTUuMSAyMi43LTE1LjEgMTQuMSAwIDI1LjQgMTEuOSAyNC41IDI2LjF6bTIzLjQtMzQuM0g0Mi40Yy0uMiAwLS4zLS4zLS4xLS40IDUuMi0yLjcgMzUuNC0xNy42IDc5LTE3LjYgNDMuNyAwIDczLjUgMTQuOCA3OC42IDE3LjYuMi4xLjEuNC0uMS40eiIvPjxjaXJjbGUgY3g9IjE1MS45IiBjeT0iMTYwLjgiIHI9IjE3LjQiLz48Y2lyY2xlIGN4PSI5MC4xIiBjeT0iMTYwLjgiIHI9IjE3LjQiLz48L2c+PC9zdmc+);
+		margin-inline: auto;
+		margin-block-end: 0 !important;
+	}
+
+	h1 {
+		text-align: center;
+		font-weight: 400;
+		font-size: 16pt;
+	}
+
+	#subtitle {
+		margin-block-start: 0 !important;
+	}
+
+	a {
+		color: rgb(123, 170, 247) !important;
+	}
+
+	em {
+		color: white;
+		font-style: normal;
+	}
+	
+	.bulletpoints {
+		+ .bulletpoints {
+			margin-inline-start: 40px;
+		}
+
+		> p {
+			margin: 0 !important;
+		}
+
+		> ul {
+			margin-block-start: 4px;
+			padding-inline-start: 16px;
+		}
+	}
+}

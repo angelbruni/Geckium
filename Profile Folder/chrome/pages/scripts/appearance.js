@@ -33,6 +33,8 @@ function appearance() {
 			setUpApps();
 		} else if (document.URL == "about:flags") {
 			setUpExperiments();
+		} else if (document.URL == "about:privatebrowsing") {
+			createMainLayout();
 		}
 	}
 }
