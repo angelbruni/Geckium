@@ -1,0 +1,39 @@
+:root {
+	p {
+		margin: 0 !important;
+	}
+
+	a {
+		color: #00E !important;
+	}
+
+	&:not([geckium-one]) {
+		* {
+			visibility: hidden;
+		}
+	}
+
+	&[geckium-one] {
+		@import "partials/chrome-1/final";
+	}
+
+	&[geckium-one][geckium-four] {
+		@import "partials/chrome-4/final";
+	}
+
+	&[geckium-one][geckium-four][geckium-six] {
+		@import "partials/chrome-6/final";
+	}
+
+	&[geckium-one][geckium-four][geckium-six][geckium-twentyone] {
+		@import "partials/chrome-21/final";
+	}
+
+	&[geckium-one][geckium-four][geckium-six][geckium-twentyone][geckium-fortyseven] {
+		@import "partials/chrome-47/final";
+	}
+
+	&[geckium-one][geckium-four][geckium-six][geckium-twentyone][geckium-fortyseven][geckium-sixtyeight] {
+		@import "partials/chrome-68/final";
+	}
+}
