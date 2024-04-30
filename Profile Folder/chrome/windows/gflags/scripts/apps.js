@@ -83,7 +83,7 @@ function populateAppsList() {
 	container.appendChild(MozXULElement.parseXULToFragment(`
 	<html:button class="item ripple-enabled" data-toggle-modal="editApp_modal">
 		<vbox>
-			<label class="name">Add an app</label>
+			<label class="name">${gFlagsBundle.GetStringFromName("addAnApp")}</label>
 		</vbox>
 	</html:button>
 	`));

@@ -7,6 +7,8 @@
 <!DOCTYPE window [
     <!ENTITY % dialog SYSTEM "chrome://geckium/locale/dtd/dialog.dtd">
     %dialog;
+	<!ENTITY % gm SYSTEM "chrome://geckium/locale/dtd/gm.dtd">
+    %gm;
     <!ENTITY % gflags SYSTEM "chrome://geckium/locale/dtd/gflags.dtd">
     %gflags;
 ]>
@@ -159,7 +161,7 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
-												Available Presets
+												&gflags.availablePresets;
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
 												<div class="modal" data-modal="aboutVisualStyles_modal">
 													<div class="wrapper">
@@ -246,7 +248,7 @@
 												</hbox>
 											</vbox>
 											<h4>
-												Visual Styles
+												&gflags.visualStyles;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -264,12 +266,12 @@
 												</vbox>
 											</vbox>
 											<h4>
-												Classic Window Frame
+												&gflags.classicWindowFrame;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">Force Classic Window Frame</label>
+														<label class="name">&gflags.forceClassicWindowFrame;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -279,8 +281,8 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name">Classic Caption Buttons</label>
-														<label class="description">Chromium had different styles depending on the system.</label>
+														<label class="name">&gflags.classicCaptionButtonsTitle;</label>
+														<label class="description">&gflags.classicCaptionButtonsDescription;</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="classiccaptionbuttons-style" data-pref="appearance.classicCaptionButtonsStyle" id="classiccaptionbuttons-style-select" style="width: 200px">
@@ -382,8 +384,7 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<vbox class="item" flex="1">
-													<h4>&gflags.forcedStyle;</h4>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 												<hbox class="item">
@@ -814,7 +815,7 @@
 												</hbox>
 												<hbox class="item">
 													<spacer />
-													<button class="button ripple-enabled text color" label="Check for Updates" />
+													<button class="button ripple-enabled text color" label="&gflags.checkForUpdates;" />
 												</hbox>
 												<hbox class="item">
 													<vbox>
@@ -965,6 +966,7 @@
 
 	<script>
 		var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+		const gFlagsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gflags.properties");
 	</script>
 
 	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
