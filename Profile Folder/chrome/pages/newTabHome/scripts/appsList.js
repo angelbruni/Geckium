@@ -64,7 +64,7 @@ function setUpApps() {
 						data-type="${type}"
 						data-url="${url}"
 				>
-					<html:img class="icon" draggable="false" src="${icon}"></html:img>
+					<image class="icon" draggable="false" src="${icon}"></image>
 					<label>${name}</label>
 				</html:button>
 				`
