@@ -4251,6 +4251,11 @@ menupopup#contentAreaContextMenu #context-navigation > menuitem::after {
           appearance: menuitemtext !important;
   white-space: nowrap;
 }
+@media (-moz-platform: linux) {
+  menupopup#contentAreaContextMenu #context-navigation > menuitem::after {
+    margin-inline-start: 21px !important;
+  }
+}
 @media (-moz-windows-classic) {
   menupopup#contentAreaContextMenu #context-navigation > menuitem::after {
     padding-inline-start: 1.45em !important;
