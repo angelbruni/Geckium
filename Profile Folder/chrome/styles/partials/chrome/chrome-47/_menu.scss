@@ -1,4 +1,35 @@
 menupopup {
+	&#contentAreaContextMenu {
+		#context-navigation {
+			> menuitem {
+				
+				justify-content: unset !important;
+				
+				padding-inline-start: 4px !important;
+				z-index: 1;
+
+				&:not([disabled]) {
+					color: black !important;
+					
+					&[_moz-menuactive] {
+						
+						
+					}
+		
+					&:not([_moz-menuactive]) {
+						.menu-accel-container {
+							color: rgb(161,161,146) !important;
+						}
+					}
+				}
+			}
+		}
+		
+		#context-sep-navigation {
+			margin-left: 0 !important;
+		}
+	}
+
 	button {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -49,24 +80,8 @@ menupopup {
 		&#menu_paste11 {
 			width: 57px !important;
 		}
-	}
-	
-	.menuitem-iconic {
-		
-		
-		
-		&::before {
-			
-		}
-		&:not([disabled]):is([_moz-menuactive="true"]) {
-			
-			
-		}
-	}
 
-	#context-sep-navigation {
 
-		
 	}
 
 	separator {

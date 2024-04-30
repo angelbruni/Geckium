@@ -4043,6 +4043,38 @@ toolbarspring {
     --panel-padding-block: 0 !important;
   }
 }
+menupopup#contentAreaContextMenu #context-navigation {
+  flex-direction: column !important;
+}
+menupopup#contentAreaContextMenu #context-navigation > menuitem {
+  justify-content: unset !important;
+}
+@media (-moz-windows-classic) {
+  menupopup#contentAreaContextMenu #context-navigation > menuitem {
+    min-height: 19px !important;
+    height: 19px !important;
+    min-height: 19px !important;
+  }
+}
+menupopup#contentAreaContextMenu #context-navigation > menuitem::after {
+  content: attr(aria-label);
+  margin-inline-start: 2px !important;
+  -webkit-appearance: menuitemtext !important;
+     -moz-appearance: menuitemtext !important;
+          appearance: menuitemtext !important;
+  white-space: nowrap;
+}
+@media (-moz-windows-classic) {
+  menupopup#contentAreaContextMenu #context-navigation > menuitem::after {
+    padding-inline-start: 1.45em !important;
+  }
+}
+menupopup#contentAreaContextMenu #context-navigation > menuitem .menu-iconic-left {
+  display: none !important;
+}
+menupopup#contentAreaContextMenu #context-sep-navigation {
+  margin-left: 0 !important;
+}
 menupopup button {
   min-width: 0 !important;
 }
@@ -4054,6 +4086,7 @@ menupopup > .menuitemitems,
 menupopup > .menuitemitems + menuseparator {
   display: none !important;
 }
+
 :root[geckium-choice=one] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=three] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=four] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=five] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=six] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=eleven] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyone] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button), :root[geckium-choice=twentyfive] #PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
   background-color: transparent !important;
   padding-block: 0 !important;
@@ -5907,6 +5940,20 @@ hbox[id=label-box][part=label-box] {
      -moz-appearance: none !important;
           appearance: none !important;
 }
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup#contentAreaContextMenu #context-navigation > menuitem {
+  justify-content: unset !important;
+  padding-inline-start: 4px !important;
+  z-index: 1;
+}
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup#contentAreaContextMenu #context-navigation > menuitem:not([disabled]) {
+  color: black !important;
+}
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup#contentAreaContextMenu #context-navigation > menuitem:not([disabled]):not([_moz-menuactive]) .menu-accel-container {
+  color: rgb(161, 161, 146) !important;
+}
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup#contentAreaContextMenu #context-sep-navigation {
+  margin-left: 0 !important;
+}
 :root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] menupopup button {
   margin: 0 !important;
   padding: 0 !important;
@@ -6275,6 +6322,12 @@ hbox[id=label-box][part=label-box] {
 :root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight][privatebrowsingmode=temporary] {
   --titlebar-active: rgb(40,43,45) !important;
   --titlebar-inactive: rgb(56,59,61) !important;
+}
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup#contentAreaContextMenu #context-navigation > menuitem:not([disabled])[_moz-menuactive] .menu-accel-container {
+  color: black !important;
+}
+:root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup#contentAreaContextMenu #context-sep-navigation {
+  margin-left: 0 !important;
 }
 :root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup > menu,
 :root[geckium-three][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven][geckium-sixtyeight] menupopup > menuitem {

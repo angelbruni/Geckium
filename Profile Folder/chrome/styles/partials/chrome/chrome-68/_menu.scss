@@ -1,4 +1,25 @@
 menupopup {
+	&#contentAreaContextMenu {
+		#context-navigation {
+			> menuitem {
+				&:not([disabled]) {
+					&[_moz-menuactive] {
+						
+						
+		
+						.menu-accel-container {
+							color: black !important;
+						}
+					}
+				}
+			}
+		}
+		
+		#context-sep-navigation {
+			margin-left: 0 !important;
+		}
+	}
+	
 	> menu,
 	> menuitem {
 		padding-inline-start: 4px !important;
@@ -43,13 +64,6 @@ menupopup {
 				background-color: rgb(235,235,235) !important;
 				color: black !important;
 			}
-		}
-	}
-	
-	.menuitem-iconic {
-		&:not([disabled]):is([_moz-menuactive="true"]) {
-			
-			
 		}
 	}
 }
