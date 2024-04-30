@@ -26,6 +26,10 @@ menupopup {
 					margin-inline-start: 2px !important;
 					appearance: menuitemtext !important;
 					white-space: nowrap;
+
+					@media (-moz-platform: linux) {
+						margin-inline-start: 21px !important;
+					}
 	
 					@media (-moz-windows-classic) {
 						padding-inline-start: 1.45em !important;
