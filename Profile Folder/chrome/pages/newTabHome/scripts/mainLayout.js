@@ -330,7 +330,7 @@ function createMainLayout() {
 			<html:div id="login-status-header-container" class="login-status-row">
 				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo")}</html:div>
 			</html:div>
-			<html:div id="login-status-sub-header">(You're missing out—<span class="link-span">sign in</span>)</html:div>
+			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>
 		`
 
