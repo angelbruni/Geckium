@@ -7,6 +7,42 @@ menupopup {
 		--panel-padding-block: 0 !important;
 	}
 
+	&#contentAreaContextMenu {
+		#context-navigation {
+			background-color: transparent !important;
+			flex-direction: column !important;
+	
+			> menuitem {
+				justify-content: unset !important;
+	
+				@media (-moz-windows-classic) {
+					min-height: 19px !important;
+					height: 19px !important;
+					min-height: 19px !important;
+				}
+				
+				&::after {
+					content: attr(aria-label);
+					margin-inline-start: 2px !important;
+					appearance: menuitemtext !important;
+					white-space: nowrap;
+	
+					@media (-moz-windows-classic) {
+						padding-inline-start: 1.45em !important;
+					}
+				}
+	
+				.menu-iconic-left {
+					display: none !important;
+				}
+			}
+		}
+		
+		#context-sep-navigation {
+			margin-left: 0 !important;
+		}
+	}
+
 	button {
 		min-width: 0 !important;
 	}
@@ -22,10 +58,6 @@ menupopup {
 	> .menuitemitems + menuseparator {
 		display: none !important;
 	}
-
-	#context-sep-navigation {
-		margin: 0 !important;
-	}
 }
 
 #menu_find11,
@@ -35,26 +67,4 @@ menupopup {
 #menu_settings11,
 #bookmarks-menu {
 	display: none;
-}
-
-#context-navigation {
-	background: transparent !important;
-	flex-wrap: wrap;
-
-	.menuitem-iconic {
-		display: block;
-		width: 100%;
-		flex: unset !important;
-		list-style-image: none !important;
-		height: 20px !important;
-
-		&::before {
-			content: attr(aria-label);
-			transform: translateX(32px);
-			display: flex;
-			align-items: center;
-			width: calc(100% - 36px);
-			height: 100%;
-		}
-	}
 }

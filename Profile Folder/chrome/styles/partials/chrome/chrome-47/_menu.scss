@@ -1,4 +1,35 @@
 menupopup {
+	&#contentAreaContextMenu {
+		#context-navigation {
+			> menuitem {
+				appearance: none !important;
+				justify-content: unset !important;
+				min-height: 23px !important;
+				padding-inline-start: 4px !important;
+				z-index: 1;
+
+				&:not([disabled]) {
+					color: black !important;
+					
+					&[_moz-menuactive] {
+						background-color: rgb(66,129,244) !important;
+						color: white !important;
+					}
+		
+					&:not([_moz-menuactive]) {
+						.menu-accel-container {
+							color: rgb(161,161,146) !important;
+						}
+					}
+				}
+			}
+		}
+		
+		#context-sep-navigation {
+			margin-left: 0 !important;
+		}
+	}
+
 	button {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -6,13 +37,13 @@ menupopup {
 		height: 100% !important;
 		background-color: transparent !important;
 		border-radius: 0 !important;
-		border: 1px solid rgb(205, 205, 205) !important;
+		border: 1px solid rgb(205,205,205) !important;
 		color: black !important;
 
 		&:not([disabled]) {
 			&:hover {
-				background-color: rgb(66, 129, 244) !important;
-				border-color: rgb(171, 171, 171) !important;
+				background-color: rgb(66,129,244) !important;
+				border-color: rgb(171,171,171) !important;
 				color: white !important;
 
 				z-index: 1 !important;
@@ -49,25 +80,8 @@ menupopup {
 		&#menu_paste11 {
 			width: 57px !important;
 		}
-	}
 
-	.menuitem-iconic {
-		appearance: none !important;
-		min-height: 23px;
-
-		&::before {
-			transform: translateX(36px) !important;
-		}
-
-		&:not([disabled]):is([_moz-menuactive="true"]) {
-			background-color: rgb(66, 129, 244) !important;
-			color: white !important;
-		}
-	}
-
-	#context-sep-navigation {
-		margin-block: 5px !important;
-		margin-inline: 0 !important;
+		
 	}
 
 	separator {
@@ -85,12 +99,12 @@ menupopup {
 		appearance: none !important;
 		min-height: 23px !important;
 		z-index: 1;
-
+	
 		&:not([disabled]) {
 			color: black !important;
-
+			
 			&[_moz-menuactive] {
-				background-color: rgb(66, 129, 244) !important;
+				background-color: rgb(66,129,244) !important;
 				color: white !important;
 
 				&[checked="true"] {
@@ -102,7 +116,7 @@ menupopup {
 
 			&:not([_moz-menuactive]) {
 				.menu-accel-container {
-					color: rgb(161, 161, 146) !important;
+					color: rgb(161,161,146) !important;
 				}
 			}
 		}
@@ -130,7 +144,7 @@ menupopup {
 
 	> menuseparator {
 		appearance: none !important;
-		border-top: 1px solid rgb(233, 233, 233) !important;
+		border-top: 1px solid rgb(233,233,233) !important;
 		border-bottom: 0 !important;
 		padding: 0 !important;
 		margin-block: 5px !important;
