@@ -8,11 +8,11 @@ class gkToolbarButtons {
 	static create(params) {
 		const alreadyExists = document.getElementById(params.id + "-button");
 		if (alreadyExists) {
-			console.log("toolbarbutton already exists.");
+			console.log(params.id + "-button already exists. Using it.");
 			return;
 		}
 
-		console.log("toolbarbutton does not exist.");
+		console.log(params.id + "-button does not exist. Creating a new one.");
 		CustomizableUI.createWidget({
 			id: params.id + "-button",
 			removable: params.removable,
@@ -40,11 +40,11 @@ class gkToolbarMenuButtons {
 		const alreadyExists = document.getElementById(params.id + "-button");
 		let toolbarButton;
 		if (alreadyExists) {
-			console.log("toolbarbutton already exists.");
+			console.log(params.id + "-button already exists. Using it.");
 
 			toolbarButton = alreadyExists;
 		} else {
-			console.log("toolbarbutton does not exist.");
+			console.log(params.id + "-button does not exist. Creating a new one.");
 
 			gkToolbarButtons.create({
 				id: params.id,
@@ -325,8 +325,6 @@ class gkToolbarMenuButtons {
 		}
 	}
 }
-
-let EXPORTED_SYMBOLS = [ "gkToolbarButtons", "gkToolbarMenuButtons" ];
 
 
 
