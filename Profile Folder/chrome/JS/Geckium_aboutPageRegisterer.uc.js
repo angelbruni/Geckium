@@ -9,8 +9,9 @@ const customAboutPages = {
 
 	"gmzoo": 	"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
 
-	"home": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
-	"newtab": 	"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+	"home": 			"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+	"newtab": 			"chrome://userchrome/content/pages/newTabHome/index.xhtml",
+	"privatebrowsing":	"chrome://userchrome/content/pages/newTabHomeIncognito/index.xhtml",
 
 	"flags": 	"chrome://userchrome/content/pages/flags/index.xhtml",
 
