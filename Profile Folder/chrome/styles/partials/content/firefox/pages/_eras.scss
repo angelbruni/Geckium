@@ -17,9 +17,17 @@
 		@import "chrome-11/about-preferences/final";
 	}
 
-	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+	&[geckium-one][geckium-twentyone] {
 		@import "chrome-21/global/final";
 		@import "chrome-21/about-addons/final";
 		@import "chrome-21/about-preferences/final";
+	}
+
+	&[geckium-one][geckium-twentyfive][geckium-twentyfive] {
+		@import "chrome-25/global/final";
+	}
+
+	&[geckium-one][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+		@import "chrome-47/global/final";
 	}
 }

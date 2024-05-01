@@ -1,0 +1,99 @@
+:root {
+	spacer {
+		flex: 1;
+	}
+
+
+	label,
+	h1,
+	p {
+		margin: 0;
+	}
+
+	label {
+		&[is="text-link"] {
+			color: rgb(0,51,153);
+
+			&:active {
+				color: red;
+			}
+		}
+	}
+
+	h1 {
+		font-size: 22pt;
+		font-weight: normal;
+		margin-block-end: 20px;
+	}
+
+	#main {
+		width: 490px;
+		height: 266px;
+
+		gap: 8px;
+		line-height: 15px;
+
+		> * {
+			&:not(#banner) {
+				padding-inline-start: 13px;
+				padding-inline-end: 7px;
+			}
+		}
+	}
+
+	#banner {
+		background-color: white;
+		background-image:
+			url("chrome://windows/content/about/assets/chrome-1/imgs/logo.png"),
+			linear-gradient(
+				to bottom,
+				white,
+				white 143px,
+				rgb(190,190,190) 143px
+			);
+		background-position: right;
+		background-repeat: no-repeat;
+		border-block-end: 1px solid white;
+		margin-block-end: -1px;
+		padding-block: 23px;
+		padding-inline: 14px;
+		box-sizing: border-box;
+		min-height: 145px;
+	}
+
+	#updateCheckFailed {
+		display: none;
+	}
+
+	footer {
+		margin-block-start: 6px;
+		align-items: center;
+
+		> image {
+			width: 16px;
+			height: 16px;
+			margin-inline-end: 7px;
+		}
+	}
+
+	button {
+		min-width: 75px;
+		min-height: 26px;
+		margin-block-end: 2px;
+	}
+
+	&:not([geckium-one]) {
+		* {
+			visibility: hidden;
+		}
+	}
+	&[geckium-four] {
+		@import "partials/chrome-4/final";
+	}
+	&[geckium-four][geckium-eleven] {
+		@import "partials/chrome-11/final";
+	}
+	&[geckium-four][geckium-eleven][geckium-twentyone] {
+		@import "partials/chrome-21/final";
+	}
+}

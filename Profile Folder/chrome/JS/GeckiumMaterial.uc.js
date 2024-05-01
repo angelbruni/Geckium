@@ -83,3 +83,10 @@ function openGFlags(mode) {
 		}
 	}
 }
+
+function openAbout() {
+	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 6)
+		window.openDialog("about:about", "", "centerscreen");
+	else
+		openTrustedLinkIn("about:preferences#about", "tab")
+}

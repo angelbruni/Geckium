@@ -1,11 +1,13 @@
-content userchromejs        ./
-content userscripts         ../JS/ contentaccessible=yes
-content modules ../JS/modules/
+content userchromejs	./
+content userscripts		../JS/ contentaccessible=yes
+content modules			../JS/modules/
+
+content gm		../frameworks/GeckiumMaterial/ contentaccessible=yes
+content windows	../windows/ contentaccessible=yes
+content pages	../pages/ contentaccessible=yes
 
 locale geckium en-US ../locale/en-US/
 locale geckium pt-BR ../locale/pt-BR/
-
-content windows         	../windows/ contentaccessible=yes
 
 skin userstyles classic/1.0 ../CSS/
 content userchrome          ../ contentaccessible=yes

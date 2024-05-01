@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://windows/content/about/eras.css" type="text/css"?>
+
+<!DOCTYPE window [
+    <!ENTITY % dialog SYSTEM "chrome://geckium/locale/dtd/dialog.dtd">
+    %dialog;
+    <!ENTITY % about SYSTEM "chrome://geckium/locale/dtd/about.dtd">
+    %about;
+]>
+
+<window
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="about"
+	windowtype="browser:about"
+	title="&window.title;"
+>
+	<vbox id="main-container" />
+
+	<script>
+		var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+		const dialogBundle = Services.strings.createBundle("chrome://geckium/locale/properties/dialog.properties");
+		const aboutBundle = Services.strings.createBundle("chrome://geckium/locale/properties/about.properties");
+	</script>
+
+	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" />
+
+	<script src="chrome://windows/content/about/script.js" defer="true" />
+
+	<script src="chrome://pages/content/scripts/appearance.js" defer="true" />
+</window>
