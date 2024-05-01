@@ -71,24 +71,20 @@ class gkToolbarMenuButtons {
 		menuPopUp.addEventListener("popupshowing", () => {
 			const gkMenuBundle = Services.strings.createBundle("chrome://geckium/locale/properties/menu.properties");
 			menuPopUp.querySelectorAll("[data-l10n-id]").forEach(item => {
-				console.log(item, item.dataset.l10nId, gkMenuBundle.GetStringFromName(item.dataset.l10nId))
 				if ((item.tagName == "menuitem" && item.getAttribute("type") !== "checkbox") || item.tagName == "menu" || item.classList.contains("menuitemitems")) {
 					item.label = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
 					item.querySelector(".menu-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
-					console.log("1", item)
 				}
 
 				if (item.tagName == "menuitem" && item.getAttribute("type") == "checkbox") {
 					item.label = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
 					item.querySelector(".menu-iconic-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
 					item.querySelector(".menu-iconic-highlightable-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
-					console.log("2", item)
 				}
 				
 				if (item.tagName == "button") {
 					item.label = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
 					item.querySelector(".button-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
-					console.log("3", item)
 				}
 			});
 		});
