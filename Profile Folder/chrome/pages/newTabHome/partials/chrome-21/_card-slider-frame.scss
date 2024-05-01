@@ -58,18 +58,17 @@
 				background: linear-gradient(
 					to bottom,
 					transparent 0,
-					rgba(0,0,0,.01) 60px,
-					rgba(0,0,0,.06) 183px
+					color-mix(
+						in srgb,
+						var(--thumbnail-container-color) 1%,
+						transparent
+					) 60px,
+					color-mix(
+						in srgb,
+						var(--thumbnail-container-color) 6%,
+						transparent
+					) 183px
 				);
-
-				@media (prefers-color-scheme: dark) {
-					background: linear-gradient(
-						to bottom,
-						transparent 0,
-						rgba(255,255,255,.01) 60px,
-						rgba(255,255,255,.06) 183px
-					);
-				}
 			}
 		}
 	}

@@ -2,7 +2,13 @@
 &[geckium-choice="five"],
 &[geckium-choice="six"] {
 	#main {
-		background: url(assets/chrome-5/product_logo.png) no-repeat 0px 8px;
+		background: url(assets/chrome-4/product_logo.png) no-repeat 0px 8px;
+	}
+
+	&[style*="--chrt-ntp-logo-alternate: 1;"] {
+		#main {
+			background: url(assets/chrome-4/product_logo_alternate.png) no-repeat 0px 8px;
+		}
 	}
 }
 

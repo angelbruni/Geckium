@@ -5,6 +5,8 @@
 	--thumbnail-inner-border-color: var(--default-thumbnail-inner-border-color);
 	--default-thumbnail-background-color: #EEE;
 	--thumbnail-background-color: var(--default-thumbnail-background-color);
+	--default-thumbnail-wrapper-background-color-hot: rgba(150,150,150,1);
+	--thumbnail-wrapper-background-color-hot: var(--default-thumbnail-wrapper-background-color-hot);
 
 	// Custom theme support
 	// lwtheme
@@ -13,13 +15,21 @@
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					--thumbnail-inner-border-color: color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%, white) !important;
-					--thumbnail-background-color: color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%, white) !important;
+					--thumbnail-inner-border-color: color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+						white
+					) !important;
+					--thumbnail-background-color: color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+						white
+					) !important;
+					--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 				}
 			}
 		}
 	}
-
 	// chrtheme
 	&[lwtheme-id*="default-theme"][chrtheme="true"] {
 		--thumbnail-border-color: color-mix(
@@ -28,6 +38,7 @@
 			transparent
 		) !important;
 		--thumbnail-inner-border-color: var(--chrt-ntp-background, var(--default-thumbnail-inner-border-color)) !important;
+		--thumbnail-wrapper-background-color-hot: var(--chrt-ntp-header, var(--default-thumbnail-border-color)) !important;
 	}
 }
 
@@ -73,7 +84,7 @@
 			&:hover,
 			&:focus {
 				.thumbnail-wrapper {
-					background-color: rgba(150,150,150,1);
+					background-color: var(--thumbnail-wrapper-background-color-hot);
 				}
 
 				.close-button {
