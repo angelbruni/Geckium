@@ -29,7 +29,15 @@
 			margin: 0 !important;
 			border: 0 !important;
 
-			&:not(#generalCategory, #firefoxHomeCategory, #searchCategory, #browserPrivacyCategory, #firefoxAccountCategory, #moreFromMozillaCategory-header) {
+			&:not(
+				#generalCategory,
+				#firefoxHomeCategory,
+				#searchCategory,
+				#browserPrivacyCategory,
+				#firefoxAccountCategory,
+				#moreFromMozillaCategory-header,
+				#aboutCategory-header
+			) {
 				h1 {
 					display: none !important;
 				}
@@ -61,6 +69,7 @@
 	h1[data-l10n-id="privacy-header"],
 	h1[data-l10n-id="pane-sync-title3"],
 	h1[data-l10n-id="more-from-moz-title"],
+	#aboutCategory-header > h1,
 	.main-heading > .header-name {
 		z-index: 100;
 		color: rgb(83,99,125) !important;

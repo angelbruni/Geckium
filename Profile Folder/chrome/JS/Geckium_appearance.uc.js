@@ -62,13 +62,15 @@ class gkVisualStyles {
 			{
 				id: 0,
 				int: 1,
-				year: [2009],
+				basedOnVersion: "1.0.154.59",
+				year: [2008],
 				number: "one",
 				styles: ["chrome", "page"],
 			},
 			{
 				id: 1,
 				int: 3,
+				basedOnVersion: "3.0.195.4",
 				year: [2009],
 				number: "three",
 				styles: ["page"],
@@ -76,6 +78,7 @@ class gkVisualStyles {
 			{
 				id: 2,
 				int: 4,
+				basedOnVersion: "4.0.223.11",
 				year: [2009],
 				number: "four",
 				styles: ["page"],
@@ -83,13 +86,15 @@ class gkVisualStyles {
 			{
 				id: 3,
 				int: 5,
-				year: [2009, 2010],
+				basedOnVersion: "5.0.375.125",
+				year: [2009],
 				number: "five",
 				styles: ["chrome", "page"],
 			},
 			{
 				id: 4,
 				int: 6,
+				basedOnVersion: "6",
 				year: [2010],
 				number: "six",
 				styles: ["chrome"],
@@ -97,13 +102,15 @@ class gkVisualStyles {
 			{
 				id: 5,
 				int: 11,
-				year: [2010, 2011],
+				basedOnVersion: "11.0.696.77",
+				year: [2011],
 				number: "eleven",
 				styles: ["chrome", "page"],
 			},
 			{
 				id: 6,
 				int: 21,
+				basedOnVersion: "21.0.1180.89",
 				year: [2011, 2012],
 				number: "twentyone",
 				styles: ["chrome", "page"],
@@ -111,6 +118,7 @@ class gkVisualStyles {
 			{
 				id: 7,
 				int: 25,
+				basedOnVersion: "25.0.1364.84",
 				year: [2012, 2013],
 				number: "twentyfive",
 				styles: ["chrome"],
@@ -118,6 +126,7 @@ class gkVisualStyles {
 			/*{
 				id: 0,
 				int: 30,
+				basedOnVersion: "33.0.1750.3",
 				year: [2012, 2013],
 				number: "thirty",
 				styles: ["chrome"],
@@ -125,6 +134,7 @@ class gkVisualStyles {
 			{
 				id: 8,
 				int: 47,
+				basedOnVersion: "47.0.2526.111",
 				year: [2013, 2015],
 				number: "fortyseven",
 				styles: ["chrome", "page"],
@@ -133,6 +143,7 @@ class gkVisualStyles {
 				id: 9,
 				int: 68,
 				number: "sixtyeight",
+				basedOnVersion: "68",
 				year: [2015, 2018],
 				styles: ["chrome", "page"],
 			},

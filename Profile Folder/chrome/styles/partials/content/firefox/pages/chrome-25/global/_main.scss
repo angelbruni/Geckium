@@ -1,0 +1,52 @@
+@-moz-document url-prefix(about:preferences),
+			   url-prefix(about:addons) {
+
+	#aboutCategory {
+		color: rgb(48, 57, 66) !important;
+
+		h2,
+		p {
+			margin: 0 !important;
+		}
+
+		#chrInfo {
+			align-items: center;
+			line-height: 18px;
+			margin-block-start: 7px;
+			margin-block-end: 12px;
+		}
+
+		#chrLogo {
+			width: 32px;
+			height: 32px;
+			background: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/IDR_PRODUCT_LOGO_32.png")
+						no-repeat
+						center;
+			margin-inline-end: 10px;
+		}
+
+		#chrButtons {
+			gap: 7px;
+		}
+
+		#chrVersion {
+			margin-block-start: 25px !important;
+		}
+
+		#chrUpdate {
+			margin-block-start: 12px;
+
+			> div {
+				width: 16px;
+				height: 16px;
+				margin-inline-end: 6px;
+				background: url("chrome://windows/content/about/assets/chrome-1/imgs/IDR_UPDATE_FAIL.png") no-repeat center;
+			}
+		}
+		
+		#chrCredits {
+			margin-block-start: 200px;
+			line-height: 21px;
+		}
+	}
+}

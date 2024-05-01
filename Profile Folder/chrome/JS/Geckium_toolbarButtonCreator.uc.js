@@ -708,7 +708,7 @@ window.addEventListener("load", function () {
 			26: {
 				id: "aboutGoogleChrome",
 				l10nid: "about",
-				click: "openWindow('aboutChromium', 'chrome,centerscreen,dependent,modal')",
+				click: "openAbout()",
 			},
 			27: {
 				id: "help",

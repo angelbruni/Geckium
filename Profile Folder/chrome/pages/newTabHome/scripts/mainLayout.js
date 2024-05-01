@@ -59,7 +59,6 @@ function setMostVisitedLayout(layout) {
 
 function createMainLayout() {
 	let appearanceChoice;
-
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
 			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;

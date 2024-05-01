@@ -7,17 +7,17 @@
 const customAboutPages = {
 	"places": 	"chrome://browser/content/places/places.xhtml",
 
-	"gmzoo": 	"chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/index.xhtml",
+	"gmzoo": 	"chrome://gm/content/zoo/index.xhtml",
 
-	"home": 			"chrome://userchrome/content/pages/newTabHome/index.xhtml",
-	"newtab": 			"chrome://userchrome/content/pages/newTabHome/index.xhtml",
-	"privatebrowsing":	"chrome://userchrome/content/pages/newTabHomeIncognito/index.xhtml",
+	"home": 			"chrome://pages/content/newTabHome/index.xhtml",
+	"newtab": 			"chrome://pages/content/newTabHome/index.xhtml",
+	"privatebrowsing":	"chrome://pages/content/newTabHomeIncognito/index.xhtml",
+	"flags": 			"chrome://pages/content/flags/index.xhtml",
+	"about":			"chrome://windows/content/about/index.xhtml",
 
-	"flags": 	"chrome://userchrome/content/pages/flags/index.xhtml",
-
-	"gsplash": 	"chrome://userchrome/content/windows/gsplash/index.xhtml",
-	"gwizard": 	"chrome://userchrome/content/windows/gwizard/index.xhtml",
-	"gflags": 	"chrome://userchrome/content/windows/gflags/index.xhtml",
+	"gsplash": 	"chrome://windows/content/gsplash/index.xhtml",
+	"gwizard": 	"chrome://windows/content/gwizard/index.xhtml",
+	"gflags": 	"chrome://windows/content/gflags/index.xhtml",
 };
 
 function customAboutPage(urlString) {

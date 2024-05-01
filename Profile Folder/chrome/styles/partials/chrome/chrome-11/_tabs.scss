@@ -17,21 +17,28 @@
 	);
 	--tab-glare-unhover-timer: .5s;
 
-	// else if chrtheme
-	&:not(:-moz-lwtheme)[chrtheme="true"] {
-		--tab-glare-opacity: .1 !important;
-	}
-
 	&[customthemecolorizetabglare="true"] {
 		/* bruni: This entire code takes care of custom themes support for tabs */
-		
+
+		// Custom theme support
+		// lwtheme
 		&:-moz-lwtheme {
-			&:not([lwtheme-id*="firefox-compact"]) {
-				&:not([lwtheme-id="#{$gtkplus}"]) {
-					--tab-glare-color: var(--tabbrowser-tab-color);
-					--tab-glare-opacity: 1;
+			&:not([lwtheme-id*="default-theme"]) {
+				&:not([lwtheme-id*="firefox-compact"]) {
+					&[lwtheme-id*="{"],
+					&[lwtheme-id*="@mozilla.org"] {
+						&:not([lwtheme-id="#{$gtkplus}"]) {
+							--tab-glare-color: var(--tabbrowser-tab-color);
+							--tab-glare-opacity: .5;
+						}
+					}
 				}
 			}
 		}
+	}
+
+	// else if chrtheme
+	&:not(:-moz-lwtheme)[chrtheme="true"] {
+		--tab-glare-opacity: .1 !important;
 	}
 }
