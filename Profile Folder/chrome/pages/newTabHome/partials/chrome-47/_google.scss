@@ -1,3 +1,11 @@
+& {
+	&[style*="--chrt-ntp-logo-alternate: 1;"] {
+		#google-search #hplogo {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
+		}
+	}
+}
+
 #google-search,
 #mv-tiles {
 	margin-inline: auto;
@@ -50,6 +58,12 @@
 
 	#hplogo {
 		margin-block-end: 24px;
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 272px;
+		height: 92px;
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png");
 	}
 
 	form {

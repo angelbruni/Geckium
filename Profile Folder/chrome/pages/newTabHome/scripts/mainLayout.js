@@ -352,14 +352,14 @@ function createMainLayout() {
 				</vbox>
 			</hbox>
 			<button id="page-switcher-end" class="page-switcher" label="›"></button>
+			<vbox id="attribution">
+				<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
+				<html:div id="attribution-img"></html:div>
+			</vbox>
 		</hbox>
 		`
 
 		footer = `
-		<vbox id="attribution">
-			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
-			<html:div id="attribution-img"></html:div>
-		</vbox>
 		<vbox id="footer">
 			<html:div id="footer-border"></html:div>
 			<hbox id="footer-content">
@@ -410,7 +410,7 @@ function createMainLayout() {
 				<html:a id="google-apps-link" href="https://www.google.pt/intl/pt-PT/about/products?tab=rh"></html:a>
 			</hbox>
 			<vbox id="google-search">
-				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
+				<html:div id="hplogo" title="Google"></html:div>
 				<html:form>
 					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
