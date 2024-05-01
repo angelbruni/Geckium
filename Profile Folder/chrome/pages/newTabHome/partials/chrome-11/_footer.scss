@@ -1,25 +1,39 @@
-&[geckium-choice="eleven"] {
-	&[style*="--chrt-theme-ntp-attribution"] {
-		#footer {
-			display: none !important;
+& {
+	&[geckium-choice="eleven"] {
+		&[style*="--chrt-theme-ntp-attribution"] {
+			#footer {
+				display: none !important;
+			}
 		}
 	}
-}
 
-&:not([lwtheme-id*="default-theme"]) {
-	&:not([lwtheme-id*="firefox-compact"]) {
-		&[lwtheme-id*="{"],
-		&[lwtheme-id*="@mozilla.org"] {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				&[footer-themable="true"] {
-					#logo_wordmark {
-						background: var(--lwt-text-color) !important;
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					&[footer-themable="true"] {
+						#logo_wordmark {
+							background: var(--lwt-text-color) !important;
+						}
 					}
 				}
 			}
 		}
 	}
+	// chrtheme
+	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+		&[footer-themable="true"] {
+			#logo_wordmark {
+				background: var(--section-color) !important;
+			}
+		}
+	}
 }
+
+
 
 #footer {
 	#logo-img {

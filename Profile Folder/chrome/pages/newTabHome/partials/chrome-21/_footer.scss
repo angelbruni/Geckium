@@ -182,6 +182,61 @@
 					transparent
 				)
 		) !important;
+
+		&[footer-themable="true"] {
+			#logo_wordmark {
+				background: var(--chrt-frame) !important;
+			}
+
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--chrt-toolbar) 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, var(--chrt-toolbar) 65%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: var(--chrt-frame);
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				var(--chrt-frame) 20%,
+				gray
+			);
+			--dot-color-hot: var(--chrt-frame);
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				var(--chrt-frame) 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				var(--chrt-frame) 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: var(--chrt-frame);
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				var(--chrt-frame) 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: var(
+				--chrt-frame
+			);
+			--footer-menu-item-link-color: var(--chrt-toolbar);
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				var(--chrt-frame) 40%,
+				transparent
+			);
+		}
 	}
 }
 
