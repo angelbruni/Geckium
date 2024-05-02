@@ -29,6 +29,12 @@
 			height: 16px;
 			margin-inline-end: 6px;
 		}
+
+		label {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 
 	.thumbnail {
