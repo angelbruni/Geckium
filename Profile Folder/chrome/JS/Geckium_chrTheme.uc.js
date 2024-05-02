@@ -100,7 +100,7 @@ class chrTheme {
 				if (!gkPrefUtils.tryGet("Geckium.chrTheme.status").bool)
 					return;
 
-				if (gkPrefUtils.tryGet("extensions.activeThemeID").string !== "default-theme@mozilla.org")
+				if (!gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light"))
 					return;
 
 				if (storedCRX) {

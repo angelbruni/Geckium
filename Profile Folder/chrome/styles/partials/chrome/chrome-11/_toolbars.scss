@@ -1,6 +1,6 @@
 & {
 	/*&[customthememode="2"],
-	&:not(:-moz-lwtheme),
+	&:not([lwtheme-id*="compact-light"]),
 	&[lwtheme-id="#{$gtkplus}"],
 	&:not([chrtheme="true"]) {
 		--toolbarbutton-icon-fill: rgb(78, 91, 116) !important;

@@ -231,19 +231,23 @@
 	}
 	// else if !lwtheme
 	&[customthememode="2"],
-	&:not(:-moz-lwtheme) {
+	&:not([lwtheme-id*="compact-light"]) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
+		&[lwtheme-id*="compact-light"] {
+			--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+		}
+
 		&[customthememode="2"],
 		&[lwtheme-id*="firefox-compact"] {
 			@media (prefers-color-scheme: dark) {
 				--toolbarbutton-icon-fill: rgb(211, 211, 211) !important;
 			}
 		}
-		&:not([lwtheme-id*="firefox-compact"]) {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
 				@import "titlebar/classic";
 				
@@ -381,7 +385,7 @@
 		}
 	}
 	// else if chrtheme
-	&:not(:-moz-lwtheme)[chrtheme="true"] {
+	&[lwtheme-id*="compact-light"][chrtheme="true"] {
 		--nav-bar: var(--chrt-theme-toolbar, var(--chrt-toolbar, var(--default-nav-bar))) !important;
 		--toolbarbutton-border-color-normal: color-mix(
 			in srgb,
@@ -785,7 +789,7 @@
 		overflow: visible !important;
 	}
 
-	&:not(:-moz-lwtheme),
+	&:not([lwtheme-id*="compact-light"]),
 	&[lwtheme-id="#{$gtkplus}"] {
 		box-shadow: none !important;
 	}

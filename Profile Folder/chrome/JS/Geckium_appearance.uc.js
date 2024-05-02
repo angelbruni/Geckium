@@ -320,11 +320,11 @@ class gkLWTheme {
 					}
 					document.documentElement.setAttribute("customthememode", customThemeModePref);
 
-					const isDefaultLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
+					const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
 					const isDefaultLightDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
 					const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
 
-					if (isDefaultLWTheme || isDefaultLightDarkLWTheme || isGTKPlus) {
+					if (isCompactLightLWTheme || isDefaultLightDarkLWTheme || isGTKPlus) {
 						gkLWTheme.classicWindowFrame.disable();
 						return
 					}

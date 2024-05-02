@@ -27,7 +27,7 @@
 
 	&:not([customthememode="1"]) {
 		&:-moz-lwtheme {
-			&:not([lwtheme-id*="firefox-compact"]) {
+			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
 					--titlebar-buttonbox-background-color: var(
 						--toolbar-bgcolor,
@@ -44,11 +44,8 @@
 			}
 		}
 	}
-	&:not(:-moz-lwtheme)[chrtheme="true"] {
-		--titlebar-buttonbox-background-color: var(
-			--chrt-control-background,
-			var(--chrt-button-background, transparent)
-		) !important;
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
 	}
 }
 
