@@ -130,39 +130,42 @@ class chrTheme {
 				return `--chrt-${key.replace(/_/g, '-')}`;
 			}
 
+			let themeFrame;
+
 			fetch(`${file}/manifest.json`)
 				.then((response) => response.json())
 				.then((theme) => {
 					console.log("Information:\nFile: " + crx + ".crx", "\nTheme Name: " + theme.name, "\nAll information:", theme);
 
 					// Convert images to CSS custom properties
-					Object.entries(theme.theme.images).map(([key, value]) => {
-						document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `url('${file}/${value}')`);
-					}).join('\n');
+					if (theme.theme.images) {
+						Object.entries(theme.theme.images).map(([key, value]) => {
+							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `url('${file}/${value}')`);
+						}).join('\n');
 
-					if (isBrowserWindow) {
-						const themeFrame = theme.theme.images.theme_frame;
+						const attributionImg = theme.theme.images.theme_ntp_attribution;
+						if (attributionImg) {
+							var imagePath = `${file}/${attributionImg}`; // Change this to the path of your image
 
-						console.log(themeFrame);
+							var img = new Image();
+							img.src = imagePath;
+							img.onload = function() {
+								document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-width", `${this.width}px`);
+								document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-height", `${this.height}px`);
+							};
+						}
 
-						if (themeFrame) {
-							gkLWTheme.classicWindowFrame.enable();
-						} else {
-							gkLWTheme.classicWindowFrame.disable();
+						if (isBrowserWindow) {
+							themeFrame = theme.theme.images.theme_frame;
+	
+							console.log(themeFrame);
 						}
 					}
 
-					const attributionImg = theme.theme.images.theme_ntp_attribution;
-					if (attributionImg) {
-						var imagePath = `${file}/${attributionImg}`; // Change this to the path of your image
-
-						var img = new Image();
-						img.src = imagePath;
-						img.onload = function() {
-							document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-width", `${this.width}px`);
-							document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-height", `${this.height}px`);
-						};
-					}
+					if (themeFrame)
+						gkLWTheme.classicWindowFrame.enable();
+				 	else
+						gkLWTheme.classicWindowFrame.disable();
 					
 					// Convert colors to CSS custom properties
 					if (theme.theme.colors) {
