@@ -260,6 +260,11 @@ class gkLWTheme {
 			},
 			disable() {
 				if (isBrowserWindow) {
+					if (AppConstants.platform == "linux") {
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+						return;
+					}
+
 					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
 						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 						return;
@@ -329,6 +334,9 @@ class gkLWTheme {
 						return
 					}
 				}
+
+				if (AppConstants.platform == "linux")
+					gkLWTheme.classicWindowFrame.disable();
 			}, 0);
 		}
 	}
