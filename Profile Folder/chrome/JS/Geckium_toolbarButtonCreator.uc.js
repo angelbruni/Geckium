@@ -52,7 +52,7 @@ class gkToolbarMenuButtons {
 				label: params.label,
 				tooltip: params.tooltip,
 				removable: params.removable,
-				overflows: params.area,
+				overflows: params.overflows,
 				area: params.area
 			});
 
@@ -341,6 +341,8 @@ window.addEventListener("load", function () {
 	gkToolbarMenuButtons.create({
 		id: "page",
 		label: "Page Menu",
+		removable: false,
+		overflows: false,
 		tooltip: "Control the current page",
 		position: "bottomright topright",
 		area: CustomizableUI.AREA_NAVBAR,
@@ -469,6 +471,8 @@ window.addEventListener("load", function () {
 	gkToolbarMenuButtons.create({
 		id: "chrome",
 		label: "Chrome Menu",
+		removable: false,
+		overflows: false,
 		tooltip: "Customize and control Google Chrome",
 		position: "bottomright topright",
 		area: CustomizableUI.AREA_NAVBAR,

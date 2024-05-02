@@ -254,27 +254,25 @@ class gkLWTheme {
 	static get classicWindowFrame() {
 		return {
 			enable() {
-				if (isBrowserWindow) {
+				if (isBrowserWindow)
 					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-				}
 			},
 			disable() {
 				if (isBrowserWindow) {
+					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+						return;
+					}
+					
 					if (AppConstants.platform == "linux") {
 						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 						return;
 					}
 
-					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
+					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches)
 						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-						return;
-					}
-
-					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-					} else {
+					else
 						document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-					}
 				}
 			},
 			setCaptionButtonsStyle(style) {
@@ -336,7 +334,7 @@ class gkLWTheme {
 				}
 
 				if (AppConstants.platform == "linux")
-					gkLWTheme.classicWindowFrame.disable();
+					gkLWTheme.classicWindowFrame.enable();
 			}, 0);
 		}
 	}
