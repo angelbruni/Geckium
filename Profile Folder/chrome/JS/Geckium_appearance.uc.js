@@ -279,28 +279,29 @@ class gkChromiumFrame {
 		switch (gkPrefUtils.tryGet("Geckium.appearance.forceChromiumFrame").int) {
 			case 0:		// Automatic
 				if (isBrowserWindow) {
-					const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
-					console.log(isChromeTheme);
-					if (isChromeTheme) {
-						const themeData = await chrTheme.getCurrentTheme();
-
-						let themeFrame = themeData.theme.images.theme_frame;
-						// If Chromium Theme has frame image, enable Chromium Frame
-						if (themeFrame) {
-							document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-						} else {
-							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-						}
+					if (AppConstants.platform !== "win") {
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 					} else {
-						const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
-						const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
-						const isDefaultDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
-						const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
-						
-						if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus) {
-							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+						const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
+						if (isChromeTheme) {
+							const themeData = await chrTheme.getCurrentTheme();
+
+							let themeFrame = themeData.theme.images.theme_frame;
+							// If Chromium Theme has frame image, enable Chromium Frame
+							if (themeFrame)
+								document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+							else
+								document.documentElement.setAttribute("chromemargin", "0,3,3,3");
 						} else {
-							document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+							const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
+							const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
+							const isDefaultDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
+							const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
+							
+							if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus)
+								document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+							else
+								document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 						}
 					}
 				}
@@ -310,8 +311,12 @@ class gkChromiumFrame {
 					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
 				break;
 			case 2:		// Force Enable
-				if (isBrowserWindow)
-					document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+				if (isBrowserWindow) {
+					if (AppConstants.platform !== "win")
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+					else
+						document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+				}
 				break;
 		}
 

@@ -231,16 +231,13 @@
 	}
 	// else if !lwtheme
 	&[customthememode="2"],
-	&:not([lwtheme-id*="compact-light"]) {
+	&[lwtheme-id*="compact-light"],
+	&:not(:-moz-lwtheme) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
 	&:-moz-lwtheme {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
-		&[lwtheme-id*="compact-light"] {
-			--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-		}
-
 		&[customthememode="2"],
 		&[lwtheme-id*="firefox-compact"] {
 			@media (prefers-color-scheme: dark) {
@@ -398,7 +395,7 @@
 			black
 		) !important;
 		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
-		--toolbarbutton-texture: var(--chrt-theme-button-background, var(--default-toolbarbutton-texture)) !important;
+		--toolbarbutton-texture: var(--chrt-theme-button-background, var(--chrt-button-background, transparent)) !important;
 		--toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
 		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;

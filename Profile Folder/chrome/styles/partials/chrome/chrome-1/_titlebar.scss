@@ -13,28 +13,6 @@
 		rgb(147, 186, 234) 40px
 	);
 	--titlebar-inactive: var(--default-titlebar-inactive);
-	
-	@media (-moz-platform: linux) {
-		--titlebar-active: linear-gradient(
-			to bottom,
-			color-mix(
-				in srgb,
-				ActiveCaption 90%,
-				white
-			),
-			ActiveCaption 40px
-		) !important;
-
-		--titlebar-inactive: linear-gradient(
-			to bottom,
-			color-mix(
-				in srgb,
-				InactiveCaption 90%,
-				white
-			),
-			InactiveCaption 40px
-		) !important;
-	}
 
     &[privatebrowsingmode="temporary"] {
         --titlebar-active: linear-gradient(
@@ -200,6 +178,27 @@
 				#navigator-toolbox {
 					box-shadow: none !important;
 				}
+			}
+			&[lwtheme-id="#{$gtkplus}"] {
+				--titlebar-active: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						ActiveCaption 90%,
+						white
+					),
+					ActiveCaption 40px
+				) !important;
+
+				--titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						InactiveCaption 90%,
+						white
+					),
+					InactiveCaption 40px
+				) !important;
 			}
         }
 		
