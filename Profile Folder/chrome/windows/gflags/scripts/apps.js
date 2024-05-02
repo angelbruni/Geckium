@@ -60,7 +60,7 @@ function populateAppsList() {
 
                 let item = `
                 <html:button class="item app ripple-enabled"
-							 style="list-style-image: url(${appNewIcon})"
+							 style="list-style-image: url('${appNewIcon}')"
 							 data-app="${key}"
 							 data-app-old-favicon="${appFavicon}"
 							 data-app-old-icon="${appOldIcon}"
@@ -121,13 +121,13 @@ function populateAppsList() {
 			modalURL.value = "";
 
 			modalOldFavicon.addEventListener("change", () => {
-				modalButtonOldFavicon.style.listStyleImage = `url(file://${modalOldFavicon.value.replace(/\\/g, "/")})`;
+				modalButtonOldFavicon.style.listStyleImage = `url("file://${modalOldFavicon.value.replace(/\\/g, "/")}")`;
 			})
 			modalOldIcon.addEventListener("change", () => {
-				modalButtonOldIcon.style.listStyleImage = `url(file://${modalOldIcon.value.replace(/\\/g, "/")})`;
+				modalButtonOldIcon.style.listStyleImage = `url("file://${modalOldIcon.value.replace(/\\/g, "/")}")`;
 			})
 			modalNewIcon.addEventListener("change", () => {
-				modalButtonNewIcon.style.listStyleImage = `url(file://${modalNewIcon.value.replace(/\\/g, "/")})`;
+				modalButtonNewIcon.style.listStyleImage = `url("file://${modalNewIcon.value.replace(/\\/g, "/")}")`;
 			})
 
 			// if !app
@@ -141,9 +141,9 @@ function populateAppsList() {
 			modalOldFavicon.value = item.dataset.appOldFavicon;
 			modalOldIcon.value = item.dataset.appOldIcon;
 			modalNewIcon.value = item.dataset.appNewIcon;
-			modalButtonOldFavicon.style.listStyleImage = `url(${item.dataset.appOldFavicon})`;
-			modalButtonOldIcon.style.listStyleImage = `url(${item.dataset.appOldIcon})`;
-			modalButtonNewIcon.style.listStyleImage = `url(${item.dataset.appNewIcon})`;
+			modalButtonOldFavicon.style.listStyleImage = `url("${item.dataset.appOldFavicon}")`;
+			modalButtonOldIcon.style.listStyleImage = `url("${item.dataset.appOldIcon}")`;
+			modalButtonNewIcon.style.listStyleImage = `url("${item.dataset.appNewIcon}")`;
 			
 			modalOldName.value = item.dataset.appOldName;
 			modalNewName.value = item.dataset.appNewName;
