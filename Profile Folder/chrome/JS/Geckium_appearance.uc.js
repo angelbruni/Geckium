@@ -250,44 +250,87 @@ window.addEventListener("load", gkVisualStyles.setVisualStyle);
 // FIXME: Find the correct event instead of using a timeout initially.
 setTimeout(gkVisualStyles.setVisualStyle, 50);
 
-class gkLWTheme {
-	static get classicWindowFrame() {
-		return {
-			enable() {
-				if (isBrowserWindow)
-					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-			},
-			disable() {
-				if (isBrowserWindow) {
-					if (gkPrefUtils.tryGet("Geckium.appearance.forceClassicTheme").bool) {
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-						return;
-					}
-					
-					if (AppConstants.platform == "linux") {
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-						return;
-					}
-
-					if (!window.matchMedia("(-moz-windows-compositor: 1)").matches)
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-					else
-						document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-				}
-			},
-			setCaptionButtonsStyle(style) {
-				const preference = "Geckium.appearance.classicCaptionButtonsStyle";
-
-				if (style == "auto" || style == "windows" || style == "linux" || style == "macos")
-					gkPrefUtils.set(preference).string(style);
-				else if (!gkPrefUtils.tryGet(preference).string)
-					gkPrefUtils.set(preference).string("auto");
-
-				document.documentElement.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
-			}
+class gkChromiumFrame {
+	static get getApplyMode() {
+		switch (gkPrefUtils.tryGet("Geckium.appearance.forceChromiumFrame").int) {
+			case 0:
+				return "Automatic"
+			case 1:
+				return "Force Disable"
+			case 2:
+				return "Force Enable"
 		}
 	}
 
+	static async applyMode(int) {
+		if (int <= 0)
+			int = 0;		// Automatic
+		else if (int >= 2)
+			int = 2;		// Force Enable
+		else
+			int = 1;		// Force Disable
+
+		gkPrefUtils.set("Geckium.appearance.forceChromiumFrame").int(int);
+
+		await gkChromiumFrame.automatic();
+	}
+
+	static async automatic() {
+		switch (gkPrefUtils.tryGet("Geckium.appearance.forceChromiumFrame").int) {
+			case 0:		// Automatic
+				if (isBrowserWindow) {
+					const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
+					console.log(isChromeTheme);
+					if (isChromeTheme) {
+						const themeData = await chrTheme.getCurrentTheme();
+
+						let themeFrame = themeData.theme.images.theme_frame;
+						// If Chromium Theme has frame image, enable Chromium Frame
+						if (themeFrame) {
+							document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+						} else {
+							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+						}
+					} else {
+						const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
+						const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
+						const isDefaultDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
+						const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
+						
+						if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus) {
+							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+						} else {
+							document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+						}
+					}
+				}
+				break;
+			case 1:		// Force Disable
+				if (isBrowserWindow)
+					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+				break;
+			case 2:		// Force Enable
+				if (isBrowserWindow)
+					document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+				break;
+		}
+
+		gkChromiumFrame.setCaptionButtonsStyle();
+	}
+
+	static setCaptionButtonsStyle(style) {
+		const preference = "Geckium.appearance.classicCaptionButtonsStyle";
+
+		if (style == "auto" || style == "windows" || style == "linux" || style == "macos")
+			gkPrefUtils.set(preference).string(style);
+		else if (!gkPrefUtils.tryGet(preference).string)
+			gkPrefUtils.set(preference).string("auto");
+
+		document.documentElement.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
+	}
+}
+
+class gkLWTheme {
 	static get getCustomThemeMode() {
 		const customThemeModePref = gkPrefUtils.tryGet("Geckium.customtheme.mode").int;
 		let customThemeMode;
@@ -304,37 +347,10 @@ class gkLWTheme {
 
 	static setCustomThemeModeAttrs() {
 		if (typeof document.documentElement !== "undefined") {	
-			setTimeout(() => {
+			setTimeout(async () => {
 				document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
 				
-				const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
-				if (!isChromeTheme) {
-					const customThemeModePref = gkLWTheme.getCustomThemeMode;
-					switch (customThemeModePref) {
-						case 0:
-							gkLWTheme.classicWindowFrame.enable();
-							break;
-						case 1:
-							gkLWTheme.classicWindowFrame.disable();
-							break;
-						case 2:
-							gkLWTheme.classicWindowFrame.enable();
-							break;
-					}
-					document.documentElement.setAttribute("customthememode", customThemeModePref);
-
-					const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
-					const isDefaultLightDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
-					const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
-
-					if (isCompactLightLWTheme || isDefaultLightDarkLWTheme || isGTKPlus) {
-						gkLWTheme.classicWindowFrame.disable();
-						return
-					}
-				}
-
-				if (AppConstants.platform == "linux")
-					gkLWTheme.classicWindowFrame.enable();
+				await gkChromiumFrame.automatic();
 			}, 0);
 		}
 	}
@@ -356,7 +372,7 @@ const appearanceObserver = {
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, false);
 Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserver, false);
 Services.prefs.addObserver("Geckium.main.style", appearanceObserver, false);
-Services.prefs.addObserver("Geckium.appearance.forceClassicTheme", appearanceObserver, false);
+Services.prefs.addObserver("Geckium.appearance.forceChromiumFrame", appearanceObserver, false);
 
 function changePrivateBadgePos() {
 	if (typeof document.documentElement !== "undefined") {
@@ -399,11 +415,12 @@ const moreGTKIconsObserver = {
 };
 Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", moreGTKIconsObserver, false);
 
-window.addEventListener("load", gkLWTheme.classicWindowFrame.setCaptionButtonsStyle);
+window.addEventListener("load", gkChromiumFrame.setCaptionButtonsStyle);
 const classicCaptionBtnsStyleObs = {
-	observe: function (subject, topic, data) {
+	observe: async function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			gkLWTheme.classicWindowFrame.setCaptionButtonsStyle();
+			await gkChromiumFrame.automatic();
+			gkChromiumFrame.setCaptionButtonsStyle();
 		}
 	},
 };

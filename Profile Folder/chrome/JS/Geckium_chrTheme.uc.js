@@ -81,6 +81,21 @@ class chrTheme {
         return themes;
     }
 
+	static async getCurrentTheme() {
+		if (gkPrefUtils.tryGet("Geckium.chrTheme.status").bool) {
+			const themeManifest = `jar:${gkPrefUtils.tryGet("Geckium.chrTheme.filePath").string}!/manifest.json`;
+	
+			try {
+				const response = await fetch(themeManifest);
+				const theme = await response.json();
+				return theme;
+			} catch (error) {
+				console.error('Error fetching theme:', error);
+				return null; // Or handle the error appropriately
+			}
+		}
+	}	
+
 	static removeProperties() {
 		Array.from(getComputedStyle(document.documentElement)).forEach(propertyName => {
 			if (propertyName.startsWith('--chrt')) {
@@ -134,7 +149,7 @@ class chrTheme {
 
 			fetch(`${file}/manifest.json`)
 				.then((response) => response.json())
-				.then((theme) => {
+				.then(async (theme) => {
 					console.log("Information:\nFile: " + crx + ".crx", "\nTheme Name: " + theme.name, "\nAll information:", theme);
 
 					// Convert images to CSS custom properties
@@ -161,11 +176,6 @@ class chrTheme {
 							console.log(themeFrame);
 						}
 					}
-
-					if (themeFrame)
-						gkLWTheme.classicWindowFrame.enable();
-				 	else
-						gkLWTheme.classicWindowFrame.disable();
 					
 					// Convert colors to CSS custom properties
 					if (theme.theme.colors) {
@@ -190,20 +200,20 @@ class chrTheme {
 					}
 
 					document.documentElement.setAttribute("chrtheme", chrThemeStatus);
+
+					await gkChromiumFrame.automatic();
 				});
 		}, 0);
 	}
 
-	static disable() {
+	static async disable() {
 		gkPrefUtils.set("Geckium.chrTheme.status").bool(false);
 
 		const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 		document.documentElement.setAttribute("chrtheme", chrThemeStatus);
 
-		if (isBrowserWindow)
-			gkLWTheme.classicWindowFrame.disable();
-
 		chrTheme.removeProperties();
+		await gkChromiumFrame.automatic();
 	}
 }
 window.addEventListener("load", () => {
