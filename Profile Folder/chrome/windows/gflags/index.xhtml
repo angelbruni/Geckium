@@ -76,7 +76,7 @@
 													<vbox>
 														<label style="font-size: 16pt;">Welcome to</label>
 														<label style="font-size: 32pt;">Geckium</label>
-														<h4 style="height: 20px; margin-inline-start: 1px;">indev_version</h4>
+														<h4 class="version-identifier" style="height: 20px; margin-inline-start: 1px;" />
 													</vbox>
 												</hbox>
 												<hbox class="item">
@@ -810,14 +810,14 @@
 													<image style="width: 200px;"></image>
 													<vbox>
 														<label style="font-size: 32pt;">Geckium</label>
-														<h4 class="ripple-enabled" style="height: 20px; margin-inline-start: 1px;" id="gk_version">indev_version</h4>
+														<h4 class="version-identifier ripple-enabled" id="gk_version" style="height: 20px; margin-inline-start: 1px;" />
 													</vbox>
 												</hbox>
-												<hbox class="item">
+												<!--<hbox class="item">
 													<spacer />
 													<button class="button ripple-enabled text color" label="&gflags.checkForUpdates;" />
-												</hbox>
-												<hbox class="item">
+												</hbox>-->
+												<!--<hbox class="item">
 													<vbox>
 														<label class="name">&gflags.automaticUpdateChecker;</label>
 													</vbox>
@@ -826,14 +826,14 @@
 														<html:input class="switch" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
-												</hbox>
-												<html:button class="item ripple-enabled" data-toggle-modal="aboutBranch_modal">
+												</hbox>-->
+												<!--<html:button class="item ripple-enabled" data-toggle-modal="aboutBranch_modal">
 													<vbox>
 														<label class="name">&gflags.branch;</label>
 													</vbox>
 													<spacer />
-												</html:button>
-												<div class="modal" data-modal="aboutBranch_modal">
+												</html:button>-->
+												<!--<div class="modal" data-modal="aboutBranch_modal">
 													<div class="wrapper">
 														<div class="card">
 															<vbox class="body">
@@ -852,7 +852,7 @@
 															</vbox>
 														</div>
 													</div>
-												</div>
+												</div>-->
 												<html:button class="item ripple-enabled" data-toggle-modal="aboutCredits_modal">
 													<vbox>
 														<label class="name">&gflags.creditsTitle;</label>
@@ -868,9 +868,6 @@
 																<vbox class="description" style="gap: 8px">
 																	<html:p>
 																		AngelBruni
-																	</html:p>
-																	<html:p>
-																		nabrious
 																	</html:p>
 																	<html:p>
 																		Dominic Hayes
