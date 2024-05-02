@@ -1,3 +1,5 @@
+const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
+
 function loadSelectorSetting() {
 	setTimeout(() => {
 		document.querySelectorAll("button.menu[data-pref]").forEach(selector => {
@@ -49,3 +51,10 @@ function loadSwitchSetting() {
 	}, 10);
 }
 document.addEventListener("DOMContentLoaded", loadSwitchSetting);
+
+function loadVersion() {
+	document.querySelectorAll(".version-identifier").forEach(async identifier => {
+		identifier.textContent = await gkUpdater.getVersion();
+	})
+}
+document.addEventListener("DOMContentLoaded", loadVersion);
