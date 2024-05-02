@@ -24,7 +24,34 @@ nextElm.addEventListener("click", () => {
 })
 
 finishElm.addEventListener("click", () => {
+	if (AppConstants.platform == "win") {
+		gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
+		gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
+		gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);					// Enable native menus
+	}
+	
+	gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
+	gkPrefUtils.set("layout.css.prefers-color-scheme.content-override").int(1);				// Force light mode in pages as default
+
+	if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {
+		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
+		{
+			"0": {
+				"pos": 0,
+				"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
+				"oldIcon": "",
+				"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
+				"oldName": "Web Store",
+				"newName": "Web Store",
+				"url": "https://chromewebstore.google.com",
+				"type": 0
+			}
+		}
+		`);																					// Add default apps
+	}
+
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
+
 	gkWindow.close();
 })
 
