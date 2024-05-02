@@ -9,8 +9,8 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"]) {
-		&:not([lwtheme-id*="firefox-compact"]) {
+	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {
@@ -24,7 +24,7 @@
 		}
 	}
 	// chrtheme
-	&[lwtheme-id*="default-theme"][chrtheme="true"] {
+	&[lwtheme-id*="compact-light"][chrtheme="true"] {
 		&[footer-themable="true"] {
 			#logo_wordmark {
 				background: var(--section-color) !important;

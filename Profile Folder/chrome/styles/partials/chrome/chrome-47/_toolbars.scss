@@ -2,8 +2,8 @@
 	--personal-toolbar: rgb(241,241,241) !important;
 
 	// Custom theme support
-	&:not([lwtheme-id*="default-theme"]) {
-		&:not([lwtheme-id*="firefox-compact"]) {
+	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {

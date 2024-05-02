@@ -55,7 +55,7 @@
 	// else if lwtheme
 	&:-moz-lwtheme {
 		&:not([customthememode="2"]) {
-			&:not([lwtheme-id*="firefox-compact"]) {
+			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
 					--inactive-tab-background-color: color-mix(
 						in srgb,
@@ -73,7 +73,7 @@
 		}
 	}
 	// else if chrtheme
-	&:not(:-moz-lwtheme)[chrtheme="true"] {
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
 		--tab-glare-opacity: .5 !important;
 		
 		&[geckium-choice="one"],
