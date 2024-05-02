@@ -1,3 +1,39 @@
+@keyframes gecko-camouflage {
+	0% {
+		fill: #209f43;
+	}
+	9% {
+		fill: #93e9be;
+	}
+	18% {
+		fill: white;
+	}
+	30% {
+		fill: #b53dff;
+	}
+	36% {
+		fill: #E91E63;
+	}
+	45% {
+		fill: #30d5c8;
+	}
+	54% {
+		fill: #9C27B0;
+	}
+	63% {
+		fill: rgb(281,72,86);
+	}
+	72% {
+		fill: rgb(0,168,241);
+	}
+	90% {
+		fill: AccentColor;
+	}
+	100% {
+		fill: #209f43;
+	}
+}
+
 #window {
 	width: 555px;
 	height: 516px;
@@ -29,6 +65,7 @@
 	padding: var(--inner-padding);
 	align-items: center;
 	font-weight: 500;
+	animation: gecko-camouflage 10s 2500ms infinite;
 
 	> image {
 		filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
