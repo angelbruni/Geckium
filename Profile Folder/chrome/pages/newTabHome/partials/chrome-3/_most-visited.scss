@@ -2,13 +2,17 @@
 	--default-window-menu-item-hover-bg: hsl(213, 66%, 57%);
 	--window-menu-item-hover-bg: var(--default-window-menu-item-hover-bg);
 
+	--default-view-toolbar-buttons-bg: rgb(134,177,231);
+	--view-toolbar-buttons-bg: var(--default-view-toolbar-buttons-bg);
+	--default-window-menu-item-hover-bg: rgb(134,177,231);
+
 	--default-thumbnail-border-color-normal: #E5EFFE;
 	--thumbnail-border-color-normal: var(--default-thumbnail-border-color-normal);
 	--default-thumbnail-border-color-hot: rgb(75,140,220);
 	--thumbnail-border-color-hot: var(--default-thumbnail-border-color-hot);
 	--default-thumbnail-container-color: black;
 	--thumbnail-container-color: var(--default-thumbnail-container-color);
-	--default-thumbnail-disabled-color: rgb(230,230,230);
+	--default-thumbnail-disabled-color: #DFEAF7;
 	--thumbnail-disabled-color: var(--default-thumbnail-disabled-color);
 	--default-edit-bar-background-color-hot: hsl(213, 66%, 57%);
 	--edit-bar-background-color-hot: var(--default-edit-bar-background-color-hot);
@@ -29,6 +33,89 @@
 
 		--link-color: #acc0da;
 	}
+
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
+					--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
+		
+					--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
+					--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+					--thumbnail-container-color: var(--link-color) !important;
+					--thumbnail-disabled-color: var(--thumbnail-border-color-normal) !important;
+					
+					&:not([style*="--toolbar-color: white"]),
+					&:not([style*="--toolbar-color: rgb(255,255,255)"]),
+					&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
+						--edit-bar-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+						--edit-bar-background-hot: linear-gradient(
+							to bottom,
+							color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+							var(--edit-bar-background-color-hot)
+						) !important;
+					}
+		
+					--link-color: var(--lwt-accent-color) !important;
+		
+					&[style*="--arrowpanel-background"] {
+						--link-color: var(--arrowpanel-color, var(--lwt-accent-color)) !important;
+					}
+				}
+				&[lwtheme-id*="#{$gtkplus}"] {
+					--view-toolbar-buttons-bg: AccentColor !important;
+					--window-menu-item-hover-bg: AccentColor !important;
+		
+					--thumbnail-border-color-normal: color-mix(in srgb, ActiveCaption 10%, white) !important;
+					--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
+					--thumbnail-container-color: -moz-dialogtext;
+					--edit-bar-background-color-hot: color-mix(in srgb, AccentColor 85%, black) !important;
+					--edit-bar-background-hot: linear-gradient(
+						to bottom,
+						color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+						var(--edit-bar-background-color-hot)
+					) !important;
+				}
+			}
+		}
+	}
+	// chrtheme
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
+		--view-toolbar-buttons-bg: color-mix(
+			in srgb,
+			var(--manually-adapted-header) 70%,
+			white
+		);
+		
+		/*&[style*="--chrt-ntp-section"] {
+			--thumbnail-border-color-normal: color-mix(
+				in srgb,
+				var(--manually-adapted-header) 20%,
+				white
+			) !important;
+			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot)) !important;
+		}*/
+		--thumbnail-border-color-normal: var(--chrt-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
+		--thumbnail-border-color-hot: var(--chrt-ntp-header, var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot))) !important;
+		--thumbnail-container-color: var(--chrt-ntp-text, var(--default-thumbnail-container-color)) !important;
+		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg)) !important;
+		
+		--edit-bar-background-color-hot: var(--thumbnail-border-color-hot, var(--default-thumbnail-border-color-hot)) !important;
+		--edit-bar-background-hot: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				var(--edit-bar-background-color-hot) 70%,
+				white
+			),
+			var(--edit-bar-background-color-hot)
+		) !important;
+	}
 }
 
 #view-toolbar {
@@ -42,6 +129,9 @@
 		all: unset;
 
 		position: relative;
+
+		border-radius: 4px;
+		background-color: var(--view-toolbar-buttons-bg);
 		box-sizing: border-box;
 		width: 19px;
 		height: 17px;
@@ -174,7 +264,7 @@
 		margin-top: 22px;
 
 		.thumbnail-container {
-			color: rgb(6,45,117);
+			color: var(--link-color);
 			font-size: 16pt;
 
 			.edit-mode-border {
@@ -199,7 +289,7 @@
 	@media (prefers-color-scheme: dark) {
 		color: white;
 	}
-
+	
 	&:not([disabled]) {
 		&:hover,
 		&:focus {
@@ -237,7 +327,9 @@
 		}
 
 		.thumbnail {
-			border: 0;
+			background-color: var(--thumbnail-disabled-color);
+			border: 1px solid white;
+			padding: 0;
 		}
 	}
 
@@ -253,6 +345,26 @@
 				list-style-image: url(assets/chrome-3/imgs/newtab_pin_on_p.png);
 			}
 		}
+	}
+
+	.thumbnail-wrapper {
+		background: white;
+		border-radius: 5px;
+		background-size: 209px 132px;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.thumbnail {
+		width: 207px;
+		height: 129px;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--thumbnail-border-color-normal);
+		border-radius: 5px;
+		padding: 1px;
+
+		transition: border-color .15s, box-shadow .15s, border-radius .15s;
 	}
 
 	.edit-mode-border {
@@ -309,26 +421,6 @@
 				}
 			}
 		}
-	}
-
-	.thumbnail-wrapper {
-		background: white;
-		border-radius: 5px;
-		background-size: 209px 132px;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-
-	.thumbnail {
-		width: 207px;
-		height: 129px;
-		border-width: 3px;
-		border-style: solid;
-		border-color: var(--thumbnail-border-color-normal);
-		border-radius: 5px;
-		padding: 1px;
-
-		transition: border-color .15s, box-shadow .15s, border-radius .15s;
 	}
 
 	.title {

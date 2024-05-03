@@ -1,9 +1,67 @@
+& {
+	--default-lower-sections-h2-background: linear-gradient(
+		to bottom,
+		rgb(98, 164, 245),
+		rgb(73, 138, 218)
+	);
+	--lower-sections-h2-background: var(--default-lower-sections-h2-background);
+	--default-lower-sections-border-color: rgb(222, 234, 248);
+	--lower-sections-border-color: var(--default-lower-sections-border-color);
+
+	// Custom theme support
+	// lwtheme
+	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+			&[lwtheme-id*="{"],
+			&[lwtheme-id*="@mozilla.org"] {
+				--lower-sections-border-color: color-mix(
+					in srgb,
+					var(--thumbnail-border-color-normal) 70%,
+					white
+				) !important;
+
+				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					--lower-sections-h2-background: linear-gradient(
+						to bottom,
+						var(--thumbnail-border-color-normal),
+						var(--thumbnail-border-color-normal)
+					) !important;
+				}
+				&[lwtheme-id*="#{$gtkplus}"] {
+					--lower-sections-h2-background: var(--edit-bar-background-hot) !important;
+				}
+			}
+		}
+	}
+	// chrtheme
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--lower-sections-border-color: color-mix(
+			in srgb,
+			var(--thumbnail-border-color-normal) 70%,
+			white
+		) !important;
+
+		--lower-sections-h2-background: 
+		linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				var(--thumbnail-border-color-normal) 75%,
+				white
+			),
+			var(--thumbnail-border-color-normal)
+		),
+		grey !important
+	}
+}
+
 #lower-sections {
 	gap: 20px;
 
 	> .section {
 		flex: 1;
-		border: 1px solid rgb(222, 234, 248);
+		background: rgba(239, 246, 255, 0.796875);
+		border: 1px solid var(--lower-sections-border-color);
 		border-radius: 4px;
 		padding-block-end: 5px;
 		overflow: hidden;
@@ -16,11 +74,7 @@
 		}
 
 		h2 {
-			background-image: linear-gradient(
-				to bottom,
-				rgb(98, 164, 245),
-				rgb(73, 138, 218)
-			);
+			background: var(--lower-sections-h2-background);
 			padding: 4px 8px;
 			font-size: 10pt;
 			font-weight: bold;
@@ -53,6 +107,9 @@
 
 			label {
 				margin-inline-start: 2px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			&.nav {
