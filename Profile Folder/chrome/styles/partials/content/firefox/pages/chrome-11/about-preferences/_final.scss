@@ -1,0 +1,33 @@
+@-moz-document url-prefix(about:preferences) {
+	.info-icon {
+		
+		
+		background-size: 17px 17px !important;
+		height: 17px !important;
+		width: 17px !important;
+		
+	}
+	
+	.face-smile,
+	.face-sad {
+		
+		
+
+		
+		
+
+		&::before {
+			display: block;
+			height: 17px !important;
+			width: 17px !important;
+
+		}
+	}
+	
+	.face-smile::before {
+
+	}
+	.face-sad::before {
+		
+	}
+}

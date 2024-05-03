@@ -6,7 +6,20 @@
 	}
 
 	.sticky-container {
-		display: none !important;
+		.sticky-inner-container {
+			display: none !important;
+		}
+
+		#policies-container {
+			padding: 0 !important;
+			align-items: center;
+			background-color: transparent !important;
+			margin: 0 !important;
+
+			.info-icon-container {
+				margin-inline-end: 5px;
+			}
+		}
 	}
 	
 	#content {
@@ -71,7 +84,6 @@
 	h1[data-l10n-id="more-from-moz-title"],
 	#aboutCategory-header > h1,
 	.main-heading > .header-name {
-		z-index: 100;
 		color: rgb(83,99,125) !important;
 		font-weight: 500 !important;
 		font-size: 19pt !important;
