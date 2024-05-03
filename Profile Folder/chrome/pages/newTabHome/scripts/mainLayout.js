@@ -102,7 +102,7 @@ function createMainLayout() {
 			</vbox>
 			<vbox id="sidebar">
 				<vbox id="logo">
-					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo.png" width="145" height="52" />
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-1/product_logo.png" width="145" height="52" />
 				</vbox>
 				<vbox id="searches" class="sidebar">
 					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
@@ -149,16 +149,12 @@ function createMainLayout() {
 						<h2>${ntpBundle.GetStringFromName("recentActivities")}</h2>
 						<hbox>
 							<vbox id="recent-tabs">
-								<h3>${ntpBundle.GetStringFromName("recentlyClosed")}</h3>
 								<vbox class="item-container">
 									<vbox id="tab-items" />
 									<vbox>
 										<html:button class="item nav" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">${ntpBundle.GetStringFromName("viewFullHistory")}</html:button>
 									</vbox>
 								</vbox>
-							</vbox>
-							<vbox id="downloads">
-								<h3>${ntpBundle.GetStringFromName("downloads")}</h3>
 								<vbox class="item-container">
 									<vbox id="download-items" />
 									<vbox>
@@ -169,10 +165,10 @@ function createMainLayout() {
 						</hbox>
 					</vbox>
 					<vbox id="tips" class="section">
-						<h2>${ntpBundle.GetStringFromName("tipsAndSuggestions")}</h2>
+						<h2>${ntpBundle.GetStringFromName("evenMore")}</h2>
 						<hbox>
 							<vbox id="tip-items">
-								<div class="tips-title item">${ntpBundle.GetStringFromName("tipsAndSuggestionsWatch")}</div>
+								<div class="tips-title item">${ntpBundle.GetStringFromName("whatWillWePutHere")}</div>
 								<vbox class="tips-container item-container"/>
 							</vbox>
 						</hbox>

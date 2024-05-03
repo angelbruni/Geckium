@@ -214,7 +214,7 @@
 			white
 		) !important;
 
-		--titlebar-buttonbox-pseudo-background: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
+		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
 
 		&[chromemargin="0,0,0,0"] {
 			&[windowtype="navigator:browser"] > body {
