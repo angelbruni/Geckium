@@ -43,42 +43,6 @@
 		align-items: center;
 		gap: 6px;
 	}
-	.info-icon {
-		fill: transparent !important;
-		background: url(assets/img/pages/orange_exclamation.png) !important;
-		background-size: 15px 15px !important;
-		height: 15px !important;
-		width: 15px !important;
-		margin: 0 !important;
-	}
-	
-	.face-smile,
-	.face-sad {
-		display: flex;
-		align-items: center;
-		gap: 5px !important;
-		font-size: 12px !important;
-		margin-left: -1px !important;
-	}
-	
-	.face-smile::before {
-		background: url(assets/img/pages/green_check.png) !important;
-		display: block;
-		content: "" !important;
-		background-size: 15px 15px !important;
-		height: 15px !important;
-		width: 15px !important;
-		margin-inline-end: 0 !important;
-	}
-	.face-sad::before {
-		background: url(assets/img/pages/orange_exclamation.png) !important;
-		display: block;
-		content: "" !important;
-		background-size: 15px 15px !important;
-		height: 15px !important;
-		width: 15px !important;
-		margin-inline-end: 0 !important;
-	}
 	
 	description,
 	label:not(.sidebar-footer-label, .dialogTitle),

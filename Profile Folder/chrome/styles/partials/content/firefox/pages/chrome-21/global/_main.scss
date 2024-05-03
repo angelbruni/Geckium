@@ -7,13 +7,18 @@
 
 	.sticky-container {
 		display: flex !important;
+		flex-direction: column !important;
 		background: rgb(255, 255, 255, 90%) !important;
 		border-bottom: 1px solid rgb(0, 0, 0, 10%);
 		width: 100% !important;
 		margin-inline: 0 !important;
 		padding-inline: 0 !important;
-		height: 53px !important;
+		min-height: 53px !important;
 		box-sizing: border-box !important;
+
+		.sticky-inner-container {
+			display: flex !important;
+		}
 	}
 
 	.main-search {
@@ -143,6 +148,7 @@
 	h1[data-l10n-id="more-from-moz-title"],
 	#aboutCategory-header > h1,
 	.main-heading > .header-name {
+		z-index: 100;
 		flex: 1 !important;
 		color: black !important;
 	}

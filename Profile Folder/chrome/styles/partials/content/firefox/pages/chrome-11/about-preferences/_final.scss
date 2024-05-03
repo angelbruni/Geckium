@@ -1,0 +1,33 @@
+@-moz-document url-prefix(about:preferences) {
+	.info-icon {
+		fill: transparent !important;
+		background: url("assets/img/pages/orange_exclamation.png") !important;
+		background-size: 17px 17px !important;
+		height: 17px !important;
+		width: 17px !important;
+		margin: 0 !important;
+	}
+	
+	.face-smile,
+	.face-sad {
+		display: flex;
+		align-items: center;
+		gap: 5px !important;
+		font-size: 12px !important;
+		margin-left: -1px !important;
+
+		&::before {
+			display: block;
+			height: 17px !important;
+			width: 17px !important;
+			margin-inline-end: 0 !important;
+		}
+	}
+	
+	.face-smile::before {
+		content: url("assets/img/pages/green_check.png") !important;
+	}
+	.face-sad::before {
+		content: url("assets/img/pages/orange_exclamation.png") !important;
+	}
+}

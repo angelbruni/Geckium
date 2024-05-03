@@ -83,10 +83,17 @@ const gAboutPane = {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	const stickyContainer = document.querySelector(".sticky-container");
+	const policesContainer = document.getElementById("policies-container");
+	stickyContainer.appendChild(policesContainer);
+	policesContainer.classList.remove("smaller-font-size");
+
 	register_module("paneAbout", gAboutPane);
 
 	waitForElm("#aboutCategory").then(() => {
 		updateInfo();
+		document.getElementById("aboutCategory-header").setAttribute("hidden", true);
+		document.getElementById("aboutCategory").setAttribute("hidden", true);
 
 		gotoPref(null, "hash");
 	});
