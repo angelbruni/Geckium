@@ -325,9 +325,6 @@ class gkToolbarMenuButtons {
 	}
 }
 
-
-
-
 window.addEventListener("load", function () {
 	gkToolbarMenuButtons.createItem({
 		parentID: "toolbar-context-menu",
