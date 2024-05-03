@@ -1,6 +1,12 @@
 @-moz-document url-prefix(about:preferences),
 			   url-prefix(about:addons) {
 
+	@keyframes spin {
+		to {
+			transform: rotate(-10turn);
+		}
+	}
+
 	#aboutCategory {
 		color: rgb(48, 57, 66) !important;
 
@@ -23,6 +29,10 @@
 						no-repeat
 						center;
 			margin-inline-end: 10px;
+
+			&.spin {
+				animation: spin 500ms cubic-bezier(1, 0, 0, 1) forwards;
+			}
 		}
 
 		#chrButtons {

@@ -95,6 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.getElementById("aboutCategory-header").setAttribute("hidden", true);
 		document.getElementById("aboutCategory").setAttribute("hidden", true);
 
+		const chrLogo = document.getElementById("chrLogo");
+		chrLogo.addEventListener("click", () => {
+			chrLogo.classList.remove("spin");
+
+			setTimeout(() => {
+				chrLogo.classList.add("spin");
+			}, 0);
+		})
+
 		gotoPref(null, "hash");
 	});
 });
