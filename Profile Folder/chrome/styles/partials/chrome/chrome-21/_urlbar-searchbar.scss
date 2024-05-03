@@ -1,10 +1,18 @@
 & {
 	--urlbar-height-definitive: 25px;
 
+	&:not([chromehidden~="toolbar"]) {
+		#nav-bar {
+			
+			
+		}
+
+		#urlbar-container {
+			margin-inline: 5px !important;
+		}
+	}
+
 	#nav-bar {
-
-
-
 		&[securestate="secure"],
 		&[securestate="ev"] {
 			#identity-icon {
@@ -37,13 +45,6 @@
 		border-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
 
 	}
-	#chrome-button {
-		
-	}
-}
-
-#urlbar-container {
-	margin-inline: 5px !important;
 }
 
 #urlbar {

@@ -291,21 +291,32 @@ class gkChromiumFrame {
 								const themeData = await chrTheme.getCurrentTheme();
 
 								let themeFrame = themeData.theme.images.theme_frame;
-								// If Chromium Theme has frame image, enable Chromium Frame
-								if (themeFrame)
+								// If Chromium Theme has frame image, enable Chromium Frame isBrowserPopUpWindow
+								if (themeFrame) {
 									document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-								else
-									document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+								} else {
+									if (isBrowserPopUpWindow) {
+										document.documentElement.removeAttribute("chromemargin");
+									} else {
+										document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+									}
+								}
+									
 							} else {
 								const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
 								const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
 								const isDefaultDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
 								const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
 								
-								if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus)
-									document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-								else
+								if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus) {
+									if (isBrowserPopUpWindow) {
+										document.documentElement.removeAttribute("chromemargin");
+									} else {
+										document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+									}
+								} else {
 									document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+								}
 							}
 						}
 					}
@@ -317,10 +328,15 @@ class gkChromiumFrame {
 				break;
 			case 2:		// Force Enable
 				if (isBrowserWindow) {
-					if (AppConstants.platform !== "win")
+					if (AppConstants.platform !== "win") {
 						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-					else
-						document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+					} else {
+						if (isBrowserPopUpWindow) {
+							document.documentElement.removeAttribute("chromemargin");
+						} else {
+							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
+						}
+					}
 				}
 				break;
 		}
