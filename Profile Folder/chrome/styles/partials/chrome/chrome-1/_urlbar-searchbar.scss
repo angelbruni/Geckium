@@ -93,9 +93,27 @@
 		}
 	}
 
-	&:not([pageproxystate="valid"]) {
+	&:not([pageproxystate="valid"], [open]) {
 		#urlbar-protocol {
 			display: none !important;
+		}
+	}
+
+	// If text is selected but textbox is inactive
+	&[focused="true"] {
+		&:not([open]) {
+			#urlbar-protocol {
+				display: none !important;
+			}
+		}
+	}
+
+	// If text is selected but window is inactive
+	&:not([domaindir]) {
+		&:-moz-window-inactive {
+			#urlbar-protocol {
+				display: none !important;
+			}
 		}
 	}
 

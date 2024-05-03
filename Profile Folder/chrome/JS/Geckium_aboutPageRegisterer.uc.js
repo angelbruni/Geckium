@@ -17,7 +17,7 @@ const customAboutPages = {
 
 	"gsplash": 	"chrome://windows/content/gsplash/index.xhtml",
 	"gwizard": 	"chrome://windows/content/gwizard/index.xhtml",
-	"gflags": 	"chrome://windows/content/gflags/index.xhtml",
+	"gsettings": 	"chrome://windows/content/gsettings/index.xhtml",
 };
 
 function customAboutPage(urlString) {

@@ -133,12 +133,12 @@ h4 {
 
 .banner {
 	position: relative;
-	background: url("chrome://userchrome/content/windows/gflags/imgs/banner.jpg");
+	background: url("chrome://userchrome/content/windows/gsettings/imgs/banner.jpg");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: black;
-	list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg");
+	list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
 	fill: AccentColor;
 	-moz-context-properties: fill, fill-opacity;
 	padding: var(--inner-padding);
@@ -294,7 +294,7 @@ h4 {
 			width: 48px;
 			height: 48px;
 	
-			&[src="chrome://userchrome/content/windows/gflags/imgs/logo.svg"] {
+			&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
 				filter: saturate(0);
 				fill: #209f43;
 				-moz-context-properties: fill, fill-opacity;

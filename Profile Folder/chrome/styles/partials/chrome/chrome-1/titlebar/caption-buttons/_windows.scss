@@ -50,6 +50,19 @@
 	border-bottom-right-radius: 4px !important;
 }
 
+.titlebar-button {
+	image {
+		opacity: .6 !important;
+		transition: opacity 100ms linear;
+	}
+
+	&:hover {
+		image {
+			opacity: 1 !important;
+		}
+	}
+}
+
 .titlebar-close {
 	border-left: var(--titlebar-button-outer-border);
 	border-bottom: var(--titlebar-button-outer-border);

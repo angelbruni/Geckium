@@ -329,15 +329,21 @@ class gkToolbarMenuButtons {
 
 
 window.addEventListener("load", function () {
+	gkToolbarMenuButtons.createItem({
+		parentID: "toolbar-context-menu",
+		type: "menuitem",
+		id: "toolbar-context-gsettings",
+		click: "openGSettings()",
+		label: "Geckium Settings",
+	});
 	gkToolbarButtons.create({
-		id: "gflags",
-		label: "Geckium Flags",
+		id: "gsettings",
+		label: "Geckium Settings",
 		removable: true,
 		overflows: false,
 		area: CustomizableUI.AREA_NAVBAR,
-		onclick: "openGFlags()",
+		onclick: "openGSettings()",
 	});
-
 	gkToolbarMenuButtons.create({
 		id: "page",
 		label: "Page Menu",

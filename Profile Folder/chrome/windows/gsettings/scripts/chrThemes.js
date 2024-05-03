@@ -26,7 +26,7 @@ async function populateChrThemesList() {
 		let themeIconPath = `jar:${chrTheme.getFolderPath}/${themeFile}.crx!/${themeIcon}`;
 
 		if (themeIcon == "")
-			themeIconPath = "chrome://userchrome/content/windows/gflags/imgs/logo.svg";
+			themeIconPath = "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
 		
 		const themeVersion = theme.version;
 		

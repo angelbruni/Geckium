@@ -1,10 +1,18 @@
 & {
 	--urlbar-height-definitive: 25px;
 
-	#nav-bar {
-		padding-inline-start: 5px !important;
-		padding-inline-end: 4px !important;
+	&:not([chromehidden~="toolbar"]) {
+		#nav-bar {
+			padding-inline-start: 5px !important;
+			padding-inline-end: 4px !important;
+		}
 
+		#urlbar-container {
+			margin-inline: 5px !important;
+		}
+	}
+
+	#nav-bar {
 		&[securestate="secure"],
 		&[securestate="ev"] {
 			#identity-icon {
@@ -36,13 +44,6 @@
 		outline: 1px solid rgba(255, 255, 255, 0.3);
 		border-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
 		border-top-color: rgb(164, 164, 163) !important;
-	}
-	#chrome-button {
-		margin-inline: 0px !important;
-	}
-
-	#urlbar-container {
-		margin-inline: 5px !important;
 	}
 }
 

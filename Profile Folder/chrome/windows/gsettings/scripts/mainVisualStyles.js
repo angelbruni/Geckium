@@ -14,7 +14,7 @@ function insertGlobalVisualStyles() {
 		<html:button data-appearance="${appearance.id}"
 					class="link chrome-appearance ripple-enabled" 
 					for="chrome-${appearance.int}" 
-					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/main/chrome-${appearance.int}.png');">
+					style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/main/chrome-${appearance.int}.png');">
 			<html:label class="wrapper" chrome="${appearance.int}">
 				<div class="year">${appearance.year[0]}</div>
 				<div class="identifier">

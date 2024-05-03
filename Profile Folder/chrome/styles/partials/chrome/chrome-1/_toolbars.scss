@@ -88,6 +88,30 @@
 		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
 	}
 
+	&[chromehidden~="toolbar"] {
+		&[chromemargin="0,0,0,0"] {
+			#titlebar {
+				height: 22px !important;
+	
+				#TabsToolbar {
+					visibility: visible !important;
+		
+					> .toolbar-items {
+						pointer-events: none !important;
+					}
+		
+					#tabbrowser-arrowscrollbox > * {
+						display: none !important;
+					}
+		
+					.titlebar-buttonbox {
+						display: flex !important;
+					}
+				}
+			}
+		}
+	}
+
 	// if lwtheme == gtkplus
 	&[lwtheme-id="#{$gtkplus}"] {
 		--nav-bar: -moz-dialog !important;
@@ -465,7 +489,7 @@
 
 		&[profilepic="geckium"] {
 			#fxa-avatar-image {
-				list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg") !important;
+				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
 			}
 		}
 
@@ -631,13 +655,13 @@
 			&[type="menu"]:not(#back-button, #forward-button),
 			&#PanelUI-menu-button,
 			&[class*="webextension"],
-			&#gflags-button {
+			&#gsettings-button {
 				border: 0 !important;
 				background: transparent !important;
 				margin: 0 1px !important;
 				transition: background-color 100ms linear;
 
-				&:not([class*="webextension"], #gflags-button, #PlacesChevron) {
+				&:not([class*="webextension"], #gsettings-button, #PlacesChevron) {
 					width: var(--toolbarbutton-menu-width) !important;
 				}
 
@@ -796,6 +820,14 @@
 #PanelUI-button {
 	align-items: center;
 	margin-top: -1px;
+}
+
+#nav-bar-customization-target {
+	.toolbarbutton-1 {
+		&:last-of-type {
+			margin-inline-end: 0 !important;
+		}
+	}
 }
 
 #PanelUI-button {
@@ -1195,8 +1227,8 @@ toolbarspring {
 	}
 }
 
-#gflags-button {
-	list-style-image: url("chrome://userchrome/content/windows/gflags/imgs/logo.svg");
+#gsettings-button {
+	list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
 }
 
 #page-button {
@@ -1264,10 +1296,6 @@ toolbarspring {
 
 #unified-extensions-button {
 	list-style-image: url(assets/img/chrome-5/toolbar/menu_plugin.svg) !important;
-}
-
-.toolbarbutton-animatable-box {
-	display: none !important;
 }
 
 #PersonalToolbar,

@@ -147,8 +147,10 @@
 				z-index: -1;
 			}
 
-			&:active {
-				transition: none;
+			&:not([disabled]) {
+				&:active {
+					transition: none;
+				}
 			}
 		}
 

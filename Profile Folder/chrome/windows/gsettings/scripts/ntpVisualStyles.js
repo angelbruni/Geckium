@@ -14,7 +14,7 @@ function insertNTPVisualStyles() {
 		<html:button data-appearance="${appearance.id}"
 					class="link chrome-appearance ripple-enabled" 
 					for="chrome-${appearance.int}" 
-					style="background-image: url('chrome://userchrome/content/windows/gflags/imgs/ntp/chrome-${appearance.int}.png'); background-position: top center;">
+					style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/ntp/chrome-${appearance.int}.png'); background-position: top center;">
 			<html:label class="wrapper" chrome="${appearance.int}">
 				<div class="year">${appearance.year[0]}</div>
 				<div class="identifier">

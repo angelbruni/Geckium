@@ -60,13 +60,13 @@ function openGWizard() {
 	}
 }
 
-function openGFlags(mode) {
-	const url = "about:gflags";
+function openGSettings(mode) {
+	const url = "about:gsettings";
 
 	if (gkPrefUtils.tryGet("Geckium.gmWindow.newTab").bool && mode !== "wizard") {
 		openTrustedLinkIn(url, "tab")
 	} else {
-		for (let win of Services.wm.getEnumerator("geckiummaterial:gflags")) {
+		for (let win of Services.wm.getEnumerator("geckiummaterial:gsettings")) {
 			if (win.closed)
 				continue;
 			else

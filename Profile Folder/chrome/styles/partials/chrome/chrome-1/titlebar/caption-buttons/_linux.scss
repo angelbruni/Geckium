@@ -2,14 +2,20 @@
 	--titlebar-buttonbox-gap: 2px;
 	
 	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
-	--titlebar-button-outer-border-color: rgba(0, 0, 0, 0.15);
+	--titlebar-button-outer-border-color: rgba(0,0,0,.17);
+	--titlebar-button-inner-border: inset 0 0 0 1px var(--titlebar-button-inner-border-color);
+	--titlebar-button-inner-border-color: rgba(255,255,255,.25);
+	--titlebar-button-inner-border-hot: inset 0 0 0 1px var(--titlebar-button-inner-border-color-hot);
+	--titlebar-button-inner-border-color-hot: rgba(255,255,255,.49);
+	--titlebar-button-inner-border-active: inset 0 0 0 1px var(--titlebar-button-inner-border-color-active);
+	--titlebar-button-inner-border-color-active: rgba(255,255,255,.25);
 	--titlebar-button-height: 18px;
-	--titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
-	--titlebar-button-background-active: rgba(255, 255, 255, 0.2);
+	--titlebar-button-background-hot: transparent;
+	--titlebar-button-background-active: rgba(0,0,0,.2);
 
 	--titlebar-close-width: 24px;
-	--titlebar-close-background-hot: rgb(217, 76, 74);
-	--titlebar-close-background-active: rgb(213, 58, 63);
+	--titlebar-close-background-hot: var(--titlebar-button-background-hot);
+	--titlebar-close-background-active: var(--titlebar-button-background-active);
 	--titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
 
 	--titlebar-max-restore-width: var(--titlebar-close-width);
@@ -79,7 +85,17 @@
 	box-shadow: none;
 	border-radius: 2.5px !important;
 	border: var(--titlebar-button-outer-border) !important;
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+	box-shadow: var(--titlebar-button-inner-border);
+	transition: none;
+
+	&:not([disabled]) {
+		&:hover {
+			box-shadow: var(--titlebar-button-inner-border-hot);
+		}
+		&:active {
+			box-shadow: var(--titlebar-button-inner-border-active);
+		}
+	}
 }
 
 @media (-moz-platform: linux) {
