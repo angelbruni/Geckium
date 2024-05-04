@@ -1411,8 +1411,6 @@ toolbarspring {
 }
 
 #toolbar-menubar {
-	margin: 0 !important;
-
 	#menubar-items {
 		border-radius: 4px !important;
 	}
@@ -1433,5 +1431,10 @@ toolbarspring {
 }
 
 #urlbar-background {
+	background-clip: content-box !important;
 	box-shadow: none !important;
+}
+
+#overflowMenu-customize-button {
+	display: none !important;
 }
