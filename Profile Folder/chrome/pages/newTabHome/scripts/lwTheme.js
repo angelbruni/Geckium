@@ -21,6 +21,11 @@ function setProperties() {
 		
 		const lwThemeResource = LightweightThemeManager.themeData.theme;
 
+		document.documentElement.style.removeProperty("--newtab-background-color");
+		const newTabBackgroundColor = lwThemeResource.ntp_background;
+		if (newTabBackgroundColor)
+			document.documentElement.style.setProperty("--newtab-background-color", newTabBackgroundColor);	
+
 		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
 		if (toolbarButtonIconFill)

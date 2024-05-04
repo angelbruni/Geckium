@@ -12,7 +12,11 @@
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {
 					body {
-						background-color: color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%, black);
+						background: var(--newtab-background-color, color-mix(
+							in srgb,
+							var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
+							black
+						));
 						background-image: var(--lwt-newtab-image);
 						image-rendering: var(--lwt-newtab-image-rendering);
 					}
