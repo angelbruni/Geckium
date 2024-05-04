@@ -8,7 +8,7 @@
 .tabbrowser-tab {
 	.tab-stack {
 		&::after {
-			mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+			mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_right.png);
 		}
 	}
 	/* bruni: We are changing the favicon of about pages like
@@ -18,7 +18,7 @@
 		{
 			.tab-label {
 				&::before {
-					content: url(assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
+					content: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/IDR_SETTINGS_FAVICON.png);
 				}
 			}
 		}
@@ -26,7 +26,7 @@
 		{
 			.tab-label {
 				&::before {
-					content: url(assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
+					content: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/IDR_EXTENSIONS_FAVICON.png);
 				}
 			}
 		}
@@ -36,7 +36,7 @@
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
-					background: url(assets/img/chrome-21/tabbar/tab_inactive2_left.png)
+					background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive2_left.png)
 								no-repeat;
 					background-position: 0 2px;
 				}
@@ -44,12 +44,12 @@
 
 			.tab-stack {
 				&::before {
-					mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+					mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
 				}
 			}
 
 			.tab-glare-left {
-				mask-image: url(assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.png);
 				mask-position-y: -1px;
 				width: 12px;
 			}
@@ -57,12 +57,12 @@
 
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-21/tabbar/tab_inactive_left.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_left.png)
 							no-repeat;
 				background-position: -6px 0 !important;
 			}
 			&::after {
-				background: url(assets/img/chrome-21/tabbar/tab_inactive_right.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_right.png)
 							no-repeat;
 				background-position: 0 0 !important;
 			}
@@ -70,7 +70,7 @@
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-21/tabbar/tab_inactive_center.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_center.png)
 					top;
 				top: 0;
 			}
@@ -80,12 +80,12 @@
 	&[visuallyselected] {
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-21/tabbar/tab_active_left.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_left.png)
 							no-repeat !important;
 				background-position: -6px 0 !important;
 			}
 			&::after {
-				background: url(assets/img/chrome-21/tabbar/tab_active_right.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_right.png)
 							no-repeat !important;
 				background-position: 0 0 !important;
 			}
@@ -93,7 +93,7 @@
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-21/tabbar/tab_active_center.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_center.png)
 					top;
 				top: 0;
 			}
@@ -102,10 +102,10 @@
 }
 
 .tab-glare-left {
-	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_left.png);
+	mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_left.png);
 }
 
 .tab-glare-right {
 	position: relative;
-	mask-image: url(assets/img/chrome-21/tabbar/tab_alpha_right.png);
+	mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_right.png);
 }

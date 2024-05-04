@@ -27,10 +27,10 @@
 
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {
-		background: url(assets/img/chrome-21/tabbar/newtab_views.png);
+		background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png);
 
 		&:active {
-			background: url(assets/img/chrome-21/tabbar/newtab_p_views.png);
+			background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_p_views.png);
 
 			&::before {
 				background-color: var(--newtab-active);
@@ -38,164 +38,169 @@
 		}
 
 		&::before {
-			mask-image: url(assets/img/chrome-21/tabbar/newtab_button_mask_views.png);
+			mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask_views.png);
 		}
 	}
 
-	.toolbarbutton-1:not(
+	:not(.widget-overflow-list) {
+		> .toolbarbutton-1:not(
 			#fxa-toolbar-menu-button,
 			#tabs-newtab-button,
 			#new-tab-button
 		) {
-		box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
+			box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
 
-		&::before {
-			background: rgba(255,255,255,1) !important;
-			border-radius: var(--toolbarbutton-radius) !important;
-		}
+			&::before {
+				background: rgba(255,255,255,1) !important;
+				border-radius: var(--toolbarbutton-radius) !important;
+			}
 
-		&:not([disabled]) {
-			&:hover {
-				border-top-color: color-mix(
-					in srgb,
-					var(--toolbarbutton-border-color-hot) 30%,
-					white
-				) !important;
-				border-bottom-color: color-mix(
-					in srgb,
-					var(--toolbarbutton-border-color-hot) 80%,
-					black
-				) !important;
-				box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
-							inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+			&:not([disabled]) {
+				&:hover {
+					border-top-color: color-mix(
+						in srgb,
+						var(--toolbarbutton-border-color-hot) 30%,
+						white
+					) !important;
+					border-bottom-color: color-mix(
+						in srgb,
+						var(--toolbarbutton-border-color-hot) 80%,
+						black
+					) !important;
+					box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
+								inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
 
-				&::before {
-					opacity: .3;
+					&::before {
+						opacity: .3;
+					}
+				}
+
+				&:active,
+				&[open] {
+					&::before {
+						content: unset;
+					}
+
+					background: linear-gradient(
+						to bottom,
+						rgb(0,0,0,.4),
+						rgb(0,0,0,.1) 1%,
+					) !important;
+					box-shadow: 0 1px 0 0 transparent,
+						inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
+					border-color: var(
+						--toolbarbutton-border-color-active
+					) !important;
 				}
 			}
 
-			&:active,
-			&[open] {
-				&::before {
-					content: unset;
+			&#back-button,
+			&#forward-button {
+				.toolbarbutton-icon {
+					/*width: 15px !important;
+					height: 13px !important;*/
 				}
-
-				background: linear-gradient(
-					to bottom,
-					rgb(0,0,0,.4),
-					rgb(0,0,0,.1) 1%,
-				) !important;
-				box-shadow: 0 1px 0 0 transparent,
-					inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
-				border-color: var(
-					--toolbarbutton-border-color-active
-				) !important;
 			}
-		}
-
-		&#back-button,
-		&#forward-button {
-			.toolbarbutton-icon {
-				/*width: 15px !important;
-				height: 13px !important;*/
-			}
-		}
-		&#reload-button,
-		&#home-button {
-			.toolbarbutton-icon {
-				/*width: 15px !important;
-				height: 15px !important;*/
-				margin-bottom: 0 !important;
+			&#reload-button,
+			&#home-button {
+				.toolbarbutton-icon {
+					/*width: 15px !important;
+					height: 15px !important;*/
+					margin-bottom: 0 !important;
+				}
 			}
 		}
 	}
 
 	#star-button-box > #star-button {
-		list-style-image: url(assets/img/chrome-21/toolbar/star.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/star.png) !important;
 
 		&[starred] {
-			list-style-image: url(assets/img/chrome-21/toolbar/star_lit.png) !important;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/star_lit.png) !important;
 		}
 	}
 
 	// FIXME: Temporarily duplicating this until I find a better way to do it.
 	&[lwtheme-id="#{$gtkplus}"] {
 		@media (-moz-platform: linux) {
-			.toolbarbutton-1:not(
-				#fxa-toolbar-menu-button,
-				#tabs-newtab-button,
-				#new-tab-button
-			) {
-				
-				&#back-button,
-				&#forward-button,
-				&#reload-button,
-				&#stop-button,
-				&#home-button {
-					&[disabled] {
-						opacity: .3 !important;
-					}
-
-					.toolbarbutton-icon {
-						max-width: 24px !important;
-						max-height: 24px !important;
-					}
-				}
-
-				&#back-button {
-					list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
-				}
-				
-				&#forward-button {
-					list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
-				}
-				
-				&#reload-button {
-					list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
-				}
-				
-				&#stop-button {
-					list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
-				}
-				
-				&#home-button {
-					list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
-				}
-			}
-
-			&[moregtkicons="true"] {
-				.toolbarbutton-1:not(
+			:not(.widget-overflow-list) {
+				> .toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
 					#tabs-newtab-button,
 					#new-tab-button
 				) {
-					&#PanelUI-menu-button,
-					&#chrome-button,
-					&#page-button,
-					&#star-button-box,
-					&#go-button-box {
+					&#back-button,
+					&#forward-button,
+					&#reload-button,
+					&#stop-button,
+					&#home-button {
 						&[disabled] {
 							opacity: .3 !important;
 						}
 
-						.toolbarbutton-icon,
-						image:first-child {
+						.toolbarbutton-icon {
 							max-width: 24px !important;
 							max-height: 24px !important;
 						}
 					}
 
-					&#PanelUI-menu-button,
-					&#chrome-button {
-						list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
+					&#back-button {
+						list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
 					}
-
-					&#page-button {
-						list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
-					}
-
-					&#go-button-box{
+					
+					&#forward-button {
 						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+					}
+					
+					&#reload-button {
+						list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
+					}
+					
+					&#stop-button {
+						list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
+					}
+					
+					&#home-button {
+						list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
+					}
+				}
+			}
+
+			&[moregtkicons="true"] {
+				:not(.widget-overflow-list) {
+					> .toolbarbutton-1:not(
+						#fxa-toolbar-menu-button,
+						#tabs-newtab-button,
+						#new-tab-button
+					) {
+						&#PanelUI-menu-button,
+						&#chrome-button,
+						&#page-button,
+						&#star-button-box,
+						&#go-button-box {
+							&[disabled] {
+								opacity: .3 !important;
+							}
+
+							.toolbarbutton-icon,
+							image:first-child {
+								max-width: 24px !important;
+								max-height: 24px !important;
+							}
+						}
+
+						&#PanelUI-menu-button,
+						&#chrome-button {
+							list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
+						}
+
+						&#page-button {
+							list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
+						}
+
+						&#go-button-box{
+							list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+						}
 					}
 				}
 

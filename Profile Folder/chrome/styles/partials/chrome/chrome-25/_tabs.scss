@@ -10,18 +10,18 @@
 	height: 19px !important;
 	width: 19px !important;
 	margin-top: 4px;
-	mask-image: url(assets/img/chrome-25/tabbar/tab_close_mask.png);
+	mask-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.png);
 	mask-size: 18px 18px;
 	background-color: black;
 	background-size: 18px 18px;
 
 	&:hover {
-		background-image: url(assets/img/chrome-25/tabbar/tab_close_hover.png);
+		background-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_hover.png);
 		mask-image: none;
 	}
 
 	&:active {
-		background-image: url(assets/img/chrome-25/tabbar/tab_close_pressed.png);
+		background-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_pressed.png);
 		background-color: transparent;
 		mask-image: none;
 	}

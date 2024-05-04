@@ -1,87 +1,91 @@
 & {
 	#PanelUI-menu-button,
 	#chrome-button {
-		list-style-image: url(assets/img/chrome-47/toolbar/menu.svg) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/menu.svg) !important;
 	}
 
 	// FIXME: Temporarily duplicating this until I find a better way to do it.
 	&[lwtheme-id="#{$gtkplus}"] {
 		@media (-moz-platform: linux) {
-			.toolbarbutton-1:not(
-				#fxa-toolbar-menu-button,
-				#tabs-newtab-button,
-				#new-tab-button
-			) {
-				
-				&#back-button,
-				&#forward-button,
-				&#reload-button,
-				&#stop-button,
-				&#home-button {
-					&[disabled] {
-						opacity: .3 !important;
-					}
-
-					.toolbarbutton-icon {
-						max-width: 24px !important;
-						max-height: 24px !important;
-					}
-				}
-
-				&#back-button {
-					list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
-				}
-				
-				&#forward-button {
-					list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
-				}
-				
-				&#reload-button {
-					list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
-				}
-				
-				&#stop-button {
-					list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
-				}
-				
-				&#home-button {
-					list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
-				}
-			}
-
-			&[moregtkicons="true"] {
-				.toolbarbutton-1:not(
+			:not(.widget-overflow-list) {
+				> .toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
 					#tabs-newtab-button,
 					#new-tab-button
 				) {
-					&#PanelUI-menu-button,
-					&#chrome-button,
-					&#page-button,
-					&#star-button-box,
-					&#go-button-box {
+					
+					&#back-button,
+					&#forward-button,
+					&#reload-button,
+					&#stop-button,
+					&#home-button {
 						&[disabled] {
 							opacity: .3 !important;
 						}
-
-						.toolbarbutton-icon,
-						image:first-child {
+	
+						.toolbarbutton-icon {
 							max-width: 24px !important;
 							max-height: 24px !important;
 						}
 					}
-
-					&#PanelUI-menu-button,
-					&#chrome-button {
-						list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
+	
+					&#back-button {
+						list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
 					}
-
-					&#page-button {
-						list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
-					}
-
-					&#go-button-box{
+					
+					&#forward-button {
 						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+					}
+					
+					&#reload-button {
+						list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
+					}
+					
+					&#stop-button {
+						list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
+					}
+					
+					&#home-button {
+						list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
+					}
+				}
+			}	
+
+			&[moregtkicons="true"] {
+				:not(.widget-overflow-list) {
+					> .toolbarbutton-1:not(
+						#fxa-toolbar-menu-button,
+						#tabs-newtab-button,
+						#new-tab-button
+					) {
+						&#PanelUI-menu-button,
+						&#chrome-button,
+						&#page-button,
+						&#star-button-box,
+						&#go-button-box {
+							&[disabled] {
+								opacity: .3 !important;
+							}
+	
+							.toolbarbutton-icon,
+							image:first-child {
+								max-width: 24px !important;
+								max-height: 24px !important;
+							}
+						}
+	
+						&#PanelUI-menu-button,
+						&#chrome-button {
+							list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
+						}
+	
+						&#page-button {
+							list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
+						}
+	
+						&#go-button-box{
+							list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
+						}
 					}
 				}
 
@@ -102,14 +106,14 @@
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
-	background: url(assets/img/chrome-47/tabbar/newtab_normal.png) !important;
+	background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_normal.png) !important;
 
 	&:hover {
-		background: url(assets/img/chrome-47/tabbar/newtab_hover.png) !important;
+		background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_hover.png) !important;
 	}
 
 	&:active {
-		background: url(assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
+		background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
 
 		&::before {
 			background-color: var(--newtab-active);
@@ -117,7 +121,7 @@
 	}
 
 	&::before {
-		mask-image: url(assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
+		mask-image: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
 	}
 }
 

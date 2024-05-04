@@ -221,7 +221,7 @@
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
 		#identity-icon {
-			list-style-image: url(assets/img/chrome-5/toolbar/lock_small.png) !important;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/lock_small.png) !important;
 		}
 	}
 
@@ -236,12 +236,12 @@
 		}
 
 		#identity-icon {
-			list-style-image: url(assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
 		}
 	}
 
 	#identity-box[pageproxystate="valid"].notSecure #identity-icon {
-		list-style-image: url(assets/img/chrome-5/toolbar/o2_globe.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/o2_globe.png) !important;
 	}
 }
 
@@ -359,7 +359,7 @@
 		background-image: url("assets/img/chrome-5/toolbar/search.png");
 	}
 	&[src="chrome://browser/skin/history.svg"] {
-		background-image: url(assets/img/toolbar/clock.png);
+		background-image: url(chrome://userchrome/content/assets/img/toolbar/clock.png);
 		opacity: 0.8;
 	}
 }

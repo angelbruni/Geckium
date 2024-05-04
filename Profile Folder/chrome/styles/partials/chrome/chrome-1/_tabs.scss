@@ -54,7 +54,8 @@
 		--tabbrowser-tab-color: -moz-dialogtext !important;
 	}
 	// else if lwtheme
-	&:-moz-lwtheme {
+	&:-moz-lwtheme,
+	&[lwtheme] {
 		&:not([customthememode="2"]) {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
@@ -234,7 +235,7 @@
 		{
 			.tab-label {
 				&::before {
-					content: url(assets/img/chrome-5/tabbar/plugin.png);
+					content: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/plugin.png);
 				}
 			}
 		}
@@ -252,7 +253,7 @@
 		&:not(:first-of-type) {
 			.tab-content {
 				&::before {
-					background: url(assets/img/chrome-5/tabbar/tab_inactive2_left.png)
+					background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive2_left.png)
 						no-repeat;
 					background-position: 0 2px;
 				}
@@ -260,12 +261,12 @@
 
 			.tab-stack {
 				&::before {
-					mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+					mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
 				}
 			}
 
 			.tab-glare-left {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
 				mask-position-y: -1px;
 				width: 12px;
 			}
@@ -284,7 +285,7 @@
 
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_left.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive_left.png)
 					no-repeat;
 				background-position: 0 2px;
 			}
@@ -308,18 +309,18 @@
 			}
 
 			&::before {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_left.png);
 				left: calc(var(--tab-sides-width) * -1);
 			}
 
 			&::after {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_right.png);
 			}
 		}
 
 		.tab-content {
 			&::after {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_right.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive_right.png)
 					no-repeat;
 				background-position: 0px 2px;
 			}
@@ -327,7 +328,7 @@
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_inactive_center.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive_center.png)
 					top;
 				height: var(--tab-height) !important;
 				top: 2px;
@@ -346,13 +347,13 @@
 
 		.tab-content {
 			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_active_left.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_left.png)
 					no-repeat;
 				background-position: 0 2px;
 			}
 
 			&::after {
-				background: url(assets/img/chrome-5/tabbar/tab_active_right.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_right.png)
 					no-repeat;
 				background-position: 0 2px;
 			}
@@ -365,17 +366,17 @@
 			}
 
 			&::before {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_left.png);
 			}
 
 			&::after {
-				mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+				mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_right.png);
 			}
 		}
 
 		.tab-context-line {
 			&::before {
-				background: url(assets/img/chrome-5/tabbar/tab_active_center.png)
+				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_center.png)
 					top;
 				top: 2px;
 			}
@@ -518,14 +519,14 @@
 	}
 
 	.tab-throbber[progress]::before {
-		background-image: url(assets/img/tabbar/throbber.png) !important;
+		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber.png) !important;
 		width: 576px !important;
 		background-size: 576px 16px !important;
 		animation: geckium-progress-throbber 1s steps(36) infinite !important;
 	}
 
 	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
-		background-image: url(assets/img/tabbar/throbber_waiting.png) !important;
+		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber_waiting.png) !important;
 		width: 2864px !important;
 		background-size: 2864px 16px !important;
 		animation: geckium-waiting-throbber 5s steps(179) infinite !important;
@@ -616,13 +617,13 @@
 }
 
 .tab-glare-left {
-	mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_left.png);
+	mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_left.png);
 	mask-position-y: -1px;
 	width: var(--tab-sides-width);
 }
 
 .tab-glare-right {
-	mask-image: url(assets/img/chrome-5/tabbar/tab_alpha_right.png);
+	mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_alpha_right.png);
 	mask-position-x: -2px;
 	mask-position-y: -3px;
 	width: var(--tab-sides-width);
@@ -656,14 +657,14 @@
 	padding: 0 !important;
 	margin-inline-end: -2px !important;
 	margin-top: 4px;
-	background-image: url(assets/img/chrome-5/tabbar/tab_close_mask.png);
+	background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_mask.png);
 
 	&:hover {
-		background-image: url(assets/img/chrome-5/tabbar/tab_close_h.png);
+		background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_h.png);
 	}
 
 	&:active {
-		background-image: url(assets/img/chrome-5/tabbar/tab_close_p.png);
+		background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_p.png);
 	}
 }
 

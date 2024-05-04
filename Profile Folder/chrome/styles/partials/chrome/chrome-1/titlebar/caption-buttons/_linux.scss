@@ -16,19 +16,20 @@
 	--titlebar-close-width: 24px;
 	--titlebar-close-background-hot: var(--titlebar-button-background-hot);
 	--titlebar-close-background-active: var(--titlebar-button-background-active);
-	--titlebar-close-glyph: url(assets/img/titlebar/linux/close.svg);
+	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/close.svg);
 
 	--titlebar-max-restore-width: var(--titlebar-close-width);
 	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
 	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
-	--titlebar-max-glyph: url(assets/img/titlebar/linux/maximize.svg);
-	--titlebar-restore-glyph: url(assets/img/titlebar/linux/restore.svg);
+	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/maximize.svg);
+	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/restore.svg);
 
 	--titlebar-min-width: var(--titlebar-close-width);
-	--titlebar-min-glyph: url(assets/img/titlebar/linux/minimize.svg);
+	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/minimize.svg);
 
 	&:not([customthememode="1"]) {
-		&:-moz-lwtheme {
+		&:-moz-lwtheme,
+		&[lwtheme] {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
 					--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));

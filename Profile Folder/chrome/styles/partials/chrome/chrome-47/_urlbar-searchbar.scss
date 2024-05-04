@@ -15,7 +15,7 @@
 			border-bottom: 1px !important;
 			border-color: rgb(56,115,209) !important;
 			border-style: solid !important;
-			list-style-image: url(assets/img/chrome-47/toolbar/go.svg);
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/go.svg);
 			box-shadow: none !important;
 
 			&::before {
@@ -45,7 +45,7 @@
 
 		#urlbar-input-container[pageproxystate="invalid"] {
 			> #go-button-box {
-				list-style-image: url(assets/img/chrome-47/toolbar/search.svg);
+				list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/search.svg);
 			}
 		}
 
