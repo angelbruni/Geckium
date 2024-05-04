@@ -137,27 +137,27 @@
 		height: 17px;
 
 		&#thumb-checkbox {
-			background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_off.png);
+			background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_off.png);
 
 			&:not([disabled]) {
 				&:hover {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_off_h.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_off_h.png);
 				}
 
 				&:active {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_off_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_off_p.png);
 				}
 
 				&:checked {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_on.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_on.png);
 	
 					&:not([disabled]) {
 						&:hover {
-							background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_on_h.png);
+							background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_on_h.png);
 						}
 	
 						&:active {
-							background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_thumb_on_p.png);
+							background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_thumb_on_p.png);
 						}
 					}
 				}
@@ -165,23 +165,23 @@
 		}
 
 		&#list-checkbox {
-			background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_list_off.png);
+			background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_list_off.png);
 
 			&:not([disabled]) {
 				&:hover {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_list_off_h.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_list_off_h.png);
 				}
 
 				&:active {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_list_off_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_list_off_p.png);
 				}
 
 				&:checked {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_list_on.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_list_on.png);
 	
 					&:not([disabled]) {
 						&:hover {
-							background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_list_on_h.png);
+							background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_list_on_h.png);
 						}
 					}
 				}
@@ -189,19 +189,19 @@
 		}
 
 		&#option-button {
-			background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_option.png);
+			background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_option.png);
 
 			&:not([disabled]) {
 				&:hover {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_option_h.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_option_h.png);
 				}
 
 				&:active {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_option_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_option_p.png);
 				}
 
 				&[open] {
-					background-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_option_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_option_p.png);
 				}
 			}
 		}
@@ -335,14 +335,14 @@
 
 	&.pinned {
 		.pin {
-			list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_on.png);
+			list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on.png);
 
 			&:hover {
-				list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_on_h.png);
+				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_h.png);
 			}
 
 			&:active {
-				list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_on_p.png);
+				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_p.png);
 			}
 		}
 	}
@@ -398,26 +398,26 @@
 			height: 16px;
 
 			&.pin {
-				list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_off.png);
+				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off.png);
 		
 				&:hover {
-					list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_off_h.png);
+					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_h.png);
 				}
 		
 				&:active {
-					list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_pin_off_p.png);
+					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_p.png);
 				}
 			}
 		
 			&.remove {
-				list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_close.png);
+				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close.png);
 		
 				&:hover {
-					list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_close_h.png);
+					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_h.png);
 				}
 		
 				&:active {
-					list-style-image: url(chrome://userchrome/content/assets/chrome-3/imgs/newtab_close_p.png);
+					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_p.png);
 				}
 			}
 		}
