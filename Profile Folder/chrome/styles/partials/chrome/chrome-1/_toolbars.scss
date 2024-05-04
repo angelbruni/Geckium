@@ -823,7 +823,7 @@
 }
 
 #nav-bar-customization-target {
-	.toolbarbutton-1 {
+	> .toolbarbutton-1 {
 		&:last-of-type {
 			margin-inline-end: 0 !important;
 		}
@@ -914,6 +914,10 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #stop-reload-button {
 	margin-right: 0 !important;
+
+	.toolbarbutton-animatable-box {
+		display: none !important;
+	}
 }
 
 toolbarspring {
@@ -1355,9 +1359,15 @@ toolbarspring {
 	gap: 2px;
 }
 
-#toolbar-menubar #menubar-items {
-	
+#toolbar-menubar {
+	margin: 0 !important;
+
+	#menubar-items {
+		
+	}
 }
+
+#toolbar-menubar 
 #main-menubar > menu {
 	
 	
