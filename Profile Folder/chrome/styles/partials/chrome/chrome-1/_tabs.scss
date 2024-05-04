@@ -43,6 +43,7 @@
 			#5d5d5d
 		) !important;
 		--tabbrowser-tab-color: white;
+		--tabbrowser-tab-color-active: var(--tabbrowser-tab-color);
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
@@ -68,6 +69,7 @@
 					) !important;
 					--tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+					--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
 				}
 			}
 		}
