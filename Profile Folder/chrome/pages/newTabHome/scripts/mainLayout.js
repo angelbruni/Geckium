@@ -379,9 +379,7 @@ function createMainLayout() {
 					</html:button>
 					<html:button id="recently-closed-menu-button" class="footer-menu-button" type="menu">
 						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
-						<vbox class="footer-menu">
-							
-						</vbox>
+						<vbox class="footer-menu" />
 					</html:button>
 					<html:div id="vertical-separator"></html:div>
 				</hbox>

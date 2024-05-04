@@ -823,7 +823,7 @@
 }
 
 #nav-bar-customization-target {
-	.toolbarbutton-1 {
+	> .toolbarbutton-1 {
 		&:last-of-type {
 			margin-inline-end: 0 !important;
 		}
@@ -914,6 +914,10 @@ toolbar[overflowable][customizing] > .customization-target {
 
 #stop-reload-button {
 	margin: 0 !important;
+
+	.toolbarbutton-animatable-box {
+		display: none !important;
+	}
 }
 
 toolbarspring {
@@ -1355,9 +1359,15 @@ toolbarspring {
 	gap: 2px;
 }
 
-#toolbar-menubar #menubar-items {
-	border-radius: 4px !important;
+#toolbar-menubar {
+	margin: 0 !important;
+
+	#menubar-items {
+		border-radius: 4px !important;
+	}
 }
+
+#toolbar-menubar 
 #main-menubar > menu {
 	appearance: menuitem !important;
 	text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
