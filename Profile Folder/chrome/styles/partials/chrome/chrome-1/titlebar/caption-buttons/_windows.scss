@@ -11,18 +11,18 @@
 	--titlebar-close-width: 43px;
 	--titlebar-close-background-hot: rgb(217, 76, 74);
 	--titlebar-close-background-active: rgb(213, 58, 63);
-	--titlebar-close-glyph: url(assets/img/titlebar/close.svg);
+	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/titlebar/close.svg);
 
 	--titlebar-max-restore-width: 25px;
 	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
 	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
-	--titlebar-max-glyph: url(assets/img/titlebar/maximize.svg);
-	--titlebar-restore-glyph: url(assets/img/titlebar/restore.svg);
+	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/titlebar/maximize.svg);
+	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/titlebar/restore.svg);
 
 	--titlebar-min-width: var(--titlebar-max-restore-width);
 	--titlebar-min-background-hot: var(--titlebar-button-background-hot);		// unused.
 	--titlebar-min-background-active: var(--titlebar-button-background-active);	// unused.
-	--titlebar-min-glyph: url(assets/img/titlebar/minimize.svg);
+	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/minimize.svg);
 }
 
 &[sizemode="maximized"] {

@@ -22,7 +22,8 @@
 
 		// Custom theme support
 		// lwtheme
-		&:-moz-lwtheme {
+		&:-moz-lwtheme,
+		&[lwtheme] {
 			&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 					&[lwtheme-id*="{"],
