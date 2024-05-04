@@ -87,7 +87,7 @@ function createMainLayout() {
 					<html:div id="mostvisitedintro">
 						<!--<html:div class="most-visited-text">
 							The "Most visited" area shows the websites that you use most often. After using Google Chrome for a while, you will see your most visited sites whenever you open a new tab. You can learn more about this and other features on the
-							<html:a href="http://tools.google.com/chrome/intl/en-US/welcome.html">Getting Started page</html:a>
+							<html:a href="http://tools.google.com/chrome/welcome.html">Getting Started page</html:a>
 							.
 						</html:div>-->
 						<html:div>
@@ -207,7 +207,7 @@ function createMainLayout() {
 	
 			footer = `
 			<vbox id="footer">
-				<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
+				<html:a id="extensions-link" href="https://chrome.google.com/extensions">
 					<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-4/newtab_themes_promo.png"></html:img>
 				</html:a>
 			</vbox>
@@ -244,7 +244,7 @@ function createMainLayout() {
 	
 			footer = `
 			<vbox id="footer">
-				<html:a id="extensions-link" href="https://chrome.google.com/extensions?hl=en-US">
+				<html:a id="extensions-link" href="https://chrome.google.com/extensions">
 					<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-5/newtab_extensions_promo.png"></html:img>
 				</html:a>
 			</vbox>

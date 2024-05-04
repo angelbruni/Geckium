@@ -732,9 +732,8 @@ window.addEventListener("load", function () {
 		},
 		adjustAccelTextWidth: true,
 	});
-
+	
 	const panelUIButton = document.getElementById("PanelUI-button");
-
 	panelUIButton.appendChild(document.getElementById("page-button"));
 	panelUIButton.appendChild(document.getElementById("chrome-button"));
 });

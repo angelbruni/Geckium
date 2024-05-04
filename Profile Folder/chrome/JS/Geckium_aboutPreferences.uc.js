@@ -78,6 +78,10 @@ const gAboutPane = {
 		</vbox>
 		`
 		aboutPaneCategoryElm.appendChild(MozXULElement.parseXULToFragment(aboutPaneCategoryContentDOM));
+
+		document.querySelector("#chrButtons > button:first-of-type").addEventListener("click", () => {
+			location.href = 'https://support.google.com/chrome/?p=help&amp;ctx=settings';
+		})
 		// #endregion
 	}
 }
