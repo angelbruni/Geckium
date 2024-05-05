@@ -375,7 +375,7 @@ class gkLWTheme {
 		if (typeof document.documentElement !== "undefined") {	
 			setTimeout(async () => {
 				document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
-				document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
+				//document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
 				
 				await gkChromiumFrame.automatic();
 			}, 0);

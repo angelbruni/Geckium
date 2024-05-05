@@ -79,8 +79,22 @@ const gAboutPane = {
 		`
 		aboutPaneCategoryElm.appendChild(MozXULElement.parseXULToFragment(aboutPaneCategoryContentDOM));
 
+		document.addEventListener("click", () => {
+			chrLogo.classList.remove("spin");
+		})
+
+		const chrLogo = document.getElementById("chrLogo");
+		chrLogo.addEventListener("click", () => {
+			setTimeout(() => {
+				chrLogo.classList.add("spin");
+			}, 0);
+		})
+
 		document.querySelector("#chrButtons > button:first-of-type").addEventListener("click", () => {
 			location.href = 'https://support.google.com/chrome/?p=help&amp;ctx=settings';
+		})
+		document.querySelector("#chrButtons > button:last-of-type").addEventListener("click", () => {
+			location.href = 'https://bugzilla.mozilla.org/home';
 		})
 		// #endregion
 	}
@@ -98,15 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		updateInfo();
 		document.getElementById("aboutCategory-header").setAttribute("hidden", true);
 		document.getElementById("aboutCategory").setAttribute("hidden", true);
-
-		const chrLogo = document.getElementById("chrLogo");
-		chrLogo.addEventListener("click", () => {
-			chrLogo.classList.remove("spin");
-
-			setTimeout(() => {
-				chrLogo.classList.add("spin");
-			}, 0);
-		})
 
 		gotoPref(null, "hash");
 	});
