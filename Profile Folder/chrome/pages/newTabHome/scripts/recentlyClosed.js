@@ -29,7 +29,7 @@ function createRecentlyClosed() {
 
 			url = state.entries[0].url.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice <= 4)
+			if (appearanceChoice <= 5)
 				recentlyClosedEntriesAmount = 5;
 			else if (appearanceChoice == 6 || appearanceChoice == 7)
 				recentlyClosedEntriesAmount = 10;
