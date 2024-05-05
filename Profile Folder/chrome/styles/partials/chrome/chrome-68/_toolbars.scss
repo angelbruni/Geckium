@@ -6,7 +6,7 @@
 	--toolbarbutton-height: 24px;
 	--toolbarbutton-radius: 2px;
 	--toolbarbutton-background-hot: rgba(0,0,0,.09);
-	--default-toolbarbutton-icon-fill: #5a5a5a !important;
+	--default-toolbarbutton-icon-fill: #5a5a5a;
 	--toolbarbutton-outer-padding: 2px !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow();
 
@@ -14,6 +14,10 @@
 	--personal-toolbar-height: 28px;
 	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
 	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
+
+	@media (prefers-color-scheme: dark) {
+		--default-toolbarbutton-icon-fill: white;
+	}
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
