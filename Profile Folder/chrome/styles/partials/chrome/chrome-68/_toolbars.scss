@@ -16,6 +16,9 @@
 	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
 
 	@media (prefers-color-scheme: dark) {
+		--nav-bar: rgb(80,80,80) !important;
+		--personal-toolbar: var(--nav-bar) !important;
+		
 		--default-toolbarbutton-icon-fill: white;
 	}
 

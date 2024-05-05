@@ -9,6 +9,25 @@ const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
 const chrThemesFolderName = "chrThemes";
 
 class chrTheme {
+	static get defaultColour() {
+		let appearanceChoice;
+		switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
+			case true:
+				appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+				break;
+			default:
+				appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+				break;
+		}
+
+		if (appearanceChoice <= 4)
+			return [65, 99, 154];
+		else if (appearanceChoice == 5)
+			return [78, 91, 116];
+		else if (appearanceChoice <= 9)
+			return [111, 111, 111];
+	}
+
 	static get getFolderPath() {
 		return `file:///${profRootDir}/chrome/${chrThemesFolderName}`;
 	}
@@ -94,7 +113,158 @@ class chrTheme {
 				return null; // Or handle the error appropriately
 			}
 		}
-	}	
+	}
+
+	static HSLtoFloat(colorInHSL) {
+		const colorH = colorInHSL[0] / 360;
+			const colorS = colorInHSL[1] / 100;
+			const colorL = colorInHSL[2] / 100;  
+			return [colorH, colorS, colorL];
+	}
+  
+	static RGBtoHSL(rgb) {
+		const r = rgb[0] / 255;
+		const g = rgb[1] / 255;
+		const b = rgb[2] / 255;
+
+		// Find greatest and smallest channel values
+		let cmin = Math.min(r,g,b),
+			cmax = Math.max(r,g,b),
+			delta = cmax - cmin,
+			h = 0,
+			s = 0,
+			l = 0;
+
+		// Calculate hue
+		// No difference
+		if (delta == 0)
+			h = 0;
+		// Red is max
+		else if (cmax == r)
+			h = ((g - b) / delta) % 6;
+		// Green is max
+		else if (cmax == g)
+			h = (b - r) / delta + 2;
+		// Blue is max
+		else
+			h = (r - g) / delta + 4;
+
+		h = Math.round(h * 60);
+			
+		// Make negative hues positive behind 360°
+		if (h < 0)
+			h += 360;
+
+		// Calculate lightness
+		l = (cmax + cmin) / 2;
+
+		// Calculate saturation
+		s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+		
+		// Multiply l and s by 100
+		s = +(s * 100).toFixed(1);
+		l = +(l * 100).toFixed(1);
+		
+		return [h, s, l];
+	}
+
+	static HSLtoRGB(HSL) {
+		const h = HSL[0] * 360;
+		const s = HSL[1] / 100;
+		const l = HSL[2] / 100;
+
+		let c = (1 - Math.abs(2 * l - 1)) * s,
+			x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+			m = l - c/2,
+			r = 0,
+			g = 0,
+			b = 0;
+		
+		if (0 <= h && h < 60) {
+			r = c; g = x; b = 0;  
+		} else if (60 <= h && h < 120) {
+			r = x; g = c; b = 0;
+		} else if (120 <= h && h < 180) {
+			r = 0; g = c; b = x;
+		} else if (180 <= h && h < 240) {
+			r = 0; g = x; b = c;
+		} else if (240 <= h && h < 300) {
+			r = x; g = 0; b = c;
+		} else if (300 <= h && h < 360) {
+			r = c; g = 0; b = x;
+		}
+		r = Math.round((r + m) * 255);
+		g = Math.round((g + m) * 255);
+		b = Math.round((b + m) * 255);
+		
+		return [r, g, b];
+	}
+
+	static handleTint(color, shiftHSL) {
+		let shiftH = shiftHSL[0];
+		let shiftS = shiftHSL[1];
+		const shiftL = shiftHSL[2];
+
+		// If H, S or L values are -1, set to relative zero values.
+		if (shiftH == -1 || shiftH == 0.5)
+			shiftH = 0; 
+		if (shiftS == -1)
+			shiftS = 0.5;
+		if (shiftL == -1)
+			shiftL = 0.5
+	
+		const hslHSL = this.RGBtoHSL(color);
+		console.log(hslHSL);
+		let hslH = hslHSL[0];
+		let hslS = hslHSL[1]/100;
+		let hslL = hslHSL[2];
+		console.log("firstHslS:" + hslS);
+		if (shiftH >= 0 || shiftS >= 0) {
+			// Replace the hue with the tint's hue.
+			if (shiftH >= 0)
+			hslH = shiftH;
+			console.log("HslH:" + hslH);
+			// Change the saturation.
+			if (shiftS >= 0) {
+				if (shiftS <= 0.5) {
+					hslS = hslS * (shiftS * 2);  
+					console.log("after manip:" + hslS);
+				} 
+				else {
+					hslS = hslS + ((1 - hslS) * ((shiftS - 0.5) * 2));  
+					console.log("after manip:" + hslS);
+				}
+			}
+		}
+		hslS = hslS * 100;
+		//convert from float to HSL
+		//do we CONVERT FLOAT TO RGB;
+		//now we convert hsl to RGB to do Lightness
+		const color2 = this.HSLtoRGB([hslH, hslS, hslL]);
+
+		if (shiftL < 0){
+			return color2; 
+		}
+			
+		// Lightness shifts in the style of popular image editors aren't actually
+		// represented in HSL - the L value does have some effect on saturation.
+
+		//covnerting RGB to floats
+		var r = color2[0];
+		var g = color2[1];
+		var b = color2[2];
+
+		if (shiftL <= 0.5) {
+			r = r * (shiftL * 2.0);
+			g = g * (shiftL * 2.0);
+			b = b * (shiftL * 2.0);
+		} else {
+			r = r + ((255 - r) * ((shiftL - 0.5) * 2.0));
+			g = g + ((255 - g) * ((shiftL - 0.5) * 2.0));
+			b = b + ((255 - b) * ((shiftL - 0.5) * 2.0));
+		}
+		return [r, g, b];
+	}
 
 	static removeProperties() {
 		Array.from(getComputedStyle(document.documentElement)).forEach(propertyName => {
@@ -191,11 +361,41 @@ class chrTheme {
 						}).join('\n');
 					}
 
+					let themeTints;
+					if (theme.theme.tints)
+						themeTints = theme.theme.tints;
+					else
+						themeTints = theme.tints;
+
 					// Convert tints to CSS custom properties
-					if (theme.theme.tints) {
-						Object.entries(theme.theme.tints).map(([key, value]) => {
+					if (themeTints) {
+						Object.entries(themeTints).map(([key, value]) => {
 							const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
-							document.documentElement.style.setProperty(`${setStyleProperty("tints-" + key)}`, `hsl(${percentageValue.join(' ')})`);
+							
+							console.log(key, value)
+
+							switch (key) {
+								case "buttons":
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("toolbar-button-icon")}`,
+										`rgb(${chrTheme.handleTint(chrTheme.defaultColour, value)})`
+									);
+									break;
+								/*case "frame":
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("frame")}`,
+										`rgb(${chrTheme.handleTint(theme.theme.colors.frame, value)})`
+									);
+									break;*/
+
+							
+								default: // If the tint is for none of the above, set it as HSL, basically discarding it.
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("tints-" + key)}`,
+										`hsl(${percentageValue.join(' ')})`
+									);
+									break;
+							}
 						}).join('\n');
 					}
 
