@@ -37,9 +37,15 @@
 	//--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px white) drop-shadow(0 0 1.5px white);
+	--default-toolbarbutton-icon-drop-shadow-color: white;
+	--toolbarbutton-icon-drop-shadow-color: var(--default-toolbarbutton-icon-drop-shadow-color);
+	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color)) drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color));
 	--default-toolbarbutton-icon-fill: rgb(65, 99, 154);
-	--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+	
+	&:not([style*="--toolbarbutton-icon-fill"]) {
+		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+	}
+
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
@@ -62,30 +68,52 @@
 	--placed-chevron-width: 15px;
 
 	@media (prefers-color-scheme: dark) {
-		--nav-bar: linear-gradient(to bottom, #5d5d5d, #4c4c4c) !important;
+		--nav-bar: linear-gradient(
+			to bottom,
+			#07254A,
+			#081B35
+		) !important;
 		--personal-toolbar: linear-gradient(
 			to bottom,
-			#4c4c4c,
-			#575757
+			#081B35,
+			#081526
 		) !important;
 		--personal-toolbar-border-bottom: rgb(91, 91, 91);
 
 		--inner-border-color: rgb(79, 79, 79);
 
-		--toolbarbutton-border-color-normal: rgb(90, 90, 90);
+		--toolbarbutton-border-color-normal: color-mix(
+			in srgb,
+			color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-fill) 30%,
+				transparent
+			) 70%,
+			black
+		);;
 		--toolbarbutton-border-color-hot: rgb(112, 112, 112);
 		--toolbarbutton-border-color-active: rgb(136, 136, 136);
-		--toolbarbutton-texture: linear-gradient(
+		--default-toolbarbutton-texture: linear-gradient(
 			to bottom,
-			#5d5d5d,
-			#4c4c4c
+			#07254A,
+			#081B35
 		);
-		--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.1);
+		--toolbarbutton-inner-border-color-normal: color-mix(
+			in srgb,
+			var(--toolbarbutton-icon-fill) 30%,
+			transparent
+		);
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+		--default-toolbarbutton-icon-fill: #B0C2DE;
+		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
 
 		--navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
 
-		--bookmark-item-color: #95b4ee;
+		&[lwtheme-id="firefox-compact-dark@mozilla.org"] {
+			--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
+		}
+
+		--default-bookmark-item-color: #95b4ee;
 		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
 	}
 
@@ -269,12 +297,6 @@
 	&:-moz-lwtheme,
 	&[lwtheme] {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
-		&[customthememode="2"],
-		&[lwtheme-id*="firefox-compact"] {
-			@media (prefers-color-scheme: dark) {
-				--toolbarbutton-icon-fill: rgb(211, 211, 211) !important;
-			}
-		}
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
 				@import "titlebar/classic";
@@ -417,13 +439,13 @@
 		--nav-bar: var(--chrt-theme-toolbar, var(--chrt-toolbar, var(--default-nav-bar))) !important;
 		--toolbarbutton-border-color-normal: color-mix(
 			in srgb,
-			var(--chrt-toolbar) 85%,
-			black
+			var(--toolbarbutton-icon-fill) 50%,
+			transparent
 		) !important;
 		--toolbarbutton-border-color-hot: color-mix(
 			in srgb,
-			var(--chrt-toolbar) 70%,
-			black
+			var(--toolbarbutton-icon-fill) 70%,
+			transparent
 		) !important;
 		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
 		--toolbarbutton-texture: var(--chrt-theme-button-background, var(--chrt-button-background, transparent)) !important;
@@ -431,7 +453,7 @@
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
 		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
 		--toolbarbutton-icon-fill: var(--chrt-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
-		--navigation-buttons-separator: var(--chrt-toolbar, var(--default-navigation-buttons-separator)) !important;
+		--navigation-buttons-separator: rgba(255,255,255,.2) !important;
 
 		--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
 		--bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
@@ -440,34 +462,6 @@
 		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
 
 		@import "titlebar/classic";
-
-		&:not([style*="--chrt-toolbar-button-icon"]) {
-			&[style*="--chrt-tints-buttons"] {
-				&:not([style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"]) {
-					--toolbarbutton-icon-fill: color-mix(
-						in srgb,
-						var(--chrt-toolbar) 80%,
-						black
-					) !important;
-
-					&[style*="--chrt-toolbar: rgb(0, 0, 0)"] {
-						--toolbarbutton-icon-fill: color-mix(
-							in srgb,
-							var(--chrt-frame) 80%,
-							black
-						) !important;
-					}
-				}
-			}
-			&[style*="--chrt-tints-buttons: hsl(0.636 61.199999999999996% 50%)"] {
-				--toolbarbutton-icon-fill: color-mix(
-					in srgb,
-					var(--default-toolbarbutton-icon-fill) 80%,
-					black
-				) !important;
-			}
-		}
-		
 
 		#nav-bar {
 			background-position-y: calc(var(--tab-height) * -1) !important;
@@ -627,10 +621,13 @@
 			}
 		}
 
-		#nav-bar {
+		#nav-bar,
+		#PersonalToolbar,
+		#browser,
+		#customization-container {
 			&::before,
 			&::after {
-				display: none !important;
+				content: unset !important;
 			}
 		}
 
@@ -1410,17 +1407,24 @@ toolbarspring {
 	gap: 2px;
 }
 
+#toolbar-menubar 
+#main-menubar > menu {
+	appearance: menuitem !important;
+	text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+}
+
 #toolbar-menubar {
 	#menubar-items {
 		border-radius: 4px !important;
 	}
 }
 
-#toolbar-menubar 
-#main-menubar > menu {
-	appearance: menuitem !important;
-	text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+@media (-moz-gtk-csd-available) {
+	:root[tabsintitlebar] #toolbar-menubar[autohide="true"] {
+		height: unset !important;	
+	}
 }
+
 
 #permissions-granted-icon {
 	list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/wrench.png) !important;

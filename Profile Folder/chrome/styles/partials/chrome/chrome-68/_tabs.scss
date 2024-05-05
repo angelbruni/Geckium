@@ -9,6 +9,16 @@
 	--newtab-height: 17px;
 	--newtab-width: 34px;
 
+	@media (prefers-color-scheme: dark) {
+		--inactive-tab-background-color: color-mix(
+			in srgb,
+			var(--nav-bar) 50%,
+			transparent
+		) 50%,;
+
+		--tabbrowser-tab-selected: var(--nav-bar) !important;
+    }
+
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {
 		background: url(chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg) !important;
