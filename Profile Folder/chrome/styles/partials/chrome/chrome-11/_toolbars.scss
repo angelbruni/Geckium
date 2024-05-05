@@ -29,6 +29,7 @@
 	--personal-toolbar-height: 24px;
 
 	@media (prefers-color-scheme: dark) {
+		--default-toolbarbutton-icon-fill: rgb(166,177,196);
 		--toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
 	}
@@ -326,7 +327,6 @@
 }
 
 #page-button {
-	display: none !important;
 	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_page.svg") !important;
 }
 
