@@ -14,6 +14,27 @@
 	);
 	--titlebar-inactive: var(--default-titlebar-inactive);
 
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(14, 80, 159),
+			rgb(20, 62, 112) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				rgb(14, 80, 159) 80%,
+				white
+			),
+			color-mix(
+				in srgb,
+				rgb(20, 62, 112) 80%,
+				white
+			) 40px
+		);
+	}
+
     &[privatebrowsingmode="temporary"] {
         --titlebar-active: linear-gradient(
             to bottom,

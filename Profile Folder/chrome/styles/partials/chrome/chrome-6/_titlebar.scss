@@ -9,4 +9,25 @@
 		rgb(169,195,231),
 		rgb(153,178,221) 40px
 	);
+
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(34, 82, 155),
+			rgb(29, 55, 103) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				rgb(34, 82, 155) 80%,
+				white
+			),
+			color-mix(
+				in srgb,
+				rgb(29, 55, 103) 80%,
+				white
+			) 40px
+		);
+	}
 }

@@ -17,23 +17,43 @@
     --personal-toolbar-item-hover-bg: rgb(242, 244, 247) !important;
     --bookmark-item-color-shadow: transparent !important;
 
-	&:not([lwtheme-id*="#{$gtkplus}"]) {
+	//&:not([lwtheme-id*="#{$gtkplus}"]) {
 		--toolbarbutton-border-color-normal: rgb(198,198,198);
 		--toolbarbutton-border-color-hot: rgb(203, 203, 203);
 		--toolbarbutton-border-color-active: rgb(159, 159, 159);
-		--toolbarbutton-texture: linear-gradient(
+		--default-toolbarbutton-texture: linear-gradient(
 			to bottom,
 			rgb(245,245,245),
 			rgb(232,232,232)
 		);
 		--navigation-buttons-separator: rgb(231,231,231);
-	}
+	//}
 
 	--toolbar-field-default-background-color: white;
 
 	@media (prefers-color-scheme: dark) {
+		--nav-bar: linear-gradient(
+			to bottom,
+			#333333,
+			#242424
+		) !important;
+		--personal-toolbar: linear-gradient(
+			to bottom,
+			#242424,
+			#1C1C1C
+		) !important;
+
+		--default-toolbarbutton-texture: linear-gradient(
+			to bottom,
+			#333333,
+			#242424
+		);
+
+		--toolbarbutton-border-color-normal: rgb(87, 87, 87);
         --toolbarbutton-border-color-hot: rgb(121, 121, 121);
         --toolbarbutton-border-color-active: rgb(58, 58, 58);
+
+		--navigation-buttons-separator: var(--toolbarbutton-border-color-normal);
     }
 
 	#nav-bar {
