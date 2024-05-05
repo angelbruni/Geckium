@@ -1419,13 +1419,6 @@ toolbarspring {
 	}
 }
 
-@media (-moz-gtk-csd-available) {
-	:root[tabsintitlebar] #toolbar-menubar[autohide="true"] {
-		height: unset !important;	
-	}
-}
-
-
 #permissions-granted-icon {
 	list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/wrench.png) !important;
 	margin-left: 2px;
