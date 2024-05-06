@@ -31,7 +31,6 @@ finishElm.addEventListener("click", () => {
 	}
 	
 	gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
-	gkPrefUtils.set("layout.css.prefers-color-scheme.content-override").int(1);				// Force light mode in pages as default
 
 	if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {
 		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
