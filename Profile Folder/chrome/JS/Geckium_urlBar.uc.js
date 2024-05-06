@@ -18,8 +18,6 @@ function changeGoButton() {
 			break;
 	}
 
-	console.log(document.getElementById("go-button-box"))
-
 	if (!document.getElementById("go-button-box")) {
 		const goButtonBox = document.createXULElement("hbox");
 		goButtonBox.id = "go-button-box";
