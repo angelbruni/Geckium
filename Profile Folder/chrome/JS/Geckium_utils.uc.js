@@ -6,7 +6,6 @@
 // @include     *
 // ==/UserScript==
 
-const { _ucUtils } = ChromeUtils.importESModule("chrome://userchromejs/content/utils.sys.mjs");
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
