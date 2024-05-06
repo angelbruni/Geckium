@@ -9,7 +9,7 @@ const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
 const chrThemesFolderName = "chrThemes";
 
 class chrTheme {
-	static get defaultColour() {
+	static get defaultToolbarButtonIconColour() {
 		let appearanceChoice;
 		switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 			case true:
@@ -33,14 +33,14 @@ class chrTheme {
 	}
 
 	static get getFolderFileUtilsPath() {
-		return Services.io.newURI(chrTheme.getFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
+		return Services.io.newURI(this.getFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
 
 	static async getThemesList() {
         const themes = {};
 
         try {
-            const directoryPath = chrTheme.getFolderFileUtilsPath;
+            const directoryPath = this.getFolderFileUtilsPath;
 
             const directory = FileUtils.File(directoryPath);
 
@@ -116,20 +116,29 @@ class chrTheme {
 	}
 
 	static HSLtoFloat(colorInHSL) {
-		const colorH = colorInHSL[0] / 360;
-			const colorS = colorInHSL[1] / 100;
-			const colorL = colorInHSL[2] / 100;  
-			return [colorH, colorS, colorL];
+		const floatH = colorInHSL[0] / 360;
+		const floatS = colorInHSL[1] / 100;
+		const floatL = colorInHSL[2] / 100;
+
+		return [floatH, floatS, floatL];
 	}
-  
+
+	static floatToHSL(floatFromHSL) {
+		const colorH = floatFromHSL[0] * 360;
+		const colorS = floatFromHSL[1] * 100;
+		const colorL = floatFromHSL[2] * 100;
+
+		return [colorH, colorS, colorL];
+	}
+
 	static RGBtoHSL(rgb) {
 		const r = rgb[0] / 255;
 		const g = rgb[1] / 255;
 		const b = rgb[2] / 255;
 
 		// Find greatest and smallest channel values
-		let cmin = Math.min(r,g,b),
-			cmax = Math.max(r,g,b),
+		let cmin = Math.min(r, g, b),
+			cmax = Math.max(r, g, b),
 			delta = cmax - cmin,
 			h = 0,
 			s = 0,
@@ -150,7 +159,7 @@ class chrTheme {
 			h = (r - g) / delta + 4;
 
 		h = Math.round(h * 60);
-			
+
 		// Make negative hues positive behind 360°
 		if (h < 0)
 			h += 360;
@@ -160,96 +169,79 @@ class chrTheme {
 
 		// Calculate saturation
 		s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-		
+
 		// Multiply l and s by 100
 		s = +(s * 100).toFixed(1);
 		l = +(l * 100).toFixed(1);
-		
+
 		return [h, s, l];
 	}
 
-	static HSLtoRGB(HSL) {
-		const h = HSL[0] * 360;
-		const s = HSL[1] / 100;
-		const l = HSL[2] / 100;
+	static HSLtoRGB(hsl) {
+		let h = hsl[0];
+		let s = hsl[1] / 100;
+		let l = hsl[2] / 100;
 
-		let c = (1 - Math.abs(2 * l - 1)) * s,
-			x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-			m = l - c/2,
-			r = 0,
-			g = 0,
-			b = 0;
-		
-		if (0 <= h && h < 60) {
-			r = c; g = x; b = 0;  
-		} else if (60 <= h && h < 120) {
-			r = x; g = c; b = 0;
-		} else if (120 <= h && h < 180) {
-			r = 0; g = c; b = x;
-		} else if (180 <= h && h < 240) {
-			r = 0; g = x; b = c;
-		} else if (240 <= h && h < 300) {
-			r = x; g = 0; b = c;
-		} else if (300 <= h && h < 360) {
-			r = c; g = 0; b = x;
-		}
-		r = Math.round((r + m) * 255);
-		g = Math.round((g + m) * 255);
-		b = Math.round((b + m) * 255);
-		
-		return [r, g, b];
+		let a = s * Math.min(l, 1 - l);
+		let f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
+		return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+	}
+
+	static MakeHSLShiftValid(hsl) {
+		let hslH = hsl[0];
+		let hslS = hsl[1];
+		let hslL = hsl[2];
+
+		if (hslH < 0 || hslH > 1)
+			hslH = -1;
+		if (hslS < 0 || hslS > 1)
+			hslS = -1;
+		if (hslL < 0 || hslL > 1)
+			hslL = -1;
+
+		return ([hslH, hslS, hslL]);
 	}
 
 	static handleTint(color, shiftHSL) {
+		//validate HSL Shift
+		shiftHSL = this.MakeHSLShiftValid(shiftHSL);
+
+		//Convert from RGB to HSL, then HSL to float
+		let hslHSL = this.HSLtoFloat(this.RGBtoHSL(color));
+		let hslH = hslHSL[0];
+		let hslS = hslHSL[1];
+		let hslL = hslHSL[2];
+
 		let shiftH = shiftHSL[0];
 		let shiftS = shiftHSL[1];
-		const shiftL = shiftHSL[2];
+		let shiftL = shiftHSL[2];
 
-		// If H, S or L values are -1, set to relative zero values.
-		if (shiftH == -1 || shiftH == 0.5)
-			shiftH = 0; 
-		if (shiftS == -1)
-			shiftS = 0.5;
-		if (shiftL == -1)
-			shiftL = 0.5
-	
-		const hslHSL = this.RGBtoHSL(color);
-		console.log(hslHSL);
-		let hslH = hslHSL[0];
-		let hslS = hslHSL[1]/100;
-		let hslL = hslHSL[2];
-		console.log("firstHslS:" + hslS);
+		//Saturation shift
 		if (shiftH >= 0 || shiftS >= 0) {
+			//Hue shift
 			// Replace the hue with the tint's hue.
-			if (shiftH >= 0)
-			hslH = shiftH;
-			console.log("HslH:" + hslH);
+			if (shiftH >= 0 && shiftH != 0.5)
+				hslH = shiftH;
+
 			// Change the saturation.
 			if (shiftS >= 0) {
-				if (shiftS <= 0.5) {
-					hslS = hslS * (shiftS * 2);  
-					console.log("after manip:" + hslS);
-				} 
-				else {
-					hslS = hslS + ((1 - hslS) * ((shiftS - 0.5) * 2));  
-					console.log("after manip:" + hslS);
-				}
+				if (shiftS <= 0.5)
+					hslS = hslS * (shiftS * 2.0);
+				else
+					hslS = hslS + ((1 - hslS) * ((shiftS - 0.5) * 2.0));
 			}
 		}
-		hslS = hslS * 100;
-		//convert from float to HSL
-		//do we CONVERT FLOAT TO RGB;
-		//now we convert hsl to RGB to do Lightness
-		const color2 = this.HSLtoRGB([hslH, hslS, hslL]);
 
-		if (shiftL < 0){
-			return color2; 
-		}
-			
+		//convert from float to HSL
+		//convert HSL to RGB to do Lightness shifts
+		const color2 = this.HSLtoRGB(this.floatToHSL([hslH, hslS, hslL]));
+		if (shiftL < 0 || shiftL > 1)
+			return color2;
+
 		// Lightness shifts in the style of popular image editors aren't actually
 		// represented in HSL - the L value does have some effect on saturation.
-
-		//covnerting RGB to floats
+		//RGB
 		var r = color2[0];
 		var g = color2[1];
 		var b = color2[2];
@@ -263,7 +255,7 @@ class chrTheme {
 			g = g + ((255 - g) * ((shiftL - 0.5) * 2.0));
 			b = b + ((255 - b) * ((shiftL - 0.5) * 2.0));
 		}
-		return [r, g, b];
+		return [Math.round(r), Math.round(g), Math.round(b)];
 	}
 
 	static removeProperties() {
@@ -291,7 +283,7 @@ class chrTheme {
 				if (storedCRX) {
 					crx = storedCRX;
 				} else {
-					chrTheme.disable();
+					this.disable();
 					return;
 				}
 			}
@@ -306,7 +298,7 @@ class chrTheme {
 			const chrThemeFileName = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 			document.documentElement.setAttribute("chrtheme-file", chrThemeFileName);
 
-			chrTheme.removeProperties();
+			this.removeProperties();
 
 			const file = `jar:${filePath}!`;
 			console.log(file);
@@ -340,11 +332,8 @@ class chrTheme {
 							};
 						}
 
-						if (isBrowserWindow) {
+						if (isBrowserWindow)
 							themeFrame = theme.theme.images.theme_frame;
-	
-							console.log(themeFrame);
-						}
 					}
 					
 					// Convert colors to CSS custom properties
@@ -371,22 +360,61 @@ class chrTheme {
 					if (themeTints) {
 						Object.entries(themeTints).map(([key, value]) => {
 							const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
-							
-							console.log(key, value)
+
+							let tintedColour;
 
 							switch (key) {
-								case "buttons":
-									document.documentElement.style.setProperty(
-										`${setStyleProperty("toolbar-button-icon")}`,
-										`rgb(${chrTheme.handleTint(chrTheme.defaultColour, value)})`
-									);
-									break;
-								/*case "frame":
+								case "frame":
+									const frame = theme.theme.colors.frame;
+
+									if (!frame)
+										return;
+
+									tintedColour = this.handleTint(frame, value);
+
 									document.documentElement.style.setProperty(
 										`${setStyleProperty("frame")}`,
-										`rgb(${chrTheme.handleTint(theme.theme.colors.frame, value)})`
+										`rgb(${tintedColour})`
 									);
-									break;*/
+									break;
+								case "frame_inactive":
+									const frameInactive = theme.theme.colors.frame_inactive;
+
+									if (!frameInactive)
+										return;
+
+									tintedColour = this.handleTint(frameInactive, value);
+
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("frame-inactive")}`,
+										`rgb(${tintedColour})`
+									);
+									break;
+								case "background_tab":
+									const backgroundTab = theme.theme.colors.background_tab;
+
+									if (!backgroundTab) 
+										return;
+
+									tintedColour = this.handleTint(backgroundTab, value);
+
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("background-tab")}`,
+										`rgb(${tintedColour})`
+									);
+									break;
+								case "buttons":
+									tintedColour = this.handleTint(this.defaultToolbarButtonIconColour, value);
+
+									// If the tinted colour is the same as the default colour, do NOT tint.
+									if (JSON.stringify(tintedColour) == JSON.stringify(this.defaultToolbarButtonIconColour))
+										return;
+
+									document.documentElement.style.setProperty(
+										`${setStyleProperty("toolbar-button-icon")}`,
+										`rgb(${tintedColour})`
+									);
+									break;
 
 							
 								default: // If the tint is for none of the above, set it as HSL, basically discarding it.
@@ -412,7 +440,7 @@ class chrTheme {
 		const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
 		document.documentElement.setAttribute("chrtheme", chrThemeStatus);
 
-		chrTheme.removeProperties();
+		this.removeProperties();
 		await gkChromiumFrame.automatic();
 	}
 }

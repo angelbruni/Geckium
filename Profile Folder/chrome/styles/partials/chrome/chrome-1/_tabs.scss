@@ -89,14 +89,6 @@
 		
 		--inactive-tab-background-color: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-tab-background-color))) !important;
 
-		&[style*="--chrt-tints-background-tab"] {
-			--inactive-tab-background-color: color-mix(
-				in srgb,
-				var(--chrt-frame, var(--default-tab-background-color)),
-				black 50%
-			) !important;
-		}
-
 		--tabbrowser-tab-selected: var(--nav-bar, black) !important;
 
 		--tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;

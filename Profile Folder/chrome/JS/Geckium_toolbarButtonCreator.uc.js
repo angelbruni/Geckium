@@ -6,32 +6,30 @@
 
 class gkToolbarButtons {
 	static create(params) {
-		const alreadyExists = document.getElementById(params.id + "-button");
-		if (alreadyExists) {
-			console.log(params.id + "-button already exists. Using it.");
-			return;
-		}
-
-		console.log(params.id + "-button does not exist. Creating a new one.");
-		CustomizableUI.createWidget({
-			id: params.id + "-button",
-			removable: params.removable,
-			label: params.label,
-			tooltiptext: params.tooltip,
-			overflows: params.overflows,
-			defaultArea: params.area,
-	
-			onCreated: function (toolbarButton) {
-				if (!params.delegatesanchor)
-					toolbarButton.removeAttribute("delegatesanchor");
-	
-				if (!params.tooltip)
-					toolbarButton.setAttribute("tooltiptext", params.label);
-	
-				if (params.onclick)
-					toolbarButton.setAttribute("onclick", params.onclick);
-			},
-		});
+		try {
+			CustomizableUI.createWidget({
+				id: params.id + "-button",
+				removable: params.removable,
+				label: params.label,
+				tooltiptext: params.tooltip,
+				overflows: params.overflows,
+				defaultArea: params.area,
+		
+				onCreated: function (toolbarButton) {
+					if (!params.delegatesanchor)
+						toolbarButton.removeAttribute("delegatesanchor");
+		
+					if (!params.tooltip)
+						toolbarButton.setAttribute("tooltiptext", params.label);
+		
+					if (params.onclick)
+						toolbarButton.setAttribute("onclick", params.onclick);
+				},
+			})
+		} catch (e) {
+			if (params.id)
+				console.error(e, params.id + "-button already exists.")
+		};
 	}
 }
 
