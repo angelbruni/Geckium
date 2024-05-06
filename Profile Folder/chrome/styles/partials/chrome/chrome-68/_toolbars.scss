@@ -30,12 +30,6 @@
 	}
 }
 
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	margin-top: 10px !important;
-	margin-left: 3px !important;
-}
-
 #nav-bar {
 	border-top-left-radius: 0 !important;
 	border-top-right-radius: 0 !important;
@@ -125,7 +119,7 @@
 #PlacesToolbar {
 	padding-block: 3px;
 
-	.bookmark-item:not(.menuitem-iconic) {
+	.bookmark-item:not(.menu-iconic) {
 		&:active {
 			background: var(--personal-toolbar-item-active-bg) !important;
 
@@ -237,7 +231,8 @@
 					&#chrome-button,
 					&#page-button,
 					&#star-button-box,
-					&#go-button-box {
+					&#go-button-box,
+					&#bookmarks-menu-button {
 						&[disabled] {
 							opacity: .3 !important;
 						}

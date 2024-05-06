@@ -62,7 +62,8 @@
 						&#chrome-button,
 						&#page-button,
 						&#star-button-box,
-						&#go-button-box {
+						&#go-button-box,
+						&#bookmarks-menu-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -126,7 +127,7 @@
 }
 
 #PersonalToolbar {
-	.bookmark-item:not(.menuitem-iconic) {
+	.bookmark-item:not(.menu-iconic) {
 		transition: all 150ms linear !important;
 		&::before {
 			transition: all 150ms linear !important;

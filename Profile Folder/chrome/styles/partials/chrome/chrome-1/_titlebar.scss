@@ -55,7 +55,7 @@
     @import "titlebar/classic";
 	
 	&:not([chrtheme="true"]) {
-		&:not(:-moz-lwtheme, [lwtheme]) {
+		&:not([lwtheme]) {
 			/* bruni: I forgot why this is here but it seems to cause issues.
 			&[windowtype="navigator:browser"] > body {
 				background: transparent !important;
@@ -72,7 +72,6 @@
 			}
 		}
 	}
-    &:-moz-lwtheme,
 	&[lwtheme] {
         /* bruni: This entire code takes care of custom themes support for titlebar */
 

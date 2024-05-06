@@ -59,7 +59,7 @@
 	}
 
 	#PersonalToolbar {
-		.bookmark-item:not(.menuitem-iconic) {
+		.bookmark-item:not(.menu-iconic) {
 			border-radius: 5px !important;
 		}
 	}
@@ -84,7 +84,6 @@
 				transition: all 150ms linear;
 				opacity: 0;
 				z-index: 1;
-				mix-blend-mode: unset !important;
 				height: 100%;
 			}
 
@@ -276,7 +275,8 @@
 						&#chrome-button,
 						&#page-button,
 						&#star-button-box,
-						&#go-button-box {
+						&#go-button-box,
+						&#bookmarks-menu-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -324,6 +324,10 @@
 
 #nav-bar-overflow-button {
 	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/overflow.svg") !important;
+}
+
+#bookmarks-menu-button {
+	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_bookmark.svg") !important;
 }
 
 #page-button {

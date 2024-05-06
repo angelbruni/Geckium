@@ -28,7 +28,6 @@
 	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/minimize.svg);
 
 	&:not([customthememode="1"]) {
-		&:-moz-lwtheme,
 		&[lwtheme] {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {

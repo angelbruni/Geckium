@@ -237,6 +237,13 @@
 
 		#identity-icon {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
+			max-width: 20px;
+			max-height: 20px;
+			margin-inline-end: 5px;
+		}
+
+		#custom-identity-label {
+			display: none !important;
 		}
 	}
 

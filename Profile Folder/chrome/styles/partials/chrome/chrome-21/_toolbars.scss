@@ -181,7 +181,8 @@
 						&#chrome-button,
 						&#page-button,
 						&#star-button-box,
-						&#go-button-box {
+						&#go-button-box,
+						&#bookmarks-menu-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -232,7 +233,7 @@
 	}
 
 	#PersonalToolbar {
-		.bookmark-item:not(.menuitem-iconic) {
+		.bookmark-item:not(.menu-iconic) {
 			position: relative;
 			overflow: hidden;
 			border-radius: var(--toolbarbutton-radius) !important;

@@ -1,4 +1,5 @@
 & {
+	--tab-width: 193px;
 	--tab-height: 32px;
 	--tabbrowser-tab-selected: var(--nav-bar);
 	--tab-sides-width: 13px;
@@ -39,8 +40,16 @@
 }
 
 .tabbrowser-tab {
+	&:not([busy]) {
+		&[image="chrome://branding/content/icon32.png"] {
+			.tab-label-container {
+				padding-left: 4px;
+			}
+		}
+	}
+
 	&:first-of-type {
-		margin-left: 12px !important;
+		margin-inline-start: 13px !important;
 	}
 
 	.tab-icon-stack {
@@ -170,4 +179,14 @@
 	mask-image: url(chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_right.svg);
 	mask-position: 0;
 	margin-right: 3px !important;
+}
+
+.tab-close-button {
+	margin-inline-end: 2px !important;
+}
+
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	margin-top: 10px !important;
+	margin-left: 4px !important;
 }

@@ -20,11 +20,11 @@
 	--toolbarbutton-height: 27px;
 	--toolbarbutton-inner-padding: 5px !important;
 	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
-	--toolbarbutton-border-color-hot: rgb(163, 174, 197);
+	--toolbarbutton-border-color-hot: rgba(0,0,0,.3);
 	--toolbarbutton-border-color-active: rgb(171, 181, 203);
 	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important;
 	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.5);
+	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
 	--toolbarbutton-outer-padding: 3px !important;
 	--default-toolbarbutton-texture: linear-gradient(
 		to top,
@@ -33,7 +33,8 @@
 	);
 	--toolbarbutton-texture: var(--default-toolbarbutton-texture);
 	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
-	--toolbarbutton-shadow-hot: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+	--toolbarbutton-shadow-hot:	0 2px 3px 0 rgba(140,140,140,.35),
+								inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
 	//--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
@@ -232,7 +233,8 @@
 						&#chrome-button,
 						&#page-button,
 						&#star-button-box,
-						&#go-button-box {
+						&#go-button-box,
+						&#bookmarks-menu-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -240,7 +242,8 @@
 	
 						&#PanelUI-menu-button,
 						&#chrome-button,
-						&#page-button {
+						&#page-button,
+						&#bookmarks-menu-button {
 							border: 0 !important;
 	
 							.toolbarbutton-icon,
@@ -290,11 +293,10 @@
 	// else if !lwtheme
 	&[customthememode="2"],
 	&[lwtheme-id*="compact-light"],
-	&:not(:-moz-lwtheme, [lwtheme]) {
+	&:not([lwtheme]) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
-	&:-moz-lwtheme,
 	&[lwtheme] {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
@@ -665,10 +667,10 @@
 				&[class*="webextension"],
 				&#gsettings-button,
 				&#nav-bar-overflow-button {
-					border: 0 !important;
+					border: 1px solid transparent !important;
 					background: transparent !important;
 					margin: 0 1px !important;
-					transition: background-color 100ms linear;
+					transition: border-color 100ms linear, background-color 100ms linear;
 
 					&:not([class*="webextension"], #gsettings-button, #PlacesChevron, #nav-bar-overflow-button) {
 						width: var(--toolbarbutton-menu-width) !important;
@@ -681,9 +683,9 @@
 
 					&:not([disabled]) {
 						&:hover {
-							border: 1px solid rgb(201, 210, 221);
+							border: 1px solid rgba(0, 0, 0, .15) !important;
 							background-color: rgba(255, 255, 255, 0.6) !important;
-
+							
 							.toolbarbutton-badge-stack,
 							.toolbarbutton-icon,
 							image:first-of-type {
@@ -693,8 +695,8 @@
 
 						&:active,
 						&[open] {
-							border: 1px solid rgb(201, 210, 221);
-							background-color: rgba(255, 255, 255, 0.3) !important;
+							border: 1px solid rgba(0, 0, 0, .2) !important;
+							background-color: rgba(240, 240, 240, 0.5) !important;
 						}
 					}
 				}
@@ -979,8 +981,20 @@ toolbarspring {
 	&::before {
 		height: 100%;
 		opacity: 0;
-		background: linear-gradient(to top, rgba(0,0,0,.1), rgba(255,255,255,.8));
-		mix-blend-mode: hard-light;
+		background: linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0.3),
+			rgba(255, 255, 255, 0.3),
+			color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 80%,
+					#747474
+				) 25%, 
+				transparent
+			)
+		);
 		transition: opacity 100ms linear;
 	}
 
@@ -1275,6 +1289,10 @@ toolbarspring {
 	}
 }
 
+#bookmarks-menu-button {
+	list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_bookmark.svg") !important;
+}
+
 #gsettings-button {
 	list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
 }
@@ -1384,21 +1402,33 @@ toolbarspring {
 		height: var(--personal-toolbar-height);
 	}
 
-	.bookmark-item:not(.menuitem-iconic) {
-		border: 1px solid transparent;
-		box-shadow: var(--personal-toolbar-item-shadow);
-		transition: all 150ms linear;
-		margin: 0 !important;
-		border-radius: var(--toolbarbutton-radius) !important;
-		color: var(--bookmark-item-color) !important;
-		text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
-		flex-shrink: 0;
-		max-width: 148px !important;
-	
-		&:hover {
-			border: 1px solid rgba(0, 0, 0, 0.14);
-			background: var(--personal-toolbar-item-hover-bg) !important;
-			color: var(--default-bookmark-item-color) !important;
+	.bookmark-item  {
+		&[container="true"] {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg) !important;
+
+			> .toolbarbutton-icon,
+			.menu-iconic-icon {
+				width: 16px !important;
+				height: 18px !important;
+			}
+		}
+
+		&:not(.menu-iconic) {
+			border: 1px solid transparent;
+			box-shadow: var(--personal-toolbar-item-shadow);
+			transition: all 150ms linear;
+			margin: 0 !important;
+			border-radius: var(--toolbarbutton-radius) !important;
+			color: var(--bookmark-item-color) !important;
+			text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
+			flex-shrink: 0;
+			max-width: 148px !important;
+		
+			&:hover {
+				border: 1px solid rgba(0, 0, 0, 0.14);
+				background: var(--personal-toolbar-item-hover-bg) !important;
+				color: var(--default-bookmark-item-color) !important;
+			}
 		}
 	}
 }
