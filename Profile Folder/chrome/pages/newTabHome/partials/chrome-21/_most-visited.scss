@@ -8,6 +8,11 @@
 	--default-thumbnail-wrapper-background-color-hot: rgba(150,150,150,1);
 	--thumbnail-wrapper-background-color-hot: var(--default-thumbnail-wrapper-background-color-hot);
 
+	@media (prefers-color-scheme: dark) {
+		--default-thumbnail-inner-border-color: rgb(36, 36, 36);
+		--default-thumbnail-background-color: #505050;
+	}
+
 	// Custom theme support
 	// lwtheme
 	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
