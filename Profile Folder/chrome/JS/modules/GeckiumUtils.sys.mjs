@@ -1,23 +1,23 @@
 export class gkPrefUtils {
-	static set(prefName) {
+	static set(pref) {
 		return {
 			bool(value) { 
-				Services.prefs.setBoolPref(prefName, value);
+				Services.prefs.setBoolPref(pref, value);
 			},
 			int(value) { 
-				Services.prefs.setIntPref(prefName, value);
+				Services.prefs.setIntPref(pref, value);
 			},
 			string(value) { 
-				Services.prefs.setStringPref(prefName, value);
+				Services.prefs.setStringPref(pref, value);
 			}
 		}
 	}
 
-	static tryGet(prefName) {
+	static tryGet(pref) {
 		return {
 			get bool() {
 				try {
-					return Services.prefs.getBoolPref(prefName);
+					return Services.prefs.getBoolPref(pref);
 				} catch (e) {
 					//console.log('Setting not found: ', e)
 					return false;
@@ -25,7 +25,7 @@ export class gkPrefUtils {
 			},
 			get int() {
 				try {
-					return parseInt(Services.prefs.getIntPref(prefName));
+					return parseInt(Services.prefs.getIntPref(pref));
 				} catch (e) {
 					//console.log('Setting not found: ', e)
 					return 0;
@@ -33,7 +33,7 @@ export class gkPrefUtils {
 			},
 			get string() {
 				try {
-					return Services.prefs.getStringPref(prefName);
+					return Services.prefs.getStringPref(pref);
 				} catch (e) {
 					//console.log('Setting not found: ', e)
 					return "";
@@ -42,11 +42,11 @@ export class gkPrefUtils {
 		}
 	}
 
-	static toggle(prefName) {
-		if (gkPrefUtils.tryGet(prefName).bool == true)
-			gkPrefUtils.set(prefName).bool(false);
+	static toggle(pref) {
+		if (this.tryGet(pref).bool == true)
+			this.set(pref).bool(false);
 		else
-			gkPrefUtils.set(prefName).bool(true);
+			this.set(pref).bool(true);
 	}
 }
 

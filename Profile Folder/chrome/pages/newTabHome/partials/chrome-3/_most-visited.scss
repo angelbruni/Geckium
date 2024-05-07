@@ -27,9 +27,24 @@
 	--link-color: var(--default-link-color);
 
 	@media (prefers-color-scheme: dark) {
-		--thumbnail-border-color-normal: #617796;
+		--thumbnail-border-color-normal: color-mix(
+			in srgb,
+			rgb(14, 80, 159) 45%,
+			white
+		);
 		--thumbnail-container-color: white;
-		--thumbnail-disabled-color: #637286;
+		--thumbnail-disabled-color: color-mix(
+			in srgb,
+			rgb(14, 80, 159) 40%,
+			white
+		);
+
+		--default-edit-bar-background-hot: linear-gradient(
+			to bottom,
+			rgb(14, 80, 159),
+			rgb(20, 62, 112)
+		);
+		--default-thumbnail-border-color-hot: rgb(20, 62, 112);
 
 		--link-color: #acc0da;
 	}

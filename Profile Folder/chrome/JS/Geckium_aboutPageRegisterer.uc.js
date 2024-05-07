@@ -7,7 +7,7 @@
 const customAboutPages = {
 	"places": 	"chrome://browser/content/places/places.xhtml",
 
-	"gmzoo": 	"chrome://gm/content/zoo/index.xhtml",
+	"gmzoo":	"chrome://gm/content/zoo/index.xhtml",
 
 	"home": 			"chrome://pages/content/newTabHome/index.xhtml",
 	"newtab": 			"chrome://pages/content/newTabHome/index.xhtml",
@@ -15,8 +15,8 @@ const customAboutPages = {
 	"flags": 			"chrome://pages/content/flags/index.xhtml",
 	"about":			"chrome://windows/content/about/index.xhtml",
 
-	"gsplash": 	"chrome://windows/content/gsplash/index.xhtml",
-	"gwizard": 	"chrome://windows/content/gwizard/index.xhtml",
+	"gsplash": 		"chrome://windows/content/gsplash/index.xhtml",
+	"gwizard": 		"chrome://windows/content/gwizard/index.xhtml",
 	"gsettings": 	"chrome://windows/content/gsettings/index.xhtml",
 };
 
