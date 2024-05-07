@@ -101,13 +101,10 @@ function getTilesAmount(string) {
 	switch (string) {
 		case "rows":
 			return desiredRows;
-			break;
 		case "cols":
 			return desiredCols;
-			break;
 		default:
 			return desiredRows * desiredCols;
-			break;
 	}
 }
 
@@ -165,6 +162,9 @@ function createTile(website) {
 			const thumbnailImageFb4 = PageThumbs.getThumbnailURL(website.url.split("://www")[1]);
 			const thumbnailImageFb5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
 			let thumbnailImageFb6;
+			
+			const defaultColor = 'rgb(14,108,188)'; // Default color
+			let websiteColor = defaultColor;
 
 			if (!website.favicon)
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
@@ -215,10 +215,10 @@ function createTile(website) {
 			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
 				for (const key in websiteColors) {
 					const websiteURL = website.url.toLowerCase();
-
+					
 					if (websiteURL.includes(key)) {
-						activityColour = websiteColors[key];
-						break;
+						websiteColor = websiteColors[key];
+						break;	
 					}
 				}
 
@@ -232,7 +232,7 @@ function createTile(website) {
 							</html:div>
 							<html:img class="favicon" src="${favicon}"></html:img>
 						</html:div>
-						<html:div class="color-stripe" style="background-color: ${activityColour}"></html:div>
+						<html:div class="color-stripe" style="background-color: ${websiteColor}"></html:div>
 						<html:p class="title">${title}</html:p>
 					</html:a>
 				</html:div>
