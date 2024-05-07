@@ -40,10 +40,6 @@
 		opacity: .55;
 		background-color: var(--thumbnail-container-color);
 
-		@media (prefers-color-scheme: dark) {
-			filter: invert(1);
-		}
-
 		&:not([disabled]) {
 			&:hover,
 			&:focus {

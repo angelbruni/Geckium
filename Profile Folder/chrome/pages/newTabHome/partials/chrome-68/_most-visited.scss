@@ -1,5 +1,9 @@
 & {
 	--tile-background: rgb(250,250,250);
+
+	@media (prefers-color-scheme: dark) {
+		--tile-background: rgb(77, 77, 77);
+	}
 }
 
 .mv-tile {

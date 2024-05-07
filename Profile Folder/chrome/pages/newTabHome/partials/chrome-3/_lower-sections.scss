@@ -1,4 +1,6 @@
 & {
+	--default-lower-sections-background: rgba(239, 246, 255, 0.796875);
+	--lower-sections-background: var(--default-lower-sections-background);
 	--default-lower-sections-h2-background: linear-gradient(
 		to bottom,
 		rgb(98, 164, 245),
@@ -7,6 +9,17 @@
 	--lower-sections-h2-background: var(--default-lower-sections-h2-background);
 	--default-lower-sections-border-color: rgb(222, 234, 248);
 	--lower-sections-border-color: var(--default-lower-sections-border-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-lower-sections-background: rgba(239, 246, 255, 0.2);
+		--default-lower-sections-h2-background: linear-gradient(
+			to bottom,
+			rgb(14, 80, 159),
+			rgb(20, 62, 112)
+		);
+
+		--default-lower-sections-border-color: rgb(65, 94, 128);
+	}
 
 	// Custom theme support
 	// lwtheme
@@ -60,7 +73,7 @@
 
 	> .section {
 		flex: 1;
-		background: rgba(239, 246, 255, 0.796875);
+		background: var(--lower-sections-background);
 		border: 1px solid var(--lower-sections-border-color);
 		border-radius: 4px;
 		padding-block-end: 5px;
@@ -126,7 +139,7 @@
 		button {
 			&.item {
 				cursor: pointer;
-				color: rgb(6, 55, 116);
+				color: var(--link-color);
 				text-decoration: underline;
 			}
 		}
