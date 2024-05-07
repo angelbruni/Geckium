@@ -50,7 +50,18 @@ function setProperties() {
 		fetch(imageConfigPath)
 			.then((response) => response.json())
 			.then((json) => {
-				document.documentElement.style.setProperty("--lwt-newtab-image-rendering", json.imageRendering);
+				if (json.imageRendering)
+					document.documentElement.style.setProperty("--lwt-newtab-image-rendering", json.imageRendering);
+
+				if (json.backgroundSize)
+					document.documentElement.style.setProperty("--lwt-newtab-background-size", json.backgroundSize);
+
+				if (json.backgroundPosition)
+					document.documentElement.style.setProperty("--lwt-newtab-background-position", json.backgroundPosition);
+
+				if (json.backgroundRepeat)
+					document.documentElement.style.setProperty("--lwt-newtab-background-repeat", json.backgroundRepeat);
+
 				console.log(json)
 			});
 
