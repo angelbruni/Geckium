@@ -1,10 +1,24 @@
-#banner {
-	background-image:
-		url("chrome://windows/content/about/assets/chrome-11/imgs/logo.png"),
+&[gkbranding="chromium"] {
+	#banner {
+		background-image:
+		url("chrome://windows/content/about/assets/chrome-11/imgs/chromium/about_background.png"),
 		linear-gradient(
 			to bottom,
 			white,
 			white 143px,
 			rgb(190,190,190) 143px
 		);
+	}
+}
+&[gkbranding="chrome"] {
+	#banner {
+		background-image:
+		url("chrome://windows/content/about/assets/chrome-11/imgs/chrome/about_background.png"),
+		linear-gradient(
+			to bottom,
+			white,
+			white 143px,
+			rgb(190,190,190) 143px
+		);
+	}
 }

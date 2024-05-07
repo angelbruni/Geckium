@@ -24,6 +24,7 @@ function appearance() {
 		console.log("TAB PAGE: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
 
 		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
+			gkBranding.load();
 			gkVisualStyles.setVisualStyle();
 			createMainLayout();
 			retrieveFrequentSites();
@@ -34,6 +35,7 @@ function appearance() {
 		} else if (document.URL == "about:flags") {
 			setUpExperiments();
 		} else if (document.URL == "about:privatebrowsing" || document.URL == "about:about") {
+			gkBranding.load();
 			createMainLayout();
 		}
 	}
@@ -54,3 +56,4 @@ Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
+Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);

@@ -51,17 +51,19 @@ const gAboutPane = {
 		aboutPaneCategoryElm.setAttribute("data-category", "paneAbout");
 		mainPrefPane.appendChild(aboutPaneCategoryElm);
 
+		const fullName = gkBranding.getBrandingKeyValue("fullName");
+
 		const aboutPaneCategoryContentDOM = `
 		<vbox>
 			<hbox id="chrInfo">
 				<html:div id="chrLogo" />
 				<vbox>
-					<html:h2>Google Chrome</html:h2>
+					<html:h2>${fullName}</html:h2>
 					<html:p>${aboutBundle.GetStringFromName("aWebBrowserBuiltFor")}</html:p>
 				</vbox>
 			</hbox>
 			<hbox id="chrButtons">
-				<button class="accessory-button" label="${aboutBundle.GetStringFromName("getHelp")}" />
+				<button class="accessory-button" label="${aboutBundle.GetStringFromName("getHelp").replace("%s", gkBranding.getBrandingKeyValue("productName"))}" />
 				<button class="accessory-button" label="${aboutBundle.GetStringFromName("reportAnIssue")}" />
 			</hbox>
 			<html:p id="chrVersion" />
@@ -70,10 +72,10 @@ const gAboutPane = {
 				<html:p>${aboutBundle.GetStringFromName("updateFailed")}</html:p>
 			</hbox>
 			<vbox id="chrCredits">
-				<html:p>Google Chrome</html:p>
+				<html:p>${fullName}</html:p>
 				<html:p id="chrCopyright" />
-				<html:p>${aboutBundle.GetStringFromName("madePossibleBy")}</html:p>
-				<html:p>${aboutBundle.GetStringFromName("termsOfService")}</html:p>
+				<html:p>${aboutBundle.GetStringFromName("madePossibleBy").replace("%s", fullName)}</html:p>
+				<html:p>${aboutBundle.GetStringFromName("termsOfService").replace("%s", fullName)}</html:p>
 			</vbox>
 		</vbox>
 		`

@@ -15,7 +15,7 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="about"
 	windowtype="browser:about"
-	title="&window.title;"
+	title=""
 >
 	<vbox id="main-container" />
 
@@ -25,6 +25,7 @@
 		const aboutBundle = Services.strings.createBundle("chrome://geckium/locale/properties/about.properties");
 	</script>
 
+	<script src="chrome://userchrome/content/JS/Geckium_branding.uc.js" />
 	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" />
 
 	<script src="chrome://windows/content/about/script.js" defer="true" />

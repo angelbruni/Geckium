@@ -1,4 +1,8 @@
 function createMainLayout() {
+	const fullName = gkBranding.getBrandingKeyValue("fullName");
+
+	document.documentElement.setAttribute("title", aboutBundle.GetStringFromName("windowTitle").replace("%s", fullName));
+
 	let appearanceChoice;
 	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 		case true:
@@ -21,17 +25,17 @@ function createMainLayout() {
 		<vbox id="banner">
 			<hbox>
 				<vbox>
-					<html:h1>Google Chrome</html:h1>
+					<html:h1>${fullName}</html:h1>
 					<html:p>${gkVisualStyles.getVisualStyles("main").find(item => item.id === appearanceChoice).basedOnVersion}</html:p>
 				</vbox>
 			</hbox>
 		</vbox>
 		<vbox>
 			<html:p>${aboutBundle.GetStringFromName("copyright").replace("%d", gkVisualStyles.getVisualStyles("main").find(item => item.id === appearanceChoice).year[0])}</html:p>
-			<html:p>${aboutBundle.GetStringFromName("madePossibleBy")}</html:p>
+			<html:p>${aboutBundle.GetStringFromName("madePossibleBy").replace("%s", fullName)}</html:p>
 		</vbox>
 		<vbox>
-			<html:p>${aboutBundle.GetStringFromName("termsOfService")}</html:p>
+			<html:p>${aboutBundle.GetStringFromName("termsOfService").replace("%s", fullName)}</html:p>
 		</vbox>
 		<vbox id="updateCheckFailed">
 			<html:p>${aboutBundle.GetStringFromName("updateCheckFailed")}</html:p>
