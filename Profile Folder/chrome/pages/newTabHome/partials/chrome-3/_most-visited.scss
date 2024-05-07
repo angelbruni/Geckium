@@ -29,14 +29,22 @@
 	@media (prefers-color-scheme: dark) {
 		--thumbnail-border-color-normal: color-mix(
 			in srgb,
-			rgb(14, 80, 159) 45%,
-			white
+			color-mix(
+				in srgb,
+				rgb(14, 80, 159) 45%,
+				white
+			) 70%,
+			black
 		);
 		--thumbnail-container-color: white;
 		--thumbnail-disabled-color: color-mix(
 			in srgb,
-			rgb(14, 80, 159) 40%,
-			white
+			color-mix(
+				in srgb,
+				rgb(14, 80, 159) 40%,
+				white
+			) 70%,
+			black
 		);
 
 		--default-edit-bar-background-hot: linear-gradient(
