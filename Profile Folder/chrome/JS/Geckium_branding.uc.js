@@ -37,13 +37,19 @@ class gkBranding {
 				"name": "chrome",
 				"fullName": "Google Chrome",
 				"productName": "Chrome",
-				"vendorName": ""
+				"vendorName": "Google"
 			},
 			4: {
 				"name": "canary",
 				"fullName": "Google Chrome",
 				"productName": "Chrome",
 				"vendorName": ""
+			},
+			5: {
+				"name": "chromeos",
+				"fullName": "Chrome OS",
+				"productName": "Chrome OS",
+				"vendorName": "Google"
 			}
 		};
 
