@@ -57,19 +57,27 @@
 &[geckium-choice="four"],
 &[geckium-choice="five"],
 &[geckium-choice="six"] {
-	#main {
-		background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo.png) no-repeat 0px 8px;
-	
-		@media (prefers-color-scheme: dark) {
-			background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo_alternate.png) no-repeat 0px 8px;
-		}
-	}
-
-	&[style*="--chrt-ntp-logo-alternate: 1"] {
+	&[gkbranding="chromium"] {
 		#main {
-			background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/product_logo_alternate.png) no-repeat 0px 8px;
+			background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/chromium/product_logo.png) no-repeat 0px 8px;
 		}
 	}
+	&[gkbranding="chrome"] {
+		#main {
+			background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/google-chrome/product_logo.png) no-repeat 0px 8px;
+		
+			@media (prefers-color-scheme: dark) {
+				background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/google-chrome/product_logo_alternate.png) no-repeat 0px 8px;
+			}
+		}
+	
+		&[style*="--chrt-ntp-logo-alternate: 1"] {
+			#main {
+				background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/google-chrome/product_logo_alternate.png) no-repeat 0px 8px;
+			}
+		}
+	}
+	
 }
 
 body {

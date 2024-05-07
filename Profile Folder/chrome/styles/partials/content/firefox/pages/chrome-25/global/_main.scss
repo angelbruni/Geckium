@@ -7,6 +7,21 @@
 		}
 	}
 
+	&[gkbranding="chromium"] {
+		#aboutCategory {
+			#chrLogo {
+				background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chromium/IDR_PRODUCT_LOGO_32.png")
+			}
+		}
+	}
+	&[gkbranding="chrome"] {
+		#aboutCategory {
+			#chrLogo {
+				background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chrome/IDR_PRODUCT_LOGO_32.png")
+			}
+		}
+	}
+
 	#aboutCategory {
 		color: rgb(48, 57, 66) !important;
 
@@ -25,9 +40,8 @@
 		#chrLogo {
 			width: 32px;
 			height: 32px;
-			background: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/IDR_PRODUCT_LOGO_32.png")
-						no-repeat
-						center;
+			background-repeat: no-repeat;
+			background-position: center;
 			margin-inline-end: 10px;
 
 			&.spin {

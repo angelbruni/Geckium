@@ -101,9 +101,7 @@ function createMainLayout() {
 				</html:button>
 			</vbox>
 			<vbox id="sidebar">
-				<vbox id="logo">
-					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-1/product_logo.png" width="145" height="52" />
-				</vbox>
+				<vbox id="logo" />
 				<vbox id="searches" class="sidebar">
 					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
 					<html:form>
@@ -312,10 +310,10 @@ function createMainLayout() {
 			<html:div id="attribution-img"></html:div>
 		</vbox>
 		<vbox id="footer">
-			<div id="logo-img">
-				<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_ICON.png"></html:img>
-				<div id="logo_wordmark"></div>
-			</div>
+			<hbox id="logo-img">
+				<html:div id="logo-icon"></html:div>
+				<html:div id="logo-wordmark"></html:div>
+			</hbox>
 		</vbox>
 		`;
 	} else if (appearanceChoice == 6 || appearanceChoice == 7) {
@@ -326,7 +324,7 @@ function createMainLayout() {
 		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
-				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo")}</html:div>
+				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKeyValue("productName"))}</html:div>
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>
@@ -361,10 +359,10 @@ function createMainLayout() {
 		<vbox id="footer">
 			<html:div id="footer-border"></html:div>
 			<hbox id="footer-content">
-				<div id="logo-img">
-					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_ICON.png"></html:img>
-					<div id="logo_wordmark"></div>
-				</div>
+				<hbox id="logo-img">
+					<html:div id="logo-icon"></html:div>
+					<html:div id="logo-wordmark"></html:div>
+				</hbox>
 				<hbox id="dot-list">
 					<button onclick="switchTab('', false, 0)" class="dot selected" label="${ntpBundle.GetStringFromName("mostVisited")}" data-page="0">
 						<html:div class="selection-bar"></html:div>

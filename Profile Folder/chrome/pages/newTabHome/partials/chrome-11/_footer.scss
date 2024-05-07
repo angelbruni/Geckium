@@ -1,4 +1,7 @@
 & {
+	--default-logo-wordmark-color: rgb(119, 120, 123);
+	--logo-wordmark-color: var(--default-logo-wordmark-color);
+
 	&[geckium-choice="eleven"] {
 		&[style*="--chrt-theme-ntp-attribution"] {
 			#footer {
@@ -10,15 +13,11 @@
 	// Custom theme support
 	// lwtheme
 	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					&[footer-themable="true"] {
-						#logo_wordmark {
-							background: var(--lwt-text-color) !important;
-						}
-					}
+		&[lwtheme-id*="{"],
+		&[lwtheme-id*="@mozilla.org"] {
+			&:not([lwtheme-id*="#{$gtkplus}"]) {
+				&[footer-themable="true"] {
+					--logo-wordmark-color: var(--lwt-text-color) !important;
 				}
 			}
 		}
@@ -31,25 +30,48 @@
 			}
 		}
 	}
+
+	&[gkbranding="chromium"] {
+		#logo-icon {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/chromium/product_icon.png");
+		}
+
+		#logo-wordmark {
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/chromium/product_name.png");
+		}
+	}
+
+	&[gkbranding="chrome"] {
+		#logo-icon {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/google-chrome/product_icon.png");
+		}
+
+		#logo-wordmark {
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/google-chrome/product_name.png");
+		}
+	}
 }
 
 
 
 #footer {
 	#logo-img {
-		display: flex;
 		align-items: center;
-		gap: 6px;
 		height: 100%;
 		padding-block: 5px;
 		padding-inline: 8px;
-	}
 
-	#logo_wordmark {
-		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_LOGO_TEXT.png");
-		height: 32px;
-		width: 136px;
-		mask-size: cover;
-		background: rgb(120, 120, 125);
+		#logo-icon {
+			width: 32px;
+			height: 32px;
+			
+		}
+
+		#logo-wordmark {
+			width: 139px;
+			height: 32px;
+			mask-size: contain;
+			background: var(--logo-wordmark-color);
+		}
 	}
 }
