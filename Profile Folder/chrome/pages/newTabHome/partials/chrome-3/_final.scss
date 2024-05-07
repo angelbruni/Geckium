@@ -7,7 +7,7 @@
 	// Custom theme support
 	// lwtheme
 	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+		&:not([lwtheme-id*="firefox-compact"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {
@@ -19,6 +19,9 @@
 						));
 						background-image: var(--lwt-newtab-image);
 						image-rendering: var(--lwt-newtab-image-rendering);
+						background-size: var(--lwt-newtab-background-size);
+						background-position: var(--lwt-newtab-background-position);
+						background-repeat: var(--lwt-newtab-background-repeat);
 					}
 				}
 			}
