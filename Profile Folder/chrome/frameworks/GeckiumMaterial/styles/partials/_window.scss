@@ -25,7 +25,9 @@
 
 :root,
 window {
-	background: transparent;
+	@media (-moz-ev-native-controls-patch) {
+		background: transparent;
+	}
 }
 
 window {
