@@ -86,10 +86,10 @@ class gkBranding {
 		if (isBrowserWindow) {
 			// Set attributes for future tabs.
 			gkSetAttributes(document.documentElement, {
-				"data-title-default": brandingName,
-				"data-title-private": brandingName,
-				"data-content-title-default": `CONTENTTITLE — ${brandingName}`,
-				"data-content-title-private": `CONTENTTITLE — ${brandingName}`
+				"data-title-default": fullName,
+				"data-title-private": fullName,
+				"data-content-title-default": `CONTENTTITLE - ${fullName}`,
+				"data-content-title-private": `CONTENTTITLE - ${fullName}`
 			});
 	
 			// Replace title of just loaded window.

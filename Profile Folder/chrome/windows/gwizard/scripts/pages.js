@@ -30,6 +30,7 @@ finishElm.addEventListener("click", () => {
 		gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);					// Enable native menus
 	}
 	
+	gkPrefUtils.set("browser.newtab.preload").bool(false)									// Disable New Tab preload to prevent new data from not loading
 	gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
 
 	if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {

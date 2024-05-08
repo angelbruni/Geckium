@@ -45,9 +45,9 @@
 	}
 	
 	description,
-	label:not(.sidebar-footer-label, .dialogTitle),
+	label:not(.sidebar-footer-label, .dialogTitle, .button-text),
 	[data-l10n-id="preferences-web-appearance-footer"] {
-		
+		color: var(--header-color) !important;
 		font-size: 9pt !important;	
 	}
 	description {
@@ -64,6 +64,7 @@
 		
 		
 		
+		background-color: white !important;
 		
 		
 		
@@ -71,6 +72,10 @@
 		
 		
 		box-sizing: border-box;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: rgb(73, 73, 73) !important;
+		}
 	
 		&:focus {
 			
@@ -140,5 +145,9 @@
 		> :not(label:first-of-type) {
 			margin-inline-start: 18px !important;
 		}
+	}
+
+	.web-appearance-choice-footer {
+		align-items: center !important;
 	}
 }

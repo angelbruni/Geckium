@@ -1,5 +1,11 @@
-.card-heading-image {
-	width: calc(100% + (16px * 2)) !important;
-	height: unset !important;
-	object-fit: unset !important;
+@-moz-document url-prefix(about:addons) {
+	.card-heading-image {
+		width: calc(100% + (16px * 2)) !important;
+		height: unset !important;
+		object-fit: unset !important;
+	}
+
+	.sticky-container {
+		display: none !important;
+	}
 }

@@ -1,4 +1,14 @@
 :root {
+	--panel-header-color: rgb(6,45,117);
+	--panel-separator-color: rgb(233,233,233);
+	--panel-item-background-hot: rgb(227,237,246);
+
+	@media (prefers-color-scheme) {
+		--panel-header-color: rgb(72, 129, 236);
+		--panel-separator-color: rgba(255, 255, 255, .5);
+		--panel-item-background-hot: rgba(59, 144, 219, 0.3);
+	}
+
 	&[geckium-choice="one"],
 	&[geckium-choice="three"],
 	&[geckium-choice="four"],
@@ -34,7 +44,7 @@
 						bottom: -10px;
 						width: 100%;
 						height: 1px;
-						background-color: rgb(233,233,233);
+						background-color: var(--panel-separator-color);
 						pointer-events: none;
 					}
 				}
@@ -60,7 +70,7 @@ panelmultiview {
 .panel-header {
 	align-items: unset !important;
 	height: 31px !important;
-	color: rgb(6,45,117) !important;
+	color: var(--panel-header-color) !important;
 	padding: 0 !important;
 	min-height: 0 !important;
 	margin-block-end: 11px !important;
@@ -95,7 +105,7 @@ panel {
 		
 			&:hover,
 			&:active {
-				background-color: rgb(227,237,246) !important;
+				background-color: var(--panel-item-background-hot) !important;
 			}
 		
 			&#fxa-manage-account-button {

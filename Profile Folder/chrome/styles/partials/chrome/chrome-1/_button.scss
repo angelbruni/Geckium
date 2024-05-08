@@ -11,8 +11,11 @@
 		button:not(.control-button, .menuitem-button) {
 			appearance: button !important;
 
-			/* TODO: Find the correct colour for buttons. */
-			color: black !important;
+			color: -moz-dialog-color !important;
+
+			@media (prefers-color-scheme: dark) {
+				color: white !important;
+			}
 		}
 	}
 }

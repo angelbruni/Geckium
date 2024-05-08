@@ -119,7 +119,7 @@
 #PlacesToolbar {
 	padding-block: 3px;
 
-	.bookmark-item:not(.menu-iconic) {
+	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 		&:active {
 			background: var(--personal-toolbar-item-active-bg) !important;
 

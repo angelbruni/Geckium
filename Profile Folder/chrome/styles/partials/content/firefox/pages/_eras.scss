@@ -1,33 +1,19 @@
-@import "about-config";
+&[geckium-one] {
+	@import "chrome-11/global/final";
+	@import "chrome-11/about-addons/final";
+	@import "chrome-11/about-preferences/final";
+}
 
-:root {
-	@-moz-document url-prefix(about:preferences),
-			   	   url-prefix(about:addons) {
-		&:not([geckium-one]) {
-			* {
-				visibility: hidden;
-			}
-		}
-	}
-	
+&[geckium-one][geckium-twentyone] {
+	@import "chrome-21/global/final";
+	@import "chrome-21/about-addons/final";
+	@import "chrome-21/about-preferences/final";
+}
 
-	&[geckium-one] {
-		@import "chrome-11/global/final";
-		@import "chrome-11/about-addons/final";
-		@import "chrome-11/about-preferences/final";
-	}
+&[geckium-one][geckium-twentyfive][geckium-twentyfive] {
+	@import "chrome-25/global/final";
+}
 
-	&[geckium-one][geckium-twentyone] {
-		@import "chrome-21/global/final";
-		@import "chrome-21/about-addons/final";
-		@import "chrome-21/about-preferences/final";
-	}
-
-	&[geckium-one][geckium-twentyfive][geckium-twentyfive] {
-		@import "chrome-25/global/final";
-	}
-
-	&[geckium-one][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
-		@import "chrome-47/global/final";
-	}
+&[geckium-one][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+	@import "chrome-47/global/final";
 }

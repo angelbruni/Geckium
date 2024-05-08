@@ -1,0 +1,98 @@
+@-moz-document 	url-prefix(about:preferences),
+				url-prefix(about:addons),
+				url-prefix(chrome://browser/content/preferences/dialogs) {
+	checkbox,
+	radio {
+		&:not([disabled]):hover {
+			.checkbox-check,
+			.radio-check {
+				
+				
+				
+
+				
+				
+
+
+			}
+
+			.checkbox-label,
+			.radio-label {
+				
+			}
+		}
+		&:not([disabled]):active {
+			.checkbox-check,
+			.radio-check {
+				
+
+				
+				
+				
+				
+				
+			}
+		}
+		&[focused] .radio-check {
+			
+		}
+	}
+
+	.checkbox-check,
+	.radio-check,
+	input[type="radio"] {
+		appearance: unset !important;
+		-moz-default-appearance: unset !important;
+		background: linear-gradient(
+			to top,
+			#e0e0e0,
+			#f0f0f0
+		) !important;
+		
+		box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
+					inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+		box-sizing: border-box !important;
+	}
+	.checkbox-check {
+		border-radius: 2px !important;
+
+		
+	}
+	.radio-check,
+	input[type="radio"] {
+		border-radius: 50% !important;
+		
+		
+	}
+	.checkbox-label,
+	.radio-label {
+		font-size: 9pt !important;
+		color: var(--header-color);
+	}
+
+	.checkbox-check[checked] {
+		background-image:
+		url(chrome://userchrome/content/assets/img/pages/check.png),
+		linear-gradient(
+			to top,
+			#e0e0e0,
+			#f0f0f0
+		) !important;
+		
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+	}
+	.radio-check[selected],
+	input[type="radio"]:checked {
+		background-image:
+		url(chrome://userchrome/content/assets/img/pages/radio.png),
+		linear-gradient(
+			to top,
+			#e0e0e0,
+			#f0f0f0
+		) !important;
+		
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+	}
+}

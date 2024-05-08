@@ -1,0 +1,26 @@
+@-moz-document 	url-prefix(about:preferences),
+				url-prefix(about:addons),
+				url-prefix(chrome://browser/content/preferences/dialogs) {
+	checkbox,
+	radio {
+		margin-block: 0 !important;
+	}
+
+	.checkbox-check,
+	.radio-check,
+	input[type="radio"] {
+		all: unset !important;
+		margin-inline-end: 4px !important;
+	}
+
+	.checkbox-check {
+		appearance: checkbox !important;
+		-moz-default-appearance: checkbox !important;
+	}
+
+	.radio-check,
+	input[type="radio"] {
+		appearance: radio !important;
+		-moz-default-appearance: radio !important;
+	}
+}
