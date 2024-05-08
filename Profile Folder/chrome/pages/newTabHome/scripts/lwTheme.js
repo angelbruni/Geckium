@@ -59,6 +59,12 @@ function setProperties() {
 				if (json.backgroundPosition)
 					document.documentElement.style.setProperty("--lwt-newtab-background-position", json.backgroundPosition);
 
+				if (json.backgroundPositionX)
+					document.documentElement.style.setProperty("--lwt-newtab-background-position-x", json.backgroundPositionX);
+
+				if (json.backgroundPositionY)
+					document.documentElement.style.setProperty("--lwt-newtab-background-position-y", json.backgroundPositionY);
+
 				if (json.backgroundRepeat)
 					document.documentElement.style.setProperty("--lwt-newtab-background-repeat", json.backgroundRepeat);
 
