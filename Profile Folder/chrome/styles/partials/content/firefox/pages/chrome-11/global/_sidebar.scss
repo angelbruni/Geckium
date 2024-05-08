@@ -61,13 +61,22 @@ body {
 	}
 }
 
+#sidebarHeader {
+	text-align: end;
+	color: var(--header-color) !important;
+	font-weight: 500 !important;
+	font-size: 19pt !important;
+
+	margin-inline-end: 24px !important;
+	margin-block-start: 13px !important;
+	margin-block-end: 14px !important;
+}
+
 .navigation,
 #sidebar {
-	padding-block-start: 97px;
 	border-inline-end: 1px solid var(--sidebar-border-inline-end-color);
 	width: var(--sidebar-width) !important;
 	background: var(--sidebar-gradients);
-		
 
 	> spacer,
 	> .spacer {
