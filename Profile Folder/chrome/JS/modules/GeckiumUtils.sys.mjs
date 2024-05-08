@@ -1,3 +1,21 @@
+export class gkColorUtils {
+	static HSLtoFloat(colorInHSL) {
+		const floatH = colorInHSL[0] / 360;
+		const floatS = colorInHSL[1] / 100;
+		const floatL = colorInHSL[2] / 100;
+
+		return [floatH, floatS, floatL];
+	}
+
+	static floatToHSL(floatFromHSL) {
+		const colorH = floatFromHSL[0] * 360;
+		const colorS = floatFromHSL[1] * 100;
+		const colorL = floatFromHSL[2] * 100;
+
+		return [colorH, colorS, colorL];
+	}
+}
+
 export class gkPrefUtils {
 	static set(pref) {
 		return {
