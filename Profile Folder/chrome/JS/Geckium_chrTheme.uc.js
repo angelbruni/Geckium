@@ -6,6 +6,9 @@
 
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
+
+const { ColorUtils } = ChromeUtils.importESModule("chrome://modules/content/ChromiumColorUtils.sys.mjs");
+
 const chrThemesFolderName = "chrThemes";
 
 class chrTheme {
@@ -113,149 +116,6 @@ class chrTheme {
 				return null; // Or handle the error appropriately
 			}
 		}
-	}
-
-	static HSLtoFloat(colorInHSL) {
-		const floatH = colorInHSL[0] / 360;
-		const floatS = colorInHSL[1] / 100;
-		const floatL = colorInHSL[2] / 100;
-
-		return [floatH, floatS, floatL];
-	}
-
-	static floatToHSL(floatFromHSL) {
-		const colorH = floatFromHSL[0] * 360;
-		const colorS = floatFromHSL[1] * 100;
-		const colorL = floatFromHSL[2] * 100;
-
-		return [colorH, colorS, colorL];
-	}
-
-	static RGBtoHSL(rgb) {
-		const r = rgb[0] / 255;
-		const g = rgb[1] / 255;
-		const b = rgb[2] / 255;
-
-		// Find greatest and smallest channel values
-		let cmin = Math.min(r, g, b),
-			cmax = Math.max(r, g, b),
-			delta = cmax - cmin,
-			h = 0,
-			s = 0,
-			l = 0;
-
-		// Calculate hue
-		// No difference
-		if (delta == 0)
-			h = 0;
-		// Red is max
-		else if (cmax == r)
-			h = ((g - b) / delta) % 6;
-		// Green is max
-		else if (cmax == g)
-			h = (b - r) / delta + 2;
-		// Blue is max
-		else
-			h = (r - g) / delta + 4;
-
-		h = Math.round(h * 60);
-
-		// Make negative hues positive behind 360°
-		if (h < 0)
-			h += 360;
-
-		// Calculate lightness
-		l = (cmax + cmin) / 2;
-
-		// Calculate saturation
-		s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-
-		// Multiply l and s by 100
-		s = +(s * 100).toFixed(1);
-		l = +(l * 100).toFixed(1);
-
-		return [h, s, l];
-	}
-
-	static HSLtoRGB(hsl) {
-		let h = hsl[0];
-		let s = hsl[1] / 100;
-		let l = hsl[2] / 100;
-
-		let a = s * Math.min(l, 1 - l);
-		let f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-
-		return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
-	}
-
-	static MakeHSLShiftValid(hsl) {
-		let hslH = hsl[0];
-		let hslS = hsl[1];
-		let hslL = hsl[2];
-
-		if (hslH < 0 || hslH > 1)
-			hslH = -1;
-		if (hslS < 0 || hslS > 1)
-			hslS = -1;
-		if (hslL < 0 || hslL > 1)
-			hslL = -1;
-
-		return ([hslH, hslS, hslL]);
-	}
-
-	static handleTint(color, shiftHSL) {
-		//validate HSL Shift
-		shiftHSL = this.MakeHSLShiftValid(shiftHSL);
-
-		//Convert from RGB to HSL, then HSL to float
-		let hslHSL = this.HSLtoFloat(this.RGBtoHSL(color));
-		let hslH = hslHSL[0];
-		let hslS = hslHSL[1];
-		let hslL = hslHSL[2];
-
-		let shiftH = shiftHSL[0];
-		let shiftS = shiftHSL[1];
-		let shiftL = shiftHSL[2];
-
-		//Saturation shift
-		if (shiftH >= 0 || shiftS >= 0) {
-			//Hue shift
-			// Replace the hue with the tint's hue.
-			if (shiftH >= 0 && shiftH != 0.5)
-				hslH = shiftH;
-
-			// Change the saturation.
-			if (shiftS >= 0) {
-				if (shiftS <= 0.5)
-					hslS = hslS * (shiftS * 2.0);
-				else
-					hslS = hslS + ((1 - hslS) * ((shiftS - 0.5) * 2.0));
-			}
-		}
-
-		//convert from float to HSL
-		//convert HSL to RGB to do Lightness shifts
-		const color2 = this.HSLtoRGB(this.floatToHSL([hslH, hslS, hslL]));
-		if (shiftL < 0 || shiftL > 1)
-			return color2;
-
-		// Lightness shifts in the style of popular image editors aren't actually
-		// represented in HSL - the L value does have some effect on saturation.
-		//RGB
-		var r = color2[0];
-		var g = color2[1];
-		var b = color2[2];
-
-		if (shiftL <= 0.5) {
-			r = r * (shiftL * 2.0);
-			g = g * (shiftL * 2.0);
-			b = b * (shiftL * 2.0);
-		} else {
-			r = r + ((255 - r) * ((shiftL - 0.5) * 2.0));
-			g = g + ((255 - g) * ((shiftL - 0.5) * 2.0));
-			b = b + ((255 - b) * ((shiftL - 0.5) * 2.0));
-		}
-		return [Math.round(r), Math.round(g), Math.round(b)];
 	}
 
 	static removeProperties() {
@@ -370,7 +230,7 @@ class chrTheme {
 									if (!frame)
 										return;
 
-									tintedColour = this.handleTint(frame, value);
+									tintedColour = ColorUtils.HSLShift(frame, value);
 
 									document.documentElement.style.setProperty(
 										`${setStyleProperty("frame")}`,
@@ -383,7 +243,7 @@ class chrTheme {
 									if (!frameInactive)
 										return;
 
-									tintedColour = this.handleTint(frameInactive, value);
+									tintedColour = ColorUtils.HSLShift(frameInactive, value);
 
 									document.documentElement.style.setProperty(
 										`${setStyleProperty("frame-inactive")}`,
@@ -396,7 +256,7 @@ class chrTheme {
 									if (!backgroundTab) 
 										return;
 
-									tintedColour = this.handleTint(backgroundTab, value);
+									tintedColour = ColorUtils.HSLShift(backgroundTab, value);
 
 									document.documentElement.style.setProperty(
 										`${setStyleProperty("background-tab")}`,
@@ -404,7 +264,7 @@ class chrTheme {
 									);
 									break;
 								case "buttons":
-									tintedColour = this.handleTint(this.defaultToolbarButtonIconColour, value);
+									tintedColour = ColorUtils.HSLShift(this.defaultToolbarButtonIconColour, value);
 
 									// If the tinted colour is the same as the default colour, do NOT tint.
 									if (JSON.stringify(tintedColour) == JSON.stringify(this.defaultToolbarButtonIconColour))
