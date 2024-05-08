@@ -1407,13 +1407,13 @@ toolbarspring {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg) !important;
 
 			> .toolbarbutton-icon,
-			.menu-iconic-icon {
+			> .menu-iconic-icon {
 				width: 16px !important;
 				height: 18px !important;
 			}
 		}
 
-		&:not(.menu-iconic) {
+		&:not(.menu-iconic, .menuitem-iconic) {
 			border: 1px solid transparent;
 			box-shadow: var(--personal-toolbar-item-shadow);
 			transition: all 150ms linear;
@@ -1440,7 +1440,10 @@ toolbarspring {
 #toolbar-menubar 
 #main-menubar > menu {
 	appearance: menuitem !important;
-	text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+
+	@media (-moz-platform: windows) {
+		text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+	}
 }
 
 #toolbar-menubar {

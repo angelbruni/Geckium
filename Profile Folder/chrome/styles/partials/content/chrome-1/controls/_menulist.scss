@@ -1,11 +1,18 @@
-@-moz-document url-prefix(about:preferences),
-				url-prefix(about:config),
+@-moz-document 	url-prefix(about:preferences),
 				url-prefix(about:addons) {
+	& {
+		--menulist-border-color-normal: rgb(192,192,192);
+
+		@media (prefers-color-scheme: dark) {
+			--menulist-border-color-normal: rgb(87, 87, 87);
+		}
+	}
+	
 	menulist {
 		padding: 0 !important;
 		padding-inline-start: 6px !important;
 		padding-inline-end: 3px !important;
-		border-color: rgb(192,192,192) !important;
+		border-color: var(--menulist-border-color-normal) !important;
 	}
 
 	[part="label-box"] > [part="icon"],

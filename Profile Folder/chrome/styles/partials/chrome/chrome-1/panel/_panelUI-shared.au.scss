@@ -1,5 +1,9 @@
 :root {
 	--modal-background: white;
+
+	@media (prefers-color-scheme: dark) {
+		--modal-background: rgb(29,29,29);
+	}
 }
 
 :is(panel:not(.autoscroller, #PopupSearchAutoComplete))::part(content) {

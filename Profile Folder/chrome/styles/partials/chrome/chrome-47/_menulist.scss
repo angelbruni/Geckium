@@ -9,6 +9,11 @@ menulist {
 	background-color: rgb(251, 251, 251) !important;
 	box-sizing: border-box !important;
 
+	@media (prefers-color-scheme: dark) {
+		border: 1px solid rgb(66, 66, 66) !important;
+		background-color: rgb(53, 53, 53) !important;
+	}
+
 	&:focus {
 		border-color: rgb(62, 126, 248) !important;
 	}

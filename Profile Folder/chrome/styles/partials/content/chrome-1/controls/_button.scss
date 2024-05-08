@@ -1,0 +1,89 @@
+@-moz-document	url-prefix(about:preferences),
+				url-prefix(about:addons) {
+	& {
+		--button-background-gradient-bottom-color: #e0e0e0;
+		--button-background-normal: linear-gradient(
+			to bottom,
+			#f1f1f1,
+			var(--button-background-gradient-bottom-color)
+		);
+		--button-background-hot: linear-gradient(
+			to bottom,
+			#f5f4f4,
+			var(--button-background-gradient-bottom-color)
+		);
+		--button-background-pressed: linear-gradient(
+			to bottom,
+			#eeeeee,
+			var(--button-background-gradient-bottom-color)
+		);
+		--button-border-color-normal: rgba(0, 0, 0, 30%);
+		--button-shadow-color-normal: rgb(0, 0, 0, 8%);
+		--button-shadow-color-hot: rgb(0, 0, 0, 14%);
+		--button-inset-shadow-top-color: rgba(255, 255, 255, 50%);
+		--button-text-color-normal: rgb(68, 68, 68);
+		--button-text-color-hot: var(--button-text-color-hot);
+		--button-text-color-pressed: black;
+		--button-text-shadow-color: rgba(255, 255, 255, 70%);
+
+		@media (prefers-color-scheme: dark) {
+			--button-background-gradient-bottom-color: #2c2c2c;
+			--button-background-normal: linear-gradient(
+				to bottom,
+				#707070,
+				var(--button-background-gradient-bottom-color)
+			);
+			--button-background-hot: linear-gradient(
+				to bottom,
+				#858585,
+				var(--button-background-gradient-bottom-color)
+			);
+			--button-background-pressed: linear-gradient(
+				to bottom,
+				#6b6b6b,
+				var(--button-background-gradient-bottom-color)
+			);
+			--button-border-color-normal: rgba(0, 0, 0, 30%);
+			--button-shadow-color-normal: rgb(0, 0, 0, 8%);
+			--button-shadow-color-hot: rgb(0, 0, 0, 14%);
+			--button-inset-shadow-top-color: rgba(255, 255, 255, 50%);
+			--button-text-color-normal: white;
+			--button-text-color-hot: var(--button-text-color-normal);
+			--button-text-color-pressed: rgb(231, 231, 231);
+			--button-text-shadow-color: rgba(0, 0, 0, 0.7);
+		}
+	}
+	
+	menulist,
+	button:not(.toggle-button, [role="menuitem"], [role="menuitemcheckbox"], .menu-item, .dialogClose, .category, .devtools-tab, .devtools-tabbar-button, .devtools-button, .all-tabs-menu, .open-inspector, .compatibility-footer__button, .devtools-searchinput-clear, .breadcrumbs-widget-item, .devtools-togglebutton, .editor-onboarding-dismiss-button, .command-bar-button, .header-buttons > button, .perf-external-link, .perf-photon-button, .perf-photon-button-ghost) {
+		justify-content: center;
+		align-items: center;
+		min-height: 24px !important;
+		padding-inline: 10px !important;
+		padding-block: 1px !important;
+		font-size: 12px !important;
+		background-image: var(--button-background-normal);
+		border: 1px solid var(--button-border-color-normal) !important;
+		box-shadow: 0 1px 1px var(--button-shadow-color-normal),
+					inset 0 1px 2px var(--button-inset-shadow-top-color);
+		text-shadow: 0 1px 0 var(--button-text-shadow-color) !important;
+		border-radius: 2px !important;
+		color: var(--button-text-color-normal) !important;
+		font-weight: normal !important;
+
+		&:not([disabled]) {
+			&:hover {
+				background: var(--button-background-hot);
+				box-shadow: 0 1px 1px var(--button-shadow-color-hot),
+							inset 0 1px 2px var(--button-inset-shadow-top-color);
+				color: var(--button-text-color-hot) !important;
+			}
+
+			&:active {
+				background: var(--button-background-pressed);
+				box-shadow: 0 1px 1px transparent, inset 0 1px 2px transparent;
+				color: var(--button-text-color-pressed) !important;
+			}
+		}
+	}
+}

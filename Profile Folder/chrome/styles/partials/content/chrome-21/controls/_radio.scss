@@ -1,11 +1,8 @@
-@-moz-document url-prefix(about:preferences),
-				url-prefix(about:config),
+@-moz-document 	url-prefix(about:preferences),
 				url-prefix(about:addons),
-			   url-prefix(chrome://browser/content/preferences/dialogs) {
+				url-prefix(chrome://browser/content/preferences/dialogs) {
 	checkbox,
 	radio {
-		margin-block: 0 !important;
-
 		&:not([disabled]):hover {
 			.checkbox-check,
 			.radio-check {
@@ -44,51 +41,58 @@
 	.checkbox-check,
 	.radio-check,
 	input[type="radio"] {
+		appearance: unset !important;
+		-moz-default-appearance: unset !important;
 		background: linear-gradient(
 			to top,
 			#e0e0e0,
 			#f0f0f0
-		);
+		) !important;
 		border: 1px solid rgb(0, 0, 0, 30%) !important;
 		box-shadow: 0 1px 1px rgb(0, 0, 0, 8%),
-			inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+					inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+		box-sizing: border-box !important;
 	}
 	.checkbox-check {
+		border-radius: 2px !important;
 		height: 13px !important;
 		width: 13px !important;
 	}
 	.radio-check,
 	input[type="radio"] {
+		border-radius: 50% !important;
 		height: 15px !important;
 		width: 15px !important;
 	}
 	.checkbox-label,
 	.radio-label {
 		font-size: 9pt !important;
-		color: rgb(48, 57, 66);
+		color: var(--header-color);
 	}
 
 	.checkbox-check[checked] {
-		background-image: url(chrome://userchrome/content/assets/img/pages/check.png),
-			linear-gradient(
-				to top,
-				#e0e0e0,
-				#f0f0f0
-			) !important;
+		background-image:
+		url(chrome://userchrome/content/assets/img/pages/check.png),
+		linear-gradient(
+			to top,
+			#e0e0e0,
+			#f0f0f0
+		) !important;
 		background-color: transparent !important;
-		background-repeat: no-repeat;
-		background-position: center center;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
 	}
 	.radio-check[selected],
 	input[type="radio"]:checked {
-		background-image: url(chrome://userchrome/content/assets/img/pages/radio.png),
-			linear-gradient(
-				to top,
-				#e0e0e0,
-				#f0f0f0
-			) !important;
+		background-image:
+		url(chrome://userchrome/content/assets/img/pages/radio.png),
+		linear-gradient(
+			to top,
+			#e0e0e0,
+			#f0f0f0
+		) !important;
 		background-color: transparent !important;
-		background-repeat: no-repeat;
-		background-position: center center;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
 	}
 }

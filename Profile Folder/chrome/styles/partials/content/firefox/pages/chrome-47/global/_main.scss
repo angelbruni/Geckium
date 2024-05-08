@@ -1,18 +1,14 @@
-@-moz-document url-prefix(about:preferences),
-			   url-prefix(about:addons) {
-
-	&[gkbranding="chromium"] {
-		#aboutCategory {
-			#chrLogo {
-				background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-47/about-preferences/assets/chromium/current-channel-logo@1x.png")
-			}
+&[gkbranding="chromium"] {
+	#aboutCategory {
+		#chrLogo {
+			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-47/about-preferences/assets/chromium/current-channel-logo@1x.png")
 		}
 	}
-	&[gkbranding="chrome"] {
-		#aboutCategory {
-			#chrLogo {
-				background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-47/about-preferences/assets/chrome/current-channel-logo@1x.png")
-			}
+}
+&[gkbranding="chrome"] {
+	#aboutCategory {
+		#chrLogo {
+			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-47/about-preferences/assets/chrome/current-channel-logo@1x.png")
 		}
 	}
 }
