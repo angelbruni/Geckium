@@ -102,7 +102,26 @@ const gAboutPane = {
 	}
 }
 
+function addProductName() {
+	let sidebarHeader = document.getElementById("sidebarHeader");
+
+	if (!sidebarHeader) {
+		sidebarHeader = document.createElement("h1");
+		sidebarHeader.id = "sidebarHeader";
+	}
+	sidebarHeader.textContent = gkBranding.getBrandingKeyValue("productName");
+
+	gkInsertElm.before(sidebarHeader, document.getElementById("categories"));
+}
+
+function updateInfo() {
+	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).basedOnVersion);
+	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).year[0]);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+	addProductName();
+
 	const stickyContainer = document.querySelector(".sticky-container");
 	const policesContainer = document.getElementById("policies-container");
 	stickyContainer.appendChild(policesContainer);
@@ -111,24 +130,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	register_module("paneAbout", gAboutPane);
 
 	waitForElm("#aboutCategory").then(() => {
-		updateInfo();
 		document.getElementById("aboutCategory-header").setAttribute("hidden", true);
 		document.getElementById("aboutCategory").setAttribute("hidden", true);
+
+		updateInfo();
 
 		gotoPref(null, "hash");
 	});
 });
 
-function updateInfo() {
-	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).basedOnVersion);
-	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).year[0]);
-}
-
-/* bruni: Automatically apply appearance and theme
-		  attributes when it detecs changes in the pref. */
 const appearanceObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
+			addProductName();
 			updateInfo();
 		}
 	},
@@ -138,3 +152,4 @@ Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
+Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
