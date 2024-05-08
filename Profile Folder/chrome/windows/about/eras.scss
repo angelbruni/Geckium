@@ -52,6 +52,12 @@
 				rgb(190,190,190) 143px
 			);
 		}
+
+		#updateCheckFailed,
+		footer > image,
+		footer > p {
+			display: none !important;
+		}
 	}
 	&[gkbranding="chrome"] {
 		#banner {

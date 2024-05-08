@@ -9,6 +9,12 @@
 		#chrLogo {
 			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chromium/IDR_PRODUCT_LOGO_32.png")
 		}
+
+		#chrButtons .accessory-button:last-of-type,
+		#chrUpdate,
+		#chrCredits p:last-of-type {
+			display: none !important;
+		}
 	}
 }
 &[gkbranding="chrome"] {
