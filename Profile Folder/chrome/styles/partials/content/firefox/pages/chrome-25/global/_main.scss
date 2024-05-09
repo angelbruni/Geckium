@@ -4,10 +4,21 @@
 	}
 }
 
+&[gkbranding="geckium"]
 &[gkbranding="chromium"] {
 	#aboutCategory {
+		#chrButtons .accessory-button:last-of-type,
+		#chrUpdate,
+		#chrCredits p:last-of-type {
+			display: none !important;
+		}
+	}
+}
+
+&[gkbranding="geckium"] {
+	#aboutCategory {
 		#chrLogo {
-			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chromium/IDR_PRODUCT_LOGO_32.png")
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
 		}
 
 		#chrButtons .accessory-button:last-of-type,
@@ -17,10 +28,18 @@
 		}
 	}
 }
+
+&[gkbranding="chromium"] {
+	#aboutCategory {
+		#chrLogo {
+			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chromium/IDR_PRODUCT_LOGO_32.png");
+		}
+	}
+}
 &[gkbranding="chrome"] {
 	#aboutCategory {
 		#chrLogo {
-			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chrome/IDR_PRODUCT_LOGO_32.png")
+			background-image: url("chrome://userchrome/content/styles/partials/content/firefox/pages/chrome-25/about-preferences/assets/chrome/IDR_PRODUCT_LOGO_32.png");
 		}
 	}
 }
@@ -46,6 +65,8 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		margin-inline-end: 10px;
+		fill: #209f43;
+		-moz-context-properties: fill, fill-opacity;
 
 		&.spin {
 			animation: spin 500ms cubic-bezier(1, 0, 0, 1) forwards;

@@ -45,13 +45,8 @@
 		}
 	}
 
-	&[geckium-choice="one"],
-	&[geckium-choice="three"],
-	&[geckium-choice="four"],
-	&[geckium-choice="five"] {
-		#star-button-box {
-			display: flex !important;
-		}
+	#star-button-box {
+		display: flex !important;
 	}
 
 	&[geckium-choice="one"] {
@@ -650,4 +645,37 @@
 
 .urlbarView-action {
   	display: none !important;
+}
+
+#notification-popup-box {
+	height: var(--urlbar-height-definitive) !important;
+	fill: rgb(112,112,112) !important;
+
+	&:not([disabled]) {
+		&:hover,
+		&:active,
+		&[open] {
+			background: transparent !important;
+		}
+
+		&:active,
+		&[open] {
+			fill: rgb(69,132,246) !important;
+		}
+	}
+
+	> #password-notification-icon {
+		padding-block: 4px !important;
+		padding-inline: 0 !important;
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/savepassword.svg") !important;
+	}
+}
+
+#notification-popup-box {
+	> * {
+		padding: 2px !important;
+		margin: 0 !important;
+		width: calc(var(--urlbar-height-definitive) - 4px) !important;
+		height: calc(var(--urlbar-height-definitive) - 4px) !important;
+	}
 }

@@ -1,3 +1,14 @@
+@keyframes fadeInContainer {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+
 & {
 	--main-pane-width-final: 718px;
 
@@ -143,10 +154,15 @@ recommended-themes-section,
 #content > #main {
 	padding-inline: 0 !important;
 
+	groupbox,
+	#aboutCategory {
+		animation: fadeInContainer 200ms forwards !important;
+	}
+
 	groupbox {
 		border-block-end: 0 !important;
 		padding-inline-start: 0 !important;
-		margin: 0 !important;
+		margin-block: 0 !important;
 
 		h2 {
 			position: unset;
@@ -154,6 +170,10 @@ recommended-themes-section,
 			width: unset;
 		}
 	}
+}
+
+#firefoxHomeCategory {
+	display: none !important;
 }
 
 h1[data-l10n-id="pane-general-title"],

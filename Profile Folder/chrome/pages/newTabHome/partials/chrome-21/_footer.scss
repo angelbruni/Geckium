@@ -92,38 +92,36 @@
 							transparent
 						)
 					);
-					--footer-color: var(--lwt-text-color);
+					--footer-color: var(--newtab-text-primary-color, var(--lwt-text-color));
 	
 					--dot-color-normal: color-mix(
 						in srgb,
-						var(--lwt-text-color) 20%,
+						var(--newtab-text-primary-color, var(--lwt-text-color)) 20%,
 						gray
 					);
-					--dot-color-hot: var(--lwt-text-color);
+					--dot-color-hot: var(--newtab-text-primary-color, var(--lwt-text-color));
 					--selection-bar-background-color-normal: color-mix(
 						in srgb,
-						var(--lwt-text-color) 20%,
+						var(--newtab-text-primary-color, var(--lwt-text-color)) 20%,
 						transparent
 					);
 					--selection-bar-background-color-hot: color-mix(
 						in srgb,
-						var(--lwt-text-color) 40%,
+						var(--newtab-text-primary-color, var(--lwt-text-color)) 40%,
 						transparent
 					);
-					--selection-bar-background-color-active: var(--lwt-text-color);
+					--selection-bar-background-color-active: var(--newtab-text-primary-color, var(--lwt-text-color));
 	
 					--footer-item-color-hot: color-mix(
 						in srgb,
 						var(--lwt-text-color) 90%,
 						black
 					);
-					--footer-menu-button-glyph-background-color-normal: var(
-						--lwt-text-color
-					);
+					--footer-menu-button-glyph-background-color-normal: var(--lwt-text-color);
 					--footer-menu-item-link-color: var(--lwt-accent-color);
 					--footer-vertical-separator-background-color: color-mix(
 						in srgb,
-						var(--lwt-text-color) 40%,
+						var(--newtab-text-primary-color, var(--lwt-text-color)) 40%,
 						transparent
 					);
 
@@ -234,6 +232,17 @@
 				var(--chrt-frame) 40%,
 				transparent
 			);
+		}
+	}
+
+	&[gkbranding="chromium"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chromium/IDR_WEBSTORE_ICON_24.png");
+		}
+	}
+	&[gkbranding="chrome"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chrome/IDR_WEBSTORE_ICON_24.png");
 		}
 	}
 }
@@ -457,8 +466,6 @@
 		padding-inline-start: 15px;
 
 		&::after {
-			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/IDR_WEBSTORE_ICON_24.png");
-
 			margin-block-start: 3px;
 			margin-inline-start: 12px;
 		}

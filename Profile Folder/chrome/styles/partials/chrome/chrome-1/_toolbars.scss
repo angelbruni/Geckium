@@ -333,14 +333,14 @@
 						) !important;
 					}
 
-					&[personalbar="newtab"] {
+					/*&[personalbar="newtab"] {
 						--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 						--personal-toolbar-border: color-mix(
 							in srgb,
 							var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
 							black
 						) !important;
-					}
+					}*/
 
 					--toolbarbutton-border-color-normal: color-mix(
 						in srgb,
@@ -708,7 +708,7 @@
 		}
 	}
 
-	&[personalbar="newtab"] {
+	/*&[personalbar="newtab"] {
 		--personal-toolbar: rgb(210, 225, 246) !important;
 		--personal-toolbar-border: rgb(172, 201, 238) !important;
 
@@ -752,14 +752,14 @@
 				margin-top: 0 !important;
 			}
 		}
-	}
-	&:not([personalbar="newtab"]) {
+	}*/
+	//&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
 			> * {
 				margin-top: -5px !important;
 			}
 		}	
-	}
+	//}
 }
 
 #navigator-toolbox {
@@ -1439,6 +1439,10 @@ toolbarspring {
 
 #PlacesToolbarItems {
 	gap: 2px;
+}
+
+#PlacesToolbarDropIndicator {
+	list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/toolbar_drag_indicator.svg") !important;
 }
 
 #toolbar-menubar 

@@ -83,7 +83,9 @@
 
         &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&:not([lwtheme-id="#{$gtkplus}"]) {
-				--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+				&[captionbuttonbackground="true"] {
+					--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+				}
 
 
 				&:not([privatebrowsingmode="temporary"]),
@@ -233,7 +235,7 @@
     }
 	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
 		--titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
-		--titlebar-inactive: var(--chrt-frame-inactive, var(--default-titlebar-inactive)) !important;
+		--titlebar-inactive: var(--chrt-frame-inactive, var(--chrt-frame, var(--default-titlebar-inactive))) !important;
 
 		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
 
@@ -253,7 +255,7 @@
 
 				&:-moz-window-inactive {
 					&::before {
-						opacity: .5;
+						filter: contrast(.5) brightness(1.4);
 					}
 				}
 			}
