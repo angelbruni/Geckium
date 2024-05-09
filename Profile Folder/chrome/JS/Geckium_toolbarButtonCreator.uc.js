@@ -539,17 +539,17 @@ window.addEventListener("load", function () {
 				items: [
 					{
 						1: {
-							id: "cut11",
+							id: "cut6",
 							l10nid: "cut",
 							command: "cmd_cut",
 						},
 						2: {
-							id: "copy11",
+							id: "copy6",
 							l10nid: "copy",
 							command: "cmd_copy",
 						},
 						3: {
-							id: "paste11",
+							id: "paste6",
 							l10nid: "paste",
 							command: "cmd_paste",
 						},
@@ -558,26 +558,26 @@ window.addEventListener("load", function () {
 			},
 			7: {},
 			8: {
-				id: "zoom11",
+				id: "zoom6",
 				l10nid: "zoom",
 				items: [
 					{
 						1: {
-							id: "smaller11",
+							id: "smaller6",
 							command: "cmd_fullZoomReduce",
 							label: "-",
 						},
 						2: {
-							id: "normal11",
+							id: "normal6",
 						},
 						3: {
-							id: "larger11",
+							id: "larger6",
 							command: "cmd_fullZoomEnlarge",
 							label: "+",
 						},
 						4: {},
 						5: {
-							id: "fullScreen11",
+							id: "fullScreen6",
 							click: "BrowserFullScreen();",
 						},
 					},
@@ -585,25 +585,25 @@ window.addEventListener("load", function () {
 			},
 			9: {},
 			10: {
-				id: "savePage11",
+				id: "savePage6",
 				command: "Browser:SavePage",
 				l10nid: "savePageAs",
 				key: "key_savePage",
 			},
 			11: {
-				id: "find11",
+				id: "find6",
 				l10nid: "find",
 				command: "cmd_find",
 				key: "key_find",
 			},
 			12: {
-				id: "print11",
+				id: "print6",
 				l10nid: "print",
 				command: "cmd_print",
 				key: "printKb",
 			},
 			13: {
-				id: "tools11",
+				id: "tools6",
 				l10nid: "tools",
 				subItems: [
 					{
@@ -706,7 +706,7 @@ window.addEventListener("load", function () {
 				click: "openPreferences()",
 			},
 			25: {
-				id: "settings11",
+				id: "settings6",
 				l10nid: "settings",
 				click: "openPreferences()",
 			},

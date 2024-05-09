@@ -94,10 +94,10 @@ class gkVisualStyles {
 			{
 				id: 4,
 				int: 6,
-				basedOnVersion: "6",
+				basedOnVersion: "6.0.453.1",
 				year: [2010],
 				number: "six",
-				styles: ["chrome"],
+				styles: ["chrome", "page"],
 			},
 			{
 				id: 5,
@@ -428,6 +428,19 @@ window.addEventListener("load", gkLWTheme.setCustomThemeModeAttrs);
 window.addEventListener("load", customThemeColorizeTabGlare);
 Services.prefs.addObserver("Geckium.customtheme.mode", customThemeModeObserver, false);
 Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customThemeModeObserver, false);
+
+function lwThemeApplyBackgroundCaptionButtons() {
+	document.documentElement.setAttribute("captionbuttonbackground", gkPrefUtils.tryGet("Geckium.lwtheme.captionButtonBackground").bool)
+}
+const lwThemeApplyBackgroundCaptionButtonsObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			lwThemeApplyBackgroundCaptionButtons();
+		}
+	},
+};
+window.addEventListener("load", lwThemeApplyBackgroundCaptionButtons);
+Services.prefs.addObserver("Geckium.lwtheme.captionButtonBackground", lwThemeApplyBackgroundCaptionButtonsObs, false);
 
 function enableMoreGTKIcons() {
 	document.documentElement.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);

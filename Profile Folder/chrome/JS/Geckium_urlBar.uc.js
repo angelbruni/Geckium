@@ -83,6 +83,13 @@ function styleURLBar() {
 window.addEventListener("load", styleURLBar);
 window.addEventListener("appearanceChanged", styleURLBar);
 
+function changeNotificationPopupBoxPos() {
+	const notificationPopupBox = document.getElementById("notification-popup-box");
+
+	gkInsertElm.before(notificationPopupBox, document.getElementById("page-action-buttons"));
+}
+window.addEventListener("load", changeNotificationPopupBoxPos);
+
 function updateProtocol() {
 	const identityIconBox = document.getElementById("identity-icon-box");
 	if (!document.getElementById("custom-identity-label")) {

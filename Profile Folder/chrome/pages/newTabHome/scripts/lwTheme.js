@@ -26,6 +26,11 @@ function setProperties() {
 		if (newTabBackgroundColor)
 			document.documentElement.style.setProperty("--newtab-background-color", newTabBackgroundColor);	
 
+		document.documentElement.style.removeProperty("--newtab-text-primary-color");
+		const newTabColor = lwThemeResource.ntp_text;
+		if (newTabColor)
+			document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
+
 		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
 		if (toolbarButtonIconFill)
@@ -50,9 +55,19 @@ function setProperties() {
 		fetch(imageConfigPath)
 			.then((response) => response.json())
 			.then((json) => {
+				if (json.backgroundImage) {
+					let backgroundImageUrls = [];
+					for (let key in json.backgroundImage) {
+						if (json.backgroundImage.hasOwnProperty(key)) {
+							backgroundImageUrls.push(`url(chrome://userchrome/content/lwThemes/${activeThemeID}/${json.backgroundImage[key]})`);
+						}
+					}
+					document.documentElement.style.setProperty("--lwt-newtab-background-image", backgroundImageUrls.join(', '));
+				}
+
 				if (json.imageRendering)
 					document.documentElement.style.setProperty("--lwt-newtab-image-rendering", json.imageRendering);
-
+					
 				if (json.backgroundSize)
 					document.documentElement.style.setProperty("--lwt-newtab-background-size", json.backgroundSize);
 
@@ -68,11 +83,26 @@ function setProperties() {
 				if (json.backgroundRepeat)
 					document.documentElement.style.setProperty("--lwt-newtab-background-repeat", json.backgroundRepeat);
 
-				console.log(json)
+				if (json.attributionImage)
+					document.documentElement.style.setProperty("--lwt-newtab-attribution-image", `url(chrome://userchrome/content/lwThemes/${activeThemeID}/${json.attributionImage})`);
+
+				if (json.attributionWidth)
+					document.documentElement.style.setProperty("--lwt-newtab-attribution-width", json.attributionWidth);
+
+				if (json.attributionHeight)
+					document.documentElement.style.setProperty("--lwt-newtab-attribution-height", json.attributionHeight);
 			});
 
         // Check for supported image formats and set the background image accordingly
-        const supportedFormats = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
+        const supportedFormats = [
+			".gif",
+			".jpg",
+			".jpeg",
+			".png",
+			".apng",
+			".svg",
+			".webp"
+		];
 
         // Function to check if an image exists
         const imageExists = (src, callback) => {
@@ -86,11 +116,8 @@ function setProperties() {
         let backgroundImage;
         const checkNextFormat = (index) => {
             if (index >= supportedFormats.length) {
-                if (backgroundImage) {
+                if (backgroundImage)
 					document.documentElement.style.setProperty("--lwt-newtab-image", backgroundImage);
-				} else {
-					console.error("No supported image format found for the specified path:", imagePath);
-				}
                 return;
             }
 

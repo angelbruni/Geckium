@@ -19,7 +19,7 @@ function openWindow(windowName, features) {
 function updateZoomLabel() {
 	const currentZoomLevel = gBrowser.ownerGlobal.gNavigatorBundle.getFormattedString("zoom-button.label", [ Math.round(gBrowser.ownerGlobal.ZoomManager.zoom * 100), ]); 
 
-	const menuZoomElm = document.getElementById("menu_normal11");
+	const menuZoomElm = document.getElementById("menu_normal6");
 	if (menuZoomElm)
 		menuZoomElm.setAttribute('label', currentZoomLevel);
 }

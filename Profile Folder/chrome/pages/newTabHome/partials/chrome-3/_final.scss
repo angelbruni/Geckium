@@ -11,18 +11,32 @@
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
 				&:not([lwtheme-id*="#{$gtkplus}"]) {
+					&[style*="--lwt-newtab-attribution-image"] {
+						#attribution {
+							display: flex !important;
+						}
+
+						#attribution-img {
+							background-image: var(--lwt-newtab-attribution-image) !important;
+							width: var(--lwt-newtab-attribution-width) !important;
+							height: var(--lwt-newtab-attribution-height) !important;
+						}
+					}
+
 					body {
-						background: var(--newtab-background-color, color-mix(
-							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 70%,
-							black
-						));
-						background-image: var(--lwt-newtab-image);
+						background-color: var(--newtab-background-color);
+						background-image: var(--lwt-newtab-background-image, var(--lwt-newtab-image));
 						image-rendering: var(--lwt-newtab-image-rendering);
 						background-size: var(--lwt-newtab-background-size);
 						background-position: var(--lwt-newtab-background-position);
-						background-position-x: var(--lwt-newtab-background-position-x);
-						background-position-y: var(--lwt-newtab-background-position-y);
+
+						&[style*="--lwt-newtab-background-position-y"] {
+							background-position-x: var(--lwt-newtab-background-position-x);
+						}
+						&[style*="--lwt-newtab-background-position-y"] {
+							background-position-x: var(--lwt-newtab-background-position-y);
+						}
+
 						background-repeat: var(--lwt-newtab-background-repeat);
 					}
 				}
@@ -101,6 +115,10 @@ body {
 	flex-shrink: 0;
 }
 
+#attribution-img {
+	background-size: contain;
+	background-repeat: no-repeat;
+}
 
 @import "most-visited";
 @import "recently-closed";

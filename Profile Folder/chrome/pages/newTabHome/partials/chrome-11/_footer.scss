@@ -3,6 +3,7 @@
 	--logo-wordmark-color: var(--default-logo-wordmark-color);
 
 	&[geckium-choice="eleven"] {
+		&[style*="--lwt-newtab-attribution-image"],
 		&[style*="--chrt-theme-ntp-attribution"] {
 			#footer {
 				display: none !important;
@@ -17,7 +18,11 @@
 		&[lwtheme-id*="@mozilla.org"] {
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
 				&[footer-themable="true"] {
-					--logo-wordmark-color: var(--lwt-text-color) !important;
+					--logo-wordmark-color: var(--newtab-text-primary-color, var(--lwt-text-color)) !important;
+				
+					#logo-icon {
+						fill: var(--logo-wordmark-color);
+					}
 				}
 			}
 		}
@@ -25,9 +30,22 @@
 	// chrtheme
 	&[lwtheme-id*="compact-light"][chrtheme="true"] {
 		&[footer-themable="true"] {
-			#logo_wordmark {
-				background: var(--section-color) !important;
+			#logo-icon {
+				fill: var(--section-color);
 			}
+		}
+	}
+
+	&[gkbranding="geckium"] {
+		#logo-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+			fill: #209f43;
+			-moz-context-properties: fill, fill-opacity;
+		}
+
+		#logo-wordmark {
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/geckium/product_name.svg");
+			margin-inline-start: 2px;
 		}
 	}
 
@@ -43,11 +61,11 @@
 
 	&[gkbranding="chrome"] {
 		#logo-icon {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/google-chrome/product_icon.png");
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/chrome/product_icon.png");
 		}
 
 		#logo-wordmark {
-			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/google-chrome/product_name.png");
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/chrome/product_name.png");
 		}
 	}
 }

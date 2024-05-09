@@ -1,0 +1,62 @@
+#main {
+	margin-block-start: 0 !important;
+}
+
+#view-toolbar {
+	padding-block-start: 4px !important;
+	margin-block-end: 20px !important;
+}
+
+.window-menu-button .window-menu {
+	padding-inline: 0;
+	padding-block: 6px;
+	border: 1px solid rgb(126,126,126);
+	background: linear-gradient(
+		to bottom,
+		white,
+		rgb(238,238,238)
+	);
+	font-size: 10pt;
+
+	checkbox {
+		padding-block: 0;
+		padding-inline-start: 0px;
+		padding-inline-end: 19px;
+
+		&:not([disabled]) {
+			&:hover {
+				color: black;
+
+				background-color: #DCE5FA;
+			}
+	
+			&:active {
+				color: white;
+
+				background-color: #426dc9;
+			}
+		}
+
+		.checkbox-check {
+			width: 19px;
+			height: 19px;
+		}
+
+		label {
+			align-self: center !important;
+		}
+	}
+}
+
+.section {
+	> h2:first-child {
+		margin-block-start: 10px !important;
+		margin-inline-end: 5px !important;
+		font-weight: bold;
+		font-size: 10pt;
+		color: var(--recently-closed-color);
+	}
+}
+
+@import "most-visited";
+@import "recently-closed";

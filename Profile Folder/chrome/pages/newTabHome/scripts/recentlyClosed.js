@@ -42,10 +42,12 @@ function createRecentlyClosed() {
 
 			visitedURLs.add(url);
 
-			title = state.entries[0].title.replace(/[&<>"']/g, match => specialCharacters[match]);
+			title = state.entries[0].title;
 
 			if (title == undefined)
 				return;
+
+			title = title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			if (!state.image)
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
@@ -95,5 +97,14 @@ function createRecentlyClosed() {
 			}
 			// #endregion
 		});
+	} else {
+		if (appearanceChoice == 6 || appearanceChoice == 7) {
+			const recentlyClosedMenuButton = document.getElementById("recently-closed-menu-button");
+
+			const verticalSeparator = document.getElementById("vertical-separator")
+
+			recentlyClosedMenuButton.style.display = "none";
+			verticalSeparator.style.display = "none";
+		}
 	}
 }

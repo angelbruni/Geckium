@@ -1,4 +1,4 @@
-&[personalbar="newtab"] {
+/*&[personalbar="newtab"] {
 	--personal-toolbar: rgb(241,241,241) !important;
 
 	// Custom theme support
@@ -23,6 +23,16 @@
 		&::after {
 			top: 0px;
 			height: 100%;
+		}
+	}
+}*/
+
+&[geckium-choice="fortyseven"] {
+	#PersonalToolbar {
+		#personal-toolbar-empty-description {
+			.text-link {
+				color: inherit !important;
+			}
 		}
 	}
 }

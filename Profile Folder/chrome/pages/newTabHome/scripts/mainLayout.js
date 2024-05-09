@@ -125,10 +125,10 @@ function createMainLayout() {
 		</hbox>
 		`
 	} else if (appearanceChoice <= 4) {
+		menuBtnsContainer = "#view-toolbar";
+
 		if (appearanceChoice == 1) {
-			// Chrome 0 - 5
-			menuBtnsContainer = "#view-toolbar";
-	
+			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
@@ -175,9 +175,7 @@ function createMainLayout() {
 			</vbox>
 			`;
 		} else if (appearanceChoice <= 2) {
-			// Chrome 0 - 5
-			menuBtnsContainer = "#view-toolbar";
-	
+			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
@@ -210,10 +208,8 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 4) {
-			// Chrome 0 - 5
-			menuBtnsContainer = "#view-toolbar";
-	
+		} else if (appearanceChoice <= 3) {
+			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
 				<hbox id="view-toolbar">
@@ -230,6 +226,45 @@ function createMainLayout() {
 				<div id="most-visited"></div>
 				<hbox id="recently-closed">
 					<label value="${ntpBundle.GetStringFromName("recentlyClosed")}"></label>
+					<hbox class="items"></hbox>
+					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
+				</hbox>
+				<vbox id="attribution">
+					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
+					<html:div id="attribution-img"></html:div>
+				</vbox>
+			</vbox>
+			`;
+	
+			footer = `
+			<vbox id="footer">
+				<html:a id="extensions-link" href="https://chrome.google.com/extensions">
+					<html:img id="promo-image" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-5/newtab_extensions_promo.png"></html:img>
+				</html:a>
+			</vbox>
+			`;
+		} else if (appearanceChoice <= 4) {
+			// Chrome 0 - 5
+			main = `
+			<vbox id="main">
+				<hbox id="view-toolbar">
+					<html:button id="option-button" type="menu" class="window-menu-button" title="${ntpBundle.GetStringFromName("changePageLayout")}">
+						<vbox id="option-menu" class="window-menu">
+							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
+							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
+							<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>
+						</vbox>
+					</html:button>
+				</hbox>
+				<vbox class="sections">
+					<vbox id="most-visited-section" class="section">
+						<h2>${ntpBundle.GetStringFromName("mostVisited")}</h2>
+						<html:div id="most-visited" />
+					</vbox>
+				</vbox>
+				
+				<hbox id="recently-closed" class="section">
+					<html:h2>${ntpBundle.GetStringFromName("recentlyClosed")}</html:h2>
 					<hbox class="items"></hbox>
 					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>

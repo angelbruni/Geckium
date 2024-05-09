@@ -5,7 +5,7 @@ function insertNTPVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	for (var i = 0; i < 8; i++) {
+	for (var i = 0; i < 9; i++) {
 		// Get the appearance details from the map
 		var appearance = gkVisualStyles.getVisualStyles("page")[i];
 

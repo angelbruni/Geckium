@@ -1,0 +1,12 @@
+& {
+	&[gkbranding="chromium"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-25/chromium/IDR_WEBSTORE_ICON_24.png");
+		}
+	}
+	&[gkbranding="chrome"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-25/chrome/IDR_WEBSTORE_ICON_24.png");
+		}
+	}
+}
