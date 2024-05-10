@@ -50,16 +50,18 @@ export class ColorUtils {
 
 	static IsDark(color) {
 		const g_luminance_midpoint = 0.211692036;
-		return this.GetRelativeLuminance(color) < g_luminance_midpoint;
+		return (this.GetRelativeLuminance(color) < g_luminance_midpoint);
 	}
 
 	static GetRelativeLuminance4f(color) {
-		let colorfR = color[0];
-		let colorfG = color[1];
-		let colorfB = color[2];
+		
+		//floating point conversion
+		let colorfR = color[0] / 255;
+		let colorfG = color[1] / 255;
+		let colorfB = color[2] / 255;
 
-		return (0.2126 * this.Linearize(colorfR)) + (0.7152 * this.Linearize(colorfG)) +
-			   (0.0722 * this.Linearize(colorfB));
+		return ((0.2126 * this.Linearize(colorfR)) + (0.7152 * this.Linearize(colorfG)) +
+			   (0.0722 * this.Linearize(colorfB)));
 	}
 
 	static GetColorWithMaxcontrast(color) {
