@@ -1,0 +1,97 @@
+:root spacer {
+  flex: 1;
+}
+:root label,
+:root h1,
+:root p {
+  margin: 0;
+}
+:root label[is=text-link] {
+  color: rgb(0, 51, 153);
+}
+:root label[is=text-link]:active {
+  color: red;
+}
+:root h1 {
+  font-size: 22pt;
+  font-weight: normal;
+  margin-block-end: 20px;
+}
+:root #main {
+  width: 490px;
+  height: 266px;
+  gap: 8px;
+  line-height: 15px;
+}
+:root #main > *:not(#banner) {
+  padding-inline-start: 13px;
+  padding-inline-end: 7px;
+}
+:root[gkbranding=chromium] #banner {
+  background-image: url("chrome://windows/content/about/assets/chrome-1/imgs/chromium/about_background.png"), linear-gradient(to bottom, white, white 143px, rgb(190, 190, 190) 143px);
+}
+:root[gkbranding=chromium] #updateCheckFailed,
+:root[gkbranding=chromium] footer > image,
+:root[gkbranding=chromium] footer > p {
+  display: none !important;
+}
+:root[gkbranding=chrome] #banner {
+  background-image: url("chrome://windows/content/about/assets/chrome-1/imgs/google-chrome/about_background.png"), linear-gradient(to bottom, white, white 143px, rgb(190, 190, 190) 143px);
+}
+:root #banner {
+  background-color: white;
+  background-position: right;
+  background-repeat: no-repeat;
+  border-block-end: 1px solid white;
+  margin-block-end: -1px;
+  padding-block: 23px;
+  padding-inline: 14px;
+  box-sizing: border-box;
+  min-height: 145px;
+}
+:root #updateCheckFailed {
+  display: none;
+}
+:root footer {
+  margin-block-start: 6px;
+  align-items: center;
+}
+:root footer > image {
+  width: 16px;
+  height: 16px;
+  margin-inline-end: 7px;
+}
+:root button {
+  min-width: 75px;
+  min-height: 26px;
+  margin-block-end: 2px;
+}
+:root:not([geckium-one]) * {
+  visibility: hidden;
+}
+:root[geckium-four][geckium-choice=four] #banner,
+:root[geckium-four][geckium-choice=four] #banner * {
+  font-weight: bold !important;
+}
+:root[geckium-four] #main {
+  width: 516px;
+}
+:root[geckium-four] button {
+  min-width: 87px;
+}
+:root[geckium-four][geckium-eleven][gkbranding=chromium] #banner {
+  background-image: url("chrome://windows/content/about/assets/chrome-11/imgs/chromium/about_background.png"), linear-gradient(to bottom, white, white 143px, rgb(190, 190, 190) 143px);
+}
+:root[geckium-four][geckium-eleven][gkbranding=chrome] #banner {
+  background-image: url("chrome://windows/content/about/assets/chrome-11/imgs/chrome/about_background.png"), linear-gradient(to bottom, white, white 143px, rgb(190, 190, 190) 143px);
+}
+:root[geckium-four][geckium-eleven][geckium-twentyone] label[is=text-link] {
+  color: rgb(0, 102, 204);
+}
+:root[geckium-four][geckium-eleven][geckium-twentyone] #main {
+  width: 576px;
+  height: 307px;
+}
+:root[geckium-four][geckium-eleven][geckium-twentyone] #updateCheckFailed {
+  display: flex;
+}/*# sourceMappingURL=eras.css.map */

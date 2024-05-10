@@ -1,0 +1,307 @@
+@charset "UTF-8";
+:root[contentmode=wizard] .disable-in-wizard {
+  pointer-events: none;
+  opacity: 0.5;
+}
+:root[contentmode=wizard] .disable-in-wizard#global-appearance-container {
+  max-height: 100px;
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+          mask-image: linear-gradient(to bottom, black, transparent);
+}
+:root[contentmode=wizard] .show-in-wizard {
+  display: flex;
+}
+:root[contentmode=wizard] .content:not([data-page-container]) {
+  padding-block-end: 91px !important;
+}
+:root:not([contentmode=wizard]) .show-in-wizard {
+  display: none;
+}
+
+#window {
+  width: 1160px;
+  height: 710px;
+}
+
+.content:not([data-page-container]) {
+  padding: var(--inner-padding);
+}
+
+h4 .about-flag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  width: 28px;
+  margin-inline-start: 4px;
+  cursor: pointer;
+  transition: all 150ms ease-in;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+h4 .about-flag::before {
+  content: "";
+  height: 18px;
+  width: 18px;
+  -webkit-mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
+          mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  -webkit-mask-position: center center;
+          mask-position: center center;
+  background: rgb(126, 126, 126);
+}
+h4 .about-flag:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+h4 .about-flag .ripple {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.people-picture {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: flex;
+  position: relative;
+  width: 58px;
+  aspect-ratio: 1/1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 4px 0px !important;
+}
+.people-picture:not([disabled]) {
+  cursor: pointer;
+}
+.people-picture.color.ripple-enabled .ripple {
+  background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent);
+}
+.people-picture:checked {
+  outline: 2px solid var(--secondary-color, var(--primary-color));
+  outline-offset: -2px;
+}
+.people-picture:checked::before, .people-picture:checked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.people-picture:checked::before {
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--secondary-color, var(--primary-color)), transparent 60%), rgba(0, 0, 0, 0.2));
+}
+.people-picture:checked::after {
+  -webkit-mask-image: url(chrome://userchrome/content/frameworks/GeckiumMaterial/icons/check.svg);
+          mask-image: url(chrome://userchrome/content/frameworks/GeckiumMaterial/icons/check.svg);
+  -webkit-mask-size: 32px 32px;
+          mask-size: 32px 32px;
+  -webkit-mask-position: center center;
+          mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  background: rgb(255, 255, 255);
+}
+
+.banner {
+  position: relative;
+  background: url("chrome://userchrome/content/windows/gsettings/imgs/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+  fill: AccentColor;
+  -moz-context-properties: fill, fill-opacity;
+  padding: var(--inner-padding);
+  align-items: center;
+  font-weight: 500;
+  gap: 32px;
+}
+.banner image {
+  transition: fill 320ms;
+}
+.banner image:hover {
+  fill: #209f43;
+}
+.banner > image {
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+#ntp-visual-styles-grid {
+  /*> [for="chrome-6"],
+  > [for="chrome-25"],
+  > [for="chrome-68"] {
+  	display: none;
+  }*/
+}
+#ntp-visual-styles-grid .link.chrome-appearance {
+  height: 163px;
+}
+
+.chrome-appearance .radio-parent {
+  margin-inline-start: 0 !important;
+}
+
+#profile-pic-content[profile-pic-button=false] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.profile-mode-option {
+  display: none;
+}
+
+#card-avatar:not([profile-pic-mode="0"], [profile-pic-mode="2"]) {
+  padding-block-end: 19px;
+}
+#card-avatar > .item:nth-child(2) {
+  display: none;
+}
+#card-avatar[profile-pic-mode="1"] > .item:nth-child(2) {
+  display: flex;
+}
+#card-avatar[profile-pic-mode="1"] #profile-pictures-grid {
+  display: grid;
+}
+#card-avatar[profile-pic-mode="0"] > .item:nth-child(1), #card-avatar[profile-pic-mode="2"] > .item:nth-child(1) {
+  border-bottom: 0;
+}
+#card-avatar[profile-pic-mode="3"] > .item:nth-child(2) {
+  display: flex;
+}
+#card-avatar[profile-pic-mode="3"] #profile-pictures-path {
+  display: flex;
+}
+
+#gk_version {
+  position: relative;
+  overflow: hidden;
+  padding-inline: 8px;
+  border-radius: 9999px;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: background-color 155ms;
+}
+#gk_version:not([disabled]) {
+  cursor: pointer;
+}
+#gk_version:not([disabled]):hover, #gk_version:not([disabled]):focus-visible {
+  background: rgba(153, 153, 153, 0.2);
+}
+#gk_version:not([disabled]) .ripple {
+  background: rgba(153, 153, 153, 0.4);
+}
+
+#chrthemes-list {
+  display: flex;
+  background: transparent !important;
+  box-shadow: none !important;
+  flex-wrap: wrap;
+  margin-inline: -10px;
+  gap: 20px 0;
+}
+
+.chrthemewrapper {
+  padding-inline: 10px;
+  width: calc(50% - 20px);
+}
+
+.item.app {
+  padding-block: 6px;
+}
+.item.app image {
+  width: 48px;
+  height: 48px;
+  margin-inline-start: -8px;
+}
+.item.app label {
+  margin-inline-start: 8px;
+}
+.item.chrtheme {
+  position: relative;
+  display: block;
+  cursor: pointer !important;
+  padding-inline: 10px;
+}
+.item.chrtheme .banner {
+  padding: 0 !important;
+  margin-inline: -19px;
+  height: 150px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.item.chrtheme .icon {
+  margin-inline-end: 16px;
+  width: 48px;
+  height: 48px;
+}
+.item.chrtheme .icon[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
+  filter: saturate(0);
+  fill: #209f43;
+  -moz-context-properties: fill, fill-opacity;
+  opacity: 0.5;
+}
+.item.chrtheme .name, .item.chrtheme .description {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 !important;
+}
+.item.chrtheme .version {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  padding-inline: 4px;
+  padding-block: 2px;
+  color: white;
+  font-weight: 500;
+  background: var(--secondary-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+
+@media not (-moz-platform: windows) {
+  #os-ux-button,
+  #os-comp-button {
+    display: none;
+  }
+}
+.icon-picker {
+  height: -moz-fit-content;
+  height: fit-content;
+  align-items: center;
+}
+.icon-picker .button {
+  min-width: 0;
+  min-height: 0;
+  padding: 8px;
+  box-sizing: content-box;
+}
+.icon-picker image {
+  width: 100%;
+  height: 100%;
+}
+.icon-picker label {
+  white-space: nowrap;
+}
+.icon-picker.favicon .button {
+  width: 16px;
+  height: 16px;
+}
+.icon-picker.icon .button {
+  width: 128px;
+  height: 128px;
+}
+
+#app-name::before {
+  content: " ";
+}
+
+.modal[data-modal=editApp_modal][data-app=null] #deleteBtn,
+.modal[data-modal=editApp_modal][data-app=null] #OKBtn {
+  display: none;
+}
+.modal[data-modal=editApp_modal]:not([data-app=null]) #createBtn {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

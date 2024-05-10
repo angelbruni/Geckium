@@ -1,0 +1,39 @@
+#window {
+  width: 1080px;
+  height: 768px;
+}
+
+.content-container {
+  overflow: hidden !important;
+}
+
+.banner {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  color: black;
+  list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+  fill: #209f43;
+  -moz-context-properties: fill, fill-opacity;
+  padding: var(--inner-padding);
+  align-items: center;
+  font-weight: 500;
+  gap: 32px;
+}
+.banner > image {
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5));
+  margin-left: -200px;
+}
+
+.gklogo {
+  content: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+  fill: AccentColor;
+  -moz-context-properties: fill, fill-opacity;
+  height: 24px;
+  width: 24px;
+  margin-block-end: -8px;
+}/*# sourceMappingURL=style.css.map */
