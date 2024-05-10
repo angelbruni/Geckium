@@ -30,6 +30,51 @@ const { gkColorUtils } = ChromeUtils.importESModule("chrome://modules/content/Ge
 
 // color_utils.cc from Chromium source code converted to JavaScript by Doot.
 export class ColorUtils {
+	
+	// Assumes sRGB.
+	static Linearize(component) {
+		// The W3C link in the header uses 0.03928 here.  See
+		// https://en.wikipedia.org/wiki/SRGB#Theory_of_the_transformation for
+		// discussion of why we use this value rather than that one.
+		if (component <= 0.04045) {
+			return (component / 12.92);
+		} 
+		else {
+			return Math.pow((component + 0.055) / 1.055, 2.4);
+		}						
+	}
+	
+	static GetRelativeLuminance(color) {
+		return this.GetRelativeLuminance4f(color);
+	}
+
+	static IsDark(color) {
+		const g_luminance_midpoint = 0.211692036;
+		return this.GetRelativeLuminance(color) < g_luminance_midpoint;
+	}
+
+	static GetRelativeLuminance4f(color) {
+		let colorfR = color[0];
+		let colorfG = color[1];
+		let colorfB = color[2];
+
+		return (0.2126 * this.Linearize(colorfR)) + (0.7152 * this.Linearize(colorfG)) +
+			   (0.0722 * this.Linearize(colorfB));
+	}
+
+	static GetColorWithMaxcontrast(color) {
+		if (this.IsDark(color)) {
+			//return white
+			console.log("it's dark, return white");
+			return [255, 255, 255];
+		}
+		else {
+			//return kGoogleGrey900
+			console.log("it's bright, return a dark colour");
+			return [32, 33, 36];
+		} 
+	}
+
 	/**
 	 * Note: these transformations assume sRGB as the source color space
 	 */
@@ -132,7 +177,7 @@ export class ColorUtils {
 	static HSLShift(color, shift) {
 		// Validate HSL Shift
 		shift = this.MakeHSLShiftValid(shift);
-
+		
 		// Convert from RGB to HSL, then HSL to float
 		let hslHSL = gkColorUtils.HSLtoFloat(this.ColorToHSL(color));
 		let hslH = hslHSL[0];
