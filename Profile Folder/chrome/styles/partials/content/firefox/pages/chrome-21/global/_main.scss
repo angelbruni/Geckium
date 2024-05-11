@@ -155,8 +155,16 @@ recommended-themes-section,
 	padding-inline: 0 !important;
 
 	groupbox,
-	#aboutCategory {
+	#aboutCategory,
+	addon-list,
+	discovery-pane {
 		animation: fadeInContainer 200ms forwards !important;
+	}
+
+	addon-list,
+	discovery-pane {
+		display: inline-block !important;
+		width: 100% !important;
 	}
 
 	groupbox {
