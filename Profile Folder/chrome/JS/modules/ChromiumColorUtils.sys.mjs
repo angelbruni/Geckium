@@ -28,53 +28,47 @@
 
 const { gkColorUtils } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 
+const { gfx } = ChromeUtils.importESModule("chrome://modules/content/ChromiumColorPalette.sys.mjs");
+
 // color_utils.cc from Chromium source code converted to JavaScript by Doot.
 export class ColorUtils {
 	
-	// Assumes sRGB.
+	/**
+	 * The darkest reference color in color_utils.
+	 */
+	static g_darkest_color = gfx.kGoogleGrey900;
+
+	/**
+	 * The luminance midpoint for determining if a color is light or dark.  This is
+	 * the value where white and g_darkest_color contrast equally.  This default
+	 * value is the midpoint given kGoogleGrey900 as the darkest color.
+	 */
+	static g_luminance_midpoint = 0.211692036;
+
+	/**
+	 * Assumes sRGB.
+	 */
 	static Linearize(component) {
 		// The W3C link in the header uses 0.03928 here.  See
 		// https://en.wikipedia.org/wiki/SRGB#Theory_of_the_transformation for
 		// discussion of why we use this value rather than that one.
-		if (component <= 0.04045) {
+		if (component <= 0.04045)
 			return (component / 12.92);
-		} 
-		else {
-			return Math.pow((component + 0.055) / 1.055, 2.4);
-		}						
+		else
+			return Math.pow((component + 0.055) / 1.055, 2.4);				
 	}
-	
+
 	static GetRelativeLuminance(color) {
 		return this.GetRelativeLuminance4f(color);
 	}
 
-	static IsDark(color) {
-		const g_luminance_midpoint = 0.211692036;
-		return (this.GetRelativeLuminance(color) < g_luminance_midpoint);
-	}
-
 	static GetRelativeLuminance4f(color) {
-		
-		//floating point conversion
 		let colorfR = color[0] / 255;
 		let colorfG = color[1] / 255;
 		let colorfB = color[2] / 255;
 
-		return ((0.2126 * this.Linearize(colorfR)) + (0.7152 * this.Linearize(colorfG)) +
-			   (0.0722 * this.Linearize(colorfB)));
-	}
-
-	static GetColorWithMaxcontrast(color) {
-		if (this.IsDark(color)) {
-			//return white
-			console.log("it's dark, return white");
-			return [255, 255, 255];
-		}
-		else {
-			//return kGoogleGrey900
-			console.log("it's bright, return a dark colour");
-			return [32, 33, 36];
-		} 
+		return (0.2126 * this.Linearize(colorfR)) + (0.7152 * this.Linearize(colorfG)) +
+			   (0.0722 * this.Linearize(colorfB));
 	}
 
 	/**
@@ -179,7 +173,7 @@ export class ColorUtils {
 	static HSLShift(color, shift) {
 		// Validate HSL Shift
 		shift = this.MakeHSLShiftValid(shift);
-		
+
 		// Convert from RGB to HSL, then HSL to float
 		let hslHSL = gkColorUtils.HSLtoFloat(this.ColorToHSL(color));
 		let hslH = hslHSL[0];
@@ -229,5 +223,28 @@ export class ColorUtils {
 			b = b + ((255 - b) * ((shiftL - 0.5) * 2.0));
 		}
 		return [Math.round(r), Math.round(g), Math.round(b)];
+	}
+
+	/**
+	 * Returns true if |color| contrasts more with white than the darkest color.
+	 */
+	static IsDark(color) {
+		return this.GetRelativeLuminance(color) < this.g_luminance_midpoint;
+	}
+
+	/**
+	 * Returns whichever of white or the darkest available color contrasts more with |color|.
+	 */
+	static GetColorWithMaxContrast(color) {
+		if (this.IsDark(color)) {
+			//return white
+			console.log("it's dark, return white");
+			return [255, 255, 255];
+		}
+		else {
+			//return kGoogleGrey900
+			console.log("it's bright, return a dark colour");
+			return this.g_darkest_color;
+		} 
 	}
 }
