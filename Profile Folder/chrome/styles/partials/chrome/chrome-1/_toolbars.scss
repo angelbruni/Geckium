@@ -41,7 +41,7 @@
 	--default-toolbarbutton-icon-drop-shadow-color: white;
 	--toolbarbutton-icon-drop-shadow-color: var(--default-toolbarbutton-icon-drop-shadow-color);
 	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color)) drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color));
-	--default-toolbarbutton-icon-fill: rgb(65, 99, 154);
+	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
 	
 	&:not([style*="--toolbarbutton-icon-fill"]) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
@@ -1054,9 +1054,7 @@ toolbarspring {
 	&[disabled] {
 		.toolbarbutton-icon,
 		image:first-of-type {
-			opacity: 1 !important;
-
-			fill: color-mix(in srgb, var(--toolbarbutton-icon-fill) 20%, transparent) !important;
+			opacity: .5 !important;
 		}
 	}
 
@@ -1231,7 +1229,7 @@ toolbarspring {
 }
 
 #back-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/back.svg) !important;
+	list-style-image: var(--back-button-icon) !important;
 
 	&::after {
 		border-right: 1px solid var(--navigation-buttons-separator);
@@ -1240,32 +1238,32 @@ toolbarspring {
 }
 
 #forward-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/forward.svg) !important;
+	list-style-image: var(--forward-button-icon) !important;
 }
 
 #reload-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/reload.svg) !important;
+	list-style-image: var(--reload-button-icon) !important;
 }
 
 #stop-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/stop.svg) !important;
+	list-style-image: var(--stop-button-icon) !important;
 }
 
 #home-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/home.svg) !important;
+	list-style-image: var(--home-button-icon) !important;
 }
 
 #go-button-box {
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/go.svg);
+	list-style-image: var(--go-button-box-icon);
 }
 
 #star-button-box > #star-button {
 	width: fit-content !important;
 	height: fit-content !important;
-	list-style-image: url(chrome://userchrome/content/assets/img/toolbar/star.svg) !important;
+	list-style-image: var(--star-button-icon-normal) !important;
 
 	&[starred] {
-		list-style-image: url(chrome://userchrome/content/assets/img/toolbar/starred.svg) !important;
+		list-style-image: var(--star-button-icon-starred) !important;
 	}
 }
 
@@ -1274,7 +1272,7 @@ toolbarspring {
 	transform: translateX(1px);
 }
 
-.identity-box-button {
+#identity-icon-box {
 	padding: 0 !important;
 	min-height: 19px !important;
 	min-width: 19px !important;
@@ -1284,7 +1282,7 @@ toolbarspring {
 	display: none !important;
 }
 
-.identity-box-button,
+#identity-icon-box,
 #tracking-protection-icon-container {
 	&:hover:not([open="true"]),
 	&:hover:active,
@@ -1294,24 +1292,24 @@ toolbarspring {
 }
 
 #bookmarks-menu-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_bookmark.svg") !important;
+	list-style-image: var(--bookmarks-menu-button-icon) !important;
 }
 
 #gsettings-button {
-	list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+	list-style-image: var(--gsettings-button-icon);
 }
 
 #nav-bar-overflow-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/overflow.svg") !important;
+	list-style-image: var(--nav-bar-overflow-button-icon) !important;
 }
 
 #page-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-5/toolbar/menu_page.svg") !important;
+	list-style-image: var(--page-button-icon) !important;
 }
 
 #PanelUI-menu-button,
 #chrome-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-5/toolbar/menu_chrome.svg") !important;
+	list-style-image: var(--chrome-button-icon) !important;
 	background-position: center;
 }
 
@@ -1369,7 +1367,7 @@ toolbarspring {
 }
 
 #unified-extensions-button {
-	list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/menu_plugin.svg) !important;
+	list-style-image: var(--unified-extensions-button-icon) !important;
 }
 
 #PersonalToolbar,

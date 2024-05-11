@@ -40,12 +40,6 @@ class gkBranding {
 				"vendorName": "Google"
 			},
 			4: {
-				"name": "canary",
-				"fullName": "Google Chrome",
-				"productName": "Chrome",
-				"vendorName": ""
-			},
-			5: {
 				"name": "chromeos",
 				"fullName": "Chrome OS",
 				"productName": "Chrome OS",
@@ -57,8 +51,8 @@ class gkBranding {
 
 		if (currentChoice < 0 || !currentChoice)
 			currentChoice == 0;
-		else if (currentChoice > 4)
-			currentChoice == 4;
+		else if (currentChoice > 3)
+			currentChoice == 3;
 
 		if (method)
 			return branding[currentChoice][method];

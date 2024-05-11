@@ -20,7 +20,7 @@
 	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
 	--toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
 	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
-	--default-toolbarbutton-icon-fill: rgb(78, 91, 116);
+	--default-toolbarbutton-icon-fill: rgb(87, 102, 128);
 
 	&:not([lwtheme-id*="#{$gtkplus}"]) {
 		--toolbarbutton-border-color-hot: rgb(172, 172, 172);
@@ -196,12 +196,6 @@
 				}
 			}
 
-			&#home-button {
-				.toolbarbutton-icon {
-					margin-bottom: 2px !important;
-				}
-			}
-
 			&#unified-extensions-button,
 			&[type="menu"]:not(#back-button, #forward-button),
 			&#PanelUI-menu-button,
@@ -316,25 +310,4 @@
 			}
 		}
 	}
-}
-
-#unified-extensions-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_plugin.svg") !important;
-}
-
-#nav-bar-overflow-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/overflow.svg") !important;
-}
-
-#bookmarks-menu-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_bookmark.svg") !important;
-}
-
-#page-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_page.svg") !important;
-}
-
-#PanelUI-menu-button,
-#chrome-button {
-	list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/toolbar/menu_chrome.svg") !important;
 }

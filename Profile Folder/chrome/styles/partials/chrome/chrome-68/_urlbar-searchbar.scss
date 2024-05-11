@@ -120,3 +120,57 @@
 .urlbarView-title {
 	color: black;
 }
+
+.urlbar-input-box {
+	font-size: 10pt !important;
+}
+
+#identity-icon-box {
+	background: transparent !important;
+	border: 0 !important;
+	height: 16px !important;
+	align-self: center !important;
+}
+
+#custom-identity-label {
+	font-size: 10pt !important;
+}
+
+#nav-bar {
+	&[securestate="secure"],
+	&[securestate="ev"] {
+		#identity-icon {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/toolbar/omnibox_https_valid.svg) !important;
+		}
+	}
+
+	&[securestate="ev"] {
+		#identity-icon-box {
+			padding-inline-end: 9px !important;
+			border-inline-end: 1px solid rgb(166,166,166) !important;
+			border-radius: 0 !important;
+			margin-inline-end: 4px !important;
+
+			&:not([disabled]) {
+				&:hover,
+				&:active,
+				[open] {
+					background: transparent !important;
+				}
+			}
+		}
+
+		#identity-icon {
+			margin-inline-end: 0 !important;
+		}
+	}
+}
+
+#notification-popup-box {
+	&:not([disabled]) {
+		&:active,
+		&[open] {
+			fill: rgb(90,90,90) !important;
+		}
+	}
+}

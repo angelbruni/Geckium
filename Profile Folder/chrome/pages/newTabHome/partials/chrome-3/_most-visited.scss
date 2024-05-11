@@ -84,10 +84,6 @@
 					}
 		
 					--link-color: var(--newtab-text-primary-color) !important;
-		
-					&[style*="--arrowpanel-background"] {
-						--link-color: var(--newtab-text-primary-color, var(--arrowpanel-color, var(--lwt-accent-color))) !important;
-					}
 				}
 				&[lwtheme-id*="#{$gtkplus}"] {
 					--view-toolbar-buttons-bg: AccentColor !important;

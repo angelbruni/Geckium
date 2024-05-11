@@ -58,8 +58,10 @@
 							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="&gsettings.chromiumThemes;" />
 							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="&gsettings.chromiumExperiments;" />
 							<separator />
+							<button class="item ripple-enabled icon-account-circle" data-page-container="main" data-page="30" label="Geckium Decor" />
+							<separator />
 							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="&gsettings.settings;" />-->
-							<button class="item ripple-enabled icon-science" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="&gsettings.developerOptions;" />
+							<button class="item ripple-enabled icon-data-object" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="&gsettings.developerOptions;" />
 							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="&gsettings.help;" />
 							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="&gsettings.about;" />
 						</vbox>
@@ -264,7 +266,6 @@
 															<hbox class="item ripple-enabled" value="1">placeholder_Firefox</hbox>
 															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
 															<hbox class="item ripple-enabled" value="3">Google Chrome</hbox>
-															<hbox class="item ripple-enabled" value="4">placeholder_GoogleChromeCanary</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
@@ -723,16 +724,25 @@
 								</vbox>
 							</vbox>
 							<vbox class="page" data-page="30">
+								<button class="floating-action-button ripple-enabled leading-icon icon-save extended" label="&gsettings.export;" disabled="true" />
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>Primary color</h4>
-											<vbox class="card">
-
-											</vbox>
-											<h4>Secondary color</h4>
-											<vbox class="card">
-
+											<h4>&gsettings.createYourGecko;</h4>
+											<vbox class="card" id="gecko-stuff">
+												<html:p style="margin-inline-start: 16px; margin-block-start: 16px;">This is a preview of the creator, the export functionality has not been implemented yet.</html:p>
+												<vbox class="item">
+													<html:div id="preview-geckium" />
+												</vbox>
+												<vbox class="item">
+													<html:input id="gecko-hue" type="range" max="360" />
+												</vbox>
+												<vbox class="item">
+													<html:input id="gecko-saturation" type="range" />
+												</vbox>
+												<vbox class="item">
+													<html:input id="gecko-lightness" type="range" />
+												</vbox>
 											</vbox>
 										</vbox>
 									</vbox>
@@ -1010,6 +1020,7 @@
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/apps.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/developerOptions.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/geckoDecor.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/about.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrThemes.js" type="text/javascript" defer="true"/>

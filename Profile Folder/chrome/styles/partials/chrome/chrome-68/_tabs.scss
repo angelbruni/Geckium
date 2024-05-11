@@ -43,8 +43,14 @@
 	&:not([busy]) {
 		&[image="chrome://branding/content/icon32.png"] {
 			.tab-label-container {
-				padding-left: 2px;
+				padding-left: 6px;
 			}
+		}
+	}
+
+	&:not([image]) {
+		.tab-label-container {
+			padding-left: 6px;
 		}
 	}
 
