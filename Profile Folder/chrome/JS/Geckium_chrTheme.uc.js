@@ -216,7 +216,7 @@ class chrTheme {
 							switch (key) {
 								case "ntp_logo_alternate":
 									if (theme.theme.colors.ntp_text) {
-										if (!ColorUtils.isDark(theme.theme.colors.ntp_text))
+										if (!ColorUtils.IsDark(theme.theme.colors.ntp_text))
 											document.documentElement.style.setProperty(`${setStyleProperty(key)}`, value);
 									}
 									break;
