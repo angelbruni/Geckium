@@ -24,9 +24,9 @@ class chrTheme {
 		}
 
 		if (appearanceChoice <= 4)
-			return [65, 99, 154];
+			return [88, 118, 171];
 		else if (appearanceChoice == 5)
-			return [78, 91, 116];
+			return [87, 102, 128];
 		else if (appearanceChoice <= 9)
 			return [111, 111, 111];
 	}
@@ -199,14 +199,32 @@ class chrTheme {
 					// Convert colors to CSS custom properties
 					if (theme.theme.colors) {
 						Object.entries(theme.theme.colors).map(([key, value]) => {
-							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `rgb(${value.join(', ')})`);
+							console.log(key, value);
+
+							if (key == "ntp_text") {
+								if (!ColorUtils.IsDark(value))
+									document.documentElement.style.setProperty("--chrt-ntp-logo-alternate", "1");
+							}
+
+							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `rgb(${value.join(', ')})`)
 						}).join('\n');
 					}
 
 					// Convert properties to CSS custom properties
 					if (theme.theme.properties) {
 						Object.entries(theme.theme.properties).map(([key, value]) => {
-							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, value);
+							switch (key) {
+								case "ntp_logo_alternate":
+									if (theme.theme.colors.ntp_text) {
+										if (!ColorUtils.isDark(theme.theme.colors.ntp_text))
+											document.documentElement.style.setProperty(`${setStyleProperty(key)}`, value);
+									}
+									break;
+
+								default:
+									document.documentElement.style.setProperty(`${setStyleProperty(key)}`, value);
+									break;
+							}
 						}).join('\n');
 					}
 
