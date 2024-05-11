@@ -1,9 +1,4 @@
 & {
-	#PanelUI-menu-button,
-	#chrome-button {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/menu.svg) !important;
-	}
-
 	// FIXME: Temporarily duplicating this until I find a better way to do it.
 	&[lwtheme-id="#{$gtkplus}"] {
 		@media (-moz-platform: linux) {

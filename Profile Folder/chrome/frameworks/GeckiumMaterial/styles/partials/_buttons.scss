@@ -196,6 +196,23 @@ label {
 		overflow: hidden;
 		transition: box-shadow 155ms;
 
+		&[disabled] {
+			border: 1px solid rgba(0,0,0,.2);
+			background-color: #afafaf;
+			opacity: 50%;
+			color: black;
+
+			&.leading-icon {
+				&::before {
+					background: black;
+				}
+			}
+
+			.ripple {
+				display: none;
+			}
+		}
+
 		&:not([disabled]) {
 			&:active {
 				box-shadow: var(--elevation-12);

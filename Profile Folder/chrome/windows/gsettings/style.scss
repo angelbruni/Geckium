@@ -387,3 +387,125 @@ h4 {
 		}
 	}
 }
+
+#preview-geckium {
+	position: relative;
+	margin-inline: auto;
+	width: 512px;
+	height: 512px;
+	fill: var(--desired-gecko-color, #209f43);
+	-moz-context-properties: fill, fill-opacity;
+	transform: translateX(-15px);
+
+	&::before {
+		content: "";
+		background: url("chrome://userchrome/content/windows/gsettings/imgs/user.jpg");
+		background-size: cover;
+		position: absolute;
+		width: 420px;
+		height: 420px;
+		top: 49px;
+		left: 44px;
+		border-radius: 50%;
+	}
+
+	&::after {
+		content: url("chrome://userchrome/content/windows/gsettings/imgs/gecko.svg");
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+#gecko-stuff {
+	> .item {
+		min-height: 80px;
+		justify-content: center;
+	}
+}
+
+#gecko-hue,
+#gecko-saturation,
+#gecko-lightness {
+	appearance: none;
+
+	&::-moz-range-track {
+		width: calc(100% - 10px);
+		height: 4px;
+		border-radius: 2px;
+	}
+
+	&::-moz-range-thumb {
+		position: relative;
+		border: 0;
+		border-radius: 50%;
+		width: 20px;
+		height: 20px;
+		background-color: var(--desired-gecko-color);
+		box-shadow: 0 0 0 0 color-mix(
+			in srgb, 
+			var(--desired-gecko-color) 0%, 
+			transparent
+		),
+		var(--elevation-1);
+		transition: box-shadow 100ms;
+	}
+
+	&:not([disabled]) {
+		&:hover {
+			&::-moz-range-thumb {
+				box-shadow: 0 0 0 15px color-mix(
+					in srgb, 
+					var(--desired-gecko-color) 5%, 
+					transparent
+				), var(--elevation-1);
+			}
+		}
+
+		&:active {
+			&::-moz-range-thumb {
+				box-shadow: 0 0 0 15px color-mix(
+					in srgb, 
+					var(--desired-gecko-color) 20%, 
+					transparent
+				), var(--elevation-1);
+			}
+		}
+	}
+}
+
+#gecko-hue {
+	&::-moz-range-track {
+		background-image: linear-gradient(
+			to right,
+			#ff0000 0%,
+			#ffff00 17%,
+			#00ff00 33%,
+			#00ffff 50%,
+			#0000ff 67%,
+			#ff00ff 83%,
+			#ff0000 100%
+		);
+	}
+}
+
+#gecko-saturation {
+	&::-moz-range-track {
+		background-image: linear-gradient(
+			to right,
+			rgb(128, 128, 128),
+			var(--desired-gecko-color)
+		);
+	}
+}
+
+#gecko-lightness {
+	&::-moz-range-track {
+		background-image: linear-gradient(
+			to right,
+			black,
+			var(--desired-gecko-color),
+			white
+		);
+	}
+}

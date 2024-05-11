@@ -13,6 +13,13 @@
 			width: 100%;
 			visibility: hidden;
 			overflow: hidden;
+
+			> .floating-action-button {
+				position: absolute;
+				z-index: 1;
+				right: 0;
+				bottom: 0;
+			}
 			
 			.content-container {
 				flex: 1;

@@ -217,6 +217,12 @@
 			}
 		}
 
+		&:not([image]) {
+			.tab-icon-stack {
+				display: none;
+			}
+		}
+
 		&[image="chrome://branding/content/icon32.png"] {
 			.tab-label-container {
 				padding-left: 4px;

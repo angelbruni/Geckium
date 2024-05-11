@@ -97,6 +97,16 @@
 					) !important;
 				}
 			}
+			&[disabled] {
+				.toolbarbutton-icon,
+				image:first-of-type {
+					fill: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 25%,
+						transparent
+					) !important;
+				}
+			}
 
 			&#back-button,
 			&#forward-button {
@@ -113,14 +123,6 @@
 					margin-bottom: 0 !important;
 				}
 			}
-		}
-	}
-
-	#star-button-box > #star-button {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/star.png) !important;
-
-		&[starred] {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/star_lit.png) !important;
 		}
 	}
 
