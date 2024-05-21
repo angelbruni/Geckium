@@ -786,6 +786,10 @@
 	height: var(--nav-bar-height);
 	box-shadow: none !important;
 
+	&[unifiedextensionsbuttonshown] #urlbar-container {
+		width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
+	}
+
 	&[unifiedextensions="hide"] {
 		#unified-extensions-button {
 			position: absolute !important;
@@ -915,6 +919,7 @@ toolbarspring {
 	justify-content: center;
 	transition: all 150ms linear;
 	border: 1px solid var(--toolbarbutton-border-color-normal);
+	flex-shrink: 0 !important;
 
 	/* bruni: 	let's separate radius like this so
 				we can easily override each individually
