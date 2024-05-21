@@ -145,7 +145,7 @@
 		> #urlbar-input-container {
 			> #identity-box[pageproxystate="invalid"] {
 				#identity-icon {
-					list-style-image: url("assets/img/chrome-5/toolbar/search.png") !important;
+					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
 				}
 			}
 		}
@@ -319,6 +319,14 @@
 .searchbar-search-button {
 	justify-content: center !important;
 	margin-inline-end: 3px !important;
+
+	.searchbar-search-icon {
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/search.svg") !important;
+	}
+
+	.searchbar-search-icon-overlay {
+		display: none !important;
+	}
 }
 
 .searchbar-search-icon {
@@ -357,7 +365,7 @@
 	}
 
 	&[src="chrome://global/skin/icons/search-glass.svg"] {
-		background-image: url("assets/img/chrome-5/toolbar/search.png");
+		background-image: url("assets/img/chrome-1/toolbar/search.svg");
 	}
 	&[src="chrome://browser/skin/history.svg"] {
 		background-image: url(chrome://userchrome/content/assets/img/toolbar/clock.png);
@@ -457,7 +465,7 @@
 		&:first-of-type {
 			.urlbarView-no-wrap {
 				&::before {
-					content: url("assets/img/chrome-5/toolbar/search.png");
+					content: url("assets/img/chrome-1/toolbar/search.svg");
 					position: absolute;
 					width: 19px;
 					height: 19px;

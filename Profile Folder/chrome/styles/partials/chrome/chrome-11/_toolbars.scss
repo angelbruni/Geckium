@@ -201,7 +201,8 @@
 			&#PanelUI-menu-button,
 			&[class*="webextension"],
 			&#gsettings-button,
-			&#nav-bar-overflow-button  {
+			&#nav-bar-overflow-button,
+			&#developer-button  {
 				transition: none;
 
 				&::before {
@@ -270,7 +271,8 @@
 						&#page-button,
 						&#star-button-box,
 						&#go-button-box,
-						&#bookmarks-menu-button {
+						&#bookmarks-menu-button,
+						&#developer-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -283,7 +285,8 @@
 						}
 	
 						&#PanelUI-menu-button,
-						&#chrome-button {
+						&#chrome-button,
+						&#developer-button {
 							list-style-image: url("moz-icon://stock/gtk-preferences?size=toolbar") !important;
 						}
 	

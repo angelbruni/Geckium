@@ -238,7 +238,8 @@
 						&#page-button,
 						&#star-button-box,
 						&#go-button-box,
-						&#bookmarks-menu-button {
+						&#bookmarks-menu-button,
+						&#developer-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -247,7 +248,8 @@
 						&#PanelUI-menu-button,
 						&#chrome-button,
 						&#page-button,
-						&#bookmarks-menu-button {
+						&#bookmarks-menu-button,
+						&#developer-button {
 							border: 0 !important;
 	
 							.toolbarbutton-icon,
@@ -258,7 +260,8 @@
 						}
 		
 						&#PanelUI-menu-button,
-						&#chrome-button {
+						&#chrome-button,
+						&#developer-button {
 							list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
 						}
 		
@@ -670,7 +673,8 @@
 				&#PanelUI-menu-button,
 				&[class*="webextension"],
 				&#gsettings-button,
-				&#nav-bar-overflow-button {
+				&#nav-bar-overflow-button,
+				&#developer-button {
 					border: 1px solid transparent !important;
 					background: transparent !important;
 					margin: 0 1px !important;
@@ -773,12 +777,6 @@
 	}
 }
 
-#nav-bar,
-#PersonalToolbar,
-.notificationbox-stack {
-	margin-inline: 2px;
-}
-
 #nav-bar {
 	background: var(--nav-bar) !important;
 	border-top-left-radius: 3px !important;
@@ -787,26 +785,6 @@
 	padding-inline: var(--toolbar-start-end-padding) !important;
 	height: var(--nav-bar-height);
 	box-shadow: none !important;
-
-	&::before,
-	&::after {
-		position: absolute;
-		content: "";
-		height: 39px;
-		width: 3px;
-		top: -2px;
-	}
-
-	&::before {
-		left: -2px;
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_top_left_corner.png);
-	}
-
-	&::after {
-		top: -2px;
-		left: calc(100% - 1px);
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_top_right_corner.png);
-	}
 
 	&[unifiedextensions="hide"] {
 		#unified-extensions-button {
@@ -884,29 +862,8 @@ toolbar[overflowable][customizing] > .customization-target {
 	border-style: solid;
 	border-color: var(--inner-border-color);
 	border-top-color: var(--personal-toolbar-border-bottom);
-	margin: 2px;
 	margin-top: -1px;
-	box-shadow: 0 2px 0 0 rgb(0, 0, 0, 24%);
-
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 3px;
-		background-repeat: repeat-y;
-	}
-
-	&::before {
-		left: -3px;
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_bookmark_left.png);
-	}
-
-	&::after {
-		left: 100%;
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_bookmark_right.png);
-	}
+	//box-shadow: 0 2px 0 0 rgb(0, 0, 0, 24%);
 }
 
 #TabsToolbar {
@@ -1257,6 +1214,34 @@ toolbarspring {
 	list-style-image: var(--go-button-box-icon);
 }
 
+#logins-button {
+	list-style-image: var(--logins-button-icon) !important;
+}
+
+#developer-button {
+	list-style-image: var(--developer-button-icon) !important;
+}
+
+#preferences-button {
+	list-style-image: var(--preferences-button-icon) !important;
+}
+
+#fullscreen-button {
+	list-style-image: var(--fullscreen-button-icon) !important;
+}
+
+#new-window-button {
+	list-style-image: var(--new-window-button-icon) !important;
+}
+
+#save-page-button {
+	list-style-image: var(--save-page-button-icon) !important;
+}
+
+#open-file-button {
+	list-style-image: var(--open-file-button-icon) !important;
+}
+
 #star-button-box > #star-button {
 	width: fit-content !important;
 	height: fit-content !important;
@@ -1276,6 +1261,7 @@ toolbarspring {
 	padding: 0 !important;
 	min-height: 19px !important;
 	min-width: 19px !important;
+	justify-content: center !important;
 }
 
 #identity-permission-box {
@@ -1373,23 +1359,6 @@ toolbarspring {
 #PersonalToolbar,
 .notificationbox-stack {
 	position: relative;
-
-	&::before,
-	&::after {
-		position: absolute;
-		content: "";
-		width: 3px;
-	}
-
-	&::before {
-		left: -2px;
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_bookmark_left.png);
-	}
-
-	&::after {
-		left: calc(100% - 1px);
-		background: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/content_bookmark_right.png);
-	}
 }
 
 #PersonalToolbar {
