@@ -6,19 +6,6 @@
 	}
 }
 
-:is(panel:not(.autoscroller, #PopupSearchAutoComplete), menupopup)::part(content) {
-	
-	
-	
-	
-	
-	
-}
-
-
-
-// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
-
 :is(panel:not(.autoscroller, #PopupSearchAutoComplete))::part(content) {
 	background-color: var(--modal-background) !important;
 	border: 1px solid rgb(0,0,0,.3) !important;

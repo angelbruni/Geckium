@@ -1,10 +1,10 @@
 & {
 	--default-footer-border: linear-gradient(
 		to left,
-		rgba(150,150,150,.2), /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150,.3) 20%, /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150,.3) 80%, /* COLOR_NTP_SECTION_BORDER */
-		rgba(150,150,150,.2)
+		rgba(150, 150, 150, 0.2),
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 20%,
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 80%,
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.2)
 	);
 	--footer-border: var(--default-footer-border);
 	--footer-background: linear-gradient(
@@ -21,7 +21,7 @@
 	--selection-bar-background-color-active: #7f7f7f;
 
 	--footer-item-color-hot: #666;
-	--footer-menu-button-glyph-background-color-normal: #7F7F7F;
+	--footer-menu-button-glyph-background-color-normal: #7f7f7f;
 	--footer-menu-item-link-color: #063874;
 	--footer-vertical-separator-background-color: rgb(178, 178, 178);
 
@@ -365,15 +365,13 @@
 					background-color: var(--footer-item-color-hot);
 				}
 			}
-	
+
 			&[open] {
 				.footer-menu {
 					display: flex;
 				}
 			}
 		}
-
-		
 
 		&::after {
 			content: "";
@@ -390,7 +388,7 @@
 
 	.footer-menu {
 		display: none;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, .50);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 		background: white;
 		color: black;
 		cursor: default;

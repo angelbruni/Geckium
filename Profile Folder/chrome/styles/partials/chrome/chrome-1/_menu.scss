@@ -9,7 +9,7 @@ menupopup {
 
 	&#contentAreaContextMenu {
 		#context-navigation {
-			
+			background-color: transparent !important;
 			flex-direction: column !important;
 	
 			> menuitem {
@@ -50,7 +50,7 @@ menupopup {
 	button {
 		min-width: 0 !important;
 	}
-	
+
 	> menu,
 	> menuitem {
 		.menu-text {
@@ -83,5 +83,4 @@ menupopup {
 #tools6-menu,
 #menu_settings6,
 #bookmarks-menu {
-	
 }

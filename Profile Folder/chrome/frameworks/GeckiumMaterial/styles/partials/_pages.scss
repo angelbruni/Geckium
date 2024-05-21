@@ -3,7 +3,7 @@
 	flex: 1;
 	
 	> .pages-container {
-
+		
 		flex: 1;
 
 		> .page {
@@ -11,7 +11,7 @@
 			display: none;
 			height: 100%;
 			width: 100%;
-
+			
 			overflow: hidden;
 
 			> .floating-action-button {
@@ -35,7 +35,6 @@
 			&[selected="true"] {
 				display: flex;
 				
-				
 				.content {
 					transform: none;
 					transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
@@ -46,7 +45,7 @@
 			.content {
 				opacity: 0;
 				transform: translateY(40px);
-
+				
 				transition: all 100ms cubic-bezier(0.4, 0.0, 1, 1) !important;
 				inset: 0;
 			}

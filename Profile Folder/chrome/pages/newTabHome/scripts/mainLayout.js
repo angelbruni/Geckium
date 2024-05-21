@@ -6,7 +6,7 @@ addEventListener("DOMContentLoaded", setPageWidth);
 
 const { SessionStore } = ChromeUtils.importESModule("resource:///modules/sessionstore/SessionStore.sys.mjs");
 
-function setMostVisitedLayout(layout) {	
+function setMostVisitedLayout(layout) {
 	const mostVisited = document.getElementById("most-visited");
 
 	const thumbCheckbox = document.getElementById("thumb-checkbox");
@@ -287,14 +287,14 @@ function createMainLayout() {
 		waitForElm(menuBtnsContainer).then(() => {
 			const thumbCheckbox = document.getElementById("thumb-checkbox");
 			const listCheckbox = document.getElementById("list-checkbox");
-	
+
 			thumbCheckbox.addEventListener("change", () => {
 				if (thumbCheckbox.checked == true)
 					setMostVisitedLayout(1);
 				else if (!thumbCheckbox.checked && !listCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
-	
+
 			listCheckbox.addEventListener("change", () => {
 				if (listCheckbox.checked == true)
 					setMostVisitedLayout(2);
@@ -337,7 +337,7 @@ function createMainLayout() {
 				</vbox>
 			</vbox>
 		</vbox>
-		`
+		`;
 
 		footer = `
 		<vbox id="attribution">
@@ -363,7 +363,7 @@ function createMainLayout() {
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>
-		`
+		`;
 
 		main = `
 		<hbox id="card-slider-frame">
@@ -388,7 +388,7 @@ function createMainLayout() {
 				<html:div id="attribution-img"></html:div>
 			</vbox>
 		</hbox>
-		`
+		`;
 
 		footer = `
 		<vbox id="footer">
@@ -433,7 +433,7 @@ function createMainLayout() {
 					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
 			</vbox>
-			`
+			`;
 		} else {
 			header = `
 			<hbox id="google-bar">
@@ -447,10 +447,9 @@ function createMainLayout() {
 					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
 			</vbox>
-			`
+			`;
 		}
 
-		
 		main = `
 		<html:div id="mv-tiles"></html:div>
 		<vbox id="attribution">
@@ -461,7 +460,7 @@ function createMainLayout() {
 
 		waitForElm("#google-search").then(() => {
 			const form = document.querySelector("#google-search > form");
-			form.addEventListener('submit', event => {
+			form.addEventListener("submit", (event) => {
 				event.preventDefault();
 				location.href = "https://www.google.com/search?q=" + form.querySelector("input").value;
 			});
@@ -471,13 +470,13 @@ function createMainLayout() {
 	// Create contents
 	const container = document.querySelector("#main-container");
 
-	Array.from(container.childNodes).forEach(elm => {
+	Array.from(container.childNodes).forEach((elm) => {
 		elm.remove();
 	});
 
-	container.appendChild(MozXULElement.parseXULToFragment(header))
-	container.appendChild(MozXULElement.parseXULToFragment(main))
-	container.appendChild(MozXULElement.parseXULToFragment(footer))
+	container.appendChild(MozXULElement.parseXULToFragment(header));
+	container.appendChild(MozXULElement.parseXULToFragment(main));
+	container.appendChild(MozXULElement.parseXULToFragment(footer));
 
 	waitForElm("#most-visited").then(() => {
 		setMostVisitedLayout("default");
@@ -485,8 +484,8 @@ function createMainLayout() {
 
 	if (appearanceChoice <= 4 || appearanceChoice == 6 || appearanceChoice == 7) {
 		waitForElm(menuBtnsContainer).then(() => {
-			document.querySelectorAll('[type="menu"]').forEach(menuBtn => {
-				menuBtn.addEventListener("click", function(event) {
+			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
+				menuBtn.addEventListener("click", function (event) {
 					if (!menuBtn.hasAttribute("open"))
 						menuBtn.setAttribute("open", true);
 					else
@@ -495,17 +494,17 @@ function createMainLayout() {
 					// Stop the event from propagating further to prevent triggering the document click listener
 					event.stopPropagation();
 				});
-			
+
 				// Add event listener to the document to listen for clicks outside of the button
-				document.addEventListener("click", function(event) {
+				document.addEventListener("click", function (event) {
 					// Check if the clicked element is the button or one of its children
 					const isClickedInsideButton = menuBtn.contains(event.target);
-			
+
 					// If the click is not inside the button or its children, remove the "open" attribute
 					if (!isClickedInsideButton)
 						menuBtn.removeAttribute("open");
 				});
-			
+
 				// Add event listeners to children of the button to prevent propagation to the document click listener
 				/*menuBtn.querySelectorAll("*").forEach(child => {
 					child.addEventListener("click", function(event) {
@@ -513,7 +512,7 @@ function createMainLayout() {
 						event.stopPropagation();
 					});
 				});*/
-			});			
+			});
 		});
 	}
 }

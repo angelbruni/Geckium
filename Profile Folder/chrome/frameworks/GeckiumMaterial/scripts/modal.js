@@ -3,16 +3,15 @@
 
 
 modalToggles.forEach(modalToggle => {
-  modalToggle.addEventListener('click', function() {
-    
-    
+	modalToggle.addEventListener('click', function() {
+		
+		
 
-    if (modalTarget.classList.contains('active')) {
-      
-    } else {
-      
-    }
-  });
+		if (modalTarget.classList.contains('active'))
+			
+		else
+			
+	});
 });
 
 modals.forEach(modal => {

@@ -32,7 +32,7 @@ window {
 
 window {
 	display: flex;
-		
+
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
@@ -71,11 +71,11 @@ window {
 			
 			
 			
-	
+
 			&:hover {
 				
 			}
-	
+
 			&.close {
 				
 				&:active {
@@ -138,14 +138,14 @@ window {
 	width: 100%;
 	z-index: 2;
 	height: var(--titlebar-height);
-	background: rgb(0,0,0,.1);
+	background: rgb(0, 0, 0, 0.1);
 	justify-content: end;
 	-moz-window-dragging: drag;
 
 	@media (-moz-platform: macos) {
 		justify-content: start;
 	}
-	
+
 	.caption-button {
 		-moz-window-dragging: no-drag;
 	}
@@ -175,7 +175,7 @@ window {
 				position: absolute;
 			}
 		}
-		
+
 		&.close {
 			&::before {
 				
@@ -297,7 +297,7 @@ window {
 #window-content {
 	overflow: hidden;
 	flex: 1;
-	background: #FAFAFA;
+	background: #fafafa;
 
 	@media (prefers-color-scheme: dark) {
 		background: #212121;

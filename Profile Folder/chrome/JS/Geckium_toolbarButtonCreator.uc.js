@@ -320,7 +320,7 @@ class gkToolbarMenuButtons {
 				}
 			}
 		}
-    }
+	}
 }
 
 window.addEventListener("load", function () {

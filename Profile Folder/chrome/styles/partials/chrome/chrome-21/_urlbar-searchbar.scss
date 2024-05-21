@@ -41,9 +41,9 @@
 
 	#urlbar-background,
 	#searchbar {
-		outline: 1px solid rgba(255,255,255,.3);
+		outline: 1px solid rgba(255, 255, 255, 0.3);
 		border-radius: calc(var(--toolbarbutton-radius) - 1px) !important;
-
+		
 	}
 }
 
@@ -52,7 +52,7 @@
 		> #urlbar-input-container {
 			> #identity-box[pageproxystate="invalid"] {
 				#identity-icon {
-					
+					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
 				}
 			}
 		}

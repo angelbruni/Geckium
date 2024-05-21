@@ -5,14 +5,14 @@
 
 	--default-titlebar-active: linear-gradient(
 		to bottom,
-		rgb(97,162,241),
-		rgb(72,140,222) 40px
+		rgb(97, 162, 241),
+		rgb(72, 140, 222) 40px
 	);
 	--titlebar-active: var(--default-titlebar-active);
 	--default-titlebar-inactive: linear-gradient(
 		to bottom,
-		rgb(163,201,247),
-		rgb(147,186,234) 40px
+		rgb(163, 201, 247),
+		rgb(147, 186, 234) 40px
 	);
 	--titlebar-inactive: var(--default-titlebar-inactive);
 
@@ -37,22 +37,22 @@
 		);
 	}
 
-	&[privatebrowsingmode="temporary"] {
-		--titlebar-active: linear-gradient(
-			to bottom,
-			rgb(97,122,156),
-			rgb(80,105,141) 40px
-		) !important;
-		--titlebar-inactive: linear-gradient(
-			to bottom,
-			rgb(147,161,178),
-			rgb(128,143,161) 40px
-		) !important;
+    &[privatebrowsingmode="temporary"] {
+        --titlebar-active: linear-gradient(
+            to bottom,
+            rgb(97, 122, 156),
+            rgb(80, 105, 141) 40px
+        ) !important;
+        --titlebar-inactive: linear-gradient(
+            to bottom,
+            rgb(147, 161, 178),
+            rgb(128, 143, 161) 40px
+        ) !important;
 
-		#fxa-toolbar-menu-button {
-			display: none !important;
-		}
-	}
+        #fxa-toolbar-menu-button {
+            display: none !important;
+        }
+    }
 
     @import "titlebar/classic";
 	
@@ -147,10 +147,6 @@
 							background-position-y: -9px;
 							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
 						}
-					}
-
-					#navigator-toolbox {
-						
 					}
 				}
 
@@ -301,16 +297,16 @@
 }
 
 #private-browsing-indicator-with-label {
-	align-items: end !important;
-	margin-inline: 0 !important;
-	margin-inline-start: 5px !important;
-	margin-inline-end: -4px !important;
+    align-items: end !important;
+    margin-inline: 0 !important;
+    margin-inline-start: 5px !important;
+    margin-inline-end: -4px !important;
 }
 
 .private-browsing-indicator-icon {
-	list-style-image: url("chrome://userchrome/content/assets/img/titlebar/otr_icon.png") !important;
-	width: auto !important;
-	height: auto !important;
+    list-style-image: url("chrome://userchrome/content/assets/img/titlebar/otr_icon.png") !important;
+    width: auto !important;
+    height: auto !important;
 }
 
 [data-l10n-id="private-browsing-indicator-label"] {

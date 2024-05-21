@@ -1,5 +1,5 @@
 :root {
-    --tab-glare-opacity: 1;
+	--tab-glare-opacity: 1;
 	--default-tab-glare: rgb(211, 217, 225, 0.45);
 	--tab-glare: var(--default-tab-glare);
 	--tab-glare-hover-timer: 0.1s;
@@ -96,56 +96,6 @@
 		--theme-newtab: var(--chrt-control-background, transparent) !important;
 	}
 
-	&[customthememode="1"] {
-		@media not (prefers-color-scheme: dark) {
-			&:not([style*="--toolbarbutton-icon-fill"]) {
-				--tabbrowser-tab-color: black;
-			}
-
-			.tabbrowser-tab[visuallyselected="true"] {
-				--tabbrowser-tab-selected: linear-gradient(
-					to top,
-					color-mix(
-						in srgb,
-						color-mix(
-							in srgb,
-							var(--toolbarbutton-icon-fill) 8%,
-							white
-						)
-						70%,
-						transparent
-					),
-					color-mix(
-						in srgb,
-						color-mix(
-							in srgb,
-							var(--toolbarbutton-icon-fill) 5%,
-							white
-						)
-						70%,
-						transparent
-					)
-				) !important;
-			}
-		}
-
-		@media (prefers-color-scheme: dark) {
-			/*&:not([style*="--toolbarbutton-icon-fill"]) {
-				--tabbrowser-tab-color: white;
-			}*/
-
-			.tabbrowser-tab[visuallyselected="true"] {
-				--tabbrowser-tab-selected: color-mix(
-					in srgb,
-					var(--lwt-accent-color) 70%,
-					transparent
-				) !important;
-			}
-			
-		}
-		
-	}
-	
 	&:not([tabsintitlebar]) {
 		.titlebar-items {
 			//margin-top: -7px !important;
@@ -155,7 +105,7 @@
 	&[tabsintitlebar] {
 		&:not([sizemode="maximized"]) {
 			.titlebar-items {
-				
+				padding-top: 23px !important;
 			}
 		}
 	}
@@ -312,7 +262,7 @@
 					background-position: 0 2px;
 				}
 			}
-	
+
 			.tab-stack {
 				&::before {
 					mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive2_alpha_left.png);
@@ -346,20 +296,20 @@
 		}
 
 		.tab-label {
-			opacity: .9 !important;
+			opacity: 0.9 !important;
 		}
 
 		.tab-icon-stack,
 		.tab-label::before {
-			opacity: .6 !important;
+			opacity: 0.6 !important;
 		}
 
 		.tab-stack {
 			&::before,
 			&::after {
-				background-color: var(--inactive-tab-background-color) !important;
-
-
+				background: var(
+					--inactive-tab-background-color
+				) !important;
 			}
 
 			&::before {
@@ -384,7 +334,7 @@
 			&::before {
 				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_inactive_center.png)
 					top;
-                height: var(--tab-height) !important;
+				height: var(--tab-height) !important;
 				top: 2px;
 			}
 		}
@@ -409,14 +359,14 @@
 			&::after {
 				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_right.png)
 					no-repeat;
-				background-position: 0;
+				background-position: 0 2px;
 			}
 		}
 
 		.tab-stack {
 			&::before,
 			&::after {
-                background: var(--tabbrowser-tab-selected) !important;
+				background: var(--tabbrowser-tab-selected) !important;
 			}
 
 			&::before {
@@ -432,12 +382,12 @@
 			&::before {
 				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_center.png)
 					top;
-
+				top: 2px;
 			}
 		}
 
 		.tab-background {
-            background: var(--tabbrowser-tab-selected) !important;
+			background: var(--tabbrowser-tab-selected) !important;
 		}
 	}
 
@@ -454,7 +404,6 @@
 	&:not([pinned]) {
 		transition: min-width var(--tab-transition-time) ease,
 			max-width var(--tab-transition-time) ease !important;
-
 	}
 
 	/* bruni: This makes it so the tab does not disappear when it starts "close" transition 
@@ -466,11 +415,11 @@
 		animation: hide-tab var(--tab-transition-time) ease;
 	}
 
-    .tab-content {
-        padding: 0 !important;
-        border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
-        border-right: 0 !important;
-        
+	.tab-content {
+		padding: 0 !important;
+		border-left: calc(var(--tab-sides-width) - 2px) solid transparent !important;
+		border-right: 0 !important;
+		
 		
 	}
 
@@ -478,9 +427,9 @@
 		margin-inline-start: 9px !important;
 	}
 
-    .tab-secondary-label {
-        
-    }
+	.tab-secondary-label {
+		
+	}
 }
 
 .tab-content {
@@ -526,7 +475,7 @@
 .tab-background,
 .tab-content,
 .tabbrowser-tab {
-    height: var(--tab-height) !important;
+	height: var(--tab-height) !important;
 }
 
 .tab-stack {
@@ -579,19 +528,20 @@
 	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
 		opacity: 1 !important;
 	}
-	
+
 	.tab-throbber[progress]::before {
 		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber.png) !important;
-        
-        
-        
-    }
-    .tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+		width: 576px !important;
+		background-size: 576px 16px !important;
+		animation: geckium-progress-throbber 1s steps(36) infinite !important;
+	}
+
+	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
 		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber_waiting.png) !important;
-        
-        
-        
-    }
+		width: 2864px !important;
+		background-size: 2864px 16px !important;
+		animation: geckium-waiting-throbber 5s steps(179) infinite !important;
+	}
 }
 
 /* bruni: This makes it so the tab does not disappear when it starts "close" transition. */
@@ -606,7 +556,7 @@
 .tab-label {
 	display: flex;
 	align-items: center;
-	
+
 	&::before {
 		width: 16px;
 		height: 16px;
@@ -628,14 +578,14 @@
 #tabbrowser-tabs {
 	margin-inline-start: 0 !important;
 	padding-inline-start: 2px !important;
-    border-inline-start: 0 !important;
+	border-inline-start: 0 !important;
 
-    &:not([secondarytext-unsupported]) {
-        .tab-label-container {
-            height: 24px !important;
-            margin-top: 1px;
-        }
-    }
+	&:not([secondarytext-unsupported]) {
+		.tab-label-container {
+			height: 24px !important;
+			margin-top: 1px;
+		}
+	}
 }
 
 .tab-icon-stack {
@@ -649,7 +599,7 @@
 }
 
 .tab-glare-container {
-    position: absolute;
+	position: absolute;
 	left: -8px;
 	width: calc(100% + 17px);
 	height: 100%;
@@ -659,7 +609,7 @@
 	z-index: 2;
 	pointer-events: none;
 
-    /* bruni: In Chrome, the glare hides in a slower
+	/* bruni: In Chrome, the glare hides in a slower
 			  pace when the mouse leaves. */
 	transition: opacity var(--tab-glare-unhover-timer) linear;
 }
@@ -696,7 +646,7 @@
 	width: 400px;
 	transform: translateX(-50%);
 
-    /* bruni: 	By the way, we are using the glare as background hover
+	/* bruni: 	By the way, we are using the glare as background hover
 				for Chrome 5-6, if we transition the background of the
 				tab it will try to transition from gradient (active) 
 				to colour (inactive), and since gradients are not
@@ -712,26 +662,26 @@
 }
 
 .tab-close-button {
-    list-style-image: none !important;
-    height: 12px !important;
-    width: 12px !important;
-    padding: 0 !important;
-    margin-inline-end: -2px !important;
-    margin-top: 2px;
+	list-style-image: none !important;
+	height: 12px !important;
+	width: 12px !important;
+	padding: 0 !important;
+	margin-inline-end: -2px !important;
+	margin-top: 2px;
 	background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_mask.png);
 
-    &:hover {
+	&:hover {
 		background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_h.png);
-    }
+	}
 
-    &:active {
+	&:active {
 		background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_close_p.png);
-    }
+	}
 }
 
 #private-browsing-indicator-with-label {
-    
-    
+	
+	
 }
 
 .tab-throbber,
@@ -739,11 +689,11 @@
 .tab-icon-image,
 .tab-sharing-icon-overlay,
 .tab-icon-overlay {
-
-
+	
+	
 }
 .tab-icon-stack {
-
+	
 
 }
 

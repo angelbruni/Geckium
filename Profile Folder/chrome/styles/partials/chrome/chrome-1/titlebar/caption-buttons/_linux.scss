@@ -31,10 +31,7 @@
 		&[lwtheme] {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
-					--titlebar-buttonbox-background-color: var(
-						--toolbar-bgcolor,
-						var(--lwt-accent-color)
-					);
+					--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
 	
 					// Themes without image header/additional images
 					&:not([style*="--lwt-additional-images"]) {
@@ -52,7 +49,6 @@
 }
 
 .titlebar-buttonbox-container {
-	
 	margin-inline-end: 1px;
 
 	@media not (-moz-platform: linux) {
@@ -78,7 +74,6 @@
 &[sizemode="maximized"] {
 	.titlebar-buttonbox {
 		margin-block-start: 2px;
-
 
 		@media (-moz-platform: linux) {
 			margin-block-start: 1px;

@@ -32,7 +32,7 @@
 		--default-toolbarbutton-icon-fill: rgb(166,177,196);
 		--toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
 		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
-    }
+	}
 
 	//&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
@@ -201,7 +201,8 @@
 			&#PanelUI-menu-button,
 			&[class*="webextension"],
 			&#gsettings-button,
-			&#nav-bar-overflow-button  {
+			&#nav-bar-overflow-button,
+			&#developer-button  {
 				transition: none;
 
 				&::before {
@@ -270,7 +271,8 @@
 						&#page-button,
 						&#star-button-box,
 						&#go-button-box,
-						&#bookmarks-menu-button {
+						&#bookmarks-menu-button,
+						&#developer-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -283,7 +285,8 @@
 						}
 	
 						&#PanelUI-menu-button,
-						&#chrome-button {
+						&#chrome-button,
+						&#developer-button {
 							list-style-image: url("moz-icon://stock/gtk-preferences?size=toolbar") !important;
 						}
 	

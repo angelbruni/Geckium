@@ -394,7 +394,7 @@ const appearanceObserver = {
 			gkVisualStyles.setVisualStyle();
 			gkLWTheme.setCustomThemeModeAttrs();
 		}
-	}
+	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, false);
 Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserver, false);

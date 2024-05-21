@@ -58,7 +58,8 @@
 						&#page-button,
 						&#star-button-box,
 						&#go-button-box,
-						&#bookmarks-menu-button {
+						&#bookmarks-menu-button,
+						&#developer-button {
 							&[disabled] {
 								opacity: .3 !important;
 							}
@@ -112,7 +113,7 @@
 		background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
 
 		&::before {
-			
+			background-color: var(--newtab-active);
 		}
 	}
 
@@ -123,9 +124,9 @@
 
 #PersonalToolbar {
 	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
-		
+		transition: all 150ms linear !important;
 		&::before {
-			
+			transition: all 150ms linear !important;
 		}
 	}
 }

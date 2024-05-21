@@ -19,12 +19,11 @@
 
 	--urlbarView: white;
 
-    --autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
+	--autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
 
 
 
 
-    --autocomplete-popup-highlight-background: -moz-menuhover !important;
 	@media (-moz-platform: linux) {
 		
 		
@@ -33,7 +32,8 @@
 		
 		
 	}
-    --autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
+	
+	--autocomplete-popup-highlight-color: rgb(255, 255, 255, 70%) !important;
 
 	@media (prefers-color-scheme: dark) {
 		--autocomplete-popup-highlight-background: -moz-menuhover !important;
@@ -82,7 +82,7 @@
 
 	&[focused="true"] {
 		&:not([supress-focus-border]) {
-			>#urlbar-background {
+			> #urlbar-background {
 				outline: transparent !important;
 			}
 		}
@@ -130,14 +130,14 @@
 
 	&:not(.searchButton) {
 		> #urlbar-input-container {
-			> #identity-box {
-				&[pageproxystate="invalid"],
-				&[pageproxystate="valid"].chromeUI {
-					#identity-icon {
-						list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
-					}
+		> #identity-box {
+			&[pageproxystate="invalid"],
+			&[pageproxystate="valid"].chromeUI {
+				#identity-icon {
+					list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
 				}
 			}
+		}
 		}
 	}
 
@@ -145,7 +145,7 @@
 		> #urlbar-input-container {
 			> #identity-box[pageproxystate="invalid"] {
 				#identity-icon {
-					
+					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
 				}
 			}
 		}
@@ -155,21 +155,23 @@
 		
 		
 		
-
+		
+		
+		
 		
 		
 		
 		
 
 		&::before {
-			
-			
-			
-			
-			
-			
-			
-			
+		
+		
+		
+		
+		
+		
+		
+		
 		}
 	}
 
@@ -317,6 +319,14 @@
 .searchbar-search-button {
 	justify-content: center !important;
 	margin-inline-end: 3px !important;
+
+	.searchbar-search-icon {
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/search.svg") !important;
+	}
+
+	.searchbar-search-icon-overlay {
+		display: none !important;
+	}
 }
 
 .searchbar-search-icon {
@@ -346,21 +356,21 @@
 }
 
 .urlbarView-favicon {
-	&:is([src="chrome://global/skin/icons/search-glass.svg"]),
-	&:is([src="chrome://browser/skin/history.svg"]) {
+	&[src="chrome://global/skin/icons/search-glass.svg"],
+	&[src="chrome://browser/skin/history.svg"] {
 		
-
-
-
+		
+		
+		
 	}
 
-	&:is([src="chrome://global/skin/icons/search-glass.svg"]) {
-        background-image: url("assets/img/chrome-5/toolbar/search.png");
-    }
-    &:is([src="chrome://browser/skin/history.svg"]) {
+	&[src="chrome://global/skin/icons/search-glass.svg"] {
+		background-image: url("assets/img/chrome-1/toolbar/search.svg");
+	}
+	&[src="chrome://browser/skin/history.svg"] {
 		background-image: url(chrome://userchrome/content/assets/img/toolbar/clock.png);
-        
-    }
+		
+	}
 }
 
 #identity-icon {
@@ -455,7 +465,7 @@
 		&:first-of-type {
 			.urlbarView-no-wrap {
 				&::before {
-					content: url("assets/img/chrome-5/toolbar/search.png");
+					content: url("assets/img/chrome-1/toolbar/search.svg");
 					position: absolute;
 					width: 19px;
 					height: 19px;
@@ -476,18 +486,18 @@
 	border: 0 !important;
 	padding-left: 4px !important;
 
-    &[selected] {
-        .urlbarView-action {
-            
-        }
+	&[selected] {
+		.urlbarView-action {
+			
+		}
 
-        .urlbarView-url {
-            color: #7ff4b7 !important;
-        }
+		.urlbarView-url {
+			color: #7ff4b7 !important;
+		}
 		.urlbarView-title {
-            
-        }
-    }
+			
+		}
+	}
 
 	&[type="switchtab"] {
 		.urlbarView-row-inner {
@@ -501,9 +511,9 @@
 		}
 
 		.urlbarView-action {
-            
-        }
-    }
+		
+		}
+	}
 
 	&[dynamicType="onboardTabToSearch"] {
 		> .urlbarView-row-inner {
@@ -542,7 +552,7 @@
 
 .urlbarView-action {
 	position: absolute;
-    right: 0 !important;
+	right: 8px !important;
 	background: transparent !important;
     color: rgb(30, 133, 216) !important;
 }
@@ -583,7 +593,7 @@
 }
 
 .urlbarView-url {
-	color: rgb(11,133,14) !important;
+	color: rgb(11, 133, 14) !important;
 	flex-grow: 0 !important;
 	order: 1 !important;
 }
@@ -638,11 +648,11 @@
 }
 
 .urlbarView-dynamic-onboardTabToSearch-action {
-	display: none;
+  	display: none;
 }
 
 .urlbarView-action {
-	display: none !important;
+  	display: none !important;
 }
 
 #notification-popup-box {
