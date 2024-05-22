@@ -375,7 +375,28 @@ class gkLWTheme {
 		if (typeof document.documentElement !== "undefined") {	
 			setTimeout(async () => {
 				document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
-				//document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
+				document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
+
+				const toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor'); 
+
+				// if color is rgba
+				if (toolbarBgColor.includes("rgba")) {
+					document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+
+					const toolbarBgColorClean = toolbarBgColor.replace("rgba(", "").replace(")", "");
+					const toolbarBgColorToArray = toolbarBgColorClean.replace(" ", "").split(",");
+
+					// if alpha is not opaque
+					if (toolbarBgColorToArray[3] == 0 || toolbarBgColorToArray[3].includes(".")) {
+						document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${toolbarBgColorToArray[0]}, ${toolbarBgColorToArray[1]}, ${toolbarBgColorToArray[2]})`);
+					} else {
+						document.documentElement.style.setProperty("--toolbar-bgcolor", `rgb(${toolbarBgColorToArray[0]}, ${toolbarBgColorToArray[1]}, ${toolbarBgColorToArray[2]})`);
+					}
+				} else {
+					document.documentElement.setAttribute("toolbar-bgcolor-transparent", false);
+
+					document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+				}
 				
 				await gkChromiumFrame.automatic();
 			}, 0);

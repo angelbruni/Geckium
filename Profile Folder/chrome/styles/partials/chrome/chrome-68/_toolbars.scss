@@ -1,5 +1,5 @@
 & {
-	--nav-bar: rgb(242,242,242);
+	--default-nav-bar: rgb(242,242,242);
 	--nav-bar-height: 37px;
 
 	--toolbarbutton-width: 24px;
@@ -10,14 +10,14 @@
 	--toolbarbutton-outer-padding: 2px !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow();
 
-	--personal-toolbar: var(--nav-bar);
+	--default-personal-toolbar: var(--default-nav-bar);
 	--personal-toolbar-height: 28px;
 	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
 	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
 
 	@media (prefers-color-scheme: dark) {
-		--nav-bar: rgb(80,80,80) !important;
-		--personal-toolbar: var(--nav-bar) !important;
+		--default-nav-bar: rgb(80,80,80) !important;
+		--default-personal-toolbar: var(--default-nav-bar) !important;
 		
 		--default-toolbarbutton-icon-fill: white;
 	}
