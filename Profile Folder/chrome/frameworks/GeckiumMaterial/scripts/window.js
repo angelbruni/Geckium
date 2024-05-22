@@ -22,10 +22,8 @@ let maximizeButton = document.querySelector(".caption-button.maximize");
 let restoreButton = document.querySelector(".caption-button.restore");
 let minimizeButton = document.querySelector(".caption-button.minimize");
 
-window.addEventListener('load', function() {
-	if (restoreButton)
-		restoreButton.style.display = "none";
-});
+if (restoreButton)
+	restoreButton.style.display = "none";
 
 if (closeButton)
 	closeButton.addEventListener("click", gkWindow.close);
