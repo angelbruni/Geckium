@@ -1,5 +1,5 @@
 & {
-    --tabbrowser-tab-selected: linear-gradient(
+    --default-tabbrowser-tab-selected: linear-gradient(
         to bottom,
 		rgb(255, 255, 255),
         rgb(249, 249, 249)
@@ -8,7 +8,7 @@
 	@media (prefers-color-scheme: dark) {
 		--inactive-tab-background-color: #252525;
 
-		--tabbrowser-tab-selected: linear-gradient(
+		--default-tabbrowser-tab-selected: linear-gradient(
 			to bottom,
 			#414141,
 			#333333

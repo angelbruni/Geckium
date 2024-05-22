@@ -1,7 +1,7 @@
 & {
 	--tab-width: 193px;
 	--tab-height: 32px;
-	--tabbrowser-tab-selected: var(--nav-bar);
+	--default-tabbrowser-tab-selected: var(--nav-bar);
 	--tab-sides-width: 13px;
 
 	--newtab-normal: rgb(219,219,219.66);
@@ -13,11 +13,11 @@
 	@media (prefers-color-scheme: dark) {
 		--inactive-tab-background-color: color-mix(
 			in srgb,
-			var(--nav-bar) 50%,
+			var(--default-nav-bar) 50%,
 			transparent
-		) 50%,;
+		) 50%;
 
-		--tabbrowser-tab-selected: var(--nav-bar) !important;
+		--default-tabbrowser-tab-selected: var(--default-nav-bar) !important;
     }
 
 	#tabs-newtab-button,
@@ -69,13 +69,16 @@
 	}
 	
 	.tab-stack {
+		&::before,
+		&::after {
+			mask-position-y: 0;
+		}
+
 		&::before {
 			mask-image: url(chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_left.svg);
-			bottom: -1px;
 		}
 		&::after {
 			mask-image: url(chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_right.svg);
-			bottom: -3px;
 		}
 	}
 

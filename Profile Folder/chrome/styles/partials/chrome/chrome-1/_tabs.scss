@@ -37,7 +37,7 @@
 		--tab-glare: rgba(19, 23, 29, 0.45);
 
 		--inactive-tab-background-color: #051d3b;
-		--tabbrowser-tab-selected: linear-gradient(
+		--default-tabbrowser-tab-selected: linear-gradient(
 			to bottom,
 			#0e3668,
 			#07254A
@@ -49,7 +49,11 @@
 	/* bruni: This entire code takes care of custom themes support for tabs */
 	// if lwtheme == gtkplus
 	&[lwtheme-id="#{$gtkplus}"] {
-		--inactive-tab-background-color: color-mix(in srgb, -moz-dialog 80%, transparent) !important;
+		--inactive-tab-background-color: color-mix(
+			in srgb,
+			-moz-dialog 80%,
+			transparent
+		) !important;
 		--tabbrowser-tab-selected: var(--nav-bar) !important;
 		--tabbrowser-tab-color: -moz-dialogtext !important;
 	}
@@ -70,6 +74,33 @@
 					--tabbrowser-tab-selected: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
 					--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
+
+					// if FXChrome
+					&[customthememode="0"] {
+						&[toolbar-bgcolor-transparent="true"] {
+							--tabbrowser-tab-selected: var(--gktoolbar-bgcolor) !important;
+						}
+					}
+					// if Silverfox
+					&[customthememode="1"] {
+						&[toolbar-bgcolor-transparent="true"] {
+							--tabbrowser-tab-selected: linear-gradient(
+								to bottom,
+								transparent -50%,
+								var(--gktoolbar-bgcolor) 70%
+							) !important;
+
+							--inactive-tab-background-color: linear-gradient(
+								to bottom,
+								transparent -10%,
+								color-mix(
+									in srgb,
+									var(--gktoolbar-bgcolor) 70%,
+									transparent
+								) 60%
+							) !important;
+						}
+					}
 				}
 			}
 		}
@@ -94,12 +125,6 @@
 		--tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
 
 		--theme-newtab: var(--chrt-control-background, transparent) !important;
-	}
-
-	&:not([tabsintitlebar]) {
-		.titlebar-items {
-			//margin-top: -7px !important;
-		}
 	}
 
 	&[tabsintitlebar] {
@@ -184,6 +209,7 @@
 	margin-top: 4px !important;
 	background-size: 100% 24px !important;
 	outline: 0 !important;
+	height: calc(var(--tab-height) - 4px) !important;;
 }
 
 .tab-loading-burst {
@@ -349,6 +375,11 @@
 		z-index: 1000 !important;
 		color: var(--tabbrowser-tab-color-active) !important;
 
+		.tab-glare-container {
+			opacity: 0 !important;
+			transition: opacity 0s !important;
+		}
+
 		.tab-content {
 			&::before {
 				background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tab_active_left.png)
@@ -472,7 +503,7 @@
 }
 
 .tab-stack,
-.tab-background,
+//.tab-background,
 .tab-content,
 .tabbrowser-tab {
 	height: var(--tab-height) !important;
@@ -490,19 +521,18 @@
 		width: var(--tab-sides-width);
 		mask-size: cover;
 		mask-repeat: no-repeat;
+		mask-position-y: -3px;
 		pointer-events: none;
+		margin-block-start: 4px;
+		height: calc(100% - 4px);
 	}
 
 	&::before {
 		left: calc(var(--tab-sides-width) * -1);
-		height: calc(100% - 2px);
-		bottom: 0px;
 	}
 
 	&::after {
 		left: calc(100% - 1px);
-		height: 100%;
-		bottom: -2px;
 	}
 }
 

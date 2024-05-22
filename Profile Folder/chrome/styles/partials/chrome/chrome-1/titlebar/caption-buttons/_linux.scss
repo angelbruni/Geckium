@@ -27,7 +27,7 @@
 	--titlebar-min-width: var(--titlebar-close-width);
 	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/minimize.svg);
 
-	&:not([customthememode="1"]) {
+	//&:not([customthememode="1"]) {
 		&[lwtheme] {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 				&:not([lwtheme-id="#{$gtkplus}"]) {
@@ -42,7 +42,7 @@
 				}
 			}
 		}
-	}
+	//}
 	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
 		--titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
 	}
