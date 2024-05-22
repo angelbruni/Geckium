@@ -45,5 +45,8 @@ if (restoreButton) {
 	});
 }
 
-if (minimizeButton)
-	minimizeButton.addEventListener("click", window.minimize);
+if (minimizeButton) {
+	minimizeButton.addEventListener("click", () => {
+		window.minimize()
+	});
+}
