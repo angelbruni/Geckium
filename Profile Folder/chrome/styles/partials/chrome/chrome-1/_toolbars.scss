@@ -582,6 +582,13 @@
 			margin-block-start: -2px !important;
 		}
 
+		#TabsToolbar {
+			&::before {
+				left: 0px;
+				right: 0px;
+			}
+		}		
+
 		#nav-bar,
 		#PersonalToolbar,
 		.notificationbox-stack {
@@ -833,7 +840,6 @@ toolbar[overflowable][customizing] > .customization-target {
 	border-color: var(--inner-border-color);
 	border-top-color: var(--personal-toolbar-border-bottom);
 	margin-top: -1px;
-	//box-shadow: 0 2px 0 0 rgb(0, 0, 0, 24%);
 }
 
 #TabsToolbar {
@@ -848,7 +854,7 @@ toolbar[overflowable][customizing] > .customization-target {
 		right: 3px;
 		bottom: -1px;
 		height: 23px;
-		background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/tabstoolbar_shadow_modified.png)
+		background: var(--content-border-top-image)
 			bottom;
 		pointer-events: none;
 		z-index: 100;

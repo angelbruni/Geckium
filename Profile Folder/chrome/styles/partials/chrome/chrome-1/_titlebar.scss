@@ -96,8 +96,8 @@
 
 				// Themes with image header/additional images
 				&[chromemargin="0,0,0,0"] {
-					&[windowtype="navigator:browser"] > body {
-						&::before {
+					&[windowtype="navigator:browser"] {
+						> body::before {
 							content: "";
 							position: absolute;
 							top: 1px;
@@ -110,7 +110,14 @@
 							background-color: var(--lwt-accent-color);
 							background-image: var(--lwt-additional-images);
 							background-repeat: var(--lwt-background-tiling);
-							background-position: var(--lwt-background-alignment) -9px;
+							background-position: var(--lwt-background-alignment);
+						}
+
+						&[sizemode="maximized"],
+						&[sizemode="fullscreen"] {
+							> body::before {
+								border-radius: 0;
+							}
 						}
 					}
 				}
@@ -226,22 +233,31 @@
 		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
 
 		&[chromemargin="0,0,0,0"] {
-			&[windowtype="navigator:browser"] > body {
-				&::before {
-					content: "";
-					top: 1px;
-					left: 1px;
-					position: absolute;
-					width: calc(100% - 2px);
-					height: 100%;
-					border-radius: 5px 5px 0 0;
-					background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
-					box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+			&[windowtype="navigator:browser"] {
+				> body {
+					&::before {
+						content: "";
+						top: 1px;
+						left: 1px;
+						position: absolute;
+						width: calc(100% - 2px);
+						height: 100%;
+						border-radius: 5px 5px 0 0;
+						background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
+						box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+					}
+	
+					&:-moz-window-inactive {
+						&::before {
+							filter: contrast(.5) brightness(1.4);
+						}
+					}
 				}
 
-				&:-moz-window-inactive {
-					&::before {
-						filter: contrast(.5) brightness(1.4);
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					> body::before {
+						border-radius: 0;
 					}
 				}
 			}

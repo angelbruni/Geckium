@@ -7,6 +7,11 @@
 
 .tabbrowser-tab {
 	.tab-stack {
+		&::before,
+		&::after {
+			mask-position-y: -2px;
+		}
+
 		&::after {
 			mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_right.png);
 		}
