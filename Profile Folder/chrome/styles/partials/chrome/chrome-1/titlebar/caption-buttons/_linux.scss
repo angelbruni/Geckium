@@ -55,7 +55,6 @@
 		margin-inline-end: 2px;
 	}
 }
-
 .titlebar-buttonbox {
 	margin-block-start: 1px;
 	margin-inline-end: 0;
@@ -72,6 +71,14 @@
 }
 
 &[sizemode="maximized"] {
+	#titlebar {
+		padding-block-start: 1px;
+	}
+
+	.titlebar-buttonbox-container {
+		margin-inline-end: 2px;
+	}
+
 	.titlebar-buttonbox {
 		margin-block-start: 2px;
 
