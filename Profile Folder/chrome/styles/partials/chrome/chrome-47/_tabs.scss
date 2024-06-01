@@ -1,34 +1,9 @@
 & {
-	--tab-width: 191px;
-}
+	--tab-distance-from-left-window-border-normal: -5px;
+	--tab-distance-from-left-window-border-maximized: -2px;
 
-.tabbrowser-tab {
-	&:not([busy]) {
-		&[image="chrome://branding/content/icon32.png"] {
-			.tab-label-container {
-				padding-left: 0;
-			}
-		}
-	}
-
-	&:first-of-type {
-		margin-inline-start: 10px !important;
-	}
-}
-
-.tab-close-button {
-	height: 14px !important;
-	width: 14px !important;
-	mask: none !important;
-	background: none !important;
-	margin-inline-end: -1px !important;
-	list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close.svg) !important;
-
-	&:hover {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg) !important;
-	}
-
-	&:active {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg) !important;
-	}
+	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close.svg");
+	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg");
+	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg");
+	--tab-close-button-margin-inline-end: -7px;
 }

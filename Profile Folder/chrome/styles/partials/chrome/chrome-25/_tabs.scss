@@ -1,28 +1,12 @@
 & {
 	--tab-width: 192px;
-}
 
-.tab-content {
-	padding-right: 1px !important;
-}
+	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.png");
+	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_hover.png");
+	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_pressed.png");
 
-.tab-close-button {
-	height: 19px !important;
-	width: 19px !important;
-	margin-top: 4px;
-	mask-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.png);
-	mask-size: 18px 18px;
-	background-color: black;
-	background-size: 18px 18px;
-
-	&:hover {
-		background-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_hover.png);
-		mask-image: none;
-	}
-
-	&:active {
-		background-image: url(chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_pressed.png);
-		background-color: transparent;
-		mask-image: none;
-	}
+	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_button_mask.png");
+	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_normal.png");
+	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_hover.png");
+	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_pressed.png");
 }

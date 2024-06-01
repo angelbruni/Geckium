@@ -29,23 +29,6 @@
 		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
 	}*/
 
-	#tabs-newtab-button,
-	#TabsToolbar #new-tab-button {
-		background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png);
-
-		&:active {
-			background: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_p_views.png);
-
-			&::before {
-				background-color: var(--newtab-active);
-			}
-		}
-
-		&::before {
-			mask-image: url(chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask_views.png);
-		}
-	}
-
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
 			#fxa-toolbar-menu-button,

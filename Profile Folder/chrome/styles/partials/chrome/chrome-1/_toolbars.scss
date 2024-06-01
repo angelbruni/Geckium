@@ -589,12 +589,6 @@
 			}
 		}		
 
-		#nav-bar,
-		#PersonalToolbar,
-		.notificationbox-stack {
-			margin-inline: 0 !important;
-		}
-
 		#nav-bar {
 			border-top-left-radius: 0 !important;
 			border-top-right-radius: 0 !important;
@@ -611,16 +605,6 @@
 				left: 0;
 				right: 0;
 				bottom: 1px;
-			}
-		}
-
-		#nav-bar,
-		#PersonalToolbar,
-		#browser,
-		#customization-container {
-			&::before,
-			&::after {
-				content: unset !important;
 			}
 		}
 
@@ -1274,59 +1258,6 @@ toolbarspring {
 #chrome-button {
 	list-style-image: var(--chrome-button-icon) !important;
 	background-position: center;
-}
-
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	list-style-image: none !important;
-	background-position: 50%;
-	background-size: var(--newtab-width) var(--newtab-height) !important;
-}
-
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	position: relative;
-	mask-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/newtab_button_mask.png);
-	mask-position: center;
-	mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
-	background-color: var(--theme-newtab);
-	background-image: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/newtab.png);
-	background-position: center;
-	background-repeat: no-repeat;
-	margin-top: 7px !important;
-	margin-left: 3px !important;
-	height: var(--newtab-height);
-	width: var(--newtab-width);
-	transition: background-color 100ms linear;
-
-	&:hover {
-		&::before {
-			background-color: var(--newtab-hot);
-		}
-	}
-
-	&:active {
-		background: url(chrome://userchrome/content/assets/img/chrome-5/tabbar/newtab_p.png);
-
-		&::before {
-			background-color: transparent;
-			transition: none !important;
-		}
-	}
-
-	&::before {
-		content: "";
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		background: var(--newtab-normal);
-		transition: background-color 100ms linear;
-	}
-}
-
-#tabs-newtab-button .toolbarbutton-icon {
-	box-shadow: none !important;
-	background: transparent !important;
 }
 
 #unified-extensions-button {
