@@ -8,25 +8,30 @@
 // a block to prevent accidentally leaking globals onto `window`.
 {
 	class MozTabbrowserTab extends MozElements.MozTab {
-		// bruni: Modified tab template to include
-		//		  the necessary elements for the glare.
+		// bruni: Modified tab template to include the necessary
+		//		  elements for the glare and background elements.
 		static markup = `
-		<hbox class="tab-glare-container">
-			<hbox class="tab-glare-left">
-				<hbox class="tab-glare"/>
-			</hbox>
-			<hbox class="tab-glare-middle">
-				<hbox class="tab-glare"/>
-			</hbox>
-			<hbox class="tab-glare-right">
-				<hbox class="tab-glare"/>
-			</hbox>
-		</hbox>
 	   <stack class="tab-stack" flex="1">
 		 	<vbox class="tab-background">
+				<hbox class="tab-background-container">
+					<html:div class="tab-background-start" />
+					<html:div class="tab-background-center" />
+					<html:div class="tab-background-end" />
+				</hbox>
 		 	  	<hbox class="tab-context-line"/>
 		 	  	<hbox class="tab-loading-burst" flex="1"/>
 		 	</vbox>
+			<hbox class="tab-glare-container">
+				<hbox class="tab-glare-left">
+					<hbox class="tab-glare"/>
+				</hbox>
+				<hbox class="tab-glare-middle">
+					<hbox class="tab-glare"/>
+				</hbox>
+				<hbox class="tab-glare-right">
+					<hbox class="tab-glare"/>
+				</hbox>
+		 	</hbox>
 		 	<hbox class="tab-content" align="center">
 		 	  	<stack class="tab-icon-stack">
 					<hbox class="tab-throbber"/>

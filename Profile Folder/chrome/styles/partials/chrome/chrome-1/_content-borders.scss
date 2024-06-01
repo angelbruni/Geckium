@@ -26,6 +26,16 @@
 			}
 		}
 
+		#TabsToolbar,
+		#nav-bar,
+		#PersonalToolbar,
+		#browser,
+		#customization-container,
+		.notificationbox-stack,
+		#appcontent{
+			margin-inline: 0 !important;
+		}
+
 		.notificationbox-stack {
 			width: 100% !important;
 		}
@@ -44,6 +54,9 @@
 	}
 }
 
+#TabsToolbar {
+	margin-inline-start: calc(var(--content-border-width) - 1px);
+}
 
 #nav-bar,
 #PersonalToolbar,

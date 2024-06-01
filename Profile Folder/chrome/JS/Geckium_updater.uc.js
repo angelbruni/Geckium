@@ -10,7 +10,7 @@ const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/Gecki
 
 (async () => {
     if (gkPrefUtils.tryGet("Geckium.version.current").string !== await gkUpdater.getVersion()) {
-        console.warn("OLD VERSION!");
+        console.warn("MISMATCHED VERSION! Updating...");
 
 		gkPrefUtils.set("Geckium.version.current").string(await gkUpdater.getVersion());
 		_ucUtils.restart(true);

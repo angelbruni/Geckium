@@ -101,27 +101,6 @@
 	}
 }
 
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_normal.png) !important;
-
-	&:hover {
-		background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_hover.png) !important;
-	}
-
-	&:active {
-		background: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_pressed.png) !important;
-
-		&::before {
-			background-color: var(--newtab-active);
-		}
-	}
-
-	&::before {
-		mask-image: url(chrome://userchrome/content/assets/img/chrome-47/tabbar/newtab_button_mask.png) !important;
-	}
-}
-
 #PersonalToolbar {
 	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 		transition: all 150ms linear !important;
