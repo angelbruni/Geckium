@@ -349,6 +349,37 @@
 	}
 }
 
+/* bruni: This controls the transition of the tabs moving around while a tab is being
+			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
+@media (prefers-reduced-motion: no-preference) {
+	#tabbrowser-tabs[movingtab]
+		> #tabbrowser-arrowscrollbox
+		> .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+	.tabbrowser-tab[tab-grouping],
+	.tabbrowser-tab[tabdrop-samewindow] {
+		transition: transform 200ms var(--animation-easing-function) !important;
+	}
+
+	.tab-throbber[progress]::before,
+	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+		opacity: 1 !important;
+	}
+
+	.tab-throbber[progress]::before {
+		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber.png) !important;
+		width: 576px !important;
+		background-size: 576px 16px !important;
+		animation: geckium-progress-throbber 1s steps(36) infinite !important;
+	}
+
+	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber_waiting.png) !important;
+		width: 2864px !important;
+		background-size: 2864px 16px !important;
+		animation: geckium-waiting-throbber 5s steps(179) infinite !important;
+	}
+}
+
 .tab-background {
 	/** Remove all styles from `.tab-background`, we
 	 *  are gonna use Geckium-only elements such as:
