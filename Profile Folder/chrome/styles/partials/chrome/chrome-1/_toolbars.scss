@@ -1147,70 +1147,15 @@ toolbarspring {
 }
 
 #back-button {
-	list-style-image: var(--back-button-icon) !important;
-
 	&::after {
 		border-right: 1px solid var(--navigation-buttons-separator);
 		z-index: 1;
 	}
 }
 
-#forward-button {
-	list-style-image: var(--forward-button-icon) !important;
-}
-
-#reload-button {
-	list-style-image: var(--reload-button-icon) !important;
-}
-
-#stop-button {
-	list-style-image: var(--stop-button-icon) !important;
-}
-
-#home-button {
-	list-style-image: var(--home-button-icon) !important;
-}
-
-#go-button-box {
-	list-style-image: var(--go-button-box-icon);
-}
-
-#logins-button {
-	list-style-image: var(--logins-button-icon) !important;
-}
-
-#developer-button {
-	list-style-image: var(--developer-button-icon) !important;
-}
-
-#preferences-button {
-	list-style-image: var(--preferences-button-icon) !important;
-}
-
-#fullscreen-button {
-	list-style-image: var(--fullscreen-button-icon) !important;
-}
-
-#new-window-button {
-	list-style-image: var(--new-window-button-icon) !important;
-}
-
-#save-page-button {
-	list-style-image: var(--save-page-button-icon) !important;
-}
-
-#open-file-button {
-	list-style-image: var(--open-file-button-icon) !important;
-}
-
 #star-button-box > #star-button {
 	width: fit-content !important;
 	height: fit-content !important;
-	list-style-image: var(--star-button-icon-normal) !important;
-
-	&[starred] {
-		list-style-image: var(--star-button-icon-starred) !important;
-	}
 }
 
 #star-button-box > #star-button,
