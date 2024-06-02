@@ -26,13 +26,18 @@
 	--newtab-width: 34px;
 
 	--newtab-normal: var(--inactive-tab-background);
-	--newtab-hot: rgb(211, 217, 225, 0.8);
+	--newtab-hot: rgba(255, 255, 255, 0.8);
 	--newtab-active: rgb(211, 217, 225, 0.4);
 	
 	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask_views.png");
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png");
-	--newtab-button-texture-hot:		url(); // Remove hot texture.
+	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png"); // Remove hot texture.
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_p_views.png");
+
+	// else if chrtheme
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--theme-newtab: var(--inactive-tab-background, var(--default-theme-newtab)) !important;
+	}
 }
 
 #tabs-newtab-button,

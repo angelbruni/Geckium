@@ -1,11 +1,29 @@
+/* bruni: This is the animation responsible for hiding the tab
+			when the background reaches min-width. */
+@keyframes hide-tab {
+	59% {
+		opacity: 1;
+	}
+
+	60% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
 :root {
 	--tab-drop-indicator-pos-from-top-normal: 		-2px;
 	--tab-drop-indicator-icon-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab-drag-indicator.svg");
 	--tab-drop-indicator-pos-from-top-maximized: 	-1px;
 	--tab-drop-indicator-icon-maximized: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab-drag-indicator-maximized.svg");
 
+	--tab-transition-time: 220ms;
+
 	--tab-distance-from-titlebar-normal: 0px; // Unused.
-	--tab-distance-from-titlebar-maximized: -2px;
+	--tab-distance-from-titlebar-maximized: 0px;
 	--tab-distance-from-left-window-border-normal: 2px;
 	--tab-distance-from-left-window-border-maximized: 0px;
 	--tab-width: 194px;
@@ -41,7 +59,7 @@
 	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.png");
 	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.png");
 
-	--tab-favicon-margin-inline-end: 4px;
+	--tab-gap-between-favicon-and-title: 4px;
 
 	--default-tabbrowser-tab-color: black;
 	--tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
@@ -62,7 +80,7 @@
 	--theme-newtab: var(--default-theme-newtab);
 	--default-newtab-normal: rgba(255, 255, 255, 0.01);
 	--newtab-normal: var(--default-newtab-normal);
-	--newtab-hot: rgba(255, 255, 255, 0.1);
+	--newtab-hot: rgba(255, 255, 255, 0.5);
 
 	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_button_mask.png");
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.png");
@@ -177,7 +195,7 @@
 		--tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
 		--tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
 
-		--theme-newtab: var(--chrt-control-background, transparent) !important;
+		--theme-newtab: var(--chrt-control-background, var(--default-theme-newtab)) !important;
 	}
 }
 
@@ -313,6 +331,21 @@
 				max-width: var(--tab-width) !important;
 			}
 		}
+	}
+
+	/* bruni: This controls the tab "open"/"close" transition. */
+	&:not([pinned]) {
+		transition: min-width var(--tab-transition-time) ease,
+					max-width var(--tab-transition-time) ease !important;
+	}
+
+	/* bruni: This makes it so the tab does not disappear when it starts "close" transition 
+			  and it also makes the tab disappear when the background reaches min-width just
+			  like real Chrome. */
+	&:not([pinned], [fadein]) {
+		visibility: unset !important;
+		pointer-events: none !important;
+		animation: hide-tab var(--tab-transition-time) ease;
 	}
 }
 
@@ -458,7 +491,16 @@
 }
 
 .tab-icon-stack {
-	margin-inline-end: var(--tab-favicon-margin-inline-end) !important;
+	&::before {
+		content: '';
+		max-width: 16px;
+		max-height: 16px;
+	}
+}
+
+.tab-label-container {
+	height: auto;
+	margin-inline-start: var(--tab-gap-between-favicon-and-title);
 }
 
 .tab-throbber,
@@ -505,7 +547,7 @@
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: relative;
-	// background-color: var(--theme-newtab);
+	padding: 0 !important;
 	list-style-image: none !important;
 	height: var(--newtab-height);
 	width: var(--newtab-width);
@@ -522,8 +564,6 @@
 	}
 
 	&:active {
-		// background: var(--newtab-button-texture-pressed);
-
 		&::before {
 			background-color: transparent;
 			transition: none !important;
@@ -552,11 +592,19 @@
 		background-repeat: no-repeat;
 		background-size: var(--newtab-width) var(--newtab-height) !important;
 	}
-}
 
-#tabs-newtab-button .toolbarbutton-icon {
-	box-shadow: none !important;
-	background: transparent !important;
+	.toolbarbutton-icon {
+		box-shadow: none !important;
+		border-radius: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+
+		// Custom theme new tab button background texture.
+		mask-image: var(--newtab-button-mask);
+		mask-position: center;
+		mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+		background: var(--theme-newtab) !important;
+	}
 }
 
 // Animation related style code
