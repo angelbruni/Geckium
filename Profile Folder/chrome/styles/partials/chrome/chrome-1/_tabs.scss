@@ -377,8 +377,16 @@
 		&::after {
 			content: "";
 			position: absolute;
-			width: 100%;
 			height: 100%;
+		}
+
+		&::after {
+			width: 100%;
+		}
+
+		&::before {
+			// Weird mask stuff, add .1px.
+			width: calc(100% + .1px);
 		}
 	}
 }
