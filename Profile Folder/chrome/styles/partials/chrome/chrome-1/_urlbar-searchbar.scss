@@ -354,12 +354,13 @@
 }
 
 .urlbarView-favicon {
+	// Fix for Rich Results feature
+	margin-inline-start: 0 !important;
+
 	&[src="chrome://global/skin/icons/search-glass.svg"],
 	&[src="chrome://browser/skin/history.svg"] {
 		fill: transparent;
-		height: 19px !important;
-		width: 19px !important;
-		background-size: 19px 19px !important;
+		background-size: 16px 16px !important;
 	}
 
 	&[src="chrome://global/skin/icons/search-glass.svg"] {
@@ -465,8 +466,8 @@
 				&::before {
 					content: url("assets/img/chrome-1/toolbar/search.svg");
 					position: absolute;
-					width: 19px;
-					height: 19px;
+					width: 16px;
+					height: 16px;
 					left: 3px;
 					top: 50%;
 					transform: translateY(-50%);
@@ -546,6 +547,13 @@
 			content: unset !important;
 		}
 	}
+
+	// Fix for Rich Results feature
+	&[rich-suggestion] {
+		.urlbarView-row-body-description {
+			display: none !important;
+		}
+	}
 }
 
 .urlbarView-action {
@@ -601,9 +609,12 @@
 	left: 4px;
 	top: 50%;
 	transform: translateY(-50%);
+	width: 16px !important;
+	height: 16px !important;
 }
 
-.urlbarView-no-wrap {
+.urlbarView-no-wrap,
+.urlbarView-row-body-top-no-wrap /* Fix for Rich Results feature */ {
 	order: 2 !important;
 }
 
@@ -625,6 +636,9 @@
 	height: var(--urlbarView-row-height) !important;
 	min-height: var(--urlbarView-row-height) !important;
 	padding-block: 0 !important;
+
+	// Fix for Rich Results feature
+	align-items: center !important;
 }
 
 .urlbarView-dynamic-onboardTabToSearch-no-wrap {

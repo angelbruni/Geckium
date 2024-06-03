@@ -1226,6 +1226,15 @@ toolbarspring {
 		height: var(--personal-toolbar-height);
 	}
 
+	#PlacesToolbarItems,
+	#personal-bookmarks /* Fix for Firefox ~120+ */ {
+		.bookmark-item {
+			&:not(.menu-iconic, .menuitem-iconic) {
+				margin-top: 0 !important;
+			}
+		}	
+	}
+
 	.bookmark-item  {
 		&[container="true"] {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg) !important;
@@ -1240,8 +1249,10 @@ toolbarspring {
 		&:not(.menu-iconic, .menuitem-iconic) {
 			border: 1px solid transparent;
 			box-shadow: var(--personal-toolbar-item-shadow);
-			transition: all 150ms linear;
-			margin: 0 !important;
+			transition: all 150ms linear;	
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+			margin-bottom: 0 !important;
 			border-radius: var(--toolbarbutton-radius) !important;
 			color: var(--bookmark-item-color) !important;
 			text-shadow: 0 1px 0 var(--bookmark-item-color-shadow);
@@ -1257,7 +1268,8 @@ toolbarspring {
 	}
 }
 
-#PlacesToolbarItems {
+#PlacesToolbarItems,
+#personal-bookmarks /* Fix for Firefox ~120+ */ {
 	gap: 2px;
 }
 
