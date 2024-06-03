@@ -173,6 +173,11 @@
 			.toolbarbutton-icon {
 				width: auto !important;
     			height: auto !important;
+
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+        		border-radius: unset !important;
 			}
 		}
 

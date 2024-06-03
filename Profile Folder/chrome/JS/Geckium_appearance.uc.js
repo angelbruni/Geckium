@@ -8,35 +8,7 @@
 // @include		about:addons*
 // ==/UserScript==
 
-const forkName = AppConstants.MOZ_APP_NAME;
-const unsupportedForks = {
-	"superfox": true,
-	"r3dfox": true
-}
-
 let previousChoice;
-
-if (unsupportedForks[forkName]) {
-	_ucUtils.showNotification(
-		{
-		  	label : "The " + forkName.charAt(0).toUpperCase() + forkName.slice(1) + " browser will receive no support from the Geckium team. Please download a recommended fork.",  // text shown in the notification
-		  	type : "unsupported-fork",         // opt identifier for this notification
-		  	priority: "critical",           // opt one of ["system","critical","warning","info"]
-		  	buttons: [{
-				label: "Recommended forks",
-				callback: (notification) => {
-				  	notification.ownerGlobal.openWebLinkIn(
-						"https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
-						"tab"
-				  	);
-				  	return false
-				}
-		  	}],
-		}
-	);
-
-	document.documentElement.setAttribute("unsupported-fork", true);
-}
 
 const appearanceChanged = new CustomEvent("appearanceChanged");
 

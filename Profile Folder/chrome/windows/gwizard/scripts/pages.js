@@ -47,7 +47,7 @@ finishElm.addEventListener("click", () => {
 				"type": 0
 			}
 		}
-		`);																					// Add default apps
+		`);																					// Add default apps if the apps list is empty
 	}
 
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);

@@ -226,6 +226,9 @@
 }
 
 #tabbrowser-tabs {
+	// Disable tab scrolling
+	--tab-min-width: 0 !important;
+
 	/** Remove border and spacings before tabs
 	 *  (spacing is taken care by `.titlebar-spacer` already) */
 	border-inline-start: 0 !important;
@@ -273,6 +276,13 @@
 				&::before {
 					background: var(--selected-tab-background);
 				}
+			}
+		}
+
+		.tab-background-start,
+		.tab-background-end {
+			&::after {
+				background-repeat: no-repeat;
 			}
 		}
 
@@ -592,23 +602,6 @@
 	width: var(--newtab-width);
 	transition: background-color 100ms linear;
 
-	&:hover {
-		&::before {
-			background-color: var(--newtab-hot);
-		}
-
-		&::after {
-			background-image: var(--newtab-button-texture-hot);
-		}
-	}
-
-	&:active {
-		&::before {
-			background-color: transparent;
-			transition: none !important;
-		}
-	}
-
 	&::before,
 	&::after {
 		content: "";
@@ -629,7 +622,28 @@
 		background-image: var(--newtab-button-texture-normal);
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: var(--newtab-width) var(--newtab-height) !important;
+		background-size: var(--newtab-width) var(--newtab-height);
+	}
+
+	&:hover {
+		&::before {
+			background-color: var(--newtab-hot);
+		}
+
+		&::after {
+			background-image: var(--newtab-button-texture-hot);
+		}
+	}
+
+	&:active {
+		&::before {
+			background-color: transparent;
+			transition: none !important;
+		}
+
+		&::after {
+			background-image: var(--newtab-button-texture-pressed);
+		}
 	}
 
 	.toolbarbutton-icon {
