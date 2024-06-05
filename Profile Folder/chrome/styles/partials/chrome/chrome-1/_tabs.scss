@@ -199,6 +199,13 @@
 	}
 }
 
+#TabsToolbar-customization-target {
+	/** This makes every element in the tabs toolbar align 
+	 *  to the bottom, fixing for example the people button
+	 *  position. */
+	align-items: end;
+}
+
 .tab-drop-indicator {
 	top: var(--tab-drop-indicator-pos-from-top-normal) !important;
 	background: var(--tab-drop-indicator-icon-normal) !important;
