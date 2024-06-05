@@ -81,10 +81,35 @@
 				}
 			}
 
+			// Fix button position when maximized
 			#titlebar {
 				@media (-moz-platform: windows) {
-					// Fix button position when maximized
-					padding-block-start: 8px;
+					@media not (-moz-platform: windows-win10) {
+						padding-block-start: 8px;
+					}
+
+					@media (-moz-platform: windows-win10) {
+						padding-block-start: 0;
+
+						@media not (-moz-ev-native-controls-patch) {
+							padding-block-start: 8px;
+						}
+					}
+
+					@media (-moz-windows-classic) {
+						padding-block-start: 4px !important;
+					}
+				}
+			}
+			&[is117Plus] {
+				#titlebar {
+					@media (-moz-platform: windows) {
+						@media (-moz-platform: windows-win10) {
+							@media not (-moz-ev-native-controls-patch) {
+								padding-block-start: 0;
+							}
+						}
+					}
 				}
 			}
 		}
