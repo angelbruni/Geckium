@@ -77,7 +77,14 @@
 		&[sizemode="maximized"] {
 			&[windowtype="navigator:browser"] > body {
 				@media not (-moz-platform: linux) {
-					//padding-top: 7px !important;
+					// padding-top: 7px !important;
+				}
+			}
+
+			#titlebar {
+				@media (-moz-platform: windows) {
+					// Fix button position when maximized
+					padding-block-start: 8px;
 				}
 			}
 		}
