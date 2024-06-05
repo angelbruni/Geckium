@@ -169,7 +169,8 @@
 				> .toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
 					#tabs-newtab-button,
-					#new-tab-button
+					#new-tab-button,
+					.subviewbutton
 				) {
 					&#back-button,
 					&#forward-button,
@@ -229,7 +230,8 @@
 					> .toolbarbutton-1:not(
 						#fxa-toolbar-menu-button,
 						#tabs-newtab-button,
-						#new-tab-button
+						#new-tab-button,
+						.subviewbutton
 					) {
 						&#PanelUI-menu-button,
 						&#chrome-button,
@@ -635,7 +637,8 @@
 			> .toolbarbutton-1:not(
 				#fxa-toolbar-menu-button,
 				#tabs-newtab-button,
-				#new-tab-button
+				#new-tab-button,
+				.subviewbutton
 			) {
 				&#unified-extensions-button,
 				&[type="menu"]:not(#back-button, #forward-button),
@@ -862,7 +865,8 @@ toolbarspring {
 	> .toolbarbutton-1:not(
 		#fxa-toolbar-menu-button,
 		#tabs-newtab-button,
-		#new-tab-button
+		#new-tab-button,
+		.subviewbutton
 	) {
 	position: relative;
 	padding: 0 !important;
@@ -1099,7 +1103,8 @@ toolbarspring {
 			> .toolbarbutton-1:not(
 				#fxa-toolbar-menu-button,
 				#tabs-newtab-button,
-				#new-tab-button
+				#new-tab-button,
+				.subviewbutton
 			) {
 				&#go-button-box {
 					margin: 0 !important;
