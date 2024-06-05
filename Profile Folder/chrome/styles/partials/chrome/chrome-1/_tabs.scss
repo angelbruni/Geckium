@@ -582,6 +582,9 @@
 	width: auto !important;
 	height: auto !important;
 
+	// Fix close button not working sometimes in Windows
+	-moz-window-dragging: no-drag;
+
 	&:hover {
 		list-style-image: var(--tab-close-button-hot) !important;
 	}
