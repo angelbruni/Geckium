@@ -129,7 +129,8 @@
 	}
 
 	&:not(.searchButton) {
-		> #urlbar-input-container {
+		> #urlbar-input-container,
+		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
 		> #identity-box {
 			&[pageproxystate="invalid"],
 			&[pageproxystate="valid"].chromeUI {
@@ -142,7 +143,8 @@
 	}
 
 	&:not(.searchButton) {
-		> #urlbar-input-container {
+		> #urlbar-input-container,
+		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
 			> #identity-box[pageproxystate="invalid"] {
 				#identity-icon {
 					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
@@ -432,6 +434,7 @@
 }
 
 #urlbar-input-container,
+.urlbar-input-container /* Fix for Firefox ~120+ */,
 #searchbar {
 	min-height: var(--urlbar-height-definitive) !important;
 	height: var(--urlbar-height-definitive) !important;

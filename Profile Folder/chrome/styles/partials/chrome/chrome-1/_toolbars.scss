@@ -48,6 +48,7 @@
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
+	--personal-toolbar-gap: 2px;
 	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
 	--personal-toolbar-height: 25px;
 	--personal-toolbar-border-bottom: rgb(182, 186, 192);
@@ -168,7 +169,8 @@
 				> .toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
 					#tabs-newtab-button,
-					#new-tab-button
+					#new-tab-button,
+					.subviewbutton
 				) {
 					&#back-button,
 					&#forward-button,
@@ -228,7 +230,8 @@
 					> .toolbarbutton-1:not(
 						#fxa-toolbar-menu-button,
 						#tabs-newtab-button,
-						#new-tab-button
+						#new-tab-button,
+						.subviewbutton
 					) {
 						&#PanelUI-menu-button,
 						&#chrome-button,
@@ -314,7 +317,7 @@
 
 					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
-					--inner-border-color: var(--nav-bar) !important;
+					// --inner-border-color: var(--nav-bar) !important;
 
 					&[personalbar="newtab"] {
 						--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
@@ -634,7 +637,8 @@
 			> .toolbarbutton-1:not(
 				#fxa-toolbar-menu-button,
 				#tabs-newtab-button,
-				#new-tab-button
+				#new-tab-button,
+				.subviewbutton
 			) {
 				&#unified-extensions-button,
 				&[type="menu"]:not(#back-button, #forward-button),
@@ -861,7 +865,8 @@ toolbarspring {
 	> .toolbarbutton-1:not(
 		#fxa-toolbar-menu-button,
 		#tabs-newtab-button,
-		#new-tab-button
+		#new-tab-button,
+		.subviewbutton
 	) {
 	position: relative;
 	padding: 0 !important;
@@ -1098,7 +1103,8 @@ toolbarspring {
 			> .toolbarbutton-1:not(
 				#fxa-toolbar-menu-button,
 				#tabs-newtab-button,
-				#new-tab-button
+				#new-tab-button,
+				.subviewbutton
 			) {
 				&#go-button-box {
 					margin: 0 !important;
@@ -1219,6 +1225,7 @@ toolbarspring {
 	height: var(--personal-toolbar-height) !important;
 	padding: 3px !important;
 	background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
+	gap: var(--personal-toolbar-gap);
 
 	&::before,
 	&::after {
@@ -1270,7 +1277,7 @@ toolbarspring {
 
 #PlacesToolbarItems,
 #personal-bookmarks /* Fix for Firefox ~120+ */ {
-	gap: 2px;
+	gap: var(--personal-toolbar-gap);
 }
 
 #PlacesToolbarDropIndicator {

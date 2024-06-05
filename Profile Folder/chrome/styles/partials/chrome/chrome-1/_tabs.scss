@@ -349,9 +349,9 @@
 					max-width var(--tab-transition-time) ease !important;
 	}
 
-	/* bruni: This makes it so the tab does not disappear when it starts "close" transition 
-			  and it also makes the tab disappear when the background reaches min-width just
-			  like real Chrome. */
+	/** bruni: This makes it so the tab does not disappear when it starts "close" transition 
+	 *	       and it also makes the tab disappear when the background reaches min-width just
+			   like real Chrome. */
 	&:not([pinned], [fadein]) {
 		visibility: unset !important;
 		pointer-events: none !important;
@@ -359,8 +359,8 @@
 	}
 }
 
-/* bruni: This controls the transition of the tabs moving around while a tab is being
-			dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
+/** bruni: This controls the transition of the tabs moving around while a tab is being
+ *		   dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
 @media (prefers-reduced-motion: no-preference) {
 	#tabbrowser-tabs[movingtab]
 		> #tabbrowser-arrowscrollbox
@@ -659,5 +659,3 @@
 		background: var(--theme-newtab) !important;
 	}
 }
-
-// Animation related style code
