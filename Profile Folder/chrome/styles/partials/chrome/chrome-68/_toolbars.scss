@@ -10,6 +10,7 @@
 	--toolbarbutton-outer-padding: 2px !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow();
 
+	--personal-toolbar-gap: 0;
 	--default-personal-toolbar: var(--default-nav-bar);
 	--personal-toolbar-height: 28px;
 	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
@@ -132,11 +133,6 @@
 
 		border: 0;
 	}
-}
-
-#PlacesToolbarItems,
-#personal-bookmarks /* Fix for Firefox ~120+ */ {
-	gap: 0;
 }
 
 /*&[personalbar="newtab"] {

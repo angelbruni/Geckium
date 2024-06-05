@@ -50,6 +50,9 @@ finishElm.addEventListener("click", () => {
 		`);																					// Add default apps if the apps list is empty
 	}
 
+	if (parseInt(Services.appinfo.version.split(".")[0]) >= 126)
+		gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);
+
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
 
 	gkWindow.close();
