@@ -48,6 +48,7 @@
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
+	--personal-toolbar-gap: 2px;
 	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
 	--personal-toolbar-height: 25px;
 	--personal-toolbar-border-bottom: rgb(182, 186, 192);
@@ -1219,6 +1220,7 @@ toolbarspring {
 	height: var(--personal-toolbar-height) !important;
 	padding: 3px !important;
 	background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
+	gap: var(--personal-toolbar-gap);
 
 	&::before,
 	&::after {
@@ -1270,7 +1272,7 @@ toolbarspring {
 
 #PlacesToolbarItems,
 #personal-bookmarks /* Fix for Firefox ~120+ */ {
-	gap: 2px;
+	gap: var(--personal-toolbar-gap);
 }
 
 #PlacesToolbarDropIndicator {
