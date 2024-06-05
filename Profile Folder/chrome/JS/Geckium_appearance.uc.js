@@ -8,6 +8,9 @@
 // @include		about:addons*
 // ==/UserScript==
 
+if (parseInt(Services.appinfo.version.split(".")[0]) >= 117)
+	document.documentElement.setAttribute("is117Plus", true);
+
 let previousChoice;
 
 const appearanceChanged = new CustomEvent("appearanceChanged");
