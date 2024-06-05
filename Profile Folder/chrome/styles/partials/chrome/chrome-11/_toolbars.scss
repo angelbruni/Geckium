@@ -68,7 +68,8 @@
 		> .toolbarbutton-1:not(
 			#fxa-toolbar-menu-button,
 			#tabs-newtab-button,
-			#new-tab-button
+			#new-tab-button,
+			.subviewbutton
 		) {
 			background: transparent !important;
 			border: 1px solid transparent !important;
@@ -219,7 +220,8 @@
 				> .toolbarbutton-1:not(
 					#fxa-toolbar-menu-button,
 					#tabs-newtab-button,
-					#new-tab-button
+					#new-tab-button,
+					.subviewbutton
 				) {
 					&#back-button,
 					&#forward-button,
@@ -264,7 +266,8 @@
 					> .toolbarbutton-1:not(
 						#fxa-toolbar-menu-button,
 						#tabs-newtab-button,
-						#new-tab-button
+						#new-tab-button,
+						.subviewbutton
 					) {
 						&#PanelUI-menu-button,
 						&#chrome-button,

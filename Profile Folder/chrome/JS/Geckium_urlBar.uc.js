@@ -6,7 +6,11 @@
 
 function changeGoButton() {
 	const urlbarContainer = document.getElementById("urlbar-container");
-	const urlbarInputContainer = document.getElementById("urlbar-input-container");
+	let urlbarInputContainer = document.getElementById("urlbar-input-container");
+
+	/* Fix for Firefox ~120+ */
+	if (!urlbarInputContainer)
+		urlbarInputContainer = document.querySelector(".urlbar-input-container");
 
 	let appearanceChoice;
 	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {

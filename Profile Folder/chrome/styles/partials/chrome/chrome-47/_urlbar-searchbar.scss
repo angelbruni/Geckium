@@ -43,22 +43,29 @@
 			}
 		}
 
-		#urlbar-input-container[pageproxystate="invalid"] {
-			> #go-button-box {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/search.svg);
+		#urlbar-input-container,
+		.urlbar-input-container /* Fix for Firefox ~120+ */ {
+			&[pageproxystate="invalid"] {
+				> #go-button-box {
+					list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/search.svg);
+				}
 			}
 		}
 
 		&[geckium-chrflag-search-button-in-omnibox="3"] {
-			#urlbar-input-container[pageproxystate="invalid"] {
-				#go-button-box {
-					display: flex !important;
+			#urlbar-input-container,
+			.urlbar-input-container /* Fix for Firefox ~120+ */ {
+				&[pageproxystate="invalid"] {
+					#go-button-box {
+						display: flex !important;
+					}
 				}
 			}
 		}
 
 		&[geckium-chrflag-search-button-in-omnibox="4"] {
-			#urlbar-input-container {
+			#urlbar-input-container,
+			.urlbar-input-container /* Fix for Firefox ~120+ */ {
 				#go-button-box {
 					display: flex !important;
 				}
