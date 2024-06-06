@@ -202,6 +202,26 @@
 		}
 	}
 
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		#fxa-toolbar-menu-button {
+			margin-inline-start: 8px !important;
+			margin-inline-end: -2px !important;
+
+			.toolbarbutton-badge-stack {
+				margin-block-end: 10px;
+			}
+		}
+	}
+
+	#fxa-toolbar-menu-button {
+		margin-inline-end: -4px !important;
+		
+		.toolbarbutton-badge-stack {
+			margin-block-end: 10px;
+		}
+	}
+
 	//&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
 			> * {
