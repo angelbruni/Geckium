@@ -6,6 +6,7 @@
 	--toolbarbutton-height: 24px;
 	--toolbarbutton-radius: 2px;
 	--toolbarbutton-background-hot: rgba(0,0,0,.09);
+	--toolbarbutton-background-pressed: rgba(0,0,0,.18);
 	--default-toolbarbutton-icon-fill: #5a5a5a;
 	--toolbarbutton-outer-padding: 2px !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow();
@@ -15,6 +16,8 @@
 	--personal-toolbar-height: 28px;
 	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
 	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
+
+	--bookmark-item-hover-color: black;
 
 	@media (prefers-color-scheme: dark) {
 		--default-nav-bar: rgb(80,80,80) !important;
@@ -120,8 +123,8 @@
 	}
 }
 
-#PlacesToolbar {
-	padding-block: 3px;
+#PersonalToolbar {
+	padding-block: 6px !important;
 
 	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 		&:active {
@@ -249,6 +252,14 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+#star-button-box {
+	#star-button {
+		&[starred="true"] {
+			fill: rgb(66,133,244) !important;
 		}
 	}
 }
