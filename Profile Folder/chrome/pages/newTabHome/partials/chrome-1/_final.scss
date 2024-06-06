@@ -46,6 +46,10 @@
 	min-height: 25px;
 	line-height: 25px;
 	margin-block-end: 4px;
+
+	@media (prefers-color-scheme: dark) {
+		color: white;
+	}
 }
 
 /*&[pref="newtab"] {
