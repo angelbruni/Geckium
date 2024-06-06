@@ -27,6 +27,8 @@
 	&[sizemode="fullscreen"] {
 		#fxa-toolbar-menu-button {
 			height: var(--tab-height);
+			margin-inline-start: calc(var(--tab-distance-from-left-window-border-normal) * -1 + 4px) !important;
+			margin-inline-end: 0 !important;
 		}
 	}
 }
@@ -141,8 +143,10 @@
 }*/
 
 #fxa-toolbar-menu-button {
+	margin-inline-end: 0 !important;
+
 	.toolbarbutton-badge-stack {
-		margin-block-end: 6px;
+		margin-block-end: 9px;
 	}
 }
 

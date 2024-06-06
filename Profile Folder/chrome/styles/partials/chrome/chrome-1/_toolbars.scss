@@ -580,9 +580,12 @@
 	&[sizemode="fullscreen"] {
 		#fxa-toolbar-menu-button {
 			height: calc(var(--tab-height) - 9px);
-			margin-inline-start: 3px !important;
-			margin-inline-end: 5px !important;
-			margin-block-start: -2px !important;
+			margin-inline-start: 2px !important;
+			margin-inline-end: 2px !important;
+
+			.toolbarbutton-badge-stack {
+				margin-block-end: 12px;
+			}
 		}
 
 		#TabsToolbar {
@@ -1135,8 +1138,8 @@ toolbarspring {
 	border: 0 !important;
 	background: transparent !important;
 	padding: 0 !important;
-	margin-inline-start: 6px !important;
-    margin-inline-end: 2px !important;
+	margin-inline-start: calc(var(--tab-distance-from-left-window-border-normal) * -1 + 3px) !important;
+	margin-inline-end: 2px !important;
 	height: var(--tab-height);
 
 	.toolbarbutton-badge-stack {
