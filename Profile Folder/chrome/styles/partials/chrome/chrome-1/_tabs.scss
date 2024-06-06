@@ -60,6 +60,8 @@
 	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.png");
 	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.png");
 
+	--tab-icon-stack-margin-block-start: 0;
+
 	--tab-gap-between-favicon-and-title: 5px;
 
 	--default-tabbrowser-tab-color: black;
@@ -70,6 +72,7 @@
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.png");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.png");
 	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_p.png");
+	--tab-close-button-margin-block-start:	1px;
 	--tab-close-button-margin-inline-end:	-2px;
 
 	--newtab-distance-from-tabs: 11px;
@@ -554,6 +557,8 @@
 }
 
 .tab-icon-stack {
+	margin-block-start: var(--tab-icon-stack-margin-block-start);
+
 	&::before {
 		content: '';
 		max-width: 16px;
@@ -584,7 +589,7 @@
 .tab-close-button {
 	list-style-image: var(--tab-close-button-normal) !important;
 	margin: 0 !important;
-	margin-block-start: 1px !important;
+	margin-block-start: var(--tab-close-button-margin-block-start) !important;
 	margin-inline-end: var(--tab-close-button-margin-inline-end) !important;
 	padding: 0 !important;
 	width: auto !important;
