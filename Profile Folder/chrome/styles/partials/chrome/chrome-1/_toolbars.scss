@@ -834,9 +834,11 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #TabsToolbar {
+	--toolbarbutton-inner-padding: 0 !important;
+
 	background: transparent !important;
 	position: relative;
-	--toolbarbutton-inner-padding: 0 !important;
+	align-items: end;
 
 	&::before {
 		content: "";

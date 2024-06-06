@@ -296,21 +296,34 @@
 			}
 		}
 	}
+
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		#private-browsing-indicator-with-label {
+			margin-block-start: -3px;
+			margin-block-end: -3px;
+			margin-inline-start: 0px !important;
+			margin-inline-end: 5px !important;
+		}
+	}
 }
 
 #private-browsing-indicator-with-label {
     align-items: end !important;
-    margin-inline: 0 !important;
-    margin-inline-start: 5px !important;
-    margin-inline-end: -4px !important;
+	margin-block-end: 1px;
+    margin-inline-start: 1px !important;
+    margin-inline-end: 2px !important;
 }
 
 .private-browsing-indicator-icon {
-    list-style-image: url("chrome://userchrome/content/assets/img/titlebar/otr_icon.png") !important;
     width: auto !important;
     height: auto !important;
 }
 
 [data-l10n-id="private-browsing-indicator-label"] {
     display: none !important;
+}
+
+.titlebar-buttonbox-container {
+	align-self: start;
 }
