@@ -22,7 +22,7 @@
 
 
 
-	
+
 	@media (-moz-platform: linux) {
 		
 		
@@ -65,6 +65,19 @@
 			text-overflow: ellipsis;
 			padding-inline-end: 8px;
 			box-sizing: border-box;
+		}
+	}
+
+	&:not([chromehidden~="toolbar"]) {
+		#urlbar-container {
+			margin-inline-start: 2px !important;
+
+			&:last-child {
+				margin-inline-end: 1px !important;
+			}
+			&:not(:last-child) {
+				margin-inline-end: 2px !important;
+			}
 		}
 	}
 }
@@ -404,7 +417,6 @@
 #urlbar-container,
 #search-container {
 	padding: 0 !important;
-	margin-inline: 2px !important;
 	box-shadow: 0 0 0 1px var(--toolbarbutton-inner-border-color-normal) !important;
 	border-top-left-radius: var(--toolbarbutton-radius) !important;
 	border-top-right-radius: var(--toolbarbutton-radius) !important;
@@ -424,6 +436,11 @@
 	#urlbar-go-button {
 		display: none !important;
 	}
+}
+
+#search-container {
+	margin-inline-start: 2px !important;
+	margin-inline-end: 2px !important;
 }
 
 #urlbar-search-splitter {
