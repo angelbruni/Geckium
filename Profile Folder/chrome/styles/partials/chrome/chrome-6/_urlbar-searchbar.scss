@@ -141,10 +141,12 @@
 		align-items: center;
 		justify-content: center;
 
-		&:hover,
-		&:active,
-		&[open] {
-			background-color: transparent !important;
+		&:not([disabled]) {
+			&:hover,
+			&:active,
+			&[open] {
+				background-color: transparent !important;
+			}
 		}
 	}
 
