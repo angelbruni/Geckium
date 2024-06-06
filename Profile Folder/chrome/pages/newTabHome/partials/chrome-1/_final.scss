@@ -14,6 +14,12 @@
 				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-1/google-chrome/product_logo.png");
 			}
 		}
+
+		@media only screen and (max-width: 882px) {
+			#main {
+				width: 729px;
+			}
+		}
 	}
 }
 
@@ -22,6 +28,9 @@
 	margin-inline: auto;
 	width: 864px;
 	gap: 10px;
+
+	transition-property: height, width;
+	transition-duration: .12s;
 }
 
 #logo {

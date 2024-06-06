@@ -10,6 +10,23 @@
 			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png") !important;
 		}
 	}
+
+	&[geckium-choice="fortyseven"],
+	&[geckium-choice="sixtyeight"] {
+		@media only screen and (max-width: 862px) {
+			#google-search,
+			#mv-tiles {
+				width: 495px
+			}
+		}
+
+		@media only screen and (max-width: 693px) {
+			#google-search,
+			#mv-tiles {
+				width: 325px
+			}
+		}
+	}
 }
 
 #google-search,
