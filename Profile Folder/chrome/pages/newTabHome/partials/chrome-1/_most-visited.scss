@@ -1,3 +1,12 @@
+&[geckium-choice="one"] {
+	@media only screen and (max-width: 882px) {
+		#mostvisitedtiles .thumbnail {
+			height: 113px;
+			width: 150px;
+		}
+	}
+}
+
 #mostvisited {
 	padding-block-end: 12px;
 }
@@ -44,6 +53,9 @@
 		border: 1px solid rgb(204, 204, 204);
 		height: 136px;
 		width: 195px;
+
+		transition-property: height, width;
+		transition-duration: .12s;
 	}
 }
 
