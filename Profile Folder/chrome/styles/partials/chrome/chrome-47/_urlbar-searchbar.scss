@@ -1,4 +1,6 @@
 & {
+	--urlbar-height-definitive: 28px;
+
 	--urlbarView: white !important;
 	--urlbarView-row-height: 28px;
 
@@ -71,12 +73,26 @@
 				}
 			}
 		}
-	}	
+	}
+
+	&:not([chromehidden~="toolbar"]) {
+		#urlbar-container {
+			&:last-child {
+				margin-inline-end: 1px !important;
+			}
+		}
+	}
+}
+
+#urlbar-background,
+#searchbar {
+	border-radius: var(--toolbarbutton-radius !important;
 }
 
 #urlbar {
 	font-size: 11pt !important;
 }
+
 
 .urlbarView {
 	margin-top: 5px !important;

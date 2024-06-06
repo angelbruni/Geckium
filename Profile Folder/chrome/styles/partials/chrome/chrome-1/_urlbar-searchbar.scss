@@ -18,6 +18,7 @@
 	}
 
 	--urlbarView: white;
+
 	--autocomplete-popup-hover-background: rgb(203, 230, 255) !important;
 
 
@@ -72,9 +73,6 @@
 		#urlbar-container {
 			margin-inline-start: 2px !important;
 
-			&:last-child {
-				margin-inline-end: 1px !important;
-			}
 			&:not(:last-child) {
 				margin-inline-end: 2px !important;
 			}
