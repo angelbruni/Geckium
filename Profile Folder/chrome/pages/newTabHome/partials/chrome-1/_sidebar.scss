@@ -11,12 +11,22 @@
 #recentlyBookmarked {
 	border-radius: 5px;
 	background-color: rgb(225, 236, 254);
+
+	@media (prefers-color-scheme: dark) {
+		background-color: #415470;
+	}
 }
 
 .recent-bookmark {
 	display: flex;
 	height: 21px;
 	color: rgb(0, 0, 204);
+	-moz-context-properties: fill, fill-opacity;
+
+	@media (prefers-color-scheme: dark) {
+		color: #acc0da;
+		fill: white;
+	}
 
 	image {
 		width: 16px;
@@ -45,4 +55,8 @@
 	background-position-x: 4px;
 	background-position-y: center;
 	background-repeat: no-repeat;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: var(--newtab-background-color);
+	}
 }

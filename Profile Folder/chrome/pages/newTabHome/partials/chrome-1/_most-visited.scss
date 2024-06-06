@@ -33,6 +33,10 @@
 		padding: 1px 0px 4px 0;
 		color: rgb(0, 0, 204);
 
+		@media (prefers-color-scheme: dark) {
+			color: #acc0da;
+		}
+
 		image {
 			width: 16px;
 			height: 16px;
