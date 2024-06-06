@@ -1,4 +1,6 @@
 :root {
+	--private-browsing-indicator-icon: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/otr_icon.png");
+
 	--back-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/back.svg");
 	--forward-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/forward.svg");
 	--reload-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/reload.svg");
@@ -23,6 +25,10 @@
 	--new-window-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/newwindow.svg");
 	--save-page-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/saveas.svg");
 	--open-file-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/openfile.svg");
+}
+
+.private-browsing-indicator-icon {
+    list-style-image: var(--private-browsing-indicator-icon) !important;
 }
 
 #back-button {

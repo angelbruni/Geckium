@@ -11,4 +11,22 @@
         --titlebar-active: rgb(40,43,45) !important;
         --titlebar-inactive: rgb(56,59,61) !important;
     }
+
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		#private-browsing-indicator-with-label {
+			margin-inline-start: 0;
+			margin-block-end: 1px;
+			margin-inline-start: 7px !important;
+			margin-inline-end: 2px !important;
+		}
+	}
+
+	#private-browsing-indicator-with-label {
+		height: var(--tab-height);
+		margin-block-end: 2px;
+		margin-inline-start: 8px !important;
+		margin-inline-end: 1px !important;
+		align-items: center !important;
+	}
 }
