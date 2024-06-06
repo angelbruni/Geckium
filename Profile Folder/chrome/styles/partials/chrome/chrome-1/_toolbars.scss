@@ -7,7 +7,7 @@
 	);
 
 	--chrome-content-separator-color: transparent !important;
-	--toolbar-start-end-padding: 2px !important;
+	--toolbar-start-end-padding: 1px !important;
 	--default-inner-border-color: rgb(242, 242, 242);
 	--inner-border-color: var(--default-inner-border-color);
 
@@ -682,6 +682,11 @@
 							background-color: rgba(240, 240, 240, 0.5) !important;
 						}
 					}
+				}
+
+				&#back-button,
+				&#forward-button {
+					width: calc(var(--toolbarbutton-width) - 1px) !important;
 				}
 			}
 		}

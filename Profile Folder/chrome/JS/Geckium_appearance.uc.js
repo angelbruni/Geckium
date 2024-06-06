@@ -118,7 +118,7 @@ class gkVisualStyles {
 				id: 9,
 				int: 68,
 				number: "sixtyeight",
-				basedOnVersion: "68",
+				basedOnVersion: "68.0.3440.84",
 				year: [2018],
 				styles: ["chrome", "page"],
 			},
