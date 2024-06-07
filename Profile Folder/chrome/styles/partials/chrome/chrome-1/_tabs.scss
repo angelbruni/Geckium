@@ -204,9 +204,11 @@
 }
 
 #TabsToolbar-customization-target {
-	/** This makes every element in the tabs toolbar align 
+	/** 
+	 *  This makes every element in the tabs toolbar align 
 	 *  to the bottom, fixing for example the people button
-	 *  position. */
+	 *  position.
+	 */
 	align-items: end;
 }
 
@@ -241,8 +243,10 @@
 	// Disable tab scrolling
 	--tab-min-width: 0 !important;
 
-	/** Remove border and spacings before tabs
-	 *  (spacing is taken care by `.titlebar-spacer` already) */
+	/**
+	 *  Remove border and spacings before tabs
+	 *  (spacing is taken care by `.titlebar-spacer` already)
+	 */
 	border-inline-start: 0 !important;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -322,28 +326,66 @@
 		}
 	}
 	&:not([visuallyselected]) {
-		&:not(:first-of-type) {
-			.tab-background-start {
-				&::before {
-					mask-image: var(--tab-inline-start-inactive2-mask);
-				}
-
-				&::after {
-					background: var(--tab-inline-start-inactive2-texture);
-				}
-			}
-
-			.tab-glare-left {
-				mask-image: var(--tab-inline-start-inactive2-mask);
-			}
-		}
-
 		.tab-background-container {
 			> * {
 				&::before {
 					background: var(--inactive-tab-background);
 				}
 			}
+		}
+	}
+
+	/** 
+	 *	bruni:
+	 *  
+	 *  This was changed to a sibling comparator (`+`) instead of a
+	 *  `:not([:first-child)]` so we can be more specific with the
+	 *  masking if needed in the future.
+	 *
+	 *  This way of masking has caused problems, such as the illusion
+	 *  breaking when tabs are being moved, however, there aren't any
+	 *  other good alternatives besides using **JavaScript**,
+	 *	unfortunately.
+	 *  What was already tried (**SCSS only**):
+	 *
+	 *  ## Disabling this mask when any tab is being moved
+	 *     Issue: this actually broke the illusion even more by
+	 *   		   showing the user how all tabs look when this mask is
+	 *			   disabled.
+	 *
+	 *  ## Not applying this mask to the sibling of a tab that is being
+	 *     moved
+	 *     Issue: while it solves the issue, when another tab goes in
+	 *       	   the position of the current moving tab's place
+	 *             before translation was applied, the other tabs will
+	 *   		   still overlap eachother, breaking the illusion.
+	 *
+	 *  ## Blurring the tab behind and changing the `z-index` of tabs so
+	 *     new tabs are always behind others
+	 *     Issue: you can't blur ONLY THE TAB BEHIND
+	 *   		   (`backdrop-filter: blur(Xpx)`), this means that the
+	 *			   titlebar background in custom themes gets blurred.
+	 */
+	+ .tabbrowser-tab:not([visuallyselected]) {
+		/**
+		 *  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
+		 *  	   The mask will not apply to the second tab when it is
+		 *  	   moved to the position of the first tab.
+		 */
+		&:not(:nth-child(2)	[style*="transform: translateX(-192px);"]) {
+		  	.tab-background-start {
+				&::before {
+			  	mask-image: var(--tab-inline-start-inactive2-mask);
+				}
+	
+				&::after {
+			  	background: var(--tab-inline-start-inactive2-texture);
+				}
+		  	}
+	
+		  	.tab-glare-left {
+				mask-image: var(--tab-inline-start-inactive2-mask);
+		  	}
 		}
 	}
 
@@ -361,9 +403,11 @@
 					max-width var(--tab-transition-time) ease !important;
 	}
 
-	/** bruni: This makes it so the tab does not disappear when it starts "close" transition 
-	 *	       and it also makes the tab disappear when the background reaches min-width just
-			   like real Chrome. */
+	/**
+	 *  bruni: This makes it so the tab does not disappear when it starts "close" transition 
+	 *	and it also makes the tab disappear when the background reaches min-width just
+	 * 	like real Chrome.
+	 */
 	&:not([pinned], [fadein]) {
 		visibility: unset !important;
 		pointer-events: none !important;
@@ -371,8 +415,10 @@
 	}
 }
 
-/** bruni: This controls the transition of the tabs moving around while a tab is being
- *		   dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it. */
+/**
+ *	bruni: This controls the transition of the tabs moving around while a tab is being
+ *	dragged, keep this here so the tab "open"/"close" transition doesn't overwrite it.
+ */
 @media (prefers-reduced-motion: no-preference) {
 	#tabbrowser-tabs[movingtab]
 		> #tabbrowser-arrowscrollbox
@@ -407,12 +453,14 @@
 }
 
 .tab-background {
-	/** Remove all styles from `.tab-background`, we
+	/**
+	 *	Remove all styles from `.tab-background`, we
 	 *  are gonna use Geckium-only elements such as:
 	 *  - `.tab-background-container`;
 	 *  - `.tab-background-start`;
 	 *  - `.tab-background-center`;
-	 *  - `.tab-background-end`.						*/
+	 *  - `.tab-background-end`.
+	 */
 	all: unset !important;
 
 	position: absolute !important;
