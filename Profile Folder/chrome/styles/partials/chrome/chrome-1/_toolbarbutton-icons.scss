@@ -7,9 +7,10 @@
 	--stop-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/stop.svg");
 	--home-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/home.svg");
 
-	--star-button-icon-normal:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/star.svg");
-	--star-button-icon-starred:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/starred.svg");
-	--go-button-box-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/go.svg");
+	--password-notification-icon: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/savepassword.svg");
+	--star-button-icon-normal:	  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/star.svg");
+	--star-button-icon-starred:	  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/starred.svg");
+	--go-button-box-icon:		  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/go.svg");
 
 	--nav-bar-overflow-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/overflow.svg");
 	--bookmarks-menu-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_bookmark.svg");
@@ -81,6 +82,10 @@
 
 #open-file-button {
 	list-style-image: var(--open-file-button-icon) !important;
+}
+
+#password-notification-icon {
+	list-style-image: var(--password-notification-icon) !important;
 }
 
 #star-button-box > #star-button {

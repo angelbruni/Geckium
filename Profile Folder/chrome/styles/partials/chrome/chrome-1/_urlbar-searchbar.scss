@@ -2,12 +2,20 @@
 	--toolbar-field-background-color: white !important;
 	--toolbar-field-color: black !important;
 
+	--identity-icon-invalid:			 						 var(--search-favicon);
+	--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity: var(--default-favicon);
+	--identity-icon-secure-or-ev: 		 						 url("chrome://userchrome/content/assets/img/chrome-5/toolbar/lock_small.png");
+	--identity-icon-warning-or-insecure: 						 url("chrome://userchrome/content/assets/img/chrome-5/toolbar/infobar_insecure.png");
+	--identity-icon-valid-n-notSecure:	 						 url("chrome://userchrome/content/assets/img/chrome-5/toolbar/o2_globe.png");
+
+	--searchbar-icon: var(--identity-icon-invalid);
+
 	--protocol-background-color: var(--toolbar-field-background-color);
-	--protocol-color: var(--toolbar-field-color);
+	--protocol-color:			 var(--toolbar-field-color);
 
 	--urlbar-border: var(--toolbarbutton-border-color-normal);
 	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
-	--urlbar-verified-proxystate-valid: rgb(10, 155, 38);
+	--urlbar-verified-proxystate-valid: 		   rgb(10, 155, 38);
 	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 
@@ -142,24 +150,20 @@
 		> #urlbar-input-container,
 		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
 		> #identity-box {
-			&[pageproxystate="invalid"],
+			/* Search icon */
+			&[pageproxystate="invalid"] {
+				#identity-icon {
+					list-style-image: var(--identity-icon-invalid) !important;
+				}
+			}
+
+			/* Grayfolder Icon */
 			&[pageproxystate="valid"].chromeUI {
 				#identity-icon {
-					list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+					list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 				}
 			}
 		}
-		}
-	}
-
-	&:not(.searchButton) {
-		> #urlbar-input-container,
-		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
-			> #identity-box[pageproxystate="invalid"] {
-				#identity-icon {
-					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
-				}
-			}
 		}
 	}
 
@@ -228,7 +232,7 @@
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
 		#identity-icon {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/lock_small.png) !important;
+			list-style-image: var(--identity-icon-secure-or-ev) !important;
 		}
 	}
 
@@ -243,7 +247,7 @@
 		}
 
 		#identity-icon {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/infobar_insecure.png) !important;
+			list-style-image: var(--identity-icon-warning-or-insecure) !important;
 			max-width: 20px;
 			max-height: 20px;
 			margin-inline-end: 5px;
@@ -255,7 +259,7 @@
 	}
 
 	#identity-box[pageproxystate="valid"].notSecure #identity-icon {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/o2_globe.png) !important;
+		list-style-image: var(--identity-icon-valid-n-notSecure) !important;
 	}
 }
 
@@ -313,7 +317,7 @@
 
 	.unknownIdentity {
 		#identity-icon {
-			list-style-image: url("assets/img/toolbar/grayfolder.png") !important;
+			list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 		}
 	}
 }
@@ -331,7 +335,7 @@
 	margin-inline-end: 3px !important;
 
 	.searchbar-search-icon {
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/search.svg") !important;
+		list-style-image: var(--searchbar-icon) !important;
 	}
 
 	.searchbar-search-icon-overlay {
@@ -369,17 +373,14 @@
 	// Fix for Rich Results feature
 	margin-inline-start: 0 !important;
 
-	&[src="chrome://global/skin/icons/search-glass.svg"],
-	&[src="chrome://browser/skin/history.svg"] {
-		fill: transparent;
-		background-size: 16px 16px !important;
-	}
+	position: absolute;
+	left: 4px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px !important;
+	height: 16px !important;
 
-	&[src="chrome://global/skin/icons/search-glass.svg"] {
-		background-image: url("assets/img/chrome-1/toolbar/search.svg");
-	}
 	&[src="chrome://browser/skin/history.svg"] {
-		background-image: url(chrome://userchrome/content/assets/img/toolbar/clock.png);
 		opacity: 0.8;
 	}
 }
@@ -481,7 +482,7 @@
 		&:first-of-type {
 			.urlbarView-no-wrap {
 				&::before {
-					content: url("assets/img/chrome-1/toolbar/search.svg");
+					content: var(--search-favicon);
 					position: absolute;
 					width: 16px;
 					height: 16px;
@@ -621,15 +622,6 @@
 	order: 1 !important;
 }
 
-.urlbarView-favicon {
-	position: absolute;
-	left: 4px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 16px !important;
-	height: 16px !important;
-}
-
 .urlbarView-no-wrap,
 .urlbarView-row-body-top-no-wrap /* Fix for Rich Results feature */ {
 	order: 2 !important;
@@ -704,7 +696,6 @@
 	> #password-notification-icon {
 		padding-block: 4px !important;
 		padding-inline: 0 !important;
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/savepassword.svg") !important;
 	}
 }
 
