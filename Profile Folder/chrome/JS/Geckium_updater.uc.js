@@ -60,11 +60,9 @@ function transitionSilverfox() {
         if (gkPrefUtils.tryGet("silverfox.beChromeOS").bool) {
             // Be Chrome OS
             gkPrefUtils.set("Geckium.appearance.classicCaptionStyle").string("chromeos");
-            if (isDefaultTheme) { gkPrefUtils.set("Geckium.defaultTheme.mode").string("chromeos"); }
         } else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
             // Force Windows Styling
             gkPrefUtils.set("Geckium.appearance.classicCaptionStyle").string("windows");
-            if (isDefaultTheme) { gkPrefUtils.set("Geckium.defaultTheme.mode").string("classic"); } //Just in case.
         }
     }
 
