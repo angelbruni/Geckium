@@ -53,8 +53,6 @@ function wasSilverfox() { // thanks, Silverfox...
 }
 
 function transitionSilverfox() {
-    const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
-
     //Linux
     if (AppConstants.platform == "linux") {
         if (gkPrefUtils.tryGet("silverfox.beChromeOS").bool) {
