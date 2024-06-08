@@ -245,7 +245,7 @@ function transitionSilverfox() {
     gkPrefUtils.set("Geckium.firstRun.wasSilverfox").bool(true);
 }
 
-if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox") && wasSilverfox()) {
+if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool && wasSilverfox()) {
     transitionSilverfox();
 }
 (async () => {
