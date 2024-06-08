@@ -125,7 +125,7 @@ function transitionSilverfox() {
             "seen":["save-to-pocket-button","developer-button"],
             "currentVersion":19,"newElementCount":4}
         `);
-    } else {
+    } else if (pfp != "") {
         gkPrefUtils.set("Geckium.profilepic.button").bool(true);
         if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
             // Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to Geckium.
@@ -245,7 +245,7 @@ function transitionSilverfox() {
     gkPrefUtils.set("Geckium.firstRun.wasSilverfox").bool(true);
 }
 
-if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && wasSilverfox()) {
+if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox") && wasSilverfox()) {
     transitionSilverfox();
 }
 (async () => {
