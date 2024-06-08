@@ -108,7 +108,7 @@ function transitionSilverfox() {
         "whitepfp": 0,
         "yellowpfp": 7
     }
-    if (pfp == "off") {
+    if (pfp == "off" || pfp == "") {
         // Apply a pre-defined toolbar layout to remove Mozilla's items Geckium re-displays
         gkPrefUtils.set("browser.uiCustomization.state").string(`
         {"placements":{
@@ -125,7 +125,7 @@ function transitionSilverfox() {
             "seen":["save-to-pocket-button","developer-button"],
             "currentVersion":19,"newElementCount":4}
         `);
-    } else if (pfp != "") {
+    } else {
         gkPrefUtils.set("Geckium.profilepic.button").bool(true);
         if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
             // Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to Geckium.
