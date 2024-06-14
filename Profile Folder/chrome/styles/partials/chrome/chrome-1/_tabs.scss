@@ -290,35 +290,14 @@
 		color: var(--tabbrowser-tab-color-active) !important;
 
 		.tab-background-container {
-			> * {
-				&::before {
-					background: var(--selected-tab-background);
-				}
+			&::before {
+				background: var(--selected-tab-background);
 			}
 		}
 
-		.tab-background-start,
-		.tab-background-end {
+		.tab-background-container {
 			&::after {
-				background-repeat: no-repeat;
-			}
-		}
-
-		.tab-background-start {
-			&::after {
-				background-image: var(--tab-inline-start-active-texture);
-			}
-		}
-
-		.tab-background-center {
-			&::after {
-				background-image: var(--tab-inline-center-active-texture);
-			}
-		}
-		
-		.tab-background-end {
-			&::after {
-				background-image: var(--tab-inline-end-active-texture);
+				background-image: var(--tab-inline-start-active-texture), var(--tab-inline-center-active-texture), var(--tab-inline-end-active-texture);
 			}
 		}
 
@@ -367,25 +346,26 @@
 	 * 
 	 *  - Love, Bruni
 	 */
-	+ .tabbrowser-tab:not([visuallyselected]) {
+	&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
+	&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
 		/**
 		 *  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
 		 *  	   The mask will not apply to the second tab when it is
 		 *  	   moved to the position of the first tab.
 		 */
 		&:not(:nth-child(2)	[style*="transform: translateX(-192px);"]) {
-		  	.tab-background-start {
+			.tab-background-container {
 				&::before {
-			  		mask-image: var(--tab-inline-start-inactive2-mask);
+					mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
 				}
-	
+
 				&::after {
-			  		background: var(--tab-inline-start-inactive2-texture);
+					background-image: var(--tab-inline-start-inactive2-texture), var(--tab-inline-center-inactive-texture), var(--tab-inline-end-inactive-texture);
 				}
-		  	}
+			}
 	
-		  	.tab-glare-left {
-				mask-image: var(--tab-inline-start-inactive2-mask);
+		  	.tab-glare-container {
+				mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
 		  	}
 		}
 	}
@@ -458,11 +438,8 @@
 .tab-background {
 	/**
 	 *	bruni: Remove all styles from `.tab-background`, we are gonna use
-	 *		   Geckium-only elements such as:
+	 *		   a Geckium-only element:
 	 *  	   - `.tab-background-container`;
-	 *		   - `.tab-background-start`;
-	 *		   - `.tab-background-center`;
-	 *		   - `.tab-background-end`.
 	 */
 	all: unset !important;
 
@@ -474,77 +451,39 @@
 }
 
 .tab-background-container {
+	/* Tab texturing */
 	position: absolute;
 	width: 100%;
 	height: 100%;
 
-	> * {
-		position: relative;
-
-		&::before,
-		&::after {
-			content: "";
-			position: absolute;
-			height: 100%;
-		}
-
-		&::after {
-			width: 100%;
-		}
-
-		&::before {
-			// Weird mask stuff, add .1px.
-			width: calc(100% + .1px);
-		}
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: calc(100% + var(--tab-gap-between) * -1);
 	}
-}
-
-.tab-background-start,
-.tab-background-end {
-	width: var(--tab-sides-width);
-	background-size: cover;
-}
-
-.tab-background-start {
-	width: var(--tab-sides-width);
 
 	&::before {
-		mask-image: var(--tab-inline-start-mask);
+		background: var(--inactive-tab-background);
+
+		mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
+		mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
+		mask-position: left 0,						  var(--tab-sides-width) 0,						  right 0;
+		mask-repeat:   no-repeat;
 	}
 
 	&::after {
-		background-image: var(--tab-inline-start-inactive-texture);
-	}
-}
-
-.tab-background-center {
-	flex: 1;
-
-	&::before {
-		mask-image: var(--tab-inline-center-mask);
-	}
-
-	&::after {
-		background-image: var(--tab-inline-center-inactive-texture);
-		background-repeat: repeat-x;
-	}
-}
-
-.tab-background-end {
-	margin-inline-end: var(--tab-gap-between);
-
-	&::before {
-		mask-image: var(--tab-inline-end-mask);
-	}
-
-	&::after {
-		background-image: var(--tab-inline-end-inactive-texture);
+		background-image:	 var(--tab-inline-start-inactive-texture), var(--tab-inline-center-inactive-texture),	   var(--tab-inline-end-inactive-texture);
+		background-size:	 var(--tab-sides-width) 100%,			   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
+		background-position: left 0,								   var(--tab-sides-width) 0,					   right 0;
+		background-repeat:	 no-repeat;
 	}
 }
 
 .tab-glare-container {
 	position: absolute;
-	width: 100%;
+	width: calc(100% + var(--tab-gap-between) * -1);
 	height: 100%;
 	opacity: 0;
 	pointer-events: none;
@@ -554,55 +493,36 @@
 	 *		   mouse leaves.
 	 */
 	transition: opacity var(--tab-glare-unhover-timer) linear;
-}
 
-.tab-glare-left,
-.tab-glare-middle,
-.tab-glare-right {
-	top: 0;
-	position: relative;
-	overflow: hidden;
-}
+	mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
+	mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
+	mask-position: left 0,						  var(--tab-sides-width) 0,						  right 0;
+	mask-repeat:   no-repeat;
 
-.tab-glare-left {
-	mask-image: var(--tab-inline-start-mask);
-	width: var(--tab-sides-width);
-}
-
-.tab-glare-middle {
-	flex: 1;
-	mask-image: var(--tab-inline-center-mask);
-}
-
-.tab-glare-right {
-	margin-inline-end: var(--tab-gap-between);
-	mask-image: var(--tab-inline-end-mask);
-	width: var(--tab-sides-width);
-}
-
-.tab-glare {
-	position: absolute;
-	height: 100%;
-	width: 400px;
-	transform: translateX(-50%);
-
-	/**
-	 *  bruni: We are using the glare as background hover for
-	 *		   Chrome 5-6, if we transition the background of the tab
-	 *		   instead, it will try to transition from gradient
-	 *		   (active) to colour (inactive) and since gradients are
-	 *		   not animatable (in Gecko), you will see a transition
-	 *		   from transparent to inactive tab colour, and we don't
-	 *		   want that.
-	 */
-	background: var(--tab-glare);
-
-	/**
-	 *	bruni: Firefox gradient rendering has some issues, in this case,
-	 *		   sometimes in the middle it produces transparent Y pixels,
-	 *		   so we are blurring it to make it unnoticeable.
-	 */
-	filter: blur(2px);
+	> .tab-glare {
+		position: absolute;
+		height: 100%;
+		width: 400px;
+		transform: translateX(-50%);
+	
+		/**
+		 *  bruni: We are using the glare as background hover for
+		 *		   Chrome 5-6, if we transition the background of the tab
+		 *		   instead, it will try to transition from gradient
+		 *		   (active) to colour (inactive) and since gradients are
+		 *		   not animatable (in Gecko), you will see a transition
+		 *		   from transparent to inactive tab colour, and we don't
+		 *		   want that.
+		 */
+		background: var(--tab-glare);
+	
+		/**
+		 *	bruni: Firefox gradient rendering has some issues, in this case,
+		 *		   sometimes in the middle it produces transparent Y pixels,
+		 *		   so we are blurring it to make it unnoticeable.
+		 */
+		filter: blur(2px);
+	}
 }
 
 .tab-content {
