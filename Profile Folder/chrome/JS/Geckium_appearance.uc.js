@@ -56,7 +56,7 @@ class gkVisualStyles {
 				basedOnVersion: "4.0.223.11",
 				year: [2009],
 				number: "four",
-				styles: ["page"],
+				styles: ["chrome", "page"],
 			},
 			{
 				id: 3,
