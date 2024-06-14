@@ -94,6 +94,16 @@
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_h.png");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_p.png");
 
+	&[geckium-choice="one"],
+	&[geckium-choice="three"],
+	&[geckium-choice="four"],
+	&[geckium-choice="five"],
+	&[geckium-choice="six"] {
+		.tab-glare-container > .tab-glare {
+			left: 0 !important;
+		}
+	}
+
 	@media (prefers-color-scheme: dark) {
 		--tab-glare: rgba(19, 23, 29, 0.45);
 
