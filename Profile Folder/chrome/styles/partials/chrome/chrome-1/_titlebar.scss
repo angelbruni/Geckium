@@ -83,11 +83,6 @@
 
         &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&:not([lwtheme-id="#{$gtkplus}"]) {
-				&[captionbuttonbackground="true"] {
-					--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
-				}
-
-
 				&:not([privatebrowsingmode="temporary"]),
 				&[privatebrowsingmode="temporary"] {
 					--titlebar-active: var(--lwt-accent-color) !important;
@@ -155,7 +150,7 @@
 						}
 					}
 				}
-
+				
 				// Themes without image header/additional images
 				&:not([style*="--lwt-additional-images"]) {
 					&:not([style*="--lwt-header-image"]) {
@@ -230,8 +225,6 @@
 		--titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
 		--titlebar-inactive: var(--chrt-frame-inactive, var(--chrt-frame, var(--default-titlebar-inactive))) !important;
 
-		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
-
 		&[chromemargin="0,0,0,0"] {
 			&[windowtype="navigator:browser"] {
 				> body {
@@ -280,7 +273,7 @@
 		&[gkbranding="chrome"] {
 			.titlebar-buttonbox-container {
 				&::before {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/google.png");
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
 					margin-block-start: 3px;
 					margin-inline-end: 6px;
 				}

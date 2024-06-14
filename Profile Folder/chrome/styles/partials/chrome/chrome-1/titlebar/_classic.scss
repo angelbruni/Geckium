@@ -2,7 +2,7 @@
 		  theme is enabled. This code is also used by custom themes. */
 
 & {
-	--titlebar-buttonbox-background-color: transparent;
+	--titlebar-buttonbox-pseudo-background: transparent;
 
 	&#main-window {
 		/* bruni: Firefox is weird, if we set the root to be transparent,
@@ -146,7 +146,7 @@
 			.titlebar-buttonbox-container {
 				@media (-moz-platform: windows) {
 					&::before {
-						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/google-alternate.png");
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
 						margin-block-start: 2px;
 						margin-inline-end: 7px;
 					}
@@ -168,7 +168,7 @@
 			align-items: start !important;
 			height: var(--titlebar-button-height);
 			-moz-default-appearance: -moz-window-button-box !important;
-			background-color: var(--titlebar-buttonbox-background-color);
+			background-color: transparent;
 			gap: var(--titlebar-buttonbox-gap);
 		}
 
@@ -177,7 +177,7 @@
 			margin: 0 !important;
 			display: flex !important;
 			appearance: unset !important;
-			border-radius: 0 !important;
+			border-radius: var(--titlebar-button-border-radius) !important;
 			position: relative;
 			background-clip: padding-box;
 			height: var(--titlebar-button-height);
@@ -216,31 +216,29 @@
 		.titlebar-close {
 			width: var(--titlebar-close-width);
 			list-style-image: var(--titlebar-close-glyph) !important;
+			background: var(--titlebar-close-background-normal) !important;
 
 			&:hover {
-				background-color: var(--titlebar-close-background-hot) !important;
+				background: var(--titlebar-close-background-hot) !important;
 			}
 
 			&:active {
-				background-color: var(--titlebar-close-background-active) !important;
-			}
-		}
-
-		.titlebar-max,
-		.titlebar-restore,
-		.titlebar-min {
-			&:hover {
-				background-color: var(--titlebar-max-restore-background-hot) !important;
-			}
-
-			&:active {
-				background-color: var(--titlebar-max-restore-background-active) !important;
+				background: var(--titlebar-close-background-active) !important;
 			}
 		}
 
 		.titlebar-max,
 		.titlebar-restore {
 			width: var(--titlebar-max-restore-width) !important;
+			background: var(--titlebar-max-restore-background-normal) !important;
+
+			&:hover {
+				background: var(--titlebar-max-restore-background-hot) !important;
+			}
+
+			&:active {
+				background: var(--titlebar-max-restore-background-active) !important;
+			}
 		}
 
 		.titlebar-max {
@@ -254,6 +252,15 @@
 		.titlebar-min {
 			width: var(--titlebar-min-width) !important;
 			list-style-image: var(--titlebar-min-glyph) !important;
+			background: var(--titlebar-min-background-normal) !important;
+
+			&:hover {
+				background: var(--titlebar-min-background-hot) !important;
+			}
+
+			&:active {
+				background: var(--titlebar-min-background-active) !important;
+			}
 		}
 
 		&[gkforcecaptionbuttonstyle="auto"] {
