@@ -8,6 +8,9 @@
 // @include		about:addons*
 // ==/UserScript==
 
+if (parseInt(Services.appinfo.version.split(".")[0]) >= 117)
+	document.documentElement.setAttribute("is117Plus", true);
+
 let previousChoice;
 
 const appearanceChanged = new CustomEvent("appearanceChanged");
@@ -53,7 +56,7 @@ class gkVisualStyles {
 				basedOnVersion: "4.0.223.11",
 				year: [2009],
 				number: "four",
-				styles: ["page"],
+				styles: ["chrome", "page"],
 			},
 			{
 				id: 3,
@@ -115,7 +118,7 @@ class gkVisualStyles {
 				id: 9,
 				int: 68,
 				number: "sixtyeight",
-				basedOnVersion: "68",
+				basedOnVersion: "68.0.3440.84",
 				year: [2018],
 				styles: ["chrome", "page"],
 			},

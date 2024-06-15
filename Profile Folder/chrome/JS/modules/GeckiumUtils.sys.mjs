@@ -66,6 +66,14 @@ export class gkPrefUtils {
 		else
 			this.set(pref).bool(true);
 	}
+
+	static prefExists(pref) {
+		try {
+			return Services.prefs.getPrefType(pref) != 0;
+		} catch (e) {
+			return false;
+		}
+	}
 }
 
 export class gkInsertElm {

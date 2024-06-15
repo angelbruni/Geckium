@@ -13,25 +13,13 @@
 		static markup = `
 	   <stack class="tab-stack" flex="1">
 		 	<vbox class="tab-background">
-				<hbox class="tab-background-container">
-					<html:div class="tab-background-start" />
-					<html:div class="tab-background-center" />
-					<html:div class="tab-background-end" />
-				</hbox>
+				<hbox class="tab-background-container" />
 		 	  	<hbox class="tab-context-line"/>
 		 	  	<hbox class="tab-loading-burst" flex="1"/>
 		 	</vbox>
 			<hbox class="tab-glare-container">
-				<hbox class="tab-glare-left">
-					<hbox class="tab-glare"/>
-				</hbox>
-				<hbox class="tab-glare-middle">
-					<hbox class="tab-glare"/>
-				</hbox>
-				<hbox class="tab-glare-right">
-					<hbox class="tab-glare"/>
-				</hbox>
-		 	</hbox>
+				<hbox class="tab-glare"/>
+			</hbox>
 		 	<hbox class="tab-content" align="center">
 		 	  	<stack class="tab-icon-stack">
 					<hbox class="tab-throbber"/>
@@ -150,7 +138,7 @@
 
 		// bruni: Get the glare elements so we can use later.
 		get _glare() {
-			return this.querySelectorAll(".tab-glare")
+			return this.querySelector(".tab-glare")
 		}
 
 		set attention(val) {
@@ -339,11 +327,9 @@
 		}
 
 		on_mousemove(event) {
-			this._glare.forEach(glare => {
-				const rect = glare.parentNode.getBoundingClientRect();	// bruni: Get the parent container's position.
-				const mouseX = event.clientX - rect.left; 				// 		  Adjust mouse position relative to parent.
-				glare.style.left = `${mouseX}px`;
-			})
+			const rect = this._glare.parentNode.getBoundingClientRect();	// bruni: Get the parent container's position.
+			const mouseX = event.clientX - rect.left; 				// 		  Adjust mouse position relative to parent.
+			this._glare.style.left = `${mouseX}px`;
 		}
 
 		on_mouseout(event) {

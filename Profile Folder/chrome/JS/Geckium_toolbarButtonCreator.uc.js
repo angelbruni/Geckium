@@ -24,6 +24,9 @@ class gkToolbarButtons {
 		
 					if (params.onclick)
 						toolbarButton.setAttribute("onclick", params.onclick);
+
+					if (params.oncommand)
+						toolbarButton.setAttribute("oncommand", params.oncommand);
 				},
 			})
 		} catch (e) {
@@ -337,7 +340,7 @@ window.addEventListener("load", function () {
 		removable: true,
 		overflows: false,
 		area: CustomizableUI.AREA_NAVBAR,
-		onclick: "openGSettings()",
+		oncommand: "openGSettings()",
 	});
 	gkToolbarMenuButtons.create({
 		id: "page",

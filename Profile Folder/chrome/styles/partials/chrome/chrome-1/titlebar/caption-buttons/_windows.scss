@@ -1,28 +1,50 @@
 & {
 	--titlebar-buttonbox-gap: 0px;
 
-	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
-	--titlebar-button-outer-border-color: rgb(0, 0, 0, 0.35);
+	--titlebar-button-border-radius: 0;
+	--titlebar-button-border-radius-bigger: 5px;
+
+	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color-normal);
+	--titlebar-button-outer-border-color-normal: rgb(0, 0, 0, 0.35);
 	--titlebar-button-inner-shadow-normal: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 	--titlebar-button-height: 17px;
+	--titlebar-button-background-normal: transparent;
 	--titlebar-button-background-hot: rgba(255, 255, 255, 0.3);
 	--titlebar-button-background-active: rgba(255, 255, 255, 0.2);
 
 	--titlebar-close-width: 43px;
+	--titlebar-close-background-normal: var(--titlebar-button-background-normal);
 	--titlebar-close-background-hot: rgb(217, 76, 74);
 	--titlebar-close-background-active: rgb(213, 58, 63);
-	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/titlebar/close.svg);
+	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg);
 
 	--titlebar-max-restore-width: 25px;
+	--titlebar-max-restore-background-normal: var(--titlebar-close-background-normal);
 	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
 	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
-	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/titlebar/maximize.svg);
-	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/titlebar/restore.svg);
+	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg);
+	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg);
 
 	--titlebar-min-width: var(--titlebar-max-restore-width);
-	--titlebar-min-background-hot: var(--titlebar-button-background-hot);		// unused.
-	--titlebar-min-background-active: var(--titlebar-button-background-active);	// unused.
-	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/minimize.svg);
+	--titlebar-min-background-normal: var(--titlebar-close-background-normal);
+	--titlebar-min-background-hot: var(--titlebar-max-restore-background-hot);
+	--titlebar-min-background-active: var(--titlebar-max-restore-background-active);
+	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg);
+
+	//&:not([customthememode="1"]) {
+		&[lwtheme] {
+			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+				&:not([lwtheme-id="#{$gtkplus}"]) {
+					&[captionbuttonbackground="true"] {
+						--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+					}
+				}
+			}
+		}
+	//}
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
+	}
 }
 
 &[sizemode="maximized"] {
@@ -65,7 +87,7 @@
 
 .titlebar-close {
 	border-right: var(--titlebar-button-outer-border) !important;
-	border-bottom-right-radius: 5px !important;
+	border-bottom-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 }
 
 .titlebar-max,

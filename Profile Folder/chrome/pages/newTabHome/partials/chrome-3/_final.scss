@@ -70,6 +70,17 @@
 			}
 		}
 	}
+
+	&[geckium-choice="three"],
+	&[geckium-choice="four"],
+	&[geckium-choice="five"],
+	&[geckium-choice="six"] {
+		@media only screen and (max-width: 920px) {
+			#main {
+				width: 692px;
+			}
+		}
+	}
 }
 
 &[geckium-choice="three"],
@@ -96,7 +107,6 @@
 			}
 		}
 	}
-	
 }
 
 body {
@@ -109,6 +119,9 @@ body {
 	margin-inline: auto;
 	width: 920px;
 	gap: 0px;
+
+	transition-property: height, width;
+	transition-duration: .15s;
 }
 
 #bookmarksbar-spacing {
