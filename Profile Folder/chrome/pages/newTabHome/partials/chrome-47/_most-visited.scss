@@ -39,6 +39,31 @@
 			}
 		}
 	}
+
+	&[geckium-choice="fortyseven"],
+	&[geckium-choice="sixtyeight"] {
+		@media only screen and (max-width: 862px) {
+			#mv-tiles {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.mv-tile:nth-child(7),
+			.mv-tile:nth-child(8) {
+				display: none;
+			}
+		}
+
+		@media only screen and (max-width: 693px) {
+			#mv-tiles {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.mv-tile:nth-child(5),
+			.mv-tile:nth-child(6) {
+				display: none;
+			}
+		}
+	}
 }
 
 &:not([icon-ntp]) {

@@ -29,6 +29,11 @@ finishElm.addEventListener("click", () => {
 		gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
 		gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);					// Enable native menus
 	}
+
+	gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);					// Show URL after a search in URLbar
+
+	if (parseInt(Services.appinfo.version.split(".")[0]) >= 126)
+		gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);								// Show protocol in URL in URLbar
 	
 	gkPrefUtils.set("browser.newtab.preload").bool(false)									// Disable New Tab preload to prevent new data from not loading
 	gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
@@ -49,9 +54,6 @@ finishElm.addEventListener("click", () => {
 		}
 		`);																					// Add default apps if the apps list is empty
 	}
-
-	if (parseInt(Services.appinfo.version.split(".")[0]) >= 126)
-		gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);
 
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
 

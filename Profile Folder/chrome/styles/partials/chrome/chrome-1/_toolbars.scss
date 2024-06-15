@@ -7,7 +7,7 @@
 	);
 
 	--chrome-content-separator-color: transparent !important;
-	--toolbar-start-end-padding: 2px !important;
+	--toolbar-start-end-padding: 1px !important;
 	--default-inner-border-color: rgb(242, 242, 242);
 	--inner-border-color: var(--default-inner-border-color);
 
@@ -580,9 +580,12 @@
 	&[sizemode="fullscreen"] {
 		#fxa-toolbar-menu-button {
 			height: calc(var(--tab-height) - 9px);
-			margin-inline-start: 3px !important;
-			margin-inline-end: 5px !important;
-			margin-block-start: -2px !important;
+			margin-inline-start: 2px !important;
+			margin-inline-end: 2px !important;
+
+			.toolbarbutton-badge-stack {
+				margin-block-end: 12px;
+			}
 		}
 
 		#TabsToolbar {
@@ -679,6 +682,11 @@
 							background-color: rgba(240, 240, 240, 0.5) !important;
 						}
 					}
+				}
+
+				&#back-button,
+				&#forward-button {
+					width: calc(var(--toolbarbutton-width) - 1px) !important;
 				}
 			}
 		}
@@ -831,9 +839,11 @@ toolbar[overflowable][customizing] > .customization-target {
 }
 
 #TabsToolbar {
+	--toolbarbutton-inner-padding: 0 !important;
+
 	background: transparent !important;
 	position: relative;
-	--toolbarbutton-inner-padding: 0 !important;
+	align-items: end;
 
 	&::before {
 		content: "";
@@ -1135,8 +1145,8 @@ toolbarspring {
 	border: 0 !important;
 	background: transparent !important;
 	padding: 0 !important;
-	margin-inline-start: 6px !important;
-    margin-inline-end: 2px !important;
+	margin-inline-start: calc(var(--tab-distance-from-left-window-border-normal) * -1 + 3px) !important;
+	margin-inline-end: 2px !important;
 	height: var(--tab-height);
 
 	.toolbarbutton-badge-stack {

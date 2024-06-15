@@ -11,8 +11,14 @@
 		}
 	}
 
-	#urlbar-container {
-		margin-inline: 4px !important;
+	&:not([chromehidden~="toolbar"]) {
+		#urlbar-container {
+			margin-inline-start: 4px !important;
+
+			&:not(:last-child) {
+				margin-inline-end: 4px !important;
+			}
+		}
 	}
 
 	#urlbar-background,
@@ -135,10 +141,12 @@
 		align-items: center;
 		justify-content: center;
 
-		&:hover,
-		&:active,
-		&[open] {
-			background-color: transparent !important;
+		&:not([disabled]) {
+			&:hover,
+			&:active,
+			&[open] {
+				background-color: transparent !important;
+			}
 		}
 	}
 

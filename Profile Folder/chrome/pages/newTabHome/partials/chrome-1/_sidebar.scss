@@ -11,12 +11,22 @@
 #recentlyBookmarked {
 	border-radius: 5px;
 	background-color: rgb(225, 236, 254);
+
+	@media (prefers-color-scheme: dark) {
+		background-color: #415470;
+	}
 }
 
 .recent-bookmark {
 	display: flex;
 	height: 21px;
 	color: rgb(0, 0, 204);
+	-moz-context-properties: fill, fill-opacity;
+
+	@media (prefers-color-scheme: dark) {
+		color: #acc0da;
+		fill: white;
+	}
 
 	image {
 		width: 16px;
@@ -41,8 +51,12 @@
 	width: 100%;
 	margin-block-end: 8px;
 	padding-left: 23px;
-	background-image: url("chrome://userchrome/content/assets/img/toolbar/grayfolder.png");
+	background-image: url("chrome://userchrome/content/assets/img/chrome-1/favicons/default_favicon.png");
 	background-position-x: 4px;
 	background-position-y: center;
 	background-repeat: no-repeat;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: var(--newtab-background-color);
+	}
 }

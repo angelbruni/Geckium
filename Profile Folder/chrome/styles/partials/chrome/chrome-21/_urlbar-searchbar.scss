@@ -2,13 +2,12 @@
 	--urlbar-height-definitive: 25px;
 
 	&:not([chromehidden~="toolbar"]) {
-		#nav-bar {
-			padding-inline-start: 5px !important;
-			padding-inline-end: 4px !important;
-		}
-
 		#urlbar-container {
-			margin-inline: 5px !important;
+			margin-inline-start: 5px !important;
+
+			&:not(:last-child) {
+				margin-inline-end: 5px !important;
+			}
 		}
 	}
 

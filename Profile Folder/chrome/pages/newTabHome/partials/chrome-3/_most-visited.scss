@@ -135,6 +135,24 @@
 			var(--edit-bar-background-color-hot)
 		) !important;
 	}
+
+	&[geckium-choice="three"],
+	&[geckium-choice="four"],
+	&[geckium-choice="five"],
+	&[geckium-choice="six"] {
+		@media only screen and (max-width: 920px) {
+			.thumbnail-container {
+				.thumbnail {
+					width: 150px;
+					height: 93px;
+				}
+
+				.thumbnail-wrapper {
+					background-size: 150px 93px;
+				}
+			}
+		}
+	}
 }
 
 #view-toolbar {
@@ -371,6 +389,9 @@
 		background-size: 209px 132px;
 		background-position: center;
 		background-repeat: no-repeat;
+
+		transition-property: background-size;
+		transition-duration: .15s;
 	}
 
 	.thumbnail {
@@ -382,7 +403,7 @@
 		border-radius: 5px;
 		padding: 1px;
 
-		transition: border-color .15s, box-shadow .15s, border-radius .15s;
+		transition: border-color .15s, box-shadow .15s, border-radius .15s, height .15s, width .15s;
 	}
 
 	.edit-mode-border {

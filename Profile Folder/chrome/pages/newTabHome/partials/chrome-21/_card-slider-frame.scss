@@ -1,5 +1,14 @@
 & {
 	--page-switcher-color: color-mix(in srgb, var(--thumbnail-container-color) 50%, transparent);
+
+	&[geckium-choice="twentyone"],
+	&[geckium-choice="twentyfive"] {
+		@media only screen and (max-width: 1277px) {
+			.page-switcher {
+				width: 90px;
+			}
+		}
+	}
 }
 
 #card-slider-frame {
@@ -11,7 +20,9 @@
 #page-list {
 	max-width: var(--page-width);
 
-	transition: transform 200ms ease-in-out;
+	transition-property: transform;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
 }
 
 .page-switcher {
@@ -19,14 +30,14 @@
 	
 	display: flex;
 	position: absolute;
-	min-width: 90px;
-	max-width: 150px;
+	width: 150px;
 	font-family: Arial, sans-serif;
 	font-size: 40px;
 	color: var(--page-switcher-color);
 	z-index: 1;
 	
-	transition: width 150ms, background-color 150ms;
+	transition-property: width, background-color;
+	transition-duration: 150ms;
 	
 	&:not([disabled]) {
 		&:hover,

@@ -4,9 +4,8 @@
 // @loadorder   3
 // ==/UserScript==
 
-function loadWizard() {
+window.addEventListener("load", () => {
+	// Open Geckium Wizard
 	if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool)
 		openGSplash();
-}
-
-window.addEventListener("load", loadWizard);
+});

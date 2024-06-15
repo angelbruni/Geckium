@@ -1,9 +1,36 @@
 & {
+	--private-browsing-indicator-icon: url("chrome://userchrome/content/assets/img/chrome-68/titlebar/otr_icon.svg");
+
 	--back-button-icon:		url("chrome://userchrome/content/assets/img/chrome-68/toolbar/back.svg");
 	--forward-button-icon:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/forward.svg");
 	--reload-button-icon:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/reload.svg");
 	--stop-button-icon:		url("chrome://userchrome/content/assets/img/chrome-68/toolbar/stop.svg");
 	--home-button-icon:		url("chrome://userchrome/content/assets/img/chrome-68/toolbar/home.svg");
 
+	--star-button-icon-normal:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/star.svg");
+	--star-button-icon-starred:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/star_lit.svg");
+
 	--chrome-button-icon:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/menu_chrome.svg")
+}
+
+#page-action-buttons {
+	margin-inline-end: 2px !important;
+}
+
+#star-button-box,
+.urlbar-page-action {
+	width: calc(var(--urlbar-height-definitive) - 4px) !important;
+	height: calc(var(--urlbar-height-definitive) - 4px) !important;
+	transition: background-color 200ms linear;
+
+	&:not([disabled]) {
+		&:hover {
+			background-color: var(--toolbarbutton-background-hot) !important;
+		}
+
+		&:active,
+		&[open] {
+			background-color: var(--toolbarbutton-background-pressed) !important;
+		}
+	}
 }

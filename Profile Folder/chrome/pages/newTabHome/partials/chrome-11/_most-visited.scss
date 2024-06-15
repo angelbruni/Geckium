@@ -17,4 +17,19 @@
 	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
 		--thumbnail-disabled-color: var(--chrt-ntp-section, var(--default-thumbnail-disabled-color)) !important;
 	}
+
+	&[geckium-choice="eleven"] {
+		@media only screen and (max-width: 940px) {
+			.thumbnail-container {
+				.thumbnail {
+					width: 150px;
+					height: 93px;
+				}
+	
+				.thumbnail-wrapper {
+					background-size: 150px 93px;
+				}
+			}
+		}
+	}
 }

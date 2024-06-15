@@ -27,7 +27,8 @@
 	user-select: none;
 	color: var(--thumbnail-container-color);
 
-	transition: transform 50ms;
+	transition-property: transform, width, height;
+	transition-duration: 50ms, .15s;
 
 	&:not([disabled]) {
 		cursor: pointer;
@@ -41,6 +42,9 @@
 	.icon {
 		width: 128px;
 		height: 128px;
+
+		transition-property: width, height;
+		transition-duration: .15s;	
 	}
 
 	hbox {

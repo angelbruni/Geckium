@@ -302,7 +302,8 @@
 		text-align: start;
 		align-items: start;
 
-		transition: color 200ms;
+		transition-property: color;
+		transition-duration: 200ms;
 
 		&:not([disbled]) {
 			&:hover,
@@ -333,7 +334,8 @@
 			background-color: var(--selection-bar-background-color-normal);
 			margin-block-end: 5px;
 
-			transition: background-color 200ms;
+			transition-property: background-color;
+			transition-duration: 200ms;
 		}
 
 		.button-box {

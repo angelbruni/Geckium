@@ -1,51 +1,53 @@
 & {
 	--titlebar-buttonbox-gap: 2px;
 	
-	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color);
-	--titlebar-button-outer-border-color: rgba(0,0,0,.17);
+	--titlebar-button-border-radius: 2.5px;
+	--titlebar-button-border-radius-bigger: var(--titlebar-button-border-radius);
+	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color-normal);
+	--titlebar-button-outer-border-color-normal: rgba(25,25,25,.52);
+	--titlebar-button-outer-border-color-hot: rgba(26,26,26,.77);
+	--titlebar-button-outer-border-color-active: rgba(0,0,0,.61);
 	--titlebar-button-inner-border: inset 0 0 0 1px var(--titlebar-button-inner-border-color);
-	--titlebar-button-inner-border-color: rgba(255,255,255,.25);
+	--titlebar-button-inner-border-color: rgba(255,255,240,.1);
 	--titlebar-button-inner-border-hot: inset 0 0 0 1px var(--titlebar-button-inner-border-color-hot);
-	--titlebar-button-inner-border-color-hot: rgba(255,255,255,.49);
+	--titlebar-button-inner-border-color-hot: rgba(251,251,241,.1);
 	--titlebar-button-inner-border-active: inset 0 0 0 1px var(--titlebar-button-inner-border-color-active);
-	--titlebar-button-inner-border-color-active: rgba(255,255,255,.25);
+	--titlebar-button-inner-border-color-active: rgba(0,0,0,.1);
 	--titlebar-button-height: 18px;
-	--titlebar-button-background-hot: transparent;
-	--titlebar-button-background-active: rgba(0,0,0,.2);
+	--titlebar-button-background-normal: linear-gradient(
+		to bottom,
+		rgba(255,255,255,.23),
+		rgba(209,209,209,.23)
+	);
+	--titlebar-button-background-hot: linear-gradient(
+		to bottom,
+		rgba(255,255,255,.41),
+		rgba(210,210,210,.41)
+	);
+	--titlebar-button-background-active: linear-gradient(
+		to bottom,
+		rgba(42,42,42,.23),
+		rgba(180,180,180,.23)
+	);
 
-	--titlebar-close-width: 24px;
+	--titlebar-close-width: 23px;
+	--titlebar-close-background-normal: var(--titlebar-button-background-normal);
 	--titlebar-close-background-hot: var(--titlebar-button-background-hot);
 	--titlebar-close-background-active: var(--titlebar-button-background-active);
-	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/close.svg);
+	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/close.svg);
 
 	--titlebar-max-restore-width: var(--titlebar-close-width);
-	--titlebar-max-restore-background-hot: var(--titlebar-button-background-hot);
-	--titlebar-max-restore-background-active: var(--titlebar-button-background-active);
-	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/maximize.svg);
-	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/restore.svg);
+	--titlebar-max-restore-background-normal: var(--titlebar-close-background-normal);
+	--titlebar-max-restore-background-hot: var(--titlebar-close-background-hot);
+	--titlebar-max-restore-background-active: var(--titlebar-close-background-active);
+	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/maximize.svg);
+	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/restore.svg);
 
 	--titlebar-min-width: var(--titlebar-close-width);
-	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/titlebar/linux/minimize.svg);
-
-	//&:not([customthememode="1"]) {
-		&[lwtheme] {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				&:not([lwtheme-id="#{$gtkplus}"]) {
-					--titlebar-buttonbox-background-color: var(--toolbar-bgcolor, var(--lwt-accent-color));
-	
-					// Themes without image header/additional images
-					&:not([style*="--lwt-additional-images"]) {
-						&:not([style*="--lwt-header-image"]) {
-							--titlebar-buttonbox-background-color: transparent;
-						}
-					}
-				}
-			}
-		}
-	//}
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--titlebar-buttonbox-background-color: var(--chrt-control-background, var(--chrt-button-background, transparent)) !important;
-	}
+	--titlebar-min-background-normal: var(--titlebar-close-background-normal);
+	--titlebar-min-background-hot: var(--titlebar-close-background-hot);
+	--titlebar-min-background-active: var(--titlebar-close-background-active);
+	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg);
 }
 
 .titlebar-buttonbox-container {
@@ -82,16 +84,17 @@
 
 .titlebar-button {
 	box-shadow: none;
-	border-radius: 2.5px !important;
 	border: var(--titlebar-button-outer-border) !important;
 	box-shadow: var(--titlebar-button-inner-border);
 	transition: none;
 
 	&:not([disabled]) {
 		&:hover {
+			border-color: var(--titlebar-button-outer-border-color-hot) !important;
 			box-shadow: var(--titlebar-button-inner-border-hot);
 		}
 		&:active {
+			border-color: var(--titlebar-button-outer-border-color-active) !important;
 			box-shadow: var(--titlebar-button-inner-border-active);
 		}
 	}
@@ -117,19 +120,19 @@
 @media (-moz-platform: linux) {
 	@media (-moz-gtk-csd-reversed-placement) {
 		.titlebar-close {
-			border-top-left-radius: 4.5px !important;
+			border-top-left-radius: var(--titlebar-button-border-radius-bigger) !important;
 
 			&::before {
-				border-top-left-radius: 4.5px !important;
+				border-top-left-radius: 4var(--titlebar-button-border-radius-bigger)!important;
 			}
 		}
 	}
 	@media not (-moz-gtk-csd-reversed-placement) {
 		.titlebar-close {
-			border-top-right-radius: 4.5px !important;
+			border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 
 			&::before {
-				border-top-right-radius: 4.5px !important;
+				border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 			}
 		}
 	}
@@ -137,10 +140,10 @@
 
 @media not (-moz-platform: linux) {
 	.titlebar-close {
-		border-top-right-radius: 4.5px !important;
+		border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 
 		&::before {
-			border-top-right-radius: 4.5px !important;
+			border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 		}
 	}
 }
