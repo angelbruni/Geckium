@@ -1,15 +1,13 @@
 /* bruni: This is the code for the window frame when Chromium's classic
 		  theme is enabled. This code is also used by custom themes. */
 
-& {
-	&[chromemargin="0,0,0,0"] {
-		&[gkforcecaptionbuttonstyle="auto"] { 
-			@media (-moz-platform: linux) {
-				@import "caption-buttons/linux";
-			}
-		}
-		&[gkforcecaptionbuttonstyle="linux"] {
+&[chromemargin="0,0,0,0"] {
+	&[gkforcecaptionbuttonstyle="auto"] { 
+		@media (-moz-platform: linux) {
 			@import "caption-buttons/linux";
 		}
+	}
+	&[gkforcecaptionbuttonstyle="linux"] {
+		@import "caption-buttons/linux";
 	}
 }

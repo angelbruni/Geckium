@@ -1,0 +1,13 @@
+// else if lwtheme
+&[lwtheme] {
+    /* bruni: This entire code takes care of custom themes support for toolbars */
+    &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+        &:not([lwtheme-id*="#{$gtkplus}"]) {
+            @import "titlebar/classic";
+        }
+    }
+}
+// else if chrtheme
+&[lwtheme-id*="compact-light"][chrtheme="true"] {
+    @import "titlebar/classic";
+}
