@@ -265,25 +265,25 @@
 
 		&[gkforcecaptionbuttonstyle="auto"] {
 			@media not ((-moz-platform: linux) or (-moz-platform: macos)) {
-				@import "caption-buttons/windows";
+				@import "../titlebar/caption-buttons/windows";
 			}
 			
 			@media (-moz-platform: linux) {
-				@import "caption-buttons/linux";
+				@import "../titlebar/caption-buttons/linux";
 			}
 	
 			@media (-moz-platform: macos) {
-				@import "caption-buttons/macos";
+				@import "../titlebar/caption-buttons/macos";
 			}
 		}
 		&[gkforcecaptionbuttonstyle="windows"] {
-			@import "caption-buttons/windows";
+			@import "../titlebar/caption-buttons/windows";
 		}
 		&[gkforcecaptionbuttonstyle="linux"] {
-			@import "caption-buttons/linux";
+			@import "../titlebar/caption-buttons/linux";
 		}
 		&[gkforcecaptionbuttonstyle="macos"] {
-			@import "caption-buttons/macos";
+			@import "../titlebar/caption-buttons/macos";
 		}
 	}
 }

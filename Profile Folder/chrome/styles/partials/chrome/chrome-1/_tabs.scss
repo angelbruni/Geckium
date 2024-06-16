@@ -37,17 +37,10 @@
 	--tab-content-y-from-top: 0;
 	--tab-gap-between: -16px;
 
-	--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
 	--inactive-tab-background: var(--default-inactive-tab-background);
-	--default-selected-tab-background: linear-gradient(
-		to top,
-		rgb(243, 248, 253),
-		rgb(252, 254, 255)
-	);
 	--selected-tab-background: var(--default-selected-tab-background);
 
 	--tab-glare-opacity: 1;
-	--default-tab-glare: rgb(211, 217, 225, 0.45);
 	--tab-glare: var(--default-tab-glare);
 	--tab-glare-hover-timer: 0.1s; // 0.5s
 
@@ -67,7 +60,6 @@
 
 	--tab-gap-between-favicon-and-title: 5px;
 
-	--default-tabbrowser-tab-color: black;
 	--tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
 	--default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
 	--tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
@@ -102,19 +94,6 @@
 		.tab-glare-container > .tab-glare {
 			left: 0 !important;
 		}
-	}
-
-	@media (prefers-color-scheme: dark) {
-		--tab-glare: rgba(19, 23, 29, 0.45);
-
-		--default-inactive-tab-background: #051d3b;
-		--default-selected-tab-background: linear-gradient(
-			to bottom,
-			#0e3668,
-			#07254A
-		) !important;
-		--default-tabbrowser-tab-color: white;
-		--default-tabbrowser-tab-color-active: var(--tabbrowser-tab-color);
 	}
 
 	&[sizemode="maximized"],

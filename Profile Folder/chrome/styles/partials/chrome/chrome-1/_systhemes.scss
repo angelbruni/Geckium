@@ -1,0 +1,164 @@
+:root {
+	//Classic (Default/Fallback)
+	// Titlebar
+	// TODO: Make EVERYTHING here start with --default... also just change how the --* vs --default* logic works, to be more Mozilla-like.
+	--default-titlebar-active: linear-gradient(
+		to bottom,
+		rgb(97, 162, 241),
+		rgb(72, 140, 222) 40px
+	);
+	--default-titlebar-inactive: linear-gradient(
+		to bottom,
+		rgb(163, 201, 247),
+		rgb(147, 186, 234) 40px
+	);
+
+	// Tabs
+	--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
+	--default-selected-tab-background: linear-gradient(
+		to top,
+		rgb(243, 248, 253),
+		rgb(252, 254, 255)
+	);
+	--default-tab-glare: rgb(211, 217, 225, 0.45);
+	--default-tabbrowser-tab-color: black;
+
+	// Navbar
+	--default-nav-bar: linear-gradient(
+		to top,
+		rgb(218, 231, 247),
+		rgb(230, 239, 251),
+		rgb(245, 249, 254)
+	);
+	--default-inner-border-color: rgb(242, 242, 242);
+	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
+	--toolbarbutton-border-color-hot: rgba(0,0,0,.3);
+	--toolbarbutton-border-color-active: rgb(171, 181, 203);
+	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
+	--default-toolbarbutton-texture: linear-gradient(
+		to top,
+		rgb(222, 234, 248),
+		rgb(240, 245, 253)
+	);
+	--default-toolbarbutton-icon-drop-shadow-color: white;
+	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
+	--default-navigation-buttons-separator: rgb(221, 229, 243);
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--personal-toolbar-border-bottom: rgb(182, 186, 192);
+	--default-bookmark-item-color: #062d75;
+	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
+
+
+    @media (prefers-color-scheme: dark) {
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(14, 80, 159),
+			rgb(20, 62, 112) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				rgb(14, 80, 159) 80%,
+				white
+			),
+			color-mix(
+				in srgb,
+				rgb(20, 62, 112) 80%,
+				white
+			) 40px
+		);
+
+		// Tabs
+		--default-tab-glare: rgba(19, 23, 29, 0.45);
+		--default-inactive-tab-background: #051d3b;
+		--default-selected-tab-background: linear-gradient(
+			to bottom,
+			#0e3668,
+			#07254A
+		);
+		--default-tabbrowser-tab-color: white;
+
+		// Navbar
+		--default-nav-bar: linear-gradient(
+			to bottom,
+			#07254A,
+			#081B35
+		);
+		--default-inner-border-color: rgb(79, 79, 79);
+		--toolbarbutton-border-color-normal: color-mix(
+			in srgb,
+			color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-fill) 30%,
+				transparent
+			) 70%,
+			black
+		);;
+		--toolbarbutton-border-color-hot: rgb(112, 112, 112);
+		--toolbarbutton-border-color-active: rgb(136, 136, 136);
+		--toolbarbutton-inner-border-color-normal: color-mix(
+			in srgb,
+			var(--toolbarbutton-icon-fill) 30%,
+			transparent
+		);
+		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+		--default-toolbarbutton-texture: linear-gradient(
+			to bottom,
+			#07254A,
+			#081B35
+		);
+		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
+		--default-toolbarbutton-icon-fill: #B0C2DE;
+		--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
+
+		// Personal Toolbar
+		--default-personal-toolbar: linear-gradient(
+			to bottom,
+			#081B35,
+			#081526
+		);
+		--personal-toolbar-border-bottom: rgb(91, 91, 91);
+		--default-bookmark-item-color: #95b4ee;
+		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+	}
+
+    &[privatebrowsingmode="temporary"] {
+		// Titlebar
+        --default-titlebar-active: linear-gradient(
+            to bottom,
+            rgb(97, 122, 156),
+            rgb(80, 105, 141) 40px
+        ) !important;
+        --default-titlebar-inactive: linear-gradient(
+            to bottom,
+            rgb(147, 161, 178),
+            rgb(128, 143, 161) 40px
+        ) !important;
+    }
+
+
+
+	// Chrome OS
+
+
+
+	// GTK+
+
+
+
+	// macOS
+
+
+
+	// Mac OS X
+
+
+
+	// Geckium You
+	//TBD
+}
