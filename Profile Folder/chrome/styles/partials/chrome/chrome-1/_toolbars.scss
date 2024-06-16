@@ -1,14 +1,6 @@
 :root {
-	--default-nav-bar: linear-gradient(
-		to top,
-		rgb(218, 231, 247),
-		rgb(230, 239, 251),
-		rgb(245, 249, 254)
-	);
-
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 1px !important;
-	--default-inner-border-color: rgb(242, 242, 242);
 	--inner-border-color: var(--default-inner-border-color);
 
 	--nav-bar-height: 37px;
@@ -17,18 +9,8 @@
 	--toolbarbutton-menu-width: 36px;
 	--toolbarbutton-height: 27px;
 	--toolbarbutton-inner-padding: 5px !important;
-	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
-	--toolbarbutton-border-color-hot: rgba(0,0,0,.3);
-	--toolbarbutton-border-color-active: rgb(171, 181, 203);
 	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important;
-	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
 	--toolbarbutton-outer-padding: 3px !important;
-	--default-toolbarbutton-texture: linear-gradient(
-		to top,
-		rgb(222, 234, 248),
-		rgb(240, 245, 253)
-	);
 	--toolbarbutton-texture: var(--default-toolbarbutton-texture);
 	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 	--toolbarbutton-shadow-hot:	0 2px 3px 0 rgba(140,140,140,.35),
@@ -36,22 +18,17 @@
 	//--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-radius: 6px;
 	--toolbarbutton-disabled-opacity: 1 !important;
-	--default-toolbarbutton-icon-drop-shadow-color: white;
 	--toolbarbutton-icon-drop-shadow-color: var(--default-toolbarbutton-icon-drop-shadow-color);
 	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color)) drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color));
-	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
 	
 	&:not([style*="--toolbarbutton-icon-fill"]) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 
-	--default-navigation-buttons-separator: rgb(221, 229, 243);
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
 	--personal-toolbar-gap: 2px;
-	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
 	--personal-toolbar-height: 25px;
-	--personal-toolbar-border-bottom: rgb(182, 186, 192);
 	--personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
 		0 0 0 1px transparent, 0 1px 1px 2px transparent,
 		inset 0 0 1px 1px transparent;
@@ -60,60 +37,14 @@
 		0 1px 1px 2px rgb(0, 0, 0, 6%), inset 0 0 1px 1px transparent;
 	--personal-toolbar-item-hover-bg: rgba(255, 255, 255, 0.5) !important;
 
-	--default-bookmark-item-color: #062d75;
 	--bookmark-item-color: var(--default-bookmark-item-color);
-	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
 	--placed-chevron-width: 15px;
 
 	@media (prefers-color-scheme: dark) {
-		--default-nav-bar: linear-gradient(
-			to bottom,
-			#07254A,
-			#081B35
-		) !important;
-		--default-personal-toolbar: linear-gradient(
-			to bottom,
-			#081B35,
-			#081526
-		) !important;
-		--personal-toolbar-border-bottom: rgb(91, 91, 91);
-
-		--inner-border-color: rgb(79, 79, 79);
-
-		--toolbarbutton-border-color-normal: color-mix(
-			in srgb,
-			color-mix(
-				in srgb,
-				var(--toolbarbutton-icon-fill) 30%,
-				transparent
-			) 70%,
-			black
-		);;
-		--toolbarbutton-border-color-hot: rgb(112, 112, 112);
-		--toolbarbutton-border-color-active: rgb(136, 136, 136);
-		--default-toolbarbutton-texture: linear-gradient(
-			to bottom,
-			#07254A,
-			#081B35
-		);
-		--toolbarbutton-inner-border-color-normal: color-mix(
-			in srgb,
-			var(--toolbarbutton-icon-fill) 30%,
-			transparent
-		);
-		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
-		--default-toolbarbutton-icon-fill: #B0C2DE;
-		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
-
-		--navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
-
 		&[lwtheme-id="firefox-compact-dark@mozilla.org"] {
 			--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 		}
-
-		--default-bookmark-item-color: #95b4ee;
-		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
 	}
 
 	&[chromehidden~="toolbar"] {
@@ -308,7 +239,7 @@
 		/* bruni: This entire code takes care of custom themes support for toolbars */
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				@import "titlebar/classic";
+				@import "borders/winbasic";
 				
 				&:not([customthememode="2"]) {
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
@@ -450,7 +381,7 @@
 		
 		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
 
-		@import "titlebar/classic";
+		@import "borders/winbasic";
 
 		#nav-bar {
 			background-position-y: calc(var(--tab-height) * -1) !important;
