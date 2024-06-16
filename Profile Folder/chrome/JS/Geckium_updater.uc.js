@@ -16,3 +16,5 @@ const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/Gecki
 		_ucUtils.restart(true);
     }
 })();
+
+document.documentElement.setAttribute("gksystheme", "macosx"); //TEMP
