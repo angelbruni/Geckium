@@ -191,11 +191,11 @@
 			var(--macosx-window-color),
 			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
 		); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
-		--default-titlebar-inactive: linear-gradient(
-			to bottom,
-			#e8e8e8,
-			#cfcfcf 40px
-		);
+		//  Inactive works very differently in macOS Chrome DP1, hence
+		&:-moz-window-inactive {
+			--macosx-window-color: #d9d9d9;
+		}
+		--default-titlebar-inactive: var(--default-titlebar-active);
 
 		// Tabs
 		--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
@@ -242,11 +242,9 @@
 		@media (prefers-color-scheme: dark) {
 			// Titlebar
 			--macosx-window-color: #3c3c3c;
-			--default-titlebar-inactive: linear-gradient(
-				to bottom,
-				#303030,
-				#171717 40px
-			);
+			&:-moz-window-inactive {
+				--macosx-window-color: #303030;
+			}
 
 			// Tabs
 			--default-tab-glare: rgba(255, 255, 255, 0.04);
@@ -297,40 +295,33 @@
 			//  gradient is purely behaviour-parity-assumptions.
 			// Titlebar
 			--macosx-window-color: #536c8c;
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				#536c8c,
-				#405976 40px
-			);
-			--default-titlebar-inactive: linear-gradient(
-				to bottom,
-				color-mix(in srgb, white 1%, var(--macosx-window-color)),
-				color-mix(in srgb, white 1%, color-mix(in srgb, black 15%, var(--macosx-window-color))) 40px
-			);
+			&:-moz-window-inactive {
+				--macosx-window-color: #86898d;
+			}
 		}
 	}
 
 
 	// macOS (only the palette and titlebar change)
 	&[gksystheme="macos"] {
-		--macosx-window-color: #ececec;
+		--macosx-window-color: #e5e5e5;
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
 			to bottom,
-			#ececec,
-			#d9d9d9 40px
+			var(--macosx-window-color),
+			color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
 		);
-		--default-titlebar-inactive: #f6f6f6;
+		&:-moz-window-inactive {
+			--macosx-window-color: #f6f6f6;
+		}
+		--default-titlebar-inactive: var(--macosx-window-color);
 		
 		@media (prefers-color-scheme: dark) {
 			// Titlebar
 			--macosx-window-color: #434343;
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				#434343,
-				#373737 40px
-			);
-			--default-titlebar-inactive: #2c2d2f;
+			&:-moz-window-inactive {
+				--macosx-window-color: #2c2d2f;
+			}
 		}
 	}
 
