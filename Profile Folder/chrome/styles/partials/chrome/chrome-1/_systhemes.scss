@@ -51,7 +51,6 @@
 	--default-bookmark-item-color: #062d75;
 	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
-
     @media (prefers-color-scheme: dark) {
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
@@ -142,10 +141,6 @@
     }
 
 
-
-	// Chrome OS
-
-
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 		// Titlebar
@@ -179,12 +174,9 @@
 	}
 
 
-	// macOS
-
-
-
 	// Mac OS X
-	&[gksystheme="macosx"] {
+	&[gksystheme="macosx"],
+	&[gksystheme="macos"] {
 		--default-titlebar-active: linear-gradient(
 			to bottom,
 			#cfcfcf,
@@ -201,7 +193,7 @@
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			#f7f7f7,
-			#ecebec
+			#eaeaea
 		);
 		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
 		--default-tabbrowser-tab-color: black;
@@ -209,7 +201,7 @@
 		// Navbar
 		--default-nav-bar: linear-gradient(
 			to bottom,
-			#ecebec,
+			#eaeaea,
 			#dfdfdf
 		);
 		--default-inner-border-color: transparent;
@@ -228,11 +220,10 @@
 		--default-navigation-buttons-separator: #bbbbbb;
 
 		// Personal Toolbar (Bookmarks)
-		--default-personal-toolbar: linear-gradient(to bottom, #dfdfdf, #e7e7e7);
+		--default-personal-toolbar: linear-gradient(to bottom, #dfdfdf, #e8e8e8);
 		--personal-toolbar-border-bottom: #b0b0b0;
 		--default-bookmark-item-color: black;
 		--bookmark-item-color-shadow: transparent;
-
 
 		@media (prefers-color-scheme: dark) {
 			// Titlebar
@@ -361,6 +352,35 @@
 				--default-personal-toolbar: linear-gradient(to bottom, #2c2e30, #35373a);
 				--personal-toolbar-border-bottom: #121213;
 			}
+		}
+	}
+
+
+	// macOS (only the titlebar changes)
+	&[gksystheme="macos"] {
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			#ececec,
+			#d9d9d9 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			#ececec,
+			#d9d9d9 40px
+		);
+		
+		@media (prefers-color-scheme: dark) {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				#434343,
+				#373737 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				#434343,
+				#373737 40px
+			);
 		}
 	}
 
