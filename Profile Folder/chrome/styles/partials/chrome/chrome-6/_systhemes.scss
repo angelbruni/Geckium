@@ -118,21 +118,23 @@
         );
     }
 	
+	// Firefox is weird number ILostCount: It seems like it prefers nearest code or smth? By this, I mean that
+	// it would rather use this file's Classic code, than geckium-one's macos(x), yet is fine using code from
+	// geckium-five's macos(x) - does it only look for macos(x) if it's one file away, else uses Classic?
+	//
+	// Regardless, this weird behaviour means we have to re-enforce the titlebar gradient now Classic's updated:
 	// Mac OS X
 	&[gksystheme="macosx"],
 	&[gksystheme="macos"] {
-		// Titlebar (re-enforce due to the System Theme update)
 		--default-titlebar-active: linear-gradient(
 			to bottom,
 			var(--macosx-window-color),
 			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
-		); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
+		);
 		--default-titlebar-inactive: var(--default-titlebar-active);
 	}
-
-	// macOS (also re-enforce)
+	// macOS
 	&[gksystheme="macos"] {
-		// Titlebar
 		--default-titlebar-active: linear-gradient(
 			to bottom,
 			var(--macosx-window-color),
