@@ -196,7 +196,7 @@
 			var(--macosx-window-color),
 			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
 		); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
-		//  Inactive works very differently in macOS Chrome DP1, hence
+		//  Inactive works very differently in OS X Chrome, hence
 		&:-moz-window-inactive {
 			--macosx-window-color: #ededed;
 		}
