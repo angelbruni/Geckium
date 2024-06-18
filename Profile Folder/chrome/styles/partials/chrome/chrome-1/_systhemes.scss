@@ -186,7 +186,7 @@
 	//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L430
 	//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L348
 	//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L388
-	//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L415
+	//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L422
 	&[gksystheme="macosx"],
 	&[gksystheme="macos"] {
 		--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
@@ -232,7 +232,7 @@
 		//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
 		--default-toolbarbutton-icon-drop-shadow-color: transparent;
 		--default-toolbarbutton-icon-fill: black;
-		--default-navigation-buttons-separator: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+		--default-navigation-buttons-separator: var(--toolbarbutton-border-color-normal);
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: linear-gradient(
@@ -280,7 +280,6 @@
 			);
 			--default-toolbarbutton-icon-drop-shadow-color: transparent;
 			--default-toolbarbutton-icon-fill: white;
-			--default-navigation-buttons-separator: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
 
 			// Personal Toolbar
 			--default-personal-toolbar: linear-gradient(
