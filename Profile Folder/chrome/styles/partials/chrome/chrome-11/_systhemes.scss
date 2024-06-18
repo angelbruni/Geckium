@@ -39,6 +39,11 @@
 	&[gksystheme="macosx"],
 	&[gksystheme="macos"] {
 		// Tabs
+		--default-inactive-tab-background: linear-gradient(
+			to bottom,
+			#dcdddc,
+			#cfd0cf
+		);
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, #333)),
@@ -94,6 +99,13 @@
 				color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)))
 			);
 			--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
+		}
+
+		&[privatebrowsingmode="temporary"] {
+			--macosx-window-color: #536c8c;
+			&:-moz-window-inactive {
+				--macosx-window-color: #86898d;
+			}
 		}
 	}
 
