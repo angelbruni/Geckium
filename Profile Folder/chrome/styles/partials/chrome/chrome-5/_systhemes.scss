@@ -1,4 +1,13 @@
 & {
+	//Classic (Default/Fallback)
+	// Navbar
+	--default-toolbarbutton-icon-drop-shadow-color: rgba(255,255,255,.7);
+
+	@media (prefers-color-scheme: dark) {
+		// Navbar
+		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.7);
+	}
+
 	// Mac OS X
 	&[gksystheme="macosx"],
 	&[gksystheme="macos"] {

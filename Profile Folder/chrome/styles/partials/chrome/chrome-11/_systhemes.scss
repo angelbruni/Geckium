@@ -24,16 +24,15 @@
 	}
 
 	// Mac OS X
-	&[gksystheme="macosx"],
-	&[gksystheme="macos"] {
+	&[gksystheme="macosxs"],
+	&[gksystheme="macoss"] {
 		--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
 			to bottom,
 			var(--macosx-window-color),
 			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
-		); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
-		//  Inactive works very differently in macOS Chrome DP1, hence
+		);
 		&:-moz-window-inactive {
 			--macosx-window-color: #ededed;
 		}
