@@ -118,7 +118,28 @@
         );
     }
 	
-	
+	// Mac OS X
+	&[gksystheme="macosx"],
+	&[gksystheme="macos"] {
+		// Titlebar (re-enforce due to the System Theme update)
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			var(--macosx-window-color),
+			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
+		); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
+		--default-titlebar-inactive: var(--default-titlebar-active);
+	}
+
+	// macOS (also re-enforce)
+	&[gksystheme="macos"] {
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			var(--macosx-window-color),
+			color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
+		);
+		--default-titlebar-inactive: var(--macosx-window-color);
+	}
 
 	// Chrome OS
 	&[gksystheme="chromeos"] {
