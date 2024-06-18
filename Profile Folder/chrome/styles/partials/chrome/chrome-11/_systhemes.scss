@@ -78,6 +78,11 @@
 
 		@media (prefers-color-scheme: dark) {
 			// Tabs
+			--default-inactive-tab-background: linear-gradient(
+				to bottom,
+				#242424,
+				#171717
+			);
 			--default-selected-tab-background: linear-gradient(
 				to bottom,
 				color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, #333)),
