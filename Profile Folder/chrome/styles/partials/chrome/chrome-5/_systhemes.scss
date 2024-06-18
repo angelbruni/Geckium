@@ -87,6 +87,9 @@
 			--default-toolbarbutton-icon-drop-shadow-color: transparent;
 			--default-toolbarbutton-icon-fill: white;
 			--default-navigation-buttons-separator: color-mix(in srgb, color-mix(in srgb, black 30%, rgb(64, 64, 64)) 30%, transparent);
+			&:-moz-window-inactive {
+				--toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 23%, rgb(64, 64, 64)) 30%, transparent);
+			}
 
 			// Personal Toolbar
 			--default-personal-toolbar: linear-gradient(
@@ -95,6 +98,9 @@
 				color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, rgb(64, 64, 64))))
 			);
 			--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, rgb(64, 64, 64));
+			&:-moz-window-inactive {
+				--personal-toolbar-border-bottom: color-mix(in srgb, black 7%, rgb(64, 64, 64));;
+			}
 			--default-bookmark-item-color: white;
 			--bookmark-item-color-shadow: transparent;
 		}
