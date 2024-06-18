@@ -71,9 +71,9 @@
 			--toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
 			--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
 			--default-toolbarbutton-texture: linear-gradient(
-				to bottom,
-				color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, rgb(64, 64, 64))),
-				color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, rgb(64, 64, 64)))
+				to top,
+				transparent,
+				rgba(255, 255, 255, 0.09)
 			);
 			--default-toolbarbutton-icon-drop-shadow-color: transparent;
 			--default-toolbarbutton-icon-fill: white;
