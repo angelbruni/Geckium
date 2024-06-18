@@ -14,7 +14,14 @@
 	);
 
 	// Tabs
+	// TODO: TABS HAVE A DIFFERENT BACKGROUND COLOUR IN NON-NATIVE CLASSIC - THIS IS NATIVE'S ONE
 	--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
+	--default-inactive-tab-background: linear-gradient(
+		to bottom,
+		rgb(172, 206, 247),
+		rgb(147, 187, 235),
+		rgb(144, 183, 232)
+	);
 	--default-selected-tab-background: linear-gradient(
 		to top,
 		rgb(243, 248, 253),
@@ -340,14 +347,26 @@
 			);
 		}
 
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(96, 132, 210),
+			rgb(66, 109, 201) 40px
+		);
 		--default-titlebar-inactive: linear-gradient(
 			to bottom,
 			#99b7ea,
 			#84a0dc 40px
 		);
+		--chromeos-accent: #426dc9; // Used for titlebar style
 
 		// Tabs
 		--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
+		--default-inactive-tab-background: linear-gradient(
+			to bottom,
+			rgb(171, 193, 235),
+			rgb(147, 173, 225),
+			rgb(141, 169, 224)
+		);
 		--default-selected-tab-background: linear-gradient(
 			to top,
 			rgb(243, 246, 252),
