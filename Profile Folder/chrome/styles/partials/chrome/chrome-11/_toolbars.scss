@@ -14,25 +14,8 @@
 	--toolbarbutton-width: var(--toolbarbutton-height);
 	--toolbarbutton-menu-width: var(--toolbarbutton-width);
 	--toolbarbutton-outer-padding: .5px !important;
-	--toolbarbutton-border-color-normal: transparent;
-	--toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
-	--toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-	--toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
-	--default-toolbarbutton-icon-fill: rgb(87, 102, 128);
-
-	&:not([lwtheme-id*="#{$gtkplus}"]) {
-		--toolbarbutton-border-color-hot: rgb(172, 172, 172);
-	}
 
 	--personal-toolbar-height: 24px;
-
-	@media (prefers-color-scheme: dark) {
-		--default-toolbarbutton-icon-fill: rgb(166,177,196);
-		--toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
-		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
-	}
 
 	//&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
