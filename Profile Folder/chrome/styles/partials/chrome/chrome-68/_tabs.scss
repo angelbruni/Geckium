@@ -4,7 +4,6 @@
 	--tab-distance-from-left-window-border-maximized: 5px;
 	--tab-width: 192px;
 	--tab-height: 30px;
-	--default-selected-tab-background: var(--default-nav-bar);
 	--tab-sides-width: 14px;
 	--tab-inner-margin-start: 15px;
 	--tab-content-y-from-top: -1px;
@@ -42,16 +41,6 @@
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_p_views.svg");
-
-	@media (prefers-color-scheme: dark) {
-		--default-inactive-tab-background: color-mix(
-			in srgb,
-			var(--default-nav-bar) 50%,
-			transparent
-		) 50%;
-
-		--default-selected-tab-background: var(--default-nav-bar) !important;
-    }
 }
 
 .tabbrowser-tab {

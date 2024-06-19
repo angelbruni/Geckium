@@ -1,0 +1,84 @@
+& {
+	//Classic (Default/Fallback), Mac OS X, macOS, Chrome OS
+	// FIXME: Can someone please get this working WITHOUT !importants, so that old macOS/Mac OS X/Chrome OS don't override Classic without !importants. -.-
+	// Titlebar
+	// TODO: Make EVERYTHING here start with --default... also just change how the --* vs --default* logic works, to be more Mozilla-like.
+	--default-titlebar-active: rgb(204,204,204) !important;
+	--default-titlebar-inactive: rgb(245,245,245) !important;
+
+	// Tabs
+	// TODO: TABS HAVE A DIFFERENT BACKGROUND COLOUR IN NON-NATIVE CLASSIC - THIS IS NATIVE'S ONE
+	--default-inactive-tab-background: rgb(211, 217, 225, 0.8) !important;
+	--default-inactive-tab-background: #cfcfcf !important;
+	--default-selected-tab-background: var(--default-nav-bar) !important;
+	--default-tabbrowser-tab-color: black !important;
+
+	// Navbar
+	--default-nav-bar: rgb(242,242,242) !important;
+	--toolbarbutton-background-hot: rgba(0,0,0,.09) !important;
+	--toolbarbutton-background-pressed: rgba(0,0,0,.18) !important;
+	--default-toolbarbutton-icon-fill: #5a5a5a !important;
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: var(--default-nav-bar) !important;
+	--personal-toolbar-item-hover-bg: rgba(0,0,0,.08) !important;
+	--personal-toolbar-item-active-bg: rgba(0,0,0,.16) !important;
+	--bookmark-item-hover-color: black !important;
+
+	@mixin dark {
+		// Titlebar
+		--default-titlebar-active: rgb(40,43,45) !important;
+        --default-titlebar-inactive: rgb(56,59,61) !important;
+
+		// Tabs
+		--default-inactive-tab-background: color-mix(
+			in srgb,
+			var(--default-nav-bar) 50%,
+			transparent
+		) 50% !important;
+		--default-selected-tab-background: var(--default-nav-bar) !important;
+		--default-tabbrowser-tab-color: white !important;
+
+		// Navbar
+		--default-nav-bar: rgb(80,80,80) !important;
+		--default-toolbarbutton-icon-fill: white !important;
+
+		// Personal Toolbar
+		--default-personal-toolbar: var(--default-nav-bar) !important;
+	}
+	@media (prefers-color-scheme: dark) {
+		@include dark;
+	}
+    &[privatebrowsingmode="temporary"] {
+		@include dark;
+    }
+
+	// GTK+ (rest in peace, icon set icons on toolbar)
+	&[gksystheme="gtk"]:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+		// Titlebar
+		--default-titlebar-active: ActiveCaption !important; //TODO: Replace these with JS, as they need to be a gradient instead
+		--default-titlebar-inactive: InactiveCaption !important;
+
+		// Tabs
+		--default-inactive-tab-background: rgb(211, 217, 225, 0.8) !important; //TODO
+		--default-selected-tab-background: var(--default-nav-bar) !important;
+		--default-tab-glare: rgb(211, 217, 225, 0.45) !important; //TODO
+		--default-tabbrowser-tab-color: -moz-dialogtext !important;
+
+		// Navbar
+		--default-nav-bar: -moz-dialog !important;
+		--toolbarbutton-background-hot: color-mix(in srgb, -moz-dialogtext 9%, transparent) !important; //TODO: verify
+		--toolbarbutton-background-pressed: color-mix(in srgb, -moz-dialogtext 18%, transparent) !important; //TODO: verify
+		--default-toolbarbutton-icon-fill: -moz-dialogtext !important;
+
+		// Personal Toolbar (Bookmarks)
+		--default-personal-toolbar: var(--default-nav-bar) !important;
+		--personal-toolbar-item-hover-bg: color-mix(in srgb, -moz-dialogtext 8%, transparent) !important; //TODO: verify
+		--personal-toolbar-item-active-bg: color-mix(in srgb, -moz-dialogtext 16%, transparent) !important; //TODO: verify
+		--bookmark-item-hover-color: -moz-dialogtext !important;
+		--default-bookmark-item-color: -moz-dialogtext !important;
+	}
+
+	// Geckium You
+	//No. IT IS GREY, it literally WON'T recolour.
+}
