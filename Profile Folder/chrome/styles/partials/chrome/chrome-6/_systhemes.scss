@@ -118,90 +118,92 @@
         );
     }
 	
-	// Firefox is weird number ILostCount: It seems like it prefers nearest code or smth? By this, I mean that
-	// it would rather use this file's Classic code, than geckium-one's macos(x), yet is fine using code from
-	// geckium-five's macos(x) - does it only look for macos(x) if it's one file away, else uses Classic?
-	//
-	// Regardless, this weird behaviour means we have to re-enforce the titlebar gradient now Classic's updated:
-	// Mac OS X
-	&[gksystheme="macosx"],
-	&[gksystheme="macos"] {
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			var(--macosx-window-color),
-			color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
-		);
-		--default-titlebar-inactive: var(--default-titlebar-active);
-	}
-	// macOS
-	&[gksystheme="macos"] {
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			var(--macosx-window-color),
-			color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
-		);
-		--default-titlebar-inactive: var(--macosx-window-color);
-	}
-
-	// Chrome OS
-	&[gksystheme="chromeos"] {
-		// Titlebar
-		// TODO: Check if inactive compositorless tab background changed
-		// TODO: Move gradient to titlebar style - pre-gradient theme colour is #3f537b
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			#0d1525 10px,
-			#3f537b 34px
-		);
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
+	&:not([geckium-sixtyeight]) {
+		// Firefox is weird number ILostCount: It seems like it prefers nearest code or smth? By this, I mean that
+		// it would rather use this file's Classic code, than geckium-one's macos(x), yet is fine using code from
+		// geckium-five's macos(x) - does it only look for macos(x) if it's one file away, else uses Classic?
+		//
+		// Regardless, this weird behaviour means we have to re-enforce the titlebar gradient now Classic's updated:
+		// Mac OS X
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				#0d1525,
-				#3f537b 24px
+				var(--macosx-window-color),
+				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
 			);
+			--default-titlebar-inactive: var(--default-titlebar-active);
+		}
+		// macOS
+		&[gksystheme="macos"] {
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--macosx-window-color),
+				color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
+			);
+			--default-titlebar-inactive: var(--macosx-window-color);
 		}
 
-		--chromeos-accent: #3f537b; // Used for titlebar style
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			rgb(94, 111, 144),
-			rgb(63, 83, 123) 40px
-		);
-		--default-titlebar-inactive: linear-gradient(
-			to bottom,
-			rgb(169,195,231),
-			rgb(153,178,221) 40px
-		);
-
-		&[privatebrowsingmode="temporary"] {
+		// Chrome OS
+		&[gksystheme="chromeos"] {
 			// Titlebar
-			// TODO: Move gradient to titlebar style - pre-gradient theme colour is #5d5d5d
+			// TODO: Check if inactive compositorless tab background changed
+			// TODO: Move gradient to titlebar style - pre-gradient theme colour is #3f537b
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				#191919 10px,
-				#5d5d5d 34px
+				#0d1525 10px,
+				#3f537b 34px
 			);
 			&[sizemode="maximized"],
 			&[sizemode="fullscreen"] {
 				--default-titlebar-active: linear-gradient(
 					to bottom,
-					#191919,
-					#5d5d5d 24px
+					#0d1525,
+					#3f537b 24px
 				);
 			}
 
-			--chromeos-accent: #5d5d5d; // Used for titlebar style
+			--chromeos-accent: #3f537b; // Used for titlebar style
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				rgb(119, 119, 119),
-				rgb(93, 93, 93) 40px
+				rgb(94, 111, 144),
+				rgb(63, 83, 123) 40px
 			);
 			--default-titlebar-inactive: linear-gradient(
 				to bottom,
-				#95a0b3,
-				#7e899c 40px
+				rgb(169,195,231),
+				rgb(153,178,221) 40px
 			);
+
+			&[privatebrowsingmode="temporary"] {
+				// Titlebar
+				// TODO: Move gradient to titlebar style - pre-gradient theme colour is #5d5d5d
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					#191919 10px,
+					#5d5d5d 34px
+				);
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						#191919,
+						#5d5d5d 24px
+					);
+				}
+
+				--chromeos-accent: #5d5d5d; // Used for titlebar style
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(119, 119, 119),
+					rgb(93, 93, 93) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					#95a0b3,
+					#7e899c 40px
+				);
+			}
 		}
 	}
 
