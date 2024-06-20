@@ -409,6 +409,11 @@ class gkGTK {
 			`--incognito-active-shine`,
 			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
 		);
+		//Background Tab background (Incognito)
+		document.documentElement.style.setProperty(
+			`--incognito-bgtab-background`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, 0.5, 0.75])})`
+		);
 		//InactiveCaption
 		colorDiv.style.backgroundColor="InactiveCaption";
 		rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
