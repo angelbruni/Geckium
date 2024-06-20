@@ -55,15 +55,9 @@
 
 	// GTK+ (rest in peace, icon set icons on toolbar)
 	&[gksystheme="gtk"]:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-		// Titlebar
-		--default-titlebar-active: ActiveCaption; //TODO: Replace these with JS, as they need to be a gradient instead
-		--default-titlebar-inactive: InactiveCaption;
-
 		// Tabs
-		--default-inactive-tab-background: rgb(211, 217, 225, 0.8); //TODO
 		--default-selected-tab-background: var(--default-nav-bar);
 		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
-		--default-tabbrowser-tab-color: -moz-dialogtext;
 
 		// Navbar
 		--default-nav-bar: -moz-dialog;
