@@ -382,6 +382,83 @@ class gkLWTheme {
 window.addEventListener("load", gkLWTheme.setCustomThemeModeAttrs);
 Services.obs.addObserver(gkLWTheme.setCustomThemeModeAttrs, "lightweight-theme-styling-update");
 
+// GTK+
+class gkGTK {
+	static setVariables() {
+		var colorDiv = document.createElement("div");
+		document.head.appendChild(colorDiv);
+		//ActiveCaption
+		colorDiv.style.backgroundColor="ActiveCaption";
+		var rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		document.documentElement.style.setProperty(
+			`--activecaption-shine`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+		);
+		//Background Tab background
+		document.documentElement.style.setProperty(
+			`--bgtab-background`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, 0.5, 0.75])})`
+		);
+		//Incognito (active)
+		rgb = ColorUtils.HSLShift(rgb, [-1, 0.2, 0.35]);
+		document.documentElement.style.setProperty(
+			`--incognito-active`,
+			`rgb(${rgb})`
+		);
+		document.documentElement.style.setProperty(
+			`--incognito-active-shine`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+		);
+		//InactiveCaption
+		colorDiv.style.backgroundColor="InactiveCaption";
+		rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		document.documentElement.style.setProperty(
+			`--inactivecaption-shine`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+		);
+		//Incognito (inactive)
+		rgb = ColorUtils.HSLShift(rgb, [-1, 0.3, 0.6]);
+		document.documentElement.style.setProperty(
+			`--incognito-inactive`,
+			`rgb(${rgb})`
+		);
+		document.documentElement.style.setProperty(
+			`--incognito-inactive-shine`,
+			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+		);
+		//Pre-6.0 toolbar icon fill colour
+		colorDiv.style.backgroundColor="AccentColor";
+		rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		colorDiv.style.backgroundColor="-moz-dialog";
+		var rgbb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		if (Math.abs(ColorUtils.ColorToHSL(rgb)[2] - ColorUtils.ColorToHSL(rgbb)[2]) < 0.1) {
+			// Not enough contrast - use foreground
+			document.documentElement.style.setProperty(
+				`--gtk-toolbarbutton-icon-fill`,
+				`-moz-dialogtext`
+			);
+		} else {
+			document.documentElement.style.setProperty(
+				`--gtk-toolbarbutton-icon-fill`,
+				`AccentColor`
+			);
+		}
+		document.head.removeChild(colorDiv);
+	}
+
+	static apply() {
+		console.log(window.location.href);
+		console.log(document.querySelector(`#main-window`).getAttribute("windowtype"));
+		console.log(isBrowserWindow);
+		if (isBrowserWindow) {
+			//TODO: only apply if on GTK+, otherwise remove variables
+			gkGTK.setVariables();
+		}
+	}
+}
+window.addEventListener("load", gkGTK.apply);
+
+
 /* bruni: Automatically apply appearance and theme
 		  attributes when it detecs changes in the pref. */
 const appearanceObserver = {

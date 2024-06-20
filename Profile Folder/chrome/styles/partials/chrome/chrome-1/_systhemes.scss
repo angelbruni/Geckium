@@ -150,14 +150,24 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 		// Titlebar
-		--default-titlebar-active: ActiveCaption; //TODO: Replace these with JS, as they need to be a gradient instead
-		--default-titlebar-inactive: InactiveCaption;
+		--default-titlebar-active: linear-gradient(
+            to bottom,
+            var(--activecaption-shine),
+            ActiveCaption 40px
+        );
+        --default-titlebar-inactive: linear-gradient(
+            to bottom,
+            var(--inactivecaption-shine),
+            InactiveCaption 40px
+        );
 
 		// Tabs
-		--default-inactive-tab-background: rgb(211, 217, 225, 0.8); //TODO
+		--default-inactive-tab-background: var(--bgtab-background); //TODO
 		--default-selected-tab-background: -moz-dialog;
 		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
 		--default-tabbrowser-tab-color: -moz-dialogtext;
+		//TODO: Use this value:
+		--default-inactive-tabbrowser-tab-color: hsl(0, 0.3, 0.15); //https://chromium.googlesource.com/chromium/src.git/+/refs/tags/29.0.1547.57/chrome/browser/ui/libgtk2ui/gtk2_ui.cc#521
 
 		// Navbar
 		--default-nav-bar: -moz-dialog;
@@ -177,6 +187,20 @@
 		--personal-toolbar-border-bottom: ThreeDShadow;
 		--default-bookmark-item-color: -moz-dialogtext;
 		--bookmark-item-color-shadow: transparent;
+
+		&[privatebrowsingmode="temporary"] {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--incognito-active-shine),
+				var(--incognito-active) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				var(--incognito-inactive-shine),
+				var(--incognito-inactive) 40px
+			);
+		}
 	}
 
 	&:not([geckium-sixtyeight]) { //These themes are reverted to just being Classic in 68, so exclude them if 68 or higher is selected
