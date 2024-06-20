@@ -162,7 +162,7 @@
         );
 
 		// Tabs
-		--default-inactive-tab-background: var(--bgtab-background); //TODO
+		--default-inactive-tab-background: var(--bgtab-background);
 		--default-selected-tab-background: -moz-dialog;
 		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
 		--default-tabbrowser-tab-color: -moz-dialogtext;
@@ -200,6 +200,8 @@
 				var(--incognito-inactive-shine),
 				var(--incognito-inactive) 40px
 			);
+			// Tabs
+			--default-inactive-tab-background: var(--incognito-bgtab-background);
 		}
 	}
 
