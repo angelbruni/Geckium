@@ -278,12 +278,7 @@ class gkChromiumFrame {
 								}
 									
 							} else {
-								const isDefaultTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("default-theme");
-								const isCompactLightLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("compact-light");
-								const isDefaultDarkLWTheme = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("firefox-compact");
-								const isGTKPlus = gkPrefUtils.tryGet("extensions.activeThemeID").string.includes("{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}");
-								
-								if (isDefaultTheme || isCompactLightLWTheme || isDefaultDarkLWTheme || isGTKPlus) {
+								if (!isFirefoxThemed) {
 									if (isBrowserPopUpWindow) {
 										document.documentElement.removeAttribute("chromemargin");
 									} else {
@@ -452,9 +447,6 @@ class gkGTK {
 	}
 
 	static apply() {
-		console.log(window.location.href);
-		console.log(document.querySelector(`#main-window`).getAttribute("windowtype"));
-		console.log(isBrowserWindow);
 		if (isBrowserWindow) {
 			//TODO: only apply if on GTK+, otherwise remove variables
 			gkGTK.setVariables();
