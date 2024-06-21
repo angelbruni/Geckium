@@ -47,13 +47,7 @@
 				#d8d7d7
 			);
 			// Navbar
-			--toolbarbutton-border-color-hot: rgb(134, 134, 134); //TODO
-			--toolbarbutton-border-color-active: rgb(125, 125, 125); //TODO
-			--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
-										inset 0 1px 2px rgb(255, 255, 255, 75%); //TODO
-			--toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 			--default-toolbarbutton-icon-fill: rgb(111, 111, 111); // Mac OS X Chrome reverted to normal colouring
-			--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3)); //TODO
 
 			// Personal Toolbar (Bookmarks)
 			// NOTE: Bookmarks colouring is probably also vanilla, but it's black in vanilla so can't tell.
@@ -66,11 +60,8 @@
 			&:-moz-window-inactive {
 				--personal-toolbar-border-bottom: #7a7a7a;
 			}
-			--personal-toolbar-item-shadow: 0 1px 0 0 transparent !important; //TODO
-			--personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important; //TODO
-			--default-bookmark-item-color: #000000;
-			--bookmark-item-hover-color: #062d75; //TODO
-			--personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important; //TODO
+			--default-bookmark-item-color: black;
+			--bookmark-item-hover-color: black;
 
 			@media (prefers-color-scheme: dark) { //TODO
 				// Tabs
