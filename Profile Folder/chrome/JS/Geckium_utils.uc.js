@@ -11,6 +11,13 @@ const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule
 const isNCPatched = window.matchMedia("(-moz-ev-native-controls-patch)").matches;
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
 const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden") == "menubar toolbar directories extrachrome ";
+function isFirefoxThemed() {
+	var themepref = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+	if (themepref != "default-theme@mozilla.org" && themepref != "firefox-compact-light@mozilla.org" && themepref != "firefox-compact-dark@mozilla.org") {
+		return true;
+	}
+	return false;
+}
 
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);
