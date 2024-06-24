@@ -238,9 +238,7 @@
 	&[lwtheme] {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				@import "borders/winbasic";
-				
+			&:not([lwtheme-id*="#{$gtkplus}"]) {				
 				&:not([customthememode="2"]) {
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
@@ -380,8 +378,6 @@
 		--bookmark-item-color-shadow: none !important;
 		
 		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
-
-		@import "borders/winbasic";
 
 		#nav-bar {
 			background-position-y: calc(var(--tab-height) * -1) !important;
@@ -749,10 +745,6 @@
 
 #navigator-toolbox-background {
 	position: relative;
-
-	@media (-moz-platform: linux) {
-		appearance: none !important;
-	}
 }
 
 toolbar[overflowable][customizing] > .customization-target {

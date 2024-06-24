@@ -1,78 +1,100 @@
-/* bruni: This is the code for the window frame when Chromium's classic
-		  theme is enabled. This code is also used by custom themes. */
-
 & {
-	--titlebar-buttonbox-pseudo-background: transparent;
+	// Visuals
+	&[windowtype="navigator:browser"] > body {
+		background: var(--titlebar-active, var(--default-titlebar-active));
+		&:-moz-window-inactive {
+			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+		}
+		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+		border-top: 1px solid rgb(89, 89, 89);
+		border-left: 1px solid rgb(89, 89, 89);
+		border-bottom: 1px solid rgb(68, 68, 68);
+		border-right: 1px solid rgb(68, 68, 68);
+		//border-radius: 5px; FIXME: Why were bottom corners this size?
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		padding: 1px !important;
+		box-sizing: border-box;
+	}
+	
+	// Behaviour: Normal
+	#tabbrowser-arrowscrollbox {
+		padding-top: 7px !important;
+	}
 
-	&#main-window {
-		/* bruni: Firefox is weird, if we set the root to be transparent,
-				  then it takes body's background. The lowest we can go in
-				  alpha is 0.002 for that bug (assuming it's one) to not
-				  happen. */
-		@media (-moz-ev-native-controls-patch) {
-			background: rgba(0,0,0,.002) !important;
+	// Behaviour: Maximised / Fullscreen
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		&[windowtype="navigator:browser"] > body {
+			border: 0 !important;
+			border-radius: 0 !important;
+			box-shadow: none !important;
+			padding: 0 !important;
+		}
+		#tabbrowser-arrowscrollbox {
+			padding-top: 0 !important;
+		}
+	}
+
+
+
+
+
+
+	//Windows quirks
+	@media (-moz-platform: windows) {
+		//Stop non-composited titlebar elements from spontaneously appearing
+		#titlebar {
+			appearance: unset !important;
 		}
 
-		@media (-moz-platform: linux) {
+		//Windows 10 + Native Controls Patch quirks
+		@media (-moz-ev-native-controls-patch) {
+			&#main-window {
+				background: rgba(0,0,0,.002) !important;
+			}
+		}
+	}
+
+	//Linux quirks
+	@media (-moz-platform: linux) {
+		// Padding is slightly different for Linux
+		&[windowtype="navigator:browser"] > body {
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				padding: 2px 1px !important;
+			}
+		}
+
+		/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
+		 - GTK3's CSDs only cover the browser from top to bookmarks area
+		 - Shadows are out of the CSS's boundaries
+		Therefore, to get the desired borders, we need to hijack body. */
+		#navigator-toolbox-background {
+			appearance: none !important; //FIXME: This causes the corner shadows to disappear
+		}
+		/* However, likely due to a Firefox bug, Firefox's underlying window surface
+		 uses the body's background itself, due to Mozilla setting its background
+		 to 'transparent', unless we use a minimum 0.002 alpha background on the window,
+		 so we need to override that. */
+		&#main-window {
 			background: rgba(0,0,0,.002) !important;
 		}
 	}
 
-	&[chromemargin="0,0,0,0"] {
-		&[tabsintitlebar] {
-			#tabbrowser-arrowscrollbox {
-				padding-top: 7px !important;
-			}
-		}
+	//macOS quirks
 
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			&[windowtype="navigator:browser"] > body {
-				border: 0 !important;
-				border-radius: 0 !important;
-				box-shadow: none !important;
-			}
+}
 
-			&[tabsintitlebar] {
-				#tabbrowser-arrowscrollbox {
-					padding-top: 0 !important;
-				}
-			}
-		}
 
-		&[windowtype="navigator:browser"] > body {
-			background: var(--titlebar-active);
-			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-			border-top: 1px solid rgb(89, 89, 89);
-			border-left: 1px solid rgb(89, 89, 89);
-			border-bottom: 1px solid rgb(68, 68, 68);
-			border-right: 1px solid rgb(68, 68, 68);
-			border-radius: 5px;
-			padding: 1px !important;
-			box-sizing: border-box;
 
-			@media (-moz-platform: linux) {
-				& {
-					border-top-left-radius: 6px !important;
-					border-top-right-radius: 6px !important;
-					border-bottom-left-radius: 0 !important;
-					border-bottom-right-radius: 0 !important;
-					padding: 2px !important;
-				}
-			}
 
-			&:-moz-window-inactive {
-				background: var(--titlebar-inactive);
-			}
-		}
 
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			&[windowtype="navigator:browser"] > body {
-				padding: 0 !important;
-			}
-		}
 
+
+olddump {
+	&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
 		&[sizemode="maximized"] {
 			&[windowtype="navigator:browser"] > body {
 				@media not (-moz-platform: linux) {
@@ -133,9 +155,7 @@
 		}
 
 		// This fixes titlebar in Windows basic and Windows classic.
-		#titlebar {
-			appearance: unset !important;
-		}
+		
 
 		/*.titlebar-buttonbox-container {
 			justify-content: end;
@@ -192,7 +212,7 @@
 				top: 0;
 				width: 100%;
 				height: 100%;
-				background: var(--titlebar-buttonbox-pseudo-background);
+				background: var(--titlebar-buttonbox-background);
 				z-index: -1;
 			}
 
@@ -261,29 +281,6 @@
 			&:active {
 				background: var(--titlebar-min-background-active) !important;
 			}
-		}
-
-		&[gkforcecaptionbuttonstyle="auto"] {
-			@media not ((-moz-platform: linux) or (-moz-platform: macos)) {
-				@import "../titlebar/caption-buttons/windows";
-			}
-			
-			@media (-moz-platform: linux) {
-				@import "../titlebar/caption-buttons/linux";
-			}
-	
-			@media (-moz-platform: macos) {
-				@import "../titlebar/caption-buttons/macos";
-			}
-		}
-		&[gkforcecaptionbuttonstyle="windows"] {
-			@import "../titlebar/caption-buttons/windows";
-		}
-		&[gkforcecaptionbuttonstyle="linux"] {
-			@import "../titlebar/caption-buttons/linux";
-		}
-		&[gkforcecaptionbuttonstyle="macos"] {
-			@import "../titlebar/caption-buttons/macos";
 		}
 	}
 }
