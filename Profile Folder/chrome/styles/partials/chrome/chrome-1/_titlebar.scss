@@ -1,10 +1,7 @@
 :root {
-	--inactive-titlebar-opacity: 1 !important;
+	--inactive-titlebar-opacity: 1 !important; //TODO: unused?
 
-	--chrt-theme-frame-overlay: 0;
-
-	--titlebar-active: var(--default-titlebar-active);
-	--titlebar-inactive: var(--default-titlebar-inactive);
+	--chrt-theme-frame-overlay: 0; //TODO: Change to 'unset'
 
     &[privatebrowsingmode="temporary"] {
         #fxa-toolbar-menu-button {
@@ -12,26 +9,11 @@
         }
     }
 
-    @import "borders/winbasic";
-	
-	&:not([chrtheme="true"]) {
-		&:not([lwtheme]) {
-			/* bruni: I forgot why this is here but it seems to cause issues.
-			&[windowtype="navigator:browser"] > body {
-				background: transparent !important;
-			}*/
+	//TEMP until a better implementation of this is conjured up
+	@import "borders/winbasic";
 
-			&[windowtype="navigator:browser"] > body {
-				@media (-moz-platform: linux) {
-					background: var(--titlebar-active) !important;
 
-					&:-moz-window-inactive {
-						background: var(--titlebar-inactive) !important;
-					}
-				}
-			}
-		}
-	}
+
 	&[lwtheme] {
         /* bruni: This entire code takes care of custom themes support for titlebar */
 
@@ -225,9 +207,9 @@
 				}
 			}
 		}
-	}
+	} //TODO: Move into winbasic
 
-	@media (-moz-platform: windows) {
+	@media (-moz-platform: windows) { //TODO: Move into windows titlebuttons style
 		&[gkbranding="chrome"] {
 			.titlebar-buttonbox-container {
 				&::before {
@@ -259,6 +241,7 @@
 	}
 }
 
+//TODO: Also move into windows titlebar style?
 #private-browsing-indicator-with-label {
     align-items: end !important;
 	margin-block-end: 1px;
