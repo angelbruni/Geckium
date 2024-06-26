@@ -1,4 +1,6 @@
 & {
+	//TODO: This will be native=false
+	
 	// Visuals
 	&[windowtype="navigator:browser"] > body {
 		background: var(--titlebar-active, var(--default-titlebar-active));
@@ -11,32 +13,29 @@
 		border-bottom: 1px solid rgb(68, 68, 68);
 		border-right: 1px solid rgb(68, 68, 68);
 		//border-radius: 5px; FIXME: Why were bottom corners this size?
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-		padding: 1px !important;
+		border-radius: 5px 5px 0 0;
+		//padding: 1px !important;
 		box-sizing: border-box;
 	}
 	
-	// Behaviour: Normal
-	#tabbrowser-arrowscrollbox {
-		padding-top: 7px !important;
-	}
+	// // Behaviour: Normal
+	// #tabbrowser-arrowscrollbox {
+	// 	padding-top: 7px !important;
+	// }
 
-	// Behaviour: Maximised / Fullscreen
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		&[windowtype="navigator:browser"] > body {
-			border: 0 !important;
-			border-radius: 0 !important;
-			box-shadow: none !important;
-			padding: 0 !important;
-		}
-		#tabbrowser-arrowscrollbox {
-			padding-top: 0 !important;
-		}
-	}
+	// // Behaviour: Maximised / Fullscreen
+	// &[sizemode="maximized"],
+	// &[sizemode="fullscreen"] {
+	// 	&[windowtype="navigator:browser"] > body {
+	// 		border: 0 !important;
+	// 		border-radius: 0 !important;
+	// 		box-shadow: none !important;
+	// 		padding: 0 !important;
+	// 	}
+	// 	#tabbrowser-arrowscrollbox {
+	// 		padding-top: 0 !important;
+	// 	}
+	// }
 
 
 
@@ -61,11 +60,11 @@
 	//Linux quirks
 	@media (-moz-platform: linux) {
 		// Padding is slightly different for Linux
-		&[windowtype="navigator:browser"] > body {
-			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-				padding: 2px 1px !important;
-			}
-		}
+		// &[windowtype="navigator:browser"] > body {
+		// 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		// 		padding: 2px 1px !important;
+		// 	}
+		// }
 
 		/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
 		 - GTK3's CSDs only cover the browser from top to bookmarks area

@@ -1,4 +1,14 @@
 :root {
+	// Make Firefox's Windows 10 CSDs white to be faithful to Windows 10+'s titlebar
+	--toolbox-non-lwt-bgcolor: light-dark(white, black);
+	--toolbox-non-lwt-bgcolor-inactive: var(--toolbox-non-lwt-bgcolor);
+	--toolbox-non-lwt-textcolor: light-dark(black, white);
+	//TODO: Colour Windows 10 CSDs using these variables, and get proper inactive backgrounds
+
+
+
+
+
 	--inactive-titlebar-opacity: 1 !important; //TODO: unused?
 
 	--chrt-theme-frame-overlay: 0; //TODO: Change to 'unset'
