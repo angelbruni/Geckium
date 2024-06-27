@@ -16,6 +16,13 @@
 		width: 100%;
 	}
 
+	//Add padding to window-contents (requires gaps allowed)
+	&[gkhasgaps="true"]:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		&[windowtype="navigator:browser"] > body {
+			padding: 0 3px 3px 3px !important; //Firefox will REFUSE to use it without an !important
+		}
+	}
+
 	//Round the navigation bar (requires gaps allowed)
 	&[gkhasgaps="true"] {
 		#nav-bar {
