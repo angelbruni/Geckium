@@ -7,8 +7,10 @@
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
 
 	//Give the tabs the appropriate left-offset
-	#TabsToolbar {
-		margin-inline-start: var(--content-border-width);
+	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		#TabsToolbar {
+			margin-inline-start: var(--content-border-width);
+		}
 	}
 
 	//Ensure notification bars use the correct width
