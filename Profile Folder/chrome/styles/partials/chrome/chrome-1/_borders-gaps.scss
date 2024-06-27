@@ -1,4 +1,56 @@
 :root {
+	//Page bodies - top 1px border
+	#browser,
+	#customization-container {
+		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
+	}
+
+	//Page bodies - all borders (requires gaps allowed)
+	&:not([gkhasgaps="true"]) {
+		#browser,
+		#customization-container {
+			position: relative;
+			border-width: 1px;
+			border-style: solid;
+			border-color: var(--inner-border-color);
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			#browser,
+			#customization-container {
+				//box-shadow: 0 !important; //TODO: unused?
+				border: none;
+				//margin: 0 !important; //TODO: unused?
+			}
+		}
+	}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root[egg] {
 	--content-border-width: 			3px;
 	--content-border-top-left-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_left_corner.png");
 	--content-border-top-image:			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tabstoolbar_shadow_modified.png");

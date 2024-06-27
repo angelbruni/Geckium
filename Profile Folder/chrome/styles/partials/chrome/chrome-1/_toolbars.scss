@@ -540,16 +540,6 @@
 				bottom: 1px;
 			}
 		}
-
-		#browser,
-		#customization-container {
-			box-shadow: 0 !important;
-			border-left: none !important;
-			border-right: none !important;
-			border-bottom: none !important;
-			margin: 0 !important;
-			margin-top: -1px !important;
-		}
 	}
 
 	&[sizemode="fullscreen"] {
@@ -749,16 +739,6 @@
 
 toolbar[overflowable][customizing] > .customization-target {
 	overflow: visible !important;
-}
-
-#browser,
-#customization-container {
-	position: relative;
-	border-width: 1px;
-	border-style: solid;
-	border-color: var(--inner-border-color);
-	border-top-color: var(--personal-toolbar-border-bottom);
-	margin-top: -1px;
 }
 
 #TabsToolbar {
