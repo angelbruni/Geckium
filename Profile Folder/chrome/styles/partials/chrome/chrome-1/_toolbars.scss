@@ -520,11 +520,6 @@
 				left: 0px;
 				right: 0px;
 			}
-		}		
-
-		#nav-bar {
-			border-top-left-radius: 0 !important;
-			border-top-right-radius: 0 !important;
 		}
 
 		&[tabsintitlebar] {
@@ -676,8 +671,6 @@
 
 #nav-bar {
 	background: var(--nav-bar, var(--default-nav-bar)) !important;
-	border-top-left-radius: 3px !important;
-	border-top-right-radius: 3px !important;
 	align-items: center;
 	padding-inline: var(--toolbar-start-end-padding) !important;
 	height: var(--nav-bar-height);
