@@ -3,7 +3,7 @@
 	
 	// Visuals
 	&[windowtype="navigator:browser"] > body {
-		padding: 0 4px 4px 4px !important; //Titlebar borders - Firefox will REFUSE to use it without an !importantS
+		padding: 0 3px 3px 3px !important; //Titlebar borders - Firefox will REFUSE to use it without an !importantS
 		background: var(--titlebar-active, var(--default-titlebar-active));
 		&:-moz-window-inactive {
 			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
