@@ -13,15 +13,22 @@
 		}
 	}
 
-	//Ensure notification bars use the correct width
-	.notificationbox-stack {
-		width: 100%;
-	}
-
 	//Add padding to window-contents (requires gaps allowed)
 	&[gkhasgaps="true"]:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		&[windowtype="navigator:browser"] > body {
-			padding: 0 3px 3px 3px !important; //Firefox will REFUSE to use it without an !important
+		#nav-bar,
+		#PersonalToolbar,
+		.notificationbox-stack,
+		#browser {
+			margin: 0 3px 0 3px;
+			//box-sizing: border-box; //Required for Windows Firefox
+		}
+		#browser {
+			margin-bottom: 3px;
+			//box-sizing: border-box; //Required for Windows Firefox
+		}
+		//Ensure notification bars use the correct width
+		.notificationbox-stack {
+			width: calc(100% - 6px) !important; //Firefox will REFUSE to use it without an !important
 		}
 	}
 
