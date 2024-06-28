@@ -454,6 +454,24 @@ class gkGTK {
 	}
 }
 window.addEventListener("load", gkGTK.apply);
+window.addEventListener("nativethemechange", gkGTK.apply);
+
+
+// Provide a way to let the CSS know if the menubar is visible 
+class menuBarVisible {
+	static toggled(newvalue) {
+		if (newvalue == true) {
+			document.documentElement.setAttribute("menubarvisible", "");
+		} else {
+			document.documentElement.removeAttribute("menubarvisible");
+		}
+	}
+	static check() {
+		menuBarVisible.toggled(document.getElementById("toolbar-menubar").getAttribute("autohide") == "false");
+	}
+}
+window.addEventListener("load", menuBarVisible.check);
+window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
 
 
 /* bruni: Automatically apply appearance and theme

@@ -172,16 +172,7 @@
 
 		// Navbar
 		--default-nav-bar: -moz-dialog;
-		--default-inner-border-color: transparent;
-		--toolbarbutton-border-color-normal: transparent;
-		--toolbarbutton-border-color-hot: transparent;
-		--toolbarbutton-border-color-active: transparent;
-		--toolbarbutton-inner-border-color-normal: transparent;
-		--toolbarbutton-inner-border-color-hot: transparent;
-		--default-toolbarbutton-texture: transparent;
-		--default-toolbarbutton-icon-drop-shadow-color: transparent;
-		--default-toolbarbutton-icon-fill: AccentColor; //TODO: This needs JS, per research
-		--default-navigation-buttons-separator: transparent;
+		--default-toolbarbutton-icon-fill: var(--gtk-toolbarbutton-icon-fill);
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: -moz-dialog;

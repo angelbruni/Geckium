@@ -1,5 +1,25 @@
 & {
+	// Behaviour: Normal
+	&:not([menubarvisible]) {
+		#tabbrowser-arrowscrollbox {
+			padding-top: 14px;
+		}
+	}
+
+	// Behaviour: Maximised / Fullscreen
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		&:not([menubarvisible]) {
+			#tabbrowser-arrowscrollbox {
+				padding-top: 0;
+			}
+		}
+	}
+}
+
+&[native="false"] {
 	//TODO: This will be native=false
+	//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
 	
 	// Visuals
 	&[windowtype="navigator:browser"] > body {
@@ -14,28 +34,18 @@
 		border-right: 1px solid rgb(68, 68, 68);
 		//border-radius: 5px; FIXME: Why were bottom corners this size?
 		border-radius: 5px 5px 0 0;
-		//padding: 1px !important;
 		box-sizing: border-box;
 	}
-	
-	// // Behaviour: Normal
-	// #tabbrowser-arrowscrollbox {
-	// 	padding-top: 7px !important;
-	// }
 
-	// // Behaviour: Maximised / Fullscreen
-	// &[sizemode="maximized"],
-	// &[sizemode="fullscreen"] {
-	// 	&[windowtype="navigator:browser"] > body {
-	// 		border: 0 !important;
-	// 		border-radius: 0 !important;
-	// 		box-shadow: none !important;
-	// 		padding: 0 !important;
-	// 	}
-	// 	#tabbrowser-arrowscrollbox {
-	// 		padding-top: 0 !important;
-	// 	}
-	// }
+	// Visuals: Maximised / Fullscreen
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		&[windowtype="navigator:browser"] > body {
+			border: 0;
+			border-radius: 0;
+			box-shadow: none;
+		}
+	}
 
 
 

@@ -2,9 +2,7 @@
 &[lwtheme] {
     /* bruni: This entire code takes care of custom themes support for toolbars */
     &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-        &:not([lwtheme-id*="#{$gtkplus}"]) {
             @import "titlebar/classic";
-        }
     }
 }
 // else if chrtheme

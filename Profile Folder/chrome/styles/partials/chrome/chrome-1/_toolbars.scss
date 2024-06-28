@@ -1,4 +1,11 @@
 :root {
+	/* TODO:
+	1. Make all toolbar buttons appearance: button in GTK IF ONLY LINUX
+	2. Revert URLbar to its normal design, as seen in https://cdn.discordapp.com/attachments/1203767194664570890/1203794854216212511/OyqJEr0.png?ex=667fc192&is=667e7012&hm=70874bd42c3ba65909aae096f31357560089ac574e639da9d48bfd926492601a&
+	 ...with a FIXME to make it look accurate once the ability to make it a native textbox appearance is ever discovered
+	3. Get rid of the outer border from the URLbar, as shown in that above image */
+
+
 	--chrome-content-separator-color: transparent !important;
 	--toolbar-start-end-padding: 1px !important;
 	--inner-border-color: var(--default-inner-border-color);
@@ -76,16 +83,10 @@
 	}
 
 	// if lwtheme == gtkplus
-	&[lwtheme-id="#{$gtkplus}"] {
-		--nav-bar: -moz-dialog !important;
-
-		--toolbarbutton-border-color-normal: -moz-dialogtext;
-		--toolbarbutton-border-color-hot: -moz-dialogtext;
-		--toolbarbutton-border-color-active: -moz-dialogtext;
+	&[gksystheme="gtk"]:not([lwtheme]) { //TODO: Check for Light and Dark
 		--toolbarbutton-texture: var(--nav-bar) !important;
 		--toolbarbutton-inner-border-color-normal: transparent;
 		--toolbarbutton-inner-border-color-hot: transparent;
-		--toolbarbutton-icon-fill: -moz-dialogtext !important;
 		--navigation-buttons-separator: transparent;
 
 		--personal-toolbar: var(--nav-bar) !important;
@@ -238,7 +239,7 @@
 	&[lwtheme] {
 		/* bruni: This entire code takes care of custom themes support for toolbars */
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {				
+			//&:not([lwtheme-id*="#{$gtkplus}"]) {				
 				&:not([customthememode="2"]) {
 					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
@@ -349,7 +350,7 @@
 						--personal-toolbar: transparent !important;
 					}
 				}
-			}
+			//}
 		}
 	}
 	// else if chrtheme
@@ -482,12 +483,6 @@
 		}
 	}
 
-	&[tabsintitlebar] {
-		#tabbrowser-arrowscrollbox {
-			padding-top: 12px !important;
-		}
-	}
-
 	&:not([tabsintitlebar]) {
 		.toolbar-items {
 			padding-top: 0 !important;
@@ -519,12 +514,6 @@
 			&::before {
 				left: 0px;
 				right: 0px;
-			}
-		}
-
-		&[tabsintitlebar] {
-			#tabbrowser-arrowscrollbox {
-				padding-top: 0px !important;
 			}
 		}
 
@@ -698,9 +687,8 @@
 		overflow: visible !important;
 	}
 
-	&:not([lwtheme-id*="compact-light"]),
-	&[lwtheme-id="#{$gtkplus}"] {
-		box-shadow: none !important;
+	&:not([lwtheme-id*="compact-light"]) {
+		box-shadow: none !important; //TODO: needed?
 	}
 }
 
