@@ -22,7 +22,7 @@
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
+				//&:not([lwtheme-id*="#{$gtkplus}"]) {
 					--tile-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 					--tile-border-color-normal: color-mix(
 						in srgb,
@@ -35,7 +35,7 @@
 						white
 					);
 					--tile-close-background-color-active: var(--thumbnail-container-color);
-				}
+				//}
 			}
 		}
 	}

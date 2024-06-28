@@ -21,7 +21,7 @@
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
+				//&:not([lwtheme-id*="#{$gtkplus}"]) {
 					--recently-closed-background: color-mix(
 						in srgb,
 						var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
@@ -38,25 +38,25 @@
 					&[style*="--arrowpanel-background"] {
 						--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-fill, var(--lwt-text-color)));
 					}
-				}
-				&[lwtheme-id*="#{$gtkplus}"] {
-					--recently-closed-item-color: rgb(40,40,238);
+				//}
+				// &[lwtheme-id*="#{$gtkplus}"] {
+				// 	--recently-closed-item-color: rgb(40,40,238);
 		
-					--recently-closed-background: color-mix(
-						in srgb,
-						ActiveCaption 10%,
-						transparent
-					);
-					--recently-closed-border-color: color-mix(
-						in srgb,
-						color-mix(
-							in srgb,
-							AccentColor 85%,
-							black
-						) 50%,
-						transparent
-					) !important;
-				}
+				// 	--recently-closed-background: color-mix(
+				// 		in srgb,
+				// 		ActiveCaption 10%,
+				// 		transparent
+				// 	);
+				// 	--recently-closed-border-color: color-mix(
+				// 		in srgb,
+				// 		color-mix(
+				// 			in srgb,
+				// 			AccentColor 85%,
+				// 			black
+				// 		) 50%,
+				// 		transparent
+				// 	) !important;
+				// }
 			}
 		}
 	}

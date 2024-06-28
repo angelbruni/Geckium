@@ -30,7 +30,7 @@
 	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
 		&[lwtheme-id*="{"],
 		&[lwtheme-id*="@mozilla.org"] {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
+			//&:not([lwtheme-id*="#{$gtkplus}"]) {
 				--footer-border: linear-gradient(
 					to left,
 					color-mix(
@@ -144,7 +144,7 @@
 						--footer-vertical-separator-background-color: rgb(100, 100, 100);
 					}
 				}
-			}
+			//}
 		}
 	}
 

@@ -33,16 +33,16 @@
 					white
 				) !important;
 
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
+				//&:not([lwtheme-id*="#{$gtkplus}"]) {
 					--lower-sections-h2-background: linear-gradient(
 						to bottom,
 						var(--thumbnail-border-color-normal),
 						var(--thumbnail-border-color-normal)
 					) !important;
-				}
-				&[lwtheme-id*="#{$gtkplus}"] {
-					--lower-sections-h2-background: var(--edit-bar-background-hot) !important;
-				}
+				//}
+				// &[lwtheme-id*="#{$gtkplus}"] {
+				// 	--lower-sections-h2-background: var(--edit-bar-background-hot) !important;
+				// }
 			}
 		}
 	}

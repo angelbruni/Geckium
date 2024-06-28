@@ -19,7 +19,7 @@
 		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
+				//&:not([lwtheme-id*="#{$gtkplus}"]) {
 					--thumbnail-inner-border-color: color-mix(
 						in srgb,
 						var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
@@ -31,7 +31,7 @@
 						white
 					) !important;
 					--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-				}
+				//}
 			}
 		}
 	}

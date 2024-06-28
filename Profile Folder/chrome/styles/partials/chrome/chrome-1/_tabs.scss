@@ -115,21 +115,10 @@
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
-	// if lwtheme == gtkplus
-	&[lwtheme-id="#{$gtkplus}"] {
-		--inactive-tab-background: color-mix(
-			in srgb,
-			-moz-dialog 80%,
-			transparent
-		) !important;
-		--selected-tab-background: var(--nav-bar) !important;
-		--tabbrowser-tab-color: -moz-dialogtext !important;
-	}
 	// else if lwtheme
 	&[lwtheme] {
 		&:not([customthememode="2"]) {
 			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				&:not([lwtheme-id="#{$gtkplus}"]) {
 					--inactive-tab-background: color-mix(
 						in srgb,
 						color-mix(
@@ -169,7 +158,6 @@
 							) !important;
 						}
 					}
-				}
 			}
 		}
 	}

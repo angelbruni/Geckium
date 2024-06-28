@@ -10,7 +10,7 @@
 		&:not([lwtheme-id*="firefox-compact"]) {
 			&[lwtheme-id*="{"],
 			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
+				//&:not([lwtheme-id*="#{$gtkplus}"]) {
 					&[style*="--lwt-newtab-attribution-image"] {
 						#attribution {
 							display: flex !important;
@@ -39,7 +39,7 @@
 
 						background-repeat: var(--lwt-newtab-background-repeat);
 					}
-				}
+				//}
 			}
 		}
 	}

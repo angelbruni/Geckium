@@ -27,10 +27,10 @@
 				&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
 					&[lwtheme-id*="{"],
 					&[lwtheme-id*="@mozilla.org"] {
-						&:not([lwtheme-id="#{$gtkplus}"]) {
+						//&:not([lwtheme-id="#{$gtkplus}"]) {
 							--tab-glare-color: var(--tabbrowser-tab-color);
 							--tab-glare-opacity: .5;
-						}
+						//}
 					}
 				}
 			}
