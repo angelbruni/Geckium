@@ -50,18 +50,16 @@
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="&gsettings.welcome;" selected="true" />
 							<separator />
-							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="&gsettings.visualStylePresets;" />
-							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="&gsettings.mainInterface;" />
-							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="&gsettings.pages;" />
+							<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" label="&gsettings.design;" />
+							<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="11" label="&gsettings.behaviour;" />
+							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="12" label="&gsettings.pages;" />
+							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="13" label="&gsettings.theme;" />
 							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="&gsettings.people;" />
 							<separator />
-							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="&gsettings.chromiumThemes;" />
 							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="&gsettings.chromiumExperiments;" />
-							<separator />
 							<button class="item ripple-enabled icon-account-circle" data-page-container="main" data-page="30" label="Geckium Decor" />
-							<separator />
-							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="&gsettings.settings;" />-->
 							<button class="item ripple-enabled icon-data-object" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="&gsettings.developerOptions;" />
+							<separator />
 							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="&gsettings.help;" />
 							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="&gsettings.about;" />
 						</vbox>
@@ -105,10 +103,10 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
+													<html:button class="link icon-palette ripple-enabled" onclick="skipToPage('main', 10)">
 														<vbox>
-															<label>&gsettings.visualStylePresets;</label>
-															<p>&gsettings.visualStylePresetsDescription;</p>
+															<label>&gsettings.design;</label>
+															<p>TODO: descriptions for each</p>
 														</vbox>
 														<hbox>
 															<label>&gm.goToPage;</label>
@@ -116,9 +114,9 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 11)">
+													<html:button class="link icon-settings ripple-enabled" onclick="skipToPage('main', 11)">
 														<vbox>
-															<label>&gsettings.mainInterface;</label>
+															<label>&gsettings.behaviour;</label>
 															<p>&gsettings.mainInterfaceDescription;</p>
 														</vbox>
 														<hbox>
@@ -129,8 +127,10 @@
 													</html:button>
 													
 												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
+													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 12)">
 														<vbox>
 															<label>&gsettings.pages;</label>
 															<p>&gsettings.pagesDescription;</p>
@@ -141,10 +141,36 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
+													<html:button class="link icon-brush ripple-enabled" onclick="skipToPage('main', 13)">
+														<vbox>
+															<label>&gsettings.theme;</label>
+															<p>&gsettings.mainInterfaceDescription;</p>
+														</vbox>
+														<hbox>
+															<label>&gm.goToPage;</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 8px;">
+												<hbox>
 													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 14)">
 														<vbox>
 															<label>&gsettings.people;</label>
 															<p>&gsettings.peopleDescription;</p>
+														</vbox>
+														<hbox>
+															<label>&gm.goToPage;</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+													<html:button class="link icon-science ripple-enabled" onclick="skipToPage('main', 21)">
+														<vbox>
+															<label>&gsettings.chromiumExperiments;</label>
+															<p>&gsettings.mainInterfaceDescription;</p>
 														</vbox>
 														<hbox>
 															<label>&gm.goToPage;</label>
@@ -158,10 +184,68 @@
 									</vbox>
 								</vbox>
 							</vbox>
+
 							<vbox class="page" data-page="10">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
+											<h4>
+												Titlebar TODO
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">Titlebar style TODO</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="titlebar-style" data-pref="appearance.titlebarStyle" id="titlebar-style-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="win">Windows</hbox>
+															<hbox class="item ripple-enabled" value="win10">Windows 10</hbox>
+															<hbox class="item ripple-enabled" value="linuxog">Linux (Alpha)</hbox>
+															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
+															<hbox class="item ripple-enabled" value="macosx">Mac OS X</hbox>
+															<hbox class="item ripple-enabled" value="macos">macOS</hbox>
+															<hbox class="item ripple-enabled" value="chromeos">Chrome OS</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Use native titlebar TODO</label>
+														<label class="description">Some titlebar styles will ignore this setting TODO</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="titlebar-native" data-pref="appearance.titlebarNative" id="titlebar-native-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Use native titlebar in compatible Chromium themes TODO</label>
+														<label class="description">Requires native titlebars to be enabled or used by your titlebar style TODO</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="titlebarthemed-native" data-pref="appearance.titlebarThemedNative" id="titlebarthemed-native-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+											</vbox>
 											<h4>
 												&gsettings.availablePresets;
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
@@ -191,41 +275,96 @@
 													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
+											<h4>Main Interface TODO</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.overrideVisualStylePreset;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.main.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+											</vbox>
+											<h4>&gsettings.newTab;</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.overrideVisualStylePreset;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+											</vbox>
 											<h4>
 												&gsettings.quickAccess;
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">&gsettings.mainInterfaceSettings;</label>
+														<label class="name">Manage branding, toolbar items and theme behaviour... TODO</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 12)">
+													<vbox>
+														<label class="name">Manage new tab page contents... TODO</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
+														<label class="name">Change or manage themes... TODO</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">Explore scrapped Chromium design options... TODO</label>
 													</vbox>
 												</html:button>
 											</vbox>
 										</vbox>
+										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
 									</vbox>
 								</vbox>
 							</vbox>
+
 							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
-												&gsettings.browserPreferences;
+												Browser TODO
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.branding;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">Geckium</hbox>
+															<hbox class="item ripple-enabled" value="1">Firefox (bruni, you still need to add this!)</hbox>
+															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
+															<hbox class="item ripple-enabled" value="3">Google Chrome</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+											</vbox>
+											<h4>
+												Toolbar TODO
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -250,108 +389,13 @@
 												</hbox>
 											</vbox>
 											<h4>
-												&gsettings.visualStyles;
+												Themes TODO
 											</h4>
 											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.branding;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Geckium</hbox>
-															<hbox class="item ripple-enabled" value="1">placeholder_Firefox</hbox>
-															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
-															<hbox class="item ripple-enabled" value="3">Google Chrome</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.overrideVisualStylePreset;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.main.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
-											</vbox>
-											<h4>
-												&gsettings.chromiumWindowFrame;
-											</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.chromiumWindowFrameOverride;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="chromiumwindowframe-style" data-pref="appearance.forceChromiumFrame" id="chromiumwindowframe-style-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.chromiumCaptionButtonsTitle;</label>
-														<label class="description">&gsettings.chromiumCaptionButtonsDescription;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="classiccaptionbuttons-style" data-pref="appearance.classicCaptionButtonsStyle" id="classiccaptionbuttons-style-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="windows">Windows</hbox>
-															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
-															<!-- <hbox class="item ripple-enabled" value="macos">macOS</hbox> -->
-														</vbox>
-													</html:button>
-												</hbox>
-											</vbox>
-											<h4>
-												&gsettings.customThemeSupport;
-											</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.customThemeMode;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">FXChrome-like</hbox>
-															<hbox class="item ripple-enabled" value="1">Silverfox-like</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.doNotThemeToolbars;</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.applyBackgroundToCaptionButtons;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
 												<hbox class="item">
 													<vbox>
 														<label class="name"><div class="year">2012+</div>&gsettings.colorizeTabGlareEffect;</label>
+														<label class="description">Colorizes the tab hover effect TODO</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -361,8 +405,18 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
+														<label class="name"><div class="year">Chrome 11 - 25</div>Theme new tab footer according to applied custom theme TODO</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
 														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInAllToolbarItemsTitle;</label>
-														<label class="description">&gsettings.gtkIconsInAllToolbarItemsNotice;</label>
+														<label class="description">Requires Linux with GTK+ theme enabled TODO</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -377,60 +431,29 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
+														<label class="name">Switch design or manage overrides... TODO</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
+														<label class="name">Apply a theme to observe behaviour changes... TODO</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">Explore scrapped Chromium behaviour options... TODO</label>
 													</vbox>
 												</html:button>
 											</vbox>
 										</vbox>
-										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="13">
+
+							<vbox class="page" data-page="12">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>&gsettings.newTab;</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.overrideVisualStylePreset;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.newTabHome.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name"><div class="year">Chrome 11 - 25</div>&gsettings.themeFooterAccordingToCustomTheme;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-											</vbox>
 											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gsettings.appsList;</h4>
 											<vbox class="card" id="apps-list" />
 											<div class="modal" data-modal="editApp_modal">
@@ -503,22 +526,17 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
+														<label class="name">Change the new tab page design... TODO</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
+														<label class="name">Manage behaviour of themes in the new tab page... TODO</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
-													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">Personalise the new tab page with themes... TODO</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -526,6 +544,146 @@
 									</vbox>
 								</vbox>
 							</vbox>
+
+							<vbox class="page" data-page="13">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>
+												Firefox Themes TODO
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.customThemeMode;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">FXChrome-like</hbox>
+															<hbox class="item ripple-enabled" value="1">Silverfox-like</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.doNotThemeToolbars;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Apply toolbar background to titlebar buttons TODO</label>
+														<label class="description">Some titlebar styles will ignore this setting TODO</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<h4>
+												Themes TODO
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
+													<vbox>
+														<label class="name">Open Chromium themes folder TODO</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
+													<vbox>
+														<label class="name">&gsettings.refreshList;</label>
+													</vbox>
+												</html:button>
+												<p>TODO: Theme switcher interface</p>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Geckium You color source TODO</label>
+														<label class="description">Chrome 68 is not supported by Geckium You</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">Grey TODO</hbox>
+															<hbox class="item ripple-enabled" value="1">W3C AccentColor</hbox>
+															<hbox class="item ripple-enabled" value="2">Custom TODO</hbox>
+															<hbox class="item ripple-enabled winonly notwin10" value="3">Window Color TODO</hbox>
+															<hbox class="item ripple-enabled winonly win10" value="4">Aero Window Manager</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<!-- TODO: Add a colour picker control to use here -->
+												<hbox class="item">
+													<vbox>
+														<label class="name">Custom Geckium You color TODO</label>
+													</vbox>
+													<spacer />
+													<html:textbox class="textbox" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px"/>
+												</hbox>
+											</vbox>
+											<vbox class="card">
+												<label class="item ripple-enabled" is="text-link" href="https://chrome.google.com/webstore/category/themes">
+													<vbox>
+														<label class="name">&gsettings.getMoreGoogleChromeThemes;</label>
+													</vbox>
+												</label>
+												<label class="item ripple-enabled" is="text-link" href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
+													<vbox>
+														<label class="name">&gsettings.getMoreMicrosoftEdgeThemes;</label>
+													</vbox>
+												</label>
+											</vbox>
+											<h4>
+												&gsettings.availableThemes;
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
+												<div class="modal" data-modal="aboutChrThemes_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<vbox class="description" style="gap: 16px">
+																	<html:p>
+																		&gsettings.modalChromiumThemesDescription;
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</h4>
+											<div class="card" id="chrthemes-list"></div>
+											<!--<h4>&gsettings.unavailableThemes;</h4> -->
+											<vbox class="card">
+
+											</vbox>
+											<h4>
+												&gsettings.quickAccess;
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">Try your themes on different designs... TODO</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label class="name">Adjust how much of the interface themes affect... TODO</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">Personalise further with scrapped Chromium options... TODO</label>
+													</vbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+
 							<vbox class="page" data-page="14">
 								<vbox class="content-container">
 									<vbox class="window-top-bars light">
@@ -595,130 +753,12 @@
 								</vbox>
 							</vbox>
 							
-							<vbox class="page" data-page="20">
-								<vbox class="content-container">
-									<vbox class="window-top-bars light">
-										<hbox class="window-top-bar">
-											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
-												<!--<h3 for="chrTheme-switch"/>-->
-												<spacer />
-												<div class="switch-parent">
-													<html:input class="switch" data-pref="Geckium.chrTheme.status" type="checkbox" id="chrTheme-switch" name="chrTheme-switch" />
-													<html:label class="gutter" for="chrTheme-switch" />
-												</div>
-											</hbox>
-										</hbox>
-									</vbox>
-									<vbox class="content">
-										<vbox class="list-container">
-											<vbox class="card">
-												<label class="item ripple-enabled" is="text-link" href="https://chrome.google.com/webstore/category/themes">
-													<vbox>
-														<label class="name">&gsettings.getMoreGoogleChromeThemes;</label>
-													</vbox>
-												</label>
-												<label class="item ripple-enabled" is="text-link" href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
-													<vbox>
-														<label class="name">&gsettings.getMoreMicrosoftEdgeThemes;</label>
-													</vbox>
-												</label>
-												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
-													<vbox>
-														<label class="name">&gsettings.openThemesFolder;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
-													<vbox>
-														<label class="name">&gsettings.refreshList;</label>
-													</vbox>
-												</html:button>
-											</vbox>
-											<h4>
-												&gsettings.availableThemes;
-												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
-												<div class="modal" data-modal="aboutChrThemes_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<div class="header">&gsettings.chromiumThemes;</div>
-																<vbox class="description" style="gap: 16px">
-																	<html:p>
-																		&gsettings.modalChromiumThemesDescription;
-																	</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
-											</h4>
-											<div class="card" id="chrthemes-list"></div>
-											<!--<h4>&gsettings.unavailableThemes;</h4>
-											<vbox class="card">
-
-											</vbox>-->
-											<h4>
-												&gsettings.quickAccess;
-											</h4>
-											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
-													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
-													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
-													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
-													</vbox>
-												</html:button>
-											</vbox>
-										</vbox>
-									</vbox>
-								</vbox>
-							</vbox>
 							<vbox class="page" data-page="21">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>&gsettings.flags;</h4>
 											<vbox class="card" id="flags-container" />
-											<h4>
-												&gsettings.quickAccess;
-											</h4>
-											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
-													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
-													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
-													</vbox>
-												</html:button>
-											</vbox>
 										</vbox>
 									</vbox>
 								</vbox>
