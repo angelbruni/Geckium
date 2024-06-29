@@ -1,4 +1,4 @@
-& {
+&[gktitstyle="windows"] {
 	// Behaviour: Normal
 	&:not([menubarvisible]) {
 		#tabbrowser-arrowscrollbox {
@@ -15,280 +15,280 @@
 			}
 		}
 	}
-}
 
-&[gktitnative="false"] {
-	//TODO: This will be native=false
-	//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
-	
-	// Visuals
-	&[windowtype="navigator:browser"] > body {
-		background: var(--titlebar-active, var(--default-titlebar-active));
-		&:-moz-window-inactive {
-			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
-		}
-		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-		border-top: 1px solid rgb(89, 89, 89);
-		border-left: 1px solid rgb(89, 89, 89);
-		border-bottom: 1px solid rgb(68, 68, 68);
-		border-right: 1px solid rgb(68, 68, 68);
-		//border-radius: 5px; FIXME: Why were bottom corners this size?
-		border-radius: 5px 5px 0 0;
-		box-sizing: border-box;
-	}
-
-	// Visuals: Maximised / Fullscreen
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
+	&[gktitnative="false"] {
+		//TODO: This will be native=false
+		//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
+		
+		// Visuals
 		&[windowtype="navigator:browser"] > body {
-			border: 0;
-			border-radius: 0;
-			box-shadow: none;
-		}
-	}
-
-
-
-
-
-
-	//Windows quirks
-	@media (-moz-platform: windows) {
-		//Stop non-composited titlebar elements from spontaneously appearing
-		#titlebar {
-			appearance: unset !important;
+			background: var(--titlebar-active, var(--default-titlebar-active));
+			&:-moz-window-inactive {
+				background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+			}
+			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+			border-top: 1px solid rgb(89, 89, 89);
+			border-left: 1px solid rgb(89, 89, 89);
+			border-bottom: 1px solid rgb(68, 68, 68);
+			border-right: 1px solid rgb(68, 68, 68);
+			//border-radius: 5px; FIXME: Why were bottom corners this size?
+			border-radius: 5px 5px 0 0;
+			box-sizing: border-box;
 		}
 
-		//Windows 10 + Native Controls Patch quirks
-		@media (-moz-ev-native-controls-patch) {
+		// Visuals: Maximised / Fullscreen
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				border: 0;
+				border-radius: 0;
+				box-shadow: none;
+			}
+		}
+
+
+
+
+
+
+		//Windows quirks
+		@media (-moz-platform: windows) {
+			//Stop non-composited titlebar elements from spontaneously appearing
+			#titlebar {
+				appearance: unset !important;
+			}
+
+			//Windows 10 + Native Controls Patch quirks
+			@media (-moz-ev-native-controls-patch) {
+				&#main-window {
+					background: rgba(0,0,0,.002) !important;
+				}
+			}
+		}
+
+		//Linux quirks
+		@media (-moz-platform: linux) {
+			// Padding is slightly different for Linux
+			// &[windowtype="navigator:browser"] > body {
+			// 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+			// 		padding: 2px 1px !important;
+			// 	}
+			// }
+
+			/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
+			- GTK3's CSDs only cover the browser from top to bookmarks area
+			- Shadows are out of the CSS's boundaries
+			Therefore, to get the desired borders, we need to hijack body. */
+			#navigator-toolbox-background {
+				appearance: none !important; //FIXME: This causes the corner shadows to disappear
+			}
+			/* However, likely due to a Firefox bug, Firefox's underlying window surface
+			uses the body's background itself, due to Mozilla setting its background
+			to 'transparent', unless we use a minimum 0.002 alpha background on the window,
+			so we need to override that. */
 			&#main-window {
 				background: rgba(0,0,0,.002) !important;
 			}
 		}
+
+		//macOS quirks
+
 	}
 
-	//Linux quirks
-	@media (-moz-platform: linux) {
-		// Padding is slightly different for Linux
-		// &[windowtype="navigator:browser"] > body {
-		// 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		// 		padding: 2px 1px !important;
-		// 	}
-		// }
-
-		/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
-		 - GTK3's CSDs only cover the browser from top to bookmarks area
-		 - Shadows are out of the CSS's boundaries
-		Therefore, to get the desired borders, we need to hijack body. */
-		#navigator-toolbox-background {
-			appearance: none !important; //FIXME: This causes the corner shadows to disappear
-		}
-		/* However, likely due to a Firefox bug, Firefox's underlying window surface
-		 uses the body's background itself, due to Mozilla setting its background
-		 to 'transparent', unless we use a minimum 0.002 alpha background on the window,
-		 so we need to override that. */
-		&#main-window {
-			background: rgba(0,0,0,.002) !important;
-		}
-	}
-
-	//macOS quirks
-
-}
 
 
 
 
 
 
-
-olddump {
-	&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
-		&[sizemode="maximized"] {
-			&[windowtype="navigator:browser"] > body {
-				@media not (-moz-platform: linux) {
-					// padding-top: 7px !important;
-				}
-			}
-
-			// Fix button position when maximized
-			#titlebar {
-				@media (-moz-platform: windows) {
-					@media not (-moz-platform: windows-win10) {
-						padding-block-start: 8px;
-					}
-
-					@media (-moz-platform: windows-win10) {
-						padding-block-start: 0;
-
-						@media not (-moz-ev-native-controls-patch) {
-							padding-block-start: 8px;
-						}
-					}
-
-					@media (-moz-windows-classic) {
-						padding-block-start: 4px !important;
+	olddump {
+		&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
+			&[sizemode="maximized"] {
+				&[windowtype="navigator:browser"] > body {
+					@media not (-moz-platform: linux) {
+						// padding-top: 7px !important;
 					}
 				}
-			}
-			&[is117Plus] {
+
+				// Fix button position when maximized
 				#titlebar {
 					@media (-moz-platform: windows) {
+						@media not (-moz-platform: windows-win10) {
+							padding-block-start: 8px;
+						}
+
 						@media (-moz-platform: windows-win10) {
+							padding-block-start: 0;
+
 							@media not (-moz-ev-native-controls-patch) {
-								padding-block-start: 0;
+								padding-block-start: 8px;
+							}
+						}
+
+						@media (-moz-windows-classic) {
+							padding-block-start: 4px !important;
+						}
+					}
+				}
+				&[is117Plus] {
+					#titlebar {
+						@media (-moz-platform: windows) {
+							@media (-moz-platform: windows-win10) {
+								@media not (-moz-ev-native-controls-patch) {
+									padding-block-start: 0;
+								}
 							}
 						}
 					}
 				}
 			}
-		}
 
-		&[sizemode="normal"] {
-			.titlebar-restore {
-				display: none !important;
+			&[sizemode="normal"] {
+				.titlebar-restore {
+					display: none !important;
+				}
 			}
-		}
-		
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			.titlebar-max {
-				display: none !important;
+			
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-max {
+					display: none !important;
+				}
 			}
-		}
 
-		@media (-moz-windows-classic) {
-			#toolbar-menubar {
-				margin: 0 !important;
+			@media (-moz-windows-classic) {
+				#toolbar-menubar {
+					margin: 0 !important;
+				}
 			}
-		}
 
-		// This fixes titlebar in Windows basic and Windows classic.
-		
+			// This fixes titlebar in Windows basic and Windows classic.
+			
 
-		/*.titlebar-buttonbox-container {
-			justify-content: end;
-			width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
-		}*/
+			/*.titlebar-buttonbox-container {
+				justify-content: end;
+				width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
+			}*/
 
-		&[gkbranding="chrome"] {
-			.titlebar-buttonbox-container {
-				@media (-moz-platform: windows) {
-					&::before {
-						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-						margin-block-start: 2px;
-						margin-inline-end: 7px;
+			&[gkbranding="chrome"] {
+				.titlebar-buttonbox-container {
+					@media (-moz-platform: windows) {
+						&::before {
+							content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+							margin-block-start: 2px;
+							margin-inline-end: 7px;
+						}
 					}
 				}
 			}
-		}
 
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			.titlebar-buttonbox-container {
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-buttonbox-container {
+					&::before {
+						content: unset !important;
+					}
+				}
+			}
+
+			.titlebar-buttonbox {
+				appearance: unset !important;
+				align-items: start !important;
+				height: var(--titlebar-button-height);
+				-moz-default-appearance: -moz-window-button-box !important;
+				background-color: transparent;
+				gap: var(--titlebar-buttonbox-gap);
+			}
+
+			.titlebar-button {
+				padding: 0 !important;
+				margin: 0 !important;
+				display: flex !important;
+				appearance: unset !important;
+				border-radius: var(--titlebar-button-border-radius) !important;
+				position: relative;
+				background-clip: padding-box;
+				height: var(--titlebar-button-height);
+				box-shadow: var(--titlebar-button-inner-shadow-normal);
+				overflow: hidden;
+				transition: background-color 100ms linear;
+
 				&::before {
-					content: unset !important;
+					content: "";
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					background: var(--titlebar-buttonbox-background);
+					z-index: -1;
+				}
+
+				&:not([disabled]) {
+					&:active {
+						transition: none;
+					}
+				}
+
+				.toolbarbutton-icon {
+					width: auto !important;
+					height: auto !important;
+
+					// Fix for Firefox ~120+
+					appearance: none !important;
+					background: none !important;
+					border-radius: unset !important;
 				}
 			}
-		}
 
-		.titlebar-buttonbox {
-			appearance: unset !important;
-			align-items: start !important;
-			height: var(--titlebar-button-height);
-			-moz-default-appearance: -moz-window-button-box !important;
-			background-color: transparent;
-			gap: var(--titlebar-buttonbox-gap);
-		}
+			.titlebar-close {
+				width: var(--titlebar-close-width);
+				list-style-image: var(--titlebar-close-glyph) !important;
+				background: var(--titlebar-close-background-normal) !important;
 
-		.titlebar-button {
-			padding: 0 !important;
-			margin: 0 !important;
-			display: flex !important;
-			appearance: unset !important;
-			border-radius: var(--titlebar-button-border-radius) !important;
-			position: relative;
-			background-clip: padding-box;
-			height: var(--titlebar-button-height);
-			box-shadow: var(--titlebar-button-inner-shadow-normal);
-			overflow: hidden;
-			transition: background-color 100ms linear;
+				&:hover {
+					background: var(--titlebar-close-background-hot) !important;
+				}
 
-			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				background: var(--titlebar-buttonbox-background);
-				z-index: -1;
-			}
-
-			&:not([disabled]) {
 				&:active {
-					transition: none;
+					background: var(--titlebar-close-background-active) !important;
 				}
 			}
 
-			.toolbarbutton-icon {
-				width: auto !important;
-    			height: auto !important;
+			.titlebar-max,
+			.titlebar-restore {
+				width: var(--titlebar-max-restore-width) !important;
+				background: var(--titlebar-max-restore-background-normal) !important;
 
-				// Fix for Firefox ~120+
-				appearance: none !important;
-				background: none !important;
-        		border-radius: unset !important;
-			}
-		}
+				&:hover {
+					background: var(--titlebar-max-restore-background-hot) !important;
+				}
 
-		.titlebar-close {
-			width: var(--titlebar-close-width);
-			list-style-image: var(--titlebar-close-glyph) !important;
-			background: var(--titlebar-close-background-normal) !important;
-
-			&:hover {
-				background: var(--titlebar-close-background-hot) !important;
+				&:active {
+					background: var(--titlebar-max-restore-background-active) !important;
+				}
 			}
 
-			&:active {
-				background: var(--titlebar-close-background-active) !important;
-			}
-		}
-
-		.titlebar-max,
-		.titlebar-restore {
-			width: var(--titlebar-max-restore-width) !important;
-			background: var(--titlebar-max-restore-background-normal) !important;
-
-			&:hover {
-				background: var(--titlebar-max-restore-background-hot) !important;
+			.titlebar-max {
+				list-style-image: var(--titlebar-max-glyph) !important;
 			}
 
-			&:active {
-				background: var(--titlebar-max-restore-background-active) !important;
-			}
-		}
-
-		.titlebar-max {
-			list-style-image: var(--titlebar-max-glyph) !important;
-		}
-
-		.titlebar-restore {
-			list-style-image: var(--titlebar-restore-glyph) !important;
-		}
-
-		.titlebar-min {
-			width: var(--titlebar-min-width) !important;
-			list-style-image: var(--titlebar-min-glyph) !important;
-			background: var(--titlebar-min-background-normal) !important;
-
-			&:hover {
-				background: var(--titlebar-min-background-hot) !important;
+			.titlebar-restore {
+				list-style-image: var(--titlebar-restore-glyph) !important;
 			}
 
-			&:active {
-				background: var(--titlebar-min-background-active) !important;
+			.titlebar-min {
+				width: var(--titlebar-min-width) !important;
+				list-style-image: var(--titlebar-min-glyph) !important;
+				background: var(--titlebar-min-background-normal) !important;
+
+				&:hover {
+					background: var(--titlebar-min-background-hot) !important;
+				}
+
+				&:active {
+					background: var(--titlebar-min-background-active) !important;
+				}
 			}
 		}
 	}
