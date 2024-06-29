@@ -46,6 +46,7 @@
 	}
 
 	//Page bodies - top 1px border
+	#navigator-toolbox { margin-bottom: -1px; } //Ensure the border isn't drawn without an underlay
 	#browser,
 	#customization-container {
 		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
