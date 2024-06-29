@@ -116,42 +116,9 @@
 						}
 		
 						.toolbarbutton-icon {
-							max-width: 24px !important;
-							max-height: 24px !important;
+							max-width: 22px !important;
+							max-height: 22px !important;
 						}
-					}
-		
-					&#back-button {
-						list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
-					}
-					
-					&#forward-button {
-						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
-					}
-					
-					&#reload-button {
-						list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
-					}
-					
-					&#stop-button {
-						list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
-					}
-					
-					&#home-button {
-						list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
-					}
-	
-					&#star-button-box,
-					&#go-button-box {
-						background: var(--urlbarView) !important;
-					}
-	
-					&#star-button-box {
-						border-right: 0 !important;
-					}
-	
-					&#go-button-box {
-						border-left: 0 !important;
 					}
 				}
 			}
@@ -186,19 +153,9 @@
 	
 							.toolbarbutton-icon,
 							image:first-child {
-								max-width: 24px !important;
-								max-height: 24px !important;
+								max-width: 22px !important;
+								max-height: 22px !important;
 							}
-						}
-		
-						&#PanelUI-menu-button,
-						&#chrome-button,
-						&#developer-button {
-							list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
-						}
-		
-						&#page-button {
-							list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
 						}
 	
 						&#star-button-box,
@@ -208,21 +165,6 @@
 								max-width: 16px !important;
 								max-height: 16px !important;
 							}
-						}
-		
-						&#star-button-box {
-							#star-button {
-								&:not([starred="true"]) {
-									list-style-image: url(moz-icon://stock/bookmark-missing?size=toolbar) !important;
-								}
-								&[starred="true"] {
-									list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
-								}
-							}
-						}
-		
-						&#go-button-box {
-							list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
 						}
 					}
 				}
