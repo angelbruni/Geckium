@@ -1,6 +1,19 @@
 const flagsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/flags.properties");
 
 const experiments = {
+	"ntp-wide-chromium": {
+		type: "ntp",
+		name: "Wide Chromium",
+		description: "Makes the Chromium logo in the 1.0 new tab page a right chonker (oh lawd he comin'), as seen in Chromium 0.2. Requires Chromium branding to take effect.",
+		from: 0, // Needs to be 1 only.
+		to: 0
+	},
+	"glen-is-close-button": {
+		name: "Linux Titlebar Buttons Prototype 1",
+		description: "Replaces the close button with a picture of Glen Murphy's head, as seen in Chromium 3.0 Alpha on Linux, now with its passive aggressive purpose satisfied. Glen designed the scrapped Linux (Alpha) titlebar buttons design for Chromium, and his face requires the titlebar style being set to Windows to take effect.",
+		from: 0, // Needs to be 1-3 only.
+		to: 1
+	},
 	/*"compact-navigation": {
 		name: "Compact Navigation",
 		description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",
