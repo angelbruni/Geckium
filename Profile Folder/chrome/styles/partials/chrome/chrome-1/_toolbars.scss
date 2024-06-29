@@ -1080,7 +1080,7 @@ toolbarspring {
 
 	.bookmark-item  {
 		&[container="true"] {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg) !important;
+			list-style-image: var(--bookmark-folder-icon) !important;
 
 			> .toolbarbutton-icon,
 			> .menu-iconic-icon {
