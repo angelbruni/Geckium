@@ -26,6 +26,8 @@
 	--new-window-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/newwindow.svg");
 	--save-page-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/saveas.svg");
 	--open-file-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/openfile.svg");
+
+	--bookmark-folder-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg");
 }
 @media (-moz-platform: linux) {
 	:root[gksystheme="gtk"]:not([lwtheme]) { //TODO: Check for Light and Dark
@@ -34,6 +36,7 @@
 		--reload-button-icon:	url(moz-icon://stock/view-refresh?size=toolbar);
 		--stop-button-icon:		url(moz-icon://stock/process-stop?size=toolbar);
 		--home-button-icon:		url(moz-icon://stock/go-home?size=toolbar);
+		--bookmark-folder-icon:	url(moz-icon://stock/folder?size=button);
 		&[moregtkicons="true"] {
 			--password-notification-icon: url(moz-icon://stock/dialog-password?size=toolbar);
 			--star-button-icon-normal:	  url(moz-icon://stock/stock_delete-bookmark?size=toolbar);
