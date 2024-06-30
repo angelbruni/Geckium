@@ -1,0 +1,222 @@
+&[gktitbuttons="windows"] {
+	//Show the Google logo before the buttons
+	&[gkbranding="chrome"] {
+		.titlebar-buttonbox-container {
+			&::before {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+				margin-block-start: 2px;
+				margin-inline-end: 7px;
+			}
+		}
+	}
+
+	&[gktitnative="false"] {
+		//Use the white Google logo in non-native titlebars
+		//TODO: Show on other platforms, too, behind its flag
+		&[gkbranding="chrome"] {
+			.titlebar-buttonbox-container::before {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+				margin-block-start: 3px;
+			}
+		}
+
+		//Shared non-native titlebar variables
+		& {
+			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+			--titlebutton-corner: 5px;
+			--titlebutton-background-hover: rgba(255, 255, 255, 0.3);
+			--titlebutton-background-active: rgba(255, 255, 255, 0.2);
+		}
+
+		//Pseudo titlebar button backgrounds (TODO)
+		
+
+		//Titlebar button box (force onto right side)
+		.titlebar-buttonbox-container {
+			order: 1000 !important;
+			margin-block-start: -1px; // top margin
+			margin-inline-end: 4px; // right margin
+		}
+		// TODO: Check right-to-left mode
+
+		.titlebar-buttonbox {
+			appearance: unset !important;
+			box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+			border-bottom-left-radius: var(--titlebutton-corner); //the box-shadow extrudes, thus automatically deducts 1px
+			border-bottom-right-radius: var(--titlebutton-corner);
+			// FIXME: Better way to make the buttonbox decide to be the correct height thus not offset the shadow underneath
+			height: 18px; //17px (button height) + 1px
+		}
+
+		//Shared titlebar button code
+		.titlebar-button {
+			appearance: none !important; //Firefox AGAIN having self-bias, so we need !important
+			background: transparent;
+			border-radius: 0 !important;
+			border-left: var(--titlebutton-border-outer);
+			border-bottom: var(--titlebutton-border-outer);
+			height: 17px;
+			background-clip: padding-box !important;
+			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+			padding: 0 !important;
+			transition: background-color 100ms linear; //hover-fade animation
+			width: 25px;
+			//margin: 0;
+			//display: flex;
+			//position: relative;
+			//overflow: hidden;
+
+			// Pseudo titlebar button background
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 18px;
+				background: var(--titlebar-buttonbox-background);
+				z-index: -1;
+			}
+
+			image { // Set the icon's opacity and hover-fade
+				opacity: .6;
+				transition: opacity 100ms linear;
+			}
+
+			//Hover and pressed states
+			&:hover {
+				background: rgba(255, 255, 255, 0.3);
+				image {
+					opacity: 1;
+				}
+			}
+			&:active {
+				background: rgba(255, 255, 255, 0.2);
+				&:not([disabled]) {
+					transition: none;
+				}
+			}
+
+			// unused...?
+			.toolbarbutton-icon {
+				width: auto;
+				height: auto;
+
+				// Fix for Firefox ~120+
+				appearance: none;
+				background: none;
+				border-radius: unset;
+			}
+		}
+		.titlebar-max,
+		.titlebar-restore,
+		.titlebar-min {
+			&:active {
+				box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			width: 43px;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; // Mozilla bias moment #idk
+			border-right: var(--titlebutton-border-outer);
+			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
+			order: 2 !important;
+
+			&:hover {
+				background: rgb(217, 76, 74);
+			}
+
+			&:active {
+				background: rgb(213, 58, 63);
+			}
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important;
+		}
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important;
+			.toolbarbutton-icon {
+				transform: translateX(-1px);
+			}
+		}
+		.titlebar-max,
+		.titlebar-restore {
+			order: 1 !important;
+		}
+
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important;
+			border-bottom-left-radius: 5px !important; // because border-radius is !important
+			order: 0 !important;
+		}
+
+
+
+
+
+
+
+
+		// Glen's head
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+olddump {
+	//&:not([customthememode="1"]) {
+		&[lwtheme] {
+			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+					&[captionbuttonbackground="true"] {
+						--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+					}
+			}
+		}
+	//}
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
+	}
+
+	&[sizemode="maximized"] {
+		.titlebar-buttonbox-container {
+			margin-block-start: 0;
+			margin-inline-end: 3px;
+		}
+	}
+
+	.titlebar-buttonbox-container {
+		margin: 0;
+		margin-block-start: -1px;
+		margin-inline-end: 2px;
+
+		@media (-moz-platform: linux) {
+			margin-block-start: -2px;
+			margin-inline-end: 1px;
+		}
+	}
+
+	.titlebar-buttonbox {
+		margin-right: 1px;
+	}
+}

@@ -27,6 +27,11 @@ export class chrFlags {
 				description: "Replaces the close button with a picture of Glen Murphy's head, as seen in Chromium 3.0 Alpha on Linux, now with its passive aggressive purpose satisfied. Glen designed the scrapped Linux (Alpha) titlebar buttons design for Chromium, and his face requires the titlebar style being set to Windows to take effect.",
 				styleints: [0, 1]
 			},
+			"other-platforms-watermark": {
+				name: "Google logo on other platforms' titlebars",
+				description: "Show the Google logo in other platforms' titlebar styles, rather than only on the Windows titlebar styles. Requires Google Chrome branding to take effect.",
+				styleints: [0, 1, 2]
+			},
 			/*"compact-navigation": {
 				name: "Compact Navigation",
 				description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",

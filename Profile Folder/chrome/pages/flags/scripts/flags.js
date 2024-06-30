@@ -14,6 +14,12 @@ const experiments = {
 		from: 0, // Needs to be 1-3 only.
 		to: 1
 	},
+	"other-platforms-watermark": {
+		name: "Google logo on other platforms' titlebars",
+		description: "Show the Google logo in other platforms' titlebar styles, rather than only on the Windows titlebar styles. Requires Google Chrome branding to take effect.",
+		from: 0, // Needs to be 1-4 only.
+		to: 2
+	},
 	/*"compact-navigation": {
 		name: "Compact Navigation",
 		description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",
