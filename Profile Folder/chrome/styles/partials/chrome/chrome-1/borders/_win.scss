@@ -17,7 +17,6 @@
 	}
 
 	&[gktitnative="false"] {
-		//TODO: This will be native=false
 		//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
 		
 		// Visuals
@@ -170,17 +169,7 @@
 				width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
 			}*/
 
-			&[gkbranding="chrome"] {
-				.titlebar-buttonbox-container {
-					@media (-moz-platform: windows) {
-						&::before {
-							content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-							margin-block-start: 2px;
-							margin-inline-end: 7px;
-						}
-					}
-				}
-			}
+			
 
 			&[sizemode="maximized"],
 			&[sizemode="fullscreen"] {
