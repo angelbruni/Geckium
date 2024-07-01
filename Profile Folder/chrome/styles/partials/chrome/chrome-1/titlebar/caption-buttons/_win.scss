@@ -39,6 +39,7 @@
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
 			order: 1000 !important;
+			align-items: unset !important;
 			margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
 		}
 		//macOS quirk: Counteract exclusive menubar padding
@@ -57,7 +58,6 @@
 
 		.titlebar-buttonbox {
 			appearance: none !important;
-			align-items: unset !important;
 			box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
 			border-bottom-left-radius: var(--titlebutton-corner); //the box-shadow extrudes, thus automatically deducts 1px
 			border-bottom-right-radius: var(--titlebutton-corner);
@@ -91,7 +91,7 @@
 				top: 0;
 				width: 100%;
 				height: 100%;
-				background: var(--titlebar-buttonbox-background);
+				background: var(--titlebar-buttonbox-background) !important; // you can blame mac for this one
 				z-index: -1;
 			}
 
@@ -111,13 +111,13 @@
 
 			//Hover and pressed states
 			&:hover {
-				background: rgba(255, 255, 255, 0.3);
+				background: rgba(255, 255, 255, 0.3) !important;
 				image {
 					opacity: 1 !important;
 				}
 			}
 			&:active {
-				background: rgba(255, 255, 255, 0.2);
+				background: rgba(255, 255, 255, 0.2) !important;
 				&:not([disabled]) {
 					transition: none;
 				}
@@ -140,11 +140,11 @@
 			order: 2 !important;
 
 			&:hover {
-				background: rgb(217, 76, 74);
+				background: rgb(217, 76, 74) !important;
 			}
 
 			&:active {
-				background: rgb(213, 58, 63);
+				background: rgb(213, 58, 63) !important;
 			}
 		}
 
