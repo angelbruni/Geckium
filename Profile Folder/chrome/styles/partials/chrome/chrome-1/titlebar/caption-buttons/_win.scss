@@ -152,10 +152,21 @@
 		.titlebar-max {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important;
 		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-max {
+				display: none !important;
+			}
+		}
 		.titlebar-restore {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important;
 			.toolbarbutton-icon {
 				transform: translateX(-1px);
+			}
+		}
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+			.titlebar-restore {
+				display: none !important;
 			}
 		}
 		.titlebar-max,
