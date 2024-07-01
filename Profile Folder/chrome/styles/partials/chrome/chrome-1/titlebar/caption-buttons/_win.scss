@@ -75,14 +75,13 @@
 			height: 17px;
 			background-clip: padding-box !important;
 			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
-			padding: 0 !important;
 			position: relative; // Required for pseudo button-backgrounds
 			transition: background-color 100ms linear; //hover-fade animation
 			width: 25px;
+			display: flex !important; // Really, macOS's Mozilla Firefox?
+			padding: 0 !important;
+			margin: 0 !important;
 			margin-inline-end: 0 !important;
-			//margin: 0;
-			//display: flex;
-			//overflow: hidden;
 
 			// Pseudo titlebar button background
 			&:before {
