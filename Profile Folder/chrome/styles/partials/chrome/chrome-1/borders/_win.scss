@@ -1,4 +1,10 @@
 &[gktitstyle="windows"] {
+	& {
+		--titlebar-border-radius: 5px;
+		@media (-moz-platform: mac) {
+			--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
+		}
+	}
 	// Behaviour: Normal
 	&:not([menubarvisible]) {
 		#tabbrowser-arrowscrollbox {
@@ -30,8 +36,7 @@
 			border-left: 1px solid rgb(89, 89, 89);
 			border-bottom: 1px solid rgb(68, 68, 68);
 			border-right: 1px solid rgb(68, 68, 68);
-			//border-radius: 5px; FIXME: Why were bottom corners this size?
-			border-radius: 5px 5px 0 0;
+			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 			box-sizing: border-box;
 		}
 
@@ -90,7 +95,10 @@
 		}
 
 		//macOS quirks
-
+		@media (-moz-platform: macos) {
+			// Corners on the bottom are rounded, as aforementioned, too
+			border-radius: var(--titlebar-border-radius);
+		}
 	}
 
 

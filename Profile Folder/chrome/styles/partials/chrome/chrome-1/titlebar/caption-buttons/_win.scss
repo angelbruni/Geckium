@@ -39,7 +39,13 @@
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
 			order: 1000 !important;
-			margin-inline-end: 4px; // right margin
+			margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
+		}
+		//macOS quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: -1px; // top margin
+			}
 		}
 		//Linux quirk: Counteract exclusive menubar padding
 		@media (-moz-platform: linux) {
@@ -51,6 +57,7 @@
 
 		.titlebar-buttonbox {
 			appearance: none !important;
+			align-items: unset !important;
 			box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
 			border-bottom-left-radius: var(--titlebutton-corner); //the box-shadow extrudes, thus automatically deducts 1px
 			border-bottom-right-radius: var(--titlebutton-corner);
@@ -188,7 +195,6 @@
 			.titlebar-close {
 				width: 24px;
 				height: 32px;
-				margin-top: 15px !important; // FIXME: I can't think of a more efficient way to do this.
 				background: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png) !important; // Mozilla bias moment #idk
 				background-position: center !important;
 				background-repeat: no-repeat !important;
