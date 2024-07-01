@@ -100,9 +100,10 @@
 				width: auto !important;
 
 				// Fix for Firefox ~120+
-				appearance: none;
-				background: none;
-				border-radius: unset;
+				appearance: none !important;
+				background: none !important;
+				stroke: none !important;
+				border-radius: unset !important;
 			}
 			image { // Set the icon's opacity and hover-fade
 				opacity: .6 !important;
