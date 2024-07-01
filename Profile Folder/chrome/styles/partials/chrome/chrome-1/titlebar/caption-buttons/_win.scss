@@ -1,6 +1,6 @@
 &[gktitbuttons="windows"] {
 	//Show the Google logo before the buttons
-	&[gkbranding="chrome"] {
+	&[gkbranding="chrome"]:not([geckium-chrflag-glen-is-close-button="true"])  {
 		.titlebar-buttonbox-container {
 			&::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -21,7 +21,7 @@
 	&[gktitnative="false"] {
 		//Use the white Google logo in non-native titlebars
 		//TODO: Show on other platforms, too, behind its flag
-		&[gkbranding="chrome"] {
+		&[gkbranding="chrome"]:not([geckium-chrflag-glen-is-close-button="true"]) {
 			.titlebar-buttonbox-container::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
 				margin-block-start: 3px;
@@ -35,9 +35,6 @@
 			--titlebutton-background-hover: rgba(255, 255, 255, 0.3);
 			--titlebutton-background-active: rgba(255, 255, 255, 0.2);
 		}
-
-		//Pseudo titlebar button backgrounds (TODO)
-		
 
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
@@ -72,12 +69,12 @@
 			background-clip: padding-box !important;
 			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 			padding: 0 !important;
+			position: relative; // Required for pseudo button-backgrounds
 			transition: background-color 100ms linear; //hover-fade animation
 			width: 25px;
 			margin-inline-end: 0 !important;
 			//margin: 0;
 			//display: flex;
-			//position: relative;
 			//overflow: hidden;
 
 			// Pseudo titlebar button background
@@ -87,7 +84,7 @@
 				left: 0;
 				top: 0;
 				width: 100%;
-				height: 18px;
+				height: 100%;
 				background: var(--titlebar-buttonbox-background);
 				z-index: -1;
 			}
@@ -205,65 +202,14 @@
 				&:hover, &:active {
 					background: unset;
 				}
+				&:before {
+					content: unset; // Glen cannot be themed.
+				}
 			}
 			.titlebar-max,
 			.titlebar-restore {
 				border-right: var(--titlebutton-border-outer) !important;
 			}
 		}
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-olddump {
-	//&:not([customthememode="1"]) {
-		&[lwtheme] {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-					&[captionbuttonbackground="true"] {
-						--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
-					}
-			}
-		}
-	//}
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
-	}
-
-	&[sizemode="maximized"] {
-		.titlebar-buttonbox-container {
-			margin-block-start: 0;
-			margin-inline-end: 3px;
-		}
-	}
-
-	.titlebar-buttonbox-container {
-		margin: 0;
-		margin-block-start: -1px;
-		margin-inline-end: 2px;
-
-		@media (-moz-platform: linux) {
-			margin-block-start: -2px;
-			margin-inline-end: 1px;
-		}
-	}
-
-	.titlebar-buttonbox {
-		margin-right: 1px;
 	}
 }
