@@ -163,7 +163,49 @@
 
 
 		// Glen's head
-		
+		&[geckium-chrflag-glen-is-close-button="true"] {
+			//Move where the shadow is for Glen's head
+			.titlebar-buttonbox {
+				box-shadow: unset;
+			}
+			.titlebar-max,
+			.titlebar-restore,
+			.titlebar-min {
+				box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3),
+					1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+				&:active { //Add to the existing shadow
+					box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2),
+						1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+				}
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				clip-path: inset(-1px 0px -1px -1px); //Remove the right-side shadow
+			}
+			// Change close to Glen's head, and make further necessary adjustments
+			.titlebar-close {
+				width: 24px;
+				height: 32px;
+				margin-top: 16px !important; // FIXME: I can't think of a more efficient way to do this.
+				background: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png) !important; // Mozilla bias moment #idk
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+				border-bottom: unset;
+				border-left: unset;
+				border-right: unset;
+				border-bottom-right-radius: 0 !important; // because border-radius is !important
+				box-shadow: unset;
+				list-style-image: unset !important;
+	
+				&:hover, &:active {
+					background: unset;
+				}
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				border-right: var(--titlebutton-border-outer);
+			}
+		}
 	}
 }
 
