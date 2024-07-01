@@ -142,19 +142,6 @@
 				}
 			}
 
-			&[sizemode="normal"] {
-				.titlebar-restore {
-					display: none !important;
-				}
-			}
-			
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				.titlebar-max {
-					display: none !important;
-				}
-			}
-
 			@media (-moz-windows-classic) {
 				#toolbar-menubar {
 					margin: 0 !important;
@@ -227,56 +214,6 @@
 					appearance: none !important;
 					background: none !important;
 					border-radius: unset !important;
-				}
-			}
-
-			.titlebar-close {
-				width: var(--titlebar-close-width);
-				list-style-image: var(--titlebar-close-glyph) !important;
-				background: var(--titlebar-close-background-normal) !important;
-
-				&:hover {
-					background: var(--titlebar-close-background-hot) !important;
-				}
-
-				&:active {
-					background: var(--titlebar-close-background-active) !important;
-				}
-			}
-
-			.titlebar-max,
-			.titlebar-restore {
-				width: var(--titlebar-max-restore-width) !important;
-				background: var(--titlebar-max-restore-background-normal) !important;
-
-				&:hover {
-					background: var(--titlebar-max-restore-background-hot) !important;
-				}
-
-				&:active {
-					background: var(--titlebar-max-restore-background-active) !important;
-				}
-			}
-
-			.titlebar-max {
-				list-style-image: var(--titlebar-max-glyph) !important;
-			}
-
-			.titlebar-restore {
-				list-style-image: var(--titlebar-restore-glyph) !important;
-			}
-
-			.titlebar-min {
-				width: var(--titlebar-min-width) !important;
-				list-style-image: var(--titlebar-min-glyph) !important;
-				background: var(--titlebar-min-background-normal) !important;
-
-				&:hover {
-					background: var(--titlebar-min-background-hot) !important;
-				}
-
-				&:active {
-					background: var(--titlebar-min-background-active) !important;
 				}
 			}
 		}
