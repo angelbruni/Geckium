@@ -65,6 +65,12 @@
 			// FIXME: Better way to make the buttonbox decide to be the correct height thus not offset the shadow underneath
 			height: 17px;
 		}
+		&:-moz-locale-dir(rtl) { //Flip shadows in RTL
+			.titlebar-buttonbox {
+				box-shadow: -1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+			}
+		}
+
 
 		//Shared titlebar button code
 		.titlebar-button {
@@ -132,6 +138,20 @@
 				box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
 			}
 		}
+		&:-moz-locale-dir(rtl) {
+			.titlebar-button {
+				border-left: unset !important;
+				border-right: var(--titlebutton-border-outer) !important;
+				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+			}
+			.titlebar-max,
+			.titlebar-restore,
+			.titlebar-min {
+				&:active {
+					box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+				}
+			}
+		}
 
 		//Close button
 		.titlebar-close {
@@ -147,6 +167,13 @@
 
 			&:active {
 				background: rgb(213, 58, 63) !important;
+			}
+		}
+		&:-moz-locale-dir(rtl) { //Swap sides in RTL
+			.titlebar-close {
+				border-left: var(--titlebutton-border-outer) !important; // right-side border is already present
+				border-bottom-right-radius: unset !important;
+				border-bottom-left-radius: var(--titlebutton-corner) !important;
 			}
 		}
 
@@ -166,6 +193,13 @@
 				transform: translateX(-1px);
 			}
 		}
+		&:-moz-locale-dir(rtl) { //Mirror glyph in RTL
+			.titlebar-restore {
+				.toolbarbutton-icon {
+					transform: translateX(0px) scaleX(-1);
+				}
+			}
+		}
 		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 			.titlebar-restore {
 				display: none !important;
@@ -179,8 +213,14 @@
 		//Minimise button
 		.titlebar-min {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important;
-			border-bottom-left-radius: 5px !important; // because border-radius is !important
+			border-bottom-left-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 0 !important;
+		}
+		&:-moz-locale-dir(rtl) { //Swap sides in RTL
+			.titlebar-min {
+				border-bottom-left-radius: unset !important;
+				border-bottom-right-radius: var(--titlebutton-corner) !important;
+			}
 		}
 
 		// Glen's head
