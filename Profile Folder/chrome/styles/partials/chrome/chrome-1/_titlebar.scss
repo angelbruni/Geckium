@@ -197,27 +197,6 @@
 		}
 	} //TODO: Move into winbasic
 
-	@media (-moz-platform: windows) { //TODO: Move into windows titlebuttons style
-		&[gkbranding="chrome"] {
-			.titlebar-buttonbox-container {
-				&::before {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-					margin-block-start: 3px;
-					margin-inline-end: 6px;
-				}
-			}
-		
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				.titlebar-buttonbox-container {
-					&::before {
-						content: unset !important;
-					}
-				}
-			}
-		}
-	}
-
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		#private-browsing-indicator-with-label {

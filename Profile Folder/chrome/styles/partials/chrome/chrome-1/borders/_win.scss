@@ -41,7 +41,6 @@
 			&[windowtype="navigator:browser"] > body {
 				border: 0;
 				border-radius: 0;
-				box-shadow: none;
 			}
 		}
 
@@ -155,17 +154,6 @@
 				justify-content: end;
 				width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
 			}*/
-
-			
-
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				.titlebar-buttonbox-container {
-					&::before {
-						content: unset !important;
-					}
-				}
-			}
 
 			.titlebar-buttonbox {
 				appearance: unset !important;
