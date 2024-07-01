@@ -5,7 +5,18 @@
 	--toolbox-non-lwt-textcolor: light-dark(black, white);
 	//TODO: Colour Windows 10 CSDs using these variables, and get proper inactive backgrounds
 
-
+	//&:not([customthememode="1"]) {
+		&[lwtheme] {
+			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+					&[captionbuttonbackground="true"] {
+						--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+					}
+			}
+		}
+	//}
+	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
+	}
 
 
 
