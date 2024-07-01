@@ -1,7 +1,7 @@
 &[gktitstyle="windows"] {
 	& {
 		--titlebar-border-radius: 5px;
-		@media (-moz-platform: mac) {
+		@media (-moz-platform: macos) {
 			--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
 		}
 	}
@@ -96,8 +96,10 @@
 
 		//macOS quirks
 		@media (-moz-platform: macos) {
-			// Corners on the bottom are rounded, as aforementioned, too
-			border-radius: var(--titlebar-border-radius);
+			&[windowtype="navigator:browser"] > body {
+				// Corners on the bottom are rounded, as aforementioned, too
+				border-radius: var(--titlebar-border-radius);
+			}
 		}
 	}
 
