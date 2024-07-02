@@ -140,6 +140,16 @@
 					display: none !important;
 				}
 			}
+			.titlebar-close {
+				order: 0 !important;
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				order: 2 !important;
+			}
+			.titlebar-min {
+				order: 1 !important;
+			}
 		}
 	}
 }
