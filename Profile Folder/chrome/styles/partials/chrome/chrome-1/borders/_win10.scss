@@ -4,7 +4,7 @@
 & {
 	--titlebar-border-radius: 0;
 	@media (-moz-platform: macos) {
-		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
+		--titlebar-border-radius: 10px; //Artificial minimum radii set by macOS's window manager (+the 1px border)
 	}
 }
 
@@ -49,7 +49,7 @@
 	@media not (-moz-platform: windows) {
 		//At this stage, the OS has no border, so for accuracy we add a Win10-styled border
 		&[windowtype="navigator:browser"] > body {
-			border: .5px solid AccentColor; //.5px taken from browser-aero.css
+			border: 1px solid AccentColor;
 		}
 		&:-moz-window-inactive[windowtype="navigator:browser"] > body {
 			border-color: rgb(57,57,57); //Taken from Firefox's browser-aero.css
