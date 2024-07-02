@@ -1,218 +1,216 @@
-&[gktitstyle="windows"] {
-	& {
-		--titlebar-border-radius: 4px;
-		@media (-moz-platform: macos) {
-			--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
-		}
+& {
+	--titlebar-border-radius: 4px;
+	@media (-moz-platform: macos) {
+		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
 	}
-	// Behaviour: Normal
+}
+// Behaviour: Normal
+&:not([menubarvisible]) {
+	#tabbrowser-arrowscrollbox {
+		padding-top: 14px;
+	}
+}
+
+// Behaviour: Maximised / Fullscreen
+&[sizemode="maximized"],
+&[sizemode="fullscreen"] {
 	&:not([menubarvisible]) {
 		#tabbrowser-arrowscrollbox {
-			padding-top: 14px;
+			padding-top: 0;
 		}
 	}
+}
 
-	// Behaviour: Maximised / Fullscreen
+&[gktitnative="false"] {
+	//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
+	
+	// Visuals
+	&[windowtype="navigator:browser"] > body {
+		background: var(--titlebar-active, var(--default-titlebar-active));
+		&:-moz-window-inactive {
+			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+		}
+		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+		border-top: 1px solid rgb(89, 89, 89);
+		border-left: 1px solid rgb(89, 89, 89);
+		border-bottom: 1px solid rgb(68, 68, 68);
+		border-right: 1px solid rgb(68, 68, 68);
+		border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+		box-sizing: border-box;
+	}
+
+	// Visuals: Maximised / Fullscreen
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		&:not([menubarvisible]) {
-			#tabbrowser-arrowscrollbox {
-				padding-top: 0;
-			}
+		&[windowtype="navigator:browser"] > body {
+			border: 0;
+			border-radius: 0;
 		}
 	}
 
-	&[gktitnative="false"] {
-		//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
-		
-		// Visuals
-		&[windowtype="navigator:browser"] > body {
-			background: var(--titlebar-active, var(--default-titlebar-active));
-			&:-moz-window-inactive {
-				background: var(--titlebar-inactive, var(--default-titlebar-inactive));
-			}
-			box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-			border-top: 1px solid rgb(89, 89, 89);
-			border-left: 1px solid rgb(89, 89, 89);
-			border-bottom: 1px solid rgb(68, 68, 68);
-			border-right: 1px solid rgb(68, 68, 68);
-			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-			box-sizing: border-box;
+
+
+
+
+
+	//Windows quirks
+	@media (-moz-platform: windows) {
+		//Stop non-composited titlebar elements from spontaneously appearing
+		#titlebar {
+			appearance: unset !important;
 		}
 
-		// Visuals: Maximised / Fullscreen
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			&[windowtype="navigator:browser"] > body {
-				border: 0;
-				border-radius: 0;
-			}
-		}
-
-
-
-
-
-
-		//Windows quirks
-		@media (-moz-platform: windows) {
-			//Stop non-composited titlebar elements from spontaneously appearing
-			#titlebar {
-				appearance: unset !important;
-			}
-
-			//Windows 10 + Native Controls Patch quirks
-			@media (-moz-ev-native-controls-patch) {
-				&#main-window {
-					background: rgba(0,0,0,.002) !important;
-				}
-			}
-		}
-
-		//Linux quirks
-		@media (-moz-platform: linux) {
-			// Padding is slightly different for Linux
-			// &[windowtype="navigator:browser"] > body {
-			// 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-			// 		padding: 2px 1px !important;
-			// 	}
-			// }
-
-			/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
-			- GTK3's CSDs only cover the browser from top to bookmarks area
-			- Shadows are out of the CSS's boundaries
-			Therefore, to get the desired borders, we need to hijack body. */
-			#navigator-toolbox-background {
-				appearance: none !important; //FIXME: This causes the corner shadows to disappear
-			}
-			/* However, likely due to a Firefox bug, Firefox's underlying window surface
-			uses the body's background itself, due to Mozilla setting its background
-			to 'transparent', unless we use a minimum 0.002 alpha background on the window,
-			so we need to override that. */
+		//Windows 10 + Native Controls Patch quirks
+		@media (-moz-ev-native-controls-patch) {
 			&#main-window {
 				background: rgba(0,0,0,.002) !important;
 			}
 		}
+	}
 
-		//macOS quirks
-		@media (-moz-platform: macos) {
-			&[windowtype="navigator:browser"] > body {
-				// Corners on the bottom are rounded, as aforementioned, too
-				border-radius: var(--titlebar-border-radius);
-			}
+	//Linux quirks
+	@media (-moz-platform: linux) {
+		// Padding is slightly different for Linux
+		// &[windowtype="navigator:browser"] > body {
+		// 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		// 		padding: 2px 1px !important;
+		// 	}
+		// }
+
+		/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
+		- GTK3's CSDs only cover the browser from top to bookmarks area
+		- Shadows are out of the CSS's boundaries
+		Therefore, to get the desired borders, we need to hijack body. */
+		#navigator-toolbox-background {
+			appearance: none !important; //FIXME: This causes the corner shadows to disappear
+		}
+		/* However, likely due to a Firefox bug, Firefox's underlying window surface
+		uses the body's background itself, due to Mozilla setting its background
+		to 'transparent', unless we use a minimum 0.002 alpha background on the window,
+		so we need to override that. */
+		&#main-window {
+			background: rgba(0,0,0,.002) !important;
 		}
 	}
 
+	//macOS quirks
+	@media (-moz-platform: macos) {
+		&[windowtype="navigator:browser"] > body {
+			// Corners on the bottom are rounded, as aforementioned, too
+			border-radius: var(--titlebar-border-radius);
+		}
+	}
+}
 
 
 
 
 
 
-	olddump {
-		&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
-			&[sizemode="maximized"] {
-				&[windowtype="navigator:browser"] > body {
-					@media not (-moz-platform: linux) {
-						// padding-top: 7px !important;
-					}
+
+olddump {
+	&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
+		&[sizemode="maximized"] {
+			&[windowtype="navigator:browser"] > body {
+				@media not (-moz-platform: linux) {
+					// padding-top: 7px !important;
 				}
+			}
 
-				// Fix button position when maximized
-				#titlebar {
-					@media (-moz-platform: windows) {
-						@media not (-moz-platform: windows-win10) {
+			// Fix button position when maximized
+			#titlebar {
+				@media (-moz-platform: windows) {
+					@media not (-moz-platform: windows-win10) {
+						padding-block-start: 8px;
+					}
+
+					@media (-moz-platform: windows-win10) {
+						padding-block-start: 0;
+
+						@media not (-moz-ev-native-controls-patch) {
 							padding-block-start: 8px;
 						}
+					}
 
+					@media (-moz-windows-classic) {
+						padding-block-start: 4px !important;
+					}
+				}
+			}
+			&[is117Plus] {
+				#titlebar {
+					@media (-moz-platform: windows) {
 						@media (-moz-platform: windows-win10) {
-							padding-block-start: 0;
-
 							@media not (-moz-ev-native-controls-patch) {
-								padding-block-start: 8px;
-							}
-						}
-
-						@media (-moz-windows-classic) {
-							padding-block-start: 4px !important;
-						}
-					}
-				}
-				&[is117Plus] {
-					#titlebar {
-						@media (-moz-platform: windows) {
-							@media (-moz-platform: windows-win10) {
-								@media not (-moz-ev-native-controls-patch) {
-									padding-block-start: 0;
-								}
+								padding-block-start: 0;
 							}
 						}
 					}
 				}
 			}
+		}
 
-			@media (-moz-windows-classic) {
-				#toolbar-menubar {
-					margin: 0 !important;
-				}
-			}
-
-			// This fixes titlebar in Windows basic and Windows classic.
-			
-
-			/*.titlebar-buttonbox-container {
-				justify-content: end;
-				width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
-			}*/
-
-			.titlebar-buttonbox {
-				appearance: unset !important;
-				align-items: start !important;
-				height: var(--titlebar-button-height);
-				-moz-default-appearance: -moz-window-button-box !important;
-				background-color: transparent;
-				gap: var(--titlebar-buttonbox-gap);
-			}
-
-			.titlebar-button {
-				padding: 0 !important;
+		@media (-moz-windows-classic) {
+			#toolbar-menubar {
 				margin: 0 !important;
-				display: flex !important;
-				appearance: unset !important;
-				border-radius: var(--titlebar-button-border-radius) !important;
-				position: relative;
-				background-clip: padding-box;
-				height: var(--titlebar-button-height);
-				box-shadow: var(--titlebar-button-inner-shadow-normal);
-				overflow: hidden;
-				transition: background-color 100ms linear;
+			}
+		}
 
-				&::before {
-					content: "";
-					position: absolute;
-					left: 0;
-					top: 0;
-					width: 100%;
-					height: 100%;
-					background: var(--titlebar-buttonbox-background);
-					z-index: -1;
+		// This fixes titlebar in Windows basic and Windows classic.
+		
+
+		/*.titlebar-buttonbox-container {
+			justify-content: end;
+			width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
+		}*/
+
+		.titlebar-buttonbox {
+			appearance: unset !important;
+			align-items: start !important;
+			height: var(--titlebar-button-height);
+			-moz-default-appearance: -moz-window-button-box !important;
+			background-color: transparent;
+			gap: var(--titlebar-buttonbox-gap);
+		}
+
+		.titlebar-button {
+			padding: 0 !important;
+			margin: 0 !important;
+			display: flex !important;
+			appearance: unset !important;
+			border-radius: var(--titlebar-button-border-radius) !important;
+			position: relative;
+			background-clip: padding-box;
+			height: var(--titlebar-button-height);
+			box-shadow: var(--titlebar-button-inner-shadow-normal);
+			overflow: hidden;
+			transition: background-color 100ms linear;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-background);
+				z-index: -1;
+			}
+
+			&:not([disabled]) {
+				&:active {
+					transition: none;
 				}
+			}
 
-				&:not([disabled]) {
-					&:active {
-						transition: none;
-					}
-				}
+			.toolbarbutton-icon {
+				width: auto !important;
+				height: auto !important;
 
-				.toolbarbutton-icon {
-					width: auto !important;
-					height: auto !important;
-
-					// Fix for Firefox ~120+
-					appearance: none !important;
-					background: none !important;
-					border-radius: unset !important;
-				}
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+				border-radius: unset !important;
 			}
 		}
 	}

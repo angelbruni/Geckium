@@ -44,11 +44,38 @@
         }
     }
 
-	//TEMP until a better implementation of this is conjured up
-	// TODO: Remove internal checks for titlebar style setting - instead, put them here.
-	@import "borders/win";
-	@import "titlebar/caption-buttons/win";
-	@import "titlebar/caption-buttons/linuxog";
+	//Titlebar styles
+	// Windows
+	&[gktitstyle="windows"] {
+		@import "borders/win";
+	}
+	// Windows 10
+
+	// Mac OS X / macOS
+
+	// Chrome OS
+
+
+	//Titlebutton styles
+	// Windows
+	&[gktitbuttons="windows"] {
+		@import "titlebar/caption-buttons/win";
+	}
+	// Windows 10
+
+	// Linux (Alpha)
+	&[gktitbuttons="linuxog"] {
+		@import "titlebar/caption-buttons/linuxog";
+	}
+	// Linux
+	&[gktitbuttons="linux"] {
+		@import "titlebar/caption-buttons/linux";
+	}
+	// Mac OS X
+
+	// macOS
+
+	// Chrome OS (redirected by JS to linuxog)
 
 
 
