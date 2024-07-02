@@ -1,5 +1,4 @@
-&[gktitbuttons="linuxog"] { //TODO: When MD2 is added, ensure this code doesn't run on it
-	//TODO: Import shared code from _linux.scss
+& { //TODO: When MD2 is added, ensure this code doesn't run on it
 
 	//Show the Google logo before the buttons if enabled
 	&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
@@ -50,11 +49,6 @@
 	}
 
 	&[gktitnative="false"] {
-		//Shared non-native titlebar variables
-		& {
-			--e: red;
-		}
-
 		//Titlebar button box
 		.titlebar-buttonbox-container {
 			align-items: unset !important;
