@@ -9,13 +9,13 @@
 	//Give the tabs the appropriate offset
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-			#TabsToolbar {
-				margin-inline-start: var(--content-border-width);
+			#TabsToolbar-customization-target {
+				margin-inline-start: calc(var(--content-border-width) + 1px);
 			}
 		}
 		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-			#TabsToolbar {
-				margin-inline-end: var(--content-border-width);
+			#TabsToolbar-customization-target {
+				margin-inline-end: calc(var(--content-border-width) + 1px);
 			}
 		}
 	}

@@ -57,12 +57,12 @@
 		// Change margin depending on buttons location
 		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
 			.titlebar-buttonbox-container {
-				margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
+				margin-inline-end: 3px; // right margin
 			}
 		}
 		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
 			.titlebar-buttonbox-container {
-				margin-inline-start: calc(var(--titlebar-border-radius) - 1px); // left margin
+				margin-inline-start: 3px; // left margin
 			}
 		}
 
