@@ -73,8 +73,10 @@
     }
 
 	//TEMP until a better implementation of this is conjured up
+	// TODO: Remove internal checks for titlebar style setting - instead, put them here.
 	@import "borders/win";
 	@import "titlebar/caption-buttons/win";
+	@import "titlebar/caption-buttons/linuxog";
 
 
 

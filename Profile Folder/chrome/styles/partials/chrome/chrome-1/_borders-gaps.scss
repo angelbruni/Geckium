@@ -6,10 +6,17 @@
 	--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.png");
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
 
-	//Give the tabs the appropriate left-offset
+	//Give the tabs the appropriate offset
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		#TabsToolbar {
-			margin-inline-start: var(--content-border-width);
+		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+			#TabsToolbar {
+				margin-inline-start: var(--content-border-width);
+			}
+		}
+		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+			#TabsToolbar {
+				margin-inline-end: var(--content-border-width);
+			}
 		}
 	}
 

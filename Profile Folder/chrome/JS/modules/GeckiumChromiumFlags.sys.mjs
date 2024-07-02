@@ -24,7 +24,7 @@ export class chrFlags {
 			},
 			"linux-pre-alpha-titlebar": {
 				name: "Linux Pre-Alpha Titlebar",
-				description: "Removes the Google logo from the Windows titlebar style, emulating how titlebars looked on Pre-Alpha builds of Chromium on Linux. Requires the titlebar style being set to Windows to take effect, and overrides the logo on other platforms experiment.",
+				description: "Removes the Google logo from the Windows titlebar style, emulating how titlebars looked on Pre-Alpha builds of Chromium on Linux. Requires the titlebar style being set to Windows to take effect, and overrides the logo on other titlebar styles experiment.",
 				styleints: [0, 1]
 			},
 			"glen-is-close-button": {
