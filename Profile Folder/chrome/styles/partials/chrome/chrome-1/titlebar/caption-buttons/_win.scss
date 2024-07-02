@@ -27,7 +27,7 @@
 	}
 
 	&[gktitnative="false"] {
-		//Always Use the white Google logo in non-native titlebars
+		//Always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
