@@ -18,6 +18,55 @@
 		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
 	}
 
+	// Fixes for various OS quirks
+	&[gktitnative="false"] {
+		//Linux quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: calc(var(--titlebar-border-radius) - 3px); // top margin
+			}
+		}
+
+		//Misc. quirk-workarounds
+		.titlebar-buttonbox {
+			appearance: none !important;
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+		}
+
+		.titlebar-button {
+			appearance: none !important;
+			position: relative; // Required for pseudo button-backgrounds
+			padding: 0 !important;
+			margin: 0 !important;
+			margin-inline-end: 0 !important;
+
+			// Pseudo titlebar button background
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-background) !important; // you can blame mac for this one
+				z-index: -1;
+			}
+
+			.toolbarbutton-icon {
+				height: auto !important;
+				width: auto !important;
+
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+				stroke: none !important;
+				border-radius: unset !important;
+			}
+		}
+
+	}
+
 
 
 
