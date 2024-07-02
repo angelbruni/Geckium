@@ -1,0 +1,131 @@
+& {
+	//Always show the Google logo before the buttons
+	&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
+		.titlebar-buttonbox-container {
+			&::before {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+				margin-block-start: 2px;
+				margin-inline-end: 7px;
+			}
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-buttonbox-container {
+				&::before {
+					content: unset !important;
+				}
+			}
+		}
+	}
+
+	&[gktitnative="false"] {
+		//Always use the white Google logo in non-native titlebars
+		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
+			.titlebar-buttonbox-container::before {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+				margin-block-start: 3px;
+			}
+		}
+
+		//Shared non-native titlebar variables
+		& {
+			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+			--titlebutton-corner: 5px;
+			--titlebutton-background-hover: rgba(255, 255, 255, 0.3);
+			--titlebutton-background-active: rgba(255, 255, 255, 0.2);
+		}
+
+		//Titlebar button box (force onto right side)
+		.titlebar-buttonbox-container {
+			order: 1000 !important;
+			align-items: unset !important;
+			margin-inline-end: var(--titlebar-border-radius); // right margin
+		}
+		//Linux quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: -1px; // top margin
+			}
+		}
+
+		.titlebar-buttonbox {
+			align-items: unset !important;
+		}
+		
+		//Shared titlebar button code
+		.titlebar-button {
+			background: transparent !important;
+			border-radius: 0 !important;
+			transition: background-color 100ms linear; //hover-fade animation
+			display: flex !important;
+			//Mostly reuse Mozilla's code for this
+			padding: 8px 17px !important;
+			
+			//Hover and pressed states
+			&:not([disabled]):hover {
+				background: color-mix(in srgb, currentColor 12%, transparent) !important;
+			}
+			&:not([disabled]):hover:active {
+				background: color-mix(in srgb, currentColor 22%, transparent) !important;
+				transition: none;
+			}
+
+			//Make the stroke actually visible
+			-moz-context-properties: stroke;
+			.toolbarbutton-icon {
+				stroke: currentColor !important;
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			width: 43px;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/close.svg) !important;
+			border-top-right-radius: min(var(--titlebar-border-radius), 0px) !important; // Ensure it doesn't overlay the border in macOS
+			order: 2 !important;
+
+			&:not([disabled]):hover {
+				background: hsl(355,86%,49%) !important;
+			}
+
+			&:not([disabled]):hover:active {
+				background: hsl(355,82%,69%) !important;
+			}
+		}
+		&:-moz-locale-dir(rtl) { // Swap corners in RTL
+			.titlebar-close {
+				border-top-right-radius: 0 !important;
+				border-top-left-radius: min(var(--titlebar-border-radius), 0px) !important;
+			}
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/maximise.svg) !important;
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-max {
+				display: none !important;
+			}
+		}
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/restore.svg) !important;
+		}
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+			.titlebar-restore {
+				display: none !important;
+			}
+		}
+		.titlebar-max,
+		.titlebar-restore {
+			order: 1 !important;
+		}
+
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/minimise.svg) !important;
+			order: 0 !important;
+		}
+	}
+}

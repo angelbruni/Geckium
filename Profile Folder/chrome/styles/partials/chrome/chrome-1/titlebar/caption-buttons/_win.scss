@@ -83,9 +83,6 @@
 			transition: background-color 100ms linear; //hover-fade animation
 			width: 25px;
 			display: flex !important; // Really, macOS's Mozilla Firefox?
-			padding: 0 !important;
-			margin: 0 !important;
-			margin-inline-end: 0 !important;
 
 			image { // Set the icon's opacity and hover-fade
 				opacity: .6 !important;
@@ -99,7 +96,7 @@
 					opacity: 1 !important;
 				}
 			}
-			&:not([disabled]):active {
+			&:not([disabled]):hover:active {
 				background: rgba(255, 255, 255, 0.2) !important;
 				transition: none;
 			}
@@ -138,7 +135,7 @@
 				background: rgb(217, 76, 74) !important;
 			}
 
-			&:not([disabled]):active {
+			&:not([disabled]):hover:active {
 				background: rgb(213, 58, 63) !important;
 			}
 		}

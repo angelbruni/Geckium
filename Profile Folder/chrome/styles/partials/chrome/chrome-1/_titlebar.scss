@@ -66,8 +66,14 @@
 		}
 	}
 
-
-
+	//Theme support
+	&[lwtheme] {
+		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) { //TODO: change to Geckium's themed check
+			//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
+			--titlebar-active: var(--lwt-accent-color);
+			--titlebar-inactive: var(--titlebar-active);
+		}
+	}
 
 
 
@@ -94,11 +100,13 @@
 
 	//Titlebar styles
 	// Windows
-	&[gktitstyle="windows"] {
+	&[gktitstyle="win"] {
 		@import "borders/win";
 	}
 	// Windows 10
-
+	&[gktitstyle="win10"] {
+		@import "borders/win10";
+	}
 	// Mac OS X / macOS
 
 	// Chrome OS
@@ -106,11 +114,13 @@
 
 	//Titlebutton styles
 	// Windows
-	&[gktitbuttons="windows"] {
+	&[gktitbuttons="win"] {
 		@import "titlebar/caption-buttons/win";
 	}
 	// Windows 10
-
+	&[gktitbuttons="win10"] {
+		@import "titlebar/caption-buttons/win10";
+	}
 	// Linux (Alpha)
 	&[gktitbuttons="linuxog"] {
 		@import "titlebar/caption-buttons/linuxog";
@@ -124,180 +134,6 @@
 	// macOS
 
 	// Chrome OS (redirected by JS to linuxog)
-
-
-
-	&[lwtheme] {
-        /* bruni: This entire code takes care of custom themes support for titlebar */
-
-		#navigator-toolbox {
-			padding-top: 0 !important;
-		}
-
-        &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				&:not([privatebrowsingmode="temporary"]),
-				&[privatebrowsingmode="temporary"] {
-					--titlebar-active: var(--lwt-accent-color) !important;
-					--titlebar-inactive: var(--titlebar-active) !important;
-				}
-
-				// Themes with image header/additional images
-				&[chromemargin="0,0,0,0"] {
-					&[windowtype="navigator:browser"] {
-						> body::before {
-							content: "";
-							position: absolute;
-							top: 1px;
-							left: 1px;
-							height: calc(64px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
-							width: calc(100% - 2px);
-							border-radius: 5px 5px 0 0;
-	
-							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-							background-color: var(--lwt-accent-color);
-							background-image: var(--lwt-additional-images);
-							background-repeat: var(--lwt-background-tiling);
-							background-position: var(--lwt-background-alignment);
-						}
-
-						&[sizemode="maximized"],
-						&[sizemode="fullscreen"] {
-							> body::before {
-								border-radius: 0;
-							}
-						}
-					}
-				}
-
-				&[style*="--lwt-background-alignment: right center"] {
-					&[windowtype="navigator:browser"] > body {
-						&::before {
-							background-position-y: calc(50% - 9px);
-						}
-					}
-				}
-
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
-					&[windowtype="navigator:browser"] > body {
-						&::before {
-							box-shadow: none;
-							width: 100%;
-							top: -9px;
-							left: 0px;
-						}
-					}
-				}
-
-				&[lwtheme-image] {
-					&[windowtype="navigator:browser"] > body {
-						position: relative;
-
-						&::before {
-							background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
-							background-repeat: no-repeat, var(--lwt-background-tiling);
-							background-position: right top, var(--lwt-background-alignment);
-							background-position-y: -9px;
-							box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-						}
-					}
-				}
-				
-				// Themes without image header/additional images
-				&:not([style*="--lwt-additional-images"]) {
-					&:not([style*="--lwt-header-image"]) {
-						--titlebar-buttonbox-pseudo-background: transparent;
-
-						&:not([privatebrowsingmode="temporary"]),
-						&[privatebrowsingmode="temporary"] {
-							--titlebar-active: linear-gradient(
-								to bottom,
-								color-mix(
-									in srgb,
-									var(--lwt-accent-color) 90%,
-									white
-								),
-								var(--lwt-accent-color) 40px
-							) !important;
-							--titlebar-inactive: linear-gradient(
-								to bottom,
-								color-mix(
-									in srgb,
-									var(--lwt-accent-color) 70%,
-									white
-								),
-								color-mix(
-									in srgb,
-									var(--lwt-accent-color) 80%,
-									white
-								)
-							) !important;
-						}
-
-						&[windowtype="navigator:browser"] > body {
-							&::before {
-								content: unset;
-							}
-						}
-					}
-				}
-
-				#navigator-toolbox {
-					box-shadow: none !important;
-				}
-        }
-		
-		@media not (-moz-ev-native-controls-patch) {
-			background: white !important;
-		}
-    }
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
-		--titlebar-inactive: var(--chrt-frame-inactive, var(--chrt-frame, var(--default-titlebar-inactive))) !important;
-
-		&[chromemargin="0,0,0,0"] {
-			&[windowtype="navigator:browser"] {
-				> body {
-					&::before {
-						content: "";
-						top: 1px;
-						left: 1px;
-						position: absolute;
-						width: calc(100% - 2px);
-						height: 100%;
-						border-radius: 5px 5px 0 0;
-						background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
-						box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-					}
-	
-					&:-moz-window-inactive {
-						&::before {
-							filter: contrast(.5) brightness(1.4);
-						}
-					}
-				}
-
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
-					> body::before {
-						border-radius: 0;
-					}
-				}
-			}
-
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				&[windowtype="navigator:browser"] > body {
-					&::before {
-						box-shadow: none;
-						width: 100%;
-						top: 0px;
-						left: 0px;
-					}
-				}
-			}
-		}
-	} //TODO: Move into winbasic
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {

@@ -13,6 +13,9 @@
 		rgb(163, 201, 247),
 		rgb(147, 186, 234) 40px
 	);
+	--default-titlebar-background: rgb(72, 140, 222); //TODO: Add these two to every style and era
+	--default-titlebar-foreground: white;
+	--default-titlebar-foreground-inactive: white; //TODO
 
 	// Tabs
 	// TODO: TABS HAVE A DIFFERENT BACKGROUND COLOUR IN NON-NATIVE CLASSIC - THIS IS NATIVE'S ONE
@@ -161,6 +164,9 @@
             var(--inactivecaption-shine),
             InactiveCaption 14px
         );
+		--default-titlebar-background: ActiveCaption; //TODO: Add these two to every style and era
+		--default-titlebar-foreground: CaptionText;
+		--default-titlebar-foreground-inactive: InactiveCaptionText;
 
 		// Tabs
 		--default-inactive-tab-background: var(--bgtab-background);
