@@ -1,0 +1,128 @@
+&[gktitbuttons="linuxog"] { //TODO: When MD2 is added, ensure this code doesn't run on it
+	//Nothing changes for native titlebars
+
+	//TODO: Import shared code from _linux.scss
+
+	&[gktitnative="false"] {
+		//Shared non-native titlebar variables
+		& {
+			--e: red;
+		}
+
+		//Titlebar button box
+		.titlebar-buttonbox-container {
+			align-items: unset !important;
+			margin-block-start: calc(var(--titlebar-border-radius) - 2px); // top margin
+		}
+		// Change margin depending on buttons location
+		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+			.titlebar-buttonbox-container {
+				margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
+			}
+		}
+		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+			.titlebar-buttonbox-container {
+				margin-inline-start: calc(var(--titlebar-border-radius) - 1px); // left margin
+			}
+		}
+		//Linux quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: calc(var(--titlebar-border-radius) - 3px); // top margin
+			}
+		}
+
+		.titlebar-buttonbox {
+			appearance: none !important;
+			align-items: unset !important;
+			gap: 2px !important;
+		}
+
+
+		//Shared titlebar button code
+		.titlebar-button {
+			appearance: none !important;
+			background: linear-gradient(
+				to bottom,
+				rgba(255,255,255,.23),
+				rgba(209,209,209,.23)
+			) !important;
+			border-radius: 2.5px !important;
+			border: 1px solid rgba(25,25,25,.52) !important;
+			box-shadow: inset 0 0 0 1px rgba(255,255,240,.1);
+			width: 24px;
+			height: 18px;
+			position: relative; // Required for pseudo button-backgrounds
+			transition: border-color 100ms linear,
+				box-shadow 100ms linear; //hover-fade animation
+			// display: flex !important; // Really, macOS's Mozilla Firefox?
+			padding: 0 !important;
+			margin: 0 !important;
+			margin-inline-end: 0 !important;
+
+			// Pseudo titlebar button background
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-background) !important; // you can blame mac for this one
+				z-index: -1;
+			}
+
+			.toolbarbutton-icon {
+				height: auto !important;
+				width: auto !important;
+
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+				stroke: none !important;
+				border-radius: unset !important;
+			}
+
+			//Hover and pressed states
+			&:not([disabled]):hover {
+				border-color: rgba(26,26,26,.77) !important;
+				box-shadow: inset 0 0 0 1px rgba(251,251,241,.1);
+			}
+			&:not([disabled]):active {
+				border-color: rgba(0,0,0,.61) !important;
+				box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+				transition: none;
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/close.svg) !important; // Mozilla bias moment #idk
+			//TODO: Check if macOS uses close,minimise,maximise: order
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/maximize.svg) !important;
+		}
+		// &[sizemode="maximized"],
+		// &[sizemode="fullscreen"] {
+		// 	.titlebar-max {
+		// 		display: none !important;
+		// 	}
+		// }
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/restore.svg) !important;
+		}
+		// &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		// 	.titlebar-restore {
+		// 		display: none !important;
+		// 	}
+		// }
+
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg) !important;
+		}
+	}
+}

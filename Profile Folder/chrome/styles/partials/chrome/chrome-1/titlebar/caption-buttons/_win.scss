@@ -49,19 +49,12 @@
 			align-items: unset !important;
 			margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
 		}
-		//macOS quirk: Counteract exclusive menubar padding
-		@media (-moz-platform: linux) {
-			#toolbar-menubar .titlebar-buttonbox-container {
-				margin-block-start: -1px; // top margin
-			}
-		}
 		//Linux quirk: Counteract exclusive menubar padding
 		@media (-moz-platform: linux) {
 			#toolbar-menubar .titlebar-buttonbox-container {
 				margin-block-start: -1px; // top margin
 			}
 		}
-		// TODO: Check right-to-left mode
 
 		.titlebar-buttonbox {
 			appearance: none !important;
@@ -125,17 +118,15 @@
 			}
 
 			//Hover and pressed states
-			&:hover {
+			&:not([disabled]):hover {
 				background: rgba(255, 255, 255, 0.3) !important;
 				image {
 					opacity: 1 !important;
 				}
 			}
-			&:active {
+			&:not([disabled]):active {
 				background: rgba(255, 255, 255, 0.2) !important;
-				&:not([disabled]) {
-					transition: none;
-				}
+				transition: none;
 			}
 		}
 		.titlebar-max,
@@ -168,11 +159,11 @@
 			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 2 !important;
 
-			&:hover {
+			&:not([disabled]):hover {
 				background: rgb(217, 76, 74) !important;
 			}
 
-			&:active {
+			&:not([disabled]):active {
 				background: rgb(213, 58, 63) !important;
 			}
 		}

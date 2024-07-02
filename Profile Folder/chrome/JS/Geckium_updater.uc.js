@@ -21,4 +21,4 @@ document.documentElement.setAttribute("gksystheme", "gtk"); //TEMP
 document.documentElement.setAttribute("gkhasgaps", "true"); //TEMP
 document.documentElement.setAttribute("gktitnative", "false"); //TEMP
 document.documentElement.setAttribute("gktitstyle", "windows"); //TEMP
-document.documentElement.setAttribute("gktitbuttons", "windows"); //TEMP
+document.documentElement.setAttribute("gktitbuttons", "linuxog"); //TEMP
