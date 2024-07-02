@@ -1,6 +1,14 @@
 &[gktitbuttons="windows"] {
-	//Show the Google logo before the buttons
-	&[gkbranding="chrome"]:not([geckium-chrflag-glen-is-close-button="true"])  {
+	//Unless the Linux Pre-Alpha flag is enabled...
+	&[geckium-chrflag-linux-pre-alpha-titlebar="true"] {
+		.titlebar-buttonbox-container {
+			&::before {
+				content: unset !important;
+			}
+		}
+	}
+	//Always show the Google logo before the buttons
+	&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 		.titlebar-buttonbox-container {
 			&::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -19,9 +27,8 @@
 	}
 
 	&[gktitnative="false"] {
-		//Use the white Google logo in non-native titlebars
-		//TODO: Show on other platforms, too, behind its flag
-		&[gkbranding="chrome"]:not([geckium-chrflag-glen-is-close-button="true"]) {
+		//Always Use the white Google logo in non-native titlebars
+		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
 				margin-block-start: 3px;
