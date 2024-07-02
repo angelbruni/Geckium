@@ -145,24 +145,38 @@
 		.titlebar-max {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/maximize.svg) !important;
 		}
-		// &[sizemode="maximized"],
-		// &[sizemode="fullscreen"] {
-		// 	.titlebar-max {
-		// 		display: none !important;
-		// 	}
-		// }
+		
 		.titlebar-restore {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/restore.svg) !important;
 		}
-		// &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		// 	.titlebar-restore {
-		// 		display: none !important;
-		// 	}
-		// }
 
 		//Minimise button
 		.titlebar-min {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg) !important;
+		}
+
+
+
+
+		//macOS quirks
+		// macOS works VERY differently regarding its titlebar buttons - on Firefox's side, they are not displayed whatsoever,
+		// likely due to macOS's server-side buttons API, meaning we need to force them to appear, like we did in _windows.scss
+		@media (-moz-platform: macos) {
+			.titlebar-close,
+			.titlebar-min {
+				display: flex !important;
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-max {
+					display: none !important;
+				}
+			}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				.titlebar-restore {
+					display: none !important;
+				}
+			}
 		}
 	}
 }
