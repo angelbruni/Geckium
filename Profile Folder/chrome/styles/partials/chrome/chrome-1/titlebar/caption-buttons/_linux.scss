@@ -1,149 +1,264 @@
-& {
-	--titlebar-buttonbox-gap: 2px;
-	
-	--titlebar-button-border-radius: 2.5px;
-	--titlebar-button-border-radius-bigger: var(--titlebar-button-border-radius);
-	--titlebar-button-outer-border: 1px solid var(--titlebar-button-outer-border-color-normal);
-	--titlebar-button-outer-border-color-normal: rgba(25,25,25,.52);
-	--titlebar-button-outer-border-color-hot: rgba(26,26,26,.77);
-	--titlebar-button-outer-border-color-active: rgba(0,0,0,.61);
-	--titlebar-button-inner-border: inset 0 0 0 1px var(--titlebar-button-inner-border-color);
-	--titlebar-button-inner-border-color: rgba(255,255,240,.1);
-	--titlebar-button-inner-border-hot: inset 0 0 0 1px var(--titlebar-button-inner-border-color-hot);
-	--titlebar-button-inner-border-color-hot: rgba(251,251,241,.1);
-	--titlebar-button-inner-border-active: inset 0 0 0 1px var(--titlebar-button-inner-border-color-active);
-	--titlebar-button-inner-border-color-active: rgba(0,0,0,.1);
-	--titlebar-button-height: 18px;
-	--titlebar-button-background-normal: linear-gradient(
-		to bottom,
-		rgba(255,255,255,.23),
-		rgba(209,209,209,.23)
-	);
-	--titlebar-button-background-hot: linear-gradient(
-		to bottom,
-		rgba(255,255,255,.41),
-		rgba(210,210,210,.41)
-	);
-	--titlebar-button-background-active: linear-gradient(
-		to bottom,
-		rgba(42,42,42,.23),
-		rgba(180,180,180,.23)
-	);
+&[gktitbuttons="linuxog"] {
+	//Nothing changes for native titlebars
 
-	--titlebar-close-width: 23px;
-	--titlebar-close-background-normal: var(--titlebar-button-background-normal);
-	--titlebar-close-background-hot: var(--titlebar-button-background-hot);
-	--titlebar-close-background-active: var(--titlebar-button-background-active);
-	--titlebar-close-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/close.svg);
-
-	--titlebar-max-restore-width: var(--titlebar-close-width);
-	--titlebar-max-restore-background-normal: var(--titlebar-close-background-normal);
-	--titlebar-max-restore-background-hot: var(--titlebar-close-background-hot);
-	--titlebar-max-restore-background-active: var(--titlebar-close-background-active);
-	--titlebar-max-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/maximize.svg);
-	--titlebar-restore-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/restore.svg);
-
-	--titlebar-min-width: var(--titlebar-close-width);
-	--titlebar-min-background-normal: var(--titlebar-close-background-normal);
-	--titlebar-min-background-hot: var(--titlebar-close-background-hot);
-	--titlebar-min-background-active: var(--titlebar-close-background-active);
-	--titlebar-min-glyph: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg);
-}
-
-.titlebar-buttonbox-container {
-	margin-inline-end: 1px;
-
-	@media not (-moz-platform: linux) {
-		margin-inline-end: 2px;
-	}
-}
-.titlebar-buttonbox {
-	margin-block-start: 1px;
-	margin-inline-end: 0;
-	box-shadow: none;
-	background: transparent !important;
-
-	@media (-moz-platform: linux) {
-		margin-block-start: 0;
-
-		@media (-moz-gtk-csd-reversed-placement) {
-			margin-inline-start: 3px !important;
+	&[gktitnative="false"] {
+		//Shared non-native titlebar variables
+		& {
+			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+			--titlebutton-corner: 5px;
+			--titlebutton-background-hover: rgba(255, 255, 255, 0.3);
+			--titlebutton-background-active: rgba(255, 255, 255, 0.2);
 		}
-	}
-}
 
-&[sizemode="maximized"] {
-	.titlebar-buttonbox-container {
-		margin-inline-end: 2px;
-	}
-
-	.titlebar-buttonbox {
-		margin-block-start: 2px;
-	}
-}
-
-.titlebar-button {
-	box-shadow: none;
-	border: var(--titlebar-button-outer-border) !important;
-	box-shadow: var(--titlebar-button-inner-border);
-	transition: none;
-
-	&:not([disabled]) {
-		&:hover {
-			border-color: var(--titlebar-button-outer-border-color-hot) !important;
-			box-shadow: var(--titlebar-button-inner-border-hot);
+		//Titlebar button box (force onto right side)
+		.titlebar-buttonbox-container {
+			order: 1000 !important;
+			align-items: unset !important;
+			margin-inline-end: calc(var(--titlebar-border-radius) - 1px); // right margin
 		}
-		&:active {
-			border-color: var(--titlebar-button-outer-border-color-active) !important;
-			box-shadow: var(--titlebar-button-inner-border-active);
+		//macOS quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: -1px; // top margin
+			}
 		}
-	}
-}
+		//Linux quirk: Counteract exclusive menubar padding
+		@media (-moz-platform: linux) {
+			#toolbar-menubar .titlebar-buttonbox-container {
+				margin-block-start: -1px; // top margin
+			}
+		}
+		// TODO: Check right-to-left mode
 
-@media (-moz-platform: linux) {
-	@media not (-moz-gtk-csd-maximize-button) {
+		.titlebar-buttonbox {
+			appearance: none !important;
+			align-items: unset !important;
+			box-shadow: 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+			border-bottom-left-radius: var(--titlebutton-corner); //the box-shadow extrudes, thus automatically deducts 1px
+			border-bottom-right-radius: var(--titlebutton-corner);
+			// FIXME: Better way to make the buttonbox decide to be the correct height thus not offset the shadow underneath
+			height: 17px;
+		}
+		&:-moz-locale-dir(rtl) { //Flip shadows in RTL
+			.titlebar-buttonbox {
+				box-shadow: -1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+			}
+		}
+
+
+		//Shared titlebar button code
+		.titlebar-button {
+			appearance: none !important; //Firefox AGAIN having self-bias, so we need !important
+			background: transparent;
+			border-radius: 0 !important;
+			border-left: var(--titlebutton-border-outer) !important;
+			border-bottom: var(--titlebutton-border-outer) !important;
+			height: 17px;
+			background-clip: padding-box !important;
+			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+			position: relative; // Required for pseudo button-backgrounds
+			transition: background-color 100ms linear; //hover-fade animation
+			width: 25px;
+			display: flex !important; // Really, macOS's Mozilla Firefox?
+			padding: 0 !important;
+			margin: 0 !important;
+			margin-inline-end: 0 !important;
+
+			// Pseudo titlebar button background
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-background) !important; // you can blame mac for this one
+				z-index: -1;
+			}
+
+			.toolbarbutton-icon {
+				height: auto !important;
+				width: auto !important;
+
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+				stroke: none !important;
+				border-radius: unset !important;
+			}
+			image { // Set the icon's opacity and hover-fade
+				opacity: .6 !important;
+				transition: opacity 100ms linear;
+			}
+
+			//Hover and pressed states
+			&:hover {
+				background: rgba(255, 255, 255, 0.3) !important;
+				image {
+					opacity: 1 !important;
+				}
+			}
+			&:active {
+				background: rgba(255, 255, 255, 0.2) !important;
+				&:not([disabled]) {
+					transition: none;
+				}
+			}
+		}
+		.titlebar-max,
+		.titlebar-restore,
+		.titlebar-min {
+			&:active {
+				box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+			}
+		}
+		&:-moz-locale-dir(rtl) {
+			.titlebar-button {
+				border-left: unset !important;
+				border-right: var(--titlebutton-border-outer) !important;
+				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+			}
+			.titlebar-max,
+			.titlebar-restore,
+			.titlebar-min {
+				&:active {
+					box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+				}
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			width: 43px;
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; // Mozilla bias moment #idk
+			border-right: var(--titlebutton-border-outer) !important;
+			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
+			order: 2 !important;
+
+			&:hover {
+				background: rgb(217, 76, 74) !important;
+			}
+
+			&:active {
+				background: rgb(213, 58, 63) !important;
+			}
+		}
+		&:-moz-locale-dir(rtl) { //Swap sides in RTL
+			.titlebar-close {
+				border-left: var(--titlebutton-border-outer) !important; // right-side border is already present
+				border-bottom-right-radius: unset !important;
+				border-bottom-left-radius: var(--titlebutton-corner) !important;
+			}
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important;
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			.titlebar-max {
+				display: none !important;
+			}
+		}
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important;
+			.toolbarbutton-icon {
+				transform: translateX(-1px);
+			}
+		}
+		&:-moz-locale-dir(rtl) { //Mirror glyph in RTL
+			.titlebar-restore {
+				.toolbarbutton-icon {
+					transform: translateX(0px) scaleX(-1);
+				}
+			}
+		}
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+			.titlebar-restore {
+				display: none !important;
+			}
+		}
 		.titlebar-max,
 		.titlebar-restore {
-			display: none !important;
+			order: 1 !important;
 		}
-	}
-}
 
-.titlebar-min {
-	@media (-moz-platform: linux) {
-		@media not (-moz-gtk-csd-minimize-button) {
-			display: none !important;
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important;
+			border-bottom-left-radius: var(--titlebutton-corner) !important; // because border-radius is !important
+			order: 0 !important;
 		}
-	}
-}
-
-@media (-moz-platform: linux) {
-	@media (-moz-gtk-csd-reversed-placement) {
-		.titlebar-close {
-			border-top-left-radius: var(--titlebar-button-border-radius-bigger) !important;
-
-			&::before {
-				border-top-left-radius: 4var(--titlebar-button-border-radius-bigger)!important;
+		&:-moz-locale-dir(rtl) { //Swap sides in RTL
+			.titlebar-min {
+				border-bottom-left-radius: unset !important;
+				border-bottom-right-radius: var(--titlebutton-corner) !important;
 			}
 		}
-	}
-	@media not (-moz-gtk-csd-reversed-placement) {
-		.titlebar-close {
-			border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
 
-			&::before {
-				border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
+		// Glen's head
+		&[geckium-chrflag-glen-is-close-button="true"] {
+			//Move where the shadow is for Glen's head
+			.titlebar-buttonbox {
+				box-shadow: unset;
 			}
-		}
-	}
-}
-
-@media not (-moz-platform: linux) {
-	.titlebar-close {
-		border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
-
-		&::before {
-			border-top-right-radius: var(--titlebar-button-border-radius-bigger) !important;
+			.titlebar-max,
+			.titlebar-restore,
+			.titlebar-min {
+				box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3),
+					1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+				&:active { //Add to the existing shadow
+					box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2),
+						1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+				}
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				clip-path: inset(-1px 0px -1px -1px); //Remove the right-side shadow
+			}
+			// Change close to Glen's head, and make further necessary adjustments
+			.titlebar-close {
+				width: 24px;
+				height: 32px;
+				background: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png) !important; // Mozilla bias moment #idk
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+				border-bottom: unset !important;
+				border-left: unset !important;
+				border-right: unset !important;
+				border-bottom-right-radius: 0 !important; // because border-radius is !important
+				box-shadow: unset;
+				list-style-image: unset !important;
+	
+				&:hover, &:active {
+					background: unset;
+				}
+				&:before {
+					content: unset; // Glen cannot be themed.
+				}
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				border-right: var(--titlebutton-border-outer) !important;
+			}
+			&:-moz-locale-dir(rtl) {
+				.titlebar-max,
+				.titlebar-restore,
+				.titlebar-min {
+					box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3),
+						-1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+					&:active { //Add to the existing shadow
+						box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2),
+							-1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+					}
+				}
+				.titlebar-max,
+				.titlebar-restore {
+					clip-path: inset(-1px -1px -1px 0px); //Remove the left-side shadow
+					border-left: var(--titlebutton-border-outer) !important;
+				}
+			}
 		}
 	}
 }

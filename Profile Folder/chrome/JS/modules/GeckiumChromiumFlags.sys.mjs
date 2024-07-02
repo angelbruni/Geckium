@@ -22,6 +22,11 @@ export class chrFlags {
 				description: "Makes the Chromium logo in the 1.0 new tab page a right chonker (oh lawd he comin'), as seen in Chromium 0.2. Requires Chromium branding to take effect.",
 				styleints: [0]
 			},
+			"linux-pre-alpha-titlebar": {
+				name: "Linux Pre-Alpha Titlebar",
+				description: "Removes the Google logo from the Windows titlebar style, emulating how titlebars looked on Pre-Alpha builds of Chromium on Linux. Requires the titlebar style being set to Windows to take effect, and overrides the logo on other platforms experiment.",
+				styleints: [0, 1]
+			},
 			"glen-is-close-button": {
 				name: "Linux Titlebar Buttons Prototype 1",
 				description: "Replaces the close button with a picture of Glen Murphy's head, as seen in Chromium 3.0 Alpha on Linux, now with its passive aggressive purpose satisfied. Glen designed the scrapped Linux (Alpha) titlebar buttons design for Chromium, and his face requires the titlebar style being set to Windows to take effect.",
