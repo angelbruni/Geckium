@@ -50,7 +50,12 @@
         }
     }
 
-    @media not (-moz-platform: macos) { //In macOS, we just let the server-side buttons do the job as they match the needed artstyle/functionality.
+    @media (-moz-platform: macos) { //In macOS, we just let the server-side buttons do the job as they match the needed artstyle/functionality.
+        .titlebar-buttonbox {
+            appearance: auto !important; // ...which means we need to turn them on again.
+        }
+    }
+    @media not (-moz-platform: macos) {
         //Shared titlebar button code
         .titlebar-button {
             background: transparent !important;
