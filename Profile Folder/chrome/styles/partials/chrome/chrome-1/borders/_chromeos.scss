@@ -1,6 +1,6 @@
 @import "win";
 
-&:not([isThemed]):not(:-moz-window-inactive) {
+&:not([isThemed]):not([privatebrowsingmode="temporary"]):not(:-moz-window-inactive) {
     // NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (unmodified when in themes)
     &[windowtype="navigator:browser"] > body {
         background: linear-gradient(
