@@ -1,71 +1,14 @@
+@import "macosx";
 & {
-    //Show the Google logo before the buttons if enabled
-    &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
-        .titlebar-buttonbox-container {
-            &::after {
-                content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-                margin-inline-start: 7px;
-            }
-        }
-        &[sizemode="maximized"],
-        &[sizemode="fullscreen"] {
-            .titlebar-buttonbox-container {
-                &::after {
-                    content: unset !important;
-                }
-            }
-        }
-    }
-
-    //NOTE: macOS and Mac OS X BLOCK native titlebars
-    //Shared non-native titlebar variables
-    & {
-        --titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-        --titlebutton-corner: 5px;
-        --titlebutton-background-hover: rgba(255, 255, 255, 0.3);
-        --titlebutton-background-active: rgba(255, 255, 255, 0.2);
-    }
-
-    //Titlebar button box (force onto left side)
-    .titlebar-buttonbox-container {
-        order: -1 !important;
-        align-items: unset !important;
-        margin-inline-start: 8px; // left margin
-        margin-block-start: 6px; // top margin
-    }
-    //Linux quirk: Counteract exclusive menubar padding
-    @media (-moz-platform: linux) {
-        #toolbar-menubar .titlebar-buttonbox-container {
-            margin-block-start: 5px;
-        }
-    }
-
-    .titlebar-buttonbox {
-        align-items: unset !important;
-        gap: 7px;
-    }
-    .titlebar-button {
-        &::before { //macOS WILL NOT have its buttons filled
-            content: unset !important;
-        }
-    }
-
     @media (-moz-platform: macos) { //In macOS, we just let the server-side buttons do the job as they match the needed artstyle/functionality.
         .titlebar-buttonbox {
             appearance: auto !important; // ...which means we need to turn them on again.
         }
+        .titlebar-button {
+            display: none !important;
+        }
     }
     @media not (-moz-platform: macos) {
-        //Shared titlebar button code
-        .titlebar-button {
-            background: transparent !important;
-            height: 14px;
-            width: 14px;
-            border-radius: 0 !important;
-            background-clip: padding-box !important;
-            //transition: none; //macOS lacks an animation for titlebar button-hover
-            display: flex !important;
-        }
         &:-moz-window-inactive .titlebar-button {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
         }
@@ -73,7 +16,6 @@
         //Close button
         .titlebar-close {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-            order: 0 !important;
 
             &:not([disabled]):hover {
                 list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
@@ -87,7 +29,6 @@
         //Minimise button
         .titlebar-min {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
-            order: 1 !important;
 
             &:not([disabled]):hover {
                 list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER

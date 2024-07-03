@@ -598,9 +598,9 @@
 		transition: none !important;
 	}
 }
-&:not([macOSNativeFullscreen="true"]) #navigator-toolbox {
+:root:not([macOSNativeFullscreen]) #navigator-toolbox {
 	background: transparent !important;
-}
+} //TODO: When unthemed, make fullscreen grey in macOS
 
 #nav-bar {
 	background: var(--nav-bar, var(--default-nav-bar)) !important;
