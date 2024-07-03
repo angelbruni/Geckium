@@ -590,7 +590,14 @@
 }
 
 #navigator-toolbox {
-	background: transparent !important;
+	@media not (-moz-platform: macos) {
+		background: transparent !important;
+	}
+	@media (-moz-platform: macos) {
+		&:not([inFullScreen="true"]) {
+			background: transparent !important;
+		}
+	}
 	box-shadow: none !important;
 	border-top: 0 !important;
 	border-bottom: 0 !important;
