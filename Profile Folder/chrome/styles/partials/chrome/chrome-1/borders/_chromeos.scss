@@ -1,0 +1,22 @@
+@import "win";
+
+&:not([isThemed]):not(:-moz-window-inactive) {
+    // NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (unmodified when in themes)
+    &[windowtype="navigator:browser"] > body {
+        background: linear-gradient(
+            to bottom,
+            black 10px,
+            var(--default-titlebar-background) 34px
+        );
+    }
+    &[sizemode="maximized"],
+    &[sizemode="fullscreen"] {
+        &[windowtype="navigator:browser"] > body {
+            background: linear-gradient(
+                to bottom,
+                black,
+                var(--default-titlebar-background) 24px
+            );
+        }
+    }
+}
