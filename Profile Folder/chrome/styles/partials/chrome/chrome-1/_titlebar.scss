@@ -115,6 +115,9 @@
 		@import "borders/macos";
 	}
 	// Chrome OS
+	&[gktitstyle="chromeos"] {
+		@import "borders/chromeos";
+	}
 
 
 	//Titlebutton styles
@@ -135,7 +138,9 @@
 		@import "titlebar/caption-buttons/linux";
 	}
 	// Mac OS X
-
+	&[gktitbuttons="linux"] {
+		@import "titlebar/caption-buttons/macosx";
+	}
 	// macOS
 	&[gktitbuttons="macos"] {
 		@import "titlebar/caption-buttons/macos";

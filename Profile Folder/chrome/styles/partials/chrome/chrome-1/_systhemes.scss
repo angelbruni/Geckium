@@ -360,23 +360,6 @@
 		// Chrome OS
 		&[gksystheme="chromeos"] {
 			// Titlebar
-			// TODO: Move gradient to titlebar style - pre-gradient theme colour is #426dc9
-			// NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (normal when in themes)
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				black 10px,
-				#426dc9 34px
-			);
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				--default-titlebar-active: linear-gradient(
-					to bottom,
-					black,
-					#426dc9 24px
-				);
-			}
-
-			--chromeos-accent: #426dc9; // Used for titlebar style
 			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(96, 132, 210),
@@ -387,6 +370,9 @@
 				#99b7ea,
 				#84a0dc 40px
 			);
+			--default-titlebar-background: #426dc9; // Used for titlebar style
+			--default-titlebar-foreground: white;
+			--default-titlebar-foreground-inactive: white; //TODO
 
 			&:not([geckium-eleven]) {
 				// Tabs
