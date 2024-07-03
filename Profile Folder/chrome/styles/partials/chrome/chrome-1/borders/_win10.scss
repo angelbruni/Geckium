@@ -105,6 +105,7 @@
 							background-image: var(--lwt-additional-images);
 							background-repeat: var(--lwt-background-tiling);
 							background-position: var(--lwt-background-alignment);
+							border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 						}
 
 						&[sizemode="maximized"],
@@ -150,6 +151,7 @@
 							top: 0;
 							left: 0;
 							right: 0;
+							border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 						}
 					}
 				}
@@ -211,6 +213,7 @@
 						width: calc(100% - 2px);
 						height: 100%;
 						background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
+						border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 					}
 	
 					&:-moz-window-inactive {
