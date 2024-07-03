@@ -58,8 +58,8 @@
 			border-radius: 0 !important;
 			transition: background-color 100ms linear; //hover-fade animation
 			display: flex !important;
-			//Mostly reuse Mozilla's code for this
-			padding: 8px 17px !important;
+			height: 30px;
+			width: 45px;
 			
 			//Hover and pressed states
 			&:not([disabled]):hover {
@@ -80,15 +80,17 @@
 		//Close button
 		.titlebar-close {
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/close.svg) !important;
-			border-top-right-radius: min(var(--titlebar-border-radius), 0px) !important; // Ensure it doesn't overlay the border in macOS
+			border-top-right-radius: var(--titlebar-border-radius) !important; // Ensure it doesn't overlay the border in macOS
 			order: 2 !important;
 
 			&:not([disabled]):hover {
 				background: hsl(355,86%,49%) !important;
+				color: white !important;
 			}
 
 			&:not([disabled]):hover:active {
 				background: hsl(355,82%,69%) !important;
+				color: white !important;
 			}
 		}
 		&:-moz-locale-dir(rtl) { // Swap corners in RTL

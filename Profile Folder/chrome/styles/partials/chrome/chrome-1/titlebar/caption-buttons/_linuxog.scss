@@ -12,11 +12,9 @@
 			}
 			&[gktitnative="false"] {
 				//Use the white Google logo in non-native titlebars if enabled
-				&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
-					.titlebar-buttonbox-container::before {
-						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-						margin-block-start: 3px;
-					}
+				.titlebar-buttonbox-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
 				}
 			}
 			&[sizemode="maximized"],
@@ -34,11 +32,9 @@
 				margin-block-start: 2px;
 				margin-inline-start: 7px;
 			}
-			&[gktitnative="false"] { &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
-				.titlebar-buttonbox-container::after {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-					margin-block-start: 3px;
-				}
+			&[gktitnative="false"] { .titlebar-buttonbox-container::after {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+				margin-block-start: 3px;
 			} }
 			&[sizemode="maximized"], &[sizemode="fullscreen"] { .titlebar-buttonbox-container {
 				&::after {
