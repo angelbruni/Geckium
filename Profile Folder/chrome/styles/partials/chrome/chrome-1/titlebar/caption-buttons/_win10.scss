@@ -49,6 +49,7 @@
 
 		.titlebar-buttonbox {
 			align-items: unset !important;
+			gap: 1px;
 		}
 		
 		//Shared titlebar button code
@@ -78,7 +79,6 @@
 
 		//Close button
 		.titlebar-close {
-			width: 43px;
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/close.svg) !important;
 			border-top-right-radius: min(var(--titlebar-border-radius), 0px) !important; // Ensure it doesn't overlay the border in macOS
 			order: 2 !important;
