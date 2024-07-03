@@ -111,7 +111,9 @@
 		@import "borders/win10";
 	}
 	// Mac OS X / macOS
-
+	&[gktitstyle="macos"] {
+		@import "borders/macos";
+	}
 	// Chrome OS
 
 
