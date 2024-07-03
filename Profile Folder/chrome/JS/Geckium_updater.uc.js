@@ -17,8 +17,8 @@ const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/Gecki
     }
 })();
 
-document.documentElement.setAttribute("gksystheme", "c"); //TEMP
+document.documentElement.setAttribute("gksystheme", "macos"); //TEMP
 document.documentElement.setAttribute("gkhasgaps", "false"); //TEMP
 document.documentElement.setAttribute("gktitnative", "false"); //TEMP
-document.documentElement.setAttribute("gktitstyle", "win10"); //TEMP
-document.documentElement.setAttribute("gktitbuttons", "win10"); //TEMP
+document.documentElement.setAttribute("gktitstyle", "win"); //TEMP
+document.documentElement.setAttribute("gktitbuttons", "macos"); //TEMP

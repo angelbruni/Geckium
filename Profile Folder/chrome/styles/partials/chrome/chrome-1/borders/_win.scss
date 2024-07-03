@@ -129,12 +129,6 @@
 		}
 
         &:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				&:not([privatebrowsingmode="temporary"]),
-				&[privatebrowsingmode="temporary"] {
-					--titlebar-active: var(--lwt-accent-color) !important;
-					--titlebar-inactive: var(--titlebar-active) !important;
-				}
-
 				// Themes with image header/additional images
 				&[chromemargin="0,0,0,0"] {
 					&[windowtype="navigator:browser"] {
