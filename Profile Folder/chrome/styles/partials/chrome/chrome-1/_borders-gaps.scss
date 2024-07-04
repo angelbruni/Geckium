@@ -63,8 +63,8 @@
 		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
 	}
 
-	//Page bodies - all borders (requires gaps allowed)
-	&[gkhasgaps="true"] {
+	//Page bodies - all borders (requires Windows decorations)
+	&[gktitstyle="win"] {
 		#browser,
 		#customization-container {
 			position: relative;
