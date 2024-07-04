@@ -8,13 +8,6 @@
 // @include		about:addons*
 // ==/UserScript==
 
-if (parseInt(Services.appinfo.version.split(".")[0]) >= 117)
-	document.documentElement.setAttribute("is117Plus", true);
-
-let previousChoice;
-
-const appearanceChanged = new CustomEvent("appearanceChanged");
-
 class gkVisualStyles {
 
 	/**
@@ -219,11 +212,6 @@ class gkVisualStyles {
 		}
 	}
 }
-
-window.addEventListener("load", gkVisualStyles.setVisualStyle);
-
-// FIXME: Find the correct event instead of using a timeout initially.
-setTimeout(gkVisualStyles.setVisualStyle, 50);
 
 class gkChromiumFrame {
 	static get getApplyMode() {
@@ -476,18 +464,17 @@ window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
 
 /* bruni: Automatically apply appearance and theme
 		  attributes when it detecs changes in the pref. */
-const appearanceObserver = {
+const appearanceObserverOld = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			gkVisualStyles.setVisualStyle();
+			//gkVisualStyles.setVisualStyle();
 			gkLWTheme.setCustomThemeModeAttrs();
 		}
 	},
 };
-Services.prefs.addObserver("Geckium.appearance.choice", appearanceObserver, false);
-Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserver, false);
-Services.prefs.addObserver("Geckium.main.style", appearanceObserver, false);
-Services.prefs.addObserver("Geckium.appearance.forceChromiumFrame", appearanceObserver, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserverOld, false);
+Services.prefs.addObserver("Geckium.main.style", appearanceObserverOld, false);
+Services.prefs.addObserver("Geckium.appearance.forceChromiumFrame", appearanceObserverOld, false);
 
 function changePrivateBadgePos() {
 	if (typeof document.documentElement !== "undefined") {
