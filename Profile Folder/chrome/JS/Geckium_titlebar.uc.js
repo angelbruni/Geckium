@@ -2,7 +2,11 @@
 // @name        Geckium - Titlebar Manager
 // @author      Dominic Hayes
 // @loadorder   3
+// @include		main
 // ==/UserScript==
+
+// Initial variables
+let previousTitlebar;
 
 // Titlebar style information
 class gkTitlebars {
@@ -284,17 +288,107 @@ class gkTitlebars {
      */
 
     static getPreferredTitlebar(era) {
-		
+        // Get titlebar preferences from nearest era
+        var titlebars = {};
+        for (const i of Object.keys(eras)) {
+            if (i <= era) {
+                if (Object.keys(eras[i]).includes("titlebar")) {
+                    titlebars = eras[i].titlebar;
+                }
+            } else {
+                break;
+            }
+        }
+        // Return the appropriate titlebar style
+        if (AppConstants.platform == "win") {
+            if (window.matchMedia("(-moz-platform: windows-win10)").matches) {
+                return titlebars.win10;
+            }
+            return titlebars.win;
+        } else if (AppConstants.platform == "macosx") {
+            return titlebars.macos;
+        } else if (AppConstants.platform == "linux") {
+            return titlebars.linux;
+        }
+        return titlebars.win; //Fallback to Windows
 	}
 
+    /** getTitlebar - Gets the currently set titlebar from about:config
+     * 
+     * If not found, or the value is invalid, the era's preferred titlebar will be used.
+     */
+
+    static getTitlebar(era) {
+        let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.titlebarStyle").string;
+        if (Object.keys(gkTitlebars.titlebars).includes(prefChoice)) {
+            return prefChoice;
+        }
+        return gkTitlebars.getPreferredTitlebar(era);
+    }
+
     /**
-     * applyTitlebar - Gets and applies the current titlebar from about:config, and applies
+     * getCanNative - Returns True if the titlebar can be native
+     */
+
+    static getCanNative(spec, era) {
+        return false; //TODO
+    }
+
+    /**
+     * applyTitlebar - Applies the current titlebar from getTitlebar(), and applies
      *  the specifications of the titlebar style.
      * 
      * If not found, or the value is invalid, the era's preferred titlebar will be used.
      */
 
     static applyTitlebar() {
+        //TODO: Check for titlebar being enabled and if so always use the special titlebar style and chromemargin instead, though still apply the correct System Theme auto
+
+        // Get spec about the current titlebar
+        let era = gkEras.getEra("Geckium.appearance.choice");
+        let spec = gkTitlebars.getTitlebarSpec(gkTitlebars.getTitlebar(era), era);
+        // Apply titlebar and button style
+        document.documentElement.setAttribute("gktitstyle", spec.border);
+        document.documentElement.setAttribute("gktitbuttons", spec.buttons);
+        // Check native titlebar mode eligibility
+        if (gkTitlebars.getCanNative(spec, era)) {
+            // Base Geckium CSS flag
+            document.documentElement.setAttribute("gktitnative", "true");
+
+            // chromemargin (border type)
+            document.documentElement.setAttribute("chromemargin", "0,2,2,2")
+            // Gaps
+            if (AppConstants.platform == "linux") {
+                document.documentElement.setAttribute("gkhasgaps", "false"); //Linux Native CANNOT have gaps
+            } else {
+                document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
+            }
+        } else {
+            document.documentElement.setAttribute("gktitnative", "false");
+            if (!Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
+                document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+            } else {
+                document.documentElement.setAttribute("chromemargin", spec.chromemargin);
+            }
+            document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
+        }
+
+
+
+
+        document.documentElement.setAttribute("gksystheme", "gtk"); //TEMP
 
     }
 }
+
+window.addEventListener("load", gkTitlebars.applyTitlebar);
+// Automatically change the titlebar when the setting changes
+const titObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkTitlebars.applyTitlebar();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
+Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
