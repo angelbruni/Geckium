@@ -13,7 +13,7 @@ if (parseInt(Services.appinfo.version.split(".")[0]) >= 117)
 	document.documentElement.setAttribute("is117Plus", true);
 
 // Initial variables
-let previousChoice;
+let previousEra;
 const appearanceChanged = new CustomEvent("appearanceChanged");
 
 // Eras and era selection
@@ -224,7 +224,7 @@ class gkEras {
 
         // Don't continue if acting on the browser and the prior era == the new era
         if (document.URL == "chrome://browser/content/browser.xhtml") {
-            if (prefChoice == previousChoice) {
+            if (prefChoice == previousEra) {
                 return;
             }
         }
@@ -243,7 +243,7 @@ class gkEras {
         //		  user choice so we can make unique styles for it.
         document.documentElement.setAttribute("geckium-choice", eras[prefChoice].number);
 
-        previousChoice = prefChoice;
+        previousEra = prefChoice;
         
         if (isBrowserWindow)
             dispatchEvent(appearanceChanged);
