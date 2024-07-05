@@ -322,6 +322,16 @@ class gkTitlebars {
                 break;
             }
         }
+        if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int == 0) {
+            //override most values if the native titlebar is enabled
+            result.border = "native";
+            result.buttons = "";
+            result.hasnativegaps = false;
+            result.hasgaps = false;
+            result.native = true;
+            result.nativetheme = true;
+            result.cannative = true;
+        }
         return result;
     }
 
@@ -402,8 +412,6 @@ class gkTitlebars {
      */
 
     static applyTitlebar(era) {
-        //TODO: Check for titlebar being enabled and if so always use the special titlebar style and chromemargin instead, though still apply the correct System Theme auto
-
         // Get spec about the current titlebar
         if (!era) {
             era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
@@ -418,7 +426,9 @@ class gkTitlebars {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
             // chromemargin (border type)
-            document.documentElement.setAttribute("chromemargin", "0,2,2,2")
+            if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int != 0) {
+                document.documentElement.setAttribute("chromemargin", "0,2,2,2")
+            }
             // Gaps
             if (AppConstants.platform == "linux") {
                 document.documentElement.setAttribute("gkhasgaps", "false"); // Linux Native CANNOT have gaps
@@ -427,10 +437,12 @@ class gkTitlebars {
             }
         } else {
             document.documentElement.setAttribute("gktitnative", "false");
-            if (!Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
-                document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-            } else {
-                document.documentElement.setAttribute("chromemargin", spec.chromemargin);
+            if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int != 0) {
+                if (!Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
+                    document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+                } else {
+                    document.documentElement.setAttribute("chromemargin", spec.chromemargin);
+                }
             }
             document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
         }
@@ -462,3 +474,4 @@ const titObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
+Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
