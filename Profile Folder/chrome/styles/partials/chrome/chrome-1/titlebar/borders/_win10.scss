@@ -53,13 +53,19 @@
 
 	// Visuals: Windows
 	@media (-moz-platform: windows) {
-		#navigator-toolbox {
-			border-top: .5px solid AccentColor;
-		}
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
+		@media (-moz-windows-accent-color-in-titlebar) {
+			//Taken from Firefox's browser-aero.css
 			#navigator-toolbox {
-				border-top: 0;
+				border-top: .5px solid AccentColor;
+			}
+			&:-moz-window-inactive #navigator-toolbox {
+				border-color: rgb(57,57,57);
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				#navigator-toolbox {
+					border-top: 0;
+				}
 			}
 		}
 	}

@@ -144,6 +144,10 @@
     }
 
 	//Titlebar styles
+	// Native Titlebar Enabled
+	&[gktitstyle="native"] {
+		@import "titlebar/borders/native";
+	}
 	// Windows
 	&[gktitstyle="win"] {
 		@import "titlebar/borders/win";
