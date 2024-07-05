@@ -104,46 +104,46 @@
 	//Titlebar styles
 	// Windows
 	&[gktitstyle="win"] {
-		@import "borders/win";
+		@import "titlebar/borders/win";
 	}
 	// Windows 10
 	&[gktitstyle="win10"] {
-		@import "borders/win10";
+		@import "titlebar/borders/win10";
 	}
 	// Mac OS X / macOS
 	&[gktitstyle="macos"] {
-		@import "borders/macos";
+		@import "titlebar/borders/macos";
 	}
 	// Chrome OS
 	&[gktitstyle="chromeos"] {
-		@import "borders/chromeos";
+		@import "titlebar/borders/chromeos";
 	}
 
 
 	//Titlebutton styles
 	// Windows
 	&[gktitbuttons="win"] {
-		@import "titlebar/caption-buttons/win";
+		@import "titlebar/buttons/win";
 	}
 	// Windows 10
 	&[gktitbuttons="win10"] {
-		@import "titlebar/caption-buttons/win10";
+		@import "titlebar/buttons/win10";
 	}
 	// Linux (Alpha)
 	&[gktitbuttons="linuxog"] {
-		@import "titlebar/caption-buttons/linuxog";
+		@import "titlebar/buttons/linuxog";
 	}
 	// Linux
 	&[gktitbuttons="linux"] {
-		@import "titlebar/caption-buttons/linux";
+		@import "titlebar/buttons/linux";
 	}
 	// Mac OS X
 	&[gktitbuttons="macosx"] {
-		@import "titlebar/caption-buttons/macosx";
+		@import "titlebar/buttons/macosx";
 	}
 	// macOS
 	&[gktitbuttons="macos"] {
-		@import "titlebar/caption-buttons/macos";
+		@import "titlebar/buttons/macos";
 	}
 	// Chrome OS (redirected by JS to linuxog)
 
