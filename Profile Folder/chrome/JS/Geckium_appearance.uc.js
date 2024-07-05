@@ -213,107 +213,6 @@ class gkVisualStyles {
 	}
 }
 
-class gkChromiumFrame {
-	static get getApplyMode() {
-		switch (gkPrefUtils.tryGet("Geckium.appearance.forceChromiumFrame").int) {
-			case 0:
-				return "Automatic"
-			case 1:
-				return "Force Disable"
-			case 2:
-				return "Force Enable"
-		}
-	}
-
-	static async applyMode(int) {
-		if (int <= 0)
-			int = 0;		// Automatic
-		else if (int >= 2)
-			int = 2;		// Force Enable
-		else
-			int = 1;		// Force Disable
-
-		gkPrefUtils.set("Geckium.appearance.forceChromiumFrame").int(int);
-
-		await gkChromiumFrame.automatic();
-	}
-
-	static async automatic() {
-		switch (gkPrefUtils.tryGet("Geckium.appearance.forceChromiumFrame").int) {
-			case 0:		// Automatic
-				if (isBrowserWindow) {
-					if (AppConstants.platform !== "win") {
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-					} else {
-						// If compositor is inactive.
-						if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
-							document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-						} else {
-							const isChromeTheme = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
-							if (isChromeTheme) {
-								const themeData = await chrTheme.getCurrentTheme();
-
-								let themeFrame = themeData.theme.images.theme_frame;
-								// If Chromium Theme has frame image, enable Chromium Frame isBrowserPopUpWindow
-								if (themeFrame) {
-									document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-								} else {
-									if (isBrowserPopUpWindow) {
-										document.documentElement.removeAttribute("chromemargin");
-									} else {
-										document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-									}
-								}
-									
-							} else {
-								if (!isFirefoxThemed) {
-									if (isBrowserPopUpWindow) {
-										document.documentElement.removeAttribute("chromemargin");
-									} else {
-										document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-									}
-								} else {
-									document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-								}
-							}
-						}
-					}
-				}
-				break;
-			case 1:		// Force Disable
-				if (isBrowserWindow)
-					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-				break;
-			case 2:		// Force Enable
-				if (isBrowserWindow) {
-					if (AppConstants.platform !== "win") {
-						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-					} else {
-						if (isBrowserPopUpWindow) {
-							document.documentElement.removeAttribute("chromemargin");
-						} else {
-							document.documentElement.setAttribute("chromemargin", "0,3,3,3");
-						}
-					}
-				}
-				break;
-		}
-
-		gkChromiumFrame.setCaptionButtonsStyle();
-	}
-
-	static setCaptionButtonsStyle(style) {
-		const preference = "Geckium.appearance.classicCaptionButtonsStyle";
-
-		if (style == "auto" || style == "windows" || style == "linux" || style == "macos")
-			gkPrefUtils.set(preference).string(style);
-		else if (!gkPrefUtils.tryGet(preference).string)
-			gkPrefUtils.set(preference).string("auto");
-
-		document.documentElement.setAttribute("gkforcecaptionbuttonstyle", gkPrefUtils.tryGet(preference).string);
-	}
-}
-
 class gkLWTheme {
 	static get getCustomThemeMode() {
 		const customThemeModePref = gkPrefUtils.tryGet("Geckium.customtheme.mode").int;
@@ -356,7 +255,7 @@ class gkLWTheme {
 					document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
 				}
 				
-				await gkChromiumFrame.automatic();
+				// await gkChromiumFrame.automatic();
 			}, 0);
 		}
 	}
@@ -474,7 +373,6 @@ const appearanceObserverOld = {
 };
 Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObserverOld, false);
 Services.prefs.addObserver("Geckium.main.style", appearanceObserverOld, false);
-Services.prefs.addObserver("Geckium.appearance.forceChromiumFrame", appearanceObserverOld, false);
 
 function changePrivateBadgePos() {
 	if (typeof document.documentElement !== "undefined") {
@@ -529,14 +427,3 @@ const moreGTKIconsObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", moreGTKIconsObserver, false);
-
-window.addEventListener("load", gkChromiumFrame.setCaptionButtonsStyle);
-const classicCaptionBtnsStyleObs = {
-	observe: async function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			await gkChromiumFrame.automatic();
-			gkChromiumFrame.setCaptionButtonsStyle();
-		}
-	},
-};
-Services.prefs.addObserver("Geckium.appearance.classicCaptionButtonsStyle", classicCaptionBtnsStyleObs, false);

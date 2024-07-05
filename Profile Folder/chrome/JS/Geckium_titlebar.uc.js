@@ -253,6 +253,47 @@ class gkTitlebars {
                     macos: "classic"
                 }
             }
+        },
+        "chromeos": {
+            1: {
+                border: "chromeos",
+                buttons: "linuxog",
+                hasnativegaps: false,
+                hasgaps: true,
+                native: false,
+                nativetheme: false,
+                cannative: true,
+                newtabstyle: 1,
+                systheme: {
+                    linux: "chromeos",
+                    win: "chromeos",
+                    macos: "chromeos"
+                },
+                systhemefallback: {
+                    linux: "chromeos",
+                    win: "chromeos",
+                    macos: "chromeos"
+                }
+            },
+            21: {
+                buttons: "chromeos",
+                hasnativegaps: false,
+                hasgaps: false,
+                cannative: false,
+                newtabstyle: 0
+            },
+            68: {
+                systheme: {
+                    linux: "classic",
+                    win: "classic",
+                    macos: "classic"
+                },
+                systhemefallback: {
+                    linux: "classic",
+                    win: "classic",
+                    macos: "classic"
+                }
+            }
         }
     }
 
@@ -331,7 +372,23 @@ class gkTitlebars {
      */
 
     static getCanNative(spec, era) {
-        return false; //TODO
+        return spec.cannative; //TODO
+
+        /**
+         * 1. Check if the titlebar style blocks going native
+         *  - False if yes
+         * 2. Check if in a theme or not - themes
+         *  - False if a Firefox theme
+         * 2. Check if in a Chromium Theme if yes
+         * 3. Check if the Chromium Theme is eligible for Native
+         *  - False if nativetheme is False, and the user's setting isn't True
+         *  - False if theme isn't eligible for Native
+         * 4. If unthemed, check if theme defaults to not being native
+         *  - False if yes, unless user has overridden to True
+         * 5. If unthemed, check if user has overridden to False
+         *  - False if yes
+         * Return True if all checks have been exhausted
+         */
     }
 
     /**
@@ -354,12 +411,11 @@ class gkTitlebars {
         if (gkTitlebars.getCanNative(spec, era)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
-
             // chromemargin (border type)
             document.documentElement.setAttribute("chromemargin", "0,2,2,2")
             // Gaps
             if (AppConstants.platform == "linux") {
-                document.documentElement.setAttribute("gkhasgaps", "false"); //Linux Native CANNOT have gaps
+                document.documentElement.setAttribute("gkhasgaps", "false"); // Linux Native CANNOT have gaps
             } else {
                 document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
             }
@@ -375,9 +431,15 @@ class gkTitlebars {
 
 
 
-
+        // Workflow:
+        //- Era is set in the browser on load
+        //1. Titlebar is set on load
+        //2. Titlebar call tells system theme loader to set System Theme
         document.documentElement.setAttribute("gksystheme", "gtk"); //TEMP
-
+        //- New call in themes: getPreferredSystemTheme
+        //1. Gets titlebar using getTitlebar()
+        //2. Gets the titlebar spec
+        //3. Returns value corresponding to the system theme used
     }
 }
 
