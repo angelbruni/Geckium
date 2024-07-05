@@ -8,6 +8,8 @@
 // @include		about:addons*
 // ==/UserScript==
 
+let previousChoice;
+
 class gkVisualStyles {
 
 	/**

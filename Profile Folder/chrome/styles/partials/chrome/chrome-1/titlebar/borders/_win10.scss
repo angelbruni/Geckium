@@ -59,6 +59,19 @@
 		}
 	}
 
+	// Visuals: Windows
+	@media (-moz-platform: windows) {
+		#navigator-toolbox {
+			border-top: .5px solid AccentColor;
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			#navigator-toolbox {
+				border-top: 0;
+			}
+		}
+	}
+
 
 
 

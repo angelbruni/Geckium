@@ -1,0 +1,175 @@
+& {
+	--titlebar-border-radius: 4px;
+	@media (-moz-platform: macos) {
+		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
+	}
+}
+// Behaviour: Normal
+&:not([menubarvisible]) {
+	#tabbrowser-arrowscrollbox {
+		padding-top: 14px;
+	}
+}
+
+// Behaviour: Maximised / Fullscreen
+&[sizemode="maximized"],
+&[sizemode="fullscreen"] {
+	&:not([menubarvisible]) {
+		#tabbrowser-arrowscrollbox {
+			padding-top: 0;
+		}
+	}
+}
+
+&[gktitnative="false"] {
+	//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
+	@import "../tools/bodytitlebar";
+	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+	--theme-box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+	
+	// Visuals
+	&[windowtype="navigator:browser"] > body {
+		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+		border-top: 1px solid rgb(89, 89, 89);
+		border-left: 1px solid rgb(89, 89, 89);
+		border-bottom: 1px solid rgb(68, 68, 68);
+		border-right: 1px solid rgb(68, 68, 68);
+	}
+
+	// Visuals: Maximised / Fullscreen
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		&[windowtype="navigator:browser"] > body {
+			border: 0;
+			border-radius: 0;
+		}
+	} // TODO: Fix this being set on macOS
+
+
+
+
+
+
+	//TODO: Determine whether to move this to _titlebar.scss
+	//Windows quirks
+	@media (-moz-platform: windows) {
+		//Stop non-composited titlebar elements from spontaneously appearing
+		#titlebar {
+			appearance: unset !important;
+		}
+	}
+}
+
+
+
+
+
+
+
+olddump {
+	&[chromemargin="0,0,0,0"] { //TODO: REPLACE this - this is used to check for non-native titlebar
+		&[sizemode="maximized"] {
+			&[windowtype="navigator:browser"] > body {
+				@media not (-moz-platform: linux) {
+					// padding-top: 7px !important;
+				}
+			}
+
+			// Fix button position when maximized
+			#titlebar {
+				@media (-moz-platform: windows) {
+					@media not (-moz-platform: windows-win10) {
+						padding-block-start: 8px;
+					}
+
+					@media (-moz-platform: windows-win10) {
+						padding-block-start: 0;
+
+						@media not (-moz-ev-native-controls-patch) {
+							padding-block-start: 8px;
+						}
+					}
+
+					@media (-moz-windows-classic) {
+						padding-block-start: 4px !important;
+					}
+				}
+			}
+			&[is117Plus] {
+				#titlebar {
+					@media (-moz-platform: windows) {
+						@media (-moz-platform: windows-win10) {
+							@media not (-moz-ev-native-controls-patch) {
+								padding-block-start: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		@media (-moz-windows-classic) {
+			#toolbar-menubar {
+				margin: 0 !important;
+			}
+		}
+
+		// This fixes titlebar in Windows basic and Windows classic.
+		
+
+		/*.titlebar-buttonbox-container {
+			justify-content: end;
+			width: calc(var(--titlebar-close-width) + var(--titlebar-max-restore-width) + var(--titlebar-min-width) + (var(--titlebar-buttonbox-gap) * 2));
+		}*/
+
+		.titlebar-buttonbox {
+			appearance: unset !important;
+			align-items: start !important;
+			height: var(--titlebar-button-height);
+			-moz-default-appearance: -moz-window-button-box !important;
+			background-color: transparent;
+			gap: var(--titlebar-buttonbox-gap);
+		}
+
+		.titlebar-button {
+			padding: 0 !important;
+			margin: 0 !important;
+			display: flex !important;
+			appearance: unset !important;
+			border-radius: var(--titlebar-button-border-radius) !important;
+			position: relative;
+			background-clip: padding-box;
+			height: var(--titlebar-button-height);
+			box-shadow: var(--titlebar-button-inner-shadow-normal);
+			overflow: hidden;
+			transition: background-color 100ms linear;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: var(--titlebar-buttonbox-background);
+				z-index: -1;
+			}
+
+			&:not([disabled]) {
+				&:active {
+					transition: none;
+				}
+			}
+
+			.toolbarbutton-icon {
+				width: auto !important;
+				height: auto !important;
+
+				// Fix for Firefox ~120+
+				appearance: none !important;
+				background: none !important;
+				border-radius: unset !important;
+			}
+		}
+	}
+}

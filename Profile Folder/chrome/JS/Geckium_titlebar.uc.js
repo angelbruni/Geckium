@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Geckium - Titlebar Manager
 // @author      Dominic Hayes
-// @loadorder   3
+// @loadorder   2
 // @include		main
 // ==/UserScript==
 
@@ -275,6 +275,9 @@ class gkTitlebars {
                     macos: "chromeos"
                 }
             },
+            4: {
+                buttons: "linux"
+            },
             21: {
                 buttons: "chromeos",
                 hasnativegaps: false,
@@ -372,7 +375,7 @@ class gkTitlebars {
      */
 
     static getCanNative(spec, era) {
-        return spec.cannative; //TODO
+        return false; //TODO
 
         /**
          * 1. Check if the titlebar style blocks going native
@@ -398,12 +401,15 @@ class gkTitlebars {
      * If not found, or the value is invalid, the era's preferred titlebar will be used.
      */
 
-    static applyTitlebar() {
+    static applyTitlebar(era) {
         //TODO: Check for titlebar being enabled and if so always use the special titlebar style and chromemargin instead, though still apply the correct System Theme auto
 
         // Get spec about the current titlebar
-        let era = gkEras.getEra("Geckium.appearance.choice");
-        let spec = gkTitlebars.getTitlebarSpec(gkTitlebars.getTitlebar(era), era);
+        if (!era) {
+            era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
+        }
+        let titlebar = gkTitlebars.getTitlebar(era);
+        let spec = gkTitlebars.getTitlebarSpec(titlebar, era);
         // Apply titlebar and button style
         document.documentElement.setAttribute("gktitstyle", spec.border);
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
@@ -430,6 +436,9 @@ class gkTitlebars {
         }
 
 
+        previousTitlebar = titlebar;
+
+
 
         // Workflow:
         //- Era is set in the browser on load
@@ -442,8 +451,8 @@ class gkTitlebars {
         //3. Returns value corresponding to the system theme used
     }
 }
+// NOTE: applyTitlebar is automatically called by applyEra
 
-window.addEventListener("load", gkTitlebars.applyTitlebar);
 // Automatically change the titlebar when the setting changes
 const titObserver = {
 	observe: function (subject, topic, data) {
@@ -453,4 +462,3 @@ const titObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
-Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
