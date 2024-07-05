@@ -1,0 +1,15 @@
+&[windowtype="navigator:browser"] > body {
+    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+}
+
+#navigator-toolbox {
+    background: var(--titlebar-active, var(--default-titlebar-active));
+    &:-moz-window-inactive {
+        background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+    }
+    border-radius: 0 !important;
+    border-top-left-radius: var(--titlebar-border-radius) !important;
+    border-top-right-radius: var(--titlebar-border-radius) !important;
+}
+
+// TODO: Apply colours-only Firefox themes onto this surface

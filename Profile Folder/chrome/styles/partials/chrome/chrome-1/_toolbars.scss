@@ -458,14 +458,6 @@
 				right: 0px;
 			}
 		}
-
-		#navigator-toolbox-background {
-			&::before {
-				left: 0;
-				right: 0;
-				bottom: 1px;
-			}
-		}
 	}
 
 	&[sizemode="fullscreen"] {
@@ -589,19 +581,6 @@
 	//}
 }
 
-#navigator-toolbox {
-	box-shadow: none !important;
-	border-top: 0 !important;
-	border-bottom: 0 !important;
-
-	&[fullscreenShouldAnimate] {
-		transition: none !important;
-	}
-}
-:root:not([macOSNativeFullscreen]) #navigator-toolbox {
-	background: transparent !important;
-} //TODO: When unthemed, make fullscreen grey in macOS
-
 #nav-bar {
 	background: var(--nav-bar, var(--default-nav-bar)) !important;
 	align-items: center;
@@ -656,10 +635,6 @@
 
 .close-icon:hover {
 	background-color: transparent !important;
-}
-
-#navigator-toolbox-background {
-	position: relative;
 }
 
 toolbar[overflowable][customizing] > .customization-target {

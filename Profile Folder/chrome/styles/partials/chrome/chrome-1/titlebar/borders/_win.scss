@@ -44,20 +44,6 @@
 			border-radius: 0;
 		}
 	} // TODO: Fix this being set on macOS
-
-
-
-
-
-
-	//TODO: Determine whether to move this to _titlebar.scss
-	//Windows quirks
-	@media (-moz-platform: windows) {
-		//Stop non-composited titlebar elements from spontaneously appearing
-		#titlebar {
-			appearance: unset !important;
-		}
-	}
 }
 
 

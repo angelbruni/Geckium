@@ -1,8 +1,27 @@
+#navigator-toolbox {
+    background: unset !important;
+	box-shadow: none !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
 
+	&[fullscreenShouldAnimate] {
+		transition: none !important;
+	}
+}
+:root:not([macOSNativeFullscreen]) #navigator-toolbox {
+	background: transparent !important;
+} //TODO: When unthemed, make fullscreen grey in macOS
 
-
-
-
+&[sizemode="maximized"],
+&[sizemode="fullscreen"] {
+    #navigator-toolbox-background {
+        &::before {
+            left: 0;
+            right: 0;
+            bottom: 1px;
+        }
+    }
+}
 
 // Visuals
 &[windowtype="navigator:browser"] > body {
@@ -11,42 +30,6 @@
         background: var(--titlebar-inactive, var(--default-titlebar-inactive));
     }
     border-radius: var(--titlebar-border-radii);
-}
-
-//Windows quirks
-@media (-moz-platform: windows) {
-    //Windows 10 + Native Controls Patch quirks
-    @media (-moz-ev-native-controls-patch) {
-        &#main-window {
-            background: rgba(0,0,0,.002) !important;
-        }
-    }
-}
-
-//Linux quirks
-@media (-moz-platform: linux) {
-    /* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
-    - GTK3's CSDs only cover the browser from top to bookmarks area
-    - Shadows are out of the CSS's boundaries
-    Therefore, to get the desired borders, we need to hijack body. */
-    #navigator-toolbox-background {
-        appearance: none !important; //FIXME: This causes the corner shadows to disappear
-    }
-    /* However, likely due to a Firefox bug, Firefox's underlying window surface
-    uses the body's background itself, due to Mozilla setting its background
-    to 'transparent', unless we use a minimum 0.002 alpha background on the window,
-    so we need to override that. */
-    &#main-window {
-        background: rgba(0,0,0,.002) !important;
-    }
-}
-
-//macOS quirks
-@media (-moz-platform: macos) {
-    &[windowtype="navigator:browser"] > body {
-        // Corners on the bottom are rounded, as aforementioned, too
-        border-radius: var(--titlebar-border-radius);
-    }
 }
 
 //TODO: Simplify this and see how much can be shared in _titlebar.scss
