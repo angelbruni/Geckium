@@ -54,11 +54,6 @@ class gkTitlebars {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
-                },
-                systhemefallback: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
                 }
             }
         },
@@ -73,11 +68,6 @@ class gkTitlebars {
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
-                },
-                systhemefallback: {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
@@ -99,11 +89,6 @@ class gkTitlebars {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
-                },
-                systhemefallback: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
                 }
             },
             68: {
@@ -122,11 +107,6 @@ class gkTitlebars {
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
-                },
-                systhemefallback: {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
@@ -164,11 +144,6 @@ class gkTitlebars {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
-                },
-                systhemefallback: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
                 }
             },
             11: {
@@ -200,20 +175,10 @@ class gkTitlebars {
                     linux: "macosx",
                     win: "macosx",
                     macos: "macosx"
-                },
-                systhemefallback: {
-                    linux: "macosx",
-                    win: "macosx",
-                    macos: "macosx"
                 }
             },
             68: {
                 systheme: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
-                },
-                systhemefallback: {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
@@ -234,20 +199,10 @@ class gkTitlebars {
                     linux: "macos",
                     win: "macos",
                     macos: "macos"
-                },
-                systhemefallback: {
-                    linux: "macos",
-                    win: "macos",
-                    macos: "macos"
                 }
             },
             68: {
                 systheme: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
-                },
-                systhemefallback: {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
@@ -268,11 +223,6 @@ class gkTitlebars {
                     linux: "chromeos",
                     win: "chromeos",
                     macos: "chromeos"
-                },
-                systhemefallback: {
-                    linux: "chromeos",
-                    win: "chromeos",
-                    macos: "chromeos"
                 }
             },
             4: {
@@ -287,11 +237,6 @@ class gkTitlebars {
             },
             68: {
                 systheme: {
-                    linux: "classic",
-                    win: "classic",
-                    macos: "classic"
-                },
-                systhemefallback: {
                     linux: "classic",
                     win: "classic",
                     macos: "classic"
@@ -338,7 +283,7 @@ class gkTitlebars {
     /**
      * getPreferredTitlebar - Gets the era's preferred titlebar for your platform
      * 
-     * @era: The currently selected era - if invalid, defaults to 1
+     * @era: The currently selected era
      */
 
     static getPreferredTitlebar(era) {
@@ -370,6 +315,7 @@ class gkTitlebars {
     /** getTitlebar - Gets the currently set titlebar from about:config
      * 
      * If not found, or the value is invalid, the era's preferred titlebar will be used.
+     * @era: The currently selected era
      */
 
     static getTitlebar(era) {
@@ -408,14 +354,14 @@ class gkTitlebars {
      * applyTitlebar - Applies the current titlebar from getTitlebar(), and applies
      *  the specifications of the titlebar style.
      * 
-     * If not found, or the value is invalid, the era's preferred titlebar will be used.
+     * @era: The currently selected era - if not specified, sources era from styles's variable
      */
 
     static applyTitlebar(era) {
-        // Get spec about the current titlebar
         if (!era) {
             era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
         }
+        // Get spec about the current titlebar
         let titlebar = gkTitlebars.getTitlebar(era);
         let spec = gkTitlebars.getTitlebarSpec(titlebar, era);
         // Apply titlebar and button style
@@ -449,6 +395,8 @@ class gkTitlebars {
 
 
         previousTitlebar = titlebar;
+        //Update System Theme choice
+        gkSysTheme.applyTheme(era, spec);
 
 
 
@@ -456,7 +404,6 @@ class gkTitlebars {
         //- Era is set in the browser on load
         //1. Titlebar is set on load
         //2. Titlebar call tells system theme loader to set System Theme
-        document.documentElement.setAttribute("gksystheme", "gtk"); //TEMP
         //- New call in themes: getPreferredSystemTheme
         //1. Gets titlebar using getTitlebar()
         //2. Gets the titlebar spec
