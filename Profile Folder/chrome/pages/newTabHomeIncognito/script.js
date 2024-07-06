@@ -12,15 +12,15 @@ function createMainLayout() {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
 	let main = ``;
-	if (appearanceChoice <= 1) {
+	if (appearanceChoice <= 3) {
 		main = `
 		<vbox class="content">
 			<hbox style="flex-direction: row-reverse; margin-block-end: 16px;">
@@ -44,7 +44,7 @@ function createMainLayout() {
 			</html:p>
 		</vbox>
 		`
-	} else if (appearanceChoice <= 4) {
+	} else if (appearanceChoice <= 6) {
 		main = `
 		<vbox class="content">
 			<hbox style="flex-direction: row-reverse; margin-block-end: 16px;">
@@ -77,7 +77,7 @@ function createMainLayout() {
 			</vbox>
 		</hbox>
 		`
-	} else if (appearanceChoice <= 6) {
+	} else if (appearanceChoice <= 21) {
 		main = `
 		<vbox class="content">
 			<hbox style="flex-direction: row-reverse; margin-block-end: 16px;">
@@ -109,7 +109,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`
-	} else if (appearanceChoice == 7) {
+	} else if (appearanceChoice == 25) {
 		main = `
 		<vbox class="content">
 			<hbox style="flex-direction: row-reverse; margin-block-end: 16px;">
@@ -141,7 +141,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`
-	} else if (appearanceChoice <= 8) {
+	} else if (appearanceChoice <= 47) {
 		main = `
 		<hbox class="content">
 			<html:div class="icon" />
@@ -156,7 +156,7 @@ function createMainLayout() {
 			</vbox>
 		</hbox>
 		`
-	} else if (appearanceChoice <= 9) {
+	} else if (appearanceChoice <= 68) {
 		main = `
 		<vbox class="content">
 			<html:div class="icon" />

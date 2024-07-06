@@ -5,14 +5,14 @@ function appearance() {
 	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
 		switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 			case true:
-				prefChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+				prefChoice = gkEras.getEra("Geckium.newTabHome.style");
 				break;
 			default:
-				prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+				prefChoice = gkEras.getEra("Geckium.appearance.choice");
 				break;
 		}
 	} else {
-		prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+		prefChoice = gkEras.getEra("Geckium.appearance.choice");
 	}
 	
 	if (!prefChoice)
@@ -25,7 +25,7 @@ function appearance() {
 
 		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
 			gkBranding.load();
-			gkVisualStyles.setVisualStyle();
+			gkEras.applyEra();
 			createMainLayout();
 			retrieveFrequentSites();
 			getRecentBookmarks();

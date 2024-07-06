@@ -80,17 +80,17 @@ function getTilesAmount(string) {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 	
 	let desiredRows;
 	let desiredCols;
 	
-	if (appearanceChoice == 0) {
+	if (appearanceChoice == 1) {
 		desiredRows = 3;
 		desiredCols = 3;
 	} else {
@@ -140,10 +140,10 @@ function createTile(website) {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
@@ -174,7 +174,7 @@ function createTile(website) {
 			// Replace special characters with their corresponding HTML entities.
 			const title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice == 0) {
+			if (appearanceChoice == 1) {
 				tile = `
 				<html:a href="${website.url}" title="${title}">
 					<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
@@ -186,7 +186,7 @@ function createTile(website) {
 				`
 
 				thumbnail = "a[href='"+ website.url +"'] .thumbnail";
-			} else if (appearanceChoice <= 5) {
+			} else if (appearanceChoice <= 11) {
 				tile = `
 				<html:a class="thumbnail-container" href="${website.url}">
 					<vbox class="edit-mode-border">
@@ -212,7 +212,7 @@ function createTile(website) {
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 				thumbnail = ".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper";
-			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
+			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 				for (const key in websiteColors) {
 					const websiteURL = website.url.toLowerCase();
 					
@@ -241,8 +241,8 @@ function createTile(website) {
 				close = ".most-visited[href='"+ website.url +"'] .close-button";
 				
 				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
-			} else if (appearanceChoice >= 8) {
-				if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+			} else if (appearanceChoice >= 47) {
+				if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
@@ -284,7 +284,7 @@ function createTile(website) {
 				})
 			});
 
-			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 7)) {
+			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 25)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < getTilesAmount(); i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
@@ -292,11 +292,11 @@ function createTile(website) {
 				});
 			}
         } else {
-			if (appearanceChoice == 0) {
+			if (appearanceChoice == 1) {
 				tile = `
 				<!--<html:div class="thumbnail" />-->
 				`
-			} else if (appearanceChoice <= 5) {
+			} else if (appearanceChoice <= 11) {
 				tile = `
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
@@ -317,7 +317,7 @@ function createTile(website) {
 					</html:div>
 				</html:a>
 				`
-			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
+			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 				tile = `
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
@@ -333,8 +333,8 @@ function createTile(website) {
 					</html:a>
 				</html:div>
 				`
-			}  else if (appearanceChoice >= 8) {
-				if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+			}  else if (appearanceChoice >= 47) {
+				if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					tile = ``;
 				} else {
 					tile = `
@@ -355,24 +355,24 @@ function populateRecentSitesGrid() {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
 	let mostViewed;
 
-	if (appearanceChoice == 0)
+	if (appearanceChoice == 1)
 		mostViewed = "#mostvisitedtiles";
-	else if (appearanceChoice <= 4)
+	else if (appearanceChoice <= 6)
 		mostViewed = "#most-visited";
-	else if (appearanceChoice == 5)
+	else if (appearanceChoice == 11)
 		mostViewed = "#most-viewed-content";
-	else if (appearanceChoice == 6 || appearanceChoice == 7)
+	else if (appearanceChoice == 21 || appearanceChoice == 25)
 		mostViewed = "#most-visited-page .tile-grid";
-	else if (appearanceChoice >= 8)
+	else if (appearanceChoice >= 47)
 		mostViewed = "#mv-tiles";
 
 	// Delete the tiles to update with new information (there might be a better way to do this).

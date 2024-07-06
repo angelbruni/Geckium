@@ -245,9 +245,10 @@ class gkEras {
 
         previousEra = prefChoice;
         
-        if (isBrowserWindow)
+        if (isBrowserWindow) {
             dispatchEvent(appearanceChanged);
             gkTitlebars.applyTitlebar(prefChoice);
+        }
     }
 }
 window.addEventListener("load", gkEras.applyEra);
@@ -273,7 +274,9 @@ class menuBarVisible {
 		}
 	}
 	static check() {
-		menuBarVisible.toggled(document.getElementById("toolbar-menubar").getAttribute("autohide") == "false");
+        if (isBrowserWindow) {
+		    menuBarVisible.toggled(document.getElementById("toolbar-menubar").getAttribute("autohide") == "false");
+        }
 	}
 }
 window.addEventListener("load", menuBarVisible.check);

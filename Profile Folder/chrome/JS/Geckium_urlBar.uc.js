@@ -15,10 +15,10 @@ function changeGoButton() {
 	let appearanceChoice;
 	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.main.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
@@ -32,16 +32,16 @@ function changeGoButton() {
 		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
 		goButtonBox.appendChild(goButton);
 
-		if (appearanceChoice <= 3)
+		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 8)
+		else if (appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
-		if (appearanceChoice <= 3)
+		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 8)
+		else if (appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	}
 }
@@ -58,15 +58,15 @@ function styleURLBar() {
 	let appearanceChoice;
 	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.main.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
 	setTimeout(() => {
-		if (appearanceChoice <= 3) {
+		if (appearanceChoice <= 5) {
 			waitForElm("#star-button-box").then(function() {
 				urlbarContainer.setAttribute("starpos", "start");
 				gkInsertElm.before(starButtonBox, urlbar);
@@ -81,7 +81,7 @@ function styleURLBar() {
 		}
 	}, 10);
 
-	if (appearanceChoice <= 3 || appearanceChoice == 8)
+	if (appearanceChoice <= 5 || appearanceChoice == 47)
 		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);
