@@ -7,6 +7,11 @@
 			#logo {
 				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-1/chromium/product_logo.png");
 			}
+			&[geckium-chrflag-ntp-wide-chromium="true"] {
+				#logo {
+					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-1/chromium/product_logo_wide.png");
+				}
+			}
 		}
 
 		&[gkbranding="chrome"] {
