@@ -252,9 +252,6 @@ class gkEras {
 }
 window.addEventListener("load", gkEras.applyEra);
 
-// FIXME: Find the correct event instead of using a timeout initially.
-setTimeout(gkEras.applyEra, 50);
-
 // Automatically change Geckium eras when the setting changes
 const eraObserver = {
 	observe: function (subject, topic, data) {
@@ -264,3 +261,20 @@ const eraObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", eraObserver, false);
+
+
+// Provide a way to let the CSS know if the menubar is visible 
+class menuBarVisible {
+	static toggled(newvalue) {
+		if (newvalue == true) {
+			document.documentElement.setAttribute("menubarvisible", "");
+		} else {
+			document.documentElement.removeAttribute("menubarvisible");
+		}
+	}
+	static check() {
+		menuBarVisible.toggled(document.getElementById("toolbar-menubar").getAttribute("autohide") == "false");
+	}
+}
+window.addEventListener("load", menuBarVisible.check);
+window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
