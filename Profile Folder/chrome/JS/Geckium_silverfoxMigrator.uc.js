@@ -85,9 +85,9 @@ class sfMigrator {
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)
-			gkPrefUtils.set("Geckium.appearance.choice").int(5); // 11
+			gkPrefUtils.set("Geckium.appearance.choice").int(11);
 		else
-			gkPrefUtils.set("Geckium.appearance.choice").int(7); // 25
+			gkPrefUtils.set("Geckium.appearance.choice").int(25);
 
 		//Profile Pictures
 		const pfp = gkPrefUtils.tryGet("silverfox.usepfp").string;

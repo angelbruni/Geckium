@@ -61,10 +61,10 @@ function createMainLayout() {
 	let appearanceChoice;
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
@@ -78,7 +78,7 @@ function createMainLayout() {
 
 	let menuBtnsContainer;
 
-	if (appearanceChoice == 0) {
+	if (appearanceChoice == 1) {
 		main = `
 		<hbox id="main">
 			<vbox flex="1">
@@ -124,10 +124,10 @@ function createMainLayout() {
 			</vbox>
 		</hbox>
 		`
-	} else if (appearanceChoice <= 4) {
+	} else if (appearanceChoice <= 6) {
 		menuBtnsContainer = "#view-toolbar";
 
-		if (appearanceChoice == 1) {
+		if (appearanceChoice == 3) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -174,7 +174,7 @@ function createMainLayout() {
 				</hbox>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 2) {
+		} else if (appearanceChoice <= 4) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -208,7 +208,7 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 3) {
+		} else if (appearanceChoice <= 5) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -243,7 +243,7 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 4) {
+		} else if (appearanceChoice <= 6) {
 			// Chrome 0 - 5
 			main = `
 			<vbox id="main">
@@ -302,7 +302,7 @@ function createMainLayout() {
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 		});
-	} else if (appearanceChoice == 5) {
+	} else if (appearanceChoice == 11) {
 		// Chrome 11
 
 		main = `
@@ -351,7 +351,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else if (appearanceChoice == 6 || appearanceChoice == 7) {
+	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
@@ -423,9 +423,9 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else if (appearanceChoice >= 8) {
+	} else if (appearanceChoice >= 47) {
 		// Chrome 47 - 50
-		if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+		if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 			header = `
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
@@ -482,7 +482,7 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 4 || appearanceChoice == 6 || appearanceChoice == 7) {
+	if (appearanceChoice <= 6 || appearanceChoice == 21 || appearanceChoice == 25) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {

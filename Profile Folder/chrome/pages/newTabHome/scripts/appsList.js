@@ -3,10 +3,10 @@ function setUpApps() {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
@@ -32,7 +32,7 @@ function setUpApps() {
 			pos = app.pos;
 			url = app.url;
 
-			if (appearanceChoice == 5) {
+			if (appearanceChoice == 11) {
 				appsContainer = "#apps-content";
 
 				icon = app.oldIcon;
@@ -51,7 +51,7 @@ function setUpApps() {
 				`
 			}
 		
-			if (appearanceChoice == 6 || appearanceChoice == 7) {
+			if (appearanceChoice == 21 || appearanceChoice == 25) {
 				appsContainer = "#apps-page .tile-grid";
 
 				icon = app.newIcon;
@@ -77,7 +77,7 @@ function setUpApps() {
 			waitForElm(appsContainer).then(function() {
 				document.querySelector(appsContainer).appendChild(MozXULElement.parseXULToFragment(tile));
 
-				if (appearanceChoice == 6 || appearanceChoice == 7) {
+				if (appearanceChoice == 21 || appearanceChoice == 25) {
 					let apps = document.querySelectorAll(appsContainer + "> .tile-container");
 					apps.forEach(app => {
 						// #region App Dragging

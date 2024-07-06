@@ -7,7 +7,7 @@ function insertGlobalVisualStyles() {
 
 	for (var i = 0; i < 9; i++) {
 		// Get the appearance details from the map
-		var appearance = gkVisualStyles.getVisualStyles("chrome")[i];
+		var appearance = gkEras.getEras("chrome")[i];
 
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `

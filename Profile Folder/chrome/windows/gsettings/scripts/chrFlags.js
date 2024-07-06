@@ -13,7 +13,7 @@ function populateFlags() {
 		let flagItem = `
 		<hbox class="item" data-pref="${flagName}">
 			<vbox>
-				<label class="name"><div class="year">Chrome ${Object.values(gkVisualStyles.getVisualStyles()).find(item => item.id === flag.styleints[0]).int}</div>${flag.name}</label>
+				<label class="name"><div class="year">Chrome ${gkEras.getEras("main")[flag.styleints[0]].name}</div>${flag.name}</label>
 				<label class="description">${flag.description}</label>
 			</vbox>
 			<spacer />

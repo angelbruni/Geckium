@@ -7,7 +7,7 @@ function insertGlobalVisualStyles() {
 
 	for (var i = 0; i < 10; i++) {
 		// Get the appearance details from the map
-		var appearance = gkVisualStyles.getVisualStyles()[i];
+		var appearance = gkEras.getEras()[i];
 
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `
@@ -38,7 +38,7 @@ function insertGlobalVisualStyles() {
 		})
 	})
 
-	document.querySelector(`#global-appearance-container input[data-appearance="${gkPrefUtils.tryGet("Geckium.appearance.choice").int}"]`).checked = true;
+	document.querySelector(`#global-appearance-container input[data-appearance="${gkEras.getEra("Geckium.appearance.choice")}"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", insertGlobalVisualStyles);
 

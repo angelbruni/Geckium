@@ -3,14 +3,14 @@ function setUpPages() {
 
 	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
 		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
 			break;
 		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 			break;
 	}
 
-	if (appearanceChoice == 6 || appearanceChoice == 7) {
+	if (appearanceChoice == 21 || appearanceChoice == 25) {
 		const pageSwitcherStart = document.getElementById("page-switcher-start");
 		const pageSwitcherEnd = document.getElementById("page-switcher-end");
 

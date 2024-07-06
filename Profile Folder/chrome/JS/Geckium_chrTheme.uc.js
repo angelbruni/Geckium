@@ -16,18 +16,18 @@ class chrTheme {
 		let appearanceChoice;
 		switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 			case true:
-				appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
+				appearanceChoice = gkEras.getEra("Geckium.main.style");
 				break;
 			default:
-				appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+				appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
 				break;
 		}
 
-		if (appearanceChoice <= 4)
+		if (appearanceChoice <= 6)
 			return [88, 118, 171];
-		else if (appearanceChoice == 5)
+		else if (appearanceChoice == 11)
 			return [87, 102, 128];
-		else if (appearanceChoice <= 9)
+		else if (appearanceChoice <= 68)
 			return [111, 111, 111];
 	}
 
