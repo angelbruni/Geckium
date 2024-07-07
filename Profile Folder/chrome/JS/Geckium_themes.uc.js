@@ -64,7 +64,7 @@ class gkSysTheme {
             era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
         }
         if (!spec || spec == {}) {
-            spec = gkTitlebars.getTitlebarSpec(gkTitlebars.getTitlebar(era), era); //Reuse the last known titlebar if we're called by a System Theme preference-change
+            spec = gkTitlebars.getTitlebarSpec(previousTitlebar, era); //Reuse the last known titlebar if we're called by a System Theme preference-change
         }
         // Get theme ID
         let theme = gkSysTheme.getTheme(spec);
