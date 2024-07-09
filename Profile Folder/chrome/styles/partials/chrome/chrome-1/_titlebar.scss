@@ -5,15 +5,11 @@
 	--toolbox-non-lwt-textcolor: light-dark(black, white);
 	//TODO: Colour Windows 10 CSDs using these variables, and get proper inactive backgrounds
 
-	//&:not([customthememode="1"]) {
-		&[lwtheme] {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-					&[captionbuttonbackground="true"] {
-						--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
-					}
-			}
+	&[gkthemed] {
+		&[captionbuttonbackground="true"] {
+			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 		}
-	//}
+	}
 	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
 		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
 	}
@@ -110,14 +106,12 @@
 	}
 
 	//Theme support
-	&[lwtheme] {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) { //TODO: change to Geckium's themed check
-			//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
-			--titlebar-active: var(--lwt-accent-color);
-			--titlebar-inactive: var(--titlebar-active);
-			--titlebar-foreground: var(--lwt-text-color);
-			--titlebar-foreground-inactive: var(--lwt-text-color);
-		}
+	&[gkthemed] {
+		//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
+		--titlebar-active: var(--lwt-accent-color);
+		--titlebar-inactive: var(--titlebar-active);
+		--titlebar-foreground: var(--lwt-text-color);
+		--titlebar-foreground-inactive: var(--lwt-text-color);
 	} //TODO: Should variables assignment just be done in JS, to simplify the process? Could do QML style ? ... : ... one-liners even...?
 
 

@@ -48,10 +48,8 @@
 
 	--placed-chevron-width: 15px;
 
-	@media (prefers-color-scheme: dark) {
-		&[lwtheme-id="firefox-compact-dark@mozilla.org"] {
-			--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-		}
+	&[gkdark] {
+		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 
 	&[chromehidden~="toolbar"] {
@@ -83,7 +81,7 @@
 	}
 
 	// if lwtheme == gtkplus
-	&[gksystheme="gtk"]:not([lwtheme]) { //TODO: Check for Light and Dark
+	&[gksystheme="gtk"]:not([lwtheme]) {
 		--toolbarbutton-texture: var(--nav-bar) !important;
 		--toolbarbutton-inner-border-color-normal: transparent;
 		--toolbarbutton-inner-border-color-hot: transparent;
@@ -174,125 +172,120 @@
 	// else if !lwtheme
 	&[customthememode="2"],
 	&[lwtheme-id*="compact-light"],
-	&:not([lwtheme]) {
+	&:not([lwtheme]) { //TODO
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
-	&[lwtheme] {
-		/* bruni: This entire code takes care of custom themes support for toolbars */
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			//&:not([lwtheme-id*="#{$gtkplus}"]) {				
-				&:not([customthememode="2"]) {
-					--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
+	&[gkthemed] {
+		&:not([customthememode="2"]) {
+			--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
-					--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
-					--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
-					// --inner-border-color: var(--nav-bar) !important;
+			// --inner-border-color: var(--nav-bar) !important;
 
-					&[personalbar="newtab"] {
-						--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-						--personal-toolbar-border: color-mix(
-							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-							black
-						) !important;
-					}
+			&[personalbar="newtab"] {
+				--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+				--personal-toolbar-border: color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+					black
+				) !important;
+			}
 
-					--toolbarbutton-border-color-normal: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-						white
-					) !important;
-					--toolbarbutton-border-color-hot: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
-						white
-					) !important;
-					--toolbarbutton-border-color-active: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
-						white
-					) !important;
-					--toolbarbutton-inner-border-color-normal: color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 30%,
-						transparent
-					) !important;
-					--toolbarbutton-inner-border-color-hot: color-mix(
-						in srgb,
-						var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 50%,
-						transparent
-					) !important;
+			--toolbarbutton-border-color-normal: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+				white
+			) !important;
+			--toolbarbutton-border-color-hot: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
+				white
+			) !important;
+			--toolbarbutton-border-color-active: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+				white
+			) !important;
+			--toolbarbutton-inner-border-color-normal: color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 30%,
+				transparent
+			) !important;
+			--toolbarbutton-inner-border-color-hot: color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 50%,
+				transparent
+			) !important;
 
-					&[style*="--toolbar-color"] {
-						&:not([style*="--toolbarbutton-icon-fill"]) {
-							--toolbarbutton-icon-fill: var(--toolbar-color) !important;
-						}
-
-						--toolbarbutton-inner-border-color-normal: color-mix(
-							in srgb,
-							var(--toolbarbutton-icon-fill, var(--toolbar-color)) 30%,
-							transparent
-						) !important;
-						--toolbarbutton-inner-border-color-hot: color-mix(
-							in srgb,
-							var(--toolbarbutton-icon-fill, var(--toolbar-color)) 50%,
-							transparent
-						) !important;
-					}
-
-					--toolbarbutton-texture: linear-gradient(
-						to bottom,
-						color-mix(
-							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-							white
-						),
-						color-mix(
-							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-							white
-						)
-					) !important;
-
-					--navigation-buttons-separator: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-						white
-					) !important;
-
-					#urlbar-background {
-						color: var(--lwt-text-color) !important;
-					}
-
-					--urlbar-border: var(--toolbarbutton-border-color-normal) !important;
+			&[style*="--toolbar-color"] {
+				&:not([style*="--toolbarbutton-icon-fill"]) {
+					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
 				}
 
-				// if FXChrome
-				&[customthememode="0"] {
-					&[toolbar-bgcolor-transparent="true"] {
-						--nav-bar: linear-gradient(
-							to bottom,
-							var(--gktoolbar-bgcolor),
-							var(--toolbar-bgcolor) 50%
-						) !important;
-						--personal-toolbar: var(--toolbar-bgcolor) !important;
-					}
-				}
-				// if Silverfox
-				&[customthememode="1"] {
-					&[toolbar-bgcolor-transparent="true"] {
-						--nav-bar: linear-gradient(
-							to bottom,
-							var(--gktoolbar-bgcolor) 25%,
-							transparent
-						) !important;
-						--personal-toolbar: transparent !important;
-					}
-				}
-			//}
+				--toolbarbutton-inner-border-color-normal: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill, var(--toolbar-color)) 30%,
+					transparent
+				) !important;
+				--toolbarbutton-inner-border-color-hot: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill, var(--toolbar-color)) 50%,
+					transparent
+				) !important;
+			}
+
+			--toolbarbutton-texture: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+					white
+				),
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					white
+				)
+			) !important;
+
+			--navigation-buttons-separator: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+				white
+			) !important;
+
+			#urlbar-background {
+				color: var(--lwt-text-color) !important;
+			}
+
+			--urlbar-border: var(--toolbarbutton-border-color-normal) !important;
+		}
+
+		// if FXChrome
+		&[customthememode="0"] {
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor),
+					var(--toolbar-bgcolor) 50%
+				) !important;
+				--personal-toolbar: var(--toolbar-bgcolor) !important;
+			}
+		}
+		// if Silverfox
+		&[customthememode="1"] {
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor) 25%,
+					transparent
+				) !important;
+				--personal-toolbar: transparent !important;
+			}
 		}
 	}
 	// else if chrtheme

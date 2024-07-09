@@ -116,48 +116,46 @@
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
 	// else if lwtheme
-	&[lwtheme] {
+	&[gkthemed] {
 		&:not([customthememode="2"]) {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-					--inactive-tab-background: color-mix(
-						in srgb,
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
+			--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+			--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
+
+			// if FXChrome
+			&[customthememode="0"] {
+				&[toolbar-bgcolor-transparent="true"] {
+					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				}
+			}
+			// if Silverfox
+			&[customthememode="1"] {
+				&[toolbar-bgcolor-transparent="true"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						transparent -50%,
+						var(--gktoolbar-bgcolor) 70%
+					) !important;
+
+					--inactive-tab-background: linear-gradient(
+						to bottom,
+						transparent -10%,
 						color-mix(
 							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-							black
-						) 80%,
-						transparent
+							var(--gktoolbar-bgcolor) 70%,
+							transparent
+						) 60%
 					) !important;
-					--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-					--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
-
-					// if FXChrome
-					&[customthememode="0"] {
-						&[toolbar-bgcolor-transparent="true"] {
-							--selected-tab-background: var(--gktoolbar-bgcolor) !important;
-						}
-					}
-					// if Silverfox
-					&[customthememode="1"] {
-						&[toolbar-bgcolor-transparent="true"] {
-							--selected-tab-background: linear-gradient(
-								to bottom,
-								transparent -50%,
-								var(--gktoolbar-bgcolor) 70%
-							) !important;
-
-							--inactive-tab-background: linear-gradient(
-								to bottom,
-								transparent -10%,
-								color-mix(
-									in srgb,
-									var(--gktoolbar-bgcolor) 70%,
-									transparent
-								) 60%
-							) !important;
-						}
-					}
+				}
 			}
 		}
 	}

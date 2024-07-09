@@ -23,27 +23,19 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				--lower-sections-border-color: color-mix(
-					in srgb,
-					var(--thumbnail-border-color-normal) 70%,
-					white
-				) !important;
+	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+		--lower-sections-border-color: color-mix(
+			in srgb,
+			var(--thumbnail-border-color-normal) 70%,
+			white
+		) !important;
 
-				//&:not([lwtheme-id*="#{$gtkplus}"]) {
-					--lower-sections-h2-background: linear-gradient(
-						to bottom,
-						var(--thumbnail-border-color-normal),
-						var(--thumbnail-border-color-normal)
-					) !important;
-				//}
-				// &[lwtheme-id*="#{$gtkplus}"] {
-				// 	--lower-sections-h2-background: var(--edit-bar-background-hot) !important;
-				// }
-			}
+		&:not([gksystheme="gtk"]) {
+			--lower-sections-h2-background: linear-gradient(
+				to bottom,
+				var(--thumbnail-border-color-normal),
+				var(--thumbnail-border-color-normal)
+			) !important;
 		}
 	}
 	// chrtheme

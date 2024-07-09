@@ -7,25 +7,6 @@
 
 	--personal-toolbar-height: 23px;
 
-	// else if lwtheme
-	&[lwtheme] {
-		/* bruni: This entire code takes care of custom themes support for toolbars */
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				@import "titlebar/classic";
-		}
-	}
-	// else if chrtheme
-	&[lwtheme-id*="compact-light"][chrtheme="true"] {
-		@import "titlebar/classic";
-	}
-	
-	/*&[customthememode="2"],
-	&:not([lwtheme-id*="compact-light"]),
-	&[lwtheme-id="#{$gtkplus}"],
-	&:not([chrtheme="true"]) {
-		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
-	}*/
-
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
 			#fxa-toolbar-menu-button,

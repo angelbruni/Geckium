@@ -1,10 +1,8 @@
 & {
     //&:not([customthememode="1"]) {
-		&[lwtheme] {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-					&[captionbuttonbackground="true"] {
-						--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
-					}
+		&[gkthemed] {
+			&[captionbuttonbackground="true"] {
+				--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 			}
 		}
 	//}

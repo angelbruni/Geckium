@@ -152,7 +152,7 @@
     }
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
+	&[gksystheme="gtk"]:not([lwtheme]) {
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
             to bottom,
