@@ -73,34 +73,12 @@ class gkSysTheme {
         let theme = gkSysTheme.getTheme(spec);
         // Apply System Theme
         previousSysTheme = theme; //used in toggleFallbackTheme
-        if (isThemed != true) {
+        if (isThemed == true) {
+            document.documentElement.setAttribute("gksystheme", gkSysTheme.fallbacks[theme]);
+        } else {
             document.documentElement.setAttribute("gksystheme", theme);
-        } else {
-            gkSysTheme.toggleFallbackTheme(true);
         }
-        gkSysTheme.triggerConditionVars();
-    }
-
-    /** toggleFallbackTheme - Enables or disables the currently set System Theme's fallback theme
-     * 
-     * @value: Boolean - enables fallback theme if true, reverts to current System Theme if false
-     */
-
-    static toggleFallbackTheme(value) {
-        if (!Object.keys(gkSysTheme.fallbacks).includes(previousSysTheme)) {
-            throw new Error(previousSysTheme + " is not a valid System Theme");
-        }
-        if (value == true) {
-            document.documentElement.setAttribute("gksystheme", gkSysTheme.fallbacks[previousSysTheme]);
-        } else {
-            document.documentElement.setAttribute("gksystheme", previousSysTheme);
-        }
-    }
-
-    /** triggerConditionVars - Triggers each special System Themes' variable refresh calls
-     */
-
-    static triggerConditionVars() {
+        // Trigger special System Themes' variable refreshers
         gkGTK.apply();
     }
 }
@@ -213,10 +191,125 @@ window.addEventListener("nativethemechange", gkGTK.apply);
 // System Theme: Geckium You
 
 
-// Light and Dark 'theme' checks
 
+// Firefox LWThemes, and Light and Dark 'theme' checks
+class gkLWTheme {
+    static palettes = {
+        "light": {
+            "--lwt-accent-color": "rgb(240, 240, 244)",
+            "--lwt-text-color": "rgba(21, 20, 26)"
+        },
+        "dark": {
+            "--lwt-accent-color": "rgb(28, 27, 34)",
+            "--lwt-text-color": "rgba(251, 251, 254)"
+        }
+    }
+    static palettesMatch(type) {
+        for (const i of Object.keys(gkLWTheme.palettes[type])) {
+            if (document.documentElement.style.getPropertyValue(i) != gkLWTheme.palettes[type][i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-// Firefox LWThemes
+    static get isDark() {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return true;
+        }
+        let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+        if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
+            return true;
+        }
+        return false;
+    }
+    static get isThemed() {
+        let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+        if (current.startsWith("default-theme@")) {
+            if (document.documentElement.getAttribute("lwtheme") == "true") {
+                if (document.documentElement.getAttribute("lwt-default-theme-in-dark-mode") == "true") {
+                    // Seriously, Mozilla??
+                    return false; //System Theme - Dark Mode
+                } else {
+                    return true;
+                }
+            } else {
+                return false; //System Theme
+            }
+        } else if (current.startsWith("firefox-compact-light@") && gkLWTheme.palettesMatch("light")) {
+            return false; //Light Theme
+        } else if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
+            return false; //Dark Theme
+        } else if (document.documentElement.getAttribute("lwtheme") != "true") {
+            return false; //Bugged State - Add-on like Firefox Color was just disabled, causing the LWTheme to be 'disabled'
+        }
+        return true;
+    }
+
+    static setThemeAttrs() {
+        // This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
+        //TODO: Call in Chrome Themes class to check if correct theme is used - if not disable Chrome Theme
+        setTimeout(async () => {
+            if (gkLWTheme.isDark) {
+                document.documentElement.setAttribute("gkdark", true);
+            } else {
+                document.documentElement.removeAttribute("gkdark");
+            }
+            isThemed = gkLWTheme.isThemed;
+            // Delete lwtheme-specific variable (if tgethemed, it gets remade)
+            document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+            if (isThemed) {
+                document.documentElement.setAttribute("gkthemed", true);
+                // lwtheme information TODO: still needed?
+                document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
+                // Ensure the toolbar colour is opaque
+                const toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
+                if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
+                    const tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").split(",");
+                    // if the colour is transparent...
+                    if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
+                        document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
+                    } else {
+                        document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
+                    }
+                }
+            } else {
+                document.documentElement.removeAttribute("gkthemed");
+                // Delete lwtheme indicator TODO: still needed?
+                document.documentElement.removeAttribute("lwtheme-id");
+            }
+            // Reapply System Theme to toggle fallback usage
+            gkSysTheme.applyTheme();
+        }, 0);
+    }
+
+    // LWTheme Toolbar Background Modes
+	static get getCustomThemeMode() {
+		switch (gkPrefUtils.tryGet("Geckium.customtheme.mode").int) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+    static customThemeModeChanged() {
+		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
+    }
+}
+const lwObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkLWTheme.customThemeModeChanged();
+		}
+	},
+};
+window.addEventListener("load", gkLWTheme.customThemeModeChanged);
+Services.prefs.addObserver("Geckium.customtheme.mode", lwObserver, false);
+
+window.addEventListener("load", gkLWTheme.setThemeAttrs);
+Services.obs.addObserver(gkLWTheme.setThemeAttrs, "lightweight-theme-styling-update");
 
 
 // Chrome Themes
