@@ -6,41 +6,34 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				//&:not([lwtheme-id*="#{$gtkplus}"]) {
-					&[style*="--lwt-newtab-attribution-image"] {
-						#attribution {
-							display: flex !important;
-						}
-
-						#attribution-img {
-							background-image: var(--lwt-newtab-attribution-image) !important;
-							width: var(--lwt-newtab-attribution-width) !important;
-							height: var(--lwt-newtab-attribution-height) !important;
-						}
-					}
-
-					body {
-						background-color: var(--newtab-background-color);
-						background-image: var(--lwt-newtab-background-image, var(--lwt-newtab-image));
-						image-rendering: var(--lwt-newtab-image-rendering);
-						background-size: var(--lwt-newtab-background-size);
-						background-position: var(--lwt-newtab-background-position);
-
-						&[style*="--lwt-newtab-background-position-y"] {
-							background-position-x: var(--lwt-newtab-background-position-x);
-						}
-						&[style*="--lwt-newtab-background-position-y"] {
-							background-position-x: var(--lwt-newtab-background-position-y);
-						}
-
-						background-repeat: var(--lwt-newtab-background-repeat);
-					}
-				//}
+	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+		&[style*="--lwt-newtab-attribution-image"] {
+			#attribution {
+				display: flex !important;
 			}
+
+			#attribution-img {
+				background-image: var(--lwt-newtab-attribution-image) !important;
+				width: var(--lwt-newtab-attribution-width) !important;
+				height: var(--lwt-newtab-attribution-height) !important;
+			}
+		}
+
+		body {
+			background-color: var(--newtab-background-color);
+			background-image: var(--lwt-newtab-background-image, var(--lwt-newtab-image));
+			image-rendering: var(--lwt-newtab-image-rendering);
+			background-size: var(--lwt-newtab-background-size);
+			background-position: var(--lwt-newtab-background-position);
+
+			&[style*="--lwt-newtab-background-position-y"] {
+				background-position-x: var(--lwt-newtab-background-position-x);
+			}
+			&[style*="--lwt-newtab-background-position-y"] {
+				background-position-x: var(--lwt-newtab-background-position-y);
+			}
+
+			background-repeat: var(--lwt-newtab-background-repeat);
 		}
 	}
 	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {

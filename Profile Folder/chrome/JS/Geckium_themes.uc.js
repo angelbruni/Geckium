@@ -256,8 +256,9 @@ class gkLWTheme {
                 document.documentElement.removeAttribute("gkdark");
             }
             isThemed = gkLWTheme.isThemed;
-            // Delete lwtheme-specific variable (if tgethemed, it gets remade)
+            // Delete lwtheme-specific variable (if themed, they get remade)
             document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+            document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
             if (isThemed) {
                 document.documentElement.setAttribute("gkthemed", true);
                 // lwtheme information TODO: still needed?
@@ -268,6 +269,7 @@ class gkLWTheme {
                     const tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").split(",");
                     // if the colour is transparent...
                     if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
+                        document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
                         document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
                     } else {
                         document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
