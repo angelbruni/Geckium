@@ -22,9 +22,8 @@
 
 		// Custom theme support
 		// lwtheme
-		&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+		&[gkthemed] {
 			--tab-glare-color: var(--tabbrowser-tab-color);
-			--tab-glare-opacity: .5;
 		}
 	}
 

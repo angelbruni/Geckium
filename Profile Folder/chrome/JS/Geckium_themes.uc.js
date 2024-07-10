@@ -171,9 +171,23 @@ class gkGTK {
             gkGTK.removeVariables();
 		}
 	}
+
+    static enableMoreIcons() {
+        document.documentElement.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);
+    }
 }
 //NOTE: gkGTK.apply is called by gkSysTheme.applyTheme
 window.addEventListener("nativethemechange", gkGTK.apply);
+
+window.addEventListener("load", gkGTK.enableMoreGTKIcons);
+const GTKIconsObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkGTK.enableMoreGTKIcons();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", GTKIconsObserver, false);
 
 
 // System Theme: Geckium You
@@ -301,6 +315,11 @@ class gkLWTheme {
     static customThemeModeChanged() {
 		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
     }
+
+    // LWTheme Titlebar Button Backgrounds
+    static lwThemeApplyBackgroundCaptionButtons() {
+        document.documentElement.setAttribute("captionbuttonbackground", gkPrefUtils.tryGet("Geckium.lwtheme.captionButtonBackground").bool)
+    }
 }
 window.addEventListener("load", gkLWTheme.setThemeAttrs);
 Services.obs.addObserver(gkLWTheme.setThemeAttrs, "lightweight-theme-styling-update");
@@ -314,6 +333,16 @@ const lwObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.customtheme.mode", lwObserver, false);
+
+window.addEventListener("load", gkLWTheme.lwThemeApplyBackgroundCaptionButtons);
+const lwThemeApplyBackgroundCaptionButtonsObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkLWTheme.lwThemeApplyBackgroundCaptionButtons();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.lwtheme.captionButtonBackground", lwThemeApplyBackgroundCaptionButtonsObs, false);
 
 
 // Chrome Themes
