@@ -37,9 +37,6 @@
 	--tab-content-y-from-top: 0;
 	--tab-gap-between: -16px;
 
-	--inactive-tab-background: var(--default-inactive-tab-background);
-	--selected-tab-background: var(--default-selected-tab-background);
-
 	--tab-glare-opacity: 1;
 	--tab-glare: var(--default-tab-glare);
 	--tab-glare-hover-timer: 0.1s; // 0.5s
@@ -85,6 +82,10 @@
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.png");
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_h.png");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_p.png");
+
+	&[gktitnative="true"] { // Use native tab background when in native
+		--default-inactive-tab-background: var(--default-inactive-tab-background-native);
+	}
 
 	&[geckium-choice="one"],
 	&[geckium-choice="three"],
@@ -168,7 +169,7 @@
 		&[geckium-choice="four"],
 		&[geckium-choice="five"],
 		&[geckium-choice="six"] {
-			--tab-glare: var(--selected-tab-background) !important;
+			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
 		}
 
 		--inactive-tab-background: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-inactive-tab-background-color))) !important;
@@ -266,7 +267,7 @@
 
 		.tab-background-container {
 			&::before {
-				background: var(--selected-tab-background);
+				background: var(--selected-tab-background, var(--default-selected-tab-background));
 			}
 		}
 
@@ -285,7 +286,7 @@
 		.tab-background-container {
 			> * {
 				&::before {
-					background: var(--inactive-tab-background);
+					background: var(--inactive-tab-background, var(--default-inactive-tab-background));
 				}
 			}
 		}
@@ -440,7 +441,7 @@
 	}
 
 	&::before {
-		background: var(--inactive-tab-background);
+		background: var(--inactive-tab-background, var(--default-inactive-tab-background));
 
 		mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
 		mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
