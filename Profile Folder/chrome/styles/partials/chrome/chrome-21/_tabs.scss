@@ -28,7 +28,7 @@
 	--newtab-distance-from-tabs: 17px;
 	--newtab-width: 34px;
 
-	--newtab-normal: var(--inactive-tab-background);
+	--newtab-normal: var(--inactive-tab-background, var(--default-inactive-tab-background));
 	--newtab-hot: rgba(255, 255, 255, 0.8);
 	--newtab-active: rgb(211, 217, 225, 0.4);
 	
