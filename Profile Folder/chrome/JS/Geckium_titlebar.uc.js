@@ -333,7 +333,7 @@ class gkTitlebars {
     }
 
     /**
-     * getCanNative - Returns True if the titlebar can be native
+     * getNative - Returns True if the titlebar should be native
      */
 
     static getNative(spec) {
@@ -351,6 +351,12 @@ class gkTitlebars {
                 // Check if titlebar is automatically native
                 if (spec.native == false) {
                     return false;
+                }
+                // If on Windows, check the compositor is turned off
+                if (AppConstants.platform == "win") {
+                    if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
+                        return false;
+                    }
                 }
                 break;
         }
