@@ -1,6 +1,10 @@
 & {
     //Give the tabs/Incognito the appropriate offset
-	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+	#private-browsing-indicator-with-label {
+        order: 1000 !important;
+        transform: scaleX(-1);
+    }
+    &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
         &:not([privatebrowsingmode="temporary"]) {
             #TabsToolbar-customization-target {
                 margin-inline-end: calc(var(--content-border-width) + 1px);
@@ -8,8 +12,6 @@
         }
         &[privatebrowsingmode="temporary"] {
             #private-browsing-indicator-with-label {
-                order: 1000 !important;
-                transform: scaleX(-1);
                 margin-inline-end: calc(var(--content-border-width) + 2px) !important;
             }
         }
