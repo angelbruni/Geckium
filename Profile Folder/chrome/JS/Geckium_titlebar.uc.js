@@ -336,8 +336,32 @@ class gkTitlebars {
      * getCanNative - Returns True if the titlebar can be native
      */
 
-    static getNative(spec, era) {
-        return false; //TODO
+    static getNative(spec) {
+        // Check if titlebar blocks being native
+        if (spec.cannative == false) {
+            return false;
+        }
+        // Check if user blocked native titlebar or is Automatic
+        switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarNative").int) {
+            case 1: //Enabled
+                break;
+            case 2: //Disabled
+                return false;
+            default: //Automatic
+                // Check if titlebar is automatically native
+                if (spec.native == false) {
+                    return false;
+                }
+                break;
+        }
+        // If in a theme...
+        if (isThemed == true) {
+            if (!isChromeThemed) {
+                return false; // Firefox themes are never native
+            }
+            //TODO: Chrome Theme setting and native checks
+        }
+        return true; //TODO
 
         /**
          * 1. Check if the titlebar style blocks going native
@@ -379,7 +403,7 @@ class gkTitlebars {
         document.documentElement.setAttribute("gktitstyle", spec.border);
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         // Check native titlebar mode eligibility
-        if (gkTitlebars.getNative(spec, era)) {
+        if (gkTitlebars.getNative(spec)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
             // chromemargin (border type)
@@ -403,20 +427,7 @@ class gkTitlebars {
             }
             document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
         }
-
-
         previousTitlebar = titlebar;
-
-
-
-        // Workflow:
-        //- Era is set in the browser on load
-        //1. Titlebar is set on load
-        //2. Titlebar call tells system theme loader to set System Theme
-        //- New call in themes: getPreferredSystemTheme
-        //1. Gets titlebar using getTitlebar()
-        //2. Gets the titlebar spec
-        //3. Returns value corresponding to the system theme used
     }
 }
 window.addEventListener("load", () => gkTitlebars.applyTitlebar());
@@ -431,4 +442,6 @@ const titObserver = {
 };
 Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarNative", titObserver, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", titObserver, false);
 Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
