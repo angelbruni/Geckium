@@ -2,6 +2,7 @@
 // @name        Geckium - Theme Manager
 // @author      Dominic Hayes
 // @loadorder   2
+// @include		main
 // ==/UserScript==
 
 // Initial variables
@@ -11,18 +12,8 @@ let isChromeThemed;
 
 // System Theme Management
 class gkSysTheme {
-    static fallbacks = { //TODO: See if the theme reps should be stored here or in the xhtml for translatability reasons
-        /**
-         * - theme ID
-         *      - fallback ID - determines which System Theme to use when Geckium is themed
-         */
-        "classic": "classic",
-        "gtk": "classic",
-        "macos": "macos",
-        "macosx": "macosx",
-        "chromeos": "chromeos",
-        "you": "classic"
-    }
+     //TODO: See if the theme reps should be stored here or in the xhtml for translatability reasons
+    static systhemes = ["classic", "gtk", "macos", "macosx", "chromeos", "you"]
 
     /**
      * getPreferredTheme - Gets the era's preferred System Theme for your platform
@@ -49,7 +40,7 @@ class gkSysTheme {
 
     static getTheme(spec) {
         let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.systemTheme").string;
-        if (Object.keys(gkSysTheme.fallbacks).includes(prefChoice)) {
+        if (gkSysTheme.systhemes.includes(prefChoice)) {
             return prefChoice;
         }
         return gkSysTheme.getPreferredTheme(spec);
@@ -64,26 +55,21 @@ class gkSysTheme {
 
     static applyTheme(era, spec) {
         if (!era) {
-            era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
+            era = gkEras.getEra("Geckium.appearance.choice");
         }
         if (!spec || spec == {}) {
-            spec = gkTitlebars.getTitlebarSpec(previousTitlebar, era); //Reuse the last known titlebar if we're called by a System Theme preference-change
+            spec = gkTitlebars.getTitlebarSpec(era);
         }
         // Get theme ID
         let theme = gkSysTheme.getTheme(spec);
         // Apply System Theme
-        previousSysTheme = theme; //used in toggleFallbackTheme
-        if (isThemed == true) {
-            document.documentElement.setAttribute("gksystheme", gkSysTheme.fallbacks[theme]);
-        } else {
-            document.documentElement.setAttribute("gksystheme", theme);
-        }
+        previousSysTheme = theme;
+        document.documentElement.setAttribute("gksystheme", theme);
         // Trigger special System Themes' variable refreshers
         gkGTK.apply();
     }
 }
-// NOTE: applyTheme is automatically called by applyTitlebar
-
+window.addEventListener("load", () => gkSysTheme.applyTheme());
 // Automatically change the titlebar when the setting changes
 const sysThemeObserver = {
 	observe: function (subject, topic, data) {
@@ -92,6 +78,8 @@ const sysThemeObserver = {
 		}
 	},
 };
+Services.prefs.addObserver("Geckium.appearance.choice", sysThemeObserver, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", sysThemeObserver, false);
 Services.prefs.addObserver("Geckium.appearance.systemTheme", sysThemeObserver, false);
 
 
@@ -177,7 +165,7 @@ class gkGTK {
     }
 
 	static apply() {
-		if (previousSysTheme == "gtk") {
+		if (previousSysTheme == "gtk" && isBrowserWindow) {
 			gkGTK.setVariables();
         } else {
             gkGTK.removeVariables();
@@ -223,16 +211,30 @@ class gkLWTheme {
         }
         return false;
     }
+    static get pageisSysTheme() {
+        if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "white") {
+            return false;
+        }
+        if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
+            return false;
+        }
+        if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+            return false;
+        }
+        return true;
+    }
     static get isThemed() {
         let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
         if (current.startsWith("default-theme@")) {
-            if (document.documentElement.getAttribute("lwtheme") == "true") {
+            if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") == "true") {
                 if (document.documentElement.getAttribute("lwt-default-theme-in-dark-mode") == "true") {
                     // Seriously, Mozilla??
                     return false; //System Theme - Dark Mode
                 } else {
                     return true;
                 }
+            } else if (!isBrowserWindow && !gkLWTheme.pageisSysTheme) {
+                return true;
             } else {
                 return false; //System Theme
             }
@@ -240,7 +242,7 @@ class gkLWTheme {
             return false; //Light Theme
         } else if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
             return false; //Dark Theme
-        } else if (document.documentElement.getAttribute("lwtheme") != "true") {
+        } else if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") != "true") {
             return false; //Bugged State - Add-on like Firefox Color was just disabled, causing the LWTheme to be 'disabled'
         }
         return true;
@@ -300,18 +302,18 @@ class gkLWTheme {
 		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
     }
 }
+window.addEventListener("load", gkLWTheme.setThemeAttrs);
+Services.obs.addObserver(gkLWTheme.setThemeAttrs, "lightweight-theme-styling-update");
+
+window.addEventListener("load", gkLWTheme.customThemeModeChanged);
 const lwObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			gkLWTheme.customThemeModeChanged();
+    observe: function (subject, topic, data) {
+        if (topic == "nsPref:changed") {
+            gkLWTheme.customThemeModeChanged();
 		}
 	},
 };
-window.addEventListener("load", gkLWTheme.customThemeModeChanged);
 Services.prefs.addObserver("Geckium.customtheme.mode", lwObserver, false);
-
-window.addEventListener("load", gkLWTheme.setThemeAttrs);
-Services.obs.addObserver(gkLWTheme.setThemeAttrs, "lightweight-theme-styling-update");
 
 
 // Chrome Themes

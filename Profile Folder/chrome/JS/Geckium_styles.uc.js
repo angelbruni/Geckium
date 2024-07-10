@@ -247,7 +247,6 @@ class gkEras {
         
         if (isBrowserWindow) {
             dispatchEvent(appearanceChanged);
-            gkTitlebars.applyTitlebar(prefChoice);
         }
     }
 }
