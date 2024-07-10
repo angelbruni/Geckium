@@ -357,6 +357,8 @@ class gkTitlebars {
                     if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
                         return false;
                     }
+                } else if (AppConstants.platform == "macosx") {
+                    return false; // Always return auto=non-native on macOS
                 }
                 break;
         }
