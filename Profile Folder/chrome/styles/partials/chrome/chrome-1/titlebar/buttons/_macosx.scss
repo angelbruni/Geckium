@@ -1,4 +1,19 @@
 & {
+    //Give the tabs/Incognito the appropriate offset
+	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+        &:not([privatebrowsingmode="temporary"]) {
+            #TabsToolbar-customization-target {
+                margin-inline-end: calc(var(--content-border-width) + 1px);
+            }
+        }
+        &[privatebrowsingmode="temporary"] {
+            #private-browsing-indicator-with-label {
+                order: 1000 !important;
+                margin-inline-end: calc(var(--content-border-width) + 2px) !important;
+            }
+        }
+    }
+
     //Show the Google logo before the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
         .titlebar-buttonbox-container {
