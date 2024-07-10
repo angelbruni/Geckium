@@ -285,7 +285,9 @@ window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
 // Custom tab glare colouring
 class customTabGlare {
     static toggle() {
-        document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool)
+        if (isBrowserWindow) {
+            document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool);
+        }
     }
 }
 window.addEventListener("load", customTabGlare.toggle);

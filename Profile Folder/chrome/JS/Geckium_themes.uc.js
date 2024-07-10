@@ -303,13 +303,12 @@ class gkLWTheme {
 
     // LWTheme Toolbar Background Modes
 	static get getCustomThemeMode() {
-		switch (gkPrefUtils.tryGet("Geckium.customtheme.mode").int) {
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            default:
-                return 0;
+        let modes = ["fxchrome", "silverfox", "none"]; // TODO: firefox
+        let prefChoice = gkPrefUtils.tryGet("Geckium.customtheme.mode").string;
+        if (modes.includes(prefChoice)) {
+            return prefChoice;
+        } else {
+            return modes[0];
         }
     }
     static customThemeModeChanged() {

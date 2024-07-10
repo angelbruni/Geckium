@@ -170,14 +170,14 @@
 		}
 	}
 	// else if !lwtheme
-	&[customthememode="2"],
+	&[customthememode="none"],
 	&[lwtheme-id*="compact-light"],
 	&:not([lwtheme]) { //TODO
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
 	&[gkthemed] {
-		&:not([customthememode="2"]) {
+		&:not([customthememode="none"]) {
 			--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
 			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
@@ -266,7 +266,7 @@
 		}
 
 		// if FXChrome
-		&[customthememode="0"] {
+		&[customthememode="fxchrome"] {
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
@@ -277,7 +277,7 @@
 			}
 		}
 		// if Silverfox
-		&[customthememode="1"] {
+		&[customthememode="silverfox"] {
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
