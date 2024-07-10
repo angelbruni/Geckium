@@ -24,6 +24,7 @@
 			&[privatebrowsingmode="temporary"] {
 				#private-browsing-indicator-with-label {
 					order: 1000 !important; //Force to right
+					transform: scaleX(-1);
 					margin-inline-end: calc(var(--content-border-width) + 2px) !important;
 				}
 			}
