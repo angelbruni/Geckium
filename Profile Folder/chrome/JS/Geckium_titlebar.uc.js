@@ -248,12 +248,18 @@ class gkTitlebars {
     /**
      * getTitlebarSpec - Collates and returns the chosen titlebar's specifications
      * 
-     * @style: ID of the titlebar style to use - throws an exception if invalid
-     * 
      * @era: Maximum era for titlebar style settings
+     * 
+     * @style: ID of the titlebar style to use - throws an exception if invalid
      */
 
-    static getTitlebarSpec(style, era) {
+    static getTitlebarSpec(era, style) {
+        if (!era) {
+            era = gkEras.getEra("Geckium.appearance.choice");
+        }
+        if (!style) {
+            style = gkTitlebars.getTitlebar(era);
+        }
         var result = {};
         if (!Object.keys(gkTitlebars.titlebars).includes(style)) {
             throw new Error(style + " is not a valid titlebar style");
@@ -330,7 +336,7 @@ class gkTitlebars {
      * getCanNative - Returns True if the titlebar can be native
      */
 
-    static getCanNative(spec, era) {
+    static getNative(spec, era) {
         return false; //TODO
 
         /**
@@ -347,6 +353,8 @@ class gkTitlebars {
          * 5. If unthemed, check if user has overridden to False
          *  - False if yes
          * Return True if all checks have been exhausted
+         * 
+         * Return False if System Theme is GTK+ and Light or Dark is set
          */
     }
 
@@ -358,17 +366,20 @@ class gkTitlebars {
      */
 
     static applyTitlebar(era) {
+        if (!isBrowserWindow) {
+            return;
+        }
         if (!era) {
-            era = previousEra; //Reuse the last known era if we're called by a titlebar style-change
+            era = gkEras.getEra("Geckium.appearance.choice");
         }
         // Get spec about the current titlebar
         let titlebar = gkTitlebars.getTitlebar(era);
-        let spec = gkTitlebars.getTitlebarSpec(titlebar, era);
+        let spec = gkTitlebars.getTitlebarSpec(era, titlebar);
         // Apply titlebar and button style
         document.documentElement.setAttribute("gktitstyle", spec.border);
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         // Check native titlebar mode eligibility
-        if (gkTitlebars.getCanNative(spec, era)) {
+        if (gkTitlebars.getNative(spec, era)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
             // chromemargin (border type)
@@ -395,8 +406,6 @@ class gkTitlebars {
 
 
         previousTitlebar = titlebar;
-        //Update System Theme choice
-        gkSysTheme.applyTheme(era, spec);
 
 
 
@@ -410,7 +419,7 @@ class gkTitlebars {
         //3. Returns value corresponding to the system theme used
     }
 }
-// NOTE: applyTitlebar is automatically called by applyEra
+window.addEventListener("load", () => gkTitlebars.applyTitlebar());
 
 // Automatically change the titlebar when the setting changes
 const titObserver = {
@@ -420,5 +429,6 @@ const titObserver = {
 		}
 	},
 };
+Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
 Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
