@@ -1,5 +1,8 @@
 & {
 	//Give the tabs/Incognito the appropriate offset
+	#private-browsing-indicator-with-label {
+		order: -1 !important;
+	}
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 		&:not([privatebrowsingmode="temporary"]) {
 			#TabsToolbar-customization-target {
@@ -8,7 +11,6 @@
 		}
 		&[privatebrowsingmode="temporary"] {
 			#private-browsing-indicator-with-label {
-				order: -1 !important;
 				margin-inline-start: calc(var(--content-border-width) + 2px) !important;
 			}
 		}

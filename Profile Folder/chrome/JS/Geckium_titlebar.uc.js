@@ -352,9 +352,9 @@ class gkTitlebars {
                 if (spec.native == false) {
                     return false;
                 }
-                // If on Windows, check the compositor is turned off
+                // If on Windows, check the compositor is turned off (before 117)
                 if (AppConstants.platform == "win") {
-                    if (!window.matchMedia("(-moz-windows-compositor: 1)").matches) {
+                    if (window.matchMedia("(-moz-windows-compositor: 0)").matches) {
                         return false;
                     }
                 } else if (AppConstants.platform == "macosx") {

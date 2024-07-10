@@ -1,8 +1,11 @@
 & { //TODO: When MD2 is added, ensure this code doesn't run on it
 
 	//Give the tabs/Incognito the appropriate offset
-	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+		#private-browsing-indicator-with-label {
+			order: -1 !important; //Force to left
+		}
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 			&:not([privatebrowsingmode="temporary"]) {
 				#TabsToolbar-customization-target {
 					margin-inline-start: calc(var(--content-border-width) + 1px);
@@ -10,12 +13,17 @@
 			}
 			&[privatebrowsingmode="temporary"] {
 				#private-browsing-indicator-with-label {
-					order: -1 !important; //Force to left
 					margin-inline-start: calc(var(--content-border-width) + 2px) !important;
 				}
 			}
 		}
-		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+	}
+	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+		#private-browsing-indicator-with-label {
+			order: 1000 !important; //Force to right
+			transform: scaleX(-1);
+		}
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 			&:not([privatebrowsingmode="temporary"]) {
 				#TabsToolbar-customization-target {
 					margin-inline-end: calc(var(--content-border-width) + 1px);
@@ -23,8 +31,6 @@
 			}
 			&[privatebrowsingmode="temporary"] {
 				#private-browsing-indicator-with-label {
-					order: 1000 !important; //Force to right
-					transform: scaleX(-1);
 					margin-inline-end: calc(var(--content-border-width) + 2px) !important;
 				}
 			}
