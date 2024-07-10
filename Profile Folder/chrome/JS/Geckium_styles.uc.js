@@ -280,3 +280,22 @@ class menuBarVisible {
 }
 window.addEventListener("load", menuBarVisible.check);
 window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
+
+
+// Custom tab glare colouring
+class customTabGlare {
+    static toggle() {
+        document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool)
+    }
+}
+window.addEventListener("load", customTabGlare.toggle);
+
+// Automatically toggle when setting changes
+const customTabGlareObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			customTabGlare.toggle();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customTabGlareObserver, false);
