@@ -296,8 +296,8 @@ class gkLWTheme {
                 // Delete lwtheme indicator TODO: still needed?
                 document.documentElement.removeAttribute("lwtheme-id");
             }
-            // Reapply System Theme to toggle fallback usage
-            gkSysTheme.applyTheme();
+            // Reapply titlebar to toggle native mode if applicable to
+            gkTitlebars.applyTitlebar();
         }, 0);
     }
 
