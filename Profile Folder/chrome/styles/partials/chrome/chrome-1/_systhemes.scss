@@ -465,58 +465,58 @@
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
 			to bottom,
-			hsl(var(--you-h), 84%, 66%),
-			hsl(var(--you-h), 69%, 58%) 40px
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 8%)),
+			hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
 		);
 		--default-titlebar-inactive: linear-gradient(
 			to bottom,
-			hsl(var(--you-h), 84%, 80%),
-			hsl(var(--you-h), 67%, 75%) 40px
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 22%)),
+			hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 17%)) 40px
 		);
-		--default-titlebar-background: hsl(var(--you-h), 69%, 58%);
+		--default-titlebar-background: hsl(var(--you-h), var(--you-s), var(--you-l));
 
 		// Tabs
 		--default-inactive-tab-background: linear-gradient(
 			to bottom,
-			hsl(var(--you-h), 82%, 82%),
-			hsl(var(--you-h), 69%, 75%),
-			hsl(var(--you-h), 66%, 74%)
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 25%)),
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 17%)),
+			hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) + 16%))
 		);
 		&[gktitnative="true"] {
-			--default-inactive-tab-background: hsla(var(--you-h), 19%, 85%, 0.8);
+			--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
 		}
 		--default-selected-tab-background: linear-gradient(
 			to top,
-			hsl(var(--you-h), 71%, 97%),
-			hsl(var(--you-h), 100%, 99%)
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%)),
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 41%))
 		);
-		--default-tab-glare: hsla(var(--you-h), 19%, 85%, 0.45);
+		--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
 
 		// Navbar
 		--default-nav-bar: linear-gradient(
 			to top,
-			hsl(var(--you-h), 64%, 91%),
-			hsl(var(--you-h), 72%, 94%),
-			hsl(var(--you-h), 82%, 98%)
+			hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%)),
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 36%)),
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 40%))
 		);
-		--toolbarbutton-border-color-normal: hsl(var(--you-h), 36%, 84%);
-		--toolbarbutton-border-color-active: hsl(var(--you-h), 24%, 73%);
+		--toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
+		--toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
 		--default-toolbarbutton-texture: linear-gradient(
 			to top,
-			hsl(var(--you-h), 65%, 92%),
-			hsl(var(--you-h), 76%, 97%)
+			hsl(var(--you-h), calc(var(--you-s) - 4%), calc(var(--you-l) + 34%)),
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%))
 		);
-		--default-toolbarbutton-icon-fill: hsl(var(--you-h), 33%, 51%);
-		--default-navigation-buttons-separator: hsl(var(--you-h), 48%, 91%);
+		--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
+		--default-navigation-buttons-separator: hsl(var(--you-h), calc(var(--you-s) - 21%), calc(var(--you-l) + 33%));
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: linear-gradient(
 			to top,
-			hsl(var(--you-h), 73%, 96%), 
-			hsl(var(--you-h), 64%, 91%)
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 38%)), 
+			hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
 		);
-		--personal-toolbar-border-bottom: hsl(var(--you-h), 7%, 73%);
-		--default-bookmark-item-color: hsl(var(--you-h), 90%, 24%);
+		--personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
+		--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
 
 		@media (prefers-color-scheme: dark) {
 			// Titlebar

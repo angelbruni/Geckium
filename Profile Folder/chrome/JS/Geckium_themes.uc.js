@@ -226,8 +226,8 @@ class gkYou {
 		let rgb = color.match(/\d+/g);
         let hsl = ColorUtils.ColorToHSL(rgb);
         // Ensure colour is within minimum or maximum brightness
-        if (hsl[2] > 90) {
-            hsl[2] = 90;
+        if (hsl[2] > 62) {
+            hsl[2] = 62;
         } else if (hsl[2] < 10) {
             hsl[2] = 10;
         }
