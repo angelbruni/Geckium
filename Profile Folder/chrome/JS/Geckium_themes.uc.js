@@ -1,14 +1,13 @@
 // ==UserScript==
-// @name        Geckium - Theme Manager
+// @name        Geckium - Theme Manager (Misc.)
 // @author      Dominic Hayes
 // @loadorder   2
 // @include		main
 // ==/UserScript==
 
 // Initial variables
-let previousSysTheme;
 let isThemed;
-let isChromeThemed;
+let previousSysTheme;
 
 // System Theme Management
 class gkSysTheme {
@@ -67,6 +66,7 @@ class gkSysTheme {
         document.documentElement.setAttribute("gksystheme", theme);
         // Trigger special System Themes' variable refreshers
         gkGTK.apply();
+        gkYou.apply();
     }
 }
 window.addEventListener("load", () => gkSysTheme.applyTheme());
@@ -191,157 +191,77 @@ Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", GTKIconsObserver, 
 
 
 // System Theme: Geckium You
-
-
-
-// Firefox LWThemes, and Light and Dark 'theme' checks
-class gkLWTheme {
-    static palettes = {
-        "light": {
-            "--lwt-accent-color": "rgb(240, 240, 244)",
-            "--lwt-text-color": "rgba(21, 20, 26)"
-        },
-        "dark": {
-            "--lwt-accent-color": "rgb(28, 27, 34)",
-            "--lwt-text-color": "rgba(251, 251, 254)"
-        }
-    }
-    static palettesMatch(type) {
-        for (const i of Object.keys(gkLWTheme.palettes[type])) {
-            if (document.documentElement.style.getPropertyValue(i) != gkLWTheme.palettes[type][i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static get isDark() {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            return true;
-        }
-        let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-        if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
-            return true;
-        }
-        return false;
-    }
-    static get pageisSysTheme() {
-        if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "white") {
-            return false;
-        }
-        if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
-            return false;
-        }
-        if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
-            return false;
-        }
-        return true;
-    }
-    static get isThemed() {
-        let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-        if (current.startsWith("default-theme@")) {
-            if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") == "true") {
-                if (document.documentElement.getAttribute("lwt-default-theme-in-dark-mode") == "true") {
-                    // Seriously, Mozilla??
-                    return false; //System Theme - Dark Mode
-                } else {
-                    return true;
+class gkYou {
+    static getBaseColor() {
+        switch (gkPrefUtils.tryGet("Geckium.you.mode").string) {
+            case "accent":
+                // Use a div to get the exact accent colour value
+                var colorDiv = document.createElement("div");
+                colorDiv.style.backgroundColor="AccentColor";
+		        document.head.appendChild(colorDiv);
+                var rgb = window.getComputedStyle(colorDiv)["background-color"];
+                document.head.removeChild(colorDiv);
+                return rgb;
+            case "custom":
+                return "rgb(255, 0, 0)"; // TODO
+            case "aerocolor":
+                if (AppConstants.platform != "win" || (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches)) {
+                    gkPrefUtils.set("Geckium.you.mode").string("accent");
+                    return gkYou.getBaseColor();
                 }
-            } else if (!isBrowserWindow && !gkLWTheme.pageisSysTheme) {
-                return true;
-            } else {
-                return false; //System Theme
-            }
-        } else if (current.startsWith("firefox-compact-light@") && gkLWTheme.palettesMatch("light")) {
-            return false; //Light Theme
-        } else if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
-            return false; //Dark Theme
-        } else if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") != "true") {
-            return false; //Bugged State - Add-on like Firefox Color was just disabled, causing the LWTheme to be 'disabled'
-        }
-        return true;
-    }
-
-    static setThemeAttrs() {
-        // This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
-        //TODO: Call in Chrome Themes class to check if correct theme is used - if not disable Chrome Theme
-        setTimeout(async () => {
-            if (gkLWTheme.isDark) {
-                document.documentElement.setAttribute("gkdark", true);
-            } else {
-                document.documentElement.removeAttribute("gkdark");
-            }
-            isThemed = gkLWTheme.isThemed;
-            // Delete lwtheme-specific variable (if themed, they get remade)
-            document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
-            document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
-            if (isThemed) {
-                document.documentElement.setAttribute("gkthemed", true);
-                // lwtheme information TODO: still needed?
-                document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
-                // Ensure the toolbar colour is opaque
-                const toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
-                if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
-                    const tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").split(",");
-                    // if the colour is transparent...
-                    if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
-                        document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
-                        document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
-                    } else {
-                        document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
-                    }
+                return "rgb(0, 255, 0)"; // TODO
+            case "awm":
+                if (AppConstants.platform != "win" || (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches)) {
+                    gkPrefUtils.set("Geckium.you.mode").string("accent");
+                    return gkYou.getBaseColor();
                 }
-            } else {
-                document.documentElement.removeAttribute("gkthemed");
-                // Delete lwtheme indicator TODO: still needed?
-                document.documentElement.removeAttribute("lwtheme-id");
-            }
-            // Reapply titlebar to toggle native mode if applicable to
-            gkTitlebars.applyTitlebar();
-        }, 0);
+                return "rgb(0, 0, 255)"; // TODO
+            default:
+                return ""; // grey
+        }
     }
 
-    // LWTheme Toolbar Background Modes
-	static get getCustomThemeMode() {
-        let modes = ["fxchrome", "silverfox", "none"]; // TODO: "firefox"
-        let prefChoice = gkPrefUtils.tryGet("Geckium.customtheme.mode").string;
-        if (modes.includes(prefChoice)) {
-            return prefChoice;
+	static setVariables(color) {
+		//Base accent colour
+		let rgb = color.match(/\d+/g);
+        let hsl = ColorUtils.ColorToHSL(rgb);
+        // Ensure colour is within minimum or maximum brightness
+        if (hsl[2] > 90) {
+            hsl[2] = 90;
+        } else if (hsl[2] < 10) {
+            hsl[2] = 10;
+        }
+        document.documentElement.style.setProperty("--you-h", hsl[0]);
+        document.documentElement.style.setProperty("--you-s", `${hsl[1]}%`);
+        document.documentElement.style.setProperty("--you-l", `${hsl[2]}%`);
+        // TODO: This space for all the extra palettes in MD2+
+	}
+
+    static removeVariables() {
+        document.documentElement.style.removeProperty(`--you-h`);
+        document.documentElement.style.removeProperty(`--you-s`);
+        document.documentElement.style.removeProperty(`--you-l`);
+    }
+
+	static apply() {
+        let era = gkEras.getEra();
+        let color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
+		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68) && color != "") {
+			gkYou.setVariables(color);
         } else {
-            return modes[0];
-        }
-    }
-    static customThemeModeChanged() {
-		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
-    }
-
-    // LWTheme Titlebar Button Backgrounds
-    static lwThemeApplyBackgroundCaptionButtons() {
-        document.documentElement.setAttribute("captionbuttonbackground", gkPrefUtils.tryGet("Geckium.lwtheme.captionButtonBackground").bool)
-    }
-}
-window.addEventListener("load", gkLWTheme.setThemeAttrs);
-Services.obs.addObserver(gkLWTheme.setThemeAttrs, "lightweight-theme-styling-update");
-
-window.addEventListener("load", gkLWTheme.customThemeModeChanged);
-const lwObserver = {
-    observe: function (subject, topic, data) {
-        if (topic == "nsPref:changed") {
-            gkLWTheme.customThemeModeChanged();
+            gkYou.removeVariables();
 		}
-	},
-};
-Services.prefs.addObserver("Geckium.customtheme.mode", lwObserver, false);
+	}
+}
+//NOTE: gkYou.apply is called by gkSysTheme.applyTheme
+window.addEventListener("nativethemechange", gkYou.apply);
 
-window.addEventListener("load", gkLWTheme.lwThemeApplyBackgroundCaptionButtons);
-const lwThemeApplyBackgroundCaptionButtonsObs = {
+const YouObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			gkLWTheme.lwThemeApplyBackgroundCaptionButtons();
+			gkYou.apply();
 		}
 	},
 };
-Services.prefs.addObserver("Geckium.lwtheme.captionButtonBackground", lwThemeApplyBackgroundCaptionButtonsObs, false);
-
-
-// Chrome Themes
+Services.prefs.addObserver("Geckium.you.mode", YouObserver, false);
+Services.prefs.addObserver("Geckium.you.color", YouObserver, false);
