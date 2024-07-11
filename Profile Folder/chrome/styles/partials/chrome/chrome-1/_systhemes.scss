@@ -18,13 +18,15 @@
 	--default-titlebar-foreground-inactive: white;
 
 	// Tabs
-	--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
 	--default-inactive-tab-background: linear-gradient(
 		to bottom,
 		rgb(172, 206, 247),
 		rgb(147, 187, 235),
 		rgb(144, 183, 232)
-	);
+		);
+	&[gktitnative="true"] { // Use native tab background when in native
+		--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
+	}
 	--default-selected-tab-background: linear-gradient(
 		to top,
 		rgb(243, 248, 253),
@@ -455,5 +457,154 @@
 	}
 
 	// Geckium You
-	//TBD
+	&[gksystheme="you"]:not([gkthemed]) {
+		// TODO: Change saturation too
+		--you-h: 0;
+		--you-s: 0%;
+		--you-l: 58%;
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			hsl(var(--you-h), 84%, 66%),
+			hsl(var(--you-h), 69%, 58%) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			hsl(var(--you-h), 84%, 80%),
+			hsl(var(--you-h), 67%, 75%) 40px
+		);
+		--default-titlebar-background: hsl(var(--you-h), 69%, 58%);
+
+		// Tabs
+		--default-inactive-tab-background: linear-gradient(
+			to bottom,
+			hsl(var(--you-h), 82%, 82%),
+			hsl(var(--you-h), 69%, 75%),
+			hsl(var(--you-h), 66%, 74%)
+		);
+		&[gktitnative="true"] {
+			--default-inactive-tab-background: hsla(var(--you-h), 19%, 85%, 0.8);
+		}
+		--default-selected-tab-background: linear-gradient(
+			to top,
+			hsl(var(--you-h), 71%, 97%),
+			hsl(var(--you-h), 100%, 99%)
+		);
+		--default-tab-glare: hsla(var(--you-h), 19%, 85%, 0.45);
+
+		// Navbar
+		--default-nav-bar: linear-gradient(
+			to top,
+			hsl(var(--you-h), 64%, 91%),
+			hsl(var(--you-h), 72%, 94%),
+			hsl(var(--you-h), 82%, 98%)
+		);
+		--toolbarbutton-border-color-normal: hsl(var(--you-h), 36%, 84%);
+		--toolbarbutton-border-color-active: hsl(var(--you-h), 24%, 73%);
+		--default-toolbarbutton-texture: linear-gradient(
+			to top,
+			hsl(var(--you-h), 65%, 92%),
+			hsl(var(--you-h), 76%, 97%)
+		);
+		--default-toolbarbutton-icon-fill: hsl(var(--you-h), 33%, 51%);
+		--default-navigation-buttons-separator: hsl(var(--you-h), 48%, 91%);
+
+		// Personal Toolbar (Bookmarks)
+		--default-personal-toolbar: linear-gradient(
+			to top,
+			hsl(var(--you-h), 73%, 96%), 
+			hsl(var(--you-h), 64%, 91%)
+		);
+		--personal-toolbar-border-bottom: hsl(var(--you-h), 7%, 73%);
+		--default-bookmark-item-color: hsl(var(--you-h), 90%, 24%);
+
+		@media (prefers-color-scheme: dark) {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(14, 80, 159),
+				rgb(20, 62, 112) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					rgb(14, 80, 159) 80%,
+					white
+				),
+				color-mix(
+					in srgb,
+					rgb(20, 62, 112) 80%,
+					white
+				) 40px
+			);
+
+			// Tabs
+			--default-tab-glare: rgba(19, 23, 29, 0.45);
+			--default-inactive-tab-background: #051d3b;
+			--default-selected-tab-background: linear-gradient(
+				to bottom,
+				#0e3668,
+				#07254A
+			);
+			--default-tabbrowser-tab-color: white;
+
+			// Navbar
+			--default-nav-bar: linear-gradient(
+				to bottom,
+				#07254A,
+				#081B35
+			);
+			--default-inner-border-color: rgb(79, 79, 79);
+			--toolbarbutton-border-color-normal: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-fill) 30%,
+					transparent
+				) 70%,
+				black
+			);
+			--toolbarbutton-border-color-hot: rgb(112, 112, 112);
+			--toolbarbutton-border-color-active: rgb(136, 136, 136);
+			--toolbarbutton-inner-border-color-normal: color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-fill) 30%,
+				transparent
+			);
+			--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+			--default-toolbarbutton-texture: linear-gradient(
+				to bottom,
+				#07254A,
+				#081B35
+			);
+			--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
+			--default-toolbarbutton-icon-fill: #B0C2DE;
+			--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
+
+			// Personal Toolbar
+			--default-personal-toolbar: linear-gradient(
+				to bottom,
+				#081B35,
+				#081526
+			);
+			--personal-toolbar-border-bottom: rgb(91, 91, 91);
+			--default-bookmark-item-color: #95b4ee;
+			--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+		}
+
+		&[privatebrowsingmode="temporary"] {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(97, 122, 156),
+				rgb(80, 105, 141) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				rgb(147, 161, 178),
+				rgb(128, 143, 161) 40px
+			);
+		}
+	}
 }

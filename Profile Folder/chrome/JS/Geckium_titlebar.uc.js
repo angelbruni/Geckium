@@ -306,7 +306,7 @@ class gkTitlebars {
         }
         // Return the appropriate titlebar style
         if (AppConstants.platform == "win") {
-            if (window.matchMedia("(-moz-platform: windows-win10)").matches) {
+            if (window.matchMedia("(-moz-platform: windows-win10)").matches) { //TODO: Force this if 117+
                 return titlebars.win10;
             }
             return titlebars.win;
