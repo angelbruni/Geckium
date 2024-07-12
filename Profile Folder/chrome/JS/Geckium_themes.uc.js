@@ -225,15 +225,23 @@ class gkYou {
 		//Base accent colour
 		let rgb = color.match(/\d+/g);
         let hsl = ColorUtils.ColorToHSL(rgb);
+        let lightl = hsl[2];
+        let darkl = hsl[2];
         // Ensure colour is within minimum or maximum brightness
         if (hsl[2] > 62) {
-            hsl[2] = 62;
-        } else if (hsl[2] < 10) {
-            hsl[2] = 10;
+            lightl = 62;
+        } else if (hsl[2] < 28) {
+            lightl = 28;
+        }
+        if (hsl[2] > 80) {
+            darkl = 80;
+        } else if (hsl[2] < 52) {
+            darkl = 52;
         }
         document.documentElement.style.setProperty("--you-h", hsl[0]);
         document.documentElement.style.setProperty("--you-s", `${hsl[1]}%`);
-        document.documentElement.style.setProperty("--you-l", `${hsl[2]}%`);
+        document.documentElement.style.setProperty("--you-l", `${lightl}%`);
+        document.documentElement.style.setProperty("--you-l-dark", `${darkl}%`);
         // TODO: This space for all the extra palettes in MD2+
 	}
 
@@ -241,6 +249,7 @@ class gkYou {
         document.documentElement.style.removeProperty(`--you-h`);
         document.documentElement.style.removeProperty(`--you-s`);
         document.documentElement.style.removeProperty(`--you-l`);
+        document.documentElement.style.removeProperty(`--you-l-dark`);
     }
 
 	static apply() {

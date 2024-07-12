@@ -87,6 +87,9 @@
 		// Tabs
 		--default-tab-glare: rgba(19, 23, 29, 0.45);
 		--default-inactive-tab-background: #051d3b;
+		// &[gktitnative="true"] {
+		// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+		// } TODO
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			#0e3668,
@@ -458,10 +461,10 @@
 
 	// Geckium You
 	&[gksystheme="you"]:not([gkthemed]) {
-		// TODO: Change saturation too
 		--you-h: 0;
 		--you-s: 0%;
 		--you-l: 58%;
+		--you-l-dark: 58%;
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
 			to bottom,
@@ -522,40 +525,41 @@
 			// Titlebar
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				rgb(14, 80, 159),
-				rgb(20, 62, 112) 40px
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 40px
 			);
 			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
-					rgb(14, 80, 159) 80%,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)) 80%,
 					white
 				),
 				color-mix(
 					in srgb,
-					rgb(20, 62, 112) 80%,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 80%,
 					white
 				) 40px
 			);
 
 			// Tabs
-			--default-tab-glare: rgba(19, 23, 29, 0.45);
-			--default-inactive-tab-background: #051d3b;
+			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
+			--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
+			// &[gktitnative="true"] {
+			// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+			// } TODO
 			--default-selected-tab-background: linear-gradient(
 				to bottom,
-				#0e3668,
-				#07254A
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 35%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%))
 			);
-			--default-tabbrowser-tab-color: white;
 
 			// Navbar
 			--default-nav-bar: linear-gradient(
 				to bottom,
-				#07254A,
-				#081B35
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
 			);
-			--default-inner-border-color: rgb(79, 79, 79);
 			--toolbarbutton-border-color-normal: color-mix(
 				in srgb,
 				color-mix(
@@ -565,32 +569,28 @@
 				) 70%,
 				black
 			);
-			--toolbarbutton-border-color-hot: rgb(112, 112, 112);
-			--toolbarbutton-border-color-active: rgb(136, 136, 136);
+			--toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
 			--toolbarbutton-inner-border-color-normal: color-mix(
 				in srgb,
 				var(--toolbarbutton-icon-fill) 30%,
 				transparent
 			);
-			--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
 			--default-toolbarbutton-texture: linear-gradient(
 				to bottom,
-				#07254A,
-				#081B35
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
 			);
-			--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
-			--default-toolbarbutton-icon-fill: #B0C2DE;
-			--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
+			--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
+			--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal); //changed in light mode
 
 			// Personal Toolbar
 			--default-personal-toolbar: linear-gradient(
 				to bottom,
-				#081B35,
-				#081526
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
 			);
-			--personal-toolbar-border-bottom: rgb(91, 91, 91);
-			--default-bookmark-item-color: #95b4ee;
-			--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
+			--personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
+			--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));
 		}
 
 		&[privatebrowsingmode="temporary"] {
