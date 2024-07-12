@@ -228,6 +228,7 @@ class gkYou {
         let lightl = hsl[2];
         let darkl = hsl[2];
         // Ensure colour is within minimum or maximum brightness
+        // FIXME: Someone think up a better algorithm for this, preferably one that accounts for SATURATION
         if (hsl[2] > 62) {
             lightl = 62;
         } else if (hsl[2] < 28) {
