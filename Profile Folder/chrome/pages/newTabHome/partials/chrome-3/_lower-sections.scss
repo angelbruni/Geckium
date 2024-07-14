@@ -39,7 +39,7 @@
 		}
 	}
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			var(--thumbnail-border-color-normal) 70%,

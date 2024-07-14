@@ -6,7 +6,7 @@
 			}
 		}
 	//}
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--titlebar-buttonbox-pseudo-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent))) !important;
+	&[gkthemed][gkchrthemed] {
+		--titlebar-buttonbox-pseudo-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent))) !important;
 	}
 }

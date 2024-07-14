@@ -157,7 +157,7 @@
 		}
 	}
 	// else if chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--tab-glare-opacity: .5 !important;
 		
 		&[geckium-choice="one"],
@@ -168,13 +168,13 @@
 			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
 		}
 
-		--inactive-tab-background: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-inactive-tab-background-color))) !important;
+		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
 		--selected-tab-background: var(--nav-bar, black) !important;
 
-		--tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
-		--tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
+		--tabbrowser-tab-color: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
+		--tabbrowser-tab-color-active: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
 
-		--theme-newtab: var(--chrt-control-background, var(--default-theme-newtab)) !important;
+		--theme-newtab: var(--chrtheme-control-background, var(--default-theme-newtab)) !important;
 	}
 }
 

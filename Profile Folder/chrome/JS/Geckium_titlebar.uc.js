@@ -366,28 +366,16 @@ class gkTitlebars {
         if (isThemed == true) {
             if (!isChromeThemed) {
                 return false; // Firefox themes are never native
+            } else if (!isChrThemeNative) {
+                return false; // Current Chrome Theme isn't native
             }
-            //TODO: Chrome Theme setting and native checks
         }
-        return true; //TODO
-
-        /**
-         * 1. Check if the titlebar style blocks going native
-         *  - False if yes
-         * 2. Check if in a theme or not - themes
-         *  - False if a Firefox theme
-         * 2. Check if in a Chromium Theme if yes
-         * 3. Check if the Chromium Theme is eligible for Native
-         *  - False if nativetheme is False, and the user's setting isn't True
-         *  - False if theme isn't eligible for Native
-         * 4. If unthemed, check if theme defaults to not being native
-         *  - False if yes, unless user has overridden to True
-         * 5. If unthemed, check if user has overridden to False
-         *  - False if yes
-         * Return True if all checks have been exhausted
-         * 
-         * Return False if System Theme is GTK+ and Light or Dark is set
-         */
+        // If System Theme is set to GTK+ but Light or Dark is in use...
+        let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+        if (gkSysTheme.getTheme() == "gtk" && (prefChoice.startsWith("firefox-compact-light@") || prefChoice.startsWith("firefox-compact-dark@"))) {
+            return false;
+        }
+        return true;
     }
 
     /**

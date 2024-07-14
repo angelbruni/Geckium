@@ -84,6 +84,6 @@ function openChrThemesDir() {
 		// Open the directory
 		directory.launch();
 	} catch (e) {
-		console.error("Error opening directory:", e);
+		window.alert(`Could not open ${directoryPath} - ensure the directory exists before trying again.`);
 	}
 }

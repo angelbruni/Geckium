@@ -147,9 +147,9 @@
         background: white !important;
     }
 }
-&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-    --titlebar-active: var(--chrt-frame, var(--default-titlebar-active)) !important;
-    --titlebar-inactive: var(--chrt-frame-inactive, var(--chrt-frame, var(--default-titlebar-inactive))) !important;
+&[gkthemed][gkchrthemed] {
+    --titlebar-active: var(--chrtheme-frame, var(--default-titlebar-active)) !important;
+    --titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-inactive))) !important;
 
     &[chromemargin="0,0,0,0"] {
         &[windowtype="navigator:browser"] {
@@ -162,7 +162,7 @@
                     width: calc(100% - 2px);
                     height: 100%;
                     border-radius: calc(var(--titlebar-border-radius) - 1px) calc(var(--titlebar-border-radius) - 1px) 0 0;
-                    background: var(--chrt-theme-frame-overlay) no-repeat, var(--chrt-theme-frame) repeat no-repeat;
+                    background: var(--chrtheme-theme-frame-overlay) no-repeat, var(--chrtheme-theme-frame) repeat no-repeat;
                     box-shadow: var(--theme-box-shadow);
                 }
 

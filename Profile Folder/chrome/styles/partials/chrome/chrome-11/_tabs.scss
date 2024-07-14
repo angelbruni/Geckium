@@ -28,7 +28,7 @@
 	}
 
 	// else if chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--tab-glare-opacity: .1 !important;
 	}
 }

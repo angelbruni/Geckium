@@ -4,7 +4,7 @@
 
 	&[geckium-choice="eleven"] {
 		&[style*="--lwt-newtab-attribution-image"],
-		&[style*="--chrt-theme-ntp-attribution"] {
+		&[style*="--chrtheme-theme-ntp-attribution"] {
 			#footer {
 				display: none !important;
 			}
@@ -23,7 +23,7 @@
 		}
 	}
 	// chrtheme
-	&[lwtheme-id*="compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		&[footer-themable="true"] {
 			#logo-icon {
 				fill: var(--section-color);
