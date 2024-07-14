@@ -371,7 +371,7 @@ class gkTitlebars {
                     return false; // Current Chrome Theme isn't native
                 }
                 // Check if user blocked native in-theme titlebar or is Automatic
-                switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarNative").int) {
+                switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").int) {
                     case 1: //Enabled
                         break;
                     case 2: //Disabled
