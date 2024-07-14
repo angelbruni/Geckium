@@ -366,8 +366,23 @@ class gkTitlebars {
         if (isThemed == true) {
             if (!isChromeThemed) {
                 return false; // Firefox themes are never native
-            } else if (!isChrThemeNative) {
-                return false; // Current Chrome Theme isn't native
+            } else {
+                if (!isChrThemeNative) {
+                    return false; // Current Chrome Theme isn't native
+                }
+                // Check if user blocked native in-theme titlebar or is Automatic
+                switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarNative").int) {
+                    case 1: //Enabled
+                        break;
+                    case 2: //Disabled
+                        return false;
+                    default: //Automatic
+                        // Check if titlebar is automatically native when in themes
+                        if (spec.nativetheme == false) {
+                            return false;
+                        }
+                        break;
+                }
             }
         }
         // If System Theme is set to GTK+ but Light or Dark is in use...
