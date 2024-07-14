@@ -169,10 +169,8 @@
 			}
 		}
 	}
-	// else if !lwtheme
-	&[customthememode="none"],
-	&[lwtheme-id*="compact-light"],
-	&:not([lwtheme]) { //TODO
+	// force toolbar icon fill on both Light/Dark
+	&:not([isThemed]) {
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
@@ -601,10 +599,6 @@
 
 	&:not([urlbar-exceeds-toolbar-bounds]) {
 		overflow: visible !important;
-	}
-
-	&:not([lwtheme-id*="compact-light"]) {
-		box-shadow: none !important; //TODO: needed?
 	}
 }
 
