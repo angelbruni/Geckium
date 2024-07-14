@@ -18,7 +18,7 @@
 
 
 	// Custom theme support
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		--tile-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 		--tile-border-color-normal: color-mix(
 			in srgb,

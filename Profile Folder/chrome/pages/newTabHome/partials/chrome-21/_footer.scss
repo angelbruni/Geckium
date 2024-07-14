@@ -27,7 +27,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		--footer-border: linear-gradient(
 			to left,
 			color-mix(

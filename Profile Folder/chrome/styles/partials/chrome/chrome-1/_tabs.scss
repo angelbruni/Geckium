@@ -113,7 +113,7 @@
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
 	// else if lwtheme
-	&[gkthemed] {
+	&[gkthemed]:not([gkchrthemed]) {
 		&:not([customthememode="none"]) {
 			--inactive-tab-background: color-mix(
 				in srgb,

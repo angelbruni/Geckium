@@ -1,6 +1,6 @@
 @import "win";
 
-&:not([isThemed]):not([privatebrowsingmode="temporary"]):not(:-moz-window-inactive) {
+&:not([gkthemed]:not([gkchrthemed])):not([privatebrowsingmode="temporary"]):not(:-moz-window-inactive) {
     // NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (unmodified when in themes)
     &[windowtype="navigator:browser"] > body {
         background: linear-gradient(
@@ -15,7 +15,7 @@
             background: linear-gradient(
                 to bottom,
                 black,
-                var(--default-titlebar-background) 24px
+                var(--default-titlebnativear-background) 24px
             );
         }
     }

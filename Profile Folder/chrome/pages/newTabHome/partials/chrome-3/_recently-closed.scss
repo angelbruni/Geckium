@@ -17,7 +17,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		--recently-closed-background: color-mix(
 			in srgb,
 			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,

@@ -13,7 +13,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		&[footer-themable="true"] {
 			--logo-wordmark-color: var(--newtab-text-primary-color, var(--lwt-text-color)) !important;
 		

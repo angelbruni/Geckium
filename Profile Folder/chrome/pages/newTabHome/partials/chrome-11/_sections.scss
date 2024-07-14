@@ -11,7 +11,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		--section-color: var(--toolbar-color);
 		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
 	}

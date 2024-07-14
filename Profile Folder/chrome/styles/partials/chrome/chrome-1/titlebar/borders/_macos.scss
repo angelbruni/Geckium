@@ -25,7 +25,7 @@
 
 @import "../tools/vanillatitlebar";
 // Visuals
-&[is117Plus="true"][windowtype="navigator:browser"] > body {
+&[is117Plus][windowtype="navigator:browser"] > body {
 	border: 1px solid rgba(0, 0, 0, 0.2);
 }
 #navigator-toolbox {

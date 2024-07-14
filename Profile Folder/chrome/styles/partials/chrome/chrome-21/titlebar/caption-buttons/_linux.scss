@@ -1,6 +1,6 @@
 & {
     //&:not([customthememode="silverfox"]) {
-		&[gkthemed] {
+		&[gkthemed]:not([gkchrthemed]) {
 			&[captionbuttonbackground="true"] {
 				--titlebar-buttonbox-pseudo-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 			}

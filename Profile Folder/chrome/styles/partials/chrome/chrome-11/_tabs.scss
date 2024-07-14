@@ -22,7 +22,7 @@
 
 		// Custom theme support
 		// lwtheme
-		&[gkthemed] {
+		&[gkthemed]:not([gkchrthemed]) {
 			--tab-glare-color: var(--tabbrowser-tab-color);
 		}
 	}
