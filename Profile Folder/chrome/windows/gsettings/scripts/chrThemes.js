@@ -1,7 +1,7 @@
 const chrThemesList = document.getElementById("chrthemes-list");
 
 async function populateChrThemesList() {
-	const themes = await chrTheme.getThemesList();
+	const themes = await gkChrTheme.getThemes();
 
 	chrThemesList.innerHTML = ``;
 
@@ -18,12 +18,16 @@ async function populateChrThemesList() {
 		const themeFile = theme.file.replace(".crx", "");
 
 		let themeBanner = theme.banner;
-		let themeBannerPath = `jar:${chrTheme.getFolderPath}/${themeFile}.crx!/${themeBanner}`;
+		let themeBannerPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`;
 		if (!themeBanner)
 			themeBannerPath = "";
 
-		let themeIcon = theme.icon;``
-		let themeIconPath = `jar:${chrTheme.getFolderPath}/${themeFile}.crx!/${themeIcon}`;
+		let themeBannerColor = theme.color;
+		if (!themeBannerColor)
+			themeBannerColor = "black";
+
+		let themeIcon = theme.icon;
+		let themeIconPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
 
 		if (themeIcon == "")
 			themeIconPath = "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
@@ -35,7 +39,7 @@ async function populateChrThemesList() {
 					 for="theme-${themeFile}"
 					 data-theme-name="${themeFile}">
 			<vbox flex="1">
-				<html:div class="banner" style="background-image: url(${themeBannerPath})"></html:div>
+				<html:div class="banner" style="background-color: ${themeBannerColor};background-image: url(${themeBannerPath})"></html:div>
 				<hbox style="align-items: center; padding-block: 6px">
 					<image class="icon" style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" />
 					<vbox style="min-width: 0">
@@ -62,7 +66,8 @@ async function populateChrThemesList() {
 
 	chrThemesList.querySelectorAll("label.item").forEach(item => {
 		item.addEventListener("click", () => {
-			chrTheme.enable(item.dataset.themeName);
+			gkPrefUtils.set("extensions.activeThemeID").string("firefox-compact-light@mozilla.org");
+			gkPrefUtils.set("Geckium.chrTheme.fileName").string(item.dataset.themeName);
 			document.getElementById("chrTheme-switch").checked = true;
 		})
 	})

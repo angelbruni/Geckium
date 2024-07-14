@@ -34,12 +34,12 @@ class gkChrTheme {
 	}
 
 	static get getFolderFileUtilsPath() {
-		return Services.io.newURI(this.getFolderPath, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
+		return Services.io.newURI(chrThemesFolder, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
     static async getThemes() {
         var themes = {};
         try {
-            const directory = FileUtils.File(this.getFolderFileUtilsPath);
+            const directory = FileUtils.File(gkChrTheme.getFolderFileUtilsPath);
 
             if (directory.exists() && directory.isDirectory()) {
                 var directoryEntries = directory.directoryEntries;
@@ -47,49 +47,51 @@ class gkChrTheme {
 
                 while (directoryEntries.hasMoreElements()) {
                     const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
-                    const themeManifest = `jar:file:///${profilepath}/chrome/${chrThemesFolderName}/${file.leafName}!/manifest.json`;
+                    if (file.leafName.endsWith(".crx")) {
+                        const themeManifest = `jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`;
 
-                    const fetchPromise = fetch(themeManifest)
-                        .then((response) => response.json())
-                        .then((theme) => {
-                            let themeBanner;
-							try {
-								themeBanner = theme.theme.images.theme_ntp_background;
-							} catch (error) {
-								themeBanner = undefined;
-							}
+                        const fetchPromise = fetch(themeManifest)
+                            .then((response) => response.json())
+                            .then((theme) => {
+                                let themeBanner;
+                                try {
+                                    themeBanner = theme.theme.images.theme_ntp_background;
+                                } catch (error) {
+                                    themeBanner = undefined;
+                                }
 
-                            let themeBannerColor;
-							try {
-								themeBannerColor = theme.theme.colors.frame;
-							} catch (error) {
-								themeBannerColor = undefined;
-							}
+                                let themeBannerColor;
+                                try {
+                                    themeBannerColor = theme.theme.colors.frame;
+                                } catch (error) {
+                                    themeBannerColor = undefined;
+                                }
 
-							let themeIcon;
-							try {
-								themeIcon = theme.theme.icons[48];
-							} catch (error) {
-								try {
-									themeIcon = theme.icons[48];
-								} catch (error) {
-									themeIcon = undefined;
-								}
-							}
+                                let themeIcon;
+                                try {
+                                    themeIcon = theme.theme.icons[48];
+                                } catch (error) {
+                                    try {
+                                        themeIcon = theme.icons[48];
+                                    } catch (error) {
+                                        themeIcon = undefined;
+                                    }
+                                }
 
-                            themes[theme.name] = {
-								banner: themeBanner,
-                                color: themeBannerColor,
-								icon: themeIcon,
-                                description: theme.description,
-								file: file.leafName,
-                                version: theme.version
-                            };
-                        })
-                        .catch((error) => {
-                            console.error("Error fetching theme manifest:", error);
-                        });
-                    fetchPromises.push(fetchPromise);
+                                themes[theme.name] = {
+                                    banner: themeBanner,
+                                    color: themeBannerColor,
+                                    icon: themeIcon,
+                                    description: theme.description,
+                                    file: file.leafName,
+                                    version: theme.version
+                                };
+                            })
+                            .catch((error) => {
+                                console.error("Error fetching theme manifest:", error);
+                            });
+                        fetchPromises.push(fetchPromise);
+                    }
                 }
                 await Promise.all(fetchPromises);
             } else {
@@ -215,8 +217,10 @@ class gkChrTheme {
         isChromeThemed = true;
         document.documentElement.setAttribute("gkthemed", true);
         document.documentElement.setAttribute("gkchrthemed", true);
-        // Reapply titlebar to toggle native mode if applicable to
-        gkTitlebars.applyTitlebar();
+        if (isBrowserWindow) {
+            // Reapply titlebar to toggle native mode if applicable to
+            gkTitlebars.applyTitlebar();
+        }
     }
 
     static removeVariables() {
@@ -249,8 +253,10 @@ class gkChrTheme {
                     return;
                 }
             }
-            // Reapply titlebar just in case since theme application failed
-            gkTitlebars.applyTitlebar();
+            if (isBrowserWindow) {
+                // Reapply titlebar just in case since theme application failed
+                gkTitlebars.applyTitlebar();
+            }
         }, 0);
     }
 
