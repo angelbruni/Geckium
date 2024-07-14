@@ -14,7 +14,7 @@ const chrThemesFolder = `file://${FileUtils.getDir("ProfD", []).path.replace(/\\
 
 // Chrome Themes
 class gkChrTheme {
-	static get defaultToolbarButtonIconColour() { // TODO: Is this needed, given --default*?
+	static get defaultToolbarButtonIconColour() {
 		let appearanceChoice;
 		switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
 			case true:
@@ -121,108 +121,114 @@ class gkChrTheme {
         }
 	}
 
-    static async setVariables(filepath) {
+    static setVariables() {
         function styleProperty(key) {
             return `--chrtheme-${key.replace(/_/g, '-')}`;
         }
 
-        let file = `jar:${filepath}!`;
-        // Load and apply the selected Chromium Theme
-        let theme = await gkChrTheme.getThemeData(`${file}/manifest.json`);
-        if (theme == null) {
-            return;
-        }
-        // IMAGES
-        if (theme.theme.images) {
-            Object.entries(theme.theme.images).map(([key, value]) => {
-                document.documentElement.style.setProperty(`${styleProperty(key)}`, `url('${file}/${value}')`);
-            }).join('\n');
+        setTimeout(async () => { // same situation as themesLW, plus we NEED async. :/
+            gkChrTheme.removeVariables(); // Not all variables can be ensured to be replaced, thus pre-emptively remove EVERY possible variable.
+            let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
+            
+            if (gkChrTheme.getEligible() && prefChoice) {
+                let file = `jar:file://${chrThemesFolder}/${prefChoice}.crx!`;
+                // Load and apply the selected Chromium Theme
+                let theme = await gkChrTheme.getThemeData(`${file}/manifest.json`);
+                if (theme != null) {
+                    // IMAGES
+                    if (theme.theme.images) {
+                        Object.entries(theme.theme.images).map(([key, value]) => {
+                            document.documentElement.style.setProperty(`${styleProperty(key)}`, `url('${file}/${value}')`);
+                        }).join('\n');
 
-            // Theme Attribution
-            const attributionImg = theme.theme.images.theme_ntp_attribution;
-            if (attributionImg) {
-                var imagePath = `${file}/${attributionImg}`;
-                // Note the attribution image's size
-                var img = new Image();
-                img.src = imagePath;
-                img.onload = function() {
-                    document.documentElement.style.setProperty("--chrtheme-ntp-attribution-width", `${this.width}px`);
-                    document.documentElement.style.setProperty("--chrtheme-ntp-attribution-height", `${this.height}px`);
-                };
-            }
-
-            // Titlebar texture (native titlebar check)
-            const frameImg = theme.theme.images.theme_frame;
-            if (!frameImg) {
-                isChrThemeNative = true;
-            }
-        }
-
-        // COLORS
-        if (theme.theme.colors) {
-            Object.entries(theme.theme.colors).map(([key, value]) => {
-                document.documentElement.style.setProperty(`${styleProperty(key)}`, `rgb(${value.join(', ')})`);
-                if (key == "ntp_text") {
-                    if (!ColorUtils.IsDark(value)) {
-                        document.documentElement.style.setProperty("--chrtheme-ntp-logo-alternate", "1");
-                    }
-                }
-            }).join('\n');
-        }
-
-        // MISC. PROPERTIES
-        if (theme.theme.properties) {
-            Object.entries(theme.theme.properties).map(([key, value]) => {
-                switch (key) {
-                    case "ntp_logo_alternate":
-                        if (theme.theme.colors.ntp_text) {
-                            if (!ColorUtils.IsDark(theme.theme.colors.ntp_text))
-                                document.documentElement.style.setProperty(`${styleProperty(key)}`, value);
+                        // Theme Attribution
+                        const attributionImg = theme.theme.images.theme_ntp_attribution;
+                        if (attributionImg) {
+                            var imagePath = `${file}/${attributionImg}`;
+                            // Note the attribution image's size
+                            var img = new Image();
+                            img.src = imagePath;
+                            img.onload = function() {
+                                document.documentElement.style.setProperty("--chrtheme-ntp-attribution-width", `${this.width}px`);
+                                document.documentElement.style.setProperty("--chrtheme-ntp-attribution-height", `${this.height}px`);
+                            };
                         }
-                        break;
-                    default:
-                        document.documentElement.style.setProperty(`${styleProperty(key)}`, value);
-                        break;
-                }
-            }).join('\n');
-        }
 
-        // TINTS
-        let themeTints = (theme.theme.tints) ? theme.theme.tints : theme.tints;
-        if (themeTints) {
-            Object.entries(themeTints).map(([key, value]) => {
-                const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
-                let tintedColor;
-                const tintMap = {
-                    "frame": theme.theme.colors.frame,
-                    "frame_inactive": theme.theme.colors.frame_inactive,
-                    "background_tab": theme.theme.colors.background_tab,
-                    "buttons": this.defaultToolbarButtonIconColour
-                };
-                for (const i of Object.keys(tintMap)) {
-                    if (!Object.keys(theme.theme.tints).includes(i)) {
-                        continue;
+                        // Titlebar texture (native titlebar check)
+                        const frameImg = theme.theme.images.theme_frame;
+                        if (!frameImg) {
+                            isChrThemeNative = true;
+                        }
                     }
-                    tintedColor = ColorUtils.HSLShift(tintMap[i], value);
-                    if (i == "buttons" && JSON.stringify(tintedColor) == JSON.stringify(this.defaultToolbarButtonIconColour)) {
-                        // If the tinted colour is the same as the default colour, do NOT tint.
-                        continue;
-                    }
-                    document.documentElement.style.setProperty(
-                        `${styleProperty(i == "buttons" ? "toolbar-button-icon" : i)}`,
-                        `rgb(${tintedColor})`
-                    );
-                }
-            }).join('\n');
-        }
 
-        // Announce the theme usage
-        isThemed = true;
-        isChromeThemed = true;
-        document.documentElement.setAttribute("gkthemed", true);
-        document.documentElement.setAttribute("gkchrthemed", true);
-        // Reapply titlebar to toggle native mode if applicable to
-        gkTitlebars.applyTitlebar();
+                    // COLORS
+                    if (theme.theme.colors) {
+                        Object.entries(theme.theme.colors).map(([key, value]) => {
+                            document.documentElement.style.setProperty(`${styleProperty(key)}`, `rgb(${value.join(', ')})`);
+                            if (key == "ntp_text") {
+                                if (!ColorUtils.IsDark(value)) {
+                                    document.documentElement.style.setProperty("--chrtheme-ntp-logo-alternate", "1");
+                                }
+                            }
+                        }).join('\n');
+                    }
+
+                    // MISC. PROPERTIES
+                    if (theme.theme.properties) {
+                        Object.entries(theme.theme.properties).map(([key, value]) => {
+                            switch (key) {
+                                case "ntp_logo_alternate":
+                                    if (theme.theme.colors.ntp_text) {
+                                        if (!ColorUtils.IsDark(theme.theme.colors.ntp_text))
+                                            document.documentElement.style.setProperty(`${styleProperty(key)}`, value);
+                                    }
+                                    break;
+                                default:
+                                    document.documentElement.style.setProperty(`${styleProperty(key)}`, value);
+                                    break;
+                            }
+                        }).join('\n');
+                    }
+
+                    // TINTS
+                    let themeTints = (theme.theme.tints) ? theme.theme.tints : theme.tints;
+                    if (themeTints) {
+                        Object.entries(themeTints).map(([key, value]) => {
+                            const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
+                            let tintedColor;
+                            const tintMap = {
+                                "frame": theme.theme.colors.frame,
+                                "frame_inactive": theme.theme.colors.frame_inactive,
+                                "background_tab": theme.theme.colors.background_tab,
+                                "buttons": gkChrTheme.defaultToolbarButtonIconColour
+                            };
+                            for (const i of Object.keys(tintMap)) {
+                                if (!Object.keys(theme.theme.tints).includes(i)) {
+                                    continue;
+                                }
+                                tintedColor = ColorUtils.HSLShift(tintMap[i], value);
+                                if (i == "buttons" && JSON.stringify(tintedColor) == JSON.stringify(this.defaultToolbarButtonIconColour)) {
+                                    // If the tinted colour is the same as the default colour, do NOT tint.
+                                    continue;
+                                }
+                                document.documentElement.style.setProperty(
+                                    `${styleProperty(i == "buttons" ? "toolbar-button-icon" : i)}`,
+                                    `rgb(${tintedColor})`
+                                );
+                            }
+                        }).join('\n');
+                    }
+
+                    // Announce the theme usage
+                    isThemed = true;
+                    isChromeThemed = true;
+                    document.documentElement.setAttribute("gkthemed", true);
+                    document.documentElement.setAttribute("gkchrthemed", true);
+                }
+            }
+            // Reapply titlebar to toggle native mode if applicable to
+            gkTitlebars.applyTitlebar();
+        }, 0);
     }
 
     static removeVariables() {
@@ -242,26 +248,15 @@ class gkChrTheme {
 		});
     }
 
-    static applyTheme() {
-        // TODO: Store theme as filename, NOT filepath
-        setTimeout(() => { // same situation as themesLW. :/
-            let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.filePath").string;
-            gkChrTheme.removeVariables(); // Not all variables can be ensured to be replaced, thus pre-emptively remove EVERY possible variable.
-            if (gkChrTheme.getEligible() && prefChoice) {
-                gkChrTheme.setVariables(prefChoice);
-            }
-        }, 0);
-    }
-
     // TODO: When switching Firefox Theme IDs, yeet the current Chrome Theme as the user is clearly intending to apply vanilla Firefox themes.
 }
-window.addEventListener("load", gkChrTheme.applyTheme);
-Services.obs.addObserver(gkChrTheme.applyTheme, "lightweight-theme-styling-update"); //Disable upon failing criteria
+window.addEventListener("load", gkChrTheme.setVariables);
+Services.obs.addObserver(gkChrTheme.setVariables, "lightweight-theme-styling-update"); //Disable upon failing criteria
 
 const chrThemeObs = {
 	observe: function (subject, topic, data) {
-		gkChrTheme.applyTheme();
+		gkChrTheme.setVariables();
 	},
 };
-Services.prefs.addObserver("Geckium.chrTheme.filePath", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.chrTheme.fileName", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.chrTheme.status", chrThemeObs, false);

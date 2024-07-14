@@ -59,7 +59,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed], &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
 		--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
 		--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
 

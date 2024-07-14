@@ -176,7 +176,7 @@
 		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
 	}
 	// else if lwtheme
-	&[gkthemed] {
+	&[gkthemed]:not([gkchrthemed]) {
 		&:not([customthememode="none"]) {
 			--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 

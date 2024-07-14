@@ -5,7 +5,7 @@
 	--toolbox-non-lwt-textcolor: light-dark(black, white);
 	//TODO: Colour Windows 10 CSDs using these variables, and get proper inactive backgrounds
 
-	&[gkthemed] {
+	&[gkthemed]:not([gkchrthemed]) {
 		&[captionbuttonbackground="true"] {
 			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 		}
@@ -15,6 +15,34 @@
 	}
 
 	// Fixes for various OS quirks
+	&[gktitnative="true"] {
+		@media (-moz-platform: linux) {
+			// Stop Light and Dark from getting custom Firefox titlebars
+			&:not([gkthemed]:not([gkchrthemed])) {
+				#navigator-toolbox {
+					background-image: unset !important;
+					background-repeat: unset !important;
+					background-position: unset !important; //browser.css:88, 115
+				}
+				&:not([is117Plus]) #navigator-toolbox {
+					background-color: transparent !important; //browser.css:37, 115
+				}
+				&[is117Plus] #navigator-toolbox {
+					background-color: var(--toolbox-non-lwt-bgcolor) !important;
+					color: var(--toolbox-non-lwt-textcolor) !important; //browser-shared.css:205, 128
+					&:-moz-window-inactive {
+						background-color: var(--toolbox-non-lwt-bgcolor-inactive) !important;
+						color: var(--toolbox-non-lwt-textcolor-inactive) !important; //browser-shared.css:192, 128
+					}
+				}
+				&:not([is117Plus]) .titlebar-button {
+					list-style-image: unset !important; //browser.css:366, 115
+					appearance: auto !important; //browser.css:357, 115
+					border-radius: unset !important; //browser.css:357, 115
+				}
+			}
+		}
+	}
 	&[gktitnative="false"] {
 		//Windows quirks
 		@media (-moz-platform: windows) {
@@ -106,7 +134,7 @@
 	}
 
 	//Theme support
-	&[gkthemed] {
+	&[gkthemed]:not([gkchrthemed]) {
 		//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
 		--titlebar-active: var(--lwt-accent-color);
 		--titlebar-inactive: var(--titlebar-active);
