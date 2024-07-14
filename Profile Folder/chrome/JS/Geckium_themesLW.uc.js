@@ -108,8 +108,10 @@ class gkLWTheme {
             } else {
                 document.documentElement.removeAttribute("gkthemed");
             }
-            // Reapply titlebar to toggle native mode if applicable to
-            gkTitlebars.applyTitlebar();
+            if (isBrowserWindow) {
+                // Reapply titlebar to toggle native mode if applicable to
+                gkTitlebars.applyTitlebar();
+            }
         }, 0);
     }
     

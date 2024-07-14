@@ -64,9 +64,11 @@ class gkSysTheme {
         // Apply System Theme
         previousSysTheme = theme;
         document.documentElement.setAttribute("gksystheme", theme);
-        // Trigger special System Themes' variable refreshers
-        gkGTK.apply();
-        gkYou.apply();
+        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+            // Trigger special System Themes' variable refreshers
+            gkGTK.apply();
+            gkYou.apply();
+        }
     }
 }
 window.addEventListener("load", () => gkSysTheme.applyTheme());
