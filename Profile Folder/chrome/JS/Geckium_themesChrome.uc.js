@@ -221,6 +221,8 @@ class gkChrTheme {
         isChromeThemed = true;
         document.documentElement.setAttribute("gkthemed", true);
         document.documentElement.setAttribute("gkchrthemed", true);
+        // Reapply titlebar to toggle native mode if applicable to
+        gkTitlebars.applyTitlebar();
     }
 
     static removeVariables() {
@@ -248,8 +250,6 @@ class gkChrTheme {
             if (gkChrTheme.getEligible() && prefChoice) {
                 gkChrTheme.setVariables(prefChoice);
             }
-            // Reapply titlebar to toggle native mode if applicable to
-            gkTitlebars.applyTitlebar();
         }, 0);
     }
 
