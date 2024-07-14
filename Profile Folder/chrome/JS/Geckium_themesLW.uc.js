@@ -93,8 +93,6 @@ class gkLWTheme {
             isThemed = gkLWTheme.isThemed;
             if (isThemed) {
                 document.documentElement.setAttribute("gkthemed", true);
-                // lwtheme information TODO: still needed?
-                document.documentElement.setAttribute("lwtheme-id", gkPrefUtils.tryGet("extensions.activeThemeID").string);
                 // Ensure the toolbar colour is opaque
                 const toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
                 if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
@@ -109,8 +107,6 @@ class gkLWTheme {
                 }
             } else {
                 document.documentElement.removeAttribute("gkthemed");
-                // Delete lwtheme indicator TODO: still needed?
-                document.documentElement.removeAttribute("lwtheme-id");
             }
             // Reapply titlebar to toggle native mode if applicable to
             gkTitlebars.applyTitlebar();

@@ -10,7 +10,7 @@ const { ColorUtils } = ChromeUtils.importESModule("chrome://modules/content/Chro
 // Initial variables
 let isChromeThemed;
 let isChrThemeNative;
-const chrThemesFolder = `file://${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/chrThemes`;
+const chrThemesFolder = `file://${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/chrThemes`; // bruni, you could SO make this a custom-settable path now btw
 
 // Chrome Themes
 class gkChrTheme {
