@@ -10,8 +10,8 @@
 			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
 		}
 	}
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--titlebar-buttonbox-background: var(--chrt-theme-window-control-background, var(--chrt-control-background, var(--chrt-button-background, transparent)));
+	&[gkthemed][gkchrthemed] {
+		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
 	}
 
 	// Fixes for various OS quirks
@@ -129,7 +129,7 @@
 
 	--inactive-titlebar-opacity: 1 !important; //TODO: unused?
 
-	--chrt-theme-frame-overlay: 0; //TODO: Change to 'unset'
+	--chrtheme-theme-frame-overlay: 0; //TODO: Change to 'unset'
 
     &[privatebrowsingmode="temporary"] {
         #fxa-toolbar-menu-button {

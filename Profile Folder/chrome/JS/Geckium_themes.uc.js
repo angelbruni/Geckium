@@ -265,6 +265,7 @@ class gkYou {
 }
 //NOTE: gkYou.apply is called by gkSysTheme.applyTheme
 window.addEventListener("nativethemechange", gkYou.apply);
+Services.obs.addObserver(gkYou.apply, "lightweight-theme-styling-update");
 
 const YouObserver = {
 	observe: function (subject, topic, data) {

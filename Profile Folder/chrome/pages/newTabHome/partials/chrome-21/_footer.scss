@@ -144,87 +144,87 @@
 	}
 
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--footer-border: linear-gradient(
 			to left,
 			color-mix(
 				in srgb,
-				var(--chrt-ntp-header) 20%,
+				var(--chrtheme-ntp-header) 20%,
 				transparent
 			),
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 30%,
+					var(--chrtheme-ntp-header) 30%,
 					transparent
 				)
 				20%,
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 30%,
+					var(--chrtheme-ntp-header) 30%,
 					transparent
 				)
 				80%,
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 20%,
+					var(--chrtheme-ntp-header) 20%,
 					transparent
 				)
 		) !important;
 
 		&[footer-themable="true"] {
 			#logo_wordmark {
-				background: var(--chrt-frame) !important;
+				background: var(--chrtheme-frame) !important;
 			}
 
 			--footer-background: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
-					var(--chrt-toolbar) 90%,
+					var(--chrtheme-toolbar) 90%,
 					transparent
 				),
 				color-mix(
 					in srgb,
-					color-mix(in srgb, var(--chrt-toolbar) 65%, black)
+					color-mix(in srgb, var(--chrtheme-toolbar) 65%, black)
 						90%,
 					transparent
 				)
 			);
-			--footer-color: var(--chrt-frame);
+			--footer-color: var(--chrtheme-frame);
 
 			--dot-color-normal: color-mix(
 				in srgb,
-				var(--chrt-frame) 20%,
+				var(--chrtheme-frame) 20%,
 				gray
 			);
-			--dot-color-hot: var(--chrt-frame);
+			--dot-color-hot: var(--chrtheme-frame);
 			--selection-bar-background-color-normal: color-mix(
 				in srgb,
-				var(--chrt-frame) 20%,
+				var(--chrtheme-frame) 20%,
 				transparent
 			);
 			--selection-bar-background-color-hot: color-mix(
 				in srgb,
-				var(--chrt-frame) 40%,
+				var(--chrtheme-frame) 40%,
 				transparent
 			);
-			--selection-bar-background-color-active: var(--chrt-frame);
+			--selection-bar-background-color-active: var(--chrtheme-frame);
 
 			--footer-item-color-hot: color-mix(
 				in srgb,
-				var(--chrt-frame) 90%,
+				var(--chrtheme-frame) 90%,
 				black
 			);
 			--footer-menu-button-glyph-background-color-normal: var(
-				--chrt-frame
+				--chrtheme-frame
 			);
-			--footer-menu-item-link-color: var(--chrt-toolbar);
+			--footer-menu-item-link-color: var(--chrtheme-toolbar);
 			--footer-vertical-separator-background-color: color-mix(
 				in srgb,
-				var(--chrt-frame) 40%,
+				var(--chrtheme-frame) 40%,
 				transparent
 			);
 		}

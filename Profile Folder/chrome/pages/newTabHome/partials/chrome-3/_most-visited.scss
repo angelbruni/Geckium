@@ -96,15 +96,15 @@
 		) !important;
 	}
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
+	&[gkthemed][gkchrthemed] {
+		--manually-adapted-header: var(--chrtheme-ntp-section, var(--chrtheme-ntp-header));
 		--view-toolbar-buttons-bg: color-mix(
 			in srgb,
 			var(--manually-adapted-header) 70%,
 			white
 		);
 		
-		/*&[style*="--chrt-ntp-section"] {
+		/*&[style*="--chrtheme-ntp-section"] {
 			--thumbnail-border-color-normal: color-mix(
 				in srgb,
 				var(--manually-adapted-header) 20%,
@@ -112,9 +112,9 @@
 			) !important;
 			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot)) !important;
 		}*/
-		--thumbnail-border-color-normal: var(--chrt-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
-		--thumbnail-border-color-hot: var(--chrt-ntp-header, var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot))) !important;
-		--thumbnail-container-color: var(--chrt-ntp-text, var(--default-thumbnail-container-color)) !important;
+		--thumbnail-border-color-normal: var(--chrtheme-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
+		--thumbnail-border-color-hot: var(--chrtheme-ntp-header, var(--chrtheme-ntp-section, var(--default-thumbnail-border-color-hot))) !important;
+		--thumbnail-container-color: var(--chrtheme-ntp-text, var(--default-thumbnail-container-color)) !important;
 		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg)) !important;
 		
 		--edit-bar-background-color-hot: var(--thumbnail-border-color-hot, var(--default-thumbnail-border-color-hot)) !important;

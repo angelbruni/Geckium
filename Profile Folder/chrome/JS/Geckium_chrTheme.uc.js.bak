@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name        Geckium - Chromium Theme Parser
 // @author      AngelBruni
-// @loadorder   2
+// @loadorder   3
 // ==/UserScript==
 
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 const profRootDir = FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/");
-
-const { ColorUtils } = ChromeUtils.importESModule("chrome://modules/content/ChromiumColorUtils.sys.mjs");
 
 const chrThemesFolderName = "chrThemes";
 
@@ -32,7 +30,7 @@ class chrTheme {
 	}
 
 	static get getFolderPath() {
-		return `file:///${profRootDir}/chrome/${chrThemesFolderName}`;
+		return `file://${profRootDir}/chrome/${chrThemesFolderName}`;
 	}
 
 	static get getFolderFileUtilsPath() {
@@ -54,7 +52,7 @@ class chrTheme {
 
                 while (directoryEntries.hasMoreElements()) {
                     const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
-                    const themeManifest = `jar:file:///${profRootDir}/chrome/${chrThemesFolderName}/${file.leafName}!/manifest.json`;
+                    const themeManifest = `jar:file://${profRootDir}/chrome/${chrThemesFolderName}/${file.leafName}!/manifest.json`;
 
                     const fetchPromise = fetch(themeManifest)
                         .then((response) => response.json())
@@ -147,7 +145,7 @@ class chrTheme {
 					return;
 				}
 			}
-			let filePath = `file:///${profRootDir}/chrome/${chrThemesFolderName}/${crx}.crx`;
+			let filePath = `file://${profRootDir}/chrome/${chrThemesFolderName}/${crx}.crx`;
 
 			gkPrefUtils.set("Geckium.chrTheme.status").bool(true);
 			const chrThemeStatus = gkPrefUtils.tryGet("Geckium.chrTheme.status").bool;
@@ -164,7 +162,7 @@ class chrTheme {
 			console.log(file);
 
 			function setStyleProperty(key) {
-				return `--chrt-${key.replace(/_/g, '-')}`;
+				return `--chrtheme-${key.replace(/_/g, '-')}`;
 			}
 
 			let themeFrame;
@@ -187,8 +185,8 @@ class chrTheme {
 							var img = new Image();
 							img.src = imagePath;
 							img.onload = function() {
-								document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-width", `${this.width}px`);
-								document.documentElement.style.setProperty("--chrt-theme-ntp-attribution-height", `${this.height}px`);
+								document.documentElement.style.setProperty("--chrtheme-ntp-attribution-width", `${this.width}px`);
+								document.documentElement.style.setProperty("--chrtheme-ntp-attribution-height", `${this.height}px`);
 							};
 						}
 
@@ -203,7 +201,7 @@ class chrTheme {
 
 							if (key == "ntp_text") {
 								if (!ColorUtils.IsDark(value))
-									document.documentElement.style.setProperty("--chrt-ntp-logo-alternate", "1");
+									document.documentElement.style.setProperty("--chrtheme-ntp-logo-alternate", "1");
 							}
 
 							document.documentElement.style.setProperty(`${setStyleProperty(key)}`, `rgb(${value.join(', ')})`)
@@ -322,18 +320,3 @@ class chrTheme {
 		await gkChromiumFrame.automatic();
 	}
 }
-window.addEventListener("load", () => {
-	chrTheme.enable();
-});
-const chrThemeObs = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			if (gkPrefUtils.tryGet("Geckium.chrTheme.status").bool == true)
-				chrTheme.enable();
-			else
-				chrTheme.disable();
-		}
-	},
-};
-Services.prefs.addObserver("Geckium.chrTheme.status", chrThemeObs, false);
-Services.prefs.addObserver("Geckium.chrTheme.fileName", chrThemeObs, false);

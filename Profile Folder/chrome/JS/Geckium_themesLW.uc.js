@@ -75,17 +75,22 @@ class gkLWTheme {
 
     static setThemeAttrs() {
         // This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
-        //TODO: Call in Chrome Themes class to check if correct theme is used - if not disable Chrome Theme
         setTimeout(async () => {
             if (gkLWTheme.isDark) {
                 document.documentElement.setAttribute("gkdark", true);
             } else {
                 document.documentElement.removeAttribute("gkdark");
             }
-            isThemed = gkLWTheme.isThemed;
             // Delete lwtheme-specific variable (if themed, they get remade)
             document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
             document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
+            // Do not run further if a Chromium Theme is currently used
+            if (isChromeThemed) {
+                if (gkChrTheme.getEligible) {
+                    return;
+                }
+            }
+            isThemed = gkLWTheme.isThemed;
             if (isThemed) {
                 document.documentElement.setAttribute("gkthemed", true);
                 // lwtheme information TODO: still needed?
@@ -111,6 +116,7 @@ class gkLWTheme {
             gkTitlebars.applyTitlebar();
         }, 0);
     }
+    
 
     // LWTheme Toolbar Background Modes
 	static get getCustomThemeMode() {

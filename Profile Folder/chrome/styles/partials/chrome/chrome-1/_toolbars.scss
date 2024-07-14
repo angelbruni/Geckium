@@ -289,8 +289,8 @@
 		}
 	}
 	// else if chrtheme
-	&[lwtheme-id*="compact-light"][chrtheme="true"] {
-		--nav-bar: var(--chrt-theme-toolbar, var(--chrt-toolbar, var(--default-nav-bar))) !important;
+	&[gkthemed][gkchrthemed] {
+		--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
 		--toolbarbutton-border-color-normal: color-mix(
 			in srgb,
 			var(--toolbarbutton-icon-fill) 50%,
@@ -302,18 +302,18 @@
 			transparent
 		) !important;
 		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
-		--toolbarbutton-texture: var(--chrt-theme-button-background, var(--chrt-button-background, transparent)) !important;
+		--toolbarbutton-texture: var(--chrtheme-theme-button-background, var(--chrtheme-button-background, transparent)) !important;
 		--toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
 		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
-		--toolbarbutton-icon-fill: var(--chrt-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
+		--toolbarbutton-icon-fill: var(--chrtheme-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
 		--navigation-buttons-separator: rgba(255,255,255,.2) !important;
 
 		--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
-		--bookmark-item-color: var(--chrt-bookmark-text, var(--default-bookmark-item-color)) !important;
+		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
 		--bookmark-item-color-shadow: none !important;
 		
-		--inner-border-color: var(--chrt-toolbar, var(--default-nav-bar)) !important;
+		--inner-border-color: var(--chrtheme-toolbar, var(--default-nav-bar)) !important;
 
 		#nav-bar {
 			background-position-y: calc(var(--tab-height) * -1) !important;
