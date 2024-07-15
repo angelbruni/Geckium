@@ -27,10 +27,12 @@ async function populateChrThemesList() {
 			themeBannerColor = "black";
 
 		let themeIcon = theme.icon;
-		let themeIconPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
-
-		if (themeIcon == "")
+		let themeIconPath;
+		if (themeIcon) {
+			themeIconPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
+		} else {
 			themeIconPath = "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
+		}
 		
 		const themeVersion = theme.version;
 		
@@ -66,6 +68,7 @@ async function populateChrThemesList() {
 
 	chrThemesList.querySelectorAll("label.item").forEach(item => {
 		item.addEventListener("click", () => {
+			// TODO: Use actual event from about:addons to apply the right theme
 			gkPrefUtils.set("extensions.activeThemeID").string("firefox-compact-light@mozilla.org");
 			gkPrefUtils.set("Geckium.chrTheme.fileName").string(item.dataset.themeName);
 		})

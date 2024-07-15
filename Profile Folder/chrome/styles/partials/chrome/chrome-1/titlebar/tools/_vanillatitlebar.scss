@@ -3,13 +3,25 @@
 }
 
 #navigator-toolbox {
-    background: var(--titlebar-active, var(--default-titlebar-active));
+    background: var(--titlebar-active, var(--default-titlebar-active)) !important;
     &:-moz-window-inactive {
-        background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+        background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
     }
     border-radius: 0 !important;
     border-top-left-radius: var(--titlebar-border-radius) !important;
     border-top-right-radius: var(--titlebar-border-radius) !important;
+}
+&[gkthemed][gkchrthemed] {
+    #navigator-toolbox::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: var(--chrtheme-theme-frame-overlay) no-repeat, var(--chrtheme-theme-frame) repeat no-repeat !important;
+    }
+    &:-moz-window-inactive #navigator-toolbox::before {
+        filter: contrast(.5) brightness(1.4);
+    }
 }
 
 // TODO: Apply colours-only Firefox themes onto this surface

@@ -171,7 +171,7 @@ class gkEras {
     static getEras(style) {
         if (style == "chrome" || style == "page")
 			return Object.keys(eras).reduce(function (filtered, key) {
-                if (eras[key]["styles"].includes("chrome")) {
+                if (eras[key]["styles"].includes(style)) {
                     filtered[key] = eras[key];
                 }
                 return filtered;
