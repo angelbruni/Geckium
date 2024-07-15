@@ -29,8 +29,6 @@ class gkTitlebars {
              * 
              * native - Whether to enable native titlebars if set to Automatic
              * 
-             * nativetheme   -  Same as native, but when in compatible Chromium Themes (requires native == true)
-             * 
              * cannative    -   If False, the titlebar will always be in non-native mode regardless of preferences
              * 
              * newtabstyle -    0: Windows
@@ -47,7 +45,6 @@ class gkTitlebars {
                 hasnativegaps: true,
                 hasgaps: true,
                 native: true,
-                nativetheme: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -64,7 +61,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: true,
-                nativetheme: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -82,7 +78,6 @@ class gkTitlebars {
                 hasgaps: false,
                 chromemargin: "0,2,2,2",
                 native: true,
-                nativetheme: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -103,7 +98,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
-                nativetheme: false,
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
@@ -137,7 +131,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
-                nativetheme: false,
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
@@ -168,7 +161,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: false,
                 native: false,
-                nativetheme: false,
                 cannative: false,
                 newtabstyle: 2,
                 systheme: {
@@ -192,7 +184,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: false,
                 native: false,
-                nativetheme: false,
                 cannative: false,
                 newtabstyle: 2,
                 systheme: {
@@ -216,7 +207,6 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
-                nativetheme: false,
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
@@ -337,6 +327,10 @@ class gkTitlebars {
      */
 
     static getNative(spec) {
+        // FIXME: This one needs to default to True
+        if (!gkPrefUtils.prefExists("Geckium.appearance.titlebarThemedNative")) {
+		    gkPrefUtils.set("Geckium.appearance.titlebarThemedNative").bool(true);																			    // Add default apps if the apps list is empty
+	    }
         // Check if titlebar blocks being native
         if (spec.cannative == false) {
             return false;
@@ -370,18 +364,9 @@ class gkTitlebars {
                 if (!isChrThemeNative) {
                     return false; // Current Chrome Theme isn't native
                 }
-                // Check if user blocked native in-theme titlebar or is Automatic
-                switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").int) {
-                    case 1: //Enabled
-                        break;
-                    case 2: //Disabled
-                        return false;
-                    default: //Automatic
-                        // Check if titlebar is automatically native when in themes
-                        if (spec.nativetheme == false) {
-                            return false;
-                        }
-                        break;
+                // Check if user blocked native in-theme titlebar
+                if (!gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").bool) {
+                    return false;
                 }
             }
         }
