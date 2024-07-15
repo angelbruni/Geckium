@@ -36,6 +36,11 @@ class gkChrTheme {
 	static get getFolderFileUtilsPath() {
 		return Services.io.newURI(chrThemesFolder, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
+    // Fallback behaviour
+    // 1 - 47: Not using colours if images are missing, unless user-overridden or manifest_version >= 2
+    // 68 -: Using colours if images are missing
+    // TODO: Map these to generic Geckium variables
+    // TODO: Windows 10 titlebuttons seem to be getDark... based on a fusion of frameBG and buttonBG based on buttonBG's alpha-level.
     static async getThemes() {
         var themes = {};
         try {

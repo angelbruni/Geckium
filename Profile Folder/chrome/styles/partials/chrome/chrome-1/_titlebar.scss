@@ -12,6 +12,8 @@
 	}
 	&[gkthemed][gkchrthemed] {
 		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
+		--titlebar-foreground: var(--chrtheme-toolbar-button-icon, var(--default-toolbarbutton-icon-fill));
+		--titlebar-foreground-inactive: var(--chrtheme-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)); //FIXME: This needs to be tinted
 	}
 
 	// Fixes for various OS quirks

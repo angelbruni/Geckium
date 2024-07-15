@@ -295,17 +295,17 @@ class gkTitlebars {
             }
         }
         // Return the appropriate titlebar style
-        if (AppConstants.platform == "win") {
+        switch (AppConstants.platform) {
+            case "macosx":
+                return titlebars.macos;
+            case "linux":
+                return titlebars.linux;
+            default: //Fallback to Windows
             if (window.matchMedia("(-moz-platform: windows-win10)").matches) { //TODO: Force this if 117+
                 return titlebars.win10;
             }
             return titlebars.win;
-        } else if (AppConstants.platform == "macosx") {
-            return titlebars.macos;
-        } else if (AppConstants.platform == "linux") {
-            return titlebars.linux;
         }
-        return titlebars.win; //Fallback to Windows
 	}
 
     /** getTitlebar - Gets the currently set titlebar from about:config

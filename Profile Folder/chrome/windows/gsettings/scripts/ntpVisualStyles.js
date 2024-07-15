@@ -5,23 +5,21 @@ function insertNTPVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	for (var i = 0; i < 9; i++) {
-		// Get the appearance details from the map
-		var appearance = gkEras.getEras("page")[i];
-
+	let eras = gkEras.getEras("page");
+	for (const i of Object.keys(eras)) {
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `
-		<html:button data-appearance="${appearance.id}"
-					class="link chrome-appearance ripple-enabled" 
-					for="chrome-${appearance.int}" 
-					style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/ntp/chrome-${appearance.int}.png'); background-position: top center;">
-			<html:label class="wrapper" chrome="${appearance.int}">
-				<div class="year">${appearance.year[0]}</div>
+		<html:button data-appearance="${i}"
+				class="link chrome-appearance ripple-enabled" 
+				for="chrome-${i}" 
+				style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/ntp/chrome-${i}.png'); background-position: top center;">
+			<html:label class="wrapper" chrome="${i}">
+				<div class="year">${eras[i].year}</div>
 				<div class="identifier">
 					<div class="radio-parent">
-						<html:input data-appearance="${appearance.id}" class="radio" type="radio" name="ntp-visual-style" id="chrome-${appearance.int}"></html:input>
+						<html:input data-appearance="${i}" class="radio" type="radio" name="global-visual-style" id="chrome-${i}"></html:input>
 						<div class="gutter" for="checked_check"></div>
-						<html:label for="chrome-${appearance.int}" class="label">Chrome ${appearance.int}</html:label>
+						<html:label for="chrome-${i}" class="label">Chrome ${eras[i].name}</html:label>
 					</div>
 				</div>
 			</html:label>

@@ -5,23 +5,36 @@ function insertGlobalVisualStyles() {
 	// Initialize the HTML string
 	let chromeAppearanceCard = ``;
 
-	for (var i = 0; i < 10; i++) {
-		// Get the appearance details from the map
-		var appearance = gkEras.getEras()[i];
+	// Change previews based on platform
+	let platformsuffix = (function() {
+		switch (AppConstants.platform) {
+            case "macosx":
+                return "mac";
+            case "linux":
+                return "linux";
+            default: //Fallback to Windows
+            if (window.matchMedia("(-moz-platform: windows-win10)").matches) { //TODO: Force this if 117+
+                return "win10"
+            }
+            return "win";
+        }
+	})();
 
+	let eras = gkEras.getEras();
+	for (const i of Object.keys(eras)) {
 		// Construct the HTML for the button using template literals
 		chromeAppearanceCard += `
-		<html:button data-appearance="${appearance.id}"
+		<html:button data-appearance="${i}"
 				class="link chrome-appearance ripple-enabled" 
-				for="chrome-${appearance.int}" 
-				style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/main/chrome-${appearance.int}.png');">
-			<html:label class="wrapper" chrome="${appearance.int}">
-				<div class="year">${appearance.year[0]}</div>
+				for="chrome-${i}" 
+				style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/main/chrome-${i}-${platformsuffix}.png');">
+			<html:label class="wrapper" chrome="${i}">
+				<div class="year">${eras[i].year}</div>
 				<div class="identifier">
 					<div class="radio-parent">
-						<html:input data-appearance="${appearance.id}" class="radio" type="radio" name="global-visual-style" id="chrome-${appearance.int}"></html:input>
+						<html:input data-appearance="${i}" class="radio" type="radio" name="global-visual-style" id="chrome-${i}"></html:input>
 						<div class="gutter" for="checked_check"></div>
-						<html:label for="chrome-${appearance.int}" class="label">Chrome ${appearance.int}</html:label>
+						<html:label for="chrome-${i}" class="label">Chrome ${eras[i].name}</html:label>
 					</div>
 				</div>
 			</html:label>
