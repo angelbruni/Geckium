@@ -23,7 +23,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gkdark], &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme]) {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			var(--thumbnail-border-color-normal) 70%,

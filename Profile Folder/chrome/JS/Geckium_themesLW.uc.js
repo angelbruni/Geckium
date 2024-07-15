@@ -76,11 +76,6 @@ class gkLWTheme {
     static setThemeAttrs() {
         // This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
         setTimeout(async () => {
-            if (gkLWTheme.isDark) {
-                document.documentElement.setAttribute("gkdark", true);
-            } else {
-                document.documentElement.removeAttribute("gkdark");
-            }
             // Delete lwtheme-specific variable (if themed, they get remade)
             document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
             document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
