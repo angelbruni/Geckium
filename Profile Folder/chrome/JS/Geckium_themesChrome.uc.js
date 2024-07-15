@@ -48,7 +48,7 @@ class gkChrTheme {
                 while (directoryEntries.hasMoreElements()) {
                     const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
                     if (file.leafName.endsWith(".crx")) {
-                        const themeManifest = `jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`;
+                        const themeManifest = `jar:${chrThemesFolder}/${file.leafName}!/manifest.json`;
 
                         const fetchPromise = fetch(themeManifest)
                             .then((response) => response.json())
@@ -128,6 +128,9 @@ class gkChrTheme {
             return `--chrtheme-${key.replace(/_/g, '-')}`;
         }
 
+        // TODO: Create variables based on available values - depending on manifest_version, determine what parts of the theme map to what (e.g.: more fallbacks in 2, but also variables for older eras being set to modern values, etc.)
+        //  Also add the Incognito frame-texture, and support colourable glare.
+
         // IMAGES
         if (theme.theme.images) {
             Object.entries(theme.theme.images).map(([key, value]) => {
@@ -196,7 +199,7 @@ class gkChrTheme {
                     "buttons": gkChrTheme.defaultToolbarButtonIconColour
                 };
                 for (const i of Object.keys(tintMap)) {
-                    if (!Object.keys(theme.theme.tints).includes(i)) {
+                    if (!Object.keys(themeTints).includes(i) || !tintMap[i]) {
                         continue;
                     }
                     tintedColor = ColorUtils.HSLShift(tintMap[i], value);
@@ -245,7 +248,7 @@ class gkChrTheme {
         let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
         setTimeout(async () => { // same situation as themesLW, plus we NEED async. :/
             if (gkChrTheme.getEligible() && prefChoice) {
-                let file = `jar:file://${chrThemesFolder}/${prefChoice}.crx!`;
+                let file = `jar:${chrThemesFolder}/${prefChoice}.crx!`;
                 // Load and apply the selected Chromium Theme
                 let theme = await gkChrTheme.getThemeData(`${file}/manifest.json`);
                 if (theme != null) {
@@ -271,4 +274,3 @@ const chrThemeObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.chrTheme.fileName", chrThemeObs, false);
-Services.prefs.addObserver("Geckium.chrTheme.status", chrThemeObs, false);

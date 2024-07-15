@@ -68,7 +68,6 @@ async function populateChrThemesList() {
 		item.addEventListener("click", () => {
 			gkPrefUtils.set("extensions.activeThemeID").string("firefox-compact-light@mozilla.org");
 			gkPrefUtils.set("Geckium.chrTheme.fileName").string(item.dataset.themeName);
-			document.getElementById("chrTheme-switch").checked = true;
 		})
 	})
 
