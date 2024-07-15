@@ -216,7 +216,7 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name">Use native titlebar TODO</label>
+														<label class="name">Titlebar Mode TODO</label>
 														<label class="description">Some titlebar styles will ignore this setting TODO</label>
 													</vbox>
 													<spacer />
@@ -225,26 +225,21 @@
 														<label class="selected" />
 														<vbox class="list">
 															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
+															<hbox class="item ripple-enabled" value="1">System Borders TODO</hbox>
+															<hbox class="item ripple-enabled" value="2">Compact Borders TODO</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name">Use native titlebar in compatible Chromium themes TODO</label>
-														<label class="description">Requires native titlebars to be enabled or used by your titlebar style TODO</label>
+														<label class="name">Use system titlebar in compatible Chromium themes TODO</label>
+														<label class="description">Requires system titlebars to be enabled or used by your titlebar style TODO</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="titlebarthemed-native" data-pref="appearance.titlebarThemedNative" id="titlebarthemed-native-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
-														</vbox>
-													</html:button>
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.appearance.titlebarThemedNative" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
 												</hbox>
 											</vbox>
 											<h4>
