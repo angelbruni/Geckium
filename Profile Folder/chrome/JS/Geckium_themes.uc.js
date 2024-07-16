@@ -257,12 +257,14 @@ class gkYou {
 
 	static apply() {
         let era = gkEras.getEra();
-        let color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
-		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68) && color != "") {
-			gkYou.setVariables(color);
-        } else {
-            gkYou.removeVariables();
-		}
+		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68)) {
+            let color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
+            if (color != "") {
+                gkYou.setVariables(color);
+                return;
+            }
+        }
+        gkYou.removeVariables();
 	}
 }
 //NOTE: gkYou.apply is called by gkSysTheme.applyTheme

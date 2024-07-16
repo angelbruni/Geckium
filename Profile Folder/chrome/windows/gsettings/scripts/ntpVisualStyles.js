@@ -17,7 +17,7 @@ function insertNTPVisualStyles() {
 				<div class="year">${eras[i].year}</div>
 				<div class="identifier">
 					<div class="radio-parent">
-						<html:input data-appearance="${i}" class="radio" type="radio" name="global-visual-style" id="chrome-${i}"></html:input>
+						<html:input data-appearance="${i}" class="radio" type="radio" name="ntp-visual-style" id="chrome-${i}"></html:input>
 						<div class="gutter" for="checked_check"></div>
 						<html:label for="chrome-${i}" class="label">Chrome ${eras[i].name}</html:label>
 					</div>
@@ -29,14 +29,14 @@ function insertNTPVisualStyles() {
 
 	// Set the innerHTML of the container to the constructed HTML
 	container.appendChild(MozXULElement.parseXULToFragment(chromeAppearanceCard))
-
-	document.querySelector(`#ntp-visual-styles-grid input[data-appearance="${gkPrefUtils.tryGet("Geckium.newTabHome.style").int}"]`).checked = true;
-
+	
 	document.querySelectorAll(`#ntp-visual-styles-grid input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
 			console.log(appearance.dataset.appearance)
 			gkPrefUtils.set("Geckium.newTabHome.style").int(appearance.dataset.appearance);
 		})
 	})
+	
+	document.querySelector(`#ntp-visual-styles-grid input[data-appearance="${gkEras.getEra("Geckium.newTabHome.style")}"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", insertNTPVisualStyles);
