@@ -43,6 +43,10 @@
 					border-radius: unset !important; //browser.css:357, 115
 				}
 			}
+			// Center the titlebar buttons, because Mozilla can't ig...?
+			.titlebar-buttonbox-container {
+				align-self: center;
+			}
 		}
 	}
 	&[gktitnative="false"] {
@@ -92,6 +96,10 @@
 		}
 
 		//Misc. quirk-workarounds
+		.titlebar-buttonbox-container {
+			align-self: start; // Positions the buttons correctly
+		}
+
 		#navigator-toolbox-background {
 			position: relative; // Makes the background PROPERLY disappear
 		}
@@ -216,35 +224,4 @@
 		@import "titlebar/buttons/macos";
 	}
 	// Chrome OS (redirected by JS to linuxog)
-
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		#private-browsing-indicator-with-label {
-			margin-block-start: -3px;
-			margin-block-end: -3px;
-			margin-inline-start: 0px !important;
-			margin-inline-end: 5px !important;
-		}
-	}
-}
-
-//TODO: Also move into windows titlebar style?
-#private-browsing-indicator-with-label {
-    align-items: end !important;
-	margin-block-end: 1px;
-    margin-inline-start: 1px !important;
-    margin-inline-end: 2px !important;
-}
-
-.private-browsing-indicator-icon {
-    width: auto !important;
-    height: auto !important;
-}
-
-[data-l10n-id="private-browsing-indicator-label"] {
-    display: none !important;
-}
-
-.titlebar-buttonbox-container {
-	align-self: start;
 }
