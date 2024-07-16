@@ -6,7 +6,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		&[style*="--lwt-newtab-attribution-image"] {
 			#attribution {
 				display: flex !important;

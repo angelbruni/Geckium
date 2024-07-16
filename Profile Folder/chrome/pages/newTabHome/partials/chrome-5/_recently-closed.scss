@@ -17,7 +17,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--recently-closed-background: color-mix(
 			in srgb,
 			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
@@ -35,7 +35,7 @@
 			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-fill, var(--lwt-text-color)));
 		}
 	}
-	&[gksystheme="gtk"]:not([lwtheme]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--recently-closed-item-color: rgb(40,40,238);
 
 		--recently-closed-background: color-mix(

@@ -77,7 +77,7 @@
 	}
 
 	// if lwtheme == gtkplus
-	&[gksystheme="gtk"]:not([lwtheme]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--toolbarbutton-texture: var(--nav-bar) !important;
 		--toolbarbutton-inner-border-color-normal: transparent;
 		--toolbarbutton-inner-border-color-hot: transparent;

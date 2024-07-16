@@ -30,7 +30,7 @@
 	--bookmark-folder-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg");
 }
 @media (-moz-platform: linux) {
-	:root[gksystheme="gtk"]:not([lwtheme]) { //TODO: Check for Light and Dark
+	:root[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) { //TODO: Check for Light and Dark
 		--back-button-icon:		url(moz-icon://stock/go-previous?size=toolbar);
 		--forward-button-icon:	url(moz-icon://stock/go-next?size=toolbar);
 		--reload-button-icon:	url(moz-icon://stock/view-refresh?size=toolbar);

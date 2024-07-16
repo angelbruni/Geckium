@@ -18,7 +18,7 @@
 	}
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Navbar
 		--toolbarbutton-border-color-hot: unset;
 		--default-toolbarbutton-icon-fill: -moz-dialogtext;
