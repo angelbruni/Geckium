@@ -18,6 +18,14 @@
 
 	// Fixes for various OS quirks
 	&[gktitnative="true"] {
+		//Windows quirks
+		@media (-moz-platform: windows) {
+			// Top-align the titlebar buttons, so the Win8- AERO cut-out aligns
+			.titlebar-buttonbox-container {
+				align-self: start;
+			}
+		}
+		//Linux quirks
 		@media (-moz-platform: linux) {
 			// Stop Light and Dark from getting custom Firefox titlebars
 			&:not([gkthemed]:not([gkchrthemed])) {
@@ -52,11 +60,11 @@
 	&[gktitnative="false"] {
 		//Windows quirks
 		@media (-moz-platform: windows) {
-			// Stop non-composited titlebar elements from spontaneously appearing
-			#titlebar {
-				appearance: unset !important;
+			@media (-moz-windows-compositor: 0) {
+				#titlebar {
+					appearance: unset !important;
+				}
 			}
-
 			//Windows 10 + Native Controls Patch quirks
 			@media (-moz-ev-native-controls-patch) {
 				&#main-window {

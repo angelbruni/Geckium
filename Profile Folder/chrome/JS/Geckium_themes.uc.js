@@ -212,7 +212,7 @@ class gkYou {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");
                     return gkYou.getBaseColor();
                 }
-                var accentColor = getRegKeyValue("HKCU", "SOFTWARE\\Microsoft\\Windows\\DWM", "ColorizationColor", "DWORD");
+                var accentColor = NTRegistry.getRegKeyValue("HKCU", "SOFTWARE\\Microsoft\\Windows\\DWM", "ColorizationColor", "DWORD");
                 var r = (accentColor >> 16) & 0xFF,
                     g = (accentColor >> 8) & 0xFF,
                     b = accentColor & 0xFF;
