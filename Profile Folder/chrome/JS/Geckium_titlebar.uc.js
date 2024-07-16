@@ -348,7 +348,7 @@ class gkTitlebars {
                 }
                 // If on Windows, check the compositor is turned off (before 117)
                 if (AppConstants.platform == "win") {
-                    if (window.matchMedia("(-moz-windows-compositor: 0)").matches) {
+                    if (window.matchMedia("(-moz-windows-compositor: 0)").matches || window.matchMedia("(-moz-windows-classic)").matches) {
                         return false;
                     }
                 } else if (AppConstants.platform == "macosx") {
