@@ -132,6 +132,10 @@ class gkChrTheme {
         }
 	}
 
+    static variables = {
+        
+    }
+
     static setVariables(theme, file) {
         function styleProperty(key) {
             return `--chrtheme-${key.replace(/_/g, '-')}`;

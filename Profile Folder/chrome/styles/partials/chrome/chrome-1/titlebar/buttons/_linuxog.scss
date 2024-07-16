@@ -151,10 +151,10 @@
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg) !important;
 		}
 
-		//macOS quirks
-		// macOS works VERY differently regarding its titlebar buttons - on Firefox's side, they are not displayed whatsoever,
-		// likely due to macOS's server-side buttons API, meaning we need to force them to appear, like we did in _windows.scss
-		@media (-moz-platform: macos) {
+		//macOS and Windows 8-: Both OSs work VERY differently regarding their titlebar buttons - on Firefox's side, they are not
+		// displayed whatsoever, likely because of macOS's server-side buttons API, and AERO Glass, respectively, meaning we need
+		// to force them to appear, like we did in _windows.scss
+		@media (-moz-platform: macos) or (-moz-platform: windows-win7) or (-moz-platform: windows-win8) {
 			.titlebar-close,
 			.titlebar-max,
 			.titlebar-restore,
@@ -172,6 +172,11 @@
 					display: none !important;
 				}
 			}
+		}
+
+		//macOS quirks
+		// enforce macOS's button order
+		@media (-moz-platform: macos) {
 			.titlebar-close {
 				order: 0 !important;
 			}
