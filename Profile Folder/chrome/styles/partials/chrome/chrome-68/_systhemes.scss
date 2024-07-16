@@ -55,7 +55,7 @@
     }
 
 	// GTK+ (rest in peace, icon set icons on toolbar)
-	&[gksystheme="gtk"]:not([lwtheme]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Tabs
 		--default-selected-tab-background: var(--default-nav-bar);
 		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO

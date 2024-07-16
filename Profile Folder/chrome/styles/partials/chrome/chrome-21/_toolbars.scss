@@ -79,7 +79,7 @@
 	}
 
 	// FIXME: Temporarily duplicating this until I find a better way to do it.
-	&[gksystheme="gtk"]:not([lwtheme]) { //TODO: Check for Light and Dark
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		@media (-moz-platform: linux) {
 			:not(.widget-overflow-list) {
 				> .toolbarbutton-1:not(

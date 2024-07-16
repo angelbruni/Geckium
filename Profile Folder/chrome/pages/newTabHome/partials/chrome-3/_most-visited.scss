@@ -59,7 +59,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
 		--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
 
@@ -81,7 +81,7 @@
 
 		--link-color: var(--newtab-text-primary-color) !important;
 	}
-	&[gksystheme="gtk"]:not([lwtheme]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--view-toolbar-buttons-bg: AccentColor !important;
 		--window-menu-item-hover-bg: AccentColor !important;
 

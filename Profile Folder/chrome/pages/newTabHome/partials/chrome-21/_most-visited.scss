@@ -15,7 +15,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme]) {
+	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--thumbnail-inner-border-color: color-mix(
 			in srgb,
 			var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,

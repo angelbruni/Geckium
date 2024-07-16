@@ -509,3 +509,20 @@ h4 {
 		);
 	}
 }
+
+// OS restrictions
+.winonly {
+	@media not (-moz-platform: windows) {
+		display: none !important;
+	}
+}
+.notwin10 {
+	@media (-moz-platform: windows-win10) {
+		display: none !important;
+	}
+}
+.win10 {
+	@media not (-moz-platform: windows-win10) {
+		display: none !important;
+	}
+}
