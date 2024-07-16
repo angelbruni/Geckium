@@ -32,7 +32,7 @@ function insertGlobalVisualStyles() {
 				<div class="year">${eras[i].year}</div>
 				<div class="identifier">
 					<div class="radio-parent">
-						<html:input data-appearance="${i}" class="radio" type="radio" name="global-visual-style" id="chrome-${i}"></html:input>
+						<html:input data-appearance="${i}" class="radio" type="radio" name="main-visual-style" id="chrome-${i}"></html:input>
 						<div class="gutter" for="checked_check"></div>
 						<html:label for="chrome-${i}" class="label">Chrome ${eras[i].name}</html:label>
 					</div>
@@ -51,6 +51,6 @@ function insertGlobalVisualStyles() {
 		})
 	})
 
-	document.querySelector(`#main-appearance-container input[data-appearance="${gkPrefUtils.tryGet("Geckium.main.style").int}"]`).checked = true;
+	document.querySelector(`#main-appearance-container input[data-appearance="${gkEras.getEra("Geckium.main.style")}"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", insertGlobalVisualStyles);
