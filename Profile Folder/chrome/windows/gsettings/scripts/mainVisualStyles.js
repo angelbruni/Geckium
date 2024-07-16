@@ -27,7 +27,7 @@ function insertGlobalVisualStyles() {
 		<html:button data-appearance="${i}"
 				class="link chrome-appearance ripple-enabled" 
 				for="chrome-${i}" 
-				style="background-image: url('chrome://userchrome/content/windows/gsettings/imgs/main/chrome-${i}-${platformsuffix}.png');">
+				style="background: AccentColor url('chrome://userchrome/content/windows/gsettings/imgs/main/chrome-${i}-${platformsuffix}.png');">
 			<html:label class="wrapper" chrome="${i}">
 				<div class="year">${eras[i].year}</div>
 				<div class="identifier">
