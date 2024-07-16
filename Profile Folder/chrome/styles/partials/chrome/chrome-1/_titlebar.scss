@@ -65,6 +65,12 @@
 					appearance: unset !important;
 				}
 			}
+			//Remove margin in Windows Classic
+			@media (-moz-windows-classic) {
+				#toolbar-menubar {
+					margin-top: 0 !important;
+				}
+			}
 			//Windows 10 + Native Controls Patch quirks
 			@media (-moz-ev-native-controls-patch) {
 				&#main-window {
