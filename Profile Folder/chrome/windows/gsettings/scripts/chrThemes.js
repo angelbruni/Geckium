@@ -24,7 +24,7 @@ async function populateChrThemesList() {
 
 		let themeBannerColor = theme.color;
 		if (!themeBannerColor)
-			themeBannerColor = "black";
+			themeBannerColor = (themeBannerPath == "") ? "black" : "transparent";
 
 		let themeIcon = theme.icon;
 		let themeIconPath;
@@ -41,7 +41,7 @@ async function populateChrThemesList() {
 					 for="theme-${themeFile}"
 					 data-theme-name="${themeFile}">
 			<vbox flex="1">
-				<html:div class="banner" style="background-color: ${themeBannerColor};background-image: url(${themeBannerPath})"></html:div>
+				<html:div class="banner" style="background-color: ${themeBannerColor}; background-image: url(${themeBannerPath})"></html:div>
 				<hbox style="align-items: center; padding-block: 6px">
 					<image class="icon" style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" />
 					<vbox style="min-width: 0">

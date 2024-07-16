@@ -62,12 +62,16 @@ class gkChrTheme {
                                 try {
                                     themeBanner = theme.theme.images.theme_ntp_background;
                                 } catch (error) {
-                                    themeBanner = undefined;
+                                    try {
+                                        themeBanner = theme.theme.images.theme_frame;
+                                    } catch (error) {
+                                        themeBanner = undefined;
+                                    }
                                 }
 
                                 let themeBannerColor;
                                 try {
-                                    themeBannerColor = theme.theme.colors.frame;
+                                    themeBannerColor = theme.theme.colors.theme_frame;
                                 } catch (error) {
                                     themeBannerColor = undefined;
                                 }
@@ -150,8 +154,8 @@ class gkChrTheme {
                 var img = new Image();
                 img.src = imagePath;
                 img.onload = function() {
-                    document.documentElement.style.setProperty("--chrtheme-ntp-attribution-width", `${this.width}px`);
-                    document.documentElement.style.setProperty("--chrtheme-ntp-attribution-height", `${this.height}px`);
+                    document.documentElement.style.setProperty("--chrtheme-theme-ntp-attribution-width", `${this.width}px`);
+                    document.documentElement.style.setProperty("--chrtheme-theme-ntp-attribution-height", `${this.height}px`);
                 };
             }
 
