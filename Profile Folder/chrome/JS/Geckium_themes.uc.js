@@ -193,6 +193,7 @@ Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", GTKIconsObserver, 
 
 
 // System Theme: Geckium You
+const { NTRegistry } = ChromeUtils.importESModule("chrome://modules/content/ntRegistry.sys.mjs");
 class gkYou {
     static getBaseColor() {
         switch (gkPrefUtils.tryGet("Geckium.you.mode").string) {
@@ -211,13 +212,20 @@ class gkYou {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");
                     return gkYou.getBaseColor();
                 }
-                return "rgb(0, 255, 0)"; // TODO
+                var accentColor = getRegKeyValue("HKCU", "SOFTWARE\\Microsoft\\Windows\\DWM", "ColorizationColor", "DWORD");
+                var r = (accentColor >> 16) & 0xFF,
+                    g = (accentColor >> 8) & 0xFF,
+                    b = accentColor & 0xFF;
+                return `rgb(${r}, ${g}, ${b})`;
             case "awm":
-                if (AppConstants.platform != "win" || (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches)) {
+                if (AppConstants.platform != "win" || !window.matchMedia("(-moz-platform: windows-win10)").matches) {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");
                     return gkYou.getBaseColor();
                 }
-                return "rgb(0, 0, 255)"; // TODO
+                var r = getRegKeyValue("HKLM", "SOFTWARE\\AWM", "Window_ColorRActive", "DWORD"),
+                    g = getRegKeyValue("HKLM", "SOFTWARE\\AWM", "Window_ColorGActive", "DWORD"),
+                    b = getRegKeyValue("HKLM", "SOFTWARE\\AWM", "Window_ColorBActive", "DWORD");
+                return `rgb(${r}, ${g}, ${b})`;
             default:
                 return ""; // grey
         }
@@ -256,15 +264,14 @@ class gkYou {
     }
 
 	static apply() {
+        gkYou.removeVariables();
         let era = gkEras.getEra();
 		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68)) {
             let color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
             if (color != "") {
                 gkYou.setVariables(color);
-                return;
             }
         }
-        gkYou.removeVariables();
 	}
 }
 //NOTE: gkYou.apply is called by gkSysTheme.applyTheme
