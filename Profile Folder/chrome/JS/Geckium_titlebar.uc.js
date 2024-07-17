@@ -398,6 +398,7 @@ class gkTitlebars {
         // Apply titlebar and button style
         document.documentElement.setAttribute("gktitstyle", spec.border);
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
+        document.documentElement.setAttribute("gknewtabstyle", spec.newtabstyle);
         // Check native titlebar mode eligibility
         if (gkTitlebars.getNative(spec)) {
             // Base Geckium CSS flag
