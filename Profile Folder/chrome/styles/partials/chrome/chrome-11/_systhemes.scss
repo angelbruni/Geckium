@@ -108,8 +108,16 @@
 				}
 			}
 		}
-	}
 
-	// Geckium You
-	//TBD
+		// Geckium You
+		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]):not([geckium-twentyone]) {
+			// Navbar
+			--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 37%), calc(var(--you-l) - 10%));
+
+			@media (prefers-color-scheme: dark) {
+				// Navbar
+				--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) + 19%));
+			}
+		}
+	}
 }

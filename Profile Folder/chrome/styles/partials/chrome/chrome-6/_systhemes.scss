@@ -205,8 +205,46 @@
 				);
 			}
 		}
-	}
 
-	// Geckium You
-	//TBD
+		// Geckium You
+		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+			--you-h: 0;
+			--you-s: 0%;
+			--you-l: 52%;
+			--you-l-dark: 52%;
+
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 11%)),
+				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 26%)),
+				hsl(var(--you-h), calc(var(--you-s) - 6%), calc(var(--you-l) + 21%)) 40px
+			);
+
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 15%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%)) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 15%)) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%)) 80%,
+						white
+					) 40px
+				);
+			}
+		}
+	}
 }
