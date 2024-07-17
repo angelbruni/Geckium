@@ -103,7 +103,11 @@
 			align-items: unset !important;
 			gap: 2px !important;
 		}
-
+		&:not([geckium-twentyone]) .titlebar-button {
+			&::before { //Linux DOES NOT have its buttons filled until ~17
+				content: unset !important;
+			}
+		}
 
 		//Shared titlebar button code
 		.titlebar-button {
