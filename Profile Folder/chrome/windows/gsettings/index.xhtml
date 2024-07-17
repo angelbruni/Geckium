@@ -600,6 +600,23 @@
 											</vbox>
 											<h4>
 												Themes TODO
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
+												<div class="modal" data-modal="aboutChrThemes_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<vbox class="description" style="gap: 16px">
+																	<html:p>
+																		&gsettings.modalChromiumThemesDescription;
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
 											</h4>
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
@@ -631,7 +648,10 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<p>TODO: Theme switcher interface</p>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid id="sys-themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid id="chr-themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
 												<hbox class="item">
 													<vbox>
 														<label class="name">Geckium You color source TODO</label>
@@ -670,31 +690,6 @@
 														<label class="name">&gsettings.getMoreMicrosoftEdgeThemes;</label>
 													</vbox>
 												</label>
-											</vbox>
-											<h4>
-												&gsettings.availableThemes;
-												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
-												<div class="modal" data-modal="aboutChrThemes_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<vbox class="description" style="gap: 16px">
-																	<html:p>
-																		&gsettings.modalChromiumThemesDescription;
-																	</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
-											</h4>
-											<div class="card" id="chrthemes-list"></div>
-											<!--<h4>&gsettings.unavailableThemes;</h4> -->
-											<vbox class="card">
-
 											</vbox>
 											<h4>
 												&gsettings.quickAccess;

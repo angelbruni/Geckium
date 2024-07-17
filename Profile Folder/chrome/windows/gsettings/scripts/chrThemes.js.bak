@@ -1,4 +1,4 @@
-const chrThemesList = document.getElementById("chr-themes-grid");
+const chrThemesList = document.getElementById("chrthemes-list");
 
 async function populateChrThemesList() {
 	const themes = await gkChrTheme.getThemes();
@@ -37,36 +37,36 @@ async function populateChrThemesList() {
 		const themeVersion = theme.version;
 		
 		let themeElm = `
-		<html:button
-				class="link geckium-appearance ripple-enabled" 
-				for="theme-${themeFile}"
-				data-theme-name="${themeFile}"
-				style="background-color: ${themeBannerColor}; background-image: url(${themeBannerPath})">
-			<html:label class="wrapper">
-				<div class="year">V${themeVersion}</div>
-				<div class="icon"><image style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" /></div>
-				<div class="identifier">
+		<html:label class="card item chrtheme ripple-enabled"
+					 for="theme-${themeFile}"
+					 data-theme-name="${themeFile}">
+			<vbox flex="1">
+				<html:div class="banner" style="background-color: ${themeBannerColor}; background-image: url(${themeBannerPath})"></html:div>
+				<hbox style="align-items: center; padding-block: 6px">
+					<image class="icon" style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" />
 					<vbox style="min-width: 0">
-						<div class="radio-parent">
-							<html:input id="theme-${themeFile}" class="radio" type="radio" name="chrtheme"></html:input>
-							<div class="gutter" for="checked_check"></div>
-							<html:label class="name label">${themeName.replace(/[&<>"']/g, match => specialCharacters[match])}</html:label>
-						</div>
-						<html:label class="description">${themeDescription}</html:label>
+						<label class="name">${themeName.replace(/[&<>"']/g, match => specialCharacters[match])}</label>
+						<label class="description">${themeDescription}</label>
+						<label class="version">V${themeVersion}</label>
 					</vbox>
-				</div>
-			</html:label>
-		</html:button>
+					<spacer />
+					<div class="radio-parent">
+						<html:input class="radio" type="radio" id="theme-${themeFile}" name="chrtheme"/>
+						<div class="gutter"></div>
+					</div>
+				</hbox>
+			</vbox>
+		</html:label>
 		`
-		//<html:label class="label">${themeDescription}</html:label>
 
 		const themeElmWrapper = document.createElement("div");
+		themeElmWrapper.classList.add("chrthemewrapper");
 		chrThemesList.appendChild(themeElmWrapper);
 
 		themeElmWrapper.appendChild(MozXULElement.parseXULToFragment(themeElm));
 	}
 
-	chrThemesList.querySelectorAll("button").forEach(item => {
+	chrThemesList.querySelectorAll("label.item").forEach(item => {
 		item.addEventListener("click", () => {
 			// TODO: Use actual event from about:addons to apply the right theme
 			gkPrefUtils.set("extensions.activeThemeID").string("firefox-compact-light@mozilla.org");
@@ -74,7 +74,7 @@ async function populateChrThemesList() {
 		})
 	})
 
-	chrThemesList.querySelector(`button[data-theme-name="${gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string}"] input[type="radio"]`).checked = true;
+	chrThemesList.querySelector(`label.item[data-theme-name="${gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string}"] input[type="radio"]`).checked = true;
 }
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
 
