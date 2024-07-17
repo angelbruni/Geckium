@@ -60,6 +60,7 @@
 	&[gktitnative="false"] {
 		//Windows quirks
 		@media (-moz-platform: windows) {
+			//Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
 				#titlebar {
 					appearance: unset !important;

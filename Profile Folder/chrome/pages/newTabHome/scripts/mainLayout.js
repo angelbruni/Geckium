@@ -439,7 +439,7 @@ function createMainLayout() {
 			<hbox id="google-bar">
 				<html:a href="https://mail.google.com/mail">Gmail</html:a>
 				<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
-				<html:a id="google-apps-link" href="https://about.google/intl/products/products/"></html:a>
+				<html:a id="google-apps-link" href="https://about.google/products/#all-products"></html:a>
 			</hbox>
 			<vbox id="google-search">
 				<html:div id="hplogo" title="Google"></html:div>

@@ -457,154 +457,178 @@
 				);
 			}
 		}
-	}
 
-	// Geckium You
-	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
-		--you-h: 0;
-		--you-s: 0%;
-		--you-l: 58%;
-		--you-l-dark: 58%;
-		// Titlebar
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 8%)),
-			hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
-		);
-		--default-titlebar-inactive: linear-gradient(
-			to bottom,
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 22%)),
-			hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 17%)) 40px
-		);
-		--default-titlebar-background: hsl(var(--you-h), var(--you-s), var(--you-l));
-
-		// Tabs
-		--default-inactive-tab-background: linear-gradient(
-			to bottom,
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 25%)),
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 17%)),
-			hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) + 16%))
-		);
-		&[gktitnative="true"] {
-			--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-		}
-		--default-selected-tab-background: linear-gradient(
-			to top,
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%)),
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 41%))
-		);
-		--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
-
-		// Navbar
-		--default-nav-bar: linear-gradient(
-			to top,
-			hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%)),
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 36%)),
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 40%))
-		);
-		--toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
-		--toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
-		--default-toolbarbutton-texture: linear-gradient(
-			to top,
-			hsl(var(--you-h), calc(var(--you-s) - 4%), calc(var(--you-l) + 34%)),
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%))
-		);
-		--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
-		--default-navigation-buttons-separator: hsl(var(--you-h), calc(var(--you-s) - 21%), calc(var(--you-l) + 33%));
-
-		// Personal Toolbar (Bookmarks)
-		--default-personal-toolbar: linear-gradient(
-			to top,
-			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 38%)), 
-			hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
-		);
-		--personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
-		--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
-
-		@media (prefers-color-scheme: dark) {
+		// Geckium You
+		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+			--you-h: 0;
+			--you-s: 0%;
+			--you-l: 58%;
+			--you-l-dark: 58%;
 			// Titlebar
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)),
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 40px
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 8%)),
+				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
 			);
 			--default-titlebar-inactive: linear-gradient(
 				to bottom,
-				color-mix(
-					in srgb,
-					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)) 80%,
-					white
-				),
-				color-mix(
-					in srgb,
-					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 80%,
-					white
-				) 40px
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 22%)),
+				hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 17%)) 40px
 			);
+			--default-titlebar-background: hsl(var(--you-h), var(--you-s), var(--you-l));
 
 			// Tabs
-			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
-			--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
-			// &[gktitnative="true"] {
-			// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-			// } TODO
-			--default-selected-tab-background: linear-gradient(
+			--default-inactive-tab-background: linear-gradient(
 				to bottom,
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 35%)),
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%))
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 25%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 17%)),
+				hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) + 16%))
 			);
+			&[gktitnative="true"] {
+				--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+			}
+			&:not([geckium-eleven]) {
+			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
+			}
+			&:not([geckium-six]) {
+				--default-selected-tab-background: linear-gradient(
+					to top,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 41%))
+				);
+			}
 
 			// Navbar
-			--default-nav-bar: linear-gradient(
-				to bottom,
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
-			);
-			--toolbarbutton-border-color-normal: color-mix(
-				in srgb,
-				color-mix(
-					in srgb,
-					var(--toolbarbutton-icon-fill) 30%,
-					transparent
-				) 70%,
-				black
-			);
-			--toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
-			--toolbarbutton-inner-border-color-normal: color-mix(
-				in srgb,
-				var(--toolbarbutton-icon-fill) 30%,
-				transparent
-			);
-			--default-toolbarbutton-texture: linear-gradient(
-				to bottom,
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
-			);
-			--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
-			--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal); //changed in light mode
+			&:not([geckium-six]) {
+				--default-nav-bar: linear-gradient(
+					to top,
+					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 36%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 40%))
+				);
+				--toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
+				--toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
+				--default-toolbarbutton-texture: linear-gradient(
+					to top,
+					hsl(var(--you-h), calc(var(--you-s) - 4%), calc(var(--you-l) + 34%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%))
+				);
+				--default-navigation-buttons-separator: hsl(var(--you-h), calc(var(--you-s) - 21%), calc(var(--you-l) + 33%));
+			}
+			&:not([geckium-eleven]) {
+				--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
+			}
 
-			// Personal Toolbar
-			--default-personal-toolbar: linear-gradient(
-				to bottom,
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%)),
-				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
-			);
-			--personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
-			--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));
-		}
+			// Personal Toolbar (Bookmarks)
+			&:not([geckium-six]) {
+				--default-personal-toolbar: linear-gradient(
+					to top,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 38%)), 
+					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
+				);
+				--personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
+			}
+			&:not([geckium-twentyone]) {
+				--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+			}
 
-		&[privatebrowsingmode="temporary"] {
-			// Titlebar
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				rgb(97, 122, 156),
-				rgb(80, 105, 141) 40px
-			);
-			--default-titlebar-inactive: linear-gradient(
-				to bottom,
-				rgb(147, 161, 178),
-				rgb(128, 143, 161) 40px
-			);
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 80%,
+						white
+					) 40px
+				);
+
+				// Tabs
+				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
+				// &[gktitnative="true"] {
+					// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+					// } TODO
+				&:not([geckium-eleven]) {
+					--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
+				}
+				&:not([geckium-six]) {
+					--default-selected-tab-background: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 35%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%))
+					);
+				}
+
+				// Navbar
+				&:not([geckium-six]) {
+					--default-nav-bar: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
+					);
+					--toolbarbutton-border-color-normal: color-mix(
+						in srgb,
+						color-mix(
+							in srgb,
+							var(--toolbarbutton-icon-fill) 30%,
+							transparent
+						) 70%,
+						black
+					);
+					--toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
+					--toolbarbutton-inner-border-color-normal: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-fill) 30%,
+						transparent
+					);
+					--default-toolbarbutton-texture: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
+					);
+					--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal); //changed in light mode
+				}
+				&:not([geckium-eleven]) {
+					--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
+				}
+
+				// Personal Toolbar
+				&:not([geckium-six]) {
+					--default-personal-toolbar: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
+					);
+					--personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
+				}
+				&:not([geckium-twentyone]) {
+					--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));
+				}
+			}
+
+			&[privatebrowsingmode="temporary"] { // TODO
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(97, 122, 156),
+					rgb(80, 105, 141) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					rgb(147, 161, 178),
+					rgb(128, 143, 161) 40px
+				);
+			}
 		}
 	}
 }

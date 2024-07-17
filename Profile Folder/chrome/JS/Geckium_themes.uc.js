@@ -266,8 +266,13 @@ class gkYou {
 	static apply() {
         gkYou.removeVariables();
         let era = gkEras.getEra();
+        let color;
 		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68)) {
-            let color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
+            try {
+                color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
+            } catch (error) {
+                console.error("Failed to source colour for Geckium You:", error);
+            }
             if (color != "") {
                 gkYou.setVariables(color);
             }
