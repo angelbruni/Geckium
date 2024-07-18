@@ -118,8 +118,6 @@ class gkChrTheme {
         if (prefChoice.startsWith("firefox-compact-light@") && gkLWTheme.palettesMatch("light")) {
             return true;
         }
-        // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
-        gkPrefUtils.set("Geckium.chrTheme.fileName").string("");
         return false;
     }
 
@@ -278,10 +276,22 @@ class gkChrTheme {
         }, 0);
     }
 
-    // TODO: When switching Firefox Theme IDs, yeet the current Chrome Theme as the user is clearly intending to apply vanilla Firefox themes.
+
+    static LWThemeChanged() {
+        setTimeout(async () => {
+            let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+            if (!prefChoice.startsWith("firefox-compact-light@")) {
+                // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
+                gkPrefUtils.set("Geckium.chrTheme.fileName").string("");
+            }
+        }, 0);
+    }
 }
 window.addEventListener("load", gkChrTheme.applyTheme);
 Services.obs.addObserver(gkChrTheme.applyTheme, "lightweight-theme-styling-update"); //Disable upon failing criteria
+
+window.addEventListener("load", gkChrTheme.LWThemeChanged);
+Services.obs.addObserver(gkChrTheme.LWThemeChanged, "lightweight-theme-styling-update");
 
 const chrThemeObs = {
 	observe: function (subject, topic, data) {

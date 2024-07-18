@@ -2,7 +2,6 @@ const chrThemesList = document.getElementById("themes-grid");
 
 async function populateChrThemesList() {
 	const themes = await gkChrTheme.getThemes();
-	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 
 	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
 		item.remove();
@@ -66,8 +65,7 @@ async function populateChrThemesList() {
 
 	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
 		item.addEventListener("click", () => {
-			lighttheme.enable();
-			gkPrefUtils.set("Geckium.chrTheme.fileName").string(item.dataset.themeName);
+			applyTheme(item.dataset.themeName);
 		})
 	})
 
@@ -77,6 +75,12 @@ async function populateChrThemesList() {
 	}
 }
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
+
+async function applyTheme(themeid) {
+	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
+	await lighttheme.enable();
+	gkPrefUtils.set("Geckium.chrTheme.fileName").string(themeid);
+}
 
 function openChrThemesDir() {
 	const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");

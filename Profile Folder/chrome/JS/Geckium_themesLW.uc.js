@@ -110,7 +110,6 @@ class gkLWTheme {
         }, 0);
     }
     
-
     // LWTheme Toolbar Background Modes
 	static get getCustomThemeMode() {
         let modes = ["fxchrome", "silverfox", "none"]; // TODO: "firefox"
