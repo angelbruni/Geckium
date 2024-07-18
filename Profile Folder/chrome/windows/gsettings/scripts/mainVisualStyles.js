@@ -13,7 +13,7 @@ function insertGlobalVisualStyles() {
             case "linux":
                 return "linux";
             default: //Fallback to Windows
-            if (window.matchMedia("(-moz-platform: windows-win10)").matches) { //TODO: Force this if 117+
+            if (window.matchMedia("(-moz-platform: windows-win10)").matches || parseInt(Services.appinfo.version.split(".")[0]) >= 117) {
                 return "win10"
             }
             return "win";

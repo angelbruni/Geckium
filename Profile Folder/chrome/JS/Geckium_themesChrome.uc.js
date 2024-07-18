@@ -118,6 +118,8 @@ class gkChrTheme {
         if (prefChoice.startsWith("firefox-compact-light@") && gkLWTheme.palettesMatch("light")) {
             return true;
         }
+        // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
+        gkPrefUtils.set("Geckium.chrTheme.fileName").string("");
         return false;
     }
 

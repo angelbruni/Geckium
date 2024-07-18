@@ -1,9 +1,12 @@
-const chrThemesList = document.getElementById("chr-themes-grid");
+const chrThemesList = document.getElementById("themes-grid");
 
 async function populateChrThemesList() {
 	const themes = await gkChrTheme.getThemes();
+	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 
-	chrThemesList.innerHTML = ``;
+	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+		item.remove();
+	})
 
 	for (const themeName in themes) {
 		let theme = themes[themeName];
@@ -38,8 +41,7 @@ async function populateChrThemesList() {
 		
 		let themeElm = `
 		<html:button
-				class="link geckium-appearance ripple-enabled" 
-				for="theme-${themeFile}"
+				class="link geckium-appearance ripple-enabled"
 				data-theme-name="${themeFile}"
 				style="background-color: ${themeBannerColor}; background-image: url(${themeBannerPath})">
 			<html:label class="wrapper">
@@ -48,7 +50,7 @@ async function populateChrThemesList() {
 				<div class="identifier">
 					<vbox style="min-width: 0">
 						<div class="radio-parent">
-							<html:input id="theme-${themeFile}" class="radio" type="radio" name="chrtheme"></html:input>
+							<html:input id="theme-${themeFile}" class="radio" type="radio" name="gktheme"></html:input>
 							<div class="gutter" for="checked_check"></div>
 							<html:label class="name label">${themeName.replace(/[&<>"']/g, match => specialCharacters[match])}</html:label>
 						</div>
@@ -58,23 +60,21 @@ async function populateChrThemesList() {
 			</html:label>
 		</html:button>
 		`
-		//<html:label class="label">${themeDescription}</html:label>
 
-		const themeElmWrapper = document.createElement("div");
-		chrThemesList.appendChild(themeElmWrapper);
-
-		themeElmWrapper.appendChild(MozXULElement.parseXULToFragment(themeElm));
+		chrThemesList.appendChild(MozXULElement.parseXULToFragment(themeElm));
 	}
 
-	chrThemesList.querySelectorAll("button").forEach(item => {
+	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
 		item.addEventListener("click", () => {
-			// TODO: Use actual event from about:addons to apply the right theme
-			gkPrefUtils.set("extensions.activeThemeID").string("firefox-compact-light@mozilla.org");
+			lighttheme.enable();
 			gkPrefUtils.set("Geckium.chrTheme.fileName").string(item.dataset.themeName);
 		})
 	})
 
-	chrThemesList.querySelector(`button[data-theme-name="${gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string}"] input[type="radio"]`).checked = true;
+	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
+	if (prefChoice) {
+		chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+	}
 }
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
 
