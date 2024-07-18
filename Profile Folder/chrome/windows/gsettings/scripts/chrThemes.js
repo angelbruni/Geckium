@@ -60,7 +60,7 @@ async function populateChrThemesList() {
 		</html:button>
 		`
 
-		chrThemesList.appendChild(MozXULElement.parseXULToFragment(themeElm));
+		chrThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
 	}
 
 	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
@@ -80,6 +80,7 @@ async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 	await lighttheme.enable();
 	gkPrefUtils.set("Geckium.chrTheme.fileName").string(themeid);
+	chrThemesList.querySelector(`button[data-theme-name="${themeid}"] input[type="radio"]`).checked = true;
 }
 
 function openChrThemesDir() {
