@@ -70,7 +70,7 @@ class sfMigrator {
 		if (AppConstants.platform == "linux") {
 			if (gkPrefUtils.tryGet("silverfox.beChromeOS").bool) {
 				// Be Chrome OS
-				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromeos");
+				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromiumos");
 			} else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// Force Windows Styling
 				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");

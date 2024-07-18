@@ -145,7 +145,7 @@
 		}
 
 		// Chrome OS
-		&[gksystheme="chromeos"] {
+		&[gksystheme="chromiumos"] {
 			// Titlebar
 			// TODO: Check if inactive compositorless tab background changed
 			// TODO: Move gradient to titlebar style - pre-gradient theme colour is #3f537b
@@ -163,7 +163,7 @@
 				);
 			}
 
-			--chromeos-accent: #3f537b; // Used for titlebar style
+			--chromiumos-accent: #3f537b; // Used for titlebar style
 			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(94, 111, 144),
@@ -192,7 +192,7 @@
 					);
 				}
 
-				--chromeos-accent: #5d5d5d; // Used for titlebar style
+				--chromiumos-accent: #5d5d5d; // Used for titlebar style
 				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(119, 119, 119),

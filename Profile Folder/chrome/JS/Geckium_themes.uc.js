@@ -11,8 +11,7 @@ let previousSysTheme;
 
 // System Theme Management
 class gkSysTheme {
-     //TODO: See if the theme reps should be stored here or in the xhtml for translatability reasons
-    static systhemes = ["classic", "gtk", "macos", "macosx", "chromeos", "you"]
+    static systhemes = ["classic", "gtk", "macos", "macosx", "chromiumos", "you"]
 
     /**
      * getPreferredTheme - Gets the era's preferred System Theme for your platform
@@ -206,7 +205,23 @@ class gkYou {
                 document.head.removeChild(colorDiv);
                 return rgb;
             case "custom":
-                return "rgb(255, 0, 0)"; // TODO
+                var hex = gkPrefUtils.tryGet("Geckium.you.color").string;
+                if (hex.charAt(0) != "#") {
+                    return ""; //Invalid value
+                }
+                if (hex.length == 4) { //#RGB -> #RRGGBB
+                    r = hex.charAt(1);
+                    g = hex.charAt(2);
+                    b = hex.charAt(3);
+                    hex = `#${r}${r}${g}${g}${b}${b}`
+                } else if (hex.length != 7) {
+                    return ""; //Invalid value
+                }
+                try {
+                    return `rgb(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)})`;
+                } catch {
+                    return ""; //Despite everything, it still failed
+                }
             case "aerocolor":
                 if (AppConstants.platform != "win" || (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches)) {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");

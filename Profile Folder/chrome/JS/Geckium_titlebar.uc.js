@@ -200,9 +200,9 @@ class gkTitlebars {
                 }
             }
         },
-        "chromeos": {
+        "chromiumos": {
             1: {
-                border: "chromeos",
+                border: "chromiumos",
                 buttons: "linuxog",
                 hasnativegaps: false,
                 hasgaps: true,
@@ -210,16 +210,16 @@ class gkTitlebars {
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
-                    linux: "chromeos",
-                    win: "chromeos",
-                    macos: "chromeos"
+                    linux: "chromiumos",
+                    win: "chromiumos",
+                    macos: "chromiumos"
                 }
             },
             4: {
                 buttons: "linux"
             },
             21: {
-                buttons: "chromeos",
+                buttons: "chromiumos",
                 hasnativegaps: false,
                 hasgaps: false,
                 cannative: false,
@@ -301,9 +301,9 @@ class gkTitlebars {
             case "linux":
                 return titlebars.linux;
             default: //Fallback to Windows
-            if (window.matchMedia("(-moz-platform: windows-win10)").matches) { //TODO: Force this if 117+
-                return titlebars.win10;
-            }
+                if (window.matchMedia("(-moz-platform: windows-win10)").matches || parseInt(Services.appinfo.version.split(".")[0]) >= 117) {
+                    return titlebars.win10;
+                }
             return titlebars.win;
         }
 	}

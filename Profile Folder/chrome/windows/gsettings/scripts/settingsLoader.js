@@ -39,6 +39,19 @@ function loadTextFieldSetting() {
 }
 document.addEventListener("DOMContentLoaded", loadTextFieldSetting);
 
+function loadColorSetting() {
+	setTimeout(() => {
+		document.querySelectorAll('input[type="color"][data-pref]').forEach(input => {
+			input.value = gkPrefUtils.tryGet(`Geckium.${input.dataset.pref}`).string;
+	
+			input.addEventListener("change", () => {
+				gkPrefUtils.set(`Geckium.${input.dataset.pref}`).string(input.value);
+			})
+		})
+	}, 10);
+}
+document.addEventListener("DOMContentLoaded", loadColorSetting);
+
 function loadSwitchSetting() {
 	setTimeout(() => {
 		document.querySelectorAll('input.switch[data-pref]').forEach(input => {
