@@ -270,11 +270,6 @@ h4 {
 		fill: white;
 		background-repeat: no-repeat !important;
 
-		&.gkthemegtk {
-			fill: -moz-dialog;
-			background-color: ActiveCaption !important;
-		}
-
 		&.firefoxthemes {
 			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient-dark\.svg) !important;
 			background-position: center,right top,left top,right top !important;
@@ -401,6 +396,61 @@ h4 {
 				margin-block-end: unset !important;
 			}
 		}
+	}
+
+	&.chrome-appearance[data-systheme-name="gtk"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/gtk.svg) !important;
+		fill: -moz-dialog;
+		background-color: ActiveCaption !important;
+	}
+}
+// Themes with eras
+.link.chrome-appearance[data-systheme-name="classic"] {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-1.svg) !important;
+}
+.link.chrome-appearance[data-systheme-name="you"] {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-1.svg) !important;
+}
+.link.chrome-appearance[data-systheme-name="macosx"] {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-1.svg) !important;
+}
+.link.chrome-appearance[data-systheme-name="macos"] {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-1.svg) !important;
+}
+.link.chrome-appearance[data-systheme-name="chromiumos"] {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-1.svg) !important;
+}
+:root[geckium-six] {
+	.link.chrome-appearance[data-systheme-name="classic"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-6.svg) !important;
+	}
+	.link.chrome-appearance[data-systheme-name="you"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-6.svg) !important;
+	}
+	.link.chrome-appearance[data-systheme-name="chromiumos"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-6.svg) !important;
+	}
+}
+:root[geckium-eleven] {
+	.link.chrome-appearance[data-systheme-name="macosx"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-11.svg) !important;
+	}
+	.link.chrome-appearance[data-systheme-name="macos"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-11.svg) !important;
+	}
+}
+:root[geckium-twentyone] {
+	.link.chrome-appearance[data-systheme-name="chromiumos"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-21.svg) !important;
+	}
+}
+:root[geckium-sixtyeight] {
+	.link.chrome-appearance[data-systheme-name="classic"],
+	.link.chrome-appearance[data-systheme-name="you"],
+	.link.chrome-appearance[data-systheme-name="macosx"],
+	.link.chrome-appearance[data-systheme-name="macos"],
+	.link.chrome-appearance[data-systheme-name="chromiumos"] {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-68.svg) !important;
 	}
 }
 
