@@ -1,5 +1,3 @@
-const { BrowserAddonUI } = ChromeUtils.importESModule("chrome://browser/content/browser-addons.js");
-
 async function selectSysTheme() {
 	let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.systemTheme").string;
 	if (!gkSysTheme.systhemes.includes(prefChoice) && prefChoice != "auto") {
@@ -23,8 +21,23 @@ async function applySysTheme(themeid) {
 
 async function openLWThemesPage() {
 	try {
-		BrowserAddonUI.openAddonsMgr("addons://list/theme"); // 128+
+		Services.wm.getMostRecentWindow('navigator:browser').BrowserAddonUI.openAddonsMgr("addons://list/theme"); // 128+
 	} catch {
 		Services.wm.getMostRecentWindow('navigator:browser').BrowserOpenAddonsMgr("addons://list/theme"); // 115
 	}
 }
+
+function switchAutoThumbnail() {
+	let preference = gkSysTheme.getPreferredTheme(gkTitlebars.getTitlebarSpec(gkEras.getEra("Geckium.appearance.choice")));
+	document.getElementById("autogktheme").setAttribute("data-systheme-name", preference);
+}
+document.addEventListener("DOMContentLoaded", switchAutoThumbnail);
+const observer = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			switchAutoThumbnail();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.choice", observer, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", observer, false);

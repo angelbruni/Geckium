@@ -87,7 +87,7 @@ function openChrThemesDir() {
 	const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
 
 	// Specify the path of the directory you want to open
-	const directoryPath = chrTheme.getFolderFileUtilsPath;
+	const directoryPath = gkChrTheme.getFolderFileUtilsPath;
 
 	try {
 		// Create a file object representing the directory
