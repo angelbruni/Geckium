@@ -633,7 +633,7 @@
 													<grid id="themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
-																class="link chrome-appearance ripple-enabled"
+																class="link chrome-appearance ripple-enabled autogktheme"
 																data-systheme-name="auto"
 																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
 																onclick="applySysTheme('auto')">
@@ -651,7 +651,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme-name="classic"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-1.svg) !important"
 																onclick="applySysTheme('classic')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -668,7 +668,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme-name="you"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-1.svg)"
 																onclick="applySysTheme('you')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -682,9 +682,9 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
+																class="link chrome-appearance ripple-enabled gkthemegtk"
 																data-systheme-name="gtk"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/gtk.svg)"
 																onclick="applySysTheme('gtk')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -701,7 +701,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme-name="macosx"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-1.svg)"
 																onclick="applySysTheme('macosx')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -717,7 +717,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme-name="macos"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-1.svg)"
 																onclick="applySysTheme('macos')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -733,7 +733,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme-name="chromiumos"
-																style="height: 160px; background-color: green !important; background-image: url(placeholder)"
+																style="height: 160px; background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-1.svg)"
 																onclick="applySysTheme('chromiumos')">
 															<html:label class="wrapper">
 																<div class="year">Active fallback TODO</div>
@@ -741,14 +741,14 @@
 																	<div class="radio-parent">
 																		<html:input id="theme-chromiumos" class="radio" type="radio" name="gktheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">Chromium OS</html:label>
+																		<html:label class="label">Default (OS) TODO</html:label>
 																	</div>
 																</div>
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																style="height: 160px; background-color: purple !important; background-image: url(placeholder)"
+																class="link chrome-appearance ripple-enabled firefoxthemes"
+																style="height: 160px; background-color: #1D1133 !important"
 																onclick="openLWThemesPage()">
 															<html:label class="wrapper">
 																<div class="identifier">
@@ -760,8 +760,8 @@
 														</html:button>
 														<label
 																id="gkwebstoretile" is="text-link"
-																class="link chrome-appearance ripple-enabled"
-																style="height: 160px; background-color: blue !important; background-image: url(placeholder)"
+																class="link chrome-appearance ripple-enabled chrstore"
+																style="height: 160px; background-color: #F3F3F3 !important"
 																href="https://chrome.google.com/webstore/category/themes">
 															<html:label class="wrapper">
 																<div class="identifier">
@@ -772,8 +772,8 @@
 															</html:label>
 														</label>
 														<label
-																is="text-link" class="link chrome-appearance ripple-enabled"
-																style="height: 160px; background-color: blue !important; background-image: url(placeholder)"
+																is="text-link" class="link chrome-appearance ripple-enabled edgestore"
+																style="height: 160px"
 																href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
 															<html:label class="wrapper">
 																<div class="identifier">

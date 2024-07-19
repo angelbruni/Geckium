@@ -265,6 +265,37 @@ h4 {
 }
 
 .link {
+	&.chrome-appearance {
+		-moz-context-properties: fill, fill-opacity;
+		fill: white;
+		background-repeat: no-repeat !important;
+
+		&.gkthemegtk {
+			fill: -moz-dialog;
+			background-color: ActiveCaption !important;
+		}
+
+		&.firefoxthemes {
+			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient-dark\.svg) !important;
+			background-position: center,right top,left top,right top !important;
+			background-repeat: no-repeat,no-repeat,no-repeat,repeat-x !important;
+			background-size: 64px 64px,auto,auto,auto !important
+		}
+
+		&.chrstore {
+			background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png) !important;
+			background-position: center !important;
+			background-repeat: no-repeat !important;
+			background-size: 76px 76px !important
+		}
+		&.edgestore {
+			background-image: url(chrome://userchrome/content/windows/gsettings/imgs/edgeaddons.svg), linear-gradient(90deg, #072139, #1a416c 90%) !important;
+			background-position: center,center !important;
+			background-repeat: no-repeat,no-repeat !important;
+			background-size: 76px 76px,auto !important
+		}
+	}
+
 	&.geckium-appearance {
 		position: relative;
 		display: block;
