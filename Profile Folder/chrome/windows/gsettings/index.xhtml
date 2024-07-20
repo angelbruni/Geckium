@@ -1088,37 +1088,13 @@
 														</div>
 													</div>
 												</div>-->
-												<html:button class="item ripple-enabled" data-toggle-modal="aboutCredits_modal">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 34)">
 													<vbox>
 														<label class="name">&gsettings.creditsTitle;</label>
 														<label class="description">&gsettings.creditsDescription;</label>
 													</vbox>
 													<spacer />
 												</html:button>
-												<div class="modal" data-modal="aboutCredits_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<div class="header">&gsettings.creditsTitle;</div>
-																<vbox class="description" style="gap: 8px">
-																	<html:p>AngelBruni</html:p>
-																	<html:p>Dominic Hayes</html:p>
-																	<html:p>Doot</html:p>
-																	<html:p>florin</html:p>
-																	<html:p>Longhorn004</html:p>
-																	<html:p>addictedtree</html:p>
-																	<html:p>luisl</html:p>
-																	<html:p>windowsxp3790</html:p>
-																	<html:p>ImSwordQueen</html:p>
-																	<html:p>nabrious</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutCredits_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
 											</vbox>
 											<h4 id="fork-name">fork_name</h4>
 											<vbox class="card">
@@ -1187,6 +1163,129 @@
 														<label id="os-comp" class="description">status</label>
 													</vbox>
 													<spacer />
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+							<vbox class="page" data-page="34">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<hbox class="banner">
+													<image style="width: 200px;"></image>
+													<vbox>
+														<label style="font-size: 32pt;">Geckium</label>
+														<h4 style="height: 20px; margin-inline-start: 1px;" >A love letter to the history of Chromium and its derivatives</h4>
+													</vbox>
+												</hbox>
+											</vbox>
+											<h4 id="fork-name">&gsettings.creditsTitle;</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%"> <!-- sorry for how botched this code is, I just cba to make it better when you're potentially gonna nuke this code from orbit anyway for the redesign. -->
+														<vbox>
+															<label class="name">AngelBruni</label>
+															<label class="description">Main developer of Geckium</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/angelbruni">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">That Linux Dude Dominic Hayes</label>
+															<label class="description">Geckium developer</label>
+															<label class="description">"Again, how did this happen - first it was Silverfox, now it's Geckium that I become a main developer for. Ah well, I hope my long list of contributions contributes to your enjoyment of Geckium."</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Every System Theme except Classic (including Geckium You), all Titlebar Styles, Chromium Theme behaviour options, flags referencing obscure development lore such as Linux prototype titlebars, the Credits page you're reading, overhauled Themes page, major code overhauls to futureproof Geckium, and Classic's dark modes (1-47).
+Research: Source-accurate GTK+ System Theme, Incognito tinting, ALL the known behaviour differences in every Linux Chromium release, Mac OS X's System Theme (1-5), and misc. minor details.
+Commits for one merge request: 135 and counting :p</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/dominichayesferen">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Doot</label>
+															<label class="description">Geckium developer</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Full JS port of Chromium's official colour modification functions, mainly Chromium's colour tinter.
+Research: (with the help of Dominic) Chromium's colour tinting code.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/le-dooter">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">florin</label>
+															<label class="description">The creator of Silverfox, Geckium's predecessor - provided useful insight into Firefox JS, and tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/florinsdistortedvision">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Longhorn004</label>
+															<label class="description">Tested prerelease Geckium builds</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/Longhorn004">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">addictedtree</label>
+															<label class="description">Tested prerelease Geckium builds</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">luisl</label>
+															<label class="description">Tested prerelease Geckium builds</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/luisl173">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">luisl</label>
+															<label class="description">Tested prerelease Geckium builds</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/luisl173">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">ImSwordQueen</label>
+															<label class="description">Tested prerelease Geckium builds</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/imswordqueen">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">nabrious</label>
+															<label class="description">Geckium's original developer. Added a LICENSE</label>
+														</vbox>
+														<spacer />
+													</hbox>
 												</html:button>
 											</vbox>
 										</vbox>
