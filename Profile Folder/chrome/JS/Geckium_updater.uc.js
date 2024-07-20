@@ -7,21 +7,22 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
+const versionIteration = 1;
 
 (async () => {
     let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
-    if (ver !== await gkUpdater.getVersion()) {
-        updateSettings(ver);
-        console.warn("MISMATCHED VERSION! Updating...");
-
+    let iter = gkPrefUtils.tryGet("Geckium.version.iteration").int;
+    if (ver !== await gkUpdater.getVersion() || iter < versionIteration) {
+        console.warn("MISMATCHED VERSION OR ITERATION! Updating...");
+        
+        updateSettings(iter);
 		gkPrefUtils.set("Geckium.version.current").string(await gkUpdater.getVersion());
 		_ucUtils.restart(true);
     }
 })();
 
-function updateSettings(ver) {
-    ver = parseInt(ver.replace(/\D/g,'').split(".").join("")) || 0; // strip dots and alphabet, and convert version to integer
-    if (ver < 910) {
+function updateSettings(iteration) {
+    if (iteration < 1) {
         if (AppConstants.platform == "win") {
             gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
             gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
@@ -50,4 +51,8 @@ function updateSettings(ver) {
             `);																			    // Add default apps if the apps list is empty
 	    }
     }
+    // put future settings changes down here as < 2, and so on.
+
+    if (iteration < versionIteration)
+        gkPrefUtils.set("Geckium.version.iteration").int(versionIteration);
 }

@@ -41,6 +41,15 @@ class gkChrTheme {
     // 68 -: Using colours if images are missing
     // TODO: Map these to generic Geckium variables
     // TODO: Windows 10 titlebuttons seem to be getDark... based on a fusion of frameBG and buttonBG based on buttonBG's alpha-level.
+
+    // Titlebar:
+    //- titlebar-active should ideally be a layer of Chrome Theme and default-titlebar-active behind it
+    //- therefore, need to figure out setting the positioning, etc. of that
+    //- also need to see if button textures get disabled when on 'AERO titlebar' state
+    // 
+    //toolbar:
+    //- similar story, just without the layering of default-toolbar
+
     static async getThemes() {
         var themes = {};
         try {
