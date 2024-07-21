@@ -48,6 +48,9 @@ function insertGlobalVisualStyles() {
 	document.querySelectorAll(`#global-appearance-container input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
 			gkPrefUtils.set("Geckium.appearance.choice").int(appearance.dataset.appearance);
+			if (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool == true || gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool == true) {
+				document.querySelector(`[data-modal="overrides_modal"]`).classList.add('active');
+			}
 		})
 	})
 
