@@ -270,6 +270,19 @@
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
+												<div class="modal" data-modal="overrides_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">Design presets are currently being overridden. Would you like to reset overrides?</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="overrides_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="overrides_modal" onclick="disableOverrides();"/>
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
 											</vbox>
 											<h4>&gsettings.mainInterface;</h4>
 											<vbox class="card">
@@ -1213,6 +1226,7 @@ Commits for one merge request: 135 and counting :p</label>
 														<vbox>
 															<label class="name">Doot</label>
 															<label class="description">Geckium developer</label>
+															<label class="description">"door"</label>
 															<label style="white-space: pre-wrap" class="description">Contributions: Full JS port of Chromium's official colour modification functions, mainly Chromium's colour tinter.
 Research: (with the help of Dominic) Chromium's colour tinting code.</label>
 														</vbox>
@@ -1260,6 +1274,7 @@ Research: Useful insight into Firefox JS.</label>
 													<hbox style="width: 100%">
 														<vbox>
 															<label class="name">addictedtree</label>
+															<label class="description">"I'm struggling to fix my sleep schedule help"</label>
 															<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for French users, and tested prerelease Geckium builds.</label>
 														</vbox>
 													</hbox>
@@ -1339,6 +1354,7 @@ Research: Useful insight into Firefox JS.</label>
 													<hbox style="width: 100%">
 														<vbox>
 															<label class="name">chronail</label>
+															<label class="description">"i love sapphire plugin"</label>
 															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
 														</vbox>
 													</hbox>

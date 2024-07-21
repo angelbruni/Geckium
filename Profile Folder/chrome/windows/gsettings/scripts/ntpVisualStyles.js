@@ -32,7 +32,6 @@ function insertNTPVisualStyles() {
 	
 	document.querySelectorAll(`#ntp-visual-styles-grid input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
-			console.log(appearance.dataset.appearance)
 			gkPrefUtils.set("Geckium.newTabHome.style").int(appearance.dataset.appearance);
 		})
 	})
