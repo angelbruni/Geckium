@@ -27,11 +27,13 @@ function updateSettings(iteration) {
             gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
             gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
             gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);
+            gkPrefUtils.set("browser.startup.blankWindow").bool(false);                         // Disable Firefox's splash screen
         }
 	    gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);				    // Show URL after a search in URLbar
         gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);                                 // Show protocol in URL in URLbar
 	    gkPrefUtils.set("browser.newtab.preload").bool(false)									// Disable New Tab preload to prevent new data from not loading
         gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
+        gkPrefUtils.set("widget.gtk.overlay-scrollbars.enabled").bool(false);                   // Disable GTK3's overlay scrollbars (Linux)
         gkPrefUtils.set("widget.gtk.non-native-titlebar-buttons.enabled").bool(false);          // Disable non-native titlebar buttons in Light and Dark (Linux, 128+)
 
 	    if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {
