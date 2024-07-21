@@ -79,9 +79,9 @@ class sfMigrator {
 
 		//Branding
 		if (gkPrefUtils.tryGet("silverfox.beChromium").bool)
-			gkPrefUtils.set("Geckium.branding.choice").int(2); // Chromium
+			gkPrefUtils.set("Geckium.branding.choice").int("chromium");
 		else
-			gkPrefUtils.set("Geckium.branding.choice").int(3); // Chrome
+			gkPrefUtils.set("Geckium.branding.choice").int("chrome");
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)

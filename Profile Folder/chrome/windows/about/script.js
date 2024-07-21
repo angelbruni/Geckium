@@ -1,5 +1,5 @@
 function createMainLayout() {
-	const fullName = gkBranding.getBrandingKeyValue("fullName");
+	const fullName = gkBranding.getBrandingKey("fullName");
 
 	document.documentElement.setAttribute("title", aboutBundle.GetStringFromName("windowTitle").replace("%s", fullName));
 

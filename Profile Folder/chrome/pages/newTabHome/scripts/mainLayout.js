@@ -359,7 +359,7 @@ function createMainLayout() {
 		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
-				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKeyValue("productName"))}</html:div>
+				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKey("productName"))}</html:div>
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>

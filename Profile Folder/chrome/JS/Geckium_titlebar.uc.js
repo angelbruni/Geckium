@@ -3,6 +3,8 @@
 // @author      Dominic Hayes
 // @loadorder   2
 // @include		main
+// @include		about:addons*
+// @include		about:preferences*
 // ==/UserScript==
 
 // Initial variables
@@ -207,7 +209,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
-                cannative: true,
+                cannative: false,
                 newtabstyle: 1,
                 systheme: {
                     linux: "chromiumos",
@@ -222,7 +224,6 @@ class gkTitlebars {
                 buttons: "chromiumos",
                 hasnativegaps: false,
                 hasgaps: false,
-                cannative: false,
                 newtabstyle: 0
             },
             68: {
