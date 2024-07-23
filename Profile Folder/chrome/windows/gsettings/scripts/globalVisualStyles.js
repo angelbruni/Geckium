@@ -60,7 +60,9 @@ document.addEventListener("DOMContentLoaded", insertGlobalVisualStyles);
 
 function disableOverrides() {
 	document.querySelector('input[data-pref="Geckium.main.overrideStyle"]').checked = false;
+	loadConditionalSettings("Geckium.main.overrideStyle");
 	gkPrefUtils.set("Geckium.main.overrideStyle").bool(false);
 	document.querySelector('input[data-pref="Geckium.newTabHome.overrideStyle"]').checked = false;
+	loadConditionalSettings("Geckium.newTabHome.overrideStyle");
 	gkPrefUtils.set("Geckium.newTabHome.overrideStyle").bool(false);
 }

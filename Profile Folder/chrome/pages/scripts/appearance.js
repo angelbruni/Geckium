@@ -3,16 +3,9 @@ function appearance() {
 	let prefChoice;
 
 	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-		switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-			case true:
-				prefChoice = gkEras.getEra("Geckium.newTabHome.style");
-				break;
-			default:
-				prefChoice = gkEras.getEra("Geckium.appearance.choice");
-				break;
-		}
+		prefChoice = gkEras.getNTPEra();
 	} else {
-		prefChoice = gkEras.getEra("Geckium.appearance.choice");
+		prefChoice = gkEras.getBrowserEra();
 	}
 	
 	if (!prefChoice)

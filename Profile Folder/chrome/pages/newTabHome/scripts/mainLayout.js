@@ -58,15 +58,7 @@ function setMostVisitedLayout(layout) {
 }
 
 function createMainLayout() {
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
 		entry.remove();

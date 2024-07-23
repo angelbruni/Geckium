@@ -181,13 +181,53 @@ class gkEras {
     }
 
     /**
-     * getEra - Gets the currently set era
+     * getEra - Gets the currently set era based on 'location'
+     * 
+     * If not found or invalid, returns Chromium 1 instead.
+     */
+    
+    static getEra(location) {
+        let prefChoice = gkPrefUtils.tryGet(location).int;
+        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
+            return 1;
+        }
+        return prefChoice;
+    }
+
+    /**
+     * getBrowserEra - Gets the currently set era for the browser
      * 
      * If not found or invalid, returns Chromium 1 instead.
      */
 
-    static getEra(location) {
-        let prefChoice = gkPrefUtils.tryGet(location).int;
+    static getBrowserEra() {
+        if (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool == true) {
+            let override = gkPrefUtils.tryGet("Geckium.main.style").int;
+            if (override && Object.keys(eras).includes(override.toString())) {
+                return override;
+            }
+        }
+        let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
+        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
+            return 1;
+        }
+        return prefChoice;
+    }
+
+    /**
+     * getNTPEra - Gets the currently set era for the new tab page
+     * 
+     * If not found or invalid, returns Chromium 1 instead.
+     */
+
+    static getNTPEra() {
+        if (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool == true) {
+            let override = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
+            if (override && Object.keys(eras).includes(override.toString())) {
+                return override;
+            }
+        }
+        let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
         if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
             return 1;
         }
@@ -199,27 +239,11 @@ class gkEras {
      */
 
     static applyEra() {
-        let prefChoice = gkEras.getEra("Geckium.appearance.choice");
-
+        let prefChoice;
         if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
-            switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-                case true:
-                    prefChoice = gkEras.getEra("Geckium.newTabHome.style");
-                    break;
-                default:
-                    break;
-            }
-        } else if (document.URL == "about:preferences" || document.URL == "about:addons") {
-            // Prepare setting for forcing the style for these pages individually
-            //  prefChoice is already the correct value, so...
+            prefChoice = gkEras.getNTPEra();
         } else {
-            switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-                case true:
-                    prefChoice = gkEras.getEra("Geckium.main.style");
-                    break;
-                default:
-                    break;
-            }
+            prefChoice = gkEras.getBrowserEra();
         }
 
         // Don't continue if acting on the browser and the prior era == the new era
@@ -261,6 +285,10 @@ const eraObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", eraObserver, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", eraObserver, false);
+Services.prefs.addObserver("Geckium.main.style", eraObserver, false);
+Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", eraObserver, false);
+Services.prefs.addObserver("Geckium.newTabHome.style", eraObserver, false);
 
 
 // Provide a way to let the CSS know if the menubar is visible 

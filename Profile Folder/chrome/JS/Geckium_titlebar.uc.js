@@ -246,7 +246,7 @@ class gkTitlebars {
 
     static getTitlebarSpec(era, style) {
         if (!era) {
-            era = gkEras.getEra("Geckium.appearance.choice");
+            era = gkEras.getBrowserEra();
         }
         if (!style) {
             style = gkTitlebars.getTitlebar(era);
@@ -391,7 +391,7 @@ class gkTitlebars {
             return;
         }
         if (!era) {
-            era = gkEras.getEra("Geckium.appearance.choice");
+            era = gkEras.getBrowserEra();
         }
         // Get spec about the current titlebar
         let titlebar = gkTitlebars.getTitlebar(era);
@@ -439,6 +439,8 @@ const titObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", titObserver, false);
+Services.prefs.addObserver("Geckium.main.style", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarNative", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", titObserver, false);

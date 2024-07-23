@@ -15,15 +15,7 @@ const chrThemesFolder = `file://${FileUtils.getDir("ProfD", []).path.replace(/\\
 // Chrome Themes
 class gkChrTheme {
 	static get defaultToolbarButtonIconColour() {
-		let appearanceChoice;
-		switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-			case true:
-				appearanceChoice = gkEras.getEra("Geckium.main.style");
-				break;
-			default:
-				appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-				break;
-		}
+		let appearanceChoice = gkEras.getBrowserEra();
 
 		if (appearanceChoice <= 6)
 			return [88, 118, 171];
@@ -39,16 +31,26 @@ class gkChrTheme {
     // Fallback behaviour
     // 1 - 47: Not using colours if images are missing, unless user-overridden or manifest_version >= 2
     // 68 -: Using colours if images are missing
-    // TODO: Map these to generic Geckium variables
     // TODO: Windows 10 titlebuttons seem to be getDark... based on a fusion of frameBG and buttonBG based on buttonBG's alpha-level.
 
-    // Titlebar:
-    //- titlebar-active should ideally be a layer of Chrome Theme and default-titlebar-active behind it
-    //- therefore, need to figure out setting the positioning, etc. of that
-    //- also need to see if button textures get disabled when on 'AERO titlebar' state
-    // 
-    //toolbar:
-    //- similar story, just without the layering of default-toolbar
+    // - K-On! has colours in newer eras
+    // - K-On! lacks toolbar colour in its natural habitat (1-47)
+    // - AERO themes worked by not having frame image
+    // - Modern themes have frame colour only
+    // - 68+ enforces usage of colours as fallbacks
+
+    // - Enforce colours stays, but
+    //     - If on, override era and theme age checks and apply colours anyway as certain elements' fallback-backgrounds?
+    //     - Could be a separate map for colors with their required image variables to be unsatisfied before being used - for colors not used as fallbacks, don't provide values but have them mapped
+    //         - For tints, just tint the colors that ARE used, like normal.
+    // - Accommodate: 
+    //     - Old theme in modern design: In each variable map fallback values to use - with accomodation off, the variables only get set to the non-fallback variable
+    //         - If the era is 68+, use the theme's fallback colours, if any, regardless of the enforce colours setting
+    //     - New themes in old design: If manifest_version >= 2, enforce colours regardless if accommodation is enabled - else, follow the same logic as old theme in modern design
+    //     - Variables not in the map of fallback values are discarded as they are not currently supported by Geckium therefore
+        
+
+    //TODO: If there are no fallback colours, use the era's fallback palette if MD2+ - probably add this into systhemes as a [gkchrthemed] only System Theme override.
 
     static async getThemes() {
         var themes = {};
@@ -308,3 +310,5 @@ const chrThemeObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.chrTheme.fileName", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);

@@ -28,7 +28,7 @@ async function openLWThemesPage() {
 }
 
 function switchAutoThumbnail() {
-	let preference = gkSysTheme.getPreferredTheme(gkTitlebars.getTitlebarSpec(gkEras.getEra("Geckium.appearance.choice")));
+	let preference = gkSysTheme.getPreferredTheme(gkTitlebars.getTitlebarSpec(gkEras.getBrowserEra()));
 	document.getElementById("autogktheme").setAttribute("data-systheme-name", preference);
 }
 document.addEventListener("DOMContentLoaded", switchAutoThumbnail);
@@ -40,4 +40,6 @@ const observer = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", observer, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", observer, false);
+Services.prefs.addObserver("Geckium.main.style", observer, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", observer, false);

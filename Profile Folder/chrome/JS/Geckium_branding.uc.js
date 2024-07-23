@@ -39,7 +39,7 @@ class gkBranding {
 	};
 
 	static getIsOS() {
-		let titChoice = gkTitlebars.getTitlebar(gkEras.getEra("Geckium.appearance.choice"));
+		let titChoice = gkTitlebars.getTitlebar(gkEras.getBrowserEra());
 		return gkBranding.OSQualifiers.includes(titChoice);
 	}
 

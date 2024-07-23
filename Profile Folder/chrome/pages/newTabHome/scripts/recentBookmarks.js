@@ -3,16 +3,7 @@ const { PlacesUtils } = ChromeUtils.importESModule("resource://gre/modules/Place
 
 // Get the most recent 9 bookmarks
 async function getRecentBookmarks() {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	if (appearanceChoice !== 1)
 		return;

@@ -85,7 +85,7 @@ function openGSettings(mode) {
 }
 
 function openAbout() {
-	if (gkEras.getEra("Geckium.appearance.choice") <= 21)
+	if (gkEras.getBrowserEra() <= 21)
 		window.openDialog("about:about", "", "centerscreen");
 	else
 		openTrustedLinkIn("about:preferences#about", "tab");
