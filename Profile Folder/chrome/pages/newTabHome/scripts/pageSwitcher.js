@@ -1,14 +1,5 @@
 function setUpPages() {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	if (appearanceChoice == 21 || appearanceChoice == 25) {
 		const pageSwitcherStart = document.getElementById("page-switcher-start");
@@ -16,8 +7,6 @@ function setUpPages() {
 
 		let pageContainer = document.getElementById("page-list");
 		const pages = pageContainer.querySelectorAll(".tile-page");
-
-		console.log(pages)
 
 		let tabItems = document.querySelectorAll("#dot-list > .dot");
 

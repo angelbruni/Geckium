@@ -161,23 +161,9 @@ function setUpExperiments() {
             const experiment = experiments[key];
 
 			if (experiment.type == "ntp") {
-				switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-					case true:
-						appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-						break;
-					default:
-						appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-						break;
-				}
+				appearanceChoice = gkEras.NTPEra();
 			} else {
-				switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-					case true:
-						appearanceChoice = gkEras.getEra("Geckium.main.style");
-						break;
-					default:
-						appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-						break;
-				}
+				appearanceChoice = gkEras.getBrowserEra();
 			}
 
             if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)

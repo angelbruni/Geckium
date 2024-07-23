@@ -117,8 +117,8 @@ function addProductName() {
 }
 
 function updateInfo() {
-	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getEra("Geckium.appearance.choice")].basedOnVersion);
-	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkEras.getEras("main")[gkEras.getEra("Geckium.appearance.choice")].year);
+	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getBrowserEra()].basedOnVersion);
+	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkEras.getEras("main")[gkEras.getBrowserEra()].year);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

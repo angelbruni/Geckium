@@ -3,15 +3,7 @@ function createMainLayout() {
 
 	document.documentElement.setAttribute("title", aboutBundle.GetStringFromName("windowTitle").replace("%s", fullName));
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.main.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
 	if (appearanceChoice <= 3)
 		window.resizeTo(490 + (window.outerWidth - window.innerWidth), 266 + (window.outerHeight - window.innerHeight));

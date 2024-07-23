@@ -12,15 +12,7 @@ function changeGoButton() {
 	if (!urlbarInputContainer)
 		urlbarInputContainer = document.querySelector(".urlbar-input-container");
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.main.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
 	if (!document.getElementById("go-button-box")) {
 		const goButtonBox = document.createXULElement("hbox");
@@ -55,15 +47,7 @@ function styleURLBar() {
 	const pageActionButtons = document.getElementById("page-action-buttons");
 	const urlbarLabelBox = document.getElementById("urlbar-label-box");
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.main.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
 	setTimeout(() => {
 		if (appearanceChoice <= 5) {

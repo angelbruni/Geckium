@@ -76,16 +76,7 @@ const websiteColors = {
 };
 
 function getTilesAmount(string) {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 	
 	let desiredRows;
 	let desiredCols;
@@ -136,16 +127,7 @@ function retrieveFrequentSites() {
 }
 
 function createTile(website) {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
     try {
 		let tile;
@@ -351,16 +333,7 @@ function createTile(website) {
 }
 
 function populateRecentSitesGrid() {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkEras.getEra("Geckium.newTabHome.style");
-			break;
-		default:
-			appearanceChoice = gkEras.getEra("Geckium.appearance.choice");
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	let mostViewed;
 

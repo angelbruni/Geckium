@@ -53,7 +53,7 @@ class gkSysTheme {
 
     static applyTheme(era, spec) {
         if (!era) {
-            era = gkEras.getEra("Geckium.appearance.choice");
+            era = gkEras.getBrowserEra();
         }
         if (!spec || spec == {}) {
             spec = gkTitlebars.getTitlebarSpec(era);
@@ -80,6 +80,8 @@ const sysThemeObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", sysThemeObserver, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", sysThemeObserver, false);
+Services.prefs.addObserver("Geckium.main.style", sysThemeObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarStyle", sysThemeObserver, false);
 Services.prefs.addObserver("Geckium.appearance.systemTheme", sysThemeObserver, false);
 
@@ -280,7 +282,7 @@ class gkYou {
 
 	static apply() {
         gkYou.removeVariables();
-        let era = gkEras.getEra();
+        let era = gkEras.getBrowserEra();
         let color;
 		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68)) {
             try {
