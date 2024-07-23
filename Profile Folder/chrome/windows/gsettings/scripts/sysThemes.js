@@ -3,7 +3,7 @@ async function selectSysTheme() {
 	if (!gkSysTheme.systhemes.includes(prefChoice) && prefChoice != "auto") {
 		prefChoice = "auto";
 	}
-	// TODO: Instead of this, display the "System Theme" caption
+	// TODO: Instead of this, display the "Fallback" caption
 	//  as we're going to deselect these when in a theme or Firefox Theme
 	let chrChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 	if (!chrChoice) {
