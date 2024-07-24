@@ -69,12 +69,34 @@ async function populateChrThemesList() {
 		})
 	})
 
+	selectChrTheme();
+
 	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 	if (prefChoice) {
 		chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
 	}
 }
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
+
+function selectChrTheme() {
+	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
+	if (gkChrTheme.getEligible() && prefChoice) {
+		chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+	} else {
+		chrThemesList.querySelectorAll('button[data-theme-name] input[type="radio"]').forEach(item => {
+			item.checked = false;
+		})
+	}
+}
+const chrGridObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			selectChrTheme();
+		}
+	},
+};
+Services.prefs.addObserver("extensions.activeThemeID", chrGridObserver, false);
+Services.prefs.addObserver("Geckium.chrTheme.fileName", chrGridObserver, false);
 
 async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
