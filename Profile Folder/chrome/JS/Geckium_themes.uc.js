@@ -11,7 +11,7 @@ let previousSysTheme;
 
 // System Theme Management
 class gkSysTheme {
-    static systhemes = ["classic", "gtk", "macos", "macosx", "chromiumos", "you"]
+    static systhemes = ["classic", "you", "gtk", "macosx", "macos", "chromiumos"]
 
     /**
      * getPreferredTheme - Gets the era's preferred System Theme for your platform

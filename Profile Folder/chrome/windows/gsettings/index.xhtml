@@ -647,8 +647,7 @@
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
 																class="link chrome-appearance ripple-enabled"
-																id="autogktheme"
-																data-systheme-name="auto"
+																data-systheme="auto"
 																style="height: 160px"
 																onclick="applySysTheme('auto')">
 															<html:label class="wrapper">
@@ -663,9 +662,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme-name="classic"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-classic"
+																data-systheme="classic" style="height: 160px"
 																onclick="applySysTheme('classic')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -680,9 +678,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme-name="you"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-you"
+																data-systheme="you" style="height: 160px"
 																onclick="applySysTheme('you')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -696,9 +693,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gkthemegtk"
-																data-systheme-name="gtk"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-gtk"
+																data-systheme="gtk" style="height: 160px"
 																onclick="applySysTheme('gtk')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -713,9 +709,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme-name="macosx"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-macosx"
+																data-systheme="macosx" style="height: 160px"
 																onclick="applySysTheme('macosx')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -729,9 +724,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme-name="macos"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-macos"
+																data-systheme="macos" style="height: 160px"
 																onclick="applySysTheme('macos')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -745,9 +739,8 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme-name="chromiumos"
-																style="height: 160px"
+																class="link chrome-appearance ripple-enabled gktheme-chromiumos"
+																data-systheme="chromiumos" style="height: 160px"
 																onclick="applySysTheme('chromiumos')">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
@@ -761,7 +754,7 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled firefoxthemes"
+																id="ffoxthemestile" class="link chrome-appearance ripple-enabled firefoxthemes"
 																style="height: 160px; background-color: #1D1133 !important"
 																onclick="openLWThemesPage()">
 															<html:label class="wrapper">
