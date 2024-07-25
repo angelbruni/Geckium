@@ -40,6 +40,12 @@
 					}
 				}
 			}
+			//Windows 10 + Native Controls Patch quirks
+			@media (-moz-ev-native-controls-patch) {
+				&#main-window { // Prevent dark Firefox from using a background
+					background: rgba(0,0,0,.002) !important;
+				}
+			}
 		}
 		//Linux quirks
 		@media (-moz-platform: linux) {

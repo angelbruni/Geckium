@@ -38,8 +38,10 @@ Services.prefs.addObserver("Geckium.chrTheme.fileName", sysThemeGridObserver, fa
 async function applySysTheme(themeid) {
 	// Applies themeid as the System Theme, and disables themes
 	gkPrefUtils.set("Geckium.appearance.systemTheme").string(themeid);
-	const addon = await AddonManager.getAddonByID(gkPrefUtils.tryGet("extensions.activeThemeID").string);
-	addon.disable();
+    if (!gkPrefUtils.tryGet("extensions.activeThemeID").string.startsWith("default-theme@")) {
+		const addon = await AddonManager.getAddonByID(gkPrefUtils.tryGet("extensions.activeThemeID").string);
+		addon.disable();
+	}
 }
 
 async function openLWThemesPage() {
