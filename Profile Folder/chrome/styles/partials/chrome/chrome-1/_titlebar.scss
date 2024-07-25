@@ -24,6 +24,22 @@
 			.titlebar-buttonbox-container {
 				align-self: start;
 			}
+			//Fix the titlebar in unmaximised Windows Basic
+			@media (-moz-windows-compositor: 0) {
+				&[sizemode="normal"] #titlebar {
+					appearance: none !important; // this leaves behind the background colour
+					// TODO: In Windows XP make the #titlebar appear as appearance toolbar?
+					&::before {
+						content: "";
+						position: fixed;
+						appearance: -moz-window-titlebar;
+						// the following is to account for what I can only assume
+						// to be the gaps in borders-gaps.scss.
+						width: 102%;
+						margin-left: -2px;
+					}
+				}
+			}
 		}
 		//Linux quirks
 		@media (-moz-platform: linux) {
@@ -63,7 +79,7 @@
 			//Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
 				#titlebar {
-					appearance: unset !important;
+					appearance: none !important;
 				}
 			}
 			//Remove margin in Windows Classic
