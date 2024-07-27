@@ -284,7 +284,6 @@
 	}
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
-		--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
 		--toolbarbutton-border-color-normal: color-mix(
 			in srgb,
 			var(--toolbarbutton-icon-fill) 24.4%,
@@ -302,19 +301,23 @@
 		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
 		--toolbarbutton-icon-fill: var(--chrtheme-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
 		--navigation-buttons-separator: rgba(255,255,255,.2) !important;
-
-		--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
+		
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
 		--bookmark-item-color-shadow: none !important;
 		
 		--inner-border-color: var(--chrtheme-toolbar, var(--default-nav-bar)) !important;
+		
+		&[gkchrthemehastoolbar] {
+			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
+			--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
 
-		#nav-bar {
-			background-position-y: calc(var(--tab-height) * -1) !important;
-		}
+			#nav-bar {
+				background-position-y: calc(var(--tab-height) * -1) !important;
+			}
 
-		#PersonalToolbar {
-			background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+			#PersonalToolbar {
+				background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+			}
 		}
 	}
 	

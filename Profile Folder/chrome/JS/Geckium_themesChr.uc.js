@@ -119,46 +119,82 @@ class gkChrTheme {
             return null; // Or handle the error appropriately
         }
 	}
-    // Fallback behaviour
-    // 1 - 47: Not using colours if images are missing, unless user-overridden or manifest_version >= 2
-    // 68 -: Using colours if images are missing
-    // TODO: Windows 10 titlebuttons seem to be getDark... based on a fusion of frameBG and buttonBG based on buttonBG's alpha-level.
 
-    // - K-On! has colours in newer eras
-    // - K-On! lacks toolbar colour in its natural habitat (1-47)
-    // - AERO themes worked by not having frame image
-    // - Modern themes have frame colour only
-    // - 68+ enforces usage of colours as fallbacks
-
-    // - Enforce colours stays, but
-    //     - If on, override era and theme age checks and apply colours anyway as certain elements' fallback-backgrounds?
-    //     - Could be a separate map for colors with their required image variables to be unsatisfied before being used - for colors not used as fallbacks, don't provide values but have them mapped
-    //         - For tints, just tint the colors that ARE used, like normal.
-    // - Accommodate: 
-    //     - Old theme in modern design: In each variable map fallback values to use - with accomodation off, the variables only get set to the non-fallback variable
-    //         - If the era is 68+, use the theme's fallback colours, if any, regardless of the enforce colours setting
-    //     - New themes in old design: If manifest_version >= 2, enforce colours regardless if accommodation is enabled - else, follow the same logic as old theme in modern design
-    //     - Variables not in the map of fallback values are discarded as they are not currently supported by Geckium therefore
-        
+    // Frame color is always used IF the frame image is satisfied
+    //    Titlebar button background is used regardless of frame existing so long as titlebars AREN'T native
+    // Toolbar color is NOT used until 68 enforces it as a fallback if the image is missing
+    //    TODO: Inactive tab is always unthemed, EXCEPT for its foreground, in native titlebar
+    //      BUT its new tab button IS themed regardless
 
     //TODO: If there are no fallback colours, use the era's fallback palette if MD2+ - probably add this into systhemes as a [gkchrthemed] only System Theme override.
 
-    static variables = {
-        
+    static includeColorIfImage = [ //Colors added ONLY if their image variant exists, unless fallbacks are enabled, or amendments are enabled and manifest_version >= 2
+        "frame"
+    ]
+    static fallbackOnlyColors = [ //Colors added ONLY if fallbacks are enabled or 68+ used, or amendments are enabled and manifest_version >= 2, and their image variant is missing
+        "toolbar"
+    ]
+
+    static chrThemeFeatures = ["frame", "toolbar"];
+
+    static accommodate(data) { //Makes amendments to theme data to include missing variables
+        var accs = {
+            "colors": {
+                "ntp_section": ["toolbar"],
+                "ntp_section_text": ["tab_text"],
+                "ntp_section_link": ["tab_text"]
+            }
+        };
+        for (const type of Object.keys(accs)) {
+            if (!Object.keys(data.theme).includes(type)) {
+                continue; //We need to accomodate non-existant variables to fallbacks of the same type
+            }
+            for (const i of Object.keys(accs[type])) {
+                // For each value that DOESN'T exist...
+                if (!Object.keys(data.theme[type]).includes(i)) {
+                    // Use the first fallback value to exist
+                    for (const ii of Object.values(accs[type][i])) {
+                        if (data.theme[type][ii]) {
+                            data.theme[type][i] = data.theme[type][ii];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return data;
     }
 
     static setVariables(theme, file) {
         function styleProperty(key) {
             return `--chrtheme-${key.replace(/_/g, '-')}`;
         }
+        function getManVersion(data) {
+            if (data.manifest_version) {
+                return data.manifest_version;
+            }
+            return 0;
+        }
+        
+        let features = []; // theme features to advertise to CSS
+        let era = gkEras.getBrowserEra();
+        let accman2plus = false;
+        if (gkPrefUtils.tryGet("Geckium.chrTheme.accommodate").bool) {
+            accman2plus = (getManVersion(theme) >= 2);
+            // Modify theme data to include fallbacks for missing values
+            theme = gkChrTheme.accommodate(theme);
+        }
+        let allowfbcolors = gkPrefUtils.tryGet("Geckium.chrTheme.fallbacks").int; // allow Fallback Colors
 
-        // TODO: Create variables based on available values - depending on manifest_version, determine what parts of the theme map to what (e.g.: more fallbacks in 2, but also variables for older eras being set to modern values, etc.)
-        //  Also add the Incognito frame-texture, and support colourable glare.
+        // TODO: Also add the Incognito frame-texture, and support colourable glare.
 
         // IMAGES
         if (theme.theme.images) {
             Object.entries(theme.theme.images).map(([key, value]) => {
                 document.documentElement.style.setProperty(`${styleProperty(key)}`, `url('${file}/${value}')`);
+                if (gkChrTheme.chrThemeFeatures.includes(key.substring(6))) {
+                    features.push(key.substring(6));
+                }
             }).join('\n');
 
             // Theme Attribution
@@ -173,21 +209,46 @@ class gkChrTheme {
                     document.documentElement.style.setProperty("--chrtheme-theme-ntp-attribution-height", `${this.height}px`);
                 };
             }
-
-            // Titlebar texture (native titlebar check)
-            const frameImg = theme.theme.images.theme_frame;
-            if (!frameImg) {
-                isChrThemeNative = true;
-            }
         }
 
         // COLORS
+        let hasframecol;
+        let hasbuttoncol;
         if (theme.theme.colors) {
             Object.entries(theme.theme.colors).map(([key, value]) => {
+                // Colours only included if their image is present pre-68
+                if (gkChrTheme.includeColorIfImage.includes(key)) {
+                    if (!theme.theme.images || !theme.theme.images["theme_" + key]) {
+                        if (allowfbcolors == 2) {
+                            return;
+                        } else if (!accman2plus && era < 68 && allowfbcolors != 1) {
+                            return;
+                        }
+                    }
+                }
+                // Colours only included as fallbacks pre-68
+                if (gkChrTheme.fallbackOnlyColors.includes(key)) {
+                    if (allowfbcolors == 2) {
+                        return;
+                    } else if (theme.theme.images && theme.theme.images["theme_" + key]) {
+                        return;
+                    } else if (!accman2plus && era < 68 && allowfbcolors != 1) {
+                        return;
+                    }
+                }
                 document.documentElement.style.setProperty(`${styleProperty(key)}`, `rgb(${value.join(', ')})`);
                 if (key == "ntp_text") {
                     if (!ColorUtils.IsDark(value)) {
                         document.documentElement.style.setProperty("--chrtheme-ntp-logo-alternate", "1");
+                    }
+                } else if (key == "frame") {
+                    hasframecol = true;
+                } else if (key == "button_background") {
+                    hasbuttoncol = true;
+                }
+                if (gkChrTheme.chrThemeFeatures.includes(key)) {
+                    if (!features.includes(key)) {
+                        features.push(key);
                     }
                 }
             }).join('\n');
@@ -239,11 +300,62 @@ class gkChrTheme {
             }).join('\n');
         }
 
+        if (isBrowserWindow) {
+            // Windows 10 titlebutton foreground
+            if (hasframecol && hasbuttoncol) {
+                // Combine frame and titlebar backgrounds
+                // FIXME: Surely there's a way better way to color-mix in JS...?
+                var colorDiv = document.createElement("div");
+                document.head.appendChild(colorDiv);
+                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, rgb(${theme.theme.colors.frame.join(', ')}))`;
+                var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+                // Determine the colour using the combined frame colours
+                if (ColorUtils.IsDark(color)) {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
+                } else {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
+                }
+                document.head.removeChild(colorDiv);
+            } else if (hasframecol) {
+                // Determine the colour using the frame
+                if (ColorUtils.IsDark(theme.theme.colors.frame)) {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
+                } else {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
+                }
+            } else if (hasbuttoncol) {
+                // Combine fallback frame and titlebar backgrounds
+                // FIXME: Surely there's a way better way to do this too in JS...?
+                var colorDiv = document.createElement("div");
+                document.head.appendChild(colorDiv);
+                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, var(--default-titlebar-active))`;
+                var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+                // Determine the colour using the combined frame colours
+                if (ColorUtils.IsDark(color)) {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
+                } else {
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
+                }
+            }
+
+            // Titlebar texture (native titlebar check)
+            if (features.includes("frame")) {
+                isChrThemeNative = true;
+            }
+        }
+
         // Announce the theme usage
         isThemed = true;
         isChromeThemed = true;
         document.documentElement.setAttribute("gkthemed", true);
         document.documentElement.setAttribute("gkchrthemed", true);
+        for (const i of gkChrTheme.chrThemeFeatures) {
+            if (features.includes(i)) {
+                document.documentElement.setAttribute("gkchrthemehas" + i, "");
+            } else {
+                document.documentElement.removeAttribute("gkchrthemehas" + i);
+            }
+        }
         if (isBrowserWindow) {
             // Reapply titlebar to toggle native mode if applicable to
             gkTitlebars.applyTitlebar();
@@ -253,7 +365,7 @@ class gkChrTheme {
     static removeVariables() {
         // Deactivate theme checks
         isChromeThemed = false;
-        isChrThemeNative = false;
+        if (isBrowserWindow) { isChrThemeNative = false; }
         document.documentElement.removeAttribute("gkchrthemed");
         if (!gkLWTheme.isThemed) {
             isThemed = false;
@@ -268,6 +380,10 @@ class gkChrTheme {
     }
 
     static applyTheme() {
+        // FIXME: This one needs to default to True
+        if (!gkPrefUtils.prefExists("Geckium.chrTheme.accommodate")) {
+		    gkPrefUtils.set("Geckium.chrTheme.accommodate").bool(true);																			    // Add default apps if the apps list is empty
+	    }
         gkChrTheme.removeVariables(); // Not all variables can be ensured to be replaced, thus pre-emptively remove EVERY possible variable.
         let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
         setTimeout(async () => { // same situation as themesLW, plus we NEED async. :/
@@ -310,5 +426,8 @@ const chrThemeObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.chrTheme.fileName", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.chrTheme.accommodate", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.chrTheme.fallbacks", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.appearance.choice", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.main.overrideStyle", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);
