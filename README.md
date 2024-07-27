@@ -1,7 +1,7 @@
 # Geckium
 ## A love letter to the history of Chromium and its derivatives
 
-##### Geckium is not officially developed, approved or endorsed by Google!
+###### Geckium is not officially developed, approved or endorsed by Google!
 
 (todo: image here of all themes/etc.)
 
