@@ -403,17 +403,6 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Chrome 1 - 68</div>&gsettings.enforceColorsInChrThemes;</label>
-														<label class="description">&gsettings.enforceColorsInChrThemesDisclaimer;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.chrTheme.fallbacks" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-												<hbox class="item">
-													<vbox>
 														<label class="name">&gsettings.accommodateChrThemes;</label>
 														<label class="description">&gsettings.accommodateChrThemesDisclaimer;</label>
 													</vbox>
@@ -422,6 +411,22 @@
 														<html:input class="switch" data-pref="Geckium.chrTheme.accommodate" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.chrThemeFallbacks;</label>
+														<label class="description">&gsettings.chrThemeFallbacksDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="chrTheme.fallbacks" id="chrTheme-fallbacks-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.enabled;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.disabled;</hbox>
+														</vbox>
+													</html:button>
 												</hbox>
 												<hbox class="item">
 													<vbox>
