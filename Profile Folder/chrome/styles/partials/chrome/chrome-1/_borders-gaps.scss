@@ -11,6 +11,14 @@
 		box-sizing: border-box; //Required fix for Windows
 	}
 
+	//--inner-border-color overrides (requires Windows decorations)
+	&[gkthemed]:not([gkchrthemed]) {
+		// --inner-border-color: var(--nav-bar);
+	}
+	&[gkthemed][gkchrthemed] {
+		--inner-border-color: var(--chrtheme-toolbar);
+	}
+
 	//NOTE: Tab and Incognito offsets are handled by titlebar button styles.
 
 	//Add padding to window-contents (requires gaps allowed)
@@ -60,7 +68,7 @@
 			position: relative;
 			border-width: 1px;
 			border-style: solid;
-			border-color: var(--inner-border-color);
+			border-color: var(--inner-border-color, var(--default-inner-border-color));
 		}
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
