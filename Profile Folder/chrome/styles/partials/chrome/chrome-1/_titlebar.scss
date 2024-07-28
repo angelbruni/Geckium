@@ -16,6 +16,23 @@
 		--titlebar-foreground-inactive: var(--chrtheme-frame-color); //FIXME: This needs to be tinted
 	}
 
+	// Make the Incognito indicator look like Chromium's
+	.private-browsing-indicator-icon {
+		width: auto !important;
+		height: auto !important;
+	}
+	[data-l10n-id="private-browsing-indicator-label"] {
+		display: none !important;
+	}
+	// Hide the account icon if in OffTheRecord
+    &[privatebrowsingmode="temporary"] {
+        #fxa-toolbar-menu-button {
+            display: none !important;
+        }
+    }
+
+	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
+
 	// Fixes for various OS quirks
 	&[gktitnative="true"] {
 		//Windows quirks
@@ -188,29 +205,6 @@
 		--titlebar-foreground: var(--lwt-text-color);
 		--titlebar-foreground-inactive: var(--lwt-text-color);
 	} //TODO: Should variables assignment just be done in JS, to simplify the process? Could do QML style ? ... : ... one-liners even...?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	--inactive-titlebar-opacity: 1 !important; //TODO: unused?
-
-	--chrtheme-theme-frame-overlay: 0; //TODO: Change to 'unset'
-
-    &[privatebrowsingmode="temporary"] {
-        #fxa-toolbar-menu-button {
-            display: none !important;
-        }
-    }
 
 	//Titlebar styles
 	// Native Titlebar Enabled

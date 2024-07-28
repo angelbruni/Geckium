@@ -339,7 +339,7 @@ class gkChrTheme {
             }
 
             // Titlebar texture (native titlebar check)
-            if (features.includes("frame")) {
+            if (!features.includes("frame")) {
                 isChrThemeNative = true;
             }
         }

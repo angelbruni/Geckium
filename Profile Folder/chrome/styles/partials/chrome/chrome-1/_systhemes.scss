@@ -53,6 +53,8 @@
 		rgb(222, 234, 248),
 		rgb(240, 245, 253)
 	);
+	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)))
+		drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)));
 	--default-toolbarbutton-icon-drop-shadow-color: white;
 	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
@@ -108,7 +110,7 @@
 			in srgb,
 			color-mix(
 				in srgb,
-				var(--toolbarbutton-icon-fill) 30%,
+				var(--toolbarbutton-icon-color) 30%,
 				transparent
 			) 70%,
 			black
@@ -117,7 +119,7 @@
 		--toolbarbutton-border-color-active: rgb(136, 136, 136);
 		--toolbarbutton-inner-border-color-normal: color-mix(
 			in srgb,
-			var(--toolbarbutton-icon-fill) 30%,
+			var(--toolbarbutton-icon-color) 30%,
 			transparent
 		);
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
@@ -581,7 +583,7 @@
 						in srgb,
 						color-mix(
 							in srgb,
-							var(--toolbarbutton-icon-fill) 30%,
+							var(--toolbarbutton-icon-color) 30%,
 							transparent
 						) 70%,
 						black
@@ -589,7 +591,7 @@
 					--toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
 					--toolbarbutton-inner-border-color-normal: color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-fill) 30%,
+						var(--toolbarbutton-icon-color) 30%,
 						transparent
 					);
 					--default-toolbarbutton-texture: linear-gradient(
