@@ -111,6 +111,11 @@
 					margin-top: 0 !important;
 				}
 			}
+			//Remove margin in AERO too
+			#TabsToolbar > .toolbar-items {
+				padding-top: 0 !important;
+				margin-top: 0 !important;
+			}
 			//Windows 10 + Native Controls Patch quirks
 			@media (-moz-ev-native-controls-patch) {
 				&#main-window {
@@ -196,6 +201,21 @@
 			}
 		}
 	}
+
+	//Google logo (native)
+
+	// Google watermark -> _titlebar.scss (native) 
+
+	// - Windows expects it to left of buttons
+	// - macOS expects it to right of buttons
+	// - Linux interchanges based on close-button-side
+
+	// Windows, or macOS RTL or Linux right-sided or Linux left-sided RTL:
+	// - Before titlebuttons
+
+	// macOS, Windows RTL or Linux left-sided or Linux right-sided RTL:
+	// - After titlebuttons
+	
 
 	//Theme support
 	&[gkthemed]:not([gkchrthemed]) {

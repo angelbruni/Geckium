@@ -7,33 +7,38 @@
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
-		&[style*="--lwt-newtab-attribution-image"] {
+		&[style*="--lwt-gknewtab-attribution-image"] {
 			#attribution {
 				display: flex !important;
 			}
 
 			#attribution-img {
-				background-image: var(--lwt-newtab-attribution-image) !important;
-				width: var(--lwt-newtab-attribution-width) !important;
-				height: var(--lwt-newtab-attribution-height) !important;
+				background-image: var(--lwt-gknewtab-attribution-image) !important;
+				width: var(--lwt-gknewtab-attribution-width) !important;
+				height: var(--lwt-gknewtab-attribution-height) !important;
 			}
 		}
 
 		body {
 			background-color: var(--newtab-background-color);
-			background-image: var(--lwt-newtab-background-image, var(--lwt-newtab-image));
-			image-rendering: var(--lwt-newtab-image-rendering);
-			background-size: var(--lwt-newtab-background-size);
-			background-position: var(--lwt-newtab-background-position);
+			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+			image-rendering: var(--lwt-gknewtab-image-rendering);
+			background-size: var(--lwt-gknewtab-background-size);
+			background-position: var(--lwt-gknewtab-background-position);
 
-			&[style*="--lwt-newtab-background-position-y"] {
-				background-position-x: var(--lwt-newtab-background-position-x);
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-x);
 			}
-			&[style*="--lwt-newtab-background-position-y"] {
-				background-position-x: var(--lwt-newtab-background-position-y);
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-y);
 			}
 
-			background-repeat: var(--lwt-newtab-background-repeat);
+			background-repeat: var(--lwt-gknewtab-background-repeat);
+		}
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
+			}
 		}
 	}
 
