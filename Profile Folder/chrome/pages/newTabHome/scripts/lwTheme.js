@@ -31,10 +31,10 @@ function setProperties() {
 		if (newTabColor)
 			document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
 
-		document.documentElement.style.removeProperty("--toolbarbutton-icon-fill");
+		document.documentElement.style.removeProperty("--toolbarbutton-icon-color");
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
 		if (toolbarButtonIconFill)
-			document.documentElement.style.setProperty("--toolbarbutton-icon-fill", toolbarButtonIconFill);	
+			document.documentElement.style.setProperty("--toolbarbutton-icon-color", toolbarButtonIconFill);	
 		
 		document.documentElement.style.removeProperty("--toolbar-bgcolor");
 		const toolbarColor = lwThemeResource.toolbarColor;

@@ -25,14 +25,14 @@
 		);
 		--recently-closed-border-color: color-mix(
 			in srgb,
-			var(--toolbarbutton-icon-fill, var(--lwt-text-color)) 50%,
+			var(--toolbarbutton-icon-color, var(--lwt-text-color)) 50%,
 			transparent
 		);
 		--recently-closed-color: var(--recently-closed-item-color);
-		--recently-closed-item-color: var(--toolbarbutton-icon-fill, var(--lwt-text-color));
+		--recently-closed-item-color: var(--toolbarbutton-icon-color, var(--lwt-text-color));
 
 		&[style*="--arrowpanel-background"] {
-			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-fill, var(--lwt-text-color)));
+			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
 		}
 	}
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {

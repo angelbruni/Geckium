@@ -8,22 +8,36 @@
 	--toolbarbutton-width: 29px;
 	--toolbarbutton-menu-width: 36px;
 	--toolbarbutton-height: 27px;
-	--toolbarbutton-inner-padding: 5px !important;
-	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important;
-	--toolbarbutton-outer-padding: 3px !important;
-	--toolbarbutton-texture: var(--default-toolbarbutton-texture);
+	--toolbarbutton-inner-padding: 5px !important; // Firefox's toolbar button size
+	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important; // Firefox's selected button background?
+	--toolbarbutton-outer-padding: 3px !important; // Firefox's toolbar button spacing
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
 	--toolbarbutton-shadow-hot:	0 2px 3px 0 rgba(140,140,140,.35),
 								inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
 	//--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-radius: 6px;
-	--toolbarbutton-disabled-opacity: 1 !important;
-	--toolbarbutton-icon-drop-shadow-color: var(--default-toolbarbutton-icon-drop-shadow-color);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color)) drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color));
-	
-	&:not([style*="--toolbarbutton-icon-fill"]) {
-		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-	}
+	--toolbarbutton-disabled-opacity: 1 !important; // Firefox's disabled buttons opacity
 
 	--navigation-buttons-separator: var(--default-navigation-buttons-separator);
 
@@ -158,10 +172,6 @@
 			}
 		}
 	}
-	// force toolbar icon fill on both Light/Dark
-	&:not([isThemed]) {
-		--toolbarbutton-icon-fill: var(--default-toolbarbutton-icon-fill) !important;
-	}
 	// else if lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
 		&:not([customthememode="none"]) {
@@ -199,28 +209,25 @@
 			) !important;
 			--toolbarbutton-inner-border-color-normal: color-mix(
 				in srgb,
-				var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 30%,
+				var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) 30%,
 				transparent
 			) !important;
 			--toolbarbutton-inner-border-color-hot: color-mix(
 				in srgb,
-				var(--toolbarbutton-icon-fill, var(--default-toolbarbutton-icon-fill)) 50%,
+				var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) 50%,
 				transparent
 			) !important;
 
 			&[style*="--toolbar-color"] {
-				&:not([style*="--toolbarbutton-icon-fill"]) {
-					--toolbarbutton-icon-fill: var(--toolbar-color) !important;
-				}
-
+				--toolbarbutton-icon-color: var(--toolbar-color);
 				--toolbarbutton-inner-border-color-normal: color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill, var(--toolbar-color)) 30%,
+					var(--toolbarbutton-icon-color, var(--toolbar-color)) 30%,
 					transparent
 				) !important;
 				--toolbarbutton-inner-border-color-hot: color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill, var(--toolbar-color)) 50%,
+					var(--toolbarbutton-icon-color, var(--toolbar-color)) 50%,
 					transparent
 				) !important;
 			}
@@ -279,12 +286,12 @@
 	&[gkthemed][gkchrthemed] {
 		--toolbarbutton-border-color-normal: color-mix(
 			in srgb,
-			var(--toolbarbutton-icon-fill) 24.4%,
+			var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) 24.4%,
 			transparent
 		) !important;
 		--toolbarbutton-border-color-hot: color-mix(
 			in srgb,
-			var(--toolbarbutton-icon-fill) 70%,
+			var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) 70%,
 			transparent
 		) !important;
 		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
@@ -292,7 +299,7 @@
 		--toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
 		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.8) !important;
 		--toolbarbutton-shadow-hot: inset 1px 1px 1px 0 var(--toolbarbutton-inner-border-color-hot) !important;
-		--toolbarbutton-icon-fill: var(--chrtheme-toolbar-button-icon, var(--default-toolbarbutton-icon-fill)) !important;
+		--toolbarbutton-icon-color: var(--chrtheme-toolbar-button-icon);
 		--navigation-buttons-separator: rgba(255,255,255,.2) !important;
 		
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
@@ -660,9 +667,9 @@ toolbarspring {
 	) {
 	position: relative;
 	padding: 0 !important;
-	background: var(--toolbarbutton-texture) !important;
+	background: var(--toolbarbutton-texture, var(--default-toolbarbutton-texture)) !important;
 	background-clip: padding-box !important;
-	fill: var(--toolbarbutton-icon-fill) !important;
+	fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) !important;
 	margin: 0 var(--toolbarbutton-outer-padding) !important;
 	width: var(--toolbarbutton-width) !important;
 	height: var(--toolbarbutton-height) !important;
@@ -706,7 +713,7 @@ toolbarspring {
 				in srgb,
 				color-mix(
 					in srgb,
-					var(--toolbarbutton-icon-fill) 80%,
+					var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) 80%,
 					#747474
 				) 25%, 
 				transparent
@@ -806,7 +813,7 @@ toolbarspring {
 	image:first-of-type {
 		border-radius: 0 !important;
 		padding: 0 !important;
-		fill: var(--toolbarbutton-icon-fill) !important;
+		fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-fill)) !important;
 		filter: saturate(1)
 				var(--toolbarbutton-icon-drop-shadow);
 		transition: 100ms filter linear;
