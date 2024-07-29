@@ -50,8 +50,7 @@ function setProperties() {
 			document.documentElement.style.setProperty("--newtab-text-primary-color", "var(--toolbar-field-color)")
 
 			// Alpenglow: Add new tab background
-			document.documentElement.style.setProperty("--lwt-gknewtab-background-image", "url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient\.svg)");
-			document.documentElement.style.setProperty("--lwt-gknewtab-background-image-dark", "url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient-dark\.svg)");
+			document.documentElement.style.setProperty("--lwt-gknewtab-background-image", "var(--lwt-additional-images)");
 			document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", "no-repeat,no-repeat,repeat-x");
 			document.documentElement.style.setProperty("--lwt-gknewtab-background-position", "right top,left top,right top");
 			document.documentElement.style.setProperty("--lwt-gknewtab-background-size", "auto 100%,auto 100%,100%");
