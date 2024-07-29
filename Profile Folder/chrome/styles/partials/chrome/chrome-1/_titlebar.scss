@@ -45,6 +45,10 @@
 			@media (-moz-windows-compositor: 0) {
 				&[sizemode="normal"] #titlebar {
 					appearance: none !important; // this leaves behind the background colour
+					background-color: rgb(185,209,234); // NOTE: These are hardcoded values straight from browser-aero.css
+					&:-moz-window-inactive {
+						background-color: rgb(215,228,242);
+					}
 					// TODO: In Windows XP make the #titlebar appear as appearance toolbar?
 					&::before {
 						content: "";
@@ -102,7 +106,11 @@
 			//Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
 				#titlebar {
-					appearance: none !important;
+					visibility: hidden !important;
+				}
+				&:not([inFullscreen], [chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([inFullscreen], [chromehidden~="toolbar"]) #TabsToolbar {
+					visibility: visible !important; //browser.css:186, 115
 				}
 			}
 			//Remove margin in Windows Classic
