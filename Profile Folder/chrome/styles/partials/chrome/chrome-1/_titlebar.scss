@@ -91,13 +91,20 @@
 					border-radius: unset !important; //browser.css:357, 115
 				}
 			}
-			// Center the titlebar buttons, because Mozilla can't ig...?
+		}
+		// Linux and macOS quirks
+		@media (-moz-platform: linux) or (-moz-platform: macos) {
+			// Center the titlebar buttons, as Firefox offsets them
 			.titlebar-buttonbox-container {
 				align-self: center;
 			}
 		}
 	}
 	&[gktitnative="false"] {
+		// Default to top-aligning the titlebar buttons
+		.titlebar-buttonbox-container {
+			align-self: start;
+		}
 		//Windows quirks
 		@media (-moz-platform: windows) {
 			//Prevent Basic's titlebar texture showing
@@ -160,10 +167,6 @@
 		}
 
 		//Misc. quirk-workarounds
-		.titlebar-buttonbox-container {
-			align-self: start; // Positions the buttons correctly
-		}
-
 		#navigator-toolbox-background {
 			position: relative; // Makes the background PROPERLY disappear
 		}
@@ -207,7 +210,89 @@
 		}
 	}
 
+	//Appropriate tabs/Incognito offset
+	// This works independently of titlebar styles, when native, to avoid issues.
+	// For titlebar styles like Windows, in combinations that left-side titlebuttons, we assume Leftsider'd Chromium as a reference.
+	&[gktitnative="true"] {
+		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+			#private-browsing-indicator-with-label {
+				order: -1 !important; //Force to left
+			}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				&:not([privatebrowsingmode="temporary"]) {
+					#TabsToolbar-customization-target {
+						margin-inline-start: calc(var(--content-border-width) + 1px);
+					}
+				}
+				&[privatebrowsingmode="temporary"] {
+					#private-browsing-indicator-with-label {
+						margin-inline-start: calc(var(--content-border-width) + 2px) !important;
+					}
+				}
+			}
+		}
+		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+			#private-browsing-indicator-with-label {
+				order: 1000 !important; //Force to right
+				transform: scaleX(-1);
+			}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				&:not([privatebrowsingmode="temporary"]) {
+					#TabsToolbar-customization-target {
+						margin-inline-end: calc(var(--content-border-width) + 1px);
+					}
+				}
+				&[privatebrowsingmode="temporary"] {
+					#private-browsing-indicator-with-label {
+						margin-inline-end: calc(var(--content-border-width) + 2px) !important;
+					}
+				}
+			}
+		}
+	}
+
 	//Google logo (native)
+	&[gkbranding="chrome"] {
+		&[gktitnative="true"][gktitbuttons="win"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]),
+		&[gktitnative="true"][gktitbuttons="win10"],
+		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
+			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+				.titlebar-buttonbox-container {
+					&::before {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+						margin-block-start: 3px;
+						margin-inline-end: 7px;
+					}
+				}
+				@media (-moz-platform: linux) {
+					.titlebar-buttonbox-container::before {
+						align-self: center; // Center the Google logo in Linux
+					}
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container {
+						&::before {
+							content: unset !important;
+						}
+					}
+				}
+			}
+			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+				.titlebar-buttonbox-container::after {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+					margin-block-start: 2px;
+					margin-inline-start: 7px;
+					align-self: center; // Center-align the Google logo in Linux and macOS
+				}
+				&[sizemode="maximized"], &[sizemode="fullscreen"] { .titlebar-buttonbox-container {
+					&::after {
+						content: unset !important;
+					}
+				} }
+			}
+		}
+	}
 
 	// Google watermark -> _titlebar.scss (native) 
 

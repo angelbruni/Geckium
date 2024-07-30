@@ -1,54 +1,34 @@
 & {
-	//Give the tabs/Incognito the appropriate offset
-	#private-browsing-indicator-with-label {
-		order: -1 !important;
-	}
-	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		&:not([privatebrowsingmode="temporary"]) {
-			#TabsToolbar-customization-target {
-				margin-inline-start: calc(var(--content-border-width) + 1px);
-			}
+	&[gktitnative="false"] {
+		//Give the tabs/Incognito the appropriate offset
+		#private-browsing-indicator-with-label {
+			order: -1 !important;
 		}
-		&[privatebrowsingmode="temporary"] {
-			#private-browsing-indicator-with-label {
-				margin-inline-start: calc(var(--content-border-width) + 2px) !important;
+		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+			&:not([privatebrowsingmode="temporary"]) {
+				#TabsToolbar-customization-target {
+					margin-inline-start: calc(var(--content-border-width) + 1px);
+				}
 			}
-		}
-	}
-
-	//Unless the Linux Pre-Alpha flag is enabled...
-	&[geckium-chrflag-linux-pre-alpha-titlebar="true"] {
-		.titlebar-buttonbox-container {
-			&::before {
-				content: unset !important;
-			}
-		}
-	}
-	//Always show the Google logo before the buttons
-	&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
-		.titlebar-buttonbox-container {
-			&::before {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-				margin-block-start: 3px;
-				margin-inline-end: 7px;
-			}
-		}
-		&[sizemode="maximized"],
-		&[sizemode="fullscreen"] {
-			.titlebar-buttonbox-container {
-				&::before {
-					content: unset !important;
+			&[privatebrowsingmode="temporary"] {
+				#private-browsing-indicator-with-label {
+					margin-inline-start: calc(var(--content-border-width) + 2px) !important;
 				}
 			}
 		}
-	}
-
-	&[gktitnative="false"] {
-		//Always use the white Google logo in non-native titlebars
+		
+		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
 				margin-block-start: 3px;
+				margin-inline-end: 7px;
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-buttonbox-container::before {
+					content: unset !important;
+				}
 			}
 		}
 
@@ -56,8 +36,6 @@
 		& {
 			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
 			--titlebutton-corner: 5px;
-			--titlebutton-background-hover: rgba(255, 255, 255, 0.3);
-			--titlebutton-background-active: rgba(255, 255, 255, 0.2);
 		}
 
 		//Titlebar button box (force onto right side)
