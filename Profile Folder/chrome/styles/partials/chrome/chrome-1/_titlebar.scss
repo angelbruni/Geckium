@@ -329,10 +329,6 @@
 
 	//Titlebar styles
 	&[chromemargin]:not([macOSNativeFullscreen]) {
-		// Native Titlebar Enabled
-		&[gktitstyle="native"] {
-			@import "titlebar/borders/native";
-		}
 		// Windows
 		&[gktitstyle="win"] {
 			@import "titlebar/borders/win";
