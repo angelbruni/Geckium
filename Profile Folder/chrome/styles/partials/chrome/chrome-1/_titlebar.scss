@@ -39,19 +39,15 @@
 			#private-browsing-indicator-with-label {
 				display: none !important;
 			}
-
 			#TabsToolbar {
 				visibility: visible !important;
 				display: flex !important; // required for extension popups
-	
 				> .toolbar-items {
 					pointer-events: none !important;
 				}
-	
 				#tabbrowser-arrowscrollbox > * {
 					display: none !important;
 				}
-	
 				.titlebar-buttonbox {
 					display: flex !important;
 				}
@@ -322,19 +318,6 @@
 		}
 	}
 
-	// Google watermark -> _titlebar.scss (native) 
-
-	// - Windows expects it to left of buttons
-	// - macOS expects it to right of buttons
-	// - Linux interchanges based on close-button-side
-
-	// Windows, or macOS RTL or Linux right-sided or Linux left-sided RTL:
-	// - Before titlebuttons
-
-	// macOS, Windows RTL or Linux left-sided or Linux right-sided RTL:
-	// - After titlebuttons
-	
-
 	//Theme support
 	&[gkthemed]:not([gkchrthemed]) {
 		//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
@@ -345,52 +328,58 @@
 	} //TODO: Should variables assignment just be done in JS, to simplify the process? Could do QML style ? ... : ... one-liners even...?
 
 	//Titlebar styles
-	// Native Titlebar Enabled
-	&[gktitstyle="native"] {
+	&[chromemargin]:not([macOSNativeFullscreen]) {
+		// Native Titlebar Enabled
+		&[gktitstyle="native"] {
+			@import "titlebar/borders/native";
+		}
+		// Windows
+		&[gktitstyle="win"] {
+			@import "titlebar/borders/win";
+		}
+		// Windows 10
+		&[gktitstyle="win10"] {
+			@import "titlebar/borders/win10";
+		}
+		// Mac OS X / macOS
+		&[gktitstyle="macos"] {
+			@import "titlebar/borders/macos";
+		}
+		// Chromium OS
+		&[gktitstyle="chromiumos"] {
+			@import "titlebar/borders/chromiumos";
+		}
+
+
+		//Titlebutton styles
+		// Windows
+		&[gktitbuttons="win"] {
+			@import "titlebar/buttons/win";
+		}
+		// Windows 10
+		&[gktitbuttons="win10"] {
+			@import "titlebar/buttons/win10";
+		}
+		// Linux (Alpha)
+		&[gktitbuttons="linuxog"] {
+			@import "titlebar/buttons/linuxog";
+		}
+		// Linux
+		&[gktitbuttons="linux"] {
+			@import "titlebar/buttons/linux";
+		}
+		// Mac OS X
+		&[gktitbuttons="macosx"] {
+			@import "titlebar/buttons/macosx";
+		}
+		// macOS
+		&[gktitbuttons="macos"] {
+			@import "titlebar/buttons/macos";
+		}
+		// Chromium OS (redirected by JS to linuxog)
+	}
+	&:not([chromemargin]), //Native (titlebar enabled)
+	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}
-	// Windows
-	&[gktitstyle="win"] {
-		@import "titlebar/borders/win";
-	}
-	// Windows 10
-	&[gktitstyle="win10"] {
-		@import "titlebar/borders/win10";
-	}
-	// Mac OS X / macOS
-	&[gktitstyle="macos"] {
-		@import "titlebar/borders/macos";
-	}
-	// Chromium OS
-	&[gktitstyle="chromiumos"] {
-		@import "titlebar/borders/chromiumos";
-	}
-
-
-	//Titlebutton styles
-	// Windows
-	&[gktitbuttons="win"] {
-		@import "titlebar/buttons/win";
-	}
-	// Windows 10
-	&[gktitbuttons="win10"] {
-		@import "titlebar/buttons/win10";
-	}
-	// Linux (Alpha)
-	&[gktitbuttons="linuxog"] {
-		@import "titlebar/buttons/linuxog";
-	}
-	// Linux
-	&[gktitbuttons="linux"] {
-		@import "titlebar/buttons/linux";
-	}
-	// Mac OS X
-	&[gktitbuttons="macosx"] {
-		@import "titlebar/buttons/macosx";
-	}
-	// macOS
-	&[gktitbuttons="macos"] {
-		@import "titlebar/buttons/macos";
-	}
-	// Chromium OS (redirected by JS to linuxog)
 }
