@@ -31,6 +31,34 @@
         }
     }
 
+	// Pop up window titlebars
+	&[chromehidden~="toolbar"][gktitnative="false"] {
+		#titlebar {
+			height: 22px !important;
+			// Prevent the Incognito indicator from appearing whatsoever
+			#private-browsing-indicator-with-label {
+				display: none !important;
+			}
+
+			#TabsToolbar {
+				visibility: visible !important;
+				display: flex !important; // required for extension popups
+	
+				> .toolbar-items {
+					pointer-events: none !important;
+				}
+	
+				#tabbrowser-arrowscrollbox > * {
+					display: none !important;
+				}
+	
+				.titlebar-buttonbox {
+					display: flex !important;
+				}
+			}
+		}
+	}
+
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
