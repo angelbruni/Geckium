@@ -7,9 +7,6 @@
 // @include		about:preferences*
 // ==/UserScript==
 
-// Initial variables
-let previousTitlebar;
-
 // Titlebar style information
 class gkTitlebars {
     static titlebars = {
@@ -31,6 +28,8 @@ class gkTitlebars {
              * 
              * native - Whether to enable native titlebars if set to Automatic
              * 
+             * popupnative - Whether to enable native titlebars in popup windows if set to Automatic
+             * 
              * cannative    -   If False, the titlebar will always be in non-native mode regardless of preferences
              * 
              * newtabstyle -    0: Windows
@@ -47,6 +46,7 @@ class gkTitlebars {
                 hasnativegaps: true,
                 hasgaps: true,
                 native: true,
+                popupnative: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -63,6 +63,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: true,
+                popupnative: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -80,6 +81,7 @@ class gkTitlebars {
                 hasgaps: false,
                 chromemargin: "0,2,2,2",
                 native: true,
+                popupnative: true,
                 cannative: true,
                 newtabstyle: 0,
                 systheme: {
@@ -100,6 +102,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
+                popupnative: true,
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
@@ -133,6 +136,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
+                popupnative: true,
                 cannative: true,
                 newtabstyle: 1,
                 systheme: {
@@ -163,6 +167,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: false,
                 native: false,
+                popupnative: false,
                 cannative: false,
                 newtabstyle: 2,
                 systheme: {
@@ -186,6 +191,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: false,
                 native: false,
+                popupnative: false,
                 cannative: false,
                 newtabstyle: 2,
                 systheme: {
@@ -209,6 +215,7 @@ class gkTitlebars {
                 hasnativegaps: false,
                 hasgaps: true,
                 native: false,
+                popupnative: false,
                 cannative: false,
                 newtabstyle: 1,
                 systheme: {
@@ -264,16 +271,6 @@ class gkTitlebars {
                 break;
             }
         }
-        if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int == 0) {
-            //override most values if the native titlebar is enabled
-            result.border = "native";
-            result.buttons = "";
-            result.hasnativegaps = false;
-            result.hasgaps = false;
-            result.native = true;
-            result.nativetheme = true;
-            result.cannative = true;
-        }
         return result;
     }
 
@@ -324,14 +321,39 @@ class gkTitlebars {
     }
 
     /**
-     * getNative - Returns True if the titlebar should be native
+     * getTBarOnNative - Returns True if the 'titlebar' below Firefox's enabled titlebar should be native
      */
 
-    static getNative(spec) {
+    static getTBarOnNative() {
+        if (AppConstants.platform != "win") {
+            return true;
+        }
+        let lwtheme = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+        if (gkSysTheme.getTheme(spec) != "gtk" || !lwtheme.startsWith("default-theme@")) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * getNative - Returns True if the titlebar should be native
+     * 
+     * @spec: Titlebar specification to reference in checks
+     * @ispopup: Is the window a popup window?
+     * @systbar: Is Firefox's titlebar option enabled?
+     */
+
+    static getNative(spec, ispopup, systbar) {
         // FIXME: This one needs to default to True
         if (!gkPrefUtils.prefExists("Geckium.appearance.titlebarThemedNative")) {
-		    gkPrefUtils.set("Geckium.appearance.titlebarThemedNative").bool(true);																			    // Add default apps if the apps list is empty
+		    gkPrefUtils.set("Geckium.appearance.titlebarThemedNative").bool(true);
 	    }
+        // Fail if system titlebar is on but we aren't on Windows (unless using GTK+ System Theme)
+        if (systbar) {
+            if (!gkTitlebars.getTbarOnNative) {
+                return false;
+            }
+        }
         // Check if titlebar blocks being native
         if (spec.cannative == false) {
             return false;
@@ -344,7 +366,9 @@ class gkTitlebars {
                 return false;
             default: //Automatic
                 // Check if titlebar is automatically native
-                if (spec.native == false) {
+                if (!ispopup && spec.native == false) {
+                    return false;
+                } else if (ispopup && spec.popupnative == false) {
                     return false;
                 }
                 // If on Windows, check the compositor is turned off (before 117)
@@ -357,26 +381,38 @@ class gkTitlebars {
                 }
                 break;
         }
-        // If in a theme...
-        if (isThemed == true) {
-            if (!isChromeThemed) {
-                return false; // Firefox themes are never native
-            } else {
-                if (!isChrThemeNative) {
-                    return false; // Current Chrome Theme isn't native
-                }
-                // Check if user blocked native in-theme titlebar
-                if (!gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").bool) {
-                    return false;
+        if (!ispopup) { // Themes don't affect popups being native
+            // If in a theme...
+            if (isThemed == true) {
+                if (!isChromeThemed) {
+                    return false; // Firefox themes are never native
+                } else {
+                    if (!isChrThemeNative) {
+                        return false; // Current Chrome Theme isn't native
+                    }
+                    // Check if user blocked native in-theme titlebar
+                    if (!gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").bool) {
+                        return false;
+                    }
                 }
             }
-        }
-        // If System Theme is set to GTK+ but Light or Dark is in use...
-        let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-        if (gkSysTheme.getTheme(spec) == "gtk" && (prefChoice.startsWith("firefox-compact-light@") || prefChoice.startsWith("firefox-compact-dark@"))) {
-            return false;
+            // If System Theme is set to GTK+ but Light or Dark is in use...
+            let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+            if (gkSysTheme.getTheme(spec) == "gtk" && (prefChoice.startsWith("firefox-compact-light@") || prefChoice.startsWith("firefox-compact-dark@"))) {
+                return false;
+            }
         }
         return true;
+    }
+
+    /**
+     * getIsPopup - Returns True if the window is a popup window.
+     */
+
+    static getIsPopup() {
+        let chromehidden = document.documentElement.getAttribute("chromehidden");
+        let hidden = chromehidden.split(" ");
+        return (hidden.includes("toolbar"));
     }
 
     /**
@@ -393,6 +429,8 @@ class gkTitlebars {
         if (!era) {
             era = gkEras.getBrowserEra();
         }
+        let ispopup = gkTitlebars.getIsPopup();
+        let systitlebar = (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int == 0);
         // Get spec about the current titlebar
         let titlebar = gkTitlebars.getTitlebar(era);
         let spec = gkTitlebars.getTitlebarSpec(era, titlebar);
@@ -401,31 +439,36 @@ class gkTitlebars {
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         document.documentElement.setAttribute("gknewtabstyle", spec.newtabstyle);
         // Check native titlebar mode eligibility
-        if (gkTitlebars.getNative(spec)) {
+        if (gkTitlebars.getNative(spec, ispopup, systitlebar)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
-            // chromemargin (border type)
-            if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int != 0) {
-                document.documentElement.setAttribute("chromemargin", "0,2,2,2")
-            }
-            // Gaps
-            if (AppConstants.platform == "linux") {
-                document.documentElement.setAttribute("gkhasgaps", "false"); // Linux Native CANNOT have gaps
+            if (!systitlebar && !ispopup) {
+                // chromemargin (border type)
+                document.documentElement.setAttribute("chromemargin", "0,2,2,2");
+                // Gaps
+                if (AppConstants.platform == "linux") {
+                    document.documentElement.setAttribute("gkhasgaps", "false"); // Linux Native CANNOT have gaps
+                } else {
+                    document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
+                }
             } else {
-                document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
+                if (ispopup)
+                    document.documentElement.removeAttribute("chromemargin") //popups DON'T have chromemargin normally
+                document.documentElement.setAttribute("gkhasgaps", "false");
             }
         } else {
             document.documentElement.setAttribute("gktitnative", "false");
-            if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int != 0) {
+            if (!systitlebar) {
                 if (!Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
                     document.documentElement.setAttribute("chromemargin", "0,0,0,0");
                 } else {
                     document.documentElement.setAttribute("chromemargin", spec.chromemargin);
                 }
+                document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
+            } else {
+                document.documentElement.setAttribute("gkhasgaps", "false");
             }
-            document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
         }
-        previousTitlebar = titlebar;
     }
 }
 window.addEventListener("load", () => gkTitlebars.applyTitlebar());

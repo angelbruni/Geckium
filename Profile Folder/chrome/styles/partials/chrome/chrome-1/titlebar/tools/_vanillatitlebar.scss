@@ -2,7 +2,8 @@
     border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 }
 
-#navigator-toolbox {
+#navigator-toolbox,
+#titlebar {
     background: var(--titlebar-active, var(--default-titlebar-active)) !important;
     &:-moz-window-inactive {
         background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
