@@ -39,27 +39,3 @@
 		border: 0;
 	}
 } // TODO: Fix this being set on macOS
-
-
-//TODO: Determine whether to move this to _titlebar.scss
-//Windows quirks
-@media (-moz-platform: windows) {
-	//Stop non-composited titlebar elements from spontaneously appearing
-	#titlebar {
-		appearance: unset !important;
-	}
-
-	// //Windows 10 + Native Controls Patch quirks
-	// @media (-moz-ev-native-controls-patch) {
-	// 	&#main-window {
-	// 		background: rgba(0,0,0,.002) !important;
-	// 	}
-	// }
-}
-
-//Linux quirks
-@media (-moz-platform: linux) {
-	// &#main-window {
-	// 	background: rgba(0,0,0,.002) !important;
-	// }
-}

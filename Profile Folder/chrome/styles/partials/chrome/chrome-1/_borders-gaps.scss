@@ -23,7 +23,10 @@
 
 	//Add padding to window-contents (requires gaps allowed)
 	&[gkhasgaps="true"]:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		--gap-size: 3px;
+		--gap-size: 2px;
+		&[gktitnative="false"] {
+			--gap-size: 3px;
+		}
 		#nav-bar,
 		#PersonalToolbar,
 		.notificationbox-stack,
@@ -44,7 +47,7 @@
 		#nav-bar {
 			border-top-left-radius: 3px !important;
 			border-top-right-radius: 3px !important;
-		}	
+		}
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
 			#nav-bar {
@@ -74,9 +77,7 @@
 		&[sizemode="fullscreen"] {
 			#browser,
 			#customization-container {
-				//box-shadow: 0 !important; //TODO: unused?
 				border: none;
-				//margin: 0 !important; //TODO: unused?
 			}
 		}
 	}

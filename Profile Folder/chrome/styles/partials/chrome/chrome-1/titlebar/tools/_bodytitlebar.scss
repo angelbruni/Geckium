@@ -148,8 +148,8 @@
     }
 }
 &[gkthemed][gkchrthemed] {
-    --titlebar-active: var(--chrtheme-theme-frame, var(--default-titlebar-active)) !important;
-    --titlebar-inactive: var(--chrtheme-theme-frame-inactive, var(--chrtheme-theme-frame, var(--default-titlebar-inactive))) !important;
+    --titlebar-active: var(--chrtheme-frame, var(--default-titlebar-active)) !important;
+    --titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-inactive))) !important;
 
     &[chromemargin="0,0,0,0"] {
         &[windowtype="navigator:browser"] {

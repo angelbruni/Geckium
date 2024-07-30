@@ -32,6 +32,7 @@
     }
 
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
+	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
 	// Fixes for various OS quirks
 	&[gktitnative="true"] {
@@ -45,10 +46,6 @@
 			@media (-moz-windows-compositor: 0) {
 				&[sizemode="normal"] #titlebar {
 					appearance: none !important; // this leaves behind the background colour
-					background-color: rgb(185,209,234); // NOTE: These are hardcoded values straight from browser-aero.css
-					&:-moz-window-inactive {
-						background-color: rgb(215,228,242);
-					}
 					// TODO: In Windows XP make the #titlebar appear as appearance toolbar?
 					&::before {
 						content: "";
@@ -62,7 +59,7 @@
 				}
 			}
 			//Windows 10 + Native Controls Patch quirks
-			@media (-moz-ev-native-controls-patch) {
+			@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
 				&#main-window { // Prevent dark Firefox from using a background
 					background: rgba(0,0,0,.002) !important;
 				}

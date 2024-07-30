@@ -12,6 +12,9 @@
     border-top-right-radius: var(--titlebar-border-radius) !important;
 }
 &[gkthemed][gkchrthemed] {
+    --titlebar-active: var(--chrtheme-frame, var(--default-titlebar-active)) !important;
+    --titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-inactive))) !important;
+
     #navigator-toolbox::before {
         content: "";
         position: absolute;
