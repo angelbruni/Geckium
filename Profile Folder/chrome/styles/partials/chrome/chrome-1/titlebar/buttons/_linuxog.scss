@@ -1,87 +1,72 @@
-& { //TODO: When MD2 is added, ensure this code doesn't run on it
-
-	//Give the tabs/Incognito the appropriate offset
-	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-		#private-browsing-indicator-with-label {
-			order: -1 !important; //Force to left
-		}
-		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-			&:not([privatebrowsingmode="temporary"]) {
-				#TabsToolbar-customization-target {
-					margin-inline-start: calc(var(--content-border-width) + 1px);
-				}
-			}
-			&[privatebrowsingmode="temporary"] {
-				#private-browsing-indicator-with-label {
-					margin-inline-start: calc(var(--content-border-width) + 2px) !important;
-				}
-			}
-		}
-	}
-	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-		#private-browsing-indicator-with-label {
-			order: 1000 !important; //Force to right
-			transform: scaleX(-1);
-		}
-		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-			&:not([privatebrowsingmode="temporary"]) {
-				#TabsToolbar-customization-target {
-					margin-inline-end: calc(var(--content-border-width) + 1px);
-				}
-			}
-			&[privatebrowsingmode="temporary"] {
-				#private-browsing-indicator-with-label {
-					margin-inline-end: calc(var(--content-border-width) + 2px) !important;
-				}
-			}
-		}
-	}
-
-	//Show the Google logo before the buttons if enabled
-	&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+& { //TODO: When MD2 is added, ensure this code doesn't run on it#
+	&[gktitnative="false"] {
+		//Give the tabs/Incognito the appropriate offset
 		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-			.titlebar-buttonbox-container {
-				&::before {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-					margin-block-start: 3px;
-					margin-inline-end: 7px;
-				}
+			#private-browsing-indicator-with-label {
+				order: -1 !important; //Force to left
 			}
-			&[gktitnative="false"] {
-				//Use the white Google logo in non-native titlebars if enabled
-				.titlebar-buttonbox-container::before {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-					margin-block-start: 3px;
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				&:not([privatebrowsingmode="temporary"]) {
+					#TabsToolbar-customization-target {
+						margin-inline-start: calc(var(--content-border-width) + 1px);
+					}
 				}
-			}
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				.titlebar-buttonbox-container {
-					&::before {
-						content: unset !important;
+				&[privatebrowsingmode="temporary"] {
+					#private-browsing-indicator-with-label {
+						margin-inline-start: calc(var(--content-border-width) + 2px) !important;
 					}
 				}
 			}
 		}
 		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-			.titlebar-buttonbox-container::after {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-				margin-block-start: 2px;
-				margin-inline-start: 7px;
+			#private-browsing-indicator-with-label {
+				order: 1000 !important; //Force to right
+				transform: scaleX(-1);
 			}
-			&[gktitnative="false"] { .titlebar-buttonbox-container::after {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-				margin-block-start: 3px;
-			} }
-			&[sizemode="maximized"], &[sizemode="fullscreen"] { .titlebar-buttonbox-container {
-				&::after {
-					content: unset !important;
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				&:not([privatebrowsingmode="temporary"]) {
+					#TabsToolbar-customization-target {
+						margin-inline-end: calc(var(--content-border-width) + 1px);
+					}
 				}
-			} }
+				&[privatebrowsingmode="temporary"] {
+					#private-browsing-indicator-with-label {
+						margin-inline-end: calc(var(--content-border-width) + 2px) !important;
+					}
+				}
+			}
 		}
-	}
 
-	&[gktitnative="false"] {
+		//Show the Google logo before the buttons if enabled
+		&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+				.titlebar-buttonbox-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::before {
+						content: unset !important;
+					}
+				}
+			}
+			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+				.titlebar-buttonbox-container::after {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-start: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::after {
+						content: unset !important;
+					}
+				}
+			}
+		}
+		
 		//Titlebar button box
 		.titlebar-buttonbox-container {
 			align-items: unset !important;
