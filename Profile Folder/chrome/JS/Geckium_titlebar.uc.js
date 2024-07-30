@@ -495,7 +495,7 @@ class gkTitlebars {
         document.documentElement.removeAttribute("gktitbuttons");
         document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
         document.documentElement.setAttribute("gkhasgaps", "false");
-        document.documentElement.setAttribute("gktitnative", gkTitlebars.getNative(spec) ?
+        document.documentElement.setAttribute("gktitnative", (AppConstants.platform == "win" && gkTitlebars.getNative(spec)) ?
             "true" :
             "false"
         );
