@@ -28,6 +28,7 @@ function updateSettings(iteration) {
             gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
             gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);
             gkPrefUtils.set("browser.startup.blankWindow").bool(false);                         // Disable Firefox's splash screen
+            gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);                     // Disable that context-inappropriate chevron
         }
 	    gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);				    // Show URL after a search in URLbar
         gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);                                 // Show protocol in URL in URLbar

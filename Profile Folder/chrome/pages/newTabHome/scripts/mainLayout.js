@@ -355,6 +355,7 @@ function createMainLayout() {
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>
+		<html:div id="login-email"></html:div>
 		`;
 
 		main = `
@@ -506,5 +507,9 @@ function createMainLayout() {
 				});*/
 			});
 		});
+	}
+	if (appearanceChoice == 21 || appearanceChoice == 25) {
+		//Trigger sign in status-update
+		updateSignInStatus();
 	}
 }

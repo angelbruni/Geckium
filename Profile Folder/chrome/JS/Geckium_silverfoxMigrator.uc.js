@@ -79,9 +79,9 @@ class sfMigrator {
 
 		//Branding
 		if (gkPrefUtils.tryGet("silverfox.beChromium").bool)
-			gkPrefUtils.set("Geckium.branding.choice").int("chromium");
+			gkPrefUtils.set("Geckium.branding.choice").string("chromium");
 		else
-			gkPrefUtils.set("Geckium.branding.choice").int("chrome");
+			gkPrefUtils.set("Geckium.branding.choice").string("chrome");
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)
@@ -119,64 +119,49 @@ class sfMigrator {
 			"whitepfp": 0,
 			"yellowpfp": 7
 		}
-		if (pfp == "off" || pfp == "") {
-			// Apply a pre-defined toolbar layout to remove Mozilla's items Geckium re-displays
-			gkPrefUtils.set("browser.uiCustomization.state").string(`
-			{"placements":{
-				"widget-overflow-fixed-list":[],
-				"unified-extensions-area":[],
-				"nav-bar":[
-					"back-button","forward-button","stop-reload-button","urlbar-container",
-					"downloads-button","unified-extensions-button","gsettings-button",
-					"page-button","chrome-button"
-				],
-				"toolbar-menubar":["menubar-items"],
-				"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],
-				"PersonalToolbar":["personal-bookmarks"]},
-				"seen":["save-to-pocket-button","developer-button"],
-				"currentVersion":19,"newElementCount":4}
-			`);
-		} else {
+		if (pfp != "off" && pfp != "") {
 			gkPrefUtils.set("Geckium.profilepic.button").bool(true);
 
 			if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
-				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to Geckium.
-				gkPrefUtils.set("Geckium.profilepic.mode").int(0);
+				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
+				if (gkPrefUtils.tryGet("services.sync.username").string) {
+					//  Firefox Account's user picture if signed in...
+					gkPrefUtils.set("Geckium.profilepic.mode").int(2);
+				} else {				
+					//  Otherwise Geckium.
+					gkPrefUtils.set("Geckium.profilepic.mode").int(0);
+				}
 			} else {
 				gkPrefUtils.set("Geckium.profilepic.mode").int(1);
 				gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
 			}
-
-			/**
-			 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
-			 * 
-			 *  NOTE: Geckium should do the same for itself so we can remove this
-			 *        from Silverfox-only code.
-			 */
-			gkPrefUtils.set("browser.uiCustomization.state").string(`
-			{"placements":{
-				"widget-overflow-fixed-list":[],
-				"unified-extensions-area":[],
-				"nav-bar":[
-					"back-button","forward-button","stop-reload-button","urlbar-container",
-					"downloads-button","unified-extensions-button","gsettings-button",
-					"page-button","chrome-button"
-				],
-				"toolbar-menubar":["menubar-items"],
-				"TabsToolbar":[
-					"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
-					"alltabs-button"
-				],
-				"PersonalToolbar":["personal-bookmarks"]},
-				"seen":["save-to-pocket-button","developer-button"],
-				"currentVersion":19,"newElementCount":4}
-			`);
 		}
+		/**
+		 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
+		 * 
+		 *  NOTE: Geckium should do the same for itself so we can remove this
+		 *        from Silverfox-only code.
+		 */
+		gkPrefUtils.set("browser.uiCustomization.state").string(`
+		{"placements":{
+			"widget-overflow-fixed-list":[],
+			"unified-extensions-area":[],
+			"nav-bar":[
+				"back-button","forward-button","stop-reload-button","urlbar-container",
+				"downloads-button","unified-extensions-button","gsettings-button",
+				"page-button","chrome-button"
+			],
+			"toolbar-menubar":["menubar-items"],
+			"TabsToolbar":[
+				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
+				"alltabs-button"
+			],
+			"PersonalToolbar":["personal-bookmarks"]},
+			"seen":["save-to-pocket-button","developer-button"],
+			"currentVersion":19,"newElementCount":4}
+		`);
 
 		// Finishing touches
-		// Disable Tab Manager
-		gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);
-
 		// Apply Silverfox's Apps list
 		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
 		{
