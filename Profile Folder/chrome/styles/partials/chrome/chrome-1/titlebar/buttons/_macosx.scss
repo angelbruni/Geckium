@@ -1,7 +1,7 @@
 & {
     //Give the tabs/Incognito the appropriate offset
 	#private-browsing-indicator-with-label {
-        order: 1000 !important;
+        order: 999 !important; // not 1000 to prevent the issue with Incognito addressed in _win.scss
         transform: scaleX(-1);
     }
     &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
@@ -17,7 +17,7 @@
         }
     }
 
-    //Show the Google logo before the buttons if enabled
+    //Show the Google logo after the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
         .titlebar-buttonbox-container::after {
             content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");

@@ -16,6 +16,7 @@
 		--titlebar-foreground-inactive: var(--chrtheme-frame-color); //FIXME: This needs to be tinted
 	}
 
+	// TODO: Is this really better being here? If so, non-native needs to be here too because of titlebar
 	// Make the Incognito indicator look like Chromium's
 	.private-browsing-indicator-icon {
 		width: auto !important;
@@ -234,47 +235,6 @@
 		}
 	}
 
-	//Appropriate tabs/Incognito offset
-	// This works independently of titlebar styles, when native, to avoid issues.
-	// For titlebar styles like Windows, in combinations that left-side titlebuttons, we assume Leftsider'd Chromium as a reference.
-	&[gktitnative="true"] {
-		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-			#private-browsing-indicator-with-label {
-				order: -1 !important; //Force to left
-			}
-			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-				&:not([privatebrowsingmode="temporary"]) {
-					#TabsToolbar-customization-target {
-						margin-inline-start: calc(var(--content-border-width) + 1px);
-					}
-				}
-				&[privatebrowsingmode="temporary"] {
-					#private-browsing-indicator-with-label {
-						margin-inline-start: calc(var(--content-border-width) + 2px) !important;
-					}
-				}
-			}
-		}
-		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-			#private-browsing-indicator-with-label {
-				order: 1000 !important; //Force to right
-				transform: scaleX(-1);
-			}
-			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-				&:not([privatebrowsingmode="temporary"]) {
-					#TabsToolbar-customization-target {
-						margin-inline-end: calc(var(--content-border-width) + 1px);
-					}
-				}
-				&[privatebrowsingmode="temporary"] {
-					#private-browsing-indicator-with-label {
-						margin-inline-end: calc(var(--content-border-width) + 2px) !important;
-					}
-				}
-			}
-		}
-	}
-
 	//Google logo (native)
 	&[gkbranding="chrome"] {
 		&[gktitnative="true"][gktitbuttons="win"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]),
@@ -286,11 +246,6 @@
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
 						margin-block-start: 3px;
 						margin-inline-end: 7px;
-					}
-				}
-				@media (-moz-platform: linux) {
-					.titlebar-buttonbox-container::before {
-						align-self: center; // Center the Google logo in Linux
 					}
 				}
 				&[sizemode="maximized"],
@@ -307,7 +262,6 @@
 					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
 					margin-block-start: 2px;
 					margin-inline-start: 7px;
-					align-self: center; // Center-align the Google logo in Linux and macOS
 				}
 				&[sizemode="maximized"], &[sizemode="fullscreen"] { .titlebar-buttonbox-container {
 					&::after {
@@ -345,37 +299,36 @@
 		&[gktitstyle="chromiumos"] {
 			@import "titlebar/borders/chromiumos";
 		}
-
-
-		//Titlebutton styles
-		// Windows
-		&[gktitbuttons="win"] {
-			@import "titlebar/buttons/win";
-		}
-		// Windows 10
-		&[gktitbuttons="win10"] {
-			@import "titlebar/buttons/win10";
-		}
-		// Linux (Alpha)
-		&[gktitbuttons="linuxog"] {
-			@import "titlebar/buttons/linuxog";
-		}
-		// Linux
-		&[gktitbuttons="linux"] {
-			@import "titlebar/buttons/linux";
-		}
-		// Mac OS X
-		&[gktitbuttons="macosx"] {
-			@import "titlebar/buttons/macosx";
-		}
-		// macOS
-		&[gktitbuttons="macos"] {
-			@import "titlebar/buttons/macos";
-		}
-		// Chromium OS (redirected by JS to linuxog)
 	}
 	&:not([chromemargin]), //Native (titlebar enabled)
 	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}
+
+	//Titlebutton styles
+	// Windows
+	&[gktitbuttons="win"] {
+		@import "titlebar/buttons/win";
+	}
+	// Windows 10
+	&[gktitbuttons="win10"] {
+		@import "titlebar/buttons/win10";
+	}
+	// Linux (Alpha)
+	&[gktitbuttons="linuxog"] {
+		@import "titlebar/buttons/linuxog";
+	}
+	// Linux
+	&[gktitbuttons="linux"] {
+		@import "titlebar/buttons/linux";
+	}
+	// Mac OS X
+	&[gktitbuttons="macosx"] {
+		@import "titlebar/buttons/macosx";
+	}
+	// macOS
+	&[gktitbuttons="macos"] {
+		@import "titlebar/buttons/macos";
+	}
+	// Chromium OS (redirected by JS to linuxog)
 }

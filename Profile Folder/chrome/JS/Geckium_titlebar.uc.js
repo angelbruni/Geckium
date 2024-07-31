@@ -458,11 +458,10 @@ class gkTitlebars {
         // Apply titlebar and button style
         if (systitlebar) {
             document.documentElement.removeAttribute("gktitstyle");
-            document.documentElement.removeAttribute("gktitbuttons");
         } else {
             document.documentElement.setAttribute("gktitstyle", spec.border);
-            document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         }
+        document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
         // Check native titlebar mode eligibility (or force if Titlebar is enabled)
         if (systitlebar || gkTitlebars.getNative(spec, true)) {
@@ -492,9 +491,13 @@ class gkTitlebars {
     static applyNativeTitlebar(spec) {
         // Apply titlebar and button style
         document.documentElement.removeAttribute("gktitstyle");
-        document.documentElement.removeAttribute("gktitbuttons");
+        document.documentElement.setAttribute("gktitbuttons", spec.buttons); // Used for Incognito positioning
         document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
         document.documentElement.setAttribute("gkhasgaps", "false");
+        // Native has been locked to Windows only because of the following factors:
+        //  On Linux, nobody has ever made use of titlebar mode in their themes - even aerothemeplasma deactivates in this mode
+        //  On macOS, there is a permanent titlebar separator that would break the illusion of being native
+        //  It is only on Windows that there is none of this separation between the real titlebar and the toolbar.
         document.documentElement.setAttribute("gktitnative", (AppConstants.platform == "win" && gkTitlebars.getNative(spec)) ?
             "true" :
             "false"
