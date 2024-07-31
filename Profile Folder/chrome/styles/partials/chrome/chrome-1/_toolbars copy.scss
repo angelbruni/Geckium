@@ -48,34 +48,6 @@
 
 	--placed-chevron-width: 15px;
 
-	&[chromehidden~="toolbar"] {
-		&[chromemargin="0,0,0,0"] {
-			#titlebar {
-				height: 22px !important;
-
-				#private-browsing-indicator-with-label {
-					display: none !important;
-				}
-	
-				#TabsToolbar {
-					visibility: visible !important;
-		
-					> .toolbar-items {
-						pointer-events: none !important;
-					}
-		
-					#tabbrowser-arrowscrollbox > * {
-						display: none !important;
-					}
-		
-					.titlebar-buttonbox {
-						display: flex !important;
-					}
-				}
-			}
-		}
-	}
-
 	// if lwtheme == gtkplus
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--toolbarbutton-texture: var(--nav-bar) !important;
