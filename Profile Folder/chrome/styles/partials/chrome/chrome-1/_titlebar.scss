@@ -16,11 +16,19 @@
 		--titlebar-foreground-inactive: var(--chrtheme-frame-color); //FIXME: This needs to be tinted
 	}
 
-	// TODO: Is this really better being here? If so, non-native needs to be here too because of titlebar
 	// Make the Incognito indicator look like Chromium's
+	#private-browsing-indicator-with-label {
+		margin-inline: unset !important;
+	}
 	.private-browsing-indicator-icon {
 		width: auto !important;
 		height: auto !important;
+	}
+	&[sizemode="maximized"] {
+		.private-browsing-indicator-icon {
+			margin-top: -4px;
+			margin-bottom: -3px;
+		}
 	}
 	[data-l10n-id="private-browsing-indicator-label"] {
 		display: none !important;
