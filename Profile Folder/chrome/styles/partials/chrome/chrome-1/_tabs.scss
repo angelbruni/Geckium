@@ -192,11 +192,15 @@
 	background: var(--tab-drop-indicator-icon-normal) !important;
 }
 
-// Space before tabs
+// Space before/after tabs
 .titlebar-spacer {
 	&[type="pre-tabs"] {
 		display: flex !important;
 		margin-inline-start: var(--tab-distance-from-left-window-border-normal) !important;
+	}
+	&[type="post-tabs"] {
+		display: flex !important;
+		margin-inline-end: var(--tab-distance-from-left-window-border-normal) !important;
 	}
 
 	&[type="pre-tabs"],

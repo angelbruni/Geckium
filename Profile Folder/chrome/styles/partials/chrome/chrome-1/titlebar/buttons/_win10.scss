@@ -1,19 +1,20 @@
 & {
-	//Give the tabs/Incognito the appropriate offset
+	//Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label {
 		order: -1 !important;
 	}
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		&:not([privatebrowsingmode="temporary"]) {
-			#TabsToolbar-customization-target {
-				margin-inline-start: calc(var(--content-border-width) + 1px);
-			}
+		#TabsToolbar-customization-target {
+			margin-inline-start: var(--content-border-width);
 		}
 		&[privatebrowsingmode="temporary"] {
 			#private-browsing-indicator-with-label {
-				margin-inline-start: calc(var(--content-border-width) + 2px) !important;
+				margin-inline-start: calc(var(--content-border-width) + 1px) !important;
 			}
 		}
+	}
+	#fxa-toolbar-menu-button {
+		margin-inline-end: var(--content-border-width) !important;
 	}
 	//Ensure left-sided titlebuttons go before Incognito in native titlebars
 	&[gktitnative="true"] {
