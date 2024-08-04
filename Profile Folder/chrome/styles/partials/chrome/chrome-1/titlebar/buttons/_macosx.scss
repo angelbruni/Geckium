@@ -1,21 +1,27 @@
 & {
     //Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label {
-        order: 999 !important; // not 1000 to prevent the issue with Incognito addressed in _win.scss
+        order: 999 !important; // Force to right
         transform: scaleX(-1);
     }
-    &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+    .titlebar-spacer[type="post-tabs"] {
+        order: 1000 !important; // Force to right of Incognito
+    }
+    &:not([privatebrowsingmode="temporary"]) {
         #TabsToolbar-customization-target {
-            margin-inline-end: calc(var(--content-border-width) - 1px);
-        }
-        &[privatebrowsingmode="temporary"] {
-            #private-browsing-indicator-with-label {
-                margin-inline-end: calc(var(--content-border-width) + 2px) !important;
-            }
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
         }
     }
-    #fxa-toolbar-menu-button {
-        margin-inline-start: var(--content-border-width) !important;
+    // Incognito can't use this^ spacing, so we need to set it separately for Incognito
+    &[privatebrowsingmode="temporary"] {
+        #private-browsing-indicator-with-label {
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
+        }
+    }
+    #fxa-toolbar-menu-button,
+    .private-browsing-indicator-icon {
+        margin-inline-start: 3px !important;
+        margin-inline-end: 1px !important;
     }
 
     //Show the Google logo after the buttons if enabled

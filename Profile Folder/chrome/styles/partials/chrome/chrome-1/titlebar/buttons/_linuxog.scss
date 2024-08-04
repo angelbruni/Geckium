@@ -4,18 +4,24 @@
 		#private-browsing-indicator-with-label {
 			order: -1 !important; // Force to left
 		}
-		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		.titlebar-spacer[type="pre-tabs"] {
+			order: -2 !important; // Force to left of Incognito
+		}
+		&:not([privatebrowsingmode="temporary"]) {
 			#TabsToolbar-customization-target {
-				margin-inline-start: var(--content-border-width);
-			}
-			&[privatebrowsingmode="temporary"] {
-				#private-browsing-indicator-with-label {
-					margin-inline-start: calc(var(--content-border-width) + 2px) !important;
-				}
+				margin-inline-start: var(--tab-distance-from-toolbar-edge);
 			}
 		}
-		#fxa-toolbar-menu-button {
-			margin-inline-end: var(--content-border-width) !important;
+		// Incognito can't use this^ spacing, so we need to set it separately for Incognito
+		&[privatebrowsingmode="temporary"] {
+			#private-browsing-indicator-with-label {
+				margin-inline-start: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		#fxa-toolbar-menu-button,
+		.private-browsing-indicator-icon {
+			margin-inline-start: 1px !important;
+			margin-inline-end: 3px !important;
 		}
 	}
 	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
@@ -23,18 +29,23 @@
 			order: 999 !important; // Force to right
 			transform: scaleX(-1);
 		}
-		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		.titlebar-spacer[type="post-tabs"] {
+			order: 1000 !important; // Force to right of Incognito
+		}
+		&:not([privatebrowsingmode="temporary"]) {
 			#TabsToolbar-customization-target {
-				margin-inline-end: calc(var(--content-border-width) - 1px);
-			}
-			&[privatebrowsingmode="temporary"] {
-				#private-browsing-indicator-with-label {
-					margin-inline-end: calc(var(--content-border-width) + 2px) !important;
-				}
+				margin-inline-end: var(--tab-distance-from-toolbar-edge);
 			}
 		}
-		#fxa-toolbar-menu-button {
-			margin-inline-start: var(--content-border-width) !important;
+		&[privatebrowsingmode="temporary"] {
+			#private-browsing-indicator-with-label {
+				margin-inline-end: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		#fxa-toolbar-menu-button,
+		.private-browsing-indicator-icon {
+			margin-inline-start: 3px !important;
+			margin-inline-end: 1px !important;
 		}
 	}
 

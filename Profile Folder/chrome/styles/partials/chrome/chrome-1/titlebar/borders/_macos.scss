@@ -3,25 +3,10 @@
 	@media (-moz-platform: macos) {
 		--titlebar-border-radius: 10px; //Artificial minimum radii set by macOS's window manager (+the 1px border)
 	}
+	//TODO: Get macOS Chrome's actual padding and set non-maximised to it
+	--tab-distance-from-top-maximised: var(--tab-distance-from-top);
 }
 //NOTE: This border style ignores native titlebars
-
-// Behaviour: Normal
-&:not([menubarvisible]) {
-	#tabbrowser-arrowscrollbox {
-		padding-top: 14px; //TODO: Get macOS Chrome's actual padding
-	}
-}
-
-// Behaviour: Maximised / Fullscreen
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-	&:not([menubarvisible]) {
-		#tabbrowser-arrowscrollbox {
-			padding-top: 0; //TODO: See how much padding changes between 'touching menubar' and normal states in MacOSX Chrome
-		}
-	}
-}
 
 @import "../tools/vanillatitlebar";
 // Visuals

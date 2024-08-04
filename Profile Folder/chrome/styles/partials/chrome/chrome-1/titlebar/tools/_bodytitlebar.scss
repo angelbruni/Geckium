@@ -13,17 +13,6 @@
 	background: transparent !important;
 } //TODO: When unthemed, make fullscreen grey in macOS
 
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-    #navigator-toolbox-background {
-        &::before {
-            left: 0;
-            right: 0;
-            bottom: 1px;
-        }
-    }
-}
-
 // Visuals
 &[windowtype="navigator:browser"] > body {
     background: var(--titlebar-active, var(--default-titlebar-active));

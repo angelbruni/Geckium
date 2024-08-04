@@ -11,7 +11,7 @@
 		box-sizing: border-box; //Required fix for Windows
 	}
 
-	//--inner-border-color overrides (requires Windows decorations)
+	//--inner-border-color overrides (requires Windows border)
 	&[gkthemed]:not([gkchrthemed]) {
 		// --inner-border-color: var(--nav-bar);
 	}
@@ -19,13 +19,23 @@
 		--inner-border-color: var(--chrtheme-toolbar);
 	}
 
+	.titlebar-spacer { // Prepare for usage as tabbar borders
+		display: flex !important;
+		width: 0 !important;
+	}
 	//NOTE: Tab and Incognito offsets are handled by titlebar button styles.
 
 	//Add padding to window-contents (requires gaps allowed)
 	&[gkhasgaps="true"]:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-		--gap-size: 2px;
+		--gap-size: calc(var(--content-border-width) - 1px);
 		&[gktitnative="false"] {
-			--gap-size: 3px;
+			--gap-size: var(--content-border-width);
+		}
+		.titlebar-spacer[type="pre-tabs"] {
+			margin-inline-start: var(--gap-size);
+		}
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: var(--gap-size);
 		}
 		#nav-bar,
 		#PersonalToolbar,
@@ -64,6 +74,10 @@
 	#browser,
 	#customization-container {
 		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
+	}
+	#browser,
+	#customization-container {
+		position: relative; // Required for all borders
 	}
 
 	//Page bodies - all borders (requires Windows decorations)
