@@ -70,13 +70,13 @@
 	}
 
 	//Page bodies - top 1px border
-	#navigator-toolbox { margin-bottom: -1px; } //Ensure the border isn't drawn without an underlay
-	#browser,
-	#customization-container {
-		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
+	#navigator-toolbox {
+		border-bottom: unset !important;
 	}
 	#browser,
 	#customization-container {
+		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
+		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
 	}
 
@@ -84,7 +84,6 @@
 	&[gktitstyle="win"] {
 		#browser,
 		#customization-container {
-			position: relative;
 			border-width: 1px;
 			border-style: solid;
 			border-color: var(--inner-border-color, var(--default-inner-border-color));

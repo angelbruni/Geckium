@@ -1,72 +1,7 @@
 :root {
-	// current structure:
-	// -  variables
-	// -  GTK+ exclusive: Variables, and button design changing
-	// -  LWTheme exclusive: Variables
-	// -  Profile Picture
-	// -  Disabled generic toolbar button
-	// -  Toolbar item padding
-	// -  Maximised pfp and tab gap reduction (could reuse this for Incognito)
-	// -  Fullscreen toggler disabling in fullscreen
-	// -  Styling for special buttons (the ones without permanent borders)
-	// -  Styling for back and forward buttons (these need to be separate in GTK+)
-	// -  Top margin reduction for bookmarks toolbar
-	// -  Styling for navigation toolbar and disabled Extensions button, as well as overflow visibility if urlbar doesn't exceed toolbar boundaries
-	// -  Tabs toolbar styling and padding
-	// -  Stop/Reload animation disabling
-	// -  toolbarspring (overflow menu button?) height
-	// -  Styling for bordered buttons
-	// -  Styling for overflow button
-	// -  Toolbar icon fill, badge, back and forward, favourites, places 'chevron', etc.
-	// -  go-button-box styling
-	// -  separation of combined buttons?
-	// -  more pfp styling
-	// -  favourites button box, go button positioning, identity (the padlock) styling, etc.
-	// -  misc. toolbar icons, including Geckium Toolbar Icon
-	// -  bookmarks bar styling
-	// -  ff128 fix for bookmarks toolbar items/bookmarks
-	// -  menubar styling
-
-
-	// new structure idea:
-	// - variables
-	// -  menubar styling
-
-	// -  Tabs toolbar styling and padding
-	// -  Profile Picture
-	// -  more pfp styling
-	// -  Maximised pfp gap reduction (could reuse this for Incognito)
-	// -  Maximised tab gap reduction
-	// -  Fullscreen toggler disabling in fullscreen
-
-	// -  Styling for navigation toolbar
-	// - styling for bordered buttons
-	// - styling for bark/forward
-	// - Stop/Reload animation disabling
-	// - styling for disabled generic toolbar buttons
-	// - styling for special buttons (the ones without borders)
-	// - Toolbar icon fill, badge, back and forward, favourites, places 'chevron', etc.
-	// - go-button-box styling
-	// - toolbar item padding
-	// - separation of combined buttons?
-	// -  styling for disabled Extensions button, as well as overflow visibility if urlbar doesn't exceed toolbar boundaries
-	// - Styling for overflow button
-	// - toolbarspring (overflow menu button?) height
-	// - misc. toolbar icons, including Geckium Toolbar Icon
-
-	// (moved into urlbar-searchbar) favourites button box, go button positioning, identity (the padlock) styling, etc.
-
-	// - bookmarks bar styling
-	// - Top margin reduction for bookmarks toolbar
-	// - ff128 fix for bookmarks toolbar items/bookmarks
-
-	// - LWTheme variables
-	// - GTK variables
-	// - GTK toolbars styling
 	// TODO: Move bookmarks menu styling to menu SCSS
 
 	--chrome-content-separator-color: transparent !important; // Firefox's top toolbar separator
-	// TODO: See if this is a good substitute for the PersonalToolbarShadow
 	--toolbar-start-end-padding: 1px !important; // Margin before and after first and last toolbar item
 
 	--nav-bar-height: 37px; // Used in Geckium's size calculations
@@ -106,14 +41,6 @@
 	--bookmark-item-color: var(--default-bookmark-item-color);
 
 	--placed-chevron-width: 15px;
-
-
-
-
-
-
-
-
 
 
 	/*
