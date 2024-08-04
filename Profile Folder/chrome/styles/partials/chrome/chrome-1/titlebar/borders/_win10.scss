@@ -5,23 +5,6 @@
 	}
 }
 
-// Behaviour: Normal
-&:not([menubarvisible]) {
-	#tabbrowser-arrowscrollbox {
-		padding-top: 14px;
-	}
-}
-
-// Behaviour: Maximised / Fullscreen
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-	&:not([menubarvisible]) {
-		#tabbrowser-arrowscrollbox {
-			padding-top: 0;
-		}
-	}
-}
-
 &[gktitnative="false"] {
 	@import "../tools/vanillatitlebar";
 	// Visuals

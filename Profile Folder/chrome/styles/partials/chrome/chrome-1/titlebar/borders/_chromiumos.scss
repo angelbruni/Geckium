@@ -9,14 +9,4 @@
             var(--default-titlebar-background) 34px
         );
     }
-    &[sizemode="maximized"],
-    &[sizemode="fullscreen"] {
-        &[windowtype="navigator:browser"] > body {
-            background: linear-gradient(
-                to bottom,
-                black,
-                var(--default-titlebar-background) 24px
-            );
-        }
-    }
 }

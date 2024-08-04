@@ -5,6 +5,7 @@
 	--toolbox-non-lwt-textcolor: light-dark(black, white);
 	//TODO: Colour Windows 10 CSDs using these variables, and get proper inactive backgrounds
 
+	// Variables for titlebar styles
 	&[gkthemed]:not([gkchrthemed]) {
 		&[captionbuttonbackground="true"] {
 			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
@@ -15,30 +16,9 @@
 		--titlebar-foreground: var(--chrtheme-frame-color);
 		--titlebar-foreground-inactive: var(--chrtheme-frame-color); //FIXME: This needs to be tinted
 	}
-
-	// Make the Incognito indicator look like Chromium's
-	#private-browsing-indicator-with-label {
-		margin-inline: unset !important;
-	}
-	.private-browsing-indicator-icon {
-		width: auto !important;
-		height: auto !important;
-	}
-	&[sizemode="maximized"] {
-		.private-browsing-indicator-icon {
-			margin-top: -4px;
-			margin-bottom: -3px;
-		}
-	}
-	[data-l10n-id="private-browsing-indicator-label"] {
-		display: none !important;
-	}
-	// Hide the account icon if in OffTheRecord
-    &[privatebrowsingmode="temporary"] {
-        #fxa-toolbar-menu-button {
-            display: none !important;
-        }
-    }
+	--tab-distance-from-toolbar-edge: 2px;
+	--tab-distance-from-top: 14px;
+	--tab-distance-from-top-maximised: 0;
 
 	// Pop up window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
@@ -64,13 +44,32 @@
 		}
 	}
 
+	// Standard titlebars
+	&:not([menubarvisible]) {
+		#tabbrowser-arrowscrollbox {
+			padding-top: var(--tab-distance-from-top);
+		}
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		&:not([menubarvisible]) {
+			#tabbrowser-arrowscrollbox {
+				padding-top: var(--tab-distance-from-top-maximised);
+			}
+		}
+	}
+
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
 	// Fixes for various OS quirks
-	&[gktitnative="true"] {
+	&[gktitnative="true"] { //  System Borders
 		//Windows quirks
 		@media (-moz-platform: windows) {
+			// Rid of the fog.
+			#TabsToolbar {
+				background: transparent !important;
+			}
 			// Top-align the titlebar buttons, so the Win8- AERO cut-out aligns
 			.titlebar-buttonbox-container {
 				align-self: start;
@@ -133,7 +132,7 @@
 			}
 		}
 	}
-	&[gktitnative="false"] {
+	&[gktitnative="false"] { //  Compact Borders
 		// Default to top-aligning the titlebar buttons
 		.titlebar-buttonbox-container {
 			align-self: start;
@@ -157,6 +156,7 @@
 				}
 			}
 			//Remove margin in AERO too
+			// TODO: ?
 			#TabsToolbar > .toolbar-items {
 				padding-top: 0 !important;
 				margin-top: 0 !important;

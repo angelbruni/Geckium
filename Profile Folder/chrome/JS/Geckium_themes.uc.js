@@ -182,11 +182,11 @@ class gkGTK {
 //NOTE: gkGTK.apply is called by gkSysTheme.applyTheme
 window.addEventListener("nativethemechange", gkGTK.apply);
 
-window.addEventListener("load", gkGTK.enableMoreGTKIcons);
+window.addEventListener("load", gkGTK.enableMoreIcons);
 const GTKIconsObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			gkGTK.enableMoreGTKIcons();
+			gkGTK.enableMoreIcons();
 		}
 	},
 };

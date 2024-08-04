@@ -4,25 +4,8 @@
 		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
 	}
 }
-// Behaviour: Normal
-&:not([menubarvisible]) {
-	#tabbrowser-arrowscrollbox {
-		padding-top: 14px;
-	}
-}
-
-// Behaviour: Maximised / Fullscreen
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-	&:not([menubarvisible]) {
-		#tabbrowser-arrowscrollbox {
-			padding-top: 0;
-		}
-	}
-}
 
 &[gktitnative="false"] {
-	//NOTE: Native titlebar won't import any of the titlebars nor button styles, instead importing systitlebar
 	@import "../tools/bodytitlebar";
 	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 	--theme-box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
