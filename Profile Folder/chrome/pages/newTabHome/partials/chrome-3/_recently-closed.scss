@@ -17,7 +17,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gkthemed]:not([gkchrthemed]) {
 		--recently-closed-background: color-mix(
 			in srgb,
 			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
@@ -34,24 +34,6 @@
 		&[style*="--arrowpanel-background"] {
 			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
 		}
-	}
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
-		--recently-closed-item-color: rgb(40,40,238);
-
-		--recently-closed-background: color-mix(
-			in srgb,
-			ActiveCaption 10%,
-			transparent
-		);
-		--recently-closed-border-color: color-mix(
-			in srgb,
-			color-mix(
-				in srgb,
-				AccentColor 85%,
-				black
-			) 50%,
-			transparent
-		) !important;
 	}
 
 	// chrtheme
@@ -74,5 +56,17 @@
 		--recently-closed-item-color: var(--chrtheme-ntp-section-link, var(--default-recently-closed-item-color)) !important;
 
 		--link-color: var(--chrtheme-ntp-section-link, var(--default-link-color));
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--recently-closed-background: -moz-dialog;
+		--recently-closed-border-color: color-mix(
+			in srgb,
+			-moz-dialogtext 20%,
+			transparent
+		);
+		--recently-closed-color: -moz-dialogtext;
+		--recently-closed-item-color: var(--default-link-color);
 	}
 }

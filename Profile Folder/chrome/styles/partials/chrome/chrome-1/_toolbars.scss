@@ -927,9 +927,14 @@
 				mask-image: unset !important;
 			}
 
+			// Revert width for back/forward
+			&#back-button,
+			&#forward-button {
+				width: var(--toolbarbutton-width) !important;
+			}
 			// Remove spacing from forward
 			&#forward-button {
-				margin-inline-start: unset !important;
+				margin-inline-start: var(--toolbarbutton-outer-padding) !important;
 			}
 		}
 
@@ -938,7 +943,7 @@
 			appearance: toolbarbutton !important;
 		}
 		
-		// Because of a bug in Firefox on Linux, that surprisingly doesn't exist on Windows,
+		// Because of a bug in Firefox on Linux, that surprisingly doesn't exist on non-Linux,
 		//  buttons are forcedly given a border despite any CSS, the button icon sizes of custom
 		//  icons have to be forced.
 		@media (-moz-platform: linux) {

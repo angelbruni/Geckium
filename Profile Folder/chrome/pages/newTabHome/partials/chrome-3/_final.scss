@@ -6,7 +6,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gkthemed]:not([gkchrthemed]) {
 		&[style*="--lwt-gknewtab-attribution-image"] {
 			#attribution {
 				display: flex !important;
@@ -59,6 +59,14 @@
 			#attribution {
 				display: flex !important;
 			}
+		}
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		body {
+			background-color: Field !important;
+			color: FieldText !important;
 		}
 	}
 

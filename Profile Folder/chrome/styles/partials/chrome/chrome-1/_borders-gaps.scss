@@ -75,7 +75,7 @@
 	}
 	#browser,
 	#customization-container {
-		border-top: 1px solid var(--personal-toolbar-border-bottom) !important;
+		border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
 	}
