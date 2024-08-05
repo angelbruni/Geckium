@@ -805,6 +805,11 @@
 
 	#urlbar-input {
 		transform: translateY(0); // idk why, but this properly centers it.
+		color: FieldText !important;
+		&::placeholder {
+			color: inherit !important;
+			opacity: 0.5 !important;
+		}
 	}
 
 	// Make the fake https fit in better
