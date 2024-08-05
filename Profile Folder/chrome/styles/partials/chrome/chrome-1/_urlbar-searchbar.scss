@@ -815,4 +815,21 @@
 		height: calc(100% - 8px);
 		transform: translateY(0); // due to #urlbar-input recenter
 	}
+
+	// Shrink icon sizes in the side-buttons in more icons enabled
+	&[moregtkicons="true"] {
+		:not(.widget-overflow-list) > .toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button,
+			.subviewbutton
+		) {
+			&#star-button-box > #star-button,
+			&#go-button-box > #go-button {
+				width: 16px !important;
+				height: 16px !important;
+				transform: unset !important;
+			}
+		}
+	}
 }
