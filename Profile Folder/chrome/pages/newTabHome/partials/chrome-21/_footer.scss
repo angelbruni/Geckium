@@ -152,7 +152,7 @@
 					var(--chrtheme-ntp-header) 20%,
 					transparent
 				)
-		) !important;
+		);
 
 		&[footer-themable="true"][style~="--chrtheme-ntp-background:"],
 		&[footer-themable="true"][style~="--chrtheme-toolbar:"] {
@@ -163,7 +163,7 @@
 				--gk-footer-fg: var(--chrtheme-toolbar-button-icon, #7f7f7f);
 			}
 
-			--logo-wordmark-color: var(--gk-footer-fg) !important;
+			--logo-wordmark-color: var(--gk-footer-fg);
 
 			--footer-background: linear-gradient(
 				to bottom,
@@ -242,7 +242,7 @@
 		);
 		
 		&[footer-themable="true"] {
-			--logo-wordmark-color: -moz-dialogtext !important;
+			--logo-wordmark-color: -moz-dialogtext;
 			--footer-background: linear-gradient(
 				to bottom,
 				color-mix(
@@ -475,7 +475,7 @@
 		margin-inline-start: 0;
 		padding-inline-end: 0;
 		background: no-repeat 0 50%;
-		background-color: transparent !important;
+		background-color: transparent;
 		background-size: 16px 16px;
 		box-sizing: border-box;
 		display: flex;
@@ -486,7 +486,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		color: var(--footer-menu-item-link-color) !important;
+		color: var(--footer-menu-item-link-color);
 		font-weight: normal;
 		font-size: 9pt;
 		align-items: center;

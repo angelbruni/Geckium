@@ -9,13 +9,13 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		&[style*="--lwt-gknewtab-attribution-image"] {
 			#attribution {
-				display: flex !important;
+				display: flex;
 			}
 
 			#attribution-img {
-				background-image: var(--lwt-gknewtab-attribution-image) !important;
-				width: var(--lwt-gknewtab-attribution-width) !important;
-				height: var(--lwt-gknewtab-attribution-height) !important;
+				background-image: var(--lwt-gknewtab-attribution-image);
+				width: var(--lwt-gknewtab-attribution-width);
+				height: var(--lwt-gknewtab-attribution-height);
 			}
 		}
 
@@ -46,18 +46,18 @@
 	&[gkthemed][gkchrthemed] {
 		body {
 			background-color: var(--chrtheme-ntp-background);
-			background-image: var(--chrtheme-theme-ntp-background) !important;
+			background-image: var(--chrtheme-theme-ntp-background);
 		}
 
 		#attribution-img {
-			background-image: var(--chrtheme-theme-ntp-attribution) !important;
-			width: var(--chrtheme-theme-ntp-attribution-width) !important;
-			height: var(--chrtheme-theme-ntp-attribution-height) !important;
+			background-image: var(--chrtheme-theme-ntp-attribution);
+			width: var(--chrtheme-theme-ntp-attribution-width);
+			height: var(--chrtheme-theme-ntp-attribution-height);
 		}
 
 		&[style*="--chrtheme-theme-ntp-attribution"] {
 			#attribution {
-				display: flex !important;
+				display: flex;
 			}
 		}
 	}
@@ -65,8 +65,8 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		body {
-			background-color: Field !important;
-			color: FieldText !important;
+			background-color: Field;
+			color: FieldText;
 		}
 	}
 
