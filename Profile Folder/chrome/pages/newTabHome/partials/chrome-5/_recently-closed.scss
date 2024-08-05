@@ -38,22 +38,22 @@
 
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
-		--recently-closed-background: var(--chrtheme-ntp-section, var(--default-recently-closed-background)) !important;
+		--recently-closed-background: var(--chrtheme-ntp-section, var(--default-recently-closed-background));
 		
 		&[style*="--chrtheme-ntp-section"] {
 			--recently-closed-border-color: color-mix(
 				in srgb,
 				var(--recently-closed-background) 31%,
 				transparent
-			) !important;
+			);
 		}
 
 		&[style*="--chrtheme-ntp-header"] {
-			--recently-closed-border-color: var(--chrtheme-ntp-header, var(--default-recently-closed-border-color)) !important;
+			--recently-closed-border-color: var(--chrtheme-ntp-header, var(--default-recently-closed-border-color));
 		}
 		
-		--recently-closed-color: var(--chrtheme-ntp-section-text, var(--default-recently-closed-color)) !important;
-		--recently-closed-item-color: var(--chrtheme-ntp-section-link, var(--default-recently-closed-item-color)) !important;
+		--recently-closed-color: var(--chrtheme-ntp-section-text, var(--default-recently-closed-color));
+		--recently-closed-item-color: var(--chrtheme-ntp-section-link, var(--default-recently-closed-item-color));
 
 		--link-color: var(--chrtheme-ntp-section-link, var(--default-link-color));
 	}

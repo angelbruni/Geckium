@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const versionIteration = 1;
+const versionIteration = 2;
 
 (async () => {
     let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
@@ -53,6 +53,9 @@ function updateSettings(iteration) {
             }
             `);																			    // Add default apps if the apps list is empty
 	    }
+    }
+    if (iteration < 2) {
+        gkPrefUtils.set("widget.non-native-theme.enabled").bool(false);                     // Allow native theme colours to be used in specific pages
     }
     // put future settings changes down here as < 2, and so on.
 

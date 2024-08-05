@@ -6,7 +6,7 @@
 		&[style*="--lwt-gknewtab-attribution-image"],
 		&[style*="--chrtheme-theme-ntp-attribution"] {
 			#footer {
-				display: none !important;
+				display: none;
 			}
 		}
 	}
@@ -15,7 +15,7 @@
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
 		&[footer-themable="true"] {
-			--logo-wordmark-color: var(--newtab-text-primary-color, currentColor) !important;
+			--logo-wordmark-color: var(--newtab-text-primary-color, currentColor);
 		
 			#logo-icon {
 				fill: var(--logo-wordmark-color);
@@ -33,7 +33,7 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		&[footer-themable="true"] {
-			--logo-wordmark-color: FieldText !important;
+			--logo-wordmark-color: FieldText;
 		
 			#logo-icon {
 				fill: var(--logo-wordmark-color);

@@ -20,13 +20,13 @@
 			in srgb,
 			var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
 			white
-		) !important;
+		);
 		--thumbnail-background-color: color-mix(
 			in srgb,
 			var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
 			white
-		) !important;
-		--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+		);
+		--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
 	}
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
@@ -34,13 +34,13 @@
 			in srgb,
 			var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) 31%,
 			transparent
-		) !important;
-		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color)) !important;
-		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) !important;
+		);
+		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color));
+		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color));
 	}
 	// GTK+
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
-		--thumbnail-inner-border-color: -moz-dialog !important;
+		--thumbnail-inner-border-color: -moz-dialog;
 	}
 
 	&[geckium-choice="twentyone"],
