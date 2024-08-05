@@ -15,7 +15,7 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gkthemed]:not([gkchrthemed]) {
 		--thumbnail-inner-border-color: color-mix(
 			in srgb,
 			var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
@@ -37,6 +37,10 @@
 		) !important;
 		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color)) !important;
 		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) !important;
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--thumbnail-inner-border-color: -moz-dialog !important;
 	}
 
 	&[geckium-choice="twentyone"],

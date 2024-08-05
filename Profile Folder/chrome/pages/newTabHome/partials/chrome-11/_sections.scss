@@ -11,8 +11,8 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
-		--section-color: var(--toolbar-color);
+	&[gkthemed]:not([gkchrthemed]) {
+		--section-color: var(--newtab-text-primary-color, currentColor);
 		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
 	}
 
@@ -20,6 +20,12 @@
 	&[gkthemed][gkchrthemed] {
 		--section-color: var(--chrtheme-ntp-text, var(--default-section-color));
 		--spacer-background-color: var(--chrtheme-ntp-section, var(--default-spacer-background-color));
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--section-color: FieldText;
+		--spacer-background-color: color-mix(in srgb, FieldText 20%, transparent);
 	}
 }
 

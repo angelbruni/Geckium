@@ -13,9 +13,9 @@
 
 	// Custom theme support
 	// lwtheme
-	&[gkthemed]:not([gkchrthemed]), &[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gkthemed]:not([gkchrthemed]) {
 		&[footer-themable="true"] {
-			--logo-wordmark-color: var(--newtab-text-primary-color, var(--lwt-text-color)) !important;
+			--logo-wordmark-color: var(--newtab-text-primary-color, currentColor) !important;
 		
 			#logo-icon {
 				fill: var(--logo-wordmark-color);
@@ -26,7 +26,17 @@
 	&[gkthemed][gkchrthemed] {
 		&[footer-themable="true"] {
 			#logo-icon {
-				fill: var(--section-color);
+				fill: var(--section-color, currentColor);
+			}
+		}
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		&[footer-themable="true"] {
+			--logo-wordmark-color: FieldText !important;
+		
+			#logo-icon {
+				fill: var(--logo-wordmark-color);
 			}
 		}
 	}
