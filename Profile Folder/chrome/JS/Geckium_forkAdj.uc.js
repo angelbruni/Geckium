@@ -67,8 +67,8 @@ class gkNCPAdj {
         }
     }
 }
-if ((AppConstants.MOZ_APP_NAME == "firefox-esr") && (parseInt(Services.appinfo.version.split(".")[0]) <= 115)) {
-    if (window.matchMedia("(-moz-platform: windows-win10)").matches) { // Only for Windows 10+
+if ((AppConstants.MOZ_APP_NAME == "firefox" || AppConstants.MOZ_APP_NAME == "firefox-esr") && (parseInt(Services.appinfo.version.split(".")[0]) <= 115)) {
+    if (window.matchMedia("(-moz-platform: windows-win10)").matches || isNCPatched) { // Only for Windows 10+
         window.addEventListener("load", gkNCPAdj.checkNCP);
     }
 }
