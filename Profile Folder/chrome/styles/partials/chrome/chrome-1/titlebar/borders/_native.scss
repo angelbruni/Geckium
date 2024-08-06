@@ -1,5 +1,16 @@
 // TODO: Put code for dealing with the titlebar being turned on here when not using native...?
 
+// Permanently used offset'd Incognito/pfp measurements
+#fxa-toolbar-menu-button,
+#private-browsing-indicator-with-label {
+    height: calc(var(--tab-height) - 9px);
+
+    .toolbarbutton-badge-stack,
+    .private-browsing-indicator-icon {
+        margin-block-end: -4px; //offset for maximised window
+    }
+}
+
 & {
     //Disable top tab distance (TODO: fix on AERO)
     --tab-distance-from-top: 0;

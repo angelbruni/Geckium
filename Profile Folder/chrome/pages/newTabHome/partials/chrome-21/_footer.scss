@@ -154,7 +154,7 @@
 				)
 		);
 
-		&[footer-themable="true"][style~="--chrtheme-ntp-background:"],
+		&[footer-themable="true"][style~="--chrtheme-ntp-background:"]:not([style*="--chrtheme-ntp-background: rgb(255, 255, 255);"]),
 		&[footer-themable="true"][style~="--chrtheme-toolbar:"] {
 			--gk-footer-bg: var(--chrtheme-ntp-background);
 			--gk-footer-fg: var(--chrtheme-ntp-text);

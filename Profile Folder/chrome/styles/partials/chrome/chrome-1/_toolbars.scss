@@ -138,18 +138,7 @@
 			background: transparent !important;
 		}
 	}
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		#fxa-toolbar-menu-button,
-		#private-browsing-indicator-with-label {
-			height: calc(var(--tab-height) - 9px);
-
-			.toolbarbutton-badge-stack,
-			.private-browsing-indicator-icon {
-				margin-block-end: -4px; //offset for maximised window
-			}
-		}
-	}
+	// NOTE: Maximised state is handled by titlebar border styles.
 
 	&:not([profilepicbutton="true"]),
 	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
@@ -598,13 +587,6 @@
 		display: none !important;
 	}
 	
-
-
-	
-
-
-	
-
 
 	/*
 		Personal (the bookmarks) toolbar
