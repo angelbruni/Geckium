@@ -69,6 +69,7 @@ function styleURLBar() {
 		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);
+window.addEventListener("DOMContentLoaded", styleURLBar);
 window.addEventListener("appearanceChanged", styleURLBar);
 
 function changeNotificationPopupBoxPos() {

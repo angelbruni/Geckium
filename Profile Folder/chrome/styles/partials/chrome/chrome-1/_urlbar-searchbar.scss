@@ -788,10 +788,10 @@
 			content: "";
 			appearance: textarea;
 			position: absolute;
-			left: -1px;
-			right: -1px;
-			top: -1px;
-			bottom: -1px;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
 		}
 	}
 	#urlbar-container,
@@ -804,7 +804,6 @@
 	}
 
 	#urlbar-input {
-		transform: translateY(0); // idk why, but this properly centers it.
 		color: FieldText !important;
 		&::placeholder {
 			color: inherit !important;
@@ -818,7 +817,6 @@
 		-webkit-text-stroke: 2px Field !important;
 		paint-order: stroke fill;
 		height: calc(100% - 8px);
-		transform: translateY(0); // due to #urlbar-input recenter
 	}
 
 	// Shrink icon sizes in the side-buttons in more icons enabled

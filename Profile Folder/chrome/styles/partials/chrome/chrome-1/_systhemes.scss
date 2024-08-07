@@ -24,9 +24,7 @@
 		rgb(147, 187, 235),
 		rgb(144, 183, 232)
 		);
-	&[gktitnative="true"] { // Use native tab background when in native
-		--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
-	}
+	--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
 	--default-selected-tab-background: linear-gradient(
 		to top,
 		rgb(243, 248, 253),
@@ -89,9 +87,8 @@
 		// Tabs
 		--default-tab-glare: rgba(19, 23, 29, 0.45);
 		--default-inactive-tab-background: #051d3b;
-		// &[gktitnative="true"] {
-		// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-		// } TODO
+		//--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+		// TODO
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			#0e3668,
@@ -384,13 +381,13 @@
 
 			&:not([geckium-eleven]) {
 				// Tabs
-				--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
 				--default-inactive-tab-background: linear-gradient(
 					to bottom,
 					rgb(171, 193, 235),
 					rgb(147, 173, 225),
 					rgb(141, 169, 224)
 				);
+				--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
 				--default-selected-tab-background: linear-gradient(
 					to top,
 					rgb(243, 246, 252),
@@ -418,13 +415,13 @@
 			@media (prefers-color-scheme: dark) { //TODO
 				&:not([geckium-eleven]) {
 					// Tabs
-					--default-inactive-tab-background: #051d3b;
 					--default-selected-tab-background: linear-gradient(
 						to bottom,
 						#0e3668,
 						#07254A
 					);
-
+					--default-inactive-tab-background-native: #051d3b;
+						
 					// Navbar
 					--default-nav-bar: linear-gradient(
 						to bottom,
@@ -488,9 +485,7 @@
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 17%)),
 				hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) + 16%))
 			);
-			&[gktitnative="true"] {
-				--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-			}
+			--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
 			&:not([geckium-eleven]) {
 			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
 			}
@@ -559,9 +554,8 @@
 
 				// Tabs
 				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
-				// &[gktitnative="true"] {
-					// 	--default-inactive-tab-background: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-					// } TODO
+				//--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+				//  TODO
 				&:not([geckium-eleven]) {
 					--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
 				}
