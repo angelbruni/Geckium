@@ -13,9 +13,9 @@
 		rgb(163, 201, 247),
 		rgb(147, 186, 234) 40px
 	);
-	--default-titlebar-background: rgb(72, 140, 222); //TODO: Add these two to every style and era
+	--default-titlebar-background: rgb(72, 140, 222);
 	--default-titlebar-foreground: white;
-	--default-titlebar-foreground-inactive: white;
+	--default-titlebar-foreground-inactive: black;
 
 	// Tabs
 	--default-inactive-tab-background: linear-gradient(
@@ -83,6 +83,9 @@
 				white
 			) 40px
 		);
+		--default-titlebar-background: rgb(20, 62, 112);
+		--default-titlebar-foreground: white;
+		--default-titlebar-foreground-inactive: white;
 
 		// Tabs
 		--default-tab-glare: rgba(19, 23, 29, 0.45);
@@ -152,6 +155,7 @@
             rgb(147, 161, 178),
             rgb(128, 143, 161) 40px
         );
+		// TODO: dark
     }
 
 	// GTK+
@@ -167,7 +171,7 @@
             var(--inactivecaption-shine),
             InactiveCaption 14px
         );
-		--default-titlebar-background: ActiveCaption; //TODO: Add these two to every style and era
+		--default-titlebar-background: ActiveCaption;
 		--default-titlebar-foreground: CaptionText;
 		--default-titlebar-foreground-inactive: InactiveCaptionText;
 
@@ -230,6 +234,9 @@
 				--macosx-window-color: #ededed;
 			}
 			--default-titlebar-inactive: var(--default-titlebar-active);
+			--default-titlebar-background: var(--macosx-window-color);
+			--default-titlebar-foreground: black;
+			--default-titlebar-foreground-inactive: black;
 
 			// Tabs
 			--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
@@ -281,6 +288,9 @@
 				&:-moz-window-inactive {
 					--macosx-window-color: #303030;
 				}
+				--default-titlebar-background: var(--macosx-window-color);
+				--default-titlebar-foreground: white;
+				--default-titlebar-foreground-inactive: white;
 
 				// Tabs
 				--default-tab-glare: rgba(255, 255, 255, 0.04);
@@ -335,6 +345,9 @@
 				&:-moz-window-inactive {
 					--macosx-window-color: #86898d;
 				}
+				--default-titlebar-foreground: black;
+				--default-titlebar-foreground-inactive: black;
+				// TODO: dark
 			}
 		}
 
@@ -375,11 +388,9 @@
 				#99b7ea,
 				#84a0dc 40px
 			);
-			--default-titlebar-background: #426dc9; // Used for titlebar style
-			--default-titlebar-foreground: white;
-			--default-titlebar-foreground-inactive: white; //TODO
+			--default-titlebar-background: rgb(66, 109, 201); // Used for titlebar style
 
-			&:not([geckium-eleven]) {
+			&:not([geckium-six]) {
 				// Tabs
 				--default-inactive-tab-background: linear-gradient(
 					to bottom,
@@ -413,7 +424,10 @@
 			}
 
 			@media (prefers-color-scheme: dark) { //TODO
-				&:not([geckium-eleven]) {
+				// Titlebar
+				--default-titlebar-background: #426dc9;
+				
+				&:not([geckium-six]) {
 					// Tabs
 					--default-selected-tab-background: linear-gradient(
 						to bottom,
@@ -456,6 +470,8 @@
 					#95a0b3,
 					#7e899c 40px
 				);
+				--default-titlebar-background: #52648b; // Used for titlebar style
+				// TODO: dark
 			}
 		}
 
@@ -551,6 +567,7 @@
 						white
 					) 40px
 				);
+				--default-titlebar-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
 
 				// Tabs
 				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
