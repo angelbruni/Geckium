@@ -28,9 +28,9 @@
 	--newtab-distance-from-tabs: 17px;
 	--newtab-width: 34px;
 
-	--newtab-normal: var(--inactive-tab-background, var(--default-inactive-tab-background));
-	--newtab-hot: rgba(255, 255, 255, 0.8);
-	--newtab-active: rgb(211, 217, 225, 0.4);
+    --default-theme-newtab: var(--inactive-tab-background, var(--default-inactive-tab-background)) !important;
+	--default-theme-newtab-hover: rgba(255, 255, 255, 0.8) !important;
+	--default-theme-newtab-pressed: rgb(211, 217, 225, 0.4) !important;
 	
 	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask_views.png");
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png");
@@ -39,15 +39,34 @@
 
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
-		--theme-newtab: var(--inactive-tab-background, var(--default-theme-newtab)) !important;
+		--theme-newtab: var(--inactive-tab-background) !important;
 	}
-}
 
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	&:active {
-		&::before {
-			background-color: var(--newtab-active);
+	// Add hover/pressed fills
+	#tabs-newtab-button,
+	#TabsToolbar #new-tab-button {
+		&::after { // ::after is used here as CSS requires linear-gradient to do it otherwise??
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			mask-image: var(--newtab-button-mask);
+			mask-position: center;
+			mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+			// NOTE: this overlays ::before's texture, thus normal texture is already handled
 		}
+		&:hover::after {
+			background: var(--default-theme-newtab-hover);
+		}
+		&:hover:after::before {
+			background: var(--default-theme-newtab-pressed);
+		}
+	}
+
+	//Tab styles
+	// Linux and Mac OS X / macOS
+	&[gktabstyle="1"],
+	&[gktabstyle="2"] {
+		@import "tabs/unix";
 	}
 }
