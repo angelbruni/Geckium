@@ -23,7 +23,7 @@
 		rgb(172, 206, 247),
 		rgb(147, 187, 235),
 		rgb(144, 183, 232)
-		);
+	);
 	--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
 	--default-selected-tab-background: linear-gradient(
 		to top,
@@ -90,8 +90,7 @@
 		// Tabs
 		--default-tab-glare: rgba(19, 23, 29, 0.45);
 		--default-inactive-tab-background: #051d3b;
-		//--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-		// TODO
+		--default-inactive-tab-background-native: rgb(31, 37, 45, 0.8);
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			#0e3668,
@@ -155,7 +154,28 @@
             rgb(147, 161, 178),
             rgb(128, 143, 161) 40px
         );
-		// TODO: dark
+		--default-titlebar-background: rgb(80, 105, 141);
+		@media (prefers-color-scheme: dark) {
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(49, 61, 78),
+				rgb(35, 44, 56) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					rgb(49, 61, 78) 80%,
+					white
+				),
+				color-mix(
+					in srgb,
+					rgb(35, 44, 56) 80%,
+					white
+				) 40px
+			);
+			--default-titlebar-background: rgb(35, 44, 56);
+		}
     }
 
 	// GTK+
@@ -177,10 +197,10 @@
 
 		// Tabs
 		--default-inactive-tab-background: var(--bgtab-background);
+		--default-inactive-tab-background-native: var(--bgtab-background); // use the same background
 		--default-selected-tab-background: -moz-dialog;
-		--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
+		--default-tab-glare: color-mix(in srgb, Field 45%, transparent); // guesstimate
 		--default-tabbrowser-tab-color: -moz-dialogtext;
-		//TODO: Use this value:
 		--default-inactive-tabbrowser-tab-color: hsl(0, 0.3, 0.15); //https://chromium.googlesource.com/chromium/src.git/+/refs/tags/29.0.1547.57/chrome/browser/ui/libgtk2ui/gtk2_ui.cc#521
 
 		// Navbar
@@ -345,9 +365,15 @@
 				&:-moz-window-inactive {
 					--macosx-window-color: #86898d;
 				}
-				--default-titlebar-foreground: black;
+				--default-titlebar-foreground: white;
 				--default-titlebar-foreground-inactive: black;
-				// TODO: dark
+				@media (prefers-color-scheme: dark) {
+					--macosx-window-color: #2A3747;
+					&:-moz-window-inactive {
+						--macosx-window-color: #202A37;
+					}
+					--default-titlebar-foreground-inactive: white;
+				}
 			}
 		}
 
@@ -398,7 +424,6 @@
 					rgb(147, 173, 225),
 					rgb(141, 169, 224)
 				);
-				--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
 				--default-selected-tab-background: linear-gradient(
 					to top,
 					rgb(243, 246, 252),
@@ -423,38 +448,60 @@
 				--personal-toolbar-border-bottom: rgb(162, 181, 213);
 			}
 
-			@media (prefers-color-scheme: dark) { //TODO
+			@media (prefers-color-scheme: dark) {
 				// Titlebar
-				--default-titlebar-background: #426dc9;
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(43, 77, 151),
+					rgb(34, 61, 119) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						rgb(43, 77, 151) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						rgb(34, 61, 119) 80%,
+						white
+					) 40px
+				);
+				--default-titlebar-background: rgb(34, 61, 119);
 				
 				&:not([geckium-six]) {
 					// Tabs
 					--default-selected-tab-background: linear-gradient(
 						to bottom,
-						#0e3668,
-						#07254A
+						#0a1229,
+						#070d1d
 					);
-					--default-inactive-tab-background-native: #051d3b;
+					--default-inactive-tab-background: linear-gradient(
+						to bottom,
+						rgb(19, 41, 83),
+						rgb(12, 25, 50)
+					);
 						
 					// Navbar
 					--default-nav-bar: linear-gradient(
 						to bottom,
-						#07254A,
-						#081B35
+						#070d1d,
+						#050914
 					);
 					--default-toolbarbutton-texture: linear-gradient(
-						to bottom,
-						#07254A,
-						#081B35
+						to top,
+						rgb(6, 11, 19),
+						rgb(10, 18, 31)
 					);
 
 					// Personal Toolbar
 					--default-personal-toolbar: linear-gradient(
 						to bottom,
-						#081B35,
-						#081526
+						#050914,
+						#080F21
 					);
-					--personal-toolbar-border-bottom: rgb(91, 91, 91);
+					--personal-toolbar-border-bottom: #1f2c42;
 				}
 			}
 
@@ -471,7 +518,28 @@
 					#7e899c 40px
 				);
 				--default-titlebar-background: #52648b; // Used for titlebar style
-				// TODO: dark
+				@media (prefers-color-scheme: dark) {
+					// Titlebar
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						#313B4E,
+						#222A3A 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							#313B4E 80%,
+							white
+						),
+						color-mix(
+							in srgb,
+							#222A3A 80%,
+							white
+						) 40px
+					);
+					--default-titlebar-background: #222A3A;
+				}
 			}
 		}
 
@@ -571,8 +639,7 @@
 
 				// Tabs
 				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
-				//--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
-				//  TODO
+				--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) - 43%), 0.8);
 				&:not([geckium-eleven]) {
 					--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
 				}
@@ -631,7 +698,7 @@
 				}
 			}
 
-			&[privatebrowsingmode="temporary"] { // TODO
+			&[privatebrowsingmode="temporary"] {
 				// Titlebar
 				--default-titlebar-active: linear-gradient(
 					to bottom,
@@ -643,6 +710,28 @@
 					rgb(147, 161, 178),
 					rgb(128, 143, 161) 40px
 				);
+				--default-titlebar-background: rgb(80, 105, 141);
+				@media (prefers-color-scheme: dark) {
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						rgb(49, 61, 78),
+						rgb(35, 44, 56) 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							rgb(49, 61, 78) 80%,
+							white
+						),
+						color-mix(
+							in srgb,
+							rgb(35, 44, 56) 80%,
+							white
+						) 40px
+					);
+					--default-titlebar-background: rgb(35, 44, 56);
+				}
 			}
 		}
 	}
