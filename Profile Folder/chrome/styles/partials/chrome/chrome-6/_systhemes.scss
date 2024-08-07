@@ -13,6 +13,7 @@
 		rgb(169,195,231),
 		rgb(153,178,221) 40px
 	);
+	--default-titlebar-background: rgb(66,113,201);
 
 	// Tabs
 	--default-selected-tab-background: linear-gradient(
@@ -71,6 +72,7 @@
 				white
 			) 40px
 		);
+		--default-titlebar-background: rgb(29, 55, 103);
 
 		// Tabs
         --default-inactive-tab-background: #252525; //TODO: Remove this, for native, as it should be the same as 1.x's
@@ -116,6 +118,7 @@
             rgb(147, 161, 178),
             rgb(128, 143, 161) 40px
         );
+		// TODO: dark
     }
 	
 	&:not([geckium-sixtyeight]) {
@@ -148,22 +151,6 @@
 		&[gksystheme="chromiumos"] {
 			// Titlebar
 			// TODO: Check if inactive compositorless tab background changed
-			// TODO: Move gradient to titlebar style - pre-gradient theme colour is #3f537b
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				#0d1525 10px,
-				#3f537b 34px
-			);
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
-				--default-titlebar-active: linear-gradient(
-					to bottom,
-					#0d1525,
-					#3f537b 24px
-				);
-			}
-
-			--chromiumos-accent: #3f537b; // Used for titlebar style
 			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(94, 111, 144),
@@ -174,6 +161,7 @@
 				rgb(169,195,231),
 				rgb(153,178,221) 40px
 			);
+			--default-titlebar-background: #3f537b;
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
@@ -192,7 +180,6 @@
 					);
 				}
 
-				--chromiumos-accent: #5d5d5d; // Used for titlebar style
 				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(119, 119, 119),
@@ -203,6 +190,7 @@
 					#95a0b3,
 					#7e899c 40px
 				);
+				--default-titlebar-background: rgb(93, 93, 93);
 			}
 		}
 
@@ -244,6 +232,7 @@
 						white
 					) 40px
 				);
+				--default-titlebar-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%));
 			}
 		}
 	}

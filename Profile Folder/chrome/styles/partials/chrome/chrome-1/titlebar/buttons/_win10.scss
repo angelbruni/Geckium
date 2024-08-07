@@ -96,6 +96,12 @@
 				stroke: currentColor !important;
 			}
 		}
+		// Halve opacity if window's inactive
+		&:-moz-window-inactive:not([gksystheme="gtk"]) { // can cause readability issues on GTK+
+			.titlebar-button:not(:hover, :active) {
+				opacity: 0.5;
+			}
+		}
 
 		//Close button
 		.titlebar-close {
