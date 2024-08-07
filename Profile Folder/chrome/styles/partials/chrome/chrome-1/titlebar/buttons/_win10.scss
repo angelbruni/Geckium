@@ -80,6 +80,10 @@
 			display: flex !important;
 			height: 30px;
 			width: 45px;
+			color: var(--titlebar-foreground, var(--default-titlebar-foreground)) !important;
+			&:-moz-window-inactive {
+				color: var(--titlebar-foreground-inactive, var(--titlebar-foreground-active, var(--default-titlebar-foreground-inactive))) !important;
+			}
 			
 			//Hover and pressed states
 			&:not([disabled]):hover {
@@ -94,6 +98,13 @@
 			-moz-context-properties: stroke;
 			.toolbarbutton-icon {
 				stroke: currentColor !important;
+			}
+		}
+		// Decrease button height before MD1
+		&:not([geckium-sixtyeight])[sizemode="maximized"],
+		&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
+			.titlebar-button {
+				height: 24px;
 			}
 		}
 		// Halve opacity if window's inactive

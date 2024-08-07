@@ -21,15 +21,6 @@
 
 &[gktitnative="false"] {
 	@import "../tools/vanillatitlebar";
-	// Visuals
-	.titlebar-button {
-		color: var(--titlebar-foreground, var(--default-titlebar-foreground)) !important;
-	}
-	&:-moz-window-inactive {
-		.titlebar-button {
-			color: var(--titlebar-foreground-inactive, var(--titlebar-foreground-active, var(--default-titlebar-foreground-inactive))) !important;
-		}
-	}
 
 	// Visuals: Not Windows
 	@media not (-moz-platform: windows) {
