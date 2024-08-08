@@ -13,8 +13,8 @@
 			}
 		}
 		// Decrease button height like Microsoft
-		&:not([geckium-sixtyeight])[sizemode="maximized"],
-		&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
+		&[gktitnative="true"]:not([geckium-sixtyeight])[sizemode="maximized"],
+		&[gktitnative="true"]:not([geckium-sixtyeight])[sizemode="fullscreen"] {
 			.titlebar-button {
 				height: 24px !important;
 			}
