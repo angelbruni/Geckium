@@ -303,30 +303,32 @@
 			&:not([geckium-eleven]) { --bookmark-item-color-shadow: transparent; }
 
 			@media (prefers-color-scheme: dark) {
+				// NOTE: Math is same as light except white% is quartered and replaced with silver, and black% is doubled twice
+
 				// Titlebar
-				--macosx-window-color: #3c3c3c;
+				--macosx-window-color: #303030;
 				&:-moz-window-inactive {
-					--macosx-window-color: #303030;
+					--macosx-window-color: #242424;
 				}
 				--default-titlebar-background: var(--macosx-window-color);
 				--default-titlebar-foreground: white;
 				--default-titlebar-foreground-inactive: white;
 
 				// Tabs
-				--default-tab-glare: rgba(255, 255, 255, 0.04);
-				--default-inactive-tab-background: rgba(0, 0, 0, 0.3);
+				--default-inactive-tab-background: rgba(0, 0, 0, 0.15);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, var(--macosx-window-color))),
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, var(--macosx-window-color)))
+					color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
+					color-mix(in srgb, silver 20%, var(--macosx-window-color))
 				);
+				--default-tab-glare: rgba(255, 255, 255, 0.075);
 				--default-tabbrowser-tab-color: white;
 				
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, var(--macosx-window-color))),
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, var(--macosx-window-color)))
+					color-mix(in srgb, silver 20%, var(--macosx-window-color)),
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color)))
 				);
 				&:not([geckium-five]) {
 					--default-inner-border-color: color-mix(in srgb, white 16%, transparent);
@@ -337,8 +339,8 @@
 					--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
 					--default-toolbarbutton-texture: linear-gradient(
 						to bottom,
-						color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, var(--macosx-window-color))),
-						color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, var(--macosx-window-color)))
+						color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
+						color-mix(in srgb, silver 20%, var(--macosx-window-color))
 					);
 					--default-toolbarbutton-icon-drop-shadow-color: transparent;
 				}
@@ -347,8 +349,8 @@
 				// Personal Toolbar
 				--default-personal-toolbar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, var(--macosx-window-color))),
-					color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, var(--macosx-window-color))))
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color))),
+					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, var(--macosx-window-color)))
 				);
 				--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
 				--default-bookmark-item-color: white;
@@ -370,7 +372,7 @@
 				@media (prefers-color-scheme: dark) {
 					--macosx-window-color: #2A3747;
 					&:-moz-window-inactive {
-						--macosx-window-color: #202A37;
+						--macosx-window-color: #4F5154;
 					}
 					--default-titlebar-foreground-inactive: white;
 				}
