@@ -1,22 +1,24 @@
 :root {
 	// Make Firefox's Windows 10 CSDs white to be faithful to Windows 10+'s titlebar
-	@media (-moz-platform: windows-win10) and (not (prefers-contrast)) {
-		--toolbox-non-lwt-bgcolor: light-dark(rgb(255,255,254), black); // Setting it to white BRICKS Firefox - amazing. 
-		--toolbox-non-lwt-bgcolor-inactive: var(--toolbox-non-lwt-bgcolor);
-		--toolbox-non-lwt-textcolor: light-dark(black, white);
-		&[gktitnative="true"][windowtype="navigator:browser"] {
-			background-color: rgb(255,255,254) !important;
-			color: black !important;
-			@media (prefers-color-scheme: dark) {
-				background-color: black !important;
-				color: white !important;
-			}
-		}
-		// Decrease button height like Microsoft
-		&[gktitnative="true"]:not([geckium-sixtyeight])[sizemode="maximized"],
-		&[gktitnative="true"]:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-			.titlebar-button {
-				height: 24px !important;
+	@media (not (prefers-contrast)) and (-moz-platform: windows) {
+		@media not (-moz-platform: windows-win7) { // This is genuinely how Mozilla handles this
+			@media not (-moz-platform: windows-win8) { // by the way.
+				&[gktitnative="true"] {
+					&[windowtype="navigator:browser"] {
+						background-color: rgb(255,255,254) !important; // Setting it to white BRICKS Firefox - amazing. 
+						color: black !important;
+						@media (prefers-color-scheme: dark) {
+							background-color: black !important;
+							color: white !important;
+						}
+					}
+					// Decrease button height like Microsoft
+					&[sizemode="maximized"], &[sizemode="fullscreen"] {
+						.titlebar-button {
+							height: 24px !important;
+						}
+					}
+				}
 			}
 		}
 	}
