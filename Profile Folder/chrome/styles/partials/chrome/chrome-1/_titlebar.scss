@@ -1,23 +1,19 @@
 :root {
 	// Make Firefox's Windows 10 CSDs white to be faithful to Windows 10+'s titlebar
-	@media (not (prefers-contrast)) and (-moz-platform: windows) {
-		@media not (-moz-platform: windows-win7) { // This is genuinely how Mozilla handles this
-			@media not (-moz-platform: windows-win8) { // by the way.
-				&[gktitnative="true"] {
-					&[windowtype="navigator:browser"] {
-						background-color: rgb(255,255,254) !important; // Setting it to white BRICKS Firefox - amazing. 
-						color: black !important;
-						@media (prefers-color-scheme: dark) {
-							background-color: black !important;
-							color: white !important;
-						}
-					}
-					// Decrease button height like Microsoft
-					&[sizemode="maximized"], &[sizemode="fullscreen"] {
-						.titlebar-button {
-							height: 24px !important;
-						}
-					}
+	@media (not (prefers-contrast)) {
+		&[gktitnative="true"][isWindows10] {
+			&[windowtype="navigator:browser"] {
+				background-color: rgb(255,255,254) !important; // Setting it to white BRICKS Firefox - amazing. 
+				color: black !important;
+				@media (prefers-color-scheme: dark) {
+					background-color: black !important;
+					color: white !important;
+				}
+			}
+			// Decrease button height like Microsoft
+			&[sizemode="maximized"], &[sizemode="fullscreen"] {
+				.titlebar-button {
+					height: 24px !important;
 				}
 			}
 		}
@@ -32,9 +28,10 @@
 	&[gkthemed][gkchrthemed] {
 		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
 		--titlebar-foreground: var(--chrtheme-frame-color);
-		--titlebar-foreground-inactive: var(--chrtheme-frame-color); //FIXME: This needs to be tinted
+		--titlebar-foreground-inactive: var(--chrtheme-frame-color);
 	}
 	--tab-distance-from-toolbar-edge: 2px;
+	--tab-distance-from-pfp: 3px;
 	--tab-distance-from-top: 14px;
 	--tab-distance-from-top-maximised: 0;
 
@@ -87,6 +84,16 @@
 		#TabsToolbar {
 			background: transparent !important;
 		}
+		//Windows 10 quirks
+		&[isWindows10] #titlebar { // remove the top gap
+			appearance: none !important;
+		}
+		//Windows 10 + Native Controls Patch quirks
+		@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
+			&:not([isWindows10]) #main-window {
+				background: rgba(0,0,0,.002) !important;
+			}
+		}
 	}
 	&[gktitnative="true"] { //  System Borders
 		//Windows quirks
@@ -113,12 +120,6 @@
 						width: 102%;
 						margin-left: -2px;
 					}
-				}
-			}
-			// Windows 10 + Native Controls Patch quirks
-			@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
-				&#main-window { // Prevent dark Firefox from using a background
-					background: rgba(0,0,0,.002) !important;
 				}
 			}
 		}
@@ -185,12 +186,6 @@
 			#TabsToolbar > .toolbar-items {
 				padding-top: 0 !important;
 				margin-top: 0 !important;
-			}
-			//Windows 10 + Native Controls Patch quirks
-			@media (-moz-ev-native-controls-patch) {
-				&#main-window {
-					background: rgba(0,0,0,.002) !important;
-				}
 			}
 		}
 

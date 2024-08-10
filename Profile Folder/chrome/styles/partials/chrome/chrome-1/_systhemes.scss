@@ -41,27 +41,24 @@
 		rgb(245, 249, 254)
 	);
 	--default-inner-border-color: rgb(242, 242, 242);
-	--toolbarbutton-border-color-normal: rgb(198, 206, 228);
-	--toolbarbutton-border-color-hot: rgba(0,0,0,.3);
-	--toolbarbutton-border-color-active: rgb(171, 181, 203);
-	--toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
-	--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
+	--default-toolbarbutton-border-color-normal: rgb(198, 206, 228);
+	--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3);
+	--default-toolbarbutton-border-color-active: rgb(171, 181, 203);
+	--default-toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+	--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
 	--default-toolbarbutton-texture: linear-gradient(
 		to top,
 		rgb(222, 234, 248),
 		rgb(240, 245, 253)
 	);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)))
-		drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)));
 	--default-toolbarbutton-icon-drop-shadow-color: white;
 	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 
 	// Personal Toolbar (Bookmarks)
 	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
-	--personal-toolbar-border-bottom: rgb(182, 186, 192);
+	--default-personal-toolbar-border-bottom: rgb(182, 186, 192);
 	--default-bookmark-item-color: #062d75;
-	--bookmark-item-color-shadow: rgb(255, 255, 255, 50%);
 
     @media (prefers-color-scheme: dark) {
 		// Titlebar
@@ -105,7 +102,7 @@
 			#081B35
 		);
 		--default-inner-border-color: rgb(79, 79, 79);
-		--toolbarbutton-border-color-normal: color-mix(
+		--default-toolbarbutton-border-color-normal: color-mix(
 			in srgb,
 			color-mix(
 				in srgb,
@@ -114,14 +111,14 @@
 			) 70%,
 			black
 		);
-		--toolbarbutton-border-color-hot: rgb(112, 112, 112);
-		--toolbarbutton-border-color-active: rgb(136, 136, 136);
-		--toolbarbutton-inner-border-color-normal: color-mix(
+		--default-toolbarbutton-border-color-hot: rgb(112, 112, 112);
+		--default-toolbarbutton-border-color-active: rgb(136, 136, 136);
+		--default-toolbarbutton-inner-border-color-normal: color-mix(
 			in srgb,
 			var(--toolbarbutton-icon-color) 30%,
 			transparent
 		);
-		--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+		--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
 		--default-toolbarbutton-texture: linear-gradient(
 			to bottom,
 			#07254A,
@@ -129,7 +126,7 @@
 		);
 		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
 		--default-toolbarbutton-icon-fill: #B0C2DE;
-		--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal);
+		--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal);
 
 		// Personal Toolbar
 		--default-personal-toolbar: linear-gradient(
@@ -137,9 +134,8 @@
 			#081B35,
 			#081526
 		);
-		--personal-toolbar-border-bottom: rgb(91, 91, 91);
+		--default-personal-toolbar-border-bottom: rgb(91, 91, 91);
 		--default-bookmark-item-color: #95b4ee;
-		--bookmark-item-color-shadow: rgba(0, 0, 0, 0.5);
 	}
 
     &[privatebrowsingmode="temporary"] {
@@ -210,9 +206,8 @@
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: -moz-dialog;
-		--personal-toolbar-border-bottom: ThreeDShadow;
+		--default-personal-toolbar-border-bottom: ThreeDShadow;
 		--default-bookmark-item-color: -moz-dialogtext;
-		--bookmark-item-color-shadow: transparent;
 
 		&[privatebrowsingmode="temporary"] {
 			// Titlebar
@@ -276,11 +271,11 @@
 			);
 			&:not([geckium-eleven]) {
 				--default-inner-border-color: transparent;
-				--toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
-				--toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
-				--toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
-				--toolbarbutton-inner-border-color-normal: transparent;
-				--toolbarbutton-inner-border-color-hot: transparent;
+				--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+				--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
+				--default-toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
+				--default-toolbarbutton-inner-border-color-normal: transparent;
+				--default-toolbarbutton-inner-border-color-hot: transparent;
 				--default-toolbarbutton-texture: linear-gradient(
 					to bottom,
 					color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, var(--macosx-window-color))),
@@ -288,7 +283,7 @@
 				);
 				//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
 				--default-toolbarbutton-icon-drop-shadow-color: transparent;
-				--default-navigation-buttons-separator: var(--toolbarbutton-border-color-normal);
+				--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
 			}
 			--default-toolbarbutton-icon-fill: black;
 
@@ -298,9 +293,8 @@
 				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, var(--macosx-window-color))),
 				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, var(--macosx-window-color)))
 			);
-			--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+			--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
 			--default-bookmark-item-color: black;
-			&:not([geckium-eleven]) { --bookmark-item-color-shadow: transparent; }
 
 			@media (prefers-color-scheme: dark) {
 				// NOTE: Math is same as light except white% is quartered and replaced with silver, and black% is doubled twice
@@ -332,11 +326,11 @@
 				);
 				&:not([geckium-five]) {
 					--default-inner-border-color: color-mix(in srgb, white 16%, transparent);
-					--toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
-					--toolbarbutton-border-color-hot: rgb(112, 112, 112); //TODO
-					--toolbarbutton-border-color-active: rgb(136, 136, 136); //TODO
-					--toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
-					--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
+					--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+					--default-toolbarbutton-border-color-hot: rgb(112, 112, 112); //TODO
+					--default-toolbarbutton-border-color-active: rgb(136, 136, 136); //TODO
+					--default-toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
+					--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
 					--default-toolbarbutton-texture: linear-gradient(
 						to bottom,
 						color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
@@ -352,9 +346,8 @@
 					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color))),
 					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, var(--macosx-window-color)))
 				);
-				--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
 				--default-bookmark-item-color: white;
-				&:not([geckium-eleven]) { --bookmark-item-color-shadow: transparent; }
 			}
 
 			&[privatebrowsingmode="temporary"] {
@@ -447,7 +440,7 @@
 
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(to top, rgb(227, 234, 250), rgb(233, 237, 249));
-				--personal-toolbar-border-bottom: rgb(162, 181, 213);
+				--default-personal-toolbar-border-bottom: rgb(162, 181, 213);
 			}
 
 			@media (prefers-color-scheme: dark) {
@@ -503,7 +496,7 @@
 						#050914,
 						#080F21
 					);
-					--personal-toolbar-border-bottom: #1f2c42;
+					--default-personal-toolbar-border-bottom: #1f2c42;
 				}
 			}
 
@@ -591,8 +584,8 @@
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 36%)),
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 40%))
 				);
-				--toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
-				--toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
+				--default-toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
+				--default-toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
 				--default-toolbarbutton-texture: linear-gradient(
 					to top,
 					hsl(var(--you-h), calc(var(--you-s) - 4%), calc(var(--you-l) + 34%)),
@@ -611,7 +604,7 @@
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 38%)), 
 					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
 				);
-				--personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
+				--default-personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
 			}
 			&:not([geckium-twentyone]) {
 				--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
@@ -660,7 +653,7 @@
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
 					);
-					--toolbarbutton-border-color-normal: color-mix(
+					--default-toolbarbutton-border-color-normal: color-mix(
 						in srgb,
 						color-mix(
 							in srgb,
@@ -669,8 +662,8 @@
 						) 70%,
 						black
 					);
-					--toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
-					--toolbarbutton-inner-border-color-normal: color-mix(
+					--default-toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
+					--default-toolbarbutton-inner-border-color-normal: color-mix(
 						in srgb,
 						var(--toolbarbutton-icon-color) 30%,
 						transparent
@@ -680,7 +673,7 @@
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
 					);
-					--default-navigation-buttons-separator: var(--toolbarbutton-inner-border-color-normal); //changed in light mode
+					--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal); //changed in light mode
 				}
 				&:not([geckium-eleven]) {
 					--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
@@ -693,7 +686,7 @@
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%)),
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
 					);
-					--personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
+					--default-personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
 				}
 				&:not([geckium-twentyone]) {
 					--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));

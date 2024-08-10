@@ -57,7 +57,6 @@
 			);
 			--personal-toolbar-border-bottom: rgb(103, 103, 103);
 			--default-bookmark-item-color: black;
-			&:not([geckium-eleven]) { --bookmark-item-color-shadow: transparent; }
 			&:-moz-window-inactive {
 				--personal-toolbar-border-bottom: rgb(123, 123, 123);
 			}
@@ -108,7 +107,6 @@
 					--personal-toolbar-border-bottom: color-mix(in srgb, black 7%, rgb(64, 64, 64));;
 				}
 				--default-bookmark-item-color: white;
-				&:not([geckium-eleven]) { --bookmark-item-color-shadow: transparent; }
 			}
 		}
 	}

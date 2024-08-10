@@ -644,13 +644,13 @@ h4 {
 		display: none !important;
 	}
 }
-.notwin10 {
-	@media (-moz-platform: windows-win10) {
+:root[isWindows10] {
+	.notwin10 {
 		display: none !important;
 	}
 }
-.win10 {
-	@media not (-moz-platform: windows-win10) {
+:root:not([isWindows10]) {
+	.win10 {
 		display: none !important;
 	}
 }

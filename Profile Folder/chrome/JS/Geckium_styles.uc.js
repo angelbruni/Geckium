@@ -12,6 +12,19 @@
 if (parseInt(Services.appinfo.version.split(".")[0]) >= 117)
 	document.documentElement.setAttribute("is117Plus", true);
 
+// Windows version check
+function isWindows10() {
+	if (AppConstants.platform == "win") {
+		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
+		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
+			return true;
+	}
+	return false;
+}
+if (isWindows10()) {
+    document.documentElement.setAttribute("isWindows10", true);
+}
+
 // Initial variables
 let previousEra;
 const appearanceChanged = new CustomEvent("appearanceChanged");

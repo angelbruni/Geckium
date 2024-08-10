@@ -59,6 +59,7 @@
 	background: linear-gradient(to bottom, rgb(248,248,248), rgb(227,227,227)) !important;
 	font-size: 11pt !important;
 	font-weight: normal !important;
+	color: black !important;
 
 	&:hover,
 	&:active {
@@ -69,6 +70,7 @@
 		background: linear-gradient(to bottom, rgb(234,234,234), rgb(245,245,245)) !important;
 	}
 }
+// FIXME: Higher priority banners should be yellow
 
 //Banner to show users of non-JavaScript-capable Firefox installations
 #navigator-toolbox::after {

@@ -45,21 +45,13 @@
 	// Add hover/pressed fills
 	#tabs-newtab-button,
 	#TabsToolbar #new-tab-button {
-		&::after { // ::after is used here as CSS requires linear-gradient to do it otherwise??
-			content: "";
-			position: absolute;
-			height: 100%;
-			width: 100%;
-			mask-image: var(--newtab-button-mask);
-			mask-position: center;
-			mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
-			// NOTE: this overlays ::before's texture, thus normal texture is already handled
+		&:hover::before {
+			background: linear-gradient(var(--default-theme-newtab-hover), var(--default-theme-newtab-hover)),
+					var(--theme-newtab, var(--default-theme-newtab));
 		}
-		&:hover::after {
-			background: var(--default-theme-newtab-hover);
-		}
-		&:hover:after::before {
-			background: var(--default-theme-newtab-pressed);
+		&:hover:active::before {
+			background: linear-gradient(var(--default-theme-newtab-pressed), var(--default-theme-newtab-pressed)),
+					var(--theme-newtab, var(--default-theme-newtab));
 		}
 	}
 

@@ -299,7 +299,7 @@ class gkTitlebars {
             case "linux":
                 return titlebars.linux;
             default: //Fallback to Windows
-                if (window.matchMedia("(-moz-platform: windows-win10)").matches || parseInt(Services.appinfo.version.split(".")[0]) >= 117) {
+                if (isWindows10()) {
                     return titlebars.win10;
                 }
             return titlebars.win;

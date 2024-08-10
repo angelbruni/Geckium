@@ -225,7 +225,7 @@ class gkYou {
                     return ""; //Despite everything, it still failed
                 }
             case "aerocolor":
-                if (AppConstants.platform != "win" || (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches)) {
+                if (AppConstants.platform != "win" || isWindows10()) {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");
                     return gkYou.getBaseColor();
                 }
@@ -235,7 +235,7 @@ class gkYou {
                     b = accentColor & 0xFF;
                 return `rgb(${r}, ${g}, ${b})`;
             case "awm":
-                if (AppConstants.platform != "win" || !window.matchMedia("(-moz-platform: windows-win10)").matches) {
+                if (AppConstants.platform != "win" || !isWindows10()) {
                     gkPrefUtils.set("Geckium.you.mode").string("accent");
                     return gkYou.getBaseColor();
                 }
