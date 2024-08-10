@@ -53,11 +53,6 @@
 
 	--tab-gap-between-favicon-and-title: 5px;
 
-	--tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
-	--default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
-	--tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
-	// TODO: Use --default-inactive-tabbrowser-tab-color if available on inactive tabs, and also use lwtheme equivalent in Firefox themes
-
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.png");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.png");
 	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_p.png");
@@ -113,7 +108,7 @@
 			) !important;
 			--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 			--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-			--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
+			--tabbrowser-tab-color-inactive: var(--tabbrowser-tab-color) !important;
 
 			// if FXChrome
 			&[customthememode="fxchrome"] {
@@ -156,11 +151,11 @@
 		}
 		
 		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
-		--tabbrowser-tab-color: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
+		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 		--theme-newtab: var(--chrtheme-control-background, var(--default-theme-newtab)) !important;
 		&[gkchrthemehastoolbar] {
 			--selected-tab-background: var(--nav-bar, black) !important;
-			--tabbrowser-tab-color-active: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
+			--tabbrowser-tab-color: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
 		}
 	}
 
@@ -200,7 +195,7 @@
 
 		// Create the illusion that tabs is part of the main toolbar
 		margin-block-end: -1px !important;
-		
+
 		// Counteract the spacing in the tab textures to ensure there is no gap
 		margin-top: -1px !important;
 	}
@@ -216,7 +211,7 @@
 		height: var(--tab-height) !important;
 		max-height: var(--tab-height) !important;
 		padding: 0 !important;
-		color: var(--tabbrowser-tab-color) !important;
+		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 
 		pointer-events: none !important;
 
@@ -235,7 +230,7 @@
 			// Bring selected tab to front
 			z-index: 100 !important;
 
-			color: var(--tabbrowser-tab-color-active) !important;
+			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
 
 			.tab-background-container {
 				&::before {
@@ -532,6 +527,9 @@
 		&:active {
 			list-style-image: var(--tab-close-button-pressed) !important;
 		}
+	}
+	.close-icon:hover {
+		background-color: transparent !important;
 	}
 
 	#tabbrowser-arrowscrollbox-periphery {

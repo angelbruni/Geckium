@@ -197,7 +197,7 @@
 		--default-selected-tab-background: -moz-dialog;
 		--default-tab-glare: color-mix(in srgb, Field 45%, transparent); // guesstimate
 		--default-tabbrowser-tab-color: -moz-dialogtext;
-		--default-inactive-tabbrowser-tab-color: hsl(0, 0.3, 0.15); //https://chromium.googlesource.com/chromium/src.git/+/refs/tags/29.0.1547.57/chrome/browser/ui/libgtk2ui/gtk2_ui.cc#521
+		--default-tabbrowser-tab-color-inactive: var(--bgtab-foreground);
 
 		// Navbar
 		--default-nav-bar: -moz-dialog;
@@ -396,7 +396,7 @@
 		}
 
 		// Chromium OS
-		// TODO: Until 21, ONLY when unthemed
+		// TODO: Until 21
 		&[gksystheme="chromiumos"] {
 			// Titlebar
 			--default-titlebar-active: linear-gradient(

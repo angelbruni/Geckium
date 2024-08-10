@@ -181,12 +181,6 @@
 					margin-top: 0 !important;
 				}
 			}
-			//Remove margin in AERO too
-			// TODO: ?
-			#TabsToolbar > .toolbar-items {
-				padding-top: 0 !important;
-				margin-top: 0 !important;
-			}
 		}
 
 		//Linux quirks
@@ -300,14 +294,13 @@
 		}
 	}
 
-	//Theme support
+	//Theme support TODO
 	&[gkthemed]:not([gkchrthemed]) {
-		//TODO: Rename _systhemes.scss to _themes.scss, and move these two variables into it
 		--titlebar-active: var(--lwt-accent-color);
 		--titlebar-inactive: var(--titlebar-active);
 		--titlebar-foreground: var(--lwt-text-color);
 		--titlebar-foreground-inactive: var(--lwt-text-color);
-	} //TODO: Should variables assignment just be done in JS, to simplify the process? Could do QML style ? ... : ... one-liners even...?
+	}
 
 	//Titlebar styles
 	&[chromemargin]:not([macOSNativeFullscreen]) {
