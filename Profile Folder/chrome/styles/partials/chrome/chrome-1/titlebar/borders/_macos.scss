@@ -18,9 +18,10 @@
 }
 
 // Visuals: Maximised / Fullscreen
-&[sizemode="maximized"],
+// TODO: copy background from native.scss
 &[sizemode="fullscreen"] {
 	&[windowtype="navigator:browser"] > body {
 		border: 0;
+		border-radius: 0;
 	}
-} // TODO: Fix this being set on macOS
+}

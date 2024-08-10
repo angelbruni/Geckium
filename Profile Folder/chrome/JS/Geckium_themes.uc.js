@@ -99,9 +99,26 @@ class gkGTK {
 			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
 		);
 		//Background Tab background
+        var bgtab = ColorUtils.HSLShift(rgb, [-1, 0.5, 0.75]);
 		document.documentElement.style.setProperty(
 			`--bgtab-background`,
-			`rgb(${ColorUtils.HSLShift(rgb, [-1, 0.5, 0.75])})`
+			`rgb(${bgtab})`
+		);
+        //Background Tab foreground (see https://chromium.googlesource.com/chromium/src.git/+/refs/tags/29.0.1547.57/chrome/browser/ui/libgtk2ui/gtk2_ui.cc#521)
+        bgtab = ColorUtils.ColorToHSL(bgtab);
+        if (bgtab[2] < 0.5) {
+            bgtab[2] = 85;
+        } else {
+            bgtab[2] = 15;
+        }
+        if (bgtab[1] < 0.5) {
+            bgtab[1] = 70;
+        } else {
+            bgtab[1] = 30;
+        }
+        document.documentElement.style.setProperty(
+			`--bgtab-foreground`,
+			`rgb(${ColorUtils.HSLToColor(bgtab)})`
 		);
 		//Incognito (active)
 		var rgbb = ColorUtils.HSLShift(rgb, [-1, 0.2, 0.35]);
@@ -158,6 +175,7 @@ class gkGTK {
     static removeVariables() {
         document.documentElement.style.removeProperty(`--activecaption-shine`);
 		document.documentElement.style.removeProperty(`--bgtab-background`);
+		document.documentElement.style.removeProperty(`--bgtab-foreground`);
 		document.documentElement.style.removeProperty(`--incognito-active`);
 		document.documentElement.style.removeProperty(`--incognito-active-shine`);
 		document.documentElement.style.removeProperty(`--incognito-bgtab-background`);
