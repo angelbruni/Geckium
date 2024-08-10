@@ -66,14 +66,14 @@ const eras = {
         basedOnVersion: "3.0.195.4",
         year: 2009,
         number: "three",
-        styles: ["page"]
+        styles: ["chrome", "page"]
     },
     4: {
         name: "4",
         basedOnVersion: "4.0.223.11",
         year: 2009,
         number: "four",
-        styles: ["chrome", "page"],
+        styles: ["page"],
         titlebar: {
             "linux": "linux",
             "win": "win",
