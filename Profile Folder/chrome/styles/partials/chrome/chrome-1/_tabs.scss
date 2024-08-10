@@ -88,19 +88,9 @@
 
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		#TabsToolbar-customization-target {
-			margin-block-start: var(--tab-distance-from-titlebar-maximized) !important;
-		}
-
 		.tab-drop-indicator {
 			top: var(--tab-drop-indicator-pos-from-top-maximized) !important;
 			background: var(--tab-drop-indicator-icon-maximized) !important;
-		}
-
-		.titlebar-spacer {
-			&[type="pre-tabs"] {
-				margin-inline-start: var(--tab-distance-from-left-window-border-maximized) !important;
-			}
 		}
 	}
 
@@ -210,6 +200,9 @@
 
 		// Create the illusion that tabs is part of the main toolbar
 		margin-block-end: -1px !important;
+		
+		// Counteract the spacing in the tab textures to ensure there is no gap
+		margin-top: -1px !important;
 	}
 
 	#tabbrowser-arrowscrollbox {

@@ -13,7 +13,7 @@
 	--protocol-background-color: var(--toolbar-field-background-color);
 	--protocol-color:			 var(--toolbar-field-color);
 
-	--urlbar-border: var(--toolbarbutton-border-color-normal);
+	--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
 	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
 	--urlbar-verified-proxystate-valid: 		   rgb(10, 155, 38);
 	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
@@ -488,7 +488,7 @@
 #urlbar-container,
 #search-container {
 	padding: 0 !important;
-	box-shadow: 0 0 0 1px var(--toolbarbutton-inner-border-color-normal) !important;
+	box-shadow: 0 0 0 1px var(--toolbarbutton-inner-border-color-normal, var(--default-toolbarbutton-inner-border-color-normal)) !important;
 	border-radius: var(--toolbarbutton-border-radius) !important;
 }
 
