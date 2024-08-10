@@ -2,7 +2,7 @@
 // @name        Geckium - Fork Compatibility Adjuster
 // @description Prevents forks from messing up Geckium by preventing breaking settings from being applied
 // @author      Dominic Hayes
-// @loadorder   2
+// @loadorder   3
 // @include		main
 // ==/UserScript==
 
@@ -68,7 +68,7 @@ class gkNCPAdj {
     }
 }
 if ((AppConstants.MOZ_APP_NAME == "firefox" || AppConstants.MOZ_APP_NAME == "firefox-esr") && (parseInt(Services.appinfo.version.split(".")[0]) <= 115)) {
-    if (window.matchMedia("(-moz-platform: windows-win10)").matches || isNCPatched) { // Only for Windows 10+
+    if (isWindows10() || isNCPatched) { // Only for Windows 10+
         window.addEventListener("load", gkNCPAdj.checkNCP);
     }
 }
@@ -92,7 +92,6 @@ class gkWaterfoxAdj {
 }
 if (AppConstants.MOZ_APP_NAME == "waterfox") {
     window.addEventListener("load", gkWaterfoxAdj.disableThemeCusto);
-    // Automatically change the titlebar when the setting changes
     const waterfoxObserver = {
         observe: function (subject, topic, data) {
             if (topic == "nsPref:changed") {
@@ -138,7 +137,6 @@ class gkRfoxAdj {
 }
 if (AppConstants.MOZ_APP_NAME == "r3dfox") {
     window.addEventListener("load", gkRfoxAdj.disableThemeCusto);
-    // Automatically change the titlebar when the setting changes
     const rfoxObserver = {
         observe: function (subject, topic, data) {
             if (topic == "nsPref:changed") {

@@ -4,9 +4,12 @@
 &:not([geckium-fortyseven]) {
     //Nuke tab fill as only Windows used it
     --default-theme-newtab: transparent !important;
-    #tabs-newtab-button::after,
-	#TabsToolbar #new-tab-button::after {
-        content: unset !important;
+    #tabs-newtab-button,
+	#TabsToolbar #new-tab-button {
+        &:hover::before,
+        &:hover:active::before {
+            background: var(--theme-newtab, var(--default-theme-newtab));
+        }
     }
 	
     // Use smol new tab button

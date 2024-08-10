@@ -13,14 +13,15 @@
 	--toolbarbutton-active-background: rgb(0, 0, 0, .05) !important; // Firefox's selected button background?
 	--toolbarbutton-outer-padding: 3px !important; // Firefox's toolbar button spacing
 
-	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal);
+	--toolbarbutton-shadow-normal: inset 0 0 0 1px var(--toolbarbutton-inner-border-color-normal, var(--default-toolbarbutton-inner-border-color-normal));
 	--toolbarbutton-shadow-hot:	0 2px 3px 0 rgba(140,140,140,.35),
-								inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot);
+								inset 0 0 0 1px var(--toolbarbutton-inner-border-color-hot, var(--default-toolbarbutton-inner-border-color-hot));
 	//--toolbarbutton-active-background: transparent !important;
 	--toolbarbutton-border-radius: 6px !important;
 	--toolbarbutton-disabled-opacity: 1 !important;
 	--toolbarbutton-icon-drop-shadow-color: var(--default-toolbarbutton-icon-drop-shadow-color);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color)) drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color));
+	--toolbarbutton-icon-drop-shadow: drop-shadow(0 0 1px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)))
+		drop-shadow(0 0 1.5px var(--toolbarbutton-icon-drop-shadow-color, var(--default-toolbarbutton-icon-drop-shadow-color)));
 	
 	&:not([style*="--toolbarbutton-icon-color"]) {
 		--toolbarbutton-icon-color: var(--default-toolbarbutton-icon-fill) !important;
@@ -259,7 +260,7 @@
 		align-items: center;
 		justify-content: center;
 		transition: all 150ms linear;
-		border: 1px solid var(--toolbarbutton-border-color-normal);
+		border: 1px solid var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
 		border-radius: var(--toolbarbutton-border-radius);
 		flex-shrink: 0 !important;
 
@@ -334,7 +335,7 @@
 		}
 
 		&:not([disabled]):hover {
-			border: 1px solid var(--toolbarbutton-border-color-hot);
+			border: 1px solid var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot));
 
 			&::before {
 				opacity: 1;
@@ -353,7 +354,7 @@
 		}
 		&:not([disabled]):active,
 		&:not([disabled])[open] {
-			border: 1px solid var(--toolbarbutton-border-color-active);
+			border: 1px solid var(--toolbarbutton-border-color-active, var(--default-toolbarbutton-border-color-active));
 			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
 						inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
 			transition: none !important;
@@ -664,14 +665,14 @@
 
 	#PlacesToolbarItems,
 	#personal-bookmarks /* Fix for Firefox ~120+ */ {
-		.bookmark-item {
+		toolbarbutton.bookmark-item {
 			&:not(.menu-iconic, .menuitem-iconic) {
 				margin-top: 0 !important;
 			}
 		}
 		gap: var(--personal-toolbar-gap);
 	}
-	.bookmark-item:not(menuitem) {
+	toolbarbutton.bookmark-item {
 		> .toolbarbutton-icon,
 		> .menu-iconic-icon {
 			width: 16px !important;
@@ -725,7 +726,6 @@
 		--navigation-buttons-separator: rgba(255,255,255,.2) !important;
 		
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
-		--bookmark-item-color-shadow: none !important;
 		
 		--inner-border-color: var(--chrtheme-toolbar, var(--default-nav-bar)) !important;
 		
@@ -833,7 +833,7 @@
 				color: var(--lwt-text-color) !important;
 			}
 
-			--urlbar-border: var(--toolbarbutton-border-color-normal) !important;
+			--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal)) !important;
 		}
 
 		// if FXChrome
@@ -858,20 +858,6 @@
 				--personal-toolbar: transparent !important;
 			}
 		}
-	}
-
-
-	/*
-		GTK+ SysTheme
-	*/
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
-		--toolbarbutton-texture: var(--nav-bar) !important;
-		--toolbarbutton-inner-border-color-normal: transparent;
-		--toolbarbutton-inner-border-color-hot: transparent;
-		--navigation-buttons-separator: transparent;
-
-		--personal-toolbar: var(--nav-bar) !important;
-		--bookmark-item-color: -moz-dialogtext !important;
 	}
 
 
@@ -921,12 +907,12 @@
 		}
 
 		// Pinned bookmarks
-		.bookmark-item:not(.subviewbutton, menuitem) {
+		toolbarbutton.bookmark-item {
 			appearance: toolbarbutton !important;
 		}
 		
 		// Because of a bug in Firefox on Linux, that surprisingly doesn't exist on non-Linux,
-		//  buttons are forcedly given a border despite any CSS, the button icon sizes of custom
+		//  buttons are forcedly given a border despite any CSS - the button icon sizes of custom
 		//  icons have to be forced.
 		@media (-moz-platform: linux) {
 			// Fix issue with extension icons getting cropped
