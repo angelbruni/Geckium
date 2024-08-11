@@ -2,7 +2,6 @@
 	//Classic (Default/Fallback)
 	// Titlebar
 	// TODO: Make EVERYTHING here start with --default... also just change how the --* vs --default* logic works, to be more Mozilla-like.
-	// TODO: Add compositorless inactive tab backgrounds
 	--default-titlebar-active: linear-gradient(
 		to bottom,
 		rgb(98,147,221),
@@ -74,7 +73,6 @@
 		--default-titlebar-background: rgb(29, 55, 103);
 
 		// Tabs
-        --default-inactive-tab-background: #252525; //TODO: Remove this, for native, as it should be the same as 1.x's
 		--default-selected-tab-background: linear-gradient(
 			to bottom,
 			#414141,

@@ -49,6 +49,17 @@
 		}
 	}
 
+	//Remake the current Linux menubar as adequately as possible
+	&[gktitnative="true"] {
+		#main-menubar {
+			& > menu {
+				&[open] {
+					border-bottom: 3px solid AccentColor !important;
+				}
+			}
+		}
+	}
+
 	&[gktitnative="false"] {
 		//Show the Google logo before the buttons if enabled
 		&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
