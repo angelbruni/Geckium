@@ -60,6 +60,9 @@
 	}
 
 	// Standard titlebars
+	&[gktitnative="false"] #titlebar {
+		color: var(--titlebar-foreground, var(--default-titlebar-foreground)) !important;
+	}
 	&:not([menubarvisible]) {
 		#tabbrowser-arrowscrollbox {
 			padding-top: var(--tab-distance-from-top);
@@ -73,6 +76,23 @@
 			}
 		}
 	}
+
+	// Menu bar
+	#toolbar-menubar {
+		text-shadow: unset !important;
+	}
+	#main-menubar {
+		z-index: 1; // Ensure it always overlaps vanillatitlebar
+		appearance: none !important;
+		background-color: unset !important;
+		color: inherit !important;
+		border-radius: unset !important;
+		
+		& > menu {
+			text-shadow: unset !important;
+		}
+	}
+	// NOTE: Non-native menubar styling is in _menu.scss
 
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic

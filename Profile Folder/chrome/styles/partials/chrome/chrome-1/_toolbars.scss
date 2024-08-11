@@ -40,26 +40,6 @@
 	--bookmark-item-color: var(--default-bookmark-item-color);
 
 	--placed-chevron-width: 15px;
-
-
-	/*
-		Menubar
-		TODO: Style menubar based on titlebar style/native, and move this to _titlebar.scss to enforce a blank template?
-			If not titlebar.scss, move this to menu.scss
-	*/
-	#toolbar-menubar 
-	#main-menubar > menu {
-		appearance: menuitem !important;
-
-		@media (-moz-platform: windows) {
-			text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
-		}
-	}
-	#toolbar-menubar {
-		#menubar-items {
-			border-radius: 4px !important;
-		}
-	}
 	
 
 	/*
