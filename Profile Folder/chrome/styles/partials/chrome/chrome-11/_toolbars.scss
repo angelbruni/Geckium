@@ -3,7 +3,7 @@
 
 	--nav-bar-height: 36px;
 
-	--toolbarbutton-radius: 5px;
+	--toolbarbutton-border-radius: 5px;
 	--toolbarbutton-width: var(--toolbarbutton-height);
 	--toolbarbutton-menu-width: var(--toolbarbutton-width);
 	--toolbarbutton-outer-padding: .5px !important;
@@ -142,15 +142,15 @@
 
 			/* bruni: Navigation buttons needs some rethinking. */
 			&#back-button {
-				border-top-right-radius: var(--toolbarbutton-radius) !important;
-				border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+				border-top-right-radius: var(--toolbarbutton-border-radius) !important;
+				border-bottom-right-radius: var(--toolbarbutton-border-radius) !important;
 				border-right: 1px solid var(--toolbarbutton-border-color-normal);
 
 				&::before,
 				&::after {
-					border-top-right-radius: var(--toolbarbutton-radius) !important;
+					border-top-right-radius: var(--toolbarbutton-border-radius) !important;
 					border-bottom-right-radius: var(
-						--toolbarbutton-radius
+						--toolbarbutton-border-radius
 					) !important;
 				}
 
@@ -161,15 +161,15 @@
 
 			&#forward-button {
 				margin-inline-start: var(--toolbarbutton-outer-padding) !important;
-				border-top-left-radius: var(--toolbarbutton-radius) !important;
-				border-bottom-left-radius: var(--toolbarbutton-radius) !important;
+				border-top-left-radius: var(--toolbarbutton-border-radius) !important;
+				border-bottom-left-radius: var(--toolbarbutton-border-radius) !important;
 				border-left: 1px solid var(--toolbarbutton-border-color-normal);
 
 				&::before,
 				&::after {
-					border-top-left-radius: var(--toolbarbutton-radius) !important;
+					border-top-left-radius: var(--toolbarbutton-border-radius) !important;
 					border-bottom-left-radius: var(
-						--toolbarbutton-radius
+						--toolbarbutton-border-radius
 					) !important;
 				}
 			}

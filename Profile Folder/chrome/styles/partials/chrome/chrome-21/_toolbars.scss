@@ -1,7 +1,7 @@
 & {
 	--toolbar-start-end-padding: 4px;
 
-	--toolbarbutton-radius: 3px;
+	--toolbarbutton-border-radius: 3px;
 	--toolbarbutton-width: 27px;
 	--toolbarbutton-height: 27px;
 
@@ -18,7 +18,7 @@
 
 			&::before {
 				background: rgba(255,255,255,1) !important;
-				border-radius: var(--toolbarbutton-radius) !important;
+				border-radius: var(--toolbarbutton-border-radius) !important;
 			}
 
 			&:not([disabled]) {
@@ -213,7 +213,7 @@
 		.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 			position: relative;
 			overflow: hidden;
-			border-radius: var(--toolbarbutton-radius) !important;
+			border-radius: var(--toolbarbutton-border-radius) !important;
 			box-shadow: var(--personal-toolbar-item-shadow);
 			border: 1px solid transparent;
 			box-sizing: border-box;
