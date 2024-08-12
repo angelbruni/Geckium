@@ -95,7 +95,7 @@ const eras = {
         }
     },
     6: {
-        name: "6",
+        name: "6.0.453",
         basedOnVersion: "6.0.453.1",
         year: 2010,
         number: "six",
