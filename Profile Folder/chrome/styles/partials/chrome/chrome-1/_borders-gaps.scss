@@ -13,7 +13,7 @@
 
 	//--inner-border-color overrides (requires Windows border)
 	&[gkthemed]:not([gkchrthemed]) {
-		// --inner-border-color: var(--nav-bar);
+		// --inner-border-color: var(--gktoolbar-bgcolor);
 	}
 	&[gkthemed][gkchrthemed] {
 		--inner-border-color: var(--chrtheme-toolbar);

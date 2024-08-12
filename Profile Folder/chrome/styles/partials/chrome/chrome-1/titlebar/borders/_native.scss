@@ -17,3 +17,20 @@
     --tab-distance-from-top: 0;
     --tab-distance-from-top-maximised: 0;
 }
+
+
+
+&[gktitnative="false"] {
+	@import "../tools/vanillatitlebar";
+
+    // Flatten the titlebar when on GTK+
+    &[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+        #navigator-toolbox,
+        #titlebar {
+            background: ActiveCaption !important;
+            &:-moz-window-inactive {
+                background: InactiveCaption !important;
+            }
+        }
+    }
+}

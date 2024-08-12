@@ -669,8 +669,6 @@
 		
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
 		
-		--inner-border-color: var(--chrtheme-toolbar, var(--default-nav-bar)) !important;
-		
 		&[gkchrthemehastoolbar] {
 			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
 			--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
@@ -696,8 +694,6 @@
 			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
 			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-
-			// --inner-border-color: var(--nav-bar) !important;
 
 			&[personalbar="newtab"] {
 				--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;

@@ -101,7 +101,8 @@
 
 		//Shared titlebar button code
 		.titlebar-button {
-			background: transparent !important;
+			background: unset !important;
+			background-color: transparent !important;
 			border-radius: 0 !important;
 			border-left: var(--titlebutton-border-outer) !important;
 			border-bottom: var(--titlebutton-border-outer) !important;
@@ -119,13 +120,13 @@
 
 			//Hover and pressed states
 			&:not([disabled]):hover {
-				background: rgba(255, 255, 255, 0.3) !important;
+				background-color: rgba(255, 255, 255, 0.3) !important;
 				image {
 					opacity: 1 !important;
 				}
 			}
 			&:not([disabled]):hover:active {
-				background: rgba(255, 255, 255, 0.2) !important;
+				background-color: rgba(255, 255, 255, 0.2) !important;
 				transition: none;
 			}
 		}
@@ -160,11 +161,11 @@
 			order: 2 !important;
 
 			&:not([disabled]):hover {
-				background: rgb(217, 76, 74) !important;
+				background-color: rgb(217, 76, 74) !important;
 			}
 
 			&:not([disabled]):hover:active {
-				background: rgb(213, 58, 63) !important;
+				background-color: rgb(213, 58, 63) !important;
 			}
 		}
 		&:-moz-locale-dir(rtl) { //Swap sides in RTL
@@ -227,6 +228,11 @@
 			.titlebar-buttonbox {
 				box-shadow: unset;
 			}
+			.titlebar-button {
+				&::before { //Linux didn't have this until 17/18
+					content: unset !important;
+				}
+			}
 			.titlebar-max,
 			.titlebar-restore,
 			.titlebar-min {
@@ -255,11 +261,8 @@
 				box-shadow: unset;
 				list-style-image: unset !important;
 	
-				&:hover, &:active {
-					background: unset;
-				}
-				&:before {
-					content: unset; // Glen cannot be themed.
+				&:not([disabled]):hover, &:not([disabled]):hover:active {
+					background-color: unset !important;
 				}
 			}
 			.titlebar-max,
