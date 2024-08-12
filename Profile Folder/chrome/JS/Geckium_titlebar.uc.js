@@ -111,7 +111,7 @@ class gkTitlebars {
                     macos: "classic"
                 }
             },
-            11: {
+            6: {
                 systheme: {
                     linux: "gtk",
                     win: "classic",
@@ -145,7 +145,7 @@ class gkTitlebars {
                     macos: "classic"
                 }
             },
-            11: {
+            6: {
                 systheme: {
                     linux: "gtk",
                     win: "classic",
