@@ -1,26 +1,26 @@
 & {
 	//Classic (Default/Fallback)
 	// Navbar
-	--toolbarbutton-border-color-normal: transparent;
-	--toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
-	--toolbarbutton-border-color-hot: rgb(172, 172, 172);
-	--toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
-	--toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
+	--default-toolbarbutton-border-color-normal: transparent;
+	--default-toolbarbutton-texture-hot: rgb(255, 255, 255, 80%);
+	--default-toolbarbutton-border-color-hot: rgb(172, 172, 172);
+	--default-toolbarbutton-shadow-normal: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
+	--default-toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
+	--default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
 	--default-toolbarbutton-icon-fill: rgb(87, 102, 128);
 
     @media (prefers-color-scheme: dark) {
 		// Navbar
 		--default-toolbarbutton-icon-fill: rgb(166,177,196);
-		--toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
-		--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
+		--default-toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
+		--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
 	}
 
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Navbar
-		--toolbarbutton-border-color-hot: unset;
+		--default-toolbarbutton-border-color-hot: unset;
 		--default-toolbarbutton-icon-fill: -moz-dialogtext;
 	}
 
@@ -66,9 +66,9 @@
 				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, #333)),
 				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, #333))
 			);
-			--personal-toolbar-border-bottom: rgb(103, 103, 103);
+			--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
 			&:-moz-window-inactive {
-				--personal-toolbar-border-bottom: rgb(123, 123, 123);
+				--default-personal-toolbar-border-bottom: rgb(123, 123, 123);
 			}
 
 			@media (prefers-color-scheme: dark) {
@@ -98,7 +98,7 @@
 					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333)),
 					color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)))
 				);
-				--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
+				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
 			}
 
 			&[privatebrowsingmode="temporary"] {
