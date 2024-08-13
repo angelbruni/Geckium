@@ -198,13 +198,12 @@
 		overflow: visible !important;
 	}
 
-	// Toolbar buttons
-	:not(.widget-overflow-list, [geckium-eleven]) > .toolbarbutton-1:not(
+	// Generic toolbarbuttons
+	:not(.widget-overflow-list) > .toolbarbutton-1:not(
 		#fxa-toolbar-menu-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
-		// Generic toolbarbuttons
 		position: relative; // Makes pseudos work properly
 		padding: 0 !important;
 		background: var(--toolbarbutton-texture, var(--default-toolbarbutton-texture)) !important;
@@ -330,8 +329,14 @@
 				filter: unset;
 			}
 		}
+	}
 
-		// Special toolbarbuttons
+	// Special toolbarbuttons
+	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
 		&#unified-extensions-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
@@ -372,7 +377,14 @@
 				}
 			}
 		}
-
+	}
+	
+	// Misc. toolbar button tweaks
+	:not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
 		// Overflow toolbar button styling
 		&#nav-bar-overflow-button {
 			width: 18px !important;
@@ -478,11 +490,6 @@
 		align-items: center;
 		margin-top: -1px;
 	}
-
-	
-	// (move this to urlbar-searchbar) go-button-box
-	// NOTE: the border around urlbar is urlbar-searchbar.scss
-
 
 	// Combined toolbarbuttons
 	.toolbaritem-combined-buttons {
@@ -802,7 +809,7 @@
 	/*
 		GTK+ SysTheme - exclusive toolbarbutton styling
 	*/
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
 		// Toolbar buttons
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
