@@ -1,3 +1,13 @@
-& {
-    @import "titlebar/classic";
+// Updated titlebar styles
+&[chromemargin]:not([macOSNativeFullscreen]) {
+    // Chromium OS
+    &[gktitstyle="chromiumos"] {
+        @import "titlebar/borders/chromiumos";
+    }
+}
+
+// New titlebutton styles
+// Chromium OS
+&[gktitbuttons="chromiumos"] {
+    @import "titlebar/buttons/chromiumos";
 }
