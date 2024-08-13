@@ -169,6 +169,33 @@ class gkGTK {
 				`AccentColor`
 			);
 		}
+        //Post-6.0 toolbar icon fill colour
+        colorDiv.style.backgroundColor="-moz-dialogtext";
+		var iconfill = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+        iconfill = ColorUtils.ColorToHSL(iconfill);
+        console.log(iconfill);
+        if (iconfill[1] > 10) {
+            // Use the toolbar colour if it isn't a shade of grey
+            //  NOTE: This isn't official behaviour, nor is the light shade on dark mode
+            //   - I just thought it would be better to have these additions in place alongside.
+            document.documentElement.style.setProperty(
+				`--gtk-toolbarbutton-new-icon-fill`,
+				`-moz-dialogtext`
+			);
+        } else {
+            // Use a hardcoded grey depending on lightness
+            if (iconfill[2] >= 50) {
+                document.documentElement.style.setProperty(
+                    `--gtk-toolbarbutton-new-icon-fill`,
+                    `rgb(204, 204, 204)`
+                );
+            } else {
+                document.documentElement.style.setProperty(
+                    `--gtk-toolbarbutton-new-icon-fill`,
+                    `rgb(111, 111, 111)`
+                );
+            }
+        }
 		document.head.removeChild(colorDiv);
 	}
 
@@ -183,6 +210,7 @@ class gkGTK {
 		document.documentElement.style.removeProperty(`--incognito-inactive-shine`);
 		document.documentElement.style.removeProperty(`--inactivecaption-shine`);
 		document.documentElement.style.removeProperty(`--gtk-toolbarbutton-icon-fill`);
+		document.documentElement.style.removeProperty(`--gtk-toolbarbutton-new-icon-fill`);
     }
 
 	static apply() {

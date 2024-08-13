@@ -24,6 +24,12 @@
 		--default-bookmark-item-color: white;
 	}
 
+	// GTK+
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+		// Navbar
+		--default-toolbarbutton-icon-fill: var(--gtk-toolbarbutton-new-icon-fill);
+	}
+
 	&:not([geckium-sixtyeight]) {
 		// Mac OS X
 		&[gksystheme="macosx"],

@@ -20,8 +20,7 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Navbar
-		--default-toolbarbutton-border-color-hot: unset;
-		--default-toolbarbutton-icon-fill: -moz-dialogtext;
+		--default-toolbarbutton-icon-fill: color-mix(in srgb, AccentColor 28%, -moz-dialogtext);
 	}
 
 	&:not([geckium-sixtyeight]) {
@@ -32,9 +31,9 @@
 				--macosx-window-color: #ededed;
 			}
 			@media (prefers-color-scheme: dark) {
-				--macosx-window-color: #303030;
+				--macosx-window-color: #242424;
 				&:-moz-window-inactive {
-					--macosx-window-color: #242424;
+					--macosx-window-color: #060606;
 				}
 			}
 		}
@@ -75,36 +74,45 @@
 				// Tabs
 				--default-inactive-tab-background: linear-gradient(
 					to bottom,
-					#242424,
+					#232423,
 					#171717
 				);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333))
+					color-mix(in srgb, silver 23%, color-mix(in srgb, silver 7%, #333)),
+					color-mix(in srgb, silver 20%, #333)
 				);
 
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333))
+					color-mix(in srgb, silver 20%, #333),
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, #333))
 				);
 				--default-toolbarbutton-icon-fill: white;
 
-				// Personal Toolbar
+				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)))
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, #333)),
+					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, #333))
 				);
-				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
+				--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
+				&:-moz-window-inactive {
+					--default-personal-toolbar-border-bottom: rgb(83, 83, 83);
+				}
 			}
 
 			&[privatebrowsingmode="temporary"] {
 				--macosx-window-color: #536c8c;
 				&:-moz-window-inactive {
 					--macosx-window-color: #86898d;
+				}
+				@media (prefers-color-scheme: dark) {
+					--macosx-window-color: #2A3747;
+					&:-moz-window-inactive {
+						--macosx-window-color: #1E1E20;
+					}
 				}
 			}
 		}

@@ -1,0 +1,205 @@
+& { //TODO: When MD2 is added, ensure this code doesn't run on it
+	//Give the tabs/Incognito/pfp the appropriate offset
+	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+		#private-browsing-indicator-with-label {
+			order: -1 !important; // Force to left
+		}
+		.titlebar-spacer[type="pre-tabs"] {
+			order: -2 !important; // Force to left of Incognito
+		}
+		&:not([privatebrowsingmode="temporary"]) {
+			#TabsToolbar-customization-target {
+				margin-inline-start: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		// Incognito can't use this^ spacing, so we need to set it separately for Incognito
+		&[privatebrowsingmode="temporary"] {
+			#private-browsing-indicator-with-label {
+				margin-inline-start: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		#fxa-toolbar-menu-button,
+		.private-browsing-indicator-icon {
+			margin-inline-start: 1px !important;
+			margin-inline-end: var(--tab-distance-from-pfp) !important;
+		}
+	}
+	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+		#private-browsing-indicator-with-label {
+			order: 999 !important; // Force to right
+			transform: scaleX(-1);
+		}
+		.titlebar-spacer[type="post-tabs"] {
+			order: 1000 !important; // Force to right of Incognito
+		}
+		&:not([privatebrowsingmode="temporary"]) {
+			#TabsToolbar-customization-target {
+				margin-inline-end: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		&[privatebrowsingmode="temporary"] {
+			#private-browsing-indicator-with-label {
+				margin-inline-end: var(--tab-distance-from-toolbar-edge);
+			}
+		}
+		#fxa-toolbar-menu-button,
+		.private-browsing-indicator-icon {
+			margin-inline-start: var(--tab-distance-from-pfp) !important;
+			margin-inline-end: 1px !important;
+		}
+	}
+
+	//Remake the current Linux menubar as adequately as possible
+	&[gktitnative="true"] {
+		#main-menubar {
+			& > menu {
+				&[open] {
+					border-bottom: 3px solid AccentColor !important;
+				}
+			}
+		}
+	}
+
+	&[gktitnative="false"] {
+		//Show the Google logo before the buttons if enabled
+		&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+				.titlebar-buttonbox-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::before {
+						content: unset !important;
+					}
+				}
+			}
+			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+				.titlebar-buttonbox-container::after {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-start: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::after {
+						content: unset !important;
+					}
+				}
+			}
+		}
+		
+		//Titlebar button box
+		.titlebar-buttonbox-container {
+			align-items: unset !important;
+			margin-block-start: 2px; // top margin
+		}
+		// Change margin depending on buttons location
+		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+			.titlebar-buttonbox-container {
+				margin-inline-end: 3px; // right margin
+			}
+		}
+		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+			.titlebar-buttonbox-container {
+				margin-inline-start: 3px; // left margin
+			}
+		}
+
+		.titlebar-buttonbox {
+			align-items: unset !important;
+			gap: 2px !important;
+		}
+		&:not([geckium-twentyone]) .titlebar-button {
+			&::before { //Linux DOES NOT have its buttons filled until ~17
+				content: unset !important;
+			}
+		}
+
+		//Shared titlebar button code
+		.titlebar-button {
+			background: linear-gradient(
+				to bottom,
+				rgba(255,255,255,.23),
+				rgba(209,209,209,.23)
+			) !important;
+			border-radius: 2.5px !important;
+			border: 1px solid rgba(25,25,25,.52) !important;
+			box-shadow: inset 0 0 0 1px rgba(255,255,240,.1);
+			width: 24px;
+			height: 18px;
+			transition: border-color 100ms linear,
+				box-shadow 100ms linear; //hover-fade animation
+
+			//Hover and pressed states
+			&:not([disabled]):hover {
+				border-color: rgba(26,26,26,.77) !important;
+				box-shadow: inset 0 0 0 1px rgba(251,251,241,.1);
+			}
+			&:not([disabled]):hover:active {
+				border-color: rgba(0,0,0,.61) !important;
+				box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+				transition: none;
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/close.svg) !important; // Mozilla bias moment #idk
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/maximize.svg) !important;
+		}
+		
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/restore.svg) !important;
+		}
+
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/minimize.svg) !important;
+		}
+
+		//macOS and Windows 8-: Both OSs work VERY differently regarding their titlebar buttons - on Firefox's side, they are not
+		// displayed whatsoever, likely because of macOS's server-side buttons API, and AERO Glass, respectively, meaning we need
+		// to force them to appear, like we did in _windows.scss
+		@media (-moz-platform: macos) or (-moz-platform: windows-win7) or (-moz-platform: windows-win8) {
+			.titlebar-close,
+			.titlebar-max,
+			.titlebar-restore,
+			.titlebar-min {
+				display: flex !important;
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-max {
+					display: none !important;
+				}
+			}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+				.titlebar-restore {
+					display: none !important;
+				}
+			}
+		}
+
+		//macOS quirks
+		// enforce macOS's button order
+		@media (-moz-platform: macos) {
+			.titlebar-close {
+				order: 0 !important;
+			}
+			.titlebar-max,
+			.titlebar-restore {
+				order: 2 !important;
+			}
+			.titlebar-min {
+				order: 1 !important;
+			}
+		}
+	}
+}
