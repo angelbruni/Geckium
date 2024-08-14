@@ -33,23 +33,24 @@
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 // Use the custom titlebar background in Chromium OS's SysTheme
-&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed]) {
-	&[windowtype="navigator:browser"] > body {
-		background: #C3C3C4 !important;
-	}
-	&:-moz-window-inactive[windowtype="navigator:browser"] > body {
-		background: #CDCDCE !important;
+&[gksystheme="chromiumos"] {
+	--default-titlebar-active: #C3C3C4;
+	--default-titlebar-inactive: #CDCDCE;
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: #3A3A3B;
+		--default-titlebar-inactive: #444446;
 	}
 	@media (-moz-platform: linux) {
-		&[is117Plus][windowtype="navigator:browser"] > body,
-		&[is117Plus]:-moz-window-inactive[windowtype="navigator:browser"] > body {
-			background: rgba(255, 255, 255, 0.2) !important;
+		&[is117Plus] {
+			--default-titlebar-active: rgba(255, 255, 255, 0.2);
+			--default-titlebar-inactive: rgba(255, 255, 255, 0.2);
 			@media (prefers-color-scheme: dark) {
-				background: rgba(0, 0, 0, 0.2) !important;
+				--default-titlebar-active: rgba(0, 0, 0, 0.2);
+				--default-titlebar-inactive: rgba(0, 0, 0, 0.2);
 			}
 		}
 	}
-} // TODO: also apply when in theme with native titlebar
+}
 
 // Visuals: Maximised / Fullscreen
 &[sizemode="maximized"],
