@@ -15,30 +15,52 @@
 }
 
 & {
-    --titlebar-border-radius: 4px;
+    --titlebar-border-radius: 3px;
 	@media (-moz-platform: macos) {
 		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
 	}
-
+	--tab-distance-from-top: 10px;
+	--tab-distance-from-top-maximised: 3px;
+	
 	@import "../../../chrome-1/titlebar/tools/bodytitlebar";
 	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-	--theme-box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
+	--theme-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
 	
-	// Visuals
+// Visuals
+&[windowtype="navigator:browser"] > body {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+// Use the custom titlebar background in Chromium OS's SysTheme
+&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed]) {
 	&[windowtype="navigator:browser"] > body {
-		box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
-		border-top: 1px solid rgb(89, 89, 89);
-		border-left: 1px solid rgb(89, 89, 89);
-		border-bottom: 1px solid rgb(68, 68, 68);
-		border-right: 1px solid rgb(68, 68, 68);
+		background: #C3C3C4 !important;
+	}
+	&:-moz-window-inactive[windowtype="navigator:browser"] > body {
+		background: #CDCDCE !important;
+	}
+	@media (-moz-platform: linux) {
+		&[is117Plus][windowtype="navigator:browser"] > body,
+		&[is117Plus]:-moz-window-inactive[windowtype="navigator:browser"] > body {
+			background: rgba(255, 255, 255, 0.2) !important;
+			@media (prefers-color-scheme: dark) {
+				background: rgba(0, 0, 0, 0.2) !important;
+			}
+		}
+	}
+} // TODO: also apply when in theme with native titlebar
+
+// Visuals: Maximised / Fullscreen
+&[sizemode="maximized"],
+&[sizemode="fullscreen"] {
+	&[windowtype="navigator:browser"] > body {
+		border: 0;
+		border-radius: 0;
+		box-shadow: unset;
 	}
 
-	// Visuals: Maximised / Fullscreen
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		&[windowtype="navigator:browser"] > body {
-			border: 0;
-			border-radius: 0;
-		}
+	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed])[windowtype="navigator:browser"] > body {
+		background: black !important;
 	}
 }

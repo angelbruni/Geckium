@@ -22,8 +22,8 @@
     // else if chrtheme
 	&[gkthemed][gkchrthemed] {
 		--theme-newtab: var(--chrtheme-theme-window-control-background,
-                        var(--chrtheme-control-background,
-                        var(--chrtheme-button-background)
-                        var(--default-theme-newtab))) !important;
+                    var(--chrtheme-control-background,
+                    var(--chrtheme-button-background,
+                    var(--default-theme-newtab)))) !important;
 	}
 }

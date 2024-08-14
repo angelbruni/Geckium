@@ -224,6 +224,10 @@
 			&#main-window {
 				background: rgba(0,0,0,.002) !important;
 			}
+			// Stop Light and Dark from getting custom Firefox titlebars
+			&[is117Plus]#main-window {
+				appearance: none !important;
+			}
 			// Counteract exclusive menubar padding
 			#toolbar-menubar .titlebar-buttonbox-container {
 				margin-block-start: calc(var(--titlebar-border-radius) - 3px); // top margin
