@@ -1,20 +1,20 @@
 & {
 	//Classic (Default/Fallback)
 	// Navbar
-	--toolbarbutton-border-color-hot: rgb(134, 134, 134);
-	--toolbarbutton-border-color-active: rgb(125, 125, 125);
-	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
+	--default-toolbarbutton-border-color-hot: rgb(134, 134, 134);
+	--default-toolbarbutton-border-color-active: rgb(125, 125, 125);
+	--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
 								inset 0 1px 2px rgb(255, 255, 255, 75%);
-	--toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	--default-toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 	--default-toolbarbutton-icon-fill: rgb(111, 111, 111);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
+	--default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
 
 	// Personal Toolbar (Bookmarks)
-	--personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
-	--personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
+	--default-personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
+	--default-personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
 	--default-bookmark-item-color: #000000;
-	--bookmark-item-hover-color: #062d75;
-	--personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
+	--default-bookmark-item-hover-color: #062d75;
+	--default-personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
 
     @media (prefers-color-scheme: dark) {
 		// Navbar
@@ -62,12 +62,12 @@
 				#d8d7d7,
 				#d4d5d4
 			);
-			--personal-toolbar-border-bottom: #7a7a7a;
+			--default-personal-toolbar-border-bottom: #7a7a7a;
 			&:-moz-window-inactive {
-				--personal-toolbar-border-bottom: #7a7a7a;
+				--default-personal-toolbar-border-bottom: #7a7a7a;
 			}
 			--default-bookmark-item-color: black;
-			--bookmark-item-hover-color: black;
+			--default-bookmark-item-hover-color: black;
 
 			@media (prefers-color-scheme: dark) { //TODO
 				// Tabs
@@ -96,7 +96,7 @@
 					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333)),
 					color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)))
 				);
-				--personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
+				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
 			}
 
 			&[privatebrowsingmode="temporary"] {
@@ -141,7 +141,7 @@
 
 			// Personal Toolbar (Bookmarks)
 			--default-personal-toolbar: linear-gradient(to bottom, #d7d7d8, #d2d2d4);
-			--personal-toolbar-border-bottom: #aaaaab;
+			--default-personal-toolbar-border-bottom: #aaaaab;
 
 			@media (prefers-color-scheme: dark) { //TODO
 				// Titlebar
@@ -174,7 +174,7 @@
 
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(to bottom, #d7d7d8, #d2d2d4);
-				--personal-toolbar-border-bottom: #aaaaab;
+				--default-personal-toolbar-border-bottom: #aaaaab;
 			}
 
 			&[privatebrowsingmode="temporary"] {
