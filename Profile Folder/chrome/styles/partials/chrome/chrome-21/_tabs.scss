@@ -1,10 +1,6 @@
 & {
 	--tab-width: 192px;
-	--tab-height: 29px;
-	--tab-sides-width: 21px;
-	--tab-inner-margin-start: 22px;
-	--tab-content-y-from-top: 1px;
-	--tab-gap-between: -28px;
+	--tab-inner-margin-start: 16px;
 
 	--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_left.png");
 	--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_left.png");
@@ -20,9 +16,8 @@
 
 	--tab-gap-between-favicon-and-title: 4px;
 
-	--tab-close-button-margin-inline-end: -6px;
+	--tab-close-button-margin-inline-end: 0;
 
-	--newtab-distance-from-tabs: 17px;
 	--newtab-width: 34px;
 
     --default-theme-newtab: var(--inactive-tab-background, var(--default-inactive-tab-background)) !important;

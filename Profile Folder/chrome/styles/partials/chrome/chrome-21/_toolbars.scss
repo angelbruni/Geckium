@@ -25,12 +25,12 @@
 				&:hover {
 					border-top-color: color-mix(
 						in srgb,
-						var(--toolbarbutton-border-color-hot) 30%,
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
 						white
 					) !important;
 					border-bottom-color: color-mix(
 						in srgb,
-						var(--toolbarbutton-border-color-hot) 80%,
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 80%,
 						black
 					) !important;
 					box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
@@ -55,7 +55,8 @@
 					box-shadow: 0 1px 0 0 transparent,
 						inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
 					border-color: var(
-						--toolbarbutton-border-color-active
+						--toolbarbutton-border-color-active,
+						var(--default-toolbarbutton-border-color-active)
 					) !important;
 				}
 			}
@@ -78,26 +79,6 @@
 		}
 	}
 
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		#fxa-toolbar-menu-button {
-			margin-inline-start: 8px !important;
-			margin-inline-end: -2px !important;
-
-			.toolbarbutton-badge-stack {
-				margin-block-end: 10px;
-			}
-		}
-	}
-
-	#fxa-toolbar-menu-button {
-		margin-inline-end: -4px !important;
-		
-		.toolbarbutton-badge-stack {
-			margin-block-end: 10px;
-		}
-	}
-
 	//&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
 			> * {
@@ -112,7 +93,7 @@
 			position: relative;
 			overflow: hidden;
 			border-radius: var(--toolbarbutton-border-radius) !important;
-			box-shadow: var(--personal-toolbar-item-shadow);
+			box-shadow: var(--personal-toolbar-item-shadow, var(--default-personal-toolbar-item-shadow));
 			border: 1px solid transparent;
 			box-sizing: border-box;
 			transition: none !important;
@@ -122,25 +103,8 @@
 				border: 1px solid rgb(176, 176, 176);
 				border-top-color: rgb(205, 205, 204) !important;
 				border-bottom-color: rgb(144, 144, 144) !important;
-				color: var(--bookmark-item-hover-color) !important;
+				color: var(--bookmark-item-hover-color, var(--default-bookmark-item-hover-color)) !important;
 				transition: all 150ms linear !important;
-		
-				&::before {
-					opacity: 1;
-					transition: all 150ms linear !important;
-				}
-			}
-		
-			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				height: 1px;
-				background: rgb(255, 255, 255, 80%);
-				transition: none !important;
-				opacity: 0;
 			}
 		}
 	}
