@@ -69,34 +69,40 @@
 			--default-bookmark-item-color: black;
 			--default-bookmark-item-hover-color: black;
 
-			@media (prefers-color-scheme: dark) { //TODO
+			@media (prefers-color-scheme: dark) {
 				// Tabs
 				--default-inactive-tab-background: linear-gradient(
 					to bottom,
-					#242424,
-					#171717
+					#3D3D3D,
+					#303030
 				);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 10%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333))
+					#666666,
+					#525252
 				);
 
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333))
+					#525252,
+					#404040
 				);
-				--default-toolbarbutton-icon-fill: white;
+				// Navbar
+				--default-toolbarbutton-icon-fill: #C7C7C7; // Mac OS X Chrome reverted to normal colouring
 
-				// Personal Toolbar
+				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, black 8%, color-mix(in srgb, #464646 70%, #333)),
-					color-mix(in srgb, black 4%, color-mix(in srgb, white 5%, color-mix(in srgb, #464646 70%, #333)))
+					#404040,
+					#383838
 				);
-				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, #333);
+				--default-personal-toolbar-border-bottom: #636363;
+				&:-moz-window-inactive {
+					--default-personal-toolbar-border-bottom: #636363;
+				}
+				--default-bookmark-item-color: white;
+				--default-bookmark-item-hover-color: white;
 			}
 
 			&[privatebrowsingmode="temporary"] {
@@ -104,13 +110,18 @@
 				&:-moz-window-inactive {
 					--macosx-window-color: #86898d;
 				}
+				@media (prefers-color-scheme: dark) {
+					--macosx-window-color: #2A3747;
+					&:-moz-window-inactive {
+						--macosx-window-color: #4F5154;
+					}
+				}
 			}
 		}
 
 		// Chromium OS
 		&[gksystheme="chromiumos"] {
 			// Titlebar
-			// TODO: Check if inactive compositorless tab background changed
 			--default-titlebar-active: linear-gradient(
 				to bottom,
 				#8f8f8f,
@@ -130,7 +141,6 @@
 				#eaeaeb,
 				#e3e3e4
 			);
-			--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
 
 			// Navbar
 			--default-nav-bar: linear-gradient(
@@ -143,38 +153,37 @@
 			--default-personal-toolbar: linear-gradient(to bottom, #d7d7d8, #d2d2d4);
 			--default-personal-toolbar-border-bottom: #aaaaab;
 
-			@media (prefers-color-scheme: dark) { //TODO
+			@media (prefers-color-scheme: dark) {
 				// Titlebar
 				--default-titlebar-active: linear-gradient(
 					to bottom,
-					#8f8f8f,
-					#6d6d6d 40px
+					#707070,
+					#4f4f4f 40px
 				);
 				--default-titlebar-inactive: linear-gradient(
 					to bottom,
-					#c1c1c1,
-					#b0b0b0 40px
+					#a3a3a3,
+					#919191 40px
 				);
 
 				// Tabs
-				--default-inactive-tab-background: rgb(212, 212, 212, 0.8);
+				--default-inactive-tab-background: rgb(22, 22, 22, 0.8);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					#eaeaeb,
-					#e3e3e4
+					#383839,
+					#303031
 				);
-				--default-tab-glare: rgb(211, 217, 225, 0.45); //TODO
 
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					#e3e3e4,
-					#d7d7d8
+					#303031,
+					#262627
 				);
 
 				// Personal Toolbar (Bookmarks)
-				--default-personal-toolbar: linear-gradient(to bottom, #d7d7d8, #d2d2d4);
-				--default-personal-toolbar-border-bottom: #aaaaab;
+				--default-personal-toolbar: linear-gradient(to bottom, #262627, #212121);
+				--default-personal-toolbar-border-bottom: #363636;
 			}
 
 			&[privatebrowsingmode="temporary"] {
@@ -190,7 +199,20 @@
 					#7e8b9c 40px
 				);
 				--default-titlebar-background: #415368;
-				// TODO: dark
+				@media (prefers-color-scheme: dark) {
+					// Titlebar
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						#232E38,
+						#212B35 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						#667685,
+						#525F6B 40px
+					);
+					--default-titlebar-background: #212B35;
+				}
 			}
 		}
 	}
