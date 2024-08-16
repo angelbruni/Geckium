@@ -7,21 +7,22 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const versionIteration = 2;
+const configIteration = 2;
 
 (async () => {
     let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
     let iter = gkPrefUtils.tryGet("Geckium.version.iteration").int;
-    if (ver !== await gkUpdater.getVersion() || iter < versionIteration) {
+    let verMismatch = (ver !== await gkUpdater.getVersion());
+    if (verMismatch || iter < configIteration) {
         console.warn("MISMATCHED VERSION OR ITERATION! Updating...");
         
         updateSettings(iter);
 		gkPrefUtils.set("Geckium.version.current").string(await gkUpdater.getVersion());
-		_ucUtils.restart(true);
+		_ucUtils.restart(verMismatch); // Don't clear cache unless Geckium itself was updated
     }
     if (gkPrefUtils.tryGet("toolkit.legacyUserProfileCustomizations.stylesheets").bool == false) {
 		gkPrefUtils.set("toolkit.legacyUserProfileCustomizations.stylesheets").bool(true);		// Ensure they're ALWAYS on
-		_ucUtils.restart(true);
+		_ucUtils.restart(false); // No need to clear cache...?
 	}
 })();
 
@@ -56,7 +57,7 @@ function updateSettings(iteration) {
                     "type": 0
                 }
             }
-            `);																			    // Add default apps if the apps list is empty
+            `);																			    // Add initial app if the apps list is empty
 	    }
     }
     if (iteration < 2) {
@@ -64,6 +65,6 @@ function updateSettings(iteration) {
     }
     // put future settings changes down here as < 2, and so on.
 
-    if (iteration < versionIteration)
-        gkPrefUtils.set("Geckium.version.iteration").int(versionIteration);
+    if (iteration < configIteration)
+        gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
 }
