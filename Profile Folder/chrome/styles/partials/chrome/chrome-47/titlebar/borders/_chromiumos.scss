@@ -1,69 +1,11 @@
 //NOTE: This border style ignores native titlebars
-// TODO: both buttons and borders should be before 47 on 21
-	// 68's borders are just 47 with the border radii yeeted
-
-// Change offsets for Incognito/pfp when window's maximised
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-	#fxa-toolbar-menu-button,
-	#private-browsing-indicator-with-label {
-		height: calc(var(--tab-height) - 9px);
-
-		.toolbarbutton-badge-stack,
-		.private-browsing-indicator-icon {
-			margin-block-end: -4px; //offset for maximised window
-		}
-	}
-}
 
 & {
-    --titlebar-border-radius: 3px;
-	@media (-moz-platform: macos) {
-		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
-	}
-	--tab-distance-from-top: 10px;
-	--tab-distance-from-top-maximised: 3px;
-	
-	@import "../../../chrome-1/titlebar/tools/bodytitlebar";
-	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-	--theme-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--theme-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.341);
 }
 	
 // Visuals
 &[windowtype="navigator:browser"] > body {
 	border: 1px solid rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-}
-// Use the custom titlebar background in Chromium OS's SysTheme
-&[gksystheme="chromiumos"] {
-	--default-titlebar-active: #C3C3C4;
-	--default-titlebar-inactive: #CDCDCE;
-	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: #3A3A3B;
-		--default-titlebar-inactive: #444446;
-	}
-	@media (-moz-platform: linux) {
-		&[is117Plus] {
-			--default-titlebar-active: rgba(255, 255, 255, 0.2);
-			--default-titlebar-inactive: rgba(255, 255, 255, 0.2);
-			@media (prefers-color-scheme: dark) {
-				--default-titlebar-active: rgba(0, 0, 0, 0.2);
-				--default-titlebar-inactive: rgba(0, 0, 0, 0.2);
-			}
-		}
-	}
-}
-
-// Visuals: Maximised / Fullscreen
-&[sizemode="maximized"],
-&[sizemode="fullscreen"] {
-	&[windowtype="navigator:browser"] > body {
-		border: 0;
-		border-radius: 0;
-		box-shadow: unset;
-	}
-
-	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed])[windowtype="navigator:browser"] > body {
-		background: black !important;
-	}
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.341);
 }
