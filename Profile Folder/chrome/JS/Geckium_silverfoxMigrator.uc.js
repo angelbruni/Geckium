@@ -2,7 +2,7 @@
 // @name        Geckium - Silverfox Migrator
 // @author		Dominic Hayes, AngelBruni
 // @description	Converts Silverfox preferences to Geckium preferences.
-// @loadorder   3
+// @loadorder   2
 // @include		main
 // ==/UserScript==
 
@@ -250,7 +250,6 @@ class sfMigrator {
 		// Restart to update layout.
 		_ucUtils.restart(true);
 	}
-}
 
-if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool && sfMigrator.getWasSf)
-	sfMigrator.migrate();
+	// NOTE: The call for the migrator can be found at Geckium_wizard.uc.js.
+}
