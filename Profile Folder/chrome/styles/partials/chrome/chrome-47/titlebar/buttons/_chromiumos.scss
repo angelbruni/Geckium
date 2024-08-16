@@ -1,4 +1,4 @@
-&:not([geckium-sixtyeight]) {
+& { // TODO: Exclude in MD2
 	//Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label {
 		order: -1 !important; // Force to left
@@ -47,62 +47,47 @@
 	.titlebar-button {
 		background: transparent !important;
 		border-radius: 0 !important;
-		//transition: background-color 100ms linear; //hover-fade animation
+		transition: background-color 100ms linear; //hover-fade animation
 		display: flex !important;
 		height: 35px;
 		width: 35px;
-		color: inherit !important;
+		
+		//Hover and pressed states
+		&:not([disabled]):hover {
+			background: rgba(20, 20, 23, 0.078) !important;
+		}
+		&:not([disabled]):hover:active {
+			background: rgba(20, 20, 23, 0.141) !important;
+			transition: none;
+		}
 		
         &::before { //Chrome OS NEVER has its buttons filled
             content: unset !important;
         }
 	}
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
+	// Decrease button height when maximised
+	&:not([geckium-sixtyeight])[sizemode="maximized"],
+	&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
 		.titlebar-button {
-			height: 28px;
+			height: 27px;
 		}
 	}
 
 	//Close button
 	.titlebar-close {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close.png) !important;
-		order: 2 !important;
-		&:not([disabled]):hover {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close_hover.png) !important;
-		}
-		&:not([disabled]):hover:active {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close_pressed.png) !important;
-		}
-	}
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		.titlebar-close {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close_maximized.png) !important;
-			&:not([disabled]):hover {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close_maximized_hover.png) !important;
-			}
-			&:not([disabled]):hover:active {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/close_maximized_pressed.png) !important;
-			}
-		}
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important;
+		border-top-right-radius: var(--titlebar-border-radius) !important; // Ensure it doesn't overlay the border
 	}
 	&:-moz-locale-dir(rtl) { // Swap corners in RTL
 		.titlebar-close {
-			transform: scaleX(-1);
+			border-top-right-radius: 0 !important;
+			border-top-left-radius: min(var(--titlebar-border-radius), 0px) !important;
 		}
 	}
 
 	//Maximise and Restore buttons
 	.titlebar-max {
-		width: 37px;
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/maximize.png) !important;
-		&:not([disabled]):hover {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/maximize_hover.png) !important;
-		}
-		&:not([disabled]):hover:active {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/maximize_pressed.png) !important;
-		}
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
 	}
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
@@ -111,14 +96,7 @@
 		}
 	}
 	.titlebar-restore {
-		width: 37px;
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/restore.png) !important;
-		&:not([disabled]):hover {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/restore_hover.png) !important;
-		}
-		&:not([disabled]):hover:active {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/restore_pressed.png) !important;
-		}
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
 	}
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 		.titlebar-restore {
@@ -132,25 +110,7 @@
 
 	//Minimise button
 	.titlebar-min {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/minimize.png) !important;
 		order: 0 !important;
-		&:not([disabled]):hover {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize_hover.png) !important;
-		}
-		&:not([disabled]):hover:active {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize_pressed.png) !important;
-		}
-	}
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		.titlebar-min {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize_maximized.png) !important;
-			&:not([disabled]):hover {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize_maximized_hover.png) !important;
-			}
-			&:not([disabled]):hover:active {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/chromeos/minimize_maximized_pressed.png) !important;
-			}
-		}
 	}
 }
