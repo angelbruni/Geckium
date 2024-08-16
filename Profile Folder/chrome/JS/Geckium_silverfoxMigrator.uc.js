@@ -136,30 +136,6 @@ class sfMigrator {
 				gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
 			}
 		}
-		/**
-		 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
-		 * 
-		 *  NOTE: Geckium should do the same for itself so we can remove this
-		 *        from Silverfox-only code.
-		 */
-		gkPrefUtils.set("browser.uiCustomization.state").string(`
-		{"placements":{
-			"widget-overflow-fixed-list":[],
-			"unified-extensions-area":[],
-			"nav-bar":[
-				"back-button","forward-button","stop-reload-button","urlbar-container",
-				"downloads-button","unified-extensions-button","gsettings-button",
-				"page-button","chrome-button"
-			],
-			"toolbar-menubar":["menubar-items"],
-			"TabsToolbar":[
-				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
-				"alltabs-button"
-			],
-			"PersonalToolbar":["personal-bookmarks"]},
-			"seen":["save-to-pocket-button","developer-button"],
-			"currentVersion":19,"newElementCount":4}
-		`);
 
 		// Finishing touches
 		// Apply Silverfox's Apps list
@@ -239,7 +215,7 @@ class sfMigrator {
 		`);
 
 		// Enable Silverfox Firefox Theming
-		gkPrefUtils.set("Geckium.customtheme.mode").int(1);
+		gkPrefUtils.set("Geckium.customtheme.mode").string("silverfox");
 
 		// Delete leftover Silverfox settings
 		this.deleteSfPrefs();
@@ -247,8 +223,31 @@ class sfMigrator {
 		// Leave a note about this having been a Silverfox install once, in case bruni decides to add a special wizard splash if detected
 		gkPrefUtils.set("Geckium.firstRun.wasSilverfox").bool(true);
 
-		// Restart to update layout.
-		_ucUtils.restart(true);
+		/**
+		 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
+		 * 
+		 *  FIXME: Geckium should do the same for itself so we can remove this
+		 *        from Silverfox-only code, and the below restart.
+		 */
+		gkPrefUtils.set("browser.uiCustomization.state").string(`
+		{"placements":{
+			"widget-overflow-fixed-list":[],
+			"unified-extensions-area":[],
+			"nav-bar":[
+				"back-button","forward-button","stop-reload-button","urlbar-container",
+				"downloads-button","unified-extensions-button","gsettings-button",
+				"page-button","chrome-button"
+			],
+			"toolbar-menubar":["menubar-items"],
+			"TabsToolbar":[
+				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
+				"alltabs-button"
+			],
+			"PersonalToolbar":["personal-bookmarks"]},
+			"seen":["save-to-pocket-button","developer-button"],
+			"currentVersion":19,"newElementCount":4}
+		`);
+		_ucUtils.restart(false); // Required to reload toolbar-layout
 	}
 
 	// NOTE: The call for the migrator can be found at Geckium_wizard.uc.js.
