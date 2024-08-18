@@ -76,6 +76,7 @@
 	//Close button
 	.titlebar-close {
 		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important;
+		order: 2 !important;
 		border-top-right-radius: var(--titlebar-border-radius) !important; // Ensure it doesn't overlay the border
 	}
 	&:-moz-locale-dir(rtl) { // Swap corners in RTL
