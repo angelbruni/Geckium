@@ -25,12 +25,12 @@
 
 	&:not([disabled]) {
 		&:hover {
-			background-color: var(--toolbarbutton-background-hot) !important;
+			background-color: var(--toolbarbutton-background-hot, var(--default-toolbarbutton-background-hot)) !important;
 		}
 
 		&:active,
 		&[open] {
-			background-color: var(--toolbarbutton-background-pressed) !important;
+			background-color: var(--toolbarbutton-background-pressed, var(--default-toolbarbutton-background-pressed)) !important;
 		}
 	}
 }

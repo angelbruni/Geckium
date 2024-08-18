@@ -38,7 +38,7 @@
 			width: 0;
 			height: 0;
 			border-radius: 50% !important;
-			background: var(--toolbarbutton-background-hot) !important;
+			background: var(--toolbarbutton-background-hot, var(--default-toolbarbutton-background-hot)) !important;
 			transition: width 150ms, height 150ms, opacity 150ms !important;
 		}
 	
@@ -48,7 +48,7 @@
 	
 		&:not([disabled]) {
 			&:hover {
-				background: var(--toolbarbutton-background-hot) !important;
+				background: var(--toolbarbutton-background-hot, var(--default-toolbarbutton-background-hot)) !important;
 				
 				&::before {
 					opacity: 0;
@@ -105,13 +105,9 @@
 
 	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 		&:active {
-			background: var(--personal-toolbar-item-active-bg) !important;
+			background: var(--personal-toolbar-item-active-bg, var(--default-personal-toolbar-item-active-bg)) !important;
 
 			transition: background-color 100ms linear !important;
-		}
-
-		&::before {
-			content: unset
 		}
 
 		border: 0;
@@ -125,7 +121,7 @@
 #star-button-box {
 	#star-button {
 		&[starred="true"] {
-			fill: rgb(66,133,244) !important;
+			fill: var(--default-bookmark-icon-fill) !important;
 		}
 	}
 }

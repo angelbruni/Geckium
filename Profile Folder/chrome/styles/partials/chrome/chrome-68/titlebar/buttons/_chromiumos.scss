@@ -1,0 +1,49 @@
+& { // TODO: Exclude in MD2
+	//Shared non-native titlebar variables
+	// TODO when SVG'd
+	
+	//Shared titlebar button code
+	.titlebar-button {
+		background: transparent !important;
+		//Hover and pressed states
+		&:not([disabled]):hover {
+			background: rgba(20, 20, 23, 0.078) !important;
+		}
+		&:not([disabled]):hover:active {
+			background: rgba(20, 20, 23, 0.141) !important;
+		}
+		height: 36px;
+		width: 30px;
+	}
+	// Decrease button height when maximised
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-button {
+			height: 28px;
+		}
+	}
+
+	//Close button
+	.titlebar-close {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important; // PLACEHOLDER
+		border-top-right-radius: unset !important;
+	}
+	&:-moz-locale-dir(rtl) {
+		.titlebar-close {
+			border-top-right-radius: unset !important;
+		}
+	}
+
+	//Maximise and Restore buttons
+	.titlebar-max {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important; // PLACEHOLDER
+	}
+	.titlebar-restore {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important; // PLACEHOLDER
+	}
+
+	//Minimise button
+	.titlebar-min {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/minimize.png) !important; // PLACEHOLDER
+	}
+}

@@ -1,5 +1,4 @@
 & {
-	--tab-distance-from-titlebar-maximized: 0;
 	--tab-width: 192px;
 	--tab-height: 30px;
 	--tab-sides-width: 14px;
@@ -46,4 +45,9 @@
 	&[image="chrome://branding/content/icon32.png"] {
 		--tab-gap-between-favicon-and-title: 0;
 	}
+}
+
+#tabbrowser-tabs {
+	// Remove the spacing counteract as it's no longer necessary
+	margin-top: unset !important;
 }
