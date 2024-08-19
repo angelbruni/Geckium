@@ -27,7 +27,7 @@ class gkNCPAdj {
                     }
                     },
                     {
-                        label: "Don't show again",
+                        label: "Don't ask again",
                         callback: (notification) => {
                             gkPrefUtils.set("Geckium.NCP.installed").bool(false);
                             gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
@@ -53,7 +53,7 @@ class gkNCPAdj {
                     }
                     },
                     {
-                        label: "Don't show again",
+                        label: "Don't ask again",
                         callback: (notification) => {
                             gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
                             return false
