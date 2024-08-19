@@ -8,8 +8,8 @@
 	--default-titlebar-foreground-inactive: black;
 
 	// Tabs
-	--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8); //FIXME: Is it not opaque in native too staring MD1?
-	--default-inactive-tab-background: #cfcfcf;
+	--default-inactive-tab-background-native: rgb(206, 206, 206, 0.78);
+	--default-inactive-tab-background: #d0d0d0;
 	--default-selected-tab-background: var(--default-nav-bar);
 	--default-tabbrowser-tab-color: black;
 
@@ -35,11 +35,8 @@
 		--default-titlebar-foreground-inactive: white;
 
 		// Tabs
-		--default-inactive-tab-background: color-mix(
-			in srgb,
-			var(--default-nav-bar) 50%,
-			transparent
-		) 50%;
+		--default-inactive-tab-background-native: rgb(53, 53, 53, 0.78);
+		--default-inactive-tab-background: #373737;
 		--default-selected-tab-background: var(--default-nav-bar);
 		--default-tabbrowser-tab-color: white;
 
