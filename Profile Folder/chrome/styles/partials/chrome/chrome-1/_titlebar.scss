@@ -70,11 +70,12 @@
 	}
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		&:not([menubarvisible]) {
+		&:not([menubarvisible], [macOSNativeFullscreen]) {
 			#tabbrowser-arrowscrollbox {
 				padding-top: var(--tab-distance-from-top-maximised);
 			}
 		}
+		// NOTE: macOS's fullscreen is handled in native titlebar style
 	}
 
 	// Menu bar

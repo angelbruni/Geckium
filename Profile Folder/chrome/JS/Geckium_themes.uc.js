@@ -173,7 +173,6 @@ class gkGTK {
         colorDiv.style.backgroundColor="-moz-dialogtext";
 		var iconfill = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
         iconfill = ColorUtils.ColorToHSL(iconfill);
-        console.log(iconfill);
         if (iconfill[1] > 10) {
             // Use the toolbar colour if it isn't a shade of grey
             //  NOTE: This isn't official behaviour, nor is the light shade on dark mode
