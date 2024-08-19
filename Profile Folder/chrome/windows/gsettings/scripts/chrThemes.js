@@ -26,7 +26,7 @@ async function populateChrThemesList() {
 
 		let themeBannerColor = theme.color;
 		if (!themeBannerColor)
-			themeBannerColor = (themeBannerPath == "") ? "black" : "transparent";
+			themeBannerColor = "white"; // white is a direct reference to the fallback NTP background
 
 		let themeIcon = theme.icon;
 		let themeIconPath;
@@ -42,7 +42,7 @@ async function populateChrThemesList() {
 		<html:button
 				class="link geckium-appearance ripple-enabled"
 				data-theme-name="${themeFile}"
-				style="background-color: ${themeBannerColor}; background-image: url(${themeBannerPath})">
+				style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
 			<html:label class="wrapper">
 				<div class="year">V${themeVersion}</div>
 				<div class="icon"><image style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" /></div>

@@ -1,7 +1,6 @@
 & {
 	//Classic (Default/Fallback)
 	// Titlebar
-	// TODO: Make EVERYTHING here start with --default... also just change how the --* vs --default* logic works, to be more Mozilla-like.
 	--default-titlebar-active: linear-gradient(
 		to bottom,
 		rgb(98,147,221),
@@ -162,21 +161,6 @@
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
-				// TODO: Move gradient to titlebar style - pre-gradient theme colour is #5d5d5d
-				--default-titlebar-active: linear-gradient(
-					to bottom,
-					#191919 10px,
-					#5d5d5d 34px
-				);
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
-					--default-titlebar-active: linear-gradient(
-						to bottom,
-						#191919,
-						#5d5d5d 24px
-					);
-				}
-
 				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(119, 119, 119),
