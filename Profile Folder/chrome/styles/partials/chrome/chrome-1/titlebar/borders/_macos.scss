@@ -18,10 +18,15 @@
 }
 
 // Visuals: Maximised / Fullscreen
-// TODO: copy background from native.scss
 &[sizemode="fullscreen"] {
-	&[windowtype="navigator:browser"] > body {
+	--default-titlebar-active: #AAAAAA;
+	--default-titlebar-inactive: #AAAAAA;
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: #2B2B2B;
+		--default-titlebar-inactive: #2B2B2B;
+	}
+	--titlebar-border-radius: 0;
+	&[is117Plus][windowtype="navigator:browser"] > body {
 		border: 0;
-		border-radius: 0;
 	}
 }

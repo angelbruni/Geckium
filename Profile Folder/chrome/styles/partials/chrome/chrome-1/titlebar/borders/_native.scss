@@ -1,4 +1,3 @@
-// TODO: Fullscreen background when on macOS
 & {
     //Disable top tab distance (TODO: fix on AERO)
     --tab-distance-from-top: 0;
@@ -16,6 +15,19 @@
     }
 }
 
+// Force grey titlebar when in fullscreen
+&[macOSNativeFullscreen] {
+	--default-titlebar-active: #AAAAAA;
+	--default-titlebar-inactive: #AAAAAA;
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: #2B2B2B;
+		--default-titlebar-inactive: #2B2B2B;
+	}
+    //Force specific top padding in macOS's full screen
+    #tabbrowser-arrowscrollbox {
+        padding-top: 12px;
+    }
+}
 
 &[gktitnative="false"] {
 	@import "../tools/vanillatitlebar";
