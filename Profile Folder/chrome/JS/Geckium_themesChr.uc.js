@@ -30,6 +30,13 @@ class gkChrTheme {
 	}
 
     static async getThemes() {
+        function hasImage(data, imageid) {
+            if (data.theme.images) {
+                return Object.keys(data.theme.images).includes(imageid);
+            }
+            return false;
+        }
+
         var themes = {};
         try {
             const directory = FileUtils.File(gkChrTheme.getFolderFileUtilsPath);
@@ -46,31 +53,46 @@ class gkChrTheme {
                         const fetchPromise = fetch(themeManifest)
                             .then((response) => response.json())
                             .then((theme) => {
-                                let themeBanner;
-                                try {
-                                    themeBanner = theme.theme.images.theme_ntp_background;
-                                } catch (error) {
-                                    try {
-                                        themeBanner = theme.theme.images.theme_frame;
-                                    } catch (error) {
-                                        themeBanner = undefined;
-                                    }
+                                if (!theme.theme) {
+                                    console.error("Error fetching theme manifest: not a theme");
+                                    return;
                                 }
 
+                                let themeBanner;
                                 let themeBannerColor;
-                                try {
-                                    themeBannerColor = theme.theme.colors.theme_frame;
-                                } catch (error) {
-                                    themeBannerColor = undefined;
+                                if (hasImage(theme, "theme_ntp_background")) {
+                                    themeBanner = theme.theme.images.theme_ntp_background;
+                                    try {
+                                        themeBannerColor = theme.theme.colors.ntp_background;
+                                    } catch {
+                                        themeBannerColor = undefined;
+                                    }
+                                } else if (hasImage(theme, "theme_frame")) {
+                                    themeBanner = theme.theme.images.theme_frame;
+                                    try {
+                                        themeBannerColor = theme.theme.colors.frame;
+                                    } catch {
+                                        themeBannerColor = undefined;
+                                    }
+                                } else { // Colours only - use fallback hierachy on both colors
+                                    try {
+                                        if (theme.theme.colors.ntp_background) {
+                                            themeBannerColor = theme.theme.colors.ntp_background;
+                                        } else if (theme.theme.colors.frame) {
+                                            themeBannerColor = theme.theme.colors.frame;
+                                        }
+                                    } catch {
+                                        themeBannerColor = undefined;
+                                    }
                                 }
 
                                 let themeIcon;
                                 try {
                                     themeIcon = theme.theme.icons[48];
-                                } catch (error) {
+                                } catch {
                                     try {
                                         themeIcon = theme.icons[48];
-                                    } catch (error) {
+                                    } catch {
                                         themeIcon = undefined;
                                     }
                                 }
@@ -391,7 +413,7 @@ class gkChrTheme {
                 let file = `jar:${chrThemesFolder}/${prefChoice}.crx!`;
                 // Load and apply the selected Chromium Theme
                 let theme = await gkChrTheme.getThemeData(`${file}/manifest.json`);
-                if (theme != null) {
+                if (theme != null && theme.theme) {
                     gkChrTheme.setVariables(theme, file);
                     return;
                 }
