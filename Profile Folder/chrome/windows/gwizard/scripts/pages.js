@@ -25,6 +25,9 @@ nextElm.addEventListener("click", () => {
 
 finishElm.addEventListener("click", () => {
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
+	if (gkPrefUtils.prefExists("Geckium.firstRun.wasSilverfox")) {
+		Services.prefs.clearUserPref("Geckium.firstRun.wasSilverfox");
+	}
 
 	gkWindow.close();
 })

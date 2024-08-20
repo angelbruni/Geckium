@@ -40,6 +40,9 @@ function openGSplash() {
 	const gmWindow = window.openDialog(url, "", "centerscreen");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
+		if (gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool == true) {
+			gmWindow.document.documentElement.setAttribute("silverfox", "true");
+		}
 	}
 }
 
