@@ -28,13 +28,57 @@ Geckium is designed for the following platforms:
 
 However,
 
-- Geckium **CANNOT** work properly with WindowBlinds
+- Geckium **CANNOT** work properly with WindowBlinds.
 - Compatibility with Firefox forks is never guaranteed - minor adjustments will be made by Geckium to accommodate itself in Firefox forks, but issues not seen in Firefox may still occur.
-- Due to the nature of how their packages are created, Geckium CANNOT be used in Mozilla Firefox from Flathub nor Ubuntu (and Snap Store). Ubuntu users will have to install Firefox from the Mozilla PPA in order to use Geckium. 
+- Due to the nature of how their packages are created, Geckium **CANNOT** be used in Mozilla Firefox from Flathub nor Ubuntu (and Snap Store). Ubuntu users will have to install Firefox [from the Mozilla PPA](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa#:~:text=sudo%20add%2Dapt%2Drepository%20ppa%3Amozillateam/ppa) in order to use Geckium.
 
 # Instructions
 
-TBD, because bad GitHub coding. 
+ℹ Once running for the first time, Geckium will restart Firefox automatically 1-2 times while it sets up required settings, migrations, and so on - if Firefox doesn't re-appear after restarting itself, terminate Firefox and launch it again (that is an upstream bug with Firefox).
+
+## Linux
+
+1. Open Firefox, and in the address bar go to `about:support`
+2. Look for `Profile Folder` and next to it press `Open Profile Directory`
+3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting file manager's window's currently displayed folder
+4. Navigate to `File System/usr/lib/firefox` (or `File System/usr/lib/firefox-esr` if using Mozilla Firefox ESR)
+5. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the `firefox`/`firefox-esr` folder (if your file manager does not ask for Superuser privilleges automatically, you will need to manually open your File Manager with Superuser privilleges)
+6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
+7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
+
+|   |   |
+|---|---|
+|   |   |
+
+## Windows
+
+1. Open Firefox, and in the address bar go to `about:support`
+2. Look for `Profile Folder` and next to it press `Open Profile Directory`
+3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
+4. Find a Mozilla Firefox shortcut, right-click it and select `Open file location`
+5. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the resulting folder (depending on how you installed Firefox, you may need to have administrator privilleges to perform this step)
+6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
+7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
+
+|   |   |
+|---|---|
+|   |   |
+
+## macOS
+
+⚠ FOLLOW THE STEPS CAREFULLY - FAILURE TO PERFORM THESE STEPS PROPERLY *WILL* BRICK YOUR CURRENT COPY OF MOZILLA FIREFOX FOR MACOS
+
+1. Open Firefox, and in the address bar go to `about:support`
+2. Look for `Profile Folder` and next to it press `Open in Finder`
+3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
+4. DO NOT QUIT FIREFOX - find your copy of Mozilla Firefox, right-click it and select `Open Package Contents`
+5. Go to Contents -> Resources, and then copy the contents of the `Firefox Folder` folder in your copy of Geckium to this folder (you will need to replace files if prompted to)
+6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
+7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
+
+|   |   |
+|---|---|
+|   |   |
 
 # Credits and licensing
 
