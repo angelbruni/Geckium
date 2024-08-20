@@ -46,9 +46,9 @@ However,
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
 7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
-|   |   |
+| ![linux_1](https://github.com/user-attachments/assets/54d2795e-25b3-417e-bc4b-7a05acb24cbf) | ![linux_2](https://github.com/user-attachments/assets/ea108f17-7356-4736-9306-33ae9dcb2440) |
 |---|---|
-|   |   |
+| (too big for placeholder) | ![linux_4](https://github.com/user-attachments/assets/20627846-989a-4abf-a060-6b42d04899db) |
 
 ## Windows
 
@@ -60,9 +60,9 @@ However,
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
 7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
-|   |   |
+| ![win_1](https://github.com/user-attachments/assets/865276de-0b6d-4266-8404-3d10e626b702) | ![win_2](https://github.com/user-attachments/assets/395c7332-d1be-480e-b2ce-59ef5a371d25) |
 |---|---|
-|   |   |
+| ![win_3](https://github.com/user-attachments/assets/1ed6c435-7d66-4836-92f4-5c34d7594d05) | ![win_4](https://github.com/user-attachments/assets/d632f7e0-bca5-4736-b188-01b62179779b) |
 
 ## macOS
 
@@ -76,9 +76,9 @@ However,
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
 7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
-|   |   |
+| ![mac_1](https://github.com/user-attachments/assets/33768566-e67e-4c36-96a3-c14e4026ad23) | ![mac_2](https://github.com/user-attachments/assets/5cfc199f-6b70-495d-a33c-1f4f74134455) |
 |---|---|
-|   |   |
+| ![mac_3](https://github.com/user-attachments/assets/6f770721-b290-489d-a7bc-31ea2346d596) | ![mac_4](https://github.com/user-attachments/assets/7b7746a7-f041-44f1-897f-744414b74e05) |
 
 # Credits and licensing
 
