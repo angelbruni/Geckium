@@ -140,17 +140,14 @@
 	}
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
-		--tab-glare-opacity: .5 !important;
-		
-		&[geckium-choice="one"],
-		&[geckium-choice="three"],
-		&[geckium-choice="four"],
-		&[geckium-choice="five"],
-		&[geckium-choice="six"] {
-			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
+		&[gktitnative="false"] { // Only use inactive tab background when in Compact
+			--tab-glare-opacity: .5 !important;
+			&:not([geckium-choice="eleven"]) {
+				--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
+			}
+			--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
 		}
 		
-		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
 		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 		--theme-newtab: var(--chrtheme-control-background, var(--default-theme-newtab)) !important;
 		&[gkchrthemehastoolbar] {
