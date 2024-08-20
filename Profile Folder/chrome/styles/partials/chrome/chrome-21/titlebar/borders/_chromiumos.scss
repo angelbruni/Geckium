@@ -22,14 +22,16 @@
 	--tab-distance-from-top: 10px;
 	--tab-distance-from-top-maximised: 3px;
 	
-	@import "../../../chrome-1/titlebar/tools/bodytitlebar";
+	@import "../../../chrome-1/titlebar/tools/vanillatitlebar";
 	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 	--theme-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 // Visuals
-&[windowtype="navigator:browser"] > body {
+&[is117Plus][windowtype="navigator:browser"] > body {
 	border: 1px solid rgba(0, 0, 0, 0.3);
+}
+#titlebar {
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 // Use the custom titlebar background in Chromium OS's SysTheme
@@ -57,12 +59,12 @@
 &[sizemode="fullscreen"] {
 	&[windowtype="navigator:browser"] > body {
 		border: 0;
-		border-radius: 0;
-		box-shadow: unset;
 	}
-
-	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed], [geckium-fortyseven])[windowtype="navigator:browser"] > body {
+	--titlebar-border-radius: 0;
+	
+	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed], [geckium-fortyseven]) #titlebar {
 		background: black !important;
 		color: white !important;
+		box-shadow: unset;
 	}
 }
