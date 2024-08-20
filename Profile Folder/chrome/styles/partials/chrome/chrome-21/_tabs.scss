@@ -31,7 +31,7 @@
 
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
-		--theme-newtab: var(--inactive-tab-background) !important;
+		--theme-newtab: var(--inactive-tab-background, var(--default-inactive-tab-background)) !important;
 	}
 
 	// Add hover/pressed fills
