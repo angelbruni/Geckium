@@ -145,7 +145,6 @@ class gkChrTheme {
     // Frame color is always used IF the frame image is satisfied
     //    Titlebar button background is used regardless of frame existing so long as titlebars AREN'T native
     // Toolbar color is NOT used until 68 enforces it as a fallback if the image is missing
-    //    TODO: Inactive tab is always unthemed, EXCEPT for its foreground, in native titlebar
     //      BUT its new tab button IS themed regardless
 
     //TODO: If there are no fallback colours, use the era's fallback palette if MD2+ - probably add this into systhemes as a [gkchrthemed] only System Theme override.
