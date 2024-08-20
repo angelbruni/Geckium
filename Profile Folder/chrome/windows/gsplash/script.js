@@ -11,3 +11,7 @@ function openWizardFromSplash() {
 	gkWindow.close();
 	openGWizard();
 }
+
+function startFromScratch() {
+	alert("TODO");
+}

@@ -57,3 +57,38 @@
 		margin-block-start: 0;
 	}
 }
+
+@keyframes silverfoxLogo {
+	14% {
+		transform: unset;
+	}
+	100% {
+		transform: rotate(14400deg);
+	}
+}
+
+@keyframes silverfoxFly {
+	0% {
+		opacity: 0;
+		list-style-image: url("chrome://userchrome/content/windows/gsplash/imgs/sflogo.png");
+	}
+	8% {
+		opacity: 1;
+		list-style-image: url("chrome://userchrome/content/windows/gsplash/imgs/sflogo.png");
+	}
+	87% {
+		opacity: 1;
+		margin-top: unset;
+		list-style-image: url("chrome://userchrome/content/windows/gsplash/imgs/sflogo.png");
+	}
+	99% {
+		margin-top: -92vh;
+		opacity: 0;
+		list-style-image: url("chrome://userchrome/content/windows/gsplash/imgs/sflogo.png");
+	}
+	100% {
+		margin-top: unset;
+		opacity: 0;
+		list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+	}
+}
