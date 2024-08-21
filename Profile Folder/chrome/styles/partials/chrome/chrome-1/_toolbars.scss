@@ -652,16 +652,18 @@
 		Chromium Themes
 	*/
 	&[gkthemed][gkchrthemed] {
-		--toolbarbutton-border-color-normal: color-mix(
-			in srgb,
-			var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 24.4%,
-			transparent
-		) !important;
-		--toolbarbutton-border-color-hot: color-mix(
-			in srgb,
-			var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 70%,
-			transparent
-		) !important;
+		&[style*="--chrtheme-toolbar-button-icon"] {
+			--toolbarbutton-border-color-normal: color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 24.4%,
+				transparent
+			) !important;
+			--toolbarbutton-border-color-hot: color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 70%,
+				transparent
+			) !important;
+		}
 		--toolbarbutton-border-color-active: var(--toolbarbutton-border-color-hot) !important;
 		--toolbarbutton-texture: var(--chrtheme-theme-button-background, var(--chrtheme-button-background, transparent)) !important;
 		--toolbarbutton-shadow-normal: inset 1px 1px 0 0 var(--toolbarbutton-inner-border-color-normal) !important;
