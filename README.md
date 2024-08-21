@@ -72,7 +72,7 @@ However,
 2. Look for `Profile Folder` and next to it press `Open in Finder`
 3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
 4. DO NOT QUIT FIREFOX - find your copy of Mozilla Firefox, right-click it and select `Open Package Contents`
-5. Go to Contents -> Resources, and then copy the contents of the `Firefox Folder` folder in your copy of Geckium to this folder (you will need to replace files if prompted to)
+5. Go to Contents -> Resources, and then copy the contents of the `Firefox Folder` folder in your copy of Geckium to this folder (you will need to merge folders if prompted to)
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
 7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
