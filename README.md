@@ -60,9 +60,9 @@ However,
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
 7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
-| ![win_1](https://github.com/user-attachments/assets/865276de-0b6d-4266-8404-3d10e626b702) | ![win_2](https://github.com/user-attachments/assets/395c7332-d1be-480e-b2ce-59ef5a371d25) |
+| ![windows-1](https://github.com/user-attachments/assets/3dbc08ff-f78f-4949-ab0d-777620372bdf) | ![windows-2](https://github.com/user-attachments/assets/ed04f856-ea83-4aa3-8739-0c34241454a6) |
 |---|---|
-| ![win_3](https://github.com/user-attachments/assets/1ed6c435-7d66-4836-92f4-5c34d7594d05) | ![win_4](https://github.com/user-attachments/assets/d632f7e0-bca5-4736-b188-01b62179779b) |
+| ![windows-3](https://github.com/user-attachments/assets/f7f7f0ab-4bd5-495d-8897-e61e07fdaa49) | ![windows-95](https://github.com/user-attachments/assets/255dab4d-a808-4383-9c8f-4e8c738486b7) |
 
 ## macOS
 
