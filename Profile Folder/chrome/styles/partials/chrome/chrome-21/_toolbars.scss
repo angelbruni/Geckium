@@ -108,4 +108,29 @@
 			}
 		}
 	}
+
+
+	/*
+		GTK+ SysTheme - exclusive toolbarbutton styling
+	*/
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+		:not(.widget-overflow-list)
+		> .toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button,
+			.subviewbutton) {
+			box-shadow: unset !important;
+
+			&:not([disabled]) {
+				&:hover {
+					box-shadow: unset !important;
+				}
+				&:active,
+				&[open] {
+					box-shadow: unset !important;
+				}
+			}
+		}
+	}
 }
