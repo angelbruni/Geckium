@@ -51,7 +51,7 @@
 		rgb(240, 245, 253)
 	);
 	--default-toolbarbutton-icon-drop-shadow-color: white;
-	--default-toolbarbutton-icon-fill: rgb(88, 118, 171);
+	--default-toolbarbutton-icon-color: rgb(88, 118, 171);
 	--default-navigation-buttons-separator: rgb(221, 229, 243);
 
 	// Personal Toolbar (Bookmarks)
@@ -124,7 +124,7 @@
 			#081B35
 		);
 		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
-		--default-toolbarbutton-icon-fill: #B0C2DE;
+		--default-toolbarbutton-icon-color: #B0C2DE;
 		--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal);
 
 		// Personal Toolbar
@@ -202,7 +202,7 @@
 		--default-nav-bar: -moz-dialog;
 		--default-inner-border-color: Field; // guesstimate
 		--default-toolbarbutton-texture: -moz-dialog;
-		--default-toolbarbutton-icon-fill: var(--gtk-toolbarbutton-icon-fill);
+		--default-toolbarbutton-icon-color: var(--gtk-toolbarbutton-icon-fill);
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: -moz-dialog;
@@ -285,7 +285,7 @@
 				--default-toolbarbutton-icon-drop-shadow-color: transparent;
 				--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
 			}
-			--default-toolbarbutton-icon-fill: black;
+			--default-toolbarbutton-icon-color: black;
 
 			// Personal Toolbar (Bookmarks)
 			--default-personal-toolbar: linear-gradient(
@@ -338,7 +338,7 @@
 					);
 					--default-toolbarbutton-icon-drop-shadow-color: transparent;
 				}
-				--default-toolbarbutton-icon-fill: white;
+				--default-toolbarbutton-icon-color: white;
 
 				// Personal Toolbar
 				--default-personal-toolbar: linear-gradient(
@@ -594,7 +594,7 @@
 				--default-navigation-buttons-separator: hsl(var(--you-h), calc(var(--you-s) - 21%), calc(var(--you-l) + 33%));
 			}
 			&:not([geckium-eleven]) {
-				--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
+				--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
 			}
 
 			// Personal Toolbar (Bookmarks)
@@ -676,7 +676,7 @@
 					--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal); //changed in light mode
 				}
 				&:not([geckium-eleven]) {
-					--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
+					--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
 				}
 
 				// Personal Toolbar
