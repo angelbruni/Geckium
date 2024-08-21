@@ -79,12 +79,12 @@
 				to bottom,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
 					transparent
 				),
 				color-mix(
 					in srgb,
-					color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 86%, black)
+					color-mix(in srgb, var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 86%, black)
 						90%,
 					transparent
 				)
