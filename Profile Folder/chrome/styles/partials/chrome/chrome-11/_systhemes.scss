@@ -8,11 +8,11 @@
 	--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.3);
 	--default-toolbarbutton-inner-shadow-active: inner 0 1px 0 0 rgba(255, 255, 255, 1);
 	--default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
-	--default-toolbarbutton-icon-fill: rgb(87, 102, 128);
+	--default-toolbarbutton-icon-color: rgb(87, 102, 128);
 
     @media (prefers-color-scheme: dark) {
 		// Navbar
-		--default-toolbarbutton-icon-fill: rgb(166,177,196);
+		--default-toolbarbutton-icon-color: rgb(166,177,196);
 		--default-toolbarbutton-texture-hot: rgb(255, 255, 255, 15%);
 		--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(255, 255, 255, 0.2);
 	}
@@ -20,7 +20,7 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Navbar
-		--default-toolbarbutton-icon-fill: color-mix(in srgb, AccentColor 28%, -moz-dialogtext);
+		--default-toolbarbutton-icon-color: color-mix(in srgb, AccentColor 28%, -moz-dialogtext);
 	}
 
 	&:not([geckium-sixtyeight]) {
@@ -57,7 +57,7 @@
 				color-mix(in srgb, white 80%, #333),
 				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, #333))
 			);
-			--default-toolbarbutton-icon-fill: black;
+			--default-toolbarbutton-icon-color: black;
 
 			// Personal Toolbar (Bookmarks)
 			--default-personal-toolbar: linear-gradient(
@@ -89,7 +89,7 @@
 					color-mix(in srgb, silver 20%, #333),
 					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, #333))
 				);
-				--default-toolbarbutton-icon-fill: white;
+				--default-toolbarbutton-icon-color: white;
 
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(
@@ -120,11 +120,11 @@
 		// Geckium You
 		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]):not([geckium-twentyone]) {
 			// Navbar
-			--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 37%), calc(var(--you-l) - 10%));
+			--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 37%), calc(var(--you-l) - 10%));
 
 			@media (prefers-color-scheme: dark) {
 				// Navbar
-				--default-toolbarbutton-icon-fill: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) + 19%));
+				--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) + 19%));
 			}
 		}
 	}

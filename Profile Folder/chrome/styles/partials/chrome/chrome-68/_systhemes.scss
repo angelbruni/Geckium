@@ -17,7 +17,7 @@
 	--default-nav-bar: rgb(242,242,242);
 	--default-toolbarbutton-background-hot: rgba(0,0,0,.09);
 	--default-toolbarbutton-background-pressed: rgba(0,0,0,.18);
-	--default-toolbarbutton-icon-fill: #5a5a5a;
+	--default-toolbarbutton-icon-color: #5a5a5a;
 	--default-bookmark-icon-fill: rgb(66,133,244);
 
 	// Personal Toolbar (Bookmarks)
@@ -42,7 +42,7 @@
 
 		// Navbar
 		--default-nav-bar: rgb(80,80,80);
-		--default-toolbarbutton-icon-fill: white;
+		--default-toolbarbutton-icon-color: white;
 
 		// Personal Toolbar
 		--default-personal-toolbar: var(--default-nav-bar);
@@ -71,7 +71,7 @@
 		--default-nav-bar: Field;
 		--default-toolbarbutton-background-hot: color-mix(in srgb, FieldText 9%, transparent); //TODO: verify
 		--default-toolbarbutton-background-pressed: color-mix(in srgb, FieldText 18%, transparent); //TODO: verify
-		--default-toolbarbutton-icon-fill: FieldText;
+		--default-toolbarbutton-icon-color: FieldText;
 		--default-bookmark-icon-fill: AccentColor;
 
 		// Personal Toolbar (Bookmarks)

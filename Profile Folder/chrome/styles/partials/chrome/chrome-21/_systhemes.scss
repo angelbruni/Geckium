@@ -6,7 +6,7 @@
 	--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
 								inset 0 1px 2px rgb(255, 255, 255, 75%);
 	--default-toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-	--default-toolbarbutton-icon-fill: rgb(111, 111, 111);
+	--default-toolbarbutton-icon-color: rgb(111, 111, 111);
 	--default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
 
 	// Personal Toolbar (Bookmarks)
@@ -18,7 +18,7 @@
 
     @media (prefers-color-scheme: dark) {
 		// Navbar
-		--default-toolbarbutton-icon-fill: #C7C7C7;
+		--default-toolbarbutton-icon-color: #C7C7C7;
 
 		// Personal Toolbar (Bookmarks)
 		--default-bookmark-item-color: white;
@@ -27,7 +27,7 @@
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Navbar
-		--default-toolbarbutton-icon-fill: var(--gtk-toolbarbutton-new-icon-fill);
+		--default-toolbarbutton-icon-color: var(--gtk-toolbarbutton-new-icon-fill);
 	}
 
 	&:not([geckium-sixtyeight]) {
@@ -53,7 +53,7 @@
 				#d8d7d7
 			);
 			// Navbar
-			--default-toolbarbutton-icon-fill: rgb(111, 111, 111); // Mac OS X Chrome reverted to normal colouring
+			--default-toolbarbutton-icon-color: rgb(111, 111, 111); // Mac OS X Chrome reverted to normal colouring
 
 			// Personal Toolbar (Bookmarks)
 			// NOTE: Bookmarks colouring is probably also vanilla, but it's black in vanilla so can't tell.
@@ -89,7 +89,7 @@
 					#404040
 				);
 				// Navbar
-				--default-toolbarbutton-icon-fill: #C7C7C7; // Mac OS X Chrome reverted to normal colouring
+				--default-toolbarbutton-icon-color: #C7C7C7; // Mac OS X Chrome reverted to normal colouring
 
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(
