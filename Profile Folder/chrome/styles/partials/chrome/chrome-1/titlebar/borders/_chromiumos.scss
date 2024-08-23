@@ -6,10 +6,10 @@
         &[gksystheme="gtk"] {
             // NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (unmodified when in 'themes')
             &[windowtype="navigator:browser"] > body {
-                background: linear-gradient(
+                background-image: linear-gradient(
                     to bottom,
                     black 10px,
-                    var(--default-titlebar-background) 34px
+                    var(--default-titlebar-active) 34px
                 );
             }
         }
