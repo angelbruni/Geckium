@@ -4,17 +4,18 @@
 
 #navigator-toolbox,
 #titlebar {
-    background: var(--titlebar-active, var(--default-titlebar-active)) !important;
+    background-color: var(--titlebar-active, var(--default-titlebar-active));
+    background-image: var(--titlebar-texture, var(--default-titlebar-texture)) !important;
     &:-moz-window-inactive {
-        background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
+        background-image: var(--titlebar-texture-inactive, var(--default-titlebar-texture-inactive)) !important;
     }
     border-radius: 0 !important;
     border-top-left-radius: var(--titlebar-border-radius) !important;
     border-top-right-radius: var(--titlebar-border-radius) !important;
 }
 &[gkthemed][gkchrthemed] {
-    --titlebar-active: var(--chrtheme-frame, var(--default-titlebar-active)) !important;
-    --titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-inactive))) !important;
+    --titlebar-texture: var(--chrtheme-frame, var(--default-titlebar-texture)) !important;
+    --titlebar-texture-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-texture-inactive))) !important;
 
     #navigator-toolbox::before {
         content: "";

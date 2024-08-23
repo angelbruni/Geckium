@@ -4,6 +4,7 @@
 	box-shadow: none !important;
 	border-top: 0 !important;
 	border-bottom: 0 !important;
+    padding-top: 0 !important;
 
 	&[fullscreenShouldAnimate] {
 		transition: none !important;
@@ -12,20 +13,19 @@
 
 // Visuals
 &[windowtype="navigator:browser"] > body {
-    background: var(--titlebar-active, var(--default-titlebar-active));
+    background-color: var(--titlebar-active, var(--default-titlebar-active));
+    background-image: var(--titlebar-texture, var(--default-titlebar-texture));
     &:-moz-window-inactive {
-        background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+        background-color: var(--titlebar-inactive, var(--default-titlebar-inactive)); // TODO
+        background-image: var(--titlebar-texture-inactive, var(--default-titlebar-texture-inactive));
     }
     border-radius: var(--titlebar-border-radii);
+    box-shadow: var(--titlebar-box-shadow);
 }
 
 //TODO: Simplify this and see how much can be shared in _titlebar.scss
 &[gkthemed]:not([gkchrthemed]) {
     /* bruni: This entire code takes care of custom themes support for titlebar */
-
-    #navigator-toolbox {
-        padding-top: 0 !important;
-    }
 
     // Themes with image header/additional images
     &[windowtype="navigator:browser"] {
@@ -38,7 +38,7 @@
             width: calc(100% - 2px);
             border-radius: calc(var(--titlebar-border-radius) - 1px) calc(var(--titlebar-border-radius) - 1px) 0 0;
 
-            box-shadow: var(--theme-box-shadow);
+            box-shadow: var(--titlebar-box-shadow);
             background-color: var(--lwt-accent-color);
             background-image: var(--lwt-additional-images);
             background-repeat: var(--lwt-background-tiling);
@@ -78,11 +78,15 @@
             position: relative;
 
             &::before {
+                top: unset;
+                left: unset;
+                width: 100%;
+                border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
                 background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images) !important;
                 background-repeat: no-repeat, var(--lwt-background-tiling);
                 background-position: right top, var(--lwt-background-alignment);
                 background-position-y: -9px;
-                box-shadow: var(--theme-box-shadow);;
+                box-shadow: var(--titlebar-box-shadow);;
             }
         }
     }
@@ -94,7 +98,7 @@
 
             &:not([privatebrowsingmode="temporary"]),
             &[privatebrowsingmode="temporary"] {
-                --titlebar-active: linear-gradient(
+                --titlebar-texture: linear-gradient(
                     to bottom,
                     color-mix(
                         in srgb,
@@ -103,7 +107,7 @@
                     ),
                     var(--lwt-accent-color) 40px
                 ) !important;
-                --titlebar-inactive: linear-gradient(
+                --titlebar-texture-inactive: linear-gradient(
                     to bottom,
                     color-mix(
                         in srgb,
@@ -125,14 +129,6 @@
             }
         }
     }
-
-    #navigator-toolbox {
-        box-shadow: none !important;
-    }
-    
-    @media not (-moz-ev-native-controls-patch) {
-        background: white !important;
-    }
 }
 &[gkthemed][gkchrthemed] {
     --titlebar-active: var(--chrtheme-frame, var(--default-titlebar-active)) !important;
@@ -150,7 +146,7 @@
                     height: 100%;
                     border-radius: calc(var(--titlebar-border-radius) - 1px) calc(var(--titlebar-border-radius) - 1px) 0 0;
                     background: var(--chrtheme-theme-frame-overlay) no-repeat, var(--chrtheme-theme-frame) repeat no-repeat;
-                    box-shadow: var(--theme-box-shadow);
+                    box-shadow: var(--titlebar-box-shadow);
                 }
 
                 &:-moz-window-inactive {

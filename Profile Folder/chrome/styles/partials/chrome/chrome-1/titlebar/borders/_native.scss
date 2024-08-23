@@ -17,11 +17,11 @@
 
 // Force grey titlebar when in fullscreen
 &[macOSNativeFullscreen] {
-	--default-titlebar-active: #AAAAAA;
-	--default-titlebar-inactive: #AAAAAA;
+	--default-titlebar-texture: #AAAAAA;
+	--default-titlebar-texture-inactive: #AAAAAA;
 	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: #2B2B2B;
-		--default-titlebar-inactive: #2B2B2B;
+		--default-titlebar-texture: #2B2B2B;
+		--default-titlebar-texture-inactive: #2B2B2B;
 	}
     //Force specific top padding in macOS's full screen
     #tabbrowser-arrowscrollbox {
@@ -32,14 +32,11 @@
 &[gktitnative="false"] {
 	@import "../tools/vanillatitlebar";
 
-    // Flatten the titlebar when on GTK+
+    // Use the flat titlebar colour when on GTK+
     &[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
         #navigator-toolbox,
         #titlebar {
-            background: ActiveCaption !important;
-            &:-moz-window-inactive {
-                background: InactiveCaption !important;
-            }
+            background-image: unset !important;
         }
     }
 }

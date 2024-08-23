@@ -19,11 +19,11 @@
 
 // Visuals: Maximised / Fullscreen
 &[sizemode="fullscreen"] {
-	--default-titlebar-active: #AAAAAA;
-	--default-titlebar-inactive: #AAAAAA;
+	--default-titlebar-texture: #AAAAAA;
+	--default-titlebar-texture-inactive: #AAAAAA;
 	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: #2B2B2B;
-		--default-titlebar-inactive: #2B2B2B;
+		--default-titlebar-texture: #2B2B2B;
+		--default-titlebar-texture-inactive: #2B2B2B;
 	}
 	--titlebar-border-radius: 0;
 	&[is117Plus][windowtype="navigator:browser"] > body {

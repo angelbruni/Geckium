@@ -122,17 +122,17 @@
 		// Chromium OS
 		&[gksystheme="chromiumos"] {
 			// Titlebar
-			--default-titlebar-active: linear-gradient(
+			--default-titlebar-texture: linear-gradient(
 				to bottom,
 				#8f8f8f,
 				#6d6d6d 40px
 			);
-			--default-titlebar-inactive: linear-gradient(
+			--default-titlebar-texture-inactive: linear-gradient(
 				to bottom,
 				#c1c1c1,
 				#b0b0b0 40px
 			);
-			--default-titlebar-background: #6d6d6d;
+			--default-titlebar-active: #6d6d6d;
 
 			// Tabs
 			--default-inactive-tab-background: rgb(212, 212, 212, 0.8);
@@ -155,12 +155,12 @@
 
 			@media (prefers-color-scheme: dark) {
 				// Titlebar
-				--default-titlebar-active: linear-gradient(
+				--default-titlebar-texture: linear-gradient(
 					to bottom,
 					#707070,
 					#4f4f4f 40px
 				);
-				--default-titlebar-inactive: linear-gradient(
+				--default-titlebar-texture-inactive: linear-gradient(
 					to bottom,
 					#a3a3a3,
 					#919191 40px
@@ -188,30 +188,30 @@
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
-				--default-titlebar-active: linear-gradient(
+				--default-titlebar-texture: linear-gradient(
 					to bottom,
 					#435469,
 					#415368 40px
 				);
-				--default-titlebar-inactive: linear-gradient(
+				--default-titlebar-texture-inactive: linear-gradient(
 					to bottom,
 					#95a3b3,
 					#7e8b9c 40px
 				);
-				--default-titlebar-background: #415368;
+				--default-titlebar-active: #415368;
 				@media (prefers-color-scheme: dark) {
 					// Titlebar
-					--default-titlebar-active: linear-gradient(
+					--default-titlebar-texture: linear-gradient(
 						to bottom,
 						#232E38,
 						#212B35 40px
 					);
-					--default-titlebar-inactive: linear-gradient(
+					--default-titlebar-texture-inactive: linear-gradient(
 						to bottom,
 						#667685,
 						#525F6B 40px
 					);
-					--default-titlebar-background: #212B35;
+					--default-titlebar-active: #212B35;
 				}
 			}
 		}

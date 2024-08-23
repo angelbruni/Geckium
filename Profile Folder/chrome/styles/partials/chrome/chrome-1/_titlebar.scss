@@ -99,7 +99,7 @@
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
 	// Fixes for various OS quirks
-	//Windows quirks
+	//Windows quirks (both System and Compact)
 	@media (-moz-platform: windows) {
 		// Rid of the fog.
 		#TabsToolbar {
@@ -111,7 +111,7 @@
 		}
 		//Windows 10 + Native Controls Patch quirks
 		@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
-			&:not([isWindows10]) #main-window {
+			&:not([isWindows10])#main-window {
 				background: rgba(0,0,0,.002) !important;
 			}
 		}
@@ -206,6 +206,12 @@
 			#TabsToolbar > .toolbar-items {
 				padding-top: 0 !important;
 				margin-top: 0 !important;
+			}
+			//Always use white background for unremovable window corners
+			@media not (-moz-ev-native-controls-patch) {
+				&[isWindows10]#main-window {
+					background: white !important;
+				}
 			}
 		}
 
@@ -324,13 +330,24 @@
 		}
 	}
 
-	//Theme support TODO
+
+	//Theme support
+	// lwtheme Themes
 	&[gkthemed]:not([gkchrthemed]) {
-		--titlebar-active: var(--lwt-accent-color);
-		--titlebar-inactive: var(--titlebar-active);
+		--titlebar-texture: var(--lwt-accent-color), var(--lwt-additional-images);
+		--titlebar-texture-inactive: var(--titlebar-texture);
 		--titlebar-foreground: var(--lwt-text-color);
-		--titlebar-foreground-inactive: var(--lwt-text-color);
+		--titlebar-foreground-inactive: var(--titlebar-foreground);
+
+
+
 	}
+
+	// Chromium Themes
+	&[gkthemed][gkchrthemed] {
+
+	}
+
 
 	//Titlebar styles
 	&[chromemargin]:not([macOSNativeFullscreen]) {

@@ -1,9 +1,9 @@
 & {
 	//Classic (Default/Fallback), Mac OS X, macOS, Chromium OS
 	// Titlebar
+	--default-titlebar-texture: rgb(204,204,204);
+	--default-titlebar-texture-inactive: rgb(245,245,245);
 	--default-titlebar-active: rgb(204,204,204);
-	--default-titlebar-inactive: rgb(245,245,245);
-	--default-titlebar-background: rgb(204,204,204);
 	--default-titlebar-foreground: black;
 	--default-titlebar-foreground-inactive: black;
 
@@ -28,9 +28,9 @@
 
 	@mixin dark {
 		// Titlebar
+		--default-titlebar-texture: rgb(40,43,45);
+        --default-titlebar-texture-inactive: rgb(56,59,61);
 		--default-titlebar-active: rgb(40,43,45);
-        --default-titlebar-inactive: rgb(56,59,61);
-		--default-titlebar-background: rgb(40,43,45);
 		--default-titlebar-foreground: white;
 		--default-titlebar-foreground-inactive: white;
 
@@ -58,8 +58,8 @@
 	// GTK+ (rest in peace, icon set icons on toolbar)
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Titlebar (now flattened like in ~59)
-		--default-titlebar-active: ActiveCaption;
-        --default-titlebar-inactive: InactiveCaption;
+		--default-titlebar-texture: ActiveCaption;
+        --default-titlebar-texture-inactive: InactiveCaption;
 
 		// Tabs
 		--default-inactive-tab-background: -moz-dialog;
@@ -83,8 +83,8 @@
 
 		&[privatebrowsingmode="temporary"] {
 			// Titlebar (now flattened like in ~59)
-			--default-titlebar-active: var(--incognito-active);
-			--default-titlebar-inactive: var(--incognito-inactive);
+			--default-titlebar-texture: var(--incognito-active);
+			--default-titlebar-texture-inactive: var(--incognito-inactive);
 		}
 	}
 
