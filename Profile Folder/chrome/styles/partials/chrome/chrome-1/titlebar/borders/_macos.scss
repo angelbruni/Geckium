@@ -21,11 +21,11 @@
 	--titlebar-box-shadow: none;
 	//--bodytitlebar-pseudo-gap: 0px;
 
-	--default-titlebar-active: #AAAAAA;
-	--default-titlebar-inactive: #AAAAAA;
+	--default-titlebar-active: #AAAAAA !important;
+	--default-titlebar-inactive: #AAAAAA !important;
 	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: #2B2B2B;
-		--default-titlebar-inactive: #2B2B2B;
+		--default-titlebar-active: #2B2B2B !important;
+		--default-titlebar-inactive: #2B2B2B !important;
 	}
 	--titlebar-border-radius: 0;
 	&[is117Plus][windowtype="navigator:browser"] > body {
