@@ -21,6 +21,8 @@
 
 &[gktitnative="false"] {
 	@import "../tools/vanillatitlebar";
+	--titlebar-box-shadow: none;
+	//--bodytitlebar-pseudo-gap: 0px;
 
 	// Visuals: Not Windows
 	@media not (-moz-platform: windows) {

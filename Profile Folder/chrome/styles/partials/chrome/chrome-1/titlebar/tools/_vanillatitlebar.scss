@@ -1,32 +1,43 @@
-&[windowtype="navigator:browser"] > body {
-    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+&[windowtype="navigator:browser"] > body,
+#navigator-toolbox {
+    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0 !important;
 }
-
-#navigator-toolbox,
-#titlebar {
-    background-color: var(--titlebar-active, var(--default-titlebar-active));
-    background-image: var(--titlebar-texture, var(--default-titlebar-texture)) !important;
-    &:-moz-window-inactive {
-        background-image: var(--titlebar-texture-inactive, var(--default-titlebar-texture-inactive)) !important;
-    }
-    border-radius: 0 !important;
-    border-top-left-radius: var(--titlebar-border-radius) !important;
-    border-top-right-radius: var(--titlebar-border-radius) !important;
-}
-&[gkthemed][gkchrthemed] {
-    --titlebar-texture: var(--chrtheme-frame, var(--default-titlebar-texture)) !important;
-    --titlebar-texture-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame, var(--default-titlebar-texture-inactive))) !important;
-
-    #navigator-toolbox::before {
+#navigator-toolbox {
+    &::before {
         content: "";
+        top: 0;
+        left: 0;
         position: absolute;
-        height: 100%;
         width: 100%;
-        background: var(--chrtheme-theme-frame-overlay) no-repeat, var(--chrtheme-theme-frame) repeat no-repeat !important;
+        height: 100%;
+        border-radius: calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) 0 0;
+        box-shadow: var(--titlebar-box-shadow);
     }
-    &:-moz-window-inactive #navigator-toolbox::before {
+}
+
+// Only style ourselves if:
+//  - System Theme
+//  - Colours-only lwtheme is used
+//  - Chromium Theme is used
+//   otherwise, just let Firefox theme this.
+&:not([gkthemed]),
+&[gkthemed]:not([gkchrthemed], [style*="--lwt-additional-images"], [style*="--lwt-header-image"]),
+&[gkthemed][gkchrthemed] {
+    #navigator-toolbox {
+        background: var(--titlebar-active, var(--default-titlebar-active)) !important;
+        &:-moz-window-inactive {
+            background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
+        }
+        &::before {
+            background: var(--titlebar-pseudo-texture);
+            background-position: var(--titlebar-pseudo-texture-pos);
+            background-repeat: var(--titlebar-pseudo-texture-repeat);
+            background-position-y: var(--titlebar-pseudo-texture-ypos);
+        }
+    }
+}
+&[gkthemed][gkchrthemed]:-moz-window-inactive {
+    #navigator-toolbox::before {
         filter: contrast(.5) brightness(1.4);
     }
 }
-
-// TODO: Apply colours-only Firefox themes onto this surface

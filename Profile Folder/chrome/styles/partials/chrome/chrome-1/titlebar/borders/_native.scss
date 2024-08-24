@@ -2,6 +2,9 @@
     //Disable top tab distance (TODO: fix on AERO)
     --tab-distance-from-top: 0;
     --tab-distance-from-top-maximised: 0;
+
+	--titlebar-box-shadow: none;
+	--bodytitlebar-pseudo-gap: 0px;
 }
 
 // Permanently use offset'd Incognito/pfp measurements
@@ -17,11 +20,11 @@
 
 // Force grey titlebar when in fullscreen
 &[macOSNativeFullscreen] {
-	--default-titlebar-texture: #AAAAAA;
-	--default-titlebar-texture-inactive: #AAAAAA;
+	--default-titlebar-active: #AAAAAA;
+	--default-titlebar-inactive: #AAAAAA;
 	@media (prefers-color-scheme: dark) {
-		--default-titlebar-texture: #2B2B2B;
-		--default-titlebar-texture-inactive: #2B2B2B;
+		--default-titlebar-active: #2B2B2B;
+		--default-titlebar-inactive: #2B2B2B;
 	}
     //Force specific top padding in macOS's full screen
     #tabbrowser-arrowscrollbox {

@@ -207,7 +207,7 @@ class gkChrTheme {
         }
         let allowfbcolors = gkPrefUtils.tryGet("Geckium.chrTheme.fallbacks").int; // allow Fallback Colors
 
-        // TODO: Also add the Incognito frame-texture, and support colourable glare.
+        // TODO: support colourable glare.
 
         // IMAGES
         if (theme.theme.images) {
@@ -349,7 +349,7 @@ class gkChrTheme {
                 // FIXME: Surely there's a way better way to do this too in JS...?
                 var colorDiv = document.createElement("div");
                 document.head.appendChild(colorDiv);
-                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, var(--default-titlebar-texture))`;
+                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, var(--default-titlebar-active))`;
                 var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
                 // Determine the colour using the combined frame colours
                 if (ColorUtils.IsDark(color)) {
