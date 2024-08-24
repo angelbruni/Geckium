@@ -1,17 +1,17 @@
 & {
 	//Classic (Default/Fallback)
 	// Titlebar
-	--default-titlebar-texture: linear-gradient(
+	--default-titlebar-active: linear-gradient(
 		to bottom,
 		rgb(98,147,221),
 		rgb(66,113,201) 40px
 	);
-	--default-titlebar-texture-inactive: linear-gradient(
+	--default-titlebar-inactive: linear-gradient(
 		to bottom,
 		rgb(169,195,231),
 		rgb(153,178,221) 40px
 	);
-	--default-titlebar-active: rgb(66,113,201);
+	--default-titlebar-color: rgb(66,113,201);
 
 	// Tabs
 	--default-selected-tab-background: linear-gradient(
@@ -51,12 +51,12 @@
 
     @media (prefers-color-scheme: dark) {
 		// Titlebar
-		--default-titlebar-texture: linear-gradient(
+		--default-titlebar-active: linear-gradient(
 			to bottom,
 			rgb(34, 82, 155),
 			rgb(29, 55, 103) 40px
 		);
-		--default-titlebar-texture-inactive: linear-gradient(
+		--default-titlebar-inactive: linear-gradient(
 			to bottom,
 			color-mix(
 				in srgb,
@@ -69,7 +69,7 @@
 				white
 			) 40px
 		);
-		--default-titlebar-active: rgb(29, 55, 103);
+		--default-titlebar-color: rgb(29, 55, 103);
 
 		// Tabs
 		--default-selected-tab-background: linear-gradient(
@@ -104,12 +104,12 @@
 
     &[privatebrowsingmode="temporary"] {
 		// Titlebar
-        --default-titlebar-texture: linear-gradient(
+        --default-titlebar-active: linear-gradient(
             to bottom,
             rgb(97, 122, 156),
             rgb(80, 105, 141) 40px
         );
-        --default-titlebar-texture-inactive: linear-gradient(
+        --default-titlebar-inactive: linear-gradient(
             to bottom,
             rgb(147, 161, 178),
             rgb(128, 143, 161) 40px
@@ -126,52 +126,52 @@
 		// Mac OS X
 		&[gksystheme="macosx"],
 		&[gksystheme="macos"] {
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				var(--macosx-window-color),
 				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
 			);
-			--default-titlebar-texture-inactive: var(--default-titlebar-texture);
+			--default-titlebar-inactive: var(--default-titlebar-active);
 		}
 		// macOS
 		&[gksystheme="macos"] {
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				var(--macosx-window-color),
 				color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
 			);
-			--default-titlebar-texture-inactive: var(--macosx-window-color);
+			--default-titlebar-inactive: var(--macosx-window-color);
 		}
 
 		// Chromium OS
 		&[gksystheme="chromiumos"] {
 			// Titlebar
 			// TODO: Check if inactive compositorless tab background changed
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(94, 111, 144),
 				rgb(63, 83, 123) 40px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				rgb(169,195,231),
 				rgb(153,178,221) 40px
 			);
-			--default-titlebar-active: #3f537b;
+			--default-titlebar-color: #3f537b;
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(119, 119, 119),
 					rgb(93, 93, 93) 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					rgb(145, 145, 145),
 					rgb(125, 125, 125) 40px
 				);
-				--default-titlebar-active: rgb(93, 93, 93);
+				--default-titlebar-color: rgb(93, 93, 93);
 			}
 		}
 
@@ -182,12 +182,12 @@
 			--you-l: 52%;
 			--you-l-dark: 52%;
 
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 11%)),
 				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 26%)),
 				hsl(var(--you-h), calc(var(--you-s) - 6%), calc(var(--you-l) + 21%)) 40px
@@ -195,12 +195,12 @@
 
 			@media (prefers-color-scheme: dark) {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 15%)),
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%)) 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					color-mix(
 						in srgb,
@@ -213,7 +213,7 @@
 						white
 					) 40px
 				);
-				--default-titlebar-active: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%));
+				--default-titlebar-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%));
 			}
 		}
 	}

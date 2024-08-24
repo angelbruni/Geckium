@@ -2,17 +2,17 @@
 	//Classic (Default/Fallback)
 	// Titlebar
 	--titlebar-buttonbox-background: transparent;
-	--default-titlebar-texture: linear-gradient(
+	--default-titlebar-active: linear-gradient(
 		to bottom,
 		rgb(97, 162, 241),
 		rgb(72, 140, 222) 40px
 	);
-	--default-titlebar-texture-inactive: linear-gradient(
+	--default-titlebar-inactive: linear-gradient(
 		to bottom,
 		rgb(163, 201, 247),
 		rgb(147, 186, 234) 40px
 	);
-	--default-titlebar-active: rgb(72, 140, 222);
+	--default-titlebar-color: rgb(72, 140, 222);
 	--default-titlebar-foreground: white;
 	--default-titlebar-foreground-inactive: black;
 
@@ -61,12 +61,12 @@
 
     @media (prefers-color-scheme: dark) {
 		// Titlebar
-		--default-titlebar-texture: linear-gradient(
+		--default-titlebar-active: linear-gradient(
 			to bottom,
 			rgb(14, 80, 159),
 			rgb(20, 62, 112) 40px
 		);
-		--default-titlebar-texture-inactive: linear-gradient(
+		--default-titlebar-inactive: linear-gradient(
 			to bottom,
 			color-mix(
 				in srgb,
@@ -79,7 +79,7 @@
 				white
 			) 40px
 		);
-		--default-titlebar-active: rgb(20, 62, 112);
+		--default-titlebar-color: rgb(20, 62, 112);
 		--default-titlebar-foreground: white;
 		--default-titlebar-foreground-inactive: white;
 
@@ -139,24 +139,24 @@
 
     &[privatebrowsingmode="temporary"] {
 		// Titlebar
-        --default-titlebar-texture: linear-gradient(
+        --default-titlebar-active: linear-gradient(
             to bottom,
             rgb(97, 122, 156),
             rgb(80, 105, 141) 40px
         );
-        --default-titlebar-texture-inactive: linear-gradient(
+        --default-titlebar-inactive: linear-gradient(
             to bottom,
             rgb(147, 161, 178),
             rgb(128, 143, 161) 40px
         );
-		--default-titlebar-active: rgb(80, 105, 141);
+		--default-titlebar-color: rgb(80, 105, 141);
 		@media (prefers-color-scheme: dark) {
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(49, 61, 78),
 				rgb(35, 44, 56) 40px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
@@ -169,24 +169,24 @@
 					white
 				) 40px
 			);
-			--default-titlebar-active: rgb(35, 44, 56);
+			--default-titlebar-color: rgb(35, 44, 56);
 		}
     }
 
 	// GTK+
 	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		// Titlebar
-		--default-titlebar-texture: linear-gradient(
+		--default-titlebar-active: linear-gradient(
             to bottom,
             var(--activecaption-shine),
             ActiveCaption 14px
         );
-        --default-titlebar-texture-inactive: linear-gradient(
+        --default-titlebar-inactive: linear-gradient(
             to bottom,
             var(--inactivecaption-shine),
             InactiveCaption 14px
         );
-		--default-titlebar-active: ActiveCaption;
+		--default-titlebar-color: ActiveCaption;
 		--default-titlebar-foreground: CaptionText;
 		--default-titlebar-foreground-inactive: InactiveCaptionText;
 
@@ -211,12 +211,12 @@
 
 		&[privatebrowsingmode="temporary"] {
 			// Titlebar
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				var(--incognito-active-shine),
 				var(--incognito-active) 14px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				var(--incognito-inactive-shine),
 				var(--incognito-inactive) 14px
@@ -239,7 +239,7 @@
 		&[gksystheme="macos"] {
 			--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
 			// Titlebar
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				var(--macosx-window-color),
 				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
@@ -248,8 +248,8 @@
 			&:-moz-window-inactive {
 				--macosx-window-color: #ededed;
 			}
-			--default-titlebar-texture-inactive: var(--default-titlebar-texture);
-			--default-titlebar-active: var(--macosx-window-color);
+			--default-titlebar-inactive: var(--default-titlebar-active);
+			--default-titlebar-color: var(--macosx-window-color);
 			--default-titlebar-foreground: black;
 			--default-titlebar-foreground-inactive: black;
 
@@ -304,7 +304,7 @@
 				&:-moz-window-inactive {
 					--macosx-window-color: #242424;
 				}
-				--default-titlebar-active: var(--macosx-window-color);
+				--default-titlebar-color: var(--macosx-window-color);
 				--default-titlebar-foreground: white;
 				--default-titlebar-foreground-inactive: white;
 
@@ -376,7 +376,7 @@
 		&[gksystheme="macos"] {
 			--macosx-window-color: #e5e5e5;
 			// Titlebar
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				var(--macosx-window-color),
 				color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
@@ -384,7 +384,7 @@
 			&:-moz-window-inactive {
 				--macosx-window-color: #f6f6f6;
 			}
-			--default-titlebar-texture-inactive: var(--macosx-window-color);
+			--default-titlebar-inactive: var(--macosx-window-color);
 			
 			@media (prefers-color-scheme: dark) {
 				// Titlebar
@@ -399,17 +399,17 @@
 		// TODO: Until 21
 		&[gksystheme="chromiumos"] {
 			// Titlebar
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				rgb(96, 132, 210),
 				rgb(66, 109, 201) 40px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				#99b7ea,
 				#84a0dc 40px
 			);
-			--default-titlebar-active: rgb(66, 109, 201); // Used for titlebar style
+			--default-titlebar-color: rgb(66, 109, 201); // Used for titlebar style
 
 			&:not([geckium-six]) {
 				// Tabs
@@ -445,12 +445,12 @@
 
 			@media (prefers-color-scheme: dark) {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(43, 77, 151),
 					rgb(34, 61, 119) 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					color-mix(
 						in srgb,
@@ -463,7 +463,7 @@
 						white
 					) 40px
 				);
-				--default-titlebar-active: rgb(34, 61, 119);
+				--default-titlebar-color: rgb(34, 61, 119);
 				
 				&:not([geckium-six]) {
 					// Tabs
@@ -502,25 +502,25 @@
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					#63769d,
 					#52648b 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					#95a0b3,
 					#7e899c 40px
 				);
-				--default-titlebar-active: #52648b; // Used for titlebar style
+				--default-titlebar-color: #52648b; // Used for titlebar style
 				@media (prefers-color-scheme: dark) {
 					// Titlebar
-					--default-titlebar-texture: linear-gradient(
+					--default-titlebar-active: linear-gradient(
 						to bottom,
 						#313B4E,
 						#222A3A 40px
 					);
-					--default-titlebar-texture-inactive: linear-gradient(
+					--default-titlebar-inactive: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
@@ -533,7 +533,7 @@
 							white
 						) 40px
 					);
-					--default-titlebar-active: #222A3A;
+					--default-titlebar-color: #222A3A;
 				}
 			}
 		}
@@ -545,17 +545,17 @@
 			--you-l: 58%;
 			--you-l-dark: 58%;
 			// Titlebar
-			--default-titlebar-texture: linear-gradient(
+			--default-titlebar-active: linear-gradient(
 				to bottom,
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 8%)),
 				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
 			);
-			--default-titlebar-texture-inactive: linear-gradient(
+			--default-titlebar-inactive: linear-gradient(
 				to bottom,
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 22%)),
 				hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 17%)) 40px
 			);
-			--default-titlebar-active: hsl(var(--you-h), var(--you-s), var(--you-l));
+			--default-titlebar-color: hsl(var(--you-h), var(--you-s), var(--you-l));
 
 			// Tabs
 			--default-inactive-tab-background: linear-gradient(
@@ -612,12 +612,12 @@
 
 			@media (prefers-color-scheme: dark) {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)),
 					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					color-mix(
 						in srgb,
@@ -630,7 +630,7 @@
 						white
 					) 40px
 				);
-				--default-titlebar-active: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
+				--default-titlebar-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
 
 				// Tabs
 				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
@@ -695,24 +695,24 @@
 
 			&[privatebrowsingmode="temporary"] {
 				// Titlebar
-				--default-titlebar-texture: linear-gradient(
+				--default-titlebar-active: linear-gradient(
 					to bottom,
 					rgb(97, 122, 156),
 					rgb(80, 105, 141) 40px
 				);
-				--default-titlebar-texture-inactive: linear-gradient(
+				--default-titlebar-inactive: linear-gradient(
 					to bottom,
 					rgb(147, 161, 178),
 					rgb(128, 143, 161) 40px
 				);
-				--default-titlebar-active: rgb(80, 105, 141);
+				--default-titlebar-color: rgb(80, 105, 141);
 				@media (prefers-color-scheme: dark) {
-					--default-titlebar-texture: linear-gradient(
+					--default-titlebar-active: linear-gradient(
 						to bottom,
 						rgb(49, 61, 78),
 						rgb(35, 44, 56) 40px
 					);
-					--default-titlebar-texture-inactive: linear-gradient(
+					--default-titlebar-inactive: linear-gradient(
 						to bottom,
 						color-mix(
 							in srgb,
@@ -725,7 +725,7 @@
 							white
 						) 40px
 					);
-					--default-titlebar-active: rgb(35, 44, 56);
+					--default-titlebar-color: rgb(35, 44, 56);
 				}
 			}
 		}

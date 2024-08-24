@@ -21,7 +21,6 @@
 
 &[gktitnative="false"] {
 	@import "../tools/bodytitlebar";
-	--titlebar-border-radii: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 	--titlebar-box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
 	
 	// Visuals
@@ -35,9 +34,12 @@
 	// Visuals: Maximised / Fullscreen
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
+		--titlebar-box-shadow: none;
+		--bodytitlebar-pseudo-gap: 0px;
+	
+		--titlebar-border-radius: 0;
 		&[windowtype="navigator:browser"] > body {
 			border: 0;
 		}
-		--titlebar-border-radii: 0;
 	}
 }
