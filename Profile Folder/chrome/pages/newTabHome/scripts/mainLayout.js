@@ -58,15 +58,7 @@ function setMostVisitedLayout(layout) {
 }
 
 function createMainLayout() {
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
 		entry.remove();
@@ -78,7 +70,7 @@ function createMainLayout() {
 
 	let menuBtnsContainer;
 
-	if (appearanceChoice == 0) {
+	if (appearanceChoice == 1) {
 		main = `
 		<hbox id="main">
 			<vbox flex="1">
@@ -124,10 +116,10 @@ function createMainLayout() {
 			</vbox>
 		</hbox>
 		`
-	} else if (appearanceChoice <= 4) {
+	} else if (appearanceChoice <= 6) {
 		menuBtnsContainer = "#view-toolbar";
 
-		if (appearanceChoice == 1) {
+		if (appearanceChoice == 3) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -174,7 +166,7 @@ function createMainLayout() {
 				</hbox>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 2) {
+		} else if (appearanceChoice <= 4) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -208,7 +200,7 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 3) {
+		} else if (appearanceChoice <= 5) {
 			// Chrome 0 - 5	
 			main = `
 			<vbox id="main">
@@ -243,7 +235,7 @@ function createMainLayout() {
 				</html:a>
 			</vbox>
 			`;
-		} else if (appearanceChoice <= 4) {
+		} else if (appearanceChoice <= 6) {
 			// Chrome 0 - 5
 			main = `
 			<vbox id="main">
@@ -302,7 +294,7 @@ function createMainLayout() {
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 		});
-	} else if (appearanceChoice == 5) {
+	} else if (appearanceChoice == 11) {
 		// Chrome 11
 
 		main = `
@@ -351,7 +343,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else if (appearanceChoice == 6 || appearanceChoice == 7) {
+	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
@@ -359,10 +351,11 @@ function createMainLayout() {
 		header = `
 		<button id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
-				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKeyValue("productName"))}</html:div>
+				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKey("productName"))}</html:div>
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</button>
+		<html:div id="login-email"></html:div>
 		`;
 
 		main = `
@@ -423,9 +416,9 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else if (appearanceChoice >= 8) {
+	} else if (appearanceChoice >= 47) {
 		// Chrome 47 - 50
-		if (appearanceChoice == 8 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+		if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 			header = `
 			<vbox id="google-search">
 				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
@@ -439,7 +432,7 @@ function createMainLayout() {
 			<hbox id="google-bar">
 				<html:a href="https://mail.google.com/mail">Gmail</html:a>
 				<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
-				<html:a id="google-apps-link" href="https://about.google/intl/products/products/"></html:a>
+				<html:a id="google-apps-link" href="https://about.google/products/#all-products"></html:a>
 			</hbox>
 			<vbox id="google-search">
 				<html:div id="hplogo" title="Google"></html:div>
@@ -482,7 +475,7 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 4 || appearanceChoice == 6 || appearanceChoice == 7) {
+	if (appearanceChoice <= 6 || appearanceChoice == 21 || appearanceChoice == 25) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {
@@ -514,5 +507,9 @@ function createMainLayout() {
 				});*/
 			});
 		});
+	}
+	if (appearanceChoice == 21 || appearanceChoice == 25) {
+		//Trigger sign in status-update
+		updateSignInStatus();
 	}
 }

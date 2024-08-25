@@ -51,19 +51,21 @@ const gAboutPane = {
 		aboutPaneCategoryElm.setAttribute("data-category", "paneAbout");
 		mainPrefPane.appendChild(aboutPaneCategoryElm);
 
-		const fullName = gkBranding.getBrandingKeyValue("fullName");
+		const fullNameOS = gkBranding.getBrandingKey("fullName", true);
+		const fullName = gkBranding.getBrandingKey("fullName");
+		const isOS = gkBranding.getIsOS();
 
 		const aboutPaneCategoryContentDOM = `
 		<vbox>
 			<hbox id="chrInfo">
 				<html:div id="chrLogo" />
 				<vbox>
-					<html:h2>${fullName}</html:h2>
-					<html:p>${aboutBundle.GetStringFromName("aWebBrowserBuiltFor")}</html:p>
+					<html:h2>${fullNameOS}</html:h2>
+					<html:p>${isOS ? aboutBundle.GetStringFromName("theFasterSimplerAndMoreSecure") : aboutBundle.GetStringFromName("aWebBrowserBuiltFor")}</html:p>
 				</vbox>
 			</hbox>
 			<hbox id="chrButtons">
-				<button class="accessory-button" label="${aboutBundle.GetStringFromName("getHelp").replace("%s", gkBranding.getBrandingKeyValue("productName"))}" />
+				<button class="accessory-button" label="${aboutBundle.GetStringFromName("getHelp").replace("%s", gkBranding.getBrandingKey("productName", true))}" />
 				<button class="accessory-button" label="${aboutBundle.GetStringFromName("reportAnIssue")}" />
 			</hbox>
 			<html:p id="chrVersion" />
@@ -109,14 +111,14 @@ function addProductName() {
 		sidebarHeader = document.createElement("h1");
 		sidebarHeader.id = "sidebarHeader";
 	}
-	sidebarHeader.textContent = gkBranding.getBrandingKeyValue("productName");
+	sidebarHeader.textContent = gkBranding.getBrandingKey("productName", true);
 
 	gkInsertElm.before(sidebarHeader, document.getElementById("categories"));
 }
 
 function updateInfo() {
-	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).basedOnVersion);
-	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkVisualStyles.getVisualStyles("main").find(item => item.id === gkPrefUtils.tryGet("Geckium.appearance.choice").int).year[0]);
+	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getBrowserEra()].basedOnVersion);
+	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkEras.getEras("main")[gkEras.getBrowserEra()].year);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -153,3 +155,4 @@ Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", appearanceObs, false);

@@ -1,0 +1,81 @@
+@import "macosx";
+& {
+    @media (-moz-platform: macos) { //In macOS, we just let the server-side buttons do the job as they match the needed artstyle/functionality.
+        .titlebar-buttonbox {
+            appearance: auto !important; // ...which means we need to turn them on again.
+        }
+        .titlebar-button {
+            display: none !important;
+        }
+    }
+    @media not (-moz-platform: macos) {
+        &:-moz-window-inactive .titlebar-button {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+        }
+
+        //Close button
+        .titlebar-close {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+
+            &:not([disabled]):hover {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+
+            &:not([disabled]):hover:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+        }
+
+        //Minimise button
+        .titlebar-min {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+
+            &:not([disabled]):hover {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+
+            &:not([disabled]):hover:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+        }
+
+        //Maximise and Restore buttons
+        .titlebar-max {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important; //PLACEHOLDER
+
+            &:not([disabled]):hover {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+
+            &:not([disabled]):hover:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+        }
+        &[sizemode="maximized"],
+        &[sizemode="fullscreen"] {
+            .titlebar-max {
+                display: none !important;
+            }
+        }
+        .titlebar-restore {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important; //PLACEHOLDER
+
+            &:not([disabled]):hover {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+
+            &:not([disabled]):hover:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            }
+        }
+        &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+            .titlebar-restore {
+                display: none !important;
+            }
+        }
+        .titlebar-max,
+        .titlebar-restore {
+            order: 2 !important;
+        }
+    }
+}

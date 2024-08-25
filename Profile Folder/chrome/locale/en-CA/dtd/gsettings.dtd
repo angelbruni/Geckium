@@ -1,77 +1,128 @@
 <!ENTITY gsettings.disabledWizardNotice "Some options were disabled due to being launched from wizard.">
 
-<!ENTITY gsettings.welcome "Welcome">
+<!ENTITY gsettings.welcome          "Welcome">
 
-<!ENTITY gsettings.visualStylePresets	"Visual Style presets">
-<!ENTITY gsettings.mainInterface		"Main Interface">
-<!ENTITY gsettings.pages				"Pages">
-<!ENTITY gsettings.people				"People">
+<!ENTITY gsettings.design	        "Design">
+<!ENTITY gsettings.behaviour		"Behaviour">
+<!ENTITY gsettings.pages			"Pages">
+<!ENTITY gsettings.theme		    "Theme">
+<!ENTITY gsettings.people			"People">
 
-<!ENTITY gsettings.chromiumThemes		"Chromium Themes">
 <!ENTITY gsettings.chromiumExperiments 	"Chromium Experiments">
+<!ENTITY gsettings.developerOptions		"Developer Options">
 
-<!ENTITY gsettings.settings			"Settings">
-<!ENTITY gsettings.developerOptions	"Developer Options">
-<!ENTITY gsettings.help				"Help">
-<!ENTITY gsettings.about			"About">
+<!ENTITY gsettings.help					"Help">
+<!ENTITY gsettings.about				"About">
+
+<!ENTITY gsettings.welcomeTo            "Welcome to">
 
 <!ENTITY gsettings.supportTheProject				"Support the project">
 <!ENTITY gsettings.openInTabNext					"Open this in a new tab next time">
-<!ENTITY gsettings.visualStylePresetsDescription	"Choose your preferred visual style globally.">
-<!ENTITY gsettings.mainInterfaceDescription			"Customize your main interface settings such as visual style choice and custom theme modes.">
-<!ENTITY gsettings.pagesDescription					"Select your favourite page visual style and change custom theme settings.">
-<!ENTITY gsettings.peopleDescription				"Choose how you want the people button to look like.">
+
+<!ENTITY gsettings.designDescription                "Choose your preferred design, or change the way the titlebar looks and behaves.">
+<!ENTITY gsettings.behaviourDescription             "Manage Geckium's branding, how themes function, and adjust other behaviour in Geckium.">
+<!ENTITY gsettings.pagesDescription                 "Customise various pages in Geckium, including the new tab and apps pages.">
+<!ENTITY gsettings.themeDescription                 "Select a System Theme, Firefox Theme, or Chromium Theme to use in Geckium.">
+<!ENTITY gsettings.peopleDescription				"Choose how you want the people button to look.">
+<!ENTITY gsettings.chromiumExperimentsDescription   "Enable or disable scrapped options from throughout Chromium's history.">
+
+<!ENTITY gsettings.automatic					"Automatic">
+
+<!ENTITY gsettings.titlebar                         "Titlebar">
+<!ENTITY gsettings.titlebarStyle                    "Titlebar Style">
+<!ENTITY gsettings.titlebarStyleWinNoGaps           "Windows (gapless)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha          "Linux (Alpha)">
+<!ENTITY gsettings.titlebarMode                     "Titlebar Mode">
+<!ENTITY gsettings.titlebarModeDisclaimer           "Some titlebar styles will ignore this setting">
+<!ENTITY gsettings.titlebarModeSystem               "System Borders">
+<!ENTITY gsettings.titlebarModeCompact              "Compact Borders">
+<!ENTITY gsettings.titlebarInThemesIsSys            "Use system borders in compatible Chromium Themes">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer  "Requires system borders to be enabled or used by your titlebar style">
 
 <!ENTITY gsettings.availablePresets			"Available presets">
 <!ENTITY gsettings.resetOverrides			"Reset overrides">
-<!ENTITY gsettings.quickAccess				"Quick access">
-<!ENTITY gsettings.mainInterfaceSettings	"Main Interface settings">
-<!ENTITY gsettings.pageSettings				"Page settings">
-<!ENTITY gsettings.chromiumThemeSettings	"Chromium Theme settings">
 
-<!ENTITY gsettings.browserPreferences 					"Browser Preferences">
-<!ENTITY gsettings.needsRestart	   						"Needs restart">
-<!ENTITY gsettings.enableTabManager						"Enable tab manager">
-<!ENTITY gsettings.hideExtensionsMenuButton				"Hide extensions menu button">
-<!ENTITY gsettings.visualStyles							"Visual Styles">
-<!ENTITY gsettings.branding								"Branding">
+<!ENTITY gsettings.mainInterface                        "Main Interface">
 <!ENTITY gsettings.overrideVisualStylePreset			"Override visual style preset">
-<!ENTITY gsettings.chromiumWindowFrame					"Chromium Window Frame">
-<!ENTITY gsettings.chromiumWindowFrameOverride			"Override Chromium Window Frame">
-<!ENTITY gsettings.chromiumCaptionButtonsTitle			"Chromium Caption Buttons">
-<!ENTITY gsettings.chromiumCaptionButtonsDescription	"Chromium had different styles depending on the system.">
-<!ENTITY gsettings.disable								"Disable">
-<!ENTITY gsettings.enable								"Enable">
-
-<!ENTITY gsettings.themeFooterAccordingToCustomTheme	"Theme footer according to applied custom theme">
-<!ENTITY gsettings.appsList								"Apps List">
-
-<!ENTITY gsettings.peoplePositionTitle			"Position">
-<!ENTITY gsettings.peoplePositionDescription	"The people button has had different positions throughout the years.">
-<!ENTITY gsettings.automatic					"Automatic">
-
-<!ENTITY gsettings.customThemeSupport					"Custom Theme Support (Firefox Themes only)">
-<!ENTITY gsettings.customThemeMode						"Custom theme mode">
-<!ENTITY gsettings.doNotThemeToolbars					"Don't theme toolbars">
-<!ENTITY gsettings.applyBackgroundToCaptionButtons		"Apply background to caption buttons according to custom theme">
-<!ENTITY gsettings.colorizeTabGlareEffect 				"Colourize tab glare effect according to custom theme">
-<!ENTITY gsettings.gtkIconsInAllToolbarItemsTitle		"GTK icons in every toolbar item">
-<!ENTITY gsettings.gtkIconsInAllToolbarItemsNotice		"Only when GTK+ theme is enabled">
 
 <!ENTITY gsettings.newTab	"New Tab">
 
+<!ENTITY gsettings.quickAccess				"Quick access">
+<!ENTITY gsettings.designToBehaviour    	"Manage branding, toolbar items and theme behaviour...">
+<!ENTITY gsettings.designToPages			"Manage new tab page contents...">
+<!ENTITY gsettings.designToThemes       	"Change or manage themes...">
+<!ENTITY gsettings.designToExperiments      "Explore scrapped Chromium design options...">
+
+<!ENTITY gsettings.browser                              "Browser">
+<!ENTITY gsettings.branding								"Branding">
+<!ENTITY gsettings.toolbar                              "Toolbar">
+<!ENTITY gsettings.needsRestart	   						"Needs restart">
+<!ENTITY gsettings.enableTabManager						"Enable tab manager">
+<!ENTITY gsettings.hideExtensionsMenuButton				"Hide extensions menu button">
+
+<!ENTITY gsettings.themes                               "Themes">
+<!ENTITY gsettings.accommodateChrThemes                 "Accommodate Chromium Themes to designs they were not made for">
+<!ENTITY gsettings.accommodateChrThemesDisclaimer       "This allows modern themes to be compatible with old designs, and vice-versa">
+<!ENTITY gsettings.chrThemeFallbacks                    "Fallback titlebar and toolbar colours in Chromium Themes">
+<!ENTITY gsettings.chrThemeFallbacksDisclaimer          "Themes with image textures will ignore this setting">
+<!ENTITY gsettings.enabled					            "Enabled">
+<!ENTITY gsettings.disabled					            "Disabled">
+<!ENTITY gsettings.colorizeTabGlareEffect 				"Colourise tab glare effect according to custom theme">
+<!ENTITY gsettings.colorizeTabGlareEffectDescription    "Colourises the tab hover effect">
+<!ENTITY gsettings.themeNewTabFooter                    "Theme new tab footer according to applied custom theme">
+<!ENTITY gsettings.gtkIconsInAllToolbarItems		    "GTK icons in every toolbar item">
+<!ENTITY gsettings.gtkIconsInAllToolbarItemsDisclaimer	"Requires Linux with GTK+ theme enabled">
+
+<!ENTITY gsettings.behaviourToDesign        "Switch design or manage overrides...">
+<!ENTITY gsettings.behaviourToTheme         "Apply a theme to observe behaviour changes...">
+<!ENTITY gsettings.behaviourToExperiments   "Explore scrapped Chromium behaviour options...">
+
+<!ENTITY gsettings.appsList					"Apps List">
+
+<!ENTITY gsettings.pagesToDesign            "Change the new tab page design...">
+<!ENTITY gsettings.pagesToBehaviour         "Manage behaviour of themes in the new tab page...">
+<!ENTITY gsettings.pagesToTheme             "Personalise the new tab page with themes...">
+
+<!ENTITY gsettings.firefoxThemes                        "Firefox Themes">
+<!ENTITY gsettings.customThemeMode						"Custom theme mode">
+<!ENTITY gsettings.toolbarStyleFXChrome                 "FXChrome-like">
+<!ENTITY gsettings.doNotThemeToolbars					"Don't theme toolbars">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttons           "Apply toolbar background to titlebar buttons">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer "Some titlebar styles will ignore this setting">
+
+<!ENTITY gsettings.openChrThemesFolder				"Open Chromium themes folder">
+<!ENTITY gsettings.refreshList					    "Refresh list">
+<!ENTITY gsettings.sysThemeIsFallback               "Fallback">
+<!ENTITY gsettings.sysThemeWindows                  "Default (Windows)">
+<!ENTITY gsettings.sysThemeClassic                  "Classic">
+<!ENTITY gsettings.sysThemeYou                      "Geckium You">
+<!ENTITY gsettings.sysThemeNative                   "Native">
+<!ENTITY gsettings.sysThemeMacOSX                   "Default (Mac OS X)">
+<!ENTITY gsettings.sysThemeMacOS                    "Default (macOS)">
+<!ENTITY gsettings.sysThemeChrOS                    "Default (OS)">
+<!ENTITY gsettings.gotoFirefoxThemes                "Firefox Themes...">
+<!ENTITY gsettings.getMoreGoogleChromeThemes        "Get more Google Chrome themes">
+<!ENTITY gsettings.getMoreMicrosoftEdgeThemes       "Get more Microsoft Edge themes">
+
+<!ENTITY gsettings.geckiumYouSource             "Geckium You colour source">
+<!ENTITY gsettings.geckiumYouDisclaimer         "Chrome 68 is not supported by Geckium You">
+<!ENTITY gsettings.grey                         "Grey">
+<!ENTITY gsettings.w3cAccentColor               "Accent Colour">
+<!ENTITY gsettings.custom                       "Custom">
+<!ENTITY gsettings.wincolor                     "Window Colour">
+<!ENTITY gsettings.geckiumYouCustom             "Custom Geckium You colour">
+
+<!ENTITY gsettings.themeToDesign                "Try your themes on different designs...">
+<!ENTITY gsettings.themeToBehaviour             "Adjust how much of the interface themes affect...">
+<!ENTITY gsettings.themeToExperiments           "Personalise further with scrapped Chromium options...">
+
+<!ENTITY gsettings.peoplePositionTitle			"Position">
+<!ENTITY gsettings.peoplePositionDescription	"The people button has had different positions throughout the years.">
+
 <!ENTITY gsettings.pickAnAvatar		"Pick an avatar">
 <!ENTITY gsettings.avatarMode		"Avatar Mode">
-<!ENTITY gsettings.custom			"Custom">
 <!ENTITY gsettings.chooseAPicture	"Choose a picture">
 <!ENTITY gsettings.imagePath		"Image Path">
-
-<!ENTITY gsettings.getMoreGoogleChromeThemes	"Get more Google Chrome themes">
-<!ENTITY gsettings.getMoreMicrosoftEdgeThemes	"Get more Microsoft Edge themes">
-<!ENTITY gsettings.openThemesFolder				"Open themes folder">
-<!ENTITY gsettings.refreshList					"Refresh list">
-<!ENTITY gsettings.availableThemes				"Available Themes">
-<!ENTITY gsettings.unavailableThemes			"Unavailable Themes">
 
 <!ENTITY gsettings.flags 'Flags - also available via "about:flags"'>
 
@@ -102,13 +153,14 @@
 
 <!ENTITY gsettings.modalChromiumVisualStylePresetsTitle			"About Chromium Visual Style Presets">
 <!ENTITY gsettings.modalChromiumVisualStylePresetsDescription	"Choose from a selection of different visual styles that Chromium has had throughout the years, from Chrome 1 all the way to 68.">
+<!ENTITY gsettings.modalDesignOverridden                        "Design presets are currently being overridden. Would you like to reset overrides?">
 <!ENTITY gsettings.modalEditAppTitle							"Edit">
 <!ENTITY gsettings.modalEditAppOldFavicon						"Old favicon">
 <!ENTITY gsettings.modalEditAppOldIcon							"Old icon">
 <!ENTITY gsettings.modalEditAppNewIcon							"New icon">
 <!ENTITY gsettings.modalEditAppOldName							"Old name">
 <!ENTITY gsettings.modalEditAppNewName							"New name">
-<!ENTITY gsettings.modalChromiumThemesDescription				"If you don't see your theme, try extracting it and recompressing as '.zip', then change the format to '.crx' by renaming the file.">
+<!ENTITY gsettings.modalChromiumThemesDescription				"If you don't see your theme, try renaming it to end with '.7z', then extract it and recompress the extracted contents as '.zip', and then rename the '.zip' back to '.crx'.">
 <!ENTITY gsettings.modalGkBranchesTitle							"Geckium Branches">
 <!ENTITY gsettings.modalGkBranchesDescription					"The different Geckium branches are for different forks of Firefox, some change the UI too heavily meaning that we have to do some things differently.">
 <!ENTITY gsettings.modalGkBranchesCurrent						"Current Branch:">

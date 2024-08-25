@@ -49,6 +49,7 @@
 
 .link {
 	&.chrome-appearance {
+		background-color: AccentColor;
 		position: relative;
 		display: block;
 		width: 100%;
@@ -58,6 +59,7 @@
 		cursor: pointer;
 
 		&:hover {
+			background-color: AccentColor !important;
 			background-size: cover !important;
 			box-shadow: var(--elevation-8);
 		}

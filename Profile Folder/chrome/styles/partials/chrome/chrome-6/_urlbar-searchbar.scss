@@ -25,7 +25,7 @@
 	#searchbar {
 		background-color: var(--toolbar-field-background-color) !important;
 		border: 1px solid var(--urlbar-border) !important;
-		border-radius: var(--toolbarbutton-radius) !important;
+		border-radius: var(--toolbarbutton-border-radius) !important;
 	}
 
 	.urlbar-input-box {
@@ -56,6 +56,13 @@
 			#identity-icon {
 				list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
 			}
+			
+			--toolbar-field-background-color: var(
+				--toolbar-field-default-background-color
+			);
+			--protocol-background-color: var(
+				--toolbar-field-default-background-color
+			);
 		}
 
 		&[securestate="ev"] {
@@ -131,7 +138,7 @@
 	#star-button-box > #star-button[starred] {
 		fill: color-mix(
 			in srgb,
-			color-mix(in srgb, var(--toolbarbutton-icon-fill) 55%, #000) 80%,
+			color-mix(in srgb, var(--toolbarbutton-icon-color) 55%, #000) 80%,
 			white
 		) !important;
 	}

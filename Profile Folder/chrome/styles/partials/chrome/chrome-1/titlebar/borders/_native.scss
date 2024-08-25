@@ -1,0 +1,45 @@
+& {
+    //Disable top tab distance (TODO: fix on AERO)
+    --tab-distance-from-top: 0;
+    --tab-distance-from-top-maximised: 0;
+
+	--titlebar-box-shadow: none;
+	--bodytitlebar-pseudo-gap: 0px;
+}
+
+// Permanently use offset'd Incognito/pfp measurements
+#fxa-toolbar-menu-button,
+#private-browsing-indicator-with-label {
+    height: calc(var(--tab-height) - 9px);
+
+    .toolbarbutton-badge-stack,
+    .private-browsing-indicator-icon {
+        margin-block-end: -4px;
+    }
+}
+
+// Force grey titlebar when in fullscreen
+&[macOSNativeFullscreen] {
+	--default-titlebar-active: #AAAAAA !important;
+	--default-titlebar-inactive: #AAAAAA !important;
+	@media (prefers-color-scheme: dark) {
+		--default-titlebar-active: #2B2B2B !important;
+		--default-titlebar-inactive: #2B2B2B !important;
+	}
+    //Force specific top padding in macOS's full screen
+    #tabbrowser-arrowscrollbox {
+        padding-top: 12px;
+    }
+}
+
+&[gktitnative="false"] {
+	@import "../tools/vanillatitlebar";
+
+    // Use the flat titlebar colour when on GTK+
+    &[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+        #navigator-toolbox,
+        #titlebar {
+            background-image: unset !important;
+        }
+    }
+}

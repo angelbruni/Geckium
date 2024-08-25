@@ -1,0 +1,220 @@
+& {
+	//Classic (Default/Fallback)
+	// Titlebar
+	--default-titlebar-active: linear-gradient(
+		to bottom,
+		rgb(98,147,221),
+		rgb(66,113,201) 40px
+	);
+	--default-titlebar-inactive: linear-gradient(
+		to bottom,
+		rgb(169,195,231),
+		rgb(153,178,221) 40px
+	);
+	--default-titlebar-color: rgb(66,113,201);
+
+	// Tabs
+	--default-selected-tab-background: linear-gradient(
+        to bottom,
+		rgb(255, 255, 255),
+        rgb(249, 249, 249)
+    );
+
+	// Navbar
+	--default-nav-bar: linear-gradient(
+		to top,
+		rgb(228, 228, 228),
+		rgb(249, 249, 249)
+	);
+	--default-toolbarbutton-border-color-normal: rgb(198,198,198);
+	--default-toolbarbutton-border-color-hot: rgb(203, 203, 203);
+	--default-toolbarbutton-border-color-active: rgb(159, 159, 159);
+	--default-toolbarbutton-texture: linear-gradient(
+		to bottom,
+		rgb(245,245,245),
+		rgb(232,232,232)
+	);
+	--default-navigation-buttons-separator: rgb(231,231,231);
+	--toolbar-field-default-background-color: white;
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: linear-gradient(
+        to top,
+        rgb(223, 223, 223),
+        rgb(228, 228, 228)
+    );
+    --default-personal-toolbar-item-hover-shadow: inset 0 0 0 1px
+            rgb(255, 255, 255, 30%),
+        0 0 0 1px rgb(0, 0, 0, 8%), 0 1px 1px 2px rgb(0, 0, 0, 6%),
+        inset 0 0 1px 1px transparent;
+    --default-personal-toolbar-item-hover-bg: rgb(242, 244, 247);
+
+    @media (prefers-color-scheme: dark) {
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(34, 82, 155),
+			rgb(29, 55, 103) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				rgb(34, 82, 155) 80%,
+				white
+			),
+			color-mix(
+				in srgb,
+				rgb(29, 55, 103) 80%,
+				white
+			) 40px
+		);
+		--default-titlebar-color: rgb(29, 55, 103);
+
+		// Tabs
+		--default-selected-tab-background: linear-gradient(
+			to bottom,
+			#414141,
+			#333333
+		);
+
+		// Navbar
+		--default-nav-bar: linear-gradient(
+			to bottom,
+			#333333,
+			#242424
+		);
+		--default-toolbarbutton-border-color-normal: rgb(87, 87, 87);
+        --default-toolbarbutton-border-color-hot: rgb(121, 121, 121);
+        --default-toolbarbutton-border-color-active: rgb(58, 58, 58);
+		--default-toolbarbutton-texture: linear-gradient(
+			to bottom,
+			#333333,
+			#242424
+		);
+		--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
+
+		// Personal Toolbar
+		--default-personal-toolbar: linear-gradient(
+			to bottom,
+			#242424,
+			#1C1C1C
+		);
+	}
+
+    &[privatebrowsingmode="temporary"] {
+		// Titlebar
+        --default-titlebar-active: linear-gradient(
+            to bottom,
+            rgb(97, 122, 156),
+            rgb(80, 105, 141) 40px
+        );
+        --default-titlebar-inactive: linear-gradient(
+            to bottom,
+            rgb(147, 161, 178),
+            rgb(128, 143, 161) 40px
+        );
+		// TODO: dark
+    }
+	
+	&:not([geckium-sixtyeight]) {
+		// Firefox is weird number ILostCount: It seems like it prefers nearest code or smth? By this, I mean that
+		// it would rather use this file's Classic code, than geckium-one's macos(x), yet is fine using code from
+		// geckium-five's macos(x) - does it only look for macos(x) if it's one file away, else uses Classic?
+		//
+		// Regardless, this weird behaviour means we have to re-enforce the titlebar gradient now Classic's updated:
+		// Mac OS X
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--macosx-window-color),
+				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
+			);
+			--default-titlebar-inactive: var(--default-titlebar-active);
+		}
+		// macOS
+		&[gksystheme="macos"] {
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--macosx-window-color),
+				color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
+			);
+			--default-titlebar-inactive: var(--macosx-window-color);
+		}
+
+		// Chromium OS
+		&[gksystheme="chromiumos"] {
+			// Titlebar
+			// TODO: Check if inactive compositorless tab background changed
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(94, 111, 144),
+				rgb(63, 83, 123) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				rgb(169,195,231),
+				rgb(153,178,221) 40px
+			);
+			--default-titlebar-color: #3f537b;
+
+			&[privatebrowsingmode="temporary"] {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(119, 119, 119),
+					rgb(93, 93, 93) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					rgb(145, 145, 145),
+					rgb(125, 125, 125) 40px
+				);
+				--default-titlebar-color: rgb(93, 93, 93);
+			}
+		}
+
+		// Geckium You
+		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+			--you-h: 0;
+			--you-s: 0%;
+			--you-l: 52%;
+			--you-l-dark: 52%;
+
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 11%)),
+				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 26%)),
+				hsl(var(--you-h), calc(var(--you-s) - 6%), calc(var(--you-l) + 21%)) 40px
+			);
+
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 15%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%)) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 15%)) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%)) 80%,
+						white
+					) 40px
+				);
+				--default-titlebar-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 26%));
+			}
+		}
+	}
+}

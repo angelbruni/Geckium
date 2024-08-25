@@ -1,0 +1,13 @@
+&:not([geckium-twentyone]) {
+    &:not([gkthemed], [gkchrthemed], :-moz-window-inactive) { //Now also in Incognito
+        &[gksystheme="chromiumos"] {
+            &[windowtype="navigator:browser"] > body {
+                background: linear-gradient(
+                    to bottom,
+                    black 10px,
+                    var(--default-titlebar-color) 34px
+                );
+            }
+        }
+    }
+}

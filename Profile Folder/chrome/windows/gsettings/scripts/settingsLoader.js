@@ -39,6 +39,19 @@ function loadTextFieldSetting() {
 }
 document.addEventListener("DOMContentLoaded", loadTextFieldSetting);
 
+function loadColorSetting() {
+	setTimeout(() => {
+		document.querySelectorAll('input[type="color"][data-pref]').forEach(input => {
+			input.value = gkPrefUtils.tryGet(`Geckium.${input.dataset.pref}`).string;
+	
+			input.addEventListener("change", () => {
+				gkPrefUtils.set(`Geckium.${input.dataset.pref}`).string(input.value);
+			})
+		})
+	}, 10);
+}
+document.addEventListener("DOMContentLoaded", loadColorSetting);
+
 function loadSwitchSetting() {
 	setTimeout(() => {
 		document.querySelectorAll('input.switch[data-pref]').forEach(input => {
@@ -58,3 +71,28 @@ function loadVersion() {
 	})
 }
 document.addEventListener("DOMContentLoaded", loadVersion);
+
+function loadConditionalSettings(setting) {
+	let gkswitch;
+	// FIXME: Once the switches spy on settings changes, change this to look for settings changes via custom observers or something
+	if (setting) {
+		conditionalitems = document.querySelectorAll(`[data-switchreq="${setting}"]`);
+	} else {
+		conditionalitems = document.querySelectorAll('[data-switchreq]');
+	}
+	conditionalitems.forEach(item => {
+		gkswitch = document.querySelector(`input.switch[data-pref="${item.dataset.switchreq}"]`)
+		if (gkswitch.checked == true) {
+			item.style.removeProperty("display");
+		} else {
+			item.style.setProperty("display", "none");
+		}
+		if (!setting) {
+			// Add toggle event to re-trigger the check for only this switch's setting
+			gkswitch.addEventListener("input", () => {
+				loadConditionalSettings(`${item.dataset.switchreq}`);
+			})
+		}
+	})
+}
+document.addEventListener("DOMContentLoaded", () => loadConditionalSettings());

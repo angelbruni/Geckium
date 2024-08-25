@@ -1,21 +1,13 @@
 function createMainLayout() {
-	const fullName = gkBranding.getBrandingKeyValue("fullName");
+	const fullName = gkBranding.getBrandingKey("fullName");
 
 	document.documentElement.setAttribute("title", aboutBundle.GetStringFromName("windowTitle").replace("%s", fullName));
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
-	if (appearanceChoice <= 1)
+	if (appearanceChoice <= 3)
 		window.resizeTo(490 + (window.outerWidth - window.innerWidth), 266 + (window.outerHeight - window.innerHeight));
-	else if (appearanceChoice <= 5)
+	else if (appearanceChoice <= 11)
 		window.resizeTo(516 + (window.outerWidth - window.innerWidth), 266 + (window.outerHeight - window.innerHeight));
 	else
 		window.resizeTo(576 + (window.outerWidth - window.innerWidth), 307 + (window.outerHeight - window.innerHeight));
@@ -26,12 +18,12 @@ function createMainLayout() {
 			<hbox>
 				<vbox>
 					<html:h1>${fullName}</html:h1>
-					<html:p>${gkVisualStyles.getVisualStyles("main").find(item => item.id === appearanceChoice).basedOnVersion}</html:p>
+					<html:p>${gkEras.getEras("main")[appearanceChoice].basedOnVersion}</html:p>
 				</vbox>
 			</hbox>
 		</vbox>
 		<vbox>
-			<html:p>${aboutBundle.GetStringFromName("copyright").replace("%d", gkVisualStyles.getVisualStyles("main").find(item => item.id === appearanceChoice).year[0])}</html:p>
+			<html:p>${aboutBundle.GetStringFromName("copyright").replace("%d", gkEras.getEras("main")[appearanceChoice].year)}</html:p>
 			<html:p>${aboutBundle.GetStringFromName("madePossibleBy").replace("%s", fullName)}</html:p>
 		</vbox>
 		<vbox>

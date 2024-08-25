@@ -1,0 +1,156 @@
+&:not([geckium-fortyseven]) {
+	//Give the tabs/Incognito/pfp the appropriate offset
+	#private-browsing-indicator-with-label {
+		order: -1 !important; // Force to left
+	}
+	.titlebar-spacer[type="pre-tabs"] {
+		order: -2 !important; // Force to left of Incognito
+	}
+	&:not([privatebrowsingmode="temporary"]) {
+		#TabsToolbar-customization-target {
+			margin-inline-start: var(--tab-distance-from-toolbar-edge);
+		}
+	}
+	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
+	&[privatebrowsingmode="temporary"] {
+		#private-browsing-indicator-with-label {
+			margin-inline-start: var(--tab-distance-from-toolbar-edge);
+		}
+	}
+	#fxa-toolbar-menu-button,
+	.private-browsing-indicator-icon {
+		margin-inline-start: 1px !important;
+		margin-inline-end: var(--tab-distance-from-pfp) !important;
+	}
+
+	//Shared non-native titlebar variables
+	// TODO when SVG'd
+
+	//Titlebar button box (force onto right side)
+	.titlebar-buttonbox-container {
+		order: 1000 !important;
+		align-items: unset !important;
+	}
+	//Linux quirk: Counteract exclusive menubar padding
+	@media (-moz-platform: linux) {
+		#toolbar-menubar .titlebar-buttonbox-container {
+			margin-block-start: -1px; // top margin
+		}
+	}
+
+	.titlebar-buttonbox {
+		align-items: unset !important;
+		gap: 0;
+	}
+	
+	//Shared titlebar button code
+	.titlebar-button {
+		background: transparent !important;
+		border-radius: 0 !important;
+		//transition: background-color 100ms linear; //hover-fade animation
+		display: flex !important;
+		height: 35px;
+		width: 35px;
+		color: inherit !important;
+		
+        &::before { //Chrome OS NEVER has its buttons filled
+            content: unset !important;
+        }
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-button {
+			height: 28px;
+		}
+	}
+
+	//Close button
+	.titlebar-close {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close.png) !important;
+		order: 2 !important;
+		&:not([disabled]):hover {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close_hover.png) !important;
+		}
+		&:not([disabled]):hover:active {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close_pressed.png) !important;
+		}
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-close {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close_maximized.png) !important;
+			&:not([disabled]):hover {
+				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close_maximized_hover.png) !important;
+			}
+			&:not([disabled]):hover:active {
+				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/close_maximized_pressed.png) !important;
+			}
+		}
+	}
+	&:-moz-locale-dir(rtl) { // Swap corners in RTL
+		.titlebar-close {
+			transform: scaleX(-1);
+		}
+	}
+
+	//Maximise and Restore buttons
+	.titlebar-max {
+		width: 37px;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/maximize.png) !important;
+		&:not([disabled]):hover {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/maximize_hover.png) !important;
+		}
+		&:not([disabled]):hover:active {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/maximize_pressed.png) !important;
+		}
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-max {
+			display: none !important;
+		}
+	}
+	.titlebar-restore {
+		width: 37px;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/restore.png) !important;
+		&:not([disabled]):hover {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/restore_hover.png) !important;
+		}
+		&:not([disabled]):hover:active {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/restore_pressed.png) !important;
+		}
+	}
+	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		.titlebar-restore {
+			display: none !important;
+		}
+	}
+	.titlebar-max,
+	.titlebar-restore {
+		order: 1 !important;
+	}
+
+	//Minimise button
+	.titlebar-min {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize.png) !important;
+		order: 0 !important;
+		&:not([disabled]):hover {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize_hover.png) !important;
+		}
+		&:not([disabled]):hover:active {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize_pressed.png) !important;
+		}
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize_maximized.png) !important;
+			&:not([disabled]):hover {
+				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize_maximized_hover.png) !important;
+			}
+			&:not([disabled]):hover:active {
+				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/cros/minimize_maximized_pressed.png) !important;
+			}
+		}
+	}
+}

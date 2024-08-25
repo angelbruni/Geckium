@@ -1,0 +1,11 @@
+&:not([geckium-twentyone]) {
+    #tabs-newtab-button::before,
+    #TabsToolbar #new-tab-button::before {
+        // ...safe to say neither did macOS yet. 
+        content: unset !important;
+    }
+}
+// TODO: macOS has unique new tab buttons that need recreating
+
+
+// TODO: Override tab close button styling here

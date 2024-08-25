@@ -1,23 +1,12 @@
 function setUpPages() {
-	let appearanceChoice;
+	let appearanceChoice = gkEras.getNTPEra();
 
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
-
-	if (appearanceChoice == 6 || appearanceChoice == 7) {
+	if (appearanceChoice == 21 || appearanceChoice == 25) {
 		const pageSwitcherStart = document.getElementById("page-switcher-start");
 		const pageSwitcherEnd = document.getElementById("page-switcher-end");
 
 		let pageContainer = document.getElementById("page-list");
 		const pages = pageContainer.querySelectorAll(".tile-page");
-
-		console.log(pages)
 
 		let tabItems = document.querySelectorAll("#dot-list > .dot");
 

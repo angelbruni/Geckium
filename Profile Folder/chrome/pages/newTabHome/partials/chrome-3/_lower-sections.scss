@@ -23,36 +23,28 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				--lower-sections-border-color: color-mix(
-					in srgb,
-					var(--thumbnail-border-color-normal) 70%,
-					white
-				) !important;
-
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					--lower-sections-h2-background: linear-gradient(
-						to bottom,
-						var(--thumbnail-border-color-normal),
-						var(--thumbnail-border-color-normal)
-					) !important;
-				}
-				&[lwtheme-id*="#{$gtkplus}"] {
-					--lower-sections-h2-background: var(--edit-bar-background-hot) !important;
-				}
-			}
-		}
-	}
-	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed]:not([gkchrthemed]) {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			var(--thumbnail-border-color-normal) 70%,
 			white
-		) !important;
+		);
+
+		&:not([gksystheme="gtk"]) {
+			--lower-sections-h2-background: linear-gradient(
+				to bottom,
+				var(--thumbnail-border-color-normal),
+				var(--thumbnail-border-color-normal)
+			);
+		}
+	}
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--lower-sections-border-color: color-mix(
+			in srgb,
+			var(--thumbnail-border-color-normal) 70%,
+			white
+		);
 
 		--lower-sections-h2-background: 
 		linear-gradient(
@@ -64,7 +56,27 @@
 			),
 			var(--thumbnail-border-color-normal)
 		),
-		grey !important
+		grey
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--lower-sections-border-color: color-mix(
+			in srgb,
+			ActiveCaption 70%,
+			white
+		);
+
+		--lower-sections-h2-background: 
+		linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				ActiveCaption 75%,
+				white
+			),
+			ActiveCaption
+		),
+		grey
 	}
 }
 

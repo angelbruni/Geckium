@@ -12,7 +12,7 @@ function addProductName() {
 		sidebarHeader = document.createElement("h1");
 		sidebarHeader.id = "sidebarHeader";
 	}
-	sidebarHeader.textContent = gkBranding.getBrandingKeyValue("productName");
+	sidebarHeader.textContent = gkBranding.getBrandingKey("productName", true);
 
 	gkInsertElm.before(sidebarHeader, document.getElementById("categories"));
 }
@@ -27,3 +27,4 @@ const appearanceObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", appearanceObs, false);

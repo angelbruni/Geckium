@@ -97,3 +97,35 @@
 	animation-duration: 500ms;
 	animation-fill-mode: forwards;
 }
+
+.silverfox-reset {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	z-index: 1;
+}
+:root:not([silverfox]) .silverfox-reset {
+	display: none !important;
+}
+:root[silverfox] {
+	.banner {
+		animation-delay: 14s;
+
+		> image {
+			// animation settings
+			animation-name: silverfoxLogo, silverfoxFly, splashScreenLogo;
+			animation-delay: 0s, 0s, 8500ms;
+			animation-duration: 8s, 8s, 2000ms;
+			animation-fill-mode: forwards, forwards, forwards;
+			animation-timing-function: ease-in, ease-in, linear;
+			z-index: 1;
+		}
+	}
+	// add a delay to the normal animation
+	#splash-text {
+		animation-delay: 10500ms;
+	}
+	.button {
+		animation-delay: 11500ms;
+	}
+}

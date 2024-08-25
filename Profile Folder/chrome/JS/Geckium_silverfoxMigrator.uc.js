@@ -2,7 +2,7 @@
 // @name        Geckium - Silverfox Migrator
 // @author		Dominic Hayes, AngelBruni
 // @description	Converts Silverfox preferences to Geckium preferences.
-// @loadorder   3
+// @loadorder   2
 // @include		main
 // ==/UserScript==
 
@@ -70,24 +70,24 @@ class sfMigrator {
 		if (AppConstants.platform == "linux") {
 			if (gkPrefUtils.tryGet("silverfox.beChromeOS").bool) {
 				// Be Chrome OS
-				gkPrefUtils.set("Geckium.appearance.classicCaptionStyle").string("chromeos");
+				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromiumos");
 			} else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// Force Windows Styling
-				gkPrefUtils.set("Geckium.appearance.classicCaptionStyle").string("windows");
+				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
 			}
 		}
 
 		//Branding
 		if (gkPrefUtils.tryGet("silverfox.beChromium").bool)
-			gkPrefUtils.set("Geckium.branding.choice").int(2); // Chromium
+			gkPrefUtils.set("Geckium.branding.choice").string("chromium");
 		else
-			gkPrefUtils.set("Geckium.branding.choice").int(3); // Chrome
+			gkPrefUtils.set("Geckium.branding.choice").string("chrome");
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)
-			gkPrefUtils.set("Geckium.appearance.choice").int(5); // 11
+			gkPrefUtils.set("Geckium.appearance.choice").int(11);
 		else
-			gkPrefUtils.set("Geckium.appearance.choice").int(7); // 25
+			gkPrefUtils.set("Geckium.appearance.choice").int(25);
 
 		//Profile Pictures
 		const pfp = gkPrefUtils.tryGet("silverfox.usepfp").string;
@@ -119,64 +119,25 @@ class sfMigrator {
 			"whitepfp": 0,
 			"yellowpfp": 7
 		}
-		if (pfp == "off" || pfp == "") {
-			// Apply a pre-defined toolbar layout to remove Mozilla's items Geckium re-displays
-			gkPrefUtils.set("browser.uiCustomization.state").string(`
-			{"placements":{
-				"widget-overflow-fixed-list":[],
-				"unified-extensions-area":[],
-				"nav-bar":[
-					"back-button","forward-button","stop-reload-button","urlbar-container",
-					"downloads-button","unified-extensions-button","gsettings-button",
-					"page-button","chrome-button"
-				],
-				"toolbar-menubar":["menubar-items"],
-				"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],
-				"PersonalToolbar":["personal-bookmarks"]},
-				"seen":["save-to-pocket-button","developer-button"],
-				"currentVersion":19,"newElementCount":4}
-			`);
-		} else {
+		if (pfp != "off" && pfp != "") {
 			gkPrefUtils.set("Geckium.profilepic.button").bool(true);
 
 			if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
-				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to Geckium.
-				gkPrefUtils.set("Geckium.profilepic.mode").int(0);
+				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
+				if (gkPrefUtils.tryGet("services.sync.username").string) {
+					//  Firefox Account's user picture if signed in...
+					gkPrefUtils.set("Geckium.profilepic.mode").int(2);
+				} else {				
+					//  Otherwise Geckium.
+					gkPrefUtils.set("Geckium.profilepic.mode").int(0);
+				}
 			} else {
 				gkPrefUtils.set("Geckium.profilepic.mode").int(1);
 				gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
 			}
-
-			/**
-			 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
-			 * 
-			 *  NOTE: Geckium should do the same for itself so we can remove this
-			 *        from Silverfox-only code.
-			 */
-			gkPrefUtils.set("browser.uiCustomization.state").string(`
-			{"placements":{
-				"widget-overflow-fixed-list":[],
-				"unified-extensions-area":[],
-				"nav-bar":[
-					"back-button","forward-button","stop-reload-button","urlbar-container",
-					"downloads-button","unified-extensions-button","gsettings-button",
-					"page-button","chrome-button"
-				],
-				"toolbar-menubar":["menubar-items"],
-				"TabsToolbar":[
-					"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
-					"alltabs-button"
-				],
-				"PersonalToolbar":["personal-bookmarks"]},
-				"seen":["save-to-pocket-button","developer-button"],
-				"currentVersion":19,"newElementCount":4}
-			`);
 		}
 
 		// Finishing touches
-		// Disable Tab Manager
-		gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);
-
 		// Apply Silverfox's Apps list
 		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
 		{
@@ -254,7 +215,7 @@ class sfMigrator {
 		`);
 
 		// Enable Silverfox Firefox Theming
-		gkPrefUtils.set("Geckium.customtheme.mode").int(1);
+		gkPrefUtils.set("Geckium.customtheme.mode").string("silverfox");
 
 		// Delete leftover Silverfox settings
 		this.deleteSfPrefs();
@@ -262,10 +223,32 @@ class sfMigrator {
 		// Leave a note about this having been a Silverfox install once, in case bruni decides to add a special wizard splash if detected
 		gkPrefUtils.set("Geckium.firstRun.wasSilverfox").bool(true);
 
-		// Restart to update layout.
-		_ucUtils.restart(true);
+		/**
+		 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
+		 * 
+		 *  FIXME: Geckium should do the same for itself so we can remove this
+		 *        from Silverfox-only code, and the below restart.
+		 */
+		gkPrefUtils.set("browser.uiCustomization.state").string(`
+		{"placements":{
+			"widget-overflow-fixed-list":[],
+			"unified-extensions-area":[],
+			"nav-bar":[
+				"back-button","forward-button","stop-reload-button","urlbar-container",
+				"downloads-button","unified-extensions-button","gsettings-button",
+				"page-button","chrome-button"
+			],
+			"toolbar-menubar":["menubar-items"],
+			"TabsToolbar":[
+				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
+				"alltabs-button"
+			],
+			"PersonalToolbar":["personal-bookmarks"]},
+			"seen":["save-to-pocket-button","developer-button"],
+			"currentVersion":19,"newElementCount":4}
+		`);
+		_ucUtils.restart(false); // Required to reload toolbar-layout
 	}
-}
 
-if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool && sfMigrator.getWasSf)
-	sfMigrator.migrate();
+	// NOTE: The call for the migrator can be found at Geckium_wizard.uc.js.
+}

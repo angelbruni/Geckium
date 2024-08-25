@@ -1,13 +1,13 @@
 & {
 	@media (prefers-color-scheme: dark) {
 		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png") !important;
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
 		}
 	}
 
-	&[style*="--chrt-ntp-logo-alternate: 1"] {
+	&[style*="--chrtheme-ntp-logo-alternate: 1"] {
 		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png") !important;
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
 		}
 	}
 

@@ -1,33 +1,13 @@
-& {
-	--default-titlebar-active: linear-gradient(
-		to bottom,
-		rgb(98,147,221),
-		rgb(66,113,201) 40px
-	);
-	--default-titlebar-inactive: linear-gradient(
-		to bottom,
-		rgb(169,195,231),
-		rgb(153,178,221) 40px
-	);
+// Remove the Google logo, as it's no longer present
+.titlebar-buttonbox-container::before,
+.titlebar-buttonbox-container::after {
+	content: unset !important;
+}
 
-	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: linear-gradient(
-			to bottom,
-			rgb(34, 82, 155),
-			rgb(29, 55, 103) 40px
-		);
-		--default-titlebar-inactive: linear-gradient(
-			to bottom,
-			color-mix(
-				in srgb,
-				rgb(34, 82, 155) 80%,
-				white
-			),
-			color-mix(
-				in srgb,
-				rgb(29, 55, 103) 80%,
-				white
-			) 40px
-		);
+//Updated titlebar styles
+&[chromemargin]:not([macOSNativeFullscreen]) {
+	// Chromium OS
+	&[gktitstyle="chromiumos"] {
+		@import "titlebar/borders/chromiumos";
 	}
 }

@@ -27,209 +27,266 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&[lwtheme-id*="{"],
-		&[lwtheme-id*="@mozilla.org"] {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				--footer-border: linear-gradient(
-					to left,
-					color-mix(
-						in srgb,
-						color-mix(in srgb, var(--lwt-accent-color) 10%, black)
-							20%,
-						transparent
-					),
-					/* COLOR_NTP_SECTION_BORDER */
-					color-mix(
-						in srgb,
-						color-mix(
-								in srgb,
-								var(--lwt-accent-color) 10%,
-								black
-							)
-							30%,
-						transparent
-					)
-					20%,
-					/* COLOR_NTP_SECTION_BORDER */
-					color-mix(
-						in srgb,
-						color-mix(
-								in srgb,
-								var(--lwt-accent-color) 10%,
-								black
-							)
-							30%,
-						transparent
-					)
-					80%,
-					/* COLOR_NTP_SECTION_BORDER */
-					color-mix(
-						in srgb,
-						color-mix(
-								in srgb,
-								var(--lwt-accent-color) 10%,
-								black
-							)
-							20%,
-						transparent
-					)
-				);
-				
-
-				&[footer-themable="true"] {
-					--footer-background: linear-gradient(
-						to bottom,
-						color-mix(
-							in srgb,
-							var(--lwt-accent-color) 90%,
-							transparent
-						),
-						color-mix(
-							in srgb,
-							color-mix(in srgb, var(--lwt-accent-color) 65%, black)
-								90%,
-							transparent
-						)
-					);
-					--footer-color: var(--newtab-text-primary-color, var(--lwt-text-color));
-	
-					--dot-color-normal: color-mix(
-						in srgb,
-						var(--newtab-text-primary-color, var(--lwt-text-color)) 20%,
-						gray
-					);
-					--dot-color-hot: var(--newtab-text-primary-color, var(--lwt-text-color));
-					--selection-bar-background-color-normal: color-mix(
-						in srgb,
-						var(--newtab-text-primary-color, var(--lwt-text-color)) 20%,
-						transparent
-					);
-					--selection-bar-background-color-hot: color-mix(
-						in srgb,
-						var(--newtab-text-primary-color, var(--lwt-text-color)) 40%,
-						transparent
-					);
-					--selection-bar-background-color-active: var(--newtab-text-primary-color, var(--lwt-text-color));
-	
-					--footer-item-color-hot: color-mix(
-						in srgb,
-						var(--lwt-text-color) 90%,
-						black
-					);
-					--footer-menu-button-glyph-background-color-normal: var(--lwt-text-color);
-					--footer-menu-item-link-color: var(--lwt-accent-color);
-					--footer-vertical-separator-background-color: color-mix(
-						in srgb,
-						var(--newtab-text-primary-color, var(--lwt-text-color)) 40%,
-						transparent
-					);
-
-					@media (prefers-color-scheme: dark) {
-						--footer-background: linear-gradient(
-							to bottom,
-							rgba(53, 53, 53, 0.9),
-							rgba(31, 31, 31, 0.9)
-						);
-						--footer-color: #b8b8b8;
-			
-						--dot-color-normal: rgba(255, 255, 255, 0.2);
-						--dot-color-hot: #9e9e9e;
-						--selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
-						--selection-bar-background-color-hot: #535353;
-						--selection-bar-background-color-active: #9e9e9e;
-			
-						--footer-menu-button-glyph-background-color-normal: #b8b8b8;
-						--footer-menu-item-link-color: #acc0da;
-						--footer-vertical-separator-background-color: rgb(100, 100, 100);
-					}
-				}
-			}
-		}
-	}
-
-	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed]:not([gkchrthemed]) {
 		--footer-border: linear-gradient(
 			to left,
 			color-mix(
 				in srgb,
-				var(--chrt-ntp-header) 20%,
+				color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%, black)
+					20%,
+				transparent
+			),
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					30%,
+				transparent
+			)
+			20%,
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					30%,
+				transparent
+			)
+			80%,
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					20%,
+				transparent
+			)
+		);
+		
+
+		&[footer-themable="true"] {
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 86%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: var(--toolbar-color, var(--lwt-text-color));
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				gray
+			);
+			--dot-color-hot: var(--toolbar-color, var(--lwt-text-color));
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: var(--toolbar-color, var(--lwt-text-color));
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: var(--toolbar-color, var(--lwt-text-color));
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				transparent
+			);
+		}
+	}
+
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				var(--chrtheme-ntp-header) 20%,
 				transparent
 			),
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 30%,
+					var(--chrtheme-ntp-header) 30%,
 					transparent
 				)
 				20%,
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 30%,
+					var(--chrtheme-ntp-header) 30%,
 					transparent
 				)
 				80%,
 			/* COLOR_NTP_SECTION_BORDER */
 				color-mix(
 					in srgb,
-					var(--chrt-ntp-header) 20%,
+					var(--chrtheme-ntp-header) 20%,
 					transparent
 				)
-		) !important;
+		);
 
-		&[footer-themable="true"] {
-			#logo_wordmark {
-				background: var(--chrt-frame) !important;
+		&[footer-themable="true"][style~="--chrtheme-ntp-background:"]:not([style*="--chrtheme-ntp-background: rgb(255, 255, 255);"]),
+		&[footer-themable="true"][style~="--chrtheme-toolbar:"] {
+			--gk-footer-bg: var(--chrtheme-ntp-background);
+			--gk-footer-fg: var(--chrtheme-ntp-text);
+			&[style~="--chrtheme-toolbar:"] {
+				--gk-footer-bg: var(--chrtheme-toolbar);
+				--gk-footer-fg: var(--chrtheme-toolbar-button-icon, #7f7f7f);
 			}
+
+			--logo-wordmark-color: var(--gk-footer-fg);
 
 			--footer-background: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
-					var(--chrt-toolbar) 90%,
+					var(--gk-footer-bg) 90%,
 					transparent
 				),
 				color-mix(
 					in srgb,
-					color-mix(in srgb, var(--chrt-toolbar) 65%, black)
+					color-mix(in srgb, var(--gk-footer-bg) 86%, black)
 						90%,
 					transparent
 				)
 			);
-			--footer-color: var(--chrt-frame);
+			--footer-color: var(--gk-footer-fg);
 
 			--dot-color-normal: color-mix(
 				in srgb,
-				var(--chrt-frame) 20%,
+				var(--gk-footer-fg) 20%,
 				gray
 			);
-			--dot-color-hot: var(--chrt-frame);
+			--dot-color-hot: var(--gk-footer-fg);
 			--selection-bar-background-color-normal: color-mix(
 				in srgb,
-				var(--chrt-frame) 20%,
+				var(--gk-footer-fg) 20%,
 				transparent
 			);
 			--selection-bar-background-color-hot: color-mix(
 				in srgb,
-				var(--chrt-frame) 40%,
+				var(--gk-footer-fg) 40%,
 				transparent
 			);
-			--selection-bar-background-color-active: var(--chrt-frame);
+			--selection-bar-background-color-active: var(--gk-footer-fg);
 
 			--footer-item-color-hot: color-mix(
 				in srgb,
-				var(--chrt-frame) 90%,
+				var(--gk-footer-fg) 90%,
 				black
 			);
 			--footer-menu-button-glyph-background-color-normal: var(
-				--chrt-frame
+				--gk-footer-fg
 			);
-			--footer-menu-item-link-color: var(--chrt-toolbar);
 			--footer-vertical-separator-background-color: color-mix(
 				in srgb,
-				var(--chrt-frame) 40%,
+				var(--gk-footer-fg) 40%,
+				transparent
+			);
+		}
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						ActiveCaption 10%,
+						black
+					)
+					20%,
+				transparent
+			),
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						ActiveCaption 10%,
+						black
+					)
+					20%,
+				transparent
+			)
+		);
+		
+		&[footer-themable="true"] {
+			--logo-wordmark-color: -moz-dialogtext;
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					-moz-dialog 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, -moz-dialog 92%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: -moz-dialogtext;
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				-moz-dialogtext 20%,
+				gray
+			);
+			--dot-color-hot: -moz-dialogtext;
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				-moz-dialogtext 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				-moz-dialogtext 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: -moz-dialogtext;
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				-moz-dialogtext 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: -moz-dialogtext;
+			--footer-menu-item-link-color: AccentColor;
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				-moz-dialogtext 40%,
 				transparent
 			);
 		}
@@ -418,7 +475,7 @@
 		margin-inline-start: 0;
 		padding-inline-end: 0;
 		background: no-repeat 0 50%;
-		background-color: transparent !important;
+		background-color: transparent;
 		background-size: 16px 16px;
 		box-sizing: border-box;
 		display: flex;
@@ -429,7 +486,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		color: var(--footer-menu-item-link-color) !important;
+		color: var(--footer-menu-item-link-color);
 		font-weight: normal;
 		font-size: 9pt;
 		align-items: center;

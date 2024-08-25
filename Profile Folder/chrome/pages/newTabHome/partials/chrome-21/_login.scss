@@ -7,12 +7,13 @@
 	}
 
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--link-color: var(--chrt-ntp-text, var(--default-link-color));
+	&[gkthemed][gkchrthemed] {
+		--link-color: var(--chrtheme-ntp-text, var(--default-link-color));
 	}
 }
 
-#login-container {
+#login-container,
+#login-email {
 	all: unset;
 
 	color: var(--thumbnail-container-color);

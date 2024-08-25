@@ -1,0 +1,213 @@
+:root {
+	// Favicons
+	--default-favicon:	url("chrome://userchrome/content/assets/img/chrome-1/favicons/default_favicon.png");
+	--settings-favicon:	  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowRTQ4M0ZCMTQzQzNERTExQjUwRkNEQ0U3OTMwMjg4QSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1NDc4RTBCNEI5RUQxMURGOUU0RUYxRUVCRDVBOENBMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1NDc4RTBCM0I5RUQxMURGOUU0RUYxRUVCRDVBOENBMyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA3ODAxMTc0MDcyMDY4MTE4RjYyODMyODlDREE3NTRGIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBFNDgzRkIxNDNDM0RFMTFCNTBGQ0RDRTc5MzAyODhBIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+kYXrhgAAArlJREFUeNp8U0tIVUEY/mbOnHPuuVoIUt4S09RatSq4IAYFgW3ahYskgqJy00MITdr1cCNteixqodLOdQ8qSshNgdIqpIcKcsMyXQiV13vvOTOnb+aatGru/c+cx/zffN/3/yN2HTh/SPlqWCmVl9KDECnS1IYBUmH/G4M3Kdw3Y8yU1snAwtSDSeUpNZ6Jsrkwk4HypVukdYzUaNgHAUkQAltweHyT8rvOx+XyOBfsUMr3c5lshCibxeH8Xpw63oH25gb8/L2OJ6+mcXf0OZMlpAoYijkShuykp3KWl/Q8CV/58DyF+a8r+PZjFdqkiDIhuo914saVbuikSDIx5QkH4nG98gMnTFZ1Wb0ai0sruDr0CI9fvrM6SdWgM78PTblaVMprSColgiVO5t8hq6Zo9J/rQugLxJV1RKHvWCQWhBF4hgBFJHEFRicO3MqwQ9ESB9Cxfw+OHBzAp9kC2nc3ut1tsrFAFSYTwFMRhBeQgHQgVQac7cPTifcuqa1lp5sTbTbnS70nyS4luyLipARDGUY7HYISKIkg98Ze4M3bD/8k6825tbUZt2/2IfT4rkSQuORKbQmI9o4Lac3WLVBK0qB1NDXUIlRV2hd7e9DGZCvDxux8AYO3RlBByL0DfJwYzshqp/EiWR4/QuH7L8zML2Nmbhl91+7g8+yC88JGS3MjTvd0IaYfhoZyBM6DlCjSAtAklalFENUhqKlHjAj91x/iy1xhw1CDbfV10Ex25QRTbDlS9xN02Het6wnOXkjQEJW4iMGhEZw5cRTbmfx6cpqEeUbgqiBUqs0i0Ru1dZM7CMG2JUDK3peBRzDpeuD+6DM6H7sSSpaS6UsE0Iqn6iwPxhgl5IyfVk+cxbfMjA0yk/Yc2P1ity+XrJTXVi/zNhb4/xCu3dlw1jCreeOdPaq2jvEfAQYA71p79KNYdqUAAAAASUVORK5CYII=");
+	--extensions-favicon: url("chrome://userchrome/content/assets/img/chrome-5/tabbar/plugin.png");
+	--search-favicon:	  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/search.svg");
+	--history-favicon:	  url("chrome://userchrome/content/assets/img/toolbar/clock.png");
+
+	// Private Browsing
+	--private-browsing-indicator-icon: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/otr_icon.png");
+	
+	// Toolbar
+	--back-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/back.svg");
+	--forward-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/forward.svg");
+	--reload-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/reload.svg");
+	--stop-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/stop.svg");
+	--home-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/home.svg");
+
+	--password-notification-icon: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/savepassword.svg");
+	--star-button-icon-normal:	  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/star.svg");
+	--star-button-icon-starred:	  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/starred.svg");
+	--go-button-box-icon:		  url("chrome://userchrome/content/assets/img/chrome-1/toolbar/go.svg");
+
+	--nav-bar-overflow-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/overflow.svg");
+	--bookmarks-menu-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_bookmark.svg");
+	--gsettings-button-icon:			url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg");
+	--unified-extensions-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_plugin.svg");
+	--page-button-icon:					url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_page.svg");
+	--chrome-button-icon:				url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_chrome.svg");
+
+	--logins-button-icon:		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/passwords.svg");
+	--developer-button-icon: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/menu_chrome.svg");
+	--preferences-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/settings.svg");
+	--fullscreen-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/fullscreen.svg");
+	--new-window-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/newwindow.svg");
+	--save-page-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/saveas.svg");
+	--open-file-button-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/openfile.svg");
+
+	--bookmark-folder-icon:	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/bookmark_bar_folder.svg");
+}
+@media (-moz-platform: linux) {
+	:root[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+		// Fallback favicon
+		--default-favicon:		url(moz-icon://stock/text-x-generic?size=button);
+
+		// Toolbar
+		--back-button-icon:		url(moz-icon://stock/go-previous?size=toolbar);
+		--forward-button-icon:	url(moz-icon://stock/go-next?size=toolbar);
+		--reload-button-icon:	url(moz-icon://stock/view-refresh?size=toolbar);
+		--stop-button-icon:		url(moz-icon://stock/process-stop?size=toolbar);
+		--home-button-icon:		url(moz-icon://stock/go-home?size=toolbar);
+		--bookmark-folder-icon:	url(moz-icon://stock/folder?size=button);
+		&[moregtkicons="true"] {
+			--password-notification-icon: url(moz-icon://stock/dialog-password?size=toolbar);
+			--star-button-icon-normal:	  url(moz-icon://stock/stock_delete-bookmark?size=button);
+			--star-button-icon-starred:	  url(moz-icon://stock/stock_bookmark?size=button);
+			--go-button-box-icon:		  url(moz-icon://stock/go-jump?size=button);
+
+			--bookmarks-menu-button-icon:		url(moz-icon://stock/user-bookmarks?size=toolbar);
+			--unified-extensions-button-icon:	url(moz-icon://stock/extension?size=toolbar);
+			--page-button-icon:					url(moz-icon://stock/document-properties?size=toolbar);
+			--chrome-button-icon:				url(moz-icon://stock/gtk-preferences?size=toolbar);
+
+			--logins-button-icon:		url(moz-icon://stock/dialog-password?size=toolbar);
+			--developer-button-icon: 	url(moz-icon://stock/gtk-preferences?size=toolbar);
+			--preferences-button-icon:	url(moz-icon://stock/preferences-system?size=toolbar);
+			--fullscreen-button-icon:	url(moz-icon://stock/view-fullscreen?size=toolbar);
+			--new-window-button-icon:	url(moz-icon://stock/window-new?size=toolbar);
+			--save-page-button-icon:	url(moz-icon://stock/document-save?size=toolbar);
+			--open-file-button-icon:	url(moz-icon://stock/document-open?size=toolbar);
+		}
+	}
+}
+
+.private-browsing-indicator-icon {
+    list-style-image: var(--private-browsing-indicator-icon) !important;
+}
+
+#back-button {
+	list-style-image: var(--back-button-icon) !important;
+}
+
+#forward-button {
+	list-style-image: var(--forward-button-icon) !important;
+}
+
+#reload-button {
+	list-style-image: var(--reload-button-icon) !important;
+}
+
+#stop-button {
+	list-style-image: var(--stop-button-icon) !important;
+}
+
+#home-button {
+	list-style-image: var(--home-button-icon) !important;
+}
+
+#go-button-box {
+	list-style-image: var(--go-button-box-icon);
+}
+
+#logins-button {
+	list-style-image: var(--logins-button-icon) !important;
+}
+
+#developer-button {
+	list-style-image: var(--developer-button-icon) !important;
+}
+
+#preferences-button {
+	list-style-image: var(--preferences-button-icon) !important;
+}
+
+#fullscreen-button {
+	list-style-image: var(--fullscreen-button-icon) !important;
+}
+
+#new-window-button {
+	list-style-image: var(--new-window-button-icon) !important;
+}
+
+#save-page-button {
+	list-style-image: var(--save-page-button-icon) !important;
+}
+
+#open-file-button {
+	list-style-image: var(--open-file-button-icon) !important;
+}
+
+#password-notification-icon {
+	list-style-image: var(--password-notification-icon) !important;
+}
+
+#star-button-box > #star-button {
+	list-style-image: var(--star-button-icon-normal) !important;
+
+	&[starred] {
+		list-style-image: var(--star-button-icon-starred) !important;
+	}
+}
+
+.bookmark-item[container="true"] {
+	list-style-image: var(--bookmark-folder-icon) !important;
+}
+
+/**
+ *	bruni:
+ *	
+ *	We are changing the favicon of about pages like this so we can
+ *	have era-specific icons.
+ *	
+ *	This stylesheet should ONLY have:
+ *	- favicon variables;
+ *  - `display: none`;
+ *	- `fill: transparent`.
+ */
+
+ .tabbrowser-tab {
+	&[image="chrome://branding/content/icon32.png"],
+	&:not([image]) {
+		&:not([pinned], [sharing], [soundplaying]) {
+			.tab-icon-image {
+				display: none !important;
+			}
+		}
+		.tab-icon-image {
+			content: var(--default-favicon) !important;
+		}
+	}
+
+	&[image="chrome://global/skin/icons/settings.svg"] {
+		.tab-icon-image {
+			content: var(--settings-favicon) !important;
+		}
+	}
+	&[image="chrome://mozapps/skin/extensions/extension.svg"] {
+		.tab-icon-image {
+			content: var(--extensions-favicon) !important;
+		}
+	}
+}
+
+.urlbarView-favicon {
+	&[src="chrome://global/skin/icons/search-glass.svg"],
+	&[src="chrome://browser/skin/history.svg"] {
+		fill: transparent;
+	}
+
+	&[src="chrome://global/skin/icons/search-glass.svg"] {
+		background-image: var(--search-favicon);
+	}
+
+	&[src="chrome://browser/skin/history.svg"] {
+		background-image: var(--history-favicon);
+	}
+}
+
+.bookmark-item {
+	&[image="page-icon:about:newtab"],
+	&[image="page-icon:about:gsettings"] {
+		&::before {
+			content: var(--default-favicon);
+			margin-inline-end: 4px;
+			width: 16px;
+			height: 16px;
+		}
+
+		.toolbarbutton-icon {
+			display: none !important;
+		}
+	}
+}

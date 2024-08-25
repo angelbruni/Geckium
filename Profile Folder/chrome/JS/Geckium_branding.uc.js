@@ -9,73 +9,76 @@
 // ==/UserScript==
 
 class gkBranding {
-	static get getBrandingPrefName() {
-		return "Geckium.branding.choice";
+	static OSQualifiers = ["chromiumos"];
+	static branding = {
+		"geckium": {
+			"fullName": "Geckium",
+			"productName": "Geckium",
+			"vendorName": ""
+		},
+		"firefox": {
+			"fullName": "Mozilla Firefox",
+			"productName": "Firefox",
+			"vendorName": "Mozilla"
+		},
+		"chromium": {
+			"fullName": "Chromium",
+			"fullNameOS": "Chromium OS",
+			"productName": "Chromium",
+			"productNameOS": "Chromium OS",
+			"vendorName": ""
+		},
+		"chrome": {
+			"name": "chrome",
+			"fullName": "Google Chrome",
+			"fullNameOS": "Google Chrome OS",
+			"productName": "Chrome",
+			"productNameOS": "Chrome OS",
+			"vendorName": "Google"
+		}
+	};
+
+    /** getIsOS: Returns True if the current titlebar style is Chromium OS
+     */
+	static getIsOS() {
+		let titChoice = gkTitlebars.getTitlebar(gkEras.getBrowserEra());
+		return gkBranding.OSQualifiers.includes(titChoice);
 	}
 
-	static getCurrentBranding(method) {
-		const branding = {
-			0: {
-				"name": "geckium",
-				"fullName": "Geckium",
-				"productName": "Geckium",
-				"vendorName": ""
-			},
-			1: {
-				"name": "firefox",
-				"fullName": "Mozilla Firefox",
-				"productName": "Firefox",
-				"vendorName": "Mozilla"
-			},
-			2: {
-				"name": "chromium",
-				"fullName": "Chromium",
-				"productName": "Chromium",
-				"vendorName": ""
-			},
-			3: {
-				"name": "chrome",
-				"fullName": "Google Chrome",
-				"productName": "Chrome",
-				"vendorName": "Google"
-			},
-			4: {
-				"name": "chromeos",
-				"fullName": "Chrome OS",
-				"productName": "Chrome OS",
-				"vendorName": "Google"
+    /** getCurrentBranding: Returns the current branding choice
+     */
+	static getCurrentBranding() {
+		let prefChoice = gkPrefUtils.tryGet("Geckium.branding.choice").string;
+		if (Object.keys(gkBranding.branding).includes(prefChoice)) {
+			return prefChoice;
+		} else {
+			return "geckium"; //Fallback
+		}
+	}
+
+    /** getBrandingKey: Gets an aspect of your current branding
+	 * 
+	 * key: The aspect of the branding to get
+	 * useOSValue: Redirects to the OS equivalent whenever appropriate to if True
+     */
+	static getBrandingKey(key, useOSValue) {
+		let prefChoice = gkBranding.getCurrentBranding();
+		if (useOSValue) { // Use the 'OS' branding, if present, instead
+			if (gkBranding.getIsOS() && Object.keys(gkBranding.branding[prefChoice]).includes(key + "OS")) {
+				return gkBranding.branding[prefChoice][key + "OS"];
 			}
-		};
-
-		let currentChoice = gkPrefUtils.tryGet(this.getBrandingPrefName).int;
-
-		if (currentChoice < 0 || !currentChoice)
-			currentChoice == 0;
-		else if (currentChoice > 3)
-			currentChoice == 3;
-
-		if (method)
-			return branding[currentChoice][method];
-		else
-			return currentChoice;
+		}
+		return gkBranding.branding[prefChoice][key];
 	}
 
-	static setBranding(choice) {
-		gkPrefUtils.set(this.getBrandingPrefName).int(choice);
-
-		console.log(`Branding set: ${this.getBrandingKeyValue("name")}`);
-	}
-
-	static getBrandingKeyValue(key) {
-		return this.getCurrentBranding(key);
-	}
-
+    /** load: Replaces Mozilla Firefox branding with appropriate Geckium branding in the current window
+     */
 	static load() {
-		const brandingName = gkBranding.getBrandingKeyValue("name");
-		const fullName = gkBranding.getBrandingKeyValue("fullName");
+		const prefChoice = gkBranding.getCurrentBranding();
+		const fullName = gkBranding.branding[prefChoice]["fullName"];
 
 		// Set branding attribute.
-		document.documentElement.setAttribute("gkbranding", brandingName);
+		document.documentElement.setAttribute("gkbranding", prefChoice);
 
 		if (isBrowserWindow) {
 			// Set attributes for future tabs.
@@ -100,4 +103,4 @@ const gkBrandingObs = {
 			gkBranding.load();
 	},
 };
-Services.prefs.addObserver(gkBranding.getBrandingPrefName, gkBrandingObs, false);
+Services.prefs.addObserver("Geckium.branding.choice", gkBrandingObs, false);

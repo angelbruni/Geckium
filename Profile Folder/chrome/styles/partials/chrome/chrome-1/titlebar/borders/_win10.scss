@@ -1,0 +1,27 @@
+& {
+	--titlebar-border-radius: 0;
+	@media (-moz-platform: macos) {
+		--titlebar-border-radius: 10px; //Artificial minimum radii set by macOS's window manager (+the 1px border)
+	}
+}
+
+// Change offsets for Incognito/pfp when window's maximised
+&[sizemode="maximized"],
+&[sizemode="fullscreen"] {
+	#fxa-toolbar-menu-button,
+	#private-browsing-indicator-with-label {
+		height: calc(var(--tab-height) - 9px);
+
+		.toolbarbutton-badge-stack,
+		.private-browsing-indicator-icon {
+			margin-block-end: -4px; //offset for maximised window
+		}
+	}
+}
+
+&[gktitnative="false"] {
+	@import "../tools/vanillatitlebar";
+	--titlebar-box-shadow: none;
+	//--bodytitlebar-pseudo-gap: 0px;
+}
+@import "win10-mpl";

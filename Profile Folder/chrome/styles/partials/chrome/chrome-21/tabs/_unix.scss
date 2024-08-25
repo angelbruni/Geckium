@@ -1,0 +1,35 @@
+// Linux and macOS used a smol new tab button, with the texture in themes
+//  being the titlebar button texture instead, until they all got unified
+//  with Windows's style sometime after 25 (in 2013?).
+&:not([geckium-fortyseven]) {
+    //Nuke tab fill as only Windows used it
+    --default-theme-newtab: transparent !important;
+    #tabs-newtab-button,
+	#TabsToolbar #new-tab-button {
+        &:hover::before,
+        &:hover:active::before {
+            background: var(--theme-newtab, var(--default-theme-newtab));
+        }
+    }
+	
+    // Use smol new tab button
+    --newtab-width: 28px;
+	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask.png");
+	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab.png");
+	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_hover.png");
+	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_pressed.png");
+
+	// else if lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		&[captionbuttonbackground="true"] {
+			--theme-newtab: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		}
+	}
+    // else if chrtheme
+	&[gkthemed][gkchrthemed] {
+		--theme-newtab: var(--chrtheme-theme-window-control-background,
+                    var(--chrtheme-control-background,
+                    var(--chrtheme-button-background,
+                    var(--default-theme-newtab)))) !important;
+	}
+}

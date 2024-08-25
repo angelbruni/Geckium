@@ -1,0 +1,93 @@
+& {
+	//Classic (Default/Fallback), Mac OS X, macOS, Chromium OS
+	// Titlebar
+	--default-titlebar-active: rgb(204,204,204);
+	--default-titlebar-inactive: rgb(245,245,245);
+	--default-titlebar-color: rgb(204,204,204);
+	--default-titlebar-foreground: black;
+	--default-titlebar-foreground-inactive: black;
+
+	// Tabs
+	--default-inactive-tab-background-native: rgb(206, 206, 206, 0.78);
+	--default-inactive-tab-background: #d0d0d0;
+	--default-selected-tab-background: var(--default-nav-bar);
+	--default-tabbrowser-tab-color: black;
+
+	// Navbar
+	--default-nav-bar: rgb(242,242,242);
+	--default-toolbarbutton-background-hot: rgba(0,0,0,.09);
+	--default-toolbarbutton-background-pressed: rgba(0,0,0,.18);
+	--default-toolbarbutton-icon-color: #5a5a5a;
+	--default-bookmark-icon-fill: rgb(66,133,244);
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: var(--default-nav-bar);
+	--default-personal-toolbar-item-hover-bg: rgba(0,0,0,.08);
+	--default-personal-toolbar-item-active-bg: rgba(0,0,0,.16);
+	--default-bookmark-item-hover-color: black;
+
+	@mixin dark {
+		// Titlebar
+		--default-titlebar-active: rgb(40,43,45);
+        --default-titlebar-inactive: rgb(56,59,61);
+		--default-titlebar-color: rgb(40,43,45);
+		--default-titlebar-foreground: white;
+		--default-titlebar-foreground-inactive: white;
+
+		// Tabs
+		--default-inactive-tab-background-native: rgb(53, 53, 53, 0.78);
+		--default-inactive-tab-background: #373737;
+		--default-selected-tab-background: var(--default-nav-bar);
+		--default-tabbrowser-tab-color: white;
+
+		// Navbar
+		--default-nav-bar: rgb(80,80,80);
+		--default-toolbarbutton-icon-color: white;
+
+		// Personal Toolbar
+		--default-personal-toolbar: var(--default-nav-bar);
+		--default-bookmark-item-color: white;
+	}
+	@media (prefers-color-scheme: dark) {
+		@include dark;
+	}
+    &[privatebrowsingmode="temporary"] {
+		@include dark;
+    }
+
+	// GTK+ (rest in peace, icon set icons on toolbar)
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+		// Titlebar (now flattened like in ~59)
+		--default-titlebar-active: ActiveCaption;
+        --default-titlebar-inactive: InactiveCaption;
+
+		// Tabs
+		--default-inactive-tab-background: -moz-dialog;
+		--default-selected-tab-background: var(--default-nav-bar);
+		--default-tabbrowser-tab-color: FieldText;
+		--default-tabbrowser-tab-color-inactive: -moz-dialogtext;
+
+		// Navbar
+		--default-nav-bar: Field;
+		--default-toolbarbutton-background-hot: color-mix(in srgb, FieldText 9%, transparent); //TODO: verify
+		--default-toolbarbutton-background-pressed: color-mix(in srgb, FieldText 18%, transparent); //TODO: verify
+		--default-toolbarbutton-icon-color: FieldText;
+		--default-bookmark-icon-fill: AccentColor;
+
+		// Personal Toolbar (Bookmarks)
+		--default-personal-toolbar: var(--default-nav-bar);
+		--default-personal-toolbar-item-hover-bg: color-mix(in srgb, FieldText 8%, transparent); //TODO: verify
+		--default-personal-toolbar-item-active-bg: color-mix(in srgb, FieldText 16%, transparent); //TODO: verify
+		--default-bookmark-item-hover-color: FieldText;
+		--default-bookmark-item-color: FieldText;
+
+		&[privatebrowsingmode="temporary"] {
+			// Titlebar (now flattened like in ~59)
+			--default-titlebar-active: var(--incognito-active);
+			--default-titlebar-inactive: var(--incognito-inactive);
+		}
+	}
+
+	// Geckium You
+	//No. IT IS GREY, it literally WON'T recolour.
+}

@@ -21,6 +21,7 @@ function hideUnifiedExtensionsButton() {
 }
 
 window.addEventListener("load", hideUnifiedExtensionsButton);
+window.addEventListener("DOMContentLoaded", hideUnifiedExtensionsButton);
 
 // FIXME: Find the correct event instead of using a timeout initially.
 setTimeout(() => {

@@ -5,12 +5,8 @@ toolbarpaletteitem {
 	}
 
 	> toolbarspring {
-		outline-color: var(--toolbarbutton-icon-fill) !important;
+		outline-color: var(--toolbarbutton-icon-color) !important;
 	}
-}
-
-#wrapper-firefox-view-button {
-	
 }
 
 #customization-footer {
@@ -30,11 +26,3 @@ toolbarpaletteitem {
 #customization-reset-button {
 	display: none !important;
 }
-
-
-// FIXME: Below code was removed by nabrious in the pre-MPL2 continuity
-
-/*#wrapper-firefox-view-button,
-[id*="wrapper-customizableui-special-spring"] {
-	display: none !important;
-}*/

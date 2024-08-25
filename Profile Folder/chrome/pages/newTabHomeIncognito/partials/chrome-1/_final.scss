@@ -4,6 +4,13 @@ body {
 	font-size: 10pt;
 	font-family: arial;
 }
+// GTK+
+&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+	body {
+		background-color: Field;
+		color: FieldText;
+	}
+}
 
 .content,
 .extensionsmessage {
@@ -17,4 +24,5 @@ body {
 .content {
 	border-radius: 5px;
 	background-color: rgb(238, 238, 238);
+	color: black;
 }
