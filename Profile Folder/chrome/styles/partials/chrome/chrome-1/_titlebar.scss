@@ -20,20 +20,81 @@
 	}
 
 	// Variables for titlebar styles
-	&[gkthemed]:not([gkchrthemed]) {
-		&[captionbuttonbackground="true"] {
-			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
-		}
-	}
-	&[gkthemed][gkchrthemed] {
-		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
-		--titlebar-foreground: var(--chrtheme-frame-color);
-		--titlebar-foreground-inactive: var(--chrtheme-frame-color);
-	}
 	--tab-distance-from-toolbar-edge: 2px;
 	--tab-distance-from-pfp: 3px;
 	--tab-distance-from-top: 14px;
 	--tab-distance-from-top-maximised: 0;
+	/* bruni: This entire code takes care of custom themes support for titlebar */
+	// lwtheme Themes
+	&[gkthemed]:not([gkchrthemed]) {
+		&[captionbuttonbackground="true"] {
+			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		}
+		// Base colour
+		--titlebar-active: var(--lwt-accent-color) !important;
+		--titlebar-inactive: var(--titlebar-active) !important;
+		--titlebar-foreground: var(--lwt-text-color);
+		--titlebar-foreground-inactive: var(--titlebar-foreground);
+		// Additional titlebar background
+		--titlebar-pseudo-texture: var(--lwt-additional-images);
+		--titlebar-pseudo-texture-pos: var(--lwt-background-alignment);
+		--titlebar-pseudo-texture-repeat: var(--lwt-background-tiling);
+		&[style*="--lwt-background-alignment: right center"] {
+			--titlebar-pseudo-texture-ypos: calc(50% - 9px);
+		}
+		--bodytitlebar-pseudo-height: calc(64px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
+		--bodytitlebar-pseudo-gap: 1px;
+		
+		&[lwtheme-image] {
+			--titlebar-pseudo-texture: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
+			--titlebar-pseudo-texture-pos: right top, var(--lwt-background-alignment);
+			--titlebar-pseudo-texture-repeat: no-repeat, var(--lwt-background-tiling);
+			--titlebar-pseudo-texture-ypos: -9px;
+		}
+
+		// Themes without image header/additional images
+		&:not([style*="--lwt-additional-images"], [style*="--lwt-header-image"]) {
+			--titlebar-active: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--lwt-accent-color) 90%,
+					white
+				),
+				var(--lwt-accent-color) 40px
+			) !important;
+			--titlebar-inactive: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--lwt-accent-color) 70%,
+					white
+				),
+				color-mix(
+					in srgb,
+					var(--lwt-accent-color) 80%,
+					white
+				)
+			) !important;
+			--titlebar-pseudo-texture: unset !important;
+		}
+	}
+	// Chromium Themes
+	&[gkthemed][gkchrthemed] {
+		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
+		--titlebar-foreground: var(--chrtheme-frame-color);
+		--titlebar-foreground-inactive: var(--chrtheme-frame-color);
+		--titlebar-button-foreground: var(--chrtheme-button-color, var(--chrtheme-frame-color));
+		//  TODO: inactive titlebutton foreground
+		// Base colour
+		--titlebar-active: var(--chrtheme-frame) !important;
+    	--titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
+		// Additional titlebar background
+		--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
+		--titlebar-pseudo-texture-repeat: no-repeat, repeat no-repeat;
+		--bodytitlebar-pseudo-height: 100%;
+		--bodytitlebar-pseudo-gap: 1px;
+	}
 
 	// Pop up window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
@@ -62,6 +123,9 @@
 	// Standard titlebars
 	&[gktitnative="false"] #titlebar {
 		color: var(--titlebar-foreground, var(--default-titlebar-foreground)) !important;
+		&:-moz-window-inactive {
+			color: var(--titlebar-foreground-inactive, var(--titlebar-foreground, var(--default-titlebar-foreground-inactive))) !important;
+		}
 	}
 	&:not([menubarvisible]) {
 		#tabbrowser-arrowscrollbox {
@@ -328,72 +392,6 @@
 				} }
 			}
 		}
-	}
-
-
-	/* bruni: This entire code takes care of custom themes support for titlebar */
-	// lwtheme Themes
-	&[gkthemed]:not([gkchrthemed]) {
-		// Base colour
-		--titlebar-active: var(--lwt-accent-color) !important;
-		--titlebar-inactive: var(--titlebar-active) !important;
-		--titlebar-foreground: var(--lwt-text-color);
-		--titlebar-foreground-inactive: var(--titlebar-foreground);
-		// Additional titlebar background
-		--titlebar-pseudo-texture: var(--lwt-additional-images);
-		--titlebar-pseudo-texture-pos: var(--lwt-background-alignment);
-		--titlebar-pseudo-texture-repeat: var(--lwt-background-tiling);
-		&[style*="--lwt-background-alignment: right center"] {
-			--titlebar-pseudo-texture-ypos: calc(50% - 9px);
-		}
-		--bodytitlebar-pseudo-height: calc(64px + var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height));
-		--bodytitlebar-pseudo-gap: 1px;
-		
-		&[lwtheme-image] {
-			--titlebar-pseudo-texture: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
-			--titlebar-pseudo-texture-pos: right top, var(--lwt-background-alignment);
-			--titlebar-pseudo-texture-repeat: no-repeat, var(--lwt-background-tiling);
-			--titlebar-pseudo-texture-ypos: -9px;
-		}
-
-		// Themes without image header/additional images
-		&:not([style*="--lwt-additional-images"], [style*="--lwt-header-image"]) {
-			--titlebar-active: linear-gradient(
-				to bottom,
-				color-mix(
-					in srgb,
-					var(--lwt-accent-color) 90%,
-					white
-				),
-				var(--lwt-accent-color) 40px
-			) !important;
-			--titlebar-inactive: linear-gradient(
-				to bottom,
-				color-mix(
-					in srgb,
-					var(--lwt-accent-color) 70%,
-					white
-				),
-				color-mix(
-					in srgb,
-					var(--lwt-accent-color) 80%,
-					white
-				)
-			) !important;
-			--titlebar-pseudo-texture: unset !important;
-		}
-	}
-
-	// Chromium Themes
-	&[gkthemed][gkchrthemed] {
-		// Base colour
-		--titlebar-active: var(--chrtheme-frame) !important;
-    	--titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
-		// Additional titlebar background
-		--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
-		--titlebar-pseudo-texture-repeat: no-repeat, repeat no-repeat;
-		--bodytitlebar-pseudo-height: 100%;
-		--bodytitlebar-pseudo-gap: 1px;
 	}
 
 

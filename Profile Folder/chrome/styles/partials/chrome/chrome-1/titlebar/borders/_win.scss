@@ -37,7 +37,10 @@
 		--titlebar-box-shadow: none;
 		--bodytitlebar-pseudo-gap: 0px;
 	
-		--titlebar-border-radius: 0;
+		&[windowtype="navigator:browser"] > body,
+		&[windowtype="navigator:browser"] > body::before {
+			border-radius: 0 !important;
+		}
 		&[windowtype="navigator:browser"] > body {
 			border: 0;
 		}

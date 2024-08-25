@@ -38,11 +38,15 @@ class gkBranding {
 		}
 	};
 
+    /** getIsOS: Returns True if the current titlebar style is Chromium OS
+     */
 	static getIsOS() {
 		let titChoice = gkTitlebars.getTitlebar(gkEras.getBrowserEra());
 		return gkBranding.OSQualifiers.includes(titChoice);
 	}
 
+    /** getCurrentBranding: Returns the current branding choice
+     */
 	static getCurrentBranding() {
 		let prefChoice = gkPrefUtils.tryGet("Geckium.branding.choice").string;
 		if (Object.keys(gkBranding.branding).includes(prefChoice)) {
@@ -52,6 +56,11 @@ class gkBranding {
 		}
 	}
 
+    /** getBrandingKey: Gets an aspect of your current branding
+	 * 
+	 * key: The aspect of the branding to get
+	 * useOSValue: Redirects to the OS equivalent whenever appropriate to if True
+     */
 	static getBrandingKey(key, useOSValue) {
 		let prefChoice = gkBranding.getCurrentBranding();
 		if (useOSValue) { // Use the 'OS' branding, if present, instead
@@ -62,6 +71,8 @@ class gkBranding {
 		return gkBranding.branding[prefChoice][key];
 	}
 
+    /** load: Replaces Mozilla Firefox branding with appropriate Geckium branding in the current window
+     */
 	static load() {
 		const prefChoice = gkBranding.getCurrentBranding();
 		const fullName = gkBranding.branding[prefChoice]["fullName"];

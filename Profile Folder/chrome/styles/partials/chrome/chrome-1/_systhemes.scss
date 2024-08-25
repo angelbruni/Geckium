@@ -396,8 +396,7 @@
 		}
 
 		// Chromium OS
-		// TODO: Until 21
-		&[gksystheme="chromiumos"] {
+		&[gksystheme="chromiumos"]:not([geckium-twentyone]) {
 			// Titlebar
 			--default-titlebar-active: linear-gradient(
 				to bottom,

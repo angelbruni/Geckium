@@ -141,43 +141,108 @@ class gkChrTheme {
             return null; // Or handle the error appropriately
         }
 	}
-
-    // Frame color is always used IF the frame image is satisfied
-    //    Titlebar button background is used regardless of frame existing so long as titlebars AREN'T native
-    // Toolbar color is NOT used until 68 enforces it as a fallback if the image is missing
-    //      BUT its new tab button IS themed regardless
-
+    
+    /** Fallback colors:
+     * colorRequiresImage: Colors only included if:
+     *  - their image counterpart exists
+     *  - fallbacks are enabled*
+     * 
+     * fallbackOnlyColors: Colors only included if:
+     *  - fallbacks are enabled* and their image counterpart does not exist
+     * 
+     *  * if fallbacks are set to automatic, they will be enabled if Accommodation is
+     *      enabled and manifest_version is 2 or higher, or Geckium's Design is 68 or newer.
+    */
+    static colorRequiresImage = {
+        "frame": "frame", // Frame color is always used IF the frame image is satisfied
+        "frame_inactive": "frame"
+    }
+    static fallbackOnlyColors = {
+        "toolbar": "toolbar" // Toolbar color is NOT used until 68+ enforced it as a fallback if the image is missing
+    }
     //TODO: If there are no fallback colours, use the era's fallback palette if MD2+ - probably add this into systhemes as a [gkchrthemed] only System Theme override.
 
-    static includeColorIfImage = [ //Colors added ONLY if their image variant exists, unless fallbacks are enabled, or amendments are enabled and manifest_version >= 2
-        "frame"
-    ]
-    static fallbackOnlyColors = [ //Colors added ONLY if fallbacks are enabled or 68+ used, or amendments are enabled and manifest_version >= 2, and their image variant is missing
-        "toolbar"
-    ]
+    /** Colour over tints prioritisation
+     * These tints are only used if:
+     *  - their colour counterpart doesn't exist
+     *  - fallbacks are disabled
+     */
+    static noTintIfColor = {
+        "buttons": "toolbar_button_icon" // Since 68, the colour is used instead of tints if it's present
+    }
 
-    static chrThemeFeatures = ["frame", "toolbar"];
+    /** excludeFallback: Returns True if the colour is a fallback that shouldn't be used given current preferences
+     * 
+     * key: The ID of the colour
+     * data: The current theme metadata
+     * usefallbacks: Self-explanatory
+     */
+    static excludeFallback(key, data, usefallbacks) {
+        // Omit colours based on colorRequiresImage
+        if (Object.keys(gkChrTheme.colorRequiresImage).includes(key)) {
+            if (!data.images || !data.images["theme_" + gkChrTheme.colorRequiresImage[key]]) {
+                if (!usefallbacks) {
+                    return true;
+                }
+            }
+        }
+        // Omit colours based on fallbackOnlyColors
+        if (Object.keys(gkChrTheme.fallbackOnlyColors).includes(key)) {
+            if (data.images && data.images["theme_" + gkChrTheme.fallbackOnlyColors[key]]) {
+                return true; // ALWAYS exclude if the image exists for Grass and others' benefit
+            } else if (!usefallbacks) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    static accommodate(data) { //Makes amendments to theme data to include missing variables
-        var accs = {
-            "colors": {
-                "ntp_section": ["toolbar"],
-                "ntp_section_text": ["tab_text"],
-                "ntp_section_link": ["tab_text"]
+    // themeCSSIndicators: Theming to advertise to the CSS that the Chromium Theme has
+    static themeCSSIndicators = ["frame", "toolbar"];
+
+    /** accommodate: Adjust theme metadata to include values missing in old and modern themes respectively
+     * Uses manifest_version to determine which adjustments should be made - 'all' means any theme
+     * 
+     * data: The theme's unmodified metadata
+     * maniver: manifest_version value identified during metadata initialisation
+     */
+    static accommodate(data, maniver) {
+        if (maniver > 2) {
+            maniver = 2; // Themes newer than version 2 use V2's accommodations
+        }
+        var maniAdj = {
+            "all": {
+                "colors": {
+                    "ntp_section": ["toolbar"],
+                    "ntp_section_text": ["tab_text"],
+                    "ntp_section_link": ["tab_text"]
+                }
+            },
+            "2": {
+                "colors": {
+                    "ntp_header": ["frame"]
+                }
             }
         };
-        for (const type of Object.keys(accs)) {
-            if (!Object.keys(data.theme).includes(type)) {
-                continue; //We need to accomodate non-existant variables to fallbacks of the same type
+        for (const ver of ["all", maniver.toString()]) {
+            // Don't adjust for manivers we don't have accommodations for
+            if (!Object.keys(maniAdj).includes(ver)) {
+                continue;
             }
-            for (const i of Object.keys(accs[type])) {
-                // For each value that DOESN'T exist...
-                if (!Object.keys(data.theme[type]).includes(i)) {
-                    // Use the first fallback value to exist
-                    for (const ii of Object.values(accs[type][i])) {
-                        if (data.theme[type][ii]) {
-                            data.theme[type][i] = data.theme[type][ii];
-                            break;
+            for (const type of Object.keys(maniAdj[ver])) {
+                // Don't attempt to accommodate values of types the theme doesn't include
+                if (!Object.keys(data.theme).includes(type)) {
+                    continue;
+                }
+                for (const id of Object.keys(maniAdj[ver][type])) {
+                    // For each value that DOESN'T exist...
+                    if (!Object.keys(data.theme[type]).includes(id)) {
+                        // Use the first existing fallback value to supplement it
+                        for (const fallback of Object.values(maniAdj[ver][type][id])) {
+                            if (data.theme[type][fallback]) {
+                                data.theme[type][id] = data.theme[type][fallback];
+                                break; // Don't try for more supplement values
+                            }
                         }
                     }
                 }
@@ -186,6 +251,11 @@ class gkChrTheme {
         return data;
     }
 
+    /** setVariables: Applies the selected Chromium Theme
+     * 
+     * theme: The theme's unmodified metadata
+     * file: Path to the CRX file
+     */
     static setVariables(theme, file) {
         function styleProperty(key) {
             return `--chrtheme-${key.replace(/_/g, '-')}`;
@@ -196,25 +266,37 @@ class gkChrTheme {
             }
             return 0;
         }
-        
-        let features = []; // theme features to advertise to CSS
-        let era = gkEras.getBrowserEra();
-        let accman2plus = false;
-        if (gkPrefUtils.tryGet("Geckium.chrTheme.accommodate").bool) {
-            accman2plus = (getManVersion(theme) >= 2);
-            // Modify theme data to include fallbacks for missing values
-            theme = gkChrTheme.accommodate(theme);
+        function useFallbacks(accommodate, maniver, era) {
+            switch (gkPrefUtils.tryGet("Geckium.chrTheme.fallbacks").int) {
+                case 1: // Enabled
+                    return true;
+                case 2: // Disabled
+                    return false;
+                default: // aka 0 - Automatic
+                    if ((accommodate && maniver >= 2) || era >= 68) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+            }
         }
-        let allowfbcolors = gkPrefUtils.tryGet("Geckium.chrTheme.fallbacks").int; // allow Fallback Colors
-
-        // TODO: support colourable glare.
+        
+        let indicators = []; // themed elements to advertise to CSS
+        let era = gkEras.getBrowserEra();
+        let maniver = getManVersion(theme);
+        let accommodate = gkPrefUtils.tryGet("Geckium.chrTheme.accommodate").bool;
+        if (accommodate) {
+            // Modify theme data to include fallbacks for missing values
+            theme = gkChrTheme.accommodate(theme, maniver);
+        }
+        let usefallbacks = useFallbacks(accommodate, maniver, era);
 
         // IMAGES
         if (theme.theme.images) {
             Object.entries(theme.theme.images).map(([key, value]) => {
                 document.documentElement.style.setProperty(`${styleProperty(key)}`, `url('${file}/${value}')`);
-                if (gkChrTheme.chrThemeFeatures.includes(key.substring(6))) {
-                    features.push(key.substring(6));
+                if (gkChrTheme.themeCSSIndicators.includes(key.substring(6))) {
+                    indicators.push(key.substring(6)); // Exclude the 'theme_' portion
                 }
             }).join('\n');
 
@@ -233,43 +315,24 @@ class gkChrTheme {
         }
 
         // COLORS
-        let hasframecol;
-        let hasbuttoncol;
+        let framecol;
         if (theme.theme.colors) {
             Object.entries(theme.theme.colors).map(([key, value]) => {
-                // Colours only included if their image is present pre-68
-                if (gkChrTheme.includeColorIfImage.includes(key)) {
-                    if (!theme.theme.images || !theme.theme.images["theme_" + key]) {
-                        if (allowfbcolors == 2) {
-                            return;
-                        } else if (!accman2plus && era < 68 && allowfbcolors != 1) {
-                            return;
-                        }
-                    }
+                if (gkChrTheme.excludeFallback(key, theme.theme, usefallbacks)) {
+                    return;
                 }
-                // Colours only included as fallbacks pre-68
-                if (gkChrTheme.fallbackOnlyColors.includes(key)) {
-                    if (allowfbcolors == 2) {
-                        return;
-                    } else if (theme.theme.images && theme.theme.images["theme_" + key]) {
-                        return;
-                    } else if (!accman2plus && era < 68 && allowfbcolors != 1) {
-                        return;
-                    }
-                }
+                // The colour passed omissions - proceed with inclusion
                 document.documentElement.style.setProperty(`${styleProperty(key)}`, `rgb(${value.join(', ')})`);
                 if (key == "ntp_text") {
                     if (!ColorUtils.IsDark(value)) {
                         document.documentElement.style.setProperty("--chrtheme-ntp-logo-alternate", "1");
                     }
                 } else if (key == "frame") {
-                    hasframecol = true;
-                } else if (key == "button_background") {
-                    hasbuttoncol = true;
+                    framecol = value;
                 }
-                if (gkChrTheme.chrThemeFeatures.includes(key)) {
-                    if (!features.includes(key)) {
-                        features.push(key);
+                if (gkChrTheme.themeCSSIndicators.includes(key)) {
+                    if (!indicators.includes(key)) {
+                        indicators.push(key);
                     }
                 }
             }).join('\n');
@@ -307,61 +370,70 @@ class gkChrTheme {
                 for (const i of Object.keys(tintMap)) {
                     if (!Object.keys(themeTints).includes(i) || !tintMap[i]) {
                         continue;
+                    } else if (gkChrTheme.excludeFallback(i, theme.theme, usefallbacks)) {
+                        continue; // Don't tint excluded colors
+                    } else if (Object.keys(gkChrTheme.noTintIfColor).includes(i)) {
+                        if (theme.theme.colors && theme.theme.colors[gkChrTheme.noTintIfColor[i]]) {
+                            if ((accommodate && maniver >= 2) || era >= 68) {
+                                continue; // Don't tint in 68+, or accommodated manifest_version 2+, if the modern Chromium toolbar icon fill value is present
+                            }
+                        }
                     }
                     tintedColor = ColorUtils.HSLShift(tintMap[i], value);
                     if (i == "buttons" && JSON.stringify(tintedColor) == JSON.stringify(this.defaultToolbarButtonIconColour)) {
                         // If the tinted colour is the same as the default colour, do NOT tint.
                         continue;
+                    } else if (i == "frame") {
+                        framecol = tintedColor;
                     }
                     document.documentElement.style.setProperty(
                         `${styleProperty(i == "buttons" ? "toolbar-button-icon" : i)}`,
-                        `rgb(${tintedColor})`
+                        `rgb(${tintedColor.join(', ')})`
                     );
                 }
             }).join('\n');
         }
 
+        // Extra titlebar exclusive values
         if (isBrowserWindow) {
-            // Windows 10 titlebutton foreground
-            if (hasframecol && hasbuttoncol) {
-                // Combine frame and titlebar backgrounds
-                // FIXME: Surely there's a way better way to color-mix in JS...?
-                var colorDiv = document.createElement("div");
-                document.head.appendChild(colorDiv);
-                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, rgb(${theme.theme.colors.frame.join(', ')}))`;
-                var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
-                // Determine the colour using the combined frame colours
-                if (ColorUtils.IsDark(color)) {
-                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
-                } else {
-                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
-                }
-                document.head.removeChild(colorDiv);
-            } else if (hasframecol) {
+            // Native titlebar chrTheme eligibility
+            if (!indicators.includes("frame")) {
+                isChrThemeNative = true;
+            }
+
+            // Titlebar foreground
+            if (framecol) {
                 // Determine the colour using the frame
-                if (ColorUtils.IsDark(theme.theme.colors.frame)) {
-                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
-                } else {
-                    document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
-                }
-            } else if (hasbuttoncol) {
-                // Combine fallback frame and titlebar backgrounds
-                // FIXME: Surely there's a way better way to do this too in JS...?
-                var colorDiv = document.createElement("div");
-                document.head.appendChild(colorDiv);
-                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${theme.theme.colors.button_background.join(', ')}) 100%, var(--default-titlebar-active))`;
-                var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
-                // Determine the colour using the combined frame colours
-                if (ColorUtils.IsDark(color)) {
+                if (ColorUtils.IsDark(framecol)) {
                     document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
                 } else {
                     document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
                 }
             }
-
-            // Titlebar texture (native titlebar check)
-            if (!features.includes("frame")) {
-                isChrThemeNative = true;
+            // Button foreground
+            if (theme.theme.colors && theme.theme.colors.button_background) {
+                // Extract opacity value from the colour
+                let buttopacity = "100%";
+                var buttonbg = theme.theme.colors.button_background;
+                if (buttonbg.length == 4) {
+                    buttopacity = (buttonbg[3] > 0 ? (buttonbg[3] * 100) + '%' : "0%");
+                }
+                // Combine frame and titlebar backgrounds
+                var titlebarbg = framecol ? 
+                                    `rgb(${framecol.join(', ')})` :
+                                    `var(--default-titlebar-color)`
+                // FIXME: Surely there's a way better way to color-mix in JS...?
+                var colorDiv = document.createElement("div");
+                document.head.appendChild(colorDiv);
+                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${buttonbg[0]},${buttonbg[1]},${buttonbg[2]}) 100%, ${titlebarbg})`;
+                var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+                // Determine the colour using the combined frame colours
+                if (ColorUtils.IsDark(color)) {
+                    document.documentElement.style.setProperty(`${styleProperty("button_color")}`, "white");
+                } else {
+                    document.documentElement.style.setProperty(`${styleProperty("button_color")}`, "black");
+                }
+                document.head.removeChild(colorDiv);
             }
         }
 
@@ -370,8 +442,8 @@ class gkChrTheme {
         isChromeThemed = true;
         document.documentElement.setAttribute("gkthemed", true);
         document.documentElement.setAttribute("gkchrthemed", true);
-        for (const i of gkChrTheme.chrThemeFeatures) {
-            if (features.includes(i)) {
+        for (const i of gkChrTheme.themeCSSIndicators) {
+            if (indicators.includes(i)) {
                 document.documentElement.setAttribute("gkchrthemehas" + i, "");
             } else {
                 document.documentElement.removeAttribute("gkchrthemehas" + i);
@@ -383,6 +455,8 @@ class gkChrTheme {
         }
     }
 
+    /** removeVariables: Removes all Chromium Theme variables, unapplying the current Chromium Theme
+     */
     static removeVariables() {
         // Deactivate theme checks
         isChromeThemed = false;
@@ -400,6 +474,8 @@ class gkChrTheme {
 		});
     }
 
+    /** applyTheme: Performs required sanity checks and then initiates the Chromium Theme applying process
+     */
     static applyTheme() {
         // FIXME: This one needs to default to True
         if (!gkPrefUtils.prefExists("Geckium.chrTheme.accommodate")) {
@@ -424,7 +500,8 @@ class gkChrTheme {
         }, 0);
     }
 
-
+    /** LWThemeChanged: Disables the Chromium Theme entirely if another Firefox theme is switched to
+     */
     static LWThemeChanged() {
         setTimeout(async () => {
             let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;

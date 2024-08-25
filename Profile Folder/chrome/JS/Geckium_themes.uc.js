@@ -88,6 +88,10 @@ Services.prefs.addObserver("Geckium.appearance.systemTheme", sysThemeObserver, f
 
 // System Theme: GTK+
 class gkGTK {
+    /**
+     * setVariables - Expands the GTK+ palette to include required extras whenever enabled
+     */
+
 	static setVariables() {
 		var colorDiv = document.createElement("div");
 		document.head.appendChild(colorDiv);
@@ -198,6 +202,10 @@ class gkGTK {
 		document.head.removeChild(colorDiv);
 	}
 
+    /**
+     * removeVariables - Removes GTK+'s extra palette values
+     */
+
     static removeVariables() {
         document.documentElement.style.removeProperty(`--activecaption-shine`);
 		document.documentElement.style.removeProperty(`--bgtab-background`);
@@ -211,6 +219,10 @@ class gkGTK {
 		document.documentElement.style.removeProperty(`--gtk-toolbarbutton-icon-fill`);
 		document.documentElement.style.removeProperty(`--gtk-toolbarbutton-new-icon-fill`);
     }
+
+    /**
+     * apply - Calls one of the above functions based on GTK+ being the current System Theme
+     */
 
 	static apply() {
 		if (previousSysTheme == "gtk" && isBrowserWindow) {
@@ -241,6 +253,10 @@ Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", GTKIconsObserver, 
 // System Theme: Geckium You
 const { NTRegistry } = ChromeUtils.importESModule("chrome://modules/content/ntRegistry.sys.mjs");
 class gkYou {
+    /**
+     * getBaseColor - Gets the currently set colour for Geckium You
+     */
+
     static getBaseColor() {
         switch (gkPrefUtils.tryGet("Geckium.you.mode").string) {
             case "accent":
@@ -293,6 +309,10 @@ class gkYou {
         }
     }
 
+    /**
+     * setVariables - Adds Geckium You's palette for Geckium CSS usage
+     */
+
 	static setVariables(color) {
 		//Base accent colour
 		let rgb = color.match(/\d+/g);
@@ -317,6 +337,10 @@ class gkYou {
         document.documentElement.style.setProperty("--you-l-dark", `${darkl}%`);
         // TODO: This space for all the extra palettes in MD2+
 	}
+
+    /**
+     * removeVariables - Removes Geckium You's palette
+     */
 
     static removeVariables() {
         document.documentElement.style.removeProperty(`--you-h`);

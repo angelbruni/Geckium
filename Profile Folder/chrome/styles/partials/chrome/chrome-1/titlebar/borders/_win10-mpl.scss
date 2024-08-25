@@ -1,0 +1,40 @@
+// The following code has been taken from Mozilla Firefox, namely browser-aero.css, and thus is licensed under the Mozilla Public License 2.0:
+//  This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file,
+//  You can obtain one at https://mozilla.org/MPL/2.0/.
+
+&[gktitnative="false"] {
+	// Visuals: Not Windows
+	@media not (-moz-platform: windows) {
+		//At this stage, the OS has no border, so for accuracy we add a Win10-styled border
+		&[windowtype="navigator:browser"] > body {
+			border: 1px solid AccentColor;
+		}
+		&:-moz-window-inactive[windowtype="navigator:browser"] > body {
+			border-color: rgb(57,57,57);
+		}
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			&[windowtype="navigator:browser"] > body {
+				border: 0;
+			}
+		}
+	}
+
+	// Visuals: Windows
+	@media (-moz-platform: windows) {
+		@media (-moz-windows-accent-color-in-titlebar) {
+			#navigator-toolbox {
+				border-top: .5px solid AccentColor;
+			}
+			&:-moz-window-inactive #navigator-toolbox {
+				border-color: rgb(57,57,57);
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				#navigator-toolbox {
+					border-top: 0;
+				}
+			}
+		}
+	}
+}

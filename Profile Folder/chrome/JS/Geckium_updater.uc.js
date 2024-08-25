@@ -26,6 +26,12 @@ const configIteration = 2;
 	}
 })();
 
+/**
+ * updateSettings - Appends newly added Geckium config defaults based on an iteration value that keeps track of total first-launch-about:config-override updates
+ * 
+ * iteration: User's current settings iteration amount
+ */
+
 function updateSettings(iteration) {
     if (iteration < 1) {
         gkPrefUtils.set("toolkit.legacyUserProfileCustomizations.stylesheets").bool(true);		// Turn on legacy stylesheets
