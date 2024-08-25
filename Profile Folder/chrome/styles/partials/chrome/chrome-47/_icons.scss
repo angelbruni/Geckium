@@ -1,0 +1,12 @@
+& {
+	// Favicons
+	--default-favicon:	  url("chrome://userchrome/content/assets/img/chrome-47/favicons/default_favicon.png");
+	--extensions-favicon: var(--settings-favicon);
+
+	&[gkbranding="chromium"] {
+		--settings-favicon: url("chrome://userchrome/content/assets/img/chrome-47/favicons/chromium/IDR_PRODUCT_LOGO_16.png");
+	}
+	&[gkbranding="chrome"] {
+		--settings-favicon: url("chrome://userchrome/content/assets/img/chrome-47/favicons/chrome/IDR_PRODUCT_LOGO_16.png");
+	}
+}

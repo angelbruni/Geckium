@@ -1,0 +1,115 @@
+& {
+	//Classic (Default/Fallback)
+	// Navbar
+	--default-toolbarbutton-icon-drop-shadow-color: rgba(255,255,255,.7);
+
+	@media (prefers-color-scheme: dark) {
+		// Navbar
+		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.7);
+	}
+
+	&:not([geckium-eleven]) {
+		// Mac OS X
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
+			// Tabs
+			--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
+			--default-selected-tab-background: linear-gradient(
+				to bottom,
+				color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, rgb(128, 128, 128))),
+				color-mix(in srgb, white 80%, rgb(128, 128, 128))
+			);
+			--default-tab-glare: rgba(255, 255, 255, 0.3);
+			--default-tabbrowser-tab-color: black;
+
+			// Navbar
+			--default-nav-bar: linear-gradient(
+				to bottom,
+				color-mix(in srgb, white 80%, rgb(128, 128, 128)),
+				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, rgb(128, 128, 128)))
+			); // https://github.com/chromium/chromium/blob/5.0.396.0/chrome/browser/browser_theme_provider_mac.mm#L226
+			&:not([geckium-eleven]) {
+				--default-inner-border-color: transparent;
+				--toolbarbutton-border-color-normal: color-mix(in srgb, rgba(81, 81, 81, 0.75) 30%, transparent);
+				--toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
+				--toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
+				--toolbarbutton-inner-border-color-normal: transparent;
+				--toolbarbutton-inner-border-color-hot: transparent;
+				--default-toolbarbutton-texture: linear-gradient(
+					to top,
+					transparent,
+					rgba(255, 255, 255, 0.3)
+				);
+				//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
+				--default-toolbarbutton-icon-drop-shadow-color: transparent;
+				--default-navigation-buttons-separator: var(--toolbarbutton-border-color-normal);
+				&:-moz-window-inactive {
+					--toolbarbutton-border-color-normal: color-mix(in srgb, rgba(99, 99, 99, 0.75) 30%, transparent);
+				}
+			}
+			--default-toolbarbutton-icon-color: black;
+
+			// Personal Toolbar (Bookmarks)
+			--default-personal-toolbar: linear-gradient(
+				to bottom,
+				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, rgb(128, 128, 128))),
+				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, rgb(128, 128, 128)))
+			);
+			--personal-toolbar-border-bottom: rgb(103, 103, 103);
+			--default-bookmark-item-color: black;
+			&:-moz-window-inactive {
+				--personal-toolbar-border-bottom: rgb(123, 123, 123);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				// Tabs
+				--default-inactive-tab-background: rgba(0, 0, 0, 0.15);
+				--default-selected-tab-background: linear-gradient(
+					to bottom,
+					color-mix(in srgb, white 23%, color-mix(in srgb, white 6%, rgb(32, 32, 32))),
+					color-mix(in srgb, white 20%, rgb(32, 32, 32))
+				);
+				--default-tab-glare: rgba(255, 255, 255, 0.075);
+				--default-tabbrowser-tab-color: white;
+
+				// Navbar
+				--default-nav-bar: linear-gradient(
+					to bottom,
+					color-mix(in srgb, white 20%, rgb(32, 32, 32)),
+					color-mix(in srgb, black 8%, color-mix(in srgb, white 18%, rgb(32, 32, 32)))
+				); // https://github.com/chromium/chromium/blob/5.0.396.0/chrome/browser/browser_theme_provider_mac.mm#L226
+				&:not([geckium-eleven]) {
+					--default-inner-border-color: color-mix(in srgb, white 16%, transparent);
+					--toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, rgb(32, 32, 32)) 30%, transparent);
+					--toolbarbutton-border-color-hot: rgb(112, 112, 112); //TODO
+					--toolbarbutton-border-color-active: rgb(136, 136, 136); //TODO
+					--toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
+					--toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
+					--default-toolbarbutton-texture: linear-gradient(
+						to top,
+						transparent,
+						rgba(255, 255, 255, 0.075)
+					);
+					--default-toolbarbutton-icon-drop-shadow-color: transparent;
+					--default-navigation-buttons-separator: color-mix(in srgb, color-mix(in srgb, black 30%, rgb(64, 64, 64)) 30%, transparent);
+					&:-moz-window-inactive {
+						--toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 23%, rgb(64, 64, 64)) 30%, transparent);
+					}
+				}
+				--default-toolbarbutton-icon-color: white;
+
+				// Personal Toolbar (Bookmarks)
+				--default-personal-toolbar: linear-gradient(
+					to bottom,
+					color-mix(in srgb, black 8%, color-mix(in srgb, white 18%, rgb(32, 32, 32))),
+					color-mix(in srgb, black 4%, color-mix(in srgb, white 20%, rgb(32, 32, 32)))
+				);
+				--personal-toolbar-border-bottom: rgb(103, 103, 103);
+				--default-bookmark-item-color: white;
+				&:-moz-window-inactive {
+					--personal-toolbar-border-bottom: rgb(83, 83, 83);
+				}
+			}
+		}
+	}
+}

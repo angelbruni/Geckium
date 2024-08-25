@@ -2,7 +2,7 @@
 	font: small arial,sans-serif;
 
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--link-color: var(--default-link-color);
 	}
 }

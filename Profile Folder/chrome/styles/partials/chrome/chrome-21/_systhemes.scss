@@ -1,0 +1,219 @@
+& {
+	//Classic (Default/Fallback)
+	// Navbar
+	--default-toolbarbutton-border-color-hot: rgb(134, 134, 134);
+	--default-toolbarbutton-border-color-active: rgb(125, 125, 125);
+	--default-toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
+								inset 0 1px 2px rgb(255, 255, 255, 75%);
+	--default-toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	--default-toolbarbutton-icon-color: rgb(111, 111, 111);
+	--default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
+	--default-personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
+	--default-bookmark-item-color: #000000;
+	--default-bookmark-item-hover-color: #062d75;
+	--default-personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
+
+    @media (prefers-color-scheme: dark) {
+		// Navbar
+		--default-toolbarbutton-icon-color: #C7C7C7;
+
+		// Personal Toolbar (Bookmarks)
+		--default-bookmark-item-color: white;
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+		// Navbar
+		--default-toolbarbutton-icon-color: var(--gtk-toolbarbutton-new-icon-fill);
+	}
+
+	&:not([geckium-sixtyeight]) {
+		// Mac OS X
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
+			// Tabs
+			--default-inactive-tab-background: linear-gradient(
+				to bottom,
+				#dcdddc,
+				#cfd0cf
+			);
+			--default-selected-tab-background: linear-gradient(
+				to bottom,
+				#fefefe,
+				#ebeaeb
+			);
+
+			// Navbar
+			--default-nav-bar: linear-gradient(
+				to bottom,
+				#ebeaeb,
+				#d8d7d7
+			);
+			// Navbar
+			--default-toolbarbutton-icon-color: rgb(111, 111, 111); // Mac OS X Chrome reverted to normal colouring
+
+			// Personal Toolbar (Bookmarks)
+			// NOTE: Bookmarks colouring is probably also vanilla, but it's black in vanilla so can't tell.
+			--default-personal-toolbar: linear-gradient(
+				to bottom,
+				#d8d7d7,
+				#d4d5d4
+			);
+			--default-personal-toolbar-border-bottom: #7a7a7a;
+			&:-moz-window-inactive {
+				--default-personal-toolbar-border-bottom: #7a7a7a;
+			}
+			--default-bookmark-item-color: black;
+			--default-bookmark-item-hover-color: black;
+
+			@media (prefers-color-scheme: dark) {
+				// Tabs
+				--default-inactive-tab-background: linear-gradient(
+					to bottom,
+					#3D3D3D,
+					#303030
+				);
+				--default-selected-tab-background: linear-gradient(
+					to bottom,
+					#666666,
+					#525252
+				);
+
+				// Navbar
+				--default-nav-bar: linear-gradient(
+					to bottom,
+					#525252,
+					#404040
+				);
+				// Navbar
+				--default-toolbarbutton-icon-color: #C7C7C7; // Mac OS X Chrome reverted to normal colouring
+
+				// Personal Toolbar (Bookmarks)
+				--default-personal-toolbar: linear-gradient(
+					to bottom,
+					#404040,
+					#383838
+				);
+				--default-personal-toolbar-border-bottom: #636363;
+				&:-moz-window-inactive {
+					--default-personal-toolbar-border-bottom: #636363;
+				}
+				--default-bookmark-item-color: white;
+				--default-bookmark-item-hover-color: white;
+			}
+
+			&[privatebrowsingmode="temporary"] {
+				--macosx-window-color: #536c8c;
+				&:-moz-window-inactive {
+					--macosx-window-color: #86898d;
+				}
+				@media (prefers-color-scheme: dark) {
+					--macosx-window-color: #2A3747;
+					&:-moz-window-inactive {
+						--macosx-window-color: #4F5154;
+					}
+				}
+			}
+		}
+
+		// Chromium OS
+		&[gksystheme="chromiumos"] {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				#8f8f8f,
+				#6d6d6d 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				#c1c1c1,
+				#b0b0b0 40px
+			);
+			--default-titlebar-color: #6d6d6d;
+
+			// Tabs
+			--default-inactive-tab-background: rgb(212, 212, 212, 0.8);
+			--default-selected-tab-background: linear-gradient(
+				to bottom,
+				#eaeaeb,
+				#e3e3e4
+			);
+
+			// Navbar
+			--default-nav-bar: linear-gradient(
+				to bottom,
+				#e3e3e4,
+				#d7d7d8
+			);
+
+			// Personal Toolbar (Bookmarks)
+			--default-personal-toolbar: linear-gradient(to bottom, #d7d7d8, #d2d2d4);
+			--default-personal-toolbar-border-bottom: #aaaaab;
+
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					#707070,
+					#4f4f4f 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					#a3a3a3,
+					#919191 40px
+				);
+
+				// Tabs
+				--default-inactive-tab-background: rgb(22, 22, 22, 0.8);
+				--default-selected-tab-background: linear-gradient(
+					to bottom,
+					#383839,
+					#303031
+				);
+
+				// Navbar
+				--default-nav-bar: linear-gradient(
+					to bottom,
+					#303031,
+					#262627
+				);
+
+				// Personal Toolbar (Bookmarks)
+				--default-personal-toolbar: linear-gradient(to bottom, #262627, #212121);
+				--default-personal-toolbar-border-bottom: #363636;
+			}
+
+			&[privatebrowsingmode="temporary"] {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					#435469,
+					#415368 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					#95a3b3,
+					#7e8b9c 40px
+				);
+				--default-titlebar-color: #415368;
+				@media (prefers-color-scheme: dark) {
+					// Titlebar
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						#232E38,
+						#212B35 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						#667685,
+						#525F6B 40px
+					);
+					--default-titlebar-color: #212B35;
+				}
+			}
+		}
+	}
+}

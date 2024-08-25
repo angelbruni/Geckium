@@ -1,17 +1,4 @@
 & {
-	--default-titlebar-active: rgb(204,204,204);
-	--default-titlebar-inactive: rgb(245,245,245);
-
-	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: rgb(40,43,45);
-		--default-titlebar-inactive: rgb(56,59,61);
-	}
-
-	&[privatebrowsingmode="temporary"] {
-        --titlebar-active: rgb(40,43,45) !important;
-        --titlebar-inactive: rgb(56,59,61) !important;
-    }
-
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		#private-browsing-indicator-with-label {
@@ -28,5 +15,19 @@
 		margin-inline-start: 8px !important;
 		margin-inline-end: 1px !important;
 		align-items: center !important;
+	}
+
+	// Updated titlebar styles
+	&[chromemargin]:not([macOSNativeFullscreen]) {
+		// Chromium OS
+		&[gktitstyle="chromiumos"] {
+			@import "titlebar/borders/chromiumos";
+		}
+	}
+
+	// Updated titlebutton styles
+	// Chromium OS
+	&[gktitbuttons="chromiumos"] {
+		@import "titlebar/buttons/chromiumos";
 	}
 }

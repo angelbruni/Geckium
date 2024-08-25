@@ -1,0 +1,70 @@
+@import "linuxog";
+& { //TODO: When MD2 is added, ensure this code doesn't run on it
+	&[gktitnative="false"] {
+		//Shared titlebar button code
+		.titlebar-button {
+			appearance: none !important;
+			background: transparent !important;
+			border-radius: 2px !important;
+			border: 1px solid rgba(0,0,0,.17) !important;
+			box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+			width: 24px;
+			height: 18px;
+
+			&::after {
+				left: 1px;
+				top: 1px;
+				right: 1px;
+				bottom: 1px;
+				position: absolute;
+				z-index: -1;
+			}
+
+			//Hover and pressed states
+			&:not([disabled]):hover {
+				border: 1px solid rgba(0,0,0,.17) !important;
+				box-shadow: inset 0 0 0 1px rgba(255,255,255,.31),
+				inset 0 0 0 2px rgba(255,255,255,.18);
+			}
+			&:not([disabled]):hover:active {
+				border: 1px solid rgba(0,0,0,.17) !important;
+				box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+				transition: none;
+
+				&::after {
+					content: "";
+					background: rgba(0,0,0,.2);
+				}
+			}
+		}
+
+		//Close button
+		.titlebar-close {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-4/titlebar/linux/close.svg) !important;
+		}
+		// Add close's corner depending on the side it's on
+		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+			.titlebar-close {
+				border-top-right-radius: 4px !important;
+			}
+		}
+		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+			.titlebar-close {
+				border-top-left-radius: 4px !important;
+			}
+		}
+
+		//Maximise and Restore buttons
+		.titlebar-max {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-4/titlebar/linux/maximize.svg) !important;
+		}
+		.titlebar-restore {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-4/titlebar/linux/restore.svg) !important;
+		}
+
+		//Minimise button
+		.titlebar-min {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-4/titlebar/linux/minimize.svg) !important;
+		}
+	}
+}

@@ -50,18 +50,16 @@
 						<vbox class="navigation-items">
 							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="&gsettings.welcome;" selected="true" />
 							<separator />
-							<button class="item ripple-enabled icon-public" data-page-container="main" data-page="10" label="&gsettings.visualStylePresets;" />
-							<button class="item ripple-enabled icon-web-asset" data-page-container="main" data-page="11" label="&gsettings.mainInterface;" />
-							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="13" label="&gsettings.pages;" />
+							<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" label="&gsettings.design;" />
+							<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="11" label="&gsettings.behaviour;" />
+							<button class="item ripple-enabled icon-tab" data-page-container="main" data-page="12" label="&gsettings.pages;" />
+							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="13" label="&gsettings.theme;" />
 							<button class="item ripple-enabled icon-person" data-page-container="main" data-page="14" label="&gsettings.people;" />
 							<separator />
-							<button class="item ripple-enabled icon-brush" data-page-container="main" data-page="20" label="&gsettings.chromiumThemes;" />
 							<button class="item ripple-enabled icon-science" data-page-container="main" data-page="21" label="&gsettings.chromiumExperiments;" />
-							<separator />
 							<button class="item ripple-enabled icon-account-circle" data-page-container="main" data-page="30" label="Geckium Decor" />
-							<separator />
-							<!--<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="30" label="&gsettings.settings;" />-->
 							<button class="item ripple-enabled icon-data-object" id="ndi-do" style="display: none;" data-page-container="main" data-page="31" label="&gsettings.developerOptions;" />
+							<separator />
 							<button class="item ripple-enabled icon-help-center" data-page-container="main" data-page="32" label="&gsettings.help;" />
 							<button class="item ripple-enabled icon-info" data-page-container="main" data-page="33" label="&gsettings.about;" />
 						</vbox>
@@ -76,7 +74,7 @@
 												<hbox class="banner">
 													<image style="width: 200px;"></image>
 													<vbox>
-														<label style="font-size: 16pt;">Welcome to</label>
+														<label style="font-size: 16pt;">&gsettings.welcomeTo;</label>
 														<label style="font-size: 32pt;">Geckium</label>
 														<h4 class="version-identifier" style="height: 20px; margin-inline-start: 1px;" />
 													</vbox>
@@ -105,10 +103,10 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-public ripple-enabled" onclick="skipToPage('main', 10)">
+													<html:button class="link icon-palette ripple-enabled" onclick="skipToPage('main', 10)">
 														<vbox>
-															<label>&gsettings.visualStylePresets;</label>
-															<p>&gsettings.visualStylePresetsDescription;</p>
+															<label>&gsettings.design;</label>
+															<p>&gsettings.designDescription;</p>
 														</vbox>
 														<hbox>
 															<label>&gm.goToPage;</label>
@@ -116,10 +114,10 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-web-asset ripple-enabled" onclick="skipToPage('main', 11)">
+													<html:button class="link icon-settings ripple-enabled" onclick="skipToPage('main', 11)">
 														<vbox>
-															<label>&gsettings.mainInterface;</label>
-															<p>&gsettings.mainInterfaceDescription;</p>
+															<label>&gsettings.behaviour;</label>
+															<p>&gsettings.behaviourDescription;</p>
 														</vbox>
 														<hbox>
 															<label>&gm.goToPage;</label>
@@ -129,8 +127,10 @@
 													</html:button>
 													
 												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 13)">
+													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 12)">
 														<vbox>
 															<label>&gsettings.pages;</label>
 															<p>&gsettings.pagesDescription;</p>
@@ -141,10 +141,36 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
+													<html:button class="link icon-brush ripple-enabled" onclick="skipToPage('main', 13)">
+														<vbox>
+															<label>&gsettings.theme;</label>
+															<p>&gsettings.themeDescription;</p>
+														</vbox>
+														<hbox>
+															<label>&gm.goToPage;</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+												</hbox>
+											</vbox>
+											<vbox class="link-container" style="margin-top: 8px;">
+												<hbox>
 													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 14)">
 														<vbox>
 															<label>&gsettings.people;</label>
 															<p>&gsettings.peopleDescription;</p>
+														</vbox>
+														<hbox>
+															<label>&gm.goToPage;</label>
+															<spacer />
+															<div class="icon" />
+														</hbox>
+													</html:button>
+													<html:button class="link icon-science ripple-enabled" onclick="skipToPage('main', 21)">
+														<vbox>
+															<label>&gsettings.chromiumExperiments;</label>
+															<p>&gsettings.chromiumExperimentsDescription;</p>
 														</vbox>
 														<hbox>
 															<label>&gm.goToPage;</label>
@@ -158,10 +184,64 @@
 									</vbox>
 								</vbox>
 							</vbox>
+
 							<vbox class="page" data-page="10">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
+											<h4>
+												&gsettings.titlebar;
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.titlebarStyle;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="titlebar-style" data-pref="appearance.titlebarStyle" id="titlebar-style-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="win">Windows</hbox>
+															<hbox class="item ripple-enabled" value="winnogaps">&gsettings.titlebarStyleWinNoGaps;</hbox>
+															<hbox class="item ripple-enabled" value="win10">Windows 10</hbox>
+															<hbox class="item ripple-enabled" value="linuxog">&gsettings.titlebarStyleLinuxAlpha;</hbox>
+															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
+															<hbox class="item ripple-enabled" value="macosx">Mac OS X</hbox>
+															<hbox class="item ripple-enabled" value="macos">macOS</hbox>
+															<hbox class="item ripple-enabled" value="chromiumos">Chromium OS</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.titlebarMode;</label>
+														<label class="description">&gsettings.titlebarModeDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="titlebar-native" data-pref="appearance.titlebarNative" id="titlebar-native-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.titlebarModeSystem;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.titlebarModeCompact;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.titlebarInThemesIsSys;</label>
+														<label class="description">&gsettings.titlebarInThemesIsSysDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.appearance.titlebarThemedNative" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
 											<h4>
 												&gsettings.availablePresets;
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
@@ -190,6 +270,51 @@
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
+												<div class="modal" data-modal="overrides_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<div class="header">&gsettings.modalDesignOverridden;</div>
+																<div class="footer">
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="overrides_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="overrides_modal" onclick="disableOverrides();"/>
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</vbox>
+											<h4>&gsettings.mainInterface;</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.overrideVisualStylePreset;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.main.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" data-switchreq="Geckium.main.overrideStyle" flex="1" style="padding-block-start: 19px">
+													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
+											</vbox>
+											<h4>&gsettings.newTab;</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.overrideVisualStylePreset;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle" style="padding-block-start: 19px">
+													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.quickAccess;
@@ -197,35 +322,58 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">&gsettings.mainInterfaceSettings;</label>
+														<label class="name">&gsettings.designToBehaviour;</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 12)">
+													<vbox>
+														<label class="name">&gsettings.designToPages;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
+														<label class="name">&gsettings.designToThemes;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">&gsettings.designToExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
 										</vbox>
+										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
 									</vbox>
 								</vbox>
 							</vbox>
+
 							<vbox class="page" data-page="11">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
-												&gsettings.browserPreferences;
+												&gsettings.browser;
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.branding;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
+															<hbox class="item ripple-enabled" value="firefox">Firefox (bruni, you still need to add this!)</hbox>
+															<hbox class="item ripple-enabled" value="chromium">Chromium</hbox>
+															<hbox class="item ripple-enabled" value="chrome">Google Chrome</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+											</vbox>
+											<h4>
+												&gsettings.toolbar;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -250,108 +398,40 @@
 												</hbox>
 											</vbox>
 											<h4>
-												&gsettings.visualStyles;
+												&gsettings.themes;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.branding;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Geckium</hbox>
-															<hbox class="item ripple-enabled" value="1">placeholder_Firefox</hbox>
-															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
-															<hbox class="item ripple-enabled" value="3">Google Chrome</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.overrideVisualStylePreset;</label>
+														<label class="name">&gsettings.accommodateChrThemes;</label>
+														<label class="description">&gsettings.accommodateChrThemesDisclaimer;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.main.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:input class="switch" data-pref="Geckium.chrTheme.accommodate" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
-											</vbox>
-											<h4>
-												&gsettings.chromiumWindowFrame;
-											</h4>
-											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.chromiumWindowFrameOverride;</label>
+														<label class="name">&gsettings.chrThemeFallbacks;</label>
+														<label class="description">&gsettings.chrThemeFallbacksDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="chromiumwindowframe-style" data-pref="appearance.forceChromiumFrame" id="chromiumwindowframe-style-select" style="width: 200px">
+													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="chrTheme.fallbacks" id="chrTheme-fallbacks-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
 															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.enable;</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.disable;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.enabled;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.disabled;</hbox>
 														</vbox>
 													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.chromiumCaptionButtonsTitle;</label>
-														<label class="description">&gsettings.chromiumCaptionButtonsDescription;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="classiccaptionbuttons-style" data-pref="appearance.classicCaptionButtonsStyle" id="classiccaptionbuttons-style-select" style="width: 200px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="windows">Windows</hbox>
-															<hbox class="item ripple-enabled" value="linux">Linux</hbox>
-															<!-- <hbox class="item ripple-enabled" value="macos">macOS</hbox> -->
-														</vbox>
-													</html:button>
-												</hbox>
-											</vbox>
-											<h4>
-												&gsettings.customThemeSupport;
-											</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.customThemeMode;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">FXChrome-like</hbox>
-															<hbox class="item ripple-enabled" value="1">Silverfox-like</hbox>
-															<hbox class="item ripple-enabled" value="2">&gsettings.doNotThemeToolbars;</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.applyBackgroundToCaptionButtons;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
 												</hbox>
 												<hbox class="item">
 													<vbox>
 														<label class="name"><div class="year">2012+</div>&gsettings.colorizeTabGlareEffect;</label>
+														<label class="description">&gsettings.colorizeTabGlareEffectDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -361,8 +441,18 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInAllToolbarItemsTitle;</label>
-														<label class="description">&gsettings.gtkIconsInAllToolbarItemsNotice;</label>
+														<label class="name"><div class="year">Chrome 11 - 25</div>&gsettings.themeNewTabFooter;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInAllToolbarItems;</label>
+														<label class="description">&gsettings.gtkIconsInAllToolbarItemsDisclaimer;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -377,60 +467,29 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
+														<label class="name">&gsettings.behaviourToDesign;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
+														<label class="name">&gsettings.behaviourToTheme;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
 													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">&gsettings.behaviourToExperiments;</label>
 													</vbox>
 												</html:button>
 											</vbox>
 										</vbox>
-										<hbox id="appearance-container" style="flex-wrap: wrap; margin-inline: -5px; gap: 10px 0;" />
 									</vbox>
 								</vbox>
 							</vbox>
-							<vbox class="page" data-page="13">
+
+							<vbox class="page" data-page="12">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
-											<h4>&gsettings.newTab;</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.overrideVisualStylePreset;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.newTabHome.overrideStyle" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
-												</vbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name"><div class="year">Chrome 11 - 25</div>&gsettings.themeFooterAccordingToCustomTheme;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.newTabHome.themeFooter" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-											</vbox>
 											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gsettings.appsList;</h4>
 											<vbox class="card" id="apps-list" />
 											<div class="modal" data-modal="editApp_modal">
@@ -503,22 +562,17 @@
 											<vbox class="card">
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
 													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
+														<label class="name">&gsettings.pagesToDesign;</label>
 													</vbox>
 												</html:button>
 												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
 													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
+														<label class="name">&gsettings.pagesToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
 													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
-													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
+														<label class="name">&gsettings.pagesToTheme;</label>
 													</vbox>
 												</html:button>
 											</vbox>
@@ -526,6 +580,274 @@
 									</vbox>
 								</vbox>
 							</vbox>
+
+							<vbox class="page" data-page="13">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<h4>
+												&gsettings.firefoxThemes;
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.customThemeMode;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
+															<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
+															<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.firefoxThemeOnTitlebuttons;</label>
+														<label class="description">&gsettings.firefoxThemeOnTitlebuttonsDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<h4>
+												&gsettings.themes;
+												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
+												<div class="modal" data-modal="aboutChrThemes_modal">
+													<div class="wrapper">
+														<div class="card">
+															<vbox class="body">
+																<vbox class="description" style="gap: 16px">
+																	<html:p>
+																		&gsettings.modalChromiumThemesDescription;
+																	</html:p>
+																</vbox>
+																<div class="footer">
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
+																</div>
+															</vbox>
+														</div>
+													</div>
+												</div>
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
+													<vbox>
+														<label class="name">&gsettings.openChrThemesFolder;</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
+													<vbox>
+														<label class="name">&gsettings.refreshList;</label>
+													</vbox>
+												</html:button>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid class="disable-in-wizard" id="themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1">
+														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
+														<html:button
+																class="link chrome-appearance ripple-enabled"
+																data-systheme="auto"
+																style="height: 160px"
+																onclick="applySysTheme('auto')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-auto" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.automatic;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-classic"
+																data-systheme="classic" style="height: 160px"
+																onclick="applySysTheme('classic')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-classic" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label notlinux">&gsettings.sysThemeWindows;</html:label>
+																		<html:label class="label linuxonly">&gsettings.sysThemeClassic;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-you"
+																data-systheme="you" style="height: 160px"
+																onclick="applySysTheme('you')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeYou;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-gtk"
+																data-systheme="gtk" style="height: 160px"
+																onclick="applySysTheme('gtk')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label notlinux">&gsettings.sysThemeNative;</html:label>
+																		<html:label class="label linuxonly">GTK+</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-macosx"
+																data-systheme="macosx" style="height: 160px"
+																onclick="applySysTheme('macosx')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-macosx" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeMacOSX;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-macos"
+																data-systheme="macos" style="height: 160px"
+																onclick="applySysTheme('macos')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-macos" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeMacOS;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled gktheme-chromiumos"
+																data-systheme="chromiumos" style="height: 160px"
+																onclick="applySysTheme('chromiumos')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-chromiumos" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeChrOS;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																id="ffoxthemestile" class="link chrome-appearance ripple-enabled firefoxthemes"
+																style="height: 160px; background-color: #1D1133 !important"
+																onclick="openLWThemesPage()">
+															<html:label class="wrapper">
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:label class="label">&gsettings.gotoFirefoxThemes;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<label
+																id="gkwebstoretile" is="text-link"
+																class="link chrome-appearance ripple-enabled chrstore"
+																style="height: 160px; background-color: #F3F3F3 !important"
+																href="https://chrome.google.com/webstore/category/themes">
+															<html:label class="wrapper">
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:label class="label">&gsettings.getMoreGoogleChromeThemes;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</label>
+														<label
+																is="text-link" class="link chrome-appearance ripple-enabled edgestore"
+																style="height: 160px"
+																href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
+															<html:label class="wrapper">
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:label class="label">&gsettings.getMoreMicrosoftEdgeThemes;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</label>
+													</grid>
+												</vbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouSource;</label>
+														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
+															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
+															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouCustom;</label>
+													</vbox>
+													<spacer />
+													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
+												</hbox>
+											</vbox>
+											<h4>
+												&gsettings.quickAccess;
+											</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+													<vbox>
+														<label class="name">&gsettings.themeToDesign;</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+													<vbox>
+														<label class="name">&gsettings.themeToBehaviour;</label>
+													</vbox>
+												</html:button>
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+													<vbox>
+														<label class="name">&gsettings.themeToExperiments;</label>
+													</vbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
+
 							<vbox class="page" data-page="14">
 								<vbox class="content-container">
 									<vbox class="window-top-bars light">
@@ -595,130 +917,12 @@
 								</vbox>
 							</vbox>
 							
-							<vbox class="page" data-page="20">
-								<vbox class="content-container">
-									<vbox class="window-top-bars light">
-										<hbox class="window-top-bar">
-											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
-												<!--<h3 for="chrTheme-switch"/>-->
-												<spacer />
-												<div class="switch-parent">
-													<html:input class="switch" data-pref="Geckium.chrTheme.status" type="checkbox" id="chrTheme-switch" name="chrTheme-switch" />
-													<html:label class="gutter" for="chrTheme-switch" />
-												</div>
-											</hbox>
-										</hbox>
-									</vbox>
-									<vbox class="content">
-										<vbox class="list-container">
-											<vbox class="card">
-												<label class="item ripple-enabled" is="text-link" href="https://chrome.google.com/webstore/category/themes">
-													<vbox>
-														<label class="name">&gsettings.getMoreGoogleChromeThemes;</label>
-													</vbox>
-												</label>
-												<label class="item ripple-enabled" is="text-link" href="https://microsoftedge.microsoft.com/addons/microsoft-edge-themes">
-													<vbox>
-														<label class="name">&gsettings.getMoreMicrosoftEdgeThemes;</label>
-													</vbox>
-												</label>
-												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
-													<vbox>
-														<label class="name">&gsettings.openThemesFolder;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
-													<vbox>
-														<label class="name">&gsettings.refreshList;</label>
-													</vbox>
-												</html:button>
-											</vbox>
-											<h4>
-												&gsettings.availableThemes;
-												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
-												<div class="modal" data-modal="aboutChrThemes_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<div class="header">&gsettings.chromiumThemes;</div>
-																<vbox class="description" style="gap: 16px">
-																	<html:p>
-																		&gsettings.modalChromiumThemesDescription;
-																	</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
-											</h4>
-											<div class="card" id="chrthemes-list"></div>
-											<!--<h4>&gsettings.unavailableThemes;</h4>
-											<vbox class="card">
-
-											</vbox>-->
-											<h4>
-												&gsettings.quickAccess;
-											</h4>
-											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
-													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
-													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
-													<vbox>
-														<label class="name">&gsettings.chromiumExperiments;</label>
-													</vbox>
-												</html:button>
-											</vbox>
-										</vbox>
-									</vbox>
-								</vbox>
-							</vbox>
 							<vbox class="page" data-page="21">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>&gsettings.flags;</h4>
 											<vbox class="card" id="flags-container" />
-											<h4>
-												&gsettings.quickAccess;
-											</h4>
-											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
-													<vbox>
-														<label class="name">&gsettings.visualStylePresets;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
-													<vbox>
-														<label class="name">&gsettings.mainInterface;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
-													<vbox>
-														<label class="name">&gsettings.pageSettings;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 20)">
-													<vbox>
-														<label class="name">&gsettings.chromiumThemeSettings;</label>
-													</vbox>
-												</html:button>
-											</vbox>
 										</vbox>
 									</vbox>
 								</vbox>
@@ -895,37 +1099,13 @@
 														</div>
 													</div>
 												</div>-->
-												<html:button class="item ripple-enabled" data-toggle-modal="aboutCredits_modal">
+												<html:button class="item ripple-enabled" onclick="skipToPage('main', 34)">
 													<vbox>
 														<label class="name">&gsettings.creditsTitle;</label>
 														<label class="description">&gsettings.creditsDescription;</label>
 													</vbox>
 													<spacer />
 												</html:button>
-												<div class="modal" data-modal="aboutCredits_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<div class="header">&gsettings.creditsTitle;</div>
-																<vbox class="description" style="gap: 8px">
-																	<html:p>AngelBruni</html:p>
-																	<html:p>Dominic Hayes</html:p>
-																	<html:p>Doot</html:p>
-																	<html:p>florin</html:p>
-																	<html:p>Longhorn004</html:p>
-																	<html:p>addictedtree</html:p>
-																	<html:p>luisl</html:p>
-																	<html:p>windowsxp3790</html:p>
-																	<html:p>ImSwordQueen</html:p>
-																	<html:p>nabrious</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutCredits_modal" />
-																</div>
-															</vbox>
-														</div>
-													</div>
-												</div>
 											</vbox>
 											<h4 id="fork-name">fork_name</h4>
 											<vbox class="card">
@@ -1000,6 +1180,267 @@
 									</vbox>
 								</vbox>
 							</vbox>
+							<vbox class="page" data-page="34">
+								<vbox class="content-container">
+									<vbox class="content">
+										<vbox class="list-container">
+											<vbox class="card">
+												<hbox class="banner">
+													<image style="width: 200px;"></image>
+													<vbox>
+														<label style="font-size: 32pt;">Geckium</label>
+														<h4 style="height: 20px; margin-inline-start: 1px;" >A love letter to the history of Chromium and its derivatives</h4>
+													</vbox>
+												</hbox>
+											</vbox>
+											<h4 id="fork-name">&gsettings.creditsTitle;</h4>
+											<vbox class="card">
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%"> <!-- sorry for how botched this code is, I just cba to make it better when you're potentially gonna nuke this code from orbit anyway for the redesign. -->
+														<vbox>
+															<label class="name">AngelBruni</label>
+															<label class="description">Main developer of Geckium</label>
+															<label class="description">"no messageloggussy"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: y e s .
+Research: Nearly everything.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/angelbruni">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">That Linux Dude Dominic Hayes</label>
+															<label class="description">Geckium developer</label>
+															<label class="description">"Again, how did this happen? First it was Silverfox, now it's Geckium that I become a main developer for. Ah well, I hope my long list of contributions contributes to your enjoyment of Geckium. Anyway, did you know ka kah and KACᔑᓵリᓵリ↸リᓭʖ?"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: The Geckium logo, every System Theme except Classic (including Geckium You), all Titlebar Styles, Chromium Theme behaviour options, flags referencing obscure development lore such as Linux prototype titlebars, the Credits page you're reading, overhauled Themes page, major code overhauls to futureproof Geckium, Classic's dark modes (1-47), and so much more.
+Research: Source-accurate GTK+ System Theme, Incognito tinting, ALL the known behaviour differences in every Linux Chromium release, Mac OS X's System Theme (1-5), Chrome Theme metadata, and misc. minor details.
+Commits for one merge request: 227 and counting :p</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/dominichayesferen">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Doot</label>
+															<label class="description">Geckium developer</label>
+															<label class="description">"door"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Full JS port of Chromium's official colour modification functions, mainly Chromium's colour tinter.
+Research: (with the help of Dominic) Chromium's colour tinting code.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/le-dooter">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">florin</label>
+															<label style="white-space: pre-wrap" class="description">The creator of Silverfox, Geckium's spiritual predecessor</label>
+															<label style="white-space: pre-wrap" class="description">"Hello as the CEO of Silverfox Enterprises, I approve this project.
+P.S: We’ve filled for bankruptcy, please help!"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for Romanian users, and tested prerelease Geckium builds.
+Research: Useful insight into Firefox JS.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/florinsdistortedvision">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">ImSwordQueen</label>
+															<label class="description">"Meow"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Collaborated with Dominic to desaturate the Geckium logo, and tested prerelease Geckium builds before anyone else.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/imswordqueen">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Longhorn004</label>
+															<label class="description">"she geck on my userchrome till I Add a LICENSE"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/Longhorn004">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">addictedtree</label>
+															<label class="description">"I'm struggling to fix my sleep schedule help"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for French users, and tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">luisl</label>
+															<label class="description">"que rico pe causita"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for Spanish users, and tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/luisl173">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">minaritzu</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for Korean users, and tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Jimkoutso</label>
+															<label class="description">"I'm geck-maxxing"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Nearly accidentally spoiled Chromium Theme support, localised Geckium for Greek users, and tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/jimkoutso2008">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+														<hbox style="width: 100%">
+															<vbox>
+																<label class="name">kwanvini</label>
+																<label class="description">"Ooh, whatcha say? Mm, that you only meant well? Well, of course you did."</label>
+																<label style="white-space: pre-wrap" class="description">Contributions: Localised Geckium for Brazillian Portuguese users, and tested prerelease Geckium builds.</label>
+															</vbox>
+														</hbox>
+													</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">nidzo</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.
+Research: User interface pixel-accuracy.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">DarioPlay</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Shredder</label>
+															<label class="description">"Hey where ya going you big drip"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">MaTe</label>
+															<label class="description">"not having a girlfriend is part of my car's weight reduction kit"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">neptuneen</label>
+															<label class="description">"double the spins, double the profits. gazillion dollar profit!"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">brawllux</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">chronail</label>
+															<label class="description">"i love sapphire plugin"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">callyham</label>
+															<label class="description">"<html:strong>h</html:strong>"</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Goonium</label>
+															<label class="description">"Tonight, i ask you wholeheartedly to Hide your Ancestors. This is because Secret Agents are trying to Find and Incite them to this one National... whatever the fuck they call it 'Endless Loophole of Oblivion'.  this is a gatekept mission with the Objective to Kill all International and National citizens across the united states of america. this is not a Gag. Please. you're putting an Entire future of our race at risk by Not Interfering with their plans. be the change to Stop this massacre."</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Guzz Fring</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">Ojas</label>
+															<label class="description">"Ok."</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/ojask">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">lixkote</label>
+															<label style="white-space: pre-wrap" class="description">Contributions: Tested prerelease Geckium builds.</label>
+														</vbox>
+														<spacer />
+														<label class="button ripple-enabled text color disable-in-wizard" is="text-link" href="https://github.com/Lixkote">GitHub</label>
+													</hbox>
+												</html:button>
+												<html:button class="item ripple-enabled">
+													<hbox style="width: 100%">
+														<vbox>
+															<label class="name">nabrious</label>
+															<label class="description">Geckium's original developer. Added a LICENSE</label>
+														</vbox>
+														<spacer />
+													</hbox>
+												</html:button>
+											</vbox>
+										</vbox>
+									</vbox>
+								</vbox>
+							</vbox>
 						</vbox>
 					</div>
 				</hbox>
@@ -1012,7 +1453,11 @@
 		const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
 	</script>
 
-	<script src="chrome://userchrome/content/JS/Geckium_appearance.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_styles.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_titlebar.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_themes.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_themesLW.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_themesChr.uc.js" type="text/javascript" defer="true"/>
 
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/globalVisualStyles.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
@@ -1022,7 +1467,7 @@
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/developerOptions.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/geckoDecor.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/about.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_chrTheme.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/sysThemes.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrThemes.js" type="text/javascript" defer="true"/>
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrFlags.js" type="text/javascript" defer="true"/>
 

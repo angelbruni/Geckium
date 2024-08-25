@@ -1,73 +1,72 @@
 & {
 	font-size: 9pt;
 
-	--chrt-ntp-background-alignment: 50% 100%;
-	--chrt-ntp-background-repeat: no-repeat;
+	--chrtheme-ntp-background-alignment: 50% 100%;
+	--chrtheme-ntp-background-repeat: no-repeat;
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					&[style*="--lwt-newtab-attribution-image"] {
-						#attribution {
-							display: flex !important;
-						}
+	&[gkthemed]:not([gkchrthemed]) {
+		&[style*="--lwt-gknewtab-attribution-image"] {
+			#attribution {
+				display: flex;
+			}
 
-						#attribution-img {
-							background-image: var(--lwt-newtab-attribution-image) !important;
-							width: var(--lwt-newtab-attribution-width) !important;
-							height: var(--lwt-newtab-attribution-height) !important;
-						}
-					}
-
-					body {
-						background-color: var(--newtab-background-color);
-						background-image: var(--lwt-newtab-background-image, var(--lwt-newtab-image));
-						image-rendering: var(--lwt-newtab-image-rendering);
-						background-size: var(--lwt-newtab-background-size);
-						background-position: var(--lwt-newtab-background-position);
-
-						&[style*="--lwt-newtab-background-position-y"] {
-							background-position-x: var(--lwt-newtab-background-position-x);
-						}
-						&[style*="--lwt-newtab-background-position-y"] {
-							background-position-x: var(--lwt-newtab-background-position-y);
-						}
-
-						background-repeat: var(--lwt-newtab-background-repeat);
-					}
-				}
+			#attribution-img {
+				background-image: var(--lwt-gknewtab-attribution-image);
+				width: var(--lwt-gknewtab-attribution-width);
+				height: var(--lwt-gknewtab-attribution-height);
 			}
 		}
-	}
-	&[lwtheme-id="firefox-alpenglow@mozilla.org"] {
+
 		body {
-			background-image: var(--lwt-additional-images);
-			background-position: var(--lwt-background-alignment);
-			background-repeat: var(--lwt-background-tiling);
+			background-color: var(--newtab-background-color);
+			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+			image-rendering: var(--lwt-gknewtab-image-rendering);
+			background-size: var(--lwt-gknewtab-background-size);
+			background-position: var(--lwt-gknewtab-background-position);
+
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-x);
+			}
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-y);
+			}
+
+			background-repeat: var(--lwt-gknewtab-background-repeat);
+		}
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
+			}
 		}
 	}
 
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		body {
-			background-color: var(--chrt-ntp-background);
-			background-image: var(--chrt-theme-ntp-background) !important;
+			background-color: var(--chrtheme-ntp-background);
+			background-image: var(--chrtheme-theme-ntp-background);
 		}
 
 		#attribution-img {
-			background-image: var(--chrt-theme-ntp-attribution) !important;
-			width: var(--chrt-theme-ntp-attribution-width) !important;
-			height: var(--chrt-theme-ntp-attribution-height) !important;
+			background-image: var(--chrtheme-theme-ntp-attribution);
+			width: var(--chrtheme-theme-ntp-attribution-width);
+			height: var(--chrtheme-theme-ntp-attribution-height);
 		}
 
-		&[style*="--chrt-theme-ntp-attribution"] {
+		&[style*="--chrtheme-theme-ntp-attribution"] {
 			#attribution {
-				display: flex !important;
+				display: flex;
 			}
+		}
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		body {
+			background-color: Field;
+			color: FieldText;
 		}
 	}
 
@@ -101,7 +100,7 @@
 			}
 		}
 	
-		&[style*="--chrt-ntp-logo-alternate: 1"] {
+		&[style*="--chrtheme-ntp-logo-alternate: 1"] {
 			#main {
 				background: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/google-chrome/product_logo_alternate.png) no-repeat 0px 8px;
 			}
@@ -111,8 +110,8 @@
 
 body {
 	background-size: unset;
-	background-repeat: var(--chrt-ntp-background-repeat);
-	background-position: var(--chrt-ntp-background-alignment);
+	background-repeat: var(--chrtheme-ntp-background-repeat);
+	background-position: var(--chrtheme-ntp-background-alignment);
 }
 
 #main {

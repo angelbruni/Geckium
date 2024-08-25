@@ -1,0 +1,7 @@
+&:not([geckium-twentyone]) {
+    #tabs-newtab-button::before,
+    #TabsToolbar #new-tab-button::before {
+        // Linux doesn't have a theme texture until 17/18
+        content: unset !important;
+    }
+}

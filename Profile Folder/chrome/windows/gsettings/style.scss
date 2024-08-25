@@ -248,18 +248,6 @@ h4 {
 	}
 }
 
-#chrthemes-list {
-	display: flex;
-	background: transparent !important; 
-	box-shadow: none !important; 
-	flex-wrap: wrap;
-	margin-inline: -10px;
-	gap: 20px 0;
-}
-.chrthemewrapper {
-	padding-inline: 10px;
-	width: calc(50% - 20px);
-}
 .item {
 	&.app {
 		padding-block: 6px;
@@ -274,55 +262,195 @@ h4 {
 			margin-inline-start: 8px;
 		}
 	}
+}
 
-	&.chrtheme {
+.link {
+	&.chrome-appearance {
+		-moz-context-properties: fill, fill-opacity;
+		fill: white;
+		background-repeat: no-repeat !important;
+
+		&.firefoxthemes {
+			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient-dark\.svg) !important;
+			background-position: center,right top,left top,right top !important;
+			background-repeat: no-repeat,no-repeat,no-repeat,repeat-x !important;
+			background-size: 64px 64px,auto,auto,auto !important
+		}
+
+		&.chrstore {
+			background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png) !important;
+			background-position: center !important;
+			background-repeat: no-repeat !important;
+			background-size: 76px 76px !important
+		}
+		&.edgestore {
+			background-image: url(chrome://userchrome/content/windows/gsettings/imgs/edgeaddons.svg), linear-gradient(90deg, #072139, #1a416c 90%) !important;
+			background-position: center,center !important;
+			background-repeat: no-repeat,no-repeat !important;
+			background-size: 76px 76px,auto !important
+		}
+	}
+
+	&.geckium-appearance {
 		position: relative;
 		display: block;
-		cursor: pointer !important;
-		padding-inline: 10px;
-	
-		.banner {
-			padding: 0 !important;
-			margin-inline: -19px;
-	
-			height: 150px;
-			background-color: rgb(0, 0, 0, 10%);
+		width: 100%;
+		height: 160px;
+		overflow: hidden;
+		background-size: cover;
+		background-position: top center;
+		cursor: pointer;
+
+		&:hover {
+			background-size: cover !important;
+			background-position: top center !important;
+			box-shadow: var(--elevation-8);
 		}
-	
-		.icon {
-			margin-inline-end: 16px;
-			width: 48px;
-			height: 48px;
-	
-			&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
-				filter: saturate(0);
-				fill: #209f43;
-				-moz-context-properties: fill, fill-opacity;
-				opacity: .5;
-			}
-		}
-	
+
 		.name, .description {
 			display: block;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
-			margin: 0 !important;
 		}
-	
-		.version {
+
+		.radio-parent {
+			margin-inline-start: 0 !important;
+		}
+
+		.ripple {
+			background: rgb(255, 255, 255, 25%);
+		}
+
+		.wrapper {
+			position: absolute;
+			inset: 0;
+			cursor: pointer;
+		}
+
+		.year {
 			position: absolute;
 			top: 10px;
-			right: 10px;
-			font-size: 10px;
-			padding-inline: 4px;
-			padding-block: 2px;
-			color: white;
-			font-weight: 500;
-			background: var(--secondary-color);
-			box-shadow: 0 1px 1px rgb(0, 0, 0, 40%);
-			border-radius: 2px;
-		}	
+			right: 5px;
+		}
+		
+		.icon {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			transform: unset;
+			mask-image: unset;
+			mask-size: unset;
+			background: unset;
+			flex-shrink: unset;
+
+			image {
+				&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
+					filter: saturate(0);
+					fill: #209f43;
+					-moz-context-properties: fill, fill-opacity;
+					opacity: 0.5;
+				}
+			}
+		}
+
+		.identifier {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 82px;
+			display: flex;
+			align-items: end;
+			padding-block-end: 12px;
+			padding-inline: 14px;
+			font-size: 22px;
+			color: rgb(255, 255, 255);
+			background: linear-gradient(to top, rgb(0, 0, 0, 60%), transparent);
+
+			.radio {
+				min-width: 16px;
+				--radio-border-color: rgb(255, 255, 255, 50%);
+
+				&:checked {
+					&:not([disabled="true"]):hover + .gutter {
+						background: rgb(255, 255, 255, 10%);
+					}
+					&:not([disabled="true"]):active + .gutter {
+						background: rgb(255, 255, 255, 15%);
+					}
+				}
+
+				&:not([disabled="true"]):hover + .gutter {
+					background: rgba(255, 255, 255, 5%);
+				}
+				&:not([disabled="true"]):active + .gutter {
+					background: rgba(255, 255, 255, 12%);
+				}
+			}
+
+			.description {
+				font-size: 10pt;
+				font-weight: initial;
+				color: white !important;
+				margin-block-start: unset !important;
+				margin-block-end: unset !important;
+			}
+		}
+	}
+
+	&.chrome-appearance.gktheme-gtk {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/gtk.svg) !important;
+		fill: -moz-dialog;
+		background-color: ActiveCaption !important;
+	}
+}
+// Themes with eras
+.gktheme-classic {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-1.svg) !important;
+}
+.gktheme-you {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-1.svg) !important;
+}
+.gktheme-macosx {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-1.svg) !important;
+}
+.gktheme-macos {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-1.svg) !important;
+}
+.gktheme-chromiumos {
+	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-1.svg) !important;
+}
+:root[geckium-six] {
+	.gktheme-classic {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-6.svg) !important;
+	}
+	.gktheme-you {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-6.svg) !important;
+	}
+	.gktheme-chromiumos {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-6.svg) !important;
+	}
+}
+:root[geckium-eleven] {
+	.gktheme-macosx {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-11.svg) !important;
+	}
+	.gktheme-macos {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-11.svg) !important;
+	}
+}
+:root[geckium-twentyone] {
+	.gktheme-chromiumos {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-21.svg) !important;
+	}
+}
+:root[geckium-sixtyeight] {
+	.gktheme-classic,
+	.gktheme-you,
+	.gktheme-macosx,
+	.gktheme-macos,
+	.gktheme-chromiumos {
+		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-68.svg) !important;
 	}
 }
 
@@ -507,5 +635,32 @@ h4 {
 			var(--desired-gecko-color),
 			white
 		);
+	}
+}
+
+// OS restrictions
+.winonly {
+	@media not (-moz-platform: windows) {
+		display: none !important;
+	}
+}
+:root[isWindows10] {
+	.notwin10 {
+		display: none !important;
+	}
+}
+:root:not([isWindows10]) {
+	.win10 {
+		display: none !important;
+	}
+}
+.linuxonly {
+	@media not (-moz-platform: linux) {
+		display: none !important;
+	}
+}
+.notlinux {
+	@media (-moz-platform: linux) {
+		display: none !important;
 	}
 }

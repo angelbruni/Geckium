@@ -1,0 +1,117 @@
+& { // TODO: Exclude in MD2
+	//Give the tabs/Incognito/pfp the appropriate offset
+	#private-browsing-indicator-with-label {
+		order: -1 !important; // Force to left
+	}
+	.titlebar-spacer[type="pre-tabs"] {
+		order: -2 !important; // Force to left of Incognito
+	}
+	&:not([privatebrowsingmode="temporary"]) {
+		#TabsToolbar-customization-target {
+			margin-inline-start: var(--tab-distance-from-toolbar-edge);
+		}
+	}
+	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
+	&[privatebrowsingmode="temporary"] {
+		#private-browsing-indicator-with-label {
+			margin-inline-start: var(--tab-distance-from-toolbar-edge);
+		}
+	}
+	#fxa-toolbar-menu-button,
+	.private-browsing-indicator-icon {
+		margin-inline-start: 1px !important;
+		margin-inline-end: var(--tab-distance-from-pfp) !important;
+	}
+
+	//Shared non-native titlebar variables
+	// TODO when SVG'd
+
+	//Titlebar button box (force onto right side)
+	.titlebar-buttonbox-container {
+		order: 1000 !important;
+		align-items: unset !important;
+	}
+	//Linux quirk: Counteract exclusive menubar padding
+	@media (-moz-platform: linux) {
+		#toolbar-menubar .titlebar-buttonbox-container {
+			margin-block-start: -1px; // top margin
+		}
+	}
+
+	.titlebar-buttonbox {
+		align-items: unset !important;
+		gap: 0;
+	}
+	
+	//Shared titlebar button code
+	.titlebar-button {
+		background: transparent !important;
+		border-radius: 0 !important;
+		transition: background-color 100ms linear; //hover-fade animation
+		display: flex !important;
+		height: 35px;
+		width: 35px;
+		
+		//Hover and pressed states
+		&:not([disabled]):hover {
+			background: rgba(20, 20, 23, 0.078) !important;
+		}
+		&:not([disabled]):hover:active {
+			background: rgba(20, 20, 23, 0.141) !important;
+			transition: none;
+		}
+		
+        &::before { //Chrome OS NEVER has its buttons filled
+            content: unset !important;
+        }
+	}
+	// Decrease button height when maximised
+	&:not([geckium-sixtyeight])[sizemode="maximized"],
+	&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
+		.titlebar-button {
+			height: 27px;
+		}
+	}
+
+	//Close button
+	.titlebar-close {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important;
+		order: 2 !important;
+		border-top-right-radius: var(--titlebar-border-radius) !important; // Ensure it doesn't overlay the border
+	}
+	&:-moz-locale-dir(rtl) { // Swap corners in RTL
+		.titlebar-close {
+			border-top-right-radius: 0 !important;
+			border-top-left-radius: min(var(--titlebar-border-radius), 0px) !important;
+		}
+	}
+
+	//Maximise and Restore buttons
+	.titlebar-max {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
+	}
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		.titlebar-max {
+			display: none !important;
+		}
+	}
+	.titlebar-restore {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
+	}
+	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+		.titlebar-restore {
+			display: none !important;
+		}
+	}
+	.titlebar-max,
+	.titlebar-restore {
+		order: 1 !important;
+	}
+
+	//Minimise button
+	.titlebar-min {
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/minimize.png) !important;
+		order: 0 !important;
+	}
+}

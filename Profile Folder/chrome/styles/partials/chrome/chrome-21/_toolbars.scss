@@ -1,49 +1,11 @@
 & {
 	--toolbar-start-end-padding: 4px;
 
-	--toolbarbutton-radius: 3px;
-	--toolbarbutton-border-color-hot: rgb(134, 134, 134);
-	--toolbarbutton-border-color-active: rgb(125, 125, 125);
-	--toolbarbutton-shadow-hot: 0 1px 0 0 rgba(0, 0, 0, 0.3),
-								inset 0 1px 2px rgb(255, 255, 255, 75%);
-	--toolbarbutton-shadow-normal: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	--toolbarbutton-border-radius: 3px !important;
 	--toolbarbutton-width: 27px;
 	--toolbarbutton-height: 27px;
-	--default-toolbarbutton-icon-fill: rgb(111, 111, 111);
-	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
 
 	--personal-toolbar-height: 23px;
-	--personal-toolbar-item-shadow: 0 1px 0 0 transparent !important;
-	--personal-toolbar-item-hover-shadow: 0 1px 0 0 rgba(0, 0, 0, 12%) !important;
-	--default-bookmark-item-color: #000000;
-	--bookmark-item-hover-color: #062d75;
-	--personal-toolbar-item-hover-bg: rgb(237, 237, 237) !important;
-
-	@media (prefers-color-scheme: dark) {
-		--default-toolbarbutton-icon-fill: #C7C7C7;
-		--default-bookmark-item-color: white;
-	}
-
-	// else if lwtheme
-	&[lwtheme] {
-		/* bruni: This entire code takes care of custom themes support for toolbars */
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				@import "titlebar/classic";
-			}
-		}
-	}
-	// else if chrtheme
-	&[lwtheme-id*="compact-light"][chrtheme="true"] {
-		@import "titlebar/classic";
-	}
-	
-	/*&[customthememode="2"],
-	&:not([lwtheme-id*="compact-light"]),
-	&[lwtheme-id="#{$gtkplus}"],
-	&:not([chrtheme="true"]) {
-		--toolbarbutton-icon-fill: rgb(111, 111, 111) !important;
-	}*/
 
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
@@ -56,19 +18,19 @@
 
 			&::before {
 				background: rgba(255,255,255,1) !important;
-				border-radius: var(--toolbarbutton-radius) !important;
+				border-radius: var(--toolbarbutton-border-radius) !important;
 			}
 
 			&:not([disabled]) {
 				&:hover {
 					border-top-color: color-mix(
 						in srgb,
-						var(--toolbarbutton-border-color-hot) 30%,
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
 						white
 					) !important;
 					border-bottom-color: color-mix(
 						in srgb,
-						var(--toolbarbutton-border-color-hot) 80%,
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 80%,
 						black
 					) !important;
 					box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
@@ -93,7 +55,8 @@
 					box-shadow: 0 1px 0 0 transparent,
 						inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
 					border-color: var(
-						--toolbarbutton-border-color-active
+						--toolbarbutton-border-color-active,
+						var(--default-toolbarbutton-border-color-active)
 					) !important;
 				}
 			}
@@ -102,7 +65,7 @@
 				image:first-of-type {
 					fill: color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-fill) 25%,
+						var(--toolbarbutton-icon-color) 25%,
 						transparent
 					) !important;
 				}
@@ -113,128 +76,6 @@
 					margin-bottom: 0 !important;
 				}
 			}
-		}
-	}
-
-	// FIXME: Temporarily duplicating this until I find a better way to do it.
-	&[lwtheme-id="#{$gtkplus}"] {
-		@media (-moz-platform: linux) {
-			:not(.widget-overflow-list) {
-				> .toolbarbutton-1:not(
-					#fxa-toolbar-menu-button,
-					#tabs-newtab-button,
-					#new-tab-button,
-					.subviewbutton
-				) {
-					&#back-button,
-					&#forward-button,
-					&#reload-button,
-					&#stop-button,
-					&#home-button {
-						&[disabled] {
-							opacity: .3 !important;
-						}
-
-						.toolbarbutton-icon {
-							max-width: 24px !important;
-							max-height: 24px !important;
-						}
-					}
-
-					&#back-button {
-						list-style-image: url(moz-icon://stock/go-previous?size=toolbar) !important;
-					}
-					
-					&#forward-button {
-						list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
-					}
-					
-					&#reload-button {
-						list-style-image: url(moz-icon://stock/view-refresh?size=toolbar) !important;
-					}
-					
-					&#stop-button {
-						list-style-image: url(moz-icon://stock/process-stop?size=toolbar) !important;
-					}
-					
-					&#home-button {
-						list-style-image: url(moz-icon://stock/go-home?size=toolbar) !important;
-					}
-				}
-			}
-
-			&[moregtkicons="true"] {
-				:not(.widget-overflow-list) {
-					> .toolbarbutton-1:not(
-						#fxa-toolbar-menu-button,
-						#tabs-newtab-button,
-						#new-tab-button,
-						.subviewbutton
-					) {
-						&#PanelUI-menu-button,
-						&#chrome-button,
-						&#page-button,
-						&#star-button-box,
-						&#go-button-box,
-						&#bookmarks-menu-button,
-						&#developer-button {
-							&[disabled] {
-								opacity: .3 !important;
-							}
-
-							.toolbarbutton-icon,
-							image:first-child {
-								max-width: 24px !important;
-								max-height: 24px !important;
-							}
-						}
-
-						&#PanelUI-menu-button,
-						&#chrome-button {
-							list-style-image: url(moz-icon://stock/gtk-preferences?size=toolbar) !important;
-						}
-
-						&#page-button {
-							list-style-image: url(moz-icon://stock/document-properties?size=toolbar) !important;
-						}
-
-						&#go-button-box{
-							list-style-image: url(moz-icon://stock/go-next?size=toolbar) !important;
-						}
-					}
-				}
-
-				#star-button-box {
-					#star-button {
-						&:not([starred="true"]) {
-							list-style-image: url(moz-icon://stock/bookmark-missing?size=toolbar) !important;
-						}
-						&[starred="true"] {
-							list-style-image: url(moz-icon://stock/stock_bookmark?size=toolbar) !important;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		#fxa-toolbar-menu-button {
-			margin-inline-start: 8px !important;
-			margin-inline-end: -2px !important;
-
-			.toolbarbutton-badge-stack {
-				margin-block-end: 10px;
-			}
-		}
-	}
-
-	#fxa-toolbar-menu-button {
-		margin-inline-end: -4px !important;
-		
-		.toolbarbutton-badge-stack {
-			margin-block-end: 10px;
 		}
 	}
 
@@ -251,8 +92,8 @@
 		.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 			position: relative;
 			overflow: hidden;
-			border-radius: var(--toolbarbutton-radius) !important;
-			box-shadow: var(--personal-toolbar-item-shadow);
+			border-radius: var(--toolbarbutton-border-radius) !important;
+			box-shadow: var(--personal-toolbar-item-shadow, var(--default-personal-toolbar-item-shadow));
 			border: 1px solid transparent;
 			box-sizing: border-box;
 			transition: none !important;
@@ -262,26 +103,40 @@
 				border: 1px solid rgb(176, 176, 176);
 				border-top-color: rgb(205, 205, 204) !important;
 				border-bottom-color: rgb(144, 144, 144) !important;
-				color: var(--bookmark-item-hover-color) !important;
+				color: var(--bookmark-item-hover-color, var(--default-bookmark-item-hover-color)) !important;
 				transition: all 150ms linear !important;
-		
-				&::before {
-					opacity: 1;
-					transition: all 150ms linear !important;
+			}
+		}
+	}
+
+
+	/*
+		GTK+ SysTheme - exclusive toolbarbutton styling
+	*/
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+		:not(.widget-overflow-list)
+		> .toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button,
+			.subviewbutton) {
+			box-shadow: unset !important;
+
+			&:not([disabled]) {
+				&:hover {
+					box-shadow: unset !important;
+				}
+				&:active,
+				&[open] {
+					box-shadow: unset !important;
 				}
 			}
-		
-			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				height: 1px;
-				background: rgb(255, 255, 255, 80%);
-				transition: none !important;
-				opacity: 0;
-			}
+		}
+	}
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-fortyseven]) {
+		#PanelUI-menu-button,
+		#chrome-button {
+			width: 33px !important;
 		}
 	}
 }

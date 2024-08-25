@@ -11,18 +11,23 @@
 
 	// Custom theme support
 	// lwtheme
-	&[lwtheme-id="firefox-alpenglow@mozilla.org"],
-	&[lwtheme-id*="{"] {
-		&:not([lwtheme-id*="#{$gtkplus}"]) {
-			--section-color: var(--toolbar-color);
-			--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
-		}
+	&[gkthemed]:not([gkchrthemed]) {
+		--section-color: var(--newtab-text-primary-color, currentColor);
+		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
 	}
 
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--section-color: var(--chrt-ntp-text, var(--default-section-color));
-		--spacer-background-color: var(--chrt-ntp-section, var(--default-spacer-background-color));
+	&[gkthemed][gkchrthemed] {
+		--section-color: var(--chrtheme-ntp-text, var(--default-section-color));
+		--spacer-background-color: var(--chrtheme-ntp-section, var(--default-spacer-background-color));
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--section-color: FieldText;
+		--spacer-background-color: color-mix(in srgb, FieldText 20%, transparent);
+
+		--recently-closed-item-color: -moz-dialogtext;
 	}
 }
 

@@ -14,8 +14,8 @@
 		--thumbnail-container-color: white;
 	}
 
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--thumbnail-disabled-color: var(--chrt-ntp-section, var(--default-thumbnail-disabled-color)) !important;
+	&[gkthemed][gkchrthemed] {
+		--thumbnail-disabled-color: var(--chrtheme-ntp-section, var(--default-thumbnail-disabled-color));
 	}
 
 	&[geckium-choice="eleven"] {

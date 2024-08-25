@@ -1,4 +1,5 @@
-.infobar {
+.infobar,
+#navigator-toolbox::after {
 	margin: -4px !important;
 	min-height: 36px !important;
 	align-items: center !important;
@@ -6,6 +7,7 @@
 	padding-inline: 8px !important;
 	border-block: 1px solid rgb(182,186,192) !important;
 	background: linear-gradient(to bottom, rgb(229,229,229), rgb(217,217,217)) !important;
+	color: black !important;
 	border-radius: 0 !important;
 	font-size: 11pt !important;
 
@@ -57,6 +59,7 @@
 	background: linear-gradient(to bottom, rgb(248,248,248), rgb(227,227,227)) !important;
 	font-size: 11pt !important;
 	font-weight: normal !important;
+	color: black !important;
 
 	&:hover,
 	&:active {
@@ -66,4 +69,17 @@
 	&:active {
 		background: linear-gradient(to bottom, rgb(234,234,234), rgb(245,245,245)) !important;
 	}
+}
+// FIXME: Higher priority banners should be yellow
+
+//Banner to show users of non-JavaScript-capable Firefox installations
+#navigator-toolbox::after {
+	min-height: unset !important;
+	padding-block: unset !important;
+	padding: calc((36px - 11pt)/2) 0 !important;
+	padding-inline: 14px !important;
+	content: "Yikes, Geckium is unable to start! Please ensure the Firefox Folder files have been copied to your installed Firefox's program folder."
+}
+:root[geckium-one] #navigator-toolbox::after {
+	content: unset !important;
 }

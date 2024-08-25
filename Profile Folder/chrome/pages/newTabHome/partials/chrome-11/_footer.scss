@@ -3,35 +3,40 @@
 	--logo-wordmark-color: var(--default-logo-wordmark-color);
 
 	&[geckium-choice="eleven"] {
-		&[style*="--lwt-newtab-attribution-image"],
-		&[style*="--chrt-theme-ntp-attribution"] {
+		&[style*="--lwt-gknewtab-attribution-image"],
+		&[style*="--chrtheme-theme-ntp-attribution"] {
 			#footer {
-				display: none !important;
+				display: none;
 			}
 		}
 	}
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&[lwtheme-id*="{"],
-		&[lwtheme-id*="@mozilla.org"] {
-			&:not([lwtheme-id*="#{$gtkplus}"]) {
-				&[footer-themable="true"] {
-					--logo-wordmark-color: var(--newtab-text-primary-color, var(--lwt-text-color)) !important;
-				
-					#logo-icon {
-						fill: var(--logo-wordmark-color);
-					}
-				}
+	&[gkthemed]:not([gkchrthemed]) {
+		&[footer-themable="true"] {
+			--logo-wordmark-color: var(--newtab-text-primary-color, currentColor);
+		
+			#logo-icon {
+				fill: var(--logo-wordmark-color);
 			}
 		}
 	}
 	// chrtheme
-	&[lwtheme-id*="compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		&[footer-themable="true"] {
 			#logo-icon {
-				fill: var(--section-color);
+				fill: var(--section-color, currentColor);
+			}
+		}
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		&[footer-themable="true"] {
+			--logo-wordmark-color: FieldText;
+		
+			#logo-icon {
+				fill: var(--logo-wordmark-color);
 			}
 		}
 	}

@@ -15,35 +15,32 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					--thumbnail-inner-border-color: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
-						white
-					) !important;
-					--thumbnail-background-color: color-mix(
-						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-						white
-					) !important;
-					--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-				}
-			}
-		}
+	&[gkthemed]:not([gkchrthemed]) {
+		--thumbnail-inner-border-color: color-mix(
+			in srgb,
+			var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+			white
+		);
+		--thumbnail-background-color: color-mix(
+			in srgb,
+			var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+			white
+		);
+		--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
 	}
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
+	&[gkthemed][gkchrthemed] {
 		--thumbnail-border-color: color-mix(
 			in srgb,
-			var(--chrt-ntp-header, var(--default-thumbnail-border-color)) 31%,
+			var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) 31%,
 			transparent
-		) !important;
-		--thumbnail-inner-border-color: var(--chrt-ntp-background, var(--default-thumbnail-inner-border-color)) !important;
-		--thumbnail-wrapper-background-color-hot: var(--chrt-ntp-header, var(--default-thumbnail-border-color)) !important;
+		);
+		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color));
+		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color));
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--thumbnail-inner-border-color: -moz-dialog;
 	}
 
 	&[geckium-choice="twentyone"],

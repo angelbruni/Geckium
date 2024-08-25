@@ -1,14 +1,5 @@
 function createRecentlyClosed() {
-	let appearanceChoice;
-
-	switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
+	let appearanceChoice = gkEras.getNTPEra();
 
 	const closedTabsList = SessionStore.getClosedTabDataForWindow(Services.wm.getMostRecentWindow('navigator:browser'));
 
@@ -29,9 +20,9 @@ function createRecentlyClosed() {
 
 			url = state.entries[0].url.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-			if (appearanceChoice <= 5)
+			if (appearanceChoice <= 11)
 				recentlyClosedEntriesAmount = 5;
-			else if (appearanceChoice == 6 || appearanceChoice == 7)
+			else if (appearanceChoice == 21 || appearanceChoice == 25)
 				recentlyClosedEntriesAmount = 10;
 
 			if (visitedURLs.size >= recentlyClosedEntriesAmount)
@@ -55,7 +46,7 @@ function createRecentlyClosed() {
 				favicon = state.image.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			// #region Recently closed items
-			if (appearanceChoice == 0) {
+			if (appearanceChoice == 1) {
 				recentlyClosedItem = `
 				<html:a class="recent-bookmark" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -65,7 +56,7 @@ function createRecentlyClosed() {
 				
 				recentlyClosedContainer = "#recentlyClosedContainer";
 			}
-			else if (appearanceChoice == 1 || appearanceChoice <= 4 || appearanceChoice <= 5) {
+			else if (appearanceChoice == 3 || appearanceChoice <= 6 || appearanceChoice <= 11) {
 				recentlyClosedItem = `
 				<html:a class="item" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -73,13 +64,13 @@ function createRecentlyClosed() {
 				</html:a>
 				`
 
-				if (appearanceChoice == 1)
+				if (appearanceChoice == 3)
 					recentlyClosedContainer = "#tab-items"
-				else if (appearanceChoice <= 4)
+				else if (appearanceChoice <= 6)
 					recentlyClosedContainer = "#recently-closed > .items"
 				else
 					recentlyClosedContainer = "#recently-closed-content"
-			} else if (appearanceChoice == 6 || appearanceChoice == 7) {
+			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 				recentlyClosedItem = `
 				<html:a class="footer-menu-item" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -90,7 +81,7 @@ function createRecentlyClosed() {
 				recentlyClosedContainer = "#recently-closed-menu-button .footer-menu"
 			}
 
-			if (appearanceChoice <= 7) {
+			if (appearanceChoice <= 25) {
 				waitForElm(recentlyClosedContainer).then(function() {
 					document.querySelector(recentlyClosedContainer).appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));
 				});
@@ -98,7 +89,7 @@ function createRecentlyClosed() {
 			// #endregion
 		});
 	} else {
-		if (appearanceChoice == 6 || appearanceChoice == 7) {
+		if (appearanceChoice == 21 || appearanceChoice == 25) {
 			const recentlyClosedMenuButton = document.getElementById("recently-closed-menu-button");
 
 			const verticalSeparator = document.getElementById("vertical-separator")

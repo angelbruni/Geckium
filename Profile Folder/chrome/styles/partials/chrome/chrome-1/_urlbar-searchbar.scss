@@ -13,7 +13,7 @@
 	--protocol-background-color: var(--toolbar-field-background-color);
 	--protocol-color:			 var(--toolbar-field-color);
 
-	--urlbar-border: var(--toolbarbutton-border-color-normal);
+	--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
 	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
 	--urlbar-verified-proxystate-valid: 		   rgb(10, 155, 38);
 	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
@@ -57,24 +57,65 @@
 		display: flex !important;
 	}
 
-	&[geckium-choice="one"] {
-		.urlbarView-no-wrap {
-			&::before {
-				content: unset !important;
+	:not(.widget-overflow-list) {
+		> .toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button,
+			.subviewbutton
+		) {
+			&#star-button-box {
+				margin: 0 !important;
+				border-top-right-radius: 0 !important;
+				border-bottom-right-radius: 0 !important;
+
+				&::before,
+				&::after {
+					border-top-right-radius: 0 !important;
+					border-bottom-right-radius: 0 !important;
+				}
+			}
+			&#star-button-box > #star-button {
+				width: fit-content !important;
+				height: fit-content !important;
+			}
+
+			&#go-button-box {
+				margin: 0 !important;
+				border-top-left-radius: 0 !important;
+				border-bottom-left-radius: 0 !important;
+				margin-left: auto !important;
+
+				&::before,
+				&::after {
+					border-top-left-radius: 0 !important;
+					border-bottom-left-radius: 0 !important;
+				}
+			}
+
+			&#star-button-box > #star-button,
+			&#go-button {
+				transform: translateX(1px);
 			}
 		}
-		
-		.urlbarView-favicon {
-			display: none;
-		}
+	}
 
-		.urlbarView-url {
-			width: 50%;
-			overflow: hidden !important;
-			text-overflow: ellipsis;
-			padding-inline-end: 8px;
-			box-sizing: border-box;
+	.urlbarView-no-wrap {
+		&::before {
+			content: unset !important;
 		}
+	}
+	
+	.urlbarView-favicon {
+		display: none;
+	}
+
+	.urlbarView-url {
+		width: 50%;
+		overflow: hidden !important;
+		text-overflow: ellipsis;
+		padding-inline-end: 8px;
+		box-sizing: border-box;
 	}
 
 	&:not([chromehidden~="toolbar"]) {
@@ -296,6 +337,17 @@
 	padding-inline: 0 !important;
 }
 
+#identity-icon-box {
+	padding: 0 !important;
+	min-height: 19px !important;
+	min-width: 19px !important;
+	justify-content: center !important;
+}
+
+#identity-permission-box {
+	display: none !important;
+}
+
 #identity-box {
 	margin: 0 !important;
 	height: calc(var(--urlbar-height-definitive) - 1px) !important;
@@ -321,6 +373,22 @@
 		}
 	}
 }
+#identity-icon-box,
+#tracking-protection-icon-container {
+	&:hover:not([open="true"]),
+	&:hover:active,
+	&[open="true"] {
+		background: transparent !important;
+	}
+}
+
+#permissions-granted-icon {
+	list-style-image: url(chrome://userchrome/content/assets/img/chrome-5/toolbar/wrench.png) !important;
+	margin-left: 2px;
+}
+.blocked-permission-icon {
+	display: none !important;
+}
 
 #urlbar-background,
 #searchbar {
@@ -328,6 +396,10 @@
 	border-block: 1px solid var(--urlbar-border) !important;
 	border-radius: 0 !important;
 	height: var(--urlbar-height-definitive);
+}
+#urlbar-background {
+	background-clip: content-box !important;
+	box-shadow: none !important;
 }
 
 .searchbar-search-button {
@@ -416,11 +488,8 @@
 #urlbar-container,
 #search-container {
 	padding: 0 !important;
-	box-shadow: 0 0 0 1px var(--toolbarbutton-inner-border-color-normal) !important;
-	border-top-left-radius: var(--toolbarbutton-radius) !important;
-	border-top-right-radius: var(--toolbarbutton-radius) !important;
-	border-bottom-left-radius: var(--toolbarbutton-radius) !important;
-	border-bottom-right-radius: var(--toolbarbutton-radius) !important;
+	box-shadow: 0 0 0 1px var(--toolbarbutton-inner-border-color-normal, var(--default-toolbarbutton-inner-border-color-normal)) !important;
+	border-radius: var(--toolbarbutton-border-radius) !important;
 }
 
 #urlbar-container {
@@ -705,5 +774,65 @@
 		margin: 0 !important;
 		width: calc(var(--urlbar-height-definitive) - 4px) !important;
 		height: calc(var(--urlbar-height-definitive) - 4px) !important;
+	}
+}
+
+
+/*
+	GTK+ SysTheme - exclusive urlbar styling
+*/
+[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+	#urlbar-container {
+		&::before {
+			-moz-default-appearance: textarea;
+			content: "";
+			appearance: textarea;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+	}
+	#urlbar-container,
+	#search-container {
+		box-shadow: unset !important;
+	}
+
+	#urlbar-background {
+		visibility: hidden !important;
+	}
+
+	#urlbar-input {
+		color: FieldText !important;
+		&::placeholder {
+			color: inherit !important;
+			opacity: 0.5 !important;
+		}
+	}
+
+	// Make the fake https fit in better
+	#urlbar #urlbar-protocol {
+		--protocol-background-color: transparent !important;
+		-webkit-text-stroke: 2px Field !important;
+		paint-order: stroke fill;
+		height: calc(100% - 8px);
+	}
+
+	// Shrink icon sizes in the side-buttons in more icons enabled
+	&[moregtkicons="true"] {
+		:not(.widget-overflow-list) > .toolbarbutton-1:not(
+			#fxa-toolbar-menu-button,
+			#tabs-newtab-button,
+			#new-tab-button,
+			.subviewbutton
+		) {
+			&#star-button-box > #star-button,
+			&#go-button-box > #go-button {
+				width: 16px !important;
+				height: 16px !important;
+				transform: unset !important;
+			}
+		}
 	}
 }

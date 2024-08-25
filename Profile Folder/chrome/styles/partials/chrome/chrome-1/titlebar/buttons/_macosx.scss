@@ -1,0 +1,148 @@
+& {
+    //Give the tabs/Incognito/pfp the appropriate offset
+	#private-browsing-indicator-with-label {
+        order: 999 !important; // Force to right
+        transform: scaleX(-1);
+    }
+    .titlebar-spacer[type="post-tabs"] {
+        order: 1000 !important; // Force to right of Incognito
+    }
+    &:not([privatebrowsingmode="temporary"]) {
+        #TabsToolbar-customization-target {
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
+        }
+    }
+    // Incognito can't use this^ spacing, so we need to set it separately for Incognito
+    &[privatebrowsingmode="temporary"] {
+        #private-browsing-indicator-with-label {
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
+        }
+    }
+    #fxa-toolbar-menu-button,
+    .private-browsing-indicator-icon {
+        margin-inline-start: var(--tab-distance-from-pfp) !important;
+        margin-inline-end: 1px !important;
+    }
+
+    //Show the Google logo after the buttons if enabled
+    &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+        .titlebar-buttonbox-container::after {
+            content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+            margin-block-start: 2px;
+            margin-inline-start: 7px;
+        }
+        &[sizemode="maximized"],
+        &[sizemode="fullscreen"] {
+            .titlebar-buttonbox-container::after {
+                content: unset !important;
+            }
+        }
+    }
+
+    //NOTE: macOS and Mac OS X BLOCK native titlebars
+
+    //Titlebar button box (force onto left side)
+    .titlebar-buttonbox-container {
+        order: -1 !important;
+        align-items: unset !important;
+        margin-inline-start: 8px; // left margin
+        margin-block-start: 6px; // top margin
+    }
+    //Linux quirk: Counteract exclusive menubar padding
+    @media (-moz-platform: linux) {
+        #toolbar-menubar .titlebar-buttonbox-container {
+            margin-block-start: 5px;
+        }
+    }
+
+    .titlebar-buttonbox {
+        align-items: unset !important;
+        gap: 7px;
+    }
+    .titlebar-button {
+        &::before { //macOS WILL NOT have its buttons filled
+            content: unset !important;
+        }
+    }
+
+    //Shared titlebar button code
+    .titlebar-button {
+        background: transparent !important;
+        height: 14px;
+        width: 14px;
+        border-radius: 0 !important;
+        background-clip: padding-box !important;
+        //transition: none; //macOS lacks an animation for titlebar button-hover
+        display: flex !important;
+    }
+    &:-moz-window-inactive .titlebar-button {
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+    }
+
+    //Close button
+    .titlebar-close {
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        order: 0 !important;
+
+        &:not([disabled]):hover {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+
+        &:not([disabled]):hover:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+    }
+
+    //Minimise button
+    .titlebar-min {
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+        order: 1 !important;
+
+        &:not([disabled]):hover {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+
+        &:not([disabled]):hover:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+    }
+
+    //Maximise and Restore buttons
+    .titlebar-max {
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important; //PLACEHOLDER
+
+        &:not([disabled]):hover {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+
+        &:not([disabled]):hover:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+    }
+    &[sizemode="maximized"],
+    &[sizemode="fullscreen"] {
+        .titlebar-max {
+            display: none !important;
+        }
+    }
+    .titlebar-restore {
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important; //PLACEHOLDER
+
+        &:not([disabled]):hover {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+
+        &:not([disabled]):hover:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+    }
+    &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+        .titlebar-restore {
+            display: none !important;
+        }
+    }
+    .titlebar-max,
+    .titlebar-restore {
+        order: 2 !important;
+    }
+}

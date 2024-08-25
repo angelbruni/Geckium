@@ -1,24 +1,49 @@
 const flagsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/flags.properties");
 
 const experiments = {
+	"ntp-wide-chromium": {
+		type: "ntp",
+		name: "Wide Chromium",
+		description: "Makes the Chromium logo in the 1.0 new tab page a right chonker (oh lawd he comin'), as seen in Chromium 0.2. Requires Chromium branding to take effect.",
+		from: 1,
+		to: 1
+	},
+	"linux-pre-alpha-titlebar": {
+		name: "Linux Pre-Alpha Titlebar",
+		description: "Removes the Google logo from the Windows titlebar style, emulating how titlebars looked on Pre-Alpha builds of Chromium on Linux. Requires the titlebar style being set to Windows to take effect, and overrides the logo on other titlebar styles experiment.",
+		from: 1,
+		to: 3
+	},
+	"glen-is-close-button": {
+		name: "Linux Titlebar Buttons Prototype 1",
+		description: "Replaces the close button with a picture of Glen Murphy's head, as seen in Chromium 3.0 Alpha on Linux, now with its passive aggressive purpose satisfied. Glen designed the scrapped Linux (Alpha) titlebar buttons design for Chromium, and his face requires the titlebar style being set to Windows to take effect.",
+		from: 1,
+		to: 3
+	},
+	"other-platforms-watermark": {
+		name: "Google logo on other platforms' titlebars",
+		description: "Show the Google logo in other platforms' titlebar styles, rather than only on the Windows titlebar styles. Requires Google Chrome branding to take effect.",
+		from: 1,
+		to: 4
+	},
 	/*"compact-navigation": {
 		name: "Compact Navigation",
 		description: "Adds a \"Hide the toolbar\" entry to the tabstrip's context menu. Use this to toggle between always displaying the toolbar (default) and only opening it as a drop down box as needed.",
-		from: 2,
-		to: 2,
+		from: 4,
+		to: 4,
 	},*/
 	/*"experimental-new-tab-page": {
 		type: "ntp",
 		name: "Experimental new tab page",
 		description: "Enables an in-development redesign of the new tab page.",
-		from: 2,
-		to: 2,
+		from: 4,
+		to: 4,
 	},*/
 	/*"action-box": {
 		name: "Action box",
 		description: "Enable or disable the \"Action Box\" experimental toolbar UI.",
-		from: 3,
-		to: 4,
+		from: 5,
+		to: 6,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -28,8 +53,8 @@ const experiments = {
 	"search-button-in-omnibox": {
 		name: "Enable search button in Omnibox",
 		description: "Places a search button in the Omnibox.",
-		from: 8, // Needs to be 33+ only.
-		to: 8,
+		from: 47, // Needs to be 33+ only.
+		to: 47,
 		values: {
 			0: "Default",
 			1: "Disabled",
@@ -42,14 +67,14 @@ const experiments = {
 		type: "ntp",
 		name: "Enable large icons on the New Tab",
 		description: "Enable the experimental New Tab page using large icons.",
-		from: 8,
-		to: 8,
+		from: 47,
+		to: 47,
 	},
 	/*"enable-settings-window": {
 		name: "Show settings in a window",
 		description: "If enabled, Settings will be shown in a dedicated window instead of as a browser tab.",
-		from: 5,
-		to: 6,
+		from: 11,
+		to: 21,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -59,8 +84,8 @@ const experiments = {
 	/*"omnibox-ui-show-suggestion-favicons": {
 		name: "Omnibox UI Show Suggestion Favicons",
 		description: "Shows favicons instead of generic vector icons for URL suggestions in the Omnibox dropdown.",
-		from: 6,
-		to: 6,
+		from: 21,
+		to: 21,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -70,14 +95,14 @@ const experiments = {
 	"omnibox-ui-vertical-layout": {
 		name: "Omnibox UI Vertical Layout",
 		description: "Displays Omnibox sugestions in 2 lines - title over origin.",
-		from: 9,
-		to: 9,
+		from: 68,
+		to: 68,
 	},
 	"omnibox-ui-vertical-margin": {
 		name: "Omnibox UI Vertical Margin",
 		description: "Changes the vertical margin in the Omnibox UI.",
-		from: 9,
-		to: 9,
+		from: 68,
+		to: 68,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -93,8 +118,8 @@ const experiments = {
 	"omnibox-ui-swap-title-and-url": {
 		name: "Omnibox UI Swap Title and URL",
 		description: "In the omnibox dropdown, shows titles before URLs when both are available.",
-		from: 9,
-		to: 9,
+		from: 68,
+		to: 68,
 		values: {
 			0: "Default",
 			1: "Enabled",
@@ -136,23 +161,9 @@ function setUpExperiments() {
             const experiment = experiments[key];
 
 			if (experiment.type == "ntp") {
-				switch (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool) {
-					case true:
-						appearanceChoice = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-						break;
-					default:
-						appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-						break;
-				}
+				appearanceChoice = gkEras.NTPEra();
 			} else {
-				switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-					case true:
-						appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
-						break;
-					default:
-						appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-						break;
-				}
+				appearanceChoice = gkEras.getBrowserEra();
 			}
 
             if (appearanceChoice < experiment.from || appearanceChoice > experiment.to)

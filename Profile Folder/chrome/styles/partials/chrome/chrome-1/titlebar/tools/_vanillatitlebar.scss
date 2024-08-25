@@ -1,0 +1,43 @@
+&[windowtype="navigator:browser"] > body,
+#navigator-toolbox {
+    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0 !important;
+}
+#navigator-toolbox {
+    &::before {
+        content: "";
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) 0 0;
+        box-shadow: var(--titlebar-box-shadow);
+    }
+}
+
+// Only style ourselves if:
+//  - System Theme
+//  - Colours-only lwtheme is used
+//  - Chromium Theme is used
+//   otherwise, just let Firefox theme this.
+&:not([gkthemed]),
+&[gkthemed]:not([gkchrthemed], [style*="--lwt-additional-images"], [style*="--lwt-header-image"]),
+&[gkthemed][gkchrthemed] {
+    #navigator-toolbox {
+        background: var(--titlebar-active, var(--default-titlebar-active)) !important;
+        &:-moz-window-inactive {
+            background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
+        }
+        &::before {
+            background: var(--titlebar-pseudo-texture);
+            background-position: var(--titlebar-pseudo-texture-pos);
+            background-repeat: var(--titlebar-pseudo-texture-repeat);
+            background-position-y: var(--titlebar-pseudo-texture-ypos);
+        }
+    }
+}
+&[gkthemed][gkchrthemed]:-moz-window-inactive {
+    #navigator-toolbox::before {
+        filter: contrast(.5) brightness(1.4);
+    }
+}

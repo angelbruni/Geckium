@@ -40,6 +40,9 @@ function openGSplash() {
 	const gmWindow = window.openDialog(url, "", "centerscreen");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
+		if (gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool == true) {
+			gmWindow.document.documentElement.setAttribute("silverfox", "true");
+		}
 	}
 }
 
@@ -85,8 +88,8 @@ function openGSettings(mode) {
 }
 
 function openAbout() {
-	if (gkPrefUtils.tryGet("Geckium.appearance.choice").int <= 6)
+	if (gkEras.getBrowserEra() <= 21)
 		window.openDialog("about:about", "", "centerscreen");
 	else
-		openTrustedLinkIn("about:preferences#about", "tab")
+		openTrustedLinkIn("about:preferences#about", "tab");
 }

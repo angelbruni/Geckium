@@ -12,15 +12,7 @@ function changeGoButton() {
 	if (!urlbarInputContainer)
 		urlbarInputContainer = document.querySelector(".urlbar-input-container");
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
 	if (!document.getElementById("go-button-box")) {
 		const goButtonBox = document.createXULElement("hbox");
@@ -32,16 +24,16 @@ function changeGoButton() {
 		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
 		goButtonBox.appendChild(goButton);
 
-		if (appearanceChoice <= 3)
+		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 8)
+		else if (appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
-		if (appearanceChoice <= 3)
+		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 8)
+		else if (appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	}
 }
@@ -55,18 +47,10 @@ function styleURLBar() {
 	const pageActionButtons = document.getElementById("page-action-buttons");
 	const urlbarLabelBox = document.getElementById("urlbar-label-box");
 
-	let appearanceChoice;
-	switch (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool) {
-		case true:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.main.style").int;
-			break;
-		default:
-			appearanceChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-			break;
-	}
+	let appearanceChoice = gkEras.getBrowserEra();
 
 	setTimeout(() => {
-		if (appearanceChoice <= 3) {
+		if (appearanceChoice <= 5) {
 			waitForElm("#star-button-box").then(function() {
 				urlbarContainer.setAttribute("starpos", "start");
 				gkInsertElm.before(starButtonBox, urlbar);
@@ -81,10 +65,11 @@ function styleURLBar() {
 		}
 	}, 10);
 
-	if (appearanceChoice <= 3 || appearanceChoice == 8)
+	if (appearanceChoice <= 5 || appearanceChoice == 47)
 		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);
+window.addEventListener("DOMContentLoaded", styleURLBar);
 window.addEventListener("appearanceChanged", styleURLBar);
 
 function changeNotificationPopupBoxPos() {

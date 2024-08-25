@@ -59,72 +59,51 @@
 
 	// Custom theme support
 	// lwtheme
-	&:not([lwtheme-id*="default-theme"], [lwtheme-id*="compact-light"]) {
-		&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-			&[lwtheme-id*="{"],
-			&[lwtheme-id*="@mozilla.org"] {
-				&:not([lwtheme-id*="#{$gtkplus}"]) {
-					--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
-					--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color)) !important;
+	&[gkthemed]:not([gkchrthemed]) {
+		--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color));
+		--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color));
+
+		--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white);
+		--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		--thumbnail-container-color: var(--link-color);
+		--thumbnail-disabled-color: var(--thumbnail-border-color-normal);
 		
-					--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white) !important;
-					--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-					--thumbnail-container-color: var(--link-color) !important;
-					--thumbnail-disabled-color: var(--thumbnail-border-color-normal) !important;
-					
-					&:not([style*="--toolbar-color: white"]),
-					&:not([style*="--toolbar-color: rgb(255,255,255)"]),
-					&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
-						--edit-bar-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-						--edit-bar-background-hot: linear-gradient(
-							to bottom,
-							color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
-							var(--edit-bar-background-color-hot)
-						) !important;
-					}
-		
-					--link-color: var(--newtab-text-primary-color) !important;
-				}
-				&[lwtheme-id*="#{$gtkplus}"] {
-					--view-toolbar-buttons-bg: AccentColor !important;
-					--window-menu-item-hover-bg: AccentColor !important;
-		
-					--thumbnail-border-color-normal: color-mix(in srgb, ActiveCaption 10%, white) !important;
-					--thumbnail-border-color-hot: color-mix(in srgb, var(--edit-bar-background-color-hot) 99%, black) !important;
-					--thumbnail-container-color: -moz-dialogtext;
-					--edit-bar-background-color-hot: color-mix(in srgb, AccentColor 85%, black) !important;
-					--edit-bar-background-hot: linear-gradient(
-						to bottom,
-						color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
-						var(--edit-bar-background-color-hot)
-					) !important;
-				}
-			}
+		&:not([style*="--toolbar-color: white"]),
+		&:not([style*="--toolbar-color: rgb(255,255,255)"]),
+		&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
+			--edit-bar-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
+			--edit-bar-background-hot: linear-gradient(
+				to bottom,
+				color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
+				var(--edit-bar-background-color-hot)
+			);
 		}
+
+		--link-color: var(--newtab-text-primary-color);
 	}
 	// chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--manually-adapted-header: var(--chrt-ntp-section, var(--chrt-ntp-header));
+	&[gkthemed][gkchrthemed] {
+		--manually-adapted-header: var(--chrtheme-ntp-section, var(--chrtheme-ntp-header));
 		--view-toolbar-buttons-bg: color-mix(
 			in srgb,
 			var(--manually-adapted-header) 70%,
 			white
 		);
 		
-		/*&[style*="--chrt-ntp-section"] {
+		/*&[style*="--chrtheme-ntp-section"] {
 			--thumbnail-border-color-normal: color-mix(
 				in srgb,
 				var(--manually-adapted-header) 20%,
 				white
-			) !important;
-			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot)) !important;
+			);
+			//--thumbnail-border-color-hot: var(--manually-adapted-header, var(--default-thumbnail-border-color-hot));
 		}*/
-		--thumbnail-border-color-normal: var(--chrt-ntp-section, var(--default-thumbnail-border-color-normal)) !important;
-		--thumbnail-border-color-hot: var(--chrt-ntp-header, var(--chrt-ntp-section, var(--default-thumbnail-border-color-hot))) !important;
-		--thumbnail-container-color: var(--chrt-ntp-text, var(--default-thumbnail-container-color)) !important;
-		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg)) !important;
+		--thumbnail-border-color-normal: var(--chrtheme-ntp-section, var(--default-thumbnail-border-color-normal));
+		--thumbnail-border-color-hot: var(--chrtheme-ntp-header, var(--chrtheme-ntp-section, var(--default-thumbnail-border-color-hot)));
+		--thumbnail-container-color: var(--chrtheme-ntp-text, var(--default-thumbnail-container-color));
+		--window-menu-item-hover-bg: var(--view-toolbar-buttons-bg, var(--default-window-menu-item-hover-bg));
 		
-		--edit-bar-background-color-hot: var(--thumbnail-border-color-hot, var(--default-thumbnail-border-color-hot)) !important;
+		--edit-bar-background-color-hot: var(--thumbnail-border-color-hot, var(--default-thumbnail-border-color-hot));
 		--edit-bar-background-hot: linear-gradient(
 			to bottom,
 			color-mix(
@@ -133,7 +112,26 @@
 				white
 			),
 			var(--edit-bar-background-color-hot)
-		) !important;
+		);
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--view-toolbar-buttons-bg: -moz-dialog;
+		--window-menu-item-hover-bg: AccentColor;
+
+		--thumbnail-border-color-normal: -moz-dialog;
+		--thumbnail-border-color-hot: ActiveCaption;
+		--thumbnail-container-color: FieldText;
+		// --thumbnail-disabled-color: var(--thumbnail-border-color-normal); // not used in GTK+ - see https://www.ubuntufree.com/wp-content/uploads/2016/10/Chrome-Browser-Linux.png
+		
+		--edit-bar-background-color-hot: CaptionText;
+		--edit-bar-background-hot: linear-gradient(
+			to bottom,
+			color-mix(in srgb, ActiveCaption 70%, white),
+			ActiveCaption
+		);
+
+		--link-color: FieldText;
 	}
 
 	&[geckium-choice="three"],

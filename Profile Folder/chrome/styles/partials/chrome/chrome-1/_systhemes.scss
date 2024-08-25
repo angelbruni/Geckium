@@ -1,0 +1,732 @@
+:root {
+	//Classic (Default/Fallback)
+	// Titlebar
+	--titlebar-buttonbox-background: transparent;
+	--default-titlebar-active: linear-gradient(
+		to bottom,
+		rgb(97, 162, 241),
+		rgb(72, 140, 222) 40px
+	);
+	--default-titlebar-inactive: linear-gradient(
+		to bottom,
+		rgb(163, 201, 247),
+		rgb(147, 186, 234) 40px
+	);
+	--default-titlebar-color: rgb(72, 140, 222);
+	--default-titlebar-foreground: white;
+	--default-titlebar-foreground-inactive: black;
+
+	// Tabs
+	--default-inactive-tab-background: linear-gradient(
+		to bottom,
+		rgb(172, 206, 247),
+		rgb(147, 187, 235),
+		rgb(144, 183, 232)
+	);
+	--default-inactive-tab-background-native: rgb(211, 217, 225, 0.8);
+	--default-selected-tab-background: linear-gradient(
+		to top,
+		rgb(243, 248, 253),
+		rgb(252, 254, 255)
+	);
+	--default-tab-glare: rgb(211, 217, 225, 0.45);
+	--default-tabbrowser-tab-color: black;
+
+	// Navbar
+	--default-nav-bar: linear-gradient(
+		to top,
+		rgb(218, 231, 247),
+		rgb(230, 239, 251),
+		rgb(245, 249, 254)
+	);
+	--default-inner-border-color: rgb(242, 242, 242);
+	--default-toolbarbutton-border-color-normal: rgb(198, 206, 228);
+	--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3);
+	--default-toolbarbutton-border-color-active: rgb(171, 181, 203);
+	--default-toolbarbutton-inner-border-color-normal: rgba(255, 255, 255, 0.3);
+	--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.6);
+	--default-toolbarbutton-texture: linear-gradient(
+		to top,
+		rgb(222, 234, 248),
+		rgb(240, 245, 253)
+	);
+	--default-toolbarbutton-icon-drop-shadow-color: white;
+	--default-toolbarbutton-icon-color: rgb(88, 118, 171);
+	--default-navigation-buttons-separator: rgb(221, 229, 243);
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: linear-gradient(to top, #ecf3fc, #dae7f7);
+	--default-personal-toolbar-border-bottom: rgb(182, 186, 192);
+	--default-bookmark-item-color: #062d75;
+
+    @media (prefers-color-scheme: dark) {
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+			to bottom,
+			rgb(14, 80, 159),
+			rgb(20, 62, 112) 40px
+		);
+		--default-titlebar-inactive: linear-gradient(
+			to bottom,
+			color-mix(
+				in srgb,
+				rgb(14, 80, 159) 80%,
+				white
+			),
+			color-mix(
+				in srgb,
+				rgb(20, 62, 112) 80%,
+				white
+			) 40px
+		);
+		--default-titlebar-color: rgb(20, 62, 112);
+		--default-titlebar-foreground: white;
+		--default-titlebar-foreground-inactive: white;
+
+		// Tabs
+		--default-tab-glare: rgba(19, 23, 29, 0.45);
+		--default-inactive-tab-background: #051d3b;
+		--default-inactive-tab-background-native: rgb(31, 37, 45, 0.8);
+		--default-selected-tab-background: linear-gradient(
+			to bottom,
+			#0e3668,
+			#07254A
+		);
+		--default-tabbrowser-tab-color: white;
+
+		// Navbar
+		--default-nav-bar: linear-gradient(
+			to bottom,
+			#07254A,
+			#081B35
+		);
+		--default-inner-border-color: rgb(79, 79, 79);
+		--default-toolbarbutton-border-color-normal: color-mix(
+			in srgb,
+			color-mix(
+				in srgb,
+				var(--toolbarbutton-icon-color) 30%,
+				transparent
+			) 70%,
+			black
+		);
+		--default-toolbarbutton-border-color-hot: rgb(112, 112, 112);
+		--default-toolbarbutton-border-color-active: rgb(136, 136, 136);
+		--default-toolbarbutton-inner-border-color-normal: color-mix(
+			in srgb,
+			var(--toolbarbutton-icon-color) 30%,
+			transparent
+		);
+		--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2);
+		--default-toolbarbutton-texture: linear-gradient(
+			to bottom,
+			#07254A,
+			#081B35
+		);
+		--default-toolbarbutton-icon-drop-shadow-color: rgba(0,0,0,.5);
+		--default-toolbarbutton-icon-color: #B0C2DE;
+		--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal);
+
+		// Personal Toolbar
+		--default-personal-toolbar: linear-gradient(
+			to bottom,
+			#081B35,
+			#081526
+		);
+		--default-personal-toolbar-border-bottom: rgb(91, 91, 91);
+		--default-bookmark-item-color: #95b4ee;
+	}
+
+    &[privatebrowsingmode="temporary"] {
+		// Titlebar
+        --default-titlebar-active: linear-gradient(
+            to bottom,
+            rgb(97, 122, 156),
+            rgb(80, 105, 141) 40px
+        );
+        --default-titlebar-inactive: linear-gradient(
+            to bottom,
+            rgb(147, 161, 178),
+            rgb(128, 143, 161) 40px
+        );
+		--default-titlebar-color: rgb(80, 105, 141);
+		@media (prefers-color-scheme: dark) {
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(49, 61, 78),
+				rgb(35, 44, 56) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					rgb(49, 61, 78) 80%,
+					white
+				),
+				color-mix(
+					in srgb,
+					rgb(35, 44, 56) 80%,
+					white
+				) 40px
+			);
+			--default-titlebar-color: rgb(35, 44, 56);
+		}
+    }
+
+	// GTK+
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+		// Titlebar
+		--default-titlebar-active: linear-gradient(
+            to bottom,
+            var(--activecaption-shine),
+            ActiveCaption 14px
+        );
+        --default-titlebar-inactive: linear-gradient(
+            to bottom,
+            var(--inactivecaption-shine),
+            InactiveCaption 14px
+        );
+		--default-titlebar-color: ActiveCaption;
+		--default-titlebar-foreground: CaptionText;
+		--default-titlebar-foreground-inactive: InactiveCaptionText;
+
+		// Tabs
+		--default-inactive-tab-background: var(--bgtab-background);
+		--default-inactive-tab-background-native: var(--bgtab-background); // use the same background
+		--default-selected-tab-background: -moz-dialog;
+		--default-tab-glare: color-mix(in srgb, Field 45%, transparent); // guesstimate
+		--default-tabbrowser-tab-color: -moz-dialogtext;
+		--default-tabbrowser-tab-color-inactive: var(--bgtab-foreground);
+
+		// Navbar
+		--default-nav-bar: -moz-dialog;
+		--default-inner-border-color: Field; // guesstimate
+		--default-toolbarbutton-texture: -moz-dialog;
+		--default-toolbarbutton-icon-color: var(--gtk-toolbarbutton-icon-fill);
+
+		// Personal Toolbar (Bookmarks)
+		--default-personal-toolbar: -moz-dialog;
+		--default-personal-toolbar-border-bottom: ThreeDShadow;
+		--default-bookmark-item-color: -moz-dialogtext;
+
+		&[privatebrowsingmode="temporary"] {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--incognito-active-shine),
+				var(--incognito-active) 14px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				var(--incognito-inactive-shine),
+				var(--incognito-inactive) 14px
+			);
+			// Tabs
+			--default-inactive-tab-background: var(--incognito-bgtab-background);
+		}
+	}
+
+	&:not([geckium-sixtyeight]) { //These themes are reverted to just being Classic in 68, so exclude them if 68 or higher is selected
+		// Mac OS X
+		// References because you'll never find them otherwise:
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.m#L84
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.h#L20
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L430
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L348
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L388
+		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L422
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
+			--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--macosx-window-color),
+				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
+			); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
+			//  Inactive works very differently in OS X Chrome, hence
+			&:-moz-window-inactive {
+				--macosx-window-color: #ededed;
+			}
+			--default-titlebar-inactive: var(--default-titlebar-active);
+			--default-titlebar-color: var(--macosx-window-color);
+			--default-titlebar-foreground: black;
+			--default-titlebar-foreground-inactive: black;
+
+			// Tabs
+			--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
+			--default-selected-tab-background: linear-gradient(
+				to bottom,
+				color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, var(--macosx-window-color))),
+				color-mix(in srgb, white 80%, var(--macosx-window-color))
+			);
+			--default-tab-glare: rgba(255, 255, 255, 0.3);
+			--default-tabbrowser-tab-color: black;
+
+			// Navbar
+			--default-nav-bar: linear-gradient(
+				to bottom,
+				color-mix(in srgb, white 80%, var(--macosx-window-color)),
+				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, var(--macosx-window-color)))
+			);
+			&:not([geckium-eleven]) {
+				--default-inner-border-color: transparent;
+				--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+				--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
+				--default-toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
+				--default-toolbarbutton-inner-border-color-normal: transparent;
+				--default-toolbarbutton-inner-border-color-hot: transparent;
+				--default-toolbarbutton-texture: linear-gradient(
+					to bottom,
+					color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, var(--macosx-window-color))),
+					color-mix(in srgb, white 80%, var(--macosx-window-color))
+				);
+				//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
+				--default-toolbarbutton-icon-drop-shadow-color: transparent;
+				--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
+			}
+			--default-toolbarbutton-icon-color: black;
+
+			// Personal Toolbar (Bookmarks)
+			--default-personal-toolbar: linear-gradient(
+				to bottom,
+				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, var(--macosx-window-color))),
+				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, var(--macosx-window-color)))
+			);
+			--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+			--default-bookmark-item-color: black;
+
+			@media (prefers-color-scheme: dark) {
+				// NOTE: Math is same as light except white% is quartered and replaced with silver, and black% is doubled twice
+
+				// Titlebar
+				--macosx-window-color: #303030;
+				&:-moz-window-inactive {
+					--macosx-window-color: #242424;
+				}
+				--default-titlebar-color: var(--macosx-window-color);
+				--default-titlebar-foreground: white;
+				--default-titlebar-foreground-inactive: white;
+
+				// Tabs
+				--default-inactive-tab-background: rgba(0, 0, 0, 0.15);
+				--default-selected-tab-background: linear-gradient(
+					to bottom,
+					color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
+					color-mix(in srgb, silver 20%, var(--macosx-window-color))
+				);
+				--default-tab-glare: rgba(255, 255, 255, 0.075);
+				--default-tabbrowser-tab-color: white;
+				
+				// Navbar
+				--default-nav-bar: linear-gradient(
+					to bottom,
+					color-mix(in srgb, silver 20%, var(--macosx-window-color)),
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color)))
+				);
+				&:not([geckium-five]) {
+					--default-inner-border-color: color-mix(in srgb, white 16%, transparent);
+					--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+					--default-toolbarbutton-border-color-hot: rgb(112, 112, 112); //TODO
+					--default-toolbarbutton-border-color-active: rgb(136, 136, 136); //TODO
+					--default-toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
+					--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
+					--default-toolbarbutton-texture: linear-gradient(
+						to bottom,
+						color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
+						color-mix(in srgb, silver 20%, var(--macosx-window-color))
+					);
+					--default-toolbarbutton-icon-drop-shadow-color: transparent;
+				}
+				--default-toolbarbutton-icon-color: white;
+
+				// Personal Toolbar
+				--default-personal-toolbar: linear-gradient(
+					to bottom,
+					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color))),
+					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, var(--macosx-window-color)))
+				);
+				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+				--default-bookmark-item-color: white;
+			}
+
+			&[privatebrowsingmode="temporary"] {
+				// References
+				//  https://github.com/chromium/chromium/blob/4.0.212.1/chrome/browser/cocoa/browser_window_controller.mm#L1315
+				//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L370
+				//  gradient is purely behaviour-parity-assumptions.
+				// Titlebar
+				--macosx-window-color: #536c8c;
+				&:-moz-window-inactive {
+					--macosx-window-color: #86898d;
+				}
+				--default-titlebar-foreground: white;
+				--default-titlebar-foreground-inactive: black;
+				@media (prefers-color-scheme: dark) {
+					--macosx-window-color: #2A3747;
+					&:-moz-window-inactive {
+						--macosx-window-color: #4F5154;
+					}
+					--default-titlebar-foreground-inactive: white;
+				}
+			}
+		}
+
+		// macOS (only the palette and titlebar change)
+		&[gksystheme="macos"] {
+			--macosx-window-color: #e5e5e5;
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				var(--macosx-window-color),
+				color-mix(in srgb, black 9%, var(--macosx-window-color)) 40px
+			);
+			&:-moz-window-inactive {
+				--macosx-window-color: #f6f6f6;
+			}
+			--default-titlebar-inactive: var(--macosx-window-color);
+			
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--macosx-window-color: #434343;
+				&:-moz-window-inactive {
+					--macosx-window-color: #2c2d2f;
+				}
+			}
+		}
+
+		// Chromium OS
+		&[gksystheme="chromiumos"]:not([geckium-twentyone]) {
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				rgb(96, 132, 210),
+				rgb(66, 109, 201) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				#99b7ea,
+				#84a0dc 40px
+			);
+			--default-titlebar-color: rgb(66, 109, 201); // Used for titlebar style
+
+			&:not([geckium-six]) {
+				// Tabs
+				--default-inactive-tab-background: linear-gradient(
+					to bottom,
+					rgb(171, 193, 235),
+					rgb(147, 173, 225),
+					rgb(141, 169, 224)
+				);
+				--default-selected-tab-background: linear-gradient(
+					to top,
+					rgb(243, 246, 252),
+					white
+				);
+
+				// Navbar
+				--default-nav-bar: linear-gradient(
+					to top,
+					rgb(233, 237, 249),
+					rgb(235, 239, 249),
+					rgb(243, 246, 252)
+				);
+				--default-toolbarbutton-texture: linear-gradient(
+					to top,
+					rgb(239, 242, 250),
+					rgb(250, 251, 253)
+				);
+
+				// Personal Toolbar (Bookmarks)
+				--default-personal-toolbar: linear-gradient(to top, rgb(227, 234, 250), rgb(233, 237, 249));
+				--default-personal-toolbar-border-bottom: rgb(162, 181, 213);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(43, 77, 151),
+					rgb(34, 61, 119) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						rgb(43, 77, 151) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						rgb(34, 61, 119) 80%,
+						white
+					) 40px
+				);
+				--default-titlebar-color: rgb(34, 61, 119);
+				
+				&:not([geckium-six]) {
+					// Tabs
+					--default-selected-tab-background: linear-gradient(
+						to bottom,
+						#0a1229,
+						#070d1d
+					);
+					--default-inactive-tab-background: linear-gradient(
+						to bottom,
+						rgb(19, 41, 83),
+						rgb(12, 25, 50)
+					);
+						
+					// Navbar
+					--default-nav-bar: linear-gradient(
+						to bottom,
+						#070d1d,
+						#050914
+					);
+					--default-toolbarbutton-texture: linear-gradient(
+						to top,
+						rgb(6, 11, 19),
+						rgb(10, 18, 31)
+					);
+
+					// Personal Toolbar
+					--default-personal-toolbar: linear-gradient(
+						to bottom,
+						#050914,
+						#080F21
+					);
+					--default-personal-toolbar-border-bottom: #1f2c42;
+				}
+			}
+
+			&[privatebrowsingmode="temporary"] {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					#63769d,
+					#52648b 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					#95a0b3,
+					#7e899c 40px
+				);
+				--default-titlebar-color: #52648b; // Used for titlebar style
+				@media (prefers-color-scheme: dark) {
+					// Titlebar
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						#313B4E,
+						#222A3A 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							#313B4E 80%,
+							white
+						),
+						color-mix(
+							in srgb,
+							#222A3A 80%,
+							white
+						) 40px
+					);
+					--default-titlebar-color: #222A3A;
+				}
+			}
+		}
+
+		// Geckium You
+		&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+			--you-h: 0;
+			--you-s: 0%;
+			--you-l: 58%;
+			--you-l-dark: 58%;
+			// Titlebar
+			--default-titlebar-active: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 8%)),
+				hsl(var(--you-h), var(--you-s), var(--you-l)) 40px
+			);
+			--default-titlebar-inactive: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 22%)),
+				hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 17%)) 40px
+			);
+			--default-titlebar-color: hsl(var(--you-h), var(--you-s), var(--you-l));
+
+			// Tabs
+			--default-inactive-tab-background: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 25%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 17%)),
+				hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) + 16%))
+			);
+			--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
+			&:not([geckium-eleven]) {
+			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
+			}
+			&:not([geckium-six]) {
+				--default-selected-tab-background: linear-gradient(
+					to top,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 41%))
+				);
+			}
+
+			// Navbar
+			&:not([geckium-six]) {
+				--default-nav-bar: linear-gradient(
+					to top,
+					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 36%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 40%))
+				);
+				--default-toolbarbutton-border-color-normal: hsl(var(--you-h), calc(var(--you-s) - 33%), calc(var(--you-l) + 26%));
+				--default-toolbarbutton-border-color-active: hsl(var(--you-h), calc(var(--you-s) - 45%), calc(var(--you-l) + 15%));
+				--default-toolbarbutton-texture: linear-gradient(
+					to top,
+					hsl(var(--you-h), calc(var(--you-s) - 4%), calc(var(--you-l) + 34%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 39%))
+				);
+				--default-navigation-buttons-separator: hsl(var(--you-h), calc(var(--you-s) - 21%), calc(var(--you-l) + 33%));
+			}
+			&:not([geckium-eleven]) {
+				--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 7%));
+			}
+
+			// Personal Toolbar (Bookmarks)
+			&:not([geckium-six]) {
+				--default-personal-toolbar: linear-gradient(
+					to top,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 38%)), 
+					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
+				);
+				--default-personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
+			}
+			&:not([geckium-twentyone]) {
+				--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+			}
+
+			@media (prefers-color-scheme: dark) {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)),
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 24%)) 80%,
+						white
+					),
+					color-mix(
+						in srgb,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%)) 80%,
+						white
+					) 40px
+				);
+				--default-titlebar-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
+
+				// Tabs
+				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
+				--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) - 43%), 0.8);
+				&:not([geckium-eleven]) {
+					--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
+				}
+				&:not([geckium-six]) {
+					--default-selected-tab-background: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 35%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%))
+					);
+				}
+
+				// Navbar
+				&:not([geckium-six]) {
+					--default-nav-bar: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
+					);
+					--default-toolbarbutton-border-color-normal: color-mix(
+						in srgb,
+						color-mix(
+							in srgb,
+							var(--toolbarbutton-icon-color) 30%,
+							transparent
+						) 70%,
+						black
+					);
+					--default-toolbarbutton-border-color-active: rgb(136, 136, 136); //changed in light mode
+					--default-toolbarbutton-inner-border-color-normal: color-mix(
+						in srgb,
+						var(--toolbarbutton-icon-color) 30%,
+						transparent
+					);
+					--default-toolbarbutton-texture: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 42%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%))
+					);
+					--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal); //changed in light mode
+				}
+				&:not([geckium-eleven]) {
+					--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
+				}
+
+				// Personal Toolbar
+				&:not([geckium-six]) {
+					--default-personal-toolbar: linear-gradient(
+						to bottom,
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 46%)),
+						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
+					);
+					--default-personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
+				}
+				&:not([geckium-twentyone]) {
+					--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));
+				}
+			}
+
+			&[privatebrowsingmode="temporary"] {
+				// Titlebar
+				--default-titlebar-active: linear-gradient(
+					to bottom,
+					rgb(97, 122, 156),
+					rgb(80, 105, 141) 40px
+				);
+				--default-titlebar-inactive: linear-gradient(
+					to bottom,
+					rgb(147, 161, 178),
+					rgb(128, 143, 161) 40px
+				);
+				--default-titlebar-color: rgb(80, 105, 141);
+				@media (prefers-color-scheme: dark) {
+					--default-titlebar-active: linear-gradient(
+						to bottom,
+						rgb(49, 61, 78),
+						rgb(35, 44, 56) 40px
+					);
+					--default-titlebar-inactive: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							rgb(49, 61, 78) 80%,
+							white
+						),
+						color-mix(
+							in srgb,
+							rgb(35, 44, 56) 80%,
+							white
+						) 40px
+					);
+					--default-titlebar-color: rgb(35, 44, 56);
+				}
+			}
+		}
+	}
+}

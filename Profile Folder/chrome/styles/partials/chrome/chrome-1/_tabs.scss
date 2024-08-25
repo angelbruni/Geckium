@@ -25,10 +25,6 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-distance-from-titlebar-normal: 0px; // Unused.
-	--tab-distance-from-titlebar-maximized: -2px;
-	--tab-distance-from-left-window-border-normal: 2px;
-	--tab-distance-from-left-window-border-maximized: 0px;
 	--tab-width: 194px;
 	--tab-height: 27px;
 	--tab-sides-width: 15px;
@@ -37,17 +33,7 @@
 	--tab-content-y-from-top: 0;
 	--tab-gap-between: -16px;
 
-	--default-inactive-tab-background: rgb(211, 217, 225, 0.8);
-	--inactive-tab-background: var(--default-inactive-tab-background);
-	--default-selected-tab-background: linear-gradient(
-		to top,
-		rgb(243, 248, 253),
-		rgb(252, 254, 255)
-	);
-	--selected-tab-background: var(--default-selected-tab-background);
-
 	--tab-glare-opacity: 1;
-	--default-tab-glare: rgb(211, 217, 225, 0.45);
 	--tab-glare: var(--default-tab-glare);
 	--tab-glare-hover-timer: 0.1s; // 0.5s
 
@@ -67,11 +53,6 @@
 
 	--tab-gap-between-favicon-and-title: 5px;
 
-	--default-tabbrowser-tab-color: black;
-	--tabbrowser-tab-color: var(--default-tabbrowser-tab-color);
-	--default-tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color);
-	--tabbrowser-tab-color-active: var(--default-tabbrowser-tab-color-active);
-
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.png");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.png");
 	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_p.png");
@@ -84,10 +65,6 @@
 	--newtab-height: 18px;
 
 	--default-theme-newtab: transparent;
-	--theme-newtab: var(--default-theme-newtab);
-	--default-newtab-normal: rgba(255, 255, 255, 0.01);
-	--newtab-normal: var(--default-newtab-normal);
-	--newtab-hot: rgba(255, 255, 255, 0.5);
 
 	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_button_mask.png");
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.png");
@@ -104,570 +81,514 @@
 		}
 	}
 
-	@media (prefers-color-scheme: dark) {
-		--tab-glare: rgba(19, 23, 29, 0.45);
-
-		--default-inactive-tab-background: #051d3b;
-		--default-selected-tab-background: linear-gradient(
-			to bottom,
-			#0e3668,
-			#07254A
-		) !important;
-		--default-tabbrowser-tab-color: white;
-		--default-tabbrowser-tab-color-active: var(--tabbrowser-tab-color);
-	}
-
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		#TabsToolbar-customization-target {
-			margin-block-start: var(--tab-distance-from-titlebar-maximized) !important;
-		}
-
 		.tab-drop-indicator {
 			top: var(--tab-drop-indicator-pos-from-top-maximized) !important;
 			background: var(--tab-drop-indicator-icon-maximized) !important;
 		}
+	}
 
-		.titlebar-spacer {
-			&[type="pre-tabs"] {
-				margin-inline-start: var(--tab-distance-from-left-window-border-maximized) !important;
-			}
-		}
+	&[gktitnative="true"] { // Use native tab background when in native
+		--default-inactive-tab-background: var(--default-inactive-tab-background-native) !important;
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
-	// if lwtheme == gtkplus
-	&[lwtheme-id="#{$gtkplus}"] {
-		--inactive-tab-background: color-mix(
-			in srgb,
-			-moz-dialog 80%,
-			transparent
-		) !important;
-		--selected-tab-background: var(--nav-bar) !important;
-		--tabbrowser-tab-color: -moz-dialogtext !important;
-	}
 	// else if lwtheme
-	&[lwtheme] {
-		&:not([customthememode="2"]) {
-			&:not([lwtheme-id*="firefox-compact"], [lwtheme-id*="compact-light"]) {
-				&:not([lwtheme-id="#{$gtkplus}"]) {
-					--inactive-tab-background: color-mix(
-						in srgb,
+	&[gkthemed]:not([gkchrthemed]) {
+		&:not([customthememode="none"]) {
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
+			--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+			--tabbrowser-tab-color-inactive: var(--tabbrowser-tab-color) !important;
+
+			// if FXChrome
+			&[customthememode="fxchrome"] {
+				&[toolbar-bgcolor-transparent="true"] {
+					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				}
+			}
+			// if Silverfox
+			&[customthememode="silverfox"] {
+				&[toolbar-bgcolor-transparent="true"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						transparent -50%,
+						var(--gktoolbar-bgcolor) 70%
+					) !important;
+
+					--inactive-tab-background: linear-gradient(
+						to bottom,
+						transparent -10%,
 						color-mix(
 							in srgb,
-							var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-							black
-						) 80%,
-						transparent
+							var(--gktoolbar-bgcolor) 70%,
+							transparent
+						) 60%
 					) !important;
-					--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-					--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-					--tabbrowser-tab-color-active: var(--tabbrowser-tab-color) !important;
-
-					// if FXChrome
-					&[customthememode="0"] {
-						&[toolbar-bgcolor-transparent="true"] {
-							--selected-tab-background: var(--gktoolbar-bgcolor) !important;
-						}
-					}
-					// if Silverfox
-					&[customthememode="1"] {
-						&[toolbar-bgcolor-transparent="true"] {
-							--selected-tab-background: linear-gradient(
-								to bottom,
-								transparent -50%,
-								var(--gktoolbar-bgcolor) 70%
-							) !important;
-
-							--inactive-tab-background: linear-gradient(
-								to bottom,
-								transparent -10%,
-								color-mix(
-									in srgb,
-									var(--gktoolbar-bgcolor) 70%,
-									transparent
-								) 60%
-							) !important;
-						}
-					}
 				}
 			}
 		}
 	}
 	// else if chrtheme
-	&[lwtheme-id*="firefox-compact-light"][chrtheme="true"] {
-		--tab-glare-opacity: .5 !important;
+	&[gkthemed][gkchrthemed] {
+		&[gktitnative="false"] { // Only use inactive tab background when in Compact
+			--tab-glare-opacity: .5 !important;
+			&:not([geckium-choice="eleven"]) {
+				--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
+			}
+			--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+		}
 		
-		&[geckium-choice="one"],
-		&[geckium-choice="three"],
-		&[geckium-choice="four"],
-		&[geckium-choice="five"],
-		&[geckium-choice="six"] {
-			--tab-glare: var(--selected-tab-background) !important;
-		}
-
-		--inactive-tab-background: var(--chrt-theme-tab-background, var(--chrt-frame, var(--default-inactive-tab-background-color))) !important;
-		--selected-tab-background: var(--nav-bar, black) !important;
-
-		--tabbrowser-tab-color: var(--chrt-tab-background-text, var(--default-tabbrowser-tab-color)) !important;
-		--tabbrowser-tab-color-active: var(--chrt-tab-text, var(--default-tabbrowser-tab-color)) !important;
-
-		--theme-newtab: var(--chrt-control-background, var(--default-theme-newtab)) !important;
-	}
-}
-
-#TabsToolbar-customization-target {
-	/** 
-	 *	bruni: This makes every element in the tabs toolbar align to the
-	 *		   bottom, fixing for example the people button position.
-	 */
-	align-items: end;
-}
-
-.tab-drop-indicator {
-	z-index: 101 !important;
-	top: var(--tab-drop-indicator-pos-from-top-normal) !important;
-	background: var(--tab-drop-indicator-icon-normal) !important;
-}
-
-// Space before tabs
-.titlebar-spacer {
-	&[type="pre-tabs"] {
-		display: flex !important;
-		margin-inline-start: var(--tab-distance-from-left-window-border-normal) !important;
-	}
-
-	&[type="pre-tabs"],
-	&[type="post-tabs"] {
-		width: 0 !important;
-	}
-}
-
-#tabbrowser-tabs,
-#tabbrowser-arrowscrollbox,
-#tabbrowser-tabs[positionpinnedtabs]
-	> #tabbrowser-arrowscrollbox
-	> .tabbrowser-tab[pinned] {
-	min-height: var(--tab-height) !important;
-}
-
-#tabbrowser-tabs {
-	// Disable tab scrolling
-	--tab-min-width: 0 !important;
-
-	/**
-	 *  bruni: Remove border and spacings before tabs (spacing is taken
-	 *		   care by `.titlebar-spacer` already)
-	 */
-	border-inline-start: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
-
-	// Create the illusion that tabs is part of the main toolbar
-	margin-block-end: -1px !important;
-}
-
-#tabbrowser-arrowscrollbox {
-	align-items: end;
-}
-
-// Tab container
-.tabbrowser-tab {
-	overflow: visible !important;
-	min-height: var(--tab-height) !important;
-	height: var(--tab-height) !important;
-	max-height: var(--tab-height) !important;
-	padding: 0 !important;
-	color: var(--tabbrowser-tab-color) !important;
-
-	pointer-events: none !important;
-
-	&:hover {
-		.tab-glare-container {
-			opacity: var(--tab-glare-opacity);
-
-			/* bruni: In Chrome, the glare shows up faster when hovering. */
-			transition-property: opacity;
-			transition-duration: var(--tab-glare-hover-timer);
-			transition-timing-function: linear;
+		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
+		--theme-newtab: var(--chrtheme-control-background, var(--default-theme-newtab)) !important;
+		&[gkchrthemehastoolbar] {
+			--selected-tab-background: var(--nav-bar, black) !important;
+			--tabbrowser-tab-color: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
 		}
 	}
 
-	&[visuallyselected] {
-		// Bring selected tab to front
-		z-index: 100 !important;
-
-		color: var(--tabbrowser-tab-color-active) !important;
-
-		.tab-background-container {
-			&::before {
-				background: var(--selected-tab-background);
-			}
-		}
-
-		.tab-background-container {
-			&::after {
-				background-image: var(--tab-inline-start-active-texture), var(--tab-inline-center-active-texture), var(--tab-inline-end-active-texture);
-			}
-		}
-
-		.tab-glare-container {
-			opacity: 0 !important;
-			transition: opacity 0s !important;
-		}
-	}
-	&:not([visuallyselected]) {
-		.tab-background-container {
-			> * {
-				&::before {
-					background: var(--inactive-tab-background);
-				}
-			}
-		}
+	#TabsToolbar-customization-target {
+		/** 
+		*	bruni: This makes every element in the tabs toolbar align to the
+		*		   bottom, fixing for example the people button position.
+		*/
+		align-items: end;
 	}
 
-	/** 
-	 *  This was changed to a sibling comparator (`+`) instead of a
-	 *  `:not([:first-child)]` so we can be more specific with the
-	 *  masking if needed in the future.
-	 *
-	 *  This way of masking has caused problems, such as the illusion
-	 *  breaking when tabs are being moved, however, there aren't any
-	 *  other good alternatives besides using **JavaScript**,
-	 *	unfortunately.
-	 *  What was already tried (**SCSS only**):
-	 *
-	 *  ## Disabling this mask when any tab is being moved
-	 *  Issue: this actually broke the illusion even more by showing
-	 *		   the user how all tabs look when this mask is disabled.
-	 *
-	 *  ## Not applying this mask to the sibling of a tab that is being
-	 *     moved
-	 *  Issue: while it solves the issue, when another tab goes in the
-	 *  	   position of the current moving tab's place before
-	 *		   translation was applied, the other tabs will still
-	 *		   overlap eachother, breaking the illusion.
-	 *
-	 *  ## Blurring the tab behind and changing the `z-index` of tabs so
-	 *     new tabs are always behind others
-	 *  Issue: you can't blur ONLY THE TAB BEHIND
-	 *		   (`backdrop-filter: blur(Xpx)`), this means that the
-	 *		   titlebar background in custom themes gets blurred.
-	 * 
-	 *  - Love, Bruni
-	 */
-	&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
-	&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
+	.tab-drop-indicator {
+		z-index: 101 !important;
+		top: var(--tab-drop-indicator-pos-from-top-normal) !important;
+		background: var(--tab-drop-indicator-icon-normal) !important;
+	}
+
+	#tabbrowser-tabs,
+	#tabbrowser-arrowscrollbox,
+	#tabbrowser-tabs[positionpinnedtabs]
+		> #tabbrowser-arrowscrollbox
+		> .tabbrowser-tab[pinned] {
+		min-height: var(--tab-height) !important;
+	}
+
+	#tabbrowser-tabs {
+		// Disable tab scrolling
+		--tab-min-width: 0 !important;
+
 		/**
-		 *  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
-		 *  	   The mask will not apply to the second tab when it is
-		 *  	   moved to the position of the first tab.
-		 */
-		&:not(:nth-child(2)	[style*="transform: translateX(-192px);"]) {
+		*  bruni: Remove border and spacings before tabs (spacing is taken
+		*		   care by `.titlebar-spacer` already)
+		*/
+		border-inline-start: 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+
+		// Create the illusion that tabs is part of the main toolbar
+		margin-block-end: -1px !important;
+
+		// Counteract the spacing in the tab textures to ensure there is no gap
+		margin-top: -1px !important;
+	}
+
+	#tabbrowser-arrowscrollbox {
+		align-items: end;
+	}
+
+	// Tab container
+	.tabbrowser-tab {
+		overflow: visible !important;
+		min-height: var(--tab-height) !important;
+		height: var(--tab-height) !important;
+		max-height: var(--tab-height) !important;
+		padding: 0 !important;
+		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
+
+		pointer-events: none !important;
+
+		&:hover {
+			.tab-glare-container {
+				opacity: var(--tab-glare-opacity);
+
+				/* bruni: In Chrome, the glare shows up faster when hovering. */
+				transition-property: opacity;
+				transition-duration: var(--tab-glare-hover-timer);
+				transition-timing-function: linear;
+			}
+		}
+
+		&[visuallyselected] {
+			// Bring selected tab to front
+			z-index: 100 !important;
+
+			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
+
 			.tab-background-container {
 				&::before {
+					background: var(--selected-tab-background, var(--default-selected-tab-background));
+				}
+			}
+
+			.tab-background-container {
+				&::after {
+					background-image: var(--tab-inline-start-active-texture), var(--tab-inline-center-active-texture), var(--tab-inline-end-active-texture);
+				}
+			}
+
+			.tab-glare-container {
+				opacity: 0 !important;
+				transition: opacity 0s !important;
+			}
+		}
+		&:not([visuallyselected]) {
+			.tab-background-container {
+				> * {
+					&::before {
+						background: var(--inactive-tab-background, var(--default-inactive-tab-background));
+					}
+				}
+			}
+		}
+
+		/** 
+		*  This was changed to a sibling comparator (`+`) instead of a
+		*  `:not([:first-child)]` so we can be more specific with the
+		*  masking if needed in the future.
+		*
+		*  This way of masking has caused problems, such as the illusion
+		*  breaking when tabs are being moved, however, there aren't any
+		*  other good alternatives besides using **JavaScript**,
+		*	unfortunately.
+		*  What was already tried (**SCSS only**):
+		*
+		*  ## Disabling this mask when any tab is being moved
+		*  Issue: this actually broke the illusion even more by showing
+		*		   the user how all tabs look when this mask is disabled.
+		*
+		*  ## Not applying this mask to the sibling of a tab that is being
+		*     moved
+		*  Issue: while it solves the issue, when another tab goes in the
+		*  	   position of the current moving tab's place before
+		*		   translation was applied, the other tabs will still
+		*		   overlap eachother, breaking the illusion.
+		*
+		*  ## Blurring the tab behind and changing the `z-index` of tabs so
+		*     new tabs are always behind others
+		*  Issue: you can't blur ONLY THE TAB BEHIND
+		*		   (`backdrop-filter: blur(Xpx)`), this means that the
+		*		   titlebar background in custom themes gets blurred.
+		* 
+		*  - Love, Bruni
+		*/
+		&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
+		&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
+			/**
+			*  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
+			*  	   The mask will not apply to the second tab when it is
+			*  	   moved to the position of the first tab.
+			*/
+			&:not(:nth-child(2)	[style*="transform: translateX(-192px);"]) {
+				.tab-background-container {
+					&::before {
+						mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
+					}
+
+					&::after {
+						background-image: var(--tab-inline-start-inactive2-texture), var(--tab-inline-center-inactive-texture), var(--tab-inline-end-inactive-texture);
+					}
+				}
+		
+				.tab-glare-container {
 					mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
 				}
+			}
+		}
 
-				&::after {
-					background-image: var(--tab-inline-start-inactive2-texture), var(--tab-inline-center-inactive-texture), var(--tab-inline-end-inactive-texture);
+		&[fadein] {
+			&:not([pinned]) {
+				&:not([style*="max-width"]) {
+					max-width: var(--tab-width) !important;
 				}
 			}
-	
-		  	.tab-glare-container {
-				mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
-		  	}
 		}
-	}
 
-	&[fadein] {
+		/* bruni: This controls the tab "open"/"close" transition. */
 		&:not([pinned]) {
-			&:not([style*="max-width"]) {
-				max-width: var(--tab-width) !important;
-			}
+			transition: min-width var(--tab-transition-time) ease,
+						max-width var(--tab-transition-time) ease !important;
+		}
+
+		/**
+		*  bruni: This makes it so the tab does not disappear when it
+		*  	   starts the "close" transition and it also makes the tab
+		*		   disappear when the background reaches min-width just
+		*		   like real Chrome.
+		*/
+		&:not([pinned], [fadein]) {
+			visibility: unset !important;
+			pointer-events: none !important;
+			animation: hide-tab var(--tab-transition-time) ease;
 		}
 	}
 
-	/* bruni: This controls the tab "open"/"close" transition. */
-	&:not([pinned]) {
-		transition: min-width var(--tab-transition-time) ease,
-					max-width var(--tab-transition-time) ease !important;
+	/**
+	*	bruni: This controls the transition of the tabs moving around while
+	*  	   a tab is being dragged, keep this here so the tab
+	* 		   "open"/"close" transition doesn't overwrite it.
+	*/
+	@media (prefers-reduced-motion: no-preference) {
+		#tabbrowser-tabs[movingtab]
+			> #tabbrowser-arrowscrollbox
+			> .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
+		.tabbrowser-tab[tab-grouping],
+		.tabbrowser-tab[tabdrop-samewindow] {
+			transition: transform 200ms var(--animation-easing-function) !important;
+		}
+
+		.tab-throbber[progress]::before,
+		.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+			opacity: 1 !important;
+		}
+
+		.tab-throbber[progress]::before {
+			background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber.png) !important;
+			width: 576px !important;
+			background-size: 576px 16px !important;
+			animation: progress-throbber 1s steps(36) infinite !important;
+		}
+
+		.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
+			background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber_waiting.png) !important;
+			width: 2864px !important;
+			background-size: 2864px 16px !important;
+			animation: waiting-throbber 5s steps(179) infinite !important;
+		}
 	}
 
-	/**
-	 *  bruni: This makes it so the tab does not disappear when it
-	 *  	   starts the "close" transition and it also makes the tab
-	 *		   disappear when the background reaches min-width just
-	 *		   like real Chrome.
-	 */
-	&:not([pinned], [fadein]) {
-		visibility: unset !important;
+	.tab-stack {
+		align-items: start;
+	}
+
+	.tab-background {
+		/**
+		*	bruni: Remove all styles from `.tab-background`, we are gonna use
+		*		   a Geckium-only element:
+		*  	   - `.tab-background-container`;
+		*/
+		all: unset !important;
+
+		position: absolute !important;
+		width: 100% !important;
+		height: 100% !important;
+
 		pointer-events: none !important;
-		animation: hide-tab var(--tab-transition-time) ease;
-	}
-}
-
-/**
- *	bruni: This controls the transition of the tabs moving around while
- *  	   a tab is being dragged, keep this here so the tab
- * 		   "open"/"close" transition doesn't overwrite it.
- */
-@media (prefers-reduced-motion: no-preference) {
-	#tabbrowser-tabs[movingtab]
-		> #tabbrowser-arrowscrollbox
-		> .tabbrowser-tab[fadein]:not([selected]):not([multiselected]),
-	.tabbrowser-tab[tab-grouping],
-	.tabbrowser-tab[tabdrop-samewindow] {
-		transition: transform 200ms var(--animation-easing-function) !important;
 	}
 
-	.tab-throbber[progress]::before,
-	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
-		opacity: 1 !important;
-	}
-
-	.tab-throbber[progress]::before {
-		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber.png) !important;
-		width: 576px !important;
-		background-size: 576px 16px !important;
-		animation: progress-throbber 1s steps(36) infinite !important;
-	}
-
-	.tabbrowser-tab[busy] .tab-throbber:not([progress])::before {
-		background-image: url(chrome://userchrome/content/assets/img/tabbar/throbber_waiting.png) !important;
-		width: 2864px !important;
-		background-size: 2864px 16px !important;
-		animation: waiting-throbber 5s steps(179) infinite !important;
-	}
-}
-
-.tab-stack {
-	align-items: start;
-}
-
-.tab-background {
-	/**
-	 *	bruni: Remove all styles from `.tab-background`, we are gonna use
-	 *		   a Geckium-only element:
-	 *  	   - `.tab-background-container`;
-	 */
-	all: unset !important;
-
-	position: absolute !important;
-	width: 100% !important;
-	height: 100% !important;
-
-	pointer-events: none !important;
-}
-
-.tab-background-container {
-	/* Tab texturing */
-	position: absolute;
-	width: 100%;
-	height: 100%;
-
-	&::before,
-	&::after {
-		content: "";
+	.tab-background-container {
+		/* Tab texturing */
 		position: absolute;
+		width: 100%;
 		height: 100%;
-		width: calc(100% + var(--tab-gap-between) * -1);
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: calc(100% + var(--tab-gap-between) * -1);
+		}
+
+		&::before {
+			background: var(--inactive-tab-background, var(--default-inactive-tab-background));
+
+			mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
+			mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
+			mask-position: left 0,						  var(--tab-sides-width) 0,						  right 0;
+			mask-repeat:   no-repeat;
+		}
+
+		&::after {
+			background-image:	 var(--tab-inline-start-inactive-texture), var(--tab-inline-center-inactive-texture),	   var(--tab-inline-end-inactive-texture);
+			background-size:	 var(--tab-sides-width) 100%,			   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
+			background-position: left 0,								   var(--tab-sides-width) 0,					   right 0;
+			background-repeat:	 no-repeat;
+		}
 	}
 
-	&::before {
-		background: var(--inactive-tab-background);
+	.tab-glare-container {
+		position: absolute;
+		width: calc(100% + var(--tab-gap-between) * -1);
+		height: 100%;
+		opacity: 0;
+		pointer-events: none;
+
+		/**
+		*  bruni: In Chrome, the glare hides in a slower pace when the
+		*		   mouse leaves.
+		*/
+		transition: opacity var(--tab-glare-unhover-timer) linear;
 
 		mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
 		mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
 		mask-position: left 0,						  var(--tab-sides-width) 0,						  right 0;
 		mask-repeat:   no-repeat;
+
+		> .tab-glare {
+			position: absolute;
+			height: 100%;
+			width: 400px;
+			transform: translateX(-50%);
+		
+			/**
+			*  bruni: We are using the glare as background hover for
+			*		   Chrome 5-6, if we transition the background of the tab
+			*		   instead, it will try to transition from gradient
+			*		   (active) to colour (inactive) and since gradients are
+			*		   not animatable (in Gecko), you will see a transition
+			*		   from transparent to inactive tab colour, and we don't
+			*		   want that.
+			*/
+			background: var(--tab-glare);
+		
+			/**
+			*	bruni: Firefox gradient rendering has some issues, in this case,
+			*		   sometimes in the middle it produces transparent Y pixels,
+			*		   so we are blurring it to make it unnoticeable.
+			*/
+			filter: blur(2px);
+		}
 	}
 
-	&::after {
-		background-image:	 var(--tab-inline-start-inactive-texture), var(--tab-inline-center-inactive-texture),	   var(--tab-inline-end-inactive-texture);
-		background-size:	 var(--tab-sides-width) 100%,			   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
-		background-position: left 0,								   var(--tab-sides-width) 0,					   right 0;
-		background-repeat:	 no-repeat;
-	}
-}
+	.tab-content {
+		height: calc(var(--tab-height) - 1px);
+		padding: 0 !important;
+		margin-block-start: var(--tab-content-y-from-top) !important;
+		margin-inline-start: var(--tab-inner-margin-start) !important;
+		padding-inline-end: var(--tab-inner-margin-end) !important;
 
-.tab-glare-container {
-	position: absolute;
-	width: calc(100% + var(--tab-gap-between) * -1);
-	height: 100%;
-	opacity: 0;
-	pointer-events: none;
-
-	/**
-	 *  bruni: In Chrome, the glare hides in a slower pace when the
-	 *		   mouse leaves.
-	 */
-	transition: opacity var(--tab-glare-unhover-timer) linear;
-
-	mask-image:	   var(--tab-inline-start-mask),  var(--tab-inline-center-mask),				  var(--tab-inline-end-mask);
-	mask-size:	   var(--tab-sides-width) 100%,   calc(100% - (var(--tab-sides-width) * 2)) 100%, var(--tab-sides-width) 100%;
-	mask-position: left 0,						  var(--tab-sides-width) 0,						  right 0;
-	mask-repeat:   no-repeat;
-
-	> .tab-glare {
-		position: absolute;
-		height: 100%;
-		width: 400px;
-		transform: translateX(-50%);
-	
-		/**
-		 *  bruni: We are using the glare as background hover for
-		 *		   Chrome 5-6, if we transition the background of the tab
-		 *		   instead, it will try to transition from gradient
-		 *		   (active) to colour (inactive) and since gradients are
-		 *		   not animatable (in Gecko), you will see a transition
-		 *		   from transparent to inactive tab colour, and we don't
-		 *		   want that.
-		 */
-		background: var(--tab-glare);
-	
-		/**
-		 *	bruni: Firefox gradient rendering has some issues, in this case,
-		 *		   sometimes in the middle it produces transparent Y pixels,
-		 *		   so we are blurring it to make it unnoticeable.
-		 */
-		filter: blur(2px);
-	}
-}
-
-.tab-content {
-	height: calc(var(--tab-height) - 1px);
-	padding: 0 !important;
-	margin-block-start: var(--tab-content-y-from-top) !important;
-	margin-inline-start: var(--tab-inner-margin-start) !important;
-	padding-inline-end: var(--tab-inner-margin-end) !important;
-
-	pointer-events: auto !important;
-}
-
-.tab-icon-stack {
-	margin-block-start: var(--tab-icon-stack-margin-block-start);
-
-	&::before {
-		content: '';
-		max-width: 16px;
-		max-height: 16px;
-	}
-}
-
-.tab-label-container {
-	height: auto !important;
-	margin-inline-start: var(--tab-gap-between-favicon-and-title);
-}
-
-.tab-throbber,
-.tab-icon-pending,
-.tab-icon-image,
-.tab-sharing-icon-overlay,
-.tab-icon-overlay {
-	&:not([pinned]) {
-		margin-inline-end: 0 !important;
-	}
-}
-
-// Hide "Playing"/etc... label below tab title.
-.tab-secondary-label {
-	display: none !important;
-}
-
-.tab-close-button {
-	list-style-image: var(--tab-close-button-normal) !important;
-	margin: 0 !important;
-	margin-block-start: var(--tab-close-button-margin-block-start) !important;
-	margin-inline-end: var(--tab-close-button-margin-inline-end) !important;
-	padding: 0 !important;
-	width: auto !important;
-	height: auto !important;
-
-	// Fix close button not working sometimes in Windows
-	-moz-window-dragging: no-drag;
-
-	&:hover {
-		list-style-image: var(--tab-close-button-hot) !important;
+		pointer-events: auto !important;
 	}
 
-	&:active {
-		list-style-image: var(--tab-close-button-pressed) !important;
-	}
-}
+	.tab-icon-stack {
+		margin-block-start: var(--tab-icon-stack-margin-block-start);
 
-#tabbrowser-arrowscrollbox-periphery {
-	// Align new tab button to the bottom
-	align-items: end;
-	margin-block-end: var(--newtab-distance-from-bottom);
-
-	// Add margin between new tab button and tabs container
-	margin-inline-start: var(--newtab-distance-from-tabs);
-}
-
-#tabs-newtab-button,
-#TabsToolbar #new-tab-button {
-	position: relative;
-	padding: 0 !important;
-	list-style-image: none !important;
-	height: var(--newtab-height);
-	width: var(--newtab-width);
-	transition: background-color 100ms linear;
-
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		height: 100%;
-		width: 100%;
-	}
-
-	&::before {
-		mask-image: var(--newtab-button-mask);
-		mask-position: center;
-		mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
-		background: var(--newtab-normal);
-		transition: background-color 100ms linear;
-	}
-
-	&::after {
-		background-image: var(--newtab-button-texture-normal);
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: var(--newtab-width) var(--newtab-height);
-	}
-
-	&:hover {
 		&::before {
-			background-color: var(--newtab-hot);
+			content: '';
+			max-width: 16px;
+			max-height: 16px;
+		}
+	}
+
+	.tab-label-container {
+		height: auto !important;
+		margin-inline-start: var(--tab-gap-between-favicon-and-title);
+	}
+
+	.tab-throbber,
+	.tab-icon-pending,
+	.tab-icon-image,
+	.tab-sharing-icon-overlay,
+	.tab-icon-overlay {
+		&:not([pinned]) {
+			margin-inline-end: 0 !important;
+		}
+	}
+
+	// Hide "Playing"/etc... label below tab title.
+	.tab-secondary-label {
+		display: none !important;
+	}
+
+	.tab-close-button {
+		list-style-image: var(--tab-close-button-normal) !important;
+		margin: 0 !important;
+		margin-block-start: var(--tab-close-button-margin-block-start) !important;
+		margin-inline-end: var(--tab-close-button-margin-inline-end) !important;
+		padding: 0 !important;
+		width: auto !important;
+		height: auto !important;
+
+		// Fix close button not working sometimes in Windows
+		-moz-window-dragging: no-drag;
+
+		&:hover {
+			list-style-image: var(--tab-close-button-hot) !important;
 		}
 
-		&::after {
+		&:active {
+			list-style-image: var(--tab-close-button-pressed) !important;
+		}
+	}
+	.close-icon:hover {
+		background-color: transparent !important;
+	}
+
+	#tabbrowser-arrowscrollbox-periphery {
+		// Align new tab button to the bottom
+		align-items: end;
+		margin-block-end: var(--newtab-distance-from-bottom);
+
+		// Add margin between new tab button and tabs container
+		margin-inline-start: var(--newtab-distance-from-tabs);
+	}
+
+	// New tab button
+	#tabs-newtab-button,
+	#TabsToolbar #new-tab-button {
+		position: relative;
+		padding: 0 !important;
+		list-style-image: none !important;
+		height: var(--newtab-height) !important;
+		width: var(--newtab-width) !important;
+
+		&::before { // pseudo is used here as the required mask weakens the texture's border otherwise
+			content: "";
+			position: absolute;
+			height: 100%;
+			width: 100%;
+
+			// Custom theme new tab button background texture.
+			mask-image: var(--newtab-button-mask);
+			mask-position: center;
+			mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+			background: var(--theme-newtab, var(--default-theme-newtab));
+		}
+
+		.toolbarbutton-icon {
+			z-index: 1; // Keep it above pseudos
+			height: 100% !important;
+			width: 100% !important;
+			background-color: transparent !important;
+			
+			box-shadow: none !important;
+			border-radius: 0 !important;
+			background-image: var(--newtab-button-texture-normal);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: var(--newtab-width) var(--newtab-height);
+		}
+		&:hover .toolbarbutton-icon {
 			background-image: var(--newtab-button-texture-hot);
 		}
-	}
-
-	&:active {
-		&::before {
-			background-color: transparent;
-			transition: none !important;
-		}
-
-		&::after {
+		&:hover:active .toolbarbutton-icon {
 			background-image: var(--newtab-button-texture-pressed);
 		}
 	}
 
-	.toolbarbutton-icon {
-		box-shadow: none !important;
-		border-radius: 0 !important;
-		width: 100% !important;
-		height: 100% !important;
-
-		// Custom theme new tab button background texture.
-		mask-image: var(--newtab-button-mask);
-		mask-position: center;
-		mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
-		background: var(--theme-newtab) !important;
+	//Tab styles
+	// Windows is the baseline styled above
+	// Linux
+	&[gktabstyle="1"] {
+		@import "tabs/linux";
+	}
+	// Mac OS X / macOS
+	&[gktabstyle="2"] {
+		@import "tabs/mac";
 	}
 }
