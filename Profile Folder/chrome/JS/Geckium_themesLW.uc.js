@@ -17,6 +17,12 @@ class gkLWTheme {
             "--lwt-text-color": "rgba(251, 251, 254)"
         }
     }
+    /**
+     * palettesMatch - Returns True if the palettes match the expected Mozilla Firefox lwtheme's
+     * 
+     * type: The ID of the built in lwtheme's values to compare against
+     */
+
     static palettesMatch(type) {
         for (const i of Object.keys(gkLWTheme.palettes[type])) {
             if (document.documentElement.style.getPropertyValue(i) != gkLWTheme.palettes[type][i]) {
@@ -25,6 +31,10 @@ class gkLWTheme {
         }
         return true;
     }
+
+    /**
+     * isDark - Returns True if dark mode is in use
+     */
 
     static get isDark() {
         if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -36,6 +46,11 @@ class gkLWTheme {
         }
         return false;
     }
+
+    /**
+     * pageisSysTheme - Returns True if the page is guesstimated to be using System Theme's palette
+     */
+
     static get pageisSysTheme() {
         if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "white") {
             return false;
@@ -48,6 +63,11 @@ class gkLWTheme {
         }
         return true;
     }
+
+    /**
+     * isThemed - Returns True if Firefox is ACTUALLY themed, not the fake news that 'lwtheme' states
+     */
+
     static get isThemed() {
         let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
         if (current.startsWith("default-theme@")) {
@@ -72,6 +92,10 @@ class gkLWTheme {
         }
         return true;
     }
+
+    /**
+     * setThemeAttrs - Expands the Firefox lwtheme palette for CSS usage if one is enabled
+     */
 
     static setThemeAttrs() {
         // This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update

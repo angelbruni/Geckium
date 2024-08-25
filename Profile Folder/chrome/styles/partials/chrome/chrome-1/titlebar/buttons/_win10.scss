@@ -99,9 +99,9 @@
 			display: flex !important;
 			height: 30px;
 			width: 45px;
-			color: inherit !important;
+			color: var(--titlebar-button-foreground, inherit) !important;
 			&:-moz-window-inactive {
-				color: var(--titlebar-foreground-inactive, var(--titlebar-foreground-active, var(--default-titlebar-foreground-inactive))) !important;
+				color: var(--titlebar-button-foreground-inactive, inherit) !important;
 			}
 			
 			//Hover and pressed states

@@ -27,7 +27,10 @@
 		--default-titlebar-active: #2B2B2B !important;
 		--default-titlebar-inactive: #2B2B2B !important;
 	}
-	--titlebar-border-radius: 0;
+	#navigator-toolbox,
+	#navigator-toolbox::before {
+		border-radius: 0 !important;
+	}
 	&[is117Plus][windowtype="navigator:browser"] > body {
 		border: 0;
 	}

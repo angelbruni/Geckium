@@ -54,7 +54,10 @@
 // Visuals: Maximised / Fullscreen
 &[sizemode="maximized"],
 &[sizemode="fullscreen"] {
-	--titlebar-border-radius: 0;
+	#navigator-toolbox,
+	#navigator-toolbox::before {
+		border-radius: 0 !important;
+	}
 	&[windowtype="navigator:browser"] > body {
 		border: 0;
 	}
