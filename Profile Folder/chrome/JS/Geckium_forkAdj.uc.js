@@ -135,7 +135,7 @@ class gkRfoxAdj {
         }
 	}
 }
-if (AppConstants.MOZ_APP_NAME == "r3dfox") {
+if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfox_esr") {
     window.addEventListener("load", gkRfoxAdj.disableThemeCusto);
     const rfoxObserver = {
         observe: function (subject, topic, data) {
