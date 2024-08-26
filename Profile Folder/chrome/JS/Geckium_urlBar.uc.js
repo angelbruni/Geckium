@@ -92,28 +92,30 @@ function updateProtocol() {
 	const customIdentityLabel = document.getElementById("custom-identity-label");
 	customIdentityLabel.textContent = "";
 	const attr = "securestate"
-	const securitystate = gBrowser.selectedTab.linkedBrowser.securityUI.state;
-	switch (securitystate) {
-		case 0:
-			navBar.setAttribute(attr, "chrome");
-			break;
-		case 2:
-			navBar.setAttribute(attr, "secure");
-			break;
-		case 4:
-			if (identityBox.classList.contains("notSecureText"))
-				navBar.setAttribute(attr, "warning")
-			else
-				navBar.setAttribute(attr, "chrome")
-			break;
-		case 1048578:
-			navBar.setAttribute(attr, "ev");
-			customIdentityLabel.textContent = gIdentityHandler.getIdentityData().cert.organization + " ["+ gIdentityHandler.getIdentityData().country +"]";
-			break;
-		case 67108866:
-			navBar.setAttribute(attr, "insecure");
-			break;
-	}
+	setTimeout(() => {
+		const securitystate = gBrowser.selectedTab.linkedBrowser.securityUI.state;
+		switch (securitystate) {
+			case 0:
+				navBar.setAttribute(attr, "chrome");
+				break;
+			case 2:
+				navBar.setAttribute(attr, "secure");
+				break;
+			case 4:
+				if (identityBox.classList.contains("notSecureText"))
+					navBar.setAttribute(attr, "warning")
+				else
+					navBar.setAttribute(attr, "chrome")
+				break;
+			case 1048578:
+				navBar.setAttribute(attr, "ev");
+				customIdentityLabel.textContent = gIdentityHandler.getIdentityData().cert.organization + " ["+ gIdentityHandler.getIdentityData().country +"]";
+				break;
+			case 67108866:
+				navBar.setAttribute(attr, "insecure");
+				break;
+		}
+	}, 0);
 
 	const urlbarProtocol = document.createXULElement("label");
 	if (!document.getElementById("urlbar-protocol")) {
@@ -123,12 +125,14 @@ function updateProtocol() {
 		gkInsertElm.before(urlbarProtocol, urlbarScheme);
 	}
 
-	const protocol = window.gBrowser.selectedTab.linkedBrowser.currentURI.spec.split(":")[0];
-	if (protocol !== "about" && protocol !== "http" ) {
-		document.getElementById("urlbar-protocol").textContent = protocol;
-	} else {
-		document.getElementById("urlbar-protocol").textContent = "";
-	}
+	setTimeout(() => {
+		const protocol = window.gBrowser.selectedTab.linkedBrowser.currentURI.spec.split(":")[0];
+		if (protocol !== "about" && protocol !== "http" ) {
+			document.getElementById("urlbar-protocol").textContent = protocol;
+		} else {
+			document.getElementById("urlbar-protocol").textContent = "";
+		}
+	}, 0);
 }
 window.addEventListener("load", updateProtocol);
 window.addEventListener("TabAttrModified", updateProtocol);

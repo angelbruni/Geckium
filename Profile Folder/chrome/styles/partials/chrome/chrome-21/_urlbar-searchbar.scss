@@ -1,6 +1,10 @@
 & {
 	--urlbar-height-definitive: 25px;
 
+	--identity-icon-secure-or-ev: 		 url("chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_valid.png");
+	--identity-icon-warning-or-insecure: url("chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_invalid.png");
+	--identity-icon-valid-n-notSecure:	 url("chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_warning.png");
+
 	&:not([chromehidden~="toolbar"]) {
 		#urlbar-container {
 			margin-inline-start: 5px !important;
