@@ -118,12 +118,19 @@ class gkRfoxAdj {
      * disableThemeCusto - Ensures R3dfox's theme customisation options are turned off
      */
 
-    static disableThemeCusto() {
-        var changes = 0;
-        for (const i in gkRfoxAdj.blacklist) {
-            if (gkPrefUtils.tryGet(gkRfoxAdj.blacklist[i]).bool != false) {
-                gkPrefUtils.set(gkRfoxAdj.blacklist[i]).bool(false);
+    static disableThemeCusto(id) {
+        let changes = 0;
+        if (id) {
+            if (gkPrefUtils.tryGet(id).bool != false) {
+                gkPrefUtils.set(id).bool(false);
                 changes += 1;
+            }
+        } else {
+            for (const i in gkRfoxAdj.blacklist) {
+                if (gkPrefUtils.tryGet(gkRfoxAdj.blacklist[i]).bool != false) {
+                    gkPrefUtils.set(gkRfoxAdj.blacklist[i]).bool(false);
+                    changes += 1;
+                }
             }
         }
         if (changes >= 1) {
@@ -136,11 +143,11 @@ class gkRfoxAdj {
 	}
 }
 if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfox_esr") {
-    window.addEventListener("load", gkRfoxAdj.disableThemeCusto);
+    window.addEventListener("load", function () { gkRfoxAdj.disableThemeCusto(); });
     const rfoxObserver = {
         observe: function (subject, topic, data) {
             if (topic == "nsPref:changed") {
-                gkRfoxAdj.disableThemeCusto();
+                gkRfoxAdj.disableThemeCusto(data);
             }
         },
     };
