@@ -5,7 +5,7 @@
 // @loadorder   2
 // @include		main
 // @include		about:preferences*
-// @include		about:addons*
+// @include		about:addons
 // ==/UserScript==
 
 // Firefox version check
@@ -255,7 +255,7 @@ class gkEras {
         let prefChoice;
         if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
             prefChoice = gkEras.getNTPEra();
-        } else {
+} else if (document.URL !== "about:gmzoo    " || document.URL !== "about:gsplash" && document.URL !== "about:gwizard" && document.URL !== "about:gsettings") {
             prefChoice = gkEras.getBrowserEra();
         }
 
