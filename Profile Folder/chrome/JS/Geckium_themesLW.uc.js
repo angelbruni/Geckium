@@ -52,14 +52,22 @@ class gkLWTheme {
      */
 
     static get pageisSysTheme() {
-        if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "white") {
-            return false;
-        }
-        if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
-            return false;
-        }
-        if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
-            return false;
+        if (parseInt(Services.appinfo.version.split(".")[0]) >= 117) { // Firefox 117+
+            if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "" ||
+                document.documentElement.style.getPropertyValue("--lwt-text-color") != "" ||
+                document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+                return false;
+            }
+        } else { // Firefox 115
+            if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "white") {
+                return false;
+            }
+            if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
+                return false;
+            }
+            if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+                return false;
+            }
         }
         return true;
     }
