@@ -1,5 +1,5 @@
-& { //TODO: When MD2 is added, ensure this code doesn't run on it
-	//Give the tabs/Incognito/pfp the appropriate offset
+& { // TODO: When MD2 is added, ensure this code doesn't run on it
+	// Give the tabs/Incognito/pfp the appropriate offset
 	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
 		#private-browsing-indicator-with-label {
 			order: -1 !important; // Force to left

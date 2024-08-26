@@ -22,15 +22,7 @@
 		 	  	<hbox class="tab-loading-burst" flex="1"/>
 		 	</vbox>
 			<hbox class="tab-glare-container">
-				<hbox class="tab-glare-left">
-					<hbox class="tab-glare"/>
-				</hbox>
-				<hbox class="tab-glare-middle">
-					<hbox class="tab-glare"/>
-				</hbox>
-				<hbox class="tab-glare-right">
-					<hbox class="tab-glare"/>
-				</hbox>
+				<hbox class="tab-glare"/>
 		 	</hbox>
 		 	<hbox class="tab-content" align="center">
 		 	  	<stack class="tab-icon-stack">

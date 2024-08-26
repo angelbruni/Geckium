@@ -180,6 +180,7 @@
 		padding-inline: var(--toolbar-start-end-padding) !important;
 		height: var(--nav-bar-height);
 		box-shadow: none !important;
+		border-top: 0 !important;
 		
 		//FIXME: why does this need this condition?
 		&:not([urlbar-exceeds-toolbar-bounds]) {
