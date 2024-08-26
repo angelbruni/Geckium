@@ -75,6 +75,8 @@
 		
 
 		&[footer-themable="true"] {
+			--logo-wordmark-color: var(--toolbar-color, var(--lwt-text-color));
+
 			--footer-background: linear-gradient(
 				to bottom,
 				color-mix(
