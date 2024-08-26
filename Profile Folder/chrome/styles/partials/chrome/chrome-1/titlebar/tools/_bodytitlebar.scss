@@ -18,6 +18,8 @@
         background: var(--titlebar-inactive, var(--default-titlebar-inactive));
     }
     border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+    box-shadow: var(--titlebar-box-shadow);
+    position: relative;
 
     &::before {
         content: "";
@@ -31,8 +33,10 @@
         background-position: var(--titlebar-pseudo-texture-pos);
         background-repeat: var(--titlebar-pseudo-texture-repeat);
         background-position-y: var(--titlebar-pseudo-texture-ypos);
-        box-shadow: var(--titlebar-box-shadow);
     }
+}
+&[gkthemed][gkchrthemehasframe][windowtype="navigator:browser"] > body::before {
+    box-shadow: var(--titlebar-box-shadow);
 }
 &[gkthemed][gkchrthemed]:-moz-window-inactive {
     &[windowtype="navigator:browser"] > body::before {
