@@ -425,7 +425,7 @@ class gkChrTheme {
                 // FIXME: Surely there's a way better way to color-mix in JS...?
                 var colorDiv = document.createElement("div");
                 document.head.appendChild(colorDiv);
-                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${buttonbg[0]},${buttonbg[1]},${buttonbg[2]}) 100%, ${titlebarbg})`;
+                colorDiv.style.backgroundColor=`color-mix(in srgb, rgb(${buttonbg[0]},${buttonbg[1]},${buttonbg[2]}) ${buttopacity}, ${titlebarbg})`;
                 var color = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
                 // Determine the colour using the combined frame colours
                 if (ColorUtils.IsDark(color)) {
