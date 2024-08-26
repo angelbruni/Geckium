@@ -491,6 +491,10 @@
 		margin-inline-start: var(--tab-gap-between-favicon-and-title);
 	}
 
+	.tab-label {
+		display: flex !important;
+	}
+
 	.tab-throbber,
 	.tab-icon-pending,
 	.tab-icon-image,
@@ -499,6 +503,8 @@
 		&:not([pinned]) {
 			margin-inline-end: 0 !important;
 		}
+
+		visibility: unset !important;
 	}
 
 	// Hide "Playing"/etc... label below tab title.
