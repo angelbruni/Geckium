@@ -4,6 +4,8 @@
 	--urlbar-border: rgb(169,169,169);
 	--urlbar-verified-proxystate-valid: rgb(11, 128, 67);
 
+	--identity-icon-secure-or-ev: url("chrome://userchrome/content/assets/img/chrome-68/toolbar/omnibox_https_valid.svg");
+
 	&[geckium-chrflag-omnibox-ui-vertical-layout="true"] {
 		&:not([geckium-chrflag-omnibox-ui-swap-title-and-url="1"]) {
 			--urlbarView-row-height: 48px;

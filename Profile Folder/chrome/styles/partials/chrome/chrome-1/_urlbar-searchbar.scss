@@ -139,10 +139,17 @@
 
 	font-size: 10pt !important;
 
-	&[focused="true"] {
+	&[focused] {
 		&:not([supress-focus-border]) {
 			> #urlbar-background {
-				outline: transparent !important;
+				outline: 0 !important;
+			}
+		}
+
+		// If text is selected but textbox is inactive
+		&:not([open]) {
+			#urlbar-protocol {
+				display: none !important;
 			}
 		}
 	}
@@ -150,15 +157,6 @@
 	&:not([pageproxystate="valid"], [open]) {
 		#urlbar-protocol {
 			display: none !important;
-		}
-	}
-
-	// If text is selected but textbox is inactive
-	&[focused="true"] {
-		&:not([open]) {
-			#urlbar-protocol {
-				display: none !important;
-			}
 		}
 	}
 
@@ -266,6 +264,19 @@
 		}
 	}
 
+	#identity-box[pageproxystate="valid"] {
+		&.verifiedDomain,
+		&.mixedActiveBlocked {
+			#identity-icon {
+				list-style-image: var(--identity-icon-secure-or-ev) !important;
+			}
+		}
+
+		&.notSecure #identity-icon {
+			list-style-image: var(--identity-icon-valid-n-notSecure) !important;
+		}
+	}
+
 	&[securestate="secure"],
 	&[securestate="ev"] {
 		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
@@ -297,10 +308,6 @@
 		#custom-identity-label {
 			display: none !important;
 		}
-	}
-
-	#identity-box[pageproxystate="valid"].notSecure #identity-icon {
-		list-style-image: var(--identity-icon-valid-n-notSecure) !important;
 	}
 }
 
