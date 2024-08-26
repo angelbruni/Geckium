@@ -12,6 +12,9 @@
         height: 100%;
         border-radius: calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) calc(var(--titlebar-border-radius) - var(--bodytitlebar-pseudo-gap)) 0 0;
         box-shadow: var(--titlebar-box-shadow);
+
+        // Prevent pseudo from blocking input past its existence.
+        pointer-events: none;
     }
 }
 
