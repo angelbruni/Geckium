@@ -10,7 +10,6 @@
 }
 //NOTE: This border style ignores native titlebars
 
-@import "../tools/vanillatitlebar";
 // Visuals
 &[is117Plus][windowtype="navigator:browser"] > body {
 	border: 1px solid rgba(0, 0, 0, 0.2);
@@ -19,7 +18,6 @@
 // Visuals: Maximised / Fullscreen
 &[sizemode="fullscreen"] {
 	--titlebar-box-shadow: none;
-	//--bodytitlebar-pseudo-gap: 0px;
 
 	--default-titlebar-active: #AAAAAA !important;
 	--default-titlebar-inactive: #AAAAAA !important;

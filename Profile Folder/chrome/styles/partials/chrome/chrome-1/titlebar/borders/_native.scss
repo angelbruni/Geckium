@@ -4,7 +4,6 @@
     --tab-distance-from-top-maximised: 0;
 
 	--titlebar-box-shadow: none;
-	--bodytitlebar-pseudo-gap: 0px;
 }
 
 // Permanently use offset'd Incognito/pfp measurements
@@ -18,6 +17,12 @@
     }
 }
 
+// Use the flat titlebar colour when on GTK+
+&[gksystheme="gtk"]:not([macOSNativeFullscreen], [lwtheme], [gkchrthemed]) {
+    --default-titlebar-active: ActiveCaption !important;
+    --default-titlebar-inactive: InactiveCaption !important;
+}
+
 // Force grey titlebar when in fullscreen
 &[macOSNativeFullscreen] {
 	--default-titlebar-active: #AAAAAA !important;
@@ -29,17 +34,5 @@
     //Force specific top padding in macOS's full screen
     #tabbrowser-arrowscrollbox {
         padding-top: 12px;
-    }
-}
-
-&[gktitnative="false"] {
-	@import "../tools/vanillatitlebar";
-
-    // Use the flat titlebar colour when on GTK+
-    &[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
-        #navigator-toolbox,
-        #titlebar {
-            background-image: unset !important;
-        }
     }
 }
