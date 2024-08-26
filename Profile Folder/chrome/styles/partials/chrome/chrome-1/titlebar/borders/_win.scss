@@ -20,7 +20,6 @@
 }
 
 &[gktitnative="false"] {
-	@import "../tools/bodytitlebar";
 	--titlebar-box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.25);
 	
 	// Visuals
@@ -35,7 +34,6 @@
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--titlebar-box-shadow: none;
-		--bodytitlebar-pseudo-gap: 0px;
 	
 		&[windowtype="navigator:browser"] > body,
 		&[windowtype="navigator:browser"] > body::before {
