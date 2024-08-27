@@ -31,7 +31,7 @@
 		}
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		&[footer-themable="true"] {
 			--logo-wordmark-color: FieldText;
 		
