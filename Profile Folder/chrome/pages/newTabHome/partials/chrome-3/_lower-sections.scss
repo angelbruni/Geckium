@@ -59,7 +59,7 @@
 		grey
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			ActiveCaption 70%,
