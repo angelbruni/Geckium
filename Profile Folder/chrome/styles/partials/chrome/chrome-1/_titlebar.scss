@@ -113,7 +113,6 @@
 			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
 		}
 		border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-		box-shadow: var(--titlebar-box-shadow);
 		position: relative;
 		background-clip: padding-box;
 
@@ -130,10 +129,17 @@
 			background-repeat: var(--titlebar-pseudo-texture-repeat);
 			background-position-y: var(--titlebar-pseudo-texture-ypos);
 		}
-	}
-	&[gkthemed]:not([gkchrthemed])[windowtype="navigator:browser"] > body::before,
-	&[gkthemed][gkchrthemehasframe][windowtype="navigator:browser"] > body::before {
-		box-shadow: var(--titlebar-box-shadow);
+		&::after {
+			content: "";
+			top: 0;
+			left: 0;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+			box-shadow: var(--titlebar-box-shadow);
+			pointer-events: none;
+		}
 	}
 	&[gkthemed][gkchrthemed]:-moz-window-inactive {
 		&[windowtype="navigator:browser"] > body::before {
