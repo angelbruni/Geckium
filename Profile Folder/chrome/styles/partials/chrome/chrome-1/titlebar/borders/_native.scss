@@ -17,22 +17,26 @@
     }
 }
 
-// Use the flat titlebar colour when on GTK+
-&[gksystheme="gtk"]:not([macOSNativeFullscreen], [lwtheme], [gkchrthemed]) {
-    --default-titlebar-active: ActiveCaption !important;
-    --default-titlebar-inactive: InactiveCaption !important;
-}
+&[gktitnative="false"] {
+	@import "../base";
 
-// Force grey titlebar when in fullscreen
-&[macOSNativeFullscreen] {
-	--default-titlebar-active: #AAAAAA !important;
-	--default-titlebar-inactive: #AAAAAA !important;
-	@media (prefers-color-scheme: dark) {
-		--default-titlebar-active: #2B2B2B !important;
-		--default-titlebar-inactive: #2B2B2B !important;
-	}
-    //Force specific top padding in macOS's full screen
-    #tabbrowser-arrowscrollbox {
-        padding-top: 12px;
+    // Use the flat titlebar colour when on GTK+
+    &[gksystheme="gtk"]:not([macOSNativeFullscreen], [lwtheme], [gkchrthemed]) {
+        --default-titlebar-active: ActiveCaption !important;
+        --default-titlebar-inactive: InactiveCaption !important;
+    }
+    // Force grey titlebar when in fullscreen
+    //  NOTE: macOS native titlebars = always gktitnative="false"
+    &[macOSNativeFullscreen] {
+        --default-titlebar-active: #AAAAAA !important;
+        --default-titlebar-inactive: #AAAAAA !important;
+        @media (prefers-color-scheme: dark) {
+            --default-titlebar-active: #2B2B2B !important;
+            --default-titlebar-inactive: #2B2B2B !important;
+        }
+        //Force specific top padding in macOS's full screen
+        #tabbrowser-arrowscrollbox {
+            padding-top: 12px;
+        }
     }
 }

@@ -94,59 +94,6 @@
 		--titlebar-pseudo-height: 100%;
 	}
 
-	// Base titlebar
-	#navigator-toolbox,
-	#titlebar {
-		background: unset !important;
-		box-shadow: none !important;
-		border-top: 0 !important;
-		border-bottom: 0 !important;
-		padding-top: 0 !important;
-
-		&[fullscreenShouldAnimate] {
-			transition: none !important;
-		}
-	}
-	&[windowtype="navigator:browser"] > body {
-		background: var(--titlebar-active, var(--default-titlebar-active));
-		&:-moz-window-inactive {
-			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
-		}
-		border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-		position: relative;
-		background-clip: padding-box;
-
-		&::before {
-			content: "";
-			top: 0;
-			left: 0;
-			position: absolute;
-			width: 100%;
-			height: var(--titlebar-pseudo-height);
-			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-			background: var(--titlebar-pseudo-texture);
-			background-position: var(--titlebar-pseudo-texture-pos);
-			background-repeat: var(--titlebar-pseudo-texture-repeat);
-			background-position-y: var(--titlebar-pseudo-texture-ypos);
-		}
-		&::after {
-			content: "";
-			top: 0;
-			left: 0;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-			box-shadow: var(--titlebar-box-shadow);
-			pointer-events: none;
-		}
-	}
-	&[gkthemed][gkchrthemed]:-moz-window-inactive {
-		&[windowtype="navigator:browser"] > body::before {
-			filter: contrast(.5) brightness(1.4);
-		}
-	}
-
 	// Pop up window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
 		#titlebar {
