@@ -65,7 +65,7 @@
 
 		--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white);
 		--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
-		--thumbnail-container-color: var(--link-color);
+		--thumbnail-container-color: var(--link-color, var(--default-thumbnail-container-color));
 		--thumbnail-disabled-color: var(--thumbnail-border-color-normal);
 		
 		&:not([style*="--toolbar-color: white"]),

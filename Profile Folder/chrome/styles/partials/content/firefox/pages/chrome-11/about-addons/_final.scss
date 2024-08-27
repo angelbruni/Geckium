@@ -1,11 +1,23 @@
 @-moz-document url-prefix(about:addons) {
+	// Chromium 11 and older only.
+	&:not([geckium-twentyone]) {
+		.sticky-container {
+			position: static !important;
+		}
+	
+		.sticky-container,
+		.main-search {
+			background: transparent !important;
+		}
+	
+		.main-heading {
+			display: none !important;
+		}
+	}
+
 	.card-heading-image {
 		width: calc(100% + (16px * 2)) !important;
 		height: unset !important;
 		object-fit: unset !important;
-	}
-
-	.sticky-container {
-		display: none !important;
 	}
 }

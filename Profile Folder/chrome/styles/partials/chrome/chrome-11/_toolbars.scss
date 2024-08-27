@@ -36,7 +36,7 @@
 	}
 
 	#PersonalToolbar {
-		.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
+		.bookmark-item:not(.menu-iconic, .menuitem-iconic, [data-l10n-id="places-empty-bookmarks-folder"]) {
 			border-radius: 5px !important;
 		}
 	}

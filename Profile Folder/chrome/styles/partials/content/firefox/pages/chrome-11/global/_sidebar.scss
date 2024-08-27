@@ -98,8 +98,9 @@ categories-box {
 
 .category,
 .sidebar-footer-link {
-	margin-inline-start: 0 !important;
+	margin-inline: 0 !important;
 	min-height: 32px !important;
+	width: 100% !important;
 	padding-inline: 0 !important;
 	padding-block: 0 !important;
 	transition: none !important;
@@ -143,7 +144,7 @@ categories-box {
 
 	.category-name,
 	.sidebar-footer-label {
-		display: flex;
+		display: flex !important;
 		flex: 1;
 		align-items: center;
 		height: 100%;
@@ -161,6 +162,10 @@ categories-box {
 	flex-direction: column;
 	margin: 0 !important;
 	margin-block-start: 27px !important;
+
+	> li {
+		width: 100% !important;
+	}
 }
 
 .sidebar-footer-link {

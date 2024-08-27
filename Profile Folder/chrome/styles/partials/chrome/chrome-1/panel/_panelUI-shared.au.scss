@@ -17,5 +17,7 @@
 }
 
 menupopup {
-	--panel-shadow-margin: 0 !important;
+	/* This has to have "px" otherwise dropdown
+	   menus (<select />) won't have a scrollbar. */
+	--panel-shadow-margin: 0px !important;
 }
