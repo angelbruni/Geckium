@@ -1,0 +1,165 @@
+@keyframes gkDownloadsItemStart {
+	0% {
+		max-width: 0px;
+	}
+	100% {
+		max-width: 206px;
+	}
+}
+
+@keyframes gkDownloadsBegin {
+	0% {
+		opacity: 1;
+		top: -230px;
+	}
+	100% {
+		opacity: 0;
+		top: -135px;
+	}
+}
+
+:root {
+	--gkdownloads-pane-border-color-default: rgb(214,214,214);
+	--gkdownloads-pane-border-color: var(--gkdownloads-pane-border-color-default);
+	--gkdownloads-pane-background-default: rgb(223,223,223);
+	--gkdownloads-pane-background: var(--gkdownloads-pane-background-default);
+}
+
+#gkDownloadsPane,
+#gkDownloadsList,
+#gkDownloadsActionButtons {
+    display: flex;
+}
+
+#gkDownloadsPane {
+    display: flex;
+    height: 44px;
+    padding-inline-end: 16px;
+	border-block-start: 1px solid var(--gkdownloads-pane-border-color);
+    background-color: var(--gkdownloads-pane-background);
+
+    button {
+        appearance: none !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+    }
+}
+
+#gkDownloadsList {
+    flex: 1;
+
+    margin-inline: 3px;
+    margin-block-start: 2px;
+    margin-block-end: 3px;
+    gap: 2px;
+
+    > .item {
+		position: relative;
+        width: 100%;
+        height: 36px;
+		border-width: 1px;
+		border-style: solid;
+		border-block-start-color: rgb(201,201,201);
+		border-block-end-color: rgb(134,134,134);
+		border-inline-color: rgb(170,170,170);
+		border-radius: 3px;
+		// overflow: hidden;
+		max-width: 0;
+		animation: gkDownloadsItemStart .45s ease-out forwards;
+
+		&::before {
+			content: url("chrome://userchrome/content/assets/img/chrome-1/downloadspane/download_animation_begin.png");
+			position: absolute;
+			top: -230px;
+			opacity: 1;
+			animation: gkDownloadsBegin .8s ease-out forwards;
+		}
+
+        .progress-container,
+        .progress-container > [class*="progress"] {
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .progress-container {
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadspane/progress_bg.svg");
+
+            > .progress-mask {
+                background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadspane/progress_mask.svg");
+                -moz-context-properties: fill, fill-opacity;
+                fill: #8FDF5F;
+                mask-image: conic-gradient(white var(--gkdownload-progress), transparent var(--gkdownload-progress));
+            }
+
+            > .icon {
+                width: 16px;
+                height: 16px;
+                z-index: 1;
+            }
+        }
+
+		> .main,
+		> .more {
+			box-shadow: inset 1px 1px 0px 0px rgba(255,255,255,0.5);
+		}
+
+        > .main {
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			padding-inline: 2px !important;
+            justify-content: center;
+            gap: 4px;
+            align-items: center;
+			min-width: 41px !important;
+			
+			> .info {
+				overflow: hidden;
+			}
+        }
+
+        > .more {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border-inline-start: 1px solid rgb(197,197,197);
+            align-items: center;
+            width: 14px;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadspane/arrow.svg");
+			
+			image {
+				filter: drop-shadow(0px 1px 0px rgba(255, 255, 255, .75));
+			}
+        }
+
+        label {
+            margin: 0 !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+			&.estimate {
+				color: rgb(51,51,51);
+			}
+        }
+    }
+}
+
+#gkDownloadsActionButtons {
+    align-items: center;
+    gap: 20px;
+}
+
+#gkDownloadsPaneShowAll {
+    text-decoration: underline;
+    white-space: nowrap;
+    cursor: pointer;
+}
