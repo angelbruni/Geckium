@@ -75,8 +75,6 @@
 		h2 {
 			position: absolute;
 			left: 0;
-			top: 0;
-			height: 100%;
 			width: 140px;
 			margin: 0 !important;
 		}
@@ -99,4 +97,5 @@ h1[data-l10n-id="more-from-moz-title"],
 	padding-block-end: 4px !important;
 	border-block-end: 1px solid var(--pane-border-block-end-color) !important;
 	flex: 1 !important;
+	white-space: nowrap !important;
 }

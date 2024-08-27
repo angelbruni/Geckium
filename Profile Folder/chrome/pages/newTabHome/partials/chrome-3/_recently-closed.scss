@@ -29,7 +29,7 @@
 			transparent
 		);
 		--recently-closed-color: var(--recently-closed-item-color);
-		--recently-closed-item-color: var(--toolbarbutton-icon-color, var(--lwt-text-color));
+		--recently-closed-item-color: var(--toolbarbutton-icon-color, var(--lwt-text-color, var(--default-recently-closed-item-color)));
 
 		&[style*="--arrowpanel-background"] {
 			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));

@@ -103,7 +103,7 @@
 #PersonalToolbar {
 	padding-block: 6px !important;
 
-	.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
+	.bookmark-item:not(.menu-iconic, .menuitem-iconic, [data-l10n-id="places-empty-bookmarks-folder"]) {
 		&:active {
 			background: var(--personal-toolbar-item-active-bg, var(--default-personal-toolbar-item-active-bg)) !important;
 
