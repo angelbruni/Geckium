@@ -349,7 +349,7 @@ function createMainLayout() {
 		menuBtnsContainer = "#footer-menu-container";
 
 		header = `
-		<html:a href="https://accounts.firefox.com/" id="login-container">
+		<html:a href="https://accounts.firefox.com/?service=sync" id="login-container">
 			<html:div id="login-status-header-container" class="login-status-row">
 				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKey("productName"))}</html:div>
 			</html:div>
