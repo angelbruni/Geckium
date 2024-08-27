@@ -6,6 +6,38 @@
 // @include		main
 // ==/UserScript==
 
+// Firefox forks with NO hope of ever being Geckium compatible
+class gkImpossibleForks {
+    /**
+     * showWarning - Quite self-explanatory
+     */
+
+    static showWarning() {
+        if (gkPrefUtils.tryGet("Geckium.impossibruFork.warningShown").bool != true) {
+            gkPrefUtils.set("Geckium.impossibruFork.warningShown").bool(true);
+            _ucUtils.showNotification({
+                label : "what.",
+                type : "geckium-notification",
+                priority: "critical",
+                buttons: [{
+                label: "Seriously, what did you think was going to happen?",
+                callback: (notification) => {
+                    return false
+                }
+                }]
+            })
+        }
+	}
+
+    // This is also self-explanatory
+    static impossibru = [
+        "zen"
+    ] // TODO: add more truly incompatible forks
+}
+if (gkImpossibleForks.impossibru.includes(AppConstants.MOZ_APP_NAME)) {
+    window.addEventListener("load", gkImpossibleForks.showWarning);
+}
+
 // Firefox (Native Controls Patch) Adjustments
 class gkNCPAdj {
     static checkNCP() {
