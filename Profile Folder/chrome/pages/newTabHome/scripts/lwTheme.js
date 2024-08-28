@@ -65,8 +65,56 @@ function setProperties() {
 			if (newTabColor)
 				document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
 
-			// 3rd-party: Add Geckium-exclusive values
-			setTimeout(async () => { // FIXME: Can someone make this get the manifest from built-in APIs??
+			setTimeout(async () => {
+				// 3rd-party (legacy debug override): Add Geckium-exclusive values
+				//  NOTE: This should ONLY be used for debugging Geckium-enhanced lwtheme's configs
+				try {
+					const legacyConfigPath = `chrome://userchrome/content/lwTesting/${activeThemeID}/config.json`;
+					const response = await fetch(legacyConfigPath);
+					const json = await response.json();
+					if (json.backgroundImage) {
+						let backgroundImageUrls = [];
+						for (let key in json.backgroundImage) {
+							if (json.backgroundImage.hasOwnProperty(key)) {
+								backgroundImageUrls.push(`url(chrome://userchrome/content/lwTesting/${activeThemeID}/${json.backgroundImage[key]})`);
+							}
+						}
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
+					}
+
+					if (json.imageRendering)
+						document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", json.imageRendering);
+						
+					if (json.backgroundSize)
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-size", json.backgroundSize);
+
+					if (json.backgroundPosition)
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-position", json.backgroundPosition);
+
+					if (json.backgroundPositionX)
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-position-x", json.backgroundPositionX);
+
+					if (json.backgroundPositionY)
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-position-y", json.backgroundPositionY);
+
+					if (json.backgroundRepeat)
+						document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", json.backgroundRepeat);
+
+					if (json.attributionImage)
+						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url(chrome://userchrome/content/lwTesting/${activeThemeID}/${json.attributionImage})`);
+
+					if (json.attributionWidth)
+						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-width", json.attributionWidth);
+
+					if (json.attributionHeight)
+						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-height", json.attributionHeight);
+
+					// Do not load original lwtheme's values
+					return;
+				} catch {}
+
+				// 3rd-party: Add Geckium-exclusive values
+				//  FIXME: Can someone make this get the manifest via built-in APIs?
 				let fullmani;
 				let xpipath;
 				try {
