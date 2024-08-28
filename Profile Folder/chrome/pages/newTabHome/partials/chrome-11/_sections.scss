@@ -23,7 +23,7 @@
 	}
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
 		--section-color: FieldText;
 		--spacer-background-color: color-mix(in srgb, FieldText 20%, transparent);
 
@@ -48,7 +48,7 @@
 				.item {
 					display: flex;
 					align-items: center;
-					color: var(--link-color);
+					color: var(--link-color, --default-link-color);
 					max-width: 114px;
 					-moz-context-properties: fill, fill-opacity;
 					fill: var(--recently-closed-item-color);

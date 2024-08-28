@@ -34,7 +34,7 @@
 			white
 		);
 		--tile-close-background-color-active: var(--thumbnail-container-color);
-		--thumbnail-container-color: var(--link-color);
+		--thumbnail-container-color: var(--link-color, --default-link-color);
 	}
 
 	&[geckium-choice="fortyseven"],

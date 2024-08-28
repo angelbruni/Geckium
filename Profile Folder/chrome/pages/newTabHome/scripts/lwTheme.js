@@ -65,91 +65,61 @@ function setProperties() {
 			if (newTabColor)
 				document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
 
-			// 3rd-party: Add new tab background
-			const imagePath = `chrome://userchrome/content/lwThemes/${activeThemeID}/image`;
-			
-			const imageConfigPath = `chrome://userchrome/content/lwThemes/${activeThemeID}/config.json`;
-			fetch(imageConfigPath)
-				.then((response) => response.json())
-				.then((json) => {
-					if (json.backgroundImage) {
-						let backgroundImageUrls = [];
-						for (let key in json.backgroundImage) {
-							if (json.backgroundImage.hasOwnProperty(key)) {
-								backgroundImageUrls.push(`url(chrome://userchrome/content/lwThemes/${activeThemeID}/${json.backgroundImage[key]})`);
-							}
-						}
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
-					}
-
-					if (json.imageRendering)
-						document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", json.imageRendering);
-						
-					if (json.backgroundSize)
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-size", json.backgroundSize);
-
-					if (json.backgroundPosition)
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-position", json.backgroundPosition);
-
-					if (json.backgroundPositionX)
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-position-x", json.backgroundPositionX);
-
-					if (json.backgroundPositionY)
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-position-y", json.backgroundPositionY);
-
-					if (json.backgroundRepeat)
-						document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", json.backgroundRepeat);
-
-					if (json.attributionImage)
-						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url(chrome://userchrome/content/lwThemes/${activeThemeID}/${json.attributionImage})`);
-
-					if (json.attributionWidth)
-						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-width", json.attributionWidth);
-
-					if (json.attributionHeight)
-						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-height", json.attributionHeight);
-				});
-
-			// Check for supported image formats and set the background image accordingly
-			const supportedFormats = [
-				".gif",
-				".jpg",
-				".jpeg",
-				".png",
-				".apng",
-				".svg",
-				".webp"
-			];
-
-			// Function to check if an image exists
-			const imageExists = (src, callback) => {
-				const img = new Image();
-				img.onload = () => callback(true);
-				img.onerror = () => callback(false);
-				img.src = src;
-			};
-
-			// Check each supported format
-			let backgroundImage;
-			const checkNextFormat = (index) => {
-				if (index >= supportedFormats.length) {
-					if (backgroundImage)
-						document.documentElement.style.setProperty("--lwt-gknewtab-image", backgroundImage);
+			// 3rd-party: Add Geckium-exclusive values
+			setTimeout(async () => {
+				let fullmani;
+				let xpipath;
+				try {
+					var addon = await AddonManager.getAddonByID(activeThemeID);
+					xpipath = addon.__AddonInternal__.rootURI;
+					const response = await fetch(xpipath + "manifest.json");
+					fullmani = await response.json();
+				} catch (error) {
+					console.error('Error fetching lwtheme - WHAT:', error);
 					return;
 				}
-
-				const testImage = `${imagePath}${supportedFormats[index]}`;
-				imageExists(testImage, (exists) => {
-					if (exists) {
-						backgroundImage = `url("${testImage}")`;
-						document.documentElement.style.setProperty("--lwt-gknewtab-image", backgroundImage);
-					} else {
-						checkNextFormat(index + 1);
+				if (!fullmani.browser_specific_settings || !fullmani.browser_specific_settings.geckium) {
+					return; // Nothing to do here as Geckium's settings aren't included.
+				}
+				fullmani = fullmani.browser_specific_settings.geckium;
+				
+				if (fullmani.backgroundImage) {
+					let backgroundImageUrls = [];
+					for (let key in fullmani.backgroundImage) {
+						if (fullmani.backgroundImage.hasOwnProperty(key)) {
+							backgroundImageUrls.push(`url(${xpipath}${fullmani.backgroundImage[key]})`);
+						}
 					}
-				});
-			};
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
+				}
 
-			checkNextFormat(0);
+				if (fullmani.imageRendering)
+					document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", fullmani.imageRendering);
+					
+				if (fullmani.backgroundSize)
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-size", fullmani.backgroundSize);
+
+				if (fullmani.backgroundPosition)
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-position", fullmani.backgroundPosition);
+
+				if (fullmani.backgroundPositionX)
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-position-x", fullmani.backgroundPositionX);
+
+				if (fullmani.backgroundPositionY)
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-position-y", fullmani.backgroundPositionY);
+
+				if (fullmani.backgroundRepeat)
+					document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", fullmani.backgroundRepeat);
+
+				if (fullmani.attributionImage)
+					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url(${xpipath}${fullmani.attributionImage})`);
+
+				if (fullmani.attributionWidth)
+					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-width", fullmani.attributionWidth);
+
+				if (fullmani.attributionHeight)
+					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-height", fullmani.attributionHeight);
+			}, 0);
 		}
     }, 0);
 }

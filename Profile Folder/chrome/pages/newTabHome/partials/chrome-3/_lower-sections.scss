@@ -59,7 +59,7 @@
 		grey
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			ActiveCaption 70%,
@@ -151,7 +151,7 @@
 		button {
 			&.item {
 				cursor: pointer;
-				color: var(--link-color);
+				color: var(--link-color, --default-link-color);
 				text-decoration: underline;
 			}
 		}
