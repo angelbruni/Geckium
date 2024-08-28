@@ -81,7 +81,7 @@ function setProperties() {
 				if (!fullmani.browser_specific_settings || !fullmani.browser_specific_settings.geckium) {
 					return; // Nothing to do here as Geckium's settings aren't included.
 				}
-				// Ensure colours match their advertised counterparts (Firefox Color/etc. check)
+				// Ensure colours match their advertised counterparts (anti-Firefox Color/etc. check)
 				for (const i of Object.keys(fullmani.theme.colors)) {
 					if (Object.keys(lwThemeResource).includes(i)) {
 						if (lwThemeResource[i] != fullmani.theme.colors[i]) {
