@@ -67,7 +67,7 @@ function setProperties() {
 
 			setTimeout(async () => {
 				// 3rd-party (legacy debug override): Add Geckium-exclusive values
-				//  NOTE: This should ONLY be used for debugging Geckium-enhanced lwtheme's configs
+				// NOTE: This should ONLY be used for debugging Geckium-enhanced lwtheme configs
 				try {
 					const legacyConfigPath = `chrome://userchrome/content/lwTesting/${activeThemeID}/config.json`;
 					const response = await fetch(legacyConfigPath);
