@@ -66,7 +66,7 @@ function setProperties() {
 				document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
 
 			// 3rd-party: Add Geckium-exclusive values
-			setTimeout(async () => {
+			setTimeout(async () => { // FIXME: Can someone make this get the manifest from built-in APIs??
 				let fullmani;
 				let xpipath;
 				try {
@@ -81,8 +81,16 @@ function setProperties() {
 				if (!fullmani.browser_specific_settings || !fullmani.browser_specific_settings.geckium) {
 					return; // Nothing to do here as Geckium's settings aren't included.
 				}
+				// Ensure colours match their advertised counterparts (Firefox Color/etc. check)
+				for (const i of Object.keys(fullmani.theme.colors)) {
+					if (Object.keys(lwThemeResource).includes(i)) {
+						if (lwThemeResource[i] != fullmani.theme.colors[i]) {
+							return;
+						}
+					}
+				}
+
 				fullmani = fullmani.browser_specific_settings.geckium;
-				
 				if (fullmani.backgroundImage) {
 					let backgroundImageUrls = [];
 					for (let key in fullmani.backgroundImage) {
