@@ -1,6 +1,5 @@
 & {
 	--default-link-color: rgb(102,102,102);
-	--link-color: var(--default-link-color);
 
 	@media (prefers-color-scheme: dark) {
 		--default-link-color: rgb(138, 138, 138);
@@ -31,6 +30,6 @@
 }
 
 .link-span {
-	color: var(--link-color);
+	color: var(--link-color, --default-link-color);
 	text-decoration: underline;
 }

@@ -24,7 +24,6 @@
 	--edit-bar-background-hot: var(--default-edit-bar-background-hot);
 
 	--default-link-color: #06C;
-	--link-color: var(--default-link-color);
 
 	@media (prefers-color-scheme: dark) {
 		--thumbnail-border-color-normal: color-mix(
@@ -54,7 +53,7 @@
 		);
 		--default-thumbnail-border-color-hot: rgb(20, 62, 112);
 
-		--link-color: #acc0da;
+		--default-link-color: #acc0da;
 	}
 
 	// Custom theme support
@@ -115,7 +114,7 @@
 		);
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
 		--view-toolbar-buttons-bg: -moz-dialog;
 		--window-menu-item-hover-bg: AccentColor;
 
@@ -298,7 +297,7 @@
 		margin-top: 22px;
 
 		.thumbnail-container {
-			color: var(--link-color);
+			color: var(--link-color, --default-link-color);
 			font-size: 16pt;
 
 			.edit-mode-border {
