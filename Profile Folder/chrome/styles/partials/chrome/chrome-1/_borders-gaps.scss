@@ -32,6 +32,14 @@
 		&[gktitnative="true"][isWindows10] {
 			--gap-size: var(--content-border-width);
 		}
+		@media (-moz-platform: linux) {
+			// In Linux with CSDs, we physically CANNOT have gaps, however custom titlebar styles which add borders
+			// to alleviate this limitation should still be able to have gaps, hence rather than restricting it at the
+			// header level, we override --gap-size so that Firefox's own (lack of) borders simply never shows.
+			&[gktitnative="true"] {
+				--gap-size: 0 !important;
+			}
+		}
 		.titlebar-spacer[type="pre-tabs"] {
 			margin-inline-start: var(--gap-size);
 		}

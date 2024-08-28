@@ -431,11 +431,7 @@ class gkTitlebars {
             // chromemargin (border type)
             document.documentElement.setAttribute("chromemargin", "0,2,2,2");
             // Gaps
-            if (AppConstants.platform == "linux") {
-                document.documentElement.setAttribute("gkhasgaps", "false"); // Linux Native CANNOT have gaps
-            } else {
-                document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
-            }
+            document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
         } else {
             document.documentElement.setAttribute("gktitnative", "false");
             if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
