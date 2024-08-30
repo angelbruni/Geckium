@@ -563,7 +563,7 @@
 			// Custom theme new tab button background texture.
 			mask-image: var(--newtab-button-mask);
 			mask-position: center;
-			mask-size: calc(var(--newtab-width) + 2px) calc(var(--newtab-height) + 2px);
+			mask-size: var(--newtab-width) var(--newtab-height);
 			background: var(--theme-newtab, var(--default-theme-newtab));
 		}
 
