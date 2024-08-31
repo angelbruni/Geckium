@@ -2,7 +2,7 @@
 // @name           userChrome_author_css
 // @namespace      userChrome_Author_Sheet_CSS
 // @version        0.0.5
-// @description    Load userChrome.au.css file as author sheet from resources folder using chrome: uri. The file is loaded only into the document where this script runs which by default is browser.xhtml
+// @description    Load geckiumChrome.au.css file as author sheet from resources folder using chrome: uri. The file is loaded only into the document where this script runs which by default is browser.xhtml
 // @onlyonce
 // @startup        preloadedAuthorSheet
 // ==/UserScript==
@@ -23,8 +23,8 @@
 	let sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
 	try {
 		// Try to preload the file and save it to global area
-		_ucUtils.sharedGlobal.preloadedAuthorSheet.sheet = sss.preloadSheet(makeURI("chrome://userChrome/content/userChrome.au.css"), sss.AUTHOR_SHEET);
+		_ucUtils.sharedGlobal.preloadedAuthorSheet.sheet = sss.preloadSheet(makeURI("chrome://userChrome/content/geckiumChrome.au.css"), sss.AUTHOR_SHEET);
 	} catch (e) {
-		console.error(`Could not pre-load userChrome.au.css: ${e.name}`)
+		console.error(`Could not pre-load geckiumChrome.au.css: ${e.name}`)
 	}
 })();
