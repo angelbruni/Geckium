@@ -11,9 +11,7 @@
 
 class gkDownloadsManager {
 	static paneTemplate = `
-	<html:div id="gkDownloadsList">
-	
-	</html:div>
+	<html:div id="gkDownloadsList" />
 	<html:div id="gkDownloadsActionButtons">
 		<button id="gkDownloadsPaneShowAll">
 			Show all downloads...
