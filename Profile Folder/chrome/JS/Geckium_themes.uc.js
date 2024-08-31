@@ -353,7 +353,7 @@ class gkYou {
         gkYou.removeVariables();
         let era = gkEras.getBrowserEra();
         let color;
-		if (previousSysTheme == "you" && isBrowserWindow && (era < 52 || era > 68)) {
+		if (previousSysTheme == "you" && (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") && (era < 52 || era > 68)) {
             try {
                 color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
             } catch (error) {
