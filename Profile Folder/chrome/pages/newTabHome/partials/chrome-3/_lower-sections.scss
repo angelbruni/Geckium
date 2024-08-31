@@ -21,6 +21,28 @@
 		--default-lower-sections-border-color: rgb(65, 94, 128);
 	}
 
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		--default-lower-sections-background: hsla(var(--you-h), var(--you-s), calc(var(--you-l) + 39%), 0.796875);
+		--default-lower-sections-h2-background: linear-gradient(
+			to bottom,
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 9%)),
+			hsl(var(--you-h), var(--you-s), var(--you-l))
+		);
+		--default-lower-sections-border-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 34%));
+
+		@media (prefers-color-scheme: dark) {
+			--default-lower-sections-background: hsla(var(--you-h), var(--you-s), calc(var(--you-l) + 39%), 0.2);
+			--default-lower-sections-h2-background: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 23%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%))
+			);
+
+			--default-lower-sections-border-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 20%));
+		}
+	}
+
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
