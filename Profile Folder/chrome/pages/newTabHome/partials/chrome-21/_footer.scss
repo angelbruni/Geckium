@@ -25,6 +25,11 @@
 	--footer-menu-item-link-color: #063874;
 	--footer-vertical-separator-background-color: rgb(178, 178, 178);
 
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		--footer-menu-item-link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+	}
+
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {

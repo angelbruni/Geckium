@@ -15,6 +15,19 @@
 		--recently-closed-item-color: #acc0da;
 	}
 
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		--default-recently-closed-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 37%));
+		--default-recently-closed-border-color: hsla(var(--you-h), calc(var(--you-s) - 2%), var(--you-l), 0.3125);
+		--default-recently-closed-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+
+		@media (prefers-color-scheme: dark) {
+			--recently-closed-background: hsl(var(--you-h), calc(var(--you-s) - 42%), calc(var(--you-l) - 23%));
+			--recently-closed-border-color: hsla(var(--you-h), calc(var(--you-s) - 25%), calc(var(--you-l-dark) + 29%), 0.313);
+			--recently-closed-item-color: hsl(var(--you-h), calc(var(--you-s) - 31%), calc(var(--you-l-dark) + 18%));
+		}
+	}
+
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
