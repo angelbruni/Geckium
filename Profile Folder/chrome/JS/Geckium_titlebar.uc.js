@@ -329,10 +329,6 @@ class gkTitlebars {
      */
 
     static getNative(spec, ispopup) {
-        // FIXME: This one needs to default to True
-        if (!gkPrefUtils.prefExists("Geckium.appearance.titlebarThemedNative")) {
-		    gkPrefUtils.set("Geckium.appearance.titlebarThemedNative").bool(true);
-	    }
         // Check if titlebar blocks being native
         if (spec.cannative == false) {
             return false;
@@ -370,8 +366,14 @@ class gkTitlebars {
                         return false; // Current Chrome Theme isn't native
                     }
                     // Check if user blocked native in-theme titlebar
-                    if (!gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").bool) {
-                        return false;
+                    switch (gkPrefUtils.tryGet("Geckium.appearance.titlebarThemedNative").int) {
+                        case 1: //Enabled
+                            break;
+                        case 2: //Disabled
+                            return false;
+                        default: //Automatic
+                            // TODO: Return False if the era is MD2+
+                            break;
                     }
                 }
             }
