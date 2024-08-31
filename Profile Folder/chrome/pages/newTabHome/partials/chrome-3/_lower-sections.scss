@@ -32,14 +32,14 @@
 		--default-lower-sections-border-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 34%));
 
 		@media (prefers-color-scheme: dark) {
-			--default-lower-sections-background: hsla(var(--you-h), var(--you-s), calc(var(--you-l) + 39%), 0.2);
+			--default-lower-sections-background: hsla(var(--you-h), var(--you-s), calc(var(--you-l-dark) + 39%), 0.2);
 			--default-lower-sections-h2-background: linear-gradient(
 				to bottom,
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 23%)),
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%))
 			);
 
-			--default-lower-sections-border-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l) - 20%));
+			--default-lower-sections-border-color: hsl(var(--you-h), calc(var(--you-s) - 36%), calc(var(--you-l-dark) - 20%));
 		}
 	}
 

@@ -56,6 +56,51 @@
 		--default-link-color: #acc0da;
 	}
 
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		--default-window-menu-item-hover-bg: hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) - 1%));
+		--default-view-toolbar-buttons-bg: hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 14%));
+		--default-window-menu-item-hover-bg: hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 14%));
+		--default-thumbnail-border-color-normal: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 37%));
+		--default-thumbnail-border-color-hot: hsl(var(--you-h), calc(var(--you-s) - 2%), var(--you-l));
+		--default-thumbnail-disabled-color: hsl(var(--you-h), calc(var(--you-s) - 9%), calc(var(--you-l) + 34%));
+		--default-edit-bar-background-color-hot: hsl(var(--you-h), calc(var(--you-s) - 3%), calc(var(--you-l) - 1%));
+		--default-edit-bar-background-hot: linear-gradient(
+			to bottom,
+			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 9%)),
+			var(--edit-bar-background-color-hot)
+		);
+		--default-link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 18%));
+
+		@media (prefers-color-scheme: dark) {
+			--thumbnail-border-color-normal: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 23%)) 45%,
+					white
+				) 70%,
+				black
+			);
+			--thumbnail-disabled-color: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 23%)) 40%,
+					white
+				) 70%,
+				black
+			);
+			--default-edit-bar-background-hot: linear-gradient(
+				to bottom,
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 23%)),
+				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%))
+			);
+			--default-thumbnail-border-color-hot: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
+			--default-link-color: hsl(var(--you-h), calc(var(--you-s) - 31%), calc(var(--you-l-dark) + 18%));
+		}
+	}
+
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
