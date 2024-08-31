@@ -236,10 +236,15 @@
 														<label class="description">&gsettings.titlebarInThemesIsSysDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.appearance.titlebarThemedNative" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
+													<html:button class="menu" data-name="appearance-titlebarThemedNative" data-pref="appearance.titlebarThemedNative" id="appearance-titlebarThemedNative-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.enabled;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.disabled;</hbox>
+														</vbox>
+													</html:button>
 												</hbox>
 											</vbox>
 											<h4>
