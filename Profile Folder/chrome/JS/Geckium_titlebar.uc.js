@@ -324,11 +324,11 @@ class gkTitlebars {
      * getNative - Returns True if the titlebar should be native
      * 
      * @spec: Titlebar specification to reference in checks
+     * @era: The currently selected era
      * @ispopup: Is the window a popup window?
-     * @systbar: Is Firefox's titlebar option enabled?
      */
 
-    static getNative(spec, ispopup) {
+    static getNative(spec, era, ispopup) {
         // Check if titlebar blocks being native
         if (spec.cannative == false) {
             return false;
@@ -415,11 +415,11 @@ class gkTitlebars {
         let spec = gkTitlebars.getTitlebarSpec(era, titlebar);
         // Redirect to specialised functions if specific window-types
         if (gkTitlebars.getIsPopup()) { //  Popups
-            gkTitlebars.applyPopupTitlebar(spec);
+            gkTitlebars.applyPopupTitlebar(spec, era);
             return;
         }
         if (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int == 0) { //  Titlebar enabled
-            gkTitlebars.applyNativeTitlebar(spec);
+            gkTitlebars.applyNativeTitlebar(spec, era);
             return;
         }
         // Apply titlebar and button style
@@ -427,7 +427,7 @@ class gkTitlebars {
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
         // Check native titlebar mode eligibility
-        if (gkTitlebars.getNative(spec)) {
+        if (gkTitlebars.getNative(spec, era)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
             // chromemargin (border type)
@@ -449,9 +449,10 @@ class gkTitlebars {
      * applyPopupTitlebar - A variation of applyTitlebar for popup windows
      * 
      * @spec: The currently selected titlebar's specifications
+     * @era: The currently selected era
      */
 
-    static applyPopupTitlebar(spec) {
+    static applyPopupTitlebar(spec, era) {
         let systitlebar = (gkPrefUtils.tryGet("browser.tabs.inTitlebar").int == 0);
         // Apply titlebar and button style
         if (systitlebar) {
@@ -462,7 +463,7 @@ class gkTitlebars {
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
         document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
         // Check native titlebar mode eligibility (or force if Titlebar is enabled)
-        if (systitlebar || gkTitlebars.getNative(spec, true)) {
+        if (systitlebar || gkTitlebars.getNative(spec, era, true)) {
             // Base Geckium CSS flag
             document.documentElement.setAttribute("gktitnative", "true");
             // chromemargin (border type)
@@ -484,9 +485,10 @@ class gkTitlebars {
      * applyNativeTitlebar - A variation of applyTitlebar for windows with titlebar enabled
      * 
      * @spec: The currently selected titlebar's specifications
+     * @era: The currently selected era
      */
 
-    static applyNativeTitlebar(spec) {
+    static applyNativeTitlebar(spec, era) {
         // Apply titlebar and button style
         document.documentElement.removeAttribute("gktitstyle");
         document.documentElement.setAttribute("gktitbuttons", spec.buttons); // Used for Incognito positioning
@@ -496,7 +498,7 @@ class gkTitlebars {
         //  On Linux, nobody has ever made use of titlebar mode in their themes - even aerothemeplasma deactivates in this mode
         //  On macOS, there is a permanent titlebar separator that would break the illusion of being native
         //  It is only on Windows that there is none of this separation between the real titlebar and the toolbar.
-        document.documentElement.setAttribute("gktitnative", (AppConstants.platform == "win" && gkTitlebars.getNative(spec)) ?
+        document.documentElement.setAttribute("gktitnative", (AppConstants.platform == "win" && gkTitlebars.getNative(spec, era)) ?
             "true" :
             "false"
         );
