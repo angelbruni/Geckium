@@ -22,6 +22,10 @@ class gkImpossibleForks {
                 buttons: [{
                 label: "Seriously, what did you think was going to happen?",
                 callback: (notification) => {
+                    notification.ownerGlobal.openWebLinkIn(
+                    "https://youtu.be/swnVdhCsYBk",
+                    "tab"
+                    );
                     return false
                 }
                 }]
