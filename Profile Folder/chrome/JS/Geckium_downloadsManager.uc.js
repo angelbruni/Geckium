@@ -36,7 +36,7 @@ class gkDownloadsManager {
 		downloadsPane.appendChild(MozXULElement.parseXULToFragment(this.paneTemplate));
 
 		document.getElementById("gkDownloadsPaneShowAll").addEventListener("click", () => {
-			openTrustedLinkIn('about:downloads', 'tab');				
+			openTrustedLinkIn('about:downloads', 'tab');
 			this.togglePane("hide");
 		})
 		document.getElementById("gkDownloadsPaneToggle").addEventListener("click", () => {
@@ -48,6 +48,14 @@ class gkDownloadsManager {
 				onDownloadAdded: download => {
 					const downloadItem = gkDownloadsManager.createItem(download);
 					document.getElementById("gkDownloadsList").appendChild(MozXULElement.parseXULToFragment(downloadItem));
+
+					// Testing pause/resume but resume is bugged.
+						document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
+							if (download.stopped)
+								download.start();
+							else
+								download.cancel();
+						})
 
 					// Initialize previous bytes and time for download speed calculation
 					downloadItem.dataset.previousBytes = 0;
@@ -119,7 +127,7 @@ class gkDownloadsManager {
 				</menupopup>
 			</toolbarbutton>
 		</hbox>
-		`
+		`						
 
 		this.togglePane("show");
 
@@ -130,14 +138,6 @@ class gkDownloadsManager {
 		const downloadItem = document.getElementById(download.target.path);
 
 		if (downloadItem) {
-			// Testing pause/resume but resume is bugged.
-			document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
-				if (download.stopped)
-					download.start();
-				else
-					download.cancel();
-			})
-
 			function formatSize(bytes, unitIndex) {
 				while (unitIndex > 0) {
 					bytes /= 1024;
