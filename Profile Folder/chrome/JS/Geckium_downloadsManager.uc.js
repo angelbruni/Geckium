@@ -49,7 +49,6 @@ class gkDownloadsManager {
 					const downloadItem = gkDownloadsManager.createItem(download);
 					document.getElementById("gkDownloadsList").appendChild(MozXULElement.parseXULToFragment(downloadItem));
 
-					// Testing pause/resume but resume is bugged.
 						document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
 							if (download.stopped)
 								download.start();
@@ -127,7 +126,7 @@ class gkDownloadsManager {
 				</menupopup>
 			</toolbarbutton>
 		</hbox>
-		`						
+		`
 
 		this.togglePane("show");
 
