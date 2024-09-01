@@ -39,37 +39,39 @@ class gkDownloadsManager {
 			openTrustedLinkIn('about:downloads', 'tab');
 			this.togglePane("hide");
 		})
-		document.getElementById("gkDownloadsPaneToggle").addEventListener("click", this.togglePane);
+		document.getElementById("gkDownloadsPaneToggle").addEventListener("click", () => {
+			this.togglePane("hide");	
+		});
 
 		Downloads.getList(Downloads.ALL).then(list => {
-			// Listen for downloads being added to the list
-			list.addView({	
+			list.addView({
 				onDownloadAdded: download => {
-					console.log("Download started:", download.source.url, download.target.path, download.target.path.split("/")[parseInt(download.target.path.split("/").length) - 1]);
+					const downloadItem = gkDownloadsManager.createItem(download);
+					document.getElementById("gkDownloadsList").appendChild(MozXULElement.parseXULToFragment(downloadItem));
 
-					this.createItem({
-						url: download.source.url,
-						directory: download.target.path,
-						name: download.target.path.split("/")[parseInt(download.target.path.split("/").length) - 1]
-					})
+						document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
+							if (download.stopped)
+								download.start();
+							else
+								download.cancel();
+						})
+
+					// Initialize previous bytes and time for download speed calculation
+					downloadItem.dataset.previousBytes = 0;
+					downloadItem.dataset.previousTime = Date.now();
 
 					download.onchange = function () {
-						if (download.hasProgress) {
-							// console.log("Download progress:", download.target.path, download.progress + "%");
-
-							gkDownloadsManager.updateItem(download.target.path, download.progress);
-						}
-	
-						/* if (download.succeeded) {
-							console.log("Download completed:", download.target.path);
-						} else if (download.canceled) {
-							console.log("Download canceled");
-						} else if (download.error) {
-							console.log("Download failed:", download.error);
-						}*/
-
-						// console.log("Download state changed:", download.state);
+						gkDownloadsManager.updateItem(download);
 					};
+				},
+				onDownloadChanged: download => {
+					gkDownloadsManager.updateItem(download);
+				},
+				onDownloadRemoved: download => {
+					const downloadItem = document.querySelector(`[data-download-id="${download.target.path}"]`);
+					if (downloadItem) {
+						downloadItem.remove();
+					}
 				}
 			});
 		}).catch(console.error);
@@ -94,33 +96,114 @@ class gkDownloadsManager {
 		
 	}
 
-	static createItem(params) {
+	static createItem(download) {
 		const itemTemplate = `
-		<hbox class="item" data-directory="${params.directory}">
+		<hbox class="item" id="${download.target.path}" style="--gkdownload-progress: 0;">
 			<image class="anim-begin" />
 			<button class="main" flex="1">
 				<html:div class="progress-container">
 					<html:div class="progress-bg" />
 					<html:div class="progress-mask" />
-					<image class="icon" src="moz-icon://${params.directory}?size=16&amp;state=normal" />
+				<image class="icon" src="moz-icon://${download.target.path}?size=16&amp;state=normal" />
 				</html:div>
 				<vbox class="info">
-					<label>${params.name}</label>
-					<label class="estimate">...</label>
+					<label>${download.target.path.split("/").pop()}</label>
+					<html:div class="description">
+						<label class="size" />
+						<label class="eta" />
+					</html:div>
 				</vbox>
 			</button>
-			<button class="more" />
+			<toolbarbutton class="more" type="menu">
+				<menupopup position="before_start">
+					<menuitem label="Open when done" />
+					<menuitem label="Always open files of this type" />
+					<menuseparator />
+					<menuitem class="pause" label="Pause" />
+					<menuitem class="show" label="Show in folder" />	
+					<menuseparator />
+					<menuitem label="Cancel" />	
+				</menupopup>
+			</toolbarbutton>
 		</hbox>
 		`
 
 		this.togglePane("show");
 
-		document.getElementById("gkDownloadsList").appendChild(MozXULElement.parseXULToFragment(itemTemplate));
+		return itemTemplate;
 	}
 
-	static updateItem(directory, progress) {
-		document.querySelector(`#gkDownloadsList > .item[data-directory="${directory}"]`).setAttribute("data-progress", progress);
-		document.querySelector(`#gkDownloadsList > .item[data-directory="${directory}"]`).style.setProperty('--gkdownload-progress', `${progress}%`);;
+	static updateItem(download) {
+		const downloadItem = document.getElementById(download.target.path);
+
+		if (downloadItem) {
+			function formatSize(bytes, unitIndex) {
+				while (unitIndex > 0) {
+					bytes /= 1024;
+					unitIndex--;
+				}
+				return `${bytes.toFixed(1)}`;
+			}
+
+			function determineUnitIndex(bytes) {
+				const units = ["B", "KB", "MB", "GB", "TB"];
+				let unitIndex = 0;
+	
+				while (bytes >= 1024 && unitIndex < units.length - 1) {
+					bytes /= 1024;
+					unitIndex++;
+				}
+	
+				return unitIndex;
+			}
+
+			// Determine the appropriate unit index for the total size
+			const totalUnitIndex = determineUnitIndex(download.totalBytes);
+			const units = ["B", "KB", "MB", "GB", "TB"];
+			const unit = units[totalUnitIndex];
+
+			if (download.hasProgress) {
+				downloadItem.dataset.state = "progress";
+
+				if (!download.canceled || !download.error) {
+					downloadItem.style.setProperty('--gkdownload-progress', `${download.progress}%`);
+
+					// Update the downloaded size / total file size using the same unit
+					const downloadedSize = formatSize(download.currentBytes, totalUnitIndex);
+					const totalSize = formatSize(download.totalBytes, totalUnitIndex);
+						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${downloadedSize}/${totalSize} ${unit},\xa0		`;
+							
+					// Calculate and update download speed	
+					const remainingBytes = download.totalBytes - download.currentBytes;
+					const currentTime = Date.now();
+					const elapsedTime = (currentTime - downloadItem.dataset.previousTime) / 1000;
+					const downloadSpeed = (download.currentBytes - downloadItem.dataset.previousBytes) / elapsedTime;
+					const estimatedTimeRemaining = remainingBytes / downloadSpeed;
+
+					if (!isNaN(estimatedTimeRemaining)) {
+						const minutes = Math.floor(estimatedTimeRemaining / 60);
+						const seconds = Math.floor(estimatedTimeRemaining % 60);
+						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = `${minutes}m ${seconds}s`;
+					}
+
+					// Update previous values for the next calculation
+					downloadItem.dataset.previousBytes = download.currentBytes;
+					downloadItem.dataset.previousTime = currentTime;
+				}
+			}
+
+			if (download.succeeded) {
+				downloadItem.dataset.state = "done";
+			} else if (download.canceled) {
+				downloadItem.dataset.state = "canceled";
+				document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `Canceled`;
+				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = ``;
+			} 	else if (download.error) {
+				downloadItem.dataset.state = "error";
+				document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `Canceled`;
+				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = ``;
+			}
+		}
 	}
 }
 
