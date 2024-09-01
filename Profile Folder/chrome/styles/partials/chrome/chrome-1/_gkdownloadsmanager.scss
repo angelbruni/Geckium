@@ -38,10 +38,12 @@
 	border-block-start: 1px solid var(--gkdownloads-pane-border-color);
     background-color: var(--gkdownloads-pane-background);
 
-    button {
+    button,
+    toolbarbutton {
         appearance: none !important;
         margin: 0 !important;
         min-width: 0 !important;
+        padding: 0 !important;
     }
 }
 
@@ -74,6 +76,24 @@
 			opacity: 1;
 			animation: gkDownloadsBegin .8s ease-out forwards;
 		}
+
+        &[data-state="done"],
+        &[data-state="canceled"],
+        &[data-state="error"] {
+            .progress-container {
+                background-image: none;
+
+                > [class*="progress"] {
+                    display: none;
+                }
+            }
+        }
+
+        &[data-state="done"] {
+            .description {
+                display: none;
+            }
+        }
 
         .progress-container,
         .progress-container > [class*="progress"] {
@@ -138,6 +158,10 @@
 			image {
 				filter: drop-shadow(0px 1px 0px rgba(255, 255, 255, .75));
 			}
+
+            .toolbarbutton-text {
+                display: none !important;
+            }
         }
 
         label {
