@@ -462,7 +462,8 @@
 			.toolbarbutton-badge-stack,
 			.toolbarbutton-icon,
 			image:first-of-type {
-				opacity: 0.5;
+				// This needs `!important` because for some reason when the windows is inactive in some buttons the opacity is set to 1...
+				opacity: 0.5 !important;
 			}
 		}
 	}
@@ -676,7 +677,7 @@
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
 		
 		&[gkchrthemehastoolbar] {
-			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
+			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))), var(--chrtheme-frame) !important;
 			--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
 
 			#nav-bar {
