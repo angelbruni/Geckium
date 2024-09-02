@@ -13,12 +13,8 @@ class gkDownloadsManager {
 	static paneTemplate = `
 	<html:div id="gkDownloadsList" />
 	<html:div id="gkDownloadsActionButtons">
-		<button id="gkDownloadsPaneShowAll">
-			Show all downloads...
-		</button>
-		<button id="gkDownloadsPaneToggle">
-			x
-		</button>
+		<button id="gkDownloadsPaneShowAll" label="Show all downloads..." />
+		<button id="gkDownloadsPaneToggle" />
 	</html:div>
 	`
 
@@ -30,8 +26,7 @@ class gkDownloadsManager {
         //const browserElm = document.getElementById("browser");
 		const browserElm = document.getElementById("tabbrowser-tabpanels");
         const downloadsPane = document.createElement("div");
-		downloadsPane.setAttribute("hidden", true);
-        downloadsPane.id = "gkDownloadsPane";
+		downloadsPane.id = "gkDownloadsPane";				
         gkInsertElm.after(downloadsPane, browserElm);
 		downloadsPane.appendChild(MozXULElement.parseXULToFragment(this.paneTemplate));
 
@@ -47,31 +42,39 @@ class gkDownloadsManager {
 			list.addView({
 				onDownloadAdded: download => {
 					const downloadItem = gkDownloadsManager.createItem(download);
-					document.getElementById("gkDownloadsList").appendChild(MozXULElement.parseXULToFragment(downloadItem));
-
-						document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
-							if (download.stopped)
-								download.start();
+					document.getElementById("gkDownloadsList").prepend(downloadItem);
+					document.querySelector(`.item[id="${download.target.path}"] .main`).addEventListener("click", () => {
+						if (download.hasProgress && !download.succeeded) {
+							if (download.launchWhenSucceeded)
+								download.launchWhenSucceeded = false;
 							else
-								download.cancel();
-						})
+								download.launchWhenSucceeded = true;
+						} else if (download.hasProgress && download.succeeded) {
+							download.launch().catch(console.error);
+						}
+					});
+
+					document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
+						if (download.stopped)
+							download.start();
+						else
+							download.cancel();
+					});
 
 					// Initialize previous bytes and time for download speed calculation
 					downloadItem.dataset.previousBytes = 0;
 					downloadItem.dataset.previousTime = Date.now();
-
-					download.onchange = function () {
-						gkDownloadsManager.updateItem(download);
-					};
 				},
 				onDownloadChanged: download => {
 					gkDownloadsManager.updateItem(download);
 				},
 				onDownloadRemoved: download => {
-					const downloadItem = document.querySelector(`[data-download-id="${download.target.path}"]`);
-					if (downloadItem) {
+					const downloadItem = document.querySelector(`.item[id="${download.target.path}"]`);
+					if (downloadItem)
 						downloadItem.remove();
-					}
+
+					if (document.getElementById("gkDownloadsList").children.length == 0)
+						gkDownloadsManager.togglePane("hide");
 				}
 			});
 		}).catch(console.error);
@@ -80,13 +83,13 @@ class gkDownloadsManager {
 	static togglePane(toggle) {
 		if (!toggle) {
 			if (this.pane.getAttribute("hidden"))
-				this.pane.removeAttribute("hidden");
+				this.pane.setAttribute("hidden", false);
 			else
 				this.pane.setAttribute("hidden", true);	
 		} else {
 			switch (toggle) {
 				case "show":
-					this.pane.removeAttribute("hidden");	
+					this.pane.setAttribute("hidden", false);	
 					break;
 				case "hide":
 					this.pane.setAttribute("hidden", true);
@@ -101,13 +104,18 @@ class gkDownloadsManager {
 		<hbox class="item" id="${download.target.path}" style="--gkdownload-progress: 0;">
 			<image class="anim-begin" />
 			<button class="main" flex="1">
+				<html:div class="background">
+					<html:div class="normal" />
+					<html:div class="hot" />
+					<html:div class="active" />
+				</html:div>
 				<html:div class="progress-container">
 					<html:div class="progress-bg" />
 					<html:div class="progress-mask" />
 				<image class="icon" src="moz-icon://${download.target.path}?size=16&amp;state=normal" />
 				</html:div>
 				<vbox class="info">
-					<label>${download.target.path.split("/").pop()}</label>
+					<label class="name">${download.target.path.split("/").pop()}</label>
 					<html:div class="description">
 						<label class="size" />
 						<label class="eta" />
@@ -115,12 +123,19 @@ class gkDownloadsManager {
 				</vbox>
 			</button>
 			<toolbarbutton class="more" type="menu">
+				<html:div class="background">
+					<html:div class="normal" />
+					<html:div class="hot" />
+					<html:div class="active" />
+				</html:div>
+				<html:div class="separator" />
+				<image class="toolbarbutton-icon" type="menu"/>
 				<menupopup position="before_start">
 					<menuitem label="Open when done" />
 					<menuitem label="Always open files of this type" />
 					<menuseparator />
-					<menuitem class="pause" label="Pause" />
-					<menuitem class="show" label="Show in folder" />	
+					<menuitem class="pause" data-l10n-id="downloads-cmd-pause" />
+					<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
 					<menuseparator />
 					<menuitem label="Cancel" />	
 				</menupopup>
@@ -130,7 +145,7 @@ class gkDownloadsManager {
 
 		this.togglePane("show");
 
-		return itemTemplate;
+		return MozXULElement.parseXULToFragment(itemTemplate);
 	}
 
 	static updateItem(download) {
@@ -171,7 +186,11 @@ class gkDownloadsManager {
 					// Update the downloaded size / total file size using the same unit
 					const downloadedSize = formatSize(download.currentBytes, totalUnitIndex);
 					const totalSize = formatSize(download.totalBytes, totalUnitIndex);
-						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${downloadedSize}/${totalSize} ${unit},\xa0		`;
+
+					if (download.launchWhenSucceeded)
+						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = ``;
+					else
+						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${downloadedSize}/${totalSize} ${unit},\xa0`;
 							
 					// Calculate and update download speed	
 					const remainingBytes = download.totalBytes - download.currentBytes;
@@ -181,9 +200,10 @@ class gkDownloadsManager {
 					const estimatedTimeRemaining = remainingBytes / downloadSpeed;
 
 					if (!isNaN(estimatedTimeRemaining)) {
-						const minutes = Math.floor(estimatedTimeRemaining / 60);
-						const seconds = Math.floor(estimatedTimeRemaining % 60);
-						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = `${minutes}m ${seconds}s`;
+						if (download.launchWhenSucceeded)
+							document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = `Opening in ${formatETA(estimatedTimeRemaining)}...`;
+						else
+							document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = `${formatETA(estimatedTimeRemaining)} left`;
 					}
 
 					// Update previous values for the next calculation
@@ -198,10 +218,27 @@ class gkDownloadsManager {
 				downloadItem.dataset.state = "canceled";
 				document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `Canceled`;
 				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = ``;
-			} 	else if (download.error) {
+			} else if (download.error) {
 				downloadItem.dataset.state = "error";
 				document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `Canceled`;
 				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = ``;
+			}
+		}
+		
+		function formatETA(seconds) {
+			const timeUnits = [
+				{ unit: "year", 	seconds: 31536000 },
+				{ unit: "month",	seconds: 2592000 },
+				{ unit: "day", 		seconds: 86400 },
+				{ unit: "hour", 	seconds: 3600 },
+				{ unit: "min", 		seconds: 60 },
+				{ unit: "sec", 		seconds: 1 }
+			];
+	
+			for (const { unit, seconds: unitSeconds } of timeUnits) {
+				const count = Math.floor(seconds / unitSeconds);
+				if (count > 0)
+					return `${count} ${unit}${count > 1 ? "s" : ""}`;
 			}
 		}
 	}
