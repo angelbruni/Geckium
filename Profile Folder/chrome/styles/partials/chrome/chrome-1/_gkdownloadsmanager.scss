@@ -63,8 +63,7 @@
 
 :root {
 	--gkdownloads-pane-height: 43px;
-	--default-gkdownloads-pane-border-color: #D6D6D6;
-	--gkdownloads-pane-border-color: var(--default-gkdownloads-pane-border-color);
+	--gkdownloads-pane-border-color: #D6D6D6;
 	--default-gkdownloads-pane-background: #D2E1F6;
 	--gkdownloads-pane-background: var(--default-gkdownloads-pane-background);
 	--default-gkdownloads-pane-foreground-color: #123272;
@@ -79,36 +78,53 @@
 	--gkdownloads-item-border-radius: 6px;
 	--gkdownloads-item-height: 36px;
 	--gkdownloads-item-max-width: 206px;
-	--default-gkdownloads-item-border-color-normal: rgba(0,0,0,.14);
-	--gkdownloads-item-border-color-normal: var(--default-gkdownloads-item-border-color-normal);
-	--default-gkdownloads-item-border-color-hot: var(--gkdownloads-item-border-color-normal	);
-	--gkdownloads-item-border-color-hot: var(--default-gkdownloads-item-border-color-hot);
-	--default-gkdownloads-item-border-color-active: rgba(255,255,255,.2);
-	--gkdownloads-item-border-color-active: var(--default-gkdownloads-item-border-color-active);
-	--gkdownloads-item-separator-color-normal: #CFDBEC;
-	--gkdownloads-item-separator-color-active: #A8C6EE;
-	--default-gkdownloads-item-background-normal: linear-gradient(
+	--gkdownloads-item-border-inline-start-color-normal: rgba(0,0,0,.14);
+	--gkdownloads-item-border-inline-end-color-normal: var(--gkdownloads-item-border-inline-start-color-normal);
+	--gkdownloads-item-border-block-start-color-normal: var(--gkdownloads-item-border-inline-start-color-normal);
+	--gkdownloads-item-border-block-end-color-normal: var(--gkdownloads-item-border-inline-start-color-normal);
+	--gkdownloads-item-border-inline-start-color-hot: var(--gkdownloads-item-border-inline-start-color-normal);
+	--gkdownloads-item-border-inline-end-color-hot: var(--gkdownloads-item-border-inline-end-color-normal);
+	--gkdownloads-item-border-block-start-color-hot: var(--gkdownloads-item-border-block-start-color-normal);
+	--gkdownloads-item-border-block-end-color-hot: var(--gkdownloads-item-border-block-end-color-normal);
+	--gkdownloads-item-border-inline-start-color-active: rgba(255,255,255,.2);
+	--gkdownloads-item-border-inline-end-color-active: rgba(255,255,255,.2);
+	--gkdownloads-item-border-block-start-color-active: rgba(255,255,255,.2);
+	--gkdownloads-item-border-block-end-color-active: rgba(255,255,255,.2);
+	--gkdownloads-item-separator-border-inline-start-color-normal: rgba(0,0,0,.06);
+	--gkdownloads-item-separator-border-inline-start-color-hot: rgba(0,0,0,.12);
+	--gkdownloads-item-separator-border-inline-start-color-active: rgba(0,0,0,.26);
+	--gkdownloads-item-separator-border-inline-end-color-normal: rgba(255,255,255,.06);
+	--gkdownloads-item-separator-border-inline-end-color-hot: rgba(255,255,255,.09);
+	--gkdownloads-item-separator-border-inline-end-color-active: rgba(0,0,0,.01);
+	--gkdownloads-item-background-normal: linear-gradient(
 		to bottom,
 		rgba(255,255,255,.3),
 		rgba(238,245,252,.3)
 	);
-	--gkdownloads-item-background-normal: var(--default-gkdownloads-item-background-normal);
-	--default-gkdownloads-item-background-hot: linear-gradient(
+	--gkdownloads-item-background-hot: linear-gradient(
 		to bottom,
 		rgba(255,255,255,.4),
 		rgba(248,250,255,.4)
 		
 	);
-	--gkdownloads-item-background-hot: var(--default-gkdownloads-item-background-hot);
-	--default-gkdownloads-item-main-background-active: linear-gradient(
+	--gkdownloads-item-main-background-active: linear-gradient(
 		to bottom,
 		rgba(255,255,255,.2),
 		rgba(240,245,255,.2)
 	);
 	--gkdownloads-item-main-background-active: var(--default-gkdownloads-item-main-background-active);
-	--gkdownloads-item-inset-border-color-normal: rgba(255,255,255,.21);
-	--gkdownloads-item-inset-border-color-hot: rgba(255,255,255,.3);
-	--gkdownloads-item-inset-border-color-active: rgba(0,0,0,.18);
+	--gkdownloads-item-inset-border-block-start-color-normal: rgba(255,255,255,.21);
+	--gkdownloads-item-inset-border-block-end-color-normal: transparent;
+	--gkdownloads-item-inset-border-inline-start-color-normal: rgba(255,255,255,.21);
+	--gkdownloads-item-inset-border-inline-end-color-normal: transparent;
+	--gkdownloads-item-inset-border-block-start-color-hot: rgba(255,255,255,.3);
+	--gkdownloads-item-inset-border-block-end-color-hot: transparent;
+	--gkdownloads-item-inset-border-inline-start-color-hot: rgba(255,255,255,.3);
+	--gkdownloads-item-inset-border-inline-end-color-hot: transparent;
+	--gkdownloads-item-inset-border-block-start-color-active: rgba(0,0,0,.18);
+	--gkdownloads-item-inset-border-block-end-color-active: transparent;
+	--gkdownloads-item-inset-border-inline-start-color-active: rgba(0,0,0,.18);
+	--gkdownloads-item-inset-border-inline-end-color-active: transparent;
 	--gkdownloads-item-progress-color: #8FDF5F;
 	--gkdownloads-item-description-color-normal: #556C9A;
 	--gkdownloads-item-description-color-hot: #96A4C2;
@@ -128,10 +144,6 @@
 		&[gkchrthemehasdownloadbar] {
 			--gkdownloads-pane-background: var(--chrtheme-downloadbar, var(--default-gkdownloads-pane-background));
 			--gkdownloads-pane-foreground-color: var(--chrtheme-bookmark-text, var(--default-gkdownloads-pane-foreground-color));
-
-			#gkDownloadsPane {
-				background-position-y: calc((var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height)) * -1);
-			}
 		}
 	}
 }
@@ -185,7 +197,6 @@
 		width: 100%;
 		height: var(--gkdownloads-item-height);
 		border-radius: var(--gkdownloads-item-border-radius);
-		// overflow: hidden;
 		max-width: 0;
 		animation: gkDownloadsItemStart var(--gkdownloads-item-animation-grow-duration) ease-out forwards;
 
@@ -206,7 +217,7 @@
 
 		&[data-state="done"] {
 			.description {
-			display: none;
+				display: none;
 			}
 
 			.progress-container > [class*="progress"] {
@@ -255,9 +266,8 @@
 			position: relative;
 			border-width: 1px;
 			border-style: solid;
-			border-block-color: var(--gkdownloads-item-border-color-normal);
-			//background: var(--gkdownloads-item-background-normal);
-			//box-shadow: var(--gkdownloads-item-box-shadow-normal);
+			border-block-start-color: var(--gkdownloads-item-border-block-start-color-normal);
+			border-block-end-color: var(--gkdownloads-item-border-block-end-color-normal);
 			overflow: hidden !important;
 
 			transition: border-color var(--gkdownloads-item-transition-duration), box-shadow var(--gkdownloads-item-transition-duration);
@@ -269,10 +279,13 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				border-block-start-width: 1px;
-				border-block-start-style: solid;
-				border-color: var(--gkdownloads-item-inset-border-color-normal);
-				transition: border-color var(--gkdownloads-item-transition-duration)
+				border-width: 1px;
+				border-style: solid;
+				border-block-start-color: var(--gkdownloads-item-inset-border-block-start-color-normal);
+				border-block-end-color: var(--gkdownloads-item-inset-border-block-end-color-normal);
+				border-inline-start-color: var(--gkdownloads-item-inset-border-inline-start-color-normal);
+				border-inline-end-color: var(--gkdownloads-item-inset-border-inline-end-color-normal);
+				transition: border-color var(--gkdownloads-item-transition-duration);
 			}
 
 			> .background {
@@ -308,12 +321,16 @@
 				[open="true"],
 				:active
 			) {
-				&::after {
-					border-color: var(--gkdownloads-item-inset-border-color-hot);
-				}
-
 				&:hover {
-					border-block-color: var(--gkdownloads-item-border-color-hot);
+					&::after {
+						border-block-start-color: var(--gkdownloads-item-inset-border-block-start-color-hot);
+						border-block-end-color: var(--gkdownloads-item-inset-border-block-end-color-hot);
+						border-inline-start-color: var(--gkdownloads-item-inset-border-inline-start-color-hot);
+						border-inline-end-color: var(--gkdownloads-item-inset-border-inline-end-color-hot);
+					}
+
+					border-block-start-color: var(--gkdownloads-item-border-block-start-color-hot);
+					border-block-end-color: var(--gkdownloads-item-border-block-end-color-hot);
 					box-shadow: var(--gkdownloads-item-box-shadow-hot);
 
 					> .background {
@@ -331,10 +348,15 @@
 
 			&:active,
 			&[open="true"] {
+				border-block-start-color: var(--gkdownloads-item-border-block-start-color-active);
+				border-block-end-color: var(--gkdownloads-item-border-block-end-color-active);
 				transition: border-color 0s, box-shadow 0s;
 
 				&::after {
-					border-color: var(--gkdownloads-item-inset-border-color-active);
+					border-block-start-color: var(--gkdownloads-item-inset-border-block-start-color-active);
+					border-block-end-color: var(--gkdownloads-item-inset-border-block-end-color-active);
+					border-inline-start-color: var(--gkdownloads-item-inset-border-inline-start-color-active);
+					border-inline-end-color: var(--gkdownloads-item-inset-border-inline-end-color-active);
 					transition: border-color 0s;
 				}
 
@@ -358,7 +380,7 @@
 		> .main {
 			border-top-left-radius: var(--gkdownloads-item-border-radius);
 			border-bottom-left-radius: var(--gkdownloads-item-border-radius);
-			border-inline-start-color: var(--gkdownloads-item-border-color-normal);
+			border-inline-start-color: var(--gkdownloads-item-border-inline-start-color-normal);
 			border-inline-end-width: 0;
 			padding-inline: 2px !important;
 			justify-content: center;
@@ -376,7 +398,7 @@
 
 			&:not(:active) {
 				&:hover {
-					border-inline-start-color: var(--gkdownloads-item-border-color-hot);
+					border-inline-start-color: var(--gkdownloads-item-border-inline-start-color-hot);
 	
 					.description {
 						color: var(--gkdownloads-item-description-color-hot);
@@ -385,9 +407,7 @@
 			}
 
 			&:active {
-				border-block-color: var(--gkdownloads-item-border-color-active);
-				border-inline-start-color: var(--gkdownloads-item-border-color-active);
-				//background: var(--gkdownloads-item-main-background-active);
+				border-inline-start-color: var(--gkdownloads-item-border-inline-start-color-active);
 				box-shadow: var(--gkdownloads-item-main-box-shadow-active);
 
 				.description {
@@ -409,7 +429,7 @@
 			border-top-right-radius: var(--gkdownloads-item-border-radius);
 			border-bottom-right-radius: var(--gkdownloads-item-border-radius);
 			border-inline-start-width: 0;
-			border-inline-end-color: var(--gkdownloads-item-border-color-normal);
+			border-inline-end-color: var(--gkdownloads-item-border-inline-start-color-normal);
 			align-items: center;
 			width: 15px;
 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadspane/arrow.svg");
@@ -423,23 +443,24 @@
 
 			&:not([open="true"]) {
 				&:hover {
-					border-inline-end-color: var(--gkdownloads-item-border-color-hot);
+					border-inline-end-color: var(--gkdownloads-item-border-inline-end-color-hot);
 
 					> .separator {
-						border-inline-start-color: rgba(0,0,0,.32);
-						border-inline-end-color: rgba(255,255,255,.09);
+						border-inline-start-color: var(--gkdownloads-item-separator-border-inline-start-color-hot);
+						border-inline-end-color: var(--gkdownloads-item-separator-border-inline-end-color-hot);
 					}
 				}
 			}
 			
 			&:active,
 			&[open="true"] {
-				border-block-color: var(--gkdownloads-item-border-color-active);
-				border-inline-end-color: var(--gkdownloads-item-border-color-active);
+				border-block-start-color: var(--gkdownloads-item-border-block-start-color-active);
+				border-block-end-color: var(--gkdownloads-item-border-block-end-color-active);
+				border-inline-end-color: var(--gkdownloads-item-border-inline-end-color-active);
 
 				> .separator {
-					border-inline-start-color: rgba(0,0,0,.26);
-					border-inline-end-color: rgba(0,0,0,.01);
+					border-inline-start-color: var(--gkdownloads-item-separator-border-inline-start-color-active);
+					border-inline-end-color: var(--gkdownloads-item-separator-border-inline-end-color-active);
 					transition: border-color 0s;
 				}
 			}
@@ -456,10 +477,10 @@
 				height: calc(100% - 2px);
 				border-inline-start-width: 1px;
 				border-inline-start-style: solid;
-				border-inline-start-color: rgba(0,0,0,.26);
+				border-inline-start-color: var(--gkdownloads-item-separator-border-inline-start-color-normal);
 				border-inline-end-width: 1px;
 				border-inline-end-style: solid;
-				border-inline-end-color: rgba(255,255,255,.06);
+				border-inline-end-color: var(--gkdownloads-item-separator-border-inline-end-color-normal);
 				transition: border-color var(--gkdownloads-item-transition-duration)
 			}
 			
