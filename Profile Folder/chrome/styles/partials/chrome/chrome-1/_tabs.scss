@@ -152,7 +152,7 @@
 		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 		--theme-newtab: var(--chrtheme-control-background, var(--default-theme-newtab)) !important;
 		&[gkchrthemehastoolbar] {
-			--selected-tab-background: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))) !important;
+			--selected-tab-background: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 			--tabbrowser-tab-color: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
 		}
 	}

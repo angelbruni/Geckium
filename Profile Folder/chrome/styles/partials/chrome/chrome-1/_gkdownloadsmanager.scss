@@ -125,9 +125,9 @@
 	*/
 
 	&[gkthemed][gkchrthemed] {
-		&[gkchrthemehastoolbar] {
-			--gkdownloads-pane-background: var(--nav-bar, var(--default-gkdownloads-pane-background));
-			--gkdownloads-pane-foreground-color: var(--chrtheme-tab-text, var(--default-gkdownloads-pane-foreground-color));
+		&[gkchrthemehasdownloadbar] {
+			--gkdownloads-pane-background: var(--chrtheme-downloadbar, var(--default-gkdownloads-pane-background));
+			--gkdownloads-pane-foreground-color: var(--chrtheme-bookmark-text, var(--default-gkdownloads-pane-foreground-color));
 
 			#gkDownloadsPane {
 				background-position-y: calc((var(--tab-height) + var(--nav-bar-height) + var(--personal-toolbar-height)) * -1);

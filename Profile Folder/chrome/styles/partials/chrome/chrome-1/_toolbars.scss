@@ -677,8 +677,8 @@
 		--bookmark-item-color: var(--chrtheme-bookmark-text, var(--default-bookmark-item-color)) !important;
 		
 		&[gkchrthemehastoolbar] {
-			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar, var(--default-nav-bar))), var(--chrtheme-frame) !important;
-			--personal-toolbar: var(--nav-bar, var(--default-personal-toolbar)) !important;
+			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
+			--personal-toolbar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 
 			#nav-bar {
 				background-position-y: calc(var(--tab-height) * -1) !important;
