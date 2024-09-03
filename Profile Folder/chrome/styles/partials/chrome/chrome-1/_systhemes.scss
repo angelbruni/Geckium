@@ -209,6 +209,10 @@
 		--default-personal-toolbar-border-bottom: ThreeDShadow;
 		--default-bookmark-item-color: -moz-dialogtext;
 
+		// Downloads Shelf
+		--default-gkdownload-shelf-background: -moz-dialog;
+		--default-gkdownload-shelf-foreground-color: -moz-dialogtext;
+
 		&[privatebrowsingmode="temporary"] {
 			// Titlebar
 			--default-titlebar-active: linear-gradient(
@@ -565,7 +569,7 @@
 			);
 			--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.8);
 			&:not([geckium-eleven]) {
-			--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
+				--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) + 27%), 0.45);
 			}
 			&:not([geckium-six]) {
 				--default-selected-tab-background: linear-gradient(
@@ -607,6 +611,14 @@
 			}
 			&:not([geckium-twentyone]) {
 				--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+			}
+
+			// Download Shelf
+			&:not([geckium-six]) {
+				--default-gkdownload-shelf-background: hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%));
+			}
+			&:not([geckium-twentyfive]) {
+				--default-gkdownload-shelf-foreground-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
 			}
 
 			@media (prefers-color-scheme: dark) {

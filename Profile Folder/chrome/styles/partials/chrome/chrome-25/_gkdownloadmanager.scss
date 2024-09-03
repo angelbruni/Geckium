@@ -1,0 +1,86 @@
+& {
+	--default-gkdownload-shelf-background: #DFDFDF;
+	--default-gkdownload-shelf-foreground-color: black;
+
+	--gkdownload-shelf-list-margin-inline: 3px;
+	--gkdownload-shelf-list-margin-block-start: 2px;
+	--gkdownload-shelf-list-margin-block-end: 3px;
+	--gkdownload-shelf-list-gap: 2px;
+
+	--gkdownload-item-box-shadow-normal: 0px 1px 0px 0px rgba(144,144,144,.33);
+	--gkdownload-item-box-shadow-hot: var(--gkdownload-item-box-shadow-normal);
+	--gkdownload-item-box-shadow-active: 0px 1px 0px 0px rgba(255,255,255,.41);
+	--gkdownload-item-border-radius: 3px;
+	--gkdownload-item-border-block-start-color-normal: rgba(0,0,0,.09);
+	--gkdownload-item-border-block-start-color-hot: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-block-start-color-active: rgba(0,0,0,.49);
+	--gkdownload-item-border-block-end-color-normal: rgba(0,0,0,.4);
+	--gkdownload-item-border-block-end-color-hot: var(--gkdownload-item-border-block-end-color-normal);
+	--gkdownload-item-border-block-end-color-active: rgba(0,0,0,.28);
+	--gkdownload-item-border-inline-start-color-normal: rgba(0,0,0,.21);
+	--gkdownload-item-border-inline-start-color-hot: var(--gkdownload-item-border-inline-start-color-normal);
+	--gkdownload-item-border-inline-start-color-active: rgb(0,0,0,.12);
+	--gkdownload-item-border-inline-end-color-normal: var(-gkdownload-item-border-inline-start-color-normal);
+	--gkdownload-item-border-inline-end-color-hot: var(--gkdownload-item-border-inline-end-color-normal);
+	--gkdownload-item-background-normal: linear-gradient(
+		to bottom,
+		rgba(252,252,252,.38) 2%,	
+		rgba(255,255,255,.27) 2%,
+		rgba(255,255,255,.22) 69.23%,
+		rgba(255,255,255,.2) 69.23%,
+		rgba(255,255,255,.19) 98%,
+		rgba(243,243,243,.34) 98%
+	);
+	--gkdownload-item-background-hot: linear-gradient(
+		to bottom,
+		rgba(253,253,253,.52) 2%,	
+		rgba(255,255,255,.45) 2%,
+		rgba(255,255,255,.37) 69.23%,
+		rgba(255,255,255,.33) 69.23%,
+		rgba(255,255,255,.32) 98%,
+		rgba(248,248,248,.43) 98%
+	);
+	--gkdownload-item-background-active: linear-gradient(
+		rgba(0,0,0,.14) 2%,
+		rgba(0,0,0,.18) 98%
+	);
+	--gkdownload-item-inset-border-block-start-color-normal: rgba(255,255,255,.42);
+	--gkdownload-item-inset-border-block-start-color-hot: rgba(253,253,253,.30);
+	--gkdownload-item-inset-border-block-start-color-active: rgba(0,0,0,.04);
+	--gkdownload-item-inset-border-block-end-color-normal: rgba(255,255,255,.14);
+	--gkdownload-item-inset-border-block-end-color-hot: rgba(255,255,255,.007);
+	--gkdownload-item-inset-border-block-end-color-active: rgba(0,0,0,.01);
+	--gkdownload-item-inset-border-inline-start-color-normal: rgba(255,255,255,.2);
+	--gkdownload-item-inset-border-inline-start-color-hot: rgba(255,255,255,.15);
+	--gkdownload-item-inset-border-inline-start-color-active: rgba(0,0,0,.14);
+	--gkdownload-item-inset-border-inline-end-color-normal: var(--gkdownload-item-inset-border-inline-start-color-normal);
+	--gkdownload-item-inset-border-inline-end-color-active: var(--gkdownload-item-inset-border-inline-start-color-active);
+	--gkdownload-item-separator-border-inline-start-color-normal: rgba(0,0,0,.10);
+	--gkdownload-item-separator-border-inline-start-color-hot: rgba(0,0,0,.16);
+	--gkdownload-item-separator-border-inline-start-color-active: rgba(0,0,0,.13);
+	--gkdownload-item-separator-border-inline-end-color-normal: rgba(255,255,255,.37);
+	--gkdownload-item-separator-border-inline-end-color-hot: rgba(255,255,255,.27);
+	--gkdownload-item-separator-border-inline-end-color-hot: rgba(0,0,0,.015);
+	--gkdownload-item-more-icon-color: rgba(0,0,0,.39);
+	--gkdownload-item-description-color-normal: #3A3A3A;
+	--gkdownload-item-description-color-hot: #3A3A3A;
+	--gkdownload-item-description-color-active: #3A3A3A;
+
+	/*
+		Chromium Themes
+	*/
+	&[gkthemed][gkchrthemed] {
+		&[gkchrthemehasdownloadshelf] {
+			--gkdownload-shelf-foreground-color: var(--default-gkdownload-shelf-foreground-color);
+			--gkdownload-item-name-color: var(--chrtheme-bookmark-text, var(--default-gkdownload-item-name-color));
+		}
+	}
+
+	/*
+		LightWeight (aka Firefox) Themes
+	*/
+	&[gkthemed]:not([gkchrthemed]) {
+		--gkdownload-shelf-foreground-color: var(--default-gkdownload-shelf-foreground-color);
+		--gkdownload-item-name-color: var(--bookmark-item-color, var(--default-gkdownload-item-name-color));
+	}
+}

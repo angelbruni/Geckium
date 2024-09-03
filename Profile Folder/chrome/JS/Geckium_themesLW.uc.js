@@ -120,6 +120,19 @@ class gkLWTheme {
             isThemed = gkLWTheme.isThemed;
             if (isThemed) {
                 document.documentElement.setAttribute("gkthemed", true);
+                // Get header height
+                const headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "");
+                console.log(headerImg);
+                if (headerImg !== null) {
+                    var imagePath = headerImg;
+                    // Note the attribution image's size
+                    var img = new Image();
+                    img.src = imagePath;
+                    img.onload = function() {
+                        document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
+                        console.log("me WHEN", this.height);
+                    };
+                }
                 // Ensure the toolbar colour is opaque
                 var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
                 if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
@@ -146,6 +159,7 @@ class gkLWTheme {
                 }
             } else {
                 document.documentElement.removeAttribute("gkthemed");
+                document.documentElement.style.removeProperty("--titlebar-pseudo-height");
             }
             if (isBrowserWindow) {
                 // Reapply titlebar to toggle native mode if applicable to
