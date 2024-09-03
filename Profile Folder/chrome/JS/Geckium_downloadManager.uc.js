@@ -9,40 +9,40 @@
  * THIS IS SUPER EXPERIMENTAL, IT WILL HAVE BUGS.
  */
 
-class gkDownloadsManager {
+class gkdownloadmanager {
 	static paneTemplate = `
-	<html:div id="gkDownloadsList" />
-	<html:div id="gkDownloadsActionButtons">
-		<button id="gkDownloadsPaneShowAll" label="Show all downloads..." />
-		<button id="gkDownloadsPaneToggle" />
+	<html:div id="gkDownloadList" />
+	<html:div id="gkDownloadActionButtons">
+		<button id="gkDownloadShelfShowAll" label="Show all downloads..." />
+		<button id="gkDownloadShelfToggle" />
 	</html:div>
 	`
 
-	static get pane() {
-		return document.getElementById("gkDownloadsPane");
+	static get shelf() {
+		return document.getElementById("gkDownloadShelf");
 	}
 
     static createPane() {
         //const browserElm = document.getElementById("browser");
 		const browserElm = document.getElementById("tabbrowser-tabpanels");
-        const downloadsPane = document.createElement("div");
-		downloadsPane.id = "gkDownloadsPane";				
-        gkInsertElm.after(downloadsPane, browserElm);
-		downloadsPane.appendChild(MozXULElement.parseXULToFragment(this.paneTemplate));
+        const downloadShelf = document.createElement("div");
+		downloadShelf.id = "gkDownloadShelf";				
+        gkInsertElm.after(downloadShelf, browserElm);
+		downloadShelf.appendChild(MozXULElement.parseXULToFragment(this.paneTemplate));
 
-		document.getElementById("gkDownloadsPaneShowAll").addEventListener("click", () => {
+		document.getElementById("gkDownloadShelfShowAll").addEventListener("click", () => {
 			openTrustedLinkIn('about:downloads', 'tab');
-			this.togglePane("hide");
+			this.toggleShelf("hide");
 		})
-		document.getElementById("gkDownloadsPaneToggle").addEventListener("click", () => {
-			this.togglePane("hide");	
+		document.getElementById("gkDownloadShelfToggle").addEventListener("click", () => {
+			this.toggleShelf("hide");	
 		});
 
 		Downloads.getList(Downloads.ALL).then(list => {
 			list.addView({
 				onDownloadAdded: download => {
-					const downloadItem = gkDownloadsManager.createItem(download);
-					document.getElementById("gkDownloadsList").prepend(downloadItem);
+					const downloadItem = gkdownloadmanager.createItem(download);
+					document.getElementById("gkDownloadList").prepend(downloadItem);
 					document.querySelector(`.item[id="${download.target.path}"] .main`).addEventListener("click", () => {
 						if (download.hasProgress && !download.succeeded) {
 							if (download.launchWhenSucceeded)
@@ -66,37 +66,36 @@ class gkDownloadsManager {
 					downloadItem.dataset.previousTime = Date.now();
 				},
 				onDownloadChanged: download => {
-					gkDownloadsManager.updateItem(download);
+					gkdownloadmanager.updateItem(download);
 				},
 				onDownloadRemoved: download => {
 					const downloadItem = document.querySelector(`.item[id="${download.target.path}"]`);
 					if (downloadItem)
 						downloadItem.remove();
 
-					if (document.getElementById("gkDownloadsList").children.length == 0)
-						gkDownloadsManager.togglePane("hide");
+					if (document.getElementById("gkDownloadList").children.length == 0)
+						gkdownloadmanager.toggleShelf("hide");
 				}
 			});
 		}).catch(console.error);
     }
 
-	static togglePane(toggle) {
+	static toggleShelf(toggle) {
 		if (!toggle) {
-			if (this.pane.getAttribute("hidden"))
-				this.pane.setAttribute("hidden", false);
+			if (this.shelf.getAttribute("hidden"))
+				this.shelf.setAttribute("hidden", false);
 			else
-				this.pane.setAttribute("hidden", true);	
+				this.shelf.setAttribute("hidden", true);	
 		} else {
 			switch (toggle) {
 				case "show":
-					this.pane.setAttribute("hidden", false);	
+					this.shelf.setAttribute("hidden", false);	
 					break;
 				case "hide":
-					this.pane.setAttribute("hidden", true);
+					this.shelf.setAttribute("hidden", true);
 					break;
 			}
 		}
-		
 	}
 
 	static createItem(download) {
@@ -143,7 +142,7 @@ class gkDownloadsManager {
 		</hbox>
 		`
 
-		this.togglePane("show");
+		this.toggleShelf("show");
 
 		return MozXULElement.parseXULToFragment(itemTemplate);
 	}
@@ -245,5 +244,5 @@ class gkDownloadsManager {
 }
 
 _ucUtils.windowIsReady(window).then(() => {
-	gkDownloadsManager.createPane();
+	gkdownloadmanager.createPane();
 });

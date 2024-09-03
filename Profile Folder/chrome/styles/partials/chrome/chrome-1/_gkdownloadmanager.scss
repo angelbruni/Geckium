@@ -1,0 +1,576 @@
+@keyframes gkDownloadShelfShow {
+	0% {
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+		margin-block-end: calc(var(--gkdownload-shelf-height) * -1);
+	}
+	100% {
+		clip-path: polygon(0 -800%, 100% -800%, 100% 100%, 0 100%);
+		margin-block-end: 0;
+	}
+}
+
+@keyframes gkDownloadShelfHide {
+	0% {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+		margin-block-end: 0;
+	}
+	100% {
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+		margin-block-end: calc(var(--gkdownload-shelf-height) * -1);
+	}
+}
+
+@keyframes gkDownloadItemStart {
+	0% {
+		max-width: 0px;
+	}
+	100% {
+		max-width: var(--gkdownload-item-max-width);
+	}
+}
+
+@keyframes gkDownloadItemBegin {
+	0% {
+		opacity: 1;
+		top: -230px;
+	}
+	100% {
+		opacity: 0;
+		top: -135px;
+	}
+}
+
+@keyframes gkDownloadItemProgressDone {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	60% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+:root {
+	--gkdownload-shelf-height: 43px;
+	--gkdownload-shelf-border-color: #D6D6D6;
+	--default-gkdownload-shelf-background: #D2E1F6;
+	--gkdownload-shelf-background: var(--default-gkdownload-shelf-background);
+	--default-gkdownload-shelf-foreground-color: #123272;
+	--gkdownload-shelf-foreground-color: var(--default-gkdownload-shelf-foreground-color);
+	--gkdownload-shelf-animation-toggle-duration: .1s;
+
+	--gkdownload-shelf-list-margin-inline: 3px;
+	--gkdownload-shelf-list-margin-block-start: 2px;
+	--gkdownload-shelf-list-margin-block-end: 3px;
+	--gkdownload-shelf-list-gap: 2px;
+
+	--gkdownload-item-animation-begin-duration: .8s;
+	--gkdownload-item-animation-grow-duration: .45s;
+	--gkdownload-item-box-shadow-normal: 0px 0px 0px 1px rgba(0,0,0,.025);
+	--gkdownload-item-box-shadow-hot: var(--gkdownload-item-box-shadow-normal);
+	--gkdownload-item-box-shadow-active: 0px 0px 0px 0px transparent;
+	--gkdownload-item-border-radius: 6px;
+	--gkdownload-item-height: 36px;
+	--gkdownload-item-max-width: 206px;
+	--gkdownload-item-border-width: 1px;
+	--gkdownload-item-border-block-start-color-normal: rgba(0,0,0,.14);
+	--gkdownload-item-border-block-end-color-normal: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-inline-start-color-normal: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-inline-end-color-normal: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-block-start-color-hot: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-block-end-color-hot: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-inline-start-color-hot: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-inline-end-color-hot: var(--gkdownload-item-border-block-start-color-normal);
+	--gkdownload-item-border-block-start-color-active: rgba(0,0,0,.18);
+	--gkdownload-item-border-block-end-color-active: rgba(189,189,189,.45);
+	--gkdownload-item-border-inline-start-color-active: var(--gkdownload-item-border-block-start-color-active);
+	--gkdownload-item-border-inline-end-color-active: var(--gkdownload-item-border-block-end-color-active);
+	--gkdownload-item-background-normal: linear-gradient(
+		to bottom,
+		rgba(255,255,255,.3),
+		rgba(238,245,252,.3)
+	);
+	--gkdownload-item-background-hot: linear-gradient(
+		to bottom,
+		rgba(255,255,255,.4),
+		rgba(248,250,255,.4)
+	);
+	--gkdownload-item-main-background-active: linear-gradient(
+		to bottom,
+		rgba(255,255,255,.2),
+		rgba(240,245,255,.2)
+	);
+	--gkdownload-item-inset-border-width: 1px;
+	--gkdownload-item-inset-border-block-start-color-normal: rgba(255,255,255,.21);
+	--gkdownload-item-inset-border-block-end-color-normal: transparent;
+	--gkdownload-item-inset-border-inline-start-color-normal: var(--gkdownload-item-inset-border-block-start-color-normal);
+	--gkdownload-item-inset-border-inline-end-color-normal: transparent;
+	--gkdownload-item-inset-border-block-start-color-hot: rgba(255,255,255,.3);
+	--gkdownload-item-inset-border-block-end-color-hot: transparent;
+	--gkdownload-item-inset-border-inline-start-color-hot: var(--gkdownload-item-inset-border-block-start-color-hot);
+	--gkdownload-item-inset-border-inline-end-color-hot: transparent;
+	--gkdownload-item-inset-border-block-start-color-active: rgba(0,0,0,.035);
+	--gkdownload-item-inset-border-block-end-color-active: rgba(255,255,255,.5);
+	--gkdownload-item-inset-border-inline-start-color-active: var(--gkdownload-item-inset-border-block-start-color-active);
+	--gkdownload-item-inset-border-inline-end-color-active: var(--gkdownload-item-inset-border-block-end-color-active);
+	--gkdownload-item-progress-color: #8FDF5F;
+	--default-gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
+	--gkdownload-item-name-color: var(--default-gkdownload-item-name-color);
+	--gkdownload-item-description-color-normal: #556C9A;
+	--gkdownload-item-description-color-hot: #96A4C2;
+	--gkdownload-item-description-color-active: #8899BA;
+	--gkdownload-item-separator-border-inline-start-color-normal: rgba(0,0,0,.06);
+	--gkdownload-item-separator-border-inline-start-color-hot: rgba(0,0,0,.12);
+	--gkdownload-item-separator-border-inline-start-color-active: rgba(0,0,0,.06);
+	--gkdownload-item-separator-border-inline-end-color-normal: rgba(255,255,255,.06);
+	--gkdownload-item-separator-border-inline-end-color-hot: rgba(255,255,255,.09);
+	--gkdownload-item-separator-border-inline-end-color-active: rgba(0,0,0,.01);
+	--gkdownload-item-more-width: 15px;
+	--gkdownload-item-more-height: 100%;
+	--gkdownload-item-more-icon-color: #516D9F;
+	--gkdownload-item-transition-duration: .1s;
+
+	--gkdownload-shelf-close-color-normal: #454B51;
+	--gkdownload-shelf-close-color-hot: #2B2E32;
+	--gkdownload-shelf-close-color-active: #111214;
+
+	/*
+		Chromium Themes
+	*/
+	&[gkthemed][gkchrthemed] {
+		&[gkchrthemehasdownloadshelf] {
+			--gkdownload-shelf-background: var(--chrtheme-downloadshelf, var(--default-gkdownload-shelf-background));
+			--gkdownload-shelf-foreground-color: var(--chrtheme-bookmark-text, var(--default-gkdownload-item-name-color));
+			--gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
+		}
+	}
+
+	/*
+		LightWeight (aka Firefox) Themes
+	*/
+	&[gkthemed]:not([gkchrthemed]) {
+		--gkdownload-shelf-background: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-gkdownload-shelf-background)));
+		--gkdownload-shelf-foreground-color: var(--bookmark-item-color, var(--default-gkdownload-item-name-color));
+		--gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
+	}
+}
+
+#gkDownloadShelf,
+#gkDownloadList,
+#gkDownloadActionButtons {
+	display: flex;
+}
+
+#gkDownloadShelf {
+	display: flex !important;
+	box-sizing: border-box;
+	height: var(--gkdownload-shelf-height);
+	padding-inline-end: 16px;
+	border-block-start: 1px solid var(--gkdownload-shelf-border-color);
+	background: var(--gkdownload-shelf-background);
+
+	pointer-events: none;
+	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+	margin-block-end: calc(var(--gkdownload-shelf-height) * -1);
+
+	&[hidden="true"] {
+		pointer-events: none;
+		animation: gkDownloadShelfHide var(--gkdownload-shelf-animation-toggle-duration) ease-out forwards;
+	}
+	&[hidden="false"] {
+		pointer-events: all	;
+		animation: gkDownloadShelfShow var(--gkdownload-shelf-animation-toggle-duration) ease-out forwards;
+	}
+
+	button,
+	toolbarbutton {
+		appearance: none !important;
+		margin: 0 !important;
+		min-width: 0 !important;
+		padding: 0 !important;
+	}
+}
+
+#gkDownloadList {	
+	flex: 1;
+
+	margin-inline: var(--gkdownload-shelf-list-margin-inline);
+	margin-block-start: var(--gkdownload-shelf-list-margin-block-start);
+	margin-block-end: var(--gkdownload-shelf-list-margin-block-end);
+	gap: var(--gkdownload-shelf-list-gap);
+
+	> .item {
+		position: relative;
+		width: 100%;
+		height: var(--gkdownload-item-height);
+		border-radius: var(--gkdownload-item-border-radius);
+		align-items: center;
+		max-width: 0;
+		animation: gkDownloadItemStart var(--gkdownload-item-animation-grow-duration) ease-out forwards;
+
+		&::before {
+			content: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/download_animation_begin.png");
+			position: absolute;
+			top: -230px;
+			opacity: 1;
+			animation: gkDownloadItemBegin var(--gkdownload-item-animation-begin-duration) ease-out forwards;
+		}
+
+		&[data-state="canceled"],
+		&[data-state="error"] {
+			.progress-container > [class*="progress"] {
+				display: none;
+			}
+		}
+
+		&[data-state="done"] {
+			.description {
+				display: none;
+			}
+
+			.progress-container > [class*="progress"] {
+				animation: gkDownloadItemProgressDone 2.5s linear forwards;
+			}
+		}
+
+		.progress-container,
+		.progress-container > [class*="progress"] {
+			top: 0;
+			left: 0;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			background-position: center;
+			background-size: cover;
+		}
+
+		.progress-container {
+			display: flex;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+
+			> .progress-bg {
+				background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_bg.svg");
+			}
+
+			> .progress-mask {
+				background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_mask.svg");
+				-moz-context-properties: fill, fill-opacity;
+				fill: var(--gkdownload-item-progress-color);
+				mask-image: conic-gradient(white var(--gkdownload-progress), transparent var(--gkdownload-progress));
+			}
+
+			> .icon {
+				width: 16px;
+				height: 16px;
+				z-index: 1;
+			}
+		}
+
+		> .main,
+		> .more {
+			position: relative;
+			border-width: var(--gkdownload-item-border-width);
+			border-style: solid;
+			border-block-start-color: var(--gkdownload-item-border-block-start-color-normal);
+			border-block-end-color: var(--gkdownload-item-border-block-end-color-normal);
+			overflow: hidden !important;
+			box-shadow: var(--gkdownload-item-box-shadow-normal);
+			transition: border-color var(--gkdownload-item-transition-duration), box-shadow var(--gkdownload-item-transition-duration);
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-width: var(--gkdownload-item-inset-border-width);
+				border-style: solid;
+				border-block-start-color: var(--gkdownload-item-inset-border-block-start-color-normal);
+				border-block-end-color: var(--gkdownload-item-inset-border-block-end-color-normal);
+				border-inline-start-color: var(--gkdownload-item-inset-border-inline-start-color-normal);
+				border-inline-end-color: var(--gkdownload-item-inset-border-inline-end-color-normal);
+				transition: border-color var(--gkdownload-item-transition-duration);
+			}
+
+			> .background {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+
+				~ * {
+					z-index: 1;
+				}
+
+				> * {
+					position: absolute;
+					opacity: 0;
+					width: 100%;
+					height: 100%;
+					
+					transition: opacity var(--gkdownload-item-transition-duration);
+
+					&.normal {
+						opacity: 1;
+						background: var(--gkdownload-item-background-normal);
+					}
+
+					&.hot {
+						background: var(--gkdownload-item-background-hot);
+					}
+				}
+			}
+
+			&:not(
+				[open="true"],
+				:active
+			) {
+				&:hover {
+					&::after {
+						border-block-start-color: var(--gkdownload-item-inset-border-block-start-color-hot);
+						border-block-end-color: var(--gkdownload-item-inset-border-block-end-color-hot);
+						border-inline-start-color: var(--gkdownload-item-inset-border-inline-start-color-hot);
+						border-inline-end-color: var(--gkdownload-item-inset-border-inline-end-color-hot);
+					}
+
+					border-block-start-color: var(--gkdownload-item-border-block-start-color-hot);
+					border-block-end-color: var(--gkdownload-item-border-block-end-color-hot);
+					box-shadow: var(--gkdownload-item-box-shadow-hot);
+
+					> .background {
+						> .normal,
+						> .active {
+							opacity: 0;
+						}
+
+						> .hot {
+							opacity: 1;
+						}
+					}
+				}
+			}
+
+			&:active,
+			&[open="true"] {
+				border-block-start-color: var(--gkdownload-item-border-block-start-color-active);
+				border-block-end-color: var(--gkdownload-item-border-block-end-color-active);
+				box-shadow: var(--gkdownload-item-box-shadow-active);
+				transition: border-color 0s, box-shadow 0s;
+
+				&::after {
+					border-block-start-color: var(--gkdownload-item-inset-border-block-start-color-active);
+					border-block-end-color: var(--gkdownload-item-inset-border-block-end-color-active);
+					border-inline-start-color: var(--gkdownload-item-inset-border-inline-start-color-active);
+					border-inline-end-color: var(--gkdownload-item-inset-border-inline-end-color-active);
+					transition: border-color 0s;
+				}
+
+				> .background {
+					> * {
+						transition: opacity 0s;
+					}
+
+					> .normal,
+					> .hot {
+						opacity: 0;
+					}
+
+					> .active {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		> .main {
+			border-top-left-radius: var(--gkdownload-item-border-radius);
+			border-bottom-left-radius: var(--gkdownload-item-border-radius);
+			border-inline-start-color: var(--gkdownload-item-border-inline-start-color-normal);
+			border-inline-end-width: 0;
+			height: 100%;
+			padding-inline: 2px !important;
+			justify-content: center;
+			gap: 6px;
+			align-items: center;
+			min-width: 46px !important;
+
+			&::after {
+				pointer-events: none;
+				border-top-left-radius: var(--gkdownload-item-border-radius);
+				border-bottom-left-radius: var(--gkdownload-item-border-radius);
+				border-inline-start-width: var(--gkdownload-item-inset-border-width);
+				border-inline-start-style: solid;
+			}
+
+			&:not(:active) {
+				&:hover {
+					border-inline-start-color: var(--gkdownload-item-border-inline-start-color-hot);
+	
+					.description {
+						color: var(--gkdownload-item-description-color-hot);
+					}
+				}
+			}
+
+			&:active {
+				border-inline-start-color: var(--gkdownload-item-border-inline-start-color-active);
+				box-shadow: var(--gkdownload-item-main-box-shadow-active);
+
+				.description {
+					color: var(--gkdownload-item-description-color-active);
+				}
+			}
+
+			> .background > .active {
+				background: var(--gkdownload-item-main-background-active);
+				box-shadow: var(--gkdownload-item-main-box-shadow-active);
+			}
+			
+			> .info {               
+				overflow: hidden;
+			}
+		}
+
+		> .more {
+			border-top-right-radius: var(--gkdownload-item-border-radius);
+			border-bottom-right-radius: var(--gkdownload-item-border-radius);
+			border-inline-start-width: 0;
+			border-inline-end-color: var(--gkdownload-item-border-inline-start-color-normal);
+			align-items: center;
+			width: var(--gkdownload-item-more-width);
+			height: var(--gkdownload-item-more-height);
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/arrow.svg");
+			-moz-context-properties: fill, fill-opacity;
+			fill: var(--gkdownload-item-more-icon-color);
+
+			&::after {
+				border-top-right-radius: var(--gkdownload-item-border-radius);
+				border-bottom-right-radius: var(--gkdownload-item-border-radius);
+			}
+
+			&:not([open="true"]) {
+				&:hover {
+					border-inline-end-color: var(--gkdownload-item-border-inline-end-color-hot);
+
+					> .separator {
+						border-inline-start-color: var(--gkdownload-item-separator-border-inline-start-color-hot);
+						border-inline-end-color: var(--gkdownload-item-separator-border-inline-end-color-hot);
+					}
+				}
+			}
+			
+			&:active,
+			&[open="true"] {
+				border-block-start-color: var(--gkdownload-item-border-block-start-color-active);
+				border-block-end-color: var(--gkdownload-item-border-block-end-color-active);
+				border-inline-end-color: var(--gkdownload-item-border-inline-end-color-active);
+
+				> .separator {
+					border-inline-start-color: var(--gkdownload-item-separator-border-inline-start-color-active);
+					border-inline-end-color: var(--gkdownload-item-separator-border-inline-end-color-active);
+					transition: border-color 0s;
+				}
+			}
+
+			> .background > .active {
+				background: var(--gkdownload-item-background-active);
+			}
+
+			> .separator {
+				position: absolute;
+				pointer-events: none;
+				left: 0;
+				top: 1px;
+				height: calc(100% - 2px);
+				border-inline-start-width: 1px;
+				border-inline-start-style: solid;
+				border-inline-start-color: var(--gkdownload-item-separator-border-inline-start-color-normal);
+				border-inline-end-width: 1px;
+				border-inline-end-style: solid;
+				border-inline-end-color: var(--gkdownload-item-separator-border-inline-end-color-normal);
+				transition: border-color var(--gkdownload-item-transition-duration)
+			}
+			
+			image {
+				filter: drop-shadow(0px 1px 0px rgba(255, 255, 255, .75));
+			}
+
+			.toolbarbutton-text {
+				display: none !important;
+			}
+		}
+
+		label {
+			margin: 0 !important;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			&.name {
+				color: var(--gkdownload-item-name-color);
+			}
+		}
+
+		.description {
+			display: inherit;   
+			color: var(--gkdownload-item-description-color-normal);
+		}
+	}
+}
+
+#gkDownloadActionButtons {
+	align-items: center;
+	gap: 15px;
+}
+
+#gkDownloadShelfShowAll {
+	list-style-image: var(--downloads-favicon);
+	color: var(--gkdownload-shelf-foreground-color) !important;
+	text-decoration: underline;
+	white-space: nowrap;
+	cursor: pointer;
+
+	.button-box {
+		gap: 5px;
+
+		> * {
+			margin: 0 !important;
+		}
+	}
+}
+
+#gkDownloadShelfToggle {
+	width: 16px;
+	height: 16px;
+	list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/close.svg");
+	-moz-context-properties: fill, fill-opacity;
+	fill: var(--gkdownload-shelf-close-color-normal);
+	transition: fill .1s;
+
+	&:hover {
+		fill: var(--gkdownload-shelf-close-color-hot);
+	}
+
+	&:active {
+		fill: var(--gkdownload-shelf-close-color-active);
+	}
+
+	label {
+		display: none;
+	}
+}

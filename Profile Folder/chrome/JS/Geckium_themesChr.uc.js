@@ -198,7 +198,7 @@ class gkChrTheme {
     }
 
     // themeCSSIndicators: Theming to advertise to the CSS that the Chromium Theme has
-    static themeCSSIndicators = ["frame", "toolbar", "downloadbar"];
+    static themeCSSIndicators = ["frame", "toolbar", "downloadshelf"];
 
     /** accommodate: Adjust theme metadata to include values missing in old and modern themes respectively
      * Uses manifest_version to determine which adjustments should be made - 'all' means any theme
@@ -319,9 +319,9 @@ class gkChrTheme {
         if (theme.theme.colors) {
             Object.entries(theme.theme.colors).map(([key, value]) => {
                 if (key == "toolbar") {
-                    // Skirt around omission of toolbar background for Downloads Bar's sake
-                    document.documentElement.style.setProperty(`${styleProperty("downloadbar")}`, `rgb(${value.join(', ')})`);
-                    indicators.push("downloadbar");
+                    // Skirt around omission of toolbar background for Download Shelf's sake
+                    document.documentElement.style.setProperty(`${styleProperty("downloadshelf")}`, `rgb(${value.join(', ')})`);
+                    indicators.push("downloadshelf");
                 }
                 if (gkChrTheme.excludeFallback(key, theme.theme, usefallbacks)) {
                     return;
