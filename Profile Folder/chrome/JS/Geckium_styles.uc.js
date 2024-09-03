@@ -160,9 +160,9 @@ const eras = {
         }
     },
     68: {
-        name: "68",
-        basedOnVersion: "68.0.3440.84",
-        year: 2018,
+        name: "58",
+        basedOnVersion: "58.0.3029.81",
+        year: 2017,
         number: "sixtyeight",
         styles: ["chrome", "page"],
         titlebar: {
