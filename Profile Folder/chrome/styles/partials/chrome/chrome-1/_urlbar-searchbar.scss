@@ -85,16 +85,6 @@
 	}
 
 	#star-button-box {
-		margin: 0 !important;
-		border-top-right-radius: 0 !important;
-		border-bottom-right-radius: 0 !important;
-
-		&::before,
-		&::after {
-			border-top-right-radius: 0 !important;
-			border-bottom-right-radius: 0 !important;
-		}
-
 		> #star-button {
 			width: fit-content !important;
 			height: fit-content !important;
@@ -121,7 +111,7 @@
 
 	&:not([chromehidden~="toolbar"]) {
 		#urlbar-container {
-			margin-inline-start: 2px !important;
+			margin-inline-start: var(--toolbarbutton-outer-padding) !important;
 
 			&:not(:last-child) {
 				margin-inline-end: 2px !important;
@@ -253,8 +243,8 @@
 
 	&[breakout],
 	&[breakout][breakout-extend] {
-		left: calc(var(--toolbarbutton-outer-padding) + var(--toolbarbutton-width)) !important;
-		width: calc(100% - 2 * var(--toolbarbutton-width) - var(--toolbarbutton-outer-padding)) !important;
+		left: var(--toolbarbutton-width) !important;
+		width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
 	}
 }
 
