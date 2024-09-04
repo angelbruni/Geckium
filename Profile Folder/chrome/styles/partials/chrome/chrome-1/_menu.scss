@@ -68,6 +68,10 @@ menupopup {
 
 	> menu,
 	> menuitem {
+	&[disabled] {
+			pointer-events: none;
+		}
+
 		.menu-text {
 			margin-inline-end: 48px !important;
 		}

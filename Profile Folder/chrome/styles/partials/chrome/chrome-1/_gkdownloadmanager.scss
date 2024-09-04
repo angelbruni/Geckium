@@ -27,7 +27,7 @@
 	100% {
 		max-width: var(--gkdownload-item-max-width);
 	}
-}
+}	
 
 @keyframes gkDownloadItemBegin {
 	0% {
@@ -37,6 +37,18 @@
 	100% {
 		opacity: 0;
 		top: -135px;
+	}
+}
+
+@property --gkDownloadItemProgressIntermediateDeg {
+	syntax: '<angle>'; /* its type */
+	inherits: false;
+	initial-value: 0deg; /* the initial value */
+}
+
+@keyframes gkDownloadItemProgressIntermediate {
+	to {
+		--gkDownloadItemProgressIntermediateDeg: 360deg;						
 	}
 }
 
@@ -202,7 +214,7 @@
 
 #gkDownloadList {	
 	flex: 1;
-
+	min-width: 0;
 	margin-inline: var(--gkdownload-shelf-list-margin-inline);
 	margin-block-start: var(--gkdownload-shelf-list-margin-block-start);
 	margin-block-end: var(--gkdownload-shelf-list-margin-block-end);
@@ -215,6 +227,7 @@
 		border-radius: var(--gkdownload-item-border-radius);
 		align-items: center;
 		max-width: 0;
+		flex-shrink: 0;
 		animation: gkDownloadItemStart var(--gkdownload-item-animation-grow-duration) ease-out forwards;
 
 		&::before {
@@ -223,6 +236,14 @@
 			top: -230px;
 			opacity: 1;
 			animation: gkDownloadItemBegin var(--gkdownload-item-animation-begin-duration) ease-out forwards;
+		}
+
+		// Intermediate Download Progress
+		&:not([data-state])[style*="--gkdownload-progress: 0;"] {
+			.progress-container > .progress-mask {
+				mask-image: conic-gradient(from var(--gkDownloadItemProgressIntermediateDeg), white 15%, transparent 15%);
+				animation: gkDownloadItemProgressIntermediate 6s steps(32) infinite;
+			}
 		}
 
 		&[data-state="canceled"],
@@ -238,6 +259,7 @@
 			}
 
 			.progress-container > [class*="progress"] {
+				--gkdownload-progress: 100%;
 				animation: gkDownloadItemProgressDone 2.5s linear forwards;
 			}
 		}
