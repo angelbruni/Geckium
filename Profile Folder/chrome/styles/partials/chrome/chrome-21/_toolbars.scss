@@ -65,7 +65,7 @@
 				image:first-of-type {
 					fill: color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-color) 25%,
+						var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 25%,
 						transparent
 					) !important;
 				}

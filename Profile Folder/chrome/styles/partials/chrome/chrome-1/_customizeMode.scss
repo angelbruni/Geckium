@@ -5,7 +5,7 @@ toolbarpaletteitem {
 	}
 
 	> toolbarspring {
-		outline-color: var(--toolbarbutton-icon-color) !important;
+		outline-color: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;
 	}
 }
 
