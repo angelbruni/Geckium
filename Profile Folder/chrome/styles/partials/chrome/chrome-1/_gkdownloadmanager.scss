@@ -63,10 +63,8 @@
 
 :root {
 	--gkdownload-shelf-height: 43px;
-	--gkdownload-shelf-border-color: #D6D6D6;
-	--default-gkdownload-shelf-background: #D2E1F6;
+	// --gkdownload-shelf-border-color: #D6D6D6;
 	--gkdownload-shelf-background: var(--default-gkdownload-shelf-background);
-	--default-gkdownload-shelf-foreground-color: #123272;
 	--gkdownload-shelf-foreground-color: var(--default-gkdownload-shelf-foreground-color);
 	--gkdownload-shelf-animation-toggle-duration: .1s;
 
@@ -177,7 +175,7 @@
 	box-sizing: border-box;
 	height: var(--gkdownload-shelf-height);
 	padding-inline-end: 16px;
-	border-block-start: 1px solid var(--gkdownload-shelf-border-color);
+	// border-block-start: 1px solid var(--gkdownload-shelf-border-color);
 	background: var(--gkdownload-shelf-background);
 
 	pointer-events: none;
