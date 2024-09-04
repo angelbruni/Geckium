@@ -41,10 +41,10 @@
 		}
 	}
 
-	&[gkbranding="chromium"] {
+	&[gkbranding="geckium"] {
 		#banner {
 			background-image:
-			url("chrome://windows/content/about/assets/chrome-1/imgs/chromium/about_background.png"),
+			url("chrome://windows/content/about/assets/chrome-1/imgs/geckium/about_background.png"),
 			linear-gradient(
 				to bottom,
 				white,
@@ -63,6 +63,18 @@
 		#banner {
 			background-image:
 			url("chrome://windows/content/about/assets/chrome-1/imgs/google-chrome/about_background.png"),
+			linear-gradient(
+				to bottom,
+				white,
+				white 143px,
+				rgb(190,190,190) 143px
+			);
+		}
+	}
+	&[gkbranding="firefox"] {
+		#banner {
+			background-image:
+			url("chrome://windows/content/about/assets/chrome-1/imgs/firefox/about_background.png"),
 			linear-gradient(
 				to bottom,
 				white,
