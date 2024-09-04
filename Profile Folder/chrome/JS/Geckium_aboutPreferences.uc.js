@@ -118,7 +118,7 @@ function addProductName() {
 
 function updateInfo() {
 	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getBrowserEra()].basedOnVersion);
-	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%d", gkEras.getEras("main")[gkEras.getBrowserEra()].year);
+	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%s", gkBranding.getBrandingKey("vendorName")).replace("%d",gkEras.getEras("main")[gkEras.getBrowserEra()].year);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

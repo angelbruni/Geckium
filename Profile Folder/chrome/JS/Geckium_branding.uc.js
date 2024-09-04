@@ -14,7 +14,7 @@ class gkBranding {
 		"geckium": {
 			"fullName": "Geckium",
 			"productName": "Geckium",
-			"vendorName": ""
+			"vendorName": "angelbruni"
 		},
 		"firefox": {
 			"fullName": "Mozilla Firefox",
@@ -26,7 +26,7 @@ class gkBranding {
 			"fullNameOS": "Chromium OS",
 			"productName": "Chromium",
 			"productNameOS": "Chromium OS",
-			"vendorName": ""
+			"vendorName": "The Chromium Authors"
 		},
 		"chrome": {
 			"name": "chrome",
@@ -34,7 +34,7 @@ class gkBranding {
 			"fullNameOS": "Google Chrome OS",
 			"productName": "Chrome",
 			"productNameOS": "Chrome OS",
-			"vendorName": "Google"
+			"vendorName": "Google Inc"
 		}
 	};
 

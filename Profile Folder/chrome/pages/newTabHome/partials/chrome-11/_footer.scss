@@ -73,6 +73,16 @@
 			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/chrome/product_name.png");
 		}
 	}
+
+	&[gkbranding="firefox"] {
+		#logo-icon {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/firefox/product_icon.png");
+		}
+
+		#logo-wordmark {
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/firefox/product_name.png");
+		}
+	}
 }
 
 

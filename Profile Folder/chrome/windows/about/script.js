@@ -23,7 +23,7 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		<vbox>
-			<html:p>${aboutBundle.GetStringFromName("copyright").replace("%d", gkEras.getEras("main")[appearanceChoice].year)}</html:p>
+			<html:p>${aboutBundle.GetStringFromName("copyright").replace("%s", gkBranding.getBrandingKey("vendorName")).replace("%d", gkEras.getEras("main")[appearanceChoice].year)}</html:p>
 			<html:p>${aboutBundle.GetStringFromName("madePossibleBy").replace("%s", fullName)}</html:p>
 		</vbox>
 		<vbox>
