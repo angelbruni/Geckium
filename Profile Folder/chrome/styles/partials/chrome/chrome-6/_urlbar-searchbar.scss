@@ -138,7 +138,7 @@
 	#star-button-box > #star-button[starred] {
 		fill: color-mix(
 			in srgb,
-			color-mix(in srgb, var(--toolbarbutton-icon-color) 55%, #000) 80%,
+			color-mix(in srgb, var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 55%, #000) 80%,
 			white
 		) !important;
 	}
