@@ -22,7 +22,7 @@ class gkdownloadmanager {
 		return document.getElementById("gkDownloadShelf");
 	}
 
-    static createPane() {
+    static createShelf() {
         //const browserElm = document.getElementById("browser");
 		const browserElm = document.getElementById("tabbrowser-tabpanels");
         const downloadShelf = document.createElement("div");
@@ -244,5 +244,5 @@ class gkdownloadmanager {
 }
 
 _ucUtils.windowIsReady(window).then(() => {
-	gkdownloadmanager.createPane();
+	gkdownloadmanager.createShelf();
 });

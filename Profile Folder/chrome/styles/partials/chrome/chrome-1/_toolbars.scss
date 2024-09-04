@@ -446,6 +446,17 @@
 				border-bottom-left-radius: 0 !important;
 			}
 		}
+		&#star-button-box {
+			margin: 0 !important;
+			border-top-right-radius: 0 !important;
+  			border-bottom-right-radius: 0 !important;
+
+			&::before,
+			&::after {
+				border-top-right-radius: 0 !important;
+				border-bottom-right-radius: 0 !important;
+			}
+		}
 		
 		//Personal Toolbar: Overflow button
 		&#PlacesChevron {
