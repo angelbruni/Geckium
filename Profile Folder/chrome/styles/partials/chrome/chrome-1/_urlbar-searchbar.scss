@@ -499,7 +499,8 @@
 		}
 	}
 
-	#urlbar-go-button {
+	#urlbar-go-button,
+	.urlbar-go-button /* Fix for Firefox ~120+ */ {
 		display: none !important;
 	}
 }
