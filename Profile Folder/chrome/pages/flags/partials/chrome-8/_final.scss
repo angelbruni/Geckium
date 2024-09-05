@@ -1,6 +1,9 @@
 body {
-	font-family: Arial, sans-serif;
-	font-size: 9pt;
+	font: caption;
+	font-size: 9pt !important;
+	@media (-moz-platform: windows) {
+		font-family: Arial, sans-serif !important;
+	}
 }
 
 h1 {
