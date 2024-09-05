@@ -4,7 +4,7 @@
 	--gkdownload-shelf-list-margin-inline: 4px;
 	--gkdownload-shelf-list-margin-block-start: 0;
 	--gkdownload-shelf-list-margin-block-end: 0;
-	--gkdownload-shelf-list-gap: 0;
+	--gkdownload-shelf-list-gap: 1px;
 
 	--gkdownload-item-box-shadow-normal: none;
 	--gkdownload-item-box-shadow-hot: var(--gkdownload-item-box-shadow-normal);
@@ -27,4 +27,45 @@
 	--gkdownload-item-separator-border-inline-end-color-active: var(--gkdownload-item-separator-border-inline-start-color-normal);
 	--gkdownload-item-more-width: 32px;
 	--gkdownload-item-more-height: var(--gkdownload-item-more-width);
+}
+
+#gkDownloadShelfShowAll {
+	list-style-image: none;
+	text-decoration: none;
+	height: 28px;
+	background-color: white;
+	border: 1px solid #707070;
+	border-radius: 2px;
+	padding-inline: 10px !important;
+	cursor: default;
+}
+
+#gkDownloadList > .item {
+	> .main {
+		margin-inline-end: calc((var(--gkdownload-item-more-width) * -1) - 4px) !important;
+		padding-inline-end: calc(var(--gkdownload-item-more-width) + 9px) !important;
+	}
+	
+	> .more {
+		margin-inline-end: 4px !important;
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-68/downloadshelf/arrow.svg");
+		overflow: visible !important;
+
+		> .separator {
+			left: unset;
+			right: -5px;
+			top: -2px;
+			height: calc(100% + 4px);
+			border-inline-start-width: 1px;
+			border-inline-start-style: solid;
+			border-inline-start-color: #C5C7C8;
+			border-inline-end-width: 0;
+		}
+	}
+}
+
+#gkDownloadShelfToggle {
+	width: 10px;
+	height: 10px;
+	list-style-image: url("chrome://userchrome/content/assets/img/chrome-68/downloadshelf/close.svg");
 }
