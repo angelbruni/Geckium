@@ -151,7 +151,7 @@
 	--gkdownload-item-separator-border-inline-end-color-hot: rgba(255,255,255,.09);
 	--gkdownload-item-separator-border-inline-end-color-active: rgba(0,0,0,.01);
 	--gkdownload-item-more-width: 15px;
-	--gkdownload-item-more-height: 100%;
+	--gkdownload-item-more-height: inherit;
 	--gkdownload-item-more-icon-color: #516D9F;
 	--gkdownload-item-transition-duration: .1s;
 
@@ -209,10 +209,20 @@
 
 	button,
 	toolbarbutton {
-		appearance: none !important;
 		margin: 0 !important;
 		min-width: 0 !important;
 		padding: 0 !important;
+	}
+
+	#gkDownloadActionButtons,
+	.item > .main {
+		button {
+			appearance: none !important;
+		}
+	}
+
+	toolbarbutton {
+		appearance: none !important;
 	}
 }
 
@@ -268,6 +278,86 @@
 			}
 		}
 
+		&[data-state*="dangerous_not_malware"] {
+			--gkdownload-item-max-width: 414px;
+		}
+
+		&[data-state*="dangerous_malware"] {
+			--gkdownload-item-max-width: 276px;
+		}
+
+		&[data-state*="dangerous"] {
+			.main {
+				display: none;
+			}
+			.warning {
+				display: flex;
+			}
+		}
+
+		.main,
+		.warning {
+			width: 100%;
+			height: 100%;
+		}
+
+		.main {
+			label {
+				overflow: hidden;
+				white-space: nowrap;
+			}
+		}
+
+		.warning {
+			display: none;
+			height: 100%;		
+
+			> .warning_not_malware,
+			> .warning_malware {
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				background: var(--gkdownload-item-background-normal);
+				padding-inline: 7px;
+
+				> image {
+					margin-inline-end: 6px;
+				}
+	
+				> label {
+					margin-inline-end: 16px;
+					white-space: pre-wrap;	
+				}
+			}
+
+			> .warning_not_malware {
+				> image {
+					list-style-image: url("chrome://userchrome/content/assets/img/chrome-5/toolbar/infobar_insecure.png");
+					height: 18px;
+					width: 18px;
+				}
+
+				> label {
+					min-width: 250px !important;
+				}
+			}
+
+			> .warning_malware {
+				> image {
+					list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/safebrowsing_warning.png");
+				}
+
+				> label {
+					min-width: 160px !important;
+				}
+			}
+		}
+
+		.warning-action-buttons {
+			margin-inline-start: auto;
+			gap: 7px;
+		}
+		
 		.progress-container,
 		.progress-container > [class*="progress"] {
 			top: 0;
@@ -304,15 +394,21 @@
 			}
 		}
 
-		> .main,
-		> .more {
-			position: relative;
+		.file-button,
+		.more,
+		.warning_not_malware,
+		.warning_malware {
 			border-width: var(--gkdownload-item-border-width);
 			border-style: solid;
 			border-block-start-color: var(--gkdownload-item-border-block-start-color-normal);
 			border-block-end-color: var(--gkdownload-item-border-block-end-color-normal);
 			overflow: hidden !important;
 			box-shadow: var(--gkdownload-item-box-shadow-normal);
+		}
+
+		.file-button,
+		.more {
+			position: relative;
 			transition: border-color var(--gkdownload-item-transition-duration), box-shadow var(--gkdownload-item-transition-duration);
 
 			&::after {
@@ -423,11 +519,20 @@
 			}
 		}
 
-		> .main {
+		.file-button,
+		.warning_not_malware,
+		.warning_malware {
 			border-top-left-radius: var(--gkdownload-item-border-radius);
 			border-bottom-left-radius: var(--gkdownload-item-border-radius);
 			border-inline-start-color: var(--gkdownload-item-border-inline-start-color-normal);
-			border-inline-end-width: 0;
+		}
+
+		.file-button,
+		.warning_malware {
+			border-inline-end-width: 0;	
+		}
+
+		.file-button {
 			height: 100%;
 			padding-inline: 2px !important;
 			justify-content: center;
@@ -472,11 +577,15 @@
 			}
 		}
 
-		> .more {
+		.more,
+		.warning_not_malware {
 			border-top-right-radius: var(--gkdownload-item-border-radius);
 			border-bottom-right-radius: var(--gkdownload-item-border-radius);
-			border-inline-start-width: 0;
 			border-inline-end-color: var(--gkdownload-item-border-inline-start-color-normal);
+		}
+
+		.more {	
+			border-inline-start-width: 0;
 			align-items: center;
 			width: var(--gkdownload-item-more-width);
 			height: var(--gkdownload-item-more-height);
@@ -541,15 +650,16 @@
 			}
 		}
 
-		label {
-			margin: 0 !important;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
-
-			&.name {
+		.name,
+		.warning_not_malware {
+			> label {
 				color: var(--gkdownload-item-name-color);
 			}
+		}
+
+		label {
+			margin: 0 !important;
+			text-overflow: ellipsis;
 		}
 
 		.name,
