@@ -58,7 +58,7 @@ class gkDownloadManager {
 					document.getElementById("gkDownloadList").prepend(downloadItem);
 					setTimeout(() => {
 						gkDownloadManager.checkItemBounds();
-					}, 200);
+					}, 450);
 					addEventListener("resize", () => {
 						gkDownloadManager.checkItemBounds();
 					});
@@ -212,6 +212,13 @@ class gkDownloadManager {
 	}
 
 	static createItem(download) {
+		var downloadFormat;
+
+		if (download.target.path.split(".").pop())
+			downloadFormat = "." + download.target.path.split(".").pop();
+		else
+			downloadFormat = "";
+
 		const itemTemplate = `
 		<hbox class="item" id="${download.target.path}" style="--gkdownload-progress: 0;">
 			<image class="anim-begin" />
@@ -227,7 +234,10 @@ class gkDownloadManager {
 				<image class="icon" src="moz-icon://${download.target.path}?size=16&amp;state=normal" />
 				</html:div>
 				<vbox class="info">
-					<label class="name">${download.target.path.split("/").pop()}</label>
+					<html:div class="name">
+						<label class="file">${download.target.path.split("/").pop()}</label>
+						<label class="format">.${downloadFormat}</label>
+					</html:div>
 					<html:div class="description">
 						<label class="size" />
 						<label class="eta" />
