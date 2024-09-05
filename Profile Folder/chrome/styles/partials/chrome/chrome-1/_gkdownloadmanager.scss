@@ -546,8 +546,16 @@
 			}
 		}
 
+		.name,
 		.description {
-			display: inherit;   
+			display: inherit;
+		}
+
+		.name > .format {
+			flex-shrink: 0;
+		}
+
+		.description {
 			color: var(--gkdownload-item-description-color-normal);
 		}
 	}
