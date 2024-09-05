@@ -134,6 +134,10 @@
 	--gkdownload-item-inset-border-block-end-color-active: rgba(255,255,255,.5);
 	--gkdownload-item-inset-border-inline-start-color-active: var(--gkdownload-item-inset-border-block-start-color-active);
 	--gkdownload-item-inset-border-inline-end-color-active: var(--gkdownload-item-inset-border-block-end-color-active);
+	--gkdownload-item-progress-pie-width: 30px;
+	--gkdownload-item-progress-pie-height: var(--gkdownload-item-progress-pie-width);
+	--gkdownload-item-progress-pie-background: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_bg.svg");
+	--gkdownload-item-progress-pie-mask: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_mask.svg");
 	--gkdownload-item-progress-color: #8FDF5F;
 	--default-gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
 	--gkdownload-item-name-color: var(--default-gkdownload-item-name-color);
@@ -268,8 +272,8 @@
 		.progress-container > [class*="progress"] {
 			top: 0;
 			left: 0;
-			width: 30px;
-			height: 30px;
+			width: var(--gkdownload-item-progress-pie-width);
+			height: var(--gkdownload-item-progress-pie-height);
 			position: absolute;
 			background-position: center;
 			background-size: cover;
@@ -283,11 +287,11 @@
 			flex-shrink: 0;
 
 			> .progress-bg {
-				background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_bg.svg");
+				background-image: var(--gkdownload-item-progress-pie-background);
 			}
 
 			> .progress-mask {
-				background-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/progress_mask.svg");
+				background-image: var(--gkdownload-item-progress-pie-mask);
 				-moz-context-properties: fill, fill-opacity;
 				fill: var(--gkdownload-item-progress-color);
 				mask-image: conic-gradient(white var(--gkdownload-progress), transparent var(--gkdownload-progress));
