@@ -1,8 +1,11 @@
 body {
 	margin: 10px 8px;
 	color: black;
-	font-size: 10pt;
-	font-family: arial;
+	font: caption;
+	font-size: 10pt !important;
+	@media (-moz-platform: windows) {
+		font-family: Arial, sans-serif !important;
+	}
 }
 // GTK+
 &[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
