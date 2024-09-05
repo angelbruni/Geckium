@@ -23,7 +23,42 @@ class gkDownloadManager {
 		<button id="gkDownloadShelfShowAll" label="${gkDownloadManagerBundle.GetStringFromName("showAllDownloads")}" />
 		<button id="gkDownloadShelfToggle" />
 	</html:div>
-	`	
+	`;
+
+	static warningNotMalwareTemplate = `
+	<hbox class="warning_not_malware">
+		<image />
+		<label class="warning_text" />
+		<hbox class="warning-action-buttons">
+			<button class="keep" label="${gkDownloadManagerBundle.GetStringFromName("keep")}" />
+			<button class="discard" label="${gkDownloadManagerBundle.GetStringFromName("discard")}" />
+		</hbox>
+	</hbox>
+	`;
+
+	static warningMalwareTemplate = `
+	<hbox class="warning_malware">
+		<image />
+		<label class="warning_text" />
+		<hbox class="warning-action-buttons">
+			<button class="discard" label="${gkDownloadManagerBundle.GetStringFromName("discard")}" />
+		</hbox>
+	</hbox>
+	<toolbarbutton class="more" type="menu">
+		<html:div class="background">
+			<html:div class="normal" />
+			<html:div class="hot" />
+			<html:div class="active" />
+		</html:div>
+		<html:div class="separator" />
+		<image class="toolbarbutton-icon" type="menu"/>
+		<menupopup position="before_start">
+			<menuitem class="menuitem_keep" label="${gkDownloadManagerBundle.GetStringFromName("keep")}" />
+			<menuseparator />
+			<menuitem label="Learn more" onclick="openTrustedLinkIn('https://support.google.com/chrome/?p=ib_download_blocked', 'tab')" />
+		</menupopup>
+	</toolbarbutton>
+	`;
 
 	static get shelf() {
 		return document.getElementById("gkDownloadShelf");
@@ -108,7 +143,7 @@ class gkDownloadManager {
 					});
 
 					// Open / Open when complete
-					document.querySelector(`.item[id="${download.target.path}"] .main`).addEventListener("click", () => {
+					document.querySelector(`.item[id="${download.target.path}"] .file-button`).addEventListener("click", () => {
 						if (!download.succeeded && !download.stopped && !download.error) {
 							if (download.launchWhenSucceeded)
 								download.launchWhenSucceeded = false;
@@ -212,56 +247,65 @@ class gkDownloadManager {
 	}
 
 	static createItem(download) {
-		var downloadFormat;
+		var downloadFileName;
+		var downloadFileFormat;
+
+		if (download.target.path.split("/").lastIndexOf('.') !== 1)
+			downloadFileName = download.target.path.split("/").pop().slice(0, download.target.path.split("/").pop().lastIndexOf('.'));
+		else
+			downloadFileName = download.target.path.split("/").pop();
 
 		if (download.target.path.split(".").pop())
-			downloadFormat = "." + download.target.path.split(".").pop();
+			downloadFileFormat = "." + download.target.path.split(".").pop();
 		else
-			downloadFormat = "";
+			downloadFileFormat = "";
 
 		const itemTemplate = `
 		<hbox class="item" id="${download.target.path}" style="--gkdownload-progress: 0;">
 			<image class="anim-begin" />
-			<button class="main" flex="1">
-				<html:div class="background">
-					<html:div class="normal" />
-					<html:div class="hot" />
-					<html:div class="active" />
-				</html:div>
-				<html:div class="progress-container">
-					<html:div class="progress-bg" />
-					<html:div class="progress-mask" />
-				<image class="icon" src="moz-icon://${download.target.path}?size=16&amp;state=normal" />
-				</html:div>
-				<vbox class="info">
-					<html:div class="name">
-						<label class="file">${download.target.path.split("/").pop()}</label>
-						<label class="format">.${downloadFormat}</label>
+			<hbox class="main">
+				<button class="file-button" flex="1">
+					<html:div class="background">
+						<html:div class="normal" />
+						<html:div class="hot" />
+						<html:div class="active" />
 					</html:div>
-					<html:div class="description">
-						<label class="size" />
-						<label class="eta" />
+					<html:div class="progress-container">
+						<html:div class="progress-bg" />
+						<html:div class="progress-mask" />
+					<image class="icon" src="moz-icon://${download.target.path}?size=16&amp;state=normal" />
 					</html:div>
-				</vbox>
-			</button>
-			<toolbarbutton class="more" type="menu">
-				<html:div class="background">
-					<html:div class="normal" />
-					<html:div class="hot" />
-					<html:div class="active" />
-				</html:div>
-				<html:div class="separator" />
-				<image class="toolbarbutton-icon" type="menu"/>
-				<menupopup position="before_start">
-					<menuitem type="checkbox" class="openwhendone" />
-					<menuitem class="alwaysopenthistype" type="checkbox" label="${gkDownloadManagerBundle.GetStringFromName("alwaysOpenFilesOfThisType")}" />
-					<menuseparator />
-					<menuitem class="pause" />
-					<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
-					<menuseparator class="cancelseparator" />
-					<menuitem class="cancel" data-l10n-id="bookmark-panel-cancel" />	
-				</menupopup>
-			</toolbarbutton>
+					<vbox class="info">
+						<html:div class="name">
+							<label class="file">${downloadFileName}</label>
+							<label class="format">.${downloadFileFormat}</label>
+						</html:div>
+						<html:div class="description">
+							<label class="size" />
+							<label class="eta" />
+						</html:div>
+					</vbox>
+				</button>
+				<toolbarbutton class="more" type="menu">
+					<html:div class="background">
+						<html:div class="normal" />
+						<html:div class="hot" />
+						<html:div class="active" />
+					</html:div>
+					<html:div class="separator" />
+					<image class="toolbarbutton-icon" type="menu"/>
+					<menupopup position="before_start">
+						<menuitem type="checkbox" class="openwhendone" />
+						<menuitem class="alwaysopenthistype" type="checkbox" label="${gkDownloadManagerBundle.GetStringFromName("alwaysOpenFilesOfThisType")}" />
+						<menuseparator />
+						<menuitem class="pause" />
+						<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
+						<menuseparator class="cancelseparator" />
+						<menuitem class="cancel" data-l10n-id="bookmark-panel-cancel" />	
+					</menupopup>
+				</toolbarbutton>
+			</hbox>
+			<hbox class="warning" />
 		</hbox>
 		`
 
@@ -333,7 +377,7 @@ class gkDownloadManager {
 						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
 				}
 				else {
-				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
+					document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
 				}
 
 				if (download.launchWhenSucceeded) {
@@ -373,12 +417,40 @@ class gkDownloadManager {
 
 				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
 			} else if (download.error) {
-				downloadItem.dataset.state = "error";
+				if (download.hasBlockedData) {
+					if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE)
+						downloadItem.dataset.state = "dangerous_malware";
+					else
+						downloadItem.dataset.state = "dangerous_not_malware";
+					
+					if (document.querySelector(`.item[id="${download.target.path}"] .warning`).children.length == 0) {
+						if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE) {
+							document.querySelector(`.item[id="${download.target.path}"] .warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningMalwareTemplate));
+							document.querySelector(`.item[id="${download.target.path}"] .warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split("/").pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
+							document.querySelector(`.item[id="${download.target.path}"] .menuitem_keep`).addEventListener("click", () => {
+								download.unblock();
+							});
+						} else {
+							document.querySelector(`.item[id="${download.target.path}"] .warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningNotMalwareTemplate));
+							document.querySelector(`.item[id="${download.target.path}"] .warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split("/").pop());
+							document.querySelector(`.item[id="${download.target.path}"] .keep`).addEventListener("click", () => {
+								download.unblock();
+							});
+						}
 
-				if (download.error.localizedReason)
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
-				else
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
+						document.querySelector(`.item[id="${download.target.path}"] .discard`).addEventListener("click", () => {
+							download.confirmBlock();
+							DownloadsCommon.deleteDownload(download).catch(console.error);		
+						});
+					}	
+				} else {
+					downloadItem.dataset.state = "error";
+
+					if (download.error.localizedReason)
+						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
+					else
+						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
+				}
 
 				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
 			}

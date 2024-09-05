@@ -41,15 +41,16 @@
 }
 
 #gkDownloadList > .item {
-	> .main {
+	.file {
 		margin-inline-end: calc((var(--gkdownload-item-more-width) * -1) - 4px) !important;
 		padding-inline-end: calc(var(--gkdownload-item-more-width) + 9px) !important;
 	}
 	
-	> .more {
+	.more {
 		margin-inline-end: 4px !important;
 		list-style-image: url("chrome://userchrome/content/assets/img/chrome-68/downloadshelf/arrow.svg");
 		overflow: visible !important;
+		box-shadow: none;
 
 		> .separator {
 			left: unset;
@@ -61,6 +62,11 @@
 			border-inline-start-color: #C5C7C8;
 			border-inline-end-width: 0;
 		}
+	}
+
+	.main,
+	.warning {
+		align-items: center;
 	}
 }
 
