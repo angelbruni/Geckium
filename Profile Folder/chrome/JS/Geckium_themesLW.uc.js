@@ -120,9 +120,12 @@ class gkLWTheme {
             isThemed = gkLWTheme.isThemed;
             if (isThemed) {
                 document.documentElement.setAttribute("gkthemed", true);
-                // Get header height
-                const headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "");
-                console.log(headerImg);
+                // Get header height.
+                var headerImg;
+                if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
+                    headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
+                else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
+                    headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
                 if (headerImg !== null) {
                     var imagePath = headerImg;
                     // Note the attribution image's size
@@ -130,8 +133,9 @@ class gkLWTheme {
                     img.src = imagePath;
                     img.onload = function() {
                         document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
-                        console.log("me WHEN", this.height);
                     };
+                } else {
+                    document.documentElement.style.removeProperty("--titlebar-pseudo-height");
                 }
                 // Ensure the toolbar colour is opaque
                 var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
