@@ -1,6 +1,9 @@
 body {
-	font-size: 9pt;
-	font-family: 'Segoe UI', Tahoma, sans-serif;
+	font: caption;
+	font-size: 9pt !important;
+	@media (-moz-platform: windows) {
+		font-family: 'Segoe UI', Tahoma, sans-serif !important;
+	}
 }
 
 .content {

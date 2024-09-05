@@ -25,7 +25,17 @@
 body {
 	background-color: #303030;
 	color: rgba(255, 255, 255, 0.7);
-	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+	font: unset;
+	@media (-moz-platform: windows) {
+		font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+	}
+	@media (-moz-platform: macos) {
+		font-family: Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+	}
+	@media (-moz-platform: linux) {
+		font-family: Roboto, Ubuntu, Arial, sans-serif;
+	}
+	font-size: 9pt;
 }
 
 .content {

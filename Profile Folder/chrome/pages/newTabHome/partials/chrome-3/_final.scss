@@ -1,5 +1,9 @@
 & {
-	font-size: 9pt;
+	font: caption;
+	font-size: 9pt !important;
+	@media (-moz-platform: windows) {
+		font-family: Arial, sans-serif !important;
+	}
 
 	--chrtheme-ntp-background-alignment: 50% 100%;
 	--chrtheme-ntp-background-repeat: no-repeat;

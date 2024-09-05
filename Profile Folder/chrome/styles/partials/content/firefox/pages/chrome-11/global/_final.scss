@@ -10,5 +10,8 @@
 body {
 	--main-pane-width: var(--main-pane-width-final) !important;
 
-	font-family: Arial, sans-serif;
+	font: caption;
+	@media (-moz-platform: windows) {
+		font-family: Arial, sans-serif !important;
+	}
 }
