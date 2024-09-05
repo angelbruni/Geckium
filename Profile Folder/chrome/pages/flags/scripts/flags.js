@@ -161,7 +161,7 @@ function setUpExperiments() {
             const experiment = experiments[key];
 
 			if (experiment.type == "ntp") {
-				appearanceChoice = gkEras.NTPEra();
+				appearanceChoice = gkEras.getNTPEra();
 			} else {
 				appearanceChoice = gkEras.getBrowserEra();
 			}
