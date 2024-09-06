@@ -91,6 +91,7 @@ class gkDownloadManager {
 				onDownloadAdded: download => {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
+					const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
 					setTimeout(() => {
 						gkDownloadManager.checkItemBounds();
 					}, 450);
@@ -99,51 +100,51 @@ class gkDownloadManager {
 					});
 					
 					// Popup Showing check
-					document.querySelector(`.item[id="${download.target.path}"] menupopup`).addEventListener("popupshowing", () => {
+					downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
 						if (download.succeeded) {
 							// Open when done
-							document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).removeAttribute("type");
-							document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).removeAttribute("checked");
-							document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).setAttribute("data-l10n-id", "places-open");
+							downloadItemElm.querySelector(`.openwhendone`).removeAttribute("type");
+							downloadItemElm.querySelector(`.openwhendone`).removeAttribute("checked");
+							downloadItemElm.querySelector(`.openwhendone`).setAttribute("data-l10n-id", "places-open");
 
 							// Always open files of this type
-							document.querySelector(`.item[id="${download.target.path}"] .alwaysopenthistype`).removeAttribute("hidden");
+							downloadItemElm.querySelector(`.alwaysopenthistype`).removeAttribute("hidden");
 							const mimeInfo = DownloadsCommon.getMimeInfo(download);
 							if (mimeInfo.preferredAction === mimeInfo.useSystemDefault)
-								document.querySelector(`.item[id="${download.target.path}"] .alwaysopenthistype`).setAttribute("checked", true);
+								downloadItemElm.querySelector(`.alwaysopenthistype`).setAttribute("checked", true);
 							else
-								document.querySelector(`.item[id="${download.target.path}"] .alwaysopenthistype`).removeAttribute("checked");
+								downloadItemElm.querySelector(`.alwaysopenthistype`).removeAttribute("checked");
 
-							document.querySelector(`.item[id="${download.target.path}"] .pause`).setAttribute("hidden", true);
-							document.querySelector(`.item[id="${download.target.path}"] .cancel`).setAttribute("hidden", true);
-							document.querySelector(`.item[id="${download.target.path}"] .cancelseparator`).setAttribute("hidden", true);
+							downloadItemElm.querySelector(`.pause`).setAttribute("hidden", true);
+							downloadItemElm.querySelector(`.cancel`).setAttribute("hidden", true);
+							downloadItemElm.querySelector(`.cancelseparator`).setAttribute("hidden", true);
 						} else if (download.canceled && !download.hasPartialData) {
 							document.querySelectorAll(`.item[id="${download.target.path}"] menuitem`).forEach(menuitem => {
 								menuitem.setAttribute("disabled", true);
 							});
 						} else {
 							// Open when done
-							document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).setAttribute("label", gkDownloadManagerBundle.GetStringFromName("openWhenDone"));
-							document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
+							downloadItemElm.querySelector(`.openwhendone`).setAttribute("label", gkDownloadManagerBundle.GetStringFromName("openWhenDone"));
+							downloadItemElm.querySelector(`.openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
 
 							// Always open files of this type
-							document.querySelector(`.item[id="${download.target.path}"] .alwaysopenthistype`).setAttribute("hidden", true);
+							downloadItemElm.querySelector(`.alwaysopenthistype`).setAttribute("hidden", true);
 
 							// Pause
-							document.querySelector(`.item[id="${download.target.path}"] .pause`).removeAttribute("hidden");
+							downloadItemElm.querySelector(`.pause`).removeAttribute("hidden");
 							if (download.stopped)
-								document.querySelector(`.item[id="${download.target.path}"] .pause`).setAttribute("data-l10n-id", "downloads-cmd-resume");
+								downloadItemElm.querySelector(`.pause`).setAttribute("data-l10n-id", "downloads-cmd-resume");
 							else
-								document.querySelector(`.item[id="${download.target.path}"] .pause`).setAttribute("data-l10n-id", "downloads-cmd-pause");
+								downloadItemElm.querySelector(`.pause`).setAttribute("data-l10n-id", "downloads-cmd-pause");
 
 
-							document.querySelector(`.item[id="${download.target.path}"] .cancel`).removeAttribute("hidden");
-							document.querySelector(`.item[id="${download.target.path}"] .cancelseparator`).removeAttribute("hidden");
+							downloadItemElm.querySelector(`.cancel`).removeAttribute("hidden");
+							downloadItemElm.querySelector(`.cancelseparator`).removeAttribute("hidden");
 						}
 					});
 
 					// Open / Open when complete
-					document.querySelector(`.item[id="${download.target.path}"] .file-button`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.file-button`).addEventListener("click", () => {
 						if (!download.succeeded && !download.stopped && !download.error) {
 							if (download.launchWhenSucceeded)
 								download.launchWhenSucceeded = false;
@@ -153,7 +154,7 @@ class gkDownloadManager {
 							download.launch().catch(console.error);
 						}
 					});
-					document.querySelector(`.item[id="${download.target.path}"] .openwhendone`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.openwhendone`).addEventListener("click", () => {
 						if (!download.succeeded && !download.stopped && !download.error) {
 							if (download.launchWhenSucceeded)
 								download.launchWhenSucceeded = false;
@@ -166,7 +167,7 @@ class gkDownloadManager {
 
 
 					// Always open files of this type
-					document.querySelector(`.item[id="${download.target.path}"] .alwaysopenthistype`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.alwaysopenthistype`).addEventListener("click", () => {
 						const mimeInfo = DownloadsCommon.getMimeInfo(download);
 						if (!mimeInfo)
 							throw new Error("Can't open download with unknown mime-type");
@@ -187,7 +188,7 @@ class gkDownloadManager {
 					});
 
 					// Pause // Resume
-					document.querySelector(`.item[id="${download.target.path}"] .pause`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.pause`).addEventListener("click", () => {
 						if (download.stopped)
 							download.start();
 						else
@@ -195,13 +196,13 @@ class gkDownloadManager {
 					});
 					
 					// Show in folder
-					document.querySelector(`.item[id="${download.target.path}"] .show`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.show`).addEventListener("click", () => {
 						let file = new FileUtils.File(download.target.path);
 						DownloadsCommon.showDownloadedFile(file);
 					});
 
 					// Cancel
-					document.querySelector(`.item[id="${download.target.path}"] .cancel`).addEventListener("click", () => {
+					downloadItemElm.querySelector(`.cancel`).addEventListener("click", () => {
 						download.cancel().catch(() => {});
 						download.removePartialData().catch(console.error).finally(() => this.download.target.refresh());
 					});
@@ -217,9 +218,9 @@ class gkDownloadManager {
 					gkDownloadManager.updateItem(download);
 				},
 				onDownloadRemoved: download => {
-					const downloadItem = document.querySelector(`.item[id="${download.target.path}"]`);
-					if (downloadItem)
-						downloadItem.remove();
+					const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
+					if (downloadItemElm)
+						downloadItemElm.remove();
 
 					if (document.getElementById("gkDownloadList").children.length == 0)
 						gkDownloadManager.toggleShelf("hide");
@@ -315,9 +316,9 @@ class gkDownloadManager {
 	}
 
 	static updateItem(download) {
-		const downloadItem = document.getElementById(download.target.path);
+		const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
 
-		if (downloadItem) {	
+		if (downloadItemElm) {	
 			function convertBytes(bytes) {
 				const units = [
 					gkDownloadManagerBundle.GetStringFromName("byte"),
@@ -349,110 +350,109 @@ class gkDownloadManager {
 			const totalSize = formatSize(download.totalBytes);	
 
 			if (download.launchWhenSucceeded) {
-				document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = ``;
-			} else {
+				downloadItemElm.querySelector(`.size`).textContent = ``;
+			} else {	
 				if (download.totalBytes !== 0)		
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${formatSize(download.currentBytes, false)}/${totalSize},\xa0`;
+					downloadItemElm.querySelector(`.size`).textContent = `${formatSize(download.currentBytes, false)}/${totalSize},\xa0`;
 				else
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${downloadedSize}`;
+					downloadItemElm.querySelector(`.size`).textContent = `${downloadedSize}`;
 			}
 					
 			// Calculate and update download speed	
 			const remainingBytes = download.totalBytes - download.currentBytes;
 			const currentTime = Date.now();
 
-			if (typeof downloadItem.dataset.previousTime !== undefined)
-				var elapsedTime = (currentTime - downloadItem.dataset.previousTime) / 1000;
+			if (typeof downloadItemElm.dataset.previousTime !== undefined)
+				var elapsedTime = (currentTime - downloadItemElm.dataset.previousTime) / 1000;
 
-			if (typeof downloadItem.dataset.previousBytes !== undefined)
-				var downloadSpeed = (download.currentBytes - downloadItem.dataset.previousBytes) / elapsedTime;
+			if (typeof downloadItemElm.dataset.previousBytes !== undefined)
+				var downloadSpeed = (download.currentBytes - downloadItemElm.dataset.previousBytes) / elapsedTime;
 
 			const estimatedTimeRemaining = remainingBytes / downloadSpeed;
 
 			if (!isNaN(estimatedTimeRemaining)) {
 				if (download.totalBytes !== 0) {
 					if (formatETA(estimatedTimeRemaining))
-						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = gkDownloadManagerBundle.GetStringFromName("timeLeft").replace("%s", formatETA(estimatedTimeRemaining));
+						downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("timeLeft").replace("%s", formatETA(estimatedTimeRemaining));
 					else
-						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
+						downloadItemElm.querySelector(`.eta`).textContent = "";
 				}
 				else {
-					document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
+					downloadItemElm.querySelector(`.eta`).textContent = "";
 				}
 
 				if (download.launchWhenSucceeded) {
 					if (download.totalBytes !== 0) {
 						if (formatETA(estimatedTimeRemaining))
-							document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingInTime").replace("%s", formatETA(estimatedTimeRemaining));
+							downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingInTime").replace("%s", formatETA(estimatedTimeRemaining));
 						else
-							document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
-					}
-					else {
-						document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingWhenComplete");
+							downloadItemElm.querySelector(`.eta`).textContent = "";
+					} else {
+						downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingWhenComplete");
 					}
 						
 				}
 			}
 
 			// Update previous values for the next calculation
-			downloadItem.dataset.previousBytes = download.currentBytes;
-			downloadItem.dataset.previousTime = currentTime;
+			downloadItemElm.dataset.previousBytes = download.currentBytes;
+			downloadItemElm.dataset.previousTime = currentTime;
 
 			if (download.hasProgress) {
-				downloadItem.dataset.state = "progress";
+				downloadItemElm.dataset.state = "progress";
 
 				if (!download.canceled || !download.error)	
-					downloadItem.style.setProperty('--gkdownload-progress', `${download.progress}%`);
+					downloadItemElm.style.setProperty('--gkdownload-progress', `${download.progress}%`);
 			}
 
 			if (download.succeeded) {
-				downloadItem.dataset.state = "done";
+				downloadItemElm.dataset.state = "done";
 			} else if (download.canceled) {
-				downloadItem.dataset.state = "canceled";
+				downloadItemElm.dataset.state = "canceled";
 
 				if (download.hasPartialData)
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = DownloadsCommon.strings.statePaused;
+					downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.statePaused;
 				else
-					document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = DownloadsCommon.strings.stateCanceled;		
+					downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.stateCanceled;		
 
-				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
+				downloadItemElm.querySelector(`.eta`).textContent = "";
 			} else if (download.error) {
 				if (download.hasBlockedData) {
 					if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE)
-						downloadItem.dataset.state = "dangerous_malware";
+						downloadItemElm.dataset.state = "dangerous_malware";
 					else
-						downloadItem.dataset.state = "dangerous_not_malware";
+						downloadItemElm.dataset.state = "dangerous_not_malware";
 					
-					if (document.querySelector(`.item[id="${download.target.path}"] .warning`).children.length == 0) {
+					if (downloadItemElm.querySelector(`.warning`).children.length == 0) {
 						if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE) {
-							document.querySelector(`.item[id="${download.target.path}"] .warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningMalwareTemplate));
-							document.querySelector(`.item[id="${download.target.path}"] .warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split("/").pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
-							document.querySelector(`.item[id="${download.target.path}"] .menuitem_keep`).addEventListener("click", () => {
+							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningMalwareTemplate));
+							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split("/").pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
+							downloadItemElm.querySelector(`.menuitem_keep`).addEventListener("click", () => {
 								download.unblock();
 							});
 						} else {
-							document.querySelector(`.item[id="${download.target.path}"] .warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningNotMalwareTemplate));
-							document.querySelector(`.item[id="${download.target.path}"] .warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split("/").pop());
-							document.querySelector(`.item[id="${download.target.path}"] .keep`).addEventListener("click", () => {
+							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningNotMalwareTemplate));
+							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split("/").pop());
+							downloadItemElm.querySelector(`.keep`).addEventListener("click", () => {
 								download.unblock();
 							});
 						}
 
-						document.querySelector(`.item[id="${download.target.path}"] .discard`).addEventListener("click", () => {
+						downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
 							download.confirmBlock();
 							DownloadsCommon.deleteDownload(download).catch(console.error);		
 						});
 					}	
 				} else {
-					downloadItem.dataset.state = "error";
+					downloadItemElm.dataset.state = "error";
 
 					if (download.error.localizedReason)
-						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
+						downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
 					else
-						document.querySelector(`.item[id="${download.target.path}"] .size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
+						downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
 				}
 
-				document.querySelector(`.item[id="${download.target.path}"] .eta`).textContent = "";
+				downloadItemElm.querySelector(`.eta`).textContent = "";
 			}
 		}
 		
