@@ -60,6 +60,13 @@ class gkDownloadManager {
 	</toolbarbutton>
 	`;
 
+	static get directorySlashes() {
+		if (AppConstants.platform == "win")
+			return "\\";
+		else
+			return "/";
+	}
+
 	static get shelf() {
 		return document.getElementById("gkDownloadShelf");
 	}
@@ -91,7 +98,8 @@ class gkDownloadManager {
 				onDownloadAdded: download => {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
-					const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
+					const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);
+
 					setTimeout(() => {
 						gkDownloadManager.checkItemBounds();
 					}, 450);
@@ -208,17 +216,17 @@ class gkDownloadManager {
 					});
 
 					// Initialize previous bytes and time for download speed calculation
-					if (typeof downloadItem.dataset.previousBytes !== undefined)
-						downloadItem.dataset.previousBytes = 0;
+					if (typeof downloadItemElm.dataset.previousBytes !== undefined)
+						downloadItemElm.dataset.previousBytes = 0;
 
-					if (typeof downloadItem.dataset.previousTime !== undefined)
-						downloadItem.dataset.previousTime = Date.now();
+					if (typeof downloadItemElm.dataset.previousTime !== undefined)
+						downloadItemElm.dataset.previousTime = Date.now();
 				},
 				onDownloadChanged: download => {
 					gkDownloadManager.updateItem(download);
 				},
 				onDownloadRemoved: download => {
-					const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
+					const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);
 					if (downloadItemElm)
 						downloadItemElm.remove();
 
@@ -251,10 +259,10 @@ class gkDownloadManager {
 		var downloadFileName;
 		var downloadFileFormat;
 
-		if (download.target.path.split("/").lastIndexOf('.') !== 1)
-			downloadFileName = download.target.path.split("/").pop().slice(0, download.target.path.split("/").pop().lastIndexOf('.'));
+		if (download.target.path.split(gkDownloadManager.directorySlashes).lastIndexOf('.') !== 1)
+			downloadFileName = download.target.path.split(gkDownloadManager.directorySlashes).pop().slice(0, download.target.path.split(gkDownloadManager.directorySlashes).pop().lastIndexOf('.'));
 		else
-			downloadFileName = download.target.path.split("/").pop();
+			downloadFileName = download.target.path.split(gkDownloadManager.directorySlashes).pop();
 
 		if (download.target.path.split(".").pop())
 			downloadFileFormat = "." + download.target.path.split(".").pop();
@@ -316,7 +324,7 @@ class gkDownloadManager {
 	}
 
 	static updateItem(download) {
-		const downloadItemElm = document.querySelector(`.item[id="${download.target.path}"]`);
+		const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);									
 
 		if (downloadItemElm) {	
 			function convertBytes(bytes) {
@@ -426,13 +434,13 @@ class gkDownloadManager {
 					if (downloadItemElm.querySelector(`.warning`).children.length == 0) {
 						if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE) {
 							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningMalwareTemplate));
-							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split("/").pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
+							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
 							downloadItemElm.querySelector(`.menuitem_keep`).addEventListener("click", () => {
 								download.unblock();
 							});
 						} else {
 							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningNotMalwareTemplate));
-							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split("/").pop());
+							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop());
 							downloadItemElm.querySelector(`.keep`).addEventListener("click", () => {
 								download.unblock();
 							});

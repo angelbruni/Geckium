@@ -191,7 +191,6 @@
 	box-sizing: border-box;
 	height: var(--gkdownload-shelf-height);
 	padding-inline-end: 16px;
-	// border-block-start: 1px solid var(--gkdownload-shelf-border-color);
 	background: var(--gkdownload-shelf-background);
 
 	pointer-events: none;
@@ -218,6 +217,7 @@
 	.item > .main {
 		button {
 			appearance: none !important;
+			background: transparent !important;
 		}
 	}
 
@@ -398,10 +398,10 @@
 		.more,
 		.warning_not_malware,
 		.warning_malware {
-			border-width: var(--gkdownload-item-border-width);
-			border-style: solid;
-			border-block-start-color: var(--gkdownload-item-border-block-start-color-normal);
-			border-block-end-color: var(--gkdownload-item-border-block-end-color-normal);
+			border-width: var(--gkdownload-item-border-width) !important;
+			border-style: solid !important;
+			border-block-start-color: var(--gkdownload-item-border-block-start-color-normal) !important;
+			border-block-end-color: var(--gkdownload-item-border-block-end-color-normal) !important;
 			overflow: hidden !important;
 			box-shadow: var(--gkdownload-item-box-shadow-normal);
 		}
@@ -470,8 +470,8 @@
 						border-inline-end-color: var(--gkdownload-item-inset-border-inline-end-color-hot);
 					}
 
-					border-block-start-color: var(--gkdownload-item-border-block-start-color-hot);
-					border-block-end-color: var(--gkdownload-item-border-block-end-color-hot);
+					border-block-start-color: var(--gkdownload-item-border-block-start-color-hot) !important;
+					border-block-end-color: var(--gkdownload-item-border-block-end-color-hot) !important;
 					box-shadow: var(--gkdownload-item-box-shadow-hot);
 
 					> .background {
@@ -489,8 +489,8 @@
 
 			&:active,
 			&[open="true"] {
-				border-block-start-color: var(--gkdownload-item-border-block-start-color-active);
-				border-block-end-color: var(--gkdownload-item-border-block-end-color-active);
+				border-block-start-color: var(--gkdownload-item-border-block-start-color-active) !important;
+				border-block-end-color: var(--gkdownload-item-border-block-end-color-active) !important;
 				box-shadow: var(--gkdownload-item-box-shadow-active);
 				transition: border-color 0s, box-shadow 0s;
 
@@ -522,14 +522,14 @@
 		.file-button,
 		.warning_not_malware,
 		.warning_malware {
-			border-top-left-radius: var(--gkdownload-item-border-radius);
-			border-bottom-left-radius: var(--gkdownload-item-border-radius);
-			border-inline-start-color: var(--gkdownload-item-border-inline-start-color-normal);
+			border-top-left-radius: var(--gkdownload-item-border-radius) !important;
+			border-bottom-left-radius: var(--gkdownload-item-border-radius) !important;
+			border-inline-start-color: var(--gkdownload-item-border-inline-start-color-normal) !important;
 		}
 
 		.file-button,
 		.warning_malware {
-			border-inline-end-width: 0;	
+			border-inline-end-width: 0 !important;	
 		}
 
 		.file-button {
@@ -550,7 +550,7 @@
 
 			&:not(:active) {
 				&:hover {
-					border-inline-start-color: var(--gkdownload-item-border-inline-start-color-hot);
+					border-inline-start-color: var(--gkdownload-item-border-inline-start-color-hot) !important;
 	
 					.description {
 						color: var(--gkdownload-item-description-color-hot);
@@ -559,7 +559,7 @@
 			}
 
 			&:active {
-				border-inline-start-color: var(--gkdownload-item-border-inline-start-color-active);
+				border-inline-start-color: var(--gkdownload-item-border-inline-start-color-active) !important;
 				box-shadow: var(--gkdownload-item-main-box-shadow-active);
 
 				.description {
@@ -579,13 +579,13 @@
 
 		.more,
 		.warning_not_malware {
-			border-top-right-radius: var(--gkdownload-item-border-radius);
-			border-bottom-right-radius: var(--gkdownload-item-border-radius);
-			border-inline-end-color: var(--gkdownload-item-border-inline-start-color-normal);
+			border-top-right-radius: var(--gkdownload-item-border-radius) !important;
+			border-bottom-right-radius: var(--gkdownload-item-border-radius) !important;
+			border-inline-end-color: var(--gkdownload-item-border-inline-start-color-normal) !important;
 		}
 
 		.more {	
-			border-inline-start-width: 0;
+			border-inline-start-width: 0 !important;
 			align-items: center;
 			width: var(--gkdownload-item-more-width);
 			height: var(--gkdownload-item-more-height);
@@ -600,7 +600,7 @@
 
 			&:not([open="true"]) {
 				&:hover {
-					border-inline-end-color: var(--gkdownload-item-border-inline-end-color-hot);
+					border-inline-end-color: var(--gkdownload-item-border-inline-end-color-hot) !important;
 
 					> .separator {
 						border-inline-start-color: var(--gkdownload-item-separator-border-inline-start-color-hot);
@@ -611,9 +611,9 @@
 			
 			&:active,
 			&[open="true"] {
-				border-block-start-color: var(--gkdownload-item-border-block-start-color-active);
-				border-block-end-color: var(--gkdownload-item-border-block-end-color-active);
-				border-inline-end-color: var(--gkdownload-item-border-inline-end-color-active);
+			border-block-start-color: var(--gkdownload-item-border-block-start-color-active) !important;
+			border-block-end-color: var(--gkdownload-item-border-block-end-color-active) !important;
+			border-inline-end-color: var(--gkdownload-item-border-inline-end-color-active) !important;
 
 				> .separator {
 					border-inline-start-color: var(--gkdownload-item-separator-border-inline-start-color-active);
@@ -628,7 +628,7 @@
 
 			> .separator {
 				position: absolute;
-				pointer-events: none;
+				pointer-events: none;			
 				left: 0;
 				top: 1px;
 				height: calc(100% - 2px);
