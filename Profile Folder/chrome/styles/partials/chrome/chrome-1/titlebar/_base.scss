@@ -33,7 +33,7 @@
         background-position-y: var(--titlebar-pseudo-texture-ypos);
         mask-image: linear-gradient(
             to bottom,
-            white calc(var(--tab-height) * 2),
+            white calc(var(--titlebar-pseudo-height) - 18px),
             transparent var(--titlebar-pseudo-height)
         )
     }
