@@ -115,7 +115,7 @@
 				content: "";
 				position: absolute;
 				width: var(--content-border-width);
-				top: calc(var(--content-border-width) * -1);
+				top: calc(var(--content-border-width) * -1 + 1px);
 				height: calc(var(--nav-bar-height) + 3px);
 			}
 			&::before {
@@ -159,10 +159,10 @@
 		#browser,
 		#customization-container {
 			&::before {
-				left: calc(var(--content-border-width) * -1);
+				left: calc(var(--content-border-width) * -1 + 1px);
 			}
 			&::after {
-				right: calc(var(--content-border-width) * -1);
+				right: calc(var(--content-border-width) * -1 + 1px);
 			}
 		}
 
@@ -171,7 +171,7 @@
 			content: "";
 			position: absolute;
 			width: 100%;
-			bottom: calc(var(--content-border-width) * -1);
+			bottom: calc(var(--content-border-width) * -1 + 1px);
 			height: var(--content-border-width);
 			background: var(--content-border-top-image) bottom;
 			transform: scaleY(-100%);
@@ -183,17 +183,17 @@
 			&::after {
 				content: "";
 				position: absolute;
-				bottom: calc(var(--content-border-width) * -1);
+				bottom: calc(var(--content-border-width) * -1 + 1px);
 				transform: scaleY(-100%);
 				width: var(--content-border-width);
 				height: var(--content-border-width);
 			}
 			&::before {
-				left: calc(var(--content-border-width) * -1);
+				left: calc(var(--content-border-width) * -1 + 1px);
 				background: var(--content-border-top-left-image) top left;
 			}
 			&::after {
-				right: calc(var(--content-border-width) * -1);
+				right: calc(var(--content-border-width) * -1 + 1px);
 				background: var(--content-border-top-right-image) top right;
 			}
 		}
