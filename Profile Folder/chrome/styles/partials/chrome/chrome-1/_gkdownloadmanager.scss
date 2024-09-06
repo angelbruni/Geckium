@@ -22,10 +22,10 @@
 
 @keyframes gkDownloadItemStart {
 	0% {
-		max-width: 0px;
+		width: 0%;
 	}
 	100% {
-		max-width: var(--gkdownload-item-max-width);
+		width: 100%;
 	}
 }	
 
@@ -86,7 +86,7 @@
 	--gkdownload-shelf-list-gap: 2px;
 
 	--gkdownload-item-animation-begin-duration: .8s;
-	--gkdownload-item-animation-grow-duration: .45s;
+	--gkdownload-item-animation-grow-duration: 2s;
 	--gkdownload-item-box-shadow-normal: 0px 0px 0px 1px rgba(0,0,0,.025);
 	--gkdownload-item-box-shadow-hot: var(--gkdownload-item-box-shadow-normal);
 	--gkdownload-item-box-shadow-active: 0px 0px 0px 0px transparent;
@@ -236,11 +236,11 @@
 
 	> .item {
 		position: relative;
-		width: 100%;
+		width: 0;
 		height: var(--gkdownload-item-height);
 		border-radius: var(--gkdownload-item-border-radius);
 		align-items: center;
-		max-width: 0;
+		max-width: var(--gkdownload-item-max-width);
 		flex-shrink: 0;
 		animation: gkDownloadItemStart var(--gkdownload-item-animation-grow-duration) ease-out forwards;
 
@@ -287,6 +287,8 @@
 		}
 
 		&[data-state*="dangerous"] {
+			--gkdownload-item-max-width: fit-content;
+
 			.main {
 				display: none;
 			}
@@ -325,8 +327,10 @@
 				}
 	
 				> label {
-					margin-inline-end: 16px;
-					white-space: pre-wrap;	
+					margin: 0 !important;
+					margin-inline-end: 16px !important;
+					white-space: pre-wrap;
+					min-width: max-content;
 				}
 			}
 
@@ -336,19 +340,11 @@
 					height: 18px;
 					width: 18px;
 				}
-
-				> label {
-					min-width: 250px !important;
-				}
 			}
 
 			> .warning_malware {
 				> image {
 					list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/safebrowsing_warning.png");
-				}
-
-				> label {
-					min-width: 160px !important;
 				}
 			}
 		}
