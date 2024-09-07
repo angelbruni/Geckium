@@ -6,7 +6,9 @@
 	--content-border-top-right-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_right_corner.png");
 	--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.png");
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
-	
+
+	--window-control-background: var(--default-window-control-background);
+
 	&[windowtype="navigator:browser"] > body {
 		box-sizing: border-box; //Required fix for Windows
 	}

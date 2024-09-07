@@ -159,7 +159,14 @@ class gkDownloadManager {
 							else
 								download.launchWhenSucceeded = true;
 						} else if (download.succeeded) {
-							download.launch().catch(console.error);
+							download.launch().catch((e) => {
+								console.error(e);		
+
+								if (e.result == Components.results.NS_ERROR_FILE_NOT_FOUND) {
+									downloadItemElm.dataset.state = "error";
+									downloadItemElm.querySelector(".description > .size").textContent = gkDownloadManagerBundle.GetStringFromName("removed");
+								}
+							});
 						}
 					});
 					downloadItemElm.querySelector(`.openwhendone`).addEventListener("click", () => {
@@ -169,7 +176,14 @@ class gkDownloadManager {
 							else
 								download.launchWhenSucceeded = true;
 						} else if (download.succeeded) {
-							download.launch().catch(console.error);
+							download.launch().catch((e) => {
+								console.error(e);		
+
+								if (e.result == Components.results.NS_ERROR_FILE_NOT_FOUND) {
+									downloadItemElm.dataset.state = "error";
+									downloadItemElm.querySelector(".description > .size").textContent = gkDownloadManagerBundle.GetStringFromName("removed");
+								}
+							});
 						}
 					});
 
