@@ -265,7 +265,7 @@ class gkDownloadManager {
 			downloadFileName = download.target.path.split(gkDownloadManager.directorySlashes).pop();
 
 		if (download.target.path.split(".").pop())
-			downloadFileFormat = "." + download.target.path.split(".").pop();
+			downloadFileFormat = download.target.path.split(".").pop();
 		else
 			downloadFileFormat = "";
 

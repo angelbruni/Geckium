@@ -670,6 +670,10 @@
 
 		.description {
 			color: var(--gkdownload-item-description-color-normal);
+
+			> .size {
+				flex-shrink: 0;
+			}
 		}
 	}
 }

@@ -11,12 +11,12 @@
 		box-sizing: border-box; //Required fix for Windows
 	}
 
-	//--inner-border-color overrides (requires Windows border)
+	//--window-control-background overrides (requires Windows border)
 	&[gkthemed]:not([gkchrthemed]) {
-		// --inner-border-color: var(--gktoolbar-bgcolor);
+		--window-control-background: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor));
 	}
 	&[gkthemed][gkchrthemed] {
-		--inner-border-color: var(--chrtheme-toolbar);
+		--window-control-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-frame));
 	}
 
 	.titlebar-spacer { // Prepare for usage as tabbar borders
@@ -87,22 +87,24 @@
 		border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
+		background: var(--window-control-background);
 	}
 
 	//Page bodies - all borders (requires Windows decorations)
 	&[gktitstyle="win"] {
-		#tabbrowser-tabpanels,
+		#browser,
 		#customization-container {
-			border-width: 1px;
-			border-block-start-width: 0;
-			border-style: solid;
-			border-color: var(--inner-border-color, var(--default-inner-border-color));
+			padding-block-end: 1px;
+			padding-inline-start: 1px;
+			padding-inline-end: 1px;
 		}
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
 			#browser,
 			#customization-container {
-				border: none;
+				padding-block-end: 0px;
+				padding-inline-start: 0px;
+				padding-inline-end: 0px;
 			}
 		}
 	}
