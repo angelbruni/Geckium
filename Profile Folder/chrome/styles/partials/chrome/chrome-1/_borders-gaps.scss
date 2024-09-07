@@ -87,7 +87,7 @@
 		border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
-		background: var(--window-control-background);
+		background: var(--window-control-background) !important; // Required for #customization-container
 	}
 
 	//Page bodies - all borders (requires Windows decorations)
