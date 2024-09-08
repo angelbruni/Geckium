@@ -221,6 +221,10 @@
 		}
 	}
 
+	#gkDownloadActionButtons button {
+		border: 0 !important;
+	}
+
 	toolbarbutton {
 		appearance: none !important;
 	}
@@ -304,7 +308,7 @@
 		}
 
 		.main {
-			label {
+			label:not(.menu-text, .menu-iconic-text) {
 				overflow: hidden;
 				white-space: nowrap;
 			}
@@ -326,7 +330,7 @@
 					margin-inline-end: 6px;
 				}
 	
-				> label {
+				> label:not(.menu-text, .menu-iconic-text) {
 					margin: 0 !important;
 					margin-inline-end: 16px !important;
 					white-space: pre-wrap;
@@ -649,12 +653,12 @@
 		.name,
 		.warning_not_malware,
 		.warning_malware {
-			> label {
+			> label:not(.menu-text, .menu-iconic-text) {
 				color: var(--gkdownload-item-name-color);
 			}
 		}
 
-		label {
+		label:not(.menu-text, .menu-iconic-text) {
 			margin: 0 !important;
 			text-overflow: ellipsis;
 		}
