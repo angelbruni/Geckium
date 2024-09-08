@@ -25,7 +25,7 @@ class gkDownloadManager {
 	</html:div>
 	`;
 
-	static warningNotMalwareTemplate = `
+	static itemWarningNotMalwareTemplate = `
 	<hbox class="warning_not_malware">
 		<image />
 		<label class="warning_text" />
@@ -36,7 +36,7 @@ class gkDownloadManager {
 	</hbox>
 	`;
 
-	static warningMalwareTemplate = `
+	static itemWarningMalwareTemplate = `
 	<hbox class="warning_malware">
 		<image />
 		<label class="warning_text" />
@@ -60,6 +60,24 @@ class gkDownloadManager {
 	</toolbarbutton>
 	`;
 
+	static itemDownloadingMenu = `
+	<menuitem type="checkbox" class="openwhendone" label="${gkDownloadManagerBundle.GetStringFromName("openWhenDone")}" />
+	<menuseparator />
+	<menuitem class="pause" />
+	<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
+	<menuseparator />
+	<menuitem class="cancel" data-l10n-id="bookmark-panel-cancel" />
+	`
+
+	static itemDownloadedMenu = `
+	<menuitem class="open" data-l10n-id="places-open" />
+	<menuitem class="alwaysopenthistype" type="checkbox" label="${gkDownloadManagerBundle.GetStringFromName("alwaysOpenFilesOfThisType")}" />
+	<menuseparator />
+	<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
+	<menuseparator />
+	<menuitem class="cancel" disabled="true" data-l10n-id="bookmark-panel-cancel" />
+	`
+
 	static get directorySlashes() {
 		if (AppConstants.platform == "win")
 			return "\\";
@@ -69,6 +87,70 @@ class gkDownloadManager {
 
 	static get shelf() {
 		return document.getElementById("gkDownloadShelf");
+	}
+
+	static getDownloadItem(targetPath) {
+		return document.querySelector(`.item[id="${targetPath.replace(/\\/g, "\\\\")}"]`);
+	}
+
+	static convertBytes(bytes) {
+		const units = [
+			gkDownloadManagerBundle.GetStringFromName("byte"),
+			gkDownloadManagerBundle.GetStringFromName("kiloByte"),
+			gkDownloadManagerBundle.GetStringFromName("megaByte"),
+			gkDownloadManagerBundle.GetStringFromName("gigaByte"),
+			gkDownloadManagerBundle.GetStringFromName("teraByte")
+		];
+		let unitIndex = 0;
+	
+		// Convert bytes to the appropriate unit
+		while (bytes >= 1024 && unitIndex < units.length - 1) {
+			bytes /= 1024;
+			unitIndex++;
+		}
+	
+		return { size: bytes, unit: units[unitIndex] };
+	}
+
+	static formatSize(bytes, showUnit = true) {
+		const { size, unit } = this.convertBytes(bytes);
+		const formattedSize = size.toFixed(1);
+	
+		return showUnit ? `${formattedSize} ${unit}` : `${formattedSize}`;
+	}
+
+	static formatETA(seconds) {
+		seconds = parseInt(seconds);
+
+		if (isNaN(seconds))
+			seconds = 0;
+
+		const timeUnits = [
+			{ unit: "year",		seconds: 31536000 },
+			{ unit: "month",	seconds: 2592000 },
+			{ unit: "day",		seconds: 86400 },
+			{ unit: "hour",		seconds: 3600 },
+			{ unit: "minute",	seconds: 60 },
+			{ unit: "second",	seconds: 1 }
+		];
+		
+		for (const { unit, seconds: unitSeconds } of timeUnits) {
+			var count = Math.floor(seconds / unitSeconds);
+
+			if (count > 0) {
+				if (count > 1) {
+					if (unit)
+						return `${count} ${gkDownloadManagerBundle.GetStringFromName(unit + "s")}`;
+					else
+						return;
+				} else {
+					if (unit)
+						return `${count} ${gkDownloadManagerBundle.GetStringFromName(unit)}`;
+					else
+						return;
+				}
+			}
+		}
 	}
 
     static createShelf() {
@@ -98,135 +180,37 @@ class gkDownloadManager {
 				onDownloadAdded: download => {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
-					const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);
+					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+					
+					// Open / Open when complete
+					downloadItemElm.querySelector(`.file-button`).addEventListener("click", () => {
+						if (!download.succeeded && !download.stopped && !download.error) {
+							gkDownloadManager.openWhenDone(download);
+						} else if (download.succeeded) {
+							gkDownloadManager.open(download);
+						}
+					});
 
+					gkDownloadManager.updateItemMenu(download);	
+					
+					downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
+						// Open when done
+						downloadItemElm.querySelector(`.openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
+
+						// Pause
+						const pauseMenuItem = gkDownloadManager.getDownloadItem(download.target.path).querySelector(`.pause`);
+						
+						if (download.stopped)
+							pauseMenuItem.dataset.l10nId = "downloads-cmd-resume";
+						else
+							pauseMenuItem.dataset.l10nId = "downloads-cmd-pause";
+					});
+					
 					setTimeout(() => {
 						gkDownloadManager.checkItemBounds();
 					}, 450);
 					addEventListener("resize", () => {
 						gkDownloadManager.checkItemBounds();
-					});
-					
-					// Popup Showing check
-					downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
-						if (download.succeeded) {
-							// Open when done
-							downloadItemElm.querySelector(`.openwhendone`).removeAttribute("type");
-							downloadItemElm.querySelector(`.openwhendone`).removeAttribute("checked");
-							downloadItemElm.querySelector(`.openwhendone`).setAttribute("data-l10n-id", "places-open");
-
-							// Always open files of this type
-							downloadItemElm.querySelector(`.alwaysopenthistype`).removeAttribute("hidden");
-							const mimeInfo = DownloadsCommon.getMimeInfo(download);
-							if (mimeInfo.preferredAction === mimeInfo.useSystemDefault)
-								downloadItemElm.querySelector(`.alwaysopenthistype`).setAttribute("checked", true);
-							else
-								downloadItemElm.querySelector(`.alwaysopenthistype`).removeAttribute("checked");
-
-							downloadItemElm.querySelector(`.pause`).setAttribute("hidden", true);
-							downloadItemElm.querySelector(`.cancel`).setAttribute("hidden", true);
-							downloadItemElm.querySelector(`.cancelseparator`).setAttribute("hidden", true);
-						} else if (download.canceled && !download.hasPartialData) {
-							document.querySelectorAll(`.item[id="${download.target.path}"] menuitem`).forEach(menuitem => {
-								menuitem.setAttribute("disabled", true);
-							});
-						} else {
-							// Open when done
-							downloadItemElm.querySelector(`.openwhendone`).setAttribute("label", gkDownloadManagerBundle.GetStringFromName("openWhenDone"));
-							downloadItemElm.querySelector(`.openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
-
-							// Always open files of this type
-							downloadItemElm.querySelector(`.alwaysopenthistype`).setAttribute("hidden", true);
-
-							// Pause
-							downloadItemElm.querySelector(`.pause`).removeAttribute("hidden");
-							if (download.stopped)
-								downloadItemElm.querySelector(`.pause`).setAttribute("data-l10n-id", "downloads-cmd-resume");
-							else
-								downloadItemElm.querySelector(`.pause`).setAttribute("data-l10n-id", "downloads-cmd-pause");
-
-
-							downloadItemElm.querySelector(`.cancel`).removeAttribute("hidden");
-							downloadItemElm.querySelector(`.cancelseparator`).removeAttribute("hidden");
-						}
-					});
-
-					// Open / Open when complete
-					downloadItemElm.querySelector(`.file-button`).addEventListener("click", () => {
-						if (!download.succeeded && !download.stopped && !download.error) {
-							if (download.launchWhenSucceeded)
-								download.launchWhenSucceeded = false;
-							else
-								download.launchWhenSucceeded = true;
-						} else if (download.succeeded) {
-							download.launch().catch((e) => {
-								console.error(e);		
-
-								if (e.result == Components.results.NS_ERROR_FILE_NOT_FOUND) {
-									downloadItemElm.dataset.state = "error";
-									downloadItemElm.querySelector(".description > .size").textContent = gkDownloadManagerBundle.GetStringFromName("removed");
-								}
-							});
-						}
-					});
-					downloadItemElm.querySelector(`.openwhendone`).addEventListener("click", () => {
-						if (!download.succeeded && !download.stopped && !download.error) {
-							if (download.launchWhenSucceeded)
-								download.launchWhenSucceeded = false;
-							else
-								download.launchWhenSucceeded = true;
-						} else if (download.succeeded) {
-							download.launch().catch((e) => {
-								console.error(e);		
-
-								if (e.result == Components.results.NS_ERROR_FILE_NOT_FOUND) {
-									downloadItemElm.dataset.state = "error";
-									downloadItemElm.querySelector(".description > .size").textContent = gkDownloadManagerBundle.GetStringFromName("removed");
-								}
-							});
-						}
-					});
-
-
-					// Always open files of this type
-					downloadItemElm.querySelector(`.alwaysopenthistype`).addEventListener("click", () => {
-						const mimeInfo = DownloadsCommon.getMimeInfo(download);
-						if (!mimeInfo)
-							throw new Error("Can't open download with unknown mime-type");
-
-						// User has selected to always open this mime-type from now on and will add this
-						// mime-type to our preferences table with the system default option. Open the
-						// file immediately after selecting the menu item like alwaysOpenInSystemViewer.
-						if (mimeInfo.preferredAction !== mimeInfo.useSystemDefault) {			
-							mimeInfo.preferredAction = mimeInfo.useSystemDefault;
-							handlerSvc.store(mimeInfo);
-							DownloadsCommon.openDownload(download).catch(console.error);
-						} else {
-						// Otherwise, if user unchecks this option after already enabling it from the
-						// context menu, resort to saveToDisk.
-							mimeInfo.preferredAction = mimeInfo.saveToDisk;
-							handlerSvc.store(mimeInfo);
-						}
-					});
-
-					// Pause // Resume
-					downloadItemElm.querySelector(`.pause`).addEventListener("click", () => {
-						if (download.stopped)
-							download.start();
-						else
-							download.cancel();
-					});
-					
-					// Show in folder
-					downloadItemElm.querySelector(`.show`).addEventListener("click", () => {
-						let file = new FileUtils.File(download.target.path);
-						DownloadsCommon.showDownloadedFile(file);
-					});
-
-					// Cancel
-					downloadItemElm.querySelector(`.cancel`).addEventListener("click", () => {
-						download.cancel().catch(() => {});
-						download.removePartialData().catch(console.error).finally(() => this.download.target.refresh());
 					});
 
 					// Initialize previous bytes and time for download speed calculation
@@ -238,9 +222,22 @@ class gkDownloadManager {
 				},
 				onDownloadChanged: download => {
 					gkDownloadManager.updateItem(download);
+					gkDownloadManager.updateItemMenu(download);
+
+					if (download.succeeded) {
+						const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+						// Always open files of this type
+						downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
+							const downloadAlwaysOpenThisTypeMenuItem = downloadItemElm.querySelector(".alwaysopenthistype");
+
+							downloadAlwaysOpenThisTypeMenuItem.removeAttribute("hidden");
+							const mimeInfo = DownloadsCommon.getMimeInfo(download);
+							downloadAlwaysOpenThisTypeMenuItem.setAttribute("checked", mimeInfo.preferredAction === mimeInfo.useSystemDefault);
+						});
+					}
 				},
 				onDownloadRemoved: download => {
-					const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);
+					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
 					if (downloadItemElm)
 						downloadItemElm.remove();
 
@@ -317,15 +314,7 @@ class gkDownloadManager {
 					</html:div>
 					<html:div class="separator" />
 					<image class="toolbarbutton-icon" type="menu"/>
-					<menupopup position="before_start">
-						<menuitem type="checkbox" class="openwhendone" />
-						<menuitem class="alwaysopenthistype" type="checkbox" label="${gkDownloadManagerBundle.GetStringFromName("alwaysOpenFilesOfThisType")}" />
-						<menuseparator />
-						<menuitem class="pause" />
-						<menuitem class="show" data-l10n-id="downloads-cmd-show-menuitem-2" />	
-						<menuseparator class="cancelseparator" />
-						<menuitem class="cancel" data-l10n-id="bookmark-panel-cancel" />	
-					</menupopup>
+					<menupopup position="before_start" />
 				</toolbarbutton>
 			</hbox>
 			<hbox class="warning" />
@@ -338,179 +327,233 @@ class gkDownloadManager {
 	}
 
 	static updateItem(download) {
-		const downloadItemElm = document.querySelector(`.item[id="${download.target.path.replace(/\\/g, "\\\\")}"]`);									
+		const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+		// Update the downloaded size / total file size using the same unit
+		const downloadedSize = gkDownloadManager.formatSize(download.currentBytes);
+		const totalSize = gkDownloadManager.formatSize(download.totalBytes);	
 
-		if (downloadItemElm) {	
-			function convertBytes(bytes) {
-				const units = [
-					gkDownloadManagerBundle.GetStringFromName("byte"),
-					gkDownloadManagerBundle.GetStringFromName("kiloByte"),
-					gkDownloadManagerBundle.GetStringFromName("megaByte"),
-					gkDownloadManagerBundle.GetStringFromName("gigaByte"),
-					gkDownloadManagerBundle.GetStringFromName("teraByte")
-				];
-				let unitIndex = 0;
-			
-				// Convert bytes to the appropriate unit
-				while (bytes >= 1024 && unitIndex < units.length - 1) {
-					bytes /= 1024;
-					unitIndex++;
-				}
-			
-				return { size: bytes, unit: units[unitIndex] };
+		if (download.launchWhenSucceeded) {
+			downloadItemElm.querySelector(`.size`).textContent = ``;
+		} else {	
+			if (download.totalBytes !== 0)		
+				downloadItemElm.querySelector(`.size`).textContent = `${gkDownloadManager.formatSize(download.currentBytes, false)}/${totalSize},\xa0`;
+			else
+				downloadItemElm.querySelector(`.size`).textContent = `${downloadedSize}`;
+		}
+				
+		// Calculate and update download speed	
+		const remainingBytes = download.totalBytes - download.currentBytes;
+		const currentTime = Date.now();
+
+		if (typeof downloadItemElm.dataset.previousTime !== undefined)
+			var elapsedTime = (currentTime - downloadItemElm.dataset.previousTime) / 1000;
+
+		if (typeof downloadItemElm.dataset.previousBytes !== undefined)
+			var downloadSpeed = (download.currentBytes - downloadItemElm.dataset.previousBytes) / elapsedTime;
+
+		const estimatedTimeRemaining = remainingBytes / downloadSpeed;
+
+		if (!isNaN(estimatedTimeRemaining)) {
+			if (download.totalBytes !== 0) {
+				if (gkDownloadManager.formatETA(estimatedTimeRemaining))
+					downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("timeLeft").replace("%s", gkDownloadManager.formatETA(estimatedTimeRemaining));
+				else
+					downloadItemElm.querySelector(`.eta`).textContent = "";
 			}
-
-			function formatSize(bytes, showUnit = true) {
-				const { size, unit } = convertBytes(bytes);
-				const formattedSize = size.toFixed(1);
-			
-				return showUnit ? `${formattedSize} ${unit}` : `${formattedSize}`;
+			else {
+				downloadItemElm.querySelector(`.eta`).textContent = "";
 			}
-
-			// Update the downloaded size / total file size using the same unit
-			const downloadedSize = formatSize(download.currentBytes);
-			const totalSize = formatSize(download.totalBytes);	
 
 			if (download.launchWhenSucceeded) {
-				downloadItemElm.querySelector(`.size`).textContent = ``;
-			} else {	
-				if (download.totalBytes !== 0)		
-					downloadItemElm.querySelector(`.size`).textContent = `${formatSize(download.currentBytes, false)}/${totalSize},\xa0`;
-				else
-					downloadItemElm.querySelector(`.size`).textContent = `${downloadedSize}`;
-			}
-					
-			// Calculate and update download speed	
-			const remainingBytes = download.totalBytes - download.currentBytes;
-			const currentTime = Date.now();
-
-			if (typeof downloadItemElm.dataset.previousTime !== undefined)
-				var elapsedTime = (currentTime - downloadItemElm.dataset.previousTime) / 1000;
-
-			if (typeof downloadItemElm.dataset.previousBytes !== undefined)
-				var downloadSpeed = (download.currentBytes - downloadItemElm.dataset.previousBytes) / elapsedTime;
-
-			const estimatedTimeRemaining = remainingBytes / downloadSpeed;
-
-			if (!isNaN(estimatedTimeRemaining)) {
 				if (download.totalBytes !== 0) {
-					if (formatETA(estimatedTimeRemaining))
-						downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("timeLeft").replace("%s", formatETA(estimatedTimeRemaining));
+					if (gkDownloadManager.formatETA(estimatedTimeRemaining))
+						downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingInTime").replace("%s", gkDownloadManager.formatETA(estimatedTimeRemaining));
 					else
 						downloadItemElm.querySelector(`.eta`).textContent = "";
-				}
-				else {
-					downloadItemElm.querySelector(`.eta`).textContent = "";
-				}
-
-				if (download.launchWhenSucceeded) {
-					if (download.totalBytes !== 0) {
-						if (formatETA(estimatedTimeRemaining))
-							downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingInTime").replace("%s", formatETA(estimatedTimeRemaining));
-						else
-							downloadItemElm.querySelector(`.eta`).textContent = "";
-					} else {
-						downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingWhenComplete");
-					}
-						
-				}
-			}
-
-			// Update previous values for the next calculation
-			downloadItemElm.dataset.previousBytes = download.currentBytes;
-			downloadItemElm.dataset.previousTime = currentTime;
-
-			if (download.hasProgress) {
-				downloadItemElm.dataset.state = "progress";
-
-				if (!download.canceled || !download.error)	
-					downloadItemElm.style.setProperty('--gkdownload-progress', `${download.progress}%`);
-			}
-
-			if (download.succeeded) {
-				downloadItemElm.dataset.state = "done";
-			} else if (download.canceled) {
-				downloadItemElm.dataset.state = "canceled";
-
-				if (download.hasPartialData)
-					downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.statePaused;
-				else
-					downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.stateCanceled;		
-
-				downloadItemElm.querySelector(`.eta`).textContent = "";
-			} else if (download.error) {
-				if (download.hasBlockedData) {
-					if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE)
-						downloadItemElm.dataset.state = "dangerous_malware";
-					else
-						downloadItemElm.dataset.state = "dangerous_not_malware";
-					
-					if (downloadItemElm.querySelector(`.warning`).children.length == 0) {
-						if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE) {
-							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningMalwareTemplate));
-							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
-							downloadItemElm.querySelector(`.menuitem_keep`).addEventListener("click", () => {
-								download.unblock();
-							});
-						} else {
-							downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.warningNotMalwareTemplate));
-							downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop());
-							downloadItemElm.querySelector(`.keep`).addEventListener("click", () => {
-								download.unblock();
-							});
-						}
-
-						downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
-							download.confirmBlock();
-							DownloadsCommon.deleteDownload(download).catch(console.error);		
-						});
-					}	
 				} else {
-					downloadItemElm.dataset.state = "error";
-
-					if (download.error.localizedReason)
-						downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
-					else
-						downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
+					downloadItemElm.querySelector(`.eta`).textContent = gkDownloadManagerBundle.GetStringFromName("openingWhenComplete");
 				}
-
-				downloadItemElm.querySelector(`.eta`).textContent = "";
+					
 			}
 		}
-		
-		function formatETA(seconds) {
-			seconds = parseInt(seconds);
 
-			if (isNaN(seconds))
-				seconds = 0;
+		// Update previous values for the next calculation
+		downloadItemElm.dataset.previousBytes = download.currentBytes;
+		downloadItemElm.dataset.previousTime = currentTime;
 
-			const timeUnits = [
-				{ unit: "year",		seconds: 31536000 },
-				{ unit: "month",	seconds: 2592000 },
-				{ unit: "day",		seconds: 86400 },
-				{ unit: "hour",		seconds: 3600 },
-				{ unit: "minute",	seconds: 60 },
-				{ unit: "second",	seconds: 1 }
-			];
-			
-			for (const { unit, seconds: unitSeconds } of timeUnits) {
-				var count = Math.floor(seconds / unitSeconds);
+		if (download.hasProgress) {
+			downloadItemElm.dataset.state = "progress";
 
-				if (count > 0) {
-					if (count > 1) {
-						if (unit)
-							return `${count} ${gkDownloadManagerBundle.GetStringFromName(unit + "s")}`;
-						else
-							return;
+			if (!download.canceled || !download.error)	
+				downloadItemElm.style.setProperty('--gkdownload-progress', `${download.progress}%`);
+		}
+
+		if (download.succeeded) {
+			downloadItemElm.dataset.state = "done";
+		} else if (download.canceled) {
+			downloadItemElm.dataset.state = "canceled";
+
+			if (download.hasPartialData)
+				downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.statePaused;
+			else
+				downloadItemElm.querySelector(`.size`).textContent = DownloadsCommon.strings.stateCanceled;		
+
+			downloadItemElm.querySelector(`.eta`).textContent = "";
+		} else if (download.error) {
+			if (download.hasBlockedData) {
+				if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE)
+					downloadItemElm.dataset.state = "dangerous_malware";
+				else
+					downloadItemElm.dataset.state = "dangerous_not_malware";
+				
+				if (downloadItemElm.querySelector(`.warning`).children.length == 0) {
+					if (download.error.reputationCheckVerdict == Downloads.Error.BLOCK_VERDICT_MALWARE) {
+						downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningMalwareTemplate));
+						downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
+						downloadItemElm.querySelector(`.menuitem_keep`).addEventListener("click", () => {
+							download.unblock();
+						});
 					} else {
-						if (unit)
-							return `${count} ${gkDownloadManagerBundle.GetStringFromName(unit)}`;
-						else
-							return;
+						downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningNotMalwareTemplate));
+						downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("thisTypeOfFileCanHarmYourComputer").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop());
+						downloadItemElm.querySelector(`.keep`).addEventListener("click", () => {
+							download.unblock();
+						});
 					}
-				}
+
+					downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
+						download.confirmBlock();
+						DownloadsCommon.deleteDownload(download).catch(console.error);		
+					});
+				}	
+			} else {
+				downloadItemElm.dataset.state = "error";
+
+				if (download.error.localizedReason)
+					downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed} - ${download.error.localizedReason}`;
+				else
+					downloadItemElm.querySelector(`.size`).textContent = `${DownloadsCommon.strings.stateFailed}`;
 			}
+
+			downloadItemElm.querySelector(`.eta`).textContent = "";
 		}
+	}
+
+	static open(download) {
+		const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);			
+
+		download.launch().catch((e) => {
+			console.error(e);		
+
+			if (e.result == Components.results.NS_ERROR_FILE_NOT_FOUND) {
+				downloadItemElm.dataset.state = "error";
+				downloadItemElm.querySelector(".description > .size").textContent = gkDownloadManagerBundle.GetStringFromName("removed");
+			}
+		});
+	}
+
+	static openWhenDone(download) {
+		if (download.launchWhenSucceeded)
+			download.launchWhenSucceeded = false;
+		else
+			download.launchWhenSucceeded = true;
+	}
+
+	static alwaysOpenThisType(download) {
+		const mimeInfo = DownloadsCommon.getMimeInfo(download);
+		if (!mimeInfo) {
+			console.log("ERROR!", mimeInfo);
+			throw new Error("Can't open download with unknown mime-type");	
+		}
+			
+
+		// User has selected to always open this mime-type from now on and will add this
+		// mime-type to our preferences table with the system default option. Open the
+		// file immediately after selecting the menu item like alwaysOpenInSystemViewer.
+		if (mimeInfo.preferredAction !== mimeInfo.useSystemDefault) {			
+			mimeInfo.preferredAction = mimeInfo.useSystemDefault;
+			handlerSvc.store(mimeInfo);
+			DownloadsCommon.openDownload(download).catch(console.error);
+		} else {
+		// Otherwise, if user unchecks this option after already enabling it from the
+		// context menu, resort to saveToDisk.
+			mimeInfo.preferredAction = mimeInfo.saveToDisk;
+			handlerSvc.store(mimeInfo);
+		}
+	}
+
+	static pauseOrResume(download) {
+		const pauseMenuItem = gkDownloadManager.getDownloadItem(download.target.path).querySelector(`.pause`);
+
+		if (download.stopped)
+			download.start();
+		else
+			download.cancel();
+	}
+
+	static cancel(download) {
+		download.cancel().catch(() => {});
+		download.removePartialData().catch(console.error).finally(() => this.download.target.refresh());
+	}
+
+	static showInFolder(download) {
+		let file = new FileUtils.File(download.target.path);
+		DownloadsCommon.showDownloadedFile(file);
+	}
+
+	static updateItemMenu(download) {
+		const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+		const downloadItemMenu = downloadItemElm.querySelector("menupopup");
+
+		if (download.succeeded) {
+			if (downloadItemMenu.getAttribute("menu-type") == "downloaded")
+				return;
+			
+			downloadItemMenu.querySelectorAll("*").forEach(item => {
+				item.remove();
+			});
+
+			downloadItemMenu.appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemDownloadedMenu));
+			downloadItemMenu.setAttribute("menu-type", "downloaded");
+
+			downloadItemElm.querySelector(".open").addEventListener("click", () => {
+				this.open(download);
+			});
+
+			downloadItemElm.querySelector(".alwaysopenthistype").addEventListener("click", () => {
+				this.alwaysOpenThisType(download);
+			});
+		} else if (download.canceled && !download.hasPartialData) {
+			downloadItemElm.querySelectorAll("menuitem").forEach(menuitem => {
+				menuitem.setAttribute("disabled", true);
+			});
+		} else {
+			if (downloadItemMenu.getAttribute("menu-type") == "downloading")
+				return;
+
+			downloadItemMenu.querySelectorAll("*").forEach(item => {
+				item.remove();
+			});
+
+			downloadItemMenu.appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemDownloadingMenu));
+			downloadItemMenu.setAttribute("menu-type", "downloading");
+
+			downloadItemElm.querySelector(".openwhendone").addEventListener("click", () => {
+				this.openWhenDone(download);
+			});
+
+			downloadItemElm.querySelector(".pause").addEventListener("click", () => {
+				this.pauseOrResume(download);
+			});
+
+			downloadItemElm.querySelector(".cancel").addEventListener("click", () => {
+				this.cancel(download);	
+			});
+		}
+
+		downloadItemElm.querySelector(".show").addEventListener("click", () => {
+			this.showInFolder(download);
+		});
 	}
 
 	static checkItemBounds() {

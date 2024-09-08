@@ -31,11 +31,6 @@
         background-position: var(--titlebar-pseudo-texture-pos);
         background-repeat: var(--titlebar-pseudo-texture-repeat);
         background-position-y: var(--titlebar-pseudo-texture-ypos);
-        mask-image: linear-gradient(
-            to bottom,
-            white calc(var(--titlebar-pseudo-height) - 18px - 20px),
-            transparent calc(100% - 20px)
-        )
     }
     &::after {
         content: "";

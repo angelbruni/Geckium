@@ -76,6 +76,14 @@
 			) !important;
 			--titlebar-pseudo-texture: unset !important;
 		}
+
+		&[windowtype="navigator:browser"] > body::before {
+			mask-image: linear-gradient(
+				to bottom,
+				white calc(var(--titlebar-pseudo-height) - 18px - 20px),
+				transparent calc(100% - 20px)
+			)
+		}
 	}
 	// Chromium Themes
 	&[gkthemed][gkchrthemed] {
