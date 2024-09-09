@@ -9,6 +9,8 @@
  * THIS IS SUPER EXPERIMENTAL, IT WILL HAVE BUGS.
  */
 
+const { gkFileUtils } = ChromeUtils.importESModule("chrome://modules/content/GeckiumFileUtils.sys.mjs");
+
 const gkDownloadManagerBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gkdownloadmanager.properties");
 
 const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
@@ -23,6 +25,17 @@ class gkDownloadManager {
 		<button id="gkDownloadShelfShowAll" label="${gkDownloadManagerBundle.GetStringFromName("showAllDownloads")}" />
 		<button id="gkDownloadShelfToggle" />
 	</html:div>
+	`;
+
+	static itemWarningExtensionsTemplate = `
+	<hbox class="warning_not_malware">
+		<image />
+		<label class="warning_text" />
+		<hbox class="warning-action-buttons">
+			<button class="continue" label="${gkDownloadManagerBundle.GetStringFromName("continue")}" />
+			<button class="discard" label="${gkDownloadManagerBundle.GetStringFromName("discard")}" />
+		</hbox>
+	</hbox>
 	`;
 
 	static itemWarningNotMalwareTemplate = `
@@ -220,11 +233,13 @@ class gkDownloadManager {
 					if (typeof downloadItemElm.dataset.previousTime !== undefined)
 						downloadItemElm.dataset.previousTime = Date.now();
 				},
-				onDownloadChanged: download => {
+				onDownloadChanged: async function(download) {
 					gkDownloadManager.updateItem(download);
 					gkDownloadManager.updateItemMenu(download);
 
 					if (download.succeeded) {
+						const fileName = download.target.path.split(gkDownloadManager.directorySlashes).pop()	;
+
 						const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
 						// Always open files of this type
 						downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
@@ -234,6 +249,37 @@ class gkDownloadManager {
 							const mimeInfo = DownloadsCommon.getMimeInfo(download);
 							downloadAlwaysOpenThisTypeMenuItem.setAttribute("checked", mimeInfo.preferredAction === mimeInfo.useSystemDefault);
 						});
+
+						// Special CRX treatment
+						if (fileName.endsWith(".crx")) {
+							const extensionJson = await gkChrTheme.getThemeData(`jar:file://${download.target.path}!/manifest.json`);
+
+							if (extensionJson != null && extensionJson.theme) {
+								downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningExtensionsTemplate));
+								downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("extensionsAndThemesCanHarm");
+								downloadItemElm.dataset.state = "dangerous_not_malware";
+
+								downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
+									try {
+										let chrThemesFilePath = `${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/chrThemes/${fileName}`;
+										await gkFileUtils.moveFile(download.target.path, chrThemesFilePath);
+
+										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
+										await lighttheme.enable();
+										gkPrefUtils.set("Geckium.chrTheme.fileName").string(fileName.split(".")[0]);
+
+										DownloadsCommon.deleteDownload(download).catch(console.error);
+									} catch (error) {
+										console.error('Failed to move file: ' + error.message);
+										await DownloadsCommon.deleteDownload(download);
+									}
+								});
+
+								downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
+									DownloadsCommon.deleteDownload(download).catch(console.error);
+								});
+							}
+						}
 					}
 				},
 				onDownloadRemoved: download => {
@@ -493,7 +539,7 @@ class gkDownloadManager {
 
 	static cancel(download) {
 		download.cancel().catch(() => {});
-		download.removePartialData().catch(console.error).finally(() => this.download.target.refresh());
+		download.removePartialData().catch(console.error).finally(() => download.target.refresh());
 	}
 
 	static showInFolder(download) {

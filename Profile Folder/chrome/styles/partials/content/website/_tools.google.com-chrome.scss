@@ -1,0 +1,10 @@
+@-moz-document regexp("(.*tools\\.google\\.com\\/chrome.*)$") {
+	.g-section > .g-unit.text > #btn-enabled {
+		display: inherit !important;
+	}
+
+	.g-section > .g-unit.text > #btn-disabled,
+	#incompatible {
+		display: none !important;
+	}
+}

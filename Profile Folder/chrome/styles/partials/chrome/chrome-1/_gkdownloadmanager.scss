@@ -257,7 +257,7 @@
 		}
 
 		// Intermediate Download Progress
-		&:not([data-state])[style*="--gkdownload-progress: 0;"] {
+		&:not([data-state])[style*="--gkdownload-progress: 0"] {
 			.progress-container > .progress-mask {
 				mask-image: conic-gradient(from var(--gkDownloadItemProgressIntermediateDeg), white 15%, transparent 15%);
 				animation: gkDownloadItemProgressIntermediate 6s steps(32) infinite;
