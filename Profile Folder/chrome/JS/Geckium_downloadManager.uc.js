@@ -276,7 +276,11 @@ class gkDownloadManager {
 								});
 
 								downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
-									DownloadsCommon.deleteDownload(download).catch(console.error);
+									if (gkPrefUtils.tryGet("Geckium.crx.saveDiscarded").bool) {
+										downloadItemElm.dataset.state = "done";
+									} else {
+										DownloadsCommon.deleteDownload(download).catch(console.error);
+									}
 								});
 							}
 						}
@@ -511,8 +515,7 @@ class gkDownloadManager {
 			console.log("ERROR!", mimeInfo);
 			throw new Error("Can't open download with unknown mime-type");	
 		}
-			
-
+		
 		// User has selected to always open this mime-type from now on and will add this
 		// mime-type to our preferences table with the system default option. Open the
 		// file immediately after selecting the menu item like alwaysOpenInSystemViewer.
