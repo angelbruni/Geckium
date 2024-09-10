@@ -10,7 +10,7 @@ const { ColorUtils } = ChromeUtils.importESModule("chrome://modules/content/Chro
 // Initial variables
 let isChromeThemed;
 let isChrThemeNative;
-const chrThemesFolder = `file://${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/chrThemes`; // bruni, you could SO make this a custom-settable path now btw
+const chrThemesFolder = `${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrThemes`; // bruni, you could SO make this a custom-settable path now btw
 
 // Chrome Themes
 class gkChrTheme {
@@ -26,7 +26,7 @@ class gkChrTheme {
 	}
 
 	static get getFolderFileUtilsPath() {
-		return Services.io.newURI(chrThemesFolder, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
+		return Services.io.newURI(`file://${chrThemesFolder}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 	}
 
     static async getThemes() {
@@ -48,7 +48,7 @@ class gkChrTheme {
                 while (directoryEntries.hasMoreElements()) {
                     const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
                     if (file.leafName.endsWith(".crx")) {
-                        const themeManifest = `jar:${chrThemesFolder}/${file.leafName}!/manifest.json`;
+                        const themeManifest = `jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`;
 
                         const fetchPromise = fetch(themeManifest)
                             .then((response) => response.json())
@@ -490,7 +490,7 @@ class gkChrTheme {
         let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
         setTimeout(async () => { // same situation as themesLW, plus we NEED async. :/
             if (gkChrTheme.getEligible() && prefChoice) {
-                let file = `jar:${chrThemesFolder}/${prefChoice}.crx!`;
+                let file = `jar:file://${chrThemesFolder}/${prefChoice}.crx!`;
                 // Load and apply the selected Chromium Theme
                 let theme = await gkChrTheme.getThemeData(`${file}/manifest.json`);
                 if (theme != null && theme.theme) {
