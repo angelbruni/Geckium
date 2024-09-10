@@ -261,8 +261,7 @@ class gkDownloadManager {
 
 								downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
 									try {
-										let chrThemesFilePath = `${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/chrThemes/${fileName}`;
-										await gkFileUtils.moveFile(download.target.path, chrThemesFilePath);
+										await gkFileUtils.moveFile(download.target.path, `${chrThemesFolder}/${fileName}`);
 
 										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 										await lighttheme.enable();

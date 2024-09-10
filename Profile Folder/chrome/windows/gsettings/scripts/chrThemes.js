@@ -20,7 +20,7 @@ async function populateChrThemesList() {
 		const themeFile = theme.file.replace(".crx", "");
 
 		let themeBanner = theme.banner;
-		let themeBannerPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`;
+		let themeBannerPath = `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`;
 		if (!themeBanner)
 			themeBannerPath = "";
 
@@ -31,7 +31,7 @@ async function populateChrThemesList() {
 		let themeIcon = theme.icon;
 		let themeIconPath;
 		if (themeIcon) {
-			themeIconPath = `jar:${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
+			themeIconPath = `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
 		} else {
 			themeIconPath = "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
 		}
