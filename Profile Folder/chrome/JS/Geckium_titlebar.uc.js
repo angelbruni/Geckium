@@ -439,7 +439,9 @@ class gkTitlebars {
             if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
                 document.documentElement.setAttribute("chromemargin", spec.chromemargin);
             } else {
-                document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+                setTimeout(() => {
+                    document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+                }, 0);
             }
             document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
         }
@@ -475,7 +477,9 @@ class gkTitlebars {
             if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
                 document.documentElement.setAttribute("chromemargin", spec.chromemargin);
             } else {
-                document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+                setTimeout(() => {
+                    document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+                }, 0);
             }
             document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
         }

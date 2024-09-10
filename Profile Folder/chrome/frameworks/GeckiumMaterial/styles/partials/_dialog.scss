@@ -28,9 +28,13 @@
             --header-text-color: rgb(0, 0, 0, 86%);
             --description-text-color: rgb(0, 0, 0, 60%);
 
+            @media (prefers-color-scheme: dark) {
+                --header-text-color: rgb(255, 255, 255, 86%);
+                --description-text-color: rgba(255, 255, 255, 0.6);
+            }
+
             min-width: 240px;
             max-width: 640px;
-            background: rgb(255, 255, 255);
             border-radius: 4px;
             transition: all 100ms ease-out;
             box-shadow: var(--elevation-24);

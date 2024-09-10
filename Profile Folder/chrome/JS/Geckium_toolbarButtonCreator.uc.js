@@ -482,7 +482,7 @@ window.addEventListener("load", function () {
 		area: CustomizableUI.AREA_NAVBAR,
 		object: {
 			properties: {
-				onpopup: "bookmarksBarStatus();",
+				onpopup: "bookmarksBarStatus(); updateAboutLocale();",
 			},
 			1: {
 				id: "newTab",
@@ -714,7 +714,7 @@ window.addEventListener("load", function () {
 				click: "openPreferences()",
 			},
 			26: {
-				id: "aboutGoogleChrome",
+				id: "about",
 				l10nid: "about",
 				click: "openAbout()",
 			},

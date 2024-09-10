@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
 	if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool && !gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool && sfMigrator.getWasSf)
 		sfMigrator.migrate();
 
-	// Open Geckium Wizard
+	// Show Geckium splash screen
 	if (!gkPrefUtils.tryGet("Geckium.firstRun.complete").bool)
 		openGSplash();
 });
