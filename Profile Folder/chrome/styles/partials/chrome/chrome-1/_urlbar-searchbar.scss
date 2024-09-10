@@ -20,6 +20,8 @@
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 
 	--urlbarView-row-height: 25px;
+	--urlbarView-highlight-background: SelectedItem !important;
+	--urlbarView-highlight-color: SelectedItemText !important;
 
 	@media (prefers-color-scheme: dark) {
 		--toolbar-field-color: black !important;
@@ -795,6 +797,12 @@
 		-webkit-text-stroke: 2px Field !important;
 		paint-order: stroke fill;
 		height: calc(100% - 8px);
+	}
+
+	// Make GTK document icon not overflow
+	#identity-icon {
+		max-width: 19px;
+		max-height: 19px;
 	}
 
 	// Shrink icon sizes in the side-buttons in more icons enabled

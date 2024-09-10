@@ -14,11 +14,19 @@
 				
 				
 				
+
+				@media (prefers-color-scheme: dark) {
+					color: white !important;
+				}
 			}
 
 			.checkbox-label,
 			.radio-label {
 				
+
+				@media (prefers-color-scheme: dark) {
+					color: white !important;
+				}
 			}
 		}
 		&:not([disabled]):active {
@@ -31,6 +39,10 @@
 				
 				
 				
+
+				@media (prefers-color-scheme: dark) {
+					color: white !important;
+				}
 			}
 		}
 		&[focused] .radio-check {
