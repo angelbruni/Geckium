@@ -507,6 +507,19 @@ class gkTitlebars {
             "false"
         );
     }
+
+    /**
+     * addShadowDiv - Adds the Div used for the window border inner-shadow (one time use)
+     */
+
+    static addShadowDiv() {
+        if (!isBrowserWindow) {
+            return;
+        }
+        var result = document.createElement('div');
+        result.id = "gkshadow";
+        document.body.insertBefore(result, document.body.firstChild);
+    }
 }
 window.addEventListener("load", () => gkTitlebars.applyTitlebar());
 
@@ -525,3 +538,6 @@ Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, fals
 Services.prefs.addObserver("Geckium.appearance.titlebarNative", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", titObserver, false);
 Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
+
+// Add div for titlebar border shadow
+window.addEventListener("load", gkTitlebars.addShadowDiv);
