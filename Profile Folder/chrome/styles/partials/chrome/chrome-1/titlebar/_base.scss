@@ -17,7 +17,7 @@
     }
     border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
     position: relative;
-    background-clip: padding-box;
+    background-origin: padding-box;
 
     &::before {
         content: "";
@@ -32,17 +32,15 @@
         background-repeat: var(--titlebar-pseudo-texture-repeat);
         background-position-y: var(--titlebar-pseudo-texture-ypos);
     }
-    &::after {
-        content: "";
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-        box-shadow: var(--titlebar-box-shadow);
-        pointer-events: none;
-    }
+}
+#gkshadow {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+    box-shadow: var(--titlebar-box-shadow);
 }
 &[gkthemed][gkchrthemed]:-moz-window-inactive {
     &[windowtype="navigator:browser"] > body::before {

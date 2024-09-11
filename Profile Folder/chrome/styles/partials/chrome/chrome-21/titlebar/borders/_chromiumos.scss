@@ -53,6 +53,8 @@
 // Visuals: Maximised / Fullscreen
 &[sizemode="maximized"],
 &[sizemode="fullscreen"] {
+	--titlebar-box-shadow: none;
+
 	#navigator-toolbox,
 	#navigator-toolbox::before {
 		border-radius: 0 !important;
@@ -64,6 +66,5 @@
 	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed], [geckium-fortyseven]) #titlebar {
 		background: black !important;
 		color: white !important;
-		box-shadow: unset;
 	}
 }
