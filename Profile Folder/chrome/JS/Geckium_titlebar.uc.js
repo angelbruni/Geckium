@@ -7,6 +7,9 @@
 // @include		about:preferences*
 // ==/UserScript==
 
+// Initial variables
+let previousTabY;
+
 // Titlebar style information
 class gkTitlebars {
     static titlebars = {
@@ -520,8 +523,34 @@ class gkTitlebars {
         result.id = "gkshadow";
         document.body.insertBefore(result, document.body.firstChild);
     }
+
+    /**
+     * enableSizeEvents - Registers events for below calls (one time use)
+     */
+
+    static enableSizeEvents() {
+        if (!isBrowserWindow) {
+            return;
+        }
+        gkTitlebars.tabscrollbox = document.getElementById("tabbrowser-arrowscrollbox");
+        new ResizeObserver(gkTitlebars.adjustTabY).observe(document.getElementById("titlebar"));
+    }
+
+    /**
+     * adjustTabY - Updates the variable used in compatible Chromium Themes
+     */
+
+    static tabscrollbox;
+    static adjustTabY() {
+        var result = gkTitlebars.tabscrollbox.getBoundingClientRect().top + 1;
+        if (previousTabY != result) {
+            document.documentElement.style.setProperty("--gktabbar-y", `${result}px`);
+            previousTabY = previousTabY;
+        }
+    }
 }
 window.addEventListener("load", () => gkTitlebars.applyTitlebar());
+window.addEventListener("load", gkTitlebars.enableSizeEvents);
 
 // Automatically change the titlebar when the setting changes
 const titObserver = {
