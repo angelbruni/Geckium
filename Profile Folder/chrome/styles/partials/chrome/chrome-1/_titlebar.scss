@@ -22,7 +22,7 @@
 	// Variables for titlebar styles
 	--tab-distance-from-toolbar-edge: 2px;
 	--tab-distance-from-pfp: 3px;
-	--tab-distance-from-top: 14px;
+	--tab-distance-from-top: 15px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--tab-distance-from-top: 0px;
@@ -101,6 +101,7 @@
 		// Additional titlebar background
 		--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
 		--titlebar-pseudo-texture-repeat: no-repeat, repeat no-repeat;
+		--titlebar-pseudo-texture-xpos: -1px;
 		--titlebar-pseudo-height: 100%;
 	}
 
