@@ -690,11 +690,7 @@
 			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 			--personal-toolbar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 
-			#nav-bar {
-				background-attachment: fixed !important;
-				background-position-y: var(--gktabbar-y, 0) !important;
-			}
-
+			#nav-bar,
 			#PersonalToolbar {
 				background-attachment: fixed !important;
 				background-position-y: var(--gktabbar-y, 0) !important;

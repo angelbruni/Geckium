@@ -21,7 +21,10 @@
 		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
 	}
 	--tab-distance-from-top: 10px;
-	--tab-distance-from-top-maximised: 3px;
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		--tab-distance-from-top: 3px;
+	}
 	
 	--titlebar-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }

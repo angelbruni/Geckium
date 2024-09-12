@@ -23,7 +23,10 @@
 	--tab-distance-from-toolbar-edge: 2px;
 	--tab-distance-from-pfp: 3px;
 	--tab-distance-from-top: 14px;
-	--tab-distance-from-top-maximised: 0px;
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		--tab-distance-from-top: 0px;
+	}
 	/* bruni: This entire code takes care of custom themes support for titlebar */
 	// lwtheme Themes
 	&[gkthemed]:not([gkchrthemed]) {
@@ -136,15 +139,6 @@
 		#tabbrowser-arrowscrollbox {
 			padding-top: var(--tab-distance-from-top);
 		}
-	}
-	&[sizemode="maximized"],
-	&[sizemode="fullscreen"] {
-		&:not([menubarvisible], [macOSNativeFullscreen]) {
-			#tabbrowser-arrowscrollbox {
-				padding-top: var(--tab-distance-from-top-maximised);
-			}
-		}
-		// NOTE: macOS's fullscreen is handled in native titlebar style
 	}
 
 	// Menu bar

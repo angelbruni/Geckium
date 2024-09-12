@@ -3,5 +3,8 @@
 & {
     --titlebar-border-radius: 0;
 	--tab-distance-from-top: 8px;
-	--tab-distance-from-top-maximised: 0px;
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		--tab-distance-from-top: 0px;
+	}
 }
