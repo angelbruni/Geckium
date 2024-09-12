@@ -154,6 +154,12 @@
 		&[gkchrthemehastoolbar] {
 			--selected-tab-background: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 			--tabbrowser-tab-color: var(--chrtheme-tab-text, var(--default-tabbrowser-tab-color)) !important;
+
+			// Fix textures being offset in Chromium Themes
+			.tab-background[selected] .tab-background-container::before {
+				background-attachment: fixed !important;
+				background-position-y: var(--gktabbar-y, 0) !important;
+			}
 		}
 	}
 

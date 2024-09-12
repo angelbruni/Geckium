@@ -691,11 +691,13 @@
 			--personal-toolbar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 
 			#nav-bar {
-				background-position-y: calc(var(--tab-height) * -1) !important;
+				background-attachment: fixed !important;
+				background-position-y: var(--gktabbar-y, 0) !important;
 			}
 
 			#PersonalToolbar {
-				background-position-y: calc((var(--tab-height) + var(--nav-bar-height)) * -1) !important;
+				background-attachment: fixed !important;
+				background-position-y: var(--gktabbar-y, 0) !important;
 			}
 		}
 	}
