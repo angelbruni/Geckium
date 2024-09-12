@@ -158,7 +158,7 @@
 			// Fix textures being offset in Chromium Themes
 			.tab-background[selected] .tab-background-container::before {
 				background-attachment: fixed !important;
-				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px)) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) - 1px) !important; // -1px counters the margin-block-end
 			}
 		}
 	}
