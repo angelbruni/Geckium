@@ -693,7 +693,7 @@
 			#nav-bar,
 			#PersonalToolbar {
 				background-attachment: fixed !important;
-				background-position-y: var(--gktabbar-y, 0) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px)) !important;
 			}
 		}
 	}
