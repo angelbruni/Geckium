@@ -9,46 +9,58 @@
         }
     }
     @media not (-moz-platform: macos) {
-        &:-moz-window-inactive .titlebar-button {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+        .titlebar-button {
+            height: 12px;
+            width: 12px;
+            border: 0.5px solid;
+            border-radius: 100% !important;
+            transition: none; //macOS lacks an animation for titlebar button-hover
+            display: flex !important;
         }
 
         //Close button
-        .titlebar-close {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-
-            &:not([disabled]):hover {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        .titlebar-close:not([disabled]) {
+            list-style-image: unset !important;
+            background: #ff6058 !important;
+            border-color: #e34740;
+            color: #4d0000;
+            
+            &:hover,
+            &:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/close.svg) !important;
             }
 
-            &:not([disabled]):hover:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            &:active {
+                background: #bf4943 !important;
+                border-color: #ae3a35;
+                color: #1a0000;
             }
         }
 
         //Minimise button
-        .titlebar-min {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
-
-            &:not([disabled]):hover {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        .titlebar-min:not([disabled]) {
+            list-style-image: unset !important;
+            background: #ffbd2e !important;
+            border-color: #e2a217;
+            color: #995800;
+            
+            &:hover,
+            &:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/min.svg) !important;
             }
 
-            &:not([disabled]):hover:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            &:active {
+                background: #bf8f23 !important;
+                border-color: #b18320;
+                color: #592800;
             }
         }
 
         //Maximise and Restore buttons
-        .titlebar-max {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important; //PLACEHOLDER
-
-            &:not([disabled]):hover {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-            }
-
-            &:not([disabled]):hover:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        .titlebar-max:not([disabled]) {
+            &:hover,
+            &:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
             }
         }
         &[sizemode="maximized"],
@@ -57,15 +69,18 @@
                 display: none !important;
             }
         }
-        .titlebar-restore {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important; //PLACEHOLDER
-
-            &:not([disabled]):hover {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        .titlebar-restore:not([disabled]) {
+            &:hover,
+            &:active {
+                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
             }
-
-            &:not([disabled]):hover:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        }
+        &[sizemode="fullscreen"] { //Transform into Exit Fullscreen button
+            .titlebar-restore:not([disabled]) {
+                &:hover,
+                &:active {
+                    list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/exitfs.svg) !important;
+                }
             }
         }
         &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
@@ -73,9 +88,33 @@
                 display: none !important;
             }
         }
-        .titlebar-max,
-        .titlebar-restore {
+        .titlebar-max:not([disabled]),
+        .titlebar-restore:not([disabled]) {
+            list-style-image: unset !important;
+            background: #28ca41 !important;
+            border-color: #13ad29;
+            color: #006300;
+            
+            &:active {
+                background: #1f9a31 !important;
+                border-color: #138723;
+                color: #003100;
+            }
+
             order: 2 !important;
+        }
+
+        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+        .titlebar-button[disabled] {
+            background: #cecece !important;
+            border-color: #acacac;
+        }
+        @media (prefers-color-scheme: dark) {
+            &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+            .titlebar-button[disabled] {
+                background: #515151 !important;
+                border-color: #2d2d2d;
+            }
         }
     }
 }
