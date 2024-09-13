@@ -68,8 +68,8 @@
     //Shared titlebar button code
     .titlebar-button {
         background: transparent !important;
-        height: 14px;
-        width: 14px;
+        height: 12px;
+        width: 12px;
         border-radius: 0 !important;
         background-clip: padding-box !important;
         //transition: none; //macOS lacks an animation for titlebar button-hover
@@ -88,7 +88,7 @@
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
 
-        &:not([disabled]):hover:active {
+        &:not([disabled]):active {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
     }
@@ -102,7 +102,7 @@
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
 
-        &:not([disabled]):hover:active {
+        &:not([disabled]):active {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
     }
@@ -115,7 +115,7 @@
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
 
-        &:not([disabled]):hover:active {
+        &:not([disabled]):active {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
     }
@@ -132,7 +132,7 @@
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
 
-        &:not([disabled]):hover:active {
+        &:not([disabled]):active {
             list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
     }
