@@ -1,5 +1,70 @@
-@import "macosx";
 & {
+    //Give the tabs/Incognito/pfp the appropriate offset
+	#private-browsing-indicator-with-label {
+        order: 999 !important; // Force to right
+        transform: scaleX(-1);
+    }
+    .titlebar-spacer[type="post-tabs"] {
+        order: 1000 !important; // Force to right of Incognito
+    }
+    &:not([privatebrowsingmode="temporary"]) {
+        #TabsToolbar-customization-target {
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
+        }
+    }
+    // Incognito can't use this^ spacing, so we need to set it separately for Incognito
+    &[privatebrowsingmode="temporary"] {
+        #private-browsing-indicator-with-label {
+            margin-inline-end: var(--tab-distance-from-toolbar-edge);
+        }
+    }
+    #fxa-toolbar-menu-button,
+    .private-browsing-indicator-icon {
+        margin-inline-start: var(--tab-distance-from-pfp) !important;
+        margin-inline-end: 1px !important;
+    }
+
+    //Show the Google logo after the buttons if enabled
+    &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+        .titlebar-buttonbox-container::after {
+            content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+            margin-block-start: 2px;
+            margin-inline-start: 7px;
+        }
+        &[sizemode="maximized"],
+        &[sizemode="fullscreen"] {
+            .titlebar-buttonbox-container::after {
+                content: unset !important;
+            }
+        }
+    }
+
+    //NOTE: macOS and Mac OS X BLOCK native titlebars
+
+    //Titlebar button box (force onto left side)
+    .titlebar-buttonbox-container {
+        order: -1 !important;
+        align-items: unset !important;
+        margin-inline-start: 8px; // left margin
+        margin-block-start: 6px; // top margin
+    }
+    //Linux quirk: Counteract exclusive menubar padding
+    @media (-moz-platform: linux) {
+        #toolbar-menubar .titlebar-buttonbox-container {
+            margin-block-start: 5px;
+        }
+    }
+
+    .titlebar-buttonbox {
+        align-items: unset !important;
+        gap: 7px;
+    }
+    .titlebar-button {
+        &::before { //macOS WILL NOT have its buttons filled
+            content: unset !important;
+        }
+    }
+
     @media (-moz-platform: macos) { //In macOS, we just let the server-side buttons do the job as they match the needed artstyle/functionality.
         .titlebar-buttonbox {
             appearance: auto !important; // ...which means we need to turn them on again.
@@ -9,11 +74,14 @@
         }
     }
     @media not (-moz-platform: macos) {
+        //Shared titlebar button code
         .titlebar-button {
+            background: transparent !important;
             height: 12px;
             width: 12px;
-            border: 0.5px solid;
             border-radius: 100% !important;
+            background-clip: padding-box !important;
+            border: 0.5px solid;
             transition: none; //macOS lacks an animation for titlebar button-hover
             display: flex !important;
         }
@@ -21,6 +89,7 @@
         //Close button
         .titlebar-close:not([disabled]) {
             list-style-image: unset !important;
+            order: 0 !important;
             background: #ff6058 !important;
             border-color: #e34740;
             color: #4d0000;
@@ -40,6 +109,7 @@
         //Minimise button
         .titlebar-min:not([disabled]) {
             list-style-image: unset !important;
+            order: 1 !important;
             background: #ffbd2e !important;
             border-color: #e2a217;
             color: #995800;
@@ -91,6 +161,7 @@
         .titlebar-max:not([disabled]),
         .titlebar-restore:not([disabled]) {
             list-style-image: unset !important;
+            order: 2 !important;
             background: #28ca41 !important;
             border-color: #13ad29;
             color: #006300;
