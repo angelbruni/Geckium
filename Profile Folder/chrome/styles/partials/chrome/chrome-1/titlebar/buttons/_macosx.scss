@@ -72,7 +72,7 @@
         width: 12px;
         border-radius: 0 !important;
         background-clip: padding-box !important;
-        //transition: none; //macOS lacks an animation for titlebar button-hover
+        transition: none; //Mac OS X lacked an animation for titlebar button-hover
         display: flex !important;
     }
     &:-moz-window-inactive .titlebar-button {
