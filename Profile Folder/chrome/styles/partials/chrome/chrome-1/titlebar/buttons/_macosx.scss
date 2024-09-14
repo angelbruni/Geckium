@@ -67,73 +67,59 @@
 
     //Shared titlebar button code
     .titlebar-button {
-        background: transparent !important;
         height: 12px;
         width: 12px;
-        border-radius: 0 !important;
+        border-radius: 100% !important;
         background-clip: padding-box !important;
         transition: none; //Mac OS X lacked an animation for titlebar button-hover
         display: flex !important;
-    }
-    &:-moz-window-inactive .titlebar-button {
-        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+
+        background-color: #C9C9C9 !important; //Inactive/Disabled background color
+        background-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/tlight.svg) !important;
+        box-shadow: inset 0 0.1px 0.75px 0.75px rgba(0,0,0,0.5),
+                    0 1px rgba(255, 255, 255, 0.38);
+
+        &:not([disabled]):active {
+            filter: brightness(0.78);
+        }
+        image {
+            -moz-context-properties: fill, fill-opacity !important;
+        }
     }
 
     //Close button
     .titlebar-close {
-        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+        list-style-image: unset !important;
         order: 0 !important;
 
-        &:not([disabled]):hover {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-        }
+        background-color: #EA554E !important;
+        fill: #CF0000 !important;
 
+        &:not([disabled]):hover,
         &:not([disabled]):active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/close.svg) !important;
         }
     }
 
     //Minimise button
     .titlebar-min {
-        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important; //PLACEHOLDER
+        list-style-image: unset !important;
         order: 1 !important;
 
-        &:not([disabled]):hover {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-        }
+        background-color: #F2BA5F !important;
+        fill: #C77B01 !important;
 
+        &:not([disabled]):hover,
         &:not([disabled]):active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/min.svg) !important;
         }
     }
 
     //Maximise and Restore buttons
-    .titlebar-max {
-        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important; //PLACEHOLDER
-
-        &:not([disabled]):hover {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-        }
-
-        &:not([disabled]):active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-        }
-    }
     &[sizemode="maximized"],
     &[sizemode="fullscreen"] {
         .titlebar-max {
             display: none !important;
-        }
-    }
-    .titlebar-restore {
-        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important; //PLACEHOLDER
-
-        &:not([disabled]):hover {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
-        }
-
-        &:not([disabled]):active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; //PLACEHOLDER
         }
     }
     &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
@@ -143,6 +129,25 @@
     }
     .titlebar-max,
     .titlebar-restore {
+        list-style-image: unset !important;
         order: 2 !important;
+        &:not([disabled]):hover,
+        &:not([disabled]):active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/zoom.svg) !important;
+        }
+
+        background-color: #97CF72 !important;
+        fill: #529B0D !important;
+    }
+
+    &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+    .titlebar-button[disabled] {
+        background-color: #C9C9C9 !important;
+    }
+    @media (prefers-color-scheme: dark) {
+        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+        .titlebar-button[disabled] {
+            background-color: #989898 !important;
+        }
     }
 }
