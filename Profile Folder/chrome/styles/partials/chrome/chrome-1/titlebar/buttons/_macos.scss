@@ -76,7 +76,6 @@
     @media not (-moz-platform: macos) {
         //Shared titlebar button code
         .titlebar-button {
-            background: transparent !important;
             height: 12px;
             width: 12px;
             border-radius: 100% !important;
@@ -84,6 +83,7 @@
             border: 0.5px solid;
             transition: none; //macOS lacks an animation for titlebar button-hover
             display: flex !important;
+            list-style-image: unset !important;
             
             image {
                 -moz-context-properties: fill, fill-opacity !important;
@@ -92,11 +92,10 @@
 
         //Close button
         .titlebar-close:not([disabled]) {
-            list-style-image: unset !important;
             order: 0 !important;
             background: #ff6058 !important;
             border-color: #e34740;
-            fill: #4d0000;
+            fill: #4d0000 !important;
             
             &:hover,
             &:active {
@@ -106,17 +105,16 @@
             &:active {
                 background: #bf4943 !important;
                 border-color: #ae3a35;
-                fill: #1a0000;
+                fill: #1a0000 !important;
             }
         }
 
         //Minimise button
         .titlebar-min:not([disabled]) {
-            list-style-image: unset !important;
             order: 1 !important;
             background: #ffbd2e !important;
             border-color: #e2a217;
-            fill: #995800;
+            fill: #995800 !important;
             
             &:hover,
             &:active {
@@ -126,7 +124,7 @@
             &:active {
                 background: #bf8f23 !important;
                 border-color: #b18320;
-                fill: #592800;
+                fill: #592800 !important;
             }
         }
 
@@ -164,7 +162,6 @@
         }
         .titlebar-max:not([disabled]),
         .titlebar-restore:not([disabled]) {
-            list-style-image: unset !important;
             order: 2 !important;
             background: #28ca41 !important;
             border-color: #13ad29;
@@ -173,12 +170,44 @@
             &:active {
                 background: #1f9a31 !important;
                 border-color: #138723;
-                fill: #003100;
+                fill: #003100 !important;
             }
-
-            order: 2 !important;
         }
 
+        // Graphite
+        &[gkmacgraphite="true"] {
+            .titlebar-close:not([disabled]),
+            .titlebar-min:not([disabled]),
+            .titlebar-max:not([disabled]),
+            .titlebar-restore:not([disabled]) {
+                background-color: #8D8D92 !important;
+                border-color: #707075;
+                fill: #444446 !important;
+
+                &:active {
+                    background: #646468 !important;
+                    border-color: #555558;
+                    fill: #363638 !important;
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                .titlebar-close:not([disabled]),
+                .titlebar-min:not([disabled]),
+                .titlebar-max:not([disabled]),
+                .titlebar-restore:not([disabled]) {
+                    background-color: #A9A8A8 !important;
+                    border-color: #3F3F3F;
+                    fill: #515151 !important;
+    
+                    &:active {
+                        background: #817E7E !important;
+                        border-color: #3F3F3F;
+                        fill: #464444 !important;
+                    }
+                }
+            }
+        }
+        // Inactive / Disabled
         &:-moz-window-inactive .titlebar-button:not(:hover, :active),
         .titlebar-button[disabled] {
             background: #cecece !important;
