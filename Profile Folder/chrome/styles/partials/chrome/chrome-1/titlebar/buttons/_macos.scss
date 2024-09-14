@@ -84,6 +84,10 @@
             border: 0.5px solid;
             transition: none; //macOS lacks an animation for titlebar button-hover
             display: flex !important;
+            
+            image {
+                -moz-context-properties: fill, fill-opacity !important;
+            }
         }
 
         //Close button
@@ -92,7 +96,7 @@
             order: 0 !important;
             background: #ff6058 !important;
             border-color: #e34740;
-            color: #4d0000;
+            fill: #4d0000;
             
             &:hover,
             &:active {
@@ -102,7 +106,7 @@
             &:active {
                 background: #bf4943 !important;
                 border-color: #ae3a35;
-                color: #1a0000;
+                fill: #1a0000;
             }
         }
 
@@ -112,7 +116,7 @@
             order: 1 !important;
             background: #ffbd2e !important;
             border-color: #e2a217;
-            color: #995800;
+            fill: #995800;
             
             &:hover,
             &:active {
@@ -122,7 +126,7 @@
             &:active {
                 background: #bf8f23 !important;
                 border-color: #b18320;
-                color: #592800;
+                fill: #592800;
             }
         }
 
@@ -164,12 +168,12 @@
             order: 2 !important;
             background: #28ca41 !important;
             border-color: #13ad29;
-            color: #006300;
+            fill: #006300;
             
             &:active {
                 background: #1f9a31 !important;
                 border-color: #138723;
-                color: #003100;
+                fill: #003100;
             }
 
             order: 2 !important;
