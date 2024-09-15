@@ -7,11 +7,34 @@ function loadVersion() {
 }
 document.addEventListener("DOMContentLoaded", loadVersion);
 
-function openWizardFromSplash() {
+function openWizardFromSplash(reset) {
+	if (reset) {
+		startFromScratch();
+	}
 	gkWindow.close();
 	openGWizard();
 }
 
 function startFromScratch() {
-	alert("TODO");
+	gkPrefUtils.delete("Geckium.appearance.titlebarStyle");
+	gkPrefUtils.delete("Geckium.branding.choice");
+	gkPrefUtils.delete("Geckium.appearance.choice");
+	gkPrefUtils.delete("Geckium.profilepic.button");
+	gkPrefUtils.delete("Geckium.profilepic.mode");
+	gkPrefUtils.delete("Geckium.profilepic.chromiumIndex");
+	gkPrefUtils.delete("Geckium.customtheme.mode");
+	gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
+{
+	"0": {
+		"pos": 0,
+		"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
+		"oldIcon": "",
+		"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
+		"oldName": "Web Store",
+		"newName": "Web Store",
+		"url": "https://chromewebstore.google.com",
+		"type": 0
+	}
+}
+`);
 }
