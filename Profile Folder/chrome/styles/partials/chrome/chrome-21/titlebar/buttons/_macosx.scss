@@ -1,0 +1,78 @@
+& {
+    .titlebar-buttonbox {
+        gap: 6px;
+    }
+
+    //Shared titlebar button code
+    .titlebar-button {
+        height: 12px;
+        width: 12px;
+        margin: 1px !important;
+
+        background-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/tlight.svg) !important;
+        box-shadow: inset 0 0.1px 0.75px 0.75px rgba(0,0,0,0.5),
+                    0 1px rgba(255, 255, 255, 0.38);
+
+        &:not([disabled]):active {
+            &::after {
+                background: rgba(0,0,0,0.22);
+            }
+        }
+    }
+
+    //Close button
+    .titlebar-close:not([disabled]) {
+        background-color: #EA554E !important;
+        fill: #CF0000 !important;
+
+        &:hover,
+        &:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/close.svg) !important;
+        }
+    }
+
+    //Minimise button
+    .titlebar-min:not([disabled]) {
+        background-color: #F2BA5F !important;
+        fill: #C77B01 !important;
+
+        &:hover,
+        &:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/min.svg) !important;
+        }
+    }
+
+    //Maximise and Restore buttons
+    .titlebar-max:not([disabled]),
+    .titlebar-restore:not([disabled]) {
+        &:hover,
+        &:active {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/zoom.svg) !important;
+        }
+
+        background-color: #97CF72 !important;
+        fill: #529B0D !important;
+    }
+
+    // Graphite
+    &[gkmacgraphite="true"] {
+        .titlebar-close:not([disabled]),
+        .titlebar-min:not([disabled]),
+        .titlebar-max:not([disabled]),
+        .titlebar-restore:not([disabled]) {
+            background-color: #A2B3C0 !important;
+            fill: #5E6C7A !important;
+        }
+    }
+    // Inactive / Disabled
+    &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+    .titlebar-button[disabled] {
+        background-color: #C9C9C9 !important;
+    }
+    @media (prefers-color-scheme: dark) {
+        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+        .titlebar-button[disabled] {
+            background-color: #989898 !important;
+        }
+    }
+}

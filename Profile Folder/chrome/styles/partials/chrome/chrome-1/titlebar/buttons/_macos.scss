@@ -57,7 +57,7 @@
 
     .titlebar-buttonbox {
         align-items: unset !important;
-        gap: 7px;
+        gap: 6px;
     }
     .titlebar-button {
         &::before { //macOS WILL NOT have its buttons filled
@@ -78,6 +78,7 @@
         .titlebar-button {
             height: 12px;
             width: 12px;
+            margin: 1px !important;
             border-radius: 100% !important;
             background-clip: padding-box !important;
             border: 0.5px solid;
