@@ -19,10 +19,7 @@ function openZoo() {
 			return;
 		}
 		
-		const gmWindow = window.openDialog(url, "", "centerscreen");
-		gmWindow.onload = () => {
-			gmWindow.document.documentElement.setAttribute("containertype", "window");
-		}	
+		const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
 	}
 }
 
@@ -37,7 +34,7 @@ function openGSplash() {
 		return;
 	}
 	
-	const gmWindow = window.openDialog(url, "", "centerscreen");
+	const gmWindow = window.openDialog(url, "", "centerscreen,modal,resizable=no");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
 		if (gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool == true) {
@@ -57,7 +54,7 @@ function openGWizard() {
 		return;
 	}
 	
-	const gmWindow = window.openDialog(url, "", "centerscreen");
+	const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
 	}
@@ -77,10 +74,8 @@ function openGSettings(mode) {
 			return;
 		}
 		
-		const gmWindow = window.openDialog(url, "", "centerscreen");
+		const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
 		gmWindow.onload = () => {
-			gmWindow.document.documentElement.setAttribute("containertype", "window");
-
 			if (mode)
 				gmWindow.document.documentElement.setAttribute("contentmode", mode);
 		}

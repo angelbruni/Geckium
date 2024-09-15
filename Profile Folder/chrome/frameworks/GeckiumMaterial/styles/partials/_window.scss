@@ -43,59 +43,6 @@ window {
 	.hide-mac {
 		display: none !important;
 	}
-
-	#window-caption-buttons-container {
-		display: flex;
-		align-items: center;
-		padding-left: 8px;
-
-		&:hover {
-			.caption-button {
-				&.close {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close-hover.svg");
-				}
-				&.minimize {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize-hover.svg");
-				}
-				&.maximize {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize-hover.svg");
-				}
-			}
-		}
-
-		.caption-button {
-			height: 12px !important;
-			width: 12px !important;
-			margin-right: 7px;
-			filter: saturate(1.2);
-			transition: none !important;
-			background-size: 100%;
-			background-repeat: no-repeat;
-
-			&:hover {
-				background-color: transparent !important;
-			}
-
-			&.close {
-				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close.svg");
-				&:active {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/close-active.svg");
-				}
-			}
-			&.minimize {
-				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize.svg");
-				&:active {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/minimize-active.svg");
-				}
-			}
-			&.maximize {
-				background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize.svg");
-				&:active {
-					background: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/mac/maximize-active.svg");
-				}
-			}
-		}
-	}
 }
 
 #window {
@@ -128,76 +75,6 @@ window {
 	#window-container {
 		flex: 1 !important;
 		height: 100% !important;
-	}
-}
-
-.window-titlebar {
-	--caption-button-color: white;
-
-	position: absolute;
-	width: 100%;
-	z-index: 2;
-	height: var(--titlebar-height);
-	background: rgb(0, 0, 0, 0.1);
-	justify-content: end;
-	-moz-window-dragging: drag;
-
-	@media (-moz-platform: macos) {
-		justify-content: start;
-	}
-
-	.caption-button {
-		-moz-window-dragging: no-drag;
-	}
-}
-
-#window-caption-buttons-container {
-	.caption-button {
-		position: relative;
-
-		height: 32px;
-		width: 32px;
-		border-radius: 50%;
-		transition: all 150ms ease-in;
-
-		&:hover {
-			background: rgb(0, 0, 0, 10%);
-		}
-
-		&.close,
-		&.restore,
-		&.maximize,
-		&.minimize {
-			&::before,
-			&::after {
-				content: "";
-
-				position: absolute;
-			}
-		}
-
-		&.close {
-			&::before {
-				mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/close.svg");
-				mask-position: center center;
-				mask-size: 14px 14px;
-				mask-repeat: no-repeat;
-				height: 32px;
-				width: 32px;
-				background: white;
-			}
-		}
-		&.minimize {
-			&::before {
-				mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/minimize.svg");
-				mask-position: center 14px;
-				mask-size: 14px 14px;
-				mask-repeat: no-repeat;
-				height: 32px;
-				width: 32px;
-				background: white;
-			}
-		}
 	}
 }
 
