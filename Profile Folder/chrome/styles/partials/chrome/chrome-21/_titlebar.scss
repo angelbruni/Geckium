@@ -6,8 +6,12 @@
     }
 }
 
-// New titlebutton styles
+// New and updated titlebutton styles
 // Chromium OS
 &[gktitbuttons="chromiumos"] {
     @import "titlebar/buttons/chromiumos";
+}
+// Mac OS X
+&[gktitbuttons="macosx"] {
+    @import "titlebar/buttons/macosx";
 }
