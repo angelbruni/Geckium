@@ -4,7 +4,6 @@
     &:not([gkthemed], [gkchrthemed], [privatebrowsingmode="temporary"], :-moz-window-inactive) {
         &[gksystheme="chromiumos"],
         &[gksystheme="gtk"] {
-            // NOTE: Use gradient whenever in System Theme, Light, or Dark unconditionally (unmodified when in 'themes')
             &[windowtype="navigator:browser"] > body {
                 background-image: linear-gradient(
                     to bottom,

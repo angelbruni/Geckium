@@ -406,13 +406,15 @@ class gkChrTheme {
                 isChrThemeNative = true;
             }
 
-            // Titlebar foreground
+            // Titlebar foreground (and Chromium OS 68+ foreground)
             if (framecol) {
                 // Determine the colour using the frame
                 if (ColorUtils.IsDark(framecol)) {
                     document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "white");
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color_cros")}`, "white");
                 } else {
                     document.documentElement.style.setProperty(`${styleProperty("frame_color")}`, "black");
+                    document.documentElement.style.setProperty(`${styleProperty("frame_color_cros")}`, "#5A5A5A");
                 }
             }
             // Button foreground

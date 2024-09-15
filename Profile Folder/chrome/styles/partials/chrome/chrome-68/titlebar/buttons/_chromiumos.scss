@@ -1,6 +1,4 @@
-& { // TODO: Exclude in MD2
-	//Shared non-native titlebar variables
-	// TODO when SVG'd
+& { // TODO: Somewhat exclude in MD2
 	
 	//Shared titlebar button code
 	.titlebar-button {
@@ -13,7 +11,15 @@
 			background: rgba(20, 20, 23, 0.141) !important;
 		}
 		height: 36px;
-		width: 30px;
+		width: 32px;
+		color: inherit !important;
+
+        .toolbarbutton-icon {
+			height: 12px !important;
+			width: 12px !important;
+            -moz-context-properties: fill, fill-opacity !important;
+			fill: currentColor !important;
+        }
 	}
 	// Decrease button height when maximised
 	&[sizemode="maximized"],
@@ -25,7 +31,7 @@
 
 	//Close button
 	.titlebar-close {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important; // PLACEHOLDER
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/cros/close.svg) !important;
 		border-top-right-radius: unset !important;
 	}
 	&:-moz-locale-dir(rtl) {
@@ -36,14 +42,14 @@
 
 	//Maximise and Restore buttons
 	.titlebar-max {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important; // PLACEHOLDER
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/cros/maximise.svg) !important;
 	}
 	.titlebar-restore {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important; // PLACEHOLDER
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/cros/restore.svg) !important;
 	}
 
 	//Minimise button
 	.titlebar-min {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/minimize.png) !important; // PLACEHOLDER
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/cros/minimise.svg) !important;
 	}
 }
