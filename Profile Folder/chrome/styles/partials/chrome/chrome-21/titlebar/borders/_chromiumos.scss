@@ -34,7 +34,7 @@
 	border: 1px solid rgba(0, 0, 0, 0.3);
 }
 // Use the custom titlebar background in Chromium OS's SysTheme
-&[gksystheme="chromiumos"] {
+&[gksystheme="chromiumos"]:not([geckium-sixtyeight]) {
 	--default-titlebar-active: #C3C3C4;
 	--default-titlebar-inactive: #CDCDCE;
 	@media (prefers-color-scheme: dark) {
