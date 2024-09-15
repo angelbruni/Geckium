@@ -67,6 +67,15 @@ export class gkPrefUtils {
 			this.set(pref).bool(true);
 	}
 
+	static delete(pref) {
+		try {
+			Services.prefs.clearUserPref(pref);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	}
+
 	static prefExists(pref) {
 		try {
 			return Services.prefs.getPrefType(pref) != 0;
