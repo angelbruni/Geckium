@@ -66,7 +66,7 @@ function updateAboutLocale() {
 
 	const menuAbout = document.getElementById("menu_about");
 
-	menuAbout.setAttribute("label", gkMenuBundle.GetStringFromName("about").replace("%s", gkBranding.getBrandingKey("productName", true)));
+	menuAbout.setAttribute("label", gkMenuBundle.GetStringFromName("about").replace("%s", gkBranding.getBrandingKey("fullName", false)));
 }
 
 function waitForElm(selector) {
