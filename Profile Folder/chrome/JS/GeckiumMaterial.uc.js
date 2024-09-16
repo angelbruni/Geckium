@@ -34,7 +34,7 @@ function openGSplash() {
 		return;
 	}
 	
-	const gmWindow = window.openDialog(url, "", "centerscreen,modal,resizable=no");
+	const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
 		if (gkPrefUtils.tryGet("Geckium.firstRun.wasSilverfox").bool == true) {
