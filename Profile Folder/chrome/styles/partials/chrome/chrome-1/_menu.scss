@@ -1,3 +1,16 @@
+// Hide menu items that weren't yet introduced
+#menu_find6,
+#menu_savePage6,
+#menu_print6,
+#tools6-menu,
+#menu_settings6,
+#bookmarks-menu {
+	display: none;
+}
+
+
+
+
 // Custom menubar for non-native titlebars
 :root[gktitnative="false"] {
 	#main-menubar > menu {
@@ -13,75 +26,75 @@
 }
 
 
-menupopup {
-	@media (-moz-platform: linux) {
-		--panel-background: Field !important;
-		--panel-color: FieldText !important;
-		--panel-border-color: ThreeDShadow !important;
-		--panel-border-radius: 0 !important;
-		--panel-padding-block: 0 !important;
-	}
+// menupopup {
+// 	@media (-moz-platform: linux) {
+// 		--panel-background: Field !important;
+// 		--panel-color: FieldText !important;
+// 		--panel-border-color: ThreeDShadow !important;
+// 		--panel-border-radius: 0 !important;
+// 		--panel-padding-block: 0 !important;
+// 	}
 
-	&#contentAreaContextMenu {
-		#context-navigation {
-			background-color: transparent !important;
-			flex-direction: column !important;
+// 	&#contentAreaContextMenu {
+// 		#context-navigation {
+// 			background-color: transparent !important;
+// 			flex-direction: column !important;
 	
-			> menuitem {
-				justify-content: unset !important;
+// 			> menuitem {
+// 				justify-content: unset !important;
 	
-				@media (-moz-windows-classic) {
-					min-height: 19px !important;
-					height: 19px !important;
-					min-height: 19px !important;
-				}
+// 				@media (-moz-windows-classic) {
+// 					min-height: 19px !important;
+// 					height: 19px !important;
+// 					min-height: 19px !important;
+// 				}
 				
-				&::after {
-					content: attr(aria-label);
-					margin-inline-start: 2px !important;
-					appearance: menuitemtext !important;
-					white-space: nowrap;
+// 				&::after {
+// 					content: attr(aria-label);
+// 					margin-inline-start: 2px !important;
+// 					appearance: menuitemtext !important;
+// 					white-space: nowrap;
 
-					@media (-moz-platform: linux) {
-						margin-inline-start: 21px !important;
-					}
+// 					@media (-moz-platform: linux) {
+// 						margin-inline-start: 21px !important;
+// 					}
 	
-					@media (-moz-windows-classic) {
-						padding-inline-start: 1.45em !important;
-					}
-				}
+// 					@media (-moz-windows-classic) {
+// 						padding-inline-start: 1.45em !important;
+// 					}
+// 				}
 	
-				.menu-iconic-left {
-					display: none !important;
-				}
-			}
-		}
+// 				.menu-iconic-left {
+// 					display: none !important;
+// 				}
+// 			}
+// 		}
 		
-		#context-sep-navigation {
-			margin-left: 0 !important;
-		}
-	}
+// 			#context-sep-navigation {
+// 			margin-left: 0 !important;
+// 		}
+// 	}
 
-	button {
-		min-width: 0 !important;
-	}
+// 	button {
+// 		min-width: 0 !important;
+// 	}
 
-	> menu,
-	> menuitem {
-	&[disabled] {
-			pointer-events: none;
-		}
+// 	> menu,
+// 	> menuitem {
+// 	&[disabled] {
+// 			pointer-events: none;
+// 		}
 
-		.menu-text {
-			margin-inline-end: 48px !important;
-		}
-	}
+// 		.menu-text {
+// 			margin-inline-end: 48px !important;
+// 		}
+// 	}
 
-	> .menuitemitems,
-	> .menuitemitems + menuseparator {
-		display: none !important;
-	}
-}
+// 	> .menuitemitems,
+// 	> .menuitemitems + menuseparator {
+// 		display: none !important;
+// 	}
+// }
 
 @media (-moz-windows-classic) {
     :not(menulist) {
@@ -94,13 +107,4 @@ menupopup {
             border-image-repeat: repeat !important;
         }
     }
-}
-
-#menu_find6,
-#menu_savePage6,
-#menu_print6,
-#tools6-menu,
-#menu_settings6,
-#bookmarks-menu {
-	display: none;
 }
