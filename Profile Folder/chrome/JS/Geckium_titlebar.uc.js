@@ -365,7 +365,7 @@ class gkTitlebars {
                 if (!isChromeThemed) {
                     return false; // Firefox themes are never native
                 } else {
-                    if (!isChrThemeNative) {
+                    if (!isChrThemeNative && !gkPrefUtils.tryGet("Geckium.chrTheme.mustAero").bool) {
                         return false; // Current Chrome Theme isn't native
                     }
                     // Check if user blocked native in-theme titlebar
@@ -575,6 +575,7 @@ Services.prefs.addObserver("Geckium.appearance.titlebarStyle", titObserver, fals
 Services.prefs.addObserver("Geckium.appearance.titlebarNative", titObserver, false);
 Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", titObserver, false);
 Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
+Services.prefs.addObserver("Geckium.chrTheme.mustAero", titObserver, false);
 
 // Automatically change the macOS/Mac OS X titlebutton style when Graphite's toggled
 const graphiteObserver = {
