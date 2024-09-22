@@ -661,6 +661,36 @@
 												</hbox>
 											</vbox>
 											<h4>
+												&gsettings.sysThemeYou;
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouSource;</label>
+														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
+															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
+															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouCustom;</label>
+													</vbox>
+													<spacer />
+													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
+												</hbox>
+											</vbox>
+											<h4>
 												&gsettings.themes;
 												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
 												<div class="modal" data-modal="aboutChrThemes_modal">
@@ -841,31 +871,6 @@
 														</label>
 													</grid>
 												</vbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouSource;</label>
-														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
-															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
-															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
-															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
-															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouCustom;</label>
-													</vbox>
-													<spacer />
-													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
-												</hbox>
 											</vbox>
 											<h4>
 												&gsettings.quickAccess;
