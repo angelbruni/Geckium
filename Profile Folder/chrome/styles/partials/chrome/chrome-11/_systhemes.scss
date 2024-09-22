@@ -1,3 +1,4 @@
+@import "systhemes-chromium";
 & {
 	//Classic (Default/Fallback)
 	// Navbar
@@ -31,40 +32,26 @@
 				--macosx-window-color: #ededed;
 			}
 			@media (prefers-color-scheme: dark) {
-				--macosx-window-color: #242424;
+				--macosx-window-color: #282828;
 				&:-moz-window-inactive {
-					--macosx-window-color: #060606;
+					--macosx-window-color: #0B0B0B;
 				}
 			}
 		}
 		&[gksystheme="macosx"],
 		&[gksystheme="macos"] {
+			@include macosx-src();
 			// Tabs
 			--default-inactive-tab-background: linear-gradient(
 				to bottom,
 				#dcdddc,
 				#cfd0cf
 			);
-			--default-selected-tab-background: linear-gradient(
-				to bottom,
-				color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, #333)),
-				color-mix(in srgb, white 80%, #333)
-			);
 
 			// Navbar
-			--default-nav-bar: linear-gradient(
-				to bottom,
-				color-mix(in srgb, white 80%, #333),
-				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, #333))
-			);
 			--default-toolbarbutton-icon-color: black;
 
 			// Personal Toolbar (Bookmarks)
-			--default-personal-toolbar: linear-gradient(
-				to bottom,
-				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, #333)),
-				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, #333))
-			);
 			--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
 			&:-moz-window-inactive {
 				--default-personal-toolbar-border-bottom: rgb(123, 123, 123);
@@ -79,23 +66,23 @@
 				);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					color-mix(in srgb, silver 23%, color-mix(in srgb, silver 7%, #333)),
-					color-mix(in srgb, silver 20%, #333)
+					#{gtmColorAdjForDark("GTMColorationLightHighlight", #333)},
+					#{gtmColorAdjForDark("GTMColorationLightMidtone", #333)}
 				);
 
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, silver 20%, #333),
-					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, #333))
+					#{gtmColorAdjForDark("GTMColorationLightMidtone", #333)},
+					#{gtmColorAdjForDark("GTMColorationLightShadow", #333)}
 				);
 				--default-toolbarbutton-icon-color: white;
 
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, #333)),
-					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, #333))
+					#{gtmColorAdjForDark("GTMColorationLightShadow", #333)},
+					#{gtmColorAdjForDark("GTMColorationLightPenumbra", #333)}
 				);
 				--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
 				&:-moz-window-inactive {

@@ -1,0 +1,107 @@
+// Copyright (c) 2009 The Chromium Authors. All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//    * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//    * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//    * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Mac OS X
+//  References:
+//   Titlebar:
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L355
+
+//   Toolbar:
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L382
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L435
+
+//   Toolbar buttons:
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L382
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L430
+
+//   Incognito:
+//   https://github.com/chromium/chromium/blob/4.0.212.1/chrome/browser/cocoa/browser_window_controller.mm#L1315
+//   https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L370
+//   NOTE: Incognito's titlebar gradient is purely based on assumptions that it inherits the same gradient as normal titlebars
+@mixin macosx-src() {
+	// Titlebar
+	--default-titlebar-active: linear-gradient(
+		to bottom,
+		#{gtmColorAdjFor("GTMColorationBaseMidtone", var(--macosx-window-color))},
+		#{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))} 40px
+	);
+
+	// Tabs
+	--default-selected-tab-background: linear-gradient(
+		to bottom,
+		#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
+		#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
+	);
+
+	// Navbar
+	--default-nav-bar: linear-gradient(
+		to bottom,
+		#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))},
+		#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))}
+	);
+	&:not([geckium-eleven]) {
+		--default-inner-border-color: transparent;
+		--default-toolbarbutton-border-color-normal: color-mix(in srgb, #{gtmColorAdjFor("GTMColorationDarkShadow", var(--macosx-window-color))} 30%, transparent);
+		--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
+		--default-toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
+		--default-toolbarbutton-inner-border-color-normal: transparent;
+		--default-toolbarbutton-inner-border-color-hot: transparent;
+		--default-toolbarbutton-texture: linear-gradient(
+			to bottom,
+			#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
+			#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
+		);
+		//TODO: Actually accurate toolbar buttons
+		--default-toolbarbutton-icon-drop-shadow-color: transparent;
+		--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
+	}
+
+	// Personal Toolbar (Bookmarks)
+	--default-personal-toolbar: linear-gradient(
+		to bottom,
+		#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))},
+		#{gtmColorAdjFor("GTMColorationLightPenumbra", var(--macosx-window-color))}
+	);
+	--default-personal-toolbar-border-bottom: #{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))};
+
+	&[privatebrowsingmode="temporary"] {
+		// Titlebar
+		--macosx-window-color: #536c8c;
+		&:-moz-window-inactive {
+			--macosx-window-color: #86898d;
+		}
+		@media (prefers-color-scheme: dark) {
+			--macosx-window-color: #2A3747;
+			&:-moz-window-inactive {
+				--macosx-window-color: #4F5154;
+			}
+			--default-titlebar-foreground-inactive: white;
+		}
+	}
+}

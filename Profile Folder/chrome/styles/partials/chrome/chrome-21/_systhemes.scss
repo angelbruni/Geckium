@@ -106,6 +106,7 @@
 			}
 
 			&[privatebrowsingmode="temporary"] {
+				// NOTE: Reused code from Chromium 1's _systhemes-chromium.scss
 				--macosx-window-color: #536c8c;
 				&:-moz-window-inactive {
 					--macosx-window-color: #86898d;

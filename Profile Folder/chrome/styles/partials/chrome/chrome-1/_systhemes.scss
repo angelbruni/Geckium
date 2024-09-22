@@ -1,3 +1,4 @@
+@import "systhemes-chromium"; // Include code from Chromium source code
 :root {
 	//Classic (Default/Fallback)
 	// Titlebar
@@ -248,63 +249,28 @@
 		// Mac OS X
 		&[gksystheme="macosx"],
 		&[gksystheme="macos"] {
+			// NOTE: Some code is in systhemes-chromium.scss
 			--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
+			@include macosx-src();
 			// Titlebar
-			--default-titlebar-active: linear-gradient(
-				to bottom,
-				#{gtmColorAdjFor("GTMColorationBaseMidtone", var(--macosx-window-color))},
-				#{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))} 40px
-			);
+			--default-titlebar-color: var(--macosx-window-color);
+			--default-titlebar-foreground: black;
+			--default-titlebar-foreground-inactive: black;
 			//  Inactive works very differently in OS X Chrome, hence
 			&:-moz-window-inactive {
 				--macosx-window-color: #ededed;
 			}
 			--default-titlebar-inactive: var(--default-titlebar-active);
-			--default-titlebar-color: var(--macosx-window-color);
-			--default-titlebar-foreground: black;
-			--default-titlebar-foreground-inactive: black;
 
 			// Tabs
 			--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
-			--default-selected-tab-background: linear-gradient(
-				to bottom,
-				#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
-				#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
-			);
 			--default-tab-glare: rgba(255, 255, 255, 0.3);
 			--default-tabbrowser-tab-color: black;
 
 			// Navbar
-			--default-nav-bar: linear-gradient(
-				to bottom,
-				#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))},
-				#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))}
-			);
-			&:not([geckium-eleven]) {
-				--default-inner-border-color: transparent;
-				--default-toolbarbutton-border-color-normal: color-mix(in srgb, #{gtmColorAdjFor("GTMColorationDarkShadow", var(--macosx-window-color))} 30%, transparent);
-				--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
-				--default-toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
-				--default-toolbarbutton-inner-border-color-normal: transparent;
-				--default-toolbarbutton-inner-border-color-hot: transparent;
-				--default-toolbarbutton-texture: linear-gradient(
-					to bottom,
-					#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
-					#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
-				);
-				//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
-				--default-toolbarbutton-icon-drop-shadow-color: transparent;
-				--default-navigation-buttons-separator: var(--default-toolbarbutton-border-color-normal);
-			}
 			--default-toolbarbutton-icon-color: black;
 
 			// Personal Toolbar (Bookmarks)
-			--default-personal-toolbar: linear-gradient(
-				to bottom,
-				#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))},
-				#{gtmColorAdjFor("GTMColorationLightPenumbra", var(--macosx-window-color))}
-			);
-			--default-personal-toolbar-border-bottom: #{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))};
 			--default-bookmark-item-color: black;
 
 			@media (prefers-color-scheme: dark) {
@@ -359,27 +325,6 @@
 				);
 				--default-personal-toolbar-border-bottom: #{gtmColorAdjForDark("GTMColorationBaseShadow", var(--macosx-window-color))};
 				--default-bookmark-item-color: white;
-			}
-
-			&[privatebrowsingmode="temporary"] {
-				// References
-				//  https://github.com/chromium/chromium/blob/4.0.212.1/chrome/browser/cocoa/browser_window_controller.mm#L1315
-				//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L370
-				//  gradient is purely behaviour-parity-assumptions.
-				// Titlebar
-				--macosx-window-color: #536c8c;
-				&:-moz-window-inactive {
-					--macosx-window-color: #86898d;
-				}
-				--default-titlebar-foreground: white;
-				--default-titlebar-foreground-inactive: black;
-				@media (prefers-color-scheme: dark) {
-					--macosx-window-color: #2A3747;
-					&:-moz-window-inactive {
-						--macosx-window-color: #4F5154;
-					}
-					--default-titlebar-foreground-inactive: white;
-				}
 			}
 		}
 
