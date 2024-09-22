@@ -1,0 +1,99 @@
+//
+//  This is an SCSS conversion of code from GTMNSColor+Luminance.m and GTMTheme.m.
+//
+//  Copyright 2009 Google Inc.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License"); you may not
+//  use this file except in compliance with the License.  You may obtain a copy
+//  of the License at
+// 
+//  http://www.apache.org/licenses/LICENSE-2.0
+// 
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+//  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+//  License for the specific language governing permissions and limitations under
+//  the License.
+//
+//
+// References because you'll never find them otherwise:
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.m#L84
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.h#L20
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L430
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L348
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L388
+//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L422
+
+@function gtmColorAdjFor($use, $color) {
+	@if ($use == "GTMColorationBaseHighlight") {
+		@return unquote("color-mix(in srgb, white 15%, #{$color})");
+	} @else if ($use == "GTMColorationBaseMidtone") {
+		@return $color;
+	} @else if ($use == "GTMColorationBaseShadow") {
+		@return unquote("color-mix(in srgb, black 15%, #{$color})");
+	} @else if ($use == "GTMColorationBasePenumbra") {
+		@return unquote("color-mix(in srgb, black 10%, #{$color})");
+	} @else if ($use == "GTMColorationLightHighlight") {
+		$first: "color-mix(in srgb, white 25%, #{$color})";
+		@return unquote("color-mix(in srgb, white 90%, #{$first})");
+	} @else if ($use == "GTMColorationLightMidtone") {
+		@return unquote("color-mix(in srgb, white 80%, #{$color})");
+	} @else if ($use == "GTMColorationLightShadow") {
+		$first: "color-mix(in srgb, white 70%, #{$color})";
+		@return unquote("color-mix(in srgb, black 2%, #{$first})");
+	} @else if ($use == "GTMColorationLightPenumbra") {
+		$first: "color-mix(in srgb, white 80%, #{$color})";
+		@return unquote("color-mix(in srgb, black 1%, #{$first})");
+	} @else if ($use == "GTMColorationDarkHighlight") {
+		@return unquote("color-mix(in srgb, black 20%, #{$color})");
+	} @else if ($use == "GTMColorationDarkMidtone") {
+		@return unquote("color-mix(in srgb, black 25%, #{$color})");
+	} @else if ($use == "GTMColorationDarkShadow") {
+		@return unquote("color-mix(in srgb, black 30%, #{$color})"); // can't increase saturation in case it causes a grey to stop being grey 🤷
+	} @else if ($use == "GTMColorationDarkPenumbra") {
+		@return unquote("color-mix(in srgb, black 25%, #{$color})");
+	}
+	@warn "Unknown color for GTM: #{$use}";
+	@return $color;
+}
+
+
+
+
+
+
+
+// Custom dark version for Geckium
+//  NOTE: Math is same as light except white% is quartered and replaced with silver, and black% is doubled twice
+@function gtmColorAdjForDark($use, $color) {
+	@if ($use == "GTMColorationBaseHighlight") {
+		@return unquote("color-mix(in srgb, silver 4%, #{$color})");
+	} @else if ($use == "GTMColorationBaseMidtone") {
+		@return $color;
+	} @else if ($use == "GTMColorationBaseShadow") {
+		@return unquote("color-mix(in srgb, black 60%, #{$color})");
+	} @else if ($use == "GTMColorationBasePenumbra") {
+		@return unquote("color-mix(in srgb, black 40%, #{$color})");
+	} @else if ($use == "GTMColorationLightHighlight") {
+		$first: "color-mix(in srgb, silver 6%, #{$color})";
+		@return unquote("color-mix(in srgb, silver 23%, #{$first})");
+	} @else if ($use == "GTMColorationLightMidtone") {
+		@return unquote("color-mix(in srgb, silver 20%, #{$color})");
+	} @else if ($use == "GTMColorationLightShadow") {
+		$first: "color-mix(in srgb, silver 18%, #{$color})";
+		@return unquote("color-mix(in srgb, black 8%, #{$first})");
+	} @else if ($use == "GTMColorationLightPenumbra") {
+		$first: "color-mix(in srgb, silver 20%, #{$color})";
+		@return unquote("color-mix(in srgb, black 4%, #{$first})");
+	} @else if ($use == "GTMColorationDarkHighlight") {
+		@return unquote("color-mix(in srgb, black 80%, #{$color})");
+	} @else if ($use == "GTMColorationDarkMidtone") {
+		@return unquote("color-mix(in srgb, black 100%, #{$color})");
+	} @else if ($use == "GTMColorationDarkShadow") {
+		@return unquote("color-mix(in srgb, black 100%, #{$color})");
+	} @else if ($use == "GTMColorationDarkPenumbra") {
+		@return unquote("color-mix(in srgb, black 100%, #{$color})");
+	}
+	@warn "Unknown color for GTM: #{$use}";
+	@return $color;
+}
