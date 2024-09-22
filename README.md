@@ -5,7 +5,7 @@
 
 (todo: image here of all themes/etc.)
 
-Geckium is a Mozilla Firefox **(115 - latest)** CSS and JS modification that restores the look and feel of past Chromium (or Google Chrome) releases, spanning from 1.0 to 68, while also bringing Chromium Theme support to Firefox, bringing obscure prerelease content to the limelight and retrofitting new content into every design.
+Geckium is a Mozilla Firefox **(115 - latest)** CSS and JS modification that restores the look and feel of past Chromium (or Google Chrome) releases, spanning from 1.0 to 58, while also bringing Chromium Theme support to Firefox, bringing obscure prerelease content to the limelight and retrofitting new content into every design.
 
 [Discord Server](https://discord.gg/ZDeT6vdqMp)
 
