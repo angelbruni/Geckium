@@ -5,6 +5,8 @@
 // @include		main
 // ==/UserScript==
 
+const { ChromiumGTKUI } = ChromeUtils.importESModule("chrome://modules/content/ChromiumGTKUI.sys.mjs");
+
 // Initial variables
 let isThemed;
 let previousSysTheme;
@@ -97,87 +99,68 @@ class gkGTK {
 		document.head.appendChild(colorDiv);
 		//ActiveCaption
 		colorDiv.style.backgroundColor="ActiveCaption";
-		var rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		var titactive = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
 		document.documentElement.style.setProperty(
 			`--activecaption-shine`,
-			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+			`rgb(${ChromiumGTKUI.getTitlebarShine(titactive)})`
 		);
 		//Background Tab background
-        var bgtab = ColorUtils.HSLShift(rgb, [-1, 0.5, 0.75]);
+        var bgtab = ChromiumGTKUI.getInactiveTab(titactive);
 		document.documentElement.style.setProperty(
 			`--bgtab-background`,
 			`rgb(${bgtab})`
 		);
-        //Background Tab foreground (see https://chromium.googlesource.com/chromium/src.git/+/refs/tags/29.0.1547.57/chrome/browser/ui/libgtk2ui/gtk2_ui.cc#521)
-        bgtab = ColorUtils.ColorToHSL(bgtab);
-        if (bgtab[2] < 0.5) {
-            bgtab[2] = 85;
-        } else {
-            bgtab[2] = 15;
-        }
-        if (bgtab[1] < 0.5) {
-            bgtab[1] = 70;
-        } else {
-            bgtab[1] = 30;
-        }
+        //Background Tab foreground
         document.documentElement.style.setProperty(
 			`--bgtab-foreground`,
-			`rgb(${ColorUtils.HSLToColor(bgtab)})`
+			`rgb(${ChromiumGTKUI.getInactiveTabFG(bgtab)})`
 		);
 		//Incognito (active)
-		var rgbb = ColorUtils.HSLShift(rgb, [-1, 0.2, 0.35]);
+		var titotr = ChromiumGTKUI.getIncognito(titactive);
 		document.documentElement.style.setProperty(
 			`--incognito-active`,
-			`rgb(${rgbb})`
+			`rgb(${titotr})`
 		);
 		document.documentElement.style.setProperty(
 			`--incognito-active-shine`,
-			`rgb(${ColorUtils.HSLShift(rgbb, [-1, -1, 0.58])})`
+			`rgb(${ChromiumGTKUI.getTitlebarShine(titotr)})`
 		);
 		//Background Tab background (Incognito)
 		document.documentElement.style.setProperty(
 			`--incognito-bgtab-background`,
-			`rgb(${ColorUtils.HSLShift(rgbb, [-1, 0.5, 0.75])})`
+			`rgb(${ChromiumGTKUI.getInactiveTab(titotr)})`
 		);
 		//Incognito (inactive)
-		rgb = ColorUtils.HSLShift(rgb, [-1, 0.3, 0.6]);
+		var titotrinactive = ChromiumGTKUI.getIncognitoInactive(titactive);
 		document.documentElement.style.setProperty(
 			`--incognito-inactive`,
-			`rgb(${rgb})`
+			`rgb(${titotrinactive})`
 		);
 		document.documentElement.style.setProperty(
 			`--incognito-inactive-shine`,
-			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+			`rgb(${ChromiumGTKUI.getTitlebarShine(titotrinactive)})`
 		);
 		//InactiveCaption
 		colorDiv.style.backgroundColor="InactiveCaption";
-		rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		var titinactive = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
 		document.documentElement.style.setProperty(
 			`--inactivecaption-shine`,
-			`rgb(${ColorUtils.HSLShift(rgb, [-1, -1, 0.58])})`
+			`rgb(${ChromiumGTKUI.getTitlebarShine(titinactive)})`
 		);
 		//Pre-6.0 toolbar icon fill colour
 		colorDiv.style.backgroundColor="AccentColor";
-		rgb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		var accent = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
 		colorDiv.style.backgroundColor="-moz-dialog";
-		rgbb = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
-		if (Math.abs(ColorUtils.ColorToHSL(rgb)[2] - ColorUtils.ColorToHSL(rgbb)[2]) < 0.1) {
-			// Not enough contrast - use foreground
-			document.documentElement.style.setProperty(
-				`--gtk-toolbarbutton-icon-fill`,
-				`-moz-dialogtext`
-			);
-		} else {
-			document.documentElement.style.setProperty(
-				`--gtk-toolbarbutton-icon-fill`,
-				`AccentColor`
-			);
-		}
+		var toolbar = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
+		document.documentElement.style.setProperty(
+            `--gtk-toolbarbutton-icon-fill`,
+            `${ChromiumGTKUI.getAccentToolbarFill(accent, toolbar)}`
+        );
         //Post-6.0 toolbar icon fill colour
         colorDiv.style.backgroundColor="-moz-dialogtext";
 		var iconfill = window.getComputedStyle(colorDiv)["background-color"].match(/\d+/g);
         iconfill = ColorUtils.ColorToHSL(iconfill);
-        if (iconfill[1] > 10) {
+        if (iconfill[1] > 10) { //H[S]L
             // Use the toolbar colour if it isn't a shade of grey
             //  NOTE: This isn't official behaviour, nor is the light shade on dark mode
             //   - I just thought it would be better to have these additions in place alongside.
