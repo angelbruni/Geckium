@@ -132,10 +132,11 @@
 		// Mac OS X
 		&[gksystheme="macosx"],
 		&[gksystheme="macos"] {
+			// NOTE: Reused code from Chromium 1's _systhemes-chromium.scss
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				var(--macosx-window-color),
-				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
+				#{gtmColorAdjFor("GTMColorationBaseMidtone", var(--macosx-window-color))},
+				#{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))} 40px
 			);
 			--default-titlebar-inactive: var(--default-titlebar-active);
 		}
