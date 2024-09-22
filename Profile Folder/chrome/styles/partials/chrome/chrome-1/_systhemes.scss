@@ -259,9 +259,9 @@
 			// Titlebar
 			--default-titlebar-active: linear-gradient(
 				to bottom,
-				var(--macosx-window-color),
-				color-mix(in srgb, black 15%, var(--macosx-window-color)) 40px
-			); // GTMColorationBaseMidtone -> GTMColorationBaseShadow
+				#{gtmColorAdjFor("GTMColorationBaseMidtone", var(--macosx-window-color))},
+				#{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))} 40px
+			);
 			//  Inactive works very differently in OS X Chrome, hence
 			&:-moz-window-inactive {
 				--macosx-window-color: #ededed;
@@ -275,8 +275,8 @@
 			--default-inactive-tab-background: rgba(255, 255, 255, 0.3);
 			--default-selected-tab-background: linear-gradient(
 				to bottom,
-				color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, var(--macosx-window-color))),
-				color-mix(in srgb, white 80%, var(--macosx-window-color))
+				#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
+				#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
 			);
 			--default-tab-glare: rgba(255, 255, 255, 0.3);
 			--default-tabbrowser-tab-color: black;
@@ -284,20 +284,20 @@
 			// Navbar
 			--default-nav-bar: linear-gradient(
 				to bottom,
-				color-mix(in srgb, white 80%, var(--macosx-window-color)),
-				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, var(--macosx-window-color)))
+				#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))},
+				#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))}
 			);
 			&:not([geckium-eleven]) {
 				--default-inner-border-color: transparent;
-				--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+				--default-toolbarbutton-border-color-normal: color-mix(in srgb, #{gtmColorAdjFor("GTMColorationDarkShadow", var(--macosx-window-color))} 30%, transparent);
 				--default-toolbarbutton-border-color-hot: rgba(0,0,0,.3); //TODO
 				--default-toolbarbutton-border-color-active: rgb(171, 181, 203); //TODO
 				--default-toolbarbutton-inner-border-color-normal: transparent;
 				--default-toolbarbutton-inner-border-color-hot: transparent;
 				--default-toolbarbutton-texture: linear-gradient(
 					to bottom,
-					color-mix(in srgb, white 90%, color-mix(in srgb, white 25%, var(--macosx-window-color))),
-					color-mix(in srgb, white 80%, var(--macosx-window-color))
+					#{gtmColorAdjFor("GTMColorationLightHighlight", var(--macosx-window-color))},
+					#{gtmColorAdjFor("GTMColorationLightMidtone", var(--macosx-window-color))}
 				);
 				//TODO: https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L401
 				--default-toolbarbutton-icon-drop-shadow-color: transparent;
@@ -308,14 +308,14 @@
 			// Personal Toolbar (Bookmarks)
 			--default-personal-toolbar: linear-gradient(
 				to bottom,
-				color-mix(in srgb, black 2%, color-mix(in srgb, white 70%, var(--macosx-window-color))),
-				color-mix(in srgb, black 1%, color-mix(in srgb, white 80%, var(--macosx-window-color)))
+				#{gtmColorAdjFor("GTMColorationLightShadow", var(--macosx-window-color))},
+				#{gtmColorAdjFor("GTMColorationLightPenumbra", var(--macosx-window-color))}
 			);
-			--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+			--default-personal-toolbar-border-bottom: #{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))};
 			--default-bookmark-item-color: black;
 
 			@media (prefers-color-scheme: dark) {
-				// NOTE: Math is same as light except white% is quartered and replaced with silver, and black% is doubled twice
+				// NOTE: Math is same as light except white opacity values are quartered
 
 				// Titlebar
 				--macosx-window-color: #303030;
@@ -330,8 +330,8 @@
 				--default-inactive-tab-background: rgba(0, 0, 0, 0.15);
 				--default-selected-tab-background: linear-gradient(
 					to bottom,
-					color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
-					color-mix(in srgb, silver 20%, var(--macosx-window-color))
+					#{gtmColorAdjForDark("GTMColorationLightHighlight", var(--macosx-window-color))},
+					#{gtmColorAdjForDark("GTMColorationLightMidtone", var(--macosx-window-color))}
 				);
 				--default-tab-glare: rgba(255, 255, 255, 0.075);
 				--default-tabbrowser-tab-color: white;
@@ -339,20 +339,20 @@
 				// Navbar
 				--default-nav-bar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, silver 20%, var(--macosx-window-color)),
-					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color)))
+					#{gtmColorAdjForDark("GTMColorationLightMidtone", var(--macosx-window-color))},
+					#{gtmColorAdjForDark("GTMColorationLightShadow", var(--macosx-window-color))}
 				);
 				&:not([geckium-five]) {
 					--default-inner-border-color: color-mix(in srgb, white 16%, transparent);
-					--default-toolbarbutton-border-color-normal: color-mix(in srgb, color-mix(in srgb, black 30%, var(--macosx-window-color)) 30%, transparent);
+					--default-toolbarbutton-border-color-normal: color-mix(in srgb, #{gtmColorAdjForDark("GTMColorationDarkShadow", var(--macosx-window-color))} 30%, transparent);
 					--default-toolbarbutton-border-color-hot: rgb(112, 112, 112); //TODO
 					--default-toolbarbutton-border-color-active: rgb(136, 136, 136); //TODO
 					--default-toolbarbutton-inner-border-color-normal: color-mix(in srgb, white 16%, transparent);
 					--default-toolbarbutton-inner-border-color-hot: rgba(255, 255, 255, 0.2); //TODO
 					--default-toolbarbutton-texture: linear-gradient(
 						to bottom,
-						color-mix(in srgb, silver 23%, color-mix(in srgb, silver 6%, var(--macosx-window-color))),
-						color-mix(in srgb, silver 20%, var(--macosx-window-color))
+						#{gtmColorAdjForDark("GTMColorationLightHighlight", var(--macosx-window-color))},
+						#{gtmColorAdjForDark("GTMColorationLightMidtone", var(--macosx-window-color))}
 					);
 					--default-toolbarbutton-icon-drop-shadow-color: transparent;
 				}
@@ -361,10 +361,10 @@
 				// Personal Toolbar
 				--default-personal-toolbar: linear-gradient(
 					to bottom,
-					color-mix(in srgb, black 8%, color-mix(in srgb, silver 18%, var(--macosx-window-color))),
-					color-mix(in srgb, black 4%, color-mix(in srgb, silver 20%, var(--macosx-window-color)))
+					#{gtmColorAdjForDark("GTMColorationLightShadow", var(--macosx-window-color))},
+					#{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))}
 				);
-				--default-personal-toolbar-border-bottom: color-mix(in srgb, black 15%, var(--macosx-window-color));
+				--default-personal-toolbar-border-bottom: #{gtmColorAdjForDark("GTMColorationBaseShadow", var(--macosx-window-color))};
 				--default-bookmark-item-color: white;
 			}
 
