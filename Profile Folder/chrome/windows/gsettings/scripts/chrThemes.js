@@ -7,15 +7,16 @@ async function populateChrThemesList() {
 		item.remove();
 	})
 
-	for (const themeName in themes) {
-		let theme = themes[themeName];
+	for (const themeFileName in themes) {
+		let theme = themes[themeFileName];
+
+		let themeName = theme.name.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 		let themeDescription;
 		if (!themeDescription)
 			themeDescription = "This theme has no description.";
 		else
 			themeDescription = theme.description.replace(/[&<>"']/g, match => specialCharacters[match]);
-
 
 		const themeFile = theme.file.replace(".crx", "");
 
@@ -51,7 +52,7 @@ async function populateChrThemesList() {
 						<div class="radio-parent">
 							<html:input id="theme-${themeFile}" class="radio" type="radio" name="gktheme"></html:input>
 							<div class="gutter" for="checked_check"></div>
-							<html:label class="name label">${themeName.replace(/[&<>"']/g, match => specialCharacters[match])}</html:label>
+							<html:label class="name label">${themeName}</html:label>
 						</div>
 						<html:label class="description">${themeDescription}</html:label>
 					</vbox>
