@@ -628,7 +628,7 @@
 							<vbox class="page" data-page="13">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container">
+										<vbox class="list-container" style="width: 100%;">
 											<h4>
 												&gsettings.firefoxThemes;
 											</h4>
@@ -692,7 +692,7 @@
 													</vbox>
 												</html:button>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1">
+													<grid class="disable-in-wizard" id="themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
 																class="link chrome-appearance ripple-enabled"
