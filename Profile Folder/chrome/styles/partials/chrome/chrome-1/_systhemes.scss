@@ -246,13 +246,6 @@
 
 	&:not([geckium-sixtyeight]) { //These themes are reverted to just being Classic in 68, so exclude them if 68 or higher is selected
 		// Mac OS X
-		// References because you'll never find them otherwise:
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.m#L84
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMNSColor%2BLuminance.h#L20
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L430
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L348
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L388
-		//  https://github.com/google/google-toolbox-for-mac/blob/0f017ffd481523a46e1ef8c14db1e6a1e290ed3b/AppKit/GTMTheme.m#L422
 		&[gksystheme="macosx"],
 		&[gksystheme="macos"] {
 			--macosx-window-color: #c3c3c3; // Cocoa has a base colour that it directly uses on the titlebar
