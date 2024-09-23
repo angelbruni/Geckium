@@ -26,6 +26,7 @@
 		body {
 			background-color: var(--newtab-background-color);
 			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+			background-attachment: fixed; // Create the parallax scrolling effect
 			image-rendering: var(--lwt-gknewtab-image-rendering);
 			background-size: var(--lwt-gknewtab-background-size);
 			background-position: var(--lwt-gknewtab-background-position);
@@ -51,6 +52,7 @@
 		body {
 			background-color: var(--chrtheme-ntp-background);
 			background-image: var(--chrtheme-theme-ntp-background);
+			background-attachment: fixed; // Create the parallax scrolling effect
 		}
 
 		#attribution-img {
