@@ -38,7 +38,7 @@ menupopup {
 
 	> menu,
 	> menuitem {
-	&[disabled] {
+		&[disabled] {
 			pointer-events: none;
 		}
 
@@ -52,18 +52,22 @@ menupopup {
 	}
 
 
-	// Force top menu items to show as regular menu items
+	// Force top menu items to show as regular menu items, and hide their icons
 	&#contentAreaContextMenu {
 		#context-navigation {
 			background-color: transparent !important;
 			flex-direction: column !important;
+
+			.menu-iconic-left {
+				display: none !important;
+			}
 
 			> menuitem {
 				justify-content: unset !important;
 				
 				&::after {
 					content: attr(aria-label);
-					margin-inline-start: 5px !important; // 21px (menu.css:82, Firefox 115) - 16px
+					margin-inline-start: 21px !important; // (menu.css:82, Firefox 115)
 					appearance: menuitemtext !important;
 					white-space: nowrap;
 				}
@@ -79,105 +83,6 @@ menupopup {
 		--panel-border-color: ThreeDShadow !important;
 		--panel-border-radius: 0 !important;
 		--panel-padding-block: 0 !important;
-
-		&#contentAreaContextMenu {
-			#context-navigation {
-				.menu-iconic-left image {
-					//height: 16px !important;
-					width: 16px !important;
-					margin: unset !important;
-				}
-
-				// Menu icons for top items
-				#context-back {
-					list-style-image: url(moz-icon://stock/go-previous?size=menu) !important;
-				}
-				#context-forward {
-					list-style-image: url(moz-icon://stock/go-next?size=menu) !important;
-				}
-				#context-reload {
-					list-style-image: url(moz-icon://stock/view-refresh?size=menu) !important;
-				}
-				#context-stop {
-					list-style-image: url(moz-icon://stock/process-stop?size=menu) !important;
-				}
-				#context-bookmarkpage {
-					list-style-image: unset !important;
-				}
-			}
-		}
-			
-		// Menu icons for other items
-		&#contentAreaContextMenu:not(#context-navigation) menuitem,
-		&:not(#contentAreaContextMenu) menuitem {
-			-moz-context-properties: fill, fill-opacity, stroke !important;
-			fill: currentColor !important;
-			stroke: currentColor;
-			background-size: 16px !important;
-			background-repeat: no-repeat !important;
-			background-position: left 6px center !important;
-		}
-
-		#context-openlinkintab,
-		#placesContext_open\:newtab {
-			background-image: url(moz-icon://stock/document-new?size=menu);
-		}
-		#placesContext_show_bookmark\:info,
-		#placesContext_show\:info,
-		#placesContext_show_folder\:info {
-			background-image: url(moz-icon://stock/gtk-edit?size=menu);
-		}
-		#context-savelink,
-		#context-saveimage,
-		#context-video-saveimage,
-		#context-savevideo,
-		#context-saveaudio,
-		#context-savepage {
-			background-image: url(moz-icon://stock/document-save?size=menu);
-		}
-		#context-undo {
-			background-image: url(moz-icon://stock/edit-undo?size=menu);
-		}
-		#context-redo {
-			background-image: url(moz-icon://stock/edit-redo?size=menu);
-		}
-		#context-cut,
-		#placesContext_cut {
-			background-image: url(moz-icon://stock/edit-cut?size=menu);
-		}
-		#context-copyemail,
-		#context-copyphone,
-		#context-copylink,
-		#context-copyimage,
-		#context-copyvideourl,
-		#context-copyaudiourl,
-		#context-copy,
-		#placesContext_copy {
-			background-image: url(moz-icon://stock/edit-copy?size=menu);
-		}
-		#context-paste,
-		#placesContext_paste_group,
-		#placesContext_paste {
-			background-image: url(moz-icon://stock/edit-paste?size=menu);
-		}
-		#context-delete,
-		#placesContext_deleteBookmark,
-		#placesContext_deleteFolder {
-			background-image: url(moz-icon://stock/edit-delete?size=menu);
-		}
-		#context-print-selection {
-			background-image: url(moz-icon://stock/document-print?size=menu);
-		}
-		#context-inspect {
-			background-image: url(moz-icon://stock/document-properties?size=menu);
-		}
-		#placesContext_new\:bookmark,
-		#placesContext_createBookmark {
-			background-image: url(moz-icon://stock/list-add?size=menu);
-		}
-		#placesContext_new\:folder {
-			background-image: url(moz-icon://stock/folder?size=menu);
-		}
 	}
 }
 
@@ -200,14 +105,9 @@ menupopup {
 				
 // 				&::after {
 // 					content: attr(aria-label);
-// 					margin-inline-start: 2px !important;
-// 					appearance: menuitemtext !important;
-// 					white-space: nowrap;
-
 // 					@media (-moz-platform: linux) {
 // 						margin-inline-start: 21px !important;
 // 					}
-	
 // 					@media (-moz-windows-classic) {
 // 						padding-inline-start: 1.45em !important;
 // 					}
