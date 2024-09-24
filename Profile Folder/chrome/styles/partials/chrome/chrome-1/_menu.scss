@@ -1,14 +1,3 @@
-// Hide menu items that weren't yet introduced
-#menu_find6,
-#menu_savePage6,
-#menu_print6,
-#tools6-menu,
-#menu_settings6,
-#bookmarks-menu {
-	display: none;
-}
-
-
 // Custom menubar for non-native titlebars
 :root[gktitnative="false"] {
 	#main-menubar > menu {
@@ -24,20 +13,182 @@
 }
 
 
-// menupopup {
-// 	@media (-moz-platform: linux) {
-// 		--panel-background: Field !important;
-// 		--panel-color: FieldText !important;
-// 		--panel-border-color: ThreeDShadow !important;
-// 		--panel-border-radius: 0 !important;
-// 		--panel-padding-block: 0 !important;
-// 	}
+// Hide menu items that weren't yet introduced
+#menu_find6,
+#menu_savePage6,
+#menu_print6,
+#tools6-menu,
+#menu_settings6,
+#bookmarks-menu {
+	display: none;
+}
 
-// 	&#contentAreaContextMenu {
-// 		#context-navigation {
-// 			background-color: transparent !important;
-// 			flex-direction: column !important;
+menupopup {
+	// Hide menu items' buttons as they weren't yet introduced
+	> .menuitemitems,
+	> .menuitemitems + menuseparator {
+		display: none !important;
+	}
+
+
+	// Standard menus (right-click, menubar, etc.)
+	button {
+		min-width: 0 !important;
+	}
+
+	> menu,
+	> menuitem {
+	&[disabled] {
+			pointer-events: none;
+		}
+
+		.menu-text {
+			margin-inline-end: 48px !important;
+		}
+	}
 	
+	#context-sep-navigation {
+		margin-left: 0 !important;
+	}
+
+
+	// Force top menu items to show as regular menu items
+	&#contentAreaContextMenu {
+		#context-navigation {
+			background-color: transparent !important;
+			flex-direction: column !important;
+
+			> menuitem {
+				justify-content: unset !important;
+				
+				&::after {
+					content: attr(aria-label);
+					margin-inline-start: 5px !important; // 21px (menu.css:82, Firefox 115) - 16px
+					appearance: menuitemtext !important;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+
+
+	// Tweak Linux's menu styling to look more native
+	@media (-moz-platform: linux) {
+		--panel-background: Field !important;
+		--panel-color: FieldText !important;
+		--panel-border-color: ThreeDShadow !important;
+		--panel-border-radius: 0 !important;
+		--panel-padding-block: 0 !important;
+
+		&#contentAreaContextMenu {
+			#context-navigation {
+				.menu-iconic-left image {
+					//height: 16px !important;
+					width: 16px !important;
+					margin: unset !important;
+				}
+
+				// Menu icons for top items
+				#context-back {
+					list-style-image: url(moz-icon://stock/go-previous?size=menu) !important;
+				}
+				#context-forward {
+					list-style-image: url(moz-icon://stock/go-next?size=menu) !important;
+				}
+				#context-reload {
+					list-style-image: url(moz-icon://stock/view-refresh?size=menu) !important;
+				}
+				#context-stop {
+					list-style-image: url(moz-icon://stock/process-stop?size=menu) !important;
+				}
+				#context-bookmarkpage {
+					list-style-image: unset !important;
+				}
+			}
+		}
+			
+		// Menu icons for other items
+		&#contentAreaContextMenu:not(#context-navigation) menuitem,
+		&:not(#contentAreaContextMenu) menuitem {
+			-moz-context-properties: fill, fill-opacity, stroke !important;
+			fill: currentColor !important;
+			stroke: currentColor;
+			background-size: 16px !important;
+			background-repeat: no-repeat !important;
+			background-position: left 6px center !important;
+		}
+
+		#context-openlinkintab,
+		#placesContext_open\:newtab {
+			background-image: url(moz-icon://stock/document-new?size=menu);
+		}
+		#placesContext_show_bookmark\:info,
+		#placesContext_show\:info,
+		#placesContext_show_folder\:info {
+			background-image: url(moz-icon://stock/gtk-edit?size=menu);
+		}
+		#context-savelink,
+		#context-saveimage,
+		#context-video-saveimage,
+		#context-savevideo,
+		#context-saveaudio,
+		#context-savepage {
+			background-image: url(moz-icon://stock/document-save?size=menu);
+		}
+		#context-undo {
+			background-image: url(moz-icon://stock/edit-undo?size=menu);
+		}
+		#context-redo {
+			background-image: url(moz-icon://stock/edit-redo?size=menu);
+		}
+		#context-cut,
+		#placesContext_cut {
+			background-image: url(moz-icon://stock/edit-cut?size=menu);
+		}
+		#context-copyemail,
+		#context-copyphone,
+		#context-copylink,
+		#context-copyimage,
+		#context-copyvideourl,
+		#context-copyaudiourl,
+		#context-copy,
+		#placesContext_copy {
+			background-image: url(moz-icon://stock/edit-copy?size=menu);
+		}
+		#context-paste,
+		#placesContext_paste_group,
+		#placesContext_paste {
+			background-image: url(moz-icon://stock/edit-paste?size=menu);
+		}
+		#context-delete,
+		#placesContext_deleteBookmark,
+		#placesContext_deleteFolder {
+			background-image: url(moz-icon://stock/edit-delete?size=menu);
+		}
+		#context-print-selection {
+			background-image: url(moz-icon://stock/document-print?size=menu);
+		}
+		#context-inspect {
+			background-image: url(moz-icon://stock/document-properties?size=menu);
+		}
+		#placesContext_new\:bookmark,
+		#placesContext_createBookmark {
+			background-image: url(moz-icon://stock/list-add?size=menu);
+		}
+		#placesContext_new\:folder {
+			background-image: url(moz-icon://stock/folder?size=menu);
+		}
+	}
+}
+
+
+
+// Popover menus (toolbar items, etc.)
+
+
+// menupopup {
+// 	&#contentAreaContextMenu {
+// 		#context-navigation {	
 // 			> menuitem {
 // 				justify-content: unset !important;
 	
@@ -68,41 +219,7 @@
 // 			}
 // 		}
 		
-// 			#context-sep-navigation {
-// 			margin-left: 0 !important;
-// 		}
 // 	}
 
-// 	button {
-// 		min-width: 0 !important;
-// 	}
-
-// 	> menu,
-// 	> menuitem {
-// 	&[disabled] {
-// 			pointer-events: none;
-// 		}
-
-// 		.menu-text {
-// 			margin-inline-end: 48px !important;
-// 		}
-// 	}
-
-// 	> .menuitemitems,
-// 	> .menuitemitems + menuseparator {
-// 		display: none !important;
-// 	}
+// 	
 // }
-
-@media (-moz-windows-classic) {
-    :not(menulist) {
-        menupopup {
-            padding: 1px !important;
-            border: 2px solid transparent !important;
-            border-image-source: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIGZpbGw9IlRocmVlRERhcmtTaGFkb3ciLz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSJUaHJlZURMaWdodFNoYWRvdyIvPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IlRocmVlRFNoYWRvdyIvPjxyZWN0IHg9IjEiIHk9IjEiIHdpZHRoPSIzIiBoZWlnaHQ9IjMiIGZpbGw9IlRocmVlREhpZ2hsaWdodCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IlRocmVlREZhY2UiLz48L3N2Zz4=") !important;
-            border-image-slice: 2 !important;
-            border-image-width: 2px !important;
-            border-image-repeat: repeat !important;
-        }
-    }
-}
