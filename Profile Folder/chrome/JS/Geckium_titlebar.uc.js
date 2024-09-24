@@ -35,7 +35,8 @@ class gkTitlebars {
              * 
              * cannative    -   If False, the titlebar will always be in non-native mode regardless of preferences
              * 
-             * tabstyle -    0: Windows
+             * uistyle -    Which Operating System's style should be used on misc. portions of the interface, including tabs and menus
+             *                  0: Windows
              *                  1: Linux
              *                  2: macOS
              * 
@@ -51,7 +52,7 @@ class gkTitlebars {
                 native: true,
                 popupnative: true,
                 cannative: true,
-                tabstyle: 0,
+                uistyle: 0,
                 systheme: {
                     linux: "classic",
                     win: "classic",
@@ -68,7 +69,7 @@ class gkTitlebars {
                 native: true,
                 popupnative: true,
                 cannative: true,
-                tabstyle: 0,
+                uistyle: 0,
                 systheme: {
                     linux: "classic",
                     win: "classic",
@@ -86,7 +87,7 @@ class gkTitlebars {
                 native: true,
                 popupnative: true,
                 cannative: true,
-                tabstyle: 0,
+                uistyle: 0,
                 systheme: {
                     linux: "classic",
                     win: "classic",
@@ -107,7 +108,7 @@ class gkTitlebars {
                 native: false,
                 popupnative: true,
                 cannative: true,
-                tabstyle: 1,
+                uistyle: 1,
                 systheme: {
                     linux: "classic",
                     win: "classic",
@@ -127,9 +128,6 @@ class gkTitlebars {
                     win: "classic",
                     macos: "macos"
                 }
-            },
-            68: {
-                buttons: "linux"
             }
         },
         "linux": {
@@ -141,7 +139,7 @@ class gkTitlebars {
                 native: false,
                 popupnative: true,
                 cannative: true,
-                tabstyle: 1,
+                uistyle: 1,
                 systheme: {
                     linux: "classic",
                     win: "classic",
@@ -172,7 +170,7 @@ class gkTitlebars {
                 native: false,
                 popupnative: false,
                 cannative: false,
-                tabstyle: 2,
+                uistyle: 2,
                 systheme: {
                     linux: "macosx",
                     win: "macosx",
@@ -196,7 +194,7 @@ class gkTitlebars {
                 native: false,
                 popupnative: false,
                 cannative: false,
-                tabstyle: 2,
+                uistyle: 2,
                 systheme: {
                     linux: "macos",
                     win: "macos",
@@ -220,7 +218,7 @@ class gkTitlebars {
                 native: false,
                 popupnative: false,
                 cannative: false,
-                tabstyle: 1,
+                uistyle: 1,
                 systheme: {
                     linux: "chromiumos",
                     win: "chromiumos",
@@ -234,7 +232,7 @@ class gkTitlebars {
                 buttons: "chromiumos",
                 hasnativegaps: false,
                 hasgaps: false,
-                tabstyle: 0
+                uistyle: 0
             },
             68: {
                 systheme: {
@@ -428,7 +426,7 @@ class gkTitlebars {
         // Apply titlebar and button style
         document.documentElement.setAttribute("gktitstyle", spec.border);
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
-        document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
+        document.documentElement.setAttribute("gkuistyle", spec.uistyle);
         // Check native titlebar mode eligibility
         if (gkTitlebars.getNative(spec, era)) {
             // Base Geckium CSS flag
@@ -466,7 +464,7 @@ class gkTitlebars {
             document.documentElement.setAttribute("gktitstyle", spec.border);
         }
         document.documentElement.setAttribute("gktitbuttons", spec.buttons);
-        document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
+        document.documentElement.setAttribute("gkuistyle", spec.uistyle);
         // Check native titlebar mode eligibility (or force if Titlebar is enabled)
         if (systitlebar || gkTitlebars.getNative(spec, era, true)) {
             // Base Geckium CSS flag
@@ -499,7 +497,7 @@ class gkTitlebars {
         // Apply titlebar and button style
         document.documentElement.removeAttribute("gktitstyle");
         document.documentElement.setAttribute("gktitbuttons", spec.buttons); // Used for Incognito positioning
-        document.documentElement.setAttribute("gktabstyle", spec.tabstyle);
+        document.documentElement.setAttribute("gkuistyle", spec.uistyle);
         document.documentElement.setAttribute("gkhasgaps", "false");
         // Native has been locked to Windows only because of the following factors:
         //  On Linux, nobody has ever made use of titlebar mode in their themes - even aerothemeplasma deactivates in this mode
