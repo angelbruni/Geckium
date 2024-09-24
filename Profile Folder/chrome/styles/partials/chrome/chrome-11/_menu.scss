@@ -1,7 +1,6 @@
-
-menupopup {
-    // On Linux, add icons to menu items
-    @media (-moz-platform: linux) {
+@media (-moz-platform: linux) {
+    // On Linux styling, add icons to menu items
+    &[gkuistyle="1"]:not([geckium-sixtyeight]) menupopup {
         // Menu icons for top items
         &#contentAreaContextMenu {
             #context-navigation {
