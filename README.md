@@ -22,7 +22,7 @@ Geckium is designed for the following platforms:
 - Windows 8.1
 - Windows 10 (with Native Controls Patch)
 - Windows 11
-- macOS* (tested on Sonoma)
+- macOS* (tested on Sonoma and Sequoia)
 
 *Mac OS X's 3-6 eras may be inaccurate as we were unsuccessful in finding DMGs of those versions
 
