@@ -140,10 +140,11 @@
 			color: var(--titlebar-foreground-inactive, var(--titlebar-foreground, var(--default-titlebar-foreground-inactive))) !important;
 		}
 	}
-	&:not([menubarvisible]) {
-		#tabbrowser-arrowscrollbox {
-			padding-top: var(--tab-distance-from-top);
-		}
+	#tabbrowser-arrowscrollbox {
+		padding-top: var(--tab-distance-from-top);
+	}
+	&[menubarvisible] { // Disable tab gap whenever the menubar is visible
+		--tab-distance-from-top: 0px !important;
 	}
 
 	// Menu bar
