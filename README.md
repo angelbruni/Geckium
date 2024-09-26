@@ -28,11 +28,12 @@ Geckium is designed for the following platforms:
 
 However,
 
-- Geckium **CANNOT** work properly with WindowBlinds.
 - Compatibility with Firefox forks is never guaranteed - minor adjustments will be made by Geckium to accommodate itself in Firefox forks, but issues not seen in Firefox may still occur.
 - Due to the nature of how their packages are created, Geckium **CANNOT** be used in Mozilla Firefox from Flathub nor Ubuntu (and Snap Store). Ubuntu users will have to install Firefox [from the Mozilla PPA](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa#:~:text=sudo%20add%2Dapt%2Drepository%20ppa%3Amozillateam/ppa) in order to use Geckium.
 
 # Instructions
+
+**To begin, download Geckium from [the Releases page](https://github.com/angelbruni/Geckium/releases/latest).**
 
 ℹ Once running for the first time, Geckium will restart Firefox automatically 1-2 times while it sets up required settings, migrations, and so on - if Firefox doesn't re-appear after restarting itself, terminate Firefox and launch it again (that is an upstream bug with Firefox).
 
