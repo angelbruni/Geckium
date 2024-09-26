@@ -24,21 +24,25 @@
 
 			&:not([disabled]) {
 				&:hover {
-					border-top-color: color-mix(
-						in srgb,
-						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
-						white
-					) !important;
 					border-bottom-color: color-mix(
 						in srgb,
 						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 80%,
 						black
 					) !important;
 					box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
-								inset 0 1px 2px rgb(255, 255, 255, 75%) !important;
+						inset 0 1px 0 0 color-mix(
+							in srgb,
+							var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
+							white
+						),
+						inset 0 0 2px color-mix(
+							in srgb,
+							var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
+							white
+						) !important;
 
 					&::before {
-						opacity: .3;
+						opacity: .25;
 					}
 				}
 
