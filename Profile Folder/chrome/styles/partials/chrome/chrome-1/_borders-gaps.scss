@@ -7,18 +7,8 @@
 	--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.png");
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
 
-	--window-control-background: var(--default-window-control-background);
-
 	&[windowtype="navigator:browser"] > body {
 		box-sizing: border-box; //Required fix for Windows
-	}
-
-	//--window-control-background overrides (requires Windows border)
-	&[gkthemed]:not([gkchrthemed]) {
-		--window-control-background: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor));
-	}
-	&[gkthemed][gkchrthemed] {
-		--window-control-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-frame));
 	}
 
 	.titlebar-spacer { // Prepare for usage as tabbar borders
@@ -89,7 +79,6 @@
 		border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
-		background: var(--window-control-background) !important; // Required for #customization-container
 	}
 
 	//Page bodies - all borders (requires Windows decorations)
