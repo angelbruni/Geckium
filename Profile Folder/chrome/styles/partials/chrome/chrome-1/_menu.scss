@@ -67,7 +67,6 @@ menupopup {
 				
 				&::after {
 					content: attr(aria-label);
-					margin-inline-start: 21px !important; // (menu.css:82, Firefox 115)
 					appearance: menuitemtext !important;
 					white-space: nowrap;
 
@@ -93,9 +92,41 @@ menupopup {
 		--panel-border-color: ThreeDShadow !important;
 		--panel-border-radius: 0 !important;
 		--panel-padding-block: 0 !important;
+
+		&#contentAreaContextMenu #context-navigation > menuitem::after {
+			margin-inline-start: 21px !important; // (menu.css:82, Firefox 115)
+		}
 	}
 }
 
 
-
 // Popover menus (toolbar items, etc.)
+// :root {
+// 	--panel-subview-body-padding: 0 !important;
+// 	--arrowpanel-menuitem-margin: 0 !important;
+// 	--arrowpanel-menuitem-border-radius: 0 !important;
+
+// }
+toolbarbutton menupopup[placespopup] {
+	appearance: menulist !important;
+	border: unset !important;
+	background-color: unset !important;
+	--panel-background: unset !important;
+	--panel-color: unset !important;
+	--panel-border-color: unset !important;
+	--panel-border-radius: unset !important;
+	--panel-padding: unset !important;
+
+	> menuitem {
+		appearance: menuitem !important;
+		// margin: unset !important;
+		// padding: unset !important;
+		border-radius: unset !important;
+		background-color: transparent !important;
+		color: initial !important;
+
+		&[_moz-menuactive="true"] {
+			color: -moz-menuhovertext !important;
+		}
+	}
+}

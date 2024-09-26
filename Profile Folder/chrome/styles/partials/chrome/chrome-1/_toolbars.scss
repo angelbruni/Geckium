@@ -635,7 +635,7 @@
 		}
 		gap: var(--personal-toolbar-gap);
 	}
-	toolbarbutton.bookmark-item {
+	toolbarbutton.bookmark-item:not(menuitem) {
 		border: 1px solid transparent;
 		box-shadow: var(--personal-toolbar-item-shadow);
 		transition: all 150ms linear;	

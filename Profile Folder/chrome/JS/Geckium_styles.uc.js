@@ -160,7 +160,7 @@ const eras = {
         }
     },
     68: {
-        name: "58 (incomplete)",
+        name: "58 (early WIP)",
         basedOnVersion: "58.0.3029.81",
         year: 2017,
         number: "sixtyeight",
