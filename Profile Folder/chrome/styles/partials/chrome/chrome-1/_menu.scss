@@ -70,6 +70,16 @@ menupopup {
 					margin-inline-start: 21px !important; // (menu.css:82, Firefox 115)
 					appearance: menuitemtext !important;
 					white-space: nowrap;
+
+					@media (-moz-windows-classic) {
+						padding-inline-start: 1.45em !important;
+					}
+				}
+				
+				@media (-moz-windows-classic) {
+					min-height: 19px !important;
+					height: 19px !important;
+					min-height: 19px !important;
 				}
 			}
 		}
@@ -89,37 +99,3 @@ menupopup {
 
 
 // Popover menus (toolbar items, etc.)
-
-
-// menupopup {
-// 	&#contentAreaContextMenu {
-// 		#context-navigation {	
-// 			> menuitem {
-// 				justify-content: unset !important;
-	
-// 				@media (-moz-windows-classic) {
-// 					min-height: 19px !important;
-// 					height: 19px !important;
-// 					min-height: 19px !important;
-// 				}
-				
-// 				&::after {
-// 					content: attr(aria-label);
-// 					@media (-moz-platform: linux) {
-// 						margin-inline-start: 21px !important;
-// 					}
-// 					@media (-moz-windows-classic) {
-// 						padding-inline-start: 1.45em !important;
-// 					}
-// 				}
-	
-// 				.menu-iconic-left {
-// 					display: none !important;
-// 				}
-// 			}
-// 		}
-		
-// 	}
-
-// 	
-// }

@@ -54,7 +54,9 @@
         #context-openlinkintab,
         #context-viewimage,
         #placesContext_open\:newtab,
-        #menu_newTab {
+        #menu_newTab,
+        #toolbar-context-openANewTab,
+        #context_openANewTab {
             background-image: url(moz-icon://stock/document-new?size=menu);
         }
         #placesContext_show_bookmark\:info,
@@ -133,6 +135,22 @@
         }
         #menu_exit {
             background-image: url(moz-icon://stock/application-exit?size=menu);
+        }
+        // Bookmarks Menu items
+        #placesContext_openBookmarkContainer\:tabs,
+        #placesContext_openBookmarkLinks\:tabs {
+            background-image: url(moz-icon://stock/document-open?size=menu);
+        }
+        // Tabbar Menu items
+        #toolbar-context-undoCloseTab,
+        #context_undoCloseTab {
+            background-image: url(moz-icon://stock/gtk-undelete?size=menu);
+        }
+        #context_reloadTab {
+            background-image: url(moz-icon://stock/view-refresh?size=menu);
+        }
+        #context_closeTab {
+            background-image: url(moz-icon://stock/window-close?size=menu);
         }
     }
 }
