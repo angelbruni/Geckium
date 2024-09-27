@@ -23,6 +23,13 @@
 	display: none;
 }
 
+// Hide "Update Geckium" placeholder menu item unless Geckium's outdated
+:root:not([gkcanupdate]) {
+	#menu_newVersion {
+		display: none;
+	}
+}
+
 menupopup {
 	// Hide menu items' buttons as they weren't yet introduced
 	> .menuitemitems,
