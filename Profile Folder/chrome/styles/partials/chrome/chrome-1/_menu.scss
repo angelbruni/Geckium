@@ -108,32 +108,47 @@ menupopup {
 
 
 // Popover menus (toolbar items, etc.)
-// :root {
-// 	--panel-subview-body-padding: 0 !important;
-// 	--arrowpanel-menuitem-margin: 0 !important;
-// 	--arrowpanel-menuitem-border-radius: 0 !important;
-
-// }
 toolbarbutton menupopup[placespopup] {
 	appearance: menulist !important;
 	border: unset !important;
-	background-color: unset !important;
-	--panel-background: unset !important;
-	--panel-color: unset !important;
-	--panel-border-color: unset !important;
-	--panel-border-radius: unset !important;
-	--panel-padding: unset !important;
+	background-color: unset !important;	
+	--panel-background: transparent !important;
+	--panel-color: MenuText !important;
+	--panel-padding: 0 !important;
+	--panel-border-radius: 0 !important;
+	--panel-border-color: transparent !important;
+	--panel-width: initial !important;
+	--nested-margin: -3px !important;
+	--panel-shadow-margin: 0px !important;
 
-	> menuitem {
-		appearance: menuitem !important;
-		// margin: unset !important;
-		// padding: unset !important;
-		border-radius: unset !important;
-		background-color: transparent !important;
-		color: initial !important;
+	// > :is(menu, menuitem) {
+	// 	appearance: menuitem !important;
+	// 	margin: initial !important;
+	// 	padding: initial !important;
+	// 	border-radius: initial !important;
+	// 	background-color: transparent !important;
+	// 	color: initial !important;
 
-		&[_moz-menuactive="true"] {
-			color: -moz-menuhovertext !important;
-		}
-	}
+	// 	.menu-iconic-left {
+	// 		padding-top: 2px !important; // menu.css:118, Firefox 115
+	// 		margin-inline-end: unset !important;
+	// 	}
+
+	// 	&[_moz-menuactive="true"] {
+	// 		color: -moz-menuhovertext !important;
+	// 	}
+	// }
+	// > menuseparator {
+	// 	position: initial !important;
+	// 	appearance: auto !important;
+	// 	border: unset !important;
+	// 	min-height: unset !important;
+	// 	margin: unset !important;
+	// 	padding-inline: unset !important;
+	// 	padding-top: unset !important;
+	// 	padding-bottom: unset !important;
+
+	// 	border-top: 1px solid ThreeDShadow !important;
+	// 	border-bottom: 1px solid ThreeDHighlight !important; // menu.css:360, Firefox 118
+	// }
 }
