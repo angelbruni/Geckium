@@ -74,3 +74,24 @@ function updateSettings(iteration) {
     if (iteration < configIteration)
         gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
 }
+
+
+
+// PLACEHOLDER UPDATE MECHANISM FOR GECKIUM PUBLIC ALPHA
+async function gkCheckForUpdates() {
+    const ghURL = "https://api.github.com/repos/angelbruni/Geckium/releases?page=1&per_page=1";
+
+    // Fetch remote version with timestamp to prevent caching
+    var gkver = await gkUpdater.getVersion();
+    fetch(ghURL, {cache: "reload", headers: {"X-GitHub-Api-Version": "2022-11-28", "Accept": "application/vnd.github+json",}})
+        .then((response) => response.json())
+        .then((releases) => {
+            if (releases[0].tag_name !== gkver) {
+                document.documentElement.setAttribute("gkcanupdate", "true");
+            }
+        })
+        .catch(error => {
+            console.error("Something happened when checking for newer Geckium builds:", error);
+        });
+}
+window.addEventListener("load", gkCheckForUpdates);

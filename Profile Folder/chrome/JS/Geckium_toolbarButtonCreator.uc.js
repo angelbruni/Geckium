@@ -485,24 +485,29 @@ window.addEventListener("load", function () {
 				onpopup: "bookmarksBarStatus(); updateAboutLocale();",
 			},
 			1: {
+				id: "newVersion",
+				l10nid: "newVersion",
+				click: "openTrustedLinkIn('https://github.com/angelbruni/Geckium/releases/latest', 'tab');",
+			},
+			2: {
 				id: "newTab",
 				l10nid: "newTab",
 				command: "cmd_newNavigatorTab",
 				key: "key_newNavigatorTab",
 			},
-			2: {
+			3: {
 				id: "newWindow",
 				l10nid: "newWindow",
 				command: "cmd_newNavigator",
 				key: "key_newNavigator",
 			},
-			3: {
+			4: {
 				id: "newIncognitoWindow",
 				l10nid: "newIncognitoWindow",
 				command: "Tools:PrivateBrowsing",
 				acceltext: "Ctrl+Shift+N",
 			},
-			4: {
+			5: {
 				id: "bookmarks",
 				l10nid: "bookmarks",
 				subItems: [
@@ -535,8 +540,8 @@ window.addEventListener("load", function () {
 					},
 				],
 			},
-			5: {},
-			6: {
+			6: {},
+			7: {
 				id: "edit",
 				l10nid: "edit",
 				items: [
@@ -559,8 +564,8 @@ window.addEventListener("load", function () {
 					},
 				],
 			},
-			7: {},
-			8: {
+			8: {},
+			9: {
 				id: "zoom6",
 				l10nid: "zoom",
 				items: [
@@ -586,26 +591,26 @@ window.addEventListener("load", function () {
 					},
 				],
 			},
-			9: {},
-			10: {
+			10: {},
+			11: {
 				id: "savePage6",
 				command: "Browser:SavePage",
 				l10nid: "savePageAs",
 				key: "key_savePage",
 			},
-			11: {
+			12: {
 				id: "find6",
 				l10nid: "find",
 				command: "cmd_find",
 				key: "key_find",
 			},
-			12: {
+			13: {
 				id: "print6",
 				l10nid: "print",
 				command: "cmd_print",
 				key: "printKb",
 			},
-			13: {
+			14: {
 				id: "tools6",
 				l10nid: "tools",
 				subItems: [
@@ -636,7 +641,7 @@ window.addEventListener("load", function () {
 						7: {
 							id: "reportIssue",
 							l10nid: "reportAnIssue",
-							command: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
+							click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
 						},
 						8: {},
 						9: {
@@ -659,73 +664,73 @@ window.addEventListener("load", function () {
 					},
 				],
 			},
-			14: {
+			15: {
 				id: "alwaysShowBookmarksBar5",
 				checkbox: true,
 				l10nid: "alwaysShowBookmarksBar",
 				command: onViewToolbarCommand,
 				acceltext: "Ctrl+B",
 			},
-			15: {
+			16: {
 				id: "fullScreen5",
 				l10nid: "fullScreen",
 				click: "BrowserFullScreen();",
 				key: "key_enterFullScreen",
 			},
-			16: {},
-			17: {
+			17: {},
+			18: {
 				id: "history",
 				l10nid: "history",
 				command: "Browser:ShowAllHistory",
 				acceltext: "Ctrl+H",
 			},
-			18: {
+			19: {
 				id: "bookmarkManager5",
 				l10nid: "bookmarkManager",
 				command: "Browser:ShowAllBookmarks",
 				acceltext: "Ctrl+Shift+B",
 			},
-			19: {
+			20: {
 				id: "downloads",
 				l10nid: "downloads",
 				command: "Tools:Downloads",
 				key: "key_openDownloads",
 			},
-			20: {
+			21: {
 				id: "extensions5",
 				l10nid: "extensions",
 				command: "Tools:Addons",
 			},
-			21: {},
-			22: {
+			22: {},
+			23: {
 				id: "setupSync",
 				l10nid: "setUpSync",
 				click: "gSync.openPrefsFromFxaMenu('sync_settings', this);",
 			},
-			23: {},
-			24: {
+			24: {},
+			25: {
 				id: "options5",
 				l10nid: "options",
 				click: "openPreferences()",
 			},
-			25: {
+			26: {
 				id: "settings6",
 				l10nid: "settings",
 				click: "openPreferences()",
 			},
-			26: {
+			27: {
 				id: "about",
 				l10nid: "about",
 				click: "openAbout()",
 			},
-			27: {
+			28: {
 				id: "help",
 				l10nid: "help",
 				click: "openHelpLink('firefox-help')",
 				acceltext: "F1",
 			},
-			28: {},
-			29: {
+			29: {},
+			30: {
 				id: "exit",
 				l10nid: "exit",
 				command: "cmd_quitApplication",
