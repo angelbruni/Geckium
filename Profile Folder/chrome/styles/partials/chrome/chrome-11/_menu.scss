@@ -1,156 +1,159 @@
 @media (-moz-platform: linux) {
     // On Linux styling, add icons to menu items
-    &[gkuistyle="1"]:not([geckium-sixtyeight]) menupopup {
-        // Menu icons for top items
-        &#contentAreaContextMenu {
-            #context-navigation {
-                background-color: transparent !important;
-                flex-direction: column !important;
-    
-                .menu-iconic-left {
-                    display: flex !important;
-                    image {
-                        height: 16px !important;
-                        width: 16px !important;
-                        margin: unset !important;
+    &[gktitbuttons="linux"],
+    &[gktitbuttons="linuxog"] {
+        &:not([geckium-fortyseven]) menupopup {
+            // Menu icons for top items
+            &#contentAreaContextMenu {
+                #context-navigation {
+                    background-color: transparent !important;
+                    flex-direction: column !important;
+        
+                    .menu-iconic-left {
+                        display: flex !important;
+                        image {
+                            height: 16px !important;
+                            width: 16px !important;
+                            margin: unset !important;
+                        }
                     }
-                }
-    
-                > menuitem {
-                    &::after {
-                        margin-inline-start: 5px !important; // 21px (menu.css:82, Firefox 115) - 16px
+        
+                    > menuitem {
+                        &::after {
+                            margin-inline-start: 5px !important; // 21px (menu.css:82, Firefox 115) - 16px
+                        }
                     }
-                }
-                
-                #context-back {
-                    list-style-image: url(moz-icon://stock/go-previous?size=menu) !important;
-                }
-                #context-forward {
-                    list-style-image: url(moz-icon://stock/go-next?size=menu) !important;
-                }
-                #context-reload {
-                    list-style-image: url(moz-icon://stock/view-refresh?size=menu) !important;
-                }
-                #context-stop {
-                    list-style-image: url(moz-icon://stock/process-stop?size=menu) !important;
-                }
-                #context-bookmarkpage {
-                    list-style-image: unset !important;
+                    
+                    #context-back {
+                        list-style-image: url(moz-icon://stock/go-previous?size=menu) !important;
+                    }
+                    #context-forward {
+                        list-style-image: url(moz-icon://stock/go-next?size=menu) !important;
+                    }
+                    #context-reload {
+                        list-style-image: url(moz-icon://stock/view-refresh?size=menu) !important;
+                    }
+                    #context-stop {
+                        list-style-image: url(moz-icon://stock/process-stop?size=menu) !important;
+                    }
+                    #context-bookmarkpage {
+                        list-style-image: unset !important;
+                    }
                 }
             }
-        }
-        
-        // Menu icons for other items
-        &#contentAreaContextMenu:not(#context-navigation) menuitem,
-        &:not(#contentAreaContextMenu) menuitem {
-            -moz-context-properties: fill, fill-opacity, stroke !important;
-            fill: currentColor !important;
-            stroke: currentColor;
-            background-size: 16px !important;
-            background-repeat: no-repeat !important;
-            background-position: left 6px center !important;
-        }
+            
+            // Menu icons for other items
+            &#contentAreaContextMenu:not(#context-navigation) menuitem,
+            &:not(#contentAreaContextMenu) menuitem {
+                -moz-context-properties: fill, fill-opacity, stroke !important;
+                fill: currentColor !important;
+                stroke: currentColor;
+                background-size: 16px !important;
+                background-repeat: no-repeat !important;
+                background-position: left 6px center !important;
+            }
 
-        #context-openlinkintab,
-        #context-viewimage,
-        #placesContext_open\:newtab,
-        #menu_newTab,
-        #toolbar-context-openANewTab,
-        #context_openANewTab {
-            background-image: url(moz-icon://stock/document-new?size=menu);
-        }
-        #placesContext_show_bookmark\:info,
-        #placesContext_show\:info,
-        #placesContext_show_folder\:info {
-            background-image: url(moz-icon://stock/gtk-edit?size=menu);
-        }
-        #context-savelink,
-        #context-saveimage,
-        #context-video-saveimage,
-        #context-savevideo,
-        #context-saveaudio,
-        #context-savepage,
-        #menu_savePage6 {
-            background-image: url(moz-icon://stock/document-save?size=menu);
-        }
-        #context-undo {
-            background-image: url(moz-icon://stock/edit-undo?size=menu);
-        }
-        #context-redo {
-            background-image: url(moz-icon://stock/edit-redo?size=menu);
-        }
-        #context-cut,
-        #placesContext_cut {
-            background-image: url(moz-icon://stock/edit-cut?size=menu);
-        }
-        #context-copyemail,
-        #context-copyphone,
-        #context-copylink,
-        #context-copyimage,
-        #context-copyvideourl,
-        #context-copyaudiourl,
-        #context-copy,
-        #placesContext_copy {
-            background-image: url(moz-icon://stock/edit-copy?size=menu);
-        }
-        #context-paste,
-        #placesContext_paste_group,
-        #placesContext_paste {
-            background-image: url(moz-icon://stock/edit-paste?size=menu);
-        }
-        #context-delete,
-        #placesContext_deleteBookmark,
-        #placesContext_deleteFolder {
-            background-image: url(moz-icon://stock/edit-delete?size=menu);
-        }
-        #context-print-selection,
-        #menu_print6 {
-            background-image: url(moz-icon://stock/document-print?size=menu);
-        }
-        #context-inspect {
-            background-image: url(moz-icon://stock/document-properties?size=menu);
-        }
-        #placesContext_new\:bookmark,
-        #placesContext_createBookmark {
-            background-image: url(moz-icon://stock/list-add?size=menu);
-        }
-        #placesContext_new\:folder {
-            background-image: url(moz-icon://stock/folder?size=menu);
-        }
-        // Main Menu items
-        #menu_find6 {
-            background-image: url(moz-icon://stock/edit-find?size=menu);
-        }
-        #menu_cleardata {
-            background-image: url(moz-icon://stock/edit-clear?size=menu);
-        }
-        #menu_settings6 {
-            background-image: url(moz-icon://stock/gtk-preferences?size=menu);
-        }
-        #menu_about {
-            background-image: url(moz-icon://stock/help-about?size=menu);
-        }
-        #menu_help {
-            background-image: url(moz-icon://stock/help-contents?size=menu);
-        }
-        #menu_exit {
-            background-image: url(moz-icon://stock/application-exit?size=menu);
-        }
-        // Bookmarks Menu items
-        #placesContext_openBookmarkContainer\:tabs,
-        #placesContext_openBookmarkLinks\:tabs {
-            background-image: url(moz-icon://stock/document-open?size=menu);
-        }
-        // Tabbar Menu items
-        #toolbar-context-undoCloseTab,
-        #context_undoCloseTab {
-            background-image: url(moz-icon://stock/gtk-undelete?size=menu);
-        }
-        #context_reloadTab {
-            background-image: url(moz-icon://stock/view-refresh?size=menu);
-        }
-        #context_closeTab {
-            background-image: url(moz-icon://stock/window-close?size=menu);
+            #context-openlinkintab,
+            #context-viewimage,
+            #placesContext_open\:newtab,
+            #menu_newTab,
+            #toolbar-context-openANewTab,
+            #context_openANewTab {
+                background-image: url(moz-icon://stock/document-new?size=menu);
+            }
+            #placesContext_show_bookmark\:info,
+            #placesContext_show\:info,
+            #placesContext_show_folder\:info {
+                background-image: url(moz-icon://stock/gtk-edit?size=menu);
+            }
+            #context-savelink,
+            #context-saveimage,
+            #context-video-saveimage,
+            #context-savevideo,
+            #context-saveaudio,
+            #context-savepage,
+            #menu_savePage6 {
+                background-image: url(moz-icon://stock/document-save?size=menu);
+            }
+            #context-undo {
+                background-image: url(moz-icon://stock/edit-undo?size=menu);
+            }
+            #context-redo {
+                background-image: url(moz-icon://stock/edit-redo?size=menu);
+            }
+            #context-cut,
+            #placesContext_cut {
+                background-image: url(moz-icon://stock/edit-cut?size=menu);
+            }
+            #context-copyemail,
+            #context-copyphone,
+            #context-copylink,
+            #context-copyimage,
+            #context-copyvideourl,
+            #context-copyaudiourl,
+            #context-copy,
+            #placesContext_copy {
+                background-image: url(moz-icon://stock/edit-copy?size=menu);
+            }
+            #context-paste,
+            #placesContext_paste_group,
+            #placesContext_paste {
+                background-image: url(moz-icon://stock/edit-paste?size=menu);
+            }
+            #context-delete,
+            #placesContext_deleteBookmark,
+            #placesContext_deleteFolder {
+                background-image: url(moz-icon://stock/edit-delete?size=menu);
+            }
+            #context-print-selection,
+            #menu_print6 {
+                background-image: url(moz-icon://stock/document-print?size=menu);
+            }
+            #context-inspect {
+                background-image: url(moz-icon://stock/document-properties?size=menu);
+            }
+            #placesContext_new\:bookmark,
+            #placesContext_createBookmark {
+                background-image: url(moz-icon://stock/list-add?size=menu);
+            }
+            #placesContext_new\:folder {
+                background-image: url(moz-icon://stock/folder?size=menu);
+            }
+            // Main Menu items
+            #menu_find6 {
+                background-image: url(moz-icon://stock/edit-find?size=menu);
+            }
+            #menu_cleardata {
+                background-image: url(moz-icon://stock/edit-clear?size=menu);
+            }
+            #menu_settings6 {
+                background-image: url(moz-icon://stock/gtk-preferences?size=menu);
+            }
+            #menu_about {
+                background-image: url(moz-icon://stock/help-about?size=menu);
+            }
+            #menu_help {
+                background-image: url(moz-icon://stock/help-contents?size=menu);
+            }
+            #menu_exit {
+                background-image: url(moz-icon://stock/application-exit?size=menu);
+            }
+            // Bookmarks Menu items
+            #placesContext_openBookmarkContainer\:tabs,
+            #placesContext_openBookmarkLinks\:tabs {
+                background-image: url(moz-icon://stock/document-open?size=menu);
+            }
+            // Tabbar Menu items
+            #toolbar-context-undoCloseTab,
+            #context_undoCloseTab {
+                background-image: url(moz-icon://stock/gtk-undelete?size=menu);
+            }
+            #context_reloadTab {
+                background-image: url(moz-icon://stock/view-refresh?size=menu);
+            }
+            #context_closeTab {
+                background-image: url(moz-icon://stock/window-close?size=menu);
+            }
         }
     }
 }
