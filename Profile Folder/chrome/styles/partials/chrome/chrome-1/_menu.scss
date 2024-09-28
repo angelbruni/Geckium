@@ -109,7 +109,7 @@ menupopup {
 
 // Popover menus (toolbar items, etc.)
 toolbarbutton menupopup[placespopup] {
-	appearance: menulist !important;
+	appearance: menupopup !important;
 	border: unset !important;
 	background-color: unset !important;	
 	--panel-background: transparent !important;
@@ -121,34 +121,51 @@ toolbarbutton menupopup[placespopup] {
 	--nested-margin: -3px !important;
 	--panel-shadow-margin: 0px !important;
 
-	// > :is(menu, menuitem) {
-	// 	appearance: menuitem !important;
-	// 	margin: initial !important;
-	// 	padding: initial !important;
-	// 	border-radius: initial !important;
-	// 	background-color: transparent !important;
-	// 	color: initial !important;
+	--arrowpanel-menuitem-margin: 0 !important;
+	--arrowpanel-menuitem-padding: initial !important;
 
-	// 	.menu-iconic-left {
-	// 		padding-top: 2px !important; // menu.css:118, Firefox 115
-	// 		margin-inline-end: unset !important;
-	// 	}
+	> :is(menu, menuitem) {
+		appearance: menuitem !important;
+		// 	margin: initial !important;
+		// 	padding: initial !important;
+		// 	border-radius: initial !important;
+		// 	background-color: transparent !important;
+		// 	color: initial !important;
+		// &[_moz-menuactive="true"] {
+		// 	color: -moz-menuhovertext !important;
+		// }
 
-	// 	&[_moz-menuactive="true"] {
-	// 		color: -moz-menuhovertext !important;
-	// 	}
-	// }
-	// > menuseparator {
-	// 	position: initial !important;
-	// 	appearance: auto !important;
-	// 	border: unset !important;
-	// 	min-height: unset !important;
-	// 	margin: unset !important;
-	// 	padding-inline: unset !important;
-	// 	padding-top: unset !important;
-	// 	padding-bottom: unset !important;
+		.menu-iconic-left {
+			margin-inline-start: 3px !important;
+		}
 
-	// 	border-top: 1px solid ThreeDShadow !important;
-	// 	border-bottom: 1px solid ThreeDHighlight !important; // menu.css:360, Firefox 118
-	// }
+		.menu-iconic-text {
+			padding-top: 1px !important;
+			padding-bottom: 1px !important;
+			margin-left: 2px !important;
+		}
+
+		.menu-text {
+			padding-inline-start: 30px !important;
+		}
+
+		.menu-text, .menu-iconic-text {
+			margin-inline-start: 2px !important;
+			padding-inline-end: 2px !important;
+		}
+	}
+
+	> menuseparator {
+		position: initial !important;
+		appearance: auto !important;
+		border: unset !important;
+		min-height: unset !important;
+		margin: unset !important;
+		padding-inline: unset !important;
+		padding-top: unset !important;
+		padding-bottom: unset !important;
+
+		border-top: 1px solid ThreeDShadow !important;
+		border-bottom: 1px solid ThreeDHighlight !important; // menu.css:360, Firefox 118
+	}
 }

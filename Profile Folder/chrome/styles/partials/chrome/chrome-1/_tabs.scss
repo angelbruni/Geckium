@@ -599,11 +599,11 @@
 	//Tab styles
 	// Windows is the baseline styled above
 	// Linux
-	&[gkuistyle="1"] {
+	&[gktabstyle="1"] {
 		@import "tabs/linux";
 	}
 	// Mac OS X / macOS
-	&[gkuistyle="2"] {
+	&[gktabstyle="2"] {
 		@import "tabs/mac";
 	}
 }
