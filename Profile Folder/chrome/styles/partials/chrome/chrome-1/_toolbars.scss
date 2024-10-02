@@ -217,7 +217,7 @@
 		flex-shrink: 0 !important;
 
 		.toolbarbutton-icon,
-		image:first-of-type {
+		&:not(.menu-right) > image:first-of-type {
 			border-radius: 0 !important;
 			padding: 0 !important;
 			fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;

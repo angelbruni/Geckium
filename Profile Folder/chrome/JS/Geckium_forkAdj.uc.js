@@ -47,31 +47,43 @@ class gkNCPAdj {
     static checkNCP() {
         if (!isNCPatched) {
             if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true) {
-                _ucUtils.showNotification(
-                {
-                    label : "Firefox has stopped using Native Controls Patch. An update may have reverted it.",
-                    type : "nativecontrolspatch-notification",
-                    priority: "warning",
-                    buttons: [{
-                    label: "Redownload",
-                    callback: (notification) => {
-                        notification.ownerGlobal.openWebLinkIn(
-                        "https://github.com/kawapure/firefox-native-controls/releases/latest",
-                        "tab"
-                        );
-                        return false
-                    }
-                    },
+                if (parseInt(Services.appinfo.version.split(".")[0]) > 115) {
+                    gkPrefUtils.set("Geckium.NCP.installed").bool(false);
+                    _ucUtils.showNotification(
                     {
-                        label: "Don't ask again",
+                        label : "To continue using native Windows titlebars, please switch to a compatible Firefox fork.",
+                        type : "nativecontrolspatch-notification",
+                        priority: "critical",
+                        buttons: []
+                    }
+                    )
+                } else {
+                    _ucUtils.showNotification(
+                    {
+                        label : "Firefox has stopped using Native Controls Patch. An update may have reverted it.",
+                        type : "nativecontrolspatch-notification",
+                        priority: "warning",
+                        buttons: [{
+                        label: "Redownload",
                         callback: (notification) => {
-                            gkPrefUtils.set("Geckium.NCP.installed").bool(false);
-                            gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
+                            notification.ownerGlobal.openWebLinkIn(
+                            "https://github.com/kawapure/firefox-native-controls/releases/tag/" + Services.appinfo.version,
+                            "tab"
+                            );
                             return false
                         }
-                    }]
+                        },
+                        {
+                            label: "Don't ask again",
+                            callback: (notification) => {
+                                gkPrefUtils.set("Geckium.NCP.installed").bool(false);
+                                gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
+                                return false
+                            }
+                        }]
+                    }
+                    )
                 }
-                )
             } else if (gkPrefUtils.tryGet("Geckium.NCP.bannerDismissed").bool != true) { // true = Don't show again
                 _ucUtils.showNotification(
                 {
