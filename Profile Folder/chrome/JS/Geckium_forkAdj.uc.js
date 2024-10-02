@@ -48,7 +48,7 @@ class gkNCPAdj {
         if (!isNCPatched) {
             if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true) {
                 if (parseInt(Services.appinfo.version.split(".")[0]) > 115) { // Special message for ex-115-users
-                    gkPrefUtils.set("Geckium.NCP.installed").bool(false);
+                    gkPrefUtils.delete("Geckium.NCP.installed");
                     _ucUtils.showNotification(
                     {
                         label : "To continue using native Windows titlebars, please switch to a compatible Firefox fork.",
