@@ -3,6 +3,12 @@
 	@media (-moz-platform: macos) {
 		--titlebar-border-radius: 10px; //Artificial minimum radii set by macOS's window manager (+the 1px border)
 	}
+	// TODO: In MD2, disable these below --tab-distance-from-top variable changes
+	--tab-distance-from-top: 20px;
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		--tab-distance-from-top: 0px;
+	}
 }
 
 // Change offsets for Incognito/pfp when window's maximised
