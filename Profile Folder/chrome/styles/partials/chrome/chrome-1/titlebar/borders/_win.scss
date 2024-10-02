@@ -45,3 +45,11 @@
 		}
 	}
 }
+&[gktitnative="true"][gktitbuttons="win"] {
+	// Add 5px to tab gap to match AERO'd Chromium
+	--tab-distance-from-top: 20px;
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		--tab-distance-from-top: 0px;
+	}
+}
