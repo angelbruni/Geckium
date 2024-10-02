@@ -39,3 +39,12 @@
         }
     }
 }
+
+//Windows quirks
+@media (-moz-platform: windows) {
+    //Remove margin in w/AERO too
+    #TabsToolbar > .toolbar-items {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+}
