@@ -116,6 +116,8 @@ menupopup {
 	--gk-menuitem-border-color: unset;
 	--gk-menuitem-foreground: black;
 	--gk-menuitem-minheight: 20px;
+
+	--gk-menusep-color: rgba(0, 0, 0, 0.25); //TODO
 }
 
 //  Code for applying styling
@@ -137,27 +139,52 @@ menupopup {
 		> :is(menu, menuitem) {
 			appearance: none !important;
 			min-height: var(--gk-menuitem-minheight) !important;
-			
+			height: unset !important;
+			padding-block: unset !important;
+
+			padding-inline-start: unset !important; // TODO
+
 			&[_moz-menuactive="true"] {
 				background: var(--gk-menuitem-background) !important;
 				color: var(--gk-menuitem-foreground) !important;
 			}
 
+
+
 			.menu-iconic-left {
-				appearance: none !important;
+				padding-top: unset !important; // 2px
+				padding-inline-end: unset !important;
+				margin-inline-end: unset !important;
 			}
-	
-			.menu-iconic-text {
-				appearance: none !important;
-			}
-	
-			.menu-text {
-				appearance: none !important;
-			}
-	
+
 			.menu-accel {
-				appearance: nonw !important;
+				margin-inline: unset !important;
 			}
+
+			.menu-right {
+				margin-inline-end: unset !important;
+			}
+
+			&[type="checkbox"] .menu-iconic-left,
+			&[type="radio"] .menu-iconic-left {
+				.menu-iconic-icon {
+					appearance: none !important;
+				}
+			}
+			&[type="checkbox"] .menu-iconic-left {
+				list-style-image: url("chrome://global/skin/icons/menu-check.svg") !important;
+			}
+			&[type="radio"] .menu-iconic-left {
+				list-style-image: url("chrome://global/skin/icons/menu-radio.svg") !important;
+			}
+		}
+
+		menuseparator {
+			appearance: none !important;
+			padding-inline: unset !important;
+			padding-block: unset !important;
+			
+			--panel-separator-color: var(--gk-menusep-color) !important;
 		}
 	}
 	toolbarbutton menupopup[placespopup] {
