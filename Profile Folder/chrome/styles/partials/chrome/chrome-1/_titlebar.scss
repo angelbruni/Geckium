@@ -202,7 +202,7 @@
 				background: unset !important;
 			}
 			// Fix the titlebar in unmaximised Windows Basic
-			@media (-moz-windows-compositor: 0) {
+			@media (-moz-windows-compositor: 0) and (not (-moz-windows-classic)) {
 				&[sizemode="normal"] #titlebar {
 					appearance: none !important; // this leaves behind the background colour
 					// TODO: In Windows XP make the #titlebar appear as appearance toolbar?
