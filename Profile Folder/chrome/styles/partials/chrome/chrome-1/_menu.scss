@@ -104,10 +104,11 @@ menupopup {
 :root {
 	--gk-menu-radii: 0px;
 	--gk-menu-background: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
-	--gk-menu-border-color: rgba(0, 0, 0, 0.24);
+	--gk-menu-border-color: rgba(0, 0, 0, 0.34);
 	--gk-menu-foreground: black;
+	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.3);
 	--gk-menu-padding: 1px;
-	--gk-menu-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	--gk-menu-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 	--gk-menu-shadow-margin: 4px !important;
 	
 	--gk-menuitem-radii: 0;
@@ -115,6 +116,7 @@ menupopup {
 	--gk-menuitem-background: #DCE5FA;
 	--gk-menuitem-border-color: unset;
 	--gk-menuitem-foreground: black;
+	--gk-menuitem-foreground-keys: rgba(0, 0, 0, 0.3);
 	--gk-menuitem-minheight: 20px;
 
 	--gk-menusep-color: rgba(0, 0, 0, 0.25); //TODO
@@ -141,10 +143,15 @@ menupopup {
 			appearance: none !important;
 			min-height: var(--gk-menuitem-minheight) !important;
 			height: unset !important;
+
+			padding: 4px 6px !important;
 			// padding-block: unset !important;
 
 			// padding-inline-start: unset !important; // TODO
 
+			&[disabled="true"] {
+				color: var(--gk-menu-foreground-disabled) !important;
+			}
 			&[_moz-menuactive="true"] {
 				background: var(--gk-menuitem-background) !important;
 				color: var(--gk-menuitem-foreground) !important;
@@ -152,18 +159,25 @@ menupopup {
 
 
 
-			// .menu-iconic-left {
-			// 	padding-top: unset !important; // 2px
-			// 	padding-inline-end: unset !important;
-			// 	margin-inline-end: unset !important;
-			// }
+			.menu-iconic-left {
+				margin-inline-start: 3px !important;
 
-			// .menu-accel {
+				padding-inline-end: unset !important;
+				margin-inline-end: 9px !important;
+			}
+
+			.menu-text {
+				margin-inline-start: 28px !important;
+			}
+
+			.menu-accel-container {
+				color: var(--gk-menuitem-foreground-keys) !important;
+				margin-inline-end: 12px !important;
 			// 	margin-inline: unset !important;
-			// }
+			}
 
 			.menu-right {
-				margin-inline-end: 3px !important;
+				margin-inline-end: 6px !important;
 				appearance: none !important;
 				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
 			}
@@ -183,6 +197,7 @@ menupopup {
 			&[type="radio"][checked="true"] .menu-iconic-left {
 				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
 			}
+
 		}
 
 		menuseparator {
