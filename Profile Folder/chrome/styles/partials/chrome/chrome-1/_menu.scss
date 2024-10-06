@@ -135,14 +135,15 @@ menupopup {
 		--panel-padding: var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+		--menu-icon-opacity: 1 !important;
 
 		> :is(menu, menuitem) {
 			appearance: none !important;
 			min-height: var(--gk-menuitem-minheight) !important;
 			height: unset !important;
-			padding-block: unset !important;
+			// padding-block: unset !important;
 
-			padding-inline-start: unset !important; // TODO
+			// padding-inline-start: unset !important; // TODO
 
 			&[_moz-menuactive="true"] {
 				background: var(--gk-menuitem-background) !important;
@@ -151,18 +152,20 @@ menupopup {
 
 
 
-			.menu-iconic-left {
-				padding-top: unset !important; // 2px
-				padding-inline-end: unset !important;
-				margin-inline-end: unset !important;
-			}
+			// .menu-iconic-left {
+			// 	padding-top: unset !important; // 2px
+			// 	padding-inline-end: unset !important;
+			// 	margin-inline-end: unset !important;
+			// }
 
-			.menu-accel {
-				margin-inline: unset !important;
-			}
+			// .menu-accel {
+			// 	margin-inline: unset !important;
+			// }
 
 			.menu-right {
-				margin-inline-end: unset !important;
+				margin-inline-end: 3px !important;
+				appearance: none !important;
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
 			}
 
 			&[type="checkbox"] .menu-iconic-left,
@@ -171,11 +174,14 @@ menupopup {
 					appearance: none !important;
 				}
 			}
-			&[type="checkbox"] .menu-iconic-left {
-				list-style-image: url("chrome://global/skin/icons/menu-check.svg") !important;
+			&[type="checkbox"][checked="true"] .menu-iconic-left {
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
 			}
 			&[type="radio"] .menu-iconic-left {
-				list-style-image: url("chrome://global/skin/icons/menu-radio.svg") !important;
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
+			}
+			&[type="radio"][checked="true"] .menu-iconic-left {
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
 			}
 		}
 
