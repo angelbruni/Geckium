@@ -33,6 +33,7 @@
 
 .sections {
 	.section {
+		cursor: pointer;
 		margin-inline-start: -14px;
 		margin-inline-end: -21px;
 		align-items: center;
@@ -46,17 +47,13 @@
 				gap: 20px;
 
 				.item {
-					display: flex;
 					align-items: center;
-					color: var(--link-color, --default-link-color);
 					max-width: 114px;
 					-moz-context-properties: fill, fill-opacity;
 					fill: var(--recently-closed-item-color);
 
-					image {
-						width: 16px;
-						height: 16px;
-						margin-inline-end: 3px;
+					.icon {
+						display: none;
 					}
 
 					label {
@@ -67,11 +64,67 @@
 				}
 			}
 		}
+		&:not(.collapsed) {
+			+ div {
+				gap: 0px;
+
+				.item {
+					border-radius: 10px;
+					flex-direction: column;
+					margin: 5px 3px;
+					padding: 10px;
+					height: 136px;
+					width: 124px;
+					text-decoration: none;
+					transition: background-color .5s;
+
+					&:hover {
+						background-color: rgb(229, 229, 229);
+					}
+
+					> .favicon {
+						display: none;
+					}
+
+					> label {
+						font-size: 10pt;
+						text-align: center;
+					}
+				}
+			}
+
+			.disclosure {
+				transform: rotate(90deg);
+			}						
+		}
+
+		+ div {
+			.item {
+				display: flex;
+				color: var(--link-color, --default-link-color);
+
+				> .favicon {
+					width: 16px;
+					height: 16px;
+					margin-inline-end: 3px;
+				}
+
+				> .icon {
+					margin: auto;
+					width: 96px;
+					height: 96px;
+				}
+			}
+		}
 
 		.disclosure {
 			width: 9px;
 			height: 9px;
 			margin-inline-end: 5px;
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/accordion-chevron.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			transition: transform .15s;
 		}
 
 		spacer {

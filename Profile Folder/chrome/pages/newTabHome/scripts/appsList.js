@@ -35,8 +35,9 @@ function setUpApps() {
 				name = app.oldName;
 
 				tile = `
-				<html:a data-index="${pos}" class="item" href="${url}" style="list-style-image: url('${favicon}')">
-					<image></image>
+				<html:a data-index="${pos}" class="item" href="${url}">
+					<image class="favicon" src="${favicon}"></image>
+					<image class="icon" src="${icon}"></image>
 					<label>${name}</label>
 				</html:a>
 				`
