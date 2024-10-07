@@ -2,12 +2,12 @@
 	font-family: Arial, sans-serif;
 	font-size: 10pt;
 
-	&[geckium-choice="one"] {
+	&:not([geckium-three]) {
 		&[gkbranding="chromium"] {
 			#logo {
 				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-1/chromium/product_logo.png");
 			}
-			&[geckium-chrflag-ntp-wide-chromium="true"] {
+			&[geckium-choice="one"][geckium-chrflag-ntp-wide-chromium="true"] {
 				#logo {
 					background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-1/chromium/product_logo_wide.png");
 				}
