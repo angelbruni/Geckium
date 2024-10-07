@@ -20,6 +20,7 @@ function appearance() {
 			gkBranding.load();
 			gkEras.applyEra();
 			createMainLayout();
+			retrievePinnedSites();
 			retrieveFrequentSites();
 			getRecentBookmarks();
 			createRecentlyClosed();

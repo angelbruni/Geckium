@@ -68,6 +68,8 @@ function createMainLayout() {
 	let main = ``;
 	let footer = ``;
 
+	let editThumbnailsLink;
+
 	let menuBtnsContainer;
 
 	if (appearanceChoice == 1) {
@@ -116,6 +118,106 @@ function createMainLayout() {
 			</vbox>
 		</hbox>
 		`
+	} else if (appearanceChoice == 2) {
+		main = `
+		<hbox id="main">
+			<vbox flex="1">
+				<vbox id="mostvisited">
+					<vbox>
+						<html:div class="section-title non-edit-visible">${ntpBundle.GetStringFromName("mostVisited")}</html:div>
+						<html:div class="section-title edit-visible" style="align-items: center;">
+							${ntpBundle.GetStringFromName("clickXToRemoveTheThumbnail")}
+						</html:div>
+					</vbox>
+					<html:div id="mostvisitedintro">
+						<!--<html:div class="most-visited-text">
+							The "Most visited" area shows the websites that you use most often. After using Google Chrome for a while, you will see your most visited sites whenever you open a new tab. You can learn more about this and other features on the
+							<html:a href="http://tools.google.com/chrome/welcome.html">Getting Started page</html:a>
+							.
+						</html:div>-->
+						<html:div>
+							<html:div id="mostvisitedtiles" />
+						</html:div>
+					</html:div>
+				</vbox>
+				<hbox>
+					<html:button class="manage non-edit-visible" id="editthumbnails">
+						${ntpBundle.GetStringFromName("removeThumbnails")}
+					</html:button>
+					<html:button class="edit-visible" id="done">
+						${ntpBundle.GetStringFromName("done")}
+					</html:button>
+					<html:button class="edit-visible" id="cancel">
+						${ntpBundle.GetStringFromName("cancel")}
+					</html:button>
+					<html:button class="manage edit-visible" id="restorethumbnails">
+						${ntpBundle.GetStringFromName("restoreAllRemovedThumbnails")}
+					</html:button>
+					<html:button class="manage non-edit-visible" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">
+						<html:span>${ntpBundle.GetStringFromName("showFullHistory")}</html:span>
+						»
+					</html:button>
+				</hbox>
+			</vbox>
+			<vbox id="sidebar">
+				<vbox id="logo" />
+				<vbox id="searches" class="sidebar">
+					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
+					<html:form>
+						<html:input type="text" class="hint" name="search" placeholder="${ntpBundle.GetStringFromName("searchYourHistory")}" />
+					</html:form>
+					<html:div id="search-entries" />
+				</vbox>
+				<vbox id="recentlyBookmarked" class="sidebar">
+					<html:span class="section-title">${ntpBundle.GetStringFromName("recentBookmarks")}</html:span>
+					<vbox id="recentlyBookmarkedContainer" />
+				</vbox>
+				<vbox id="recentlyClosedTabs" class="sidebar">
+					<html:div class="section-title">${ntpBundle.GetStringFromName("recentlyClosedTabs")}</html:div>
+					<vbox id="recentlyClosedContainer" />
+				</vbox>
+			</vbox>
+		</hbox>
+		`
+		
+		waitForElm("#main").then(() => {
+			const mainElm = document.getElementById("main");
+
+			document.querySelector(".manage#editthumbnails").addEventListener("click", () => {
+				mainElm.classList.add("edit-mode");
+			});
+
+			document.querySelector(".edit-visible#done").addEventListener("click", () => {
+				deleteStoredFromDeletionSites();
+
+				setTimeout(() => {
+					retrievePinnedSites();
+					retrieveFrequentSites();
+				},20);
+
+				mainElm.classList.remove("edit-mode");
+			});
+
+			document.querySelector(".edit-visible#cancel").addEventListener("click", () => {
+				document.querySelectorAll(".most-visited-container").forEach(thumbnail => {
+					if (getComputedStyle(thumbnail).display === 'none')
+						thumbnail.style.display = '';
+				})
+
+				storedForDeletion = [];
+
+				mainElm.classList.remove("edit-mode");
+			});
+
+			document.querySelector(".edit-visible#restorethumbnails").addEventListener("click", () => {
+				document.querySelectorAll(".most-visited-container").forEach(thumbnail => {
+					if (getComputedStyle(thumbnail).display === 'none')
+						thumbnail.style.display = '';
+				})
+
+				storedForDeletion = [];
+			});
+		});
 	} else if (appearanceChoice <= 6) {
 		menuBtnsContainer = "#view-toolbar";
 
@@ -513,3 +615,17 @@ function createMainLayout() {
 		updateSignInStatus();
 	}
 }
+
+function setPinInEveryEra() {
+	document.documentElement.setAttribute("pinineveryera", gkPrefUtils.tryGet("Geckium.newTabHome.pinInEveryEra").bool);
+}
+
+addEventListener("load", setPinInEveryEra);
+const ntpPinInEveryEraObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			setPinInEveryEra();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.newTabHome.pinInEveryEra", ntpPinInEveryEraObs, false);

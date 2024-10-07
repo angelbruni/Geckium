@@ -1,0 +1,54 @@
+&[pinineveryera="false"] {
+	.edit-pin {
+		display: none !important;
+	}
+}
+
+.most-visited-container {
+	position: relative;
+
+	&[pinned="true"] {
+		.edit-pin {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_pin_thumbnail_p.svg");
+		}
+	}
+}
+
+.edit-container {
+	position: absolute;
+	height: 136px;
+  	width: 195px;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+}
+
+.edit-pin,
+.edit-cross {
+	width: 81px;
+	height: 81px;
+}
+
+.edit-pin {
+	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_pin_thumbnail.svg");
+
+	&:hover {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_pin_thumbnail_h.svg");
+	}
+	
+	&:active {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_pin_thumbnail_p.svg");
+	}
+}
+
+.edit-cross {
+	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_remove_thumbnail.svg");
+
+	&:hover {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_remove_thumbnail_h.svg");
+	}
+	
+	&:active {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-2/newtab_remove_thumbnail_p.svg");
+	}
+}

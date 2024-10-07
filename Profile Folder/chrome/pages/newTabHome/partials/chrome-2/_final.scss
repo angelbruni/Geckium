@@ -1,0 +1,33 @@
+#main {
+    .edit-visible {
+        display: none;
+    }
+
+    .non-edit-visible {
+        display: flex;
+    }
+
+    &.edit-mode {
+        .edit-visible {
+            display: flex;
+        }
+
+        .non-edit-visible {
+            display: none;
+        }
+
+        .disabled-on-edit {
+            pointer-events: none;
+            opacity: .5;
+        }
+    }
+}
+
+button {
+    &#done,
+    &#cancel {
+        margin: 2px;
+    }
+}
+
+@import "most-visited";

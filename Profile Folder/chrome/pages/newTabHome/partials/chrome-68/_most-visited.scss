@@ -30,21 +30,13 @@
 		padding-inline-start: 7px;
 	}
 
+	.mv-pin {
+		&::after {
+			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-68/imgs/pin_3_mask.svg");
+		}
+	}
+
 	.mv-x {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 32px;
-		height: 32px;
-		background: linear-gradient(
-			to left,
-			var(--tile-background) 60%,
-			transparent
-		);
-		opacity: 0;
-
-		transition: opacity 150ms;
-
 		&::after {
 			mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-68/imgs/close_3_mask.png");
 		}

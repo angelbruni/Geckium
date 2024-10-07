@@ -411,20 +411,6 @@
 		}
 	}
 
-	&.pinned {
-		.pin {
-			list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on.png);
-
-			&:hover {
-				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_h.png);
-			}
-
-			&:active {
-				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_p.png);
-			}
-		}
-	}
-
 	.thumbnail-wrapper {
 		background: white;
 		border-radius: 5px;
@@ -478,27 +464,48 @@
 			width: 16px;
 			height: 16px;
 
+			background-position: center;
+			background-repeat: no-repeat;
+
 			&.pin {
-				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off.png);
+				background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off.png);
 		
 				&:hover {
-					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_h.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_h.png);
 				}
 		
 				&:active {
-					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_off_p.png);
 				}
 			}
 		
 			&.remove {
-				list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close.png);
+				background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close.png);
 		
 				&:hover {
-					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_h.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_h.png);
 				}
 		
 				&:active {
-					list-style-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_p.png);
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_close_p.png);
+				}
+			}
+		}
+	}
+
+	&[pinned="true"] {
+		.edit-bar {
+			button {
+				&.pin {
+					background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on.png);
+		
+					&:hover {
+						background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_h.png);
+					}
+		
+					&:active {
+						background-image: url(chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_p.png);
+					}
 				}
 			}
 		}

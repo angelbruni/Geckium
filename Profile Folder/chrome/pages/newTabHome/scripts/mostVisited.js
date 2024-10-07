@@ -1,7 +1,8 @@
 const { NewTabUtils } = ChromeUtils.importESModule("resource://gre/modules/NewTabUtils.sys.mjs");
-let topFrecentSites;
 
-
+let pinnedSites = [];
+let topFrecentSites = [];
+let storedForDeletion = [];
 
 const { PageThumbs } = ChromeUtils.importESModule("resource://gre/modules/PageThumbs.sys.mjs");
 
@@ -81,7 +82,7 @@ function getTilesAmount(string) {
 	let desiredRows;
 	let desiredCols;
 	
-	if (appearanceChoice == 1) {
+	if (appearanceChoice <= 2) {
 		desiredRows = 3;
 		desiredCols = 3;
 	} else {
@@ -99,31 +100,121 @@ function getTilesAmount(string) {
 	}
 }
 
-function retrieveFrequentSites() {
-    NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: getTilesAmount() })
-		.then(result => {
-			/* Count the number of websites with no title, with
-			   searchquery or a cdn to prevent duplicates in new tab
-			   (there might be a better way to do this). */
+function retrievePinnedSites() {
+    const pinnedData = gkPrefUtils.tryGet("browser.newtabpage.pinned").string;
 
-			const invalidWebsite = result.filter(website => !website.title || website.title == "" || website.url.includes("?") && website.url.includes("cdn") ).length;
-			
-			// Calculate the total number of websites to retrieve again, filtering out the ones with no icon or title.
-			const totalTiles = (getTilesAmount("cols") + invalidWebsite) * getTilesAmount("rows");
-			return NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 4 });
-		})
-		.then(result => {
-			// Filter out websites with no title, with searchquery or a cdn.
-			topFrecentSites = result.filter(website => website.title && website.title.trim() !== "" && !website.url.includes("?") && !website.url.includes("cdn") );
+    if (pinnedData) {
+		pinnedSites = JSON.parse(pinnedData).map(site => ({
+			...site,
+			pinned: true // Mark as pinned
+		}));
+	}
+    else {
+		pinnedSites = [];
+	}
+}
 
-			// Sort the topFrecentSites array by frecency in descending order
-			topFrecentSites.sort((a, b) => b.frecency - a.frecency);
+function pinSite(site, title) {
+	let pinnedSites = [];
 
-			populateRecentSitesGrid();
-		})
-		.catch(error => {
-			console.error('Error occurred when retrieving the top recent sites:', error);
+	if (gkPrefUtils.tryGet("browser.newtabpage.pinned").string)
+		pinnedSites = JSON.parse(gkPrefUtils.tryGet("browser.newtabpage.pinned").string);
+
+	// Normalize the URL (remove trailing slash if present)
+    const normalizedSite = site.endsWith('/') ? site.slice(0, -1) : site;
+
+    // Check if the site is already pinned (normalize for comparison)
+    const isAlreadyPinned = pinnedSites.some(pinnedSite => {
+        const normalizedPinnedUrl = pinnedSite.url.endsWith('/') ? pinnedSite.url.slice(0, -1) : pinnedSite.url;
+        return normalizedPinnedUrl === normalizedSite;
+    });		
+
+	// Only add the site if it is not already pinned
+	if (!isAlreadyPinned) {
+		const pinnedObject = {
+			url: site,
+			label: title
+		};
+
+		pinnedSites.push(pinnedObject);
+
+		// Update the pinned sites in preferences
+		gkPrefUtils.set("browser.newtabpage.pinned").string(JSON.stringify(pinnedSites));
+
+		// Refresh the pinned and frequent sites after a short delay
+		setTimeout(() => {
+			retrievePinnedSites();
+			retrieveFrequentSites();
+		}, 20);
+	}
+}
+
+function unpinSite(site) {
+    let pinnedSites;
+
+    // Retrieve pinned sites
+    if (gkPrefUtils.tryGet("browser.newtabpage.pinned").string) {
+		pinnedSites = JSON.parse(gkPrefUtils.tryGet("browser.newtabpage.pinned").string);
+
+		// Normalize the URL (remove trailing slash if present)
+		const normalizedSite = site.endsWith('/') ? site.slice(0, -1) : site;
+
+		// Filter out the site with the matching URL
+		pinnedSites = pinnedSites.filter(pinnedSite => {
+			const normalizedPinnedUrl = pinnedSite.url.endsWith('/') ? pinnedSite.url.slice(0, -1) : pinnedSite.url;
+			return normalizedPinnedUrl !== normalizedSite;
 		});
+	
+		// Update the pinned sites in preferences
+		gkPrefUtils.set("browser.newtabpage.pinned").string(JSON.stringify(pinnedSites));
+	
+		// Refresh the pinned and frequent sites after a short delay
+		setTimeout(() => {
+			retrievePinnedSites();
+			retrieveFrequentSites();
+		}, 20);
+	}
+}
+
+function retrieveFrequentSites() {
+    const totalTiles = getTilesAmount(); // Calculate the total amount of tiles
+
+	// Fetch more frequent sites to compensate for any that might get filtered out
+	NewTabUtils.activityStreamProvider.getTopFrecentSites({ numItems: totalTiles + 10 })  // Fetch extra to account for filtered out
+	.then(result => {
+		const validFrequentSites = result.filter(website => 
+			website.title && website.title.trim() !== "" && !website.url.includes("?") && !website.url.includes("cdn")
+		);
+
+		// Exclude frequent sites that are already pinned
+		topFrecentSites = validFrequentSites.filter(website => 
+			!pinnedSites.some(pinnedSite => pinnedSite.url === website.url)
+		);
+
+		// Sort by frecency
+		topFrecentSites.sort((a, b) => b.frecency - a.frecency);
+
+		// Populate the grid
+		populateRecentSitesGrid();
+	})
+	.catch(error => {
+		console.error('Error occurred when retrieving the top recent sites:', error);
+	});
+}
+
+function markForDeletion(url) {
+	storedForDeletion.push(url);		
+}
+
+function deleteFromRecent(url) {
+	NewTabUtils.activityStreamLinks.deleteHistoryEntry(url);
+	NewTabUtils.activityStreamLinks.deleteHistoryEntry(url.split("://")[0] + "://www." + url.split("://")[1]);
+}
+
+function deleteStoredFromDeletionSites() {
+	storedForDeletion.forEach(url => deleteFromRecent(url));
+
+	storedForDeletion = [];
 }
 
 function createTile(website) {
@@ -133,10 +224,27 @@ function createTile(website) {
 		let tile;
 
         if (website !== undefined) {
+			let url = website.url.replace(/[&<>"']/g, match => specialCharacters[match]);
+
+			let pinned;
+			if (website.pinned == true)
+				pinned = true;
+			else
+				pinned = false;
+
 			let favicon;
 
+			let title;
+
+			let pin;
 			let close;
 			let thumbnail;
+
+			let pinTitle;
+			if (pinned)
+				pinTitle = ntpBundle.GetStringFromName("dontKeepOnThisPage");
+			else
+				pinTitle = ntpBundle.GetStringFromName("keepOnThisPage");
 		
 			const thumbnailImageFb1 = PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/");
 			const thumbnailImageFb2 = PageThumbs.getThumbnailURL(website.url);
@@ -148,17 +256,26 @@ function createTile(website) {
 			const defaultColor = 'rgb(14,108,188)'; // Default color
 			let websiteColor = defaultColor;
 
-			if (!website.favicon)
+			if (!website.favicon) {
 				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
-			else
+
+				if (pinned)
+					favicon = `page-icon:${url}`;
+			} else {
 				favicon = website.favicon;
+			}
 			
 			// Replace special characters with their corresponding HTML entities.
-			const title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
+			if (website.title)
+				title = website.title.replace(/[&<>"']/g, match => specialCharacters[match]);
+			else if (website.label)
+				title = website.label.replace(/[&<>"']/g, match => specialCharacters[match]);
+			else
+				title = url;
 
 			if (appearanceChoice == 1) {
 				tile = `
-				<html:a href="${website.url}" title="${title}">
+				<html:a href="${url}" title="${title}" pinned="${pinned}">
 					<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
 						<image />
 						<label>${title}</label>
@@ -167,15 +284,36 @@ function createTile(website) {
 				</html:a>
 				`
 
-				thumbnail = "a[href='"+ website.url +"'] .thumbnail";
+				thumbnail = "a[href='"+ url +"'] .thumbnail";
+			} else if (appearanceChoice == 2) {
+				tile = `
+				<vbox href="${url}" pinned="${pinned}" class="most-visited-container">
+					<html:a href="${url}" title="${title}" class="disabled-on-edit">
+						<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
+							<image />
+							<label>${title}</label>
+						</hbox>
+						<image class="thumbnail" />
+					</html:a>
+					<hbox class="edit-container edit-visible">
+						<html:div class="edit-pin"/>
+						<html:div class="edit-cross"/>
+					</hbox>
+				</vbox>
+				`
+
+				pin = ".most-visited-container[href='"+ url +"'] .edit-pin";
+				close = ".most-visited-container[href='"+ url +"'] .edit-cross";
+
+				thumbnail = "a[href='"+ url +"'] .thumbnail";
 			} else if (appearanceChoice <= 11) {
 				tile = `
-				<html:a class="thumbnail-container" href="${website.url}">
+				<html:a class="thumbnail-container" href="${url}" pinned="${pinned}">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<button class="pin" title="${ntpBundle.GetStringFromName("keepOnThisPage")}"></button>
+							<html:button class="pin" title="${pinTitle}"></html:button>
 							<spacer></spacer>
-							<button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></button>
+							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 						</hbox>
 						<html:div class="thumbnail-wrapper">
 							<html:div class="thumbnail"></html:div>
@@ -190,13 +328,14 @@ function createTile(website) {
 				</html:a>
 				`
 
-				close = ".thumbnail-container[href='"+ website.url +"'] .remove";
+				pin = ".thumbnail-container[href='"+ url +"'] .pin";
+				close = ".thumbnail-container[href='"+ url +"'] .remove";
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
-				thumbnail = ".thumbnail-container[href='"+ website.url +"'] .thumbnail-wrapper";
+				thumbnail = ".thumbnail-container[href='"+ url +"'] .thumbnail-wrapper";
 			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 				for (const key in websiteColors) {
-					const websiteURL = website.url.toLowerCase();
+					const websiteURL = url.toLowerCase();
 					
 					if (websiteURL.includes(key)) {
 						websiteColor = websiteColors[key];
@@ -205,9 +344,10 @@ function createTile(website) {
 				}
 
 				tile = `
-				<html:div class="tile">
-					<html:a class="most-visited" href="${website.url}">
+				<html:div class="tile" pinned="${pinned}">
+					<html:a class="most-visited" href="${url}">
 						<html:div class="thumbnail-wrapper">
+							<html:button class="pin-button" title="${pinTitle}"></html:button>
 							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 							<html:div class="thumbnail">
 								<html:div class="thumbnail-shield"></html:div>
@@ -220,26 +360,29 @@ function createTile(website) {
 				</html:div>
 				`
 
-				close = ".most-visited[href='"+ website.url +"'] .close-button";
+				pin = ".most-visited[href='"+ url +"'] .pin-button";
+				close = ".most-visited[href='"+ url +"'] .close-button";
 				
-				thumbnail = ".most-visited[href='"+ website.url +"'] .thumbnail";
+				thumbnail = ".most-visited[href='"+ url +"'] .thumbnail";
 			} else if (appearanceChoice >= 47) {
 				if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
-					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}" data-letter="${Array.from(title)[0]}">
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${url}" title="${title}" data-letter="${Array.from(title)[0]}" pinned="${pinned}">
 						<image class="mv-favicon"></image>
 						<label class="mv-title">${title}</label>
+						<html:button class="mv-pin"></html:button>
 						<html:button class="mv-x"></html:button>
 					</html:a>
 					`
 				} else {
 					tile = `
-					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${website.url}" title="${title}">
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${url}" title="${title}" pinned="${pinned}">
 						<hbox class="title-container">
 							<image class="mv-favicon"></image>
 							<label class="mv-title">${title}</label>
+							<html:button class="mv-pin"></html:button>
 							<html:button class="mv-x"></html:button>
 						</hbox>
 						<html:div class="mv-thumb"></html:div>
@@ -247,24 +390,46 @@ function createTile(website) {
 					`
 				}
 
-				close = ".mv-tile[href='" + website.url + "'] .mv-x";
+				pin = ".mv-tile[href='" + url + "'] .mv-pin";
+				close = ".mv-tile[href='" + url + "'] .mv-x";
 
-				thumbnail = ".mv-tile[href='"+ website.url +"'] .mv-thumb";
+				thumbnail = ".mv-tile[href='"+ url +"'] .mv-thumb";
 			}
 
 			waitForElm(close).then(function() {
 				document.querySelector(close).addEventListener("click", function(e) {
 					e.stopPropagation();
 					e.preventDefault();
-	
-					NewTabUtils.activityStreamLinks.deleteHistoryEntry(website.url);
-					NewTabUtils.activityStreamLinks.deleteHistoryEntry(website.url.split("://")[0] + "://www." + website.url.split("://")[1]);
+
+					if (pinned)
+						unpinSite(url);
+
+					if (appearanceChoice == 2) {
+						markForDeletion(url);
+
+						document.querySelector(".most-visited-container[href='"+ url +"']").style.display = "none";
+					} else {
+						deleteFromRecent(url);
 					
-					setTimeout(() => {
-						retrieveFrequentSites();
-					},20);
+						setTimeout(() => {
+							retrievePinnedSites();
+							retrieveFrequentSites();
+						},20);
+					}
 				})
 			});
+
+			waitForElm(pin).then(function() {
+				document.querySelector(pin).addEventListener("click", function(e) {
+					e.stopPropagation();
+					e.preventDefault();
+
+					if (pinned)
+						unpinSite(url);
+					else
+						pinSite(url, title);
+				})
+			})
 
 			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 25)) {
 				waitForElm(thumbnail).then(function() {
@@ -274,7 +439,7 @@ function createTile(website) {
 				});
 			}
         } else {
-			if (appearanceChoice == 1) {
+			if (appearanceChoice <= 2) {
 				tile = `
 				<!--<html:div class="thumbnail" />-->
 				`
@@ -283,9 +448,9 @@ function createTile(website) {
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<button class="pin" title="${ntpBundle.GetStringFromName("keepOnThisPage")}"></button>
+							<html:button class="pin" title="${pinTitle}"></html:button>
 							<spacer></spacer>
-							<button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></button>
+							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 						</hbox>
 						<html:div class="thumbnail-wrapper">
 							<html:div class="thumbnail"></html:div>
@@ -304,6 +469,7 @@ function createTile(website) {
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
 						<html:div class="thumbnail-wrapper">
+							<html:button class="pin-button" title="${pinTitle}"></html:button>
 							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 							<html:div class="thumbnail">
 								<html:div class="thumbnail-shield"></html:div>
@@ -337,7 +503,7 @@ function populateRecentSitesGrid() {
 
 	let mostViewed;
 
-	if (appearanceChoice == 1)
+	if (appearanceChoice <= 2)
 		mostViewed = "#mostvisitedtiles";
 	else if (appearanceChoice <= 6)
 		mostViewed = "#most-visited";
@@ -353,21 +519,30 @@ function populateRecentSitesGrid() {
         elm.remove();
     });
 
-    if (topFrecentSites) {
-		waitForElm(mostViewed).then(function() {
-			let mostVisited;
+    // Get the total number of tiles needed
+    const totalTiles = getTilesAmount();
 
-			mostVisited = document.querySelector(mostViewed);
+    // Merge pinned and frequent sites, but only take up to the number of required tiles
+    const combinedSites = [...pinnedSites];
 
-			for (let i = 0; i < getTilesAmount(); i++) {
-				const tile = createTile(topFrecentSites[i]);
+    // Add frequent sites until we fill up the total number of tiles
+    for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
+        combinedSites.push(topFrecentSites[i]);
+    }
 
-				try {
-					mostVisited.appendChild(tile);
-				} catch (e) {
-					console.error(e)
-				}
-			}
-		});
+    // Populate the grid with the combined list
+    if (combinedSites.length) {
+        waitForElm(mostViewed).then(function() {
+            const mostVisited = document.querySelector(mostViewed);
+
+            combinedSites.forEach(site => {
+                const tile = createTile(site);
+                try {
+                    mostVisited.appendChild(tile);
+                } catch (e) {
+                    console.error(e);
+                }
+            });
+        });
     }
 }

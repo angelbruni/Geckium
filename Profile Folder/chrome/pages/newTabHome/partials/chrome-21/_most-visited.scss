@@ -290,6 +290,12 @@
 			}
 		}
 	}
+
+	&[pinineveryera="false"] {
+		.pin-button {
+			display: none !important;
+		}
+	}
 }
 
 #apps-page {
@@ -348,7 +354,8 @@
 					.thumbnail-wrapper {
 						background-color: var(--thumbnail-wrapper-background-color-hot);
 					}
-	
+					
+					.pin-button,
 					.close-button {
 						opacity: 1;
 						transition-delay: 500ms;
@@ -360,6 +367,7 @@
 				}
 	
 				&:active {
+					.pin-button:not(:active),
 					.close-button:not(:active) {
 						+ .thumbnail {
 							opacity: .9;
@@ -396,15 +404,14 @@
 			transition-duration: 150ms;
 		}
 	
+		.pin-button,
 		.close-button {
 			all: unset;
 	
 			position: absolute;
-			right: 0;
 			width: 16px;
 			height: 16px;
 			cursor: default;
-			background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAiElEQVR42r2RsQrDMAxEBRdl8SDcX8lQPGg1GBI6lvz/h7QyRRXV0qUULwfvwZ1tenw5PxToRPWMC52eA9+WDnlh3HFQ/xBQl86NFYJqeGflkiogrOvVlIFhqURFVho3x1moGAa3deMs+LS30CAhBN5nNxeT5hbJ1zwmji2k+aF6NENIPf/hs54f0sZFUVAMigAAAABJRU5ErkJggg==");
 			opacity: 0;
 			z-index: 1;
 
@@ -413,10 +420,39 @@
 	
 			&:hover,
 			&:focus {
-				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=");
 				transition: none;
 			}
-	
+		}
+
+		.pin-button {
+			left: 0;
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off.svg");
+
+			&:hover,
+			&:focus {
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_h.svg");
+			}
+
+			&:active {
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_p.svg");
+			}
+		}
+
+		&[pinned="true"] {
+			.pin-button {
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_p.svg");
+			}
+		}
+
+		.close-button {
+			right: 0;
+			background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAiElEQVR42r2RsQrDMAxEBRdl8SDcX8lQPGg1GBI6lvz/h7QyRRXV0qUULwfvwZ1tenw5PxToRPWMC52eA9+WDnlh3HFQ/xBQl86NFYJqeGflkiogrOvVlIFhqURFVho3x1moGAa3deMs+LS30CAhBN5nNxeT5hbJ1zwmji2k+aF6NENIPf/hs54f0sZFUVAMigAAAABJRU5ErkJggg==");
+		
+			&:hover,
+			&:focus {
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=");
+			}
+
 			&:active {
 				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAARElEQVQoz2P4z4AfMlBLAYMdwxkghgEwD1XBGTC0g0sDIaYJECVwFqoChBK4WegKkJWArSJZAQErCDqSKG/iCyhaRhYA9LDIbULDzlIAAAAASUVORK5CYII=");
 			}

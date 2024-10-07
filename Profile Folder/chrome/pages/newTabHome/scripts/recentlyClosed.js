@@ -46,7 +46,7 @@ function createRecentlyClosed() {
 				favicon = state.image.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			// #region Recently closed items
-			if (appearanceChoice == 1) {
+			if (appearanceChoice <= 2) {
 				recentlyClosedItem = `
 				<html:a class="recent-bookmark" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
