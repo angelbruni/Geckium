@@ -9,6 +9,9 @@
 	--toolbarbutton-outer-padding: 2px !important;
 	--toolbarbutton-icon-drop-shadow: drop-shadow();
 
+	--personal-toolbar-floating-bg-padding-inline: 6px;
+	--default-personal-toolbar-floating-bg: rgb(255,255,255);
+	--default-personal-toolbar-floating-border-color: rgb(219,218,219);
 	--personal-toolbar-gap: 0;
 	--personal-toolbar-height: 28px;
 }
@@ -113,10 +116,6 @@
 		border: 0;
 	}
 }
-
-/*&[personalbar="newtab"] {
-	--personal-toolbar: white !important;		
-}*/
 
 #star-button-box {
 	#star-button {

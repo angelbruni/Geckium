@@ -1,13 +1,14 @@
 :root {
+	--newtab-background-color: white;
+
+	@media (prefers-color-scheme: dark) {
+		--newtab-background-color: rgb(32, 32, 32);
+	}
+
 	body {
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		background-color: white;
-
-		@media (prefers-color-scheme: dark) {
-			background-color: rgb(32, 32, 32);
-		}
 	}
 	
 	#main-container {

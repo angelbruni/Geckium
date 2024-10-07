@@ -1,24 +1,32 @@
-/*&[personalbar="newtab"] {
-	--personal-toolbar: rgb(241,241,241) !important;
+& {
+	--personal-toolbar-floating-height: 39px;
+	--personal-toolbar-floating-bg-height: var(--personal-toolbar-floating-height);
+	--personal-toolbar-floating-bg-margin-inline: 0px;
+	--personal-toolbar-floating-radius: 0px;
+	--personal-toolbar-floating-items-height: 24px;
+	--default-personal-toolbar-floating-bg: rgb(241,241,241);
+	--personal-toolbar-floating-border-block-start-width: 0px;
+	--personal-toolbar-floating-border-block-end-width: 1px;
+	--personal-toolbar-floating-border-inline-start-width: var(--personal-toolbar-floating-border-block-start-width);
+	--personal-toolbar-floating-border-inline-end-width: var(--personal-toolbar-floating-border-block-start-width);
+	--default-personal-toolbar-floating-border-color: rgb(206,206,206);
 
-	#PersonalToolbar {
-		padding-block: 6px !important;
-		height: calc(var(--personal-toolbar-height) + 16px) !important;
-		border-block-start: 1px solid var(--personal-toolbar-border-bottom) !important;
-	
-		&::before,
-		&::after {
-			top: 0px;
-			height: 100%;
+	&[personalbar="newtab"] {
+		#PersonalToolbar {
+			#personal-toolbar-floating-bg {
+				left: 0;
+				top: 0;
+				transform: unset;
+			}
 		}
 	}
-}*/
 
-&[geckium-choice="fortyseven"] {
-	#PersonalToolbar {
-		#personal-toolbar-empty-description {
-			.text-link {
-				color: inherit !important;
+	&[geckium-choice="fortyseven"] {
+		#PersonalToolbar {
+			#personal-toolbar-empty-description {
+				.text-link {
+					color: inherit !important;
+				}
 			}
 		}
 	}

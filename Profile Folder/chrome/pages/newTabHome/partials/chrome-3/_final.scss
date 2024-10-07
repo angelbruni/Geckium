@@ -25,7 +25,12 @@
 
 		body {
 			background-color: var(--newtab-background-color);
+
 			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+			@media (prefers-color-scheme: dark) {
+				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
+			}
+
 			background-attachment: fixed; // Create the parallax scrolling effect
 			image-rendering: var(--lwt-gknewtab-image-rendering);
 			background-size: var(--lwt-gknewtab-background-size);
@@ -39,11 +44,6 @@
 			}
 
 			background-repeat: var(--lwt-gknewtab-background-repeat);
-		}
-		@media (prefers-color-scheme: dark) {
-			body {
-				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
-			}
 		}
 	}
 
