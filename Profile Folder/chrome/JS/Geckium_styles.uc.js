@@ -61,6 +61,13 @@ const eras = {
             "macos": "macosx"
         }
     },
+    2: {
+        name: "2",
+        basedOnVersion: "2.0.172.43",
+        year: 2009,
+        number: "two",
+        styles: ["page"]
+    },
     3: {
         name: "3",
         basedOnVersion: "3.0.195.4",

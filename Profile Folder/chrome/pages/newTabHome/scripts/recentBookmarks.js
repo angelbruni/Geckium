@@ -5,7 +5,7 @@ const { PlacesUtils } = ChromeUtils.importESModule("resource://gre/modules/Place
 async function getRecentBookmarks() {
 	let appearanceChoice = gkEras.getNTPEra();
 
-	if (appearanceChoice !== 1)
+	if (appearanceChoice >= 3)
 		return;
 
 
