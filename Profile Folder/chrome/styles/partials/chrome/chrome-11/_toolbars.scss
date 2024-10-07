@@ -10,8 +10,9 @@
 	--toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, 1));
 
 	--personal-toolbar-height: 24px;
+	--default-personal-toolbar-floating-border-color: rgb(203,203,203);
 
-	//&:not([personalbar="newtab"]) {
+	&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
 			padding: 1px !important;
 			padding-inline: 3px !important;
@@ -21,7 +22,7 @@
 				margin-bottom: 2px !important;
 			}
 		}
-	//}
+	}
 
 	&[chromehidden~="toolbar"] {
 		#nav-bar {
@@ -33,12 +34,6 @@
 		#urlbar-container {
 			margin-inline-start: 0 !important;
 			margin-inline-end: 0 !important;
-		}
-	}
-
-	#PersonalToolbar {
-		.bookmark-item:not(.menu-iconic, .menuitem-iconic, [data-l10n-id="places-empty-bookmarks-folder"]) {
-			border-radius: 5px !important;
 		}
 	}
 

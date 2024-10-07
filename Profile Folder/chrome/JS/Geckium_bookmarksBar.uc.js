@@ -19,3 +19,14 @@ const bookmarkBarPrefObserver = {
 };
 Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", bookmarkBarPrefObserver, false)
 window.addEventListener("load", applyBookmarkAttr);
+
+_ucUtils.windowIsReady(window).then(() => {
+	const personalToolbarBackground = document.createElement("div");
+	personalToolbarBackground.id = "personal-toolbar-bg";
+
+	const personalToolbarFloatingBackground = document.createElement("div");
+	personalToolbarFloatingBackground.id = "personal-toolbar-floating-bg";
+
+	document.getElementById("PersonalToolbar").prepend(personalToolbarFloatingBackground);
+	document.getElementById("PersonalToolbar").prepend(personalToolbarBackground);
+});
