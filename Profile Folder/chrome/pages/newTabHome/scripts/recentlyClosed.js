@@ -59,7 +59,7 @@ function createRecentlyClosed() {
 			else if (appearanceChoice == 3 || appearanceChoice <= 6 || appearanceChoice <= 11) {
 				recentlyClosedItem = `
 				<html:a class="item" href="${url}" style="list-style-image: url('${favicon}')">
-					<image></image>
+					<image class="favicon"></image>
 					<label>${title}</label>
 				</html:a>
 				`

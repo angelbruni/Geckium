@@ -404,7 +404,7 @@ function createMainLayout() {
 			<vbox class="sections">
 				<vbox id="apps">
 					<hbox class="section collapsed">
-						<image class="disclosure"></image>
+						<html:button class="disclosure" />
 						<label>${ntpBundle.GetStringFromName("apps")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
@@ -413,7 +413,7 @@ function createMainLayout() {
 				</vbox>
 				<vbox id="most-viewed">
 					<hbox class="section">
-						<image class="disclosure"></image>
+						<html:button class="disclosure" />
 						<label>${ntpBundle.GetStringFromName("mostVisited")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
@@ -422,7 +422,7 @@ function createMainLayout() {
 				</vbox>
 				<vbox id="recently-closed">
 					<hbox class="section collapsed">
-						<image class="disclosure"></image>
+						<html:button class="disclosure" style="pointer-events: none; opacity: 0;" />
 						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
 						<spacer></spacer>
 						<button class="section-close-button"></button>
@@ -445,6 +445,61 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
+
+		waitForElm("#main > .sections").then(() => {
+			const ntpAppsCollapsedObs = {
+				observe: function (subject, topic, data) {
+					if (topic == "nsPref:changed") {
+						if (gkPrefUtils.tryGet("Geckium.newTabHome.appsCollapsed").bool) {
+							appsSectionElm.classList.add("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+						} else {
+							appsSectionElm.classList.remove("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(true);
+						}	
+					}
+				},
+			};
+			Services.prefs.addObserver("Geckium.newTabHome.appsCollapsed", ntpAppsCollapsedObs, false);
+
+			const appsSectionElm = document.querySelector("#apps > .section");
+
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.appsCollapsed").bool)
+				appsSectionElm.classList.add("collapsed");
+			else
+				appsSectionElm.classList.remove("collapsed");
+
+			appsSectionElm.addEventListener("click", () => {
+				gkPrefUtils.toggle("Geckium.newTabHome.appsCollapsed");
+			});
+
+
+			const ntpMostViewedCollapsedObs = {
+				observe: function (subject, topic, data) {
+					if (topic == "nsPref:changed") {
+						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
+							mostViewedSectionElm.classList.add("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
+						} else {
+							mostViewedSectionElm.classList.remove("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(true);
+						}
+					}
+				},
+			};
+			Services.prefs.addObserver("Geckium.newTabHome.mostViewedCollapsed", ntpMostViewedCollapsedObs, false);
+
+			const mostViewedSectionElm = document.querySelector("#most-viewed > .section");
+
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool)
+				mostViewedSectionElm.classList.add("collapsed");
+			else
+				mostViewedSectionElm.classList.remove("collapsed");
+
+			mostViewedSectionElm.addEventListener("click", () => {
+				gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
+			});
+		});
 	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 		// Chrome 21 - 45
 

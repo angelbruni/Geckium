@@ -33,3 +33,29 @@
 		}
 	}
 }
+
+.section.collapsed + div {
+	&#most-viewed-content {
+		display: flex !important;
+
+		> .thumbnail-container {
+			max-width: 114px;
+
+			&:nth-child(8) {
+				display: none;
+			}
+
+			> .title {
+				padding: 0;
+
+				label {
+					text-decoration: underline;
+				}
+			}
+	
+			> .edit-mode-border {
+				display: none;
+			}
+		}
+	}
+}
