@@ -144,7 +144,7 @@ class sfMigrator {
 			"0": {
 				"pos": 0,
 				"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
-				"oldIcon": "",
+				"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 				"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 				"oldName": "Web Store",
 				"newName": "Web Store",
@@ -154,7 +154,7 @@ class sfMigrator {
 			"1": {
 				"pos": 1,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
 				"oldName": "Gmail",
 				"newName": "Gmail",
@@ -164,7 +164,7 @@ class sfMigrator {
 			"2": {
 				"pos": 2,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
 				"oldName": "Google Drive",
 				"newName": "Google Drive",
@@ -174,7 +174,7 @@ class sfMigrator {
 			"3": {
 				"pos": 3,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
 				"oldName": "Google Search",
 				"newName": "Google Search",
@@ -184,7 +184,7 @@ class sfMigrator {
 			"4": {
 				"pos": 4,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
 				"oldName": "YouTube",
 				"newName": "YouTube",
@@ -194,7 +194,7 @@ class sfMigrator {
 			"5": {
 				"pos": 5,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
 				"oldName": "Angry Birds",
 				"newName": "Angry Birds",
@@ -204,7 +204,7 @@ class sfMigrator {
 			"6": {
 				"pos": 6,
 				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-				"oldIcon": "",
+				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
 				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
 				"oldName": "MySpace",
 				"newName": "MySpace",
