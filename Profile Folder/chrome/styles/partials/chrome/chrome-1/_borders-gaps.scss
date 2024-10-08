@@ -74,11 +74,18 @@
 	#navigator-toolbox {
 		border-bottom: unset !important;
 	}
+
 	#browser,
 	#customization-container {
-		border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
-		margin-top: -1px !important; // Required for top border
 		position: relative; // Required for all borders
+	}
+
+	&:not([personalbar="newtab"]) {
+		#browser,
+		#customization-container {
+			border-top: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
+			margin-top: -1px !important; // Required for top border
+		}
 	}
 
 	//Page bodies - all borders (requires Windows decorations)
