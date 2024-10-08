@@ -255,6 +255,9 @@ class gkDownloadManager {
 							const extensionJson = await gkChrTheme.getThemeData(`jar:file://${download.target.path}!/manifest.json`);
 
 							if (extensionJson != null && extensionJson.theme) {
+								downloadItemElm.querySelectorAll(".warning > *").forEach(warning => {
+									warning.remove();
+								});	
 								downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningExtensionsTemplate));
 								downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("extensionsAndThemesCanHarm");
 								downloadItemElm.dataset.state = "dangerous_not_malware";
