@@ -657,6 +657,7 @@
 		}
 
 		#nav-bar {
+			height: calc(var(--nav-bar-height) + 1px);
 			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		}
 	}
