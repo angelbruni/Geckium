@@ -22,7 +22,8 @@ _ucUtils.windowIsReady(window).then(() => {
 });
 
 function modifyTab(tab) {
-	tab.setAttribute("gkmodified", true); // bruni: add this attribute so we know which tabs weren't been modified on launch.
+	tab.setAttribute("gkmodified", true);	// bruni: Add this attribute so we know 
+											// which tabs weren't modified on launch.
 
 	let tabBackgroundElm = tab.querySelector(".tab-background");
 	const tabBackgroundContainerElm = document.createXULElement("hbox");
