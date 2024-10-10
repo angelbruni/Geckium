@@ -1,83 +1,115 @@
 const chrThemesList = document.getElementById("themes-grid");
 
 async function populateChrThemesList() {
-	const themes = await gkChrTheme.getThemes();
+    const themes = await gkChrTheme.getThemes();
 
-	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
-		item.remove();
-	})
+    // Clear existing buttons
+    chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+        item.remove();
+    });
 
-	for (const themeFileName in themes) {
-		let theme = themes[themeFileName];
+    let themeElements = [];
 
-		let themeName = theme.name.replace(/[&<>"']/g, match => specialCharacters[match]);
+    for (const themeFileName in themes) {
+        let theme = themes[themeFileName];
 
-		let themeDescription;
-		if (!themeDescription)
-			themeDescription = "This theme has no description.";
-		else
-			themeDescription = theme.description.replace(/[&<>"']/g, match => specialCharacters[match]);
+        let themeName = theme.name.replace(/[&<>"']/g, match => specialCharacters[match]);
+        let themeDescription = theme.description
+            ? theme.description.replace(/[&<>"']/g, match => specialCharacters[match])
+            : gSettingsBundle.GetStringFromName("themeHasNoDescription");
 
-		const themeFile = theme.file.replace(".crx", "");
+        const themeFile = theme.file.replace(".crx", "");
 
-		let themeBanner = theme.banner;
-		let themeBannerPath = `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`;
-		if (!themeBanner)
-			themeBannerPath = "";
+        const localizedInfoJSON = `jar:file://${chrThemesFolder}/${themeFile}.crx!/_locales/en/messages.json`;
 
-		let themeBannerColor = theme.color;
-		if (!themeBannerColor)
-			themeBannerColor = "white"; // white is a direct reference to the fallback NTP background
+        try {
+            const response = await fetch(localizedInfoJSON);
+            const localizedInfo = await response.json();
 
-		let themeIcon = theme.icon;
-		let themeIconPath;
-		if (themeIcon) {
-			themeIconPath = `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`;
-		} else {
-			themeIconPath = "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
-		}
-		
-		const themeVersion = theme.version;
-		
-		let themeElm = `
-		<html:button
-				class="link geckium-appearance ripple-enabled"
-				data-theme-name="${themeFile}"
-				style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
-			<html:label class="wrapper">
-				<div class="year">V${themeVersion}</div>
-				<div class="icon"><image style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" /></div>
-				<div class="identifier">
-					<vbox style="min-width: 0">
-						<div class="radio-parent">
-							<html:input id="theme-${themeFile}" class="radio" type="radio" name="gktheme"></html:input>
-							<div class="gutter" for="checked_check"></div>
-							<html:label class="name label">${themeName}</html:label>
-						</div>
-						<html:label class="description">${themeDescription}</html:label>
-					</vbox>
-				</div>
-			</html:label>
-		</html:button>
-		`
+            // Update themeName and themeDescription based on localized data
+            if (localizedInfo.extName && localizedInfo.extName.message)		
+                themeName = localizedInfo.extName.message.replace(/[&<>"']/g, match => specialCharacters[match]);
+            else if (localizedInfo.name && localizedInfo.name.message)
+				themeName = localizedInfo.name.message.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-		chrThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
-	}
+            if (localizedInfo.extDescription && localizedInfo.extDescription.message)
+                themeDescription = localizedInfo.extDescription.message.replace(/[&<>"']/g, match => specialCharacters[match]);
+            else if (localizedInfo.description && localizedInfo.description.message)
+                themeDescription = localizedInfo.description.message.replace(/[&<>"']/g, match => specialCharacters[match]);
 
-	chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
-		item.addEventListener("click", () => {
-			applyTheme(item.dataset.themeName);
-		})
-	})
+        } catch (error) {
+            console.error("Something happened when looking for localized strings:", error);
+        }
 
-	selectChrTheme();
+        let themeBanner = theme.banner;
+        let themeBannerPath = themeBanner
+            ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`
+            : "";
 
-	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
-	if (prefChoice) {
-		chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
-	}
+        let themeBannerColor = theme.color || "white"; // white is a direct reference to the fallback NTP background
+
+        let themeIcon = theme.icon;
+        let themeIconPath = themeIcon
+            ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`
+            : "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
+
+        const themeVersion = theme.version;
+
+        let themeElm = `
+        <html:button
+                class="link geckium-appearance ripple-enabled"
+                data-theme-name="${themeFile}"
+                data-index="${themeName.toLowerCase()}"
+                style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
+            <html:label class="wrapper">
+                <div class="year">V${themeVersion}</div>
+                <div class="icon"><image style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" /></div>
+                <div class="identifier">
+                    <vbox style="min-width: 0">
+                        <div class="radio-parent">
+                            <html:input id="theme-${themeFile}" class="radio" type="radio" name="gktheme"></html:input>
+                            <div class="gutter" for="checked_check"></div>
+                            <html:label class="name label">${themeName}</html:label>
+                        </div>
+                        <html:label class="description">${themeDescription}</html:label>
+                    </vbox>
+                </div>
+            </html:label>
+        </html:button>
+        `;
+
+        // Add theme element to the array
+        themeElements.push(themeElm);
+    }
+
+    // Sort the array by the themeName stored in data-index
+    themeElements.sort((a, b) => {
+        let indexA = a.match(/data-index="([^"]+)"/)[1];
+        let indexB = b.match(/data-index="([^"]+)"/)[1];
+        return indexA.localeCompare(indexB);
+    });
+
+    // Insert sorted themes into the DOM
+    themeElements.forEach(themeElm => {
+        chrThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
+    });
+
+    chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+        item.addEventListener("click", () => {
+            applyTheme(item.dataset.themeName);
+        });
+    });
+
+    selectChrTheme();
+
+    let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
+    if (prefChoice) {
+        chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+    }
 }
+
 document.addEventListener("DOMContentLoaded", populateChrThemesList);
+
 
 function selectChrTheme() {
 	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
