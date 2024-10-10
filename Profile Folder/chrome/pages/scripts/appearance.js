@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", appearance)
 const appearanceObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			appearance();	
+			if (document.URL !== "about:apps")
+				appearance();	
 		}		
 	},
 };
