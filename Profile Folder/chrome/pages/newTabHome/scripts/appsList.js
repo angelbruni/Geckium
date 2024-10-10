@@ -1,5 +1,10 @@
 function setUpApps() {
-	let appearanceChoice = gkEras.getNTPEra();
+	let appearanceChoice;
+	
+	if (document.URL = "about:apps")
+		appearanceChoice = 21;
+	else
+		appearanceChoice = gkEras.getNTPEra();
 
 	let appsContainer;
 	

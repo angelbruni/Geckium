@@ -12,6 +12,7 @@ const customAboutPages = {
 	"home": 			"chrome://pages/content/newTabHome/index.xhtml",
 	"newtab": 			"chrome://pages/content/newTabHome/index.xhtml",
 	"privatebrowsing":	"chrome://pages/content/newTabHomeIncognito/index.xhtml",
+	"apps": 			"chrome://pages/content/apps/index.xhtml",
 	"flags": 			"chrome://pages/content/flags/index.xhtml",
 	"about":			"chrome://windows/content/about/index.xhtml",
 

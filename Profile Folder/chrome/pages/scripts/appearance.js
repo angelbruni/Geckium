@@ -2,36 +2,45 @@ function appearance() {
 	let previousChoice;
 	let prefChoice;
 
-	if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-		prefChoice = gkEras.getNTPEra();
-	} else {
-		prefChoice = gkEras.getBrowserEra();
-	}
-	
-	if (!prefChoice)
-		prefChoice = 0;
+	document.documentElement.dataset.url = document.URL;
 
-	if (prefChoice == previousChoice) {
-		console.log("TAB PAGE: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
-	} else {
-		console.log("TAB PAGE: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+	if (document.URL !== "about:apps") {
+		if (document.URL == "about:newtab" || document.URL == "about:home")
+			prefChoice = gkEras.getNTPEra();
+		else
+			prefChoice = gkEras.getBrowserEra();	
 
-		if (document.URL == "about:newtab" || document.URL == "about:home" || document.url == "about:apps") {
-			gkBranding.load();
-			gkEras.applyEra();
-			createMainLayout();
-			retrievePinnedSites();
-			retrieveFrequentSites();
-			getRecentBookmarks();
-			createRecentlyClosed();
-			setUpPages();
-			setUpApps();
-		} else if (document.URL == "about:flags") {
-			setUpExperiments();
-		} else if (document.URL == "about:privatebrowsing" || document.URL == "about:about") {
-			gkBranding.load();
-			createMainLayout();
+		if (!prefChoice)
+			prefChoice = 0;
+		
+		if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:flags" || document.URL == "about:privatebrowsing" || document.URL == "about:about") {
+			if (prefChoice == previousChoice) {
+				console.log("TAB PAGE: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
+			} else {
+				console.log("TAB PAGE: Choice not the same as previous choice, continuing.", prefChoice, previousChoice)
+		
+				if (document.URL == "about:newtab" || document.URL == "about:home") {
+					gkBranding.load();
+					gkEras.applyEra();
+					createMainLayout();
+					retrievePinnedSites();
+					retrieveFrequentSites();
+					getRecentBookmarks();
+					createRecentlyClosed();
+					setUpPages();		
+					setUpApps();
+				} else if (document.URL == "about:flags") {
+					setUpExperiments();
+				} else if (document.URL == "about:privatebrowsing" || document.URL == "about:about") {
+					gkBranding.load();
+					createMainLayout();
+				}
+			}
 		}
+	} else {
+		gkBranding.load();
+		createMainLayout();
+		setUpApps();
 	}
 }
 document.addEventListener("DOMContentLoaded", appearance)
@@ -41,8 +50,8 @@ document.addEventListener("DOMContentLoaded", appearance)
 const appearanceObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
-			appearance();
-		}
+			appearance();	
+		}		
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObs, false);
