@@ -1,7 +1,7 @@
 function setUpApps() {
 	let appearanceChoice;
 	
-	if (document.URL = "about:apps")
+	if (document.URL == "about:apps")
 		appearanceChoice = 21;
 	else
 		appearanceChoice = gkEras.getNTPEra();
