@@ -65,7 +65,7 @@ class gkSysTheme {
         // Apply System Theme
         previousSysTheme = theme;
         document.documentElement.setAttribute("gksystheme", theme);
-        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home") {
+        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
             // Trigger special System Themes' variable refreshers
             gkGTK.apply();
             gkYou.apply();
@@ -336,7 +336,9 @@ class gkYou {
         gkYou.removeVariables();
         let era = gkEras.getBrowserEra();
         let color;
-		if (previousSysTheme == "you" && (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") && (era < 52 || era > 68)) {
+		if (previousSysTheme == "you" &&
+            (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") &&
+            (era < 52 || era > 68)) {
             try {
                 color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
             } catch (error) {

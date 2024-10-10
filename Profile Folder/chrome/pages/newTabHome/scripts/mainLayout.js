@@ -58,12 +58,7 @@ function setMostVisitedLayout(layout) {
 }
 
 function createMainLayout() {
-	let appearanceChoice;
-
-	if (document.URL == "about:apps")
-		appearanceChoice = 21;
-	else
-		appearanceChoice = gkEras.getNTPEra();
+	let appearanceChoice = gkEras.getNTPEra();
 
 	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
 		entry.remove();
@@ -505,7 +500,7 @@ function createMainLayout() {
 				gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
 			});
 		});
-	} else if (appearanceChoice == 21 || appearanceChoice == 25	) {
+	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
