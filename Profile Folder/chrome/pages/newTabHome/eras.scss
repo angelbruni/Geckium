@@ -5,6 +5,20 @@
 		--newtab-background-color: rgb(32, 32, 32);
 	}
 
+	&[data-url*="about:apps"] {
+		#page-list {
+			transform: unset !important;
+		}
+
+		#most-visited-page,
+		[id*="page-switcher"],
+		.dot,
+		#recently-closed-menu-button,
+		#recently-closed-menu-button + #vertical-separator {
+			display: none !important;
+		}
+	}
+
 	body {
 		height: 100vh;
 		display: flex;

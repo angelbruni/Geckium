@@ -58,7 +58,12 @@ function setMostVisitedLayout(layout) {
 }
 
 function createMainLayout() {
-	let appearanceChoice = gkEras.getNTPEra();
+	let appearanceChoice;
+
+	if (document.URL = "about:apps")
+		appearanceChoice = 21;
+	else
+		appearanceChoice = gkEras.getNTPEra();
 
 	document.querySelectorAll("#recently-closed > .items > .item").forEach((entry) => {
 		entry.remove();
@@ -500,7 +505,7 @@ function createMainLayout() {
 				gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
 			});
 		});
-	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
+	} else if (appearanceChoice == 21 || appearanceChoice == 25	) {
 		// Chrome 21 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
@@ -512,7 +517,7 @@ function createMainLayout() {
 			</html:div>
 			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
 		</html:a>
-		<html:div id="login-email"></html:div>
+		<html:div id="login-email" />
 		`;
 
 		main = `
@@ -521,39 +526,37 @@ function createMainLayout() {
 			<hbox id="page-list">
 				<vbox class="tile-page selected" id="most-visited-page" data-page="0">
 					<vbox class="tile-page-content">
-						<html:div class="tile-grid">
-
-						</html:div>
+						<html:div class="tile-grid" />
 					</vbox>
 				</vbox>
 				<vbox class="tile-page" id="apps-page" data-page="1">
 					<vbox class="tile-page-content">
-						<html:div class="tile-grid"></html:div>
+						<html:div class="tile-grid" />
 					</vbox>
 				</vbox>
 			</hbox>
 			<button id="page-switcher-end" class="page-switcher" label="›"></button>
 			<vbox id="attribution">
 				<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
-				<html:div id="attribution-img"></html:div>
+				<html:div id="attribution-img" />
 			</vbox>
 		</hbox>
 		`;
 
 		footer = `
 		<vbox id="footer">
-			<html:div id="footer-border"></html:div>
+			<html:div id="footer-border" />
 			<hbox id="footer-content">
 				<hbox id="logo-img">
-					<html:div id="logo-icon"></html:div>
-					<html:div id="logo-wordmark"></html:div>
+					<html:div id="logo-icon" />
+					<html:div id="logo-wordmark" />
 				</hbox>
 				<hbox id="dot-list">
 					<button onclick="switchTab('', false, 0)" class="dot selected" label="${ntpBundle.GetStringFromName("mostVisited")}" data-page="0">
-						<html:div class="selection-bar"></html:div>
+						<html:div class="selection-bar" />
 					</button>
 					<button onclick="switchTab('', false, 1)" class="dot" label="${ntpBundle.GetStringFromName("apps")}" data-page="1">
-						<html:div class="selection-bar"></html:div>
+						<html:div class="selection-bar" />
 					</button>
 				</hbox>
 				<hbox id="footer-menu-container">
@@ -564,7 +567,7 @@ function createMainLayout() {
 						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
 						<vbox class="footer-menu" />
 					</html:button>
-					<html:div id="vertical-separator"></html:div>
+					<html:div id="vertical-separator" />
 				</hbox>
 				
 				<html:a id="chrome-web-store-link" href="https://chrome.google.com/webstore">
@@ -592,7 +595,7 @@ function createMainLayout() {
 				<html:a id="google-apps-link" href="https://about.google/products/#all-products"></html:a>
 			</hbox>
 			<vbox id="google-search">
-				<html:div id="hplogo" title="Google"></html:div>
+				<html:div id="hplogo" title="Google" />
 				<html:form>
 					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 				</html:form>
@@ -601,10 +604,10 @@ function createMainLayout() {
 		}
 
 		main = `
-		<html:div id="mv-tiles"></html:div>
+		<html:div id="mv-tiles" />
 		<vbox id="attribution">
 			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
-			<html:div id="attribution-img"></html:div>
+			<html:div id="attribution-img" />
 		</vbox>
 		`;
 

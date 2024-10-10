@@ -65,7 +65,7 @@ class gkSysTheme {
         // Apply System Theme
         previousSysTheme = theme;
         document.documentElement.setAttribute("gksystheme", theme);
-        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home") {
             // Trigger special System Themes' variable refreshers
             gkGTK.apply();
             gkYou.apply();
