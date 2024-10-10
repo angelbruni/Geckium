@@ -241,6 +241,11 @@ class gkEras {
      */
 
     static getNTPEra() {
+        // TEMPORARY: Force 21 on Apps
+        if (document.URL == "about:apps") {
+            return 21;
+        }
+
         if (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool == true) {
             let override = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
             if (override && Object.keys(eras).includes(override.toString())) {
@@ -260,7 +265,7 @@ class gkEras {
 
     static applyEra() {
         let prefChoice;
-        if (document.URL == "about:newtab" || document.URL == "about:home") {
+        if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
             prefChoice = gkEras.getNTPEra();
         } else if (document.URL !== "about:gmzoo" && document.URL !== "about:gsplash") {
             prefChoice = gkEras.getBrowserEra();
