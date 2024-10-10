@@ -21,3 +21,10 @@ tooltip {
 #tabbrowser-tabbox {
 	position: relative !important;
 }
+
+// Since Mozilla can't do this super basic three-liner anymore, starting 131
+@media #{'not (-moz-bool-pref: "browser.tabs.tabmanager.enabled")'} {
+	#alltabs-button {
+		display: none !important;
+	}
+}
