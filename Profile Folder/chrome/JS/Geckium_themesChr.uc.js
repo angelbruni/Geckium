@@ -15,11 +15,7 @@ const chrThemesFolder = `${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/"
 // Chrome Themes
 class gkChrTheme {
 	static get defaultToolbarButtonIconColour() {
-		let appearanceChoice;
-        if (document.URL == "about:apps")
-            appearanceChoice = 21;
-        else
-            appearanceChoice = gkEras.getBrowserEra();
+		let appearanceChoice = gkEras.getBrowserEra();
 
 		if (appearanceChoice <= 6)
 			return [88, 118, 171];
@@ -305,13 +301,7 @@ class gkChrTheme {
         }
         
         let indicators = []; // themed elements to advertise to CSS
-
-        let era;
-        if (document.URL == "about:apps")
-            era = 21;
-        else
-            era = gkEras.getBrowserEra();
-        
+        let era = gkEras.getBrowserEra();
         let maniver = getManVersion(theme);
         let accommodate = gkPrefUtils.tryGet("Geckium.chrTheme.accommodate").bool;
         if (accommodate) {

@@ -55,10 +55,7 @@ class gkSysTheme {
 
     static applyTheme(era, spec) {
         if (!era) {
-            if (document.URL == "about:apps")
-                era = 21;
-            else
-                era = gkEras.getBrowserEra();
+            era = gkEras.getBrowserEra();
         }
         if (!spec || spec == {}) {
             spec = gkTitlebars.getTitlebarSpec(era);
@@ -68,7 +65,7 @@ class gkSysTheme {
         // Apply System Theme
         previousSysTheme = theme;
         document.documentElement.setAttribute("gksystheme", theme);
-        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+        if (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home") {
             // Trigger special System Themes' variable refreshers
             gkGTK.apply();
             gkYou.apply();
@@ -337,15 +334,9 @@ class gkYou {
 
 	static apply() {
         gkYou.removeVariables();
-		
-        let era;
-        if (document.URL == "about:apps")
-            era = 21;
-        else
-            era = gkEras.getBrowserEra();
-        
+        let era = gkEras.getBrowserEra();
         let color;
-		if (previousSysTheme == "you" && (isBrowserWindow || document.URL == "  " || document.URL == "about:home" || document.URL == "about:apps") && (era < 52 || era > 68)) {
+		if (previousSysTheme == "you" && (isBrowserWindow || document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") && (era < 52 || era > 68)) {
             try {
                 color = gkYou.getBaseColor(); // NOTE: Grey's palette is in systhemes
             } catch (error) {
