@@ -448,7 +448,7 @@ function createTile(website) {
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<html:button class="pin" title="${pinTitle}"></html:button>
+							<html:button class="pin"></html:button>
 							<spacer></spacer>
 							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 						</hbox>
@@ -469,7 +469,7 @@ function createTile(website) {
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
 						<html:div class="thumbnail-wrapper">
-							<html:button class="pin-button" title="${pinTitle}"></html:button>
+							<html:button class="pin-button"></html:button>
 							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
 							<html:div class="thumbnail">
 								<html:div class="thumbnail-shield"></html:div>
@@ -531,18 +531,30 @@ function populateRecentSitesGrid() {
     }
 
     // Populate the grid with the combined list
-    if (combinedSites.length) {
-        waitForElm(mostViewed).then(function() {
-            const mostVisited = document.querySelector(mostViewed);
+	console.log(combinedSites.length);		
 
-            combinedSites.forEach(site => {
-                const tile = createTile(site);
-                try {
-                    mostVisited.appendChild(tile);
-                } catch (e) {
-                    console.error(e);
-                }
-            });
-        });
+    if (combinedSites.length) {
+		const mostVisited = document.querySelector(mostViewed);
+
+		waitForElm(mostViewed).then(function() {
+			combinedSites.forEach(site => {
+				const tile = createTile(site);
+				try {
+					mostVisited.appendChild(tile);
+				} catch (e) {
+					console.error(e);
+				}
+			});
+
+			for (let i = 0; i < getTilesAmount() - combinedSites.length; i++) {
+				console.log(getTilesAmount() - combinedSites.length)
+	
+				const emptyTile = createTile();
+	
+				mostVisited.appendChild(emptyTile);
+			}
+		});
+
+		
     }
 }
