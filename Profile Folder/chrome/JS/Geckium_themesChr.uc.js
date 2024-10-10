@@ -88,12 +88,28 @@ class gkChrTheme {
 
 								let themeIcon;
 								try {
-									themeIcon = theme.theme.icons[48];
+									themeIcon = theme.theme.icons[128];
 								} catch {
 									try {
-										themeIcon = theme.icons[48];
+										themeIcon = theme.icons[128];
 									} catch {	
-										themeIcon = undefined;
+										try {
+                                            themeIcon = theme.theme.icons[48];
+                                        } catch {
+                                            try {
+                                                themeIcon = theme.icons[48];
+                                            } catch {	
+                                                try {
+                                                    themeIcon = theme.theme.icons[16];
+                                                } catch {
+                                                    try {
+                                                        themeIcon = theme.icons[16];
+                                                    } catch {	
+                                                        themeIcon = undefined;
+                                                    }
+                                                }
+                                            }
+                                        }
 									}
 								}
 
