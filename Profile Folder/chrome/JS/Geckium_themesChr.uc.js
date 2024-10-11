@@ -43,94 +43,124 @@ class gkChrTheme {
 
 			if (directory.exists() && directory.isDirectory()) {
 				var directoryEntries = directory.directoryEntries;
-				var fetchPromises = [];
-
 				while (directoryEntries.hasMoreElements()) {
-					const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
+				    const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
 					if (file.leafName.endsWith(".crx")) {
-						const themeManifest = `jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`;
+                        const response = await fetch(`jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`);
+                        const theme = await response.json();
+                        if (!theme.theme) {
+                            console.error("Error fetching theme manifest: not a theme");
+                            continue;
+                        }
 
-						const fetchPromise = fetch(themeManifest)
-							.then((response) => response.json())
-							.then((theme) => {
-								if (!theme.theme) {
-									console.error("Error fetching theme manifest: not a theme");
-									return;
-								}
+                        try {
+                            let themeName = theme.name;
+                            let themeDescription = theme.description;
+                            // Update themeName and themeDescription based on localized data
+                            const locales = new Set();
+                            for (const i of Services.locale.appLocalesAsLangTags) {
+                                locales.add(i.replace("-", "_")); // Regular locales
+                                locales.add(i.split('-')[0]); // Shorthand locales
+                            }
+                            if (theme.default_locale) {
+                                locales.add(theme.default_locale);
+                            }
+                            for (const i of locales) {
+                                try {
+                                    const response = await fetch(`jar:file://${chrThemesFolder}/${file.leafName}!/_locales/${i}/messages.json`);
+                                    const localizedInfo = await response.json();
 
-								let themeBanner;
-								let themeBannerColor;
-								if (hasImage(theme, "theme_ntp_background")) {
-									themeBanner = theme.theme.images.theme_ntp_background;
-									try {
-										themeBannerColor = theme.theme.colors.ntp_background;
-									} catch {
-										themeBannerColor = undefined;
-									}
-								} else if (hasImage(theme, "theme_frame")) {
-									themeBanner = theme.theme.images.theme_frame;
-									try {
-										themeBannerColor = theme.theme.colors.frame;
-									} catch {
-										themeBannerColor = undefined;
-									}
-								} else { // Colours only - use fallback hierachy on both colors
-									try {
-										if (theme.theme.colors.ntp_background) {
-											themeBannerColor = theme.theme.colors.ntp_background;
-										} else if (theme.theme.colors.frame) {
-											themeBannerColor = theme.theme.colors.frame;
-										}
-									} catch {
-										themeBannerColor = undefined;
-									}
-								}
+                                    if (localizedInfo.themeName && localizedInfo.themeName.message)
+                                        themeName = localizedInfo.themeName.message;
+                                    else if (localizedInfo.appName && localizedInfo.appName.message)
+                                        themeName = localizedInfo.appName.message;
+                                    else if (localizedInfo.extName && localizedInfo.extName.message)
+                                        themeName = localizedInfo.extName.message;
+                                    else if (localizedInfo.name && localizedInfo.name.message)
+                                        themeName = localizedInfo.name.message;
 
-								let themeIcon;
-								try {
-									themeIcon = theme.theme.icons[128];
-								} catch {
-									try {
-										themeIcon = theme.icons[128];
-									} catch {	
-										try {
-                                            themeIcon = theme.theme.icons[48];
-                                        } catch {
+                                    if (localizedInfo.appDesc && localizedInfo.appDesc.message)
+                                        themeDescription = localizedInfo.appDesc.message;
+                                    else if (localizedInfo.extDescription && localizedInfo.extDescription.message)
+                                        themeDescription = localizedInfo.extDescription.message;
+                                    else if (localizedInfo.description && localizedInfo.description.message)
+                                        themeDescription = localizedInfo.description.message;
+                                    break; // Exit the locale-iteration now we've got strings
+                                } catch (error) {
+                                    console.error(`Couldn't get localised theme info for locale ${i}:`, error);
+                                }
+                            }
+
+                            let themeBanner;
+                            let themeBannerColor;
+                            if (hasImage(theme, "theme_ntp_background")) {
+                                themeBanner = theme.theme.images.theme_ntp_background;
+                                try {
+                                    themeBannerColor = theme.theme.colors.ntp_background;
+                                } catch {
+                                    themeBannerColor = undefined;
+                                }
+                            } else if (hasImage(theme, "theme_frame")) {
+                                themeBanner = theme.theme.images.theme_frame;
+                                try {
+                                    themeBannerColor = theme.theme.colors.frame;
+                                } catch {
+                                    themeBannerColor = undefined;
+                                }
+                            } else { // Colours only - use fallback hierachy on both colors
+                                try {
+                                    if (theme.theme.colors.ntp_background) {
+                                        themeBannerColor = theme.theme.colors.ntp_background;
+                                    } else if (theme.theme.colors.frame) {
+                                        themeBannerColor = theme.theme.colors.frame;
+                                    }
+                                } catch {
+                                    themeBannerColor = undefined;
+                                }
+                            }
+
+                            let themeIcon;
+                            try {
+                                themeIcon = theme.theme.icons[128];
+                            } catch {
+                                try {
+                                    themeIcon = theme.icons[128];
+                                } catch {	
+                                    try {
+                                        themeIcon = theme.theme.icons[48];
+                                    } catch {
+                                        try {
+                                            themeIcon = theme.icons[48];
+                                        } catch {	
                                             try {
-                                                themeIcon = theme.icons[48];
-                                            } catch {	
+                                                themeIcon = theme.theme.icons[16];
+                                            } catch {
                                                 try {
-                                                    themeIcon = theme.theme.icons[16];
-                                                } catch {
-                                                    try {
-                                                        themeIcon = theme.icons[16];
-                                                    } catch {	
-                                                        themeIcon = undefined;
-                                                    }
+                                                    themeIcon = theme.icons[16];
+                                                } catch {	
+                                                    themeIcon = undefined;
                                                 }
                                             }
                                         }
-									}
-								}
+                                    }
+                                }
+                            }
 
-								const themeKey = file.leafName;
-								themes[themeKey] = {
-									file: themeKey,
-									name: theme.name,
-									description: theme.description,
-									version: theme.version,
-									banner: themeBanner,
-									color: themeBannerColor,
-									icon: themeIcon
-								};
-							})
-							.catch((error) => {
-								console.error("Error fetching theme manifest:", error);
-							});
-						fetchPromises.push(fetchPromise);
+                            const themeKey = file.leafName;
+                            themes[themeKey] = {
+                                file: themeKey,
+                                name: themeName,
+                                description: themeDescription,
+                                version: theme.version,
+                                banner: themeBanner,
+                                color: themeBannerColor,
+                                icon: themeIcon
+                            };
+                        } catch (error) {
+                            console.error("Error fetching theme manifest:", error);
+                        };
 					}
 				}
-				await Promise.all(fetchPromises);
 			} else {
 				console.error("Directory does not exist or is not a directory:", directoryPath);
 			}
