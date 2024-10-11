@@ -20,27 +20,6 @@ async function populateChrThemesList() {
 
         const themeFile = theme.file.replace(".crx", "");
 
-        const localizedInfoJSON = `jar:file://${chrThemesFolder}/${themeFile}.crx!/_locales/en/messages.json`;
-
-        try {
-            const response = await fetch(localizedInfoJSON);
-            const localizedInfo = await response.json();
-
-            // Update themeName and themeDescription based on localized data
-            if (localizedInfo.extName && localizedInfo.extName.message)		
-                themeName = localizedInfo.extName.message.replace(/[&<>"']/g, match => specialCharacters[match]);
-            else if (localizedInfo.name && localizedInfo.name.message)
-				themeName = localizedInfo.name.message.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-            if (localizedInfo.extDescription && localizedInfo.extDescription.message)
-                themeDescription = localizedInfo.extDescription.message.replace(/[&<>"']/g, match => specialCharacters[match]);
-            else if (localizedInfo.description && localizedInfo.description.message)
-                themeDescription = localizedInfo.description.message.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-        } catch (error) {
-            console.error("Something happened when looking for localized strings:", error);
-        }
-
         let themeBanner = theme.banner;
         let themeBannerPath = themeBanner
             ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`
