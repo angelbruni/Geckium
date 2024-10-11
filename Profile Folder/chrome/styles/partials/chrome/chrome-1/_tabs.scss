@@ -53,9 +53,9 @@
 
 	--tab-gap-between-favicon-and-title: 5px;
 
-	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.png");
-	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.png");
-	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_p.png");
+	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.svg");
+	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.svg");
+	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_p.svg");
 	--tab-close-button-margin-block-start:	1px;
 	--tab-close-button-margin-inline-end:	-2px;
 
@@ -70,6 +70,24 @@
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.png");
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_h.png");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_p.png");
+
+	@media not (resolution: 96dpi) {
+		--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_alpha_left.svg");
+		--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_left.svg");
+		--tab-inline-start-inactive2-mask: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive2_alpha_left.png");
+		--tab-inline-start-inactive2-texture: 	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive2_left.png");
+		--tab-inline-start-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_left.svg");
+		--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_center.svg");
+		--tab-inline-center-active-texture: 	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_center.svg");
+		--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_alpha_right.svg");
+		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.svg");
+		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.svg");
+
+		--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_button_mask.svg");
+		--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.svg");
+		--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_h.svg");
+		--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_p.svg");
+	}
 
 	&[geckium-choice="one"],
 	&[geckium-choice="three"],

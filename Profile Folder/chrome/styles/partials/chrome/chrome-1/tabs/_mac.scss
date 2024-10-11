@@ -4,8 +4,11 @@
         // ...safe to say neither did macOS yet. 
         content: unset !important;
     }
+
+    --newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_mac.svg");
+	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_h_mac.svg");
+	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_p_mac.svg");
 }
-// TODO: macOS has unique new tab buttons that need recreating
 
 
 // TODO: Override tab close button styling here
