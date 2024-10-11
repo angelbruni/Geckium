@@ -63,7 +63,7 @@ async function populateChrThemesList() {
                 style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
             <html:label class="wrapper">
                 <div class="year">V${themeVersion}</div>
-                <div class="icon"><image style="width: 48px; height: 48px; border-radius: 100%" src="${themeIconPath}" /></div>
+                <div class="icon"><image style="width: 48px; height: 48px" src="${themeIconPath}" /></div>
                 <div class="identifier">
                     <vbox style="min-width: 0">
                         <div class="radio-parent">
