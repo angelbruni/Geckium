@@ -1,4 +1,9 @@
 :root {
+	// Fix titlebar background in Firefox 133+
+	#TabsToolbar {
+		background-color: transparent !important;
+	}
+
 	// Make Firefox's Windows 10 CSDs white to be faithful to Windows 10+'s titlebar
 	@media (not (prefers-contrast)) {
 		&[gktitnative="true"][isWindows10] {

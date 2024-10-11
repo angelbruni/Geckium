@@ -29,6 +29,25 @@
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.png"); // Remove hot texture.
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_p_views.png");
 
+	@media not (resolution: 96dpi) {
+		--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_left.svg");
+		--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_left.svg");
+		--tab-inline-start-inactive2-mask: 		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive2_alpha_left.svg");
+		--tab-inline-start-inactive2-texture: 	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive2_left.svg");
+		--tab-inline-start-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_left.svg");
+		--tab-inline-center-mask: 				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_center.svg");
+		--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_center.svg");
+		--tab-inline-center-active-texture: 	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_center.svg");
+		--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_right.svg");
+		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_inactive_right.svg");
+		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_active_right.svg");
+
+		--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask_views.svg");
+		--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.svg");
+		--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_views.svg"); // Remove hot texture.
+		--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_p_views.svg");
+	}
+
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
 		--theme-newtab: var(--inactive-tab-background, var(--default-inactive-tab-background)) !important;

@@ -19,6 +19,13 @@
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_hover.png");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_pressed.png");
 
+    @media not (resolution: 96dpi) {
+        --newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_button_mask.svg");
+	    --newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab.svg");
+	    --newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_hover.svg");
+	    --newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/newtab_pressed.svg");
+    }
+
 	// else if lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
 		&[captionbuttonbackground="true"] {
