@@ -11,7 +11,7 @@ menupopup {
 		border: 1px solid rgb(205, 205, 205) !important;
 		color: black !important;
 
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			&:hover {
 				background-color: rgb(251, 251, 251) !important;
 				border-color: rgb(171, 171, 171) !important;
@@ -54,7 +54,7 @@ menupopup {
 
 	> menu,
 	> menuitem {
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			&:not([_moz-menuactive]) {
 				.menu-accel-container {
 					color: rgb(161, 161, 146) !important;

@@ -8,7 +8,7 @@ menupopup {
 				padding-inline-start: 4px !important;
 				z-index: 1;
 
-				&:not([disabled]) {
+				&:not([disabled="true"]) {
 					color: black !important;
 					
 					&[_moz-menuactive] {
@@ -40,7 +40,7 @@ menupopup {
 		border: 1px solid rgb(205,205,205) !important;
 		color: black !important;
 
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			&:hover {
 				background-color: rgb(66,129,244) !important;
 				border-color: rgb(171,171,171) !important;
@@ -100,7 +100,7 @@ menupopup {
 		min-height: 23px !important;
 		z-index: 1;
 	
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			color: black !important;
 			
 			&[_moz-menuactive] {
