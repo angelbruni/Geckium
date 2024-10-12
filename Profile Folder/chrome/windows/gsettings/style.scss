@@ -271,7 +271,7 @@ h4 {
 		background-repeat: no-repeat !important;
 
 		&.firefoxthemes {
-			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-right-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-noodles-left-dark\.svg), url(moz-extension\:\/\/2be3a676-a72c-4781-ba48-0214281e5a8a\/background-gradient-dark\.svg) !important;
+			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(resource://builtin-themes/alpenglow/background-noodles-right-dark.svg), url(resource://builtin-themes/alpenglow/background-noodles-left-dark.svg), url(resource://builtin-themes/alpenglow/background-gradient-dark.svg) !important;
 			background-position: center,right top,left top,right top !important;
 			background-repeat: no-repeat,no-repeat,no-repeat,repeat-x !important;
 			background-size: 64px 64px,auto,auto,auto !important
@@ -305,6 +305,19 @@ h4 {
 			background-size: cover !important;
 			background-position: top center !important;
 			box-shadow: var(--elevation-8);
+		}
+
+		&[data-theme-name="default"],
+		&[data-theme-name="firefox-alpenglow@mozilla.org"] {
+			order: -1;
+		}
+
+		&[data-theme-name*="compact-dark"] {
+			order: -2;
+		}
+
+		&[data-theme-name*="compact-light"] {
+			order: -3;
 		}
 
 		.name, .description {

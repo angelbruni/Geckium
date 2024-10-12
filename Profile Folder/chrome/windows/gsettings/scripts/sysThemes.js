@@ -1,4 +1,4 @@
-const themesList = document.getElementById("themes-grid");
+const themesList = document.getElementById("gkthemes-grid");
 
 async function selectSysTheme() {
 	let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.systemTheme").string;

@@ -120,30 +120,20 @@ class gkChrTheme {
                             }
 
                             let themeIcon;
-                            try {
-                                themeIcon = theme.theme.icons[128];
-                            } catch {
-                                try {
+                            if (theme.theme.icons) {
+                                if (theme.theme.icons[128])
+                                    themeIcon = theme.theme.icons[128];
+                                else if (theme.theme.icons[48])
+                                    themeIcon = theme.theme.icons[48];
+                                else if (theme.theme.icons[16])
+                                    themeIcon = theme.theme.icons[16];
+                            } else if (theme.icons) {
+                                if (theme.icons[128])
                                     themeIcon = theme.icons[128];
-                                } catch {	
-                                    try {
-                                        themeIcon = theme.theme.icons[48];
-                                    } catch {
-                                        try {
-                                            themeIcon = theme.icons[48];
-                                        } catch {	
-                                            try {
-                                                themeIcon = theme.theme.icons[16];
-                                            } catch {
-                                                try {
-                                                    themeIcon = theme.icons[16];
-                                                } catch {	
-                                                    themeIcon = undefined;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                else if (theme.icons[48])
+                                    themeIcon = theme.icons[48];
+                                else if (theme.icons[16])
+                                    themeIcon = theme.icons[16];
                             }
 
                             const themeKey = file.leafName;
