@@ -2,7 +2,7 @@ menupopup {
 	&#contentAreaContextMenu {
 		#context-navigation {
 			> menuitem {
-				&:not([disabled]) {
+				&:not([disabled="true"]) {
 					&[_moz-menuactive] {
 						background-color: rgb(235,235,235) !important;
 						color: black !important;
@@ -25,7 +25,7 @@ menupopup {
 		padding-inline-start: 4px !important;
 		z-index: unset;
 	
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			&[_moz-menuactive] {
 				background-color: rgb(235,235,235) !important;
 				color: black !important;
@@ -59,7 +59,7 @@ menupopup {
 	}
 
 	button {
-		&:not([disabled]) {
+		&:not([disabled="true"]) {
 			&:hover {
 				background-color: rgb(235,235,235) !important;
 				color: black !important;

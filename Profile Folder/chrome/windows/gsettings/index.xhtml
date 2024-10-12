@@ -26,7 +26,7 @@
 				<vbox class="window-top-bars light">
 					<hbox class="window-top-bar">
 						<hbox class="window-toolbar">
-							<h3 id="window-title" data-page-container="main"/>
+							<h3 id="window-title" data-page-container="main" />
 							<spacer />
 						</hbox>
 					</hbox>
@@ -273,7 +273,7 @@
 																<div class="header">&gsettings.modalDesignOverridden;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="overrides_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="overrides_modal" onclick="disableOverrides();"/>
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="overrides_modal" onclick="disableOverrides();" />
 																</div>
 															</vbox>
 														</div>
@@ -590,17 +590,17 @@
 																</hbox>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
 																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-old-name" name="app" required="true"/>
+																		<html:input type="text" class="input" id="input-app-old-name" name="app" required="true" />
 																		<label class="placeholder">&gsettings.modalEditAppOldName;</label>
 																	</div>
 																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-new-name" name="app" required="true"/>
+																		<html:input type="text" class="input" id="input-app-new-name" name="app" required="true" />
 																		<label class="placeholder">&gsettings.modalEditAppNewName;*</label>
 																	</div>
 																</vbox>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
 																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-url" name="app" required="true"/>
+																		<html:input type="text" class="input" id="input-app-url" name="app" required="true" />
 																		<label class="placeholder">URL*</label>
 																	</div>
 																</vbox>
@@ -645,100 +645,62 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" style="width: 100%;">
-											<h4>
-												&gsettings.firefoxThemes;
-											</h4>
+											<h4>&gsettings.themes;</h4>
 											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.customThemeMode;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
-															<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
-															<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.firefoxThemeOnTitlebuttons;</label>
-														<label class="description">&gsettings.firefoxThemeOnTitlebuttonsDisclaimer;</label>
-													</vbox>
-													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
-												</hbox>
-											</vbox>
-											<h4>
-												&gsettings.sysThemeYou;
-											</h4>
-											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouSource;</label>
-														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
-															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
-															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
-															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
-															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouCustom;</label>
-													</vbox>
-													<spacer />
-													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
-												</hbox>
-											</vbox>
-											<h4>
-												&gsettings.themes;
-												<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutChrThemes_modal" />
-												<div class="modal" data-modal="aboutChrThemes_modal">
-													<div class="wrapper">
-														<div class="card">
-															<vbox class="body">
-																<vbox class="description" style="gap: 16px">
-																	<html:p>
-																		&gsettings.modalChromiumThemesDescription;
-																	</html:p>
-																</vbox>
-																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutChrThemes_modal" />
+												<vbox class="item" flex="1">
+													<h4>
+														Firefox
+														<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="populateLwThemesList();">&gsettings.refreshList;</label>
+													</h4>
+													<divider style="margin-block-end: 16px;" />
+													<grid class="disable-in-wizard" id="lwthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
+														<html:button
+																id="ffoxthemestile" class="link chrome-appearance ripple-enabled firefoxthemes"
+																style="height: 160px; background-color: #1D1133 !important;"
+																onclick="openLWThemesPage()">
+															<html:label class="wrapper">
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:label class="label">&gsettings.manageFirefoxThemes;</html:label>
+																	</div>
 																</div>
+															</html:label>
+														</html:button>
+													</grid>
+													<divider />
+													<hbox class="item">
+														<vbox>
+															<label class="name">&gsettings.customThemeMode;</label>
+														</vbox>
+														<spacer />
+														<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+															<label class="placeholder" />
+															<label class="selected" />
+															<vbox class="list">
+																<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
+																<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
+																<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
 															</vbox>
+														</html:button>
+													</hbox>
+													<hbox class="item">
+														<vbox>
+															<label class="name">&gsettings.firefoxThemeOnTitlebuttons;</label>
+															<label class="description">&gsettings.firefoxThemeOnTitlebuttonsDisclaimer;</label>
+														</vbox>
+														<spacer />
+														<div class="switch-parent">
+															<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
+															<html:label class="gutter" for="auto_switch" />
 														</div>
-													</div>
-												</div>
-											</h4>
+													</hbox>
+												</vbox>
+											</vbox>
 											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="openChrThemesDir();">
-													<vbox>
-														<label class="name">&gsettings.openChrThemesFolder;</label>
-													</vbox>
-												</html:button>
-												<html:button class="item ripple-enabled" onclick="populateChrThemesList();">
-													<vbox>
-														<label class="name">&gsettings.refreshList;</label>
-													</vbox>
-												</html:button>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="themes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
+												<vbox class="item" flex="1">
+													<h4>Geckium</h4>
+													<divider style="margin-block-end: 16px;" />
+													<grid class="disable-in-wizard" id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
 																class="link chrome-appearance ripple-enabled"
@@ -848,18 +810,44 @@
 																</div>
 															</html:label>
 														</html:button>
-														<html:button
-																id="ffoxthemestile" class="link chrome-appearance ripple-enabled firefoxthemes"
-																style="height: 160px; background-color: #1D1133 !important"
-																onclick="openLWThemesPage()">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:label class="label">&gsettings.gotoFirefoxThemes;</html:label>
-																	</div>
-																</div>
-															</html:label>
+													</grid>
+													<divider />
+													<hbox class="item">
+														<vbox>
+															<label class="name">&gsettings.geckiumYouSource;</label>
+															<label class="description">&gsettings.geckiumYouDisclaimer;</label>
+														</vbox>
+														<spacer />
+														<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+															<label class="placeholder" />
+															<label class="selected" />
+															<vbox class="list">
+																<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
+																<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
+																<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+																<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
+																<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
+															</vbox>
 														</html:button>
+													</hbox>
+													<hbox class="item">
+														<vbox>
+															<label class="name">&gsettings.geckiumYouCustom;</label>
+														</vbox>
+														<spacer />
+														<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
+													</hbox>
+												</vbox>
+											</vbox>
+											<vbox class="card">
+												<vbox class="item" flex="1">
+													<h4>
+														Chromium
+														<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
+														<label class="button ripple-enabled text color disable-in-wizard" onclick="populateChrThemesList();">&gsettings.refreshList;</label>
+													</h4>
+													<divider style="margin-block-end: 16px;" />
+													<grid class="disable-in-wizard" id="chrthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
 														<label
 																id="gkwebstoretile" is="text-link"
 																class="link chrome-appearance ripple-enabled chrstore"
@@ -918,7 +906,7 @@
 									<vbox class="window-top-bars light">
 										<hbox class="window-top-bar">
 											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
-												<!--<h3 for="people-switch"/>-->
+												<!--<h3 for="people-switch" />-->
 												<spacer />
 												<div class="switch-parent">
 													<html:input class="switch" data-pref="Geckium.profilepic.button" type="checkbox" id="people-switch" name="people-switch" />
@@ -972,7 +960,7 @@
 													<h4>&gsettings.chooseAPicture;</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
-														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true"/>
+														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true" />
 														<label class="placeholder">&gsettings.imagePath;</label>
 													</div>
 												</vbox>
@@ -1046,7 +1034,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);"/>
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1059,7 +1047,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="restart_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();"/>
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();" />
 																</div>
 															</vbox>
 														</div>
@@ -1072,7 +1060,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="clearcache_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);"/>
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1554,31 +1542,32 @@ Research: User interface pixel-accuracy.</label>
 		const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
 	</script>
 
-	<script src="chrome://userchrome/content/JS/Geckium_styles.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_titlebar.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_themes.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_themesLW.uc.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/JS/Geckium_themesChr.uc.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/JS/Geckium_styles.uc.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/JS/Geckium_titlebar.uc.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/JS/Geckium_themes.uc.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/JS/Geckium_themesLW.uc.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/JS/Geckium_themesChr.uc.js" type="text/javascript" defer="true" />
 
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/globalVisualStyles.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/mainVisualStyles.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/people.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/ntpVisualStyles.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/apps.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/developerOptions.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/geckoDecor.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/about.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/sysThemes.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrThemes.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrFlags.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/globalVisualStyles.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/mainVisualStyles.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/people.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/ntpVisualStyles.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/apps.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/developerOptions.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/geckoDecor.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/about.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/lwThemes.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/sysThemes.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrThemes.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrFlags.js" type="text/javascript" defer="true" />
 
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true"/>
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/zoo/script.js" type="text/javascript" defer="true" />
 
-	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true" />
 
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/settingsLoader.js" type="text/javascript" defer="true"/>
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/settingsLoader.js" type="text/javascript" defer="true" />
 </window>

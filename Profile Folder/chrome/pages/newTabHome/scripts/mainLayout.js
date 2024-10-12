@@ -585,9 +585,114 @@ function createMainLayout() {
 		} else {
 			header = `
 			<hbox id="google-bar">
-				<html:a href="https://mail.google.com/mail">Gmail</html:a>
+				<html:a href="https://mail.google.com/mail">${ntpBundle.GetStringFromName("gmailProduct")}</html:a>
 				<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
-				<html:a id="google-apps-link" href="https://about.google/products/#all-products"></html:a>
+				<html:a id="google-products-link" href="https://about.google/products/#all-products" title="${ntpBundle.GetStringFromName("apps")}" />
+				<html:div id="products-grid-pane-container">
+					<html:div id="products-grid-arrow-border" />
+					<html:div id="products-grid-arrow-background" />
+
+					<vbox id="products-grid-container" class="hide-scrollbar">
+						<html:ul class="products-grid">
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("searchProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("youTubeProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("mapsProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("playProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("newsProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("gmailProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("driveProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("calendarProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("translateProduct")}</html:span>
+								</html:a>
+							</html:li>
+						</html:ul>
+						<html:a id="more-products-button">${ntpBundle.GetStringFromName("more")}</html:a>
+						<html:span class="divider" />
+						<html:ul id="more-products-grid" class="products-grid">
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("booksProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("walletProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("shoppingProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("bloggerProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("financeProduct")}</html:span>
+								</html:a>
+							</html:li>
+							<html:li class="product-container">
+								<html:a class="product">
+									<html:span class="product-icon" />
+									<html:span class="product-name">${ntpBundle.GetStringFromName("photosProduct")}</html:span>
+								</html:a>
+							</html:li>
+						</html:ul>
+						<html:a id="even-more" href="http://www.google.com/intl/en/options/">${ntpBundle.GetStringFromName("evenMoreFromGoogle")}</html:a>
+					</vbox>
+				</html:div>
+				
 			</hbox>
 			<vbox id="google-search">
 				<html:div id="hplogo" title="Google" />
@@ -596,6 +701,53 @@ function createMainLayout() {
 				</html:form>
 			</vbox>
 			`;
+
+			waitForElm("#google-products-link").then(() => {
+				const googleAppsLink = document.getElementById("google-products-link");
+				googleAppsLink.addEventListener("click", (e) => {
+					e.preventDefault();
+
+					if (!googleAppsLink.hasAttribute("open"))
+						googleAppsLink.setAttribute("open", true);
+					else
+						googleAppsLink.removeAttribute("open");
+
+					// Stop the event from propagating further to prevent triggering the document click listener
+					e.stopPropagation();
+				});
+
+				const appsGridContainer = document.getElementById("products-grid-container");
+				// Add event listener to the document to listen for clicks outside of the button
+				document.addEventListener("click", function (event) {
+					// Check if the clicked element is the button or one of its children
+					const isClickedInsideButton = googleAppsLink.contains(event.target);
+					const isClickedInsideAppGrid = appsGridContainer.contains(event.target);
+
+					// If the click is not inside the button or its children, remove the "open" attribute
+					if (!isClickedInsideButton && !isClickedInsideAppGrid)
+						googleAppsLink.removeAttribute("open");
+				});
+
+				const moreAppsButton = document.getElementById("more-products-button");
+				moreAppsButton.addEventListener("click", () => {
+					appsGridContainer.scroll(0, 1);
+					
+					setTimeout(() => {
+						appsGridContainer.scroll({
+							top: 257,
+							left: 0,
+							behavior: "smooth",
+						});
+					}, 0);
+				});
+				
+				appsGridContainer.addEventListener("scroll", () => {
+					if (appsGridContainer.scrollTop == 0)
+						appsGridContainer.classList.add("hide-scrollbar");
+					else
+						appsGridContainer.classList.remove("hide-scrollbar");
+				});
+			});
 		}
 
 		main = `
@@ -652,14 +804,6 @@ function createMainLayout() {
 					if (!isClickedInsideButton)
 						menuBtn.removeAttribute("open");
 				});
-
-				// Add event listeners to children of the button to prevent propagation to the document click listener
-				/*menuBtn.querySelectorAll("*").forEach(child => {
-					child.addEventListener("click", function(event) {
-						// Stop the event from propagating to the document click listener
-						event.stopPropagation();
-					});
-				});*/
 			});
 		});
 	}

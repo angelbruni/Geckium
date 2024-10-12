@@ -1,9 +1,8 @@
-const chrThemesList = document.getElementById("themes-grid");
+const chrThemesList = document.getElementById("chrthemes-grid");
 
 async function populateChrThemesList() {
     const themes = await gkChrTheme.getThemes();
 
-    // Clear existing buttons
     chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
         item.remove();
     });
