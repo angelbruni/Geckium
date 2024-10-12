@@ -46,6 +46,15 @@
 				}
 			}
 
+			> h4 {
+				color: var(--secondary-color, var(--primary-color));
+			}
+
+			> .item,
+			> divider {
+				margin-inline: -19px !important;
+			}
+
 			vbox > label {
 				&:first-of-type {
 					margin-block-start: 13px;
@@ -90,6 +99,14 @@
 				.placeholder {
 					display: none;
 				}
+			}
+		}
+
+		divider {
+			border-bottom: 1px solid rgb(240,240,240);
+
+			@media (prefers-color-scheme: dark) {
+				border-bottom: 1px solid rgb(54, 54, 54);
 			}
 		}
 	}
