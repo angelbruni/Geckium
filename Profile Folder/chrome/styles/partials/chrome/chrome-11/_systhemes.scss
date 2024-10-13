@@ -19,7 +19,7 @@
 	}
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		// Navbar
 		--default-toolbarbutton-icon-color: color-mix(in srgb, AccentColor 28%, -moz-dialogtext);
 	}
