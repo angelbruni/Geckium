@@ -1,6 +1,6 @@
-const lwThemesList = document.getElementById("lwthemes-grid");
+const lwThemesList = document.getElementById("gkthemes-grid");
 
-async function getInstalledLwThemes() {
+async function getInstalledLWThemes() {
 	try {
         // Directly await the result if getAddonsByTypes returns a promise
         const themes = await AddonManager.getAddonsByTypes(["theme"]);
@@ -16,7 +16,7 @@ async function getInstalledLwThemes() {
     }
 }
 
-async function getLwThemeData(manipath) {
+async function getLWThemeData(manipath) {
 	try {
 		const response = await fetch(manipath);
 		const theme = await response.json();
@@ -27,17 +27,17 @@ async function getLwThemeData(manipath) {
 	}
 }
 
-async function populateLwThemesList() {
+async function populateLWThemesList() {
 	let themeElm;
 
-	const themes = await getInstalledLwThemes();
+	const themes = await getInstalledLWThemes();
 
-    lwThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+    lwThemesList.querySelectorAll("button[data-lwtheme-name]").forEach(item => {
         item.remove();
     });
 
 	themes.forEach(async theme => {
-		const themeManifest = await getLwThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
+		const themeManifest = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
 
 		let themeBanner;
 		let themeBannerAlignment;
@@ -86,7 +86,7 @@ async function populateLwThemesList() {
 		themeElm = `
 		<html:button
 				class="link geckium-appearance ripple-enabled"
-				data-theme-name="${theme.id}"
+				data-lwtheme-name="${theme.id}"
 				data-index="${theme.id}"
                 style="background-color: ${themeBannerColor}; ${themeBanner} ${themeBannerAlignment} ${themeBannerTiling} ${themeBannerSizing}">
 			<html:label class="wrapper">
@@ -106,15 +106,12 @@ async function populateLwThemesList() {
 		</html:button>
 		`;
 
-		lwThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("ffoxthemestile"));
+		lwThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
 
-		document.querySelector(`button[data-theme-name="${theme.id}"]`).addEventListener("click", () => {
+		document.querySelector(`button[data-lwtheme-name="${theme.id}"]`).addEventListener("click", () => {
 			theme.enable();
-			document.querySelector(`button[data-theme-name="${theme.id}"] input[type="radio"]`).checked = true;
 		});
-
-		document.querySelector(`button[data-theme-name="${theme.id}"] input[type="radio"]`).checked = theme.isActive;
 	});
 }
 
-document.addEventListener("DOMContentLoaded", populateLwThemesList);
+document.addEventListener("DOMContentLoaded", populateLWThemesList);

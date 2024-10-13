@@ -1,9 +1,9 @@
-const chrThemesList = document.getElementById("chrthemes-grid");
+const chrThemesList = document.getElementById("gkthemes-grid");
 
 async function populateChrThemesList() {
     const themes = await gkChrTheme.getThemes();
 
-    chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+    chrThemesList.querySelectorAll("button[data-chrtheme-name]").forEach(item => {
         item.remove();
     });
 
@@ -36,7 +36,7 @@ async function populateChrThemesList() {
         let themeElm = `
         <html:button
                 class="link geckium-appearance ripple-enabled"
-                data-theme-name="${themeFile}"
+                data-chrtheme-name="${themeFile}"
                 data-index="${themeName.toLowerCase()}"
                 style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
             <html:label class="wrapper">
@@ -72,9 +72,9 @@ async function populateChrThemesList() {
         chrThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
     });
 
-    chrThemesList.querySelectorAll("button[data-theme-name]").forEach(item => {
+    chrThemesList.querySelectorAll("button[data-chrtheme-name]").forEach(item => {
         item.addEventListener("click", () => {
-            applyTheme(item.dataset.themeName);
+            applyTheme(item.dataset.chrthemeName);
         });
     });
 
@@ -82,7 +82,7 @@ async function populateChrThemesList() {
 
     let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
     if (prefChoice) {
-        chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+        chrThemesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
     }
 }
 
@@ -92,9 +92,9 @@ document.addEventListener("DOMContentLoaded", populateChrThemesList);
 function selectChrTheme() {
 	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
 	if (gkChrTheme.getEligible() && prefChoice) {
-		chrThemesList.querySelector(`button[data-theme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+		chrThemesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
 	} else {
-		chrThemesList.querySelectorAll('button[data-theme-name] input[type="radio"]').forEach(item => {
+		chrThemesList.querySelectorAll('button[data-chrtheme-name] input[type="radio"]').forEach(item => {
 			item.checked = false;
 		})
 	}
@@ -113,7 +113,7 @@ async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 	await lighttheme.enable();
 	gkPrefUtils.set("Geckium.chrTheme.fileName").string(themeid);
-	chrThemesList.querySelector(`button[data-theme-name="${themeid}"] input[type="radio"]`).checked = true;
+	chrThemesList.querySelector(`button[data-chrtheme-name="${themeid}"] input[type="radio"]`).checked = true;
 }
 
 function openChrThemesDir() {

@@ -474,6 +474,17 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
+														<label class="name">&gsettings.firefoxThemeOnTitlebuttons;</label>
+														<label class="description">&gsettings.firefoxThemeOnTitlebuttonsDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
 														<label class="name"><div class="year">2012+</div>&gsettings.colorizeTabGlareEffect;</label>
 														<label class="description">&gsettings.colorizeTabGlareEffectDescription;</label>
 													</vbox>
@@ -645,62 +656,37 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" style="width: 100%;">
-											<h4>&gsettings.themes;</h4>
+											<h4>
+												System Theme TODO
+											</h4>
 											<vbox class="card">
-												<vbox class="item" flex="1">
-													<h4>
-														Firefox
-														<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="populateLwThemesList();">&gsettings.refreshList;</label>
-													</h4>
-													<divider style="margin-block-end: 16px;" />
-													<grid class="disable-in-wizard" id="lwthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
-														<html:button
-																id="ffoxthemestile" class="link chrome-appearance ripple-enabled firefoxthemes"
-																style="height: 160px; background-color: #1D1133 !important;"
-																onclick="openLWThemesPage()">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:label class="label">&gsettings.manageFirefoxThemes;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-													</grid>
-													<divider />
-													<hbox class="item">
-														<vbox>
-															<label class="name">&gsettings.customThemeMode;</label>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouSource;</label>
+														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
+															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
+															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
 														</vbox>
-														<spacer />
-														<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
-															<label class="placeholder" />
-															<label class="selected" />
-															<vbox class="list">
-																<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
-																<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
-																<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
-															</vbox>
-														</html:button>
-													</hbox>
-													<hbox class="item">
-														<vbox>
-															<label class="name">&gsettings.firefoxThemeOnTitlebuttons;</label>
-															<label class="description">&gsettings.firefoxThemeOnTitlebuttonsDisclaimer;</label>
-														</vbox>
-														<spacer />
-														<div class="switch-parent">
-															<html:input class="switch" data-pref="Geckium.lwtheme.captionButtonBackground" type="checkbox" id="auto_switch" name="auto_switch" />
-															<html:label class="gutter" for="auto_switch" />
-														</div>
-													</hbox>
-												</vbox>
-											</vbox>
-											<vbox class="card">
-												<vbox class="item" flex="1">
-													<h4>Geckium</h4>
-													<divider style="margin-block-end: 16px;" />
-													<grid class="disable-in-wizard" id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
+													</html:button>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouCustom;</label>
+													</vbox>
+													<spacer />
+													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid class="disable-in-wizard" id="systhemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
 																class="link chrome-appearance ripple-enabled"
@@ -708,10 +694,9 @@
 																style="height: 160px"
 																onclick="applySysTheme('auto')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-auto" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-auto" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label">&gsettings.automatic;</html:label>
 																	</div>
@@ -719,14 +704,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-classic"
+																class="link chrome-appearance ripple-enabled systheme-classic"
 																data-systheme="classic" style="height: 160px"
 																onclick="applySysTheme('classic')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-classic" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-classic" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label notlinux">&gsettings.sysThemeWindows;</html:label>
 																		<html:label class="label linuxonly">&gsettings.sysThemeClassic;</html:label>
@@ -735,14 +719,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-you"
+																class="link chrome-appearance ripple-enabled systheme-you"
 																data-systheme="you" style="height: 160px"
 																onclick="applySysTheme('you')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-you" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label">&gsettings.sysThemeYou;</html:label>
 																	</div>
@@ -750,14 +733,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-gtk"
+																class="link chrome-appearance ripple-enabled systheme-gtk"
 																data-systheme="gtk" style="height: 160px"
 																onclick="applySysTheme('gtk')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-you" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label notlinux">&gsettings.sysThemeNative;</html:label>
 																		<html:label class="label linuxonly">GTK+</html:label>
@@ -766,14 +748,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-macosx"
+																class="link chrome-appearance ripple-enabled systheme-macosx"
 																data-systheme="macosx" style="height: 160px"
 																onclick="applySysTheme('macosx')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-macosx" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-macosx" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label">&gsettings.sysThemeMacOSX;</html:label>
 																	</div>
@@ -781,14 +762,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-macos"
+																class="link chrome-appearance ripple-enabled systheme-macos"
 																data-systheme="macos" style="height: 160px"
 																onclick="applySysTheme('macos')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-macos" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-macos" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label">&gsettings.sysThemeMacOS;</html:label>
 																	</div>
@@ -796,14 +776,13 @@
 															</html:label>
 														</html:button>
 														<html:button
-																class="link chrome-appearance ripple-enabled gktheme-chromiumos"
+																class="link chrome-appearance ripple-enabled systheme-chromiumos"
 																data-systheme="chromiumos" style="height: 160px"
 																onclick="applySysTheme('chromiumos')">
 															<html:label class="wrapper">
-																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
 																	<div class="radio-parent">
-																		<html:input id="theme-chromiumos" class="radio" type="radio" name="gktheme"></html:input>
+																		<html:input id="theme-chromiumos" class="radio" type="radio" name="systheme"></html:input>
 																		<div class="gutter" for="checked_check"></div>
 																		<html:label class="label">&gsettings.sysThemeChrOS;</html:label>
 																	</div>
@@ -811,43 +790,31 @@
 															</html:label>
 														</html:button>
 													</grid>
-													<divider />
-													<hbox class="item">
-														<vbox>
-															<label class="name">&gsettings.geckiumYouSource;</label>
-															<label class="description">&gsettings.geckiumYouDisclaimer;</label>
-														</vbox>
-														<spacer />
-														<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
-															<label class="placeholder" />
-															<label class="selected" />
-															<vbox class="list">
-																<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
-																<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
-																<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
-																<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
-																<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
-															</vbox>
-														</html:button>
-													</hbox>
-													<hbox class="item">
-														<vbox>
-															<label class="name">&gsettings.geckiumYouCustom;</label>
-														</vbox>
-														<spacer />
-														<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
-													</hbox>
 												</vbox>
 											</vbox>
+											<h4>
+												&gsettings.themes;
+												<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
+												<label class="button ripple-enabled text color disable-in-wizard" onclick="populateChrThemesList();">&gsettings.refreshList;</label>
+											</h4>
 											<vbox class="card">
-												<vbox class="item" flex="1">
-													<h4>
-														Chromium
-														<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
-														<label class="button ripple-enabled text color disable-in-wizard" onclick="populateChrThemesList();">&gsettings.refreshList;</label>
-													</h4>
-													<divider style="margin-block-end: 16px;" />
-													<grid class="disable-in-wizard" id="chrthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px;" flex="1">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.customThemeMode;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
+															<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
+															<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<vbox class="item" flex="1" style="padding-block-start: 19px">
+													<grid class="disable-in-wizard" id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<label
 																id="gkwebstoretile" is="text-link"
 																class="link chrome-appearance ripple-enabled chrstore"
@@ -869,6 +836,18 @@
 																<div class="identifier">
 																	<div class="radio-parent">
 																		<html:label class="label">&gsettings.getMoreMicrosoftEdgeThemes;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</label>
+														<label
+																is="text-link" class="link chrome-appearance ripple-enabled lwstore"
+																style="height: 160px; background-color: #1D1133 !important"
+																href="https://addons.mozilla.org/en-GB/firefox/themes">
+															<html:label class="wrapper">
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:label class="label">&gsettings.manageFirefoxThemes;</html:label>
 																	</div>
 																</div>
 															</html:label>
@@ -896,7 +875,7 @@
 													</vbox>
 												</html:button>
 											</vbox>
-										</vbox>	
+										</vbox>
 									</vbox>
 								</vbox>
 							</vbox>

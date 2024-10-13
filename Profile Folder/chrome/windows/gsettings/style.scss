@@ -270,7 +270,7 @@ h4 {
 		fill: white;
 		background-repeat: no-repeat !important;
 
-		&.firefoxthemes {
+		&.lwstore {
 			background-image: url(chrome://mozapps/skin/extensions/category-themes.svg), url(resource://builtin-themes/alpenglow/background-noodles-right-dark.svg), url(resource://builtin-themes/alpenglow/background-noodles-left-dark.svg), url(resource://builtin-themes/alpenglow/background-gradient-dark.svg) !important;
 			background-position: center,right top,left top,right top !important;
 			background-repeat: no-repeat,no-repeat,no-repeat,repeat-x !important;
@@ -411,58 +411,58 @@ h4 {
 		}
 	}
 
-	&.chrome-appearance.gktheme-gtk {
+	&.chrome-appearance.systheme-gtk {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/gtk.svg) !important;
 		fill: -moz-dialog;
 		background-color: ActiveCaption !important;
 	}
 }
 // Themes with eras
-.gktheme-classic {
+.systheme-classic {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-1.svg) !important;
 }
-.gktheme-you {
+.systheme-you {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-1.svg) !important;
 }
-.gktheme-macosx {
+.systheme-macosx {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-1.svg) !important;
 }
-.gktheme-macos {
+.systheme-macos {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-1.svg) !important;
 }
-.gktheme-chromiumos {
+.systheme-chromiumos {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-1.svg) !important;
 }
 :root[geckium-six] {
-	.gktheme-classic {
+	.systheme-classic {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-6.svg) !important;
 	}
-	.gktheme-you {
+	.systheme-you {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/you-6.svg) !important;
 	}
-	.gktheme-chromiumos {
+	.systheme-chromiumos {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-6.svg) !important;
 	}
 }
 :root[geckium-eleven] {
-	.gktheme-macosx {
+	.systheme-macosx {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macosx-11.svg) !important;
 	}
-	.gktheme-macos {
+	.systheme-macos {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/macos-11.svg) !important;
 	}
 }
 :root[geckium-twentyone] {
-	.gktheme-chromiumos {
+	.systheme-chromiumos {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/chros-21.svg) !important;
 	}
 }
 :root[geckium-sixtyeight] {
-	.gktheme-classic,
-	.gktheme-you,
-	.gktheme-macosx,
-	.gktheme-macos,
-	.gktheme-chromiumos {
+	.systheme-classic,
+	.systheme-you,
+	.systheme-macosx,
+	.systheme-macos,
+	.systheme-chromiumos {
 		background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-68.svg) !important;
 	}
 }
