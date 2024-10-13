@@ -84,7 +84,7 @@ class sfMigrator {
 			if (AppConstants.platform != "win" && !gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				//  On Linux and macOS, set the System Theme to Classic to match Silverfox's former behaviour
 				gkPrefUtils.set("Geckium.appearance.systemTheme").string("classic");
-			} else {
+			} else if (lwtheme.startsWith("firefox-compact-light@")) {
 				//  On Windows, enable Compact Borders to match Silverfox's former behaviour
 				gkPrefUtils.set("Geckium.appearance.titlebarNative").int(2);
 			}
