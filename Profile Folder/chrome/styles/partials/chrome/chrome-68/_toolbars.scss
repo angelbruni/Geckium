@@ -16,11 +16,6 @@
 	--personal-toolbar-height: 28px;
 }
 
-#nav-bar {
-	border-top-left-radius: 0 !important;
-	border-top-right-radius: 0 !important;
-}
-
 :not(.widget-overflow-list) {
 	> .toolbarbutton-1:not(
 		#fxa-toolbar-menu-button,
@@ -33,7 +28,7 @@
 		box-shadow: none !important;
 	
 		&::before {
-			content: "";
+			content: "" !important;
 			transform: scale(0);
 			left: 50% !important;
 			top: 50% !important;
@@ -50,6 +45,12 @@
 		}
 	
 		&:not([disabled]) {
+			&:hover,
+			&:active,
+			&[open] {
+				box-shadow: none !important;
+			}
+
 			&:hover {
 				background: var(--toolbarbutton-background-hot, var(--default-toolbarbutton-background-hot)) !important;
 				
@@ -93,6 +94,11 @@
 			}
 		}
 	}
+}
+
+#nav-bar {
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
 }
 
 &#back-button,
