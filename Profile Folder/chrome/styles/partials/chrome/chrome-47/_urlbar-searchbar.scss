@@ -19,6 +19,7 @@
 			border-style: solid !important;
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/go.svg);
 			box-shadow: none !important;
+			align-items: center;
 
 			&::before {
 				background: linear-gradient(
@@ -42,6 +43,8 @@
 			#go-button {
 				fill: white !important;
 				filter: unset;
+				width: 13px;
+				height: 13px;
 			}
 		}
 

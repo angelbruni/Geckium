@@ -214,7 +214,8 @@
 		#fxa-toolbar-menu-button,
 		#tabs-newtab-button,
 		#new-tab-button,
-		.subviewbutton) {
+		.subviewbutton,
+		#go-button-box) {
 		position: relative;
 		padding: 0 !important;
 		background: var(--toolbarbutton-texture, var(--default-toolbarbutton-texture)) !important;
@@ -585,7 +586,7 @@
 		}
 
 		#personal-toolbar-empty {
-			z-index: 1;
+			z-index: 0;
 			
 			> #personal-toolbar-empty-description {
 				display: flex !important;
