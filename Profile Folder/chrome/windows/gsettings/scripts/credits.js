@@ -222,8 +222,7 @@ Research: Useful insight into Firefox JS.`,
 
 		{
 			name: "nabrious",
-			role: "ex-developer",
-			importantText: "Geckium's original developer.",
+			role: "og-developer",
 			contributions: "Helped create the Material Design framework used in Geckium Settings and Geckium Wizard."
 		},
 	]
@@ -231,22 +230,17 @@ Research: Useful insight into Firefox JS.`,
 	credits.forEach(person => {
 		const cardRoleTitle = document.createXULElement("h4");
 
-		let importantText;
+		let importantText = "";
 		if (person.importantText)
 			importantText = person.importantText;
 		else if (person.role == "main-developer")
-			importantText = "Main developer";
-		else
-			importantText = "";
+			person.name = gSettingsBundle.GetStringFromName("mainDeveloper").replace("%s", person.name);
 
 		let quote;
 		if (person.quote)
 			quote = `"${person.quote}"`;
 		else
 			quote = "";
-
-		if (person.role == "main-developer")
-			importantText = "Main developer"
 
 		const creditTemplate = `
 		<html:button data-name="${person.name}" class="item ripple-enabled">
@@ -296,7 +290,7 @@ Research: Useful insight into Firefox JS.`,
 			}
 
 			testersCard.appendChild(creditFragment);
-		} else if (person.role == "ex-developer") {
+		} else if (person.role == "og-developer") {
 			let exDevelopersCard;
 
 			if (document.querySelector("#exDevelopersCard.card")) {
