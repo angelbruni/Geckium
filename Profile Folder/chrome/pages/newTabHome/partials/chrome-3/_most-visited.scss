@@ -159,7 +159,7 @@
 		);
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		--view-toolbar-buttons-bg: -moz-dialog;
 		--window-menu-item-hover-bg: AccentColor;
 

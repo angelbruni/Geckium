@@ -761,7 +761,7 @@
 /*
 	GTK+ SysTheme - exclusive urlbar styling
 */
-[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 	#urlbar-container {
 		&::before {
 			-moz-default-appearance: textarea;

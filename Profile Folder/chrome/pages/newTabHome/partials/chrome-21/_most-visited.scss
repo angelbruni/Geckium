@@ -39,7 +39,7 @@
 		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color));
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		--thumbnail-inner-border-color: -moz-dialog;
 	}
 

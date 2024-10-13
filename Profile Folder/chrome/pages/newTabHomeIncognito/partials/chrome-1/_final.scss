@@ -8,7 +8,7 @@ body {
 	}
 }
 // GTK+
-&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 	body {
 		background-color: Field;
 		color: FieldText;

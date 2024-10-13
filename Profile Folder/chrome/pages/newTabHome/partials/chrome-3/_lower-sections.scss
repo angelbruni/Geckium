@@ -51,14 +51,11 @@
 			var(--thumbnail-border-color-normal) 70%,
 			white
 		);
-
-		&:not([gksystheme="gtk"]) {
-			--lower-sections-h2-background: linear-gradient(
-				to bottom,
-				var(--thumbnail-border-color-normal),
-				var(--thumbnail-border-color-normal)
-			);
-		}
+		--lower-sections-h2-background: linear-gradient(
+			to bottom,
+			var(--thumbnail-border-color-normal),
+			var(--thumbnail-border-color-normal)
+		);
 	}
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
@@ -81,7 +78,7 @@
 		grey
 	}
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		--lower-sections-border-color: color-mix(
 			in srgb,
 			ActiveCaption 70%,

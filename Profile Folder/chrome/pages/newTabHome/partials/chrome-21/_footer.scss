@@ -223,7 +223,7 @@
 	}
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		--footer-border: linear-gradient(
 			to left,
 			color-mix(

@@ -189,7 +189,7 @@
     }
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		// Titlebar
 		--default-titlebar-active: linear-gradient(
             to bottom,

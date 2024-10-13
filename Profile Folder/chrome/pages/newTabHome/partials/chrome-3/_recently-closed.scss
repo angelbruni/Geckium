@@ -71,7 +71,7 @@
 	}
 
 	// GTK+
-	&[gksystheme="gtk"]:not([lwtheme], [gkthemed], [gkchrthemed]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		--recently-closed-background: -moz-dialog;
 		--recently-closed-border-color: color-mix(
 			in srgb,

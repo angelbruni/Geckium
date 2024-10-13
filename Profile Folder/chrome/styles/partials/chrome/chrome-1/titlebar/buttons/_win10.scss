@@ -127,7 +127,8 @@
 			}
 		}
 		// Halve opacity if window's inactive
-		&:-moz-window-inactive:not([gksystheme="gtk"]) { // can cause readability issues on GTK+
+		&:-moz-window-inactive[gkthemed],
+		&:-moz-window-inactive:not([gksystheme="gtk"], [gkthemed]) { // can cause readability issues on GTK+
 			.titlebar-button:not(:hover, :active) {
 				opacity: 0.5;
 			}

@@ -163,7 +163,7 @@
 	/*
 		GTK+ SysTheme - exclusive toolbarbutton styling
 	*/
-	&[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
 			#fxa-toolbar-menu-button,

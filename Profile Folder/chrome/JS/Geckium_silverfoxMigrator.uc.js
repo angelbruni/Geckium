@@ -75,6 +75,12 @@ class sfMigrator {
 				// Force Windows Styling
 				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
 			}
+			// System Theme
+			const lwtheme = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+			if (lwtheme.startsWith("firefox-compact-light@") ||
+				lwtheme.startsWith("firefox-compact-dark@")) {
+				gkPrefUtils.set("Geckium.appearance.systemTheme").string("classic");
+			}
 		}
 
 		//Branding

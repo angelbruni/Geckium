@@ -42,7 +42,7 @@
 	--downloads-favicon: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/downloads_favicon.svg");
 }
 @media (-moz-platform: linux) {
-	:root[gksystheme="gtk"]:not([lwtheme], [gkchrthemed], [geckium-sixtyeight]) {
+	:root[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 		// Fallback favicon
 		--default-favicon:		url(moz-icon://stock/text-x-generic?size=button);
 
