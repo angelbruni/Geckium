@@ -76,12 +76,18 @@ class sfMigrator {
 				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
 			}
 		}
-		
+
 		// System Theme
 		const lwtheme = gkPrefUtils.tryGet("extensions.activeThemeID").string;
 		if (lwtheme.startsWith("firefox-compact-light@") ||
 			lwtheme.startsWith("firefox-compact-dark@")) {
-			gkPrefUtils.set("Geckium.appearance.systemTheme").string("classic");
+			if (AppConstants.platform != "win" && !gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
+				//  On Linux and macOS, set the System Theme to Classic to match Silverfox's former behaviour
+				gkPrefUtils.set("Geckium.appearance.systemTheme").string("classic");
+			} else {
+				//  On Windows, enable Compact Borders to match Silverfox's former behaviour
+				gkPrefUtils.set("Geckium.appearance.titlebarNative").int(2);
+			}
 		}
 
 		//Branding
