@@ -30,4 +30,9 @@
 	.face-sad::before {
 		content: url("assets/img/pages/orange_exclamation.png") !important;
 	}
+
+	/* Hide preferences that don't work in Geckium */
+	#homeContentsGroup {
+		display: none !important;
+	}
 }
