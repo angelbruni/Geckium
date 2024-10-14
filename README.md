@@ -85,8 +85,10 @@ However,
 
 Credits can be found within Geckium Settings's About page upon opening Geckium.
 
-EXCLUDING content that states otherwise at the top of their files, such as direct ports of Chromium code, this work is licensed under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+Geckium is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa] license, excluding the parts of Geckium that are forked off Firefox or Chromium - for these files, their licenses can be found in the files their code resides in.
+
+For more information about Geckium's Creative Commons license, see LICENSE.md or click the license below.
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
