@@ -1,4 +1,11 @@
-const lwThemesList = document.getElementById("gkthemes-grid");
+async function 
+
+
+
+
+
+
+
 
 async function getInstalledLWThemes() {
 	try {
@@ -32,7 +39,7 @@ async function populateLWThemesList() {
 
 	const themes = await getInstalledLWThemes();
 
-    lwThemesList.querySelectorAll("button[data-lwtheme-name]").forEach(item => {
+    themesList.querySelectorAll("button[data-lwtheme-name]").forEach(item => {
         item.remove();
     });
 
@@ -106,7 +113,7 @@ async function populateLWThemesList() {
 		</html:button>
 		`;
 
-		lwThemesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
+		themesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
 
 		document.querySelector(`button[data-lwtheme-name="${theme.id}"]`).addEventListener("click", () => {
 			theme.enable();

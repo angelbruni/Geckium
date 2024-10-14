@@ -657,138 +657,27 @@
 									<vbox class="content">
 										<vbox class="list-container" style="width: 100%;">
 											<h4>
-												System Theme TODO
+												Appearance TODO
 											</h4>
 											<vbox class="card">
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouSource;</label>
-														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
-													</vbox>
-													<spacer />
-													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
-															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
-															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
-															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
-															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
-														</vbox>
-													</html:button>
-												</hbox>
-												<hbox class="item">
-													<vbox>
-														<label class="name">&gsettings.geckiumYouCustom;</label>
-													</vbox>
-													<spacer />
-													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" id="you-color-select"></html:input>
-												</hbox>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="systhemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
-														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
-														<html:button
-																class="link chrome-appearance ripple-enabled"
-																data-systheme="auto"
-																style="height: 160px"
-																onclick="applySysTheme('auto')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-auto" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">&gsettings.automatic;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-classic"
-																data-systheme="classic" style="height: 160px"
-																onclick="applySysTheme('classic')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-classic" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label notlinux">&gsettings.sysThemeWindows;</html:label>
-																		<html:label class="label linuxonly">&gsettings.sysThemeClassic;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-you"
-																data-systheme="you" style="height: 160px"
-																onclick="applySysTheme('you')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-you" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">&gsettings.sysThemeYou;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-gtk"
-																data-systheme="gtk" style="height: 160px"
-																onclick="applySysTheme('gtk')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-you" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label notlinux">&gsettings.sysThemeNative;</html:label>
-																		<html:label class="label linuxonly">GTK+</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-macosx"
-																data-systheme="macosx" style="height: 160px"
-																onclick="applySysTheme('macosx')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-macosx" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">&gsettings.sysThemeMacOSX;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-macos"
-																data-systheme="macos" style="height: 160px"
-																onclick="applySysTheme('macos')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-macos" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">&gsettings.sysThemeMacOS;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
-														<html:button
-																class="link chrome-appearance ripple-enabled systheme-chromiumos"
-																data-systheme="chromiumos" style="height: 160px"
-																onclick="applySysTheme('chromiumos')">
-															<html:label class="wrapper">
-																<div class="identifier">
-																	<div class="radio-parent">
-																		<html:input id="theme-chromiumos" class="radio" type="radio" name="systheme"></html:input>
-																		<div class="gutter" for="checked_check"></div>
-																		<html:label class="label">&gsettings.sysThemeChrOS;</html:label>
-																	</div>
-																</div>
-															</html:label>
-														</html:button>
+													<grid class="disable-in-wizard" id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center;" flex="1">
+														<html:input id="thememode-auto"
+																class="ripple-enabled thememode"
+																type="radio" name="thememode">
+														</html:input>
+														<html:input id="thememode-light"
+																class="ripple-enabled thememode"
+																type="radio" name="thememode">
+														</html:input>
+														<html:input id="thememode-dark"
+																class="ripple-enabled thememode"
+																type="radio" name="thememode">
+														</html:input>
+														<html:input id="thememode-themed"
+																class="ripple-enabled thememode"
+																type="radio" name="thememode">
+														</html:input>
 													</grid>
 												</vbox>
 											</vbox>
@@ -813,8 +702,152 @@
 														</vbox>
 													</html:button>
 												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.geckiumYouSource;</label>
+														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="none">&gsettings.grey;</hbox>
+															<hbox class="item ripple-enabled" value="accent">&gsettings.w3cAccentColor;</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled winonly notwin10" value="aerocolor">&gsettings.wincolor;</hbox>
+															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
+														</vbox>
+													</html:button>
+													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" data-parent-pref="you.mode" data-requires-value="custom" id="you-color-select"></html:input>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Filter themes by... TODO</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" style="width: 300px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="all">All Themes TODO</hbox>
+															<hbox class="item ripple-enabled" value="geckium">Default Themes TODO</hbox>
+															<hbox class="item ripple-enabled" value="chromium">Chromium Themes TODO</hbox>
+															<hbox class="item ripple-enabled" value="firefox">Firefox Themes TODO</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid class="disable-in-wizard" id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
+														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
+														<html:button
+																class="link chrome-appearance ripple-enabled"
+																data-systheme="auto"
+																style="height: 160px"
+																onclick="applySysTheme('auto')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-auto" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.automatic;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-classic"
+																data-systheme="classic" style="height: 160px"
+																onclick="applySysTheme('classic')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-classic" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label notlinux">&gsettings.sysThemeWindows;</html:label>
+																		<html:label class="label linuxonly">&gsettings.sysThemeClassic;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-you"
+																data-systheme="you" style="height: 160px"
+																onclick="applySysTheme('you')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeYou;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-gtk"
+																data-systheme="gtk" style="height: 160px"
+																onclick="applySysTheme('gtk')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-you" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label notlinux">&gsettings.sysThemeNative;</html:label>
+																		<html:label class="label linuxonly">GTK+</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-macosx"
+																data-systheme="macosx" style="height: 160px"
+																onclick="applySysTheme('macosx')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-macosx" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeMacOSX;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-macos"
+																data-systheme="macos" style="height: 160px"
+																onclick="applySysTheme('macos')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-macos" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeMacOS;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
+														<html:button
+																class="link chrome-appearance ripple-enabled systheme-chromiumos"
+																data-systheme="chromiumos" style="height: 160px"
+																onclick="applySysTheme('chromiumos')">
+															<html:label class="wrapper">
+																<div class="year">&gsettings.sysThemeIsFallback;</div>
+																<div class="identifier">
+																	<div class="radio-parent">
+																		<html:input id="theme-chromiumos" class="radio" type="radio" name="gktheme"></html:input>
+																		<div class="gutter" for="checked_check"></div>
+																		<html:label class="label">&gsettings.sysThemeChrOS;</html:label>
+																	</div>
+																</div>
+															</html:label>
+														</html:button>
 														<label
 																id="gkwebstoretile" is="text-link"
 																class="link chrome-appearance ripple-enabled chrstore"
@@ -841,7 +874,7 @@
 															</html:label>
 														</label>
 														<label
-																is="text-link" class="link chrome-appearance ripple-enabled lwstore"
+																is="text-link" class="link chrome-appearance ripple-enabled mozstore"
 																style="height: 160px; background-color: #1D1133 !important"
 																href="https://addons.mozilla.org/en-GB/firefox/themes">
 															<html:label class="wrapper">
@@ -1253,6 +1286,7 @@
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/lwThemes.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/sysThemes.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/chrThemes.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/themesGrid.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/people.js" type="text/javascript" defer="true" />
 	
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/geckoDecor.js" type="text/javascript" defer="true" />
