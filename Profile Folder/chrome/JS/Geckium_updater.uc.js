@@ -80,7 +80,7 @@ function updateSettings(iteration) {
 
 
 
-// PLACEHOLDER UPDATE MECHANISM FOR GECKIUM PUBLIC ALPHA
+// PLACEHOLDER UPDATE MECHANISM FOR GECKIUM PUBLIC BETA 1
 async function gkCheckForUpdates() {
     const ghURL = "https://api.github.com/repos/angelbruni/Geckium/releases?page=1&per_page=1";
 
