@@ -1,6 +1,3 @@
-NOTE: Not all of Geckium is licensed under the below license, as some of Geckium is forked off Firefox or Chromium - for such cases, their licenses can be found in the files their code resides in.
-
-
 Attribution-NonCommercial-ShareAlike 4.0 International
 
 =======================================================================
@@ -438,3 +435,8 @@ the avoidance of doubt, this paragraph does not form part of the
 public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
+
+=======================================================================
+
+Some files in Geckium are licensed under different licenses - for these files,
+their license can be found at the top of their source code.
