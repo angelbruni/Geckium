@@ -1,3 +1,13 @@
 #most-visited-section {
 	border-block-start: 1px solid var(--recently-closed-border-color);
 }
+
+#most-visited.collapsed {
+	display: flex !important;
+	padding-block-end: 5px;
+	margin-block-end: 0;
+
+	> a {
+		display: none !important;
+	}
+}

@@ -111,6 +111,10 @@
 		overflow: hidden;
 		height: 198px;
 
+		&.collapsed {
+			display: none !important;
+		}
+
 		> hbox {
 			> vbox {
 				flex: 1;

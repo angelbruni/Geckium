@@ -12,6 +12,9 @@ function setMostVisitedLayout(layout) {
 	const thumbCheckbox = document.getElementById("thumb-checkbox");
 	const listCheckbox = document.getElementById("list-checkbox");
 
+	const mostViewedCheckbox = document.getElementById("THUMB");
+	const mostViewedSectionElm = document.querySelector("#most-visited");
+
 	let mostVisitedLayout;
 
 	if (typeof layout !== "undefined" && typeof layout !== "string")
@@ -19,41 +22,51 @@ function setMostVisitedLayout(layout) {
 
 	mostVisitedLayout = gkPrefUtils.tryGet("Geckium.newTabHome.mostVisitedLayout").int;
 
+	mostViewedCollapsed = gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool;
+
 	if (!mostVisitedLayout)
 		mostVisitedLayout = 1;
 
 	switch (layout) {
 		case 0:
+			thumbCheckbox.checked = false;
+			listCheckbox.checked = false;
+
 			mostVisited.classList.add("collapsed");
 			mostVisited.classList.remove("list");
+
+			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(true);
+			mostViewedCheckbox.checked = false;
+			mostViewedSectionElm.classList.add("collapsed");
 			break;
 
 		case 1:
-			if (thumbCheckbox.checked) {
-				mostVisited.classList.remove("collapsed");
-				mostVisited.classList.remove("list");
+			if (!mostViewedCollapsed) {
+				thumbCheckbox.checked = true;
 				listCheckbox.checked = false;
 			}
+
+			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+			mostVisited.classList.remove("collapsed");
+			mostVisited.classList.remove("list");
 			break;
 
 		case 2:
-			if (listCheckbox.checked) {
-				mostVisited.classList.remove("collapsed");
-				mostVisited.classList.add("list");
+			if (!mostViewedCollapsed) {
 				thumbCheckbox.checked = false;
+				listCheckbox.checked = true;
 			}
+
+			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+			mostVisited.classList.remove("collapsed");
+			mostVisited.classList.add("list");
 			break;
 
 		case "default":
-			if (mostVisitedLayout == 0) {
-				mostVisited.classList.add("collapsed");
-			} else if (mostVisitedLayout == 1) {
-				thumbCheckbox.checked = true;
-			} else if (mostVisitedLayout == 2) {
-				listCheckbox.checked = true;
-				mostVisited.classList.remove("collapsed");
-				mostVisited.classList.add("list");
-			}
+			if (mostViewedCollapsed)
+				setMostVisitedLayout(0);
+			else
+				setMostVisitedLayout(mostVisitedLayout)
 	}
 }
 
@@ -68,9 +81,8 @@ function createMainLayout() {
 	let main = ``;
 	let footer = ``;
 
-	let editThumbnailsLink;
-
 	let menuBtnsContainer;
+	let recentActivitiesSectionElm;
 
 	if (appearanceChoice == 1) {
 		main = `
@@ -232,6 +244,7 @@ function createMainLayout() {
 						<vbox id="option-menu" class="window-menu">
 							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
 							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
+							<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("evenMore")}"></checkbox>
 						</vbox>
 					</html:button>
 				</hbox>
@@ -268,6 +281,40 @@ function createMainLayout() {
 				</hbox>
 			</vbox>
 			`;
+
+			waitForElm("#option-menu").then(() => {
+				// Even more
+				const evenMoreCheckbox = document.getElementById("TIPS");
+	
+				const evenMoreSectionElm = document.querySelector("#tips.section");
+	
+				const ntpevenMoreCollapsedObs = {
+					observe: function (subject, topic, data) {
+						if (topic == "nsPref:changed") {
+							if (gkPrefUtils.tryGet("Geckium.newTabHome.evenMoreCollapsed").bool) {
+								evenMoreCheckbox.checked = false;
+								evenMoreSectionElm.classList.add("collapsed");
+							} else {
+								evenMoreCheckbox.checked = true;
+								evenMoreSectionElm.classList.remove("collapsed");
+							}
+						}
+					},
+				};
+				Services.prefs.addObserver("Geckium.newTabHome.evenMoreCollapsed", ntpevenMoreCollapsedObs, false);
+	
+				if (gkPrefUtils.tryGet("Geckium.newTabHome.evenMoreCollapsed").bool) {
+					evenMoreCheckbox.checked = false;
+					evenMoreSectionElm.classList.add("collapsed");
+				} else {
+					evenMoreCheckbox.checked = true;
+					evenMoreSectionElm.classList.remove("collapsed");
+				}
+	
+				evenMoreCheckbox.addEventListener("click", () => {
+					gkPrefUtils.toggle("Geckium.newTabHome.evenMoreCollapsed");
+				});
+			});
 		} else if (appearanceChoice <= 4) {
 			// Chrome 0 - 5	
 			main = `
@@ -313,7 +360,7 @@ function createMainLayout() {
 						<vbox id="option-menu" class="window-menu">
 							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
 							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
-							<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>
+							<!--<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>-->
 						</vbox>
 					</html:button>
 				</hbox>
@@ -346,7 +393,7 @@ function createMainLayout() {
 						<vbox id="option-menu" class="window-menu">
 							<checkbox id="THUMB" label="${ntpBundle.GetStringFromName("mostVisited")}"></checkbox>
 							<checkbox id="RECENT" label="${ntpBundle.GetStringFromName("recentlyClosed")}"></checkbox>
-							<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>
+							<!--<checkbox id="TIPS" label="${ntpBundle.GetStringFromName("tips")}"></checkbox>-->
 						</vbox>
 					</html:button>
 				</hbox>
@@ -378,23 +425,100 @@ function createMainLayout() {
 			`;
 		}
 
+		
+
 		waitForElm(menuBtnsContainer).then(() => {
 			const thumbCheckbox = document.getElementById("thumb-checkbox");
 			const listCheckbox = document.getElementById("list-checkbox");
 
-			thumbCheckbox.addEventListener("change", () => {
-				if (thumbCheckbox.checked == true)
+			const mostViewedCheckbox = document.getElementById("THUMB");
+			const mostViewedSectionElm = document.querySelector("#most-visited");
+
+			thumbCheckbox.addEventListener("click", () => {
+				if (thumbCheckbox.checked)
 					setMostVisitedLayout(1);
-				else if (!thumbCheckbox.checked && !listCheckbox.checked)
+				else if (!listCheckbox.checked && !thumbCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
 
-			listCheckbox.addEventListener("change", () => {
-				if (listCheckbox.checked == true)
+			listCheckbox.addEventListener("click", () => {
+				if (listCheckbox.checked)
 					setMostVisitedLayout(2);
-				else if (!thumbCheckbox.checked && !listCheckbox.checked)
+				else if (!listCheckbox.checked && !thumbCheckbox.checked)
 					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
 			});
+
+			// Most Viewed
+			const ntpMostViewedCollapsedObs = {
+				observe: function (subject, topic, data) {
+					if (topic == "nsPref:changed") {
+						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
+							mostViewedCheckbox.checked = false;
+							
+							mostViewedSectionElm.classList.add("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
+						} else {
+							mostViewedCheckbox.checked = true;
+							mostViewedSectionElm.classList.remove("collapsed");
+							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(true);
+						}
+					}
+				},
+			};
+			Services.prefs.addObserver("Geckium.newTabHome.mostViewedCollapsed", ntpMostViewedCollapsedObs, false);
+
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
+				mostViewedCheckbox.checked = false;
+				mostViewedSectionElm.classList.add("collapsed");
+			} else {
+				mostViewedCheckbox.checked = true;
+				
+				mostViewedSectionElm.classList.remove("collapsed");
+			}
+
+			mostViewedCheckbox.addEventListener("click", () => {
+				gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
+			});
+
+
+			// Recent activities
+			const recentActivitiesCheckbox = document.getElementById("RECENT");
+
+			if (appearanceChoice == 3)
+				recentActivitiesSectionElm = document.querySelector("#recent-activities.section");
+			else
+				recentActivitiesSectionElm = document.querySelector("#recently-closed");
+
+			const ntpRecentActivitiesCollapsedObs = {
+				observe: function (subject, topic, data) {
+					if (topic == "nsPref:changed") {
+						if (gkPrefUtils.tryGet("Geckium.newTabHome.recentActivitiesCollapsed").bool) {
+							recentActivitiesCheckbox.checked = false;
+							recentActivitiesSectionElm.classList.add("collapsed");
+						} else {
+							recentActivitiesCheckbox.checked = true;
+							recentActivitiesSectionElm.classList.remove("collapsed");
+						}
+					}
+				},
+			};
+			Services.prefs.addObserver("Geckium.newTabHome.recentActivitiesCollapsed", ntpRecentActivitiesCollapsedObs, false);
+
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.recentActivitiesCollapsed").bool) {
+				recentActivitiesCheckbox.checked = false;
+				recentActivitiesSectionElm.classList.add("collapsed");
+			} else {
+				recentActivitiesCheckbox.checked = true;
+				recentActivitiesSectionElm.classList.remove("collapsed");
+			}
+
+			recentActivitiesCheckbox.addEventListener("click", () => {
+				gkPrefUtils.toggle("Geckium.newTabHome.recentActivitiesCollapsed");
+			});
+		});
+
+		waitForElm("#option-menu").then(() => {
+			
 		});
 	} else if (appearanceChoice == 11) {
 		// Chrome 11
@@ -447,6 +571,8 @@ function createMainLayout() {
 		`;
 
 		waitForElm("#main > .sections").then(() => {
+			const appsSectionElm = document.querySelector("#apps > .section");
+
 			const ntpAppsCollapsedObs = {
 				observe: function (subject, topic, data) {
 					if (topic == "nsPref:changed") {
@@ -462,8 +588,6 @@ function createMainLayout() {
 			};
 			Services.prefs.addObserver("Geckium.newTabHome.appsCollapsed", ntpAppsCollapsedObs, false);
 
-			const appsSectionElm = document.querySelector("#apps > .section");
-
 			if (gkPrefUtils.tryGet("Geckium.newTabHome.appsCollapsed").bool)
 				appsSectionElm.classList.add("collapsed");
 			else
@@ -473,6 +597,8 @@ function createMainLayout() {
 				gkPrefUtils.toggle("Geckium.newTabHome.appsCollapsed");
 			});
 
+
+			const mostViewedSectionElm = document.querySelector("#most-viewed > .section");
 
 			const ntpMostViewedCollapsedObs = {
 				observe: function (subject, topic, data) {
@@ -488,8 +614,6 @@ function createMainLayout() {
 				},
 			};
 			Services.prefs.addObserver("Geckium.newTabHome.mostViewedCollapsed", ntpMostViewedCollapsedObs, false);
-
-			const mostViewedSectionElm = document.querySelector("#most-viewed > .section");
 
 			if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool)
 				mostViewedSectionElm.classList.add("collapsed");

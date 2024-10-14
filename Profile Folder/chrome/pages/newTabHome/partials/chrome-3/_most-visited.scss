@@ -306,15 +306,36 @@
 		background-color: white;
 		border: 1px solid #999;
 		color: black;
-		padding: 2px;
+		padding: 1px;
 	
-		> *:not(separator) {
+		> :not(separator) {
 			cursor: default;
 			padding: 3px 8px;
+			-moz-context-properties: fill, fill-opacity !important;
+			fill: currentColor !important;
 	
 			&:hover {
 				background-color: var(--window-menu-item-hover-bg);
 				color: white;
+				fill: currentColor !important;
+			}
+
+			&[checked="true"] {
+				list-style-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/checkbox.svg");
+			}
+
+			.checkbox-check {
+				display: none;
+			}
+
+			.checkbox-label-box {
+				align-items: center;
+			}
+
+			.checkbox-icon {
+				width: 9px;
+				height: 8px;
+				margin-inline-end: 2px;
 			}
 		}
 	
@@ -334,7 +355,7 @@
 	margin-block-end: 34px;
 
 	&.collapsed {
-		display: none;
+		display: none !important;
 	}
 
 	&.list {

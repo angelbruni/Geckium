@@ -13,7 +13,16 @@
 		border-radius: 0;
 		border-inline: 0;
 		background-color: transparent;
-		padding-block: 7px;
+		padding-block: 6px;
 		padding-inline: 0;
+
+		&.collapsed {
+			display: flex;
+			border-block-end-width: 0;
+
+			> *:not(h2) {
+				display: none;
+			}
+		}
 	}
 }
