@@ -49,15 +49,11 @@
 		--titlebar-pseudo-texture: var(--lwt-additional-images);
 		--titlebar-pseudo-texture-pos: var(--lwt-background-alignment);
 		--titlebar-pseudo-texture-repeat: var(--lwt-background-tiling);
-		&[style*="--lwt-background-alignment: right center"] {
-			--titlebar-pseudo-texture-ypos: calc(50% - 9px);
-		}
 		
 		&[lwtheme-image] {
 			--titlebar-pseudo-texture: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
 			--titlebar-pseudo-texture-pos: right top, var(--lwt-background-alignment);
 			--titlebar-pseudo-texture-repeat: no-repeat, var(--lwt-background-tiling);
-			--titlebar-pseudo-texture-ypos: -9px;
 		}
 
 		// Themes without image header/additional images

@@ -110,6 +110,8 @@ class gkLWTheme {
 		setTimeout(async () => {
 			// Delete lwtheme-specific variable (if themed, they get remade)
 			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+			document.documentElement.style.removeProperty("--titlebar-pseudo-height");
+			document.documentElement.style.removeProperty("--titlebar-pseudo-texture-ypos");
 			document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
 			// Do not run further if a Chromium Theme is currently used
 			if (isChromeThemed) {
@@ -121,10 +123,10 @@ class gkLWTheme {
 			if (isThemed) {
 				document.documentElement.setAttribute("gkthemed", true);
 
-			// Get header height.
-			if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
-				getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
-					document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px");
+				// Get header height.
+				if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
+						getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
+					document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
 				} else {
 					var headerImg;
 					if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
@@ -138,9 +140,13 @@ class gkLWTheme {
 						img.src = imagePath;
 						img.onload = function() {
 							document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
+							if (this.height >= 140) {
+								var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
+								if (alignment[alignment.length - 1] == "center") {
+									document.documentElement.style.setProperty("--titlebar-pseudo-texture-ypos", `-${this.height / 2 - 50}px`);
+								}
+							}
 						};
-					} else {
-						document.documentElement.style.removeProperty("--titlebar-pseudo-height");
 					}
 				}
 				

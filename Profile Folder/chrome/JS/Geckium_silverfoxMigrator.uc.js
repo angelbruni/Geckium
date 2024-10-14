@@ -152,80 +152,78 @@ class sfMigrator {
 
 		// Finishing touches
 		// Apply Silverfox's Apps list
-		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
-		{
-			"0": {
-				"pos": 0,
-				"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
-				"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-				"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-				"oldName": "Web Store",
-				"newName": "Web Store",
-				"url": "https://addons.mozilla.org/en-US/firefox",
-				"type": 0
-			},
-			"1": {
-				"pos": 1,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-				"oldName": "Gmail",
-				"newName": "Gmail",
-				"url": "https://mail.google.com",
-				"type": 0
-			},
-			"2": {
-				"pos": 2,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-				"oldName": "Google Drive",
-				"newName": "Google Drive",
-				"url": "https://drive.google.com",
-				"type": 0
-			},
-			"3": {
-				"pos": 3,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-				"oldName": "Google Search",
-				"newName": "Google Search",
-				"url": "https://www.google.com",
-				"type": 0
-			},
-			"4": {
-				"pos": 4,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-				"oldName": "YouTube",
-				"newName": "YouTube",
-				"url": "https://www.youtube.com",
-				"type": 0
-			},
-			"5": {
-				"pos": 5,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-				"oldName": "Angry Birds",
-				"newName": "Angry Birds",
-				"url": "https://yell0wsuit.page/assets/games/angry-birds-chrome",
-				"type": 0
-			},
-			"6": {
-				"pos": 6,
-				"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-				"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-				"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-				"oldName": "MySpace",
-				"newName": "MySpace",
-				"url": "https://spacehey.com",
-				"type": 0
-			}
-		}
-		`);
+		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`{
+"0": {
+"pos": 0,
+"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
+"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
+"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
+"oldName": "Web Store",
+"newName": "Web Store",
+"url": "https://addons.mozilla.org/en-US/firefox",
+"type": 0
+},
+"1": {
+"pos": 1,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
+"oldName": "Gmail",
+"newName": "Gmail",
+"url": "https://mail.google.com",
+"type": 0
+},
+"2": {
+"pos": 2,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
+"oldName": "Google Drive",
+"newName": "Google Drive",
+"url": "https://drive.google.com",
+"type": 0
+},
+"3": {
+"pos": 3,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
+"oldName": "Google Search",
+"newName": "Google Search",
+"url": "https://www.google.com",
+"type": 0
+},
+"4": {
+"pos": 4,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
+"oldName": "YouTube",
+"newName": "YouTube",
+"url": "https://www.youtube.com",
+"type": 0
+},
+"5": {
+"pos": 5,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
+"oldName": "Angry Birds",
+"newName": "Angry Birds",
+"url": "https://yell0wsuit.page/assets/games/angry-birds-chrome",
+"type": 0
+},
+"6": {
+"pos": 6,
+"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
+"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
+"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
+"oldName": "MySpace",
+"newName": "MySpace",
+"url": "https://spacehey.com",
+"type": 0
+}
+}`);
 
 		// Enable Silverfox Firefox Theming
 		gkPrefUtils.set("Geckium.customtheme.mode").string("silverfox");
