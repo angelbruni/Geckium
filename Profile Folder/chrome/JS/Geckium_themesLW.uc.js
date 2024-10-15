@@ -124,30 +124,32 @@ class gkLWTheme {
 				document.documentElement.setAttribute("gkthemed", true);
 
 				// Get header height.
-				if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
-						getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
-					document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
-				} else {
-					var headerImg;
-					if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
-						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
-					else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
-						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
-					if (headerImg !== null) {
-						var imagePath = headerImg;
-						// Note the attribution image's size
-						var img = new Image();
-						img.src = imagePath;
-						img.onload = function() {
+				var headerImg;
+				if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
+					headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
+				else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
+					headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
+				if (headerImg !== null) {
+					var imagePath = headerImg;
+					// Note the attribution image's size
+					var img = new Image();
+					img.src = imagePath;
+					img.onload = function() {
+						if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
+								getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
+							// Extend titlebar texture all the way, but have first repeat centered, if it tiles
+							document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
+						} else {
+							// Center the titlebar texture within Geckium's top-boundaries
 							document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
-							if (this.height >= 140) {
-								var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
-								if (alignment[alignment.length - 1] == "center") {
-									document.documentElement.style.setProperty("--titlebar-pseudo-texture-ypos", `-${this.height / 2 - 50}px`);
-								}
+						}
+						if (this.height >= 140) {
+							var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
+							if (alignment[alignment.length - 1] == "center") {
+								document.documentElement.style.setProperty("--titlebar-pseudo-texture-ypos", `-${this.height / 2 - 59}px`);
 							}
-						};
-					}
+						}
+					};
 				}
 				
 				// Ensure the toolbar colour is opaque
