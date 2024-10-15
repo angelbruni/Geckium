@@ -302,6 +302,9 @@ h4 {
 	fill: color-mix(in srgb, currentColor, transparent 46%);
 	background-image: url(chrome://mozapps/skin/extensions/category-themes.svg);
 	background-size: 40px 40px,auto !important;
+	&:not(:checked) {
+		display: none !important;
+	}
 }
 
 .link {

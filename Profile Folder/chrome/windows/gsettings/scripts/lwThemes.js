@@ -103,59 +103,23 @@ async function getLWThemeData(manipath) {
 	}
 }
 
-async function populateLWThemesList() {
-	let themeElm;
-
-	const themes = await getInstalledLWThemes();
-
-    themesList.querySelectorAll("button[data-lwtheme-name]").forEach(item => {
-        item.remove();
-    });
-
-	themes.forEach(async theme => {
-		const mani = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
-
-		
-
-		let themeIcon;
-		if (theme.icons[128])
-			themeIcon = theme.icons[128];
-		else if (theme.icons[64])
-			themeIcon = theme.icons[64];
-		else
-			themeIcon = theme.icons[32]
-
-		let themeDescription = theme.description
-		? theme.description.replace(/[&<>"']/g, match => specialCharacters[match])
-		: gSettingsBundle.GetStringFromName("themeHasNoDescription");
-
-		themeElm = `
-		<html:button
-				class="link geckium-appearance ripple-enabled"
-				data-lwtheme-name="${theme.id}"
-				data-index="${theme.id}"
-                style="background-color: ${themeBannerColor}; ${themeBanner} ${themeBannerAlignment} ${themeBannerTiling} ${themeBannerSizing}">
-			<html:label class="wrapper">
-				<div class="year">V${theme.version}</div>
-				<div class="icon"><image style="width: 48px; height: 48px" src="${themeIcon}" /></div>
-				<div class="identifier">
-					<vbox style="min-width: 0">
-						<div class="radio-parent">
-							<html:input id="theme-${theme.id}" class="radio" type="radio" name="gktheme"></html:input>
-							<div class="gutter" for="checked_check"></div>
-							<html:label class="name label">${theme.name}</html:label>
-						</div>
-						<html:label class="description">${themeDescription}</html:label>
-					</vbox>
-				</div>
-			</html:label>
-		</html:button>
-		`;
-
-		themesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
-
-		document.querySelector(`button[data-lwtheme-name="${theme.id}"]`).addEventListener("click", () => {
-			theme.enable();
-		});
-	});
+function selectLWTheme() {
+	let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
+	if (!prefChoice.startsWith("default-theme@") && !prefChoice.startsWith("firefox-compact-light@") &&
+			!prefChoice.startsWith("firefox-compact-dark@")) {
+        themesList.querySelector(`button[data-lwtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+        document.getElementById("thememode-themed").checked = true;
+	} else {
+		themesList.querySelectorAll('button[data-lwtheme-name] input[type="radio"]').forEach(item => {
+			item.checked = false;
+		})
+	}
 }
+const lwGridObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			selectLWTheme();
+		}
+	},
+};
+Services.prefs.addObserver("extensions.activeThemeID", lwGridObserver, false);

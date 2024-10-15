@@ -24,6 +24,26 @@ async function getChrThemesList() {
     return result;
 }
 
+function selectChrTheme() {
+	if (gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string) {
+        themesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
+        document.getElementById("thememode-themed").checked = true;
+	} else {
+		themesList.querySelectorAll('button[data-chrtheme-name] input[type="radio"]').forEach(item => {
+			item.checked = false;
+		})
+	}
+}
+const chrGridObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			selectChrTheme();
+		}
+	},
+};
+Services.prefs.addObserver("extensions.activeThemeID", chrGridObserver, false);
+Services.prefs.addObserver("Geckium.chrTheme.fileName", chrGridObserver, false);
+
 
 async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
