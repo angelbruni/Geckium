@@ -25,7 +25,8 @@ async function getChrThemesList() {
 }
 
 function selectChrTheme() {
-	if (gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string) {
+	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
+	if (prefChoice) {
         themesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
         document.getElementById("thememode-themed").checked = true;
 	} else {
