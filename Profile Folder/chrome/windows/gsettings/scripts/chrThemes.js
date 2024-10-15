@@ -1,111 +1,29 @@
-async function populateChrThemesList() {
+async function getChrThemesList() {
+    var result = [];
     const themes = await gkChrTheme.getThemes();
 
-    themesList.querySelectorAll("button[data-chrtheme-name]").forEach(item => {
-        item.remove();
-    });
+    for (const i in themes) {
+        let theme = themes[i];
+        let themeFile = theme.file.replace(".crx", "");
 
-    let themeElements = [];
-
-    for (const themeFileName in themes) {
-        let theme = themes[themeFileName];
-
-        let themeName = theme.name.replace(/[&<>"']/g, match => specialCharacters[match]);
-        let themeDescription = theme.description
-            ? theme.description.replace(/[&<>"']/g, match => specialCharacters[match])
-            : gSettingsBundle.GetStringFromName("themeHasNoDescription");
-
-        const themeFile = theme.file.replace(".crx", "");
-
-        let themeBanner = theme.banner;
-        let themeBannerPath = themeBanner
-            ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeBanner}`
-            : "";
-
-        let themeBannerColor = theme.color || "white"; // white is a direct reference to the fallback NTP background
-
-        let themeIcon = theme.icon;
-        let themeIconPath = themeIcon
-            ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${themeIcon}`
-            : "chrome://userchrome/content/windows/gsettings/imgs/logo.svg";
-
-        const themeVersion = theme.version;
-
-        let themeElm = `
-        <html:button
-                class="link geckium-appearance ripple-enabled"
-                data-chrtheme-name="${themeFile}"
-                data-index="${themeName.toLowerCase()}"
-                style="background-color: rgb(${themeBannerColor}); background-image: url(${themeBannerPath})">
-            <html:label class="wrapper">
-                <div class="year">V${themeVersion}</div>
-                <div class="icon"><image style="width: 48px; height: 48px" src="${themeIconPath}" /></div>
-                <div class="identifier">
-                    <vbox style="min-width: 0">
-                        <div class="radio-parent">
-                            <html:input id="theme-${themeFile}" class="radio" type="radio" name="gktheme"></html:input>
-                            <div class="gutter" for="checked_check"></div>
-                            <html:label class="name label">${themeName}</html:label>
-                        </div>
-                        <html:label class="description">${themeDescription}</html:label>
-                    </vbox>
-                </div>
-            </html:label>
-        </html:button>
-        `;
-
-        // Add theme element to the array
-        themeElements.push(themeElm);
-    }
-
-    // Sort the array by the themeName stored in data-index
-    themeElements.sort((a, b) => {
-        let indexA = a.match(/data-index="([^"]+)"/)[1];
-        let indexB = b.match(/data-index="([^"]+)"/)[1];
-        return indexA.localeCompare(indexB);
-    });
-
-    // Insert sorted themes into the DOM
-    themeElements.forEach(themeElm => {
-        themesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
-    });
-
-    themesList.querySelectorAll("button[data-chrtheme-name]").forEach(item => {
-        item.addEventListener("click", () => {
-            applyTheme(item.dataset.chrthemeName);
+        result.push({
+            "type": "chrtheme",
+            "name": theme.name,
+            "desc": theme.description,
+            "id": themeFile,
+            "icon": theme.icon ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.icon}` : null,
+            "banner": theme.banner ? `url(jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.banner})` : "",
+            "bannerAlignment": null,
+            "bannerTiling": null,
+            "bannerSizing": null,
+            "bannerColor": theme.color ? `rgb(${theme.color})` : "white", // white is a direct reference to the fallback NTP background
+            "version": theme.version,
+            "event": function(){ applyTheme(themeFile); }
         });
-    });
-
-    selectChrTheme();
-
-    let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
-    if (prefChoice) {
-        themesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
     }
+    return result;
 }
 
-document.addEventListener("DOMContentLoaded", populateChrThemesList);
-
-
-function selectChrTheme() {
-	let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
-	if (gkChrTheme.getEligible() && prefChoice) {
-		themesList.querySelector(`button[data-chrtheme-name="${prefChoice}"] input[type="radio"]`).checked = true;
-	} else {
-		themesList.querySelectorAll('button[data-chrtheme-name] input[type="radio"]').forEach(item => {
-			item.checked = false;
-		})
-	}
-}
-const chrGridObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			selectChrTheme();
-		}
-	},
-};
-Services.prefs.addObserver("extensions.activeThemeID", chrGridObserver, false);
-Services.prefs.addObserver("Geckium.chrTheme.fileName", chrGridObserver, false);
 
 async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
