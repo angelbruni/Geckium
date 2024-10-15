@@ -77,8 +77,9 @@ async function populateThemesList() {
                 class="link geckium-appearance ripple-enabled"
                 data-${themeInfo[i].type}-name="${themeInfo[i].id}"
                 style="background-color: ${themeInfo[i].bannerColor}; background-image: ${themeInfo[i].banner};
-                    background-position: ${themeInfo[i].bannerAlignment} !important; background-repeat: ${themeInfo[i].bannerTiling} !important;
-                    background-size: ${themeInfo[i].bannerSizing} !important;">
+${themeInfo[i].bannerAlignment ? `background-position: ${themeInfo[i].bannerAlignment} !important; ` : ""}
+${themeInfo[i].bannerTiling ? `background-repeat: ${themeInfo[i].bannerTiling} !important; ` : ""}
+${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !important; ` : ""}">
             <html:label class="wrapper">
                 <div class="year">V${themeInfo[i].version}</div>
                 <div class="icon"><image style="width: 48px; height: 48px" src="${themeIconPath}" /></div>
@@ -95,6 +96,7 @@ async function populateThemesList() {
             </html:label>
         </html:button>
         `;
+        console.log(themeElm);
 
         themesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
 
