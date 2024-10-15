@@ -12,6 +12,7 @@ function loadSelectorSetting() {
 				current = gkPrefUtils.tryGet(`Geckium.${selector.dataset.pref}`).string;
 	
 			selector.setValue(current);
+			showConditionalSelChild(selector.dataset.pref, current);
 	
 			selector.querySelectorAll(".list .item").forEach(item => {
 				item.addEventListener("click", () => {
@@ -19,10 +20,21 @@ function loadSelectorSetting() {
 						gkPrefUtils.set(`Geckium.${selector.dataset.pref}`).int(parseInt(item.getAttribute("value")));
 					else
 						gkPrefUtils.set(`Geckium.${selector.dataset.pref}`).string(`${item.getAttribute("value")}`);
+					showConditionalSelChild(selector.dataset.pref, item.getAttribute("value"));
 				})
 			})
 		})
 	}, 10);
+}
+function showConditionalSelChild(pref, value) {
+	var child = document.querySelector(`input[data-parent-pref="${pref}"]`);
+	if (child) {
+		if (child.dataset.requiresValue == value) {
+			child.style.removeProperty("display");
+		} else {
+			child.style.setProperty("display", "none");
+		}
+	}
 }
 document.addEventListener("DOMContentLoaded", loadSelectorSetting);
 
