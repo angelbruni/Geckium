@@ -40,7 +40,9 @@ async function initGrids() {
     generateThemeModes();
 
     // Pre-select theme and theme mode
-    selectTheme();
+    selectSysTheme();
+    selectChrTheme();
+    selectLWTheme();
 }
 document.addEventListener("DOMContentLoaded", initGrids);
 
@@ -96,64 +98,9 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
             </html:label>
         </html:button>
         `;
-        console.log(themeElm);
 
         themesList.insertBefore(MozXULElement.parseXULToFragment(themeElm), document.getElementById("gkwebstoretile"));
 
 		document.querySelector(`button[data-${themeInfo[i].type}-name="${themeInfo[i].id}"]`).addEventListener("click", themeInfo[i].event);
     }
 }
-
-function selectTheme() {
-    // TODO: optimise?
-    let sysChoice = gkPrefUtils.tryGet("Geckium.appearance.systemTheme").string;
-	if (!gkSysTheme.systhemes.includes(sysChoice) && sysChoice != "auto") {
-		sysChoice = "auto";
-	}
-    document.getElementById("thememode-themed").style.setProperty("display", "none");
-	// Mark the current System Theme as fallback
-	themesList.querySelectorAll("button[data-systheme]").forEach(item => {
-		if (item.dataset.systheme == sysChoice) {
-			item.querySelector(".year").style.removeProperty("display");
-		} else {
-			item.querySelector(".year").style.setProperty("display", "none");
-		}
-	})
-
-    let lwChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-    // Custom LWThemes
-    if (!lwChoice.startsWith("default-theme@") && !lwChoice.startsWith("firefox-compact-light@") &&
-				!lwChoice.startsWith("firefox-compact-dark@")) {
-        themesList.querySelector(`button[data-lwtheme-name="${lwChoice}"] input[type="radio"]`).checked = true;
-        document.getElementById("thememode-themed").checked = true;
-        document.getElementById("thememode-themed").style.removeProperty("display");
-    } else {
-        // System Theme
-        themesList.querySelector(`button[data-systheme="${sysChoice}"] input[type="radio"]`).checked = true;
-        if (lwChoice.startsWith("firefox-compact-light@")) {
-            // Check if a Chromium Theme is in use
-            let chrChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
-            if (chrChoice) {
-                themesList.querySelector(`button[data-chrtheme-name="${chrChoice}"] input[type="radio"]`).checked = true;
-                document.getElementById("thememode-themed").checked = true;
-                document.getElementById("thememode-themed").style.removeProperty("display");
-            } else { // Firefox Light's in use
-                document.getElementById("thememode-light").checked = true;
-            }
-        } else if (lwChoice.startsWith("firefox-compact-dark@")) {
-            document.getElementById("thememode-dark").checked = true;
-        } else {
-            document.getElementById("thememode-auto").checked = true;
-        }
-    }
-}
-const themeGridObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			selectTheme();
-		}
-	},
-};
-Services.prefs.addObserver("extensions.activeThemeID", themeGridObserver, false);
-Services.prefs.addObserver("Geckium.appearance.systemTheme", themeGridObserver, false);
-Services.prefs.addObserver("Geckium.chrTheme.fileName", themeGridObserver, false);
