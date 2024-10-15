@@ -45,13 +45,6 @@ async function initGrids() {
 document.addEventListener("DOMContentLoaded", initGrids);
 
 async function populateThemesList() {
-    // Delete all existing cases of themes
-    for (const i in ["chrtheme", "lwtheme"]) {
-        themesList.querySelectorAll(`button[data-${i}-name]`).forEach(item => {
-            item.remove();
-        });
-    }
-
     // Get info about all chrThemes and LWThemes
     var themeInfo = await getChrThemesList();
     themeInfo.push.apply(themeInfo, await getLWThemesList());
@@ -59,6 +52,13 @@ async function populateThemesList() {
     // Sort themes by name
     themeInfo.sort((a, b) => {
         return a.name.localeCompare(b.name)
+    });
+
+    // Delete all existing cases of themes
+    ["chrtheme", "lwtheme"].forEach(function (i) {
+        themesList.querySelectorAll(`button[data-${i}-name]`).forEach(item => {
+            item.remove();
+        });
     });
 
     // Create representations for the themes
