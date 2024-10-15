@@ -31,7 +31,17 @@ const themesList = document.getElementById("gkthemes-grid");
 
 async function initGrids() {
     // Map filter dropdown
-
+    var selector = document.getElementById("gkthemefilter");
+    selector.querySelectorAll(".list .item").forEach(item => {
+        item.addEventListener("click", () => {
+            var value = item.getAttribute("value");
+            if (value != "all") {
+                document.documentElement.setAttribute("gkthemefilter", value);
+            } else {
+                document.documentElement.removeAttribute("gkthemefilter");
+            }
+        })
+    })
 
     // Populate themes and modes lists
     await populateThemesList();

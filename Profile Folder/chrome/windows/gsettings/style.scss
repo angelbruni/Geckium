@@ -459,6 +459,30 @@ h4 {
 		background-color: ActiveCaption !important;
 	}
 }
+// Grid filters
+:root {
+	&[gkthemefilter="chrthemes"],
+	&[gkthemefilter="lwthemes"] {
+		.link.chrome-appearance[data-systheme] {
+			display: none;
+		}
+	}
+	&[gkthemefilter="systhemes"],
+	&[gkthemefilter="lwthemes"] {
+		.link.geckium-appearance[data-chrtheme-name],
+		#gkwebstoretile,
+		.link.edgestore {
+			display: none;
+		}
+	}
+	&[gkthemefilter="systhemes"],
+	&[gkthemefilter="chrthemes"] {
+		.link.geckium-appearance[data-lwtheme-name],
+		.link.mozstore {
+			display: none;
+		}
+	}
+}
 // Themes with eras
 .systheme-classic {
 	background-image: url(chrome://userchrome/content/windows/gsettings/imgs/themes/classic-1.svg) !important;
