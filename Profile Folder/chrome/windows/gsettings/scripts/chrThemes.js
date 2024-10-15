@@ -12,7 +12,7 @@ async function getChrThemesList() {
             "desc": theme.description,
             "id": themeFile,
             "icon": theme.icon ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.icon}` : null,
-            "banner": theme.banner ? `url(jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.banner})` : "",
+            "banner": theme.banner ? `url(jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.banner})` : "unset",
             "bannerAlignment": null,
             "bannerTiling": null,
             "bannerSizing": null,

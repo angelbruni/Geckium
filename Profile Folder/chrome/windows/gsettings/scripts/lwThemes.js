@@ -80,8 +80,8 @@ async function getLWThemesList() {
 						theme.icons[128] : theme.icons[64] ?
 							theme.icons[64] : theme.icons[32],
 			"banner": themeBanner,
-			"bannerAlignment": themeBannerAlignment ? themeBannerAlignment : null,
-			"bannerTiling": themeBannerTiling ? themeBannerTiling : null,
+			"bannerAlignment": themeBannerAlignment ? themeBannerAlignment : "right top",
+			"bannerTiling": themeBannerTiling ? themeBannerTiling : "no-repeat",
 			"bannerSizing": themeBannerSizing ? themeBannerSizing : null,
 			"bannerColor": mani.theme.colors.frame || "white",
             "version": theme.version,
