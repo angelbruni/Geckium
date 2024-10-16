@@ -29,14 +29,10 @@
 	--personal-toolbar-floating-bg-padding-inline: 4px;
 	--personal-toolbar-floating-radius: 6px;
 	--personal-toolbar-floating-items-height: 28px;
-	--default-personal-toolbar-floating-bg: rgb(210,225,246);
-	--personal-toolbar-floating-bg: var(--default-personal-toolbar-floating-bg);
 	--personal-toolbar-floating-border-block-start-width: 1px;
 	--personal-toolbar-floating-border-block-end-width: var(--personal-toolbar-floating-border-block-start-width);
 	--personal-toolbar-floating-border-inline-start-width: var(--personal-toolbar-floating-border-block-start-width);
 	--personal-toolbar-floating-border-inline-end-width: var(--personal-toolbar-floating-border-block-start-width);
-	--default-personal-toolbar-floating-border-color: rgb(195,206,224);
-	--personal-toolbar-floating-border-color: var(--default-personal-toolbar-floating-border-color);
 	--personal-toolbar-gap: 2px;
 	--personal-toolbar-height: 25px;
 	--personal-toolbar-item-shadow: inset 0 0 0 1px transparent,
@@ -632,19 +628,19 @@
 				transform: translate(-50%, -50%);
 				height: var(--personal-toolbar-floating-bg-height);
 				width: calc(100% - (var(--personal-toolbar-floating-bg-margin-inline) * 2));
-				background-color: var(--personal-toolbar-floating-bg);
+				background: var(--personal-toolbar-floating, var(--default-personal-toolbar-floating));
 				border-block-start-width: var(--personal-toolbar-floating-border-block-start-width);
 				border-block-end-width: var(--personal-toolbar-floating-border-block-end-width);
 				border-inline-start-width: var(--personal-toolbar-floating-border-inline-start-width);
 				border-inline-end-width: var(--personal-toolbar-floating-border-inline-end-width);
 				border-style: solid;
-				border-color: var(--personal-toolbar-floating-border-color);
+				border-color: var(--personal-toolbar-floating-border, var(--default-personal-toolbar-floating-border));
 				border-radius: var(--personal-toolbar-floating-radius);
 				box-sizing: border-box;
 			}
 
 			#personal-toolbar-empty {
-				padding-inline	: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
+				padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
 			}
 
 			#personal-bookmarks {
@@ -753,8 +749,8 @@
 		&[gkchrthemehastoolbar] {
 			--nav-bar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
 			--personal-toolbar: var(--chrtheme-theme-toolbar, var(--chrtheme-toolbar)) !important;
-			--personal-toolbar-floating-bg: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating-bg));
-			--personal-toolbar-floating-border-color: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating-border));
+			--personal-toolbar-floating: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating));
+			--personal-toolbar-floating-border: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating-border));
 
 			&[personalbar="newtab"] {
 				#PersonalToolbar {
@@ -795,8 +791,8 @@
 			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 
 			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-			--personal-toolbar-floating-bg: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-bg)));
-			--personal-toolbar-floating-border-color: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
+			--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating)));
+			--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
 
 			&[personalbar="newtab"] {
 				#PersonalToolbar {
