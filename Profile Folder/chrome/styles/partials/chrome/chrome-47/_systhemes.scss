@@ -3,4 +3,8 @@
 	// Personal Toolbar (Bookmarks)
 	--default-personal-toolbar-floating: rgb(241,241,241);
 	--default-personal-toolbar-floating-border: rgb(206,206,206);
+	@media (prefers-color-scheme: dark) {
+		--default-personal-toolbar-floating: rgb(13,13,13);
+		--default-personal-toolbar-floating-border: rgb(59,59,59);
+	}
 }

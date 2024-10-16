@@ -55,6 +55,8 @@
 
 		// Personal Toolbar
 		--default-personal-toolbar: var(--default-nav-bar);
+		--default-personal-toolbar-floating: rgb(67,67,67);
+		--default-personal-toolbar-floating-border: rgb(78,78,78);
 		--default-bookmark-item-color: white;
 
 		// Download Shelf
@@ -90,6 +92,7 @@
 
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: var(--default-nav-bar);
+		--default-personal-toolbar-floating: Field;
 		--default-personal-toolbar-item-hover-bg: color-mix(in srgb, FieldText 8%, transparent); // TODO: verify
 		--default-personal-toolbar-item-active-bg: color-mix(in srgb, FieldText 16%, transparent); // TODO: verify
 		--default-bookmark-item-hover-color: FieldText;

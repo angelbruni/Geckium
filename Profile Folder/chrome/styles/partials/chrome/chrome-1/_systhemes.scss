@@ -330,8 +330,10 @@
 					#{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))}
 				);
 				--default-personal-toolbar-border-bottom: #{gtmColorAdjForDark("GTMColorationBaseShadow", var(--macosx-window-color))};
-				--default-personal-toolbar-floating: #{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))};
-				--default-personal-toolbar-floating-border: #{gtmColorAdjForDark("GTMColorationBaseMidtone", var(--macosx-window-color))};
+				&:not([geckium-five]) {
+					--default-personal-toolbar-floating: #{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))};
+					--default-personal-toolbar-floating-border: #{gtmColorAdjForDark("GTMColorationBaseMidtone", var(--macosx-window-color))};
+				}
 				--default-bookmark-item-color: white;
 			}
 		}
