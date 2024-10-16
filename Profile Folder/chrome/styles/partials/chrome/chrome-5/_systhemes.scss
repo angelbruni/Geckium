@@ -24,6 +24,8 @@
 
 			// Personal Toolbar (Bookmarks)
 			--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
+			--default-personal-toolbar-floating: #ebebeb;
+			--default-personal-toolbar-floating-border: #d2d2d2;
 			--default-bookmark-item-color: black;
 			&:-moz-window-inactive {
 				--default-personal-toolbar-border-bottom: rgb(123, 123, 123);
@@ -72,6 +74,8 @@
 					#{gtmColorAdjForDark("GTMColorationLightPenumbra", rgb(48, 48, 48))}
 				);
 				--default-personal-toolbar-border-bottom: rgb(103, 103, 103);
+				--default-personal-toolbar-floating: #535353;
+				--default-personal-toolbar-floating-border: #3B3B3B;
 				--default-bookmark-item-color: white;
 				&:-moz-window-inactive {
 					--default-personal-toolbar-border-bottom: rgb(83, 83, 83);
