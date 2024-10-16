@@ -123,56 +123,58 @@ class gkLWTheme {
 			if (isThemed) {
 				document.documentElement.setAttribute("gkthemed", true);
 
-				// Get header height.
-				var headerImg;
-				if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
-					headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
-				else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
-					headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
-				if (headerImg !== null) {
-					var imagePath = headerImg;
-					// Note the attribution image's size
-					var img = new Image();
-					img.src = imagePath;
-					img.onload = function() {
-						if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
-								getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
-							// Extend titlebar texture all the way, but have first repeat centered, if it tiles
-							document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
-						} else {
-							// Center the titlebar texture within Geckium's top-boundaries
-							document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
-						}
-						if (this.height >= 140) {
-							var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
-							if (alignment[alignment.length - 1] == "center") {
-								document.documentElement.style.setProperty("--titlebar-pseudo-texture-ypos", `-${this.height / 2 - 59}px`);
+				if (isBrowserWindow) {
+					// Get header height.
+					var headerImg;
+					if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
+						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
+					else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
+						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
+					if (headerImg !== null) {
+						var imagePath = headerImg;
+						// Note the attribution image's size
+						var img = new Image();
+						img.src = imagePath;
+						img.onload = function() {
+							if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat") ||
+									getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-tiling").split(",").includes("repeat-y")) {
+								// Extend titlebar texture all the way, but have first repeat centered, if it tiles
+								document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
+							} else {
+								// Center the titlebar texture within Geckium's top-boundaries
+								document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
 							}
-						}
-					};
-				}
-				
-				// Ensure the toolbar colour is opaque
-				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
-				if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
-					var tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
-					// if the colour is transparent...
-					if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
-						document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
-						document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
-					} else {
-						document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
+							if (this.height >= 140) {
+								var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
+								if (alignment[alignment.length - 1] == "center") {
+									document.documentElement.style.setProperty("--titlebar-pseudo-texture-ypos", `-${this.height / 2 - 59}px`);
+								}
+							}
+						};
 					}
-					// if the lwtheme was a Persona (and toolbar style isn't vanilla)
-					if (toolbarBgColor == "rgba(255,255,255,.4)" && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
-						var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue('--lwt-text-color');
-						var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
-						// Invert foreground lightness if text is also light
-						if (!ColorUtils.IsDark(tfgarray)) {
-							tfgarray = ColorUtils.ColorToHSL(tfgarray);
-							tfgarray[2] = 100 - tfgarray[2];
-							tfgarray = ColorUtils.HSLToColor(tfgarray);
-							document.documentElement.style.setProperty("--lwt-text-color", `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
+				
+					// Ensure the toolbar colour is opaque
+					var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
+					if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
+						var tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+						// if the colour is transparent...
+						if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
+							document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+							document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
+						} else {
+							document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
+						}
+						// if the lwtheme was a Persona (and toolbar style isn't vanilla)
+						if (toolbarBgColor == "rgba(255,255,255,.4)" && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
+							var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue('--lwt-text-color');
+							var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+							// Invert foreground lightness if text is also light
+							if (!ColorUtils.IsDark(tfgarray)) {
+								tfgarray = ColorUtils.ColorToHSL(tfgarray);
+								tfgarray[2] = 100 - tfgarray[2];
+								tfgarray = ColorUtils.HSLToColor(tfgarray);
+								document.documentElement.style.setProperty("--lwt-text-color", `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
+							}
 						}
 					}
 				}
