@@ -223,7 +223,7 @@ function createTile(website) {
     try {
 		let tile;
 
-		let menuItem;
+		let menuItem = ``;
 
         if (website !== undefined) {
 			let url = website.url.replace(/[&<>"']/g, match => specialCharacters[match]);
@@ -538,34 +538,29 @@ function populateRecentSitesGrid() {
     for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
         combinedSites.push(topFrecentSites[i]);
     }
+    const mostVisited = document.querySelector(mostViewed);
 
-    // Populate the grid with the combined list
-	console.log(combinedSites.length);		
+	waitForElm(mostViewed).then(function() {
+		combinedSites.forEach(site => {
+			const tile = createTile(site);
+			try {
+				mostVisited.appendChild(tile[0]);
 
-    if (combinedSites.length) {
-		const mostVisited = document.querySelector(mostViewed);
+				if (appearanceChoice == 11)
+					gkInsertElm.before(tile[1], document.querySelector("#most-visited-menu > hr"));
 
-		waitForElm(mostViewed).then(function() {
-			combinedSites.forEach(site => {
-				const tile = createTile(site);
-				try {
-					mostVisited.appendChild(tile[0]);
-
-					if (appearanceChoice == 11)
-						gkInsertElm.before(tile[1], document.querySelector("#most-visited-menu > hr"));
-
-				} catch (e) {
-					console.error(e);
-				}
-			});
-
-			for (let i = 0; i < getTilesAmount() - combinedSites.length; i++) {
-				console.log(getTilesAmount() - combinedSites.length)
-	
-				const emptyTile = createTile();
-	
-				mostVisited.appendChild(emptyTile[0]);
+			} catch (e) {
+				console.error(e);
 			}
 		});
-    }
+
+		let availableTiles = getTilesAmount() - combinedSites.length;
+
+		// Fill the space with the required number of empty tiles
+		for (let i = 0; i < availableTiles; i++) {
+			const emptyTile = createTile();
+
+			mostVisited.appendChild(emptyTile[0]);
+		}
+	});
 }
