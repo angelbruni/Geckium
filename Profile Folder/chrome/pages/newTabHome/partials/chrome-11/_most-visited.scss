@@ -34,7 +34,7 @@
 	}
 }
 
-.section.collapsed + div {
+.section:not(.closed).collapsed + div {
 	&#most-viewed-content {
 		display: flex !important;
 
