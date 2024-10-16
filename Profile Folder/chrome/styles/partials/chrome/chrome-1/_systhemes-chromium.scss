@@ -89,6 +89,8 @@
 		#{gtmColorAdjFor("GTMColorationLightPenumbra", var(--macosx-window-color))}
 	);
 	--default-personal-toolbar-border-bottom: #{gtmColorAdjFor("GTMColorationBaseShadow", var(--macosx-window-color))};
+	--default-personal-toolbar-floating: #{gtmColorAdjFor("GTMColorationLightPenumbra", var(--macosx-window-color))};
+	--default-personal-toolbar-floating-border: #{gtmColorAdjFor("GTMColorationBaseMidtone", var(--macosx-window-color))};
 
 	&[privatebrowsingmode="temporary"] {
 		// Titlebar
