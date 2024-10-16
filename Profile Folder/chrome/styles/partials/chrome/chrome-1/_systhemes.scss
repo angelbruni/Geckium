@@ -144,6 +144,8 @@
 			#081526
 		);
 		--default-personal-toolbar-border-bottom: rgb(91, 91, 91);
+		--default-personal-toolbar-floating: rgb(9,24,47);
+		--default-personal-toolbar-floating-border: rgb(62,86,121);
 		--default-bookmark-item-color: #95b4ee;
 
 		// Inner Borders
@@ -224,6 +226,8 @@
 		// Personal Toolbar (Bookmarks)
 		--default-personal-toolbar: -moz-dialog;
 		--default-personal-toolbar-border-bottom: ThreeDShadow;
+		--default-personal-toolbar-floating: -moz-dialog;
+		--default-personal-toolbar-floating-border: ThreeDShadow;
 		--default-bookmark-item-color: -moz-dialogtext;
 
 		// Downloads Shelf
@@ -326,6 +330,8 @@
 					#{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))}
 				);
 				--default-personal-toolbar-border-bottom: #{gtmColorAdjForDark("GTMColorationBaseShadow", var(--macosx-window-color))};
+				--default-personal-toolbar-floating: #{gtmColorAdjForDark("GTMColorationLightPenumbra", var(--macosx-window-color))};
+				--default-personal-toolbar-floating-border: #{gtmColorAdjForDark("GTMColorationBaseMidtone", var(--macosx-window-color))};
 				--default-bookmark-item-color: white;
 			}
 		}
@@ -398,6 +404,8 @@
 				// Personal Toolbar (Bookmarks)
 				--default-personal-toolbar: linear-gradient(to top, rgb(227, 234, 250), rgb(233, 237, 249));
 				--default-personal-toolbar-border-bottom: rgb(162, 181, 213);
+				--default-personal-toolbar-floating: rgb(210,225,246);
+				--default-personal-toolbar-floating-border: rgb(76,140,220);
 			}
 
 			@media (prefers-color-scheme: dark) {
@@ -454,6 +462,8 @@
 						#080F21
 					);
 					--default-personal-toolbar-border-bottom: #1f2c42;
+					--default-personal-toolbar-floating: rgb(9,24,47);
+					--default-personal-toolbar-floating-border: rgb(35,101,179);
 				}
 			}
 
@@ -562,6 +572,8 @@
 					hsl(var(--you-h), calc(var(--you-s) - 5%), calc(var(--you-l) + 33%))
 				);
 				--default-personal-toolbar-border-bottom: hsl(var(--you-h), calc(var(--you-s) - 62%), calc(var(--you-l) + 15%));
+				--default-personal-toolbar-floating: hsl(var(--you-h), calc(var(--you-s) - 2%), calc(var(--you-l) + 31%));
+				--default-personal-toolbar-floating-border: hsl(var(--you-h), calc(var(--you-s) - 37%), calc(var(--you-l) + 24%));
 			}
 			&:not([geckium-twentyone]) {
 				--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
@@ -599,7 +611,7 @@
 
 				// Tabs
 				--default-inactive-tab-background: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 45%));
-				--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l) - 43%), 0.8);
+				--default-inactive-tab-background-native: hsla(var(--you-h), calc(var(--you-s) - 50%), calc(var(--you-l-dark) - 43%), 0.8);
 				&:not([geckium-eleven]) {
 					--default-tab-glare: hsla(var(--you-h), calc(var(--you-s) - 48%), calc(var(--you-l-dark) - 49%), 0.45);
 				}
@@ -641,7 +653,7 @@
 					--default-navigation-buttons-separator: var(--default-toolbarbutton-inner-border-color-normal); //changed in light mode
 				}
 				&:not([geckium-eleven]) {
-					--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l) + 20%));
+					--default-toolbarbutton-icon-color: hsl(var(--you-h), calc(var(--you-s) - 28%), calc(var(--you-l-dark) + 20%));
 				}
 
 				// Personal Toolbar
@@ -652,9 +664,11 @@
 						hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 49%))
 					);
 					--default-personal-toolbar-border-bottom: rgb(91, 91, 91); //changed in light mode
+					--default-personal-toolbar-floating: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 47%));
+					--default-personal-toolbar-floating-border: hsl(var(--you-h), calc(var(--you-s) - 37%), calc(var(--you-l-dark) - 22%));
 				}
 				&:not([geckium-twentyone]) {
-					--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 18%));
+					--default-bookmark-item-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) + 18%));
 				}
 
 				// Download Shelf
