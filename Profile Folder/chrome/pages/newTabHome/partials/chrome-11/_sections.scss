@@ -9,6 +9,9 @@
 	--default-closed-section-button-color-hot: black;
 	--closed-section-button-color-hot: var(--default-closed-section-button-color-hot);
 
+	--default-app-item-background-color-hot: rgb(229, 229, 229);
+	--app-item-background-color-hot: var(--default-app-item-background-color-hot);
+
 	@media (prefers-color-scheme: dark) {
 		--section-color: white;
 		--spacer-background-color: rgb(61, 61, 61);
@@ -19,16 +22,22 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--section-color: var(--newtab-text-primary-color, currentColor);
 		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+		
 		--closed-section-button-color-normal: var(--section-color);
 		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
+
+		--app-item-background-color-hot: var(--spacer-background-color);
 	}
 
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
 		--section-color: var(--chrtheme-ntp-text, var(--default-section-color));
 		--spacer-background-color: var(--chrtheme-ntp-section, var(--default-spacer-background-color));
+
 		--closed-section-button-color-normal: var(--section-color);
 		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
+
+		--app-item-background-color-hot: var(--chrtheme-ntp-section);
 	}
 
 	// GTK+
@@ -40,6 +49,8 @@
 
 		--closed-section-button-color-normal: var(--section-color);
 		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
+		
+		--app-item-background-color-hot: var(--spacer-background-color);
 	}
 }
 
@@ -99,7 +110,7 @@
 					transition: background-color .5s;
 
 					&:hover {
-						background-color: rgb(229, 229, 229);
+						background-color: var(--app-item-background-color-hot);
 					}
 
 					> .favicon {
