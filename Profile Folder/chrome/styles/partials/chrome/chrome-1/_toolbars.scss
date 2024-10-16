@@ -1,6 +1,6 @@
 :root {
 	--chrome-content-separator-color: transparent !important; // Firefox's top toolbar separator
-	--toolbar-start-end-padding: 0px !important; // Margin before and after first and last toolbar item
+	--toolbar-start-end-padding: 1px !important; // Margin before and after first and last toolbar item
 
 	--nav-bar-height: 37px; // Used in Geckium's size calculations
 
@@ -507,10 +507,6 @@
 	#PanelUI-button {
 		align-items: center;
 		margin-top: -1px;
-	}
-
-	#nav-bar-customization-target {
-		margin-inline-start: -1px !important; // What is actually creating the margin around the items???
 	}
 
 	// Combined toolbarbuttons
