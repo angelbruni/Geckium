@@ -178,6 +178,12 @@
 		--gkdownload-shelf-foreground-color: var(--bookmark-item-color, var(--default-gkdownload-item-name-color));
 		--gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
 	}
+
+	&[sizemode="fullscreen"] {
+		#gkDownloadShelf {
+			display: none !important;
+		}
+	}
 }
 
 #gkDownloadShelf,
@@ -254,6 +260,7 @@
 			top: -230px;
 			opacity: 1;
 			animation: gkDownloadItemBegin var(--gkdownload-item-animation-begin-duration) ease-out forwards;
+			pointer-events: none;
 		}
 
 		// Intermediate Download Progress
