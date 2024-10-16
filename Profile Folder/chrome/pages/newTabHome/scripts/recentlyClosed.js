@@ -81,6 +81,9 @@ function createRecentlyClosed() {
 				recentlyClosedContainer = "#recently-closed-menu-button .footer-menu"
 			}
 
+			if (appearanceChoice == 11)
+				gkInsertElm.before(MozXULElement.parseXULToFragment(recentlyClosedItem), document.querySelector("#recently-closed-menu > hr"));
+
 			if (appearanceChoice <= 25) {
 				waitForElm(recentlyClosedContainer).then(function() {
 					document.querySelector(recentlyClosedContainer).appendChild(MozXULElement.parseXULToFragment(recentlyClosedItem));

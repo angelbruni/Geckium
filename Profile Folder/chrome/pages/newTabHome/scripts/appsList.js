@@ -16,9 +16,8 @@ function setUpApps() {
 
 	if (appsListArray.length !== 0) {
 		appsListArray.forEach(app => {
-			console.log(app)
-
 			let tile;
+			let item;
 
 			pos = app.pos;
 			url = app.url;
@@ -38,6 +37,13 @@ function setUpApps() {
 				<html:a data-index="${pos}" class="item" href="${url}">
 					<image class="favicon" src="${favicon}"></image>
 					<image class="icon" src="${icon}"></image>
+					<label>${name}</label>
+				</html:a>
+				`
+
+				item = `
+				<html:a data-index="${pos}" class="item" href="${url}">
+					<image class="favicon" src="${favicon}"></image>
 					<label>${name}</label>
 				</html:a>
 				`
@@ -68,6 +74,9 @@ function setUpApps() {
 
 			waitForElm(appsContainer).then(function() {
 				document.querySelector(appsContainer).appendChild(MozXULElement.parseXULToFragment(tile));
+
+				if (appearanceChoice == 11)
+					gkInsertElm.before(MozXULElement.parseXULToFragment(item), document.querySelector("#apps-menu > hr"));
 
 				if (appearanceChoice == 21 || appearanceChoice == 25) {
 					let apps = document.querySelectorAll(appsContainer + "> .tile-container");

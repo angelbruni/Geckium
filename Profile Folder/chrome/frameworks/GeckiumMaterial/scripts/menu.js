@@ -43,15 +43,13 @@ setTimeout(() => {
 	
 	
 			if (!btn.hasAttribute("open"))
-				btn.setAttribute("open", true); // Add the "open" attribute to the button
+				btn.setAttribute("open", true);
 			else
-				btn.removeAttribute("open"); // Add the "open" attribute to the button
+				btn.removeAttribute("open");
 	
-			// Stop the event from propagating further to prevent triggering the document click listener
 			e.stopPropagation();
 		});
 	
-		// Add event listener to the document to listen for clicks outside of the button
 		document.addEventListener("click", function() {
 			btn.removeAttribute("open");
 		});
