@@ -223,6 +223,8 @@ function createTile(website) {
     try {
 		let tile;
 
+		let menuItem;
+
         if (website !== undefined) {
 			let url = website.url.replace(/[&<>"']/g, match => specialCharacters[match]);
 
@@ -296,8 +298,8 @@ function createTile(website) {
 						<image class="thumbnail" />
 					</html:a>
 					<hbox class="edit-container edit-visible">
-						<html:div class="edit-pin"/>
-						<html:div class="edit-cross"/>
+						<html:div class="edit-pin" />
+						<html:div class="edit-cross" />
 					</hbox>
 				</vbox>
 				`
@@ -311,20 +313,27 @@ function createTile(website) {
 				<html:a class="thumbnail-container" href="${url}" pinned="${pinned}">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<html:button class="pin" title="${pinTitle}"></html:button>
-							<spacer></spacer>
-							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
+							<html:button class="pin" title="${pinTitle}" />
+							<spacer />
+							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}" />
 						</hbox>
 						<html:div class="thumbnail-wrapper">
-							<html:div class="thumbnail"></html:div>
+							<html:div class="thumbnail" />
 						</html:div>
 					</vbox>
 					<html:div class="title">
 						<hbox style="list-style-image: url('${favicon}')">
-							<image class="favicon"></image>
+							<image class="favicon" />
 							<label>${title}</label>
 						</hbox>
 					</html:div>
+				</html:a>
+				`
+
+				menuItem = `
+				<html:a class="item" href="${url}" pinned="${pinned}" style="list-style-image: url('${favicon}')">
+					<image class="favicon" />
+					<label>${title}</label>
 				</html:a>
 				`
 
@@ -492,7 +501,7 @@ function createTile(website) {
 			}
 		}
 
-        return MozXULElement.parseXULToFragment(tile);
+        return [MozXULElement.parseXULToFragment(tile), MozXULElement.parseXULToFragment(menuItem)];
     } catch (e) {
         console.error(e);
     }
@@ -540,7 +549,11 @@ function populateRecentSitesGrid() {
 			combinedSites.forEach(site => {
 				const tile = createTile(site);
 				try {
-					mostVisited.appendChild(tile);
+					mostVisited.appendChild(tile[0]);
+
+					if (appearanceChoice == 11)
+						gkInsertElm.before(tile[1], document.querySelector("#most-visited-menu > hr"));
+
 				} catch (e) {
 					console.error(e);
 				}
@@ -551,10 +564,8 @@ function populateRecentSitesGrid() {
 	
 				const emptyTile = createTile();
 	
-				mostVisited.appendChild(emptyTile);
+				mostVisited.appendChild(emptyTile[0]);
 			}
 		});
-
-		
     }
 }

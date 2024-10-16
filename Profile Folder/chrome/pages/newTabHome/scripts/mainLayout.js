@@ -454,7 +454,6 @@ function createMainLayout() {
 					if (topic == "nsPref:changed") {
 						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
 							mostViewedCheckbox.checked = false;
-							
 							mostViewedSectionElm.classList.add("collapsed");
 							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
 						} else {
@@ -523,6 +522,34 @@ function createMainLayout() {
 	} else if (appearanceChoice == 11) {
 		// Chrome 11
 
+		function createClosedSectionBtns(sectionId) {
+			let localisedTitle;
+
+			switch (sectionId) {
+				case "apps":
+					localisedTitle = ntpBundle.GetStringFromName("apps");
+					break;
+				case "most-viewed":
+					localisedTitle = ntpBundle.GetStringFromName("mostViewed");
+					break;
+				case "recently-closed":
+					localisedTitle = ntpBundle.GetStringFromName("recentlyClosed");
+					break;
+			}
+
+			return `
+			<html:button id="${sectionId}-button">
+				<html:span>${localisedTitle}</html:span>
+				<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/accordion-chevron.svg" />
+
+				<vbox id="${sectionId}-menu">
+					<html:hr />
+					<html:a>${localisedTitle}</html:a>
+				</vbox>
+			</html:button>
+			`
+		}
+
 		main = `
 		<vbox id="main">
 			<vbox class="sections">
@@ -531,7 +558,7 @@ function createMainLayout() {
 						<html:button class="disclosure" />
 						<label>${ntpBundle.GetStringFromName("apps")}</label>
 						<spacer></spacer>
-						<button class="section-close-button"></button>
+						<html:button class="section-close-button" />
 					</hbox>
 					<html:div id="apps-content" />
 				</vbox>
@@ -540,38 +567,80 @@ function createMainLayout() {
 						<html:button class="disclosure" />
 						<label>${ntpBundle.GetStringFromName("mostVisited")}</label>
 						<spacer></spacer>
-						<button class="section-close-button"></button>
+						<html:button class="section-close-button" />
 					</hbox>
-					<html:div id="most-viewed-content"></html:div>
+					<html:div id="most-viewed-content" />
 				</vbox>
 				<vbox id="recently-closed">
 					<hbox class="section collapsed">
 						<html:button class="disclosure" style="pointer-events: none; opacity: 0;" />
 						<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
 						<spacer></spacer>
-						<button class="section-close-button"></button>
+						<html:button class="section-close-button" />
 					</hbox>
-					<html:div id="recently-closed-content"></html:div>
+					<html:div id="recently-closed-content" />
 				</vbox>
 			</vbox>
+			<hbox id="closed-sections-bar">
+				<html:button id="apps-button">
+					<html:span>${ntpBundle.GetStringFromName("apps")}</html:span>
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/accordion-chevron.svg" />
+
+					<vbox id="apps-menu">
+						<html:hr />
+						<html:a class="item">
+							<image class="favicon" />
+							<label>${ntpBundle.GetStringFromName("apps")}</label>
+						</html:a>
+					</vbox>
+				</html:button>
+				<html:button id="most-visited-button">
+					<html:span>${ntpBundle.GetStringFromName("mostVisited")}</html:span>
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/accordion-chevron.svg" />
+
+					<vbox id="most-visited-menu">
+						<html:hr />
+						<html:a class="item">
+							<image class="favicon" />
+							<label>${ntpBundle.GetStringFromName("mostVisited")}</label>
+						</html:a>
+					</vbox>
+				</html:button>
+				<html:button id="recently-closed-button">
+					<html:span>${ntpBundle.GetStringFromName("recentlyClosed")}</html:span>
+					<html:img src="chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/accordion-chevron.svg" />
+
+					<vbox id="recently-closed-menu">
+						<html:hr />
+						<html:a class="item">
+							<image class="favicon" />
+							<label>${ntpBundle.GetStringFromName("recentlyClosed")}</label>
+						</html:a>
+					</vbox>
+				</html:button>
+			</hbox>
 		</vbox>
 		`;
 
 		footer = `
 		<vbox id="attribution">
 			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
-			<html:div id="attribution-img"></html:div>
+			<html:div id="attribution-img" />
 		</vbox>
 		<vbox id="footer">
 			<hbox id="logo-img">
-				<html:div id="logo-icon"></html:div>
-				<html:div id="logo-wordmark"></html:div>
+				<html:div id="logo-icon" />
+				<html:div id="logo-wordmark" />
 			</hbox>
 		</vbox>
 		`;
 
 		waitForElm("#main > .sections").then(() => {
+			// Apps
+			// Collapse Code
 			const appsSectionElm = document.querySelector("#apps > .section");
+			const appsSectionCloseBtn = appsSectionElm.querySelector(".section-close-button");
+			const appsClosedSectionsBtn = document.querySelector("#closed-sections-bar > #apps-button");
 
 			const ntpAppsCollapsedObs = {
 				observe: function (subject, topic, data) {
@@ -593,21 +662,49 @@ function createMainLayout() {
 			else
 				appsSectionElm.classList.remove("collapsed");
 
-			appsSectionElm.addEventListener("click", () => {
-				gkPrefUtils.toggle("Geckium.newTabHome.appsCollapsed");
+			appsSectionElm.addEventListener("click", (e) => {
+				// Prevent the section from collapsing when clicking the close button.
+				const isClickedInsideCloseButton = appsSectionCloseBtn.contains(e.target);
+
+				if (!isClickedInsideCloseButton)
+					gkPrefUtils.toggle("Geckium.newTabHome.appsCollapsed");
 			});
 
+			// Close Code
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.appsClosed").bool) {
+				appsSectionElm.classList.add("closed");
+				appsClosedSectionsBtn.classList.add("closed");
+			} else {
+				appsSectionElm.classList.remove("closed");
+				appsClosedSectionsBtn.classList.remove("closed");
+			}
 
-			const mostViewedSectionElm = document.querySelector("#most-viewed > .section");
+			appsSectionCloseBtn.addEventListener("click", (e) => {
+				gkPrefUtils.set("Geckium.newTabHome.appsClosed").bool(true);
+				appsSectionElm.classList.add("closed");
+				appsClosedSectionsBtn.classList.add("closed");
+			});
+
+			appsClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
+				gkPrefUtils.set("Geckium.newTabHome.appsClosed").bool(false);
+				appsSectionElm.classList.remove("closed");
+				appsClosedSectionsBtn.classList.remove("closed");
+			});
+
+			// Most Viewed
+			// Collapse Code
+			const mostVisitedSectionElm = document.querySelector("#most-viewed > .section");
+			const mostVisitedSectionCloseBtn = mostVisitedSectionElm.querySelector(".section-close-button");
+			const mostVisitedClosedSectionsBtn = document.querySelector("#closed-sections-bar > #most-visited-button");
 
 			const ntpMostViewedCollapsedObs = {
 				observe: function (subject, topic, data) {
 					if (topic == "nsPref:changed") {
 						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
-							mostViewedSectionElm.classList.add("collapsed");
+							mostVisitedSectionElm.classList.add("collapsed");
 							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
 						} else {
-							mostViewedSectionElm.classList.remove("collapsed");
+							mostVisitedSectionElm.classList.remove("collapsed");
 							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(true);
 						}
 					}
@@ -616,12 +713,86 @@ function createMainLayout() {
 			Services.prefs.addObserver("Geckium.newTabHome.mostViewedCollapsed", ntpMostViewedCollapsedObs, false);
 
 			if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool)
-				mostViewedSectionElm.classList.add("collapsed");
+				mostVisitedSectionElm.classList.add("collapsed");
 			else
-				mostViewedSectionElm.classList.remove("collapsed");
+				mostVisitedSectionElm.classList.remove("collapsed");
 
-			mostViewedSectionElm.addEventListener("click", () => {
-				gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
+			mostVisitedSectionElm.addEventListener("click", () => {
+				// Prevent the section from collapsing when clicking the close button.
+				const isClickedInsideCloseButton = mostVisitedSectionCloseBtn.contains(e.target);
+
+				if (!isClickedInsideCloseButton)
+					gkPrefUtils.toggle("Geckium.newTabHome.mostViewedCollapsed");
+			});
+
+			// Close Code
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedClosed").bool) {
+				mostVisitedSectionElm.classList.add("closed");
+				mostVisitedClosedSectionsBtn.classList.add("closed");
+			} else {
+				mostVisitedSectionElm.classList.remove("closed");
+				mostVisitedClosedSectionsBtn.classList.remove("closed");
+			}
+
+			mostVisitedSectionCloseBtn.addEventListener("click", (e) => {
+				gkPrefUtils.set("Geckium.newTabHome.mostViewedClosed").bool(true);
+				mostVisitedSectionElm.classList.add("closed");
+				mostVisitedClosedSectionsBtn.classList.add("closed");
+			});
+
+			mostVisitedClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
+				gkPrefUtils.set("Geckium.newTabHome.mostViewedClosed").bool(false);
+				mostVisitedSectionElm.classList.remove("closed");
+				mostVisitedClosedSectionsBtn.classList.remove("closed");
+			});
+
+			// Recently Closed
+			const recentlyClosedSectionElm = document.querySelector("#recently-closed > .section");
+			const recentlyClosedSectionCloseBtn = recentlyClosedSectionElm.querySelector(".section-close-button");
+			const recentlyClosedClosedSectionsBtn = document.querySelector("#closed-sections-bar > #recently-closed-button");
+
+			// Close Code
+			if (gkPrefUtils.tryGet("Geckium.newTabHome.recentlyClosedClosed").bool) {
+				recentlyClosedSectionElm.classList.add("closed");
+				recentlyClosedClosedSectionsBtn.classList.add("closed");
+			} else {
+				recentlyClosedSectionElm.classList.remove("closed");
+				recentlyClosedClosedSectionsBtn.classList.remove("closed");
+			}
+
+			recentlyClosedSectionCloseBtn.addEventListener("click", (e) => {
+				gkPrefUtils.set("Geckium.newTabHome.recentlyClosedClosed").bool(true);
+				recentlyClosedSectionElm.classList.add("closed");
+				recentlyClosedClosedSectionsBtn.classList.add("closed");
+			});
+
+			recentlyClosedClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
+				gkPrefUtils.set("Geckium.newTabHome.recentlyClosedClosed").bool(false);
+				recentlyClosedSectionElm.classList.remove("closed");
+				recentlyClosedClosedSectionsBtn.classList.remove("closed");
+			});
+
+			// All
+			document.querySelectorAll("#closed-sections-bar > button").forEach(btn => {
+				btn.addEventListener("click", function (e) {
+					document.querySelectorAll("#closed-sections-bar > button").forEach(btn => {
+						btn.removeAttribute("open");
+					});
+
+					if (!btn.hasAttribute("open"))
+						btn.setAttribute("open", true);
+					else
+						btn.removeAttribute("open");
+
+					e.stopPropagation();
+				});
+
+				document.addEventListener("click", function (event) {
+					const isClickedInsideButton = btn.contains(event.target);
+
+					if (!isClickedInsideButton)
+						btn.removeAttribute("open");
+				});
 			});
 		});
 	} else if (appearanceChoice == 21 || appearanceChoice == 25) {

@@ -4,6 +4,11 @@
 	--default-spacer-background-color: rgb(229, 229, 229);
 	--spacer-background-color: var(--default-spacer-background-color);
 
+	--default-closed-section-button-color-normal: rgb(76, 76, 76);
+	--closed-section-button-color-normal: var(--default-closed-section-button-color-normal);
+	--default-closed-section-button-color-hot: black;
+	--closed-section-button-color-hot: var(--default-closed-section-button-color-hot);
+
 	@media (prefers-color-scheme: dark) {
 		--section-color: white;
 		--spacer-background-color: rgb(61, 61, 61);
@@ -14,12 +19,16 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--section-color: var(--newtab-text-primary-color, currentColor);
 		--spacer-background-color: color-mix(in srgb, var(--lwt-accent-color) 70%, transparent);
+		--closed-section-button-color-normal: var(--section-color);
+		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
 	}
 
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
 		--section-color: var(--chrtheme-ntp-text, var(--default-section-color));
 		--spacer-background-color: var(--chrtheme-ntp-section, var(--default-spacer-background-color));
+		--closed-section-button-color-normal: var(--section-color);
+		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
 	}
 
 	// GTK+
@@ -28,6 +37,9 @@
 		--spacer-background-color: color-mix(in srgb, FieldText 20%, transparent);
 
 		--recently-closed-item-color: -moz-dialogtext;
+
+		--closed-section-button-color-normal: var(--section-color);
+		--closed-section-button-color-hot: var(--closed-section-button-color-normal);
 	}
 }
 
@@ -39,6 +51,12 @@
 		align-items: center;
 		font-size: 12pt;
 		color: var(--section-color);
+
+		&:hover {
+			> .section-close-button {
+				opacity: 1;
+			}
+		}
 
 		&.collapsed {
 			+ div {
@@ -100,6 +118,14 @@
 			}						
 		}
 
+		&.closed {
+			display: none;
+
+			+ div {
+				display: none !important;
+			}
+		}
+
 		+ div {
 			.item {
 				display: flex;
@@ -142,6 +168,22 @@
 		.section-close-button {
 			width: 21px;
 			height: 21px;
+			opacity: 0;
+
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/newtab_close_off.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+
+			transition: opacity .15s;
+		
+			&:hover,
+			&:focus {
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/newtab_close_off_h.svg");
+			}
+
+			&:active {
+				background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/newtab_close_off_p.svg");
+			}
 		}
 	}
 }
@@ -151,4 +193,108 @@
 #recently-closed-content {
 	padding-block-start: 9px;
 	margin-block-end: 30px;
+}
+
+#closed-sections-bar {
+	width: 920px;
+
+	position: fixed;
+	justify-content: end;
+
+	bottom: 14px;
+
+	> [id*="-button"] {
+		appearance: none;
+
+		position: relative;
+
+		border: 0;
+		background: transparent;
+
+		padding-block-start: 2px;
+		margin-inline-start: 1.5em;
+		font-size: 12pt;
+		color: var(--closed-section-button-color-normal);
+
+		&:hover {
+			color: var(--closed-section-button-color-hot);
+		}
+
+		.close {
+			display: flex;
+		}
+		&:not(.closed) {
+			display: none;
+		}
+
+		&[open] {
+			> [id*="-menu"] {
+				display: flex;
+			}
+		}
+
+		> * {
+			display: inline-block;
+		}
+
+		> span {
+			margin-inline-end: 6px;
+		}
+
+		> img {
+			transform: rotate(90deg);
+			position: relative;
+			top: -2px;
+			margin-inline-start: 1px;
+		}
+
+		> [id*="-menu"] {
+			display: none;
+
+			position: absolute;
+			border: 1px solid rgba(0, 0, 0, .50);
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, .50);
+			background: linear-gradient(to bottom, white, #EEE);
+			padding-block: 8px;
+			border-radius: 3px;
+
+			bottom: 26px;
+			right: 0;
+
+			font-size: 10pt;
+
+			> .item {
+				display: flex;
+				align-items: center;
+
+				gap: 3px;
+
+				min-width: max-content;
+				color: #063874;
+				text-align: start;
+				padding-inline: 19px;
+				height: 24px;
+
+				text-decoration: underline;
+
+				cursor: pointer;
+			}
+
+			> hr {
+				border: 0;
+				width: 100%;
+				height: 1px;
+				background: linear-gradient(to right, rgba(0, 0, 0, .10), rgba(0, 0, 0, .02) 96%);
+				margin-block: 8px;
+			}
+		}
+	}
+}
+
+&[geckium-choice="eleven"] {
+	@media only screen and (max-width: 940px) {
+		#closed-sections-bar {
+			width: 692px;
+		}
+	}
 }
