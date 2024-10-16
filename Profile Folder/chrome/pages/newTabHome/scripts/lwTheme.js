@@ -32,7 +32,7 @@ function setProperties() {
 		document.documentElement.style.removeProperty("--toolbarbutton-icon-color");
 		const toolbarButtonIconFill = lwThemeResource.icon_color;
 		if (toolbarButtonIconFill)
-			document.documentElement.style.setProperty("--toolbarbutton-icon-color", toolbarButtonIconFill);	
+			document.documentElement.style.setProperty("--toolbarbutton-icon-color", toolbarButtonIconFill);
 		
 		document.documentElement.style.removeProperty("--toolbar-bgcolor");
 		const toolbarColor = lwThemeResource.toolbarColor;
@@ -58,7 +58,9 @@ function setProperties() {
 			document.documentElement.style.removeProperty("--newtab-background-color");
 			const newTabBackgroundColor = lwThemeResource.ntp_background;
 			if (newTabBackgroundColor)
-				document.documentElement.style.setProperty("--newtab-background-color", newTabBackgroundColor);	
+				document.documentElement.style.setProperty("--newtab-background-color", newTabBackgroundColor);
+				if (!ColorUtils.IsDark(newTabBackgroundColor))
+					document.documentElement.style.setProperty("--lwt-gkntp-logo-alternate", "1");
 
 			document.documentElement.style.removeProperty("--newtab-text-primary-color");
 			const newTabColor = lwThemeResource.ntp_text;
