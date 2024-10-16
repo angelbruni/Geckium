@@ -890,56 +890,56 @@ function createMainLayout() {
 					<vbox id="products-grid-container" class="hide-scrollbar">
 						<html:ul class="products-grid">
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://www.google.com/">
+									<html:span class="product-icon" style="background-position:0 -190px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("searchProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://www.youtube.com/">
+									<html:span class="product-icon" style="background-position:-70px -1116px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("youTubeProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://maps.google.com/">
+									<html:span class="product-icon" style="background-position:0 -466px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("mapsProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://play.google.com/">
+									<html:span class="product-icon" style="background-position:0 -328px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("playProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://news.google.com/">
+									<html:span class="product-icon" style="background-position:-69px -770px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("newsProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://mail.google.com/">
+									<html:span class="product-icon" style="background-position:0 -836px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("gmailProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://drive.google.com/">
+									<html:span class="product-icon" style="background-position:0 -397px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("driveProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://www.google.com/calendar">
+									<html:span class="product-icon" style="background-position:0 -905px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("calendarProduct")}</html:span>
 								</html:a>
 							</html:li>
-							<html:li class="product-container">
+							<html:li class="product-container" href="https://translate.google.com/">
 								<html:a class="product">
-									<html:span class="product-icon" />
+									<html:span class="product-icon" style="background-position:0 -974px"/>
 									<html:span class="product-name">${ntpBundle.GetStringFromName("translateProduct")}</html:span>
 								</html:a>
 							</html:li>
@@ -948,38 +948,38 @@ function createMainLayout() {
 						<html:span class="divider" />
 						<html:ul id="more-products-grid" class="products-grid">
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://books.google.com/">
+									<html:span class="product-icon" style="background-position:-69px -572px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("booksProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://wallet.google.com/">
+									<html:span class="product-icon" style="background-position:-69px -978px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("walletProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="http://www.google.com/shopping">
+									<html:span class="product-icon" style="background-position:0 -535px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("shoppingProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="http://www.blogger.com/">
+									<html:span class="product-icon" style="background-position:-69px -259px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("bloggerProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="http://www.google.com/finance">
+									<html:span class="product-icon" style="background-position:0 -1043px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("financeProduct")}</html:span>
 								</html:a>
 							</html:li>
 							<html:li class="product-container">
-								<html:a class="product">
-									<html:span class="product-icon" />
+								<html:a class="product" href="https://photos.google.com/">
+									<html:span class="product-icon" style="background-position:0 -629px" />
 									<html:span class="product-name">${ntpBundle.GetStringFromName("photosProduct")}</html:span>
 								</html:a>
 							</html:li>
