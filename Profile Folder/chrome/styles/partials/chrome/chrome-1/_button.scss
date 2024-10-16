@@ -8,7 +8,11 @@
 	&[geckium-choice="twentyone"],
 	&[geckium-choice="twentyfive"] {
 		/* .control-button - Picture-in-Picture buttons. */
-		button:not(.control-button, .menuitem-button) {
+		button:not(
+			.control-button,
+			.menuitem-button,
+			.notification-button
+		) {
 			appearance: button !important;
 
 			color: ButtonText !important;
