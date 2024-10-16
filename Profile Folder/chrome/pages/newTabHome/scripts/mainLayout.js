@@ -108,13 +108,13 @@ function createMainLayout() {
 			</vbox>
 			<vbox id="sidebar">
 				<vbox id="logo" />
-				<vbox id="searches" class="sidebar">
+				<!--<vbox id="searches" class="sidebar">
 					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
 					<html:form>
 						<html:input type="text" class="hint" name="search" placeholder="${ntpBundle.GetStringFromName("searchYourHistory")}" />
 					</html:form>
 					<html:div id="search-entries" />
-				</vbox>
+				</vbox>-->
 				<vbox id="recentlyBookmarked" class="sidebar">
 					<html:span class="section-title">${ntpBundle.GetStringFromName("recentBookmarks")}</html:span>
 					<vbox id="recentlyBookmarkedContainer">
@@ -173,13 +173,13 @@ function createMainLayout() {
 			</vbox>
 			<vbox id="sidebar">
 				<vbox id="logo" />
-				<vbox id="searches" class="sidebar">
+				<!--<vbox id="searches" class="sidebar">
 					<html:div class="section-title">${ntpBundle.GetStringFromName("searches")}</html:div>
 					<html:form>
 						<html:input type="text" class="hint" name="search" placeholder="${ntpBundle.GetStringFromName("searchYourHistory")}" />
 					</html:form>
 					<html:div id="search-entries" />
-				</vbox>
+				</vbox>-->
 				<vbox id="recentlyBookmarked" class="sidebar">
 					<html:span class="section-title">${ntpBundle.GetStringFromName("recentBookmarks")}</html:span>
 					<vbox id="recentlyBookmarkedContainer" />
