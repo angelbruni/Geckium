@@ -679,7 +679,7 @@ function createMainLayout() {
 				appsClosedSectionsBtn.classList.remove("closed");
 			}
 
-			appsSectionCloseBtn.addEventListener("click", (e) => {
+			appsSectionCloseBtn.addEventListener("click", () => {
 				gkPrefUtils.set("Geckium.newTabHome.appsClosed").bool(true);
 				appsSectionElm.classList.add("closed");
 				appsClosedSectionsBtn.classList.add("closed");
@@ -717,7 +717,7 @@ function createMainLayout() {
 			else
 				mostVisitedSectionElm.classList.remove("collapsed");
 
-			mostVisitedSectionElm.addEventListener("click", () => {
+			mostVisitedSectionElm.addEventListener("click", (e) => {
 				// Prevent the section from collapsing when clicking the close button.
 				const isClickedInsideCloseButton = mostVisitedSectionCloseBtn.contains(e.target);
 
