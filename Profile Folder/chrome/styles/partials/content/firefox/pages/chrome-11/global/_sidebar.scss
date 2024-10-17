@@ -73,7 +73,7 @@ body {
 }
 
 .navigation,
-#sidebar {
+#sidebar:not(moz-checkbox) {
 	border-inline-end: 1px solid var(--sidebar-border-inline-end-color);
 	width: var(--sidebar-width) !important;
 	background: var(--sidebar-gradients);
