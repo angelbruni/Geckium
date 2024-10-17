@@ -23,6 +23,10 @@ Research: Source-accurate GTK+ System Theme, Incognito tinting, ALL the known be
 Commits for one merge request: 227 and counting :p`,
 			socials: [
 				{
+					name: gSettingsBundle.GetStringFromName("donateTo"),
+					url: "https://patreon.com/dominichayesferen"
+				},
+				{
 					name: "GitHub",
 					url: "https://github.com/dominichayesferen"
 				}
@@ -311,13 +315,15 @@ Research: Useful insight into Firefox JS.`,
 		let creditElm = document.querySelector(`button[data-name="${person.name}"]`);
 
 		if (person.socials) {
+			const socialBox = document.createXULElement("vbox");
+			creditElm.querySelector(".information-container").appendChild(socialBox);
 			person.socials.forEach(social => {
 				const socialElm = document.createXULElement("label", { is: "text-link" });
 				socialElm.classList.add("button", "ripple-enabled", "text", "color", "disable-in-wizard");
 				socialElm.setAttribute("href", social.url);
 				socialElm.textContent = social.name;
 
-				creditElm.querySelector(".information-container").appendChild(socialElm);
+				socialBox.appendChild(socialElm);
 			});
 		}
 	})
