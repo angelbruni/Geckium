@@ -200,6 +200,10 @@
 		// &[unifiedextensionsbuttonshown] #urlbar-container {
 		// 	width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
 		// }
+
+		> .titlebar-spacer {
+			display: none !important; // Why is this a thing in #nav-bar now, Mozilla?
+		}
 	}
 	toolbar[overflowable][customizing] > .customization-target {
 		overflow: visible !important;
@@ -651,11 +655,6 @@
 				padding-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
 			}
 		}
-
-		#nav-bar {
-			height: calc(var(--nav-bar-height) + 1px);
-			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
-		}
 	}
 	&:not([personalbar="newtab"]) {
 		#PersonalToolbar {
@@ -673,6 +672,20 @@
 			> * {
 				margin-top: -5px !important;
 			}
+		}
+	}
+
+	&[personalbar="never"],
+	&[personalbar="newtab"] {
+		#nav-bar {
+			height: calc(var(--nav-bar-height) + 1px);
+			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
+		}
+	}
+
+	&[personalbar="always"] {
+		#PersonalToolbar {
+			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 		}
 	}
 
