@@ -1,23 +1,60 @@
-.infobar,
-#navigator-toolbox::after {
-	margin: -4px !important;
-	min-height: 36px !important;
-	align-items: center !important;
-	padding-block: 0 !important;
-	padding-inline: 8px !important;
-	border-block: 1px solid rgb(182,186,192) !important;
-	background: linear-gradient(to bottom, rgb(229,229,229), rgb(217,217,217)) !important;
-	color: black !important;
-	border-radius: 0 !important;
-	font-size: 11pt !important;
+.notificationbox-stack {
+	overflow: visible !important;
+
+	&::before,
+	&::after {
+		top: 0px;
+		height: calc(100% - 1px);
+	}
 }
 
-.infobar {
+notification-message {
+	border: 0 !important;
+	margin-block-end: 0px !important;
+	margin-inline: 0px !important;
+
+	&:not(:first-of-type) {
+		&:not([style*="margin-top"]) {
+			margin-block-start: 4px !important;
+		}
+	}
+}
+
+.container.infobar,
+notification-message /* Fix for Firefox ~120+ */ {
 	&::before {
 		content: unset !important;
 	}
+}
 
-	> .icon {
+.container.infobar,
+link[href*="infobar"] ~ div.container /* Fix for Firefox ~120+ */ {
+	margin-block-start: -5px !important /* bruni:	We need to fight the forced margin-top here
+													otherwise closing an infobar won't work as
+													it depends on modifying the margin with an
+													inline-style. */;
+	min-height: 36px !important;
+	border-block: 1px solid rgb(182,186,192) !important;
+	background: linear-gradient(to bottom, rgb(229,229,229), rgb(217,217,217)) !important;
+	border-radius: 0 !important;
+	padding-block: 0 !important;
+	padding-inline: 8px !important;
+	color: black !important;
+	font-size: 11pt !important;
+
+	align-items: center !important /* Fix for Firefox 115 */;
+
+	> .content /* Fix for Firefox ~120+ */ {
+		gap: 0 !important;
+		margin-inline-start: 0 !important;
+		
+		> .text-container {
+			gap: 0 !important;
+		}
+	}
+
+	> .icon,
+	.icon-container > .icon /* Fix for Firefox ~120+ */ {
 		width: 28px !important;
 		height: 28px !important;
 		margin: 0 !important;
@@ -28,6 +65,10 @@
 			height: 28px;
 			width: 28px;
 		}
+	}
+
+	.icon-container {
+		margin: 0 !important;
 	}
 
 	.notification-content {
@@ -46,8 +87,50 @@
 		margin-inline: 10px !important;
 	}
 
-	.notification-close {
-		margin: 0 !important;
+	.notification-close,
+	.close /* Fix for Firefox ~120+ */ {
+		overflow: hidden !important;
+
+		margin-inline: 0 !important;
+		margin-block: auto !important;
+
+		background-color: transparent !important;
+		border-radius: 0 !important;
+
+		width: 21px !important;
+		height: 21px !important;
+
+		background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off.svg") !important;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: unset !important;
+	
+		&:hover,
+		&:focus {
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_h.svg") !important;
+		}
+
+		&:active {
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_p.svg") !important;
+		}
+
+		> * {
+			display: none !important;
+		}
+	}
+}
+
+link[href*="infobar"] ~ div.container /* Yellow infobar for Firefox 121+ only */ {
+	&:has(.icon[src*="warning.svg"]) {
+		background: linear-gradient(
+			to bottom,
+			rgb(255,242,183),
+			rgb(250,231,147)
+		) !important;
+
+		.icon-container {
+			display: none !important;
+		}
 	}
 }
 
@@ -58,7 +141,11 @@
 	height: 30px !important;
 	border: 1px solid rgb(137,137,137) !important;
 	border-radius: 4px !important;
-	background: linear-gradient(to bottom, rgb(248,248,248), rgb(227,227,227)) !important;
+	background: linear-gradient(
+		to bottom,
+		rgb(248,248,248),
+		rgb(227,227,227)
+	) !important;
 	font-size: 11pt !important;
 	font-weight: normal !important;
 	color: black !important;
@@ -71,6 +158,11 @@
 	&:active {
 		background: linear-gradient(to bottom, rgb(234,234,234), rgb(245,245,245)) !important;
 	}
+}
+
+/* Close button of infobar */
+link[href*="moz-button"] + button > .button-background[size="small"] {
+	background: unset !important;
 }
 // FIXME: Higher priority banners should be yellow
 
