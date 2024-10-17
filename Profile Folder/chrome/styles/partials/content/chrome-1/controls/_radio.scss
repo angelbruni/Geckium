@@ -1,26 +1,66 @@
 @-moz-document 	url-prefix(about:preferences),
 				url-prefix(about:addons),
 				url-prefix(chrome://browser/content/preferences/dialogs) {
-	checkbox,
-	radio {
-		margin-block: 0 !important;
-	}
 
 	.checkbox-check,
 	.radio-check,
 	input[type="radio"] {
 		all: unset !important;
-		margin-inline-end: 4px !important;
+		position: relative !important;
+		margin-block: 0 !important;
+		width: 17px !important;
+		height: 17px !important;
+		border: 1px solid rgb(173,173,173) !important;
+		background-image: linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+		box-sizing: border-box !important;
+		margin-inline-end: 5px !important;
 	}
 
 	.checkbox-check {
-		appearance: checkbox !important;
-		-moz-default-appearance: checkbox !important;
+		border-radius: 3px !important;
+
+		&:checked,
+		&[checked],
+		&[selected="true"] {
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/checkbox-checked.svg"), linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+		}
 	}
 
 	.radio-check,
 	input[type="radio"] {
-		appearance: radio !important;
-		-moz-default-appearance: radio !important;
+		border-radius: 50% !important;
+
+		&:checked,
+		&[checked],
+		&[selected="true"] {
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/radio-button-checked.svg"), linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+		}
+	}
+
+	@media (-moz-ev-native-controls-patch) {
+		checkbox,
+		radio {
+			margin-block: 0 !important;
+		}
+
+		.checkbox-check,
+		.radio-check,
+		input[type="radio"] {
+			all: unset !important;
+			margin-inline-end: 4px !important;
+		}
+
+		.checkbox-check {
+			appearance: checkbox !important;
+			-moz-default-appearance: checkbox !important;
+		}
+
+		.radio-check,
+		input[type="radio"] {
+			appearance: radio !important;
+			-moz-default-appearance: radio !important;
+		}
 	}
 }
