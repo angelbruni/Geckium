@@ -1,3 +1,10 @@
+:root,
+window {
+	@media (-moz-ev-native-controls-patch) {
+		background: transparent;
+	}
+}
+
 #window {
 	width: 1080px;
 	height: 768px;
