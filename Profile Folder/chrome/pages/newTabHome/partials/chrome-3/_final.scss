@@ -11,6 +11,8 @@
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
+		--ntp-background-color: var(--newtab-background-color);
+
 		&[style*="--lwt-gknewtab-attribution-image"] {
 			#attribution {
 				display: flex;
@@ -24,7 +26,7 @@
 		}
 
 		body {
-			background-color: var(--newtab-background-color);
+			background-color: var(--ntp-background-color);
 
 			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
 			@media (prefers-color-scheme: dark) {
@@ -49,8 +51,9 @@
 
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
+		--ntp-background-color: var(--chrtheme-ntp-background);
+
 		body {
-			background-color: var(--chrtheme-ntp-background);
 			background-image: var(--chrtheme-theme-ntp-background);
 			background-attachment: fixed;
 		}
@@ -71,8 +74,9 @@
 	// GTK+
 	//   blame >=115 for gkthemed being here too
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--ntp-background-color: Field;
+
 		body {
-			background-color: Field;
 			color: FieldText;
 		}
 	}

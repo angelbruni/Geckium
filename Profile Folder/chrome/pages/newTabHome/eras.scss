@@ -1,8 +1,9 @@
 :root {
-	--newtab-background-color: white;
+	--default-ntp-background-color: white;
+	--ntp-background-color: var(--default-ntp-background-color);
 
 	@media (prefers-color-scheme: dark) {
-		--newtab-background-color: rgb(32, 32, 32);
+		--default-ntp-background-color: rgb(32, 32, 32);
 	}
 
 	&[data-url*="about:apps"] {
@@ -18,6 +19,8 @@
 			display: none !important;
 		}
 	}
+
+	background-color: var(--ntp-background-color);
 
 	body {
 		height: 100vh;
