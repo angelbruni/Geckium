@@ -9,6 +9,10 @@ function buildCredits() {
 			contributions: "y e s.",
 			socials: [
 				{
+					name: gSettingsBundle.GetStringFromName("donateTo"),
+					url: "https://ko-fi.com/angelbruni"
+				},
+				{
 					name: "GitHub",
 					url: "https://github.com/angelbruni"
 				}
@@ -255,7 +259,7 @@ Research: Useful insight into Firefox JS.`,
 					<label class="description">${quote}</label>
 					<label class="description" style="white-space: pre-wrap">Contributions: ${person.contributions}</label>
 				</vbox>
-				<spacer />
+				<spacer style="min-width: 18px" />
 			</hbox>
 		</html:button>
 		`;
@@ -319,9 +323,12 @@ Research: Useful insight into Firefox JS.`,
 			creditElm.querySelector(".information-container").appendChild(socialBox);
 			person.socials.forEach(social => {
 				const socialElm = document.createXULElement("label", { is: "text-link" });
-				socialElm.classList.add("button", "ripple-enabled", "text", "color", "disable-in-wizard");
+				socialElm.classList.add("button", "ripple-enabled", "text", "disable-in-wizard");
 				socialElm.setAttribute("href", social.url);
 				socialElm.textContent = social.name;
+
+				if (socialElm.textContent == gSettingsBundle.GetStringFromName("donateTo"))
+					socialElm.classList.add("color");
 
 				socialBox.appendChild(socialElm);
 			});
