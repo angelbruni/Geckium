@@ -194,13 +194,25 @@ class gkDownloadManager {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
 					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+
+					downloadItemElm.addEventListener('contextmenu', (e) => {
+						e.preventDefault();
+						
+						if (downloadItemElm.dataset.state.includes !== "dangerous") {
+							document.getElementById(downloadItemElm.getAttribute("context")).openPopupAtScreen(e.screenX, e.screenY, true);
+
+							downloadItemElm.querySelector(".more").removeAttribute("open");
+						}
+					});
 					
 					// Open / Open when complete
-					downloadItemElm.querySelector(`.file-button`).addEventListener("click", () => {
-						if (!download.succeeded && !download.stopped && !download.error) {
-							gkDownloadManager.openWhenDone(download);
-						} else if (download.succeeded) {
-							gkDownloadManager.open(download);
+					downloadItemElm.querySelector(`.file-button`).addEventListener("click", (e) => {
+						// Only open if it's a left click.
+						if (e.button == 0) {
+							if (!download.succeeded && !download.stopped && !download.error)
+								gkDownloadManager.openWhenDone(download);
+							else if (download.succeeded)
+								gkDownloadManager.open(download);
 						}
 					});
 
@@ -336,7 +348,7 @@ class gkDownloadManager {
 			downloadFileFormat = "";
 
 		const itemTemplate = `
-		<hbox class="item" id="${download.target.path}" style="--gkdownload-progress: 0;">
+		<hbox class="item" id="${download.target.path}" context="${download.target.path}-menu" style="--gkdownload-progress: 0;">
 			<image class="anim-begin" />
 			<hbox class="main">
 				<button class="file-button" flex="1">
@@ -369,7 +381,7 @@ class gkDownloadManager {
 					</html:div>
 					<html:div class="separator" />
 					<image class="toolbarbutton-icon" type="menu"/>
-					<menupopup position="before_start" />
+					<menupopup id="${download.target.path}-menu" position="before_start" />
 				</toolbarbutton>
 			</hbox>
 			<hbox class="warning" />
