@@ -40,6 +40,9 @@ async function getLWThemesList() {
 		}
 
         let mani = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
+		if (!mani) {
+			continue;
+		}
 
 		let themeBanner;
 		let themeBannerAlignment;
