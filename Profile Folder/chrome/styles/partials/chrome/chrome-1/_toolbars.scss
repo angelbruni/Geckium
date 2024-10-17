@@ -591,6 +591,7 @@
 				display: flex !important;
 				align-items: center;
 				margin: 0 !important;
+				color: var(--bookmark-item-color);
 
 				[data-l10n-name="manage-bookmarks"] {
 					margin-inline-start: 4px !important;
@@ -617,9 +618,10 @@
 				width: 100%;
 				height: 100%;
 				
-				background-color: var(--tabpanel-background-color, white);
+				background-color: white;
+
 				@media (prefers-color-scheme: dark) {
-					background-color: var(--tabpanel-background-color, rgb(32, 32, 32));
+					background-color: rgb(32, 32, 32);
 				}
 
 				background-attachment: fixed;
@@ -670,7 +672,7 @@
 			}
 
 			> * {
-				margin-top: -5px !important;
+				margin-top: -3px !important;
 			}
 		}
 	}
@@ -765,6 +767,10 @@
 			--personal-toolbar-floating: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating));
 			--personal-toolbar-floating-border: var(--chrtheme-downloadshelf, var(--default-personal-toolbar-floating-border));
 
+			// Default chrtheme-ntp values.
+			--chrtheme-ntp-background-alignment: 50% 100%;
+			--chrtheme-ntp-background-repeat: no-repeat;
+
 			&[personalbar="newtab"] {
 				#PersonalToolbar {
 					> #personal-toolbar-bg {
@@ -812,6 +818,7 @@
 					> #personal-toolbar-bg {
 						// TODO: expose NTP images to chrome.
 
+						background-color: var(--tabpanel-background-color, white);
 						background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
 						@media (prefers-color-scheme: dark) {
 							background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
