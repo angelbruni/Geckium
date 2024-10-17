@@ -55,6 +55,11 @@
 		font-weight: bold;
 		font-size: 10pt;
 		color: var(--recently-closed-color);
+
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
 	}
 }
 
