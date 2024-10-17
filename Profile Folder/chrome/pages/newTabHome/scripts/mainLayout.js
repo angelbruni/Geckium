@@ -7,6 +7,8 @@ addEventListener("DOMContentLoaded", setPageWidth);
 const { SessionStore } = ChromeUtils.importESModule("resource:///modules/sessionstore/SessionStore.sys.mjs");
 
 function setMostVisitedLayout(layout) {
+	let appearanceChoice = gkEras.getNTPEra();
+
 	const mostVisited = document.getElementById("most-visited");
 
 	const thumbCheckbox = document.getElementById("thumb-checkbox");
@@ -41,7 +43,7 @@ function setMostVisitedLayout(layout) {
 			break;
 
 		case 1:
-			if (!mostViewedCollapsed) {
+			if (!mostViewedCollapsed && appearanceChoice < 6) {
 				thumbCheckbox.checked = true;
 				listCheckbox.checked = false;
 			}
@@ -52,7 +54,7 @@ function setMostVisitedLayout(layout) {
 			break;
 
 		case 2:
-			if (!mostViewedCollapsed) {
+			if (!mostViewedCollapsed && appearanceChoice < 6) {
 				thumbCheckbox.checked = false;
 				listCheckbox.checked = true;
 			}
@@ -425,28 +427,28 @@ function createMainLayout() {
 			`;
 		}
 
-		
-
 		waitForElm(menuBtnsContainer).then(() => {
-			const thumbCheckbox = document.getElementById("thumb-checkbox");
-			const listCheckbox = document.getElementById("list-checkbox");
-
 			const mostViewedCheckbox = document.getElementById("THUMB");
 			const mostViewedSectionElm = document.querySelector("#most-visited");
 
-			thumbCheckbox.addEventListener("click", () => {
-				if (thumbCheckbox.checked)
-					setMostVisitedLayout(1);
-				else if (!listCheckbox.checked && !thumbCheckbox.checked)
-					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
-			});
+			if (appearanceChoice < 6) {
+				const thumbCheckbox = document.getElementById("thumb-checkbox");
+				const listCheckbox = document.getElementById("list-checkbox");
 
-			listCheckbox.addEventListener("click", () => {
-				if (listCheckbox.checked)
-					setMostVisitedLayout(2);
-				else if (!listCheckbox.checked && !thumbCheckbox.checked)
-					setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
-			});
+				thumbCheckbox.addEventListener("click", () => {
+					if (thumbCheckbox.checked)
+						setMostVisitedLayout(1);
+					else if (!listCheckbox.checked && !thumbCheckbox.checked)
+						setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
+				});
+
+				listCheckbox.addEventListener("click", () => {
+					if (listCheckbox.checked)
+						setMostVisitedLayout(2);
+					else if (!listCheckbox.checked && !thumbCheckbox.checked)
+						setMostVisitedLayout(0); // Update layout to 0 when both checkboxes are unchecked
+				});
+			}
 
 			// Most Viewed
 			const ntpMostViewedCollapsedObs = {
