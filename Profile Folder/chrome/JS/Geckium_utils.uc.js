@@ -61,11 +61,17 @@ function bookmarksBarStatus() {
 	menuShowBookmarks.setAttribute("data-bookmarks-toolbar-visibility", true);
 }
 
-function updateAboutLocale() {
+function updateMenuTooltipLocale() {
 	const gkMenuBundle = Services.strings.createBundle("chrome://geckium/locale/properties/menu.properties");
 
-	const menuAbout = document.getElementById("menu_about");
+	const menuTooltip = document.getElementById("chrome-button");
+	menuTooltip.setAttribute("tooltiptext", gkMenuBundle.GetStringFromName("customizeAndControlGoogleChrome").replace("%s", gkBranding.getBrandingKey("fullName", false)));
+}
 
+function updateAboutLocale() {
+	const gkMenuBundle = Services.strings.createBundle("chrome://geckium/locale/properties/menu.properties");
+	
+	const menuAbout = document.getElementById("menu_about");
 	menuAbout.setAttribute("label", gkMenuBundle.GetStringFromName("about").replace("%s", gkBranding.getBrandingKey("fullName", false)));
 }
 
