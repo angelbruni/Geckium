@@ -1,63 +1,4 @@
 menupopup {
-	&#contentAreaContextMenu {
-		#context-navigation {
-			> menuitem {
-				&:not([disabled="true"]) {
-					&[_moz-menuactive] {
-						background-color: rgb(235,235,235) !important;
-						color: black !important;
-		
-						.menu-accel-container {
-							color: black !important;
-						}
-					}
-				}
-			}
-		}
-		
-		#context-sep-navigation {
-			margin-left: 0 !important;
-		}
-	}
-	
-	> menu,
-	> menuitem {
-		padding-inline-start: 4px !important;
-		z-index: unset;
-	
-		&:not([disabled="true"]) {
-			&[_moz-menuactive] {
-				background-color: rgb(235,235,235) !important;
-				color: black !important;
-
-				.menu-accel-container {
-					color: black !important;
-				}
-
-				&[checked="true"] {
-					&[type="checkbox"] {
-						list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/menu/checkbox.svg) !important;
-					}
-				}
-			}
-		}
-
-		&[checked="true"] {
-			&[type="checkbox"] {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/menu/checkbox.svg) !important;
-
-				.menu-iconic-icon {
-					width: 13px !important;
-					height: 10px !important;
-				}
-			}
-		}
-	}
-
-	> menuseparator {
-		margin-inline: 2px !important;
-	}
-
 	button {
 		&:not([disabled="true"]) {
 			&:hover {
@@ -66,4 +7,16 @@ menupopup {
 			}
 		}
 	}
+}
+
+// Hardcoded menu skin
+//  Hardcoded menu style construction variables
+& {
+	--gk-menuitem-background: #EBEBEB;
+	--gk-menuitem-foreground: black;
+	--gk-menuitem-foreground-keys: black;
+
+	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-68/menu/check.svg");
+	--gk-menuradioff-texture: unset;
+	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-68/menu/radio-sel.svg");
 }

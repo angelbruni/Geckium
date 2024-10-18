@@ -1,35 +1,4 @@
 menupopup {
-	&#contentAreaContextMenu {
-		#context-navigation {
-			> menuitem {
-				appearance: none !important;
-				justify-content: unset !important;
-				min-height: 23px !important;
-				padding-inline-start: 4px !important;
-				z-index: 1;
-
-				&:not([disabled="true"]) {
-					color: black !important;
-					
-					&[_moz-menuactive] {
-						background-color: rgb(66,129,244) !important;
-						color: white !important;
-					}
-		
-					&:not([_moz-menuactive]) {
-						.menu-accel-container {
-							color: rgb(161,161,146) !important;
-						}
-					}
-				}
-			}
-		}
-		
-		#context-sep-navigation {
-			margin-left: 0 !important;
-		}
-	}
-
 	button {
 		margin: 0 !important;
 		padding: 0 !important;
@@ -80,88 +49,26 @@ menupopup {
 		&#menu_paste6 {
 			width: 57px !important;
 		}
-
-		
 	}
+}
 
-	separator {
-		display: none !important;
-	}
-
-	> menu,
-	> menuitem,
-	> .menuitemitems {
-		padding-inline-start: 4px !important;
-	}
-
-	> menu,
-	> menuitem {
-		appearance: none !important;
-		min-height: 23px !important;
-		z-index: 1;
+// Hardcoded menu skin
+//  Hardcoded menu style construction variables
+& {
+	// --gk-menu-radii: 0px;
+	--gk-menu-background: white;
+	--gk-menu-border-color: #BABABA;
+	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.5);
+	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.5);
+	--gk-menu-padding: 0;
+	--gk-menu-shadow: 4px 2px 3px rgba(0, 0, 0, 0.6);
 	
-		&:not([disabled="true"]) {
-			color: black !important;
-			
-			&[_moz-menuactive] {
-				background-color: rgb(66,129,244) !important;
-				color: white !important;
+	--gk-menuitem-background: #4281F4;
+	--gk-menuitem-foreground: white;
+	--gk-menuitem-foreground-keys: white;
 
-				&[checked="true"] {
-					&[type="checkbox"] {
-						list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/menu/checkbox_h.svg) !important;
-					}
-				}
-			}
-
-			&:not([_moz-menuactive]) {
-				.menu-accel-container {
-					color: rgb(161,161,146) !important;
-				}
-			}
-		}
-
-		&[checked="true"] {
-			.menu-iconic-left {
-				appearance: none !important;
-				width: 30px !important;
-
-				.menu-iconic-icon {
-					display: flex !important;
-				}
-			}
-
-			&[type="checkbox"] {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/menu/checkbox.svg) !important;
-
-				.menu-iconic-icon {
-					width: 10px !important;
-					height: 8px !important;
-				}
-			}
-		}
-	}
-
-	> menuseparator {
-		appearance: none !important;
-		border-top: 1px solid rgb(233,233,233) !important;
-		border-bottom: 0 !important;
-		padding: 0 !important;
-		margin-block: 5px !important;
-	}
-
-	.menu-text {
-		margin-inline-end: 20px !important;
-	}
-
-	.menuitem-right-items {
-		margin: 0 !important;
-		height: 35px !important;
-		margin-block: -6px !important;
-
-		.menuitem-button {
-			border-top: 0 !important;
-			border-bottom: 0 !important;
-		}
-	}
+	--gk-menusep-color: rgba(0, 0, 0, 0.1);
+	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/check.svg");
+	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio.svg");
+	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio-sel.svg");
 }

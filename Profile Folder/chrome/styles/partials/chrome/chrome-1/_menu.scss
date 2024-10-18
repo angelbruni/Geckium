@@ -124,7 +124,7 @@ toolbarbutton menupopup[placespopup] {
 	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.3);
 	--gk-menu-padding: 1px;
 	--gk-menu-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
-	--gk-menu-shadow-margin: 4px !important;
+	--gk-menu-shadow-margin: 4px;
 	
 	--gk-menuitem-radii: 0;
 	--gk-menuitem-padding: unset;
@@ -135,6 +135,10 @@ toolbarbutton menupopup[placespopup] {
 	--gk-menuitem-minheight: 18px;
 
 	--gk-menusep-color: rgba(0, 0, 0, 0.1);
+	--gk-menuright-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg");
+	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg");
+	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg");
+	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg");
 }
 // :root[gkmenunative="2"],
 // :root[gkmenunative="1"]:not([gksystheme="gtk"]),
@@ -185,7 +189,7 @@ toolbarbutton menupopup[placespopup] {
 			.menu-right {
 				margin-inline-end: 6px !important;
 				appearance: none !important;
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
+				list-style-image: var(--gk-menuright-texture) !important;
 
 				width: 1ex !important;
 				height: 1ex !important;
@@ -198,13 +202,13 @@ toolbarbutton menupopup[placespopup] {
 				}
 			}
 			&[type="checkbox"][checked="true"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
+				list-style-image: var(--gk-menuchecked-texture) !important;
 			}
 			&[type="radio"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
+				list-style-image: var(--gk-menuradioff-texture) !important;
 			}
 			&[type="radio"][checked="true"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
+				list-style-image: var(--gk-menuradion-texture) !important;
 			}
 
 		}
