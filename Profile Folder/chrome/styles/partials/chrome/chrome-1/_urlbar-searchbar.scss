@@ -315,12 +315,12 @@
 	outline: transparent !important;
 }
 
-#urlbar:is([focused="true"], [open]),
+#urlbar:is([focused], [open]),
 #searchbar:focus-within {
 	color: var(--toolbar-field-color) !important;
 }
 
-#urlbar:is([focused="true"], [open]) > #urlbar-background,
+#urlbar:is([focused], [open]) > #urlbar-background,
 #searchbar:focus-within {
 	background-color: white !important;
 }
@@ -785,6 +785,7 @@
 
 	#urlbar-input {
 		color: FieldText !important;
+
 		&::placeholder {
 			color: inherit !important;
 			opacity: 0.5 !important;
