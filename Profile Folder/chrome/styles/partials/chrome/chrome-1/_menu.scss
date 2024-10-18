@@ -94,7 +94,27 @@ menupopup {
 }
 
 
-// Constructors for hardcoded menu styling
+// Menu appearance
+//  NOTE: In Material Design 3, the brunt of the styling of menus would become generic - namely Native would become a mere texture pack, with the background
+//   a solid colour now and only menuitem highlight being native, literally nothing else.
+
+menupopup,
+toolbarbutton menupopup[placespopup] {
+	--menu-icon-opacity: 1 !important;
+	--panel-separator-margin-horizontal: 0 !important;
+}
+toolbarbutton menupopup[placespopup] {
+	menuseparator {
+		margin-block: 2px !important;
+		&::before {
+			content: unset !important; // Disable the extra border
+		}
+	}
+}
+
+
+// Hardcoded menu skin
+//  Hardcoded menu style construction variables
 :root {
 	--gk-menu-radii: 0px;
 	--gk-menu-background: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
@@ -116,16 +136,110 @@ menupopup {
 
 	--gk-menusep-color: rgba(0, 0, 0, 0.1);
 }
+// :root[gkmenunative="2"],
+// :root[gkmenunative="1"]:not([gksystheme="gtk"]),
+// :root[gkmenunative="1"][gkthemed="true"] {
+	menupopup,
+	toolbarbutton menupopup[placespopup] {
+		--panel-background: var(--gk-menu-background) !important;
+		--panel-color: var(--gk-menu-foreground) !important;
+		--panel-border-color: var(--gk-menu-border-color) !important;
+		--panel-border-radius: var(--gk-menu-radii) !important;
+		--panel-padding: var(--gk-menu-padding) !important;
+		--panel-shadow: var(--gk-menu-shadow) !important;
+		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+
+		> :is(menu, menuitem) {
+			min-height: var(--gk-menuitem-minheight) !important;
+			height: unset !important;
+
+			padding: 4px 6px !important;
+
+			&[disabled="true"] {
+				color: var(--gk-menu-foreground-disabled) !important;
+			}
+			&[_moz-menuactive="true"] {
+				background: var(--gk-menuitem-background) !important;
+				color: var(--gk-menuitem-foreground) !important;
+			}
+			fill: currentColor !important;
+
+			.menu-iconic-left {
+				margin-inline-start: 3px !important;
+
+				padding-inline-end: unset !important;
+				margin-inline-end: 9px !important;
+			}
+
+			.menu-text {
+				margin-inline-start: 28px !important;
+			}
+
+			.menu-accel-container {
+				color: var(--gk-menu-foreground-keys) !important;
+			}
+			&[_moz-menuactive="true"] .menu-accel-container {
+				color: var(--gk-menuitem-foreground-keys) !important;
+			}
+
+			.menu-right {
+				margin-inline-end: 6px !important;
+				appearance: none !important;
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
+
+				width: 1ex !important;
+				height: 1ex !important;
+			}
+
+			&[type="checkbox"] .menu-iconic-left,
+			&[type="radio"] .menu-iconic-left {
+				.menu-iconic-icon {
+					appearance: none !important;
+				}
+			}
+			&[type="checkbox"][checked="true"] .menu-iconic-left {
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
+			}
+			&[type="radio"] .menu-iconic-left {
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
+			}
+			&[type="radio"][checked="true"] .menu-iconic-left {
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
+			}
+
+		}
+
+		menuseparator {
+			appearance: none !important;
+			padding-inline: unset !important;
+			padding-block: unset !important;
+			border-top: 1px solid var(--gk-menusep-color) !important;
+			
+			--panel-separator-color: var(--gk-menusep-color) !important;
+		}
+	}
+	toolbarbutton menupopup[placespopup] {
+		--panel-width: initial !important;
+		--nested-margin: -3px !important;
+
+		--arrowpanel-menuitem-margin: 0 !important;
+		--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
+		--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
+	}
+// }
 
 
-// All standard menus
-
-
-// Hardcoded styling for standard menus
-
-
-// Native styling for standard menus
-
+// Native menu skin
+:root[gkmenunative="0"],
+:root[gkmenunative="1"][gksystheme="gtk"]:not([gkthemed="true"]) {
+	menupopup,
+	toolbarbutton menupopup[placespopup] {
+		// Move keyboard shortcuts to the left of the right-arrow
+		.menu-accel-container {
+			margin-inline-end: 12px !important;
+		}
+	}
+}
 
 // Foolproof? plan:
 // - Make the hardcoded menu '--gk' variables like how tabs are handled in tabs.scss
@@ -163,103 +277,7 @@ menupopup {
 // :root[gkmenunative="2"],
 // :root[gkmenunative="1"]:not([gksystheme="gtk"]),
 // :root[gkmenunative="1"][gkthemed="true"] {
-	// menupopup,
-	// toolbarbutton menupopup[placespopup] {
-	// 	appearance: none !important;
-
-	// 	--panel-background: var(--gk-menu-background) !important;
-	// 	--panel-color: var(--gk-menu-foreground) !important;
-	// 	--panel-border-color: var(--gk-menu-border-color) !important;
-	// 	--panel-border-radius: var(--gk-menu-radii) !important;
-	// 	--panel-padding: var(--gk-menu-padding) !important;
-	// 	--panel-shadow: var(--gk-menu-shadow) !important;
-	// 	--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
-	// 	--menu-icon-opacity: 1 !important;
-
-	// 	> :is(menu, menuitem) {
-	// 		appearance: none !important;
-	// 		min-height: var(--gk-menuitem-minheight) !important;
-	// 		height: unset !important;
-
-	// 		padding: 4px 6px !important;
-	// 		// padding-block: unset !important;
-
-	// 		// padding-inline-start: unset !important; // TODO
-
-	// 		&[disabled="true"] {
-	// 			color: var(--gk-menu-foreground-disabled) !important;
-	// 		}
-	// 		&[_moz-menuactive="true"] {
-	// 			background: var(--gk-menuitem-background) !important;
-	// 			color: var(--gk-menuitem-foreground) !important;
-	// 		}
-
-
-
-	// 		.menu-iconic-left {
-	// 			margin-inline-start: 3px !important;
-
-	// 			padding-inline-end: unset !important;
-	// 			margin-inline-end: 9px !important;
-	// 		}
-
-	// 		.menu-text {
-	// 			margin-inline-start: 28px !important;
-	// 		}
-
-	// 		.menu-accel-container {
-	// 			color: var(--gk-menu-foreground-keys) !important;
-	// 			margin-inline-end: 12px !important;
-	// 		// 	margin-inline: unset !important;
-	// 		}
-	// 		&[_moz-menuactive="true"] .menu-accel-container {
-	// 			color: var(--gk-menuitem-foreground-keys) !important;
-	// 		}
-
-	// 		.menu-right {
-	// 			margin-inline-end: 6px !important;
-	// 			appearance: none !important;
-	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
-
-	// 			width: 1ex !important;
-	// 			height: 1ex !important;
-	// 		}
-
-	// 		&[type="checkbox"] .menu-iconic-left,
-	// 		&[type="radio"] .menu-iconic-left {
-	// 			.menu-iconic-icon {
-	// 				appearance: none !important;
-	// 			}
-	// 		}
-	// 		&[type="checkbox"][checked="true"] .menu-iconic-left {
-	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
-	// 		}
-	// 		&[type="radio"] .menu-iconic-left {
-	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
-	// 		}
-	// 		&[type="radio"][checked="true"] .menu-iconic-left {
-	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
-	// 		}
-
-	// 	}
-
-	// 	menuseparator {
-	// 		appearance: none !important;
-	// 		padding-inline: unset !important;
-	// 		padding-block: unset !important;
-	// 		border-top: 1px solid var(--gk-menusep-color) !important;
-			
-	// 		--panel-separator-color: var(--gk-menusep-color) !important;
-	// 	}
-	// }
-	// toolbarbutton menupopup[placespopup] {
-	// 	--panel-width: initial !important;
-	// 	--nested-margin: -3px !important;
-
-	// 	--arrowpanel-menuitem-margin: 0 !important;
-	// 	--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
-	// 	--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
-	// }
+	
 // }
 
 
