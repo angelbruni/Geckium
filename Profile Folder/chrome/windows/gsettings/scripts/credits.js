@@ -2,6 +2,7 @@ function buildCredits() {
 	const creditsList = document.getElementById("creditsList");
 
 	const credits = [
+		// Developers
 		{
 			name: "AngelBruni",
 			role: "main-developer",
@@ -50,6 +51,7 @@ Research: (with the help of Dominic) Chromium's colour tinting code.`,
 			]
 		},
 
+		// Testers
 		{
 			name: "florin",
 			role: "tester",
@@ -77,16 +79,22 @@ Research: Useful insight into Firefox JS.`,
 			]
 		},
 		{
-			name: "minguinmyoui",
+			name: "kwan-vini",
 			role: "tester",
-			quote: "she geck on my userchrome till I Add a LICENSE",
-			contributions: "Tested pre-release Geckium builds.",
+			quote: "Ooh, whatcha say? Mm, that you only meant well? Well, of course you did.",
+			contributions: "Localised Geckium for Brazillian Portuguese users, drew a Geckium tan, made multiple Firefox themes with Geckium support in mind, and tested pre-release Geckium builds.",
 			socials: [
 				{
 					name: "GitHub",
-					url: "https://github.com/minguinmyoui"
+					url: "https://github.com/kwan-vini"
 				}
 			]
+		},
+		{
+			name: "chronail",
+			role: "tester",
+			quote: "i love sapphire plugin",
+			contributions: "Made multiple Firefox themes with Geckium in mind, and tested pre-release Geckium builds."
 		},
 		{
 			name: "addictedtree",
@@ -118,6 +126,24 @@ Research: Useful insight into Firefox JS.`,
 			]
 		},
 		{
+			name: "pswin56",
+			role: "tester",
+			quote: "who up gecking their gecks",
+			contributions: "Localised Geckium for Spanish users, and tested pre-release Geckium builds.",
+			socials: [
+				{
+					name: "GitGud",
+					url: "https://gitgud.io/catpswin56/"
+				}
+			]
+		},
+		{
+			name: "brawllux",
+			role: "tester",
+			quote: "Benim adım Yoshikage Kira. Ben 33 yıllar eskisiyim. (sniff) Benim evim kuzeydoğu seksiyonunun içindenin Morioh'nun nerede tüm villalar ve ben değilim evli. Ben çalışıyorum olarak bir eleman için Kame Yu mağazaları ve ben ev alıyorum her gün tarafından 8 PM in the en sonunda. Ben içmiyorum sigara, ve ama ben (clears throat) bazen içiyorum. Ben içindeyim yatağın tarafından 11 PM ve yatıyorum emin ben alıyorum sekiz saat verimli uykusu, hayır fark etmez ne. Sonra elde etmektenin ılık sütü ve yapıyorum bu-u (stutters) hakkında yirmi dakikaların (coughs intensely) genişletmelere önce gitmek yatak ve ben genelde etmek (awkward silence - inhales deeply) hayır problemler uyuyorum kadar sabaha sadece beğenmek bebek, ben uyanıyorum yukarı dışarıya hiç yorgunluk ya da stres içinde sabahın. Bende söyledi buradaydı hayır sorunlarda benim son teftişimde.",
+			contributions: "Localised Geckium for turkish users, and tested pre-release Geckium builds."
+		},
+		{
 			name: "Jimkoutso",
 			role: "tester",
 			quote: "I'm geck-maxxing",
@@ -130,26 +156,14 @@ Research: Useful insight into Firefox JS.`,
 			]
 		},
 		{
-			name: "kwan-vini",
+			name: "minguinmyoui",
 			role: "tester",
-			quote: "Ooh, whatcha say? Mm, that you only meant well? Well, of course you did.",
-			contributions: "Localised Geckium for Brazillian Portuguese users, drew a Geckium tan, made multiple Firefox themes with Geckium support in mind, and tested pre-release Geckium builds.",
+			quote: "she geck on my userchrome till I Add a LICENSE",
+			contributions: "Tested pre-release Geckium builds.",
 			socials: [
 				{
 					name: "GitHub",
-					url: "https://github.com/kwan-vini"
-				}
-			]
-		},
-		{
-			name: "pswin56",
-			role: "tester",
-			quote: "who up gecking their gecks",
-			contributions: "Localised Geckium for Spanish users, and tested pre-release Geckium builds.",
-			socials: [
-				{
-					name: "GitGud",
-					url: "https://gitgud.io/catpswin56/"
+					url: "https://github.com/minguinmyoui"
 				}
 			]
 		},
@@ -174,18 +188,6 @@ Research: Useful insight into Firefox JS.`,
 			name: "neptuneen",
 			role: "tester",
 			quote: "double the spins, double the profits. gazillion dollar profit!",
-			contributions: "Tested pre-release Geckium builds."
-		},
-		{
-			name: "brawllux",
-			role: "tester",
-			quote: "Benim adım Yoshikage Kira. Ben 33 yıllar eskisiyim. (sniff) Benim evim kuzeydoğu seksiyonunun içindenin Morioh'nun nerede tüm villalar ve ben değilim evli. Ben çalışıyorum olarak bir eleman için Kame Yu mağazaları ve ben ev alıyorum her gün tarafından 8 PM in the en sonunda. Ben içmiyorum sigara, ve ama ben (clears throat) bazen içiyorum. Ben içindeyim yatağın tarafından 11 PM ve yatıyorum emin ben alıyorum sekiz saat verimli uykusu, hayır fark etmez ne. Sonra elde etmektenin ılık sütü ve yapıyorum bu-u (stutters) hakkında yirmi dakikaların (coughs intensely) genişletmelere önce gitmek yatak ve ben genelde etmek (awkward silence - inhales deeply) hayır problemler uyuyorum kadar sabaha sadece beğenmek bebek, ben uyanıyorum yukarı dışarıya hiç yorgunluk ya da stres içinde sabahın. Bende söyledi buradaydı hayır sorunlarda benim son teftişimde.",
-			contributions: "Localised Geckium for turkish users, and tested pre-release Geckium builds."
-		},
-		{
-			name: "chronail",
-			role: "tester",
-			quote: "i love sapphire plugin",
 			contributions: "Tested pre-release Geckium builds."
 		},
 		{
@@ -229,6 +231,7 @@ Research: Useful insight into Firefox JS.`,
 			]
 		},
 
+		// Original developer
 		{
 			name: "nabrious",
 			role: "og-developer",
