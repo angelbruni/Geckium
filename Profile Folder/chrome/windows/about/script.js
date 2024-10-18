@@ -16,7 +16,7 @@ function createMainLayout() {
 	<vbox id="main">
 		<vbox id="banner">
 			<hbox>
-				<vbox>
+				<vbox style="color: black;">
 					<html:h1>${fullName}</html:h1>
 					<html:p>${gkEras.getEras("main")[appearanceChoice].basedOnVersion}</html:p>
 				</vbox>
