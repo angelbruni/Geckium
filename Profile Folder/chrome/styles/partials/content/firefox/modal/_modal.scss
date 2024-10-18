@@ -6,6 +6,11 @@
 
 	& {
 		--modal-background: rgb(251,251,251) !important;
+
+		@media (prefers-color-scheme: dark) {
+			--modal-background: rgb(29,29,29) !important;
+		}
+
 		--in-content-font-body-size-base: 9pt !important;
 	}
 
