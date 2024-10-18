@@ -405,11 +405,6 @@ class gkTitlebars {
                     }
                 }
             }
-            // If System Theme is set to GTK+ but Light or Dark is in use...
-            let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-            if (gkSysTheme.getTheme(spec) == "gtk" && !isChromeThemed && (prefChoice.startsWith("firefox-compact-light@") || prefChoice.startsWith("firefox-compact-dark@"))) {
-                return false;
-            }
         }
         return true;
     }
