@@ -127,9 +127,9 @@ class gkLWTheme {
 					// Get header height.
 					var headerImg;
 					if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image"))
-						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(")", "").replace(/\\/g, "");
+						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-header-image").replace("url(", "").replace(/\\/g, "").slice(0, -1);
 					else if (getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images"))
-						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(")", "").replace(/\\/g, "").split(", ")[0];
+						headerImg = getComputedStyle(document.documentElement).getPropertyValue("--lwt-additional-images").replace("url(", "").replace(/\\/g, "").split(", ")[0].slice(0, -1);
 					if (headerImg !== null) {
 						var imagePath = headerImg;
 						// Note the attribution image's size
