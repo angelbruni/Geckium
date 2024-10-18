@@ -1,0 +1,38 @@
+// Hardcoded menu skin
+//  Hardcoded menu style construction variables
+& {
+	// --gk-menu-radii: 0px;
+	--gk-menu-background: white;
+	--gk-menu-border-color: transparent;
+	--gk-menu-padding: 2px;
+	--gk-menu-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+	
+	--gk-menuitem-background: #EFEFEF;
+	--gk-menuitem-minheight: 22px;
+
+	--gk-menusep-color: rgba(0, 0, 0, 0.2);
+	--gk-menuright-texture: url("chrome://userchrome/content/assets/img/chrome-21/menu/right.svg");
+}
+// :root[gkmenunative="2"],
+// :root[gkmenunative="1"]:not([gksystheme="gtk"]),
+// :root[gkmenunative="1"][gkthemed="true"] {
+	menupopup,
+	toolbarbutton menupopup[placespopup] {
+		--panel-background: var(--gk-menu-background) !important;
+		--panel-color: var(--gk-menu-foreground) !important;
+		--panel-border-color: var(--gk-menu-border-color) !important;
+		--panel-border-radius: var(--gk-menu-radii) !important;
+		--panel-padding: var(--gk-menu-padding) !important;
+		--panel-shadow: var(--gk-menu-shadow) !important;
+		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+
+		> :is(menu, menuitem) {
+			.menu-iconic-left {
+				margin-inline-start: unset !important;
+			}
+			.menu-text {
+				margin-inline-start: 25px !important;
+			}
+		}
+	}
+// }
