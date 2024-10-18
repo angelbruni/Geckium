@@ -213,6 +213,7 @@ class gkToolbarMenuButtons {
 
 	static createItemsFromObject(parentID, object, adjustAccelTextWidth) {
 		const parent = document.getElementById(parentID);
+		const parentOfParent = parent.parentNode;
 	
 		function adjustAccelText(adjustAccelTextWidth) {
 			if (adjustAccelTextWidth) {
@@ -235,14 +236,20 @@ class gkToolbarMenuButtons {
 				}
 			}
 		}
-	
-		if (parent.tagName == "menupopup") {
-			parent.addEventListener("popupshowing", adjustAccelText);
-			if (object.properties) {
-				gkSetAttributes(parent, {
-					onpopupshowing: object.properties.onpopup,
-					onpopuphidden: object.properties.onpopup,
-				});
+
+		if (object.properties) {
+			if (object.properties.onmouseover)
+				parentOfParent.setAttribute("onmouseover", object.properties.onmouseover)
+			
+			if (object.properties.onpopup) {
+				if (parent.tagName == "menupopup") {
+					parent.addEventListener("popupshowing", adjustAccelText);
+					
+					gkSetAttributes(parent, {
+						onpopupshowing: object.properties.onpopup,
+						onpopuphidden: object.properties.onpopup,
+					});
+				}
 			}
 		}
 	
@@ -477,11 +484,11 @@ window.addEventListener("load", function () {
 		label: "Chrome Menu",
 		removable: false,
 		overflows: false,
-		tooltip: "Customize and control Google Chrome",
 		position: "bottomright topright",
 		area: CustomizableUI.AREA_NAVBAR,
 		object: {
 			properties: {
+				onmouseover: "updateMenuTooltipLocale();",
 				onpopup: "bookmarksBarStatus(); updateAboutLocale();",
 			},
 			1: {
