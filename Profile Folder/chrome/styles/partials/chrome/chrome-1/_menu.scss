@@ -94,8 +94,7 @@ menupopup {
 }
 
 
-// Fallback/hardcoded menu styling
-//  Styling to be used
+// Constructors for hardcoded menu styling
 :root {
 	--gk-menu-radii: 0px;
 	--gk-menu-background: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
@@ -118,6 +117,16 @@ menupopup {
 	--gk-menusep-color: rgba(0, 0, 0, 0.1);
 }
 
+
+// All standard menus
+
+
+// Hardcoded styling for standard menus
+
+
+// Native styling for standard menus
+
+
 // Foolproof? plan:
 // - Make the hardcoded menu '--gk' variables like how tabs are handled in tabs.scss
 // - Construct the hardcoded menu in chrome-1's menu.scss
@@ -127,113 +136,130 @@ menupopup {
 // - variables
 // - changes to native and hardcoded menus mutually
 // - changes specific to hardcoded menus
+// - changes specific to native menus
 
 // menus come in 3 forms:
 //  - standard menus and bookmarks menu
 //  - context-navigation
 //  - the menus, for some reason, have unique menu arrow colouring??
 
+//   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  Code for applying styling
 // :root[gkmenunative="2"],
 // :root[gkmenunative="1"]:not([gksystheme="gtk"]),
 // :root[gkmenunative="1"][gkthemed="true"] {
-	menupopup,
-	toolbarbutton menupopup[placespopup] {
-		appearance: none !important;
+	// menupopup,
+	// toolbarbutton menupopup[placespopup] {
+	// 	appearance: none !important;
 
-		--panel-background: var(--gk-menu-background) !important;
-		--panel-color: var(--gk-menu-foreground) !important;
-		--panel-border-color: var(--gk-menu-border-color) !important;
-		--panel-border-radius: var(--gk-menu-radii) !important;
-		--panel-padding: var(--gk-menu-padding) !important;
-		--panel-shadow: var(--gk-menu-shadow) !important;
-		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
-		--menu-icon-opacity: 1 !important;
+	// 	--panel-background: var(--gk-menu-background) !important;
+	// 	--panel-color: var(--gk-menu-foreground) !important;
+	// 	--panel-border-color: var(--gk-menu-border-color) !important;
+	// 	--panel-border-radius: var(--gk-menu-radii) !important;
+	// 	--panel-padding: var(--gk-menu-padding) !important;
+	// 	--panel-shadow: var(--gk-menu-shadow) !important;
+	// 	--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+	// 	--menu-icon-opacity: 1 !important;
 
-		> :is(menu, menuitem) {
-			appearance: none !important;
-			min-height: var(--gk-menuitem-minheight) !important;
-			height: unset !important;
+	// 	> :is(menu, menuitem) {
+	// 		appearance: none !important;
+	// 		min-height: var(--gk-menuitem-minheight) !important;
+	// 		height: unset !important;
 
-			padding: 4px 6px !important;
-			// padding-block: unset !important;
+	// 		padding: 4px 6px !important;
+	// 		// padding-block: unset !important;
 
-			// padding-inline-start: unset !important; // TODO
+	// 		// padding-inline-start: unset !important; // TODO
 
-			&[disabled="true"] {
-				color: var(--gk-menu-foreground-disabled) !important;
-			}
-			&[_moz-menuactive="true"] {
-				background: var(--gk-menuitem-background) !important;
-				color: var(--gk-menuitem-foreground) !important;
-			}
+	// 		&[disabled="true"] {
+	// 			color: var(--gk-menu-foreground-disabled) !important;
+	// 		}
+	// 		&[_moz-menuactive="true"] {
+	// 			background: var(--gk-menuitem-background) !important;
+	// 			color: var(--gk-menuitem-foreground) !important;
+	// 		}
 
 
 
-			.menu-iconic-left {
-				margin-inline-start: 3px !important;
+	// 		.menu-iconic-left {
+	// 			margin-inline-start: 3px !important;
 
-				padding-inline-end: unset !important;
-				margin-inline-end: 9px !important;
-			}
+	// 			padding-inline-end: unset !important;
+	// 			margin-inline-end: 9px !important;
+	// 		}
 
-			.menu-text {
-				margin-inline-start: 28px !important;
-			}
+	// 		.menu-text {
+	// 			margin-inline-start: 28px !important;
+	// 		}
 
-			.menu-accel-container {
-				color: var(--gk-menu-foreground-keys) !important;
-				margin-inline-end: 12px !important;
-			// 	margin-inline: unset !important;
-			}
-			&[_moz-menuactive="true"] .menu-accel-container {
-				color: var(--gk-menuitem-foreground-keys) !important;
-			}
+	// 		.menu-accel-container {
+	// 			color: var(--gk-menu-foreground-keys) !important;
+	// 			margin-inline-end: 12px !important;
+	// 		// 	margin-inline: unset !important;
+	// 		}
+	// 		&[_moz-menuactive="true"] .menu-accel-container {
+	// 			color: var(--gk-menuitem-foreground-keys) !important;
+	// 		}
 
-			.menu-right {
-				margin-inline-end: 6px !important;
-				appearance: none !important;
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
+	// 		.menu-right {
+	// 			margin-inline-end: 6px !important;
+	// 			appearance: none !important;
+	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/right.svg") !important;
 
-				width: 1ex !important;
-				height: 1ex !important;
-			}
+	// 			width: 1ex !important;
+	// 			height: 1ex !important;
+	// 		}
 
-			&[type="checkbox"] .menu-iconic-left,
-			&[type="radio"] .menu-iconic-left {
-				.menu-iconic-icon {
-					appearance: none !important;
-				}
-			}
-			&[type="checkbox"][checked="true"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
-			}
-			&[type="radio"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
-			}
-			&[type="radio"][checked="true"] .menu-iconic-left {
-				list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
-			}
+	// 		&[type="checkbox"] .menu-iconic-left,
+	// 		&[type="radio"] .menu-iconic-left {
+	// 			.menu-iconic-icon {
+	// 				appearance: none !important;
+	// 			}
+	// 		}
+	// 		&[type="checkbox"][checked="true"] .menu-iconic-left {
+	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg") !important;
+	// 		}
+	// 		&[type="radio"] .menu-iconic-left {
+	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg") !important;
+	// 		}
+	// 		&[type="radio"][checked="true"] .menu-iconic-left {
+	// 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg") !important;
+	// 		}
 
-		}
+	// 	}
 
-		menuseparator {
-			appearance: none !important;
-			padding-inline: unset !important;
-			padding-block: unset !important;
-			border-top: 1px solid var(--gk-menusep-color) !important;
+	// 	menuseparator {
+	// 		appearance: none !important;
+	// 		padding-inline: unset !important;
+	// 		padding-block: unset !important;
+	// 		border-top: 1px solid var(--gk-menusep-color) !important;
 			
-			--panel-separator-color: var(--gk-menusep-color) !important;
-		}
-	}
-	toolbarbutton menupopup[placespopup] {
-		--panel-width: initial !important;
-		--nested-margin: -3px !important;
+	// 		--panel-separator-color: var(--gk-menusep-color) !important;
+	// 	}
+	// }
+	// toolbarbutton menupopup[placespopup] {
+	// 	--panel-width: initial !important;
+	// 	--nested-margin: -3px !important;
 
-		--arrowpanel-menuitem-margin: 0 !important;
-		--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
-		--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
-	}
+	// 	--arrowpanel-menuitem-margin: 0 !important;
+	// 	--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
+	// 	--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
+	// }
 // }
 
 
