@@ -161,11 +161,11 @@
 				)
 		);
 
-		&[footer-themable="true"][style~="--chrtheme-ntp-background:"]:not([style*="--chrtheme-ntp-background: rgb(255, 255, 255);"]),
-		&[footer-themable="true"][style~="--chrtheme-toolbar:"] {
+		&[footer-themable="true"][style~="--chrtheme-ntp-background:"][style~="--chrtheme-ntp-text:"]:not([style*="--chrtheme-ntp-background: rgb(255, 255, 255);"]),
+		&[footer-themable="true"][style~="--chrtheme-toolbar:"][style~="--chrtheme-toolbar-button-icon:"] {
 			--gk-footer-bg: var(--chrtheme-ntp-background);
 			--gk-footer-fg: var(--chrtheme-ntp-text);
-			&[style~="--chrtheme-toolbar:"] {
+			&[style~="--chrtheme-toolbar:"][style~="--chrtheme-toolbar-button-icon:"] {
 				--gk-footer-bg: var(--chrtheme-toolbar);
 				--gk-footer-fg: var(--chrtheme-toolbar-button-icon, #7f7f7f);
 			}
