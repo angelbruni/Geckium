@@ -93,11 +93,6 @@ menupopup {
 	}
 }
 
-// Foolproof? plan:
-// - Make the hardcoded menu '--gk' variables like how tabs are handled in tabs.scss
-// - Construct the hardcoded menu in chrome-1's menu.scss
-// - Have the construct leverage the variables, and have future eras only change variables
-
 
 // Fallback/hardcoded menu styling
 //  Styling to be used
@@ -109,7 +104,7 @@ menupopup {
 	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.3);
 	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.3);
 	--gk-menu-padding: 1px;
-	--gk-menu-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	--gk-menu-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
 	--gk-menu-shadow-margin: 4px !important;
 	
 	--gk-menuitem-radii: 0;
@@ -118,10 +113,25 @@ menupopup {
 	--gk-menuitem-border-color: unset;
 	--gk-menuitem-foreground: black;
 	--gk-menuitem-foreground-keys: rgba(0, 0, 0, 0.3);
-	--gk-menuitem-minheight: 20px;
+	--gk-menuitem-minheight: 18px;
 
-	--gk-menusep-color: rgba(0, 0, 0, 0.25); //TODO
+	--gk-menusep-color: rgba(0, 0, 0, 0.1);
 }
+
+// Foolproof? plan:
+// - Make the hardcoded menu '--gk' variables like how tabs are handled in tabs.scss
+// - Construct the hardcoded menu in chrome-1's menu.scss
+// - Have the construct leverage the variables, and have future eras only change variables
+
+// so basically:
+// - variables
+// - changes to native and hardcoded menus mutually
+// - changes specific to hardcoded menus
+
+// menus come in 3 forms:
+//  - standard menus and bookmarks menu
+//  - context-navigation
+//  - the menus, for some reason, have unique menu arrow colouring??
 
 //  Code for applying styling
 // :root[gkmenunative="2"],
@@ -211,6 +221,7 @@ menupopup {
 			appearance: none !important;
 			padding-inline: unset !important;
 			padding-block: unset !important;
+			border-top: 1px solid var(--gk-menusep-color) !important;
 			
 			--panel-separator-color: var(--gk-menusep-color) !important;
 		}
