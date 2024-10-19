@@ -164,7 +164,7 @@ toolbarbutton menupopup[placespopup] {
 		--panel-padding: calc(var(--gk-menu-padding) + var(--panel-padding-block)) var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
-		@media (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
+		@media ((-moz-platform: windows) and (not (-moz-windows-non-native-menus))) or (-moz-platform: macos) {
 			// Native menus behave completely differently for some reason
 			--panel-shadow-margin: 0 !important;
 			border: unset !important;
