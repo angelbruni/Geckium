@@ -1,0 +1,77 @@
+:root:is([tabsintitlebar]) {
+    @import "Aero/base";
+
+    /*
+    * Adjustments for better compatability with Echelon
+    */
+    --aero-padding:                              6px;
+    --aero-top-padding-maximized:                0px;
+
+    /*
+    * Strata
+    */
+    &:not([echelon-style-4])
+    {
+        --aero-top-padding-windowed:                 5px;
+        --aero-top-padding-windowed-menu-add:        -5px;
+        --aero-top-padding-maximized-menu-add:       0px;
+        --aero-titlebuttons-right-offset:            4px;
+    }
+
+    /*
+    * Australis
+    */
+    &[echelon-style-4]
+    {
+        --aero-top-padding-windowed:                 16px;
+        --aero-top-padding-windowed-menu-add:        -16px;
+        --aero-top-padding-maximized-menu-add:       0px;
+        --aero-titlebuttons-right-offset:            5px;
+    }
+
+    &:not([echelon-style-4])[sizemode="normal"] #toolbar-menubar
+    {
+        top: 20px;
+        left: 8px;
+    }
+
+    &:not([echelon-style-4])[sizemode="maximized"] #toolbar-menubar
+    {
+        top: 0px;
+        left: 102px;
+    }
+
+    &[echelon-style-4][sizemode="normal"] #toolbar-menubar
+    {
+        top: 0px;
+        left: 8px;
+    }
+
+    &[echelon-style-4][sizemode="maximized"] #toolbar-menubar
+    {
+        top: 0px;
+        left: 2px;
+    }
+
+
+
+    /* Echelon.misc.css:11 */
+    &:not([echelon-style-4]) .titlebar-buttonbox-container
+    {
+        right: var(--aero-titlebuttons-right-offset) !important;
+        top: var(--aero-titlebuttons-top-offset) !important;
+    }
+
+    #main-menubar
+    {
+        color: black !important;
+        text-shadow: white 0px 0px 4px !important;
+        background-color: rgba(255, 255, 255, 0.6) !important;
+        padding: 0 !important;
+    }
+
+    #main-menubar > menu
+    {
+        padding: 0px 5px !important;
+    }
+}
