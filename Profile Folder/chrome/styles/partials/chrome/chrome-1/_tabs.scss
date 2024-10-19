@@ -49,7 +49,10 @@
 	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.png");
 	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.png");
 
-	--tab-icon-stack-margin-block-start: 0;
+	--tab-container-left:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_left.svg");
+	--tab-container2-left:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container2_left.svg");
+	--tab-container-center:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_center.svg");
+	--tab-container-right:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_right.svg");
 
 	--tab-gap-between-favicon-and-title: 5px;
 
@@ -330,6 +333,10 @@
 						background-image: var(--tab-inline-start-inactive2-texture), var(--tab-inline-center-inactive-texture), var(--tab-inline-end-inactive-texture);
 					}
 				}
+
+				.tab-context-line {
+					mask-image:		var(--tab-container2-left),		var(--tab-container-center),					var(--tab-container-right);
+				}
 		
 				.tab-glare-container {
 					mask-image: var(--tab-inline-start-inactive2-mask), var(--tab-inline-center-mask), var(--tab-inline-end-mask);
@@ -417,12 +424,17 @@
 		pointer-events: none !important;
 	}
 
-	.tab-background-container {
-		/* Tab texturing */
+	
+	.tab-background-container,
+	.tab-context-line {
 		position: absolute;
-		width: 100%;
-		height: 100%;
+		height: 100% !important;
+	}
 
+	.tab-background-container {
+		width: 100% !important;
+
+		/* Tab texturing */
 		&::before,
 		&::after {
 			content: "";
@@ -446,6 +458,16 @@
 			background-position: left 0,								   var(--tab-sides-width) 0,					   right 0;
 			background-repeat:	 no-repeat;
 		}
+	}
+
+	.tab-context-line {
+		margin: 0 !important;
+		width: calc(100% + var(--tab-gap-between) * -1) !important;
+
+		mask-image:		var(--tab-container-left),		var(--tab-container-center),					var(--tab-container-right);
+		mask-size:		var(--tab-sides-width) 100%,	calc(100% - (var(--tab-sides-width) * 2)) 100%,	var(--tab-sides-width) 100%;
+		mask-position:	left 0,							var(--tab-sides-width) 0,						right 0;
+		mask-repeat:	no-repeat;
 	}
 
 	.tab-glare-container {
@@ -503,7 +525,7 @@
 	}
 
 	.tab-icon-stack {
-		margin-block-start: var(--tab-icon-stack-margin-block-start);
+		margin-block-start: 0;
 
 		&::before {
 			content: '';
