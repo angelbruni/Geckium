@@ -93,18 +93,21 @@ ${themeInfo[i].bannerAlignment ? `background-position: ${themeInfo[i].bannerAlig
 ${themeInfo[i].bannerTiling ? `background-repeat: ${themeInfo[i].bannerTiling} !important; ` : ""}
 ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !important; ` : ""}">
             <html:label class="wrapper">
-                <div class="year">V${themeInfo[i].version}</div>
-                <div class="icon"><image style="width: 48px; height: 48px" src="${themeIconPath}" /></div>
-                <div class="identifier">
+                <html:div class="year">V${themeInfo[i].version}</html:div>
+                <html:div class="icon" style="width: 48px; height: 48px">
+                    <html:img class="theme-type-icon" src="${themeIconPath}" />
+                    <html:img class="theme-browser-icon" src="chrome://userchrome/content/windows/gsettings/imgs/browsers/${themeInfo[i].browser}.svg" />
+                </html:div>
+                <html:div class="identifier">
                     <vbox style="min-width: 0">
-                        <div class="radio-parent">
+                        <html:div class="radio-parent">
                             <html:input id="theme-${themeInfo[i].id}" class="radio" type="radio" name="gktheme"></html:input>
-                            <div class="gutter" for="checked_check"></div>
+                            <html:div class="gutter" for="checked_check"></html:div>
                             <html:label class="name label">${themeName}</html:label>
-                        </div>
+                        </html:div>
                         <html:label class="description">${themeDescription}</html:label>
                     </vbox>
-                </div>
+                </html:div>
             </html:label>
         </html:button>
         `;

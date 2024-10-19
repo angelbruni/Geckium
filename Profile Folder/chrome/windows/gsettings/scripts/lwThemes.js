@@ -76,6 +76,7 @@ async function getLWThemesList() {
 
         result.push({
             "type": "lwtheme",
+			"browser": "firefox",
             "name": theme.name,
             "desc": theme.description,
             "id": theme.id,
