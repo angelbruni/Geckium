@@ -349,19 +349,6 @@ h4 {
 			box-shadow: var(--elevation-8);
 		}
 
-		&[data-theme-name="default"],
-		&[data-theme-name="firefox-alpenglow@mozilla.org"] {
-			order: -1;
-		}
-
-		&[data-theme-name*="compact-dark"] {
-			order: -2;
-		}
-
-		&[data-theme-name*="compact-light"] {
-			order: -3;
-		}
-
 		.name, .description {
 			display: block;
 			text-overflow: ellipsis;
@@ -399,13 +386,29 @@ h4 {
 			background: unset;
 			flex-shrink: unset;
 
-			image {
+			.theme-type-icon,
+			.theme-browser-icon {
+				position: absolute;
+			}
+
+			.theme-type-icon {
+				width: inherit;
+				height: inherit;
+
 				&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
 					filter: saturate(0);
 					fill: #209f43;
 					-moz-context-properties: fill, fill-opacity;
 					opacity: 0.5;
 				}
+			}
+
+			.theme-browser-icon {
+				bottom: 0;
+				right: 0;
+
+				width: 16px;
+				height: 16px;
 			}
 		}
 
@@ -421,6 +424,7 @@ h4 {
 			font-size: 22px;
 			color: rgb(255, 255, 255);
 			background: linear-gradient(to top, rgb(0, 0, 0, 60%), transparent);
+			box-sizing: border-box;
 
 			.radio {
 				min-width: 16px;

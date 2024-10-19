@@ -136,9 +136,20 @@ class gkChrTheme {
                                     themeIcon = theme.icons[16];
                             }
 
+                            let browser;
+                            if (theme.update_url) {
+                                if (theme.update_url.includes("edge.microsoft"))
+                                    browser = "msedge";
+                                else
+                                    browser = "chrome";
+                            } else {
+                                browser = "chrome";
+                            }
+
                             const themeKey = file.leafName;
                             themes[themeKey] = {
                                 file: themeKey,
+                                browser: browser,
                                 name: themeName,
                                 description: themeDescription,
                                 version: theme.version,

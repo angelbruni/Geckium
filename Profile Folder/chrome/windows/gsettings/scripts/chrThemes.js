@@ -8,6 +8,7 @@ async function getChrThemesList() {
 
         result.push({
             "type": "chrtheme",
+			"browser": theme.browser,
             "name": theme.name,
             "desc": theme.description,
             "id": themeFile,
