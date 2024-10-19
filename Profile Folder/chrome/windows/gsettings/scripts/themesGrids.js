@@ -87,7 +87,7 @@ async function populateThemesList() {
         let themeElm = `
         <html:button
                 class="link geckium-appearance ripple-enabled"
-                data-${themeInfo[i].type}-name="${themeInfo[i].id}"
+                data-${themeInfo[i].type}-name="${themeInfo[i].id}" data-browser="${themeInfo[i].browser}"
                 style="background-color: ${themeInfo[i].bannerColor}; background-image: ${themeInfo[i].banner};
 ${themeInfo[i].bannerAlignment ? `background-position: ${themeInfo[i].bannerAlignment} !important; ` : ""}
 ${themeInfo[i].bannerTiling ? `background-repeat: ${themeInfo[i].bannerTiling} !important; ` : ""}
@@ -96,7 +96,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
                 <html:div class="year">V${themeInfo[i].version}</html:div>
                 <html:div class="icon" style="width: 48px; height: 48px">
                     <html:img class="theme-type-icon" src="${themeIconPath}" />
-                    <html:img class="theme-browser-icon" src="chrome://userchrome/content/windows/gsettings/imgs/browsers/${themeInfo[i].browser}.svg" />
+                    <html:div class="theme-browser-icon" />
                 </html:div>
                 <html:div class="identifier">
                     <vbox style="min-width: 0">

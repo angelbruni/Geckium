@@ -24,6 +24,80 @@
 			display: none;
 		}
 	}
+
+	&[geckium-one] {
+		.link.geckium-appearance {
+			&[data-browser="chrome"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
+				}
+			}
+	
+			&[data-browser="firefox"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
+				}
+			}
+		}
+	}
+
+	&[geckium-one][geckium-two] {
+		.link.geckium-appearance {
+			&[data-browser="firefox"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
+				}
+			}
+		}
+	}
+
+	&[geckium-one][geckium-two][geckium-eleven] {
+		.link.geckium-appearance {
+			&[data-browser="chrome"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
+				}
+			}
+		}
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive] {
+		.link.geckium-appearance {
+			&[data-browser="firefox"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
+				}
+			}
+		}
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] {
+		.link.geckium-appearance {
+			&[data-browser="chrome"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
+				}
+			}
+		}
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] {
+		.link.geckium-appearance {
+			&[data-browser="firefox"] {
+				.theme-browser-icon {
+					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
+				}
+			}
+		}
+	}
+
+	.link.geckium-appearance {
+		&[data-browser="msedge"] {
+			.theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
+			}
+		}
+	}
 }
 
 #window {
@@ -409,6 +483,10 @@ h4 {
 
 				width: 16px;
 				height: 16px;
+
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
 			}
 		}
 
