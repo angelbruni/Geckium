@@ -41,7 +41,7 @@ function createRecentlyClosed() {
 			title = title.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			if (!state.image)
-				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
+				favicon = "chrome://userchrome/content/assets/img/chrome-1/toolbar/grayfolder.png";
 			else
 				favicon = state.image.replace(/[&<>"']/g, match => specialCharacters[match]);
 

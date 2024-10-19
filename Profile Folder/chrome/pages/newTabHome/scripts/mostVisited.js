@@ -259,7 +259,7 @@ function createTile(website) {
 			let websiteColor = defaultColor;
 
 			if (!website.favicon) {
-				favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
+				favicon = "chrome://userchrome/content/assets/img/chrome-1/toolbar/grayfolder.png";
 
 				if (pinned)
 					favicon = `page-icon:${url}`;
