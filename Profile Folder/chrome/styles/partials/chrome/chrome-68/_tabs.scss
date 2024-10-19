@@ -18,7 +18,10 @@
 	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_right.svg");
 	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_right.svg");
 
-	--tab-icon-stack-margin-block-start: 2px;
+	--tab-container-left:	linear-gradient(to bottom, transparent, transparent);
+	--tab-container2-left:	linear-gradient(to bottom, transparent, transparent);
+	--tab-container-center:	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_container_center.svg");
+	--tab-container-right:	linear-gradient(to bottom, transparent, transparent);
 
 	--tab-gap-between-favicon-and-title: 6px;
 	
@@ -45,6 +48,11 @@
 		--tab-gap-between-favicon-and-title: 0;
 	}
 }
+
+.tab-icon-stack[busy="true"] + .tab-label-container {
+	--tab-gap-between-favicon-and-title: 6px;
+}
+
 
 #tabbrowser-tabs {
 	// Remove the spacing counteract as it's no longer necessary
