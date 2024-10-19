@@ -1,17 +1,29 @@
 function updateSignInStatus() {
+	let appearanceChoice = gkEras.getNTPEra();
 	let email = gkPrefUtils.tryGet("services.sync.username").string;
-    let notsignedin = document.getElementById("login-container");
-    let loginemail = document.getElementById("login-email");
-    if (notsignedin && loginemail) {
-        if (email) {
-            notsignedin.style.setProperty("display", "none");
-            loginemail.style.removeProperty("display");
-            loginemail.innerHTML = email;
-        } else {
-            notsignedin.style.removeProperty("display");
-            loginemail.style.setProperty("display", "none");
-        }
-    }
+	let loginContainer = document.getElementById("login-container");
+	let loginUsername;
+
+	if (appearanceChoice == 11)
+		loginUsername = document.getElementById("login-username");
+	else
+		loginUsername = document.getElementById("login-email");
+	
+	if (loginContainer && loginUsername) {
+		if (email) {
+			if (appearanceChoice > 11) {
+				loginContainer.style.setProperty("display", "none");
+				loginUsername.style.removeProperty("display");
+			}
+			
+			loginUsername.textContent = email;
+		} else {
+			if (appearanceChoice > 11) {
+				loginContainer.style.removeProperty("display");
+				loginUsername.style.setProperty("display", "none");
+			}
+		}
+	}
 }
 
 const fxSyncObs = {
