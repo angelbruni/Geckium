@@ -138,6 +138,17 @@ toolbarbutton menupopup[placespopup] {
 	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/check.svg");
 	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg");
 	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg");
+
+	@media (prefers-color-scheme: dark) {
+		--gk-menu-background: linear-gradient(to bottom, #242424, #121212);
+		--gk-menu-foreground: white;
+		--gk-menu-foreground-disabled: rgba(255, 255, 255, 0.3);
+		--gk-menu-foreground-keys: rgba(255, 255, 255, 0.3);
+		
+		--gk-menuitem-background: #0A1B47;
+		--gk-menuitem-foreground: white;
+		--gk-menuitem-foreground-keys: rgba(255, 255, 255, 0.3);
+	}
 }
 :root[gkmenunative="2"],
 :root[gkmenunative="1"]:not([gksystheme="gtk"]),

@@ -11,6 +11,12 @@
 
 	--gk-menusep-color: rgba(0, 0, 0, 0.2);
 	--gk-menuright-texture: url("chrome://userchrome/content/assets/img/chrome-21/menu/right.svg");
+
+	@media (prefers-color-scheme: dark) {
+		--gk-menu-background: #242424;
+		
+		--gk-menuitem-background: #333333;
+	}
 }
 :root[gkmenunative="2"],
 :root[gkmenunative="1"]:not([gksystheme="gtk"]),
