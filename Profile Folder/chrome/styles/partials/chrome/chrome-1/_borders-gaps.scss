@@ -7,6 +7,13 @@
 	--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.png");
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
 
+	--default-browser-background-color: rgb(216,228,246);
+	--browser-background-color: var(--default-browser-background-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-browser-background-color: rgb(10, 25, 46);
+	}
+
 	@media not (resolution: 96dpi) {
 		--content-border-top-left-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_left_corner.svg");
 		--content-border-top-image:			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tabstoolbar_shadow_modified.svg");
@@ -102,6 +109,10 @@
 	#browser,
 	#customization-container {
 		position: relative; // Required for all borders
+	}
+
+	#browser {
+		background-color: var(--browser-background-color);
 	}
 
 	&:not([personalbar="newtab"]) {
