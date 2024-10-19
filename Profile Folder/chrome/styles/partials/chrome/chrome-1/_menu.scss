@@ -271,12 +271,112 @@ toolbarbutton menupopup[placespopup] {
 // Native menu skin
 :root[gkmenunative="0"],
 :root[gkmenunative="1"][gksystheme="gtk"]:not([gkthemed="true"]) {
-	menupopup,
-	toolbarbutton menupopup[placespopup] {
-		@media (-moz-platform: windows) {
+	// Linux
+	@media (-moz-platform: linux) {
+		menupopup,
+		toolbarbutton menupopup[placespopup] {
+			--panel-background: Field !important;
+			--panel-color: FieldText !important;
+			--panel-border-color: ThreeDShadow !important;
+			--panel-border-radius: 0 !important;
+			--panel-padding: 0 !important;
+		}
+		toolbarbutton menupopup[placespopup] {
+			--panel-width: initial !important;
+			--nested-margin: -3px !important;
+			--panel-shadow-margin: 0px !important;
+		
+			--arrowpanel-menuitem-margin: 0 !important;
+			--arrowpanel-menuitem-padding: 4px 6px !important;
+			--arrowpanel-menuitem-border-radius: 0 !important;
+
+			> :is(menu, menuitem)[_moz-menuactive="true"] {
+				background-color: -moz-menuhover !important;
+				color: -moz-menuhovertext !important;
+			}
+		}
+	}
+
+	//  macOS
+	//  TODO: In the future, if using Mac OS X titlebar style then apply Mac OS X menu styling here
+	@media (-moz-platform: macos) {
+		toolbarbutton menupopup[placespopup] {
+			appearance: menupopup !important;
+			--panel-background: transparent !important;
+			--panel-color: MenuText !important;
+			--panel-padding: 4px !important;
+			--panel-border-color: transparent !important;
+			--panel-width: initial !important;
+			--nested-margin: -3px !important;
+			--panel-shadow-margin: 0px !important;
+		
+			--arrowpanel-menuitem-margin: 0 !important;
+			--arrowpanel-menuitem-padding: 2.5px 9px !important;
+			--arrowpanel-menuitem-border-radius: 3px !important;
+
+			> :is(menu, menuitem)[_moz-menuactive="true"] {
+				background-color: AccentColor !important;
+				color: AccentColorText !important;
+			}
+
+			> :is(menu, menuitem) {
+				min-height: unset !important;
+			}
+		}
+	}
+
+	//  Windows
+	@media (-moz-platform: windows) {
+		//  Windows (non-native Firefox)
+		menupopup,
+		toolbarbutton menupopup[placespopup] {
+			--panel-background: Field !important;
+			--panel-color: FieldText !important;
+			--panel-border-color: rgba(0, 0, 0, 0.1) !important;
+			--panel-border-radius: 4px !important;
+			--panel-shadow-margin: 5px !important;
+			--panel-padding: 3px !important;
+			
 			// Move keyboard shortcuts to the left of the right-arrow
 			.menu-accel-container {
 				margin-inline-end: 12px !important;
+			}
+
+			> :is(menu, menuitem)[_moz-menuactive="true"] {
+				background-color: AccentColor !important;
+				color: AccentColorText !important;
+			}
+			> :is(menu, menuitem) {
+				padding-block: 2px !important;
+			}
+		}
+		toolbarbutton menupopup[placespopup] {
+			--panel-width: initial !important;
+			--nested-margin: -3px !important;
+		
+			--arrowpanel-menuitem-margin: 0 !important;
+			--arrowpanel-menuitem-padding: 4px 6px !important;
+			--arrowpanel-menuitem-border-radius: 3px !important;
+		}
+
+		//  Leverage a bug with Firefox's CSS logic to only apply native menus if the @media that 115- had exists, thus is 115 or patched Firefox
+		@media not (-moz-windows-non-native-menus) {
+			menupopup,
+			toolbarbutton menupopup[placespopup] {
+				--panel-padding: 0 !important;
+			}
+			toolbarbutton menupopup[placespopup] {
+				appearance: menupopup !important;
+				--panel-background: transparent !important;
+				--panel-color: MenuText !important;
+				--panel-border-radius: 0 !important;
+				--panel-border-color: transparent !important;
+				--panel-width: initial !important;
+				--nested-margin: -3px !important;
+				--panel-shadow-margin: 0px !important;
+			
+				--arrowpanel-menuitem-margin: 0 !important;
+				--arrowpanel-menuitem-padding: initial !important;
 			}
 		}
 	}
@@ -348,153 +448,5 @@ toolbarbutton menupopup[placespopup] {
 // // Native menu styling
 // :root[gkmenunative="0"],
 // :root[gkmenunative="1"][gksystheme="gtk"]:not([gkthemed="true"]) {
-// 	//  Linux
-// 	@media (-moz-platform: linux) {
-// 		menupopup,
-// 		toolbarbutton menupopup[placespopup] {
-// 			--panel-background: Field !important;
-// 			--panel-color: FieldText !important;
-// 			--panel-border-color: ThreeDShadow !important;
-// 			--panel-border-radius: 0 !important;
-// 			--panel-padding: 0 !important;
-// 		}
-// 		toolbarbutton menupopup[placespopup] {
-// 			--panel-width: initial !important;
-// 			--nested-margin: -3px !important;
-// 			--panel-shadow-margin: 0px !important;
-		
-// 			--arrowpanel-menuitem-margin: 0 !important;
-// 			--arrowpanel-menuitem-padding: 4px 6px !important;
-// 			--arrowpanel-menuitem-border-radius: 0 !important;
-
-// 			> :is(menu, menuitem)[_moz-menuactive="true"] {
-// 				background-color: -moz-menuhover !important;
-// 				color: -moz-menuhovertext !important;
-// 			}
-// 		}
-// 	}
-
-// 	//  macOS
-// 	//  TODO: In the future, if using Mac OS X titlebar style then apply Mac OS X menu styling here
-// 	@media (-moz-platform: macos) {
-// 		toolbarbutton menupopup[placespopup] {
-// 			appearance: menupopup !important;
-// 			--panel-background: transparent !important;
-// 			--panel-color: MenuText !important;
-// 			--panel-padding: 4px !important;
-// 			--panel-border-color: transparent !important;
-// 			--panel-width: initial !important;
-// 			--nested-margin: -3px !important;
-// 			--panel-shadow-margin: 0px !important;
-		
-// 			--arrowpanel-menuitem-margin: 0 !important;
-// 			--arrowpanel-menuitem-padding: 2.5px 9px !important;
-// 			--arrowpanel-menuitem-border-radius: 3px !important;
-
-// 			> :is(menu, menuitem)[_moz-menuactive="true"] {
-// 				background-color: AccentColor !important;
-// 				color: AccentColorText !important;
-// 			}
-
-// 			> :is(menu, menuitem) {
-// 				min-height: unset !important;
-// 			}
-// 		}
-// 	}
-
-// 	//  Windows
-// 	@media (-moz-platform: windows) {
-// 		//  Windows (non-native Firefox)
-// 		menupopup,
-// 		toolbarbutton menupopup[placespopup] {
-// 			--panel-background: Field !important;
-// 			--panel-color: FieldText !important;
-// 			--panel-border-color: transparent !important;
-// 			--panel-border-radius: 4px !important;
-// 			--panel-padding: 3px !important;
-// 		}
-// 		toolbarbutton menupopup[placespopup] {
-// 			--panel-width: initial !important;
-// 			--nested-margin: -3px !important;
-// 			--panel-shadow-margin: 5px !important;
-		
-// 			--arrowpanel-menuitem-margin: 0 !important;
-// 			--arrowpanel-menuitem-padding: 4px 6px !important;
-// 			--arrowpanel-menuitem-border-radius: 3px !important;
-
-// 			> :is(menu, menuitem)[_moz-menuactive="true"] {
-// 				background-color: AccentColor !important;
-// 				color: AccentColorText !important;
-// 			}
-// 		}
-
-// 		//  Leverage a bug with Firefox's CSS logic to only apply native menus if the @media that 115- had exists, thus is 115 or patched Firefox
-// 		@media not (-moz-windows-non-native-menus) {
-// 			menupopup,
-// 			toolbarbutton menupopup[placespopup] {
-// 				--panel-padding: 0 !important;
-// 			}
-// 			toolbarbutton menupopup[placespopup] {
-// 				appearance: menupopup !important;
-// 				--panel-background: transparent !important;
-// 				--panel-color: MenuText !important;
-// 				--panel-border-radius: 0 !important;
-// 				--panel-border-color: transparent !important;
-// 				--panel-width: initial !important;
-// 				--nested-margin: -3px !important;
-// 				--panel-shadow-margin: 0px !important;
-			
-// 				--arrowpanel-menuitem-margin: 0 !important;
-// 				--arrowpanel-menuitem-padding: initial !important;
-				
-// 				> :is(menu, menuitem) {
-// 					appearance: menuitem !important;
-// 					min-height: unset !important;
-// 					&[_moz-menuactive="true"] {
-// 						color: -moz-menuhovertext !important;
-// 					}
-// 					&[disabled] {
-// 						color: GreyText !important;
-// 					}
-			
-// 					.menu-iconic-left {
-// 						margin-inline-start: 3px !important;
-// 					}
-			
-// 					.menu-iconic-text {
-// 						padding-top: 1px !important;
-// 						padding-bottom: 1px !important;
-// 						margin-left: 2px !important;
-// 					}
-			
-// 					.menu-text {
-// 						padding-inline-start: 28px !important;
-// 					}
-			
-// 					.menu-text, .menu-iconic-text {
-// 						margin-inline-start: 2px !important;
-// 						padding-inline-end: 2px !important;
-// 					}
-			
-// 					.menu-accel {
-// 						margin-inline-end: 1.35em !important;
-// 					} //16.2
-// 				}
-			
-// 				> menuseparator { // menu.css:360, Firefox 118
-// 					position: initial !important;
-// 					appearance: auto !important;
-// 					border: unset !important;
-// 					min-height: unset !important;
-// 					margin: unset !important;
-// 					padding-inline: unset !important;
-// 					padding-top: unset !important;
-// 					padding-bottom: unset !important;
-			
-// 					border-top: 1px solid ThreeDShadow !important;
-// 					border-bottom: 1px solid ThreeDHighlight !important;
-// 				}
-// 			}
-// 		}
-// 	}
+// 	
 // }
