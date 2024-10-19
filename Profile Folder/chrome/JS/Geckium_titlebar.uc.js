@@ -147,6 +147,9 @@ class gkTitlebars {
                     win: "classic",
                     macos: "macos"
                 }
+            },
+            68: {
+                menunative: 1
             }
         },
         "linux": {
@@ -174,12 +177,14 @@ class gkTitlebars {
                 }
             },
             47: {
-                menunative: 1,
                 systheme: {
                     linux: "gtk",
                     win: "classic",
                     macos: "macos"
                 }
+            },
+            68: {
+                menunative: 1
             }
         },
         "macosx": {
