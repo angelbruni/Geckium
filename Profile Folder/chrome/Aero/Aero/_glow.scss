@@ -1,0 +1,66 @@
+/*
+ * Draw several visual effects:
+ *
+ * 1) repeating glass texture
+ * 2) Top-left and top-right corner glow
+ * 3) left and right side glow
+ *
+ */
+&[tabsintitlebar] body::before
+{
+    content:        " ";
+    position:       absolute;
+    z-index:        -1;
+    pointer-events: none !important;
+
+    top:            0px !important;
+    left:           0px !important;
+    right:          0px !important;
+    bottom:         0px !important;
+
+    background-image:
+        var(--aero-glass-texture),
+        var(--aero-glow-left-corner),
+        var(--aero-glow-right-corner),
+        var(--aero-glow-left),
+        var(--aero-glow-right),
+        var(--aero-shadow-adjust-nw),
+        var(--aero-shadow-adjust-ne),
+        var(--aero-shadow-adjust-sw),
+        var(--aero-shadow-adjust-se)
+        !important;
+    background-repeat:
+        repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat
+        !important;
+    background-position:
+        top 0px  left  5%,
+        top calc(var(--aero-glow-corner-y-offset) / var(--aero-hidpi-scale)) left  calc(var(--aero-glow-corner-x-offset) / var(--aero-hidpi-scale)),
+        top calc(var(--aero-glow-corner-y-offset) / var(--aero-hidpi-scale)) right calc(var(--aero-glow-corner-x-offset) / var(--aero-hidpi-scale)),
+        top calc(50px / var(--aero-hidpi-scale)) left  0px,
+        top calc(50px / var(--aero-hidpi-scale)) right 0px,
+        top 0px left 0px,
+        top 0px right 0px,
+        bottom 0px left 0px,
+        bottom 0px right 0px
+        !important;
+    background-size:
+        var(--aero-glass-texture-width),
+        calc(228px / var(--aero-hidpi-scale)) calc(175px / var(--aero-hidpi-scale)),
+        calc(228px / var(--aero-hidpi-scale)) calc(175px / var(--aero-hidpi-scale)),
+        calc(calc(var(--aero-padding) + 2px) / var(--aero-hidpi-scale)) 18vh,
+        calc(calc(var(--aero-padding) + 2px) / var(--aero-hidpi-scale)) 18vh,
+        calc(9px / var(--aero-hidpi-scale)) calc(9px / var(--aero-hidpi-scale)),
+        calc(9px / var(--aero-hidpi-scale)) calc(9px / var(--aero-hidpi-scale)),
+        calc(9px / var(--aero-hidpi-scale)) calc(9px / var(--aero-hidpi-scale)),
+        calc(9px / var(--aero-hidpi-scale)) calc(9px / var(--aero-hidpi-scale))
+        !important;
+    image-rendering: crisp-edges !important;
+}

@@ -1,0 +1,37 @@
+:root[gktitnative="true"]:is([tabsintitlebar]) {
+	@import "Aero/base";
+
+	/*
+	* Adjustments for better compatability with Geckium
+	*/
+	--aero-padding:                             6px;
+	--aero-top-padding-windowed:                5px;
+
+	&[sizemode="maximized"]
+	{
+		--aero-titlebuttons-top-offset:             -1px;
+		--aero-titlebuttons-right-offset: 			0px;
+	}
+
+	/*
+	* Fixups
+	*/
+	&[sizemode="normal"][tabsintitlebar] body {
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+	#TabsToolbar .titlebar-buttonbox-container[skipintoolbarset="true"] {
+		display: flex !important;
+	}
+
+	&:not([gkthemed]:not([gkchrthemed]))[is117Plus] #navigator-toolbox,
+	&:not([gkthemed]:not([gkchrthemed]))[is117Plus] #navigator-toolbox:-moz-window-inactive
+	{
+		background-color: transparent !important;
+	}
+
+	&[sizemode="normal"]:not([menubarvisible]) #tabbrowser-arrowscrollbox {
+		padding-top: calc(var(--tab-distance-from-top) + var(--aero-padding));
+	}
+}

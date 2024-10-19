@@ -1,0 +1,19 @@
+&:is([tabsintitlebar]) body
+{
+    background-color: color-mix(in srgb, var(--aero-color) var(--aero-color-strength, 0%), transparent) !important;
+}
+
+&:is([tabsintitlebar]) #navigator-toolbox
+{
+    background-color: transparent !important;
+}
+
+&:is([tabsintitlebar]) #navigator-toolbox-background
+{
+    appearance: none !important;
+}
+
+#main-window[tabsintitlebar][sizemode="maximized"]
+{
+    background: none !important;
+}

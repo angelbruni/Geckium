@@ -74,7 +74,7 @@ function openGSettings(mode) {
 			return;
 		}
 		
-		const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
+		const gmWindow = window.open(url, "", "chrome,centerscreen,resizable=yes");
 		gmWindow.onload = () => {
 			if (mode)
 				gmWindow.document.documentElement.setAttribute("contentmode", mode);
