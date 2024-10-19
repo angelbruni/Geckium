@@ -124,7 +124,7 @@ toolbarbutton menupopup[placespopup] {
 	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.3);
 	--gk-menu-padding: 1px;
 	--gk-menu-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
-	--gk-menu-shadow-margin: 4px;
+	--gk-menu-shadow-margin: 8px;
 	
 	--gk-menuitem-radii: 0;
 	--gk-menuitem-padding: unset;
@@ -149,9 +149,14 @@ toolbarbutton menupopup[placespopup] {
 		--panel-color: var(--gk-menu-foreground) !important;
 		--panel-border-color: var(--gk-menu-border-color) !important;
 		--panel-border-radius: var(--gk-menu-radii) !important;
-		--panel-padding: var(--gk-menu-padding) !important;
+		--panel-padding-block: 2px !important;
+		--panel-padding: calc(var(--gk-menu-padding) + var(--panel-padding-block)) var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+
+		> ::part(content) {
+			border: 1px solid var(--gk-menu-border-color) !important;
+		}
 
 		> :is(menu, menuitem) {
 			min-height: var(--gk-menuitem-minheight) !important;
@@ -193,12 +198,18 @@ toolbarbutton menupopup[placespopup] {
 
 				width: 1ex !important;
 				height: 1ex !important;
+				image {
+					// Mozilla, I am actually unironically disappointed in you for this.
+					-moz-context-properties: fill !important;
+				}
 			}
 
 			&[type="checkbox"] .menu-iconic-left,
 			&[type="radio"] .menu-iconic-left {
 				.menu-iconic-icon {
 					appearance: none !important;
+					// I am also actually unironically disappointed in you for this.
+					-moz-context-properties: fill !important;
 				}
 			}
 			&[type="checkbox"][checked="true"] .menu-iconic-left {
@@ -238,9 +249,11 @@ toolbarbutton menupopup[placespopup] {
 :root[gkmenunative="1"][gksystheme="gtk"]:not([gkthemed="true"]) {
 	menupopup,
 	toolbarbutton menupopup[placespopup] {
-		// Move keyboard shortcuts to the left of the right-arrow
-		.menu-accel-container {
-			margin-inline-end: 12px !important;
+		@media (-moz-platform: windows) {
+			// Move keyboard shortcuts to the left of the right-arrow
+			.menu-accel-container {
+				margin-inline-end: 12px !important;
+			}
 		}
 	}
 }
