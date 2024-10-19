@@ -153,6 +153,11 @@ toolbarbutton menupopup[placespopup] {
 		--panel-padding: calc(var(--gk-menu-padding) + var(--panel-padding-block)) var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+		@media (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
+			// Native menus behave completely differently for some reason
+			--panel-shadow-margin: 0 !important;
+			border: unset !important;
+		}
 
 		> ::part(content) {
 			border: 1px solid var(--gk-menu-border-color) !important;
@@ -176,20 +181,45 @@ toolbarbutton menupopup[placespopup] {
 			fill: currentColor !important;
 
 			.menu-iconic-left {
+				appearance: none !important;
 				margin-inline-start: 3px !important;
 
 				padding-inline-end: unset !important;
 				margin-inline-end: 9px !important;
 			}
 
+			&[type="checkbox"] .menu-iconic-left,
+			&[type="radio"] .menu-iconic-left {
+				width: 16px !important;
+				.menu-iconic-icon {
+					appearance: none !important;
+					// I am also actually unironically disappointed in you for this.
+					-moz-context-properties: fill !important;
+					// For some reason, native Windows Firefox hides this
+					display: inline-flex !important;
+				}
+			}
+			&[type="checkbox"][checked="true"] .menu-iconic-left {
+				list-style-image: var(--gk-menuchecked-texture) !important;
+			}
+			&[type="radio"] .menu-iconic-left {
+				list-style-image: var(--gk-menuradioff-texture) !important;
+			}
+			&[type="radio"][checked="true"] .menu-iconic-left {
+				list-style-image: var(--gk-menuradion-texture) !important;
+			}
+
 			.menu-text {
+				margin: unset !important;
 				margin-inline-start: 28px !important;
+			}
+			.menu-iconic-text {
+				margin: unset !important;
 			}
 			.menu-iconic-text,
 			.menu-text {
 				appearance: none !important;
 				padding: unset !important;
-				margin: unset !important;
 			}
 
 			.menu-accel-container {
@@ -215,26 +245,6 @@ toolbarbutton menupopup[placespopup] {
 				}
 			}
 
-			&[type="checkbox"] .menu-iconic-left,
-			&[type="radio"] .menu-iconic-left {
-				appearance: none !important;
-				width: 16px !important;
-				.menu-iconic-icon {
-					appearance: none !important;
-					// I am also actually unironically disappointed in you for this.
-					-moz-context-properties: fill !important;
-				}
-			}
-			&[type="checkbox"][checked="true"] .menu-iconic-left {
-				list-style-image: var(--gk-menuchecked-texture) !important;
-			}
-			&[type="radio"] .menu-iconic-left {
-				list-style-image: var(--gk-menuradioff-texture) !important;
-			}
-			&[type="radio"][checked="true"] .menu-iconic-left {
-				list-style-image: var(--gk-menuradion-texture) !important;
-			}
-
 		}
 
 		menuseparator {
@@ -242,6 +252,7 @@ toolbarbutton menupopup[placespopup] {
 			padding-inline: unset !important;
 			padding-block: unset !important;
 			border-top: 1px solid var(--gk-menusep-color) !important;
+			border-bottom: unset !important;
 			
 			--panel-separator-color: var(--gk-menusep-color) !important;
 		}
