@@ -261,6 +261,10 @@ toolbarbutton menupopup[placespopup] {
 		#context-navigation > :is(menu, menuitem)::after {
 			margin-inline-start: 28px !important;
 		}
+		// Same with custom menuitems
+		> .menuitemitems .menu-text {
+			margin-inline-start: 28px !important;
+		}
 
 		menuseparator {
 			appearance: none !important;
