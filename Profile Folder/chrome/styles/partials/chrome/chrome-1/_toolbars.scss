@@ -54,18 +54,6 @@
 	#TabsToolbar {
 		--toolbarbutton-inner-padding: 0 !important; // Removes padding around buttons in the top toolbar
 		position: relative; // Required by tab shadow (the below ::before)
-
-		&::before {
-			content: "";
-			position: absolute;
-			left: var(--gap-size);
-			right: var(--gap-size);
-			bottom: -1px;
-			height: 23px;
-			background: var(--content-border-top-image) bottom;
-			pointer-events: none;
-			z-index: 100;
-		}
 	}
 
 
@@ -180,6 +168,10 @@
 	// 	}
 	// }
 
+	#nav-bar,
+	#PersonalToolbar {
+		-moz-window-dragging: no-drag !important;
+	}
 
 	/*
 		Navigation (the main) toolbar

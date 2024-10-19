@@ -7,6 +7,14 @@
 	--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.png");
 	--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.png");
 
+	@media not (resolution: 96dpi) {
+		--content-border-top-left-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_left_corner.svg");
+		--content-border-top-image:			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tabstoolbar_shadow_modified.svg");
+		--content-border-top-right-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_right_corner.svg");
+		--content-border-left-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_left.svg");
+		--content-border-right-image: 		url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_bookmark_right.svg");
+	}
+
 	&[windowtype="navigator:browser"] > body {
 		box-sizing: border-box; //Required fix for Windows
 	}
@@ -38,6 +46,10 @@
 		.titlebar-spacer[type="post-tabs"] {
 			margin-inline-end: var(--gap-size);
 		}
+		#TabsToolbar::before {
+			width: calc(100% - 8px);
+			left: calc(var(--gap-size) + 1px);
+		}
 		#nav-bar,
 		#PersonalToolbar,
 		.notificationbox-stack,
@@ -68,6 +80,18 @@
 				border-top-right-radius: 0 !important;
 			}
 		}
+	}
+
+	#TabsToolbar::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: -1px;
+		height: 23px;
+		background: var(--content-border-top-image) bottom;
+		pointer-events: none;
+		z-index: 100;
 	}
 
 	//Page bodies - top 1px border
@@ -115,9 +139,10 @@
 			&::after {
 				content: "";
 				position: absolute;
-				width: var(--content-border-width);
+				width: 3px;
 				top: calc(var(--content-border-width) * -1 + 1px);
-				height: calc(var(--nav-bar-height) + 3px);
+				height: calc(var(--nav-bar-height) + 2px);
+				background-repeat: no-repeat !important;
 			}
 			&::before {
 				background: var(--content-border-top-left-image);
