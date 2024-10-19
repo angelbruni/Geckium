@@ -52,17 +52,6 @@ menupopup {
 		width: 6px;
 	}
 
-	> menu,
-	> menuitem {
-		&:not([disabled="true"]) {
-			&:not([_moz-menuactive]) {
-				.menu-accel-container {
-					color: rgb(161, 161, 146) !important;
-				}
-			}
-		}
-	}
-
 	> .menuitemitems,
 	> .menuitemitems + menuseparator {
 		display: flex !important;

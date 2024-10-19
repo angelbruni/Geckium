@@ -144,6 +144,7 @@ toolbarbutton menupopup[placespopup] {
 // :root[gkmenunative="1"][gkthemed="true"] {
 	menupopup,
 	toolbarbutton menupopup[placespopup] {
+		appearance: none !important;
 		--panel-background: var(--gk-menu-background) !important;
 		--panel-color: var(--gk-menu-foreground) !important;
 		--panel-border-color: var(--gk-menu-border-color) !important;
@@ -158,10 +159,12 @@ toolbarbutton menupopup[placespopup] {
 		}
 
 		> :is(menu, menuitem) {
+			appearance: none !important;
 			min-height: var(--gk-menuitem-minheight) !important;
 			height: unset !important;
 
 			padding: 4px 6px !important;
+			padding-block: unset !important;
 
 			&[disabled="true"] {
 				color: var(--gk-menu-foreground-disabled) !important;
@@ -182,17 +185,26 @@ toolbarbutton menupopup[placespopup] {
 			.menu-text {
 				margin-inline-start: 28px !important;
 			}
+			.menu-iconic-text,
+			.menu-text {
+				appearance: none !important;
+				padding: unset !important;
+				margin: unset !important;
+			}
 
 			.menu-accel-container {
 				color: var(--gk-menu-foreground-keys) !important;
+				.menu-accel {
+					color: currentColor !important;
+				}
 			}
 			&[_moz-menuactive="true"] .menu-accel-container {
 				color: var(--gk-menuitem-foreground-keys) !important;
 			}
 
 			.menu-right {
-				margin-inline-end: 6px !important;
 				appearance: none !important;
+				margin-inline-end: 6px !important;
 				list-style-image: var(--gk-menuright-texture) !important;
 
 				width: 1ex !important;
@@ -205,6 +217,8 @@ toolbarbutton menupopup[placespopup] {
 
 			&[type="checkbox"] .menu-iconic-left,
 			&[type="radio"] .menu-iconic-left {
+				appearance: none !important;
+				width: 16px !important;
 				.menu-iconic-icon {
 					appearance: none !important;
 					// I am also actually unironically disappointed in you for this.
