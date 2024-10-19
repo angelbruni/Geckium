@@ -82,7 +82,7 @@ Research: Useful insight into Firefox JS.`,
 			name: "kwan-vini",
 			role: "tester",
 			quote: "Ooh, whatcha say? Mm, that you only meant well? Well, of course you did.",
-			contributions: "Localised Geckium for Brazillian Portuguese users, drew a Geckium tan, made multiple Firefox themes with Geckium support in mind, and tested pre-release Geckium builds.",
+			contributions: "Localised Geckium for Brazillian Portuguese users, drew a Geckium tan, made multiple Firefox themes with Geckium support in mind, made the official Geckium-tam themes, and tested pre-release Geckium builds.",
 			socials: [
 				{
 					name: "GitHub",
