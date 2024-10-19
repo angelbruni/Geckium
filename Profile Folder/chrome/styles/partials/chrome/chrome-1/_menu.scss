@@ -333,12 +333,9 @@ toolbarbutton menupopup[placespopup] {
 	@media (-moz-platform: macos) {
 		menupopup,
 		toolbarbutton menupopup[placespopup] {
-			> :is(menu, menuitem),
-			#context-navigation > :is(menu, menuitem) {
-				// Custom menuitems need extra care
-				> .menuitemitems .menu-text {
-					margin-inline-start: 4px !important;
-				}
+			// Custom menuitems need extra care
+			> .menuitemitems .menu-text {
+				margin-inline-start: 4px !important;
 			}
 		}
 		toolbarbutton menupopup[placespopup] {
@@ -356,8 +353,8 @@ toolbarbutton menupopup[placespopup] {
 			--arrowpanel-menuitem-border-radius: 3px !important;
 
 			> :is(menu, menuitem)[_moz-menuactive="true"] {
-				background-color: AccentColor !important;
-				color: AccentColorText !important;
+				background-color: -moz-menuhover !important;
+				color: -moz-menuhovertext !important;
 			}
 
 			> :is(menu, menuitem) {
