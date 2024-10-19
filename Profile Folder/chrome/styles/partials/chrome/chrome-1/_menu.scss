@@ -174,7 +174,8 @@ toolbarbutton menupopup[placespopup] {
 			border: 1px solid var(--gk-menu-border-color) !important;
 		}
 
-		> :is(menu, menuitem) {
+		> :is(menu, menuitem),
+		#context-navigation > :is(menu, menuitem) {
 			appearance: none !important;
 			min-height: var(--gk-menuitem-minheight) !important;
 			height: unset !important;
@@ -185,7 +186,7 @@ toolbarbutton menupopup[placespopup] {
 			&[disabled="true"] {
 				color: var(--gk-menu-foreground-disabled) !important;
 			}
-			&[_moz-menuactive="true"] {
+			&[_moz-menuactive="true"]:not([disabled]) {
 				background: var(--gk-menuitem-background) !important;
 				color: var(--gk-menuitem-foreground) !important;
 			}
@@ -239,7 +240,7 @@ toolbarbutton menupopup[placespopup] {
 					color: currentColor !important;
 				}
 			}
-			&[_moz-menuactive="true"] .menu-accel-container {
+			&[_moz-menuactive="true"]:not([disabled]) .menu-accel-container {
 				color: var(--gk-menuitem-foreground-keys) !important;
 			}
 
@@ -255,7 +256,10 @@ toolbarbutton menupopup[placespopup] {
 					-moz-context-properties: fill !important;
 				}
 			}
-
+		}
+		// Context items need extra care
+		#context-navigation > :is(menu, menuitem)::after {
+			margin-inline-start: 28px !important;
 		}
 
 		menuseparator {
