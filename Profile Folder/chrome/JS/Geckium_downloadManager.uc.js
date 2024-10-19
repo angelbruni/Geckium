@@ -310,10 +310,6 @@ class gkDownloadManager {
 
 					if (document.getElementById("gkDownloadList").children.length == 0)
 						gkDownloadManager.toggleShelf("hide");
-
-					setTimeout(() => {
-						gkDownloadManager.checkItemBounds();
-					}, 450);
 				}
 			});
 		}).catch(console.error);
