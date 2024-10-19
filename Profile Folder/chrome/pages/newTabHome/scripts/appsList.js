@@ -29,7 +29,7 @@ function setUpApps() {
 
 				favicon = app.favicon;
 				if (!favicon)
-					favicon = "chrome://userchrome/content/assets/img/chrome-1/toolbar/grayfolder.png";
+					favicon = "chrome://userchrome/content/assets/img/toolbar/grayfolder.png";
 
 				name = app.oldName;
 
