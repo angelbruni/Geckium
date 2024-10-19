@@ -1,3 +1,7 @@
+& {
+	--menu_fullScreen-icon: url("chrome://userchrome/content/assets/img/chrome-47/menu/fullscreen_menu_button.svg");
+}
+
 menupopup {
 	button {
 		margin: 0 !important;
@@ -6,14 +10,22 @@ menupopup {
 		height: 100% !important;
 		background-color: transparent !important;
 		border-radius: 0 !important;
-		border: 1px solid rgb(205,205,205) !important;
-		color: black !important;
+		border-block: 0 !important;
+		border-inline: 1px solid var(--gk-menusep-color) !important;
+
+		-moz-context-properties: fill, fill-opacity;
+		fill: #969696 !important;
+		color: var(--gk-menu-foreground) !important;
+
+		transition: fill .2s;
 
 		&:not([disabled="true"]) {
 			&:hover {
-				background-color: rgb(66,129,244) !important;
-				border-color: rgb(171,171,171) !important;
+				background-color: var(--gk-menuitem-background) !important;
+				// border-color: rgb(171,171,171) !important;
+				border-color: var(--gk-menusep-color) !important;
 				color: white !important;
+				fill: white !important;
 
 				z-index: 1 !important;
 			}
@@ -43,12 +55,16 @@ menupopup {
 		&#menu_fullScreen6 {
 			border-left: 0 !important;
 		}
+	}
 
-		&#menu_cut6,
-		&#menu_copyt6,
-		&#menu_paste6 {
-			width: 57px !important;
-		}
+	separator {
+		display: none !important;
+	}
+
+	.menuitem-right-items {
+		height: calc(var(--gk-menuitem-minheight) + 6px);
+		margin-block: -3px !important;
+		margin-inline-end: -7px !important;
 	}
 }
 
