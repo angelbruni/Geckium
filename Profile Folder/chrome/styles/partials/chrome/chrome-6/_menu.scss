@@ -1,3 +1,7 @@
+& {
+	--menu_fullScreen-icon: url("chrome://userchrome/content/assets/img/chrome-11/menu/fullscreen_menu_button.png");
+}
+
 menupopup {
 	button {
 		appearance: none !important;
@@ -44,7 +48,7 @@ menupopup {
 		}
 
 		&#menu_fullScreen6 {
-			list-style-image: url("chrome://userchrome/content/assets/img/chrome-11/menu/fullscreen_menu_button.png") !important;
+			list-style-image: var(--menu_fullScreen-icon) !important;
 		}
 	}
 
