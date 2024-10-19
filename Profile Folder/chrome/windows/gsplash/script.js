@@ -30,7 +30,7 @@ function startFromScratch() {
 	"0": {
 		"pos": 0,
 		"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
-		"oldIcon": "",
+		"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"oldName": "Web Store",
 		"newName": "Web Store",
