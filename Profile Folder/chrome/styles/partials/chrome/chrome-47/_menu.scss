@@ -55,7 +55,6 @@ menupopup {
 // Hardcoded menu skin
 //  Hardcoded menu style construction variables
 & {
-	--gk-menu-background: white;
 	--gk-menu-border-color: #BABABA;
 	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.5);
 	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.5);
@@ -70,4 +69,10 @@ menupopup {
 	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/check.svg");
 	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio.svg");
 	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio-sel.svg");
+
+	@media (prefers-color-scheme: dark) {
+		--gk-menu-border-color: black;
+		--gk-menu-foreground-disabled: rgba(255, 255, 255, 0.5);
+		--gk-menu-foreground-keys: rgba(255, 255, 255, 0.5);
+	}
 }

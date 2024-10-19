@@ -19,4 +19,12 @@ menupopup {
 	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-68/menu/check.svg");
 	--gk-menuradioff-texture: unset;
 	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-68/menu/radio-sel.svg");
+
+	@media (prefers-color-scheme: dark) {
+		--gk-menu-background: #2A2A2D;
+
+		--gk-menuitem-background: #444547;
+		--gk-menuitem-foreground: white;
+		--gk-menuitem-foreground-keys: white;
+	}
 }
