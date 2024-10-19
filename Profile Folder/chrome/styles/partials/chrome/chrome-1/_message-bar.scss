@@ -1,3 +1,9 @@
+:root {
+	--infobar-close-button-normal:	url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off.svg");
+	--infobar-close-button-hot:		url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_h.svg");
+	--infobar-close-button-pressed:	url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_p.svg");
+}
+
 .notificationbox-stack {
 	overflow: visible !important;
 
@@ -16,6 +22,31 @@ notification-message {
 	&:not(:first-of-type) {
 		&:not([style*="margin-top"]) {
 			margin-block-start: 4px !important;
+		}
+	}
+
+	&[type="warning"] {
+		.notification-button {
+			border-color: rgb(151,141,95) !important;
+			background: linear-gradient(
+				to bottom,
+				rgb(255,251,234),
+				rgb(251,237,177)
+			) !important;
+
+		
+			&:hover,
+			&:active {
+				border-color: rgb(75,70,48) !important;
+			}
+		
+			&:active {
+				background: linear-gradient(
+					to bottom,
+					rgb(253,242,192), 
+					rgb(254,254,227)
+				) !important;
+			}
 		}
 	}
 }
@@ -100,18 +131,18 @@ link[href*="infobar"] ~ div.container /* Fix for Firefox ~120+ */ {
 		width: 21px !important;
 		height: 21px !important;
 
-		background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off.svg") !important;
+		background-image: var(--infobar-close-button-normal) !important;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: unset !important;
 	
 		&:hover,
 		&:focus {
-			background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_h.svg") !important;
+			background-image: var(--infobar-close-button-hot) !important;
 		}
 
 		&:active {
-			background-image: url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_p.svg") !important;
+			background-image: var(--infobar-close-button-pressed) !important;
 		}
 
 		> * {
@@ -139,7 +170,9 @@ link[href*="infobar"] ~ div.container /* Yellow infobar for Firefox 121+ only */
 	padding-inline: 5px !important;
 	margin: 0 !important;
 	height: 30px !important;
-	border: 1px solid rgb(137,137,137) !important;
+	border-width: 1px !important;
+	border-style: solid !important;
+	border-color: rgb(137,137,137) !important;
 	border-radius: 4px !important;
 	background: linear-gradient(
 		to bottom,
@@ -156,7 +189,11 @@ link[href*="infobar"] ~ div.container /* Yellow infobar for Firefox 121+ only */
 	}
 
 	&:active {
-		background: linear-gradient(to bottom, rgb(234,234,234), rgb(245,245,245)) !important;
+		background: linear-gradient(
+			to bottom,
+			rgb(234,234,234),
+			rgb(245,245,245)
+		) !important;
 	}
 }
 
