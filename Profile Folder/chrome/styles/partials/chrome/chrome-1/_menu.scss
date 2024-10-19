@@ -139,9 +139,9 @@ toolbarbutton menupopup[placespopup] {
 	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio.svg");
 	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-11/menu/radio-sel.svg");
 }
-// :root[gkmenunative="2"],
-// :root[gkmenunative="1"]:not([gksystheme="gtk"]),
-// :root[gkmenunative="1"][gkthemed="true"] {
+:root[gkmenunative="2"],
+:root[gkmenunative="1"]:not([gksystheme="gtk"]),
+:root[gkmenunative="1"][gkthemed="true"] {
 	menupopup,
 	toolbarbutton menupopup[placespopup] {
 		appearance: none !important;
@@ -265,7 +265,7 @@ toolbarbutton menupopup[placespopup] {
 		--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
 		--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
 	}
-// }
+}
 
 
 // Native menu skin
