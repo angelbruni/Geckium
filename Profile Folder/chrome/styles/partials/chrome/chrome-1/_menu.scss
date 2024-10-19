@@ -331,6 +331,16 @@ toolbarbutton menupopup[placespopup] {
 	//  macOS
 	//  TODO: In the future, if using Mac OS X titlebar style then apply Mac OS X menu styling here
 	@media (-moz-platform: macos) {
+		menupopup,
+		toolbarbutton menupopup[placespopup] {
+			> :is(menu, menuitem),
+			#context-navigation > :is(menu, menuitem) {
+				// Custom menuitems need extra care
+				> .menuitemitems .menu-text {
+					margin-inline-start: 4px !important;
+				}
+			}
+		}
 		toolbarbutton menupopup[placespopup] {
 			appearance: menupopup !important;
 			--panel-background: transparent !important;
