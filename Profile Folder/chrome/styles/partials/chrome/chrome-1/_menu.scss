@@ -31,6 +31,10 @@
 }
 
 menupopup {
+	@media not (-moz-windows-non-native-menus) {
+		appearance: auto !important;
+	}
+
 	// Hide menu items' buttons as they weren't yet introduced
 	> .menuitemitems,
 	> .menuitemitems + menuseparator {
