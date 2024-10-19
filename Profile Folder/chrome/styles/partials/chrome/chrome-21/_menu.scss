@@ -12,9 +12,9 @@
 	--gk-menusep-color: rgba(0, 0, 0, 0.2);
 	--gk-menuright-texture: url("chrome://userchrome/content/assets/img/chrome-21/menu/right.svg");
 }
-// :root[gkmenunative="2"],
-// :root[gkmenunative="1"]:not([gksystheme="gtk"]),
-// :root[gkmenunative="1"][gkthemed="true"] {
+:root[gkmenunative="2"],
+:root[gkmenunative="1"]:not([gksystheme="gtk"]),
+:root[gkmenunative="1"][gkthemed="true"] {
 	menupopup,
 	toolbarbutton menupopup[placespopup] {
 		> :is(menu, menuitem) {
@@ -26,4 +26,4 @@
 			}
 		}
 	}
-// }
+}
