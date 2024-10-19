@@ -299,6 +299,12 @@ toolbarbutton menupopup[placespopup] {
 			--panel-border-color: ThreeDShadow !important;
 			--panel-border-radius: 0 !important;
 			--panel-padding: 0 !important;
+
+			&#contentAreaContextMenu {
+                #context-navigation > menuitem::after {
+					margin-inline-start: 21px !important; // 21px (menu.css:82, Firefox 115) - 16px
+				}
+			}
 		}
 		toolbarbutton menupopup[placespopup] {
 			--panel-width: initial !important;
@@ -355,6 +361,12 @@ toolbarbutton menupopup[placespopup] {
 			--panel-border-radius: 4px !important;
 			--panel-shadow-margin: 5px !important;
 			--panel-padding: 3px !important;
+
+			&#contentAreaContextMenu {
+                #context-navigation > menuitem::after {
+					margin-inline-start: 2px !important;
+				}
+			}
 			
 			// Move keyboard shortcuts to the left of the right-arrow
 			.menu-accel-container {
