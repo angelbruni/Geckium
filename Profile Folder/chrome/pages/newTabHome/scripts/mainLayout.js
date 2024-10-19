@@ -554,6 +554,9 @@ function createMainLayout() {
 
 		main = `
 		<vbox id="main">
+			<html:div id="login-container">
+				<html:span id="login-username" />
+			</html:div>
 			<vbox class="sections">
 				<vbox id="apps">
 					<hbox class="section collapsed">
@@ -1104,7 +1107,7 @@ function createMainLayout() {
 			});
 		});
 	}
-	if (appearanceChoice == 21 || appearanceChoice == 25) {
+	if (appearanceChoice == 11 || appearanceChoice == 21 || appearanceChoice == 25) {
 		//Trigger sign in status-update
 		updateSignInStatus();
 	}
