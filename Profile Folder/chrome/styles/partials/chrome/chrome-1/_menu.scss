@@ -363,90 +363,77 @@ toolbarbutton menupopup[placespopup] {
 		@media not (-moz-windows-non-native-menus) {
 			menupopup,
 			toolbarbutton menupopup[placespopup] {
-				--panel-padding: 0 !important;
-			}
-			toolbarbutton menupopup[placespopup] {
-				appearance: menupopup !important;
 				--panel-background: transparent !important;
 				--panel-color: MenuText !important;
-				--panel-border-radius: 0 !important;
 				--panel-border-color: transparent !important;
+				--panel-border-radius: 0 !important;
+				--panel-shadow-margin: 0px !important;
+				--panel-padding: 0 !important;
+
+				> :is(menu, menuitem)[_moz-menuactive="true"] {
+					background-color: -moz-menuhover !important;
+					color: -moz-menuhovertext !important;
+				}
+				> :is(menu, menuitem) {
+					padding-block: unset !important;
+				}
+			}
+			toolbarbutton menupopup[placespopup] {
 				--panel-width: initial !important;
 				--nested-margin: -3px !important;
-				--panel-shadow-margin: 0px !important;
+				appearance: menupopup !important;
 			
 				--arrowpanel-menuitem-margin: 0 !important;
 				--arrowpanel-menuitem-padding: initial !important;
+
+				> :is(menu, menuitem) {
+					appearance: menuitem !important;
+					min-height: unset !important;
+					&[_moz-menuactive="true"] {
+						color: -moz-menuhovertext !important;
+					}
+					&[disabled] {
+						color: GreyText !important;
+					}
+			
+					.menu-iconic-left {
+						margin-inline-start: 3px !important;
+					}
+			
+					.menu-iconic-text {
+						padding-top: 1px !important;
+						padding-bottom: 1px !important;
+						margin-left: 2px !important;
+					}
+			
+					.menu-text {
+						padding-inline-start: 28px !important;
+					}
+			
+					.menu-text, .menu-iconic-text {
+						margin-inline-start: 2px !important;
+						padding-inline-end: 2px !important;
+					}
+			
+					.menu-accel {
+						margin-inline-end: 1.35em !important;
+					} //16.2
+				}
+			
+				> menuseparator { // menu.css:360, Firefox 118
+					position: initial !important;
+					appearance: auto !important;
+					border: unset !important;
+					min-height: unset !important;
+					margin: unset !important;
+					padding-inline: unset !important;
+					padding-top: unset !important;
+					padding-bottom: unset !important;
+			
+					border-top: 1px solid ThreeDShadow !important;
+					border-bottom: 1px solid ThreeDHighlight !important;
+				}
 			}
 		}
 	}
 }
-
-// Foolproof? plan:
-// - Make the hardcoded menu '--gk' variables like how tabs are handled in tabs.scss
-// - Construct the hardcoded menu in chrome-1's menu.scss
-// - Have the construct leverage the variables, and have future eras only change variables
-
-// so basically:
-// - variables
-// - changes to native and hardcoded menus mutually
-// - changes specific to hardcoded menus
-// - changes specific to native menus
-
-// menus come in 3 forms:
-//  - standard menus and bookmarks menu
-//  - context-navigation
-//  - the menus, for some reason, have unique menu arrow colouring??
-
-//   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  Code for applying styling
-// :root[gkmenunative="2"],
-// :root[gkmenunative="1"]:not([gksystheme="gtk"]),
-// :root[gkmenunative="1"][gkthemed="true"] {
-	
-// }
-
-
-
-
-// TODO: Take the risk.
-//  Do the hardcoded menu styles as base CSS for the menus that always gets used, THEN do the native ones as an overlay, given the trend in Firefox towards non-native menus
-
-
-//It would be easier to therefore handle it as such:
-// Hardcoded: Chromium OS menu styling
-// Non-hardcoded:
-//     All platforms*: Per OS styling
-//     Mac OS X titlebutton style: Hardcoded Mac OS X styling?
-
-// macOS:
-//  menupopup exists as an appearance
-//  BUT menuitem does not exist as an appearance in Firefox 128 (it does in 115, but is somewhat visually broken hover-wise)
-//  Though given it's macOS, remaking the way it looks would be easier anyway (could even pave the way for Mac OS X menus at a later date)
-
-// Windows:
-// Could maybe do a @media not (-moz-windows-non-native-menus) {?
-//  it failing means unpatched 128+
-//  but then, how to handle unpatched or non-native?
-
-
-// // Native menu styling
-// :root[gkmenunative="0"],
-// :root[gkmenunative="1"][gksystheme="gtk"]:not([gkthemed="true"]) {
-// 	
-// }
