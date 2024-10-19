@@ -141,7 +141,6 @@ class gkTitlebars {
                 }
             },
             47: {
-                menunative: 1,
                 systheme: {
                     linux: "gtk",
                     win: "classic",
