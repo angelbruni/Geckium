@@ -104,14 +104,15 @@ function retrievePinnedSites() {
     const pinnedData = gkPrefUtils.tryGet("browser.newtabpage.pinned").string;
 
     if (pinnedData) {
-		pinnedSites = JSON.parse(pinnedData).map(site => ({
-			...site,
-			pinned: true // Mark as pinned
-		}));
-	}
-    else {
-		pinnedSites = [];
-	}
+        pinnedSites = JSON.parse(pinnedData)
+            .filter(site => site != null)  // Filter for sites with a "url" key
+            .map(site => ({
+                ...site,
+                pinned: true // Mark as pinned
+            }));
+    } else {
+        pinnedSites = [];
+    }
 }
 
 function pinSite(site, title) {
@@ -152,9 +153,11 @@ function pinSite(site, title) {
 function unpinSite(site) {
     let pinnedSites;
 
-    // Retrieve pinned sites
-    if (gkPrefUtils.tryGet("browser.newtabpage.pinned").string) {
-		pinnedSites = JSON.parse(gkPrefUtils.tryGet("browser.newtabpage.pinned").string);
+	// Retrieve pinned sites
+    const pinnedData = gkPrefUtils.tryGet("browser.newtabpage.pinned").string;
+
+    if (pinnedData) {
+		pinnedSites = JSON.parse(pinnedData).filter(pinnedSite => pinnedSite != null);
 
 		// Normalize the URL (remove trailing slash if present)
 		const normalizedSite = site.endsWith('/') ? site.slice(0, -1) : site;
@@ -226,7 +229,8 @@ function createTile(website) {
 		let menuItem = ``;
 
         if (website !== undefined) {
-			let url = website.url.replace(/[&<>"']/g, match => specialCharacters[match]);
+			let url = website.url;
+			let urlFixedSpecialChars = website.url.replace(/[&<>"']/g, match => specialCharacters[match]);
 
 			let pinned;
 			if (website.pinned == true)
@@ -262,7 +266,7 @@ function createTile(website) {
 				favicon = "chrome://userchrome/content/assets/img/chrome-1/toolbar/grayfolder.png";
 
 				if (pinned)
-					favicon = `page-icon:${url}`;
+					favicon = `page-icon:${urlFixedSpecialChars}`;
 			} else {
 				favicon = website.favicon;
 			}
@@ -273,11 +277,11 @@ function createTile(website) {
 			else if (website.label)
 				title = website.label.replace(/[&<>"']/g, match => specialCharacters[match]);
 			else
-				title = url;
+				title = urlFixedSpecialChars;
 
 			if (appearanceChoice == 1) {
 				tile = `
-				<html:a href="${url}" title="${title}" pinned="${pinned}">
+				<html:a href="${urlFixedSpecialChars}" title="${title}" pinned="${pinned}">
 					<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
 						<image />
 						<label>${title}</label>
@@ -286,11 +290,11 @@ function createTile(website) {
 				</html:a>
 				`
 
-				thumbnail = "a[href='"+ url +"'] .thumbnail";
+				thumbnail = "a[href='"+ urlFixedSpecialChars +"'] .thumbnail";
 			} else if (appearanceChoice == 2) {
 				tile = `
-				<vbox href="${url}" pinned="${pinned}" class="most-visited-container">
-					<html:a href="${url}" title="${title}" class="disabled-on-edit">
+				<vbox href="${urlFixedSpecialChars}" pinned="${pinned}" class="most-visited-container">
+					<html:a href="${urlFixedSpecialChars}" title="${title}" class="disabled-on-edit">
 						<hbox class="thumbnail-title" style="list-style-image: url('${favicon}')">
 							<image />
 							<label>${title}</label>
@@ -304,13 +308,13 @@ function createTile(website) {
 				</vbox>
 				`
 
-				pin = ".most-visited-container[href='"+ url +"'] .edit-pin";
-				close = ".most-visited-container[href='"+ url +"'] .edit-cross";
+				pin = ".most-visited-container[href='"+ urlFixedSpecialChars +"'] .edit-pin";
+				close = ".most-visited-container[href='"+ urlFixedSpecialChars +"'] .edit-cross";
 
-				thumbnail = "a[href='"+ url +"'] .thumbnail";
+				thumbnail = "a[href='"+ urlFixedSpecialChars +"'] .thumbnail";
 			} else if (appearanceChoice <= 11) {
 				tile = `
-				<html:a class="thumbnail-container" href="${url}" pinned="${pinned}">
+				<html:a class="thumbnail-container" href="${urlFixedSpecialChars}" pinned="${pinned}">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
 							<html:button class="pin" title="${pinTitle}" />
@@ -331,20 +335,20 @@ function createTile(website) {
 				`
 
 				menuItem = `
-				<html:a class="item" href="${url}" pinned="${pinned}" style="list-style-image: url('${favicon}')">
+				<html:a class="item" href="${urlFixedSpecialChars}" pinned="${pinned}" style="list-style-image: url('${favicon}')">
 					<image class="favicon" />
 					<label>${title}</label>
 				</html:a>
 				`
 
-				pin = ".thumbnail-container[href='"+ url +"'] .pin";
-				close = ".thumbnail-container[href='"+ url +"'] .remove";
+				pin = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .pin";
+				close = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .remove";
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
-				thumbnail = ".thumbnail-container[href='"+ url +"'] .thumbnail-wrapper";
+				thumbnail = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .thumbnail-wrapper";
 			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
 				for (const key in websiteColors) {
-					const websiteURL = url.toLowerCase();
+					const websiteURL = urlFixedSpecialChars.toLowerCase();
 					
 					if (websiteURL.includes(key)) {
 						websiteColor = websiteColors[key];
@@ -354,7 +358,7 @@ function createTile(website) {
 
 				tile = `
 				<html:div class="tile" pinned="${pinned}">
-					<html:a class="most-visited" href="${url}">
+					<html:a class="most-visited" href="${urlFixedSpecialChars}">
 						<html:div class="thumbnail-wrapper">
 							<html:button class="pin-button" title="${pinTitle}"></html:button>
 							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
@@ -378,7 +382,7 @@ function createTile(website) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
-					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${url}" title="${title}" data-letter="${Array.from(title)[0]}" pinned="${pinned}">
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${urlFixedSpecialChars}" title="${title}" data-letter="${Array.from(title)[0]}" pinned="${pinned}">
 						<image class="mv-favicon"></image>
 						<label class="mv-title">${title}</label>
 						<html:button class="mv-pin"></html:button>
@@ -387,7 +391,7 @@ function createTile(website) {
 					`
 				} else {
 					tile = `
-					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${url}" title="${title}" pinned="${pinned}">
+					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${urlFixedSpecialChars}" title="${title}" pinned="${pinned}">
 						<hbox class="title-container">
 							<image class="mv-favicon"></image>
 							<label class="mv-title">${title}</label>
@@ -399,10 +403,10 @@ function createTile(website) {
 					`
 				}
 
-				pin = ".mv-tile[href='" + url + "'] .mv-pin";
-				close = ".mv-tile[href='" + url + "'] .mv-x";
+				pin = ".mv-tile[href='" + urlFixedSpecialChars + "'] .mv-pin";
+				close = ".mv-tile[href='" + urlFixedSpecialChars + "'] .mv-x";
 
-				thumbnail = ".mv-tile[href='"+ url +"'] .mv-thumb";
+				thumbnail = ".mv-tile[href='"+ urlFixedSpecialChars +"'] .mv-thumb";
 			}
 
 			waitForElm(close).then(function() {
@@ -416,7 +420,7 @@ function createTile(website) {
 					if (appearanceChoice == 2) {
 						markForDeletion(url);
 
-						document.querySelector(".most-visited-container[href='"+ url +"']").style.display = "none";
+						document.querySelector(".most-visited-container[href='"+ urlFixedSpecialChars +"']").style.display = "none";
 					} else {
 						deleteFromRecent(url);
 					
