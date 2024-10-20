@@ -45,7 +45,7 @@ However,
 
 1. Open Firefox, and in the address bar go to `about:support`
 2. Look for `Profile Folder` and next to it press `Open Profile Directory`
-3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting file manager's window's currently displayed folder
+3. Copy the `chrome` folder (and if it's your first time installing Geckium `chrThemes` folder) from the `Profile Folder` folder in your copy of Geckium to the resulting file manager's window's currently displayed folder
 4. Navigate to `File System/usr/lib/firefox` (or `File System/usr/lib/firefox-esr` if using Mozilla Firefox ESR)
 5. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the `firefox`/`firefox-esr` folder (if your file manager does not ask for Superuser privilleges automatically, you will need to manually open your File Manager with Superuser privilleges)
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
@@ -59,7 +59,7 @@ However,
 
 1. Open Firefox, and in the address bar go to `about:support`
 2. Look for `Profile Folder` and next to it press `Open Profile Directory`
-3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
+3. Copy the `chrome` folder (and if it's your first time installing Geckium `chrThemes` folder) from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
 4. Find a Mozilla Firefox shortcut, right-click it and select `Open file location`
 5. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the resulting folder (depending on how you installed Firefox, you may need to have administrator privilleges to perform this step)
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
@@ -75,7 +75,7 @@ However,
 
 1. Open Firefox, and in the address bar go to `about:support`
 2. Look for `Profile Folder` and next to it press `Open in Finder`
-3. Copy the `chrome` folder from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
+3. Copy the `chrome` folder (and if it's your first time installing Geckium `chrThemes` folder) from the `Profile Folder` folder in your copy of Geckium to the resulting File Explorer window's folder
 4. DO NOT QUIT FIREFOX - find your copy of Mozilla Firefox, right-click it and select `Open Package Contents`
 5. Go to Contents -> Resources, and then copy the contents of the `Firefox Folder` folder in your copy of Geckium to this folder (you will need to merge folders if prompted to)
 6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
