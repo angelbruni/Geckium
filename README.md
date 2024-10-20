@@ -9,6 +9,8 @@ Geckium is a Mozilla Firefox **(115 - latest)** CSS and JS modification that res
 
 [Discord Server](https://discord.gg/ZDeT6vdqMp)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V614V6Y7)
+
 ## Coming from Silverfox?
 
 Just install Geckium normally by deleting your `chrome` folder and placing Geckium's `chrome` folder in its place - upon launching Geckium it will automatically migrate the settings you had from Silverfox to Geckium's settings.
@@ -36,6 +38,8 @@ However,
 **To begin, download Geckium from [the Releases page](https://github.com/angelbruni/Geckium/releases/latest).**
 
 ℹ Once running for the first time, Geckium will restart Firefox automatically 1-2 times while it sets up required settings, migrations, and so on - if Firefox doesn't re-appear after restarting itself, terminate Firefox and launch it again (that is an upstream bug with Firefox).
+
+**To improve your Geckium experience, you should also install [Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey) and, using Tampermonkey, install [the official Geckium UserScript for enhanced functionality](https://github.com/angelbruni/CRX-Downloader-userScript/raw/refs/heads/main/crx-downloader.user.js).**
 
 ## Linux
 
