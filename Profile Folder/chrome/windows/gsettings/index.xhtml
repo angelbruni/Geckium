@@ -282,7 +282,7 @@
 													</div>
 												</div>
 											</vbox>
-											<h4>&gsettings.mainInterface;</h4>
+											<!--<h4>&gsettings.mainInterface;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
@@ -297,7 +297,7 @@
 												<vbox class="item" data-switchreq="Geckium.main.overrideStyle" flex="1" style="padding-block-start: 19px">
 													<grid id="main-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
-											</vbox>
+											</vbox>-->
 											<h4>&gsettings.newTab;</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -663,14 +663,14 @@
 											</h4>
 											<vbox class="card">
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center;" flex="1">
+													<grid id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center;" flex="1">
 													</grid>
 												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.themes;
-												<label class="button ripple-enabled text color disable-in-wizard" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
-												<label class="button ripple-enabled text color disable-in-wizard" onclick="populateThemesList();">&gsettings.refreshList;</label>
+												<label class="button ripple-enabled text color" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
+												<label class="button ripple-enabled text color" onclick="populateThemesList();">&gsettings.refreshList;</label>
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -724,7 +724,7 @@
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
+													<grid id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
 																class="link chrome-appearance ripple-enabled"
@@ -1266,7 +1266,7 @@
 	<script src="chrome://userchrome/content/JS/Geckium_themesChr.uc.js" type="text/javascript" defer="true" />
 
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/globalVisualStyles.js" type="text/javascript" defer="true" />
-	<script src="chrome://userchrome/content/windows/gsettings/scripts/mainVisualStyles.js" type="text/javascript" defer="true" />
+	<!--<script src="chrome://userchrome/content/windows/gsettings/scripts/mainVisualStyles.js" type="text/javascript" defer="true" />-->
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/ntpVisualStyles.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/apps.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/lwThemes.js" type="text/javascript" defer="true" />
