@@ -54,7 +54,7 @@ function openGWizard() {
 		return;
 	}
 	
-	const gmWindow = window.openDialog(url, "", "centerscreen,resizable=no");
+	const gmWindow = window.open(url, "", "chrome,centerscreen,resizable=no");
 	gmWindow.onload = () => {
 		gmWindow.document.documentElement.setAttribute("containertype", "window");
 	}
