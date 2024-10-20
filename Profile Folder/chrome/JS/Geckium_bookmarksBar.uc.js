@@ -6,8 +6,22 @@
 
 function applyBookmarkAttr() {
 	const bookmarkBarPref = gkPrefUtils.tryGet("browser.toolbars.bookmarks.visibility").string;
-
 	document.documentElement.setAttribute("personalbar", bookmarkBarPref);
+
+	const navigatorToolbox = document.getElementById("navigator-toolbox");
+	
+	const personalToolbar = document.getElementById("PersonalToolbar");
+
+	waitForElm("#navigator-toolbox > vbox.global-notificationbox").then(() => {
+		const notificationBoxStack = document.querySelector("#navigator-toolbox > vbox.global-notificationbox");
+		notificationBoxStack.removeAttribute("prepend-notifications");
+
+		if (bookmarkBarPref == "newtab") {
+			gkInsertElm.before(notificationBoxStack, personalToolbar);
+		} else {
+			navigatorToolbox.appendChild(notificationBoxStack);
+		}
+	});
 }
 
 const bookmarkBarPrefObserver = {
