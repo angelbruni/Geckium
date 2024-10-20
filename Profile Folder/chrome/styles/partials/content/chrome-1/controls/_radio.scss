@@ -2,16 +2,19 @@
 				url-prefix(about:addons),
 				url-prefix(chrome://browser/content/preferences/dialogs) {
 
+	.web-appearance-choice-footer{
+		align-items: center;
+	}
+
 	.checkbox-check,
 	.radio-check,
 	input[type="radio"] {
 		all: unset !important;
 		position: relative !important;
 		margin-block: 0 !important;
-		width: 17px !important;
-		height: 17px !important;
-		border: 1px solid rgb(173,173,173) !important;
-		background-image: linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+		width: 13px !important;
+		height: 13px !important;
+		border-radius: 0 !important;
 		background-repeat: no-repeat !important;
 		background-position: center !important;
 		box-sizing: border-box !important;
@@ -19,23 +22,23 @@
 	}
 
 	.checkbox-check {
-		border-radius: 3px !important;
+		background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/linux-checkbox-off.svg") !important;
 
 		&:checked,
 		&[checked],
 		&[selected="true"] {
-			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/checkbox-checked.svg"), linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/linux-checkbox-on.svg") !important;
 		}
 	}
 
 	.radio-check,
 	input[type="radio"] {
-		border-radius: 50% !important;
+		background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/linux-radio-off.svg") !important;
 
 		&:checked,
 		&[checked],
 		&[selected="true"] {
-			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/radio-button-checked.svg"), linear-gradient(to bottom, white, rgb(214,214,214)) !important;
+			background-image: url("chrome://userchrome/content/assets/img/chrome-1/controls/linux-radio-on.svg") !important;
 		}
 	}
 
