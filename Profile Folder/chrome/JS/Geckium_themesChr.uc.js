@@ -47,12 +47,16 @@ class gkChrTheme {
 				    const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
 					if (file.leafName.endsWith(".crx")) {
                         try {
+                            console.log("CRX LOGS:", chrThemesFolder, file.leafName);
+
                             const response = await fetch(`jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`);
                             const theme = await response.json();
                             if (!theme.theme) {
                                 console.error("Error fetching theme manifest: not a theme");
                                 continue;
                             }
+
+                            console.log("CRX LOGS:", response, theme);
 
                             let themeName = theme.name;
                             let themeDescription = theme.description;
