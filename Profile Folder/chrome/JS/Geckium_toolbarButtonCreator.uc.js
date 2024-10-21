@@ -169,7 +169,7 @@ class gkToolbarMenuButtons {
 				menuItem.setAttribute("accesskey", params.accesskey);
 
 			if (params.type == "menuitem") {
-				if (!params.command && !params.click)
+				if (!params.oncommand && !params.click && !params.command)
 					menuItem.disabled = true;
 			}
 
@@ -181,6 +181,13 @@ class gkToolbarMenuButtons {
 					menuItem.setAttribute("command", params.command);
 				else
 					menuItem.addEventListener("command", params.command);
+			}
+
+			if (params.oncommand) {
+				if (typeof params.oncommand === "string")
+					menuItem.setAttribute("oncommand", params.oncommand);
+				else
+					menuItem.addEventListener("oncommand", params.oncommand);
 			}
 
 			if (params.key)
@@ -338,7 +345,7 @@ window.addEventListener("load", function () {
 		parentID: "toolbar-context-menu",
 		type: "menuitem",
 		id: "toolbar-context-gsettings",
-		click: "openGSettings()",
+		oncommand: "openGSettings()",
 		label: "Geckium Settings",
 	});
 	gkToolbarButtons.create({
