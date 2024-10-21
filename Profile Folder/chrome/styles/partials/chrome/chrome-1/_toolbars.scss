@@ -285,7 +285,7 @@
 
 		.toolbarbutton-badge {
 			margin: 0 !important;
-			margin-block-end: 1px !important;
+			margin-block-end: calc((var(--toolbarbutton-inner-padding) * -1) + 1px) !important;
 			align-self: end !important;
 			justify-self: center !important;
 			z-index: 1;
@@ -693,6 +693,7 @@
 		gap: var(--personal-toolbar-gap);
 	}
 	toolbarbutton.bookmark-item {
+		position: relative !important;
 		border: 1px solid transparent !important;
 		background: transparent !important;
 		margin-left: 0 !important;
@@ -718,6 +719,17 @@
 			&[open] {
 				border: 1px solid rgba(0, 0, 0, .2) !important;
 				background-color: rgba(240, 240, 240, 0.5) !important;
+			}
+		}
+
+		&#OtherBookmarks {
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				width: 1px;
+				height: 100%;
+				background-image: var(--test) linear-gradient(to bottom, rgba(222, 234, 248, 1) 50%, rgba(222, 234, 248, 0));
 			}
 		}
 	}
