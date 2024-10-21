@@ -168,6 +168,15 @@
 	// 	}
 	// }
 
+	&:not([sizemode="fullscreen"]) {
+		#nav-bar {
+			//FIXME: why does this need this condition?
+			&:not([urlbar-exceeds-toolbar-bounds]) {
+				overflow: visible !important; //Required for the pseudos
+			}
+		}
+	}
+
 	#nav-bar,
 	#PersonalToolbar {
 		-moz-window-dragging: no-drag !important;
@@ -183,11 +192,7 @@
 		height: var(--nav-bar-height);
 		box-shadow: none !important;
 		border-top: 0 !important;
-		
-		//FIXME: why does this need this condition?
-		&:not([urlbar-exceeds-toolbar-bounds]) {
-			overflow: visible !important; //Required for the pseudos
-		}
+
 		//FIXME: what is this for?
 		// &[unifiedextensionsbuttonshown] #urlbar-container {
 		// 	width: calc(24px + 2 * var(--toolbarbutton-inner-padding)) !important;
