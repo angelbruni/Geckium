@@ -18,13 +18,13 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--thumbnail-inner-border-color: color-mix(
 			in srgb,
-			var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 50%,
 			white
 		);
 		--thumbnail-background-color: color-mix(
 			in srgb,
-			var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
-			white
+			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 12.3029601%,
+			transparent
 		);
 		--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
 	}
@@ -32,7 +32,7 @@
 	&[gkthemed][gkchrthemed] {
 		--thumbnail-border-color: color-mix(
 			in srgb,
-			var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) 31%,
+			var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) 12.3029601%,
 			transparent
 		);
 		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color));
