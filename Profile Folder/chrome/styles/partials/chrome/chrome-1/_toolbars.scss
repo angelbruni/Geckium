@@ -338,6 +338,16 @@
 		}
 	}
 
+	&[gkcanupdate="true"] {
+		:not(.widget-overflow-list) > .toolbarbutton-1#chrome-button {
+			.toolbarbutton-icon,
+			&:not(.menu-right) > image:first-of-type {
+				fill: rgb(237,66,62) !important;
+			}
+		}
+	}
+
+
 	// Special toolbarbuttons
 	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
 		#fxa-toolbar-menu-button,
