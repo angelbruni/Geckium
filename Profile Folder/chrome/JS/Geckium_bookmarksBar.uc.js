@@ -12,16 +12,39 @@ function applyBookmarkAttr() {
 	
 	const personalToolbar = document.getElementById("PersonalToolbar");
 
-	waitForElm("#navigator-toolbox > vbox.global-notificationbox").then(() => {
-		const notificationBoxStack = document.querySelector("#navigator-toolbox > vbox.global-notificationbox");
-		notificationBoxStack.removeAttribute("prepend-notifications");
+	let notificationBoxStack = document.querySelector("#navigator-toolbox > vbox.global-notificationbox");
+	
+	/* bruni:	By creating the notificationbox-stack element before
+				Firefox and setting it as the stack, we ensure infobar
+				contents to not break, since moving the stack is what
+				causes them to break, however, this also means that on
+				anything lower than 128, moving the stack will first
+				remove all notifications, meaning that having a
+				notification and changing bookmarks to newtab/always
+				showing will remove all notifications before moving
+				the stack. */
+	if (!notificationBoxStack) {
+		notificationBoxStack = document.createXULElement("vbox");
+		notificationBoxStack.classList.add("notificationbox-stack", "global-notificationbox");
+		notificationBoxStack.setAttribute("notificationside", "top");
+		gkInsertElm.before(notificationBoxStack, personalToolbar);
+		
+		window.gNotificationBox._stack = notificationBoxStack;
+	}
 
-		if (bookmarkBarPref == "newtab") {
-			gkInsertElm.before(notificationBoxStack, personalToolbar);
-		} else {
-			navigatorToolbox.appendChild(notificationBoxStack);
-		}
-	});
+	notificationBoxStack.removeAttribute("prepend-notifications");
+
+	if (parseInt(Services.appinfo.version.split(".")[0]) < 128) {
+		notificationBoxStack.querySelectorAll("notification-message").forEach(notification => {
+			notification.remove();
+		});
+	}
+
+	if (bookmarkBarPref == "newtab") {
+		gkInsertElm.before(notificationBoxStack, personalToolbar);
+	} else {
+		navigatorToolbox.appendChild(notificationBoxStack);
+	}
 }
 
 const bookmarkBarPrefObserver = {
@@ -32,7 +55,9 @@ const bookmarkBarPrefObserver = {
 	}
 };
 Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", bookmarkBarPrefObserver, false)
-window.addEventListener("load", applyBookmarkAttr);
+_ucUtils.windowIsReady(window).then(() => {
+	applyBookmarkAttr();
+});
 
 _ucUtils.windowIsReady(window).then(() => {
 	const personalToolbarBackground = document.createElement("div");
