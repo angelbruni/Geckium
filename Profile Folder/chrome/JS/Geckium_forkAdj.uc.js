@@ -54,7 +54,16 @@ class gkNCPAdj {
                         label : "To continue using native Windows titlebars, please switch to a compatible Firefox fork.",
                         type : "nativecontrolspatch-notification",
                         priority: "critical",
-                        buttons: []
+                        buttons: [{
+                        label: "Learn more",
+                        callback: (notification) => {
+                            notification.ownerGlobal.openWebLinkIn(
+                            "https://github.com/angelbruni/Geckium/wiki/Compatible-Firefox-forks-with-Native-Windows-Titlebars-support",
+                            "tab"
+                            );
+                            return false
+                        }
+                        }]
                     }
                     )
                 } else {
