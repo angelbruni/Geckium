@@ -1,0 +1,40 @@
+name: "Request"
+description: Request a new feature or design change
+title: ""
+labels: [Suggestion]
+assignees: []
+
+body:
+  - type: checkboxes
+    attributes:
+      label: Before sending your suggestion
+      description: Please ensure you meet the following criteria before sending suggestions:
+      options:
+        - label: My version of Firefox is up to date (for 115, this means being on at least 115.16.1)
+        - label: My copy of Geckium is up to date (no update option in the hamburger/spanner menu)
+
+  - type: input
+    attributes:
+      label: What browser are you running Geckium on?
+      description: For Firefox, state "Mozilla Firefox" below.
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: What Operating System are you running Geckium on?
+      description: If you're running Geckium on a Linux Distribution, please also state so below.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: What would you like to suggest for Geckium?
+      description: Provide a clear, concise description of the suggestion.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add other context about the suggestion here, such as reference images, etc.

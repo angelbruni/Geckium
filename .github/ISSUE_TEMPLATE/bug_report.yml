@@ -1,0 +1,70 @@
+name: "Bug or design inaccuracy"
+description: Report an issue or piece of inaccurate design
+title: ""
+labels: [Bug]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!NOTE]
+        > If you're reporting a design inaccuracy, MAKE SURE the Chromium or Google Chrome you're comparing against matches the version in Geckium's About dialog/page - multiple issues have been made where Google changed the design before or since the version of Chromium that the selected Geckium era represents, and can waste triagers' time.
+
+  - type: checkboxes
+    attributes:
+      label: Before reporting your issue
+      description: Please ensure you meet the following criteria before reporting issues:
+      options:
+        - label: My version of Firefox is up to date (for 115, this means being on at least 115.16.1)
+        - label: My copy of Geckium is up to date (no update option in the hamburger/spanner menu)
+
+  - type: input
+    attributes:
+      label: What browser are you running Geckium on?
+      description: For Firefox, state "Mozilla Firefox" below.
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: What Operating System are you running Geckium on?
+      description: If you're running Geckium on a Linux Distribution, please also state so below.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Summarise the issue
+      description: Provide a clear, concise description of the bug or inaccuracy.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add screenshots to help illustrate the issue
+      placeholder: Drop or paste images or videos to upload.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: How do you reproduce the bug/inaccuracy?
+      description: List the steps to reproduce the issue:
+      placeholder: "1.\n2.\n3.\n4. ..."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behaviour or design
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here, such as frequency of the issue, etc.
