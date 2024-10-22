@@ -594,6 +594,7 @@
 		#personal-toolbar-bg,
 		#personal-toolbar-floating-bg {
 			position: absolute;
+			pointer-events: none;
 		}
 
 		#personal-toolbar-empty {
@@ -658,15 +659,22 @@
 			}
 
 			#personal-toolbar-empty {
-				padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
+				padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
 			}
 
+			#personal-toolbar-empty + #import-button:not(:last-child),
+			#personal-toolbar-empty + toolbarpaletteitem,
 			#personal-bookmarks {
-				padding-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
+				margin-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
+			}
+
+			toolbarpaletteitem > #personal-bookmarks,
+			#import-button + #personal-bookmarks {
+				margin-inline-start: 0 !important;
 			}
 
 			> :last-child {
-				padding-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline));
+				margin-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline) - 2px) !important;
 			}
 		}
 	}
