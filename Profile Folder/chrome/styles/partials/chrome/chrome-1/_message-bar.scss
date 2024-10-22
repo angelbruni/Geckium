@@ -198,6 +198,7 @@ link[href*="infobar"] ~ div.container /* Yellow infobar for Firefox 121+ only */
 }
 
 /* Close button of infobar */
+link[href*="moz-button"] + button,
 link[href*="moz-button"] + button > .button-background[size="small"] {
 	background: unset !important;
 }
