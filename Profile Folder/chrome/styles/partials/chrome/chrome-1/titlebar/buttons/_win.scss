@@ -52,10 +52,8 @@
 	}
 	
 	&[gktitnative="false"] {
-		.titlebar-spacer{
-			&[type="post-tabs"] {
-				margin-inline-end: 16px !important; // Add spacing between caption buttons and tabs.
-			}
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 16px !important; // Add spacing between caption buttons and tabs.
 		}
 
 		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
