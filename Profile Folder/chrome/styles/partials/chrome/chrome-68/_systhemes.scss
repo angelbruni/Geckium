@@ -69,6 +69,11 @@
 		@include dark;
     }
 
+	&[privatebrowsingmode="temporary"] {
+		// Tabs
+		--default-tabbrowser-tab-color-inactive: white;
+	}
+
 	// GTK+ (rest in peace, icon set icons on toolbar)
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
 		// Titlebar (now flattened like in ~59)
