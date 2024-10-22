@@ -160,7 +160,8 @@ class gkRfoxAdj {
         "r3dfox.customizations.enabled",
         "r3dfox.force.transparency",
         "r3dfox.transparent.menubar",
-        "r3dfox.translucent.navbar"
+        "r3dfox.translucent.navbar",
+        "r3dfox.aero.fog"
     ]
 
     /**

@@ -169,6 +169,15 @@
             rgb(128, 143, 161) 40px
         );
 		--default-titlebar-color: rgb(80, 105, 141);
+
+		// Tabs
+		--default-inactive-tab-background: linear-gradient(
+			to bottom,
+			rgb(176, 186, 197),
+			rgb(150, 166, 186),
+			rgb(148, 164, 185)
+		);
+
 		@media (prefers-color-scheme: dark) {
 			--default-titlebar-active: linear-gradient(
 				to bottom,

@@ -49,7 +49,7 @@ async function getLWThemesList() {
 		let themeBannerTiling;
 		let themeBannerSizing;
 		if (mani.browser_specific_settings && mani.browser_specific_settings.geckium) {
-			themeBanner = mani.browser_specific_settings.geckium.backgroundImage.map(obj => `url(${theme.__AddonInternal__.rootURI}${obj})`).join(', ');
+			themeBanner = mani.browser_specific_settings.geckium.backgroundImage.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
 
 			if (mani.browser_specific_settings.geckium.backgroundPosition)
 				themeBannerAlignment = mani.browser_specific_settings.geckium.backgroundPosition;
@@ -62,9 +62,9 @@ async function getLWThemesList() {
 			
 		} else if (mani.theme.images) {
 			if (mani.theme.images.theme_frame) {
-				themeBanner = `url(${theme.__AddonInternal__.rootURI}/${mani.theme.images.theme_frame})`;
+				themeBanner = `url('${theme.__AddonInternal__.rootURI}/${mani.theme.images.theme_frame}')`;
 			} else if (mani.theme.images.additional_backgrounds) {
-				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url(${theme.__AddonInternal__.rootURI}${obj})`).join(', ');
+				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
 
 				if (mani.theme.properties.additional_backgrounds_alignment)
 					themeBannerAlignment = mani.theme.properties.additional_backgrounds_alignment.map(obj => obj).join(', ');

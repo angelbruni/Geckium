@@ -147,6 +147,13 @@
 		}
 	}
 
+	&[textoverflow="left"],
+	&[textoverflow="both"] {
+		#urlbar-protocol {
+			display: none !important;
+		}
+	}
+
 	&:not([pageproxystate="valid"], [open]) {
 		#urlbar-protocol {
 			display: none !important;
@@ -271,7 +278,8 @@
 	}
 
 	&[securestate="secure"],
-	&[securestate="ev"] {
+	&[securestate="ev"],
+	.verifiedDomain ~ .urlbar-input-box {
 		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
