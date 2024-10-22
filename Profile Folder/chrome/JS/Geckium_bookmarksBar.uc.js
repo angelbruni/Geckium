@@ -30,6 +30,7 @@ function applyBookmarkAttr() {
 		gkInsertElm.before(notificationBoxStack, personalToolbar);
 		
 		window.gNotificationBox._stack = notificationBoxStack;
+		window.gNotificationBox._stack.closest(".notificationbox-stack")._notificationBox = window.gNotificationBox;
 	}
 
 	notificationBoxStack.removeAttribute("prepend-notifications");
