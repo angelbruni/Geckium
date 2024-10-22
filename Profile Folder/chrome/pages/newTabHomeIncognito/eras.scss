@@ -5,6 +5,10 @@
 
 	a {
 		color: #00E !important;
+
+		@media (prefers-color-scheme: dark) {
+			color: hsl(240, 100%, 67%) !important;
+		}
 	}
 
 	&:not([geckium-one]) {
