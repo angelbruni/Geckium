@@ -338,6 +338,11 @@
 		}
 	}
 
+	.urlbar-page-action {
+		width: var(--urlbar-height-definitive) !important;
+  		height: var(--urlbar-height-definitive) !important;
+	}
+
 	&[gkcanupdate="true"] {
 		:not(.widget-overflow-list) > .toolbarbutton-1#chrome-button {
 			.toolbarbutton-icon,
