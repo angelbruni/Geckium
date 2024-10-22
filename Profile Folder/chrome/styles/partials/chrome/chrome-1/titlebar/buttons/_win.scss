@@ -3,8 +3,10 @@
 	#private-browsing-indicator-with-label {
 		order: -1 !important; // Force to left
 	}
-	.titlebar-spacer[type="pre-tabs"] {
-		order: -2 !important; // Force to left of Incognito
+	.titlebar-spacer{
+		&[type="pre-tabs"] {
+			order: -2 !important; // Force to left of Incognito
+		}
 	}
 	&:not([privatebrowsingmode="temporary"]) {
 		#TabsToolbar-customization-target {
@@ -50,6 +52,12 @@
 	}
 	
 	&[gktitnative="false"] {
+		.titlebar-spacer{
+			&[type="post-tabs"] {
+				margin-inline-end: 16px !important; // Add spacing between caption buttons and tabs.
+			}
+		}
+
 		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
@@ -68,7 +76,7 @@
 		//Shared non-native titlebar variables
 		& {
 			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-			--titlebutton-corner: 5px;
+			--titlebutton-corner: 3.5px;
 		}
 
 		//Titlebar button box (force onto right side)
