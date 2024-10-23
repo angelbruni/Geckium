@@ -12,7 +12,7 @@ function appearance() {
 	if (!prefChoice)
 		prefChoice = 0;
 	
-	if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps" || document.URL == "about:flags" || document.URL == "about:privatebrowsing" || document.URL == "about:about") {
+	if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps" || document.URL == "about:flags" || document.URL == "about:privatebrowsing" || document.URL == "about:aboutdialog") {
 		if (prefChoice == previousChoice) {
 			console.log("TAB PAGE: Choice same as previous choice, ignoring.", prefChoice, previousChoice)
 		} else {
@@ -34,7 +34,7 @@ function appearance() {
 				setUpApps();
 			} else if (document.URL == "about:flags") {
 				setUpExperiments();
-			} else if (document.URL == "about:privatebrowsing" || document.URL == "about:about") {
+			} else if (document.URL == "about:privatebrowsing" || document.URL == "about:aboutdialog") {
 				gkBranding.load();
 				createMainLayout();
 			}

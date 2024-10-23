@@ -84,7 +84,7 @@ function openGSettings(mode) {
 
 function openAbout() {
 	if (gkEras.getBrowserEra() <= 21)
-		window.openDialog("about:about", "", "centerscreen");
+		window.openDialog("about:aboutdialog", "", "centerscreen");
 	else
 		openTrustedLinkIn("about:preferences#about", "tab");
 }
