@@ -421,40 +421,41 @@ class gkChrTheme {
         // TINTS
         let themeTints = (theme.theme.tints) ? theme.theme.tints : theme.tints;
         if (themeTints) {
-            Object.entries(themeTints).map(([key, value]) => {
-                const percentageValue = value.map((value, index) => (index > 0 ? (value * 100) + '%' : value));
-                let tintedColor;
-                const tintMap = {
-                    "frame": theme.theme.colors.frame,
-                    "frame_inactive": theme.theme.colors.frame_inactive,
-                    "background_tab": theme.theme.colors.background_tab,
-                    "buttons": gkChrTheme.defaultToolbarButtonIconColour
-                };
-                for (const i of Object.keys(tintMap)) {
-                    if (!Object.keys(themeTints).includes(i) || !tintMap[i]) {
-                        continue;
-                    } else if (gkChrTheme.excludeFallback(i, theme.theme, usefallbacks)) {
-                        continue; // Don't tint excluded colors
-                    } else if (Object.keys(gkChrTheme.noTintIfColor).includes(i)) {
-                        if (theme.theme.colors && theme.theme.colors[gkChrTheme.noTintIfColor[i]]) {
-                            if ((accommodate && maniver >= 2) || era >= 68) {
-                                continue; // Don't tint in 68+, or accommodated manifest_version 2+, if the modern Chromium toolbar icon fill value is present
-                            }
+            const tintMap = {
+                "frame": theme.theme.colors.frame,
+                "frame_inactive": theme.theme.colors.frame_inactive,
+                "background_tab": theme.theme.colors.background_tab,
+                "buttons": gkChrTheme.defaultToolbarButtonIconColour
+            };
+
+            for (const i of Object.keys(tintMap)) {
+                if (!themeTints[i] || !tintMap[i])
+                    continue;
+
+                // Skip if it's excluded from fallback tinting
+                if (gkChrTheme.excludeFallback(i, theme.theme, usefallbacks))
+                    continue;
+                // Don't tint in 68+, or accommodated manifest_version 2+, if the modern Chromium toolbar icon fill value is present
+                if (Object.keys(gkChrTheme.noTintIfColor).includes(i)) {
+                    if (theme.theme.colors && theme.theme.colors[gkChrTheme.noTintIfColor[i]]) {
+                        if ((accommodate && maniver >= 2) || era >= 68) {
+                            continue;
                         }
                     }
-                    tintedColor = ColorUtils.HSLShift(tintMap[i], value);
-                    if (i == "buttons" && JSON.stringify(tintedColor) == JSON.stringify(this.defaultToolbarButtonIconColour)) {
-                        // If the tinted colour is the same as the default colour, do NOT tint.
-                        continue;
-                    } else if (i == "frame") {
-                        framecol = tintedColor;
-                    }
-                    document.documentElement.style.setProperty(
-                        `${styleProperty(i == "buttons" ? "toolbar-button-icon" : i)}`,
-                        `rgb(${tintedColor.join(', ')})`
-                    );
                 }
-            }).join('\n');
+
+                const tintedColor = ColorUtils.HSLShift(tintMap[i], themeTints[i]);
+                // Skip if the "buttons" tint results in the default color
+                if (i === "buttons" && JSON.stringify(tintedColor) === JSON.stringify(this.defaultToolbarButtonIconColour))
+                    continue;
+                if (i === "frame")
+                    framecol = tintedColor;
+                
+                document.documentElement.style.setProperty(
+                    `${styleProperty(i === "buttons" ? "toolbar-button-icon" : i)}`,
+                    `rgb(${tintedColor.join(', ')})`
+                );
+            }
         }
 
         // Extra titlebar exclusive values

@@ -51,6 +51,19 @@ Research: (with the help of Dominic) Chromium's colour tinting code.`,
 			]
 		},
 
+		// JavaScript Loader
+		{
+			name: "MrOtherGuy",
+			role: "js-loader",
+			contributions: "Geckium is loaded thanks to this project!",
+			socials: [
+				{
+					name: "GitHub",
+					url: "https://github.com/MrOtherGuy/fx-autoconfig"
+				}
+			]
+		},
+
 		// Testers
 		{
 			name: "florin",
@@ -214,6 +227,18 @@ Research: Useful insight into Firefox JS.`,
 			contributions: "Tested pre-release Geckium builds."
 		},
 		{
+			name: "Rhapsody2612",
+			role: "tester",
+			quote: "Hi, I'm Saul Goodman, did you know you have rights? Constitution says you do, and so do I. I believe, that, until proven guilty, every man, woman and child in this country is innocent. And that's why I fight for you, Albuquerque!",
+			contributions: "Tested pre-release Geckium builds.",
+			socials: [
+				{
+					name: "YouTube",
+					url: "https://www.youtube.com/@rhapsody2612"
+				}
+			]
+		},
+		{
 			name: "WackyIdeas",
 			role: "tester",
 			contributions: "Tested pre-release Geckium builds."
@@ -236,7 +261,7 @@ Research: Useful insight into Firefox JS.`,
 			name: "nabrious",
 			role: "og-developer",
 			contributions: "Helped create the Material Design framework used in Geckium Settings and Geckium Wizard."
-		},
+		}
 	]
 
 	credits.forEach(person => {
@@ -318,6 +343,22 @@ Research: Useful insight into Firefox JS.`,
 			}
 
 			exDevelopersCard.appendChild(creditFragment);
+		} else if (person.role == "js-loader") {
+			let jsLoaderCard;
+
+			if (document.querySelector("#jsLoaderCard.card")) {
+				jsLoaderCard = document.querySelector("#jsLoaderCard.card")
+			} else {
+				jsLoaderCard = document.createXULElement("vbox");
+				jsLoaderCard.id = "jsLoaderCard";
+				jsLoaderCard.classList.add("card");
+
+				cardRoleTitle.textContent = "JavaScript Loader";
+				creditsList.appendChild(cardRoleTitle);
+				creditsList.appendChild(jsLoaderCard);
+			}
+
+			jsLoaderCard.appendChild(creditFragment);
 		}
 
 		let creditElm = document.querySelector(`button[data-name="${person.name}"]`);

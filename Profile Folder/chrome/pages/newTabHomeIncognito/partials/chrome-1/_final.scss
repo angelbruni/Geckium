@@ -1,10 +1,17 @@
 body {
 	margin: 10px 8px;
+	background-color: white;
 	color: black;
 	font: caption;
 	font-size: 10pt !important;
+
 	@media (-moz-platform: windows) {
 		font-family: Arial, sans-serif !important;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		background-color: black;
+		color: white;
 	}
 }
 // GTK+
@@ -28,4 +35,9 @@ body {
 	border-radius: 5px;
 	background-color: rgb(238, 238, 238);
 	color: black;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: rgb(33, 33, 33);
+		color: white;
+	}
 }
