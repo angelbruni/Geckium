@@ -14,6 +14,7 @@ const customAboutPages = {
 	"privatebrowsing":	"chrome://pages/content/newTabHomeIncognito/index.xhtml",
 	"apps": 			"chrome://pages/content/apps/index.xhtml",
 	"flags": 			"chrome://pages/content/flags/index.xhtml",
+	"dino": 			"chrome://pages/content/dino/index.xhtml",
 	// "neterror":		"chrome://pages/content/netError/index.xhtml",
 	"aboutdialog":		"chrome://windows/content/about/index.xhtml",
 
