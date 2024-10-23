@@ -218,7 +218,7 @@ Runner.keycodes = {
  * @enum {string}
  */
 Runner.events = {
-  ANIM_END: 'webkitAnimationEnd',
+  ANIM_END: 'animationend',
   CLICK: 'click',
   KEYDOWN: 'keydown',
   KEYUP: 'keyup',
@@ -472,7 +472,7 @@ Runner.prototype = {
       this.tRex.playingIntro = true;
 
       // CSS animation definition.
-      var keyframes = '@-webkit-keyframes intro { ' +
+      var keyframes = '@keyframes intro { ' +
             'from { width:' + Trex.config.WIDTH + 'px }' +
             'to { width: ' + this.dimensions.WIDTH + 'px }' +
           '}';
@@ -481,7 +481,7 @@ Runner.prototype = {
       this.containerEl.addEventListener(Runner.events.ANIM_END,
           this.startGame.bind(this));
 
-      this.containerEl.style.webkitAnimation = 'intro .4s ease-out 1 both';
+      this.containerEl.style.animation = 'intro .4s ease-out 1 both';
       this.containerEl.style.width = this.dimensions.WIDTH + 'px';
 
       this.setPlayStatus(true);
@@ -502,7 +502,7 @@ Runner.prototype = {
     this.runningTime = 0;
     this.playingIntro = false;
     this.tRex.playingIntro = false;
-    this.containerEl.style.webkitAnimation = '';
+    this.containerEl.style.animation = '';
     this.playCount++;
 
     // Handle tabbing off the page. Pause the current game.
@@ -896,7 +896,7 @@ Runner.prototype = {
    * Pause the game if the tab is not in focus.
    */
   onVisibilityChange: function(e) {
-    if (document.hidden || document.webkitHidden || e.type == 'blur' ||
+    if (document.hidden || e.type == 'blur' ||
       document.visibilityState != 'visible') {
       this.stop();
     } else if (!this.crashed) {
