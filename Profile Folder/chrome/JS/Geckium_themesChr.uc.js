@@ -277,6 +277,9 @@ class gkChrTheme {
                 }
             },
             "2": {
+                "images": {
+                    "theme_tab_background_v": ["theme_tab_background"]
+                },
                 "colors": {
                     "ntp_header": ["frame"]
                 }
