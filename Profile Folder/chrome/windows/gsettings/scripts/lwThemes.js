@@ -20,6 +20,7 @@ async function getInstalledLWThemes() {
 
 async function getLWThemesList() {
     const result = [];
+	console.log(`getLWThemesList: Looking for themes...`);
     const themes = await getInstalledLWThemes();
 
     for (const i in themes) {
@@ -30,17 +31,22 @@ async function getLWThemesList() {
 				theme.enable();
 				gkPrefUtils.delete("Geckium.chrTheme.fileName");
 			};
+			console.log(`getLWThemesList: Mapped Light to ${theme.id}`);
 		} else if (theme.id.startsWith("firefox-compact-dark@") && !darkLWTheme) {
 			darkLWTheme = function(){ theme.enable(); };
+			console.log(`getLWThemesList: Mapped Dark to ${theme.id}`);
 		}
 		// Skip themes mapped to theme modes
 		if (theme.id.startsWith("default-theme@") || theme.id.startsWith("firefox-compact-light@") ||
 				theme.id.startsWith("firefox-compact-dark@")) {
+			console.log(`getLWThemesList: Skipping ${theme.id} as it is mapped to the top...`);
 			continue;
 		}
 
+		console.log(`getLWThemesList: Trying to get ${theme.id}'s manifest...`);
         let mani = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
 		if (!mani) {
+			console.log(`getLWThemesList: Skipping ${theme.id} as it has no manifest`);
 			continue;
 		}
 
@@ -59,10 +65,13 @@ async function getLWThemesList() {
 			
 			if (mani.browser_specific_settings.geckium.backgroundSize)
 				themeBannerSizing = mani.browser_specific_settings.geckium.backgroundSize;
+
+			console.log(`getLWThemesList: Supplied Geckium-exclusive values to ${theme.id}'s thumbnail`);
 			
 		} else if (mani.theme.images) {
 			if (mani.theme.images.theme_frame) {
 				themeBanner = `url('${theme.__AddonInternal__.rootURI}/${mani.theme.images.theme_frame}')`;
+				console.log(`getLWThemesList: Set ${theme.id} banner to titlebar theme_frame`);
 			} else if (mani.theme.images.additional_backgrounds) {
 				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
 
@@ -72,6 +81,7 @@ async function getLWThemesList() {
 				if (mani.theme.properties.additional_backgrounds_tiling)
 					themeBannerTiling = mani.theme.properties.additional_backgrounds_tiling.map(obj => obj).join(', ');
 			}
+			console.log(`getLWThemesList: Set ${theme.id} banner to titlebar additional_backgrounds`);
 		}
 
         result.push({
@@ -91,6 +101,7 @@ async function getLWThemesList() {
             "version": theme.version,
 			"event": function(){ theme.enable(); }
         });
+		console.log(`getLWThemesList: Added ${theme.id} to themes grid!`);
     }
     return result;
 }
