@@ -1,10 +1,9 @@
 & {
-	font: message-box;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 9pt !important;
-
-	@media (-moz-platform: windows) {
-		font-family: Arial, sans-serif !important;
-		font-weight: normal !important;
+	
+	@media (-moz-platform: linux) {
+		font: message-box;
 	}
 
 	--chrtheme-ntp-background-alignment: 50% 100%;

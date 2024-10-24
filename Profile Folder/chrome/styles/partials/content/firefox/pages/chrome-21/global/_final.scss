@@ -2,7 +2,12 @@
 @import "main";
 
 body {
-	@media (-moz-platform: windows) {
-		font-family: 'Segoe UI', Tahoma, sans-serif !important;
+	font-family: 'Segoe UI', Tahoma, sans-serif !important;
+	
+	@media (-moz-platform: linux) {
+		font: message-box !important;
+	}
+	@media (-moz-platform: macos) {
+		font: 'Lucida Grande', sans-serif !important;
 	}
 }

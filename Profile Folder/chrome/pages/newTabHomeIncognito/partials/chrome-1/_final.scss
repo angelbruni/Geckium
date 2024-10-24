@@ -2,12 +2,11 @@ body {
 	margin: 10px 8px;
 	background-color: white;
 	color: black;
-	font: message-box;
-	font-size: 10pt !important;
-
-	@media (-moz-platform: windows) {
-		font-family: Arial, sans-serif !important;
-		font-weight: normal !important;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+	
+	@media (-moz-platform: linux) {
+		font: message-box;
 	}
 
 	@media (prefers-color-scheme: dark) {
