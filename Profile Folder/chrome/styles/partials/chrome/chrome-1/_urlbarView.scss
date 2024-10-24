@@ -79,6 +79,13 @@
 	&[rich-suggestion] .urlbarView-row-body-description {
 		display: none !important;
 	}
+
+	// Remove empty gap in Firefox 121+
+	&:not([has-url]) {
+		.urlbarView-url {
+			display: none !important;
+		}
+	}
 }
 
 .urlbarView {
@@ -200,9 +207,5 @@
 @media screen and (min-height: 600px) {
 	.urlbarView-results[wrap] > .urlbarView-row:where(:not([rich-suggestion="with-icon"])) > .urlbarView-row-inner {
 		flex-wrap: nowrap !important;
-	}
-
-	.urlbarView-url {
-		overflow: visible !important;
 	}
 }

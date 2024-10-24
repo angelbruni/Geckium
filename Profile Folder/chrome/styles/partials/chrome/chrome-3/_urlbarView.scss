@@ -30,6 +30,23 @@
 	}
 }
 
+.urlbarView-row {
+	// Remove empty gap in Firefox 121+
+	&:not([has-url]) {
+		.urlbarView-title {
+			&::before {
+				content: unset;
+			}
+
+			padding-inline-start: 24px;
+		}
+
+		.urlbarView-url {
+			display: none !important;
+		}
+	}
+}
+
 .urlbarView-favicon {
 	display: flex;
 }
