@@ -2,6 +2,7 @@ menupopup {
 	button {
 		&:not([disabled="true"]) {
 			&:hover {
+				color: var(--gk-menuitem-foreground) !important;
 				fill: #969696 !important;
 			}
 		}
