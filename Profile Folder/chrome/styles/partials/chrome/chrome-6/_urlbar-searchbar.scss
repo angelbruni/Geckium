@@ -3,6 +3,8 @@
 	--urlbar-verified-proxystate-valid: rgb(7, 149, 0);
 	--urlbar-verified-proxystate-valid-overridden: rgb(162, 0, 58);
 
+	--urlbar-background-verified-proxystate-valid: transparent;
+
 	#urlbar {
 		&[breakout],
 		&[breakout][breakout-extend] {
@@ -57,12 +59,7 @@
 				list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
 			}
 			
-			--toolbar-field-background-color: var(
-				--toolbar-field-default-background-color
-			);
-			--protocol-background-color: var(
-				--toolbar-field-default-background-color
-			);
+			--toolbar-field-background-color: var(--toolbar-field-default-background-color);
 		}
 
 		&[securestate="ev"] {

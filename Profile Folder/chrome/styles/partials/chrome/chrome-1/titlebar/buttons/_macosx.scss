@@ -1,4 +1,8 @@
 & {
+    .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: var(--gap-size) !important; // Add spacing between caption buttons and tabs.
+	}
+    
     //Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label {
         order: 998 !important; // Force to right

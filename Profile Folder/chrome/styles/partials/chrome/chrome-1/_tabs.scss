@@ -162,12 +162,14 @@
 	}
 	// else if chrtheme
 	&[gkthemed][gkchrthemed] {
-		&[gktitnative="false"] { // Only use inactive tab background when in Compact
-			--tab-glare-opacity: .5 !important;
-			&:not([geckium-eleven]) {
-				--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
-			}
-			--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+		--tab-glare-opacity: .5 !important;
+		&:not([geckium-eleven]) {
+			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
+		}
+		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+		
+		&[gktitnative="true"] { // Use different inactive tab background when in System
+			--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
 		}
 		
 		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;

@@ -40,9 +40,13 @@
 .main-content > .pane-container,
 #content > #main {
 	padding: 0 !important;
-	margin: 0 !important;
+	margin-inline: 0 !important;
 
 	padding-inline: 24px !important;
+
+	&:not([current-view="detail"]) {
+		margin-block: 0 !important;
+	}
 
 	.subcategory {
 		padding: 0 !important;
