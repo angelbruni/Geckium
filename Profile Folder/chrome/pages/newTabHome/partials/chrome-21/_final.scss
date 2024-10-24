@@ -1,6 +1,11 @@
 & {
-	@media (-moz-platform: windows) {
-		font-family: "Segoe UI", Arial, sans-serif !important;
+	font-family: "Segoe UI", Arial, sans-serif;
+	
+	@media (-moz-platform: linux) {
+		font: message-box;
+	}
+	@media (-moz-platform: macos) {
+		font: 'Lucida Grande', sans-serif;
 	}
 }
 
