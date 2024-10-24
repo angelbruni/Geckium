@@ -35,6 +35,10 @@
 
 	//Restore Firefox's Win10 menubar styling
 	&[gktitnative="true"] {
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 4px !important; // Add spacing between caption buttons and tabs.
+		}
+		
 		#main-menubar {
 			& > menu {
 				text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;

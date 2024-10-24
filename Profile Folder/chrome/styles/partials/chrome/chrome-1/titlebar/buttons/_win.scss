@@ -35,6 +35,10 @@
 
 	//Restore Firefox's AERO menubar styling
 	&[gktitnative="true"] {
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 4px !important; // Add spacing between caption buttons and tabs.
+		}
+
 		#main-menubar:not(:-moz-lwtheme, :-moz-window-inactive) {
 			background-color: rgba(255,255,255,.5) !important;
 			color: black !important;
