@@ -56,6 +56,10 @@ notification-message /* Fix for Firefox ~120+ */ {
 	&::before {
 		content: unset !important;
 	}
+
+	&[style*="margin-top: -37px;"] {
+		pointer-events: none !important;
+	}
 }
 
 .container.infobar,
