@@ -161,7 +161,6 @@ if (AppConstants.MOZ_APP_NAME == "waterfox") {
 }
 
 // r3dfox Adjustments
-//  Yes, we know... you don't need to tell us about it - we're only doing this out of neutrality.
 class gkRfoxAdj {
     static blacklist = [
         "r3dfox.caption.text.color",
@@ -201,7 +200,7 @@ class gkRfoxAdj {
         }
 	}
 }
-if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfox_esr") {
+if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfox_esr" || AppConstants.MOZ_APP_NAME == "plasmafox") {
     window.addEventListener("load", function () { gkRfoxAdj.disableThemeCusto(); });
     const rfoxObserver = {
         observe: function (subject, topic, data) {
