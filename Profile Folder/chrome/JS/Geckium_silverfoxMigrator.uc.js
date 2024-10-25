@@ -258,7 +258,7 @@ class sfMigrator {
 			"seen":["save-to-pocket-button","developer-button"],
 			"currentVersion":19,"newElementCount":4}
 		`);
-		_ucUtils.restart(false); // Required to reload toolbar-layout
+		UC_API.Runtime.restart(false); // Required to reload toolbar-layout
 	}
 
 	// NOTE: The call for the migrator can be found at Geckium_wizard.uc.js.

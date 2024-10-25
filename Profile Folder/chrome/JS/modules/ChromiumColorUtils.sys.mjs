@@ -206,8 +206,8 @@ export class ColorUtils {
 		if (shiftL < 0 || shiftL > 1)
 			return color2;
 
-		/* Doot:	Lightness shifts in the style of popular image editors aren't actually
-					represented in HSL - the L value does have some effect on saturation. */
+		/*	Lightness shifts in the style of popular image editors aren't actually
+			represented in HSL - the L value does have some effect on saturation.	*/
 		// RGB
 		var r = color2[0];
 		var g = color2[1];

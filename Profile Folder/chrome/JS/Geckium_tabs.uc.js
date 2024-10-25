@@ -4,7 +4,7 @@
 // @include			main
 // ==/UserScript==
 
-_ucUtils.windowIsReady(window).then(() => {
+UC_API.Runtime.startupFinished().then(()=>{
 	// Modify currently existing tabs
 	document.querySelectorAll(`.tabbrowser-tab:not([gkmodified="true"])`).forEach(existingTab => {
 		modifyTab(existingTab);

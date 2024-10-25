@@ -1032,7 +1032,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); _ucUtils.restart(true);" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); UC_API.Runtime.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1045,7 +1045,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="restart_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="_ucUtils.restart();" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="UC_API.Runtime.restart();" />
 																</div>
 															</vbox>
 														</div>
@@ -1058,7 +1058,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="clearcache_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="_ucUtils.restart(true);" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="UC_API.Runtime.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1258,6 +1258,8 @@
 		var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 		const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
 	</script>
+
+	<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js" />
 
 	<script src="chrome://userchrome/content/JS/Geckium_styles.uc.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/JS/Geckium_titlebar.uc.js" type="text/javascript" defer="true" />

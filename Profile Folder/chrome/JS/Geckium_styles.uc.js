@@ -5,7 +5,7 @@
 // @loadorder   2
 // @include		main
 // @include		about:preferences*
-// @include		about:addons
+// @include		about:addons*
 // ==/UserScript==
 
 // Firefox version check
