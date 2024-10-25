@@ -19,16 +19,14 @@ menupopup {
 
 		transition: fill .2s;
 
-		&:not([disabled="true"]) {
-			&:hover {
-				background-color: var(--gk-menuitem-background) !important;
-				// border-color: rgb(171,171,171) !important;
-				border-color: var(--gk-menusep-color) !important;
-				color: white !important;
-				fill: white !important;
+		&:not([disabled="true"]):hover {
+			background-color: var(--gk-menuitem-background) !important;
+			// border-color: rgb(171,171,171) !important;
+			border-color: var(--gk-menusep-color) !important;
+			color: white !important;
+			fill: white !important;
 
-				z-index: 1 !important;
-			}
+			z-index: 1 !important;
 		}
 
 		&#menu_cut6,
@@ -88,6 +86,7 @@ menupopup {
 
 	@media (prefers-color-scheme: dark) {
 		--gk-menu-border-color: black;
+		--gk-menu-background: #2A2A2D;
 		--gk-menu-foreground-disabled: rgba(255, 255, 255, 0.5);
 		--gk-menu-foreground-keys: rgba(255, 255, 255, 0.5);
 	}
