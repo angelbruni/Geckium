@@ -29,7 +29,7 @@ function startFromScratch() {
 {
 	"0": {
 		"pos": 0,
-	UC_API.Prefs.set("Geckium.newTabHome.appsList", ome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
+		"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
 		"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"oldName": "Web Store",

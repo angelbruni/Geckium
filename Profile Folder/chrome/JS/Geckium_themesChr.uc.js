@@ -597,4 +597,4 @@ Services.prefs.addObserver("Geckium.chrTheme.accommodate", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.chrTheme.fallbacks", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.appearance.choice", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.main.overrideStyle", chrThemeObs, false);
-Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);UC_API.Prefs.set("Geckium.chrTheme.accommodate", 
+Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);
