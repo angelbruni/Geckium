@@ -283,7 +283,7 @@ class gkDownloadManager {
 
 										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 										await lighttheme.enable();
-										gkPrefUtils.set("Geckium.chrTheme.fileName").string(fileName.split(".")[0]);
+										UC_API.Prefs.set("Geckium.chrTheme.fileName", fileName.split(".")[0]);
 
 										DownloadsCommon.deleteDownload(download).catch(console.error);
 									} catch (error) {

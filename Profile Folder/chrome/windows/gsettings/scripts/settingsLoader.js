@@ -17,9 +17,9 @@ function loadSelectorSetting() {
 			selector.querySelectorAll(".list .item").forEach(item => {
 				item.addEventListener("click", () => {
 					if (Number.isInteger(parseInt(item.getAttribute("value"))))
-						gkPrefUtils.set(`Geckium.${selector.dataset.pref}`).int(parseInt(item.getAttribute("value")));
+						UC_API.Prefs.set(`Geckium.${selector.dataset.pref}`, parseInt(item.getAttribute("value")));
 					else
-						gkPrefUtils.set(`Geckium.${selector.dataset.pref}`).string(`${item.getAttribute("value")}`);
+						UC_API.Prefs.set(`Geckium.${selector.dataset.pref}`, `${item.getAttribute("value")}`);
 					showConditionalSelChild(selector.dataset.pref, item.getAttribute("value"));
 				})
 			})
@@ -44,7 +44,7 @@ function loadTextFieldSetting() {
 			input.value = gkPrefUtils.tryGet(`Geckium.${input.dataset.pref}`).string;
 	
 			input.addEventListener("input", () => {
-				gkPrefUtils.set(`Geckium.${input.dataset.pref}`).string(input.value);
+				UC_API.Prefs.set(`Geckium.${input.dataset.pref}`, input.value);
 			})
 		})
 	}, 10);
@@ -57,7 +57,7 @@ function loadColorSetting() {
 			input.value = gkPrefUtils.tryGet(`Geckium.${input.dataset.pref}`).string;
 	
 			input.addEventListener("change", () => {
-				gkPrefUtils.set(`Geckium.${input.dataset.pref}`).string(input.value);
+				UC_API.Prefs.set(`Geckium.${input.dataset.pref}`, input.value);
 			})
 		})
 	}, 10);
@@ -70,7 +70,7 @@ function loadSwitchSetting() {
 			input.checked = gkPrefUtils.tryGet(`${input.dataset.pref}`).bool;
 	
 			input.addEventListener("input", () => {
-				gkPrefUtils.set(`${input.dataset.pref}`).bool(input.checked);
+				UC_API.Prefs.set(`${input.dataset.pref}`, input.checked);
 			})
 		})
 	}, 10);

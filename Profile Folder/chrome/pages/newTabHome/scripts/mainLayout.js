@@ -20,7 +20,7 @@ function setMostVisitedLayout(layout) {
 	let mostVisitedLayout;
 
 	if (typeof layout !== "undefined" && typeof layout !== "string")
-		gkPrefUtils.set("Geckium.newTabHome.mostVisitedLayout").int(layout);
+		UC_API.Prefs.set("Geckium.newTabHome.mostVisitedLayout", layout);
 
 	mostVisitedLayout = gkPrefUtils.tryGet("Geckium.newTabHome.mostVisitedLayout").int;
 
@@ -37,7 +37,7 @@ function setMostVisitedLayout(layout) {
 			mostVisited.classList.add("collapsed");
 			mostVisited.classList.remove("list");
 
-			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(true);
+			UC_API.Prefs.set("Geckium.newTabHome.mostViewedCollapsed", true);
 			mostViewedCheckbox.checked = false;
 			mostViewedSectionElm.classList.add("collapsed");
 			break;
@@ -48,7 +48,7 @@ function setMostVisitedLayout(layout) {
 				listCheckbox.checked = false;
 			}
 
-			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+			UC_API.Prefs.set("Geckium.newTabHome.mostViewedCollapsed", false);
 			mostVisited.classList.remove("collapsed");
 			mostVisited.classList.remove("list");
 			break;
@@ -59,7 +59,7 @@ function setMostVisitedLayout(layout) {
 				listCheckbox.checked = true;
 			}
 
-			gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+			UC_API.Prefs.set("Geckium.newTabHome.mostViewedCollapsed", false);
 			mostVisited.classList.remove("collapsed");
 			mostVisited.classList.add("list");
 			break;
@@ -457,11 +457,11 @@ function createMainLayout() {
 						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
 							mostViewedCheckbox.checked = false;
 							mostViewedSectionElm.classList.add("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
+							UC_API.Prefs.set("Geckium.newTabHome.appsCollapsed", false);
 						} else {
 							mostViewedCheckbox.checked = true;
 							mostViewedSectionElm.classList.remove("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(true);
+							UC_API.Prefs.set("Geckium.newTabHome.appsCollapsed", true);
 						}
 					}
 				},
@@ -652,10 +652,10 @@ function createMainLayout() {
 					if (topic == "nsPref:changed") {
 						if (gkPrefUtils.tryGet("Geckium.newTabHome.appsCollapsed").bool) {
 							appsSectionElm.classList.add("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(false);
+							UC_API.Prefs.set("Geckium.newTabHome.mostViewedCollapsed", false);
 						} else {
 							appsSectionElm.classList.remove("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.mostViewedCollapsed").bool(true);
+							UC_API.Prefs.set("Geckium.newTabHome.mostViewedCollapsed", true);
 						}	
 					}
 				},
@@ -685,13 +685,13 @@ function createMainLayout() {
 			}
 
 			appsSectionCloseBtn.addEventListener("click", () => {
-				gkPrefUtils.set("Geckium.newTabHome.appsClosed").bool(true);
+				UC_API.Prefs.set("Geckium.newTabHome.appsClosed", true);
 				appsSectionElm.classList.add("closed");
 				appsClosedSectionsBtn.classList.add("closed");
 			});
 
 			appsClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
-				gkPrefUtils.set("Geckium.newTabHome.appsClosed").bool(false);
+				UC_API.Prefs.set("Geckium.newTabHome.appsClosed", false);
 				appsSectionElm.classList.remove("closed");
 				appsClosedSectionsBtn.classList.remove("closed");
 			});
@@ -707,10 +707,10 @@ function createMainLayout() {
 					if (topic == "nsPref:changed") {
 						if (gkPrefUtils.tryGet("Geckium.newTabHome.mostViewedCollapsed").bool) {
 							mostVisitedSectionElm.classList.add("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(false);
+							UC_API.Prefs.set("Geckium.newTabHome.appsCollapsed", false);
 						} else {
 							mostVisitedSectionElm.classList.remove("collapsed");
-							gkPrefUtils.set("Geckium.newTabHome.appsCollapsed").bool(true);
+							UC_API.Prefs.set("Geckium.newTabHome.appsCollapsed", true);
 						}
 					}
 				},
@@ -740,13 +740,13 @@ function createMainLayout() {
 			}
 
 			mostVisitedSectionCloseBtn.addEventListener("click", (e) => {
-				gkPrefUtils.set("Geckium.newTabHome.mostViewedClosed").bool(true);
+				UC_API.Prefs.set("Geckium.newTabHome.mostViewedClosed", true);
 				mostVisitedSectionElm.classList.add("closed");
 				mostVisitedClosedSectionsBtn.classList.add("closed");
 			});
 
 			mostVisitedClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
-				gkPrefUtils.set("Geckium.newTabHome.mostViewedClosed").bool(false);
+				UC_API.Prefs.set("Geckium.newTabHome.mostViewedClosed", false);
 				mostVisitedSectionElm.classList.remove("closed");
 				mostVisitedClosedSectionsBtn.classList.remove("closed");
 			});
@@ -766,13 +766,13 @@ function createMainLayout() {
 			}
 
 			recentlyClosedSectionCloseBtn.addEventListener("click", (e) => {
-				gkPrefUtils.set("Geckium.newTabHome.recentlyClosedClosed").bool(true);
+				UC_API.Prefs.set("Geckium.newTabHome.recentlyClosedClosed", true);
 				recentlyClosedSectionElm.classList.add("closed");
 				recentlyClosedClosedSectionsBtn.classList.add("closed");
 			});
 
 			recentlyClosedClosedSectionsBtn.querySelector(`[id*="-menu"] > .item:last-of-type`).addEventListener("click", () => {
-				gkPrefUtils.set("Geckium.newTabHome.recentlyClosedClosed").bool(false);
+				UC_API.Prefs.set("Geckium.newTabHome.recentlyClosedClosed", false);
 				recentlyClosedSectionElm.classList.remove("closed");
 				recentlyClosedClosedSectionsBtn.classList.remove("closed");
 			});

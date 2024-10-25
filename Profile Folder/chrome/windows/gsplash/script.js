@@ -16,20 +16,20 @@ function openWizardFromSplash(reset) {
 }
 
 function startFromScratch() {
-	gkPrefUtils.delete("Geckium.appearance.titlebarStyle");
-	gkPrefUtils.delete("Geckium.appearance.systemTheme");
-	gkPrefUtils.delete("Geckium.appearance.titlebarNative");
-	gkPrefUtils.delete("Geckium.branding.choice");
-	gkPrefUtils.delete("Geckium.appearance.choice");
-	gkPrefUtils.delete("Geckium.profilepic.button");
-	gkPrefUtils.delete("Geckium.profilepic.mode");
-	gkPrefUtils.delete("Geckium.profilepic.chromiumIndex");
-	gkPrefUtils.delete("Geckium.customtheme.mode");
+	Services.prefs.clearUserPref("Geckium.appearance.titlebarStyle");
+	Services.prefs.clearUserPref("Geckium.appearance.systemTheme");
+	Services.prefs.clearUserPref("Geckium.appearance.titlebarNative");
+	Services.prefs.clearUserPref("Geckium.branding.choice");
+	Services.prefs.clearUserPref("Geckium.appearance.choice");
+	Services.prefs.clearUserPref("Geckium.profilepic.button");
+	Services.prefs.clearUserPref("Geckium.profilepic.mode");
+	Services.prefs.clearUserPref("Geckium.profilepic.chromiumIndex");
+	Services.prefs.clearUserPref("Geckium.customtheme.mode");
 	gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
 {
 	"0": {
 		"pos": 0,
-		"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", ome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
 		"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
 		"oldName": "Web Store",

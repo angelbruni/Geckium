@@ -12,7 +12,7 @@ function developerOptionsEnable() {
 		
 		// If the click count reaches the required number, enable developer options
 		if (clickCount === clicksRequired) {
-			gkPrefUtils.set("Geckium.developerOptions.status").bool(true);
+			UC_API.Prefs.set("Geckium.developerOptions.status", true);
 
 			document.getElementById("ndi-do").style.display = null;
 			

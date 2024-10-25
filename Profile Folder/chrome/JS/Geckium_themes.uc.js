@@ -270,7 +270,7 @@ class gkYou {
                 }
             case "aerocolor":
                 if (AppConstants.platform != "win" || isWindows10()) {
-                    gkPrefUtils.set("Geckium.you.mode").string("accent");
+                    UC_API.Prefs.set("Geckium.you.mode", "accent");
                     return gkYou.getBaseColor();
                 }
                 var accentColor = NTRegistry.getRegKeyValue("HKCU", "SOFTWARE\\Microsoft\\Windows\\DWM", "ColorizationColor", "DWORD");
@@ -280,7 +280,7 @@ class gkYou {
                 return `rgb(${r}, ${g}, ${b})`;
             case "awm":
                 if (AppConstants.platform != "win" || !isWindows10()) {
-                    gkPrefUtils.set("Geckium.you.mode").string("accent");
+                    UC_API.Prefs.set("Geckium.you.mode", "accent");
                     return gkYou.getBaseColor();
                 }
                 var r = getRegKeyValue("HKLM", "SOFTWARE\\AWM", "Window_ColorRActive", "DWORD"),

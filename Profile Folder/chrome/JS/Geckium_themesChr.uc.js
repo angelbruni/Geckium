@@ -576,7 +576,7 @@ class gkChrTheme {
             let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
             if (!prefChoice.startsWith("firefox-compact-light@")) {
                 // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
-                gkPrefUtils.delete("Geckium.chrTheme.fileName");
+                Services.prefs.clearUserPref("Geckium.chrTheme.fileName");
             }
         }, 0);
     }
@@ -597,4 +597,4 @@ Services.prefs.addObserver("Geckium.chrTheme.accommodate", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.chrTheme.fallbacks", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.appearance.choice", chrThemeObs, false);
 Services.prefs.addObserver("Geckium.main.overrideStyle", chrThemeObs, false);
-Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);
+Services.prefs.addObserver("Geckium.main.style", chrThemeObs, false);UC_API.Prefs.set("Geckium.chrTheme.accommodate", 

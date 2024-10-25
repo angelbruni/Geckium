@@ -120,9 +120,9 @@ function switchTab(direction, static, id) {
 	updateDots();
 	
 	if (id !== 0)
-		gkPrefUtils.set("Geckium.newTabHome.defaultTab").int(desiredTab);
+		UC_API.Prefs.set("Geckium.newTabHome.defaultTab", desiredTab);
 	else
-		gkPrefUtils.set("Geckium.newTabHome.defaultTab").int(0);
+		UC_API.Prefs.set("Geckium.newTabHome.defaultTab", 0);
 }
 
 function updateDots() {

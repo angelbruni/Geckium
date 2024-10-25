@@ -1032,7 +1032,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); UC_API.Runtime.restart(true);" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="UC_API.Prefs.set('Geckium.firstRun.complete', false); UC_API.Runtime.restart(true);" />
 																</div>
 															</vbox>
 														</div>

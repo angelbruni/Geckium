@@ -29,7 +29,7 @@ async function getLWThemesList() {
 		if (theme.id.startsWith("firefox-compact-light@") && !lightLWTheme) {
 			lightLWTheme = function(){
 				theme.enable();
-				gkPrefUtils.delete("Geckium.chrTheme.fileName");
+				Services.prefs.clearUserPref("Geckium.chrTheme.fileName");
 			};
 			console.log(`getLWThemesList: Mapped Light to ${theme.id}`);
 		} else if (theme.id.startsWith("firefox-compact-dark@") && !darkLWTheme) {

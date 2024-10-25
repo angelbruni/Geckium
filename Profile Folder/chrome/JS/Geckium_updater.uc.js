@@ -17,7 +17,7 @@ const configIteration = 4;
         console.warn("MISMATCHED VERSION OR ITERATION! Updating...");
         
         updateSettings(iter);
-		gkPrefUtils.set("Geckium.version.current").string(await gkUpdater.getVersion());
+		UC_API.Prefs.set("Geckium.version.current", await gkUpdater.getVersion());
 		setTimeout(() => {
             UC_API.Runtime.restart(verMismatch); // Don't clear cache unless Geckium itself was updated
         }, 1000); /* bruno: We add a timeout because apparently the new version
@@ -25,7 +25,7 @@ const configIteration = 4;
                             too quickly, leaving the GSplash window open. */
     }
     if (gkPrefUtils.tryGet("toolkit.legacyUserProfileCustomizations.stylesheets").bool == false) {
-		gkPrefUtils.set("toolkit.legacyUserProfileCustomizations.stylesheets").bool(true);		// Ensure they're ALWAYS on
+		UC_API.Prefs.set("toolkit.legacyUserProfileCustomizations.stylesheets", true);		// Ensure they're ALWAYS on
 		setTimeout(() => {
             UC_API.Runtime.restart(false); // No need to clear cache...?
         }, 1000);
@@ -40,25 +40,25 @@ const configIteration = 4;
 
 function updateSettings(iteration) {
     if (iteration < 1) {
-        gkPrefUtils.set("toolkit.legacyUserProfileCustomizations.stylesheets").bool(true);		// Turn on legacy stylesheets
+        UC_API.Prefs.set("toolkit.legacyUserProfileCustomizations.stylesheets", true);		// Turn on legacy stylesheets
 
         if (AppConstants.platform == "win") {
-            gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
-            gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
-            gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);
-            gkPrefUtils.set("browser.startup.blankWindow").bool(false);                         // Disable Firefox's splash screen
+            UC_API.Prefs.set("widget.ev-native-controls-patch.override-win-version", 7);		// Force aero
+            UC_API.Prefs.set("gfx.webrender.dcomp-win.enabled", false);						// Disable dcomp
+            UC_API.Prefs.set("browser.display.windows.non_native_menus", 0);
+            UC_API.Prefs.set("browser.startup.blankWindow", false);                         // Disable Firefox's splash screen
         }
 
-        gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);                         // Disable that context-inappropriate chevron
-	    gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);				    // Show URL after a search in URLbar
-        gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);                                 // Show protocol in URL in URLbar
-	    gkPrefUtils.set("browser.newtab.preload").bool(false)									// Disable New Tab preload to prevent new data from not loading
-        gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
-        gkPrefUtils.set("widget.gtk.overlay-scrollbars.enabled").bool(false);                   // Disable GTK3's overlay scrollbars (Linux)
-        gkPrefUtils.set("widget.gtk.non-native-titlebar-buttons.enabled").bool(false);          // Disable non-native titlebar buttons in Light and Dark (Linux, 128+)
+        UC_API.Prefs.set("browser.tabs.tabmanager.enabled", false);                         // Disable that context-inappropriate chevron
+	    UC_API.Prefs.set("browser.urlbar.showSearchTerms.enabled", false);				    // Show URL after a search in URLbar
+        UC_API.Prefs.set("browser.urlbar.trimURLs", false);                                 // Show protocol in URL in URLbar
+	    UC_API.Prefs.set("browser.newtab.preload", false)									// Disable New Tab preload to prevent new data from not loading
+        UC_API.Prefs.set("browser.theme.dark-private-windows", false);						// Disable incognito dark mode
+        UC_API.Prefs.set("widget.gtk.overlay-scrollbars.enabled", false);                   // Disable GTK3's overlay scrollbars (Linux)
+        UC_API.Prefs.set("widget.gtk.non-native-titlebar-buttons.enabled", false);          // Disable non-native titlebar buttons in Light and Dark (Linux, 128+)
 
 	    if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {
-		    gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
+		    UC_API.Prefs.set("Geckium.newTabHome.appsList", `
             {
                 "0": {
                     "pos": 0,
@@ -75,18 +75,18 @@ function updateSettings(iteration) {
 	    }
     }
     if (iteration < 2) {
-        gkPrefUtils.set("widget.non-native-theme.enabled").bool(false); // Allow native theme colours to be used in specific pages
+        UC_API.Prefs.set("widget.non-native-theme.enabled", false); // Allow native theme colours to be used in specific pages
     }
     if (iteration < 3) {
-        gkPrefUtils.set("browser.tabs.hoverPreview.enabled").bool(false);   // Disable tab preview thumbnails
+        UC_API.Prefs.set("browser.tabs.hoverPreview.enabled", false);   // Disable tab preview thumbnails
     }
     if (iteration < 4) {
-        gkPrefUtils.set("userChromeJS.persistent_domcontent_callback").bool(true);  // Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
+        UC_API.Prefs.set("userChromeJS.persistent_domcontent_callback", true);  // Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
     }
     // Put future settings changes down here as < 5, and so on.
 
     if (iteration < configIteration)
-        gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
+        UC_API.Prefs.set("Geckium.version.iteration", configIteration);
 }
 
 
