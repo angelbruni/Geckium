@@ -1,6 +1,7 @@
 & {
 	--tab-normal-width: 192px;
 	--tab-pinned-width: 35px;
+	--tab-selected-min-width: 27px;
 	--tab-inner-margin-start: 16px;
 
 	--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_left.png");
@@ -60,23 +61,39 @@
 		--theme-newtab: var(--inactive-tab-background, var(--default-inactive-tab-background)) !important;
 	}
 
-	// Add hover/pressed fills
-	#tabs-newtab-button,
-	#TabsToolbar #new-tab-button {
-		&:hover::before {
-			background: linear-gradient(var(--default-theme-newtab-hover), var(--default-theme-newtab-hover)),
-					var(--theme-newtab, var(--default-theme-newtab));
-		}
-		&:hover:active::before {
-			background: linear-gradient(var(--default-theme-newtab-pressed), var(--default-theme-newtab-pressed)),
-					var(--theme-newtab, var(--default-theme-newtab));
-		}
-	}
-
 	//Tab styles
 	// Linux and Mac OS X / macOS
 	&[gktabstyle="1"],
 	&[gktabstyle="2"] {
 		@import "tabs/unix";
+	}
+}
+
+// Add hover/pressed fills
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+	&:hover::before {
+		background: linear-gradient(var(--default-theme-newtab-hover), var(--default-theme-newtab-hover)),
+				var(--theme-newtab, var(--default-theme-newtab));
+	}
+	&:hover:active::before {
+		background: linear-gradient(var(--default-theme-newtab-pressed), var(--default-theme-newtab-pressed)),
+				var(--theme-newtab, var(--default-theme-newtab));
+	}
+}
+
+.tabbrowser-tab[visuallyselected][minwidthreached="true"] {
+	.tab-content {
+		justify-content: end !important;
+	}
+
+	.tab-icon-stack,
+	.tab-label-container {
+		visibility: hidden !important;
+		position: absolute !important;
+	}
+
+	.tab-close-button {
+		transform: translateX(1.5px);
 	}
 }
