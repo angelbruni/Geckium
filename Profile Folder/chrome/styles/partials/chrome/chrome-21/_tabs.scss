@@ -1,5 +1,6 @@
 & {
-	--tab-width: 192px;
+	--tab-normal-width: 192px;
+	--tab-pinned-width: 35px;
 	--tab-inner-margin-start: 16px;
 
 	--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_alpha_left.png");
@@ -20,6 +21,7 @@
 	--tab-container-right:	url("chrome://userchrome/content/assets/img/chrome-21/tabbar/tab_container_right.svg");
 
 	--tab-gap-between-favicon-and-title: 4px;
+	--tab-pinned-icon-offset-x: -1px;
 
 	--tab-close-button-margin-inline-end: 0;
 
