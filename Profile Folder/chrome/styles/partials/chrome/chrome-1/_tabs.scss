@@ -213,6 +213,9 @@
 	}
 
 	#tabbrowser-tabs {
+		// Disable tab scrolling
+		--tab-min-width: 0 !important;
+		
 		/**
 		*  bruni: Remove border and spacings before tabs (spacing is taken
 		*		   care by `.titlebar-spacer` already)
@@ -535,14 +538,25 @@
 		}
 	}
 
+	.tab-hitbox,
 	.tab-content {
 		height: calc(var(--tab-height) - 1px);
+		pointer-events: auto !important;
+	}
+
+	.tab-hitbox {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		margin-inline-start: calc(var(--tab-inner-margin-start) / 2);
+	}
+
+	.tab-content {
 		padding: 0 !important;
 		margin-block-start: var(--tab-content-y-from-top) !important;
 		margin-inline-start: var(--tab-inner-margin-start) !important;
 		padding-inline-end: var(--tab-inner-margin-end) !important;
-
-		pointer-events: auto !important;
 	}
 
 	.tab-icon-stack {

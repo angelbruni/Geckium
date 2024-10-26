@@ -25,6 +25,15 @@ function modifyTab(tab) {
 	tab.setAttribute("gkmodified", true);	// bruni: Add this attribute so we know 
 											// which tabs weren't modified on launch.
 
+	// Tab Stack
+	let tabStackElm = tab.querySelector(".tab-stack");
+
+	// Tab Hitbox
+	let tabHitboxElm = document.createElement("div");
+	tabHitboxElm.classList.add("tab-hitbox");
+	tabStackElm.prepend(tabHitboxElm);
+
+	// Tab Glare
 	let tabBackgroundElm = tab.querySelector(".tab-background");
 	const tabBackgroundContainerElm = document.createXULElement("hbox");
 	tabBackgroundContainerElm.classList.add("tab-background-container");
