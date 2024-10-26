@@ -25,6 +25,52 @@ function modifyTab(tab) {
 	tab.setAttribute("gkmodified", true);	// bruni: Add this attribute so we know 
 											// which tabs weren't modified on launch.
 
+	// Tab Small Attribute
+	new ResizeObserver(() => {
+		if (!tab.hasAttribute("pinned")) {
+			// Hide contents
+			let appearanceChoice = gkEras.getBrowserEra();
+			let minWidth;
+
+			if (appearanceChoice <= 11)
+				minWidth = 31;
+			else if (appearanceChoice <= 47)
+				minWidth = 27;
+			else if (appearanceChoice <= 58)
+				minWidth = 31;
+
+			let tabContent = tab.querySelector(".tab-content");
+			if (tabContent.getBoundingClientRect().width <= minWidth)
+				tab.setAttribute("minwidthreached", true);
+			else
+				tab.removeAttribute("minwidthreached");
+
+			let tabIconStackElm = tab.querySelector(".tab-icon-stack");
+			if (tab.hasAttribute("visuallyselected")) {
+				// Hide icon if close button touches it
+				let tabCloseButtonElm = tab.querySelector(".tab-close-button");
+
+				if (Math.round(tabIconStackElm.getBoundingClientRect().left + tabIconStackElm.getBoundingClientRect().width + 4) >= Math.round(tabCloseButtonElm.getBoundingClientRect().left)) {
+					tabIconStackElm.style.visibility = "hidden";
+					tabIconStackElm.style.position = "absolute";
+				} else {
+					tabIconStackElm.style.visibility = null;
+					tabIconStackElm.style.position = null;
+				}
+			} else {
+				// Hide icon if overflowing
+				if (Math.round(tab.getBoundingClientRect().left + tab.getBoundingClientRect().width) <= Math.round(tabIconStackElm.getBoundingClientRect().left + tabIconStackElm.getBoundingClientRect().width)) {
+					tabIconStackElm.style.visibility = "hidden";
+					tabIconStackElm.style.position = "absolute";
+				} else {
+					tabIconStackElm.style.visibility = null;
+					tabIconStackElm.style.position = null;
+				}
+					
+			}
+		}
+	}).observe(tab);
+
 	// Tab Stack
 	let tabStackElm = tab.querySelector(".tab-stack");
 

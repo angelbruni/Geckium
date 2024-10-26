@@ -27,6 +27,7 @@
 
 	--tab-normal-width: 194px;
 	--tab-pinned-width: 39px;
+	--tab-selected-min-width: 31px;
 	--tab-height: 27px;
 	--tab-sides-width: 15px;
 	--tab-inner-margin-start: 15px;
@@ -215,7 +216,7 @@
 	#tabbrowser-tabs {
 		// Disable tab scrolling
 		--tab-min-width: 0 !important;
-		
+
 		/**
 		*  bruni: Remove border and spacings before tabs (spacing is taken
 		*		   care by `.titlebar-spacer` already)
@@ -261,6 +262,8 @@
 		&[visuallyselected] {
 			// Bring selected tab to front
 			z-index: 100 !important;
+
+			min-width: var(--tab-selected-min-width) !important;
 
 			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
 

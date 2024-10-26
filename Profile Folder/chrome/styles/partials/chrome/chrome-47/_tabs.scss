@@ -8,3 +8,7 @@
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg");
 	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg");
 }
+
+.tabbrowser-tab[visuallyselected][minwidthreached="true"] .tab-close-button {
+	transform: translateX(-1.5px);
+}
