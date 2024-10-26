@@ -35,10 +35,6 @@
 
 	//Restore Firefox's AERO menubar styling
 	&[gktitnative="true"] {
-		.titlebar-spacer[type="post-tabs"] {
-			margin-inline-end: 4px !important; // Add spacing between caption buttons and tabs.
-		}
-
 		#main-menubar:not(:-moz-lwtheme, :-moz-window-inactive) {
 			background-color: rgba(255,255,255,.5) !important;
 			color: black !important;
@@ -56,10 +52,6 @@
 	}
 	
 	&[gktitnative="false"] {
-		.titlebar-spacer[type="post-tabs"] {
-			margin-inline-end: 16px !important; // Add spacing between caption buttons and tabs.
-		}
-
 		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
@@ -230,6 +222,14 @@
 				border-bottom-left-radius: unset !important;
 				border-bottom-right-radius: var(--titlebutton-corner) !important;
 			}
+		}
+
+		// Add spacing between caption buttons and tabs.
+		&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 16px !important;
+		}
+		&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 5px !important;
 		}
 
 		// Glen's head
