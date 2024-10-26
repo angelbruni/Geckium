@@ -239,6 +239,7 @@
 		min-height: var(--tab-height) !important;
 		height: var(--tab-height) !important;
 		max-height: var(--tab-height) !important;
+		margin-inline-start: 0 !important;
 		padding: 0 !important;
 		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 
@@ -319,7 +320,7 @@
 		*  - Love, Bruni
 		*/
 		&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
-		&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
+		&[pinned] + .tabbrowser-tab:not([visuallyselected]) {
 			/**
 			*  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
 			*  	   The mask will not apply to the second tab when it is
