@@ -25,7 +25,8 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-width: 194px;
+	--tab-normal-width: 194px;
+	--tab-pinned-width: 39px;
 	--tab-height: 27px;
 	--tab-sides-width: 15px;
 	--tab-inner-margin-start: 15px;
@@ -55,6 +56,7 @@
 	--tab-container-right:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_right.svg");
 
 	--tab-gap-between-favicon-and-title: 5px;
+	--tab-pinned-icon-offset-x: 0;
 
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.svg");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.svg");
@@ -211,9 +213,6 @@
 	}
 
 	#tabbrowser-tabs {
-		// Disable tab scrolling
-		--tab-min-width: 0 !important;
-
 		/**
 		*  bruni: Remove border and spacings before tabs (spacing is taken
 		*		   care by `.titlebar-spacer` already)
@@ -348,10 +347,11 @@
 		}
 
 		&[fadein] {
-			&:not([pinned]) {
-				&:not([style*="max-width"]) {
-					max-width: var(--tab-width) !important;
-				}
+			&[pinned]:not([style*="max-width"]) {
+				max-width: var(--tab-pinned-width) !important;
+			}
+			&:not([pinned]):not([style*="max-width"]) {
+				max-width: var(--tab-normal-width) !important;
 			}
 		}
 
@@ -371,6 +371,24 @@
 			visibility: unset !important;
 			pointer-events: none !important;
 			animation: hide-tab var(--tab-transition-time) ease;
+		}
+
+		&[pinned] {
+			.tab-stack {
+				width: 100px !important; // Force pinned tab size.
+			}
+
+			.tab-content {
+				justify-content: center !important;
+			}
+
+			.tab-icon-stack {
+				margin-inline-start: var(--tab-pinned-icon-offset-x);
+			}
+			
+			.tab-label-container {
+				display: none !important;
+			}
 		}
 	}
 
