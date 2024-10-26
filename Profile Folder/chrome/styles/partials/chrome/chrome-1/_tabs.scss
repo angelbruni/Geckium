@@ -109,7 +109,6 @@
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		.tab-drop-indicator {
-			top: var(--tab-drop-indicator-pos-from-top-maximized) !important;
 			background: var(--tab-drop-indicator-icon-maximized) !important;
 		}
 	}
@@ -200,9 +199,11 @@
 	}
 
 	.tab-drop-indicator {
+		position: absolute !important;
 		z-index: 101 !important;
-		top: var(--tab-drop-indicator-pos-from-top-normal) !important;
+		bottom: 0 !important;
 		background: var(--tab-drop-indicator-icon-normal) !important;
+		height: 41px;
 	}
 
 	#tabbrowser-tabs,
