@@ -14,8 +14,6 @@ function skipToPage(pageContainer, targetPage) {
 
 		// Page
 		const page = document.querySelector(".pages-container[data-page-container='" + pageContainer + "'] vbox[data-page='" + targetPage +"']");
-		if (!page)
-			return;
 		
 		const pageList = page.parentNode.querySelectorAll("vbox[data-page]");
 		if (pageList) {
