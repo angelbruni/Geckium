@@ -1,0 +1,85 @@
+@import "variables";
+@import "hidpiAutogen";
+@import "hidpi";
+@import "translucency";
+@import "glow";
+@import "windowButtons";
+/* @import "outerBorder"; */
+@import "outerBorderImage";
+/* @import "innerBorder"; */
+// @import "fakeResizeBorders";
+@import "tooltips";
+
+
+/*
+ * Create fake window borders by adding padding to the left, right and bottom of the body element.
+ * We also have to adjust the width and height to accommodate.
+ *
+ * We want the fake borders only when:
+ * 1) the window is not maximized
+ * 2) tabs in titlebar is enabled
+ *
+ */
+&[sizemode="normal"][tabsintitlebar] body
+{
+    padding-left:   calc(var(--aero-padding) / var(--aero-hidpi-scale)) !important;
+    padding-right:  calc(var(--aero-padding) / var(--aero-hidpi-scale)) !important;
+    padding-bottom: calc(var(--aero-padding) / var(--aero-hidpi-scale)) !important;
+    padding-top:    0px !important;
+
+    width:  calc(100% - calc(var(--aero-padding) / var(--aero-hidpi-scale)) - calc(var(--aero-padding) / var(--aero-hidpi-scale))) !important;
+    height: calc(100% - calc(var(--aero-padding) / var(--aero-hidpi-scale))) !important;
+}
+
+/* #toolbar-menubar.browser-toolbar[type="menubar"] */
+/* { */
+/*     position: fixed !important; */
+/* } */
+
+/*
+ * Control the amount of vertical space above the tabs
+ *
+ * Use lots of class specifiers here to increase CSS specificity to better override themes
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
+ *
+ */
+#main-window[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"]:not([customizing="true"]) + #TabsToolbar.browser-toolbar[data-l10n-id="tabs-toolbar"]
+{
+    padding-top: 0px !important;
+    padding-block-start: var(--aero-top-padding-windowed) !important;
+}
+
+#main-window[tabsintitlebar][sizemode="normal"] #toolbar-menubar[autohide="true"]:not([customizing="true"]) + #TabsToolbar.browser-toolbar[data-l10n-id="tabs-toolbar"]
+{
+    padding-top: 0px !important;
+    padding-block-start: calc(var(--aero-top-padding-windowed) + var(--aero-top-padding-windowed-menu-add)) !important;
+}
+
+#main-window[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"]:not([customizing="true"]) + #TabsToolbar.browser-toolbar[data-l10n-id="tabs-toolbar"]
+{
+    padding-top: 0px !important;
+    padding-block-start: var(--aero-top-padding-maximized) !important;
+}
+
+#main-window[tabsintitlebar][sizemode="maximized"] #toolbar-menubar[autohide="true"]:not([customizing="true"]) + #TabsToolbar.browser-toolbar[data-l10n-id="tabs-toolbar"]
+{
+    padding-top: 0px !important;
+    padding-block-start: calc(var(--aero-top-padding-maximized) + var(--aero-top-padding-maximized-menu-add)) !important;
+}
+
+#main-menubar
+{
+    color: white !important;
+    text-shadow: black 0px 0px 8px !important;
+}
+
+.menubar-text
+{
+    font-size: var(--font-size-root) !important;
+}
+
+.titlebar-spacer[type="post-tabs"] {
+    width: var(--aero-tab-maximized-offset) !important;
+}
+
+

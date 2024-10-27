@@ -117,8 +117,16 @@ function addProductName() {
 }
 
 function updateInfo() {
-	document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getBrowserEra()].basedOnVersion);
-	document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%s", gkBranding.getBrandingKey("vendorName")).replace("%d",gkEras.getEras("main")[gkEras.getBrowserEra()].year);
+	const win = Services.wm.getMostRecentWindow("navigator:browser");
+	let appearanceChoice = gkEras.getBrowserEra();
+
+	//if (appearanceChoice > 21) {
+		document.getElementById("chrVersion").textContent = aboutBundle.GetStringFromName("version").replace("%s", gkEras.getEras("main")[gkEras.getBrowserEra()].basedOnVersion);
+		document.getElementById("chrCopyright").textContent = aboutBundle.GetStringFromName("copyright25").replace("%s", gkBranding.getBrandingKey("vendorName")).replace("%d",gkEras.getEras("main")[gkEras.getBrowserEra()].year);
+	//} else {
+		//win.openDialog("about:aboutdialog", "", "centerscreen");
+		//window.close();
+	//}
 }
 
 document.addEventListener("DOMContentLoaded", () => {

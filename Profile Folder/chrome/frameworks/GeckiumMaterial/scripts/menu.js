@@ -1,4 +1,4 @@
-setTimeout(() => {
+document.addEventListener("DOMContentLoaded", () => {
 	document.querySelectorAll(".menu").forEach(btn => {
 		const firstItem = btn.querySelector(".item");
 		const defaultItem = btn.querySelector(".item[selected]");
@@ -79,4 +79,4 @@ setTimeout(() => {
 			}
 		};
 	});
-}, 10);
+});
