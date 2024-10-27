@@ -224,14 +224,6 @@
 			}
 		}
 
-		// Add spacing between caption buttons and tabs.
-		&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
-			margin-inline-end: 16px !important;
-		}
-		&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
-			margin-inline-end: 5px !important;
-		}
-
 		// Glen's head
 		&[geckium-chrflag-glen-is-close-button="true"] {
 			//Move where the shadow is for Glen's head
@@ -297,5 +289,13 @@
 				}
 			}
 		}
+	}
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
 	}
 }
