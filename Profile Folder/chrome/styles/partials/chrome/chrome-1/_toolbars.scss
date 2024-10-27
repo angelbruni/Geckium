@@ -1023,7 +1023,7 @@
 				overflow: visible !important;
 			}
 			
-			:not(.widget-overflow-list) > .toolbarbutton-1 {
+			&:not([gtkicons="2"]) :not(.widget-overflow-list) > .toolbarbutton-1 {
 				&#back-button,
 				&#forward-button,
 				&#reload-button,
@@ -1041,7 +1041,7 @@
 					width: 19px !important;
 				}
 			}
-			&[moregtkicons="true"] :not(.widget-overflow-list) > .toolbarbutton-1 {
+			&[gtkicons="1"] :not(.widget-overflow-list) > .toolbarbutton-1 {
 				&#bookmarks-menu-button,
 				&#page-button,
 				&#PanelUI-menu-button,

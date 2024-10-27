@@ -508,14 +508,19 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInAllToolbarItems;</label>
-														<label class="description">&gsettings.gtkIconsInAllToolbarItemsDisclaimer;</label>
+														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInToolbarItems;</label>
+														<label class="description">&gsettings.gtkIconsInToolbarItemsDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.appearance.moreGTKIcons" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
+													<html:button class="menu" data-name="appearance-GTKIcons" data-pref="appearance.GTKIcons" id="appearance-GTKIcons-select" style="width: 200px">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.official;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.allToolbarItems;</hbox>
+															<hbox class="item ripple-enabled" value="2">&gsettings.none;</hbox>
+														</vbox>
+													</html:button>
 												</hbox>
 											</vbox>
 											<h4>

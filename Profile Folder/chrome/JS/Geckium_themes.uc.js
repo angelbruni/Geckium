@@ -216,7 +216,7 @@ class gkGTK {
 	}
 
     static enableMoreIcons() {
-        document.documentElement.setAttribute("moregtkicons", gkPrefUtils.tryGet("Geckium.appearance.moreGTKIcons").bool);
+        document.documentElement.setAttribute("gtkicons", gkPrefUtils.tryGet("Geckium.appearance.GTKIcons").int);
     }
 }
 //NOTE: gkGTK.apply is called by gkSysTheme.applyTheme
@@ -230,7 +230,7 @@ const GTKIconsObserver = {
 		}
 	},
 };
-Services.prefs.addObserver("Geckium.appearance.moreGTKIcons", GTKIconsObserver, false);
+Services.prefs.addObserver("Geckium.appearance.GTKIcons", GTKIconsObserver, false);
 
 
 // System Theme: Geckium You
