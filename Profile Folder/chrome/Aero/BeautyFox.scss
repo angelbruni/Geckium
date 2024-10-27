@@ -1,0 +1,34 @@
+:root:is([tabsintitlebar]) {
+    @import "Aero/base";
+
+    /*
+    * Adjustments for better compatability with BeautyFox
+    */
+    --aero-padding:                              8px;
+    --aero-titlebuttons-top-offset:              1px;
+    --aero-titlebuttons-right-offset:            2px;
+
+    &[sizemode="maximized"]
+    {
+        --aero-titlebuttons-top-offset:              -1px;
+        --aero-titlebuttons-right-offset:            -2px;
+    }
+
+
+    /*
+    * Fixups
+    */
+
+    #fakeTitlebarSpace
+    {
+        appearance: none !important;
+    }
+
+    #fakeTitlebarSpace .titlebar-buttonbox-container
+    {
+        transform: translate(
+            calc(var(--aero-titlebuttons-right-offset) / var(--aero-hidpi-scale)),
+            calc(var(--aero-titlebuttons-top-offset) / var(--aero-hidpi-scale))
+        ) !important;
+    }
+}

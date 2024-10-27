@@ -1,0 +1,629 @@
+#jsMinimizeButtonGlow
+{
+    background-image: var(--aero-titlebuttons-glow-min) !important;
+}
+
+#jsMaximizeButtonGlow
+{
+    background-image: var(--aero-titlebuttons-glow-max) !important;
+}
+
+#jsCloseButtonGlow
+{
+    background-image: var(--aero-titlebuttons-glow-close) !important;
+}
+
+/*
+ * Button glow
+ */
+&[tabsintitlebar] .titlebar-min > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-max > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-restore > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-close > .toolbarbutton-icon
+{
+  z-index:        1000;
+  position:       absolute;
+  pointer-events: none;
+  opacity:        0;
+  transition:     opacity .15s ease-out;
+  background-repeat: no-repeat !important;
+  visibility:     var(--aero-titlebuttons-glow-visibility) !important;
+}
+
+&[tabsintitlebar] .titlebar-min:hover > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-max:hover > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-restore:hover > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-close:hover > .toolbarbutton-icon
+{
+  opacity: 1;
+}
+
+&[tabsintitlebar] .titlebar-min > .toolbarbutton-icon
+{
+  background-image: var(--aero-titlebuttons-glow-min) !important;
+  background-position: top -1px left 0px !important;
+  background-size: 49px 37px !important;
+  width:       49px !important;
+  min-width:   49px !important;
+  max-width:   49px !important;
+  height:      37px !important;
+  min-height:  37px !important;
+  max-height:  37px !important;
+}
+
+&[tabsintitlebar] .titlebar-max > .toolbarbutton-icon,
+&[tabsintitlebar] .titlebar-restore > .toolbarbutton-icon
+{
+  background-image: var(--aero-titlebuttons-glow-min) !important;
+  background-position: top -1px left 0px !important;
+  background-size: 47px 37px !important;
+  width:       47px !important;
+  min-width:   47px !important;
+  max-width:   47px !important;
+  height:      37px !important;
+  min-height:  37px !important;
+  max-height:  37px !important;
+}
+
+&[tabsintitlebar] .titlebar-close > .toolbarbutton-icon
+{
+  background-image: var(--aero-titlebuttons-glow-close) !important;
+  background-position: top -1px left -1px !important;
+  background-size: 68px 37px !important;
+  width:       68px !important;
+  min-width:   68px !important;
+  max-width:   68px !important;
+  height:      37px !important;
+  min-height:  37px !important;
+  max-height:  37px !important;
+}
+
+/*
+ * Firefox has two elements with class "titlebar-buttonbox-container",
+ * one is a child of "#toolbar-menubar" and the other a child of "#TabsToolbar".
+ *
+ * We'll only be using the latter, so hide the former.
+ */
+& #toolbar-menubar .titlebar-buttonbox-container
+{
+    display: none !important;
+}
+
+.titlebar-buttonbox
+{
+    appearance: inherit !important; /* Removes weird right border */
+}
+
+/*
+ * Add "&" and "[skipintoolbarset="true"]" to increase CSS specificity.
+ */
+& #TabsToolbar .titlebar-buttonbox-container[skipintoolbarset="true"]
+{
+    position: fixed !important;
+    display: block !important;
+}
+
+/*
+ * Make the element remain visible when the menubar is shown.
+ */
+& #toolbar-menubar[autohide="true"]:not([inactive]) + #TabsToolbar > .titlebar-buttonbox-container
+{
+    visibility: visible !important;
+}
+
+.titlebar-buttonbox-container
+{
+    right: calc(var(--aero-titlebuttons-right-offset) / var(--aero-hidpi-scale)) !important;
+    top:   calc(var(--aero-titlebuttons-top-offset) / var(--aero-hidpi-scale)) !important;
+    z-index: 999 !important;
+}
+
+.titlebar-button .toolbarbutton-icon
+{
+    padding: 0px !important;
+    appearance: none !important;
+    color: transparent !important;
+    background: transparent !important;
+}
+
+/*
+ * Rudimentary lightweight theme compat
+ */
+
+.titlebar-button:-moz-lwtheme
+{
+    border-radius: 0px !important;
+}
+
+.titlebar-min:-moz-lwtheme,
+.titlebar-max:-moz-lwtheme,
+.titlebar-restore:-moz-lwtheme,
+.titlebar-close:-moz-lwtheme
+{
+    list-style-image: none !important;
+}
+
+&:is([tabsintitlebar]) .titlebar-min, .titlebar-max, .titlebar-restore, .titlebar-close
+{
+    -moz-default-appearance: none !important;
+    padding: 0px !important;
+}
+
+/* Active window */
+
+&:not(:-moz-window-inactive) .titlebar-min::before,
+&:not(:-moz-window-inactive) .titlebar-min:hover::before
+{
+  --icon-titlebar-min:            var(--aero-titlebuttons-bitmap-minimize);
+}
+&:not(:-moz-window-inactive) .titlebar-min::after,
+&:not(:-moz-window-inactive) .titlebar-min:hover::after
+{
+  --icon-titlebar-min-hover:      var(--aero-titlebuttons-bitmap-minimize-hover);
+}
+&:not(:-moz-window-inactive) .titlebar-min:active
+{
+  --icon-titlebar-min-active:     var(--aero-titlebuttons-bitmap-minimize-active);
+}
+
+&:not(:-moz-window-inactive) .titlebar-max::before,
+&:not(:-moz-window-inactive) .titlebar-max:hover::before
+{
+  --icon-titlebar-max:            var(--aero-titlebuttons-bitmap-maximize);
+}
+&:not(:-moz-window-inactive) .titlebar-max::after,
+&:not(:-moz-window-inactive) .titlebar-max:hover::after
+{
+  --icon-titlebar-max-hover:      var(--aero-titlebuttons-bitmap-maximize-hover);
+}
+&:not(:-moz-window-inactive) .titlebar-max:active
+{
+  --icon-titlebar-max-active:     var(--aero-titlebuttons-bitmap-maximize-active);
+}
+
+&:not(:-moz-window-inactive) .titlebar-restore::before,
+&:not(:-moz-window-inactive) .titlebar-restore:hover::before
+{
+  --icon-titlebar-restore:        var(--aero-titlebuttons-bitmap-restore);
+}
+&:not(:-moz-window-inactive) .titlebar-restore::after,
+&:not(:-moz-window-inactive) .titlebar-restore:hover::after
+{
+  --icon-titlebar-restore-hover:  var(--aero-titlebuttons-bitmap-restore-hover);
+}
+&:not(:-moz-window-inactive) .titlebar-restore:active
+{
+  --icon-titlebar-restore-active: var(--aero-titlebuttons-bitmap-restore-active);
+}
+
+&:not(:-moz-window-inactive) .titlebar-close::before,
+&:not(:-moz-window-inactive) .titlebar-close:hover::before
+{
+  --icon-titlebar-close:          var(--aero-titlebuttons-bitmap-close);
+}
+&:not(:-moz-window-inactive) .titlebar-close::after,
+&:not(:-moz-window-inactive) .titlebar-close:hover::after
+{
+  --icon-titlebar-close-hover:    var(--aero-titlebuttons-bitmap-close-hover);
+}
+&:not(:-moz-window-inactive) .titlebar-close:active
+{
+  --icon-titlebar-close-active:   var(--aero-titlebuttons-bitmap-close-active);
+}
+
+/* Inactive window */
+
+&:-moz-window-inactive .titlebar-min::before,
+&:-moz-window-inactive .titlebar-min:hover::before
+{
+  --icon-titlebar-min:            var(--aero-titlebuttons-bitmap-minimize-unfocus);
+}
+&:-moz-window-inactive .titlebar-min::after,
+&:-moz-window-inactive .titlebar-min:hover::after
+{
+  --icon-titlebar-min-hover:      var(--aero-titlebuttons-bitmap-minimize-unfocus-hover);
+}
+&:-moz-window-inactive .titlebar-min:active
+{
+  --icon-titlebar-min-active:     var(--aero-titlebuttons-bitmap-minimize-unfocus-active);
+}
+
+&:-moz-window-inactive .titlebar-max::before,
+&:-moz-window-inactive .titlebar-max:hover::before
+{
+  --icon-titlebar-max:            var(--aero-titlebuttons-bitmap-maximize-unfocus);
+}
+&:-moz-window-inactive .titlebar-max::after,
+&:-moz-window-inactive .titlebar-max:hover::after
+{
+  --icon-titlebar-max-hover:      var(--aero-titlebuttons-bitmap-maximize-unfocus-hover);
+}
+&:-moz-window-inactive .titlebar-max:active
+{
+  --icon-titlebar-max-active:     var(--aero-titlebuttons-bitmap-maximize-unfocus-active);
+}
+
+&:-moz-window-inactive .titlebar-restore::before,
+&:-moz-window-inactive .titlebar-restore:hover::before
+{
+  --icon-titlebar-restore:        var(--aero-titlebuttons-bitmap-restore-unfocus);
+}
+&:-moz-window-inactive .titlebar-restore::after,
+&:-moz-window-inactive .titlebar-restore:hover::after
+{
+  --icon-titlebar-restore-hover:  var(--aero-titlebuttons-bitmap-restore-unfocus-hover);
+}
+&:-moz-window-inactive .titlebar-restore:active
+{
+  --icon-titlebar-restore-active: var(--aero-titlebuttons-bitmap-restore-unfocus-active);
+}
+
+&:-moz-window-inactive .titlebar-close::before,
+&:-moz-window-inactive .titlebar-close:hover::before
+{
+  --icon-titlebar-close:          var(--aero-titlebuttons-bitmap-close-unfocus);
+}
+&:-moz-window-inactive .titlebar-close::after,
+&:-moz-window-inactive .titlebar-close:hover::after
+{
+  --icon-titlebar-close-hover:    var(--aero-titlebuttons-bitmap-close-unfocus-hover);
+}
+&:-moz-window-inactive .titlebar-close:active
+{
+  --icon-titlebar-close-active:   var(--aero-titlebuttons-bitmap-close-unfocus-active);
+}
+
+/*
+ * Now to actually draw and animate the buttons.
+ * This is likely overengineered.
+ */
+
+@keyframes fadeInFromNone
+{
+    from
+    {
+        opacity: 0;
+    }
+
+    to
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutFromNone
+{
+    from
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        opacity: 0;
+    }
+}
+
+/* Minimize */
+
+.titlebar-min,
+.titlebar-min:hover,
+.titlebar-min::before,
+.titlebar-min:hover::before,
+.titlebar-min::after,
+.titlebar-min:hover::after
+{
+    --minimize-w: calc(29px + var(--aero-hidpi-titlebuttons-minimize-xadjust));
+    --minimize-h: calc(20px + var(--aero-hidpi-titlebuttons-minimize-yadjust));
+
+    width:      var(--minimize-w) !important;
+    min-width:  var(--minimize-w) !important;
+    max-width:  var(--minimize-w) !important;
+
+    height:     var(--minimize-h) !important;
+    min-height: var(--minimize-h) !important;
+    max-height: var(--minimize-h) !important;
+
+    background-size: var(--minimize-w) var(--minimize-h) !important;
+    image-rendering: var(--aero-hidpi-image-rendering) !important;
+}
+
+.titlebar-min,
+.titlebar-min:hover
+{
+  background-image: none !important;
+}
+
+.titlebar-min:active,
+.titlebar-min:hover:active
+{
+  background-image: var(--icon-titlebar-min-active) !important;
+}
+
+.titlebar-min:active::after,
+.titlebar-min:active::before
+{
+  content: none;
+  visibility: hidden;
+}
+
+.titlebar-min::before,
+.titlebar-min:hover::before
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-min) !important;
+}
+
+.titlebar-min::after,
+.titlebar-min:hover::after
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-min-hover) !important;
+}
+
+.titlebar-min::before,
+.titlebar-min:hover::after
+{
+  animation: fadeInFromNone 0.01s ease-out forwards;
+}
+
+.titlebar-min:hover::before,
+.titlebar-min::after
+{
+  animation: fadeOutFromNone 0.1s ease-in forwards;
+}
+
+.titlebar-min:active::before
+{
+  animation: fadeInFromNone 1s ease-out forwards;
+}
+
+.titlebar-min:active::after
+{
+  animation: fadeOutFromNone 1s ease-out forwards;
+}
+
+/* Maximize */
+
+.titlebar-max,
+.titlebar-max:hover,
+.titlebar-max::before,
+.titlebar-max:hover::before,
+.titlebar-max::after,
+.titlebar-max:hover::after
+{
+    --maximize-w: calc(27px + var(--aero-hidpi-titlebuttons-maximize-xadjust));
+    --maximize-h: calc(20px + var(--aero-hidpi-titlebuttons-maximize-yadjust));
+
+    width:      var(--maximize-w) !important;
+    min-width:  var(--maximize-w) !important;
+    max-width:  var(--maximize-w) !important;
+
+    height:     var(--maximize-h) !important;
+    min-height: var(--maximize-h) !important;
+    max-height: var(--maximize-h) !important;
+
+    background-size: var(--maximize-w) var(--maximize-h) !important;
+    image-rendering: var(--aero-hidpi-image-rendering) !important;
+}
+
+.titlebar-max,
+.titlebar-max:hover
+{
+  background-image: none !important;
+}
+
+.titlebar-max:active,
+.titlebar-max:hover:active
+{
+  background-image: var(--icon-titlebar-max-active) !important;
+}
+
+.titlebar-max:active::after,
+.titlebar-max:active::before
+{
+  content: none;
+  visibility: hidden;
+}
+
+.titlebar-max::before,
+.titlebar-max:hover::before
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-max) !important;
+}
+
+.titlebar-max::after,
+.titlebar-max:hover::after
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-max-hover) !important;
+}
+
+.titlebar-max::before,
+.titlebar-max:hover::after
+{
+  animation: fadeInFromNone 0.01s ease-out forwards;
+}
+
+.titlebar-max:hover::before,
+.titlebar-max::after
+{
+  animation: fadeOutFromNone 0.1s ease-in forwards;
+}
+
+.titlebar-max:active::before
+{
+  animation: fadeInFromNone 1s ease-out forwards;
+}
+
+.titlebar-max:active::after
+{
+  animation: fadeOutFromNone 1s ease-out forwards;
+}
+
+/* Restore */
+
+.titlebar-restore,
+.titlebar-restore:hover,
+.titlebar-restore::before,
+.titlebar-restore:hover::before,
+.titlebar-restore::after,
+.titlebar-restore:hover::after
+{
+    --restore-w: calc(27px + var(--aero-hidpi-titlebuttons-maximize-xadjust));
+    --restore-h: calc(20px + var(--aero-hidpi-titlebuttons-maximize-yadjust));
+
+    width:      var(--restore-w) !important;
+    min-width:  var(--restore-w) !important;
+    max-width:  var(--restore-w) !important;
+
+    height:     var(--restore-h) !important;
+    min-height: var(--restore-h) !important;
+    max-height: var(--restore-h) !important;
+
+    background-size: var(--restore-w) var(--restore-h) !important;
+    image-rendering: var(--aero-hidpi-image-rendering) !important;
+}
+
+.titlebar-restore,
+.titlebar-restore:hover
+{
+  background-image: none !important;
+}
+
+.titlebar-restore:active,
+.titlebar-restore:hover:active
+{
+  background-image: var(--icon-titlebar-restore-active) !important;
+}
+
+.titlebar-restore:active::after,
+.titlebar-restore:active::before
+{
+  content: none;
+  visibility: hidden;
+}
+
+.titlebar-restore::before,
+.titlebar-restore:hover::before
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-restore) !important;
+}
+
+.titlebar-restore::after,
+.titlebar-restore:hover::after
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-restore-hover) !important;
+}
+
+.titlebar-restore::before,
+.titlebar-restore:hover::after
+{
+  animation: fadeInFromNone 0.01s ease-out forwards;
+}
+
+.titlebar-restore:hover::before,
+.titlebar-restore::after
+{
+  animation: fadeOutFromNone 0.1s ease-in forwards;
+}
+
+.titlebar-restore:active::before
+{
+  animation: fadeInFromNone 1s ease-out forwards;
+}
+
+.titlebar-restore:active::after
+{
+  animation: fadeOutFromNone 1s ease-out forwards;
+}
+
+/* Close */
+
+.titlebar-close,
+.titlebar-close:hover,
+.titlebar-close::before,
+.titlebar-close:hover::before,
+.titlebar-close::after,
+.titlebar-close:hover::after
+{
+    --close-w: calc(49px + var(--aero-hidpi-titlebuttons-close-xadjust));
+    --close-h: calc(20px + var(--aero-hidpi-titlebuttons-close-yadjust));
+
+    width:      var(--close-w) !important;
+    min-width:  var(--close-w) !important;
+    max-width:  var(--close-w) !important;
+
+    height:     var(--close-h) !important;
+    min-height: var(--close-h) !important;
+    max-height: var(--close-h) !important;
+
+    background-size: var(--close-w) var(--close-h) !important;
+    image-rendering: var(--aero-hidpi-image-rendering) !important;
+}
+
+.titlebar-close,
+.titlebar-close:hover
+{
+    background-image: none !important;
+}
+
+.titlebar-close:active,
+.titlebar-close:hover:active
+{
+    background-image: var(--icon-titlebar-close-active) !important;
+}
+
+.titlebar-close:active::after,
+.titlebar-close:active::before
+{
+    content: none;
+    visibility: hidden;
+}
+
+.titlebar-close::before,
+.titlebar-close:hover::before
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-close) !important;
+}
+
+.titlebar-close::after,
+.titlebar-close:hover::after
+{
+    position: fixed;
+    content: "";
+    background-image: var(--icon-titlebar-close-hover) !important;
+}
+
+.titlebar-close::before,
+.titlebar-close:hover::after
+{
+    animation: fadeInFromNone 0.01s ease-out forwards;
+}
+
+.titlebar-close::after,
+.titlebar-close:hover::before
+{
+    animation: fadeOutFromNone 0.1s ease-in forwards;
+}
+
+.titlebar-close:active::before
+{
+    animation: fadeInFromNone 1s ease-out forwards;
+}
+
+.titlebar-close:active::after
+{
+    animation: fadeOutFromNone 1s ease-out forwards;
+}
