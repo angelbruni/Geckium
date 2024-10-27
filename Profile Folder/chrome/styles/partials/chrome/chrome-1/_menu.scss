@@ -160,7 +160,6 @@ toolbarbutton menupopup[placespopup] {
 :root[gkmenunative="1"][gkthemed="true"] {
 	menupopup,
 	toolbarbutton menupopup[placespopup] {
-		appearance: none !important;
 		--panel-background: var(--gk-menu-background) !important;
 		--panel-color: var(--gk-menu-foreground) !important;
 		--panel-border-color: var(--gk-menu-border-color) !important;
@@ -169,6 +168,9 @@ toolbarbutton menupopup[placespopup] {
 		--panel-padding: calc(var(--gk-menu-padding) + var(--panel-padding-block)) var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+
+		appearance: none !important;
+		
 		@media ((-moz-platform: windows) and (not (-moz-windows-non-native-menus))) or (-moz-platform: macos) {
 			// Native menus behave completely differently for some reason
 			--panel-shadow-margin: 0 !important;
@@ -208,6 +210,7 @@ toolbarbutton menupopup[placespopup] {
 			&[type="checkbox"] .menu-iconic-left,
 			&[type="radio"] .menu-iconic-left {
 				width: 16px !important;
+
 				.menu-iconic-icon {
 					appearance: none !important;
 					// I am also actually unironically disappointed in you for this.
@@ -241,6 +244,7 @@ toolbarbutton menupopup[placespopup] {
 
 			.menu-accel-container {
 				color: var(--gk-menu-foreground-keys) !important;
+
 				.menu-accel {
 					color: currentColor !important;
 				}
@@ -256,6 +260,7 @@ toolbarbutton menupopup[placespopup] {
 
 				width: 1ex !important;
 				height: 1ex !important;
+
 				image {
 					// Mozilla, I am actually unironically disappointed in you for this.
 					-moz-context-properties: fill !important;
@@ -265,6 +270,7 @@ toolbarbutton menupopup[placespopup] {
 		// Context items need extra care
 		#context-navigation > :is(menu, menuitem)::after {
 			margin-inline-start: 28px !important;
+			
 			@media (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
 				margin-inline-start: -2px !important;
 			}
@@ -272,6 +278,7 @@ toolbarbutton menupopup[placespopup] {
 		// Same with custom menuitems
 		> .menuitemitems .menu-text {
 			margin-inline-start: 28px !important;
+
 			@media (-moz-platform: windows) and (not (-moz-windows-non-native-menus)) {
 				margin-inline-start: -2px !important;
 			}
@@ -311,10 +318,8 @@ toolbarbutton menupopup[placespopup] {
 			--panel-border-radius: 0 !important;
 			--panel-padding: 0 !important;
 
-			&#contentAreaContextMenu {
-                #context-navigation > menuitem::after {
-					margin-inline-start: 21px !important; // 21px (menu.css:82, Firefox 115) - 16px
-				}
+			&#contentAreaContextMenu #context-navigation > menuitem::after {
+				margin-inline-start: 21px !important; // 21px (menu.css:82, Firefox 115) - 16px
 			}
 		}
 		toolbarbutton menupopup[placespopup] {
@@ -344,7 +349,6 @@ toolbarbutton menupopup[placespopup] {
 			}
 		}
 		toolbarbutton menupopup[placespopup] {
-			appearance: menupopup !important;
 			--panel-background: transparent !important;
 			--panel-color: MenuText !important;
 			--panel-padding: 4px !important;
@@ -356,6 +360,8 @@ toolbarbutton menupopup[placespopup] {
 			--arrowpanel-menuitem-margin: 0 !important;
 			--arrowpanel-menuitem-padding: 2.5px 9px !important;
 			--arrowpanel-menuitem-border-radius: 3px !important;
+
+			appearance: menupopup !important;
 
 			> :is(menu, menuitem)[_moz-menuactive="true"] {
 				background-color: -moz-menuhover !important;
@@ -388,6 +394,7 @@ toolbarbutton menupopup[placespopup] {
 			> :is(menu, menuitem),
 			#context-navigation > :is(menu, menuitem) {
 				padding-block: 2px !important;
+
 				&[_moz-menuactive="true"]:not([disabled]) {
 					background-color: AccentColor !important;
 					color: AccentColorText !important;
@@ -400,6 +407,7 @@ toolbarbutton menupopup[placespopup] {
 			// Context items need extra care
 			#context-navigation > :is(menu, menuitem) {
 				padding-inline-start: 1em !important;
+
 				::after {
 					padding: 1px 0;
 				}
@@ -437,9 +445,11 @@ toolbarbutton menupopup[placespopup] {
 						color: -moz-menuhovertext !important;
 					}
 				}
+
 				#context-navigation > :is(menu, menuitem) {
 					padding-inline-start: 2px !important;
 				}
+
 				> .menuitemitems .menu-text {
 					margin-inline-start: unset !important;
 				}
@@ -455,9 +465,11 @@ toolbarbutton menupopup[placespopup] {
 				> :is(menu, menuitem) {
 					appearance: menuitem !important;
 					min-height: unset !important;
+
 					&[_moz-menuactive="true"] {
 						color: -moz-menuhovertext !important;
 					}
+					
 					&[disabled] {
 						color: GreyText !important;
 					}

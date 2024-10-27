@@ -25,7 +25,9 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-width: 194px;
+	--tab-normal-width: 194px;
+	--tab-pinned-width: 39px;
+	--tab-selected-min-width: 31px;
 	--tab-height: 27px;
 	--tab-sides-width: 15px;
 	--tab-inner-margin-start: 15px;
@@ -55,6 +57,7 @@
 	--tab-container-right:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_right.svg");
 
 	--tab-gap-between-favicon-and-title: 5px;
+	--tab-pinned-icon-offset-x: 0;
 
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.svg");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.svg");
@@ -106,7 +109,6 @@
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		.tab-drop-indicator {
-			top: var(--tab-drop-indicator-pos-from-top-maximized) !important;
 			background: var(--tab-drop-indicator-icon-maximized) !important;
 		}
 	}
@@ -197,9 +199,11 @@
 	}
 
 	.tab-drop-indicator {
+		position: absolute !important;
 		z-index: 101 !important;
-		top: var(--tab-drop-indicator-pos-from-top-normal) !important;
+		bottom: 0 !important;
 		background: var(--tab-drop-indicator-icon-normal) !important;
+		height: 41px;
 	}
 
 	#tabbrowser-tabs,
@@ -239,6 +243,7 @@
 		min-height: var(--tab-height) !important;
 		height: var(--tab-height) !important;
 		max-height: var(--tab-height) !important;
+		margin-inline-start: 0 !important;
 		padding: 0 !important;
 		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 
@@ -258,6 +263,8 @@
 		&[visuallyselected] {
 			// Bring selected tab to front
 			z-index: 100 !important;
+
+			min-width: var(--tab-selected-min-width) !important;
 
 			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
 
@@ -319,7 +326,7 @@
 		*  - Love, Bruni
 		*/
 		&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
-		&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
+		&[pinned] + .tabbrowser-tab:not([visuallyselected]) {
 			/**
 			*  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
 			*  	   The mask will not apply to the second tab when it is
@@ -347,10 +354,11 @@
 		}
 
 		&[fadein] {
-			&:not([pinned]) {
-				&:not([style*="max-width"]) {
-					max-width: var(--tab-width) !important;
-				}
+			&[pinned]:not([style*="max-width"]) {
+				max-width: var(--tab-pinned-width) !important;
+			}
+			&:not([pinned]):not([style*="max-width"]) {
+				max-width: var(--tab-normal-width) !important;
 			}
 		}
 
@@ -370,6 +378,24 @@
 			visibility: unset !important;
 			pointer-events: none !important;
 			animation: hide-tab var(--tab-transition-time) ease;
+		}
+
+		&[pinned] {
+			.tab-stack {
+				width: 100px !important; // Force pinned tab size.
+			}
+
+			.tab-content {
+				justify-content: center !important;
+			}
+
+			.tab-icon-stack {
+				margin-inline-start: var(--tab-pinned-icon-offset-x);
+			}
+			
+			.tab-label-container {
+				display: none !important;
+			}
 		}
 	}
 
@@ -516,14 +542,25 @@
 		}
 	}
 
+	.tab-hitbox,
 	.tab-content {
 		height: calc(var(--tab-height) - 1px);
+		pointer-events: auto !important;
+	}
+
+	.tab-hitbox {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		margin-inline-start: calc(var(--tab-inner-margin-start) / 2);
+	}
+
+	.tab-content {
 		padding: 0 !important;
 		margin-block-start: var(--tab-content-y-from-top) !important;
 		margin-inline-start: var(--tab-inner-margin-start) !important;
 		padding-inline-end: var(--tab-inner-margin-end) !important;
-
-		pointer-events: auto !important;
 	}
 
 	.tab-icon-stack {

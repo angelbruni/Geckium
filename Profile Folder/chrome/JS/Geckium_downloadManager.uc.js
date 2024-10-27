@@ -645,6 +645,6 @@ class gkDownloadManager {
 	}
 }
 
-_ucUtils.windowIsReady(window).then(() => {
+UC_API.Runtime.startupFinished().then(()=>{
 	gkDownloadManager.createShelf();
 });

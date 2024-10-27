@@ -35,6 +35,10 @@
 
 	//Restore Firefox's Win10 menubar styling
 	&[gktitnative="true"] {
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 4px !important; // Add spacing between caption buttons and tabs.
+		}
+		
 		#main-menubar {
 			& > menu {
 				text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
@@ -191,5 +195,13 @@
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/minimise.svg) !important;
 			order: 0 !important;
 		}
+	}
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
 	}
 }

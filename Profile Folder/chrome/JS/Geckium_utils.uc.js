@@ -3,7 +3,9 @@
 // @description Utilities for making coding easier. Taken from BeautyFox.
 // @author      AngelBruni
 // @loadorder   1
-// @include     *
+// @include     main
+// @include		about:preferences*
+// @include		about:addons*
 // ==/UserScript==
 
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");

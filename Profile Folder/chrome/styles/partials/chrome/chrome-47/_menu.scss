@@ -19,16 +19,14 @@ menupopup {
 
 		transition: fill .2s;
 
-		&:not([disabled="true"]) {
-			&:hover {
-				background-color: var(--gk-menuitem-background) !important;
-				// border-color: rgb(171,171,171) !important;
-				border-color: var(--gk-menusep-color) !important;
-				color: white !important;
-				fill: white !important;
+		&:not([disabled="true"]):hover {
+			background-color: var(--gk-menuitem-background) !important;
+			// border-color: rgb(171,171,171) !important;
+			border-color: var(--gk-menusep-color) !important;
+			color: white !important;
+			fill: white !important;
 
-				z-index: 1 !important;
-			}
+			z-index: 1 !important;
 		}
 
 		&#menu_cut6,
