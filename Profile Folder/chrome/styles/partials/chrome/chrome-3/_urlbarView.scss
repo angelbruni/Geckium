@@ -47,12 +47,18 @@
 	}
 }
 
+.urlbarView-no-wrap {
+	flex-basis: 0 !important;
+}
+
 .urlbarView-favicon {
 	display: flex;
 }
 
 .urlbarView-url {
 	padding-left: 24px !important;
+	width: unset;
+	max-width: 50%;
 }
 
 .urlbarView-title {
