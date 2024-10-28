@@ -36,12 +36,8 @@
 	}
 
 	&[type="switchtab"] {
-		.urlbarView-row-inner .urlbarView-title {
-			padding-left: 24px;
-
-			&::before {
-				display: none;
-			}
+		.urlbarView-row-inner .urlbarView-title::before {
+			display: none;
 		}
 
 		.urlbarView-action {

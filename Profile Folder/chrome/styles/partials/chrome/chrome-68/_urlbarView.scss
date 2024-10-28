@@ -5,8 +5,14 @@
 		&:not([geckium-chrflag-omnibox-ui-swap-title-and-url="1"]) {
 			--urlbarView-row-height: 48px;
 
-			.urlbarView-row:not([has-url]) .urlbarView-title {
-				padding-inline-start: 0;
+			.urlbarView-row {
+				&:not([has-url]) .urlbarView-title {
+					padding-inline-start: 0;
+				}
+
+				&[type="switchtab"] .urlbarView-row-inner .urlbarView-title {
+					padding-left: 0;
+				}
 			}
 
 			.urlbarView-row-inner {
@@ -59,6 +65,16 @@
 				.urlbarView-title {
 					padding-inline-start: 0;
 				}
+			}
+		}
+
+		.urlbarView-row {
+			&:not([has-url]) .urlbarView-title {
+				padding-inline-start: 0;
+			}
+
+			&[type="switchtab"] .urlbarView-row-inner .urlbarView-title {
+				padding-left: 0;
 			}
 		}
 
