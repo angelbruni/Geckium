@@ -35,7 +35,7 @@ export class chrFlags {
 			"other-platforms-watermark": {
 				name: "Google logo on other platforms' titlebars",
 				description: "Show the Google logo in other platforms' titlebar styles, rather than only on the Windows titlebar styles. Requires Google Chrome branding to take effect.",
-				styleints: [1, 3, 4]
+				styleints: [1, 3, 4, 5]
 			},
 			/*"compact-navigation": {
 				name: "Compact Navigation",
