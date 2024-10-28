@@ -13,7 +13,7 @@ const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/Addo
 
 const isNCPatched = window.matchMedia("(-moz-ev-native-controls-patch)").matches;
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
-const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden") == "menubar toolbar directories extrachrome ";
+const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar");
 
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);
