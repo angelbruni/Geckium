@@ -1,4 +1,10 @@
 :root {
+	background-color: white;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: rgb(32, 32, 32);
+	}
+
 	body {
 		margin: 10px;
 	}

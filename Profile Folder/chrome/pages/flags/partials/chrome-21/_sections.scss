@@ -8,4 +8,9 @@
 	padding-block-start: 5px;
 	padding-block-end: 4px;
 	padding-inline-start: 5px;
+
+	@media (prefers-color-scheme: dark) {
+		color: hsl(0, 0%, 43%);
+		background-color: hsl(0, 0%, 14%);
+	}
 }
