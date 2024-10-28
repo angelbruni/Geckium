@@ -18,6 +18,11 @@
 	font-size: 10pt;
 	font-weight: bold;
 	height: 22px;
+
+	@media (prefers-color-scheme: dark) {
+		background: hsl(223, 54%, 5%);
+		border-top: 1px solid hsl(214, 38%, 29%);
+	}
 }
 
 .experiment {
@@ -27,6 +32,11 @@
 	padding-block-end: 5px;
 	padding-inline-start: 5px;
 	align-items: start;
+
+	@media (prefers-color-scheme: dark) {
+		color: black;
+		border-bottom-color: hsl(0, 0%, 10%);
+	}
 
 	.experiment-text {
 		margin-block-end: 2px;
@@ -39,10 +49,18 @@
 	.experiment-name {
 		color: black;
 		font-weight: bold;
+
+		@media (prefers-color-scheme: dark) {
+			color: white;
+		}
 	}
 
 	.experiment-platforms {
 		color: #A0A0A0;
+
+		@media (prefers-color-scheme: dark) {
+			color: hsl(0, 0%, 43%);
+		}
 	}
 
 	.permalink {
@@ -59,4 +77,8 @@
 
 .permalink {
 	color: #A0A0A0;
+
+	@media (prefers-color-scheme: dark) {
+		color: hsl(0, 0%, 43%);
+	}
 }
