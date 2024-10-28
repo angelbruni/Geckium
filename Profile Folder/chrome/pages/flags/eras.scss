@@ -1,7 +1,11 @@
 :root {
+	--default-link-color: rgb(0,0,255);
+
 	background-color: white;
 
 	@media (prefers-color-scheme: dark) {
+		--default-link-color: hsl(240, 100%, 80%);
+		
 		background-color: rgb(32, 32, 32);
 	}
 
