@@ -5,6 +5,10 @@
 		&:not([geckium-chrflag-omnibox-ui-swap-title-and-url="1"]) {
 			--urlbarView-row-height: 48px;
 
+			.urlbarView-row:not([has-url]) .urlbarView-title {
+				padding-inline-start: 0;
+			}
+
 			.urlbarView-row-inner {
 				display: flex !important;
 				flex-direction: column-reverse;
@@ -17,13 +21,13 @@
 					content: unset;
 				}
 
-				margin-inline-start: 22px;
+				margin-inline-start: 24px;
 			}
 
 			.urlbarView-url {
 				order: 2;
 				padding: 0 !important;
-				margin-inline-start: 22px;
+				margin-inline-start: 24px !important;
 			}
 		}
 	}
@@ -50,12 +54,24 @@
     }
     
 	&[geckium-chrflag-omnibox-ui-swap-title-and-url="1"] {
+		.urlbarView-row {
+			&:not([has-url]) {
+				.urlbarView-title {
+					padding-inline-start: 0;
+				}
+			}
+		}
+
 		.urlbarView-row-inner {
 			flex-direction: row-reverse;
 		}
 
+		.urlbarView-no-wrap {
+			max-width: 50% !important;
+		}
+
 		.urlbarView-title {
-			margin-inline-start: 22px;
+			margin-inline-start: 24px;
 
 			&::before {
 				content: unset;
