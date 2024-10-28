@@ -646,5 +646,6 @@ class gkDownloadManager {
 }
 
 UC_API.Runtime.startupFinished().then(()=>{
-	gkDownloadManager.createShelf();
+	if (!isBrowserPopUpWindow)
+		gkDownloadManager.createShelf();
 });
