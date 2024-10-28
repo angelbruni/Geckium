@@ -10,10 +10,16 @@ function populateFlags() {
 
 		const flagName = Object.keys(chrFlags.getFlagsList())[index];
 
+		var flagDuration = `Chrome ${gkEras.getEras("main")[flag.styleints[0]].name}`;
+		var flagEnd = gkEras.getEras("main")[flag.styleints[flag.styleints.length - 1]].name;
+		if (gkEras.getEras("main")[flag.styleints[0]].name != flagEnd) {
+			flagDuration = `${flagDuration} - ${flagEnd}`;
+		}
+
 		let flagItem = `
 		<hbox class="item" data-pref="${flagName}">
 			<vbox>
-				<label class="name"><div class="year">Chrome ${gkEras.getEras("main")[flag.styleints[0]].name}</div>${flag.name}</label>
+				<label class="name"><div class="year">${flagDuration}</div>${flag.name}</label>
 				<label class="description">${flag.description}</label>
 			</vbox>
 			<spacer />
