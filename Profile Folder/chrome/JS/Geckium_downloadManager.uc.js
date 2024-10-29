@@ -194,6 +194,9 @@ class gkDownloadManager {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
 					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+					new ResizeObserver(() => {
+						gkDownloadManager.checkItemBounds();
+					}).observe(downloadItemElm);
 
 					downloadItemElm.addEventListener('contextmenu', (e) => {
 						e.preventDefault();
@@ -229,13 +232,6 @@ class gkDownloadManager {
 							pauseMenuItem.dataset.l10nId = "downloads-cmd-resume";
 						else
 							pauseMenuItem.dataset.l10nId = "downloads-cmd-pause";
-					});
-					
-					setTimeout(() => {
-						gkDownloadManager.checkItemBounds();
-					}, 450);
-					addEventListener("resize", () => {
-						gkDownloadManager.checkItemBounds();
 					});
 
 					// Initialize previous bytes and time for download speed calculation
@@ -310,13 +306,13 @@ class gkDownloadManager {
 
 					if (document.getElementById("gkDownloadList").children.length == 0)
 						gkDownloadManager.toggleShelf("hide");
-
-					setTimeout(() => {
-						gkDownloadManager.checkItemBounds();
-					}, 450);
 				}
 			});
 		}).catch(console.error);
+
+		window.addEventListener("resize", () => {
+			gkDownloadManager.checkItemBounds();
+		});
     }
 
 	static toggleShelf(toggle) {
@@ -401,7 +397,7 @@ class gkDownloadManager {
 		const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
 		// Update the downloaded size / total file size using the same unit
 		const downloadedSize = gkDownloadManager.formatSize(download.currentBytes);
-		const totalSize = gkDownloadManager.formatSize(download.totalBytes);	
+		const totalSize = gkDownloadManager.formatSize(download.totalBytes);
 
 		if (download.launchWhenSucceeded) {
 			downloadItemElm.querySelector(`.size`).textContent = ``;
