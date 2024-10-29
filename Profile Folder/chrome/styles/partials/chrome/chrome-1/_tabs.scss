@@ -593,10 +593,22 @@
 	.tab-sharing-icon-overlay,
 	.tab-icon-overlay {
 		&:not([pinned]) {
-			margin-inline-end: 0 !important;
+			margin-inline-end: unset !important;
 		}
 
 		visibility: unset !important;
+	}
+
+	.tab-icon-image {
+		opacity: unset !important;
+	}
+
+	.tab-icon-overlay {
+		opacity: unset !important;
+		background-color: unset !important;
+		border: unset !important;
+		padding: unset !important;
+		margin-block-end: -1px !important;
 	}
 
 	// Hide "Playing"/etc... label below tab title.

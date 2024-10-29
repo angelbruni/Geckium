@@ -24,6 +24,8 @@ UC_API.Runtime.startupFinished().then(()=>{
 function modifyTab(tab) {
 	tab.setAttribute("gkmodified", true);	// bruni: Add this attribute so we know 
 											// which tabs weren't modified on launch.
+								
+	let tabCloseButtonElm = tab.querySelector(".tab-close-button");
 
 	// Tab Small Attribute
 	new ResizeObserver(() => {
@@ -48,8 +50,6 @@ function modifyTab(tab) {
 			let tabIconStackElm = tab.querySelector(".tab-icon-stack");
 			if (tab.hasAttribute("visuallyselected")) {
 				// Hide icon if close button touches it
-				let tabCloseButtonElm = tab.querySelector(".tab-close-button");
-
 				if (Math.round(tabIconStackElm.getBoundingClientRect().left + tabIconStackElm.getBoundingClientRect().width + 4) >= Math.round(tabCloseButtonElm.getBoundingClientRect().left)) {
 					tabIconStackElm.style.visibility = "hidden";
 					tabIconStackElm.style.position = "absolute";
@@ -100,6 +100,10 @@ function modifyTab(tab) {
 		const mouseX = event.clientX - rect.left; 				// 		  Adjust mouse position relative to parent.
 		glare.style.left = `${mouseX}px`;
 	});
+
+	// Tab Icon Overlay
+	let tabIconOverlayElm = tab.querySelector(".tab-icon-overlay");
+	gkInsertElm.before(tabIconOverlayElm, tabCloseButtonElm);
 }
 
 (function() {
