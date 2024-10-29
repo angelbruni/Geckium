@@ -114,8 +114,6 @@
 			rgb(20, 62, 112)
 		);
 		--default-thumbnail-border-color-hot: rgb(20, 62, 112);
-
-		--default-link-color: #acc0da;
 	}
 
 	// Geckium You
@@ -132,7 +130,6 @@
 			hsl(var(--you-h), var(--you-s), calc(var(--you-l) + 9%)),
 			var(--edit-bar-background-color-hot)
 		);
-		--default-link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 18%));
 
 		@media (prefers-color-scheme: dark) {
 			--thumbnail-border-color-normal: color-mix(
@@ -159,7 +156,6 @@
 				hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%))
 			);
 			--default-thumbnail-border-color-hot: hsl(var(--you-h), var(--you-s), calc(var(--you-l-dark) - 32%));
-			--default-link-color: hsl(var(--you-h), calc(var(--you-s) - 31%), calc(var(--you-l-dark) + 18%));
 		}
 	}
 
@@ -184,8 +180,6 @@
 				var(--edit-bar-background-color-hot)
 			);
 		}
-
-		--link-color: var(--newtab-text-primary-color);
 	}
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
@@ -236,8 +230,6 @@
 			color-mix(in srgb, ActiveCaption 70%, white),
 			ActiveCaption
 		);
-
-		--link-color: FieldText;
 	}
 
 	&[geckium-choice="three"],
