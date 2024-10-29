@@ -548,7 +548,7 @@ class gkChrTheme {
     static applyTheme() {
         // FIXME: This one needs to default to True
         if (!gkPrefUtils.prefExists("Geckium.chrTheme.accommodate")) {
-		    gkPrefUtils.set("Geckium.chrTheme.accommodate").bool(true);																			    // Add default apps if the apps list is empty
+		    UC_API.Prefs.set("Geckium.chrTheme.accommodate", true);																			    // Add default apps if the apps list is empty
 	    }
         gkChrTheme.removeVariables(); // Not all variables can be ensured to be replaced, thus pre-emptively remove EVERY possible variable.
         let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;

@@ -26,7 +26,7 @@ function startFromScratch() {
 	Services.prefs.clearUserPref("Geckium.profilepic.mode");
 	Services.prefs.clearUserPref("Geckium.profilepic.chromiumIndex");
 	Services.prefs.clearUserPref("Geckium.customtheme.mode");
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", `
 {
 	"0": {
 		"pos": 0,
