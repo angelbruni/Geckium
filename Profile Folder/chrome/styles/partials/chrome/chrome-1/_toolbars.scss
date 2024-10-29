@@ -436,13 +436,16 @@
 		&#gsettings-button,
 		&#nav-bar-overflow-button,
 		&#developer-button {
+			&#gsettings-button,
 			&[class*="webextension"] {
-				overflow: visible !important;
-
 				.toolbarbutton-icon {
 					width: 19px !important;
 					height: 19px !important;
 				}
+			}
+
+			&[class*="webextension"] {
+				overflow: visible !important;
 			} 
 		}
 	}
