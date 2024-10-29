@@ -239,6 +239,8 @@
 
 	// Tab container
 	.tabbrowser-tab {
+		--tab-label-mask-size: 1em !important;
+
 		overflow: visible !important;
 		min-height: var(--tab-height) !important;
 		height: var(--tab-height) !important;
