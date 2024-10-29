@@ -17,6 +17,7 @@ function openWizardFromSplash(reset) {
 
 function startFromScratch() {
 	Services.prefs.clearUserPref("Geckium.appearance.titlebarStyle");
+	Services.prefs.clearUserPref("Geckium.appearance.GTKIcons");
 	Services.prefs.clearUserPref("Geckium.appearance.systemTheme");
 	Services.prefs.clearUserPref("Geckium.appearance.titlebarNative");
 	Services.prefs.clearUserPref("Geckium.branding.choice");

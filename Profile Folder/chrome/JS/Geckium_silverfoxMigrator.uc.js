@@ -75,6 +75,10 @@ class sfMigrator {
 				// Force Windows Styling
 				UC_API.Prefs.set("Geckium.appearance.titlebarStyle", "windows");
 			}
+			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
+				// Disable System Icons in Toolbarbuttons
+				UC_API.Prefs.set("Geckium.appearance.GTKIcons", 2);
+			}
 		}
 
 		//Theme
