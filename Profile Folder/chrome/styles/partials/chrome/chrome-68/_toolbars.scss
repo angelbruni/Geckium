@@ -79,21 +79,46 @@
 			}
 		}
 	
-		&#back-button {
-			&::before {
-				border-top-right-radius: 50% !important;
-				border-bottom-right-radius: 50% !important;
-			}
+		&#back-button::before {
+			border-top-right-radius: 50% !important;
+			border-bottom-right-radius: 50% !important;
 		}
 	
-		&#forward-button {
-			&::before {
-				border-top-left-radius: 50% !important;
-				border-bottom-left-radius: 50% !important;
-			}
+		&#forward-button::before {
+			border-top-left-radius: 50% !important;
+			border-bottom-left-radius: 50% !important;
+		}
+
+		.toolbarbutton-badge {
+			height: 13px !important;
+			min-width: 13px !important;
+			margin-block-end: calc(var(--toolbarbutton-inner-padding) * -1) !important;
+			margin-inline-end: calc(var(--toolbarbutton-inner-padding) * -1) !important;
+			background-image: unset;
+			box-shadow: unset !important;
+			border: 1px solid white;
 		}
 	}
 }
+
+:not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		&#unified-extensions-button,
+		&[type="menu"]:not(#back-button, #forward-button),
+		&#PanelUI-menu-button,
+		&[class*="webextension"],
+		&#gsettings-button,
+		&#nav-bar-overflow-button,
+		&#developer-button {
+			&[class*="webextension"] .toolbarbutton-icon {
+				width: 16px !important;
+				height: 16px !important;
+			}
+		}
+	}
 
 .urlbar-page-action {
 	width: calc(var(--urlbar-height-definitive) - 4px) !important;

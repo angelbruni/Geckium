@@ -1,6 +1,11 @@
 & { // TODO: When MD2 is added, ensure this code doesn't run on it
-	.titlebar-spacer[type="post-tabs"] {
-		margin-inline-end: var(--gap-size) !important; // Add spacing between caption buttons and tabs.
+	
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
 	}
 
 	// Give the tabs/Incognito/pfp the appropriate offset

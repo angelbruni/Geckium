@@ -42,7 +42,7 @@
 	--downloads-favicon: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/downloads_favicon.svg");
 }
 @media (-moz-platform: linux) {
-	:root[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
+	:root[gksystheme="gtk"]:not([gtkicons="2"], [gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 		// Fallback favicon
 		--default-favicon:		url(moz-icon://stock/text-x-generic?size=button);
 
@@ -53,7 +53,7 @@
 		--stop-button-icon:		url(moz-icon://stock/process-stop?size=toolbar);
 		--home-button-icon:		url(moz-icon://stock/go-home?size=toolbar);
 		--bookmark-folder-icon:	url(moz-icon://stock/folder?size=button);
-		&[moregtkicons="true"] {
+		&[gtkicons="1"] {
 			--password-notification-icon: url(moz-icon://stock/dialog-password?size=toolbar);
 			--star-button-icon-normal:	  url(moz-icon://stock/stock_delete-bookmark?size=button);
 			--star-button-icon-starred:	  url(moz-icon://stock/stock_bookmark?size=button);

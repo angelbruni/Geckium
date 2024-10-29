@@ -196,4 +196,12 @@
 			order: 0 !important;
 		}
 	}
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
+	}
 }

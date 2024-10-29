@@ -79,6 +79,10 @@ class sfMigrator {
 				// Disable System Icons in Toolbarbuttons
 				UC_API.Prefs.set("Geckium.appearance.GTKIcons", 2);
 			}
+			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
+				// Disable System Icons in Toolbarbuttons
+				gkPrefUtils.set("Geckium.appearance.GTKIcons").int(2);
+			}
 		}
 
 		//Theme
