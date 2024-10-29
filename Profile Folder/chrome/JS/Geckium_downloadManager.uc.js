@@ -317,10 +317,12 @@ class gkDownloadManager {
 
 	static toggleShelf(toggle) {
 		if (!toggle) {
-			if (this.shelf.getAttribute("hidden"))
+			if (this.shelf.getAttribute("hidden")) {
 				this.shelf.setAttribute("hidden", false);
-			else
-				this.shelf.setAttribute("hidden", true);	
+			} else {
+				this.shelf.setAttribute("hidden", true);
+				DownloadsViewController.downloadsCmd_clearList() 
+			}
 		} else {
 			switch (toggle) {
 				case "show":
@@ -328,6 +330,7 @@ class gkDownloadManager {
 					break;
 				case "hide":
 					this.shelf.setAttribute("hidden", true);
+					DownloadsViewController.downloadsCmd_clearList() 
 					break;
 			}
 		}
