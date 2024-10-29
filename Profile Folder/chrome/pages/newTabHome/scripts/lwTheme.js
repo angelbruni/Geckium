@@ -77,9 +77,8 @@ function setProperties() {
 					if (json.backgroundImage) {
 						let backgroundImageUrls = [];
 						for (let key in json.backgroundImage) {
-							if (json.backgroundImage.hasOwnProperty(key)) {
-								backgroundImageUrls.push(`url(chrome://userchrome/content/lwTesting/${activeThemeID}/${json.backgroundImage[key]})`);
-							}
+							if (json.backgroundImage.hasOwnProperty(key))
+								backgroundImageUrls.push(`url('chrome://userchrome/content/lwTesting/${activeThemeID}/${json.backgroundImage[key]}')`);
 						}
 						document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
 					}
@@ -103,7 +102,7 @@ function setProperties() {
 						document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", json.backgroundRepeat);
 
 					if (json.attributionImage)
-						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url(chrome://userchrome/content/lwTesting/${activeThemeID}/${json.attributionImage})`);
+						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url('chrome://userchrome/content/lwTesting/${activeThemeID}/${json.attributionImage}')`);
 
 					if (json.attributionWidth)
 						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-width", json.attributionWidth);
@@ -116,13 +115,12 @@ function setProperties() {
 				} catch {}
 
 				// 3rd-party: Add Geckium-exclusive values
-				//  FIXME: Can someone make this get the manifest via built-in APIs?
 				let fullmani;
-				let xpipath;
+				let themeUUID;
 				try {
 					var addon = await AddonManager.getAddonByID(activeThemeID);
-					xpipath = addon.__AddonInternal__.rootURI;
-					const response = await fetch(xpipath + "manifest.json");
+					themeUUID = `${JSON.parse(gkPrefUtils.tryGet("extensions.webextensions.uuids").string)[addon.id]}`;
+					const response = await fetch(`moz-extension://${themeUUID}/manifest.json`);
 					fullmani = await response.json();
 				} catch (error) {
 					console.error('Error fetching lwtheme - WHAT:', error);
@@ -144,9 +142,8 @@ function setProperties() {
 				if (fullmani.backgroundImage) {
 					let backgroundImageUrls = [];
 					for (let key in fullmani.backgroundImage) {
-						if (fullmani.backgroundImage.hasOwnProperty(key)) {
-							backgroundImageUrls.push(`url(${xpipath}${fullmani.backgroundImage[key]})`);
-						}
+						if (fullmani.backgroundImage.hasOwnProperty(key))
+							backgroundImageUrls.push(`url('moz-extension://${themeUUID}/${fullmani.backgroundImage[key]}')`);
 					}
 					document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
 				}
@@ -170,7 +167,7 @@ function setProperties() {
 					document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", fullmani.backgroundRepeat);
 
 				if (fullmani.attributionImage)
-					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url(${xpipath}${fullmani.attributionImage})`);
+					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url('moz-extension://${themeUUID}/${fullmani.attributionImage}')`);
 
 				if (fullmani.attributionWidth)
 					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-width", fullmani.attributionWidth);
