@@ -1,9 +1,42 @@
-&[geckium-choice="one"] {
-	@media only screen and (max-width: 882px) {
-		#mostvisitedtiles .thumbnail {
-			height: 113px;
-			width: 150px;
+& {
+	--default-link-color: rgb(0, 0, 204);
+	--link-color: var(--default-link-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-link-color: #acc0da;
+	}
+
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 18%));
+
+		@media (prefers-color-scheme: dark) {
+			link-color: hsl(var(--you-h), calc(var(--you-s) - 31%), calc(var(--you-l-dark) + 18%));
 		}
+	}
+
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--link-color: var(--newtab-text-primary-color);
+	}
+
+	&[geckium-choice="one"] {
+		@media only screen and (max-width: 882px) {
+			#mostvisitedtiles .thumbnail {
+				height: 113px;
+				width: 150px;
+			}
+		}
+	}
+
+	&[gkthemed][gkchrthemed] {
+		--link-color: var(--chrtheme-ntp-section-link, var(--default-link-color));
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--link-color: FieldText;
 	}
 }
 
@@ -31,11 +64,7 @@
 	.thumbnail-title {
 		margin-block-start: 6px;
 		padding: 1px 0px 4px 0;
-		color: rgb(0, 0, 204);
-
-		@media (prefers-color-scheme: dark) {
-			color: #acc0da;
-		}
+		color: var(--link-color);
 
 		image {
 			width: 16px;

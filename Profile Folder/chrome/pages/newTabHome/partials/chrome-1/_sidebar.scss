@@ -1,3 +1,30 @@
+& {
+	--default-sidebar-background-color: rgb(225, 236, 254);
+	--sidebar-panes-background-color: var(--default-sidebar-background-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-sidebar-background-color: #415470;
+	}
+
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--sidebar-panes-background-color: color-mix(
+			in srgb,
+			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
+			transparent
+		);
+	}
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--sidebar-panes-background-color: var(--chrtheme-ntp-section, var(--default-recently-closed-background));
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--sidebar-panes-background-color: -moz-dialog;
+	}
+}
+
 #sidebar {
 	width: 230px;
 	gap: 10px;
@@ -10,17 +37,13 @@
 #searches,
 #recentlyBookmarked {
 	border-radius: 5px;
-	background-color: rgb(225, 236, 254);
-
-	@media (prefers-color-scheme: dark) {
-		background-color: #415470;
-	}
+	background-color: var(--sidebar-panes-background-color);
 }
 
 .recent-bookmark {
 	display: flex;
 	height: 21px;
-	color: rgb(0, 0, 204);
+	color: var(--link-color);
 	-moz-context-properties: fill, fill-opacity;
 
 	@media (prefers-color-scheme: dark) {
