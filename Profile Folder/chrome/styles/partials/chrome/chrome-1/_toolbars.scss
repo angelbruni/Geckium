@@ -333,11 +333,30 @@
 		}
 
 		.toolbarbutton-badge {
-			min-width: 0 !important;
+			height: 11px !important;
+			min-width: 11px !important;
 			margin: 0 !important;
 			margin-block-end: calc((var(--toolbarbutton-inner-padding) * -1) + 1px) !important;
+			margin-inline-end: calc(var(--toolbarbutton-inner-padding) * -1 + 3px) !important;
+			padding-block: 0 !important;
+			padding-inline: 2px !important;
 			align-self: end !important;
-			justify-self: center !important;
+			justify-self: end !important;
+			font-weight: bold !important;
+			text-align: center !important;
+			background-image: linear-gradient(
+				to bottom,
+				transparent 1px,
+				rgba(255,255,255,.85) 1px,
+				transparent 2px,
+				rgba(0,0,0,.40) calc(100% - 1px),
+				transparent 100%
+			);
+			background-size: calc(100% - 2px);
+			background-position: 1px 0px;
+			background-repeat: no-repeat;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.30) !important;
+			border-radius: 2.5px !important;
 			z-index: 1;
 		}
 	}
@@ -402,6 +421,29 @@
 					background-color: rgba(240, 240, 240, 0.5) !important;
 				}
 			}
+		}
+	}
+
+	:not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#fxa-toolbar-menu-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		&#unified-extensions-button,
+		&[type="menu"]:not(#back-button, #forward-button),
+		&#PanelUI-menu-button,
+		&[class*="webextension"],
+		&#gsettings-button,
+		&#nav-bar-overflow-button,
+		&#developer-button {
+			&[class*="webextension"] {
+				overflow: visible !important;
+
+				.toolbarbutton-icon {
+					width: 19px !important;
+					height: 19px !important;
+				}
+			} 
 		}
 	}
 	
