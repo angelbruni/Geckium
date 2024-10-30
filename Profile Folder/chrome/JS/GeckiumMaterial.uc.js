@@ -83,8 +83,32 @@ function openGSettings(mode) {
 }
 
 function openAbout() {
-	if (gkEras.getBrowserEra() <= 21)
-		window.openDialog("about:aboutdialog", "", "centerscreen");
-	else
-		openTrustedLinkIn("about:preferences#about", "tab");
+	const gmBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gm.properties");
+
+	switch (gkPrefUtils.tryGet("Geckium.about.mode").int) {
+		case 1:
+			openAboutDialog();
+			break;
+		case 2:
+			if (gkEras.getBrowserEra() <= 21)
+				window.openDialog("about:aboutdialog", "", "centerscreen");
+			else
+				openTrustedLinkIn("about:preferences#about", "tab");
+			break;
+	
+		default:
+			const dialogChoice = Services.prompt.confirm(
+				window,
+				gmBundle.GetStringFromName("firstTimeAboutTitle"),
+				gmBundle.GetStringFromName("firstTimeAboutText")
+					.replace("{{brandingName}}", gkBranding.getBrandingKey("fullName", false))
+					.replaceAll("{{browserName}}", AppConstants.MOZ_APP_NAME.charAt(0).toUpperCase() + AppConstants.MOZ_APP_NAME.slice(1))
+			);
+			if (dialogChoice)
+				gkPrefUtils.set("Geckium.about.mode").int(2)
+			else
+				gkPrefUtils.set("Geckium.about.mode").int(1)
+			openAbout();
+			break;
+	}
 }
