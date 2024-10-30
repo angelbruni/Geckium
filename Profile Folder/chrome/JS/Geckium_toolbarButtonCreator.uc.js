@@ -15,18 +15,21 @@ class gkToolbarButtons {
 				overflows: params.overflows,
 				defaultArea: params.area,
 		
-				onCreated: function (toolbarButton) {
+				onCreated: function (toolbarbutton) {
 					if (!params.delegatesanchor)
-						toolbarButton.removeAttribute("delegatesanchor");
+						toolbarbutton.removeAttribute("delegatesanchor");
 		
 					if (!params.tooltip)
-						toolbarButton.setAttribute("tooltiptext", params.label);
+						toolbarbutton.setAttribute("tooltiptext", params.label);
 		
 					if (params.onclick)
-						toolbarButton.setAttribute("onclick", params.onclick);
+						toolbarbutton.setAttribute("onclick", params.onclick);
 
 					if (params.oncommand)
-						toolbarButton.setAttribute("oncommand", params.oncommand);
+						toolbarbutton.setAttribute("oncommand", params.oncommand);
+
+					if (typeof params.onCreated === "function")
+						params.onCreated(toolbarbutton);
 				},
 			})
 		} catch (e) {
@@ -282,7 +285,7 @@ class gkToolbarMenuButtons {
 						onclick: object[key].click,
 						command: object[key].command,
 						label: object[key].label,
-						l10nid: object[key].l10nid,
+						l10nId: object[key].l10nId,
 						accesskey: object[key].accesskey,
 						key: object[key].key,
 						acceltext: object[key].acceltext	
@@ -306,7 +309,7 @@ class gkToolbarMenuButtons {
 						click: object[key].click,
 						command: object[key].command,
 						label: object[key].label,
-						l10nid: object[key].l10nid,
+						l10nId: object[key].l10nId,
 						accesskey: object[key].accesskey,
 						key: object[key].key,
 						acceltext: object[key].acceltext
@@ -329,7 +332,7 @@ class gkToolbarMenuButtons {
 						click: object[key].click,
 						command: object[key].command,
 						label: object[key].label,
-						l10nid: object[key].l10nid,
+						l10nId: object[key].l10nId,
 						accesskey: object[key].accesskey,
 						key: object[key].key,
 						acceltext: object[key].acceltext
@@ -340,7 +343,7 @@ class gkToolbarMenuButtons {
 	}
 }
 
-window.addEventListener("load", function () {
+UC_API.Runtime.startupFinished().then(()=>{
 	gkToolbarMenuButtons.createItem({
 		parentID: "toolbar-context-menu",
 		type: "menuitem",
@@ -372,62 +375,62 @@ window.addEventListener("load", function () {
 			2: {},*/
 			3: {
 				id: "cut",
-				l10nid: "cut",
+				l10nId: "cut",
 				command: "cmd_cut",
 				key: "key_cut",
 			},
 			4: {
 				id: "copy",
-				l10nid: "copy",
+				l10nId: "copy",
 				command: "cmd_copy",
 				key: "key_copy",
 			},
 			5: {
 				id: "paste",
-				l10nid: "paste",
+				l10nId: "paste",
 				command: "cmd_paste",
 				key: "key_paste",
 			},
 			6: {},
 			7: {
 				id: "find",
-				l10nid: "find",
+				l10nId: "find",
 				command: "cmd_find",
 				key: "key_find",
 			},
 			8: {
 				id: "savePageAs",
-				l10nid: "savePageAs",
+				l10nId: "savePageAs",
 				command: "Browser:SavePage",
 				key: "key_savePage",
 			},
 			9: {
 				id: "print",
-				l10nid: "print",
+				l10nId: "print",
 				command: "cmd_print",
 				key: "printKb",
 			},
 			10: {},
 			11: {
 				id: "zoom",
-				l10nid: "zoom",
+				l10nId: "zoom",
 				subItems: [
 					{
 						1: {
 							id: "larger",
-							l10nid: "larger",
+							l10nId: "larger",
 							command: "cmd_fullZoomEnlarge",
 							key: "key_fullZoomEnlarge",
 						},
 						2: {
 							id: "normal",
-							l10nid: "normal",
+							l10nId: "normal",
 							command: "cmd_fullZoomReset",
 							key: "key_fullZoomReset",
 						},
 						3: {
 							id: "smaller",
-							l10nid: "smaller",
+							l10nId: "smaller",
 							command: "cmd_fullZoomReduce",
 							key: "key_fullZoomReduce",
 						},
@@ -436,7 +439,7 @@ window.addEventListener("load", function () {
 			},
 			/*12: {
 				id: "encoding",
-				l10nid: "encoding",
+				l10nId: "encoding",
 				subItems: [
 					{
 						1: {
@@ -449,28 +452,28 @@ window.addEventListener("load", function () {
 			13: {},
 			14: {
 				id: "developer",
-				l10nid: "developer",
+				l10nId: "developer",
 				subItems: [
 					{
 						1: {
 							id: "viewSource",
-							l10nid: "viewSource",
+							l10nId: "viewSource",
 							command: "View:PageSource",
 							key: "key_viewSource",
 						},
 						/*2: {
 							id: "developerTools",
-							l10nid: "developerTools",
+							l10nId: "developerTools",
 							acceltext: "Ctrl+Shift+I",
 						},
 						3: {
 							id: "javaScriptConsole",
-							l10nid: "javaScriptConsole",
+							l10nId: "javaScriptConsole",
 							acceltext: "Ctrl+Shift+J",
 						},*/
 						4: {
 							id: "taskManager",
-							l10nid: "taskManager",
+							l10nId: "taskManager",
 							command: "View:AboutProcesses",
 							key: "key_aboutProcesses",
 						},
@@ -480,7 +483,7 @@ window.addEventListener("load", function () {
 			15: {},
 			16: {
 				id: "reportBugOrBrokenWebsite",
-				l10nid: "reportBugOrBrokenWebsite",
+				l10nId: "reportBugOrBrokenWebsite",
 				click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
 			},
 		},
@@ -500,54 +503,54 @@ window.addEventListener("load", function () {
 			},
 			1: {
 				id: "newVersion",
-				l10nid: "newVersion",
+				l10nId: "newVersion",
 				click: "openTrustedLinkIn('https://github.com/angelbruni/Geckium/releases/latest', 'tab');",
 			},
 			2: {
 				id: "newTab",
-				l10nid: "newTab",
+				l10nId: "newTab",
 				command: "cmd_newNavigatorTab",
 				key: "key_newNavigatorTab",
 			},
 			3: {
 				id: "newWindow",
-				l10nid: "newWindow",
+				l10nId: "newWindow",
 				command: "cmd_newNavigator",
 				key: "key_newNavigator",
 			},
 			4: {
 				id: "newIncognitoWindow",
-				l10nid: "newIncognitoWindow",
+				l10nId: "newIncognitoWindow",
 				command: "Tools:PrivateBrowsing",
 				acceltext: "Ctrl+Shift+N",
 			},
 			5: {
 				id: "bookmarks",
-				l10nid: "bookmarks",
+				l10nId: "bookmarks",
 				subItems: [
 					{
 						1: {
 							id: "showBookmarks",
-							l10nid: "showBookmarksBar",
+							l10nId: "showBookmarksBar",
 							checkbox: true,
 							command: onViewToolbarCommand,
 							acceltext: "Ctrl+Shift+B",
 						},
 						2: {
 							id: "bookmarkMgr",
-							l10nid: "bookmarkManager",
+							l10nId: "bookmarkManager",
 							command: "Browser:ShowAllBookmarks",
 							key: "manBookmarkKb",
 						},
 						3: {
 							id: "bookmarkImport",
-							l10nid: "importBookmarksAndSettings",
+							l10nId: "importBookmarksAndSettings",
 							command: "OrganizerCommand_browserImport",
 						},
 						4: {},
 						5: {
 							id: "bookmarkPage",
-							l10nid: "bookmarkThisPage",
+							l10nId: "bookmarkThisPage",
 							command: "Browser:AddBookmarkAs",
 							key: "addBookmarkAsKb",
 						},
@@ -557,22 +560,22 @@ window.addEventListener("load", function () {
 			6: {},
 			7: {
 				id: "edit",
-				l10nid: "edit",
+				l10nId: "edit",
 				items: [
 					{
 						1: {
 							id: "cut6",
-							l10nid: "cut",
+							l10nId: "cut",
 							command: "cmd_cut",
 						},
 						2: {
 							id: "copy6",
-							l10nid: "copy",
+							l10nId: "copy",
 							command: "cmd_copy",
 						},
 						3: {
 							id: "paste6",
-							l10nid: "paste",
+							l10nId: "paste",
 							command: "cmd_paste",
 						},
 					},
@@ -581,7 +584,7 @@ window.addEventListener("load", function () {
 			8: {},
 			9: {
 				id: "zoom6",
-				l10nid: "zoom",
+				l10nId: "zoom",
 				items: [
 					{
 						1: {
@@ -609,24 +612,24 @@ window.addEventListener("load", function () {
 			11: {
 				id: "savePage6",
 				command: "Browser:SavePage",
-				l10nid: "savePageAs",
+				l10nId: "savePageAs",
 				key: "key_savePage",
 			},
 			12: {
 				id: "find6",
-				l10nid: "find",
+				l10nId: "find",
 				command: "cmd_find",
 				key: "key_find",
 			},
 			13: {
 				id: "print6",
-				l10nid: "print",
+				l10nId: "print",
 				command: "cmd_print",
 				key: "printKb",
 			},
 			14: {
 				id: "tools6",
-				l10nid: "tools",
+				l10nId: "tools",
 				subItems: [
 					{
 						/*1: {
@@ -636,42 +639,42 @@ window.addEventListener("load", function () {
 						2: {},*/
 						3: {
 							id: "extensions",
-							l10nid: "extensions",
+							l10nId: "extensions",
 							command: "Tools:Addons",
 						},
 						4: {
 							id: "taskmgr",
-							l10nid: "taskManager",
+							l10nId: "taskManager",
 							command: "View:AboutProcesses",
 							key: "key_aboutProcesses",
 						},
 						5: {
 							id: "cleardata",
-							l10nid: "clearBrowsingData",
+							l10nId: "clearBrowsingData",
 							command: "Tools:Sanitize",
 							key: "key_sanitize",
 						},
 						6: {},
 						7: {
 							id: "reportIssue",
-							l10nid: "reportAnIssue",
+							l10nId: "reportAnIssue",
 							click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
 						},
 						8: {},
 						9: {
 							id: "viewSource",
-							l10nid: "viewSource",
+							l10nId: "viewSource",
 							command: "View:PageSource",
 							key: "key_viewSource",
 						},
 						/*10: {
 							id: "devTools",
-							l10nid: "developerTools",
+							l10nId: "developerTools",
 							key: "key_toggleToolbox",
 						},*/
 						/*11: {
 							id: "javaScriptConsole",
-							l10nid: "javaScriptConsole",
+							l10nId: "javaScriptConsole",
 							command: "?",
 							acceltext: "Ctrl+Shift+J",
 						},*/
@@ -681,77 +684,149 @@ window.addEventListener("load", function () {
 			15: {
 				id: "alwaysShowBookmarksBar5",
 				checkbox: true,
-				l10nid: "alwaysShowBookmarksBar",
+				l10nId: "alwaysShowBookmarksBar",
 				command: onViewToolbarCommand,
 				acceltext: "Ctrl+B",
 			},
 			16: {
 				id: "fullScreen5",
-				l10nid: "fullScreen",
+				l10nId: "fullScreen",
 				click: "BrowserFullScreen();",
 				key: "key_enterFullScreen",
 			},
 			17: {},
 			18: {
 				id: "history",
-				l10nid: "history",
+				l10nId: "history",
 				command: "Browser:ShowAllHistory",
 				acceltext: "Ctrl+H",
 			},
 			19: {
 				id: "bookmarkManager5",
-				l10nid: "bookmarkManager",
+				l10nId: "bookmarkManager",
 				command: "Browser:ShowAllBookmarks",
 				acceltext: "Ctrl+Shift+B",
 			},
 			20: {
 				id: "downloads",
-				l10nid: "downloads",
+				l10nId: "downloads",
 				command: "Tools:Downloads",
 				key: "key_openDownloads",
 			},
 			21: {
 				id: "extensions5",
-				l10nid: "extensions",
+				l10nId: "extensions",
 				command: "Tools:Addons",
 			},
 			22: {},
 			23: {
 				id: "setupSync",
-				l10nid: "setUpSync",
+				l10nId: "setUpSync",
 				click: "gSync.openPrefsFromFxaMenu('sync_settings', this);",
 			},
 			24: {},
 			25: {
 				id: "options5",
-				l10nid: "options",
+				l10nId: "options",
 				click: "openPreferences()",
 			},
 			26: {
 				id: "settings6",
-				l10nid: "settings",
+				l10nId: "settings",
 				click: "openPreferences()",
 			},
 			27: {
 				id: "about",
-				l10nid: "about",
+				l10nId: "about",
 				click: "openAbout()",
 			},
 			28: {
 				id: "help",
-				l10nid: "help",
+				l10nId: "help",
 				click: "openHelpLink('firefox-help')",
 				acceltext: "F1",
 			},
 			29: {},
 			30: {
 				id: "exit",
-				l10nid: "exit",
+				l10nId: "exit",
 				command: "cmd_quitApplication",
 			},
 		},
 		adjustAccelTextWidth: true,
 	});
+	if (is134Plus) {
+		gkToolbarButtons.create({
+			id: "searchmode-switcher",
+			removable: true,
+			overflows: false,
+			area: CustomizableUI.AREA_NAVBAR,
+
+			onCreated: function(toolbarbutton) {
+				async function updateL10nArgs() {
+					try {
+						while (!Services.search.hasSuccessfullyInitialized) {
+							await new Promise(resolve => setTimeout(resolve, 100));
+						}
+					
+						toolbarbutton.dataset.l10nArgs = `{"engine":"${Services.search.defaultEngine.name}"}`;
+						toolbarbutton.dataset.l10nId = "urlbar-searchmode-button2";
+					} catch (e) {
+						console.error(e);	
+					}
+				}
+
+				async function updateIcon() {
+					try {
+						while (!Services.search.hasSuccessfullyInitialized) {
+							await new Promise(resolve => setTimeout(resolve, 100));
+						}
+					
+						toolbarbutton.style.listStyleImage = `url('${await Services.search.defaultEngine.getIconURL()}')`;
+					} catch (e) {
+						console.error(e);	
+					}
+				}
+
+				updateIcon();
+				updateL10nArgs();
+
+				const toolbarButtonArrow = document.createXULElement("image");
+				toolbarButtonArrow.classList.add("toolbarbutton-arrow");
+				
+				waitForElm(`#${this.id}-button .toolbarbutton-text`).then(() => {
+					gkInsertElm.after(toolbarButtonArrow, toolbarbutton.querySelector(".toolbarbutton-text"));
+				})
+
+				Services.obs.addObserver((subject, topic, data) => {
+					if (topic === "browser-search-engine-modified") {
+						updateIcon();
+						updateL10nArgs();
+					}
+				}, "browser-search-engine-modified"); 
+
+				let _popup = document.getElementById("searchmode-switcher-popup");
+
+				_popup.addEventListener("popupshown", (e) => {
+					toolbarbutton.setAttribute("open", true);
+				});
+				_popup.addEventListener("popuphidden", () => {
+					toolbarbutton.removeAttribute("open");
+				})
+
+				toolbarbutton.addEventListener("command", (e) => {
+					window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
+					PanelMultiView.openPopup(
+						_popup,
+						toolbarbutton,
+						{
+							position: "bottomright topright"
+						}
+					)
+				});
+			}
+		});
+	}
 	
 	const panelUIButton = document.getElementById("PanelUI-button");
 	panelUIButton.appendChild(document.getElementById("page-button"));

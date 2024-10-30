@@ -359,6 +359,10 @@
 			border-radius: 2.5px !important;
 			z-index: 1;
 		}
+
+		.toolbarbutton-arrow {
+			display: none !important;
+		}
 	}
 
 	.urlbar-page-action {
@@ -383,6 +387,7 @@
 		#new-tab-button,
 		.subviewbutton) {
 		&#unified-extensions-button,
+		&#searchmode-switcher-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"],
@@ -422,6 +427,19 @@
 				}
 			}
 		}
+
+		&#searchmode-switcher-button {
+			.toolbarbutton-icon {
+				width: 15px !important;
+				height: 15px !important;
+			}
+	
+			.toolbarbutton-arrow {
+				display: flex !important;
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/dropdown-arrow.svg") !important;
+				margin-inline-start: 3.5px;
+			}
+		}
 	}
 
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
@@ -430,6 +448,7 @@
 		#new-tab-button,
 		.subviewbutton) {
 		&#unified-extensions-button,
+		&#searchmode-switcher-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"],
@@ -620,12 +639,11 @@
 	#unified-extensions-button {
 		list-style-image: var(--unified-extensions-button-icon) !important;
 	}
-
 	// Remove Customise Toolbar from Overflow Menu
 	#overflowMenu-customize-button {
 		display: none !important;
 	}
-	
+
 
 	/*
 		Personal (the bookmarks) toolbar
@@ -1091,6 +1109,7 @@
 				&#page-button,
 				&#PanelUI-menu-button,
 				&#unified-extensions-button,
+				&#searchmode-switcher-button,
 				&#chrome-button,
 				&#logins-button,
 				&#developer-button,
