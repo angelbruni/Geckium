@@ -8,13 +8,6 @@
 // @include		about:addons*
 // ==/UserScript==
 
-// Firefox version check
-const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
-if (parseInt(ffVersion.split(".")[0]) >= 117)
-	document.documentElement.setAttribute("is117Plus", true);
-if (parseInt(ffVersion.split(".")[0]) >= 133)
-    document.documentElement.setAttribute("is133Plus", true);
-
 // Windows version check
 function isWindows10() {
 	if (AppConstants.platform == "win") {
