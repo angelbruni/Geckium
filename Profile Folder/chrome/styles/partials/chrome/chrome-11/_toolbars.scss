@@ -156,6 +156,7 @@
 		}
 
 		&#unified-extensions-button,
+		&#searchmode-switcher-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"],
@@ -166,6 +167,11 @@
 
 			&::before {
 				transition: none;
+			}
+
+			&#searchmode-switcher-button .toolbarbutton-icon {
+				width: 19px !important;
+				height: 19px !important;
 			}
 		}
 	}
