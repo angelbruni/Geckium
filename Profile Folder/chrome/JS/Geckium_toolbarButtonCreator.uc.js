@@ -348,16 +348,32 @@ UC_API.Runtime.startupFinished().then(()=>{
 		parentID: "toolbar-context-menu",
 		type: "menuitem",
 		id: "toolbar-context-gsettings",
-		oncommand: "openGSettings()",
-		label: "Geckium Settings",
+		oncommand: "openGSettings()"
 	});
+
+	document.getElementById("toolbar-context-menu").addEventListener("popupshown", () => {
+		const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
+
+		document.getElementById("menu_toolbar-context-gsettings").setAttribute("label", gSettingsBundle.GetStringFromName("geckiumSettings"));
+	});
+	
 	gkToolbarButtons.create({
 		id: "gsettings",
-		label: "Geckium Settings",
 		removable: true,
 		overflows: false,
 		area: CustomizableUI.AREA_NAVBAR,
 		oncommand: "openGSettings()",
+
+		onCreated: function(toolbarbutton) {
+			toolbarbutton.addEventListener("mouseover", () => {
+				const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
+				const gSettingsTitle = gSettingsBundle.GetStringFromName("geckiumSettings");
+				gkSetAttributes(document.getElementById("gsettings-button"), {
+					"label": gSettingsTitle,
+					"tooltiptext": gSettingsTitle
+				});
+			});
+		}
 	});
 	gkToolbarMenuButtons.create({
 		id: "page",
