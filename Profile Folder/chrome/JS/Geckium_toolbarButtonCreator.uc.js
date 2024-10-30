@@ -165,8 +165,8 @@ class gkToolbarMenuButtons {
 			if (params.label)
 				menuItem.setAttribute("label", params.label);
 
-			if (params.l10nid)
-				menuItem.setAttribute("data-l10n-id", params.l10nid);
+			if (params.l10nId)
+				menuItem.dataset.l10nId = params.l10nId;
 
 			if (params.accesskey)
 				menuItem.setAttribute("accesskey", params.accesskey);
