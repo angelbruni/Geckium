@@ -412,7 +412,6 @@ h4 {
 		display: block;
 		width: 100%;
 		height: 160px;
-		overflow: hidden;
 		background-size: cover;
 		background-position: top center;
 		cursor: pointer;
@@ -421,6 +420,37 @@ h4 {
 			background-size: cover !important;
 			background-position: top center !important;
 			box-shadow: var(--elevation-8);
+		}
+
+		&[data-browser="chrome"],
+		&[data-browser="msedge"] {
+			overflow: visible;
+
+			&:hover::after {
+				opacity: 1;
+				transform: translateX(-50%) translateY(-50%) scale(1);
+			}
+
+			&::after {
+				content: attr(data-chrtheme-name);
+				white-space: nowrap;
+				opacity: 0;
+				position: absolute;
+				pointer-events: none;
+				display: flex;
+				align-items: center;
+				z-index: 1;
+				background-color: rgba(95,99,104,.9);
+				border-radius: 2px;
+				height: 24px;
+				padding-inline: 8px;
+				color: white;
+				// bottom: -22px;
+				left: 50%;
+				top: 50%;
+				transform: translateX(-50%) translateY(-50%) scale(0);
+				transition: opacity .1s linear, transform .1s;
+			}
 		}
 
 		.name, .description {
