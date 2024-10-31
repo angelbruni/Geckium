@@ -5,11 +5,22 @@
 
 	--urlbar-background-verified-proxystate-valid: transparent;
 
-	#urlbar {
-		&[breakout],
-		&[breakout][breakout-extend] {
-			left: 0 !important;
-			width: 100% !important;
+	&[is133Plus] {
+		#urlbar {
+			&[breakout],
+			&[breakout][breakout-extend] {
+				width: var(--urlbar-width) !important;
+				margin-left: unset !important;
+			}
+		}
+	}
+	&:not([is133Plus]) {
+		#urlbar {
+			&[breakout],
+			&[breakout][breakout-extend] {
+				left: 0 !important;
+				width: 100% !important;
+			}
 		}
 	}
 

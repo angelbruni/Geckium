@@ -45,6 +45,14 @@
 			display: none !important;
 		}
 	}
+
+	&[type="switchtab"] .urlbarView-row-inner .urlbarView-title {
+		padding-left: 24px;
+	}
+}
+
+.urlbarView-no-wrap {
+	flex-basis: 0 !important;
 }
 
 .urlbarView-favicon {
@@ -53,6 +61,8 @@
 
 .urlbarView-url {
 	padding-left: 24px !important;
+	width: unset;
+	max-width: 50%;
 }
 
 .urlbarView-title {

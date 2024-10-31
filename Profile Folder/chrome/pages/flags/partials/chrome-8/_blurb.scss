@@ -5,4 +5,8 @@
 #blurb-warning {
 	color: red;
     font-weight: bold;
+
+	@media (prefers-color-scheme: dark) {
+		color: hsl(0, 100%, 70%);
+	}
 }

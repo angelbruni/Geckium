@@ -239,6 +239,8 @@
 
 	// Tab container
 	.tabbrowser-tab {
+		--tab-label-mask-size: 1em !important;
+
 		overflow: visible !important;
 		min-height: var(--tab-height) !important;
 		height: var(--tab-height) !important;
@@ -267,6 +269,11 @@
 			min-width: var(--tab-selected-min-width) !important;
 
 			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
+
+			&[minwidthreached="true"] .tab-icon-stack {
+				visibility: hidden !important;
+				position: absolute !important;
+			}
 
 			.tab-background-container {
 				&::before {
@@ -588,10 +595,22 @@
 	.tab-sharing-icon-overlay,
 	.tab-icon-overlay {
 		&:not([pinned]) {
-			margin-inline-end: 0 !important;
+			margin-inline-end: unset !important;
 		}
 
 		visibility: unset !important;
+	}
+
+	.tab-icon-image {
+		opacity: unset !important;
+	}
+
+	.tab-icon-overlay {
+		opacity: unset !important;
+		background-color: unset !important;
+		border: unset !important;
+		padding: unset !important;
+		margin-block-end: -1px !important;
 	}
 
 	// Hide "Playing"/etc... label below tab title.

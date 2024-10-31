@@ -36,12 +36,8 @@
 	}
 
 	&[type="switchtab"] {
-		.urlbarView-row-inner .urlbarView-title {
-			padding-left: 24px;
-
-			&::before {
-				display: none;
-			}
+		.urlbarView-row-inner .urlbarView-title::before {
+			display: none;
 		}
 
 		.urlbarView-action {
@@ -171,9 +167,8 @@
 	width: 50%;
 	overflow: hidden !important;
 	text-overflow: ellipsis;
-	padding-inline-end: 8px;
 	box-sizing: border-box;
-	margin-top: 0 !important;
+	margin: 0 !important;
 	font-size: unset !important;
 	color: rgb(11, 133, 14) !important;
 	flex-grow: 0 !important;
