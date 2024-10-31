@@ -86,7 +86,7 @@ async function populateThemesList() {
 
         let themeElm = `
         <html:button
-                class="link geckium-appearance ripple-enabled"
+                class="link geckium-appearance"
                 data-${themeInfo[i].type}-name="${themeInfo[i].id}" data-browser="${themeInfo[i].browser}"
                 style="background-color: ${themeInfo[i].bannerColor}; background-image: ${themeInfo[i].banner};
 ${themeInfo[i].bannerAlignment ? `background-position: ${themeInfo[i].bannerAlignment} !important; ` : ""}
