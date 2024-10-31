@@ -50,9 +50,15 @@
 		.titlebar-spacer[type="pre-tabs"] {
 			margin-inline-start: var(--gap-size);
 		}
+
 		#TabsToolbar::before {
-			width: calc(100% - 6px);
 			left: calc(var(--gap-size) + 1px);
+		}
+		&[gktitnative="true"] #TabsToolbar::before {
+			width: calc(100% - 6px);
+		}
+		&[gktitnative="false"] #TabsToolbar::before {
+			width: calc(100% - 8px);
 		}
 		#nav-bar,
 		#PersonalToolbar,
