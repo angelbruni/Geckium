@@ -1,3 +1,5 @@
+const { gkFileUtils } = ChromeUtils.importESModule("chrome://modules/content/GeckiumFileUtils.sys.mjs");
+
 async function getChrThemesList() {
     var result = [];
     const themes = await gkChrTheme.getThemes();
@@ -55,18 +57,8 @@ async function applyTheme(themeid) {
 }
 
 function openChrThemesDir() {
-	const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
-
-	// Specify the path of the directory you want to open
 	const directoryPath = gkChrTheme.getFolderFileUtilsPath;
 
-	try {
-		// Create a file object representing the directory
-		const directory = new FileUtils.File(directoryPath);
-
-		// Open the directory
-		directory.launch();
-	} catch (e) {
-		window.alert(`Could not open ${directoryPath} - ensure the directory exists before trying again.`);
-	}
+	gkFileUtils.create(true, directoryPath);
+	gkFileUtils.launch(directoryPath);
 }
