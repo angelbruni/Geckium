@@ -26,76 +26,62 @@
 	}
 
 	&[geckium-one] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
-				}
+		[data-browser="chrome"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
 			}
-	
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
-				}
+		}
+
+		[data-browser="firefox"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
 			}
 		}
 	}
 
 	&[geckium-one][geckium-two] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
-				}
+		[data-browser="firefox"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
 			}
 		}
 	}
 
 	&[geckium-one][geckium-two][geckium-eleven] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
-				}
+		[data-browser="chrome"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
 			}
 		}
 	}
 
 	&[geckium-one][geckium-two][geckium-twentyfive] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
-				}
+		[data-browser="firefox"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
 			}
 		}
 	}
 
 	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
-				}
+		[data-browser="chrome"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
 			}
 		}
 	}
 
 	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
-				}
+		[data-browser="firefox"] {
+			.theme-icons .theme-browser-icon {
+				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
 			}
 		}
 	}
 
-	.link.geckium-appearance {
-		&[data-browser="msedge"] {
-			.theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
-			}
+	[data-browser="msedge"] {
+		.theme-icons .theme-browser-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
 		}
 	}
 }
@@ -422,35 +408,30 @@ h4 {
 			box-shadow: var(--elevation-8);
 		}
 
+		/*&:not(
+			[data-browser="chrome"],
+			[data-browser="msedge"]
+		) {
+			#manage {
+				display: none !important;
+			}
+		}*/
+		&[data-browser="firefox"],
 		&[data-browser="chrome"],
 		&[data-browser="msedge"] {
-			overflow: visible;
-
-			&:hover::after {
-				opacity: 1;
-				transform: translateX(-50%) translateY(-50%) scale(1);
+			&:not([disabled]):hover {
+				.year {
+					opacity: 0;
+				}
+				#manage {
+					opacity: 1;
+				}
 			}
+		}
 
-			&::after {
-				content: attr(data-chrtheme-name);
-				white-space: nowrap;
-				opacity: 0;
-				position: absolute;
-				pointer-events: none;
-				display: flex;
-				align-items: center;
-				z-index: 1;
-				background-color: rgba(95,99,104,.9);
-				border-radius: 2px;
-				height: 24px;
-				padding-inline: 8px;
-				color: white;
-				// bottom: -22px;
-				left: 50%;
-				top: 50%;
-				transform: translateX(-50%) translateY(-50%) scale(.9);
-				transition: opacity .1s linear, transform .1s;
-			}
+		.theme-icons {
+			top: 10px;
+			left: 10px;
 		}
 
 		.name, .description {
@@ -474,50 +455,21 @@ h4 {
 			cursor: pointer;
 		}
 
-		.year {
+		.year,
+		#manage {
 			position: absolute;
-			top: 10px;
-			right: 5px;
+			transition: 155ms;
 		}
-		
-		.icon {
-			position: absolute;
+
+		.year {
 			top: 10px;
-			left: 10px;
-			transform: unset;
-			mask-image: unset;
-			mask-size: unset;
-			background: unset;
-			flex-shrink: unset;
+			right: 10px;
+		}
 
-			.theme-type-icon,
-			.theme-browser-icon {
-				position: absolute;
-			}
-
-			.theme-type-icon {
-				width: inherit;
-				height: inherit;
-
-				&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
-					filter: saturate(0);
-					fill: #209f43;
-					-moz-context-properties: fill, fill-opacity;
-					opacity: 0.5;
-				}
-			}
-
-			.theme-browser-icon {
-				bottom: 0;
-				right: 0;
-
-				width: 16px;
-				height: 16px;
-
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: contain;
-			}
+		#manage {
+			top: 5px;
+			right: 5px;
+			opacity: 0;
 		}
 
 		.identifier {
@@ -571,6 +523,47 @@ h4 {
 		background-color: ActiveCaption !important;
 	}
 }
+
+.theme-icons {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: unset;
+	mask-image: unset;
+	mask-size: unset;
+	background: unset;
+	flex-shrink: unset;
+
+	.theme-type-icon,
+	.theme-browser-icon {
+		position: absolute;
+	}
+
+	.theme-type-icon {
+		width: inherit;
+		height: inherit;
+
+		&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
+			filter: saturate(0);
+			fill: #209f43;
+			-moz-context-properties: fill, fill-opacity;
+			opacity: 0.5;
+		}
+	}
+
+	.theme-browser-icon {
+		bottom: 0;
+		right: 0;
+
+		width: 16px;
+		height: 16px;
+
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+	}
+}
+
 // Grid filters
 :root {
 	&[gkthemefilter="chrthemes"],
