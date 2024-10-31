@@ -45,6 +45,10 @@
                 word-break: break-word;
             }
 
+            vbox.header {
+                align-items: center;
+                gap: 18px;
+            }
             .header {
                 color: var(--header-text-color);
                 font-size: 15pt;
@@ -54,12 +58,54 @@
                 padding-block-start: 18px;
                 padding-block-end: 9px;
             }
+            
+            image[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
+                filter: saturate(0);
+                fill: #209f43;
+                -moz-context-properties: fill, fill-opacity;
+                opacity: 0.5;
+            }
+
+            #preview {
+                z-index: 1;
+                align-self: center;
+                background-size: cover;
+                background-position: top center;
+                transform: scale(1);
+                transition: box-shadow .2s, transform .2s;
+
+                &:hover {
+                    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2) !important;
+                    transform: scale(1.5) translateY(-54px);
+
+                    + #darken-background {
+                        opacity: 1;
+                    }
+                }
+
+                + #darken-background {
+                    content: "";
+                    position: fixed;
+                    pointer-events: none;
+                    width: 100vw;
+                    height: 100vh;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: rgba(0, 0, 0, 0.1);
+                    opacity: 0;
+                    transition: opacity 200ms;
+                }
+            }
+
             .description {
                 padding: 4px 24px;
                 color: var(--description-text-color);
                 letter-spacing: 0.2px;
                 font-weight: 400;
+                white-space: pre-wrap;
             }
+
             .footer {
                 padding-inline: 18px;
                 padding-block-start: 10px;

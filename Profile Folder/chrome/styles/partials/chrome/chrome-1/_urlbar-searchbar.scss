@@ -120,8 +120,14 @@
 		}
 	}
 
-	&[is134Plus] #urlbar-searchmode-switcher {
-		display: none !important;
+	&[is134Plus] {
+		#urlbar:not([breakout-extend]) {
+			top: unset !important;
+		}
+
+		#urlbar-searchmode-switcher {
+			display: none !important;
+		}
 	}
 }
 

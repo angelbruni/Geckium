@@ -63,6 +63,32 @@ export class gkFileUtils {
 	}
 
 	/**
+	 * delete - Deletes a file.
+	 * 
+	 * @filePath: Path to file to be deleted.
+	 */
+	static delete(filePath) {
+		let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+		file.initWithPath(filePath);
+		file.remove(false);
+	}
+
+	/**
+	 * showFileInDirectory - Opens the directory of a file/directory in the file maanger an highlights it.
+	 * 
+	 * @filePath: Path to file to be shown in file manager.
+	 */
+	static showFileInDirectory(filePath) {
+		try {
+			let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+			file.initWithPath(filePath);
+			file.reveal();
+		} catch {
+			console.error(e);
+		}
+	}
+
+	/**
 	 * launch - Launches a file.
 	 * 
 	 * @filePath: Path to file to be launched.
