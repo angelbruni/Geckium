@@ -684,9 +684,55 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" style="width: 100%;">
-											<h4>
-												&gsettings.appearance;
-											</h4>
+											<h4>&gsettings.appearance;</h4>
+											<div class="modal" data-modal="manageTheme_modal">
+												<div class="wrapper">
+													<div class="card" style="max-width: unset;">
+														<vbox class="body">
+															<vbox class="header">
+																<html:div style="width: 48px; height: 48px; position: relative;">
+																	<html:div class="theme-icons" style="width: 48px; height: 48px">
+																		<html:img class="theme-type-icon" />
+																		<html:div class="theme-browser-icon" />
+																	</html:div>
+																</html:div>
+																<hbox style="align-items: center; gap: 4px;">
+																	<html:p />
+																	<html:div class="year" style="height: fit-content;" />
+																</hbox>
+															</vbox>
+															<html:div id="preview" class="card elevation-0" style="width: 640px; height: 360px;" />
+															<html:div id="darken-background" />
+															<vbox class="description">
+																<html:p style="margin-block-end: 13px;"/>
+																<hbox>
+																	<html:p>&gsettings.filename;</html:p>
+																	<html:p id="filename" />
+																</hbox>
+															</vbox>
+															<div class="footer">
+																<html:button id="deleteBtn" class="button ripple-enabled text" data-toggle-modal="deleteThemeConfirm_modal">&gsettings.delete;</html:button>
+																<label id="viewStorePageBtn" is="text-link" class="button ripple-enabled text">&gsettings.viewStorePage;</label>
+																<label id="searchBtn" is="text-link" class="button ripple-enabled text">&gsettings.search;</label>
+																<spacer />
+																<html:button id="OKBtn" class="button ripple-enabled text" data-toggle-modal="manageTheme_modal">&dialog.ok;</html:button>
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
+											<div class="modal" data-modal="deleteThemeConfirm_modal">
+												<div class="wrapper">
+													<div class="card">
+														<vbox class="body">
+															<div class="header">&dialog.areyousure;</div>
+															<div class="footer">
+																<button id="cancelDeleteBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modal="deleteThemeConfirm_modal" />
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
 											<vbox class="card">
 												<vbox class="item" flex="1" style="padding-block-start: 19px">
 													<grid id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center;" flex="1">

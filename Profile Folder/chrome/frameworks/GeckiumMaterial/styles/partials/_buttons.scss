@@ -27,38 +27,30 @@ label {
 
 		transition: background-color 155ms, box-shadow 155ms;
 
-		&[class*="icon"] {
-			&::before {
-				content: "";
-				width: 18px;
-				height: 18px;
-				mask-size: 18px;
-				margin-right: 8px;
-				background-color: black;
-			}
+		&[class*="icon"]::before {
+			content: "";
+			width: 18px;
+			height: 18px;
+			mask-size: 18px;
+			margin-right: 8px;
+			background-color: black;
+		}
+
+		&[disabled] {
+			pointer-events: none;
 		}
 		
-		&.raised {
-			&:not([disabled]) {
-				&:active {
-					box-shadow: var(--elevation-8);
-				}
-			}
+		&.raised:not([disabled]):active {
+			box-shadow: var(--elevation-8);
 		}
 
 		&.text {
-			&.color {
-				&:not([disabled]) {
-					&:active {
-						background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent);
-					}
-				}
+			&.color:not([disabled]):active {
+				background: color-mix(in srgb, var(--secondary-color, var(--primary-color)) 40%, transparent);
 			}
 
-			&:not([disabled]) {
-				&:active {
-					background: rgba(153, 153, 153, .4);
-				}
+			&:not([disabled]):active {
+				background: rgba(153, 153, 153, .4);
 			}
 		}
 
@@ -67,10 +59,8 @@ label {
 		}
 
 		&.ripple-enabled {
-			&:not([disabled]) {
-				&:active {
-					transition: background-color 0ms, box-shadow 155ms;
-				}
+			&:not([disabled]):active {
+				transition: background-color 0ms, box-shadow 155ms;
 			}
 	
 			&.raised {
@@ -78,12 +68,8 @@ label {
 					box-shadow: var(--elevation-2);
 				}
 	
-				&:not([disabled]) {
-					&:not(:active) {
-						&:hover {
-							box-shadow: var(--elevation-2);
-						}
-					}
+				&:not([disabled]):not(:active):hover {
+					box-shadow: var(--elevation-2);
 				}
 			}
 	
@@ -91,16 +77,12 @@ label {
 				padding-inline: 16px;
 				background: var(--secondary-color, var(--primary-color));
 
-				&[class*="icon"] {
-					&::before {
-						background-color: white;
-					}
+				&[class*="icon"]::before {
+					background-color: white;
 				}
 
-				&:not([disabled]) {
-					.ripple {
-						background: rgba(255, 255, 255, .3);
-					}
+				&:not([disabled]) .ripple {
+					background: rgba(255, 255, 255, .3);
 				}
 	
 				color: white;
@@ -120,10 +102,8 @@ label {
 					color: rgb(224,224,224);
 				}
 
-				&[class*="icon"] {
-					&::before {
-						background-color: var(--secondary-color, var(--primary-color));
-					}
+				&[class*="icon"]::before {
+					background-color: var(--secondary-color, var(--primary-color));
 				}
 
 				&.color {
@@ -169,6 +149,12 @@ label {
 		}
 
 		&[disabled] {
+			color: rgba(0,0,0,.26) !important;
+
+			@media (prefers-color-scheme: dark) {
+				color: rgba(255, 255, 255, 0.26) !important;
+			}
+
 			&.raised {
 				box-shadow: none;
 			}
@@ -202,10 +188,8 @@ label {
 			opacity: 50%;
 			color: black;
 
-			&.leading-icon {
-				&::before {
-					background: black;
-				}
+			&.leading-icon::before {
+				background: black;
 			}
 
 			.ripple {
@@ -213,19 +197,15 @@ label {
 			}
 		}
 
-		&:not([disabled]) {
-			&:active {
-				box-shadow: var(--elevation-12);
-			}
+		&:not([disabled]):active {
+			box-shadow: var(--elevation-12);
 		}
 
-		&.leading-icon {
-			&::before {
-				content: "";
-				width: 24px;
-				height: 24px;
-				background: white;
-			}
+		&.leading-icon::before {
+			content: "";
+			width: 24px;
+			height: 24px;
+			background: white;
 		}
 
 		&:not(.mini) {
@@ -320,24 +300,54 @@ label {
 			opacity: .5;
 		}
 
-		&[class*="icon"] {
-			&::before {
-				content: "";
-				width: 44px;
-				height: 44px;
-				mask-size: 44px;
-				margin-right: 20px;
-				background-color: black;
-				flex-shrink: 0;
+		&[class*="icon"]::before {
+			content: "";
+			width: 44px;
+			height: 44px;
+			mask-size: 44px;
+			margin-right: 20px;
+			background-color: black;
+			flex-shrink: 0;
 
-				@media (prefers-color-scheme: dark) {
-					background-color: white;
-				}
+			@media (prefers-color-scheme: dark) {
+				background-color: white;
 			}
 		}
 
 		.ripple {
 			background: rgba(153, 153, 153, .4);
+		}
+	}
+
+	&.action-item {
+		border-radius: 50%;
+		width: 48px;
+		height: 48px;
+		justify-content: center;
+		transition: background-color 155ms;
+		filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.14)) drop-shadow(0px 2px 1px rgba(0,0,0,0.12)) drop-shadow(0px 1px 3px rgba(0,0,0,0.20));
+
+		&:not([disabled]) {
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+			}
+
+			&:active {
+				background-color: rgba(255, 255, 255, .3);
+
+				&::before {
+					transform: rotate(180deg);
+				}
+			}
+		}
+
+		&[class*="icon"]::before {
+			content: "";
+			width: 24px;
+			height: 24px;
+			mask-size: 24px;
+			background-color: white;
+			transition: transform .5s;
 		}
 	}
 }
