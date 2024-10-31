@@ -273,9 +273,9 @@ class gkDownloadManager {
 								downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
 									try {
 										if (AppConstants.platform == "win")
-											await gkFileUtils.moveFile(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
+											await gkFileUtils.move(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
 										else
-											await gkFileUtils.moveFile(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
+											await gkFileUtils.move(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
 
 										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 										await lighttheme.enable();
