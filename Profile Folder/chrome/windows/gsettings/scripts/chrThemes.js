@@ -11,9 +11,11 @@ async function getChrThemesList() {
         result.push({
             "type": "chrtheme",
 			"browser": theme.browser,
+            "builtin": false,
             "name": theme.name,
             "desc": theme.description,
             "id": themeFile,
+            "page": null,
             "icon": theme.icon ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.icon}` : null,
             "banner": theme.banner ? `url('jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.banner}')` : "unset",
             "bannerAlignment": null,
@@ -21,7 +23,14 @@ async function getChrThemesList() {
             "bannerSizing": null,
             "bannerColor": theme.color ? `rgb(${theme.color})` : "white", // white is a direct reference to the fallback NTP background
             "version": theme.version,
-            "event": function(){ applyTheme(themeFile); }
+            "apply": function() { applyTheme(themeFile); },
+            "uninstall": function() {
+                // Disable theme if it's currently enabled.
+                if (gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string == themeFile)
+                    gkPrefUtils.delete("Geckium.chrTheme.fileName")
+                
+                gkFileUtils.delete(`${gkChrTheme.getFolderFileUtilsPath}/${theme.file}`)
+            }
         });
     }
     return result;

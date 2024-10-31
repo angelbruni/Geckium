@@ -50,6 +50,10 @@ async function getLWThemesList() {
 			continue;
 		}
 
+		let themeSourceURL;
+		if (theme.__AddonInternal__.installTelemetryInfo && theme.__AddonInternal__.installTelemetryInfo.sourceURL)
+			themeSourceURL = theme.__AddonInternal__.installTelemetryInfo.sourceURL;
+
 		let themeBanner;
 		let themeBannerAlignment;
 		let themeBannerTiling;
@@ -87,9 +91,11 @@ async function getLWThemesList() {
         result.push({
             "type": "lwtheme",
 			"browser": "firefox",
+			"builtin": theme.__AddonInternal__._key.includes("app-builtin:"),
             "name": theme.name,
             "desc": theme.description,
             "id": theme.id,
+			"page": themeSourceURL,
             "icon": theme.icons[128] ?
 						theme.icons[128] : theme.icons[64] ?
 							theme.icons[64] : theme.icons[32],
@@ -99,7 +105,8 @@ async function getLWThemesList() {
 			"bannerSizing": themeBannerSizing ? themeBannerSizing : null,
 			"bannerColor": mani.theme.colors.frame || "white",
             "version": theme.version,
-			"event": function(){ theme.enable(); }
+			"apply": function() { theme.enable(); },
+			"uninstall": function() { theme.uninstall(false); }
         });
 		console.log(`getLWThemesList: Added ${theme.id} to themes grid!`);
     }
