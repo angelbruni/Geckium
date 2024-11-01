@@ -205,7 +205,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 					break;
 				case "chrome":
 					pathToTheme = `${gkChrTheme.getFolderFileUtilsPath}/${themeInfo[i].id}.crx`;
-					searchLink = `https://chromewebstore.google.com/search/${themeInfo[i].name}?itemTypes=EXTENSION`;
+					searchLink = `https://chromewebstore.google.com/search/${themeInfo[i].name}?itemTypes=THEME`;
 
 					if (!themeInfo[i].id.includes("Geckium_Tan"))
 						storePageLink = `https://chromewebstore.google.com/detail/${themeInfo[i].name.replaceAll(" ", "-").toLowerCase()}/${themeInfo[i].id.split("_")[0].toLowerCase()}`;
