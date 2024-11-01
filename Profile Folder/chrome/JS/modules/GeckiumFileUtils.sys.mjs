@@ -54,6 +54,7 @@ export class gkFileUtils {
 	static create(type, newFilePath) {
 		try {
 			let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+			newFilePath = Services.io.newURI(`file://${filePath.replace(/\\/g, "/")}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 			file.initWithPath(newFilePath);
 			file.create(type, 0o755)
 		} catch (e) {
@@ -69,6 +70,7 @@ export class gkFileUtils {
 	 */
 	static delete(filePath) {
 		let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+		filePath = Services.io.newURI(`file://${filePath.replace(/\\/g, "/")}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 		file.initWithPath(filePath);
 		file.remove(false);
 	}
@@ -81,9 +83,10 @@ export class gkFileUtils {
 	static showFileInDirectory(filePath) {
 		try {
 			let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+			filePath = Services.io.newURI(`file://${filePath.replace(/\\/g, "/")}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 			file.initWithPath(filePath);
 			file.reveal();
-		} catch {
+		} catch (e) {
 			console.error(e);
 		}
 	}
@@ -96,9 +99,10 @@ export class gkFileUtils {
 	static launch(filePath) {
 		try {
 			let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+			filePath = Services.io.newURI(`file://${filePath.replace(/\\/g, "/")}`, null, null).QueryInterface(Components.interfaces.nsIFileURL).file.path;
 			file.initWithPath(filePath);
 			file.launch();
-		} catch {
+		} catch (e) {
 			console.error(e);
 		}
 	}
