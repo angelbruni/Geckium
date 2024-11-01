@@ -280,6 +280,13 @@
 			}
 		}
 
+		&[soundplaying],
+		&[muted] {
+			&[pinned] .tab-mute-button {
+				pointer-events: none;
+			}
+		}
+
 		&:not([soundplaying], [muted]) .tab-mute-button {
 			display: none;
 		}
