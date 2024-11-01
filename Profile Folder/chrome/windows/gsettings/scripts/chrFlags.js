@@ -6,7 +6,7 @@ function populateFlags() {
 	flags.forEach((flag, index) => {
 		const isMultipleChoice = flag.hasOwnProperty("values");
 
-		console.log(flag, isMultipleChoice);
+		// console.log(flag, isMultipleChoice);
 
 		const flagName = Object.keys(chrFlags.getFlagsList())[index];
 
@@ -57,7 +57,7 @@ function populateFlags() {
 		let flagOption;
 		if (isMultipleChoice) {
 			Object.values(flag.values).forEach((value, index) => {
-				console.log(index, value);
+				// console.log(index, value);
 
 				flagOption = `
 				<hbox class="item ripple-enabled" value="${index}">${value}</hbox>

@@ -58,7 +58,7 @@ function updateNavButtons() {
 	pageSwitcherStart.disabled = currentTabIndex === 0;
 	pageSwitcherEnd.disabled = !nextPageExists;
 
-	console.log(currentTabIndex, !nextPageExists)
+	// console.log(currentTabIndex, !nextPageExists)
 }
 
 function switchTab(direction, static, id) {
@@ -82,7 +82,7 @@ function switchTab(direction, static, id) {
 
 		//desiredTab = id;
 
-	console.log(currentTabIndex, id)
+	// console.log(currentTabIndex, id)
 
 	if (id !== 0)
 		pageContainer.style.transform = "translateX(calc(var(--page-width) * -1 * " + desiredTab + "))";
@@ -93,7 +93,7 @@ function switchTab(direction, static, id) {
 		page.classList.remove("selected");
 	});
 
-	console.log(pageContainer.querySelector("[data-page='" + desiredTab + "']"));
+	// console.log(pageContainer.querySelector("[data-page='" + desiredTab + "']"));
 
 	if (id !== 0)
 		pageContainer.querySelector("[data-page='" + desiredTab + "']").classList.add("selected");
