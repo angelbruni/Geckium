@@ -2,13 +2,41 @@
 	--tab-normal-width: 191px;
 	--tab-pinned-width: 36px;
 
+	--tab-audio-indicator-margin-block-start:	1px;
+	--tab-audio-indicator-size: 				16px;
+	--tab-audio-indicator: 						url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_audio_indicator.svg");
+	--tab-audio-muting-indicator:				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_audio_muting_indicator.svg");
+
 	--tab-close-button-margin-inline-end: -3px;
 
-	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close.svg");
-	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg");
-	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg");
+	--tab-close-button-normal:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close.svg");
+	--tab-close-button-hot:		url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg");
+	--tab-close-button-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg");
 }
 
-.tabbrowser-tab[visuallyselected][minwidthreached="true"] .tab-close-button {
-	transform: translateX(-1.5px);
+.tabbrowser-tab {
+	&[visuallyselected][minwidthreached="true"] .tab-close-button {
+		transform: translateX(-1.5px);
+	}
+
+	&[soundplaying],
+	&[muted] {
+		&[pinned] .tab-icon-stack {
+			display: none !important;
+		}
+	}
+
+	&[muted] .tab-mute-button {
+		opacity: unset;
+		background-image: var(--tab-audio-muting-indicator);
+	}
+
+	.tab-mute-button {
+		position: static;
+		width: var(--tab-audio-indicator-size);
+		height: var(--tab-audio-indicator-size);
+		background-image: var(--tab-audio-indicator);
+		animation: unset;
+		margin-block-start: var(--tab-audio-indicator-margin-block-start);
+	}
 }

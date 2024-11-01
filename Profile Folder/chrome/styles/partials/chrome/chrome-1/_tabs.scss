@@ -17,6 +17,11 @@
 	100% { transform: translateX(-2864px) }
 }
 
+@keyframes audio-animation {
+	0%	 { background-position: 0 }
+	100% { background-position: calc(var(--tab-audio-animation-spritesheet-width) * -1) }
+}
+
 :root {
 	--tab-drop-indicator-pos-from-top-normal: 		-2px;
 	--tab-drop-indicator-icon-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab-drag-indicator.svg");
@@ -58,6 +63,12 @@
 
 	--tab-gap-between-favicon-and-title: 5px;
 	--tab-pinned-icon-offset-x: 0;
+
+	--tab-audio-animation-spritesheet-image:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/audio_animation.svg");
+	--tab-audio-animation-spritesheet-width:	90px;
+	--tab-audio-animation-spritesheet-height:	15px;
+	--tab-audio-animation-frames:				6;
+	--tab-audio-animation-duration:				2000ms;
 
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.svg");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.svg");
@@ -260,6 +271,20 @@
 				transition-duration: var(--tab-glare-hover-timer);
 				transition-timing-function: linear;
 			}
+		}
+
+		&:not([soundplaying]),
+		&[muted] {
+			.tab-mute-button {
+				animation: unset;
+			}
+		}
+
+		&:not([soundplaying], [muted]) .tab-mute-button {
+			display: none;
+		}
+		&[muted] .tab-mute-button {
+			opacity: 0;
 		}
 
 		&[visuallyselected] {
@@ -564,6 +589,7 @@
 	}
 
 	.tab-content {
+		position: relative;
 		padding: 0 !important;
 		margin-block-start: var(--tab-content-y-from-top) !important;
 		margin-inline-start: var(--tab-inner-margin-start) !important;
@@ -592,8 +618,7 @@
 	.tab-throbber,
 	.tab-icon-pending,
 	.tab-icon-image,
-	.tab-sharing-icon-overlay,
-	.tab-icon-overlay {
+	.tab-sharing-icon-overlay {
 		&:not([pinned]) {
 			margin-inline-end: unset !important;
 		}
@@ -605,17 +630,20 @@
 		opacity: unset !important;
 	}
 
-	.tab-icon-overlay {
-		opacity: unset !important;
-		background-color: unset !important;
-		border: unset !important;
-		padding: unset !important;
-		margin-block-end: -1px !important;
+	// We are using a custom Geckium element called `.tab-mute-button` instead.
+	// Hide "Playing"/etc... label below tab title.
+	.tab-icon-overlay,
+	.tab-secondary-label {
+		display: none;
 	}
 
-	// Hide "Playing"/etc... label below tab title.
-	.tab-secondary-label {
-		display: none !important;
+	.tab-mute-button {
+		position: absolute;
+		width: var(--tab-audio-animation-spritesheet-height);
+		height: var(--tab-audio-animation-spritesheet-height);
+		background-image: var(--tab-audio-animation-spritesheet-image);
+		background-position: 0px;
+		animation: audio-animation var(--tab-audio-animation-duration) steps(var(--tab-audio-animation-frames)) infinite;
 	}
 
 	.tab-close-button {

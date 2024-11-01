@@ -101,9 +101,13 @@ function modifyTab(tab) {
 		glare.style.left = `${mouseX}px`;
 	});
 
-	// Tab Icon Overlay
-	let tabIconOverlayElm = tab.querySelector(".tab-icon-overlay");
-	gkInsertElm.before(tabIconOverlayElm, tabCloseButtonElm);
+	// Tab Mute
+	let tabMuteButtonElm = document.createElement("div");
+	tabMuteButtonElm.classList.add("tab-mute-button");
+	gkInsertElm.before(tabMuteButtonElm, tabCloseButtonElm);
+	tabMuteButtonElm.addEventListener("click", () => {
+		tab.toggleMuteAudio()
+	});
 }
 
 (function() {
