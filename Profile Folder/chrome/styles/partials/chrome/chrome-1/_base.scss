@@ -1,9 +1,5 @@
-:root {
-	&[lwtheme-image] {
-		&[lwtheme-brighttext] {
-			text-shadow: none !important;
-		}
-	}
+:root[lwtheme-image] {
+	text-shadow: none !important;
 }
 
 tooltip {

@@ -1,7 +1,7 @@
 & {
 	--tab-close-button-margin-inline-end: -2px;
 
-	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.png");
+	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.svg");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_hover.png");
 	--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_pressed.png");
     
@@ -14,7 +14,6 @@
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-25/tabbar/newtab_pressed.png");
 
 	@media not (resolution: 96dpi) {
-		--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_mask.svg");
 		--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_hover.svg");
 		--tab-close-button-pressed: 			url("chrome://userchrome/content/assets/img/chrome-25/tabbar/tab_close_pressed.svg");
 
