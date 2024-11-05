@@ -19,7 +19,7 @@ Just install Geckium normally by deleting your `chrome` folder and placing Gecki
 
 Geckium is designed for the following platforms:
 
-- Linux (tested on Arch, by the way, Fedora KDE, Fedora, Kubuntu and Feren OS)
+- Linux (tested on Arch, by the way, Fedora KDE, Fedora, Kubuntu, Feren OS and Linux Mint)
 - Windows 7
 - Windows 8.1
 - Windows 10 (with Native Controls Patch)
