@@ -43,7 +43,7 @@ However,
 **To improve your Geckium experience, you should also install [Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey) and, using Tampermonkey, install [the official Geckium UserScript for enhanced functionality](https://github.com/angelbruni/CRX-Downloader-userScript/raw/refs/heads/main/crx-downloader.user.js).**
 
 > [!WARNING]
-> Remember to only get JavaScript-powered Firefox modifications, such as Geckium, from sources that you trust, such as [the Geckium repository](https://github.com/angelbruni/Geckium) - JavaScript-powered modifications have full access to Firefox's functionality, including unrestricted file management and your data within Firefox.
+> Remember to only get JavaScript-powered Firefox modifications (such as Geckium) from sources that you trust, such as [the Geckium repository](https://github.com/angelbruni/Geckium) - JavaScript-powered modifications have full access to Firefox's functionality, including unrestricted file management and your data within Firefox.
 
 ## Linux
 
