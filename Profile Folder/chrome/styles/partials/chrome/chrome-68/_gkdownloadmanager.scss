@@ -40,12 +40,7 @@
 	cursor: default;
 }
 
-#gkDownloadList > .item {
-	.file {
-		margin-inline-end: calc((var(--gkdownload-item-more-width) * -1) - 4px) !important;
-		padding-inline-end: calc(var(--gkdownload-item-more-width) + 9px) !important;
-	}
-	
+#gkDownloadList > .item {	
 	.more {
 		margin-inline-end: 4px !important;
 		list-style-image: url("chrome://userchrome/content/assets/img/chrome-68/downloadshelf/arrow.svg");

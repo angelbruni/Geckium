@@ -194,6 +194,9 @@ class gkDownloadManager {
 					const downloadItem = gkDownloadManager.createItem(download);
 					document.getElementById("gkDownloadList").prepend(downloadItem);
 					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+					new ResizeObserver(() => {
+						gkDownloadManager.checkItemBounds();
+					}).observe(downloadItemElm);
 
 					downloadItemElm.addEventListener('contextmenu', (e) => {
 						e.preventDefault();
@@ -229,13 +232,6 @@ class gkDownloadManager {
 							pauseMenuItem.dataset.l10nId = "downloads-cmd-resume";
 						else
 							pauseMenuItem.dataset.l10nId = "downloads-cmd-pause";
-					});
-					
-					setTimeout(() => {
-						gkDownloadManager.checkItemBounds();
-					}, 450);
-					addEventListener("resize", () => {
-						gkDownloadManager.checkItemBounds();
 					});
 
 					// Initialize previous bytes and time for download speed calculation
@@ -277,9 +273,9 @@ class gkDownloadManager {
 								downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
 									try {
 										if (AppConstants.platform == "win")
-											await gkFileUtils.moveFile(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
+											await gkFileUtils.move(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
 										else
-											await gkFileUtils.moveFile(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
+											await gkFileUtils.move(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
 
 										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 										await lighttheme.enable();
@@ -310,21 +306,23 @@ class gkDownloadManager {
 
 					if (document.getElementById("gkDownloadList").children.length == 0)
 						gkDownloadManager.toggleShelf("hide");
-
-					setTimeout(() => {
-						gkDownloadManager.checkItemBounds();
-					}, 450);
 				}
 			});
 		}).catch(console.error);
+
+		window.addEventListener("resize", () => {
+			gkDownloadManager.checkItemBounds();
+		});
     }
 
 	static toggleShelf(toggle) {
 		if (!toggle) {
-			if (this.shelf.getAttribute("hidden"))
+			if (this.shelf.getAttribute("hidden")) {
 				this.shelf.setAttribute("hidden", false);
-			else
-				this.shelf.setAttribute("hidden", true);	
+			} else {
+				this.shelf.setAttribute("hidden", true);
+				DownloadsViewController.downloadsCmd_clearList() 
+			}
 		} else {
 			switch (toggle) {
 				case "show":
@@ -332,6 +330,7 @@ class gkDownloadManager {
 					break;
 				case "hide":
 					this.shelf.setAttribute("hidden", true);
+					DownloadsViewController.downloadsCmd_clearList() 
 					break;
 			}
 		}
@@ -401,7 +400,7 @@ class gkDownloadManager {
 		const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
 		// Update the downloaded size / total file size using the same unit
 		const downloadedSize = gkDownloadManager.formatSize(download.currentBytes);
-		const totalSize = gkDownloadManager.formatSize(download.totalBytes);	
+		const totalSize = gkDownloadManager.formatSize(download.totalBytes);
 
 		if (download.launchWhenSucceeded) {
 			downloadItemElm.querySelector(`.size`).textContent = ``;
@@ -645,6 +644,7 @@ class gkDownloadManager {
 	}
 }
 
-_ucUtils.windowIsReady(window).then(() => {
-	gkDownloadManager.createShelf();
+UC_API.Runtime.startupFinished().then(()=>{
+	if (!isBrowserPopUpWindow)
+		gkDownloadManager.createShelf();
 });

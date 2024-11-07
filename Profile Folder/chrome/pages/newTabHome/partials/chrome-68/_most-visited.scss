@@ -4,6 +4,11 @@
 	@media (prefers-color-scheme: dark) {
 		--tile-background: rgb(77, 77, 77);
 	}
+
+	&[style*="--chrtheme-ntp-logo-alternate: 1"],
+	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--tile-background: rgb(77, 77, 77);
+	}
 }
 
 .mv-tile {

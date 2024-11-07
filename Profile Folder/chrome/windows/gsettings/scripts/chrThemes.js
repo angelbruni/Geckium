@@ -1,3 +1,5 @@
+const { gkFileUtils } = ChromeUtils.importESModule("chrome://modules/content/GeckiumFileUtils.sys.mjs");
+
 async function getChrThemesList() {
     var result = [];
     const themes = await gkChrTheme.getThemes();
@@ -9,9 +11,11 @@ async function getChrThemesList() {
         result.push({
             "type": "chrtheme",
 			"browser": theme.browser,
+            "builtin": false,
             "name": theme.name,
             "desc": theme.description,
             "id": themeFile,
+            "page": null,
             "icon": theme.icon ? `jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.icon}` : null,
             "banner": theme.banner ? `url('jar:file://${chrThemesFolder}/${themeFile}.crx!/${theme.banner}')` : "unset",
             "bannerAlignment": null,
@@ -19,7 +23,14 @@ async function getChrThemesList() {
             "bannerSizing": null,
             "bannerColor": theme.color ? `rgb(${theme.color})` : "white", // white is a direct reference to the fallback NTP background
             "version": theme.version,
-            "event": function(){ applyTheme(themeFile); }
+            "apply": function() { applyTheme(themeFile); },
+            "uninstall": function() {
+                // Disable theme if it's currently enabled.
+                if (gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string == themeFile)
+                    gkPrefUtils.delete("Geckium.chrTheme.fileName")
+                
+                gkFileUtils.delete(`${gkChrTheme.getFolderFileUtilsPath}/${theme.file}`)
+            }
         });
     }
     return result;
@@ -55,18 +66,8 @@ async function applyTheme(themeid) {
 }
 
 function openChrThemesDir() {
-	const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
-
-	// Specify the path of the directory you want to open
 	const directoryPath = gkChrTheme.getFolderFileUtilsPath;
 
-	try {
-		// Create a file object representing the directory
-		const directory = new FileUtils.File(directoryPath);
-
-		// Open the directory
-		directory.launch();
-	} catch (e) {
-		window.alert(`Could not open ${directoryPath} - ensure the directory exists before trying again.`);
-	}
+	gkFileUtils.create(true, directoryPath);
+	gkFileUtils.launch(directoryPath);
 }

@@ -17,6 +17,11 @@
 	100% { transform: translateX(-2864px) }
 }
 
+@keyframes audio-animation {
+	0%	 { background-position: 0 }
+	100% { background-position: calc(var(--tab-audio-animation-spritesheet-width) * -1) }
+}
+
 :root {
 	--tab-drop-indicator-pos-from-top-normal: 		-2px;
 	--tab-drop-indicator-icon-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab-drag-indicator.svg");
@@ -25,7 +30,9 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-width: 194px;
+	--tab-normal-width: 194px;
+	--tab-pinned-width: 39px;
+	--tab-selected-min-width: 31px;
 	--tab-height: 27px;
 	--tab-sides-width: 15px;
 	--tab-inner-margin-start: 15px;
@@ -55,6 +62,13 @@
 	--tab-container-right:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_container_right.svg");
 
 	--tab-gap-between-favicon-and-title: 5px;
+	--tab-pinned-icon-offset-x: 0;
+
+	--tab-audio-animation-spritesheet-image:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/audio_animation.svg");
+	--tab-audio-animation-spritesheet-width:	90px;
+	--tab-audio-animation-spritesheet-height:	15px;
+	--tab-audio-animation-frames:				6;
+	--tab-audio-animation-duration:				2000ms;
 
 	--tab-close-button-normal: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_mask.svg");
 	--tab-close-button-hot: 				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_close_h.svg");
@@ -106,7 +120,6 @@
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		.tab-drop-indicator {
-			top: var(--tab-drop-indicator-pos-from-top-maximized) !important;
 			background: var(--tab-drop-indicator-icon-maximized) !important;
 		}
 	}
@@ -197,9 +210,11 @@
 	}
 
 	.tab-drop-indicator {
+		position: absolute !important;
 		z-index: 101 !important;
-		top: var(--tab-drop-indicator-pos-from-top-normal) !important;
+		bottom: 0 !important;
 		background: var(--tab-drop-indicator-icon-normal) !important;
+		height: 41px;
 	}
 
 	#tabbrowser-tabs,
@@ -235,10 +250,13 @@
 
 	// Tab container
 	.tabbrowser-tab {
+		--tab-label-mask-size: 1em !important;
+
 		overflow: visible !important;
 		min-height: var(--tab-height) !important;
 		height: var(--tab-height) !important;
 		max-height: var(--tab-height) !important;
+		margin-inline-start: 0 !important;
 		padding: 0 !important;
 		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
 
@@ -255,11 +273,39 @@
 			}
 		}
 
+		&:not([soundplaying]),
+		&[muted] {
+			.tab-mute-button {
+				animation: unset;
+			}
+		}
+
+		&[soundplaying],
+		&[muted] {
+			&[pinned] .tab-mute-button {
+				pointer-events: none;
+			}
+		}
+
+		&:not([soundplaying], [muted]) .tab-mute-button {
+			display: none;
+		}
+		&[muted] .tab-mute-button {
+			opacity: 0;
+		}
+
 		&[visuallyselected] {
 			// Bring selected tab to front
 			z-index: 100 !important;
 
+			min-width: var(--tab-selected-min-width) !important;
+
 			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
+
+			&[minwidthreached="true"] .tab-icon-stack {
+				visibility: hidden !important;
+				position: absolute !important;
+			}
 
 			.tab-background-container {
 				&::before {
@@ -319,7 +365,7 @@
 		*  - Love, Bruni
 		*/
 		&:not([pinned]) + .tabbrowser-tab:not([visuallyselected]),
-		&[pinned] + .tabbrowser-tab:not([visuallyselected])[pinned] {
+		&[pinned] + .tabbrowser-tab:not([visuallyselected]) {
 			/**
 			*  bruni: `:nth-child(2)[style*="transform: translateX(-192px);"]`:
 			*  	   The mask will not apply to the second tab when it is
@@ -347,10 +393,11 @@
 		}
 
 		&[fadein] {
-			&:not([pinned]) {
-				&:not([style*="max-width"]) {
-					max-width: var(--tab-width) !important;
-				}
+			&[pinned]:not([style*="max-width"]) {
+				max-width: var(--tab-pinned-width) !important;
+			}
+			&:not([pinned]):not([style*="max-width"]) {
+				max-width: var(--tab-normal-width) !important;
 			}
 		}
 
@@ -370,6 +417,24 @@
 			visibility: unset !important;
 			pointer-events: none !important;
 			animation: hide-tab var(--tab-transition-time) ease;
+		}
+
+		&[pinned] {
+			.tab-stack {
+				width: 100px !important; // Force pinned tab size.
+			}
+
+			.tab-content {
+				justify-content: center !important;
+			}
+
+			.tab-icon-stack {
+				margin-inline-start: var(--tab-pinned-icon-offset-x);
+			}
+			
+			.tab-label-container {
+				display: none !important;
+			}
 		}
 	}
 
@@ -516,14 +581,26 @@
 		}
 	}
 
+	.tab-hitbox,
 	.tab-content {
 		height: calc(var(--tab-height) - 1px);
+		pointer-events: auto !important;
+	}
+
+	.tab-hitbox {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		margin-inline-start: calc(var(--tab-inner-margin-start) / 2);
+	}
+
+	.tab-content {
+		position: relative;
 		padding: 0 !important;
 		margin-block-start: var(--tab-content-y-from-top) !important;
 		margin-inline-start: var(--tab-inner-margin-start) !important;
 		padding-inline-end: var(--tab-inner-margin-end) !important;
-
-		pointer-events: auto !important;
 	}
 
 	.tab-icon-stack {
@@ -548,22 +625,37 @@
 	.tab-throbber,
 	.tab-icon-pending,
 	.tab-icon-image,
-	.tab-sharing-icon-overlay,
-	.tab-icon-overlay {
+	.tab-sharing-icon-overlay {
 		&:not([pinned]) {
-			margin-inline-end: 0 !important;
+			margin-inline-end: unset !important;
 		}
 
 		visibility: unset !important;
 	}
 
+	.tab-icon-image {
+		opacity: unset !important;
+	}
+
+	// We are using a custom Geckium element called `.tab-mute-button` instead.
 	// Hide "Playing"/etc... label below tab title.
+	.tab-icon-overlay,
 	.tab-secondary-label {
-		display: none !important;
+		display: none;
+	}
+
+	.tab-mute-button {
+		position: absolute;
+		width: var(--tab-audio-animation-spritesheet-height);
+		height: var(--tab-audio-animation-spritesheet-height);
+		background-image: var(--tab-audio-animation-spritesheet-image);
+		background-position: 0px;
+		animation: audio-animation var(--tab-audio-animation-duration) steps(var(--tab-audio-animation-frames)) infinite;
 	}
 
 	.tab-close-button {
 		list-style-image: var(--tab-close-button-normal) !important;
+		fill: currentColor !important;
 		margin: 0 !important;
 		margin-block-start: var(--tab-close-button-margin-block-start) !important;
 		margin-inline-end: var(--tab-close-button-margin-inline-end) !important;

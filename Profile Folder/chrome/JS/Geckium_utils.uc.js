@@ -3,15 +3,35 @@
 // @description Utilities for making coding easier. Taken from BeautyFox.
 // @author      AngelBruni
 // @loadorder   1
-// @include     *
+// @include     main
+// @include		about:preferences*
+// @include		about:addons*
 // ==/UserScript==
+
+// Firefox version check
+const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
+let is117Plus = false;
+if (parseInt(ffVersion.split(".")[0]) >= 117) {
+	document.documentElement.setAttribute("is117Plus", true);
+	is117Plus = true;
+}
+let is133Plus = false;
+if (parseInt(ffVersion.split(".")[0]) >= 133) {
+	document.documentElement.setAttribute("is133Plus", true);
+	is133Plus = true;
+}
+let is134Plus = false;
+if (parseInt(ffVersion.split(".")[0]) >= 134) {
+	document.documentElement.setAttribute("is134Plus", true);
+	is134Plus = true;
+}
 
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
 const isNCPatched = window.matchMedia("(-moz-ev-native-controls-patch)").matches;
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
-const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden") == "menubar toolbar directories extrachrome ";
+const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar");
 
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);

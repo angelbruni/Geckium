@@ -43,21 +43,30 @@ class gkChrTheme {
 
 			if (directory.exists() && directory.isDirectory()) {
 				var directoryEntries = directory.directoryEntries;
-                console.log(`CRX getThemes: Looking for themes in ${chrThemesFolder}...`);
+
+                if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                    console.log(`CRX getThemes: Looking for themes in ${chrThemesFolder}...`);
+
 				while (directoryEntries.hasMoreElements()) {
 				    const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
 					if (file.leafName.endsWith(".crx")) {
                         try {
-                            console.log(`CRX getThemes: Attempting to read the manifest of ${file.leafName}`);
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log(`CRX getThemes: Attempting to read the manifest of ${file.leafName}`);
                             
                             const response = await fetch(`jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`);
-                            console.log("CRX getThemes: Got response from manifest: ", response);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log("CRX getThemes: Got response from manifest: ", response);
+
                             const theme = await response.json();
                             if (!theme.theme) {
                                 console.error("Error fetching theme manifest: not a theme");
                                 continue;
                             }
-                            console.log("CRX getThemes: Got valid theme manifest: ", theme);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log("CRX getThemes: Got valid theme manifest: ", theme);
 
                             let themeName = theme.name;
                             let themeDescription = theme.description;
@@ -93,7 +102,9 @@ class gkChrTheme {
                                     break; // Exit the locale-iteration now we've got strings
                                 } catch {}
                             }
-                            console.log(`CRX getThemes: Got theme name and description: ${themeName}: ${themeDescription}`);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log(`CRX getThemes: Got theme name and description: ${themeName}: ${themeDescription}`);
 
                             let themeBanner;
                             let themeBannerColor;
@@ -122,7 +133,9 @@ class gkChrTheme {
                                     themeBannerColor = undefined;
                                 }
                             }
-                            console.log(`CRX getThemes: Got theme banner: ${themeBanner}, ${themeBannerColor}`);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log(`CRX getThemes: Got theme banner: ${themeBanner}, ${themeBannerColor}`);
 
                             let themeIcon;
                             if (theme.theme.icons) {
@@ -140,7 +153,9 @@ class gkChrTheme {
                                 else if (theme.icons[16])
                                     themeIcon = theme.icons[16];
                             }
-                            console.log(`CRX getThemes: Got theme icon: ${themeIcon}`);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log(`CRX getThemes: Got theme icon: ${themeIcon}`);
 
                             let browser;
                             if (theme.update_url) {
@@ -151,7 +166,9 @@ class gkChrTheme {
                             } else {
                                 browser = "chrome";
                             }
-                            console.log(`CRX getThemes: Got browser origin: ${browser}`);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log(`CRX getThemes: Got browser origin: ${browser}`);
 
                             const themeKey = file.leafName;
                             themes[themeKey] = {
@@ -164,7 +181,9 @@ class gkChrTheme {
                                 color: themeBannerColor,
                                 icon: themeIcon
                             };
-                            console.log("CRX getThemes: Added theme info to grid! ", themes[themeKey]);
+
+                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                                console.log("CRX getThemes: Added theme info to grid! ", themes[themeKey]);
                         } catch (error) {
                             console.error("Error fetching theme manifest:", error);
                         };

@@ -365,6 +365,8 @@ Research: Useful insight into Firefox JS.`,
 
 		if (person.socials) {
 			const socialBox = document.createXULElement("vbox");
+			socialBox.style.flexShrink = "0";
+			socialBox.style.alignItems = "end";
 			creditElm.querySelector(".information-container").appendChild(socialBox);
 			person.socials.forEach(social => {
 				const socialElm = document.createXULElement("label", { is: "text-link" });

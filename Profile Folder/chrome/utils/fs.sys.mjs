@@ -167,7 +167,7 @@ export class FileSystem{
   static #appendToBaseURI(aPath,aFileURI){
     // Normally, this API can only write into resources directory
     // Writing outside of resources can be enabled using following pref
-    const disallowUnsafeWrites = !Services.prefs.getBoolPref("userChromeJS.allowUnsafeWrites");
+    const disallowUnsafeWrites = !Services.prefs.getBoolPref("userChromeJS.allowUnsafeWrites",false);
     
     const baseURI = aFileURI || FileSystem.RESOURCE_URI;
     let baseParts = PathUtils.split(baseURI.QueryInterface(Ci.nsIFileURL).file.path);

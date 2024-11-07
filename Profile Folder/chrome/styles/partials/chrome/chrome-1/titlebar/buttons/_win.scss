@@ -52,10 +52,6 @@
 	}
 	
 	&[gktitnative="false"] {
-		.titlebar-spacer[type="post-tabs"] {
-			margin-inline-end: 16px !important; // Add spacing between caption buttons and tabs.
-		}
-
 		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
 			.titlebar-buttonbox-container::before {
@@ -293,5 +289,13 @@
 				}
 			}
 		}
+	}
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
 	}
 }
