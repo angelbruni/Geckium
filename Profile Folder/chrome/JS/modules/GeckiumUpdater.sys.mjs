@@ -14,6 +14,9 @@ export class gkUpdater {
 				case "beta":
 					channel = "b";
 					break;
+				case "canary":
+					channel = "c";
+					break;
 			}
 
 			return channel + version;
