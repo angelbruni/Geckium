@@ -1,0 +1,544 @@
+& {
+	--default-footer-border: linear-gradient(
+		to left,
+		rgba(150, 150, 150, 0.2),
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 20%,
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.3) 80%,
+		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.2)
+	);
+	--footer-border: var(--default-footer-border);
+	--footer-background: linear-gradient(
+		to bottom,
+		rgba(242, 242, 242, 0.9),
+		rgba(222, 222, 222, 0.9)
+	);
+	--footer-color: #7f7f7f;
+
+	--dot-color-normal: #999;
+	--dot-color-hot: #7f7f7f;
+	--selection-bar-background-color-normal: rgba(0, 0, 0, 0.1);
+	--selection-bar-background-color-hot: #b2b2b2;
+	--selection-bar-background-color-active: #7f7f7f;
+
+	--footer-item-color-hot: #666;
+	--footer-menu-button-glyph-background-color-normal: #7f7f7f;
+	--footer-menu-item-link-color: #063874;
+	--footer-vertical-separator-background-color: rgb(178, 178, 178);
+
+	// Geckium You
+	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
+		--footer-menu-item-link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
+	}
+
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%, black)
+					20%,
+				transparent
+			),
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					30%,
+				transparent
+			)
+			20%,
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					30%,
+				transparent
+			)
+			80%,
+			/* COLOR_NTP_SECTION_BORDER */
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						black
+					)
+					20%,
+				transparent
+			)
+		);
+		
+
+		&[footer-themable="true"] {
+			--logo-wordmark-color: var(--toolbar-color, var(--lwt-text-color));
+
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 86%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: var(--toolbar-color, var(--lwt-text-color));
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				gray
+			);
+			--dot-color-hot: var(--toolbar-color, var(--lwt-text-color));
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: var(--toolbar-color, var(--lwt-text-color));
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: var(--toolbar-color, var(--lwt-text-color));
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				transparent
+			);
+		}
+	}
+
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				var(--chrtheme-ntp-header) 20%,
+				transparent
+			),
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrtheme-ntp-header) 30%,
+					transparent
+				)
+				20%,
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrtheme-ntp-header) 30%,
+					transparent
+				)
+				80%,
+			/* COLOR_NTP_SECTION_BORDER */
+				color-mix(
+					in srgb,
+					var(--chrtheme-ntp-header) 20%,
+					transparent
+				)
+		);
+
+		&[footer-themable="true"][style~="--chrtheme-ntp-background:"][style~="--chrtheme-ntp-text:"]:not([style*="--chrtheme-ntp-background: rgb(255, 255, 255);"]),
+		&[footer-themable="true"][style~="--chrtheme-toolbar:"][style~="--chrtheme-toolbar-button-icon:"] {
+			--gk-footer-bg: var(--chrtheme-ntp-background);
+			--gk-footer-fg: var(--chrtheme-ntp-text);
+			&[style~="--chrtheme-toolbar:"][style~="--chrtheme-toolbar-button-icon:"] {
+				--gk-footer-bg: var(--chrtheme-toolbar);
+				--gk-footer-fg: var(--chrtheme-toolbar-button-icon, #7f7f7f);
+			}
+
+			--logo-wordmark-color: var(--gk-footer-fg);
+
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					var(--gk-footer-bg) 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, var(--gk-footer-bg) 86%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: var(--gk-footer-fg);
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 20%,
+				gray
+			);
+			--dot-color-hot: var(--gk-footer-fg);
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: var(--gk-footer-fg);
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: var(
+				--gk-footer-fg
+			);
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 40%,
+				transparent
+			);
+		}
+	}
+
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--footer-border: linear-gradient(
+			to left,
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						ActiveCaption 10%,
+						black
+					)
+					20%,
+				transparent
+			),
+			color-mix(
+				in srgb,
+				color-mix(
+						in srgb,
+						ActiveCaption 10%,
+						black
+					)
+					20%,
+				transparent
+			)
+		);
+		
+		&[footer-themable="true"] {
+			--logo-wordmark-color: -moz-dialogtext;
+			--footer-background: linear-gradient(
+				to bottom,
+				color-mix(
+					in srgb,
+					-moz-dialog 90%,
+					transparent
+				),
+				color-mix(
+					in srgb,
+					color-mix(in srgb, -moz-dialog 92%, black)
+						90%,
+					transparent
+				)
+			);
+			--footer-color: -moz-dialogtext;
+
+			--dot-color-normal: color-mix(
+				in srgb,
+				-moz-dialogtext 20%,
+				gray
+			);
+			--dot-color-hot: -moz-dialogtext;
+			--selection-bar-background-color-normal: color-mix(
+				in srgb,
+				-moz-dialogtext 20%,
+				transparent
+			);
+			--selection-bar-background-color-hot: color-mix(
+				in srgb,
+				-moz-dialogtext 40%,
+				transparent
+			);
+			--selection-bar-background-color-active: -moz-dialogtext;
+
+			--footer-item-color-hot: color-mix(
+				in srgb,
+				-moz-dialogtext 90%,
+				black
+			);
+			--footer-menu-button-glyph-background-color-normal: -moz-dialogtext;
+			--footer-menu-item-link-color: AccentColor;
+			--footer-vertical-separator-background-color: color-mix(
+				in srgb,
+				-moz-dialogtext 40%,
+				transparent
+			);
+		}
+	}
+
+	&[gkbranding="chromium"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chromium/IDR_WEBSTORE_ICON_24.png");
+		}
+	}
+	&[gkbranding="chrome"] {
+		#chrome-web-store-link::after {
+			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chrome/IDR_WEBSTORE_ICON_24.png");
+		}
+	}
+}
+
+#footer {
+	max-width: var(--page-width);
+	font-size: 8pt;
+
+	img {
+		align-self: center;
+	}
+
+	background-image: var(--footer-background);
+	color: var(--footer-color);
+
+	font-weight: bold;
+
+	#footer-border {
+		height: 1px;
+		background: var(--footer-border);
+	}
+
+	#footer-content {
+		height: 49px;
+	}
+
+	#logo-img {
+		padding-block-start: 0;
+		padding-block-end: 1px;
+		padding-inline: 9px;
+	}
+
+	#dot-list {
+		flex: 1;
+		justify-content: center;
+		gap: 12px;
+	}
+
+	#footer-menu-container {
+		align-items: center;
+	}
+
+	.dot,
+	.footer-menu-button,
+	a {
+		all: unset;
+
+		display: flex;
+		align-items: center;
+
+		&:not([disabled]) {
+			cursor: pointer;
+		}
+	}
+
+	.dot {
+		display: flex;
+		flex-direction: column;
+		padding-top: 10px;
+		color: rgb(118,118,118);
+		width: 80px;
+		text-align: start;
+		align-items: start;
+
+		transition-property: color;
+		transition-duration: 200ms;
+
+		&:not([disbled]) {
+			&:hover,
+			&:focus,
+			&.selected {
+				color: rgb(84,84,84);
+			}
+
+			&:hover,
+			&:focus {
+				.selection-bar {
+					background-color: var(--selection-bar-background-color-hot);
+				}
+			}
+
+			&.selected {
+				.selection-bar {
+					background-color: var(
+						--selection-bar-background-color-active
+					);
+				}
+			}
+		}
+
+		.selection-bar {
+			width: 100%;
+			height: 5px;
+			background-color: var(--selection-bar-background-color-normal);
+			margin-block-end: 3px;
+
+			transition-property: background-color;
+			transition-duration: 200ms;
+		}
+
+		.button-box {
+			margin-inline-start: 3px;
+		}
+
+		.button-text {
+			align-self: start;
+		}
+	}
+
+	.footer-menu-button,
+	a {
+		&:not([disabled]) {
+			&:hover {
+				color: var(--footer-item-color-hot);
+			}
+		}
+	}
+
+	.footer-menu-button {
+		position: relative;
+		padding-inline-start: 9px;
+		padding-inline-end: 15px;
+
+		&:not([disabled]) {
+			&:hover {
+				&::after {
+					background-color: var(--footer-item-color-hot);
+				}
+			}
+
+			&[open] {
+				.footer-menu {
+					display: flex;
+				}
+			}
+		}
+
+		&::after {
+			content: "";
+			margin-inline-start: 5px;
+			height: 9px;
+			width: 9px;
+			background-color: var(
+				--footer-menu-button-glyph-background-color-normal
+			);
+
+			mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAJUlEQVQYV2NgoDuYSQSGK/RB0+yDrACbQqwKkBUW41OArJB0AAACXws0ERupuAAAAABJRU5ErkJggg==");
+		}
+	}
+
+	.footer-menu {
+		display: none;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+		background: white;
+		color: black;
+		cursor: default;
+		margin: 0;
+		outline: 1px solid rgba(0, 0, 0, 0.2);
+		position: absolute;
+		white-space: nowrap;
+		margin-inline-end: 10px;
+		max-height: 400px;
+		overflow: auto;
+		padding: 6px 8px;
+		z-index: 10;
+		min-width: 150px;
+		bottom: 23px;
+		right: 0;
+
+		@media (prefers-color-scheme: dark) {
+			background: rgb(54, 54, 54);
+			color: white;
+		}
+	}
+
+	.footer-menu-item {
+		margin-inline-end: 8px;
+		margin-inline-start: 0;
+		padding-inline-end: 0;
+		background: no-repeat 0 50%;
+		background-color: transparent;
+		background-size: 16px 16px;
+		box-sizing: border-box;
+		display: flex;
+		line-height: 1.5em;
+		margin-bottom: 0.5em;
+		margin-top: 0.25em;
+		max-width: 450px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: var(--footer-menu-item-link-color);
+		font-weight: normal;
+		font-size: 9pt;
+		align-items: center;
+		-moz-context-properties: fill, fill-opacity;
+
+		@media (prefers-color-scheme: dark) {
+			fill: white;
+		}
+
+		&:not([disabled]) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		image {
+			width: 16px;
+			height: 16px;
+			margin-inline-end: 6px;
+		}
+
+		label {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	#vertical-separator {
+		background-color: var(--footer-vertical-separator-background-color);
+		height: 20px;
+		width: 1px;
+	}
+
+	#chrome-web-store-link {
+		padding-inline-start: 15px;
+
+		&::after {
+			margin-block-start: 3px;
+			margin-inline-start: 12px;
+		}
+	}
+}

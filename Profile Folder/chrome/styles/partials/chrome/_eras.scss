@@ -1,6 +1,3 @@
-/* GTK plus theme ID */
-$gtkplus: "{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}";
-
 /* Chrome 0 */
 @import "chrome-1/final";
 
@@ -24,7 +21,12 @@ $gtkplus: "{9fe1471f-0c20-4756-bb5d-6e857a74cf9e}";
 	@import "chrome-11/final";
 }
 
-/* Chrome 12 -> 21 */
+/* Chrome 12 -> 17 */
+:root[geckium-seventeen] {
+	@import "chrome-17/final";
+}
+
+/* Chrome 18 -> 21 */
 :root[geckium-twentyone] {
 	@import "chrome-21/final";
 }

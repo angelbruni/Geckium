@@ -1,99 +1,19 @@
-& {
-	--page-switcher-color: color-mix(in srgb, var(--thumbnail-container-color) 50%, transparent);
-
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		@media only screen and (max-width: 1277px) {
-			.page-switcher {
-				width: 90px;
-			}
-		}
-	}
-}
-
-#card-slider-frame {
-	overflow: hidden;
-	position: relative;
-	flex: 1;
-	overflow-y: auto;
-}
-
-#page-list {
-	max-width: var(--page-width);
-
-	transition-property: transform;
-	transition-duration: 200ms;
-	transition-timing-function: ease-in-out;
-}
-
-.page-switcher {
-	all: unset;
-	
-	display: flex;
-	position: absolute;
-	width: 150px;
-	font-family: Arial, sans-serif;
-	font-size: 40px;
-	color: var(--page-switcher-color);
-	z-index: 1;
-	
-	transition-property: width, background-color;
-	transition-duration: 150ms;
-	
-	&:not([disabled]) {
-		&:hover,
-		&:focus {
-			background-color: color-mix(
-				in srgb,
-				var(--thumbnail-container-color) 6%,
-				transparent
-			);
-
-			@media (prefers-color-scheme: dark) {
-				background-color: rgba(255,255,255,.06);
-			}
-		}
-	}
-
-	&[disabled] {
-		display: none;
-	}
-
-	&[id*="start"] {
-		left: 0;
-		height: 100%;
-	}
-
-	&[id*="end"] {
-		right: 0;
-		height: 100%;
-
-		&:not([disabled]) {
-			&:hover,
-			&:focus {
-				background: linear-gradient(
-					to bottom,
-					transparent 0,
-					color-mix(
-						in srgb,
-						var(--thumbnail-container-color) 1%,
-						transparent
-					) 60px,
-					color-mix(
-						in srgb,
-						var(--thumbnail-container-color) 6%,
-						transparent
-					) 183px
-				);
-			}
-		}
-	}
-}
-
-.tile-page {
-	min-width: var(--page-width);
-
-	.tile-page-content {
-		margin: auto;
-	}
+.page-switcher[id*="end"]:not([disabled]) {
+    &:hover,
+    &:focus {
+        background: linear-gradient(
+            to bottom,
+            transparent 0,
+            color-mix(
+                in srgb,
+                var(--thumbnail-container-color) 1%,
+                transparent
+            ) 60px,
+            color-mix(
+                in srgb,
+                var(--thumbnail-container-color) 6%,
+                transparent
+            ) 183px
+        );
+    }
 }
