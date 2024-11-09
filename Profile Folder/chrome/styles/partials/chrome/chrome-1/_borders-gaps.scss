@@ -1,6 +1,6 @@
 :root {
 	--content-border-width: 			3px;
-	--gap-size:							0;
+	--gap-size:							0px;
 	--content-border-top-left-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_left_corner.png");
 	--content-border-top-image:			url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tabstoolbar_shadow_modified.png");
 	--content-border-top-right-image: 	url("chrome://userchrome/content/assets/img/chrome-1/toolbar/content_top_right_corner.png");
@@ -26,6 +26,11 @@
 		box-sizing: border-box; //Required fix for Windows
 	}
 
+	#TabsToolbar::before {
+		width: calc(100% - (var(--gap-size) * 2));
+		left: var(--gap-size);
+	}
+
 	.titlebar-spacer { // Prepare for usage as tabbar borders
 		display: flex !important;
 		width: 0 !important;
@@ -35,6 +40,12 @@
 	//Add padding to window-contents (requires gaps allowed)
 	&[gkhasgaps="true"]:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 		--gap-size: calc(var(--content-border-width) - 1px);
+		
+		#TabsToolbar::before {
+			width: calc(100% - ((var(--gap-size) + 1px) * 2));
+			left: calc(var(--gap-size) + 1px);
+		}
+
 		&[gktitnative="false"],
 		&[gktitnative="true"][isWindows10] {
 			--gap-size: var(--content-border-width);
@@ -44,22 +55,13 @@
 			// to alleviate this limitation should still be able to have gaps, hence rather than restricting it at the
 			// header level, we override --gap-size so that Firefox's own (lack of) borders simply never shows.
 			&[gktitnative="true"] {
-				--gap-size: 0 !important;
+				--gap-size: 0px !important;
 			}
 		}
 		.titlebar-spacer[type="pre-tabs"] {
 			margin-inline-start: var(--gap-size);
 		}
 
-		#TabsToolbar::before {
-			left: calc(var(--gap-size) + 1px);
-		}
-		&[gktitnative="true"] #TabsToolbar::before {
-			width: calc(100% - 6px);
-		}
-		&[gktitnative="false"] #TabsToolbar::before {
-			width: calc(100% - 8px);
-		}
 		#nav-bar,
 		#PersonalToolbar,
 		.notificationbox-stack,
@@ -95,8 +97,6 @@
 	#TabsToolbar::before {
 		content: "";
 		position: absolute;
-		width: 100%;
-		left: 0;
 		bottom: -1px;
 		height: 23px;
 		background: var(--content-border-top-image) bottom;
@@ -241,9 +241,11 @@
 		// Disable all shadows when maximised
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
-			#nav-bar::before,
-			#nav-bar::after {
-				content: unset;
+			#nav-bar {
+				&::before,
+				&::after {
+					content: unset;
+				}
 			}
 			#nav-bar,
 			#PersonalToolbar,
