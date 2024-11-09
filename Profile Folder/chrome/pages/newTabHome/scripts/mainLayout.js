@@ -800,20 +800,32 @@ function createMainLayout() {
 				});
 			});
 		});
-	} else if (appearanceChoice == 21 || appearanceChoice == 25) {
-		// Chrome 21 - 45
+	} else if (appearanceChoice >= 17 && appearanceChoice <= 25) {
+		// Chrome 17 - 45
 
 		menuBtnsContainer = "#footer-menu-container";
 
-		header = `
-		<html:a href="https://accounts.firefox.com/?service=sync" id="login-container">
-			<html:div id="login-status-header-container" class="login-status-row">
-				<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKey("productName"))}</html:div>
-			</html:div>
-			<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
-		</html:a>
-		<html:div id="login-email" />
-		`;
+		if (appearanceChoice == 17) {
+			header = `
+			<html:a href="https://accounts.firefox.com/?service=sync" id="login-container">
+				<html:div id="login-status-header-container" class="login-status-row">
+					<html:div id="login-status-header" />
+				</html:div>
+				<html:div id="login-status-sub-header" />
+			</html:a>
+			<html:div id="login-email" />
+			`;
+		} else {
+			header = `
+			<html:a href="https://accounts.firefox.com/?service=sync" id="login-container">
+				<html:div id="login-status-header-container" class="login-status-row">
+					<html:div id="login-status-header">${ntpBundle.GetStringFromName("notSignedInTo").replace("%s", gkBranding.getBrandingKey("productName"))}</html:div>
+				</html:div>
+				<html:div id="login-status-sub-header">${ntpBundle.GetStringFromName("youAreMissingOut")}</html:div>
+			</html:a>
+			<html:div id="login-email" />
+			`;
+		}
 
 		main = `
 		<hbox id="card-slider-frame">
@@ -1082,7 +1094,7 @@ function createMainLayout() {
 		setMostVisitedLayout("default");
 	});
 
-	if (appearanceChoice <= 6 || appearanceChoice == 21 || appearanceChoice == 25) {
+	if (appearanceChoice <= 6 || appearanceChoice == 17 || appearanceChoice == 21 || appearanceChoice == 25) {
 		waitForElm(menuBtnsContainer).then(() => {
 			document.querySelectorAll('[type="menu"]').forEach((menuBtn) => {
 				menuBtn.addEventListener("click", function (event) {
@@ -1107,7 +1119,7 @@ function createMainLayout() {
 			});
 		});
 	}
-	if (appearanceChoice == 11 || appearanceChoice == 21 || appearanceChoice == 25) {
+	if (appearanceChoice == 11 || appearanceChoice == 17 || appearanceChoice == 21 || appearanceChoice == 25) {
 		//Trigger sign in status-update
 		updateSignInStatus();
 	}
