@@ -37,13 +37,13 @@ However,
 
 **To begin, download Geckium from [the Releases page](https://github.com/angelbruni/Geckium/releases/latest).**
 
-> [!NOTE]
-> Once running for the first time, Geckium will restart Firefox automatically 1-2 times while it sets up required settings, migrations, and so on - if Firefox doesn't re-appear after restarting itself, terminate Firefox and launch it again (that is an upstream bug with Firefox).
+> [!WARNING]
+> Remember to only get JavaScript-powered Firefox modifications (such as Geckium) from sources that you trust, such as [Geckium's official repository](https://github.com/angelbruni/Geckium) - JavaScript-powered modifications have full access to Firefox's functionality, including unrestricted file management and access to your data within Firefox.
 
 **To improve your Geckium experience, you should also install [Tampermonkey](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey) and, using Tampermonkey, install [the official Geckium UserScript for enhanced functionality](https://github.com/angelbruni/CRX-Downloader-userScript/raw/refs/heads/main/crx-downloader.user.js).**
 
-> [!WARNING]
-> Remember to only get JavaScript-powered Firefox modifications (such as Geckium) from sources that you trust, such as [Geckium's official repository](https://github.com/angelbruni/Geckium) - JavaScript-powered modifications have full access to Firefox's functionality, including unrestricted file management and access to your data within Firefox.
+> [!NOTE]
+> Once running for the first time, Geckium will restart Firefox automatically 1-2 times while it sets up required settings, migrations, and so on - if Firefox doesn't re-appear after restarting itself, terminate Firefox and launch it again (that is an upstream bug with Firefox).
 
 ## Linux
 
