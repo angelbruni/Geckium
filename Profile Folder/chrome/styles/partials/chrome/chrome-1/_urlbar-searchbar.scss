@@ -100,6 +100,10 @@
 				margin-left: var(--toolbarbutton-width) !important;
 			}
 		}
+
+		#urlbar-searchmode-switcher {
+			display: none !important;
+		}
 	}
 	&:not([is133Plus]) {
 		#urlbar {
@@ -117,10 +121,6 @@
 					top: var(--top) !important;
 				}
 			}
-		}
-
-		#urlbar-searchmode-switcher {
-			display: none !important;
 		}
 	}
 
