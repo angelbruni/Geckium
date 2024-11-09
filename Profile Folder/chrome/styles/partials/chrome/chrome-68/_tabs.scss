@@ -46,7 +46,7 @@
 
 .tabbrowser-tab {
 	&:not([image]),
-	&[image="chrome://branding/content/icon32.png"] {
+	&[image="chrome://branding/content/icon32.png"]:not([crashed="true"]) {
 		--tab-gap-between-favicon-and-title: 0;
 	}
 }
@@ -63,8 +63,6 @@
 
 /* bruni: This entire code takes care of custom themes support for tabs */
 // else if chrtheme
-&[gkthemed][gkchrthemed] {
-	&[gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
-		--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
-	}
+&[gkthemed][gkchrthemed][gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
+	--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
 }
