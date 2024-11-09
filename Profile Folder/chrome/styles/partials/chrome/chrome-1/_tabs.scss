@@ -126,6 +126,17 @@
 
 	&[gktitnative="true"] { // Use native tab background when in native
 		--default-inactive-tab-background: var(--default-inactive-tab-background-native) !important;
+
+		&:-moz-window-inactive {
+			.tabbrowser-tab:not([visuallyselected]) .tab-content > *:not(.tab-mute-button, .tab-close-button) {
+				opacity: .6;
+			}
+		}
+		&:not(:-moz-window-inactive) {
+			.tabbrowser-tab:not([visuallyselected]) .tab-content > *:not(.tab-mute-button, .tab-close-button) {
+				opacity: .7;
+			}
+		}
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
@@ -604,7 +615,7 @@
 	}
 
 	.tab-icon-stack {
-		margin-block-start: 0;
+		margin-block-start: 1px;
 
 		&::before {
 			content: '';
