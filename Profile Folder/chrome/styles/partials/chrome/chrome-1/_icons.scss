@@ -168,6 +168,10 @@
 		}
 	}
 
+	&[image="chrome://global/skin/icons/info.svg"] .tab-icon-image {
+		content: var(--default-favicon) !important;
+	}
+
 	&[crashed="true"] .tab-icon-image {
 		content: var(--sadfavicon) !important;
 	}
