@@ -1,0 +1,12 @@
+@-moz-document	url-prefix(about:preferences),
+				url-prefix(about:addons) {
+
+	dropmarker:not([native]) {
+		display: block !important;
+		appearance: auto !important;
+		width: 12px !important;
+		height: 15px !important;
+		margin-top: -6px !important;
+		margin-inline-end: 0 !important;
+	}
+}
