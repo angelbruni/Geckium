@@ -15,7 +15,7 @@ class gkImpossibleForks {
     static showWarning() {
         if (gkPrefUtils.tryGet("Geckium.impossibruFork.warningShown").bool != true) {
             gkPrefUtils.set("Geckium.impossibruFork.warningShown").bool(true);
-            _ucUtils.showNotification({
+            UC_API.Notifications.show({
                 label : "what.",
                 type : "geckium-notification",
                 priority: "critical",
@@ -49,7 +49,7 @@ class gkNCPAdj {
             if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true) {
                 if (parseInt(Services.appinfo.version.split(".")[0]) > 115) { // Special message for ex-115-users
                     gkPrefUtils.delete("Geckium.NCP.installed");
-                    _ucUtils.showNotification(
+                    UC_API.Notifications.show(
                     {
                         label : "To continue using native Windows titlebars, please switch to a compatible Firefox fork.",
                         type : "nativecontrolspatch-notification",
@@ -67,7 +67,7 @@ class gkNCPAdj {
                     }
                     )
                 } else {
-                    _ucUtils.showNotification(
+                    UC_API.Notifications.show(
                     {
                         label : "Firefox has stopped using Native Controls Patch. An update may have reverted it.",
                         type : "nativecontrolspatch-notification",
@@ -94,7 +94,7 @@ class gkNCPAdj {
                     )
                 }
             } else if (gkPrefUtils.tryGet("Geckium.NCP.bannerDismissed").bool != true) { // true = Don't show again
-                _ucUtils.showNotification(
+                UC_API.Notifications.show(
                 {
                     label : "This version of Firefox supports the Native Controls Patch, which provides native Windows titlebars.",
                     type : "nativecontrolspatch-notification",
@@ -131,6 +131,35 @@ if (AppConstants.MOZ_APP_NAME == "firefox" || AppConstants.MOZ_APP_NAME == "fire
     }
 }
 
+// Floorp Adjustments
+class gkFloorpAdj {
+    /**
+     * disableThemeCusto - Ensures Floorp's theme customisations feature is turned off
+     */
+
+    static disableThemeCusto() {
+        if (gkPrefUtils.tryGet("floorp.browser.user.interface").int != 1) {
+            gkPrefUtils.set("floorp.browser.user.interface").int(1);
+            UC_API.Notifications.show({
+                label : "Floorp theme customisations are not supported by Geckium and have been disabled.",
+                type : "geckium-notification",
+                priority: "critical"
+            })
+        }
+	}
+}
+if (AppConstants.MOZ_APP_NAME == "floorp") {
+    window.addEventListener("load", gkFloorpAdj.disableThemeCusto);
+    const floorpObserver = {
+        observe: function (subject, topic, data) {
+            if (topic == "nsPref:changed") {
+                gkFloorpAdj.disableThemeCusto();
+            }
+        },
+    };
+    Services.prefs.addObserver("floorp.browser.user.interface", floorpObserver, false);
+}
+
 // Waterfox Adjustments
 class gkWaterfoxAdj {
     /**
@@ -140,7 +169,7 @@ class gkWaterfoxAdj {
     static disableThemeCusto() {
         if (gkPrefUtils.tryGet("browser.theme.enableWaterfoxCustomizations").int != 2) {
             gkPrefUtils.set("browser.theme.enableWaterfoxCustomizations").int(2);
-            _ucUtils.showNotification({
+            UC_API.Notifications.show({
                 label : "Waterfox theme customisations are not supported by Geckium and have been disabled.",
                 type : "geckium-notification",
                 priority: "critical"
@@ -192,7 +221,7 @@ class gkRfoxAdj {
             }
         }
         if (changes >= 1) {
-            _ucUtils.showNotification({
+            UC_API.Notifications.show({
                 label : "r3dfox theme customisations are not supported by Geckium and have been disabled.",
                 type : "geckium-notification",
                 priority: "critical"
