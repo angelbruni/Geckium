@@ -954,8 +954,8 @@ function createMainLayout() {
 									<html:span class="product-name">${ntpBundle.GetStringFromName("calendarProduct")}</html:span>
 								</html:a>
 							</html:li>
-							<html:li class="product-container" href="https://translate.google.com/">
-								<html:a class="product">
+							<html:li class="product-container">
+								<html:a class="product" href="https://translate.google.com/">
 									<html:span class="product-icon" style="background-position:0 -974px"/>
 									<html:span class="product-name">${ntpBundle.GetStringFromName("translateProduct")}</html:span>
 								</html:a>
