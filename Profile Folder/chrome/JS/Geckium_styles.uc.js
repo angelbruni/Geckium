@@ -123,6 +123,19 @@ const eras = {
             "macos": "macosx"
         }
     },
+    17: {
+        name: "17",
+        basedOnVersion: "17.0.957.0",
+        year: 2011,
+        number: "seventeen",
+        styles: ["chrome", "page"],
+        titlebar: {
+            "linux": "linux",
+            "win": "win",
+            "win10": "win",
+            "macos": "macosx"
+        }
+    },
     21: {
         name: "21",
         basedOnVersion: "21.0.1180.89",

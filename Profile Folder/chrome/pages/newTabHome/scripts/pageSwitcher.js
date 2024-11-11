@@ -1,7 +1,7 @@
 function setUpPages() {
 	let appearanceChoice = gkEras.getNTPEra();
 
-	if (appearanceChoice == 21 || appearanceChoice == 25) {
+	if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 		const pageSwitcherStart = document.getElementById("page-switcher-start");
 		const pageSwitcherEnd = document.getElementById("page-switcher-end");
 
