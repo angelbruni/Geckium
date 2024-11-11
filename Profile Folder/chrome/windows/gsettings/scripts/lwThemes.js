@@ -7,7 +7,7 @@ async function getInstalledLWThemes() {
 		// Directly await the result if getAddonsByTypes returns a promise
 		const themes = await AddonManager.getAddonsByTypes(["theme"]);
 		if (Array.isArray(themes)) {
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log("getInstalledLWThemes: Themes fetched successfully:", themes);
 			return themes;  // Return the list of themes
 		} else {
@@ -22,7 +22,7 @@ async function getInstalledLWThemes() {
 async function getLWThemesList() {
     const result = [];
 
-	if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+	if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 		console.log(`getLWThemesList: Looking for themes...`);
 
     const themes = await getInstalledLWThemes();
@@ -35,27 +35,27 @@ async function getLWThemesList() {
 				gkPrefUtils.delete("Geckium.chrTheme.fileName");
 			};
 
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Mapped Light to ${theme.id}`);
 		} else if (theme.id.startsWith("firefox-compact-dark@") && !darkLWTheme) {
 			darkLWTheme = function(){ theme.enable(); };
 
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Mapped Dark to ${theme.id}`);
 		}
 		// Skip themes mapped to theme modes
 		if (theme.id.startsWith("default-theme@") || theme.id.startsWith("firefox-compact-light@") ||
 				theme.id.startsWith("firefox-compact-dark@")) {
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Skipping ${theme.id} as it is mapped to the top...`);
 			continue;
 		}
 
-		if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+		if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 			console.log(`getLWThemesList: Trying to get ${theme.id}'s manifest...`);
         let mani = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
 		if (!mani) {
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Skipping ${theme.id} as it has no manifest`);
 			continue;
 		}
@@ -80,14 +80,14 @@ async function getLWThemesList() {
 			if (mani.browser_specific_settings.geckium.backgroundSize)
 				themeBannerSizing = mani.browser_specific_settings.geckium.backgroundSize;
 
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Supplied Geckium-exclusive values to ${theme.id}'s thumbnail`);
 			
 		} else if (mani.theme.images) {
 			if (mani.theme.images.theme_frame) {
 				themeBanner = `url('${theme.__AddonInternal__.rootURI}/${mani.theme.images.theme_frame}')`;
 
-				if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+				if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 					console.log(`getLWThemesList: Set ${theme.id} banner to titlebar theme_frame`);
 			} else if (mani.theme.images.additional_backgrounds && mani.theme.properties) {
 				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
@@ -99,7 +99,7 @@ async function getLWThemesList() {
 					themeBannerTiling = mani.theme.properties.additional_backgrounds_tiling.map(obj => obj).join(', ');
 			}
 
-			if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Set ${theme.id} banner to titlebar additional_backgrounds`);
 		}
 
@@ -124,7 +124,7 @@ async function getLWThemesList() {
 			"uninstall": function() { theme.uninstall(false); }
         });
 
-		if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
+		if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 			console.log(`getLWThemesList: Added ${theme.id} to themes grid!`);
     }
     return result;
