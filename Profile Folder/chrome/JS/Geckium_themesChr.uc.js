@@ -44,19 +44,19 @@ class gkChrTheme {
 			if (directory.exists() && directory.isDirectory()) {
 				var directoryEntries = directory.directoryEntries;
 
-                if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                     console.log(`CRX getThemes: Looking for themes in ${chrThemesFolder}...`);
 
 				while (directoryEntries.hasMoreElements()) {
 				    const file = directoryEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
 					if (file.leafName.endsWith(".crx")) {
                         try {
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log(`CRX getThemes: Attempting to read the manifest of ${file.leafName}`);
                             
                             const response = await fetch(`jar:file://${chrThemesFolder}/${file.leafName}!/manifest.json`);
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log("CRX getThemes: Got response from manifest: ", response);
 
                             const theme = await response.json();
@@ -65,7 +65,7 @@ class gkChrTheme {
                                 continue;
                             }
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log("CRX getThemes: Got valid theme manifest: ", theme);
 
                             let themeName = theme.name;
@@ -103,7 +103,7 @@ class gkChrTheme {
                                 } catch {}
                             }
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log(`CRX getThemes: Got theme name and description: ${themeName}: ${themeDescription}`);
 
                             let themeBanner;
@@ -134,7 +134,7 @@ class gkChrTheme {
                                 }
                             }
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log(`CRX getThemes: Got theme banner: ${themeBanner}, ${themeBannerColor}`);
 
                             let themeIcon;
@@ -154,7 +154,7 @@ class gkChrTheme {
                                     themeIcon = theme.icons[16];
                             }
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log(`CRX getThemes: Got theme icon: ${themeIcon}`);
 
                             let browser;
@@ -167,7 +167,7 @@ class gkChrTheme {
                                 browser = "chrome";
                             }
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log(`CRX getThemes: Got browser origin: ${browser}`);
 
                             const themeKey = file.leafName;
@@ -182,7 +182,7 @@ class gkChrTheme {
                                 icon: themeIcon
                             };
 
-                            if (gkPrefUtils.tryGet("Geckium.devOptions.logChrThemes").bool)
+                            if (gkPrefUtils.tryGet("devtools.debugger.chrthemes-enabled").bool)
                                 console.log("CRX getThemes: Added theme info to grid! ", themes[themeKey]);
                         } catch (error) {
                             console.error("Error fetching theme manifest:", error);
