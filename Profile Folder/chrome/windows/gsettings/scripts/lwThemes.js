@@ -89,7 +89,7 @@ async function getLWThemesList() {
 
 				if (gkPrefUtils.tryGet("Geckium.devOptions.logLWThemes").bool)
 					console.log(`getLWThemesList: Set ${theme.id} banner to titlebar theme_frame`);
-			} else if (mani.theme.images.additional_backgrounds) {
+			} else if (mani.theme.images.additional_backgrounds && mani.theme.properties) {
 				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
 
 				if (mani.theme.properties.additional_backgrounds_alignment)
