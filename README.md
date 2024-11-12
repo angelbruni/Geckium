@@ -59,6 +59,8 @@ However,
 |---|---|
 | ![linux-3](https://github.com/user-attachments/assets/b92de8d6-9b73-4495-98eb-53f1fc7cf803) | ![linux-4](https://github.com/user-attachments/assets/78403353-d72f-48d2-9a86-72716338ffba) |
 
+[Using an immutable Operating System?](https://github.com/angelbruni/Geckium/wiki/Installing-Geckium-on-specialised-Operating-Systems)
+
 ## Windows
 
 1. Open Firefox, and in the address bar go to `about:support`
