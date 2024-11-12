@@ -155,6 +155,10 @@
 		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
 		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)))) !important;
 
+		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"] {
+			--tabbrowser-tab-color: black;
+		}
+
 		&[toolbar-bgcolor-transparent="true"] {
 			// if FXChrome
 			&[customthememode="fxchrome"] {
