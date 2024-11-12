@@ -141,46 +141,42 @@
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
 	// else if lwtheme
-	&[gkthemed]:not([gkchrthemed]) {
-		&:not([customthememode="none"]) {
-			--inactive-tab-background: color-mix(
+	&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
+		--inactive-tab-background: color-mix(
+			in srgb,
+			color-mix(
 				in srgb,
-				color-mix(
-					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-					black
-				) 80%,
-				transparent
-			) !important;
-			--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-			--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-			--tabbrowser-tab-color-inactive: var(--tabbrowser-tab-color) !important;
+				var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+				black
+			) 80%,
+			transparent
+		) !important;
+		--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)))) !important;
 
+		&[toolbar-bgcolor-transparent="true"] {
 			// if FXChrome
 			&[customthememode="fxchrome"] {
-				&[toolbar-bgcolor-transparent="true"] {
-					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
-				}
+				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
 			}
 			// if Silverfox
 			&[customthememode="silverfox"] {
-				&[toolbar-bgcolor-transparent="true"] {
-					--selected-tab-background: linear-gradient(
-						to bottom,
-						transparent -50%,
-						var(--gktoolbar-bgcolor) 70%
-					) !important;
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					transparent -50%,
+					var(--gktoolbar-bgcolor) 70%
+				) !important;
 
-					--inactive-tab-background: linear-gradient(
-						to bottom,
-						transparent -10%,
-						color-mix(
-							in srgb,
-							var(--gktoolbar-bgcolor) 70%,
-							transparent
-						) 60%
-					) !important;
-				}
+				--inactive-tab-background: linear-gradient(
+					to bottom,
+					transparent -10%,
+					color-mix(
+						in srgb,
+						var(--gktoolbar-bgcolor) 70%,
+						transparent
+					) 60%
+				) !important;
 			}
 		}
 	}
@@ -190,10 +186,10 @@
 		&:not([geckium-eleven]) {
 			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
 		}
-		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background))) !important;
 		
 		&[gktitnative="true"] { // Use different inactive tab background when in System
-			--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+			--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame, var(--default-inactive-tab-background))) !important;
 		}
 		
 		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
@@ -273,15 +269,13 @@
 
 		pointer-events: none !important;
 
-		&:hover {
-			.tab-glare-container {
-				opacity: var(--tab-glare-opacity);
+		&:hover .tab-glare-container {
+			opacity: var(--tab-glare-opacity);
 
-				/* bruni: In Chrome, the glare shows up faster when hovering. */
-				transition-property: opacity;
-				transition-duration: var(--tab-glare-hover-timer);
-				transition-timing-function: linear;
-			}
+			/* bruni: In Chrome, the glare shows up faster when hovering. */
+			transition-property: opacity;
+			transition-duration: var(--tab-glare-hover-timer);
+			transition-timing-function: linear;
 		}
 
 		&:not([soundplaying]),
@@ -322,9 +316,7 @@
 				&::before {
 					background: var(--selected-tab-background, var(--default-selected-tab-background));
 				}
-			}
 
-			.tab-background-container {
 				&::after {
 					background-image: var(--tab-inline-start-active-texture), var(--tab-inline-center-active-texture), var(--tab-inline-end-active-texture);
 				}
@@ -335,14 +327,8 @@
 				transition: opacity 0s !important;
 			}
 		}
-		&:not([visuallyselected]) {
-			.tab-background-container {
-				> * {
-					&::before {
-						background: var(--inactive-tab-background, var(--default-inactive-tab-background));
-					}
-				}
-			}
+		&:not([visuallyselected]) .tab-background-container > *::before {
+			background: var(--inactive-tab-background, var(--default-inactive-tab-background));
 		}
 
 		/** 
@@ -394,7 +380,7 @@
 				}
 
 				.tab-context-line {
-					mask-image:		var(--tab-container2-left),		var(--tab-container-center),					var(--tab-container-right);
+					mask-image:	var(--tab-container2-left),	var(--tab-container-center), var(--tab-container-right);
 				}
 		
 				.tab-glare-container {
@@ -403,11 +389,11 @@
 			}
 		}
 
-		&[fadein] {
-			&[pinned]:not([style*="max-width"]) {
+		&[fadein]:not([style*="max-width"]) {
+			&[pinned] {
 				max-width: var(--tab-pinned-width) !important;
 			}
-			&:not([pinned]):not([style*="max-width"]) {
+			&:not([pinned]) {
 				max-width: var(--tab-normal-width) !important;
 			}
 		}
