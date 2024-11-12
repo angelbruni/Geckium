@@ -46,7 +46,15 @@
 	--bookmark-item-color: var(--default-bookmark-item-color);
 
 	--placed-chevron-width: 15px;
-	
+
+	&[customizing] {
+		#wrapper-people-before-tabs-space,
+		#people-before-titlebuttons-space {
+			pointer-events: none;
+		}
+
+	}
+
 
 	/*
 		Tabs toolbar
@@ -76,7 +84,7 @@
 	[data-l10n-id="private-browsing-indicator-label"] {
 		display: none !important;
 	}
-	#fxa-toolbar-menu-button,
+	#people-before-tabs-space > #gk-firefox-account-button,
 	#private-browsing-indicator-with-label {
 		background: transparent !important;
 		border: 0 !important;
@@ -93,12 +101,12 @@
 
 	&:not([profilepicbutton="true"]),
 	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#fxa-toolbar-menu-button {
+		#people-before-tabs-space > #gk-firefox-account-button {
 			display: none !important;
 		}
     }
 	&[profilepicbutton="true"] {
-		#fxa-avatar-image {
+		#gk-firefox-account-button #fxa-avatar-image {
 			width: 38px !important;
 			height: 32px !important;
 			background-size: contain;
@@ -109,14 +117,14 @@
 		&[profilepic="chromium"],
 		&[profilepic="custom"] {
 			// Firefox rounds pfps, so we gotta disable that.
-			#fxa-avatar-image {
+			#gk-firefox-account-button #fxa-avatar-image {
 				border-radius: unset !important;
 			}
 		}
 		&[profilepic="geckium"],
 		&[profilepic="firefox"] {
 			// Sync the pfp width to prevent glaring inconsistencies
-			#fxa-avatar-image {
+			#gk-firefox-account-button #fxa-avatar-image {
 				width: 32px !important;
 				margin: 0 3px; //...and add some spacing to even out. (6px)
 			}
@@ -125,14 +133,14 @@
 		&[profilepic="custom"] {
 			//list-style-image CAN'T use image 'fit' sizes,
 			// so for Chromium and Custom pfps, we use background
-			#fxa-avatar-image {
+			#gk-firefox-account-button #fxa-avatar-image {
 				list-style-image: unset !important;
 			}
 		}
 
 		// Profile Pictures
 		&[profilepic="geckium"] {
-			#fxa-avatar-image {
+			#gk-firefox-account-button #fxa-avatar-image {
 				// list-style-image is used here for the fill-colour
 				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
 			}
@@ -141,14 +149,14 @@
 			$profile-pictures: 25; // bruni: Set the amount of profile pictures
 			@for $i from 0 through $profile-pictures {
 				&[profilepicchromium="#{$i}"] {
-					#fxa-avatar-image {
+					#gk-firefox-account-button #fxa-avatar-image {
 						background-image: url(chrome://userchrome/content/assets/img/profile/#{$i}.png) !important;
 					}
 				}
 			}
 		}
 		&[profilepic="custom"] {
-			#fxa-avatar-image {
+			#gk-firefox-account-button #fxa-avatar-image {
 				background-image: var(
 					--custom-profile-picture,
 					url(chrome://userchrome/content/assets/img/profile/0.png)
@@ -208,7 +216,7 @@
 
 	// Generic toolbarbuttons
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#people-before-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -384,7 +392,7 @@
 
 	// Special toolbarbuttons
 	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#people-before-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -445,7 +453,7 @@
 	}
 
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#people-before-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -473,7 +481,7 @@
 	
 	// Misc. toolbar button tweaks
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#people-before-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -1035,7 +1043,7 @@
 		// Toolbar buttons
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#people-before-tabs-space > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
