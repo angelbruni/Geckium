@@ -11,3 +11,19 @@
 &[gktitbuttons="chromiumos"] {
     @import "titlebar/buttons/chromiumos";
 }
+
+// People button
+.titlebar-buttonbox-container {
+    gap: 6px;
+}
+
+&[fxastatus="signedin"] {
+    .titlebar-button.titlebar-people {
+        .toolbarbutton-icon {
+            display: none !important;
+        }
+        .toolbarbutton-text {
+            display: flex !important;
+        }
+    }
+}

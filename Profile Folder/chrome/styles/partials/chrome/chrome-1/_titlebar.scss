@@ -165,6 +165,10 @@
 	}
 	// NOTE: Non-native menubar styling is in _menu.scss
 
+	.titlebar-buttonbox #gk-firefox-account-button .toolbarbutton-badge-stack #fxa-avatar-image {
+		display: none;
+	}
+
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
@@ -338,7 +342,7 @@
 			margin-inline-end: 0 !important;
 
 			// Pseudo titlebar button background
-			&:before {
+			&:not(.titlebar-people):before {
 				content: "";
 				position: absolute;
 				left: 0;
@@ -452,4 +456,28 @@
 		@import "titlebar/buttons/macos";
 	}
 	// Chromium OS (redirected by JS to linuxog)
+
+	&:not([geckium-fortyseven]) #people-before-titlebuttons-space {
+		display: none !important;
+	}
+
+	.titlebar-people {
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
+
+		.toolbarbutton-text {
+			--stroke-color: rgba(0,0,0,.5);
+
+			color: white !important;
+			font-size: 8pt;
+			margin-inline: 7px !important;
+			text-shadow:	1px		1px		0	var(--stroke-color),
+							1px		-1px	0	var(--stroke-color),
+							-1px	1px		0	var(--stroke-color),
+							-1px	-1px	0	var(--stroke-color),
+							1px		0px		0	var(--stroke-color),
+							0px		1px		0	var(--stroke-color),
+							-1px	0px		0	var(--stroke-color),
+							0px		-1px	0	var(--stroke-color),
+		}
+	}
 }

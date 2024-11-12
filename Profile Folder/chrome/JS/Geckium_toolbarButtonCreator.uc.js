@@ -21,6 +21,12 @@ class gkToolbarButtons {
 		
 					if (!params.tooltip)
 						toolbarbutton.setAttribute("tooltiptext", params.label);
+
+					if (params.l10nArgs)
+						toolbarbutton.dataset.l10nId = params.l10nArgs;
+
+					if (params.l10nId)
+						toolbarbutton.dataset.l10nId = params.l10nId;
 		
 					if (params.onclick)
 						toolbarbutton.setAttribute("onclick", params.onclick);
@@ -373,6 +379,61 @@ UC_API.Runtime.startupFinished().then(()=>{
 					"tooltiptext": gSettingsTitle
 				});
 			});
+		}
+	});
+	gkToolbarButtons.create({
+		id: "gk-firefox-account",
+		removable: false,
+		overflows: false,
+		area: CustomizableUI.AREA_TABSTRIP,
+
+		onCreated: function(toolbarbutton) {
+			const stack = document.createXULElement("stack");
+			stack.classList.add("toolbarbutton-badge-stack");
+			const vbox = document.createXULElement("vbox");
+			stack.appendChild(vbox);
+			const avatarImg = document.createXULElement("image");
+			avatarImg.id = "fxa-avatar-image";
+			vbox.appendChild(avatarImg);
+			toolbarbutton.prepend(stack);
+
+			const toolbarbuttonIcon = document.createXULElement("image");
+			toolbarbuttonIcon.classList.add("toolbarbutton-icon");
+			toolbarbutton.appendChild(toolbarbuttonIcon);
+
+			const toolbarbuttonText = document.createXULElement("label");
+			toolbarbuttonText.classList.add("toolbarbutton-text");
+			toolbarbutton.appendChild(toolbarbuttonText);
+
+			toolbarbutton.addEventListener("command", (e) => {
+				gSync.toggleAccountPanel(toolbarbutton, e);
+			});
+
+			if (UIState.get().status == "signed_in") {
+				toolbarbutton.dataset.l10nId = null;
+				toolbarbutton.removeAttribute("label");
+				toolbarbutton.removeAttribute("tooltiptext");
+				toolbarbutton.setAttribute("label", UIState.get().displayName || UIState.get().email);
+				toolbarbutton.setAttribute("tooltiptext", UIState.get().displayName || UIState.get().email);
+				toolbarbutton.querySelector(".toolbarbutton-text").textContent = UIState.get().displayName || UIState.get().email;
+			} else {
+				toolbarbutton.dataset.l10nId = "toolbar-button-account";
+			}
+
+			Services.obs.addObserver((subject, topic, data) => {
+				if (topic === UIState.ON_UPDATE) {
+					if (UIState.get().status == "signed_in") {
+						toolbarbutton.dataset.l10nId = null;
+						toolbarbutton.removeAttribute("label");
+						toolbarbutton.removeAttribute("tooltiptext");
+						toolbarbutton.setAttribute("label", UIState.get().displayName || UIState.get().email);
+						toolbarbutton.setAttribute("tooltiptext", UIState.get().displayName || UIState.get().email);
+						toolbarbutton.querySelector(".toolbarbutton-text").textContent = UIState.get().displayName || UIState.get().email;
+					} else {
+						toolbarbutton.dataset.l10nId = "toolbar-button-account";
+					}
+				}
+			}, UIState.ON_UPDATE);
 		}
 	});
 	gkToolbarMenuButtons.create({
