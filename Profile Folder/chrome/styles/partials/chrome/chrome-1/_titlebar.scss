@@ -165,6 +165,10 @@
 	}
 	// NOTE: Non-native menubar styling is in _menu.scss
 
+	.titlebar-buttonbox #gk-firefox-account-button .toolbarbutton-badge-stack #fxa-avatar-image {
+		display: none;
+	}
+
 	--inactive-titlebar-opacity: 1 !important; // Firefox's inactive titlebar opacity
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
@@ -338,7 +342,7 @@
 			margin-inline-end: 0 !important;
 
 			// Pseudo titlebar button background
-			&:before {
+			&::before {
 				content: "";
 				position: absolute;
 				left: 0;
@@ -452,4 +456,81 @@
 		@import "titlebar/buttons/macos";
 	}
 	// Chromium OS (redirected by JS to linuxog)
+
+	&:not([geckium-fortyseven]),
+	&[gktitstyle="chromiumos"] {
+		#people-titlebuttons-space {
+			display: none !important;
+		}
+	}
+
+	.titlebar-people {
+		appearance: none !important;
+	}
+	
+	&[gktitstyle="win"] .titlebar-people {
+		--themed-titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+		--themed-titlebutton-corner: 3.5px;
+
+		// .titlebar-button
+		background: unset !important;
+		background-color: transparent !important;
+		border-radius: 0 !important;
+		border-left: var(--themed-titlebutton-border-outer) !important;
+		border-bottom: var(--themed-titlebutton-border-outer) !important;
+		height: 17px;
+		background-clip: padding-box !important;
+		box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+		transition: background-color 100ms linear; //hover-fade animation
+		min-width: 25px;
+		display: flex !important; // Really, macOS's and Windows 8-'s Mozilla Firefox?
+
+		image { // Set the icon's opacity and hover-fade
+			opacity: .6 !important;
+			transition: opacity 100ms linear;
+		}
+
+		//Hover and pressed states
+		&:not([disabled]):hover {
+			background-color: rgba(255, 255, 255, 0.3) !important;
+
+			image {
+				opacity: 1 !important;
+			}
+		}
+		&:not([disabled]):hover:active {
+			background-color: rgba(255, 255, 255, 0.2) !important;
+			transition: none;
+		}
+
+		// .titlebar-people
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
+		border-right: var(--themed-titlebutton-border-outer) !important;
+		border-bottom-left-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
+		border-bottom-right-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
+
+		.toolbarbutton-text {
+			--stroke-color: rgba(0,0,0,.5);
+
+			color: white !important;
+			font-size: 8pt;
+			margin-inline: 7px !important;
+			text-shadow:	1px		1px		0	var(--stroke-color),
+							1px		-1px	0	var(--stroke-color),
+							-1px	1px		0	var(--stroke-color),
+							-1px	-1px	0	var(--stroke-color),
+							1px		0px		0	var(--stroke-color),
+							0px		1px		0	var(--stroke-color),
+							-1px	0px		0	var(--stroke-color),
+							0px		-1px	0	var(--stroke-color),
+		}
+	}
+
+	&[gktitstyle="macos"] #people-tabs-space {
+		align-items: end;
+
+		#fxa-avatar-image {
+			transform: scaleX(-1);
+		}
+	}
 }

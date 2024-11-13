@@ -255,7 +255,7 @@ class sfMigrator {
 			],
 			"toolbar-menubar":["menubar-items"],
 			"TabsToolbar":[
-				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
+				"gk-firefox-account-button","tabbrowser-tabs","new-tab-button",
 				"alltabs-button"
 			],
 			"PersonalToolbar":["personal-bookmarks"]},
