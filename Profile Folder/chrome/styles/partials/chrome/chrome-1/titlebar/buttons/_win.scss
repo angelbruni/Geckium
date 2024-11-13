@@ -19,7 +19,7 @@
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#people-before-tabs-space > #gk-firefox-account-button,
+	#people-tabs-space > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -68,10 +68,8 @@
 		}
 
 		//Shared non-native titlebar variables
-		& {
-			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-			--titlebutton-corner: 3.5px;
-		}
+		--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+		--titlebutton-corner: 3.5px;
 
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
@@ -123,6 +121,7 @@
 			//Hover and pressed states
 			&:not([disabled]):hover {
 				background-color: rgba(255, 255, 255, 0.3) !important;
+
 				image {
 					opacity: 1 !important;
 				}
@@ -222,12 +221,6 @@
 				border-bottom-left-radius: unset !important;
 				border-bottom-right-radius: var(--titlebutton-corner) !important;
 			}
-		}
-
-		.titlebar-people {
-			border-right: var(--titlebutton-border-outer) !important;
-			border-bottom-left-radius: var(--titlebutton-corner) !important; // because border-radius is !important
-			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 		}
 
 		// Glen's head

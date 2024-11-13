@@ -48,11 +48,10 @@
 	--placed-chevron-width: 15px;
 
 	&[customizing] {
-		#wrapper-people-before-tabs-space,
-		#people-before-titlebuttons-space {
+		#wrapper-people-tabs-space,
+		#people-titlebuttons-space {
 			pointer-events: none;
 		}
-
 	}
 
 
@@ -84,7 +83,7 @@
 	[data-l10n-id="private-browsing-indicator-label"] {
 		display: none !important;
 	}
-	#people-before-tabs-space > #gk-firefox-account-button,
+	#people-tabs-space > #gk-firefox-account-button,
 	#private-browsing-indicator-with-label {
 		background: transparent !important;
 		border: 0 !important;
@@ -101,7 +100,7 @@
 
 	&:not([profilepicbutton="true"]),
 	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#people-before-tabs-space > #gk-firefox-account-button {
+		#people-tabs-space > #gk-firefox-account-button {
 			display: none !important;
 		}
     }
@@ -216,7 +215,7 @@
 
 	// Generic toolbarbuttons
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-before-tabs-space > #gk-firefox-account-button,
+		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -392,7 +391,7 @@
 
 	// Special toolbarbuttons
 	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-before-tabs-space > #gk-firefox-account-button,
+		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -453,7 +452,7 @@
 	}
 
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-before-tabs-space > #gk-firefox-account-button,
+		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -481,7 +480,7 @@
 	
 	// Misc. toolbar button tweaks
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-before-tabs-space > #gk-firefox-account-button,
+		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -1043,7 +1042,7 @@
 		// Toolbar buttons
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#people-before-tabs-space > #gk-firefox-account-button,
+			#people-tabs-space > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
