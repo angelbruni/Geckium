@@ -50,7 +50,7 @@
 
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
-			#people-before-tabs-space > #gk-firefox-account-button,
+			#people-tabs-space > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
@@ -592,7 +592,7 @@
 	// Shrink icon sizes in the side-buttons in more icons enabled
 	&[gtkicons="1"] {
 		:not(.widget-overflow-list) > .toolbarbutton-1:not(
-			#people-before-tabs-space > #gk-firefox-account-button,
+			#people-tabs-space > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton

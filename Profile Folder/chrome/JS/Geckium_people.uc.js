@@ -13,32 +13,47 @@ class gkPeople {
 		const TabsToolbarCustomizationTarget = document.getElementById("TabsToolbar-customization-target");
 		const beforeTabsSpace = document.createXULElement("toolbaritem");
 		beforeTabsSpace.setAttribute("removable", "false");
-		beforeTabsSpace.id = "people-before-tabs-space";
+		beforeTabsSpace.id = "people-tabs-space";
 		TabsToolbarCustomizationTarget.prepend(beforeTabsSpace);
 
 		const titlebarButtonboxContainer = document.querySelector("#TabsToolbar .titlebar-buttonbox-container");
 		const titlebarButtonboxSpace = document.createXULElement("hbox");
 		titlebarButtonboxSpace.classList.add("titlebar-buttonbox");
-		titlebarButtonboxSpace.id = "people-before-titlebuttons-space";
+		titlebarButtonboxSpace.id = "people-titlebuttons-space";
 		titlebarButtonboxContainer.prepend(titlebarButtonboxSpace);
 	}
 
 	static get getReservedSpaces() {
-		return [document.getElementById("people-before-tabs-space"), document.getElementById("people-before-titlebuttons-space")];
+		return [document.getElementById("people-tabs-space"), document.getElementById("people-titlebuttons-space")];
 	}
 
 	static setPeoplePosition(pos) {
 		let appearanceChoice = gkEras.getBrowserEra();
+		let titlebarBorder = gkTitlebars.getTitlebarSpec().border;
 		this.getPeopleButton.removeAttribute("class");
 
 		switch (pos) {
 			default:
 				if (appearanceChoice < 47) {
+					// Position
+					if (titlebarBorder == "macos")
+						gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
+					else
+						document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
+
+					// Actual Button
 					this.getReservedSpaces[0].appendChild(this.getPeopleButton);
 					this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
 				} else {
+					// Position
+					if (titlebarBorder == "macos")
+						gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
+					else
+						document.querySelector("#TabsToolbar .titlebar-buttonbox-container:not(#people-titlebuttons-space)").prepend(this.getReservedSpaces[1]);
+
+					// Actual Button
 					this.getReservedSpaces[1].appendChild(this.getPeopleButton);
-					this.getPeopleButton.classList.add("titlebar-button", "titlebar-people");
+					this.getPeopleButton.classList.add("titlebar-people");
 				}
 				break;
 		}
