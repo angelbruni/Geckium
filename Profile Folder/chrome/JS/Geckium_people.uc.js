@@ -29,26 +29,57 @@ class gkPeople {
 		return [document.getElementById("people-tabs-space"), document.getElementById("people-titlebuttons-space")];
 	}
 
-	static setPeoplePosition() {
-		let prefChoice = gkPrefUtils.tryGet("Geckium.profilepic.position").string;
-		let appearanceChoice;
+	/**
+	 * getStyle - Gets the currently set people button style from about:config
+	 * 
+	 * If not found, or the value is invalid, the era's preferred people button style will be used.
+	 * @era: The currently selected era
+	 */
 
-		if (!prefChoice || prefChoice == "auto")
-			appearanceChoice = gkEras.getBrowserEra();
-		else if (prefChoice == "old")
-			appearanceChoice = 1;
-		else if (prefChoice == "new")
-			appearanceChoice = 47;
+	static getStyle(era) {
+		// Return the appropriate titlebar style
+		switch (gkPrefUtils.tryGet("Geckium.people.style").string) {
+			case "off":
+				return "off";
+			case "avatar":
+				return "avatar";
+			case "titlebutton":
+				return "titlebutton";
+			default:
+				if (era < 11) {
+					return "off";
+				} else if (era < 47) {
+					return "avatar";
+				}
+				return "titlebutton";
+		}
+	}
 
-		let titlebarBorder = gkTitlebars.getTitlebarSpec().border;
+	/**
+	 * applyStyle - Applies the current people button style from getStyle().
+	 * 
+	 * @era: The currently selected era - if not specified, sourced automatically
+	 */
+
+	static applyStyle(era) {
+		if (!era) {
+			era = gkEras.getBrowserEra();
+		}
+		// Delete existing profile button style values (they will get remade)
 		this.getPeopleButton.removeAttribute("class");
+		this.getReservedSpaces[0].style.display = "none";
+		this.getReservedSpaces[1].style.display = "none";
 
-		if (appearanceChoice < 47) {
+		let prefChoice = gkPeople.getStyle(era);
+		if (prefChoice == "off") {
+			// We're done here if it is disabled.
+			return;
+		} else if (prefChoice == "avatar") {
 			// Position
-			if (titlebarBorder == "macos")
-				gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
-			else
-				document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
+			// if (titlebarBorder == "macos")
+			// 	gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
+			// else
+			document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
 
 			this.getReservedSpaces[0].style.display = null;
 			this.getReservedSpaces[1].style.display = "none";
@@ -56,11 +87,11 @@ class gkPeople {
 			// Actual Button
 			this.getReservedSpaces[0].appendChild(this.getPeopleButton);
 			this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
-		} else {
+		} else if (prefChoice == "titlebutton") {
 			// Position
-			if (titlebarBorder == "macos")
-				gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
-			else
+			// if (titlebarBorder == "macos")
+			// 	gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
+			// else
 				document.querySelector("#TabsToolbar .titlebar-buttonbox-container:not(#people-titlebuttons-space)").prepend(this.getReservedSpaces[1]);
 
 			this.getReservedSpaces[0].style.display = "none";
@@ -73,65 +104,57 @@ class gkPeople {
 	}
 
 	static setProfilePic() {
-		const attr = "profilepic";
-		const prefSetting = gkPrefUtils.tryGet("Geckium.profilepic.mode").string;
-
-		// Reset
+		// Delete existing profile picture values (they will get remade)
 		document.documentElement.removeAttribute("profilepicchromium");
 		document.documentElement.style.removeProperty("--custom-profile-picture");
 
-		// Set
-		document.documentElement.setAttribute("profilepicbutton", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
-		document.documentElement.setAttribute(attr, prefSetting);
-		switch (prefSetting) {
+		const prefChoice = gkPrefUtils.tryGet("Geckium.profilepic.mode").string;
+		document.documentElement.setAttribute("profilepicbutton", gkPrefUtils.tryGet("Geckium.profilepic.button").bool) //TODO: Was header switch
+		document.documentElement.setAttribute("profilepic", prefChoice);
+		switch (prefChoice) {
+			case "firefox":
+				break;
 			case "geckium":
 				break;
 			case "chromium":
 				document.documentElement.setAttribute("profilepicchromium", gkPrefUtils.tryGet("Geckium.profilepic.chromiumIndex").int);
 				break;
-			case "firefox":
-				break;
 			case "custom":
 				document.documentElement.style.setProperty("--custom-profile-picture", "url(file:///" + gkPrefUtils.tryGet("Geckium.profilepic.customPath").string.replace(/\\/g, "/").replace(" ", "%20") + ")");
 				break;
 			default:
-				document.documentElement.setAttribute(attr, "none");
+				// Fallback to Firefox Account profile picture if value unset/invalid
+				document.documentElement.setAttribute("profilepic", "firefox");
 				break;
 		}
 	}
 }
 
-/* bruni: Automatically apply a profile picture 
-		  when it detecs changes in the pref. */
-const profilePictureObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			gkPeople.setProfilePic();
-		}
-	}
-};
-Services.prefs.addObserver("Geckium.profilepic.button", profilePictureObserver, false)
-Services.prefs.addObserver("Geckium.profilepic.mode", profilePictureObserver, false)
-Services.prefs.addObserver("Geckium.profilepic.chromiumIndex", profilePictureObserver, false)
-Services.prefs.addObserver("Geckium.profilepic.customPath", profilePictureObserver, false)
-UC_API.Runtime.startupFinished().then(() => {
-	gkPeople.createReservedSpaces();
-	gkPeople.setPeoplePosition();
-	gkPeople.setProfilePic();
-});
-
-const pfpAppearanceObs = {
+const peopleStyleObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed")
-			gkPeople.setPeoplePosition();
+			gkPeople.applyStyle();
 	},
 };
-Services.prefs.addObserver("Geckium.profilepic.position", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.appearance.choice", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.main.overrideStyle", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.main.style", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.appearance.titlebarStyle", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.appearance.titlebarNative", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", pfpAppearanceObs, false);
-Services.prefs.addObserver("browser.tabs.inTitlebar", pfpAppearanceObs, false);
-Services.prefs.addObserver("Geckium.chrTheme.mustAero", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.choice", peopleStyleObs, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", peopleStyleObs, false);
+Services.prefs.addObserver("Geckium.main.style", peopleStyleObs, false);
+Services.prefs.addObserver("Geckium.people.style", peopleStyleObs, false);
+
+/* bruni: Automatically apply a profile picture 
+		  when it detecs changes in the pref. */
+const profilePictureObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			gkPeople.setProfilePic();
+	},
+};
+Services.prefs.addObserver("Geckium.profilepic.mode", profilePictureObs, false)
+Services.prefs.addObserver("Geckium.profilepic.chromiumIndex", profilePictureObs, false)
+Services.prefs.addObserver("Geckium.profilepic.customPath", profilePictureObs, false)
+
+UC_API.Runtime.startupFinished().then(() => {
+	gkPeople.createReservedSpaces();
+	gkPeople.applyStyle();
+	gkPeople.setProfilePic();
+});
