@@ -10,8 +10,8 @@
 // Initial variables
 let previousTabY;
 
-// Titlebar style information
 class gkTitlebars {
+	// Titlebar style information
 	static titlebars = {
 		/**
 		 * - titlebar ID
@@ -69,10 +69,31 @@ class gkTitlebars {
 				menunative: 2
 			}
 		},
-		"winnogaps": {
+		"win8": {
 			1: {
 				border: "win",
-				buttons: "win",
+				buttons: "win8",
+				hasnativegaps: true,
+				hasgaps: true,
+				native: true,
+				popupnative: true,
+				cannative: true,
+				menunative: 0,
+				tabstyle: 0,
+				systheme: {
+					linux: "classic",
+					win: "classic",
+					macos: "classic"
+				}
+			},
+			47: {
+				menunative: 2
+			}
+		},
+		"win8nogaps": {
+			1: {
+				border: "win",
+				buttons: "win8",
 				hasnativegaps: false,
 				hasgaps: true,
 				native: true,
@@ -333,6 +354,8 @@ class gkTitlebars {
 			default: //Fallback to Windows
 				if (isWindows10()) {
 					return titlebars.win10;
+				} else if (window.matchMedia("(-moz-platform: windows-win8)").matches) {
+					return titlebars.win8;
 				}
 			return titlebars.win;
 		}

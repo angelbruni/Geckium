@@ -84,6 +84,16 @@ function updateSettings(iteration) {
 		gkPrefUtils.set("userChromeJS.persistent_domcontent_callback").bool(true);  // Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
 	}
 	if (iteration < 5) {
+		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");  // Remove the old avatar toolbarbutton
+
+
+
+
+
+
+
+
+
 		// pfpBtn needs to be enabled by default so the titlebar button one shows up.
 		const pfpBtn = gkPrefUtils.tryGet("Geckium.profilepic.button").bool;
 		if (!pfpBtn)
