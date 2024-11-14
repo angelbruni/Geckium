@@ -85,24 +85,9 @@ function updateSettings(iteration) {
 	}
 	if (iteration < 5) {
 		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");  // Remove the old avatar toolbarbutton
-
-		// TODO: Transition winnogaps -> win8nogaps
-		// TODO: Transition profile picture enabled == false -> disabled people button appearance
-		// TODO: Transition profile picture to new values
-
-
-
-
-
-
-
-
-
-		// pfpBtn needs to be enabled by default so the titlebar button one shows up.
-		const pfpBtn = gkPrefUtils.tryGet("Geckium.profilepic.button").bool;
-		if (!pfpBtn)
-			gkPrefUtils.set("Geckium.profilepic.mode").string(true);
-
+		if (gkPrefUtils.tryGet("Geckium.appearance.titlebarStyle").string == "winnogaps") {
+			gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win8nogaps");	// Transition "Windows (no gaps)" to "Windows 8 (no gaps)"
+		}
 		// pfpMode was changed from `int` to `string`.
 		const pfpMode = gkPrefUtils.tryGet("Geckium.profilepic.mode").int;
 		switch (pfpMode) {
