@@ -157,18 +157,9 @@
 						&.subviewbutton,
 						&.toolbarbutton-1 {
 							&#fxa-manage-account-button::before {
-								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}_big.png");
+								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png");
 							}
 						}
-					}
-				}
-			}
-
-			panel toolbarbutton {
-				&.subviewbutton,
-				&.toolbarbutton-1 {
-					&#fxa-manage-account-button::before {
-						background-position-y: bottom !important;
 					}
 				}
 			}
