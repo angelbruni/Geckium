@@ -231,6 +231,14 @@
 	}
 
 	// Generic toolbarbuttons
+	// Terrible temporary fix for toolbarbuttons affecting titlebar height in maximised.
+	:not(#TabsToolbar-customization-target):not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#people-tabs-space > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		height: var(--toolbarbutton-height) !important;
+	}
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
 		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
@@ -243,7 +251,6 @@
 		fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;
 		margin: 0 var(--toolbarbutton-outer-padding) !important;
 		width: var(--toolbarbutton-width) !important;
-		height: var(--toolbarbutton-height) !important;
 		align-items: center;
 		justify-content: center;
 		transition: border 150ms linear, box-shadow 150ms linear;
