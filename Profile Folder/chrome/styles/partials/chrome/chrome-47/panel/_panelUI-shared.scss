@@ -66,7 +66,6 @@ panel toolbarbutton {
 			padding-block: 20px !important;
 	
 			&::before {
-				content: "";
 				border-radius: 50%;
 				background-color: rgb(222,222,222);
 				min-width: 88px;
@@ -75,10 +74,8 @@ panel toolbarbutton {
 				margin-inline-end: 0 !important;
 			}
 	
-			&:hover {
-				#fxa-menu-header-title {
-					color: var(--panel-item-color-hot) !important;
-				}
+			&:hover #fxa-menu-header-title {
+				color: var(--panel-item-color-hot) !important;
 			}
 	
 			> vbox {

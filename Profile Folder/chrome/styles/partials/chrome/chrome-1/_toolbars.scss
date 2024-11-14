@@ -100,9 +100,8 @@
 
 	&:not([profilepicbutton="true"]),
 	&[profilepic="none"],
-	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#people-tabs-space,
-		#people-titlebuttons-space {
+	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
+		#people-tabs-space {
 			display: none !important;
 		}
     }
@@ -151,18 +150,34 @@
 			@for $i from 0 through $profile-pictures {
 				&[profilepicchromium="#{$i}"] {
 					#gk-firefox-account-button #fxa-avatar-image {
-						background-image: url(chrome://userchrome/content/assets/img/profile/#{$i}.png) !important;
+						background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png") !important;
+					}
+
+					panel toolbarbutton {
+						&.subviewbutton,
+						&.toolbarbutton-1 {
+							&#fxa-manage-account-button::before {
+								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}_big.png");
+							}
+						}
+					}
+				}
+			}
+
+			panel toolbarbutton {
+				&.subviewbutton,
+				&.toolbarbutton-1 {
+					&#fxa-manage-account-button::before {
+						background-position-y: bottom !important;
 					}
 				}
 			}
 		}
-		&[profilepic="custom"] {
-			#gk-firefox-account-button #fxa-avatar-image {
-				background-image: var(
-					--custom-profile-picture,
-					url(chrome://userchrome/content/assets/img/profile/0.png)
-				);
-			}
+		&[profilepic="custom"] #gk-firefox-account-button #fxa-avatar-image {
+			background-image: var(
+				--custom-profile-picture,
+				url(chrome://userchrome/content/assets/img/profile/0.png)
+			);
 		}
 	}
 

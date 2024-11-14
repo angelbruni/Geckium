@@ -26,22 +26,18 @@
 			cursor: pointer !important;
 		}
 
-		toolbarbutton {
-			&.subviewbutton {
-				&#fxa-manage-account-button {
-					margin-block-end: 13px !important;
-			
-					&::after {
-						content: "";
-						position: absolute;
-						left: 0;
-						bottom: -10px;
-						width: 100%;
-						height: 1px;
-						background-color: var(--panel-separator-color);
-						pointer-events: none;
-					}
-				}
+		toolbarbutton.subviewbutton#fxa-manage-account-button {
+			margin-block-end: 13px !important;
+	
+			&::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -10px;
+				width: 100%;
+				height: 1px;
+				background-color: var(--panel-separator-color);
+				pointer-events: none;
 			}
 		}
 	}
