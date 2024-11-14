@@ -61,11 +61,14 @@ function setProperties() {
 				document.documentElement.style.setProperty("--newtab-background-color", newTabBackgroundColor);
 
 			document.documentElement.style.removeProperty("--newtab-text-primary-color");
-			const newTabColor = lwThemeResource.ntp_text;
-			if (newTabColor)
+			
+			if (lwThemeResource.ntp_text) {
+				const newTabColor = lwThemeResource.ntp_text;
 				document.documentElement.style.setProperty("--newtab-text-primary-color", newTabColor)
+
 				if (!ColorUtils.IsDark(newTabColor))
 					document.documentElement.style.setProperty("--lwt-gkntp-logo-alternate", "1");
+			}
 
 			setTimeout(async () => {
 				// 3rd-party (legacy debug override): Add Geckium-exclusive values
