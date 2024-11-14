@@ -145,6 +145,7 @@
 				border-right: var(--titlebutton-border-outer) !important;
 				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 			}
+
 			.titlebar-max,
 			.titlebar-restore,
 			.titlebar-min {
@@ -195,10 +196,8 @@
 			}
 		}
 		&:-moz-locale-dir(rtl) { //Mirror glyph in RTL
-			.titlebar-restore {
-				.toolbarbutton-icon {
-					transform: translateX(0px) scaleX(-1);
-				}
+			.titlebar-restore .toolbarbutton-icon {
+				transform: translateX(0px) scaleX(-1);
 			}
 		}
 		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
