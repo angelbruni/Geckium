@@ -19,70 +19,42 @@
 		}
 	}
 
-	&:not([contentmode="wizard"]) {
-		.show-in-wizard {
-			display: none;
-		}
+	&:not([contentmode="wizard"]) .show-in-wizard {
+		display: none;
 	}
 
 	&[geckium-one] {
-		[data-browser="chrome"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
-			}
+		[data-browser="chrome"] .theme-icons .theme-browser-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
 		}
 
-		[data-browser="firefox"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
-			}
+		[data-browser="firefox"] .theme-icons .theme-browser-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
 		}
 	}
 
-	&[geckium-one][geckium-two] {
-		[data-browser="firefox"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
-			}
-		}
+	&[geckium-one][geckium-two] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
 	}
 
-	&[geckium-one][geckium-two][geckium-eleven] {
-		[data-browser="chrome"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
-			}
-		}
+	&[geckium-one][geckium-two][geckium-eleven] [data-browser="chrome"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
 	}
 
-	&[geckium-one][geckium-two][geckium-twentyfive] {
-		[data-browser="firefox"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
-			}
-		}
+	&[geckium-one][geckium-two][geckium-twentyfive] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
 	}
 
-	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] {
-		[data-browser="chrome"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
-			}
-		}
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] [data-browser="chrome"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
 	}
 
-	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] {
-		[data-browser="firefox"] {
-			.theme-icons .theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
-			}
-		}
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
 	}
 
-	[data-browser="msedge"] {
-		.theme-icons .theme-browser-icon {
-			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
-		}
+	[data-browser="msedge"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
 	}
 }
 
@@ -91,42 +63,38 @@
 	height: 710px;
 }
 
-.content {
-	&:not([data-page-container]) {
-		padding: var(--inner-padding);
-	}
+.content:not([data-page-container]) {
+	padding: var(--inner-padding);
 }
 
-h4 {
-	.about-flag {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 28px;
-		width: 28px;
-		margin-inline-start: 4px;
-		cursor: pointer;
-		transition: all 150ms ease-in;
-		border-radius: 9999px;
-		overflow: hidden;
-		
-		&::before {
-			content: "";
-			height: 18px;
-			width: 18px;
-			mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
-			mask-size: cover;
-			mask-position: center center;
-			background: rgb(126, 126, 126);
-		}
+h4 .about-flag {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 28px;
+	width: 28px;
+	margin-inline-start: 4px;
+	cursor: pointer;
+	transition: all 150ms ease-in;
+	border-radius: 9999px;
+	overflow: hidden;
+	
+	&::before {
+		content: "";
+		height: 18px;
+		width: 18px;
+		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
+		mask-size: cover;
+		mask-position: center center;
+		background: rgb(126, 126, 126);
+	}
 
-		&:hover {
-			background: rgb(0, 0, 0, 6%);
-		}
+	&:hover {
+		background: rgb(0, 0, 0, 6%);
+	}
 
-		.ripple {
-			background: rgb(0, 0, 0, 20%);
-		}
+	.ripple {
+		background: rgb(0, 0, 0, 20%);
 	}
 }
 
@@ -145,16 +113,12 @@ h4 {
 		cursor: pointer;
 	}
 
-	&.color {
-		&.ripple-enabled {
-			.ripple {
-				background: color-mix(
-					in srgb,
-					var(--secondary-color, var(--primary-color)) 40%,
-					transparent
-				);
-			}
-		}
+	&.color.ripple-enabled .ripple {
+		background: color-mix(
+			in srgb,
+			var(--secondary-color, var(--primary-color)) 40%,
+			transparent
+		);
 	}
 
 	&:checked {
@@ -219,29 +183,17 @@ h4 {
 	}
 }
 
-#ntp-visual-styles-grid {
-	/*> [for="chrome-6"],
-	> [for="chrome-25"],
-	> [for="chrome-68"] {
-		display: none;
-	}*/
-
-	.link.chrome-appearance {
-		height: 163px;
-	}
+#ntp-visual-styles-grid .link.chrome-appearance {
+	height: 163px;
 }
 
-.chrome-appearance  {
-	.radio-parent {
-		margin-inline-start: 0 !important;
-	}
+.chrome-appearance .radio-parent {
+	margin-inline-start: 0 !important;
 }
 
-#profile-pic-content {
-	&[profile-pic-button="false"] {
-		pointer-events: none;
-		opacity: 0.5;
-	}
+#profile-pic-content[profile-pic-button="false"] {
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 .profile-mode-option {
@@ -249,7 +201,9 @@ h4 {
 }
 
 #card-avatar {
-	&:not([profile-pic-mode="0"], [profile-pic-mode="2"]) {
+	&:not([profile-pic-mode="none"],
+		  [profile-pic-mode="geckium"],
+		  [profile-pic-mode="firefox"]) {
 		padding-block-end: 19px;
 	}
 
@@ -258,7 +212,7 @@ h4 {
 	}
 
 
-	&[profile-pic-mode="1"] {
+	&[profile-pic-mode="chromium"] {
 		> .item:nth-child(2) {
 			display: flex;
 		}
@@ -268,14 +222,15 @@ h4 {
 		}
 	}
 
-	&[profile-pic-mode="0"],
-	&[profile-pic-mode="2"] {
+	&[profile-pic-mode="none"],
+	&[profile-pic-mode="geckium"],
+	&[profile-pic-mode="firefox"] {
 		> .item:nth-child(1) {
 			border-bottom: 0;
 		}
 	}
 
-	&[profile-pic-mode="3"] {
+	&[profile-pic-mode="custom"] {
 		> .item:nth-child(2) {
 			display: flex;
 		}
@@ -308,19 +263,17 @@ h4 {
 	}
 }
 
-.item {
-	&.app {
-		padding-block: 6px;
+.item.app {
+	padding-block: 6px;
 
-		image {
-			width: 48px;
-			height: 48px;
-			margin-inline-start: -8px;
-		}
+	image {
+		width: 48px;
+		height: 48px;
+		margin-inline-start: -8px;
+	}
 
-		label {
-			margin-inline-start: 8px;
-		}
+	label {
+		margin-inline-start: 8px;
 	}
 }
 
@@ -665,25 +618,19 @@ h4 {
 		white-space: nowrap;
 	}
 
-	&.favicon {
-		.button {
-			width: 16px;
-			height: 16px;
-		}
+	&.favicon .button {
+		width: 16px;
+		height: 16px;
 	}
 
-	&.icon {
-		.button {
-			width: 128px;
-			height: 128px;
-		}
+	&.icon .button {
+		width: 128px;
+		height: 128px;
 	}
 }
 
-#app-name {
-	&::before {
-		content: "\00a0";
-	}
+#app-name::before {
+	content: "\00a0";
 }
 
 .modal[data-modal="editApp_modal"] {
@@ -729,11 +676,9 @@ h4 {
 	}
 }
 
-#gecko-stuff {
-	> .item {
-		min-height: 80px;
-		justify-content: center;
-	}
+#gecko-stuff > .item {
+	min-height: 80px;
+	justify-content: center;
 }
 
 #gecko-hue,
@@ -828,15 +773,11 @@ h4 {
 		display: none !important;
 	}
 }
-:root[isWindows10] {
-	.notwin10 {
-		display: none !important;
-	}
+:root[isWindows10] .notwin10 {
+	display: none !important;
 }
-:root:not([isWindows10]) {
-	.win10 {
-		display: none !important;
-	}
+:root:not([isWindows10]) .win10 {
+	display: none !important;
 }
 .linuxonly {
 	@media not (-moz-platform: linux) {

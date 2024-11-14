@@ -99,12 +99,14 @@
 	// NOTE: Maximised state is handled by titlebar border styles.
 
 	&:not([profilepicbutton="true"]),
+	&[profilepic="none"],
 	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#people-tabs-space > #gk-firefox-account-button {
+		#people-tabs-space,
+		#people-titlebuttons-space {
 			display: none !important;
 		}
     }
-	&[profilepicbutton="true"] {
+	&[profilepicbutton="true"]:not([profilepic="none"]) {
 		#gk-firefox-account-button #fxa-avatar-image {
 			width: 38px !important;
 			height: 32px !important;
