@@ -612,11 +612,8 @@
 	
 				&:active {
 					background-color: rgba(255, 255, 255, 0.2) !important;
+					box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
 					transition: none;
-				}
-	
-				image {
-					opacity: 1 !important;
 				}
 			}
 	
@@ -629,6 +626,14 @@
 			image { // Set the icon's opacity and hover-fade
 				opacity: .6 !important;
 				transition: opacity 100ms linear;
+			}
+
+			&:-moz-locale-dir(rtl) {
+				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+
+				&:not([disabled]):hover:active {
+					box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+				}
 			}
 		}
 	}
@@ -649,11 +654,6 @@
 
 			// .titlebar-people
 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
-	
-			image { // Set the icon's opacity and hover-fade
-				opacity: .6 !important;
-				transition: opacity 100ms linear;
-			}
 	
 			.toolbarbutton-text {
 				--stroke-color: rgba(0,0,0,.5);
