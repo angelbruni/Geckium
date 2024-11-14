@@ -1,3 +1,7 @@
-input {
-	text-overflow: ellipsis !important;
+@-moz-document	url-prefix(about:preferences),
+				url-prefix(about:addons) {
+
+ input {
+ 	text-overflow: ellipsis !important;
+ }
 }
