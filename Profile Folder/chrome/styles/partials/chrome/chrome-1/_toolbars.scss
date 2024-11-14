@@ -100,9 +100,8 @@
 
 	&:not([profilepicbutton="true"]),
 	&[profilepic="none"],
-	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#people-tabs-space,
-		#people-titlebuttons-space {
+	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
+		#people-tabs-space {
 			display: none !important;
 		}
     }
@@ -151,18 +150,26 @@
 			@for $i from 0 through $profile-pictures {
 				&[profilepicchromium="#{$i}"] {
 					#gk-firefox-account-button #fxa-avatar-image {
-						background-image: url(chrome://userchrome/content/assets/img/profile/#{$i}.png) !important;
+						background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png") !important;
 					}
+
+					&:not([fxastatus="not_configured"]) panel toolbarbutton {
+						&.subviewbutton,
+						&.toolbarbutton-1 {
+							&#fxa-manage-account-button::before {
+								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png");
+							}
+						}
+					}
+					
 				}
 			}
 		}
-		&[profilepic="custom"] {
-			#gk-firefox-account-button #fxa-avatar-image {
-				background-image: var(
-					--custom-profile-picture,
-					url(chrome://userchrome/content/assets/img/profile/0.png)
-				);
-			}
+		&[profilepic="custom"] #gk-firefox-account-button #fxa-avatar-image {
+			background-image: var(
+				--custom-profile-picture,
+				url(chrome://userchrome/content/assets/img/profile/0.png)
+			);
 		}
 	}
 
@@ -216,6 +223,14 @@
 	}
 
 	// Generic toolbarbuttons
+	// Terrible temporary fix for toolbarbuttons affecting titlebar height in maximised.
+	:not(#TabsToolbar-customization-target, .widget-overflow-list) > .toolbarbutton-1:not(
+		#people-tabs-space > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		height: var(--toolbarbutton-height) !important;
+	}
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
 		#people-tabs-space > #gk-firefox-account-button,
 		#tabs-newtab-button,
@@ -228,7 +243,6 @@
 		fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;
 		margin: 0 var(--toolbarbutton-outer-padding) !important;
 		width: var(--toolbarbutton-width) !important;
-		height: var(--toolbarbutton-height) !important;
 		align-items: center;
 		justify-content: center;
 		transition: border 150ms linear, box-shadow 150ms linear;

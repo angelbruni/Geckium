@@ -1,15 +1,22 @@
 // ==UserScript==
 // @name        Geckium - People
 // @author		AngelBruni
-// @loadorder   3
+// @loadorder   4
 // ==/UserScript==
 
 class gkPeople {
+	static removeOgFxAButton() {
+		if (document.getElementById("fxa-toolbar-menu-button"))
+			CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");
+	}
+
 	static get getPeopleButton() {
 		return document.getElementById("gk-firefox-account-button");
 	}
 
 	static createReservedSpaces() {
+		this.removeOgFxAButton();
+
 		const TabsToolbarCustomizationTarget = document.getElementById("TabsToolbar-customization-target");
 		const beforeTabsSpace = document.createXULElement("toolbaritem");
 		beforeTabsSpace.setAttribute("removable", "false");
@@ -120,10 +127,16 @@ UC_API.Runtime.startupFinished().then(() => {
 
 const pfpAppearanceObs = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			gkPeople.setPeoplePosition();	
-		}		
+		if (topic == "nsPref:changed")
+			gkPeople.setPeoplePosition();
 	},
 };
-Services.prefs.addObserver("Geckium.appearance.choice", pfpAppearanceObs, false);
 Services.prefs.addObserver("Geckium.profilepic.position", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.choice", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.main.overrideStyle", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.main.style", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarStyle", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarNative", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", pfpAppearanceObs, false);
+Services.prefs.addObserver("browser.tabs.inTitlebar", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.chrTheme.mustAero", pfpAppearanceObs, false);
