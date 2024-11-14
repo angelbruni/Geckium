@@ -549,11 +549,11 @@
 		margin-inline-end: 6px !important;
 	}
 
-	&[gktitnative="true"][gktitbuttons="win"] #people-titlebuttons-space,
 	&[gktitbuttons="win10"] #people-titlebuttons-space {
 		margin-inline-end: 7px !important;
 	}
 
+	&[gktitnative="true"][gktitbuttons="win"] #people-titlebuttons-space,
 	&[gktitbuttons*="linux"] #people-titlebuttons-space {
 		margin-inline-end: 5px !important;
 	}
@@ -663,7 +663,7 @@
 			min-width: 26px;
 
 			// .titlebar-people
-			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win7/sign_in_button_avatar.svg");
 	
 			.toolbarbutton-text {
 				--stroke-color: rgba(0,0,0,.5);
@@ -689,7 +689,7 @@
 		min-width: 24px;
 
 		// .titlebar-people
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/sign_in_button_avatar.svg");
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
 		
 		// Hover and pressed states
 		&:not([disabled]):hover {
@@ -732,6 +732,10 @@
 									var(--sign-in-button-bottom-left-pressed),	var(--sign-in-button-bottom-pressed),	var(--sign-in-button-bottom-right-pressed);
 			}
 		}
+	}
+
+	&[gktitnative="true"][gktitbuttons="win"] #people-titlebuttons-space #gk-firefox-account-button image {
+		margin-block-end: 2px !important;
 	}
 
 	&[gktitstyle="macos"] {
