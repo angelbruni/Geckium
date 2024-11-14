@@ -19,7 +19,7 @@
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#people-tabs-space > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -68,10 +68,8 @@
 		}
 
 		//Shared non-native titlebar variables
-		& {
-			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-			--titlebutton-corner: 3.5px;
-		}
+		--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+		--titlebutton-corner: 3.5px;
 
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
@@ -112,7 +110,7 @@
 			background-clip: padding-box !important;
 			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 			transition: background-color 100ms linear; //hover-fade animation
-			width: 25px;
+			min-width: 25px;
 			display: flex !important; // Really, macOS's and Windows 8-'s Mozilla Firefox?
 
 			image { // Set the icon's opacity and hover-fade
@@ -120,16 +118,18 @@
 				transition: opacity 100ms linear;
 			}
 
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background-color: rgba(255, 255, 255, 0.3) !important;
+
+				&:active {
+					background-color: rgba(255, 255, 255, 0.2) !important;
+					transition: none;
+				}
+
 				image {
 					opacity: 1 !important;
 				}
-			}
-			&:not([disabled]):hover:active {
-				background-color: rgba(255, 255, 255, 0.2) !important;
-				transition: none;
 			}
 		}
 		.titlebar-max,
@@ -157,7 +157,7 @@
 		//Close button
 		.titlebar-close {
 			width: 43px;
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; // Mozilla bias moment #idk
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg") !important; // Mozilla bias moment #idk
 			border-right: var(--titlebutton-border-outer) !important;
 			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 2 !important;
@@ -180,7 +180,7 @@
 
 		//Maximise and Restore buttons
 		.titlebar-max {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg") !important;
 		}
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
@@ -189,7 +189,7 @@
 			}
 		}
 		.titlebar-restore {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg") !important;
 			.toolbarbutton-icon {
 				transform: translateX(-1px);
 			}
@@ -213,7 +213,7 @@
 
 		//Minimise button
 		.titlebar-min {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg") !important;
 			border-bottom-left-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 0 !important;
 		}
@@ -230,10 +230,8 @@
 			.titlebar-buttonbox {
 				box-shadow: unset;
 			}
-			.titlebar-button {
-				&::before { //Linux didn't have this until 17/18
-					content: unset !important;
-				}
+			.titlebar-button::before { //Linux didn't have this until 17/18
+				content: unset !important;
 			}
 			.titlebar-max,
 			.titlebar-restore,
@@ -253,7 +251,7 @@
 			.titlebar-close {
 				width: 24px;
 				height: 32px;
-				background: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png) !important; // Mozilla bias moment #idk
+				background: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png") !important; // Mozilla bias moment #idk
 				background-position: center !important;
 				background-repeat: no-repeat !important;
 				border-bottom: unset !important;

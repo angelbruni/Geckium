@@ -3,13 +3,16 @@
 	//Shared titlebar button code
 	.titlebar-button {
 		background: transparent !important;
-		//Hover and pressed states
+
+		// Hover and pressed states
 		&:not([disabled]):hover {
 			background: rgba(20, 20, 23, 0.078) !important;
+			
+			&:active {
+				background: rgba(20, 20, 23, 0.141) !important;
+			}
 		}
-		&:not([disabled]):hover:active {
-			background: rgba(20, 20, 23, 0.141) !important;
-		}
+
 		height: 36px;
 		width: 32px;
 		color: inherit !important;

@@ -28,9 +28,8 @@ function updateSignInStatus() {
 
 const fxSyncObs = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
+		if (topic == "nsPref:changed")
 			updateSignInStatus();
-		}
 	},
 };
 Services.prefs.addObserver("services.sync.username", fxSyncObs, false);
