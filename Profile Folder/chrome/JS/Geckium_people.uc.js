@@ -1,22 +1,17 @@
 // ==UserScript==
-// @name        Geckium - People
+// @name        Geckium - People Button
 // @author		AngelBruni
 // @loadorder   4
 // ==/UserScript==
 
-class gkPeople {
-	static removeOgFxAButton() {
-		if (document.getElementById("fxa-toolbar-menu-button"))
-			CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");
-	}
 
+
+class gkPeople {
 	static get getPeopleButton() {
 		return document.getElementById("gk-firefox-account-button");
 	}
 
 	static createReservedSpaces() {
-		this.removeOgFxAButton();
-
 		const TabsToolbarCustomizationTarget = document.getElementById("TabsToolbar-customization-target");
 		const beforeTabsSpace = document.createXULElement("toolbaritem");
 		beforeTabsSpace.setAttribute("removable", "false");
