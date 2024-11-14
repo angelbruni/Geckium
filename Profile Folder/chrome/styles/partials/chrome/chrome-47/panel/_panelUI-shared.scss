@@ -9,7 +9,7 @@
 		--panel-item-color-hot: rgb(72, 129, 236);
 	}
 
-	&[fxastatus="not_configured"]:not([profilepic="chromium"]) panel toolbarbutton {
+	&[fxastatus="not_configured"] panel toolbarbutton {
 		&.subviewbutton,
 		&.toolbarbutton-1 {
 			&#fxa-manage-account-button::before {

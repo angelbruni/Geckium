@@ -9,20 +9,16 @@
 	--personal-toolbar-floating-border-inline-start-width: var(--personal-toolbar-floating-border-block-start-width);
 	--personal-toolbar-floating-border-inline-end-width: var(--personal-toolbar-floating-border-block-start-width);
 
-	&[personalbar="newtab"] {
-		#PersonalToolbar {
-			#personal-toolbar-floating-bg {
-				left: 0;
-				top: 0;
-				transform: unset;
-			}
-		}
+	&[personalbar="newtab"] #PersonalToolbar #personal-toolbar-floating-bg {
+		left: 0;
+		top: 0;
+		transform: unset;
 	}
 
 	&[profilepicbutton="true"]:not([profilepic="none"])[profilepic="chromium"] {
 		$profile-pictures: 25; // bruni: Set the amount of profile pictures
 		@for $i from 0 through $profile-pictures {
-			&[profilepicchromium="#{$i}"] panel toolbarbutton {
+			&[profilepicchromium="#{$i}"]:not([fxastatus="not_configured"]) panel toolbarbutton {
 				&.subviewbutton,
 				&.toolbarbutton-1 {
 					&#fxa-manage-account-button::before {
@@ -33,22 +29,16 @@
 		}
 	}
 
-	&[geckium-choice="fortyseven"] {
-		#PersonalToolbar {
-			#personal-toolbar-empty-description {
-				.text-link {
-					color: inherit !important;
-				}
+	&:not([fxastatus="not_configured"]) panel toolbarbutton {
+		&.subviewbutton,
+		&.toolbarbutton-1 {
+			&#fxa-manage-account-button::before {
+				background-position-y: bottom !important;
 			}
 		}
 	}
-}
 
-panel toolbarbutton {
-	&.subviewbutton,
-	&.toolbarbutton-1 {
-		&#fxa-manage-account-button::before {
-			background-position-y: bottom !important;
-		}
+	&[geckium-choice="fortyseven"] #PersonalToolbar #personal-toolbar-empty-description .text-link {
+		color: inherit !important;
 	}
 }

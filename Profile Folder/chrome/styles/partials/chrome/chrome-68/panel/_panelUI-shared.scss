@@ -1,4 +1,4 @@
-&[fxastatus="not_configured"]:not([profilepic="chromium"]) panel toolbarbutton {
+&[fxastatus="not_configured"] panel toolbarbutton {
 	&.subviewbutton,
 	&.toolbarbutton-1 {
 		&#fxa-manage-account-button::before {
@@ -7,27 +7,25 @@
 	}
 }
 
-#PanelUI-fxa-menu {
-	> toolbarbutton.subviewbutton {
-		&:first-of-type {
-			margin-block-start: 10px !important;
-		}
+#PanelUI-fxa-menu > toolbarbutton.subviewbutton {
+	&:first-of-type {
+		margin-block-start: 10px !important;
+	}
 
-		&:last-of-type {
-			margin-block-end: 10px !important;
-		}
+	&:last-of-type {
+		margin-block-end: 10px !important;
+	}
 
-		&:not(#fxa-manage-account-button) {
-			min-height: 40px !important;
-			border-block-start: 0 !important;
-	
-			&::before {
-				content: "";
-				width: 18px;
-				height: 18px;
-				margin-inline-end: 15px;
-				text-align: center !important;
-			}
+	&:not(#fxa-manage-account-button) {
+		min-height: 40px !important;
+		border-block-start: 0 !important;
+
+		&::before {
+			content: "";
+			width: 18px;
+			height: 18px;
+			margin-inline-end: 15px;
+			text-align: center !important;
 		}
 	}
 }
