@@ -710,6 +710,10 @@
 			background: var(--theme-newtab, var(--default-theme-newtab));
 		}
 
+		&:-moz-locale-dir(rtl) {
+			transform: scaleX(-1);
+		}
+
 		.toolbarbutton-icon {
 			z-index: 1; // Keep it above pseudos
 			height: 100% !important;

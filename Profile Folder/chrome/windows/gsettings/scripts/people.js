@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", updateProfilePictures);
 function updateProfilePictureChoiceOption() {
 	const container = document.getElementById("card-avatar");
 
-	container.setAttribute("profile-pic-mode", gkPrefUtils.tryGet("Geckium.profilepic.mode").int);
+	container.setAttribute("profile-pic-mode", gkPrefUtils.tryGet("Geckium.profilepic.mode").string);
 }
 const profilePictureObserver = {
 	observe: function (subject, topic, data) {

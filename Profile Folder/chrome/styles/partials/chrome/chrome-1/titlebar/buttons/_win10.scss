@@ -114,13 +114,14 @@
 				color: var(--titlebar-button-foreground-inactive, inherit) !important;
 			}
 			
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background: color-mix(in srgb, currentColor 12%, transparent) !important;
-			}
-			&:not([disabled]):hover:active {
-				background: color-mix(in srgb, currentColor 22%, transparent) !important;
-				transition: none;
+
+				&:active {
+					background: color-mix(in srgb, currentColor 22%, transparent) !important;
+					transition: none;
+				}
 			}
 
 			//Make the stroke actually visible

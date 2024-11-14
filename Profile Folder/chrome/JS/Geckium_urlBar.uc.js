@@ -51,7 +51,7 @@ function styleURLBar() {
 
 	setTimeout(() => {
 		if (appearanceChoice <= 5) {
-			UC_API.Runtime.startupFinished().then(()=>{
+			UC_API.Runtime.startupFinished().then(() => {
 				urlbarContainer.setAttribute("starpos", "start");
 				gkInsertElm.before(starButtonBox, urlbar);
 				starButtonBox.classList.add("toolbarbutton-1");
