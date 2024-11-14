@@ -647,6 +647,16 @@
 	}
 
 	&[gktitnative="true"][gktitbuttons="win"] {
+		@media (-moz-platform: windows) {
+			#people-titlebuttons-space {
+				appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
+			}
+
+			.titlebar-people {
+				margin-block-start: 1px !important;
+			}
+		}
+
 		.titlebar-people {
 			display: flex !important;
 			height: 20px;
