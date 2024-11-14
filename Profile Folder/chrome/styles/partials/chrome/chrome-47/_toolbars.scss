@@ -19,6 +19,22 @@
 		}
 	}
 
+	&[profilepicbutton="true"]:not([profilepic="none"])[profilepic="chromium"] {
+		$profile-pictures: 25; // bruni: Set the amount of profile pictures
+		@for $i from 0 through $profile-pictures {
+			&[profilepicchromium="#{$i}"] {
+				panel toolbarbutton {
+					&.subviewbutton,
+					&.toolbarbutton-1 {
+						&#fxa-manage-account-button::before {
+							background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}_big.png");
+						}
+					}
+				}
+			}
+		}
+	}
+
 	&[geckium-choice="fortyseven"] {
 		#PersonalToolbar {
 			#personal-toolbar-empty-description {
@@ -26,6 +42,15 @@
 					color: inherit !important;
 				}
 			}
+		}
+	}
+}
+
+panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		&#fxa-manage-account-button::before {
+			background-position-y: bottom !important;
 		}
 	}
 }
