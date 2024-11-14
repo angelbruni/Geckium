@@ -41,6 +41,19 @@
 			}
 		}
 	}
+
+	&[fxastatus="not_configured"] {
+		--avatar-image-url: url("chrome://userchrome/content/assets/img/profile/avatar_empty.svg") !important;
+	
+		&:not([profilepic="chromium"]) panel toolbarbutton {
+			&.subviewbutton,
+			&.toolbarbutton-1 {
+				&#fxa-manage-account-button::before {
+					background-size: 61px;
+				}
+			}
+		}
+	}
 }
 
 #PanelUI-fxa-menu {
