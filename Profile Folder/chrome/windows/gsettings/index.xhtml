@@ -974,67 +974,79 @@
 
 							<vbox class="page" data-page="14">
 								<vbox class="content-container">
-									<vbox class="window-top-bars light">
-										<hbox class="window-top-bar">
-											<hbox class="window-toolbar" style="margin-inline: auto; width: 680px" flex="0">
-												<!--<h3 for="people-switch" />-->
-												<spacer />
-												<div class="switch-parent">
-													<html:input class="switch" data-pref="Geckium.profilepic.button" type="checkbox" id="people-switch" name="people-switch" />
-													<html:label class="gutter" for="people-switch" />
-												</div>
-											</hbox>
-										</hbox>
-									</vbox>
 									<vbox class="content">
-										<vbox class="list-container" id="profile-pic-content">
+										<vbox class="list-container" id="people-content">
+											<h4>People Button TODO</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.peoplePositionTitle;</label>
-														<label class="description">&gsettings.peoplePositionDescription;</label>
+														<label class="name">People Button Style TODO</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="pfp-pos" data-pref="profilepic.position" id="pfp-pos-select" style="width: 200px">
+													<html:button class="menu" data-name="people-style" data-pref="people.style" id="people-style-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
 															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="old">&gsettings.tabsToolbar;</hbox>
-															<hbox class="item ripple-enabled" value="new">&gsettings.titlebarButtons;</hbox>
+															<hbox class="item ripple-enabled" value="off">Disabled TODO</hbox>
+															<hbox class="item ripple-enabled" value="avatar">Avatar beside Tabs TODO</hbox>
+															<hbox class="item ripple-enabled" value="titlebutton">Titlebar Button TODO</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 											</vbox>
-
-											<h4>&gsettings.tabsToolbarButton;</h4>
+											<h4>Avatar TODO</h4>
 											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
 														<label class="name">&gsettings.avatarChoice;</label>
-														<!--<label class="description"></label>-->
+														<label class="description">Firefox Account will only display if signed in TODO</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="none">&gsettings.none;</hbox>
+															<hbox class="item ripple-enabled" value="firefox">Firefox Account TODO</hbox>
 															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
 															<hbox class="item ripple-enabled" value="chromium">Chromium</hbox>
-															<hbox class="item ripple-enabled" value="firefox">Firefox Sync</hbox>
 															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1">
-													<h4>&gsettings.chooseAPicture;</h4>
+													<h4>Choose a custom avatar TODO</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
 														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true" />
 														<label class="placeholder">&gsettings.imagePath;</label>
 													</div>
 												</vbox>
+											</vbox>
+											<h4>Titlebar Button TODO</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">Linux</div>Force Chromium 68's People Titlebar Button TODO</label>
+														<label class="description">Before 68, the titlebar button used Windows's button style TODO</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.people.force68Linux" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name"><div class="year">Chromium OS</div>Show People Titlebar Button TODO</label>
+														<label class="description">The People Titlebar Button was exclusive to Windows 8 Mode TODO</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.people.showChrOSPeople" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
 											</vbox>
 										</vbox>
 									</vbox>

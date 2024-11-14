@@ -86,6 +86,10 @@ function updateSettings(iteration) {
 	if (iteration < 5) {
 		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");  // Remove the old avatar toolbarbutton
 
+		// TODO: Transition winnogaps -> win8nogaps
+		// TODO: Transition profile picture enabled == false -> disabled people button appearance
+		// TODO: Transition profile picture to new values
+
 
 
 
