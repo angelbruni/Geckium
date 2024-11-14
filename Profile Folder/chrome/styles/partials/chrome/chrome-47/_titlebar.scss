@@ -1,29 +1,13 @@
 // Updated titlebar styles
 &[chromemargin]:not([macOSNativeFullscreen]) {
-    // Chromium OS
-    &[gktitstyle="chromiumos"] {
-        @import "titlebar/borders/chromiumos";
-    }
+	// Chromium OS
+	&[gktitstyle="chromiumos"] {
+		@import "titlebar/borders/chromiumos";
+	}
 }
 
 // Updated titlebutton styles
 // Chromium OS
 &[gktitbuttons="chromiumos"] {
-    @import "titlebar/buttons/chromiumos";
-}
-
-// People button
-.titlebar-buttonbox-container {
-    gap: 6px;
-}
-
-&[fxastatus="signedin"] {
-    .titlebar-button.titlebar-people {
-        .toolbarbutton-icon {
-            display: none !important;
-        }
-        .toolbarbutton-text {
-            display: flex !important;
-        }
-    }
+	@import "titlebar/buttons/chromiumos";
 }

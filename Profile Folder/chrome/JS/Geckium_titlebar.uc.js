@@ -592,6 +592,7 @@ const titObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
 			gkTitlebars.applyTitlebar();
+            gkPeople.setPeoplePosition();
 		}
 	},
 };
