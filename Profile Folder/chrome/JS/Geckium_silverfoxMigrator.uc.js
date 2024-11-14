@@ -143,13 +143,13 @@ class sfMigrator {
 				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
 				if (gkPrefUtils.tryGet("services.sync.username").string) {
 					//  Firefox Account's user picture if signed in...
-					gkPrefUtils.set("Geckium.profilepic.mode").int(2);
+					gkPrefUtils.set("Geckium.profilepic.mode").string("firefox");
 				} else {				
 					//  Otherwise Geckium.
-					gkPrefUtils.set("Geckium.profilepic.mode").int(0);
+					gkPrefUtils.set("Geckium.profilepic.mode").string("geckium");
 				}
 			} else {
-				gkPrefUtils.set("Geckium.profilepic.mode").int(1);
+				gkPrefUtils.set("Geckium.profilepic.mode").string("chromium");
 				gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
 			}
 		}

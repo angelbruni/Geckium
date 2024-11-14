@@ -118,17 +118,18 @@
 				transition: opacity 100ms linear;
 			}
 
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background-color: rgba(255, 255, 255, 0.3) !important;
+
+				&:active {
+					background-color: rgba(255, 255, 255, 0.2) !important;
+					transition: none;
+				}
 
 				image {
 					opacity: 1 !important;
 				}
-			}
-			&:not([disabled]):hover:active {
-				background-color: rgba(255, 255, 255, 0.2) !important;
-				transition: none;
 			}
 		}
 		.titlebar-max,

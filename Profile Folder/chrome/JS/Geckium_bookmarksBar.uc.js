@@ -56,11 +56,11 @@ const bookmarkBarPrefObserver = {
 	}
 };
 Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", bookmarkBarPrefObserver, false)
-UC_API.Runtime.startupFinished().then(()=>{
+UC_API.Runtime.startupFinished().then(() => {
 	applyBookmarkAttr();
 });
 
-UC_API.Runtime.startupFinished().then(()=>{
+UC_API.Runtime.startupFinished().then(() => {
 	const personalToolbarBackground = document.createElement("div");
 	personalToolbarBackground.id = "personal-toolbar-bg";
 

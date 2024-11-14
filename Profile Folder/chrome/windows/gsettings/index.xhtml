@@ -987,7 +987,6 @@
 									</vbox>
 									<vbox class="content">
 										<vbox class="list-container" id="profile-pic-content">
-											<!--<h4>Button</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
@@ -995,23 +994,23 @@
 														<label class="description">&gsettings.peoplePositionDescription;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="pfp-pos" id="pfp-pos-select" style="width: 200px">
+													<html:button class="menu" data-name="pfp-pos" data-pref="profilepic.position" id="pfp-pos-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="1">Tabs Toolbar</hbox>
-															<hbox class="item ripple-enabled" value="2">Caption Buttons</hbox>
+															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="old">&gsettings.tabsToolbar;</hbox>
+															<hbox class="item ripple-enabled" value="new">&gsettings.titlebarButtons;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
-											</vbox>-->
+											</vbox>
 
-											<h4>&gsettings.pickAnAvatar;</h4>
+											<h4>&gsettings.oldButton;</h4>
 											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.avatarMode;</label>
+														<label class="name">&gsettings.avatarChoice;</label>
 														<!--<label class="description"></label>-->
 													</vbox>
 													<spacer />
@@ -1019,10 +1018,11 @@
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">Geckium</hbox>
-															<hbox class="item ripple-enabled" value="1">Chromium</hbox>
-															<hbox class="item ripple-enabled" value="2">Firefox Sync</hbox>
-															<hbox class="item ripple-enabled" value="3">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled" value="none">None</hbox>
+															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
+															<hbox class="item ripple-enabled" value="chromium">Chromium</hbox>
+															<hbox class="item ripple-enabled" value="firefox">Firefox Sync</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>

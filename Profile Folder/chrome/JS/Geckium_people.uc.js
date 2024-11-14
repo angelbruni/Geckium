@@ -27,58 +27,73 @@ class gkPeople {
 		return [document.getElementById("people-tabs-space"), document.getElementById("people-titlebuttons-space")];
 	}
 
-	static setPeoplePosition(pos) {
-		let appearanceChoice = gkEras.getBrowserEra();
+	static setPeoplePosition() {
+		let prefChoice = gkPrefUtils.tryGet("Geckium.profilepic.position").string;
+		let appearanceChoice;
+
+		if (!prefChoice || prefChoice == "auto")
+			appearanceChoice = gkEras.getBrowserEra();
+		else if (prefChoice == "old")
+			appearanceChoice = 1;
+		else if (prefChoice == "new")
+			appearanceChoice = 47;
+
 		let titlebarBorder = gkTitlebars.getTitlebarSpec().border;
 		this.getPeopleButton.removeAttribute("class");
 
-		switch (pos) {
-			default:
-				if (appearanceChoice < 47) {
-					// Position
-					if (titlebarBorder == "macos")
-						gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
-					else
-						document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
+		if (appearanceChoice < 47) {
+			// Position
+			if (titlebarBorder == "macos")
+				gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
+			else
+				document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
 
-					// Actual Button
-					this.getReservedSpaces[0].appendChild(this.getPeopleButton);
-					this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
-				} else {
-					// Position
-					if (titlebarBorder == "macos")
-						gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
-					else
-						document.querySelector("#TabsToolbar .titlebar-buttonbox-container:not(#people-titlebuttons-space)").prepend(this.getReservedSpaces[1]);
+			this.getReservedSpaces[0].style.display = null;
+			this.getReservedSpaces[1].style.display = "none";
+			
+			// Actual Button
+			this.getReservedSpaces[0].appendChild(this.getPeopleButton);
+			this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
+		} else {
+			// Position
+			if (titlebarBorder == "macos")
+				gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
+			else
+				document.querySelector("#TabsToolbar .titlebar-buttonbox-container:not(#people-titlebuttons-space)").prepend(this.getReservedSpaces[1]);
 
-					// Actual Button
-					this.getReservedSpaces[1].appendChild(this.getPeopleButton);
-					this.getPeopleButton.classList.add("titlebar-people");
-				}
-				break;
+			this.getReservedSpaces[0].style.display = "none";
+			this.getReservedSpaces[1].style.display = null;
+			
+			// Actual Button
+			this.getReservedSpaces[1].appendChild(this.getPeopleButton);
+			this.getPeopleButton.classList.add("titlebar-people");
 		}
 	}
 
 	static setProfilePic() {
 		const attr = "profilepic";
-		const prefSetting = gkPrefUtils.tryGet("Geckium.profilepic.mode").int;
+		const prefSetting = gkPrefUtils.tryGet("Geckium.profilepic.mode").string;
 
+		// Reset
+		document.documentElement.removeAttribute("profilepicchromium");
+		document.documentElement.style.removeProperty("--custom-profile-picture");
+
+		// Set
 		document.documentElement.setAttribute("profilepicbutton", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
-
+		document.documentElement.setAttribute(attr, prefSetting);
 		switch (prefSetting) {
-			case 0:
-				document.documentElement.setAttribute(attr, "geckium");
+			case "geckium":
 				break;
-			case 1:
-				document.documentElement.setAttribute(attr, "chromium");
+			case "chromium":
 				document.documentElement.setAttribute("profilepicchromium", gkPrefUtils.tryGet("Geckium.profilepic.chromiumIndex").int);
 				break;
-			case 2:
-				document.documentElement.setAttribute(attr, "firefox");
+			case "firefox":
 				break;
-			case 3:
-				document.documentElement.setAttribute(attr, "custom");
+			case "custom":
 				document.documentElement.style.setProperty("--custom-profile-picture", "url(file:///" + gkPrefUtils.tryGet("Geckium.profilepic.customPath").string.replace(/\\/g, "/").replace(" ", "%20") + ")");
+				break;
+			default:
+				document.documentElement.setAttribute(attr, "none");
 				break;
 		}
 	}
@@ -97,17 +112,18 @@ Services.prefs.addObserver("Geckium.profilepic.button", profilePictureObserver, 
 Services.prefs.addObserver("Geckium.profilepic.mode", profilePictureObserver, false)
 Services.prefs.addObserver("Geckium.profilepic.chromiumIndex", profilePictureObserver, false)
 Services.prefs.addObserver("Geckium.profilepic.customPath", profilePictureObserver, false)
-UC_API.Runtime.startupFinished().then(()=>{
+UC_API.Runtime.startupFinished().then(() => {
 	gkPeople.createReservedSpaces();
 	gkPeople.setPeoplePosition();
 	gkPeople.setProfilePic();
 });
 
-const appearanceObs = {
+const pfpAppearanceObs = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed") {
 			gkPeople.setPeoplePosition();	
 		}		
 	},
 };
-Services.prefs.addObserver("Geckium.appearance.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.appearance.choice", pfpAppearanceObs, false);
+Services.prefs.addObserver("Geckium.profilepic.position", pfpAppearanceObs, false);

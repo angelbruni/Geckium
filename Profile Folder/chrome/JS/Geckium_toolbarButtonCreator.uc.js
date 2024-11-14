@@ -349,7 +349,7 @@ class gkToolbarMenuButtons {
 	}
 }
 
-UC_API.Runtime.startupFinished().then(()=>{
+UC_API.Runtime.startupFinished().then(() => {
 	gkToolbarMenuButtons.createItem({
 		parentID: "toolbar-context-menu",
 		type: "menuitem",

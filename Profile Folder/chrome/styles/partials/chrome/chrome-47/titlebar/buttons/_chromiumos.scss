@@ -52,13 +52,14 @@
 		height: 35px;
 		width: 35px;
 		
-		//Hover and pressed states
+		// Hover and pressed states
 		&:not([disabled]):hover {
 			background: rgba(20, 20, 23, 0.078) !important;
-		}
-		&:not([disabled]):hover:active {
-			background: rgba(20, 20, 23, 0.141) !important;
-			transition: none;
+
+			&:active {
+				background: rgba(20, 20, 23, 0.141) !important;
+				transition: none;
+			}
 		}
 		
         &::before { //Chrome OS NEVER has its buttons filled

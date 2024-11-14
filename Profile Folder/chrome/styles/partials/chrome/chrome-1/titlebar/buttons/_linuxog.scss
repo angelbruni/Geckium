@@ -1,5 +1,5 @@
 & { // TODO: When MD2 is added, ensure this code doesn't run on it
-	
+
 	// Add spacing between caption buttons and tabs.
 	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
 		margin-inline-end: 16px !important;
@@ -41,10 +41,8 @@
 		.titlebar-spacer[type="post-tabs"] {
 			order: 1000 !important; // Force to right of Incognito
 		}
-		&:not([privatebrowsingmode="temporary"]) {
-			#TabsToolbar-customization-target {
-				margin-inline-end: var(--tab-distance-from-toolbar-edge);
-			}
+		&:not([privatebrowsingmode="temporary"]) #TabsToolbar-customization-target {
+			margin-inline-end: var(--tab-distance-from-toolbar-edge);
 		}
 		&[privatebrowsingmode="temporary"] {
 			#private-browsing-indicator-with-label {
@@ -58,19 +56,13 @@
 		}
 	}
 
-	//Remake the current Linux menubar as adequately as possible
-	&[gktitnative="true"] {
-		#main-menubar {
-			& > menu {
-				&[open] {
-					border-bottom: 3px solid AccentColor !important;
-				}
-			}
-		}
+	// Remake the current Linux menubar as adequately as possible
+	&[gktitnative="true"] #main-menubar > menu[open] {
+		border-bottom: 3px solid AccentColor !important;
 	}
 
 	&[gktitnative="false"] {
-		//Show the Google logo before the buttons if enabled
+		// Show the Google logo before the buttons if enabled
 		&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
 				.titlebar-buttonbox-container::before {
@@ -100,14 +92,10 @@
 			}
 		}
 		
-		//Titlebar button box
+		// Titlebar button box
 		.titlebar-buttonbox-container {
 			align-items: unset !important;
 			margin-block-start: 2px; // top margin
-
-			#people-titlebuttons-space {
-				margin-block-start: -2px;
-			}
 		}
 		// Change margin depending on buttons location
 		@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
@@ -146,15 +134,16 @@
 			transition: border-color 100ms linear,
 				box-shadow 100ms linear; //hover-fade animation
 
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				border-color: rgba(26,26,26,.77) !important;
 				box-shadow: inset 0 0 0 1px rgba(251,251,241,.1);
-			}
-			&:not([disabled]):hover:active {
-				border-color: rgba(0,0,0,.61) !important;
-				box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-				transition: none;
+
+				&:active {
+					border-color: rgba(0,0,0,.61) !important;
+					box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+					transition: none;
+				}
 			}
 		}
 
@@ -193,10 +182,8 @@
 					display: none !important;
 				}
 			}
-			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-				.titlebar-restore {
-					display: none !important;
-				}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .titlebar-restore {
+				display: none !important;
 			}
 		}
 
