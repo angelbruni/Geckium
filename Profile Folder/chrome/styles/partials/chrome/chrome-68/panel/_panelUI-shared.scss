@@ -1,3 +1,12 @@
+&[fxastatus="not_configured"]:not([profilepic="chromium"]) panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		&#fxa-manage-account-button::before {
+			background-size: 26px;
+		}
+	}
+}
+
 #PanelUI-fxa-menu {
 	> toolbarbutton.subviewbutton {
 		&:first-of-type {
@@ -23,51 +32,47 @@
 	}
 }
 
-panel {
-	toolbarbutton {
-		&.subviewbutton,
-		&.toolbarbutton-1 {
-			padding-inline: 17px !important;
-			
-			&:hover {
+panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		padding-inline: 17px !important;
+		
+		&:hover {
+			color: FieldText !important;
+		}
+	
+		&#fxa-manage-account-button {
+			flex-direction: row !important;
+			padding-block: 16px !important;
+			margin-block-end: 18px !important;
+	
+			&::before {
+				min-width: 40px;
+				min-height: 40px;
+				margin-block-end: 0 !important;
+				margin-inline-end: 6px !important;
+			}
+	
+			&::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -10px;
+				width: 100%;
+				height: 1px;
+				background-color: rgb(233,233,233);
+				pointer-events: none;
+			}
+	
+			&:hover #fxa-menu-header-title {
 				color: FieldText !important;
 			}
-		
-			&#fxa-manage-account-button {
-				flex-direction: row !important;
-				padding-block: 16px !important;
-				margin-block-end: 18px !important;
-		
-				&::before {
-					min-width: 40px;
-					min-height: 40px;
-					margin-block-end: 0 !important;
-					margin-inline-end: 6px !important;
-				}
-		
-				&::after {
-					content: "";
-					position: absolute;
-					left: 0;
-					bottom: -10px;
-					width: 100%;
-					height: 1px;
-					background-color: rgb(233,233,233);
-					pointer-events: none;
-				}
-		
-				&:hover {
-					#fxa-menu-header-title {
-						color: FieldText !important;
-					}
-				}
-		
-				> vbox {
-					align-items: start !important;
-		
-					#fxa-menu-header-description {
-						font-size: 9pt !important;
-					}
+	
+			> vbox {
+				align-items: start !important;
+	
+				#fxa-menu-header-description {
+					font-size: 9pt !important;
 				}
 			}
 		}

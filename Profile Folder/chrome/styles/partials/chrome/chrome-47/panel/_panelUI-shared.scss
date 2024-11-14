@@ -8,6 +8,15 @@
 		--panel-item-background-hot: rgb(255, 255, 255, .15);
 		--panel-item-color-hot: rgb(72, 129, 236);
 	}
+
+	&[fxastatus="not_configured"]:not([profilepic="chromium"]) panel toolbarbutton {
+		&.subviewbutton,
+		&.toolbarbutton-1 {
+			&#fxa-manage-account-button::before {
+				background-size: 61px;
+			}
+		}
+	}
 }
 
 .panel-footer {
