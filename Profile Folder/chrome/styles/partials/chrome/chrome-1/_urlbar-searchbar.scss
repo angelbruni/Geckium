@@ -50,15 +50,15 @@
 	}
 
 	&[urlbarthemingforincompatibledesigns="true"] {
-		@media (prefers-color-scheme: dark) {
-			--default-urlbar-background-color: black;
-			--default-urlbar-color: white;
-		}
-
 		// if lwtheme
 		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 			// if Geckium
 			&[customthememode="geckium"] {
+				@media (prefers-color-scheme: dark) {
+					--default-urlbar-background-color: black;
+					--default-urlbar-color: white;
+				}
+				
 				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
 				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
 
