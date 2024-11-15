@@ -438,30 +438,37 @@
 	// Windows
 	&[gktitbuttons="win"] {
 		@import "titlebar/buttons/win";
+		@import "titlebar/people/win";
 	}
 	// Windows 8
 	&[gktitbuttons="win8"] {
-		@import "titlebar/buttons/win8";
+		@import "titlebar/buttons/win";
+		@import "titlebar/people/win8";
 	}
 	// Windows 10
 	&[gktitbuttons="win10"] {
 		@import "titlebar/buttons/win10";
+		@import "titlebar/people/win10";
 	}
 	// Linux (Alpha)
 	&[gktitbuttons="linuxog"] {
 		@import "titlebar/buttons/linuxog";
+		@import "titlebar/people/wincompact"; // TODO: "Linux (Alpha)" style
 	}
 	// Linux
 	&[gktitbuttons="linux"] {
 		@import "titlebar/buttons/linux";
+		@import "titlebar/people/wincompact"; // TODO: "Linux" style
 	}
 	// Mac OS X
 	&[gktitbuttons="macosx"] {
 		@import "titlebar/buttons/macosx";
+		@import "titlebar/people/macos";
 	}
 	// macOS
 	&[gktitbuttons="macos"] {
 		@import "titlebar/buttons/macos";
+		@import "titlebar/people/macos";
 	}
 	// Chromium OS (redirected by JS to linuxog)
 }

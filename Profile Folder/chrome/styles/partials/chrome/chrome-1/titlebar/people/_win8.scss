@@ -1,4 +1,4 @@
-& {
+&[gktitnative="true"] {
     .gkpeople-titlebar {
 		background: rgba(0,0,0,.3) !important;
 		border-radius: 0 !important;
@@ -33,4 +33,7 @@
 			}
 		}
 	}
+}
+&[gktitnative="false"] {
+    @import "wincompact";
 }

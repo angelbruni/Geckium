@@ -34,6 +34,11 @@
 		}
 	}
 
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
+	}
+
 	//Restore Firefox's Win10 menubar styling
 	&[gktitnative="true"] {
 		.titlebar-spacer[type="post-tabs"] {
@@ -205,63 +210,5 @@
 	}
 	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
 		margin-inline-end: 5px !important;
-	}
-	
-	// People Titlebar Button
-	#gkpeople-button-container {
-		margin-inline-end: 0 !important;
-	}
-	.gkpeople-titlebar {
-		display: flex !important;
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
-
-		background: transparent !important;
-		border-radius: 0 !important;
-		transition: background-color 100ms linear; //hover-fade animation
-		height: 30px;
-		min-width: 45px;
-		color: var(--titlebar-button-foreground, inherit) !important;
-		&:-moz-window-inactive {
-			color: var(--titlebar-button-foreground-inactive, inherit) !important;
-		}
-
-		.toolbarbutton-text {
-            --stroke-color: rgba(0,0,0,.3);
-            color: white !important;
-            font-size: 8pt;
-
-            margin-inline: 8px !important;
-            text-shadow:	1px		1px		0	var(--stroke-color),
-                            1px		-1px	0	var(--stroke-color),
-                            -1px	1px		0	var(--stroke-color),
-                            -1px	-1px	0	var(--stroke-color),
-                            1px		0px		0	var(--stroke-color),
-                            0px		1px		0	var(--stroke-color),
-                            -1px	0px		0	var(--stroke-color),
-                            0px		-1px	0	var(--stroke-color),
-        }
-		
-		// Hover and pressed states
-		&:not([disabled]):hover {
-			background: color-mix(in srgb, currentColor 12%, transparent) !important;
-
-			&:active {
-				background: color-mix(in srgb, currentColor 22%, transparent) !important;
-				transition: none;
-			}
-		}
-
-		//Make the stroke actually visible
-		-moz-context-properties: stroke !important;
-		.toolbarbutton-icon {
-			stroke: currentColor !important;
-		}
-	}
-	// Decrease button height before MD1
-	&:not([geckium-sixtyeight])[sizemode="maximized"],
-	&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-		.gkpeople-titlebar {
-			height: 24px;
-		}
 	}
 }
