@@ -384,7 +384,7 @@ Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", cus
 class themeOmniboxInEveryEra {
     static toggle() {
         if (isBrowserWindow)
-            document.documentElement.setAttribute("urlbarthemingforincompatibledesigns", gkPrefUtils.tryGet("Geckium.appearance.URLBarThemingForIncompatibleDesigns").bool);
+            document.documentElement.setAttribute("forceColorizeAddressBar", gkPrefUtils.tryGet("Geckium.appearance.forceColorizeAddressBar").bool);
     }
 }
 window.addEventListener("load", themeOmniboxInEveryEra.toggle);
@@ -397,4 +397,4 @@ const themeOmniboxInEveryEraObserver = {
 		}
 	},
 };
-Services.prefs.addObserver("Geckium.appearance.URLBarThemingForIncompatibleDesigns", themeOmniboxInEveryEraObserver, false);
+Services.prefs.addObserver("Geckium.appearance.forceColorizeAddressBar", themeOmniboxInEveryEraObserver, false);
