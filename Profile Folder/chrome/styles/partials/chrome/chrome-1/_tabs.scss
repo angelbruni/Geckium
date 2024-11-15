@@ -159,29 +159,135 @@
 			--tabbrowser-tab-color: black;
 		}
 
-		&[toolbar-bgcolor-transparent="true"] {
-			// if FXChrome
-			&[customthememode="fxchrome"] {
-				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+		// if FXChrome-like
+		&[customthememode="fxchrome"] {
+			--selected-tab-background-opacity-percentage-additive: 10%;
+
+			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
+				--selected-tab-background: var(--toolbar-bgcolor) !important;
 			}
-			// if Silverfox
-			&[customthememode="silverfox"] {
+			&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
 				--selected-tab-background: linear-gradient(
 					to bottom,
-					transparent -50%,
-					var(--gktoolbar-bgcolor) 70%
-				) !important;
-
-				--inactive-tab-background: linear-gradient(
-					to bottom,
-					transparent -10%,
-					color-mix(
-						in srgb,
-						var(--gktoolbar-bgcolor) 70%,
-						transparent
-					) 60%
+					var(--lwt-tab-line-color) 3px,
+					var(--toolbar-bgcolor) 3px
 				) !important;
 			}
+			&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--tab-selected-bgcolor) 3px,
+					var(--toolbar-bgcolor)
+				) !important;
+			}
+			&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--lwt-tab-line-color) 3px,
+					var(--tab-selected-bgcolor) 3px,
+					var(--toolbar-bgcolor)
+				) !important;
+			}
+
+			&[tab-selected-bgcolor-transparent="true"] {
+				&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+							var(--toolbar-bgcolor)
+						) 3px,
+						var(--toolbar-bgcolor)
+					) !important;
+				}
+				&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						color-mix(
+							in srgb,
+							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+							var(--toolbar-bgcolor)
+						) 3px,
+						var(--toolbar-bgcolor)
+					) !important;
+				}
+			}
+
+			&[toolbar-bgcolor-transparent="true"] {
+				&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				}
+				&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--gktoolbar-bgcolor) 3px
+					) !important;
+				}
+				&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--tab-selected-bgcolor) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+				}
+				&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--tab-selected-bgcolor) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+				}
+
+				&[tab-selected-bgcolor-transparent="true"] {
+					&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							color-mix(
+								in srgb,
+								var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+								var(--gktoolbar-bgcolor)
+							) 3px,
+							var(--gktoolbar-bgcolor)
+						) !important;
+					}
+					&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--lwt-tab-line-color) 3px,
+							color-mix(
+								in srgb,
+								var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+								var(--gktoolbar-bgcolor)
+							) 3px,
+							var(--gktoolbar-bgcolor)
+						) !important;
+					}
+				}
+				
+			}
+		}
+
+		// if Silverfox
+		&[customthememode="silverfox"][toolbar-bgcolor-transparent="true"] {
+			--selected-tab-background: linear-gradient(
+				to bottom,
+				transparent -50%,
+				var(--gktoolbar-bgcolor) 70%
+			) !important;
+
+			--inactive-tab-background: linear-gradient(
+				to bottom,
+				transparent -10%,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor) 70%,
+					transparent
+				) 60%
+			) !important;
 		}
 	}
 	// else if chrtheme

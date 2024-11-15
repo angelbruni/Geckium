@@ -916,27 +916,23 @@
 			--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal)) !important;
 		}
 
-		// if FXChrome
-		&[customthememode="fxchrome"] {
-			&[toolbar-bgcolor-transparent="true"] {
-				--nav-bar: linear-gradient(
-					to bottom,
-					var(--gktoolbar-bgcolor),
-					var(--toolbar-bgcolor) 50%
-				) !important;
-				--personal-toolbar: var(--toolbar-bgcolor) !important;
-			}
+		// if FXChrome-like
+		&[customthememode="fxchrome"][toolbar-bgcolor-transparent="true"] {
+			--nav-bar: linear-gradient(
+				to bottom,
+				var(--gktoolbar-bgcolor) 3px,
+				var(--toolbar-bgcolor) 50%
+			) !important;
+			--personal-toolbar: var(--toolbar-bgcolor) !important;
 		}
 		// if Silverfox
-		&[customthememode="silverfox"] {
-			&[toolbar-bgcolor-transparent="true"] {
-				--nav-bar: linear-gradient(
-					to bottom,
-					var(--gktoolbar-bgcolor) 25%,
-					transparent
-				) !important;
-				--personal-toolbar: transparent !important;
-			}
+		&[customthememode="silverfox"][toolbar-bgcolor-transparent="true"] {
+			--nav-bar: linear-gradient(
+				to bottom,
+				var(--gktoolbar-bgcolor) 25%,
+				transparent
+			) !important;
+			--personal-toolbar: transparent !important;
 		}
 	}
 
