@@ -5,7 +5,7 @@
 		margin-inline-end: 16px !important;
 	}
 	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
-		margin-inline-end: 5px !important;
+		margin-inline-end: 2px !important;
 	}
 
 	// Give the tabs/Incognito/pfp the appropriate offset
@@ -60,12 +60,6 @@
 		.private-browsing-indicator-icon {
 			margin-inline-start: var(--tab-distance-from-pfp) !important;
 			margin-inline-end: 1px !important;
-		}
-
-		// Flip Incognito and appropriate profile icons
-		#private-browsing-indicator-with-label,
-		&:not([profilepic="firefox"], [profilepic="geckium"]) #gkavatar-container #fxa-avatar-image {
-			transform: scaleX(-1);
 		}
 
 		// Tweaks for Profile Titlebutton
