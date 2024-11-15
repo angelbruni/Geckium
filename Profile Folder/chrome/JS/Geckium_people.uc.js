@@ -115,6 +115,22 @@ class gkPeople {
 				break;
 		}
 	}
+
+	/**
+	 * applyForce68Linux - Apply Chromium 68's People Titlebar Button style on Linux Titlebar Styles
+	 */
+
+	static applyForce68Linux() {
+		document.documentElement.setAttribute("gkpeopleforce68linux", gkPrefUtils.tryGet("Geckium.people.force68Linux").bool);
+	}
+
+	/**
+	 * applyForceChrOS - Force Windows 8 Mode People Titlebar Button to appear on Chromium OS Titlebars
+	 */
+
+	static applyForceChrOS() {
+		document.documentElement.setAttribute("gkpeopleforceChrOS", gkPrefUtils.tryGet("Geckium.people.showChrOSPeople").bool);
+	}
 }
 
 const peopleStyleObs = {
@@ -140,8 +156,30 @@ Services.prefs.addObserver("Geckium.profilepic.mode", profilePictureObs, false)
 Services.prefs.addObserver("Geckium.profilepic.chromiumIndex", profilePictureObs, false)
 Services.prefs.addObserver("Geckium.profilepic.customPath", profilePictureObs, false)
 
+// Automatically change the Linux People Titlebutton style when 68-forcing's toggled
+const force68LinuxPeopleObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkPeople.applyForce68Linux();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.people.force68Linux", force68LinuxPeopleObs, false);
+
+// Automatically change the Chromium OS People Titlebutton visibility when toggled
+const forceChrOSPeopleObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			gkPeople.applyForceChrOS();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.people.showChrOSPeople", forceChrOSPeopleObs, false);
+
 UC_API.Runtime.startupFinished().then(() => {
 	gkPeople.createReservedSpaces();
 	gkPeople.applyStyle();
 	gkPeople.setProfilePic();
+	gkPeople.applyForce68Linux();
+	gkPeople.applyForceChrOS();
 });
