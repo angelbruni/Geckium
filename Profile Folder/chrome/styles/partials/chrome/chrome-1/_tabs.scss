@@ -150,9 +150,9 @@
 			--tabbrowser-tab-color: black;
 		}
 
-		// if Geckium or FXChrome
-		&[customthememode="geckium"],
-		&[customthememode="fxchrome"] {
+		// if Geckium
+		&[customthememode="geckium"] {
+			--selected-tab-background-opacity-percentage-additive: 20%;
 			--inactive-tab-background: color-mix(
 				in srgb,
 				color-mix(
@@ -162,10 +162,6 @@
 				) 80%,
 				transparent
 			) !important;
-		}
-		// if Geckium
-		&[customthememode="geckium"] {
-			--selected-tab-background-opacity-percentage-additive: 20%;
 
 			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
 				--selected-tab-background: var(--toolbar-bgcolor) !important;
@@ -319,9 +315,27 @@
 		// if FXChrome-like
 		&[customthememode="fxchrome"] {
 			--selected-tab-background: var(--toolbar-bgcolor) !important;
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
 
 			&[toolbar-bgcolor-transparent="true"] {
 				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
 			}
 		}
 		// if Silverfox
