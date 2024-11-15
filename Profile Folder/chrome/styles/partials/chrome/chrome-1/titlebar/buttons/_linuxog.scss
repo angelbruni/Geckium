@@ -10,7 +10,8 @@
 
 	// Give the tabs/Incognito/pfp the appropriate offset
 	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		#gkavatar-container {
 			order: -1 !important; // Force to left
 		}
 		.titlebar-spacer[type="pre-tabs"] {

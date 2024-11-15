@@ -1,6 +1,7 @@
 & {
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+    #gkavatar-container {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer {
@@ -31,11 +32,6 @@
 				order: -3 !important;
 			}
 		}
-	}
-
-	// Tweaks for Profile Titlebutton
-	#gkpeople-button-container {
-		margin-inline-end: 6px !important;
 	}
 
 	//Restore Firefox's Win10 menubar styling
@@ -107,7 +103,8 @@
 		}
 		
 		//Shared titlebar button code
-		.titlebar-button {
+		.titlebar-button,
+		.gkpeople-titlebar {
 			background: transparent !important;
 			border-radius: 0 !important;
 			transition: background-color 100ms linear; //hover-fade animation
@@ -138,14 +135,16 @@
 		// Decrease button height before MD1
 		&:not([geckium-sixtyeight])[sizemode="maximized"],
 		&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-			.titlebar-button {
+			.titlebar-button,
+			.gkpeople-titlebar {
 				height: 24px;
 			}
 		}
 		// Halve opacity if window's inactive
 		&:-moz-window-inactive[gkthemed],
 		&:-moz-window-inactive:not([gksystheme="gtk"], [gkthemed]) { // can cause readability issues on GTK+
-			.titlebar-button:not(:hover, :active) {
+			.titlebar-button:not(:hover, :active),
+			.gkpeople-titlebar:not(:hover, :active) {
 				opacity: 0.5;
 			}
 		}
@@ -209,5 +208,32 @@
 	}
 	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
 		margin-inline-end: 5px !important;
+	}
+	
+	// People Titlebar Button
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
+	}
+	.gkpeople-titlebar {
+		display: flex !important;
+        width: unset !important;
+        min-width: 45px;
+
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
+        .toolbarbutton-text {
+            --stroke-color: rgba(0,0,0,.3);
+            color: white !important;
+            font-size: 8pt;
+
+            //margin-inline: 11px !important;
+            text-shadow:	1px		1px		0	var(--stroke-color),
+                            1px		-1px	0	var(--stroke-color),
+                            -1px	1px		0	var(--stroke-color),
+                            -1px	-1px	0	var(--stroke-color),
+                            1px		0px		0	var(--stroke-color),
+                            0px		1px		0	var(--stroke-color),
+                            -1px	0px		0	var(--stroke-color),
+                            0px		-1px	0	var(--stroke-color),
+        }
 	}
 }
