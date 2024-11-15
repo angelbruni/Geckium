@@ -977,11 +977,11 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" id="people-content">
-											<h4>People Button TODO</h4>
+											<h4>&gsettings.peopleButton;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">People Button Style TODO</label>
+														<label class="name">&gsettings.peopleButtonStyle;</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="people-style" data-pref="people.style" id="people-style-select" style="width: 200px">
@@ -990,25 +990,25 @@
 														<vbox class="list">
 															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
 															<hbox class="item ripple-enabled" value="off">&gsettings.disabled;</hbox>
-															<hbox class="item ripple-enabled" value="avatar">Avatar beside Tabs TODO</hbox>
-															<hbox class="item ripple-enabled" value="titlebutton">Titlebar Button TODO</hbox>
+															<hbox class="item ripple-enabled" value="avatar">&gsettings.avatarBesideTabs;</hbox>
+															<hbox class="item ripple-enabled" value="titlebutton">&gsettings.titlebarButton;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 											</vbox>
-											<h4>Avatar TODO</h4>
+											<h4>&gsettings.avatar;</h4>
 											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
-														<label class="name">Avatar Source TODO</label>
-														<label class="description">Firefox Account will only display if signed in TODO</label>
+														<label class="name">&gsettings.avatarSource;</label>
+														<label class="description">&gsettings.avatarSourceDisclaimer;</label>
 													</vbox>
 													<spacer />
 													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select" style="width: 200px">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="firefox">Firefox Account TODO</hbox>
+															<hbox class="item ripple-enabled" value="firefox">&gsettings.firefoxAccount;</hbox>
 															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
 															<hbox class="item ripple-enabled" value="chromium">Chromium</hbox>
 															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
@@ -1016,7 +1016,7 @@
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1">
-													<h4>Select your avatar TODO</h4>
+													<h4>&gsettings.selectYourAvatar;</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
 														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true" />
@@ -1024,12 +1024,12 @@
 													</div>
 												</vbox>
 											</vbox>
-											<h4>Titlebar Button TODO</h4>
+											<h4>&gsettings.titlebarButton;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Linux</div>Force Chromium 68's People Titlebar Button TODO</label>
-														<label class="description">Before 68, the titlebar button used Windows's button style TODO</label>
+														<label class="name"><div class="year">Linux</div>&gsettings.force68Linux;</label>
+														<label class="description">&gsettings.force68LinuxDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -1039,8 +1039,8 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Chromium OS</div>Show People Titlebar Button TODO</label>
-														<label class="description">The People Titlebar Button was exclusive to Windows 8 Mode TODO</label>
+														<label class="name"><div class="year">Chromium OS</div>&gsettings.showChrOSPeople;</label>
+														<label class="description">&gsettings.showChrOSPeopleDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
