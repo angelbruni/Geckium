@@ -1,6 +1,11 @@
 :root {
-	--toolbar-field-background-color: white !important;
-	--toolbar-field-color: black !important;
+	--default-urlbar-background-color: white;
+	--urlbar-background-color: var(--default-urlbar-background-color) !important;
+	--default-urlbar-focused-background-color: white;
+	--urlbar-focused-background-color: var(--default-urlbar-focused-background-color) !important;
+	--default-urlbar-color: black;
+	--urlbar-color: var(--default-urlbar-color) !important;
+	--urlbar-focused-color: var(--default-urlbar-color) !important;
 
 	--identity-icon-invalid:			 						 var(--search-favicon);
 	--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity: var(--default-favicon);
@@ -10,8 +15,8 @@
 
 	--searchbar-icon: var(--identity-icon-invalid);
 
-	--protocol-background-color: var(--toolbar-field-background-color);
-	--protocol-color:			 var(--toolbar-field-color);
+	--protocol-background-color: var(--urlbar-background-color);
+	--protocol-color:			 var(--urlbar-color);
 
 	--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
 	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
@@ -21,7 +26,7 @@
 	--urlbar-min-height: var(--urlbar-height-definitive) !important;
 
 	@media (prefers-color-scheme: dark) {
-		--toolbar-field-color: black !important;
+		--default-urlbar-color: black !important;
 	}
 
 	--autocomplete-popup-hover-background: color-mix(
@@ -42,6 +47,52 @@
 
 	@media (prefers-color-scheme: dark) {
 		--autocomplete-popup-highlight-background: -moz-menuhover !important;
+	}
+
+	&[urlbarthemingforincompatibledesigns="true"] {
+		@media (prefers-color-scheme: dark) {
+			--default-urlbar-background-color: black;
+			--default-urlbar-color: white;
+		}
+
+		// if lwtheme
+		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
+			// if Geckium
+			&[customthememode="geckium"] {
+				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
+				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
+
+				&[toolbar-field-background-color-transparent="true"] {
+					--protocol-background-color: transparent;
+					
+					#urlbar #urlbar-protocol {
+						background: transparent !important;
+					}
+
+					&[style*="--gktoolbar-field-background-color-opacity-percentage: 0%"] {
+						--urlbar-background-color: color-mix(
+							in srgb,
+							var(--gktoolbar-field-background-color) 50%,
+							transparent
+						) !important;
+					}
+				}
+			}
+		}
+		// else if chrtheme
+		&[gkthemed][gkchrthemed] {
+			--urlbar-background-color: var(--chrtheme-omnibox-background, var(--default-urlbar-background-color)) !important;
+			--urlbar-color: var(--chrtheme-omnibox-text, var(--default-urlbar-color)) !important;
+		}
+	}
+
+	// Force black text if URL bar is yellow.
+	&:not([geckium-six]) #nav-bar {
+		&[securestate="secure"],
+		&[securestate="ev"],
+		.verifiedDomain ~ .urlbar-input-box {
+			--urlbar-color: var(--default-urlbar-color);
+		}
 	}
 
 	#star-button-box {
@@ -75,20 +126,16 @@
 		}
 	}
 
-	#star-button-box {
-		> #star-button {
-			width: fit-content !important;
-			height: fit-content !important;
-		}
+	#star-button-box > #star-button {
+		width: fit-content !important;
+		height: fit-content !important;
 	}
 
-	&:not([chromehidden~="toolbar"]) {
-		#urlbar-container {
-			margin-inline-start: var(--toolbarbutton-outer-padding) !important;
+	&:not([chromehidden~="toolbar"]) #urlbar-container {
+		margin-inline-start: var(--toolbarbutton-outer-padding) !important;
 
-			&:not(:last-child) {
-				margin-inline-end: 2px !important;
-			}
+		&:not(:last-child) {
+			margin-inline-end: 2px !important;
 		}
 	}
 
@@ -105,29 +152,25 @@
 			display: none !important;
 		}
 	}
-	&:not([is133Plus]) {
-		#urlbar {
-			&[breakout],
-			&[breakout][breakout-extend] {
-				width: calc(100% - (var(--toolbarbutton-width) * 2)) !important;
-				left: var(--toolbarbutton-width) !important;
-			}
+	&:not([is133Plus]) #urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			width: calc(100% - (var(--toolbarbutton-width) * 2)) !important;
+			left: var(--toolbarbutton-width) !important;
+		}
 
-			&[breakout] {
-				--top: 0px;
+		&[breakout] {
+			--top: 0px;
+			top: var(--top) !important;
+	
+			&[breakout-extend] {
 				top: var(--top) !important;
-		
-				&[breakout-extend] {
-					top: var(--top) !important;
-				}
 			}
 		}
 	}
 
-	&[is134Plus] {
-		#urlbar:not([breakout-extend]) {
-			top: unset !important;
-		}
+	&[is134Plus] #urlbar:not([breakout-extend]) {
+		top: unset !important;
 	}
 }
 
@@ -143,17 +186,13 @@
 	font-size: 10pt !important;
 
 	&[focused] {
-		&:not([supress-focus-border]) {
-			> #urlbar-background {
-				outline: 0 !important;
-			}
+		&:not([supress-focus-border]) > #urlbar-background {
+			outline: 0 !important;
 		}
 
 		// If text is selected but textbox is inactive
-		&:not([open]) {
-			#urlbar-protocol {
-				display: none !important;
-			}
+		&:not([open]) #urlbar-protocol {
+			display: none !important;
 		}
 	}
 
@@ -164,10 +203,8 @@
 		}
 	}
 
-	&:not([pageproxystate="valid"], [open]) {
-		#urlbar-protocol {
-			display: none !important;
-		}
+	&:not([pageproxystate="valid"], [open]) #urlbar-protocol {
+		display: none !important;
 	}
 
 	// If text is selected but window is inactive
@@ -179,40 +216,32 @@
 		}
 	}
 
-	&:not([focused="true"]) {
-		.verifiedDomain {
-			&[pageproxystate="valid"] {
-				&::before,
-				&::after {
-					position: absolute;
-					pointer-events: none !important;
-				}
+	&:not([focused="true"]) .verifiedDomain[pageproxystate="valid"] {
+		&::before,
+		&::after {
+			position: absolute;
+			pointer-events: none !important;
+		}
 
-				&::before {
-					content: "";
-				}
-			}
+		&::before {
+			content: "";
 		}
 	}
 
 	&:not(.searchButton) {
 		> #urlbar-input-container,
 		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
-		> #identity-box {
-			/* Search icon */
-			&[pageproxystate="invalid"] {
-				#identity-icon {
+			> #identity-box {
+				/* Search icon */
+				&[pageproxystate="invalid"] #identity-icon {
 					list-style-image: var(--identity-icon-invalid) !important;
 				}
-			}
 
-			/* Grayfolder Icon */
-			&[pageproxystate="valid"].chromeUI {
-				#identity-icon {
+				/* Grayfolder Icon */
+				&[pageproxystate="valid"].chromeUI #identity-icon {
 					list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 				}
 			}
-		}
 		}
 	}
 
@@ -252,10 +281,8 @@
 }
 
 #nav-bar {
-	&[securestate="chrome"] {
-		#identity-box {
-			display: none !important;
-		}
+	&[securestate="chrome"] #identity-box {
+		display: none !important;
 	}
 
 	#identity-box[pageproxystate="valid"] {
@@ -274,7 +301,7 @@
 	&[securestate="secure"],
 	&[securestate="ev"],
 	.verifiedDomain ~ .urlbar-input-box {
-		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid);
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
@@ -287,10 +314,8 @@
 	&[securestate="insecure"] {
 		--protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
 
-		#urlbar-protocol {
-			&::before {
-				background: var(--urlbar-verified-proxystate-valid-overridden);
-			}
+		#urlbar-protocol::before {
+			background: var(--urlbar-verified-proxystate-valid-overridden);
 		}
 
 		#identity-icon {
@@ -317,14 +342,19 @@
 	outline: transparent !important;
 }
 
+#urlbar,
+#searchbar {
+	color: var(--urlbar-color) !important;
+}
+
 #urlbar:is([focused], [open]),
 #searchbar:focus-within {
-	color: var(--toolbar-field-color) !important;
+	color: var(--urlbar-focused-color) !important;
 }
 
 #urlbar:is([focused], [open]) > #urlbar-background,
 #searchbar:focus-within {
-	background-color: white !important;
+	background-color: var(--urlbar-focused-background-color) !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
@@ -369,10 +399,8 @@
 		}
 	}
 
-	.unknownIdentity {
-		#identity-icon {
-			list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
-		}
+	.unknownIdentity #identity-icon {
+		list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 	}
 }
 #identity-icon-box,
@@ -394,6 +422,7 @@
 
 #urlbar-background,
 #searchbar {
+	background-color: var(--urlbar-background-color) !important;
 	border-inline: 0 !important;
 	border-block: 1px solid var(--urlbar-border) !important;
 	border-radius: 0 !important;
@@ -455,12 +484,10 @@
 	overflow: hidden;
 }
 
-#urlbar-input {
-	&::placeholder {
-		opacity: 1 !important;
-		color: rgb(127, 127, 127);
-		text-align: end;
-	}
+#urlbar-input::placeholder {
+	opacity: 1 !important;
+	color: rgb(127, 127, 127);
+	text-align: end;
 }
 
 #urlbar-container,
@@ -475,10 +502,8 @@
 
 	position: relative !important;
 
-	&:not([starpos="start"]) {
-		#go-button-box {
-			display: none;
-		}
+	&:not([starpos="start"]) #go-button-box {
+		display: none;
 	}
 
 	#urlbar-go-button,
@@ -531,13 +556,11 @@
 	}
 }
 
-#notification-popup-box {
-	> * {
-		padding: 2px !important;
-		margin: 0 !important;
-		width: calc(var(--urlbar-height-definitive) - 4px) !important;
-		height: calc(var(--urlbar-height-definitive) - 4px) !important;
-	}
+#notification-popup-box > * {
+	padding: 2px !important;
+	margin: 0 !important;
+	width: calc(var(--urlbar-height-definitive) - 4px) !important;
+	height: calc(var(--urlbar-height-definitive) - 4px) !important;
 }
 
 
@@ -545,18 +568,17 @@
 	GTK+ SysTheme - exclusive urlbar styling
 */
 [gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
-	#urlbar-container {
-		&::before {
-			-moz-default-appearance: textarea;
-			content: "";
-			appearance: textarea;
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-		}
+	#urlbar-container::before {
+		-moz-default-appearance: textarea;
+		content: "";
+		appearance: textarea;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
 	}
+
 	#urlbar-container,
 	#search-container {
 		box-shadow: unset !important;

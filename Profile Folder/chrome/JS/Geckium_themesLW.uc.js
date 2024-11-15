@@ -109,14 +109,18 @@ class gkLWTheme {
 		// This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
 		setTimeout(async () => {
 			// Delete lwtheme-specific variable (if themed, they get remade)
-			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
-			document.documentElement.style.removeProperty("--gktoolbar-bgcolor-opacity-percentage");
-			document.documentElement.style.removeProperty("--gktab-selected-bgcolor");
-			document.documentElement.style.removeProperty("--gktab-selected-bgcolor-opacity-percentage");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-height");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-texture-ypos");
-			document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
+			document.documentElement.style.removeProperty("--gktab-selected-bgcolor");
+			document.documentElement.style.removeProperty("--gktab-selected-bgcolor-opacity-percentage");
 			document.documentElement.removeAttribute("tab-selected-bgcolor-transparent");
+			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+			document.documentElement.style.removeProperty("--gktoolbar-bgcolor-opacity-percentage");
+			document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
+			document.documentElement.style.removeProperty("--gktoolbar-field-background-color");
+			document.documentElement.style.removeProperty("--gktoolbar-field-background-color-opacity-percentage");
+			document.documentElement.removeAttribute("toolbar-field-background-color-transparent");
+			
 			// Do not run further if a Chromium Theme is currently used
 			if (isChromeThemed) {
 				if (gkChrTheme.getEligible)
@@ -126,7 +130,7 @@ class gkLWTheme {
 			if (isThemed) {
 				document.documentElement.setAttribute("gkthemed", true);
 
-				// Ensure the toolbar colour is opaque
+				// Ensure the tab selected background colour is opaque
 				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue('--tab-selected-bgcolor');
 				if (tabSelectedBgcolor.includes("rgba") && tabSelectedBgcolor.includes("rgba")) {
 					var tabSelectedBgcolorArray = tabSelectedBgcolor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
@@ -138,6 +142,7 @@ class gkLWTheme {
 						document.documentElement.setAttribute("tab-selected-bgcolor-transparent", true);
 				}
 
+				// Ensure the toolbar background colour is opaque
 				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
 				if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
 					var toolbarBgColorArray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
@@ -161,6 +166,18 @@ class gkLWTheme {
 					}
 				}
 
+				// Ensure the urlbar background colour is opaque
+				var toolbarFieldBackgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-field-background-color');
+				if (toolbarFieldBackgroundColor.includes("rgba") && toolbarFieldBackgroundColor.includes("rgba")) {
+					var toolbarFieldBackgroundColorArray = toolbarFieldBackgroundColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					// if the colour is transparent...
+					document.documentElement.style.setProperty("--gktoolbar-field-background-color", `rgb(${toolbarFieldBackgroundColorArray[0]}, ${toolbarFieldBackgroundColorArray[1]}, ${toolbarFieldBackgroundColorArray[2]})`);
+					document.documentElement.style.setProperty("--gktoolbar-field-background-color-opacity-percentage", `${Math.floor((toolbarFieldBackgroundColorArray[3] / 1) * 100)}%`);
+
+					if (toolbarFieldBackgroundColorArray[3] == 0 || toolbarFieldBackgroundColorArray[3].includes("."))
+						document.documentElement.setAttribute("toolbar-field-background-color-transparent", true);
+				}
+
 				if (isBrowserWindow) {
 					// Get header height.
 					var headerImg;
@@ -180,7 +197,10 @@ class gkLWTheme {
 								document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
 							} else {
 								// Center the titlebar texture within Geckium's top-boundaries
-								document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
+								if (this.height <= 68)
+									document.documentElement.style.setProperty("--titlebar-pseudo-height", `68px`);
+								else
+									document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
 							}
 							if (this.height >= 140) {
 								var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");

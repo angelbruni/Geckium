@@ -3,40 +3,33 @@
 	--urlbar-verified-proxystate-valid: rgb(7, 149, 0);
 	--urlbar-verified-proxystate-valid-overridden: rgb(162, 0, 58);
 
-	--urlbar-background-verified-proxystate-valid: transparent;
+	--urlbar-background-verified-proxystate-valid: var(--urlbar-background-color);
 
-	&[is133Plus] {
-		#urlbar {
-			&[breakout],
-			&[breakout][breakout-extend] {
-				width: var(--urlbar-width) !important;
-				margin-left: unset !important;
-			}
+	&[is133Plus] #urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			width: var(--urlbar-width) !important;
+			margin-left: unset !important;
 		}
 	}
-	&:not([is133Plus]) {
-		#urlbar {
-			&[breakout],
-			&[breakout][breakout-extend] {
-				left: 0 !important;
-				width: 100% !important;
-			}
+	&:not([is133Plus]) #urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			left: 0 !important;
+			width: 100% !important;
 		}
 	}
 
-	&:not([chromehidden~="toolbar"]) {
-		#urlbar-container {
-			margin-inline-start: 4px !important;
+	&:not([chromehidden~="toolbar"]) #urlbar-container {
+		margin-inline-start: 4px !important;
 
-			&:not(:last-child) {
-				margin-inline-end: 4px !important;
-			}
+		&:not(:last-child) {
+			margin-inline-end: 4px !important;
 		}
 	}
 
 	#urlbar-background,
 	#searchbar {
-		background-color: var(--toolbar-field-background-color) !important;
 		border: 1px solid var(--urlbar-border) !important;
 		border-radius: var(--toolbarbutton-border-radius) !important;
 	}
@@ -45,18 +38,14 @@
 		height: calc(var(--urlbar-height-definitive) - 1px) !important;
 	}
 
-	#urlbar-input {
-		&::placeholder {
-			text-align: start;
-			color: transparent;
-		}
+	#urlbar-input::placeholder {
+		text-align: start;
+		color: transparent;
 	}
 
 	#nav-bar {
-		&[securestate="chrome"] {
-			#identity-box {
-				display: flex !important;
-			}
+		&[securestate="chrome"] #identity-box {
+			display: flex !important;
 		}
 
 		&[securestate="secure"],
@@ -64,8 +53,6 @@
 			#identity-icon {
 				list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_valid.png) !important;
 			}
-			
-			--toolbar-field-background-color: var(--toolbar-field-default-background-color);
 		}
 
 		&[securestate="ev"] {
@@ -115,21 +102,18 @@
 				border: 0;
 				padding: 0 !important;
 			}
+
 			#custom-identity-label {
 				display: none;
 			}
 		}
 
-		&[securestate="warning"] {
-			#identity-icon {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
-			}
+		&[securestate="warning"] #identity-icon {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_warning.png) !important;
 		}
 
-		&[securestate="insecure"] {
-			#identity-icon {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
-			}
+		&[securestate="insecure"] #identity-icon {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-11/toolbar/omnibox_https_invalid.png) !important;
 		}
 
 		#custom-identity-label {

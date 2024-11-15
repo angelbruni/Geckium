@@ -140,11 +140,11 @@
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
-	// else if lwtheme
+	// if lwtheme
 	&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 		// --selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)))) !important;
+		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color, var(--lwt-text-color))) !important;
 
 		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"] {
 			--tabbrowser-tab-color: black;

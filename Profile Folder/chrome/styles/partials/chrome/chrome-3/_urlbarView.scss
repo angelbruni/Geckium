@@ -12,21 +12,19 @@
 	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
 }
 
-#urlbar-results {
-	> .urlbarView-row:first-of-type {
-		.urlbarView-no-wrap::before {
-			content: var(--search-favicon);
-			position: absolute;
-			width: 16px;
-			height: 16px;
-			left: 4px;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-		
-		.urlbarView-favicon {
-			display: none;
-		}
+#urlbar-results > .urlbarView-row:first-of-type {
+	.urlbarView-no-wrap::before {
+		content: var(--search-favicon);
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 4px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	.urlbarView-favicon {
+		display: none;
 	}
 }
 
