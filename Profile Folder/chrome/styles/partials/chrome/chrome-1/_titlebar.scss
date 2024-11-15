@@ -37,6 +37,10 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		&[captionbuttonbackground="true"] {
 			--titlebar-buttonbox-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+
+			&[customthememode="geckium"] {
+				--titlebar-buttonbox-background: var(--inactive-tab-background);
+			}
 		}
 		// Base colour
 		--titlebar-active: var(--lwt-accent-color) !important;
