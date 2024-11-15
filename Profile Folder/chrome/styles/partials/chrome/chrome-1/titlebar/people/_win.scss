@@ -1,0 +1,93 @@
+& {
+    --sign-in-button-top-left:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left.svg");
+    --sign-in-button-top:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top.svg");
+    --sign-in-button-top-right:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right.svg");
+    --sign-in-button-left:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left.svg");
+    --sign-in-button-center:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center.svg");
+    --sign-in-button-right:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right.svg");
+    --sign-in-button-bottom-left:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left.svg");
+    --sign-in-button-bottom:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom.svg");
+    --sign-in-button-bottom-right:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right.svg");
+
+    --sign-in-button-top-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left_hover.svg");
+    --sign-in-button-top-hover:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_hover.svg");
+    --sign-in-button-top-right-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right_hover.svg");
+    --sign-in-button-left-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left_hover.svg");
+    --sign-in-button-center-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center_hover.svg");
+    --sign-in-button-right-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right_hover.svg");
+    --sign-in-button-bottom-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left_hover.svg");
+    --sign-in-button-bottom-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_hover.svg");
+    --sign-in-button-bottom-right-hover:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right_hover.svg");
+
+    --sign-in-button-top-left-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left_pressed.svg");
+    --sign-in-button-top-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_pressed.svg");
+    --sign-in-button-top-right-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right_pressed.svg");
+    --sign-in-button-left-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left_pressed.svg");
+    --sign-in-button-center-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center_pressed.svg");
+    --sign-in-button-right-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right_pressed.svg");
+    --sign-in-button-bottom-left-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left_pressed.svg");
+    --sign-in-button-bottom-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_pressed.svg");
+    --sign-in-button-bottom-right-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right_pressed.svg");
+
+    --sign-in-button-corner-size: 6px;
+
+    #gkpeople-button-container #gk-firefox-account-button {
+        background-repeat: no-repeat !important;
+        background-image:	var(--sign-in-button-top-left),		var(--sign-in-button-top),		var(--sign-in-button-top-right),
+                            var(--sign-in-button-left),			var(--sign-in-button-center),	var(--sign-in-button-right),
+                            var(--sign-in-button-bottom-left),	var(--sign-in-button-bottom),	var(--sign-in-button-bottom-right);
+        background-position:	0 0,											var(--sign-in-button-corner-size) 0,									100% 0,
+                                0 var(--sign-in-button-corner-size),			var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),	100% var(--sign-in-button-corner-size),
+                                0 100%,											var(--sign-in-button-corner-size) 100%,									100% 100%;
+        background-size:	var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),					calc(100% - (var(--sign-in-button-corner-size) * 2)) var(--sign-in-button-corner-size),						var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),
+                            var(--sign-in-button-corner-size) calc(100% - (var(--sign-in-button-corner-size) * 2)),	calc(100% - (var(--sign-in-button-corner-size) * 2)) calc(100% - (var(--sign-in-button-corner-size) * 2)),	var(--sign-in-button-corner-size) calc(100% - (var(--sign-in-button-corner-size) * 2)),
+                            var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),					calc(100% - (var(--sign-in-button-corner-size) * 2)) var(--sign-in-button-corner-size),						var(--sign-in-button-corner-size) var(--sign-in-button-corner-size);
+
+        &:hover {
+            background-image:	var(--sign-in-button-top-left-hover),		var(--sign-in-button-top-hover),	var(--sign-in-button-top-right-hover),
+                                var(--sign-in-button-left-hover),			var(--sign-in-button-center-hover),	var(--sign-in-button-right-hover),
+                                var(--sign-in-button-bottom-left-hover),	var(--sign-in-button-bottom-hover),	var(--sign-in-button-bottom-right-hover);
+        }
+
+        &:active {
+            background-image:	var(--sign-in-button-top-left-pressed),		var(--sign-in-button-top-pressed),	var(--sign-in-button-top-right-pressed),
+                                var(--sign-in-button-left-pressed),			var(--sign-in-button-center-pressed),	var(--sign-in-button-right-pressed),
+                                var(--sign-in-button-bottom-left-pressed),	var(--sign-in-button-bottom-pressed),	var(--sign-in-button-bottom-right-pressed);
+        }
+        
+        image {
+            margin-block-end: 2px !important;
+        }
+    }
+
+    // @media (-moz-platform: windows) {
+    // 	.gkpeople-titlebar {
+    // 		margin-block-start: 1px !important;
+    // 	}
+    // }
+
+    .gkpeople-titlebar {
+        display: flex !important;
+        height: 20px;
+        min-width: 26px;
+
+        // .gkpeople-titlebar
+        list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win7/sign_in_button_avatar.svg");
+
+        .toolbarbutton-text {
+            --stroke-color: rgba(0,0,0,.5);
+            color: white !important;
+            font-size: 8pt;
+
+            margin-inline: 11px !important;
+            text-shadow:	1px		1px		0	var(--stroke-color),
+                            1px		-1px	0	var(--stroke-color),
+                            -1px	1px		0	var(--stroke-color),
+                            -1px	-1px	0	var(--stroke-color),
+                            1px		0px		0	var(--stroke-color),
+                            0px		1px		0	var(--stroke-color),
+                            -1px	0px		0	var(--stroke-color),
+                            0px		-1px	0	var(--stroke-color),
+        }
+    }
+}

@@ -48,8 +48,8 @@
 	--placed-chevron-width: 15px;
 
 	&[customizing] {
-		#wrapper-people-tabs-space,
-		#people-titlebuttons-space {
+		#wrapper-gkavatar-container,
+		#gkpeople-button-container {
 			pointer-events: none;
 		}
 	}
@@ -61,116 +61,6 @@
 	#TabsToolbar {
 		--toolbarbutton-inner-padding: 0 !important; // Removes padding around buttons in the top toolbar
 		position: relative; // Required by tab shadow (the below ::before)
-	}
-
-
-	/*
-		Profile Picture/Incognito
-	*/
-	// Make the Incognito indicator look like Chromium's
-	#private-browsing-indicator-with-label {
-		margin-inline: unset !important;
-		//#TabsToolbar-customization-target aligns items to end,
-		// so we have to mimic it for Incognito to be consistent.
-		align-self: end;
-		// same with .toolbarbutton-1 for this:
-		margin: 0 0 var(--tabs-navbar-shadow-size);
-	}
-	.private-browsing-indicator-icon {
-		width: auto !important;
-		height: auto !important;
-	}
-	[data-l10n-id="private-browsing-indicator-label"] {
-		display: none !important;
-	}
-	#people-tabs-space > #gk-firefox-account-button,
-	#private-browsing-indicator-with-label {
-		background: transparent !important;
-		border: 0 !important;
-		padding: 0 !important;
-		height: var(--tab-height);
-		align-items: end !important;
-
-		.toolbarbutton-badge-stack,
-		.private-browsing-indicator-icon {
-			background: transparent !important;
-		}
-	}
-	// NOTE: Maximised state is handled by titlebar border styles.
-
-	&:not([profilepicbutton="true"]),
-	&[profilepic="none"],
-	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
-		#people-tabs-space {
-			display: none !important;
-		}
-    }
-	&[profilepicbutton="true"]:not([profilepic="none"]) {
-		#gk-firefox-account-button #fxa-avatar-image {
-			width: 38px !important;
-			height: 32px !important;
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: bottom;
-		}
-		&[profilepic="geckium"],
-		&[profilepic="chromium"],
-		&[profilepic="custom"] {
-			// Firefox rounds pfps, so we gotta disable that.
-			#gk-firefox-account-button #fxa-avatar-image {
-				border-radius: unset !important;
-			}
-		}
-		&[profilepic="geckium"],
-		&[profilepic="firefox"] {
-			// Sync the pfp width to prevent glaring inconsistencies
-			#gk-firefox-account-button #fxa-avatar-image {
-				width: 32px !important;
-				margin: 0 3px; //...and add some spacing to even out. (6px)
-			}
-		}
-		&[profilepic="chromium"],
-		&[profilepic="custom"] {
-			//list-style-image CAN'T use image 'fit' sizes,
-			// so for Chromium and Custom pfps, we use background
-			#gk-firefox-account-button #fxa-avatar-image {
-				list-style-image: unset !important;
-			}
-		}
-
-		// Profile Pictures
-		&[profilepic="geckium"] {
-			#gk-firefox-account-button #fxa-avatar-image {
-				// list-style-image is used here for the fill-colour
-				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
-			}
-		}
-		&[profilepic="chromium"] {
-			$profile-pictures: 25; // bruni: Set the amount of profile pictures
-			@for $i from 0 through $profile-pictures {
-				&[profilepicchromium="#{$i}"] {
-					#gk-firefox-account-button #fxa-avatar-image {
-						background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png") !important;
-					}
-
-					&:not([fxastatus="not_configured"]) panel toolbarbutton {
-						&.subviewbutton,
-						&.toolbarbutton-1 {
-							&#fxa-manage-account-button::before {
-								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png");
-							}
-						}
-					}
-					
-				}
-			}
-		}
-		&[profilepic="custom"] #gk-firefox-account-button #fxa-avatar-image {
-			background-image: var(
-				--custom-profile-picture,
-				url(chrome://userchrome/content/assets/img/profile/0.png)
-			);
-		}
 	}
 
 
@@ -225,14 +115,14 @@
 	// Generic toolbarbuttons
 	// Terrible temporary fix for toolbarbuttons affecting titlebar height in maximised.
 	:not(#TabsToolbar-customization-target, .widget-overflow-list) > .toolbarbutton-1:not(
-		#people-tabs-space > #gk-firefox-account-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
 		height: var(--toolbarbutton-height) !important;
 	}
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-tabs-space > #gk-firefox-account-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -407,7 +297,7 @@
 
 	// Special toolbarbuttons
 	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-tabs-space > #gk-firefox-account-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -468,7 +358,7 @@
 	}
 
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-tabs-space > #gk-firefox-account-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -496,7 +386,7 @@
 	
 	// Misc. toolbar button tweaks
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#people-tabs-space > #gk-firefox-account-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -1058,7 +948,7 @@
 		// Toolbar buttons
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#people-tabs-space > #gk-firefox-account-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
