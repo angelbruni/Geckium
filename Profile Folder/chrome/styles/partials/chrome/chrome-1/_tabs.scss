@@ -142,16 +142,7 @@
 	/* bruni: This entire code takes care of custom themes support for tabs */
 	// else if lwtheme
 	&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
-		--inactive-tab-background: color-mix(
-			in srgb,
-			color-mix(
-				in srgb,
-				var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
-				black
-			) 80%,
-			transparent
-		) !important;
-		--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+		// --selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
 		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)))) !important;
 
@@ -159,8 +150,21 @@
 			--tabbrowser-tab-color: black;
 		}
 
-		// if FXChrome-like
+		// if Geckium or FXChrome
+		&[customthememode="geckium"],
 		&[customthememode="fxchrome"] {
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
+		}
+		// if Geckium
+		&[customthememode="geckium"] {
 			--selected-tab-background-opacity-percentage-additive: 10%;
 
 			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
@@ -270,13 +274,20 @@
 				
 			}
 		}
+		// if FXChrome-like
+		&[customthememode="fxchrome"] {
+			--selected-tab-background: var(--toolbar-bgcolor) !important;
 
+			&[toolbar-bgcolor-transparent="true"] {
+				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+			}
+		}
 		// if Silverfox
-		&[customthememode="silverfox"][toolbar-bgcolor-transparent="true"] {
+		&[customthememode="silverfox"] {
 			--selected-tab-background: linear-gradient(
 				to bottom,
 				transparent -50%,
-				var(--gktoolbar-bgcolor) 70%
+				var(--toolbar-bgcolor) 70%
 			) !important;
 
 			--inactive-tab-background: linear-gradient(
@@ -284,10 +295,28 @@
 				transparent -10%,
 				color-mix(
 					in srgb,
-					var(--gktoolbar-bgcolor) 70%,
+					var(--toolbar-bgcolor) 70%,
 					transparent
 				) 60%
 			) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					transparent -50%,
+					var(--gktoolbar-bgcolor) 70%
+				) !important;
+	
+				--inactive-tab-background: linear-gradient(
+					to bottom,
+					transparent -10%,
+					color-mix(
+						in srgb,
+						var(--gktoolbar-bgcolor) 70%,
+						transparent
+					) 60%
+				) !important;
+			}
 		}
 	}
 	// else if chrtheme

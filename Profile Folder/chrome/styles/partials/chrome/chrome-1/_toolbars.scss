@@ -518,18 +518,16 @@
 	}
 
 	// Hide Extensions button if disabled
-	#nav-bar[unifiedextensions="hide"] {
-		#unified-extensions-button {
-			position: absolute !important;
-			left: 0;
-			top: var(--urlbar-height-definitive);
-			border: 0 !important;
-			width: 0 !important;
-			height: 0 !important;
-			padding: 0 !important;
-			margin: 0 !important;
-			opacity: 0 !important;
-		}
+	#nav-bar[unifiedextensions="hide"] #unified-extensions-button {
+		position: absolute !important;
+		left: 0;
+		top: var(--urlbar-height-definitive);
+		border: 0 !important;
+		width: 0 !important;
+		height: 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		opacity: 0 !important;
 	}
 
 
@@ -595,87 +593,83 @@
 		}
 	}
 
-	&[personalbar="newtab"] {
-		#PersonalToolbar {
-			height: var(--personal-toolbar-floating-height) !important;
+	&[personalbar="newtab"] #PersonalToolbar {
+		height: var(--personal-toolbar-floating-height) !important;
 
-			> *:not(
-				#personal-toolbar-bg,
-				#personal-toolbar-floating-bg
-			) {
-				margin-block: auto !important;
-				height: var(--personal-toolbar-floating-items-height) !important;
+		> *:not(
+			#personal-toolbar-bg,
+			#personal-toolbar-floating-bg
+		) {
+			margin-block: auto !important;
+			height: var(--personal-toolbar-floating-items-height) !important;
+		}
+
+		#personal-toolbar-bg {
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			
+			background-color: white;
+
+			@media (prefers-color-scheme: dark) {
+				background-color: rgb(32, 32, 32);
 			}
 
-			#personal-toolbar-bg {
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				
-				background-color: white;
+			background-attachment: fixed;
+			background-size: unset;
+		}
 
-				@media (prefers-color-scheme: dark) {
-					background-color: rgb(32, 32, 32);
-				}
+		#personal-toolbar-floating-bg {
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			height: var(--personal-toolbar-floating-bg-height);
+			width: calc(100% - (var(--personal-toolbar-floating-bg-margin-inline) * 2));
+			background: var(--personal-toolbar-floating, var(--default-personal-toolbar-floating));
+			border-block-start-width: var(--personal-toolbar-floating-border-block-start-width);
+			border-block-end-width: var(--personal-toolbar-floating-border-block-end-width);
+			border-inline-start-width: var(--personal-toolbar-floating-border-inline-start-width);
+			border-inline-end-width: var(--personal-toolbar-floating-border-inline-end-width);
+			border-style: solid;
+			border-color: var(--personal-toolbar-floating-border, var(--default-personal-toolbar-floating-border));
+			border-radius: var(--personal-toolbar-floating-radius);
+			box-sizing: border-box;
+		}
 
-				background-attachment: fixed;
-				background-size: unset;
-			}
+		#personal-toolbar-empty {
+			padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
+		}
 
-			#personal-toolbar-floating-bg {
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				height: var(--personal-toolbar-floating-bg-height);
-				width: calc(100% - (var(--personal-toolbar-floating-bg-margin-inline) * 2));
-				background: var(--personal-toolbar-floating, var(--default-personal-toolbar-floating));
-				border-block-start-width: var(--personal-toolbar-floating-border-block-start-width);
-				border-block-end-width: var(--personal-toolbar-floating-border-block-end-width);
-				border-inline-start-width: var(--personal-toolbar-floating-border-inline-start-width);
-				border-inline-end-width: var(--personal-toolbar-floating-border-inline-end-width);
-				border-style: solid;
-				border-color: var(--personal-toolbar-floating-border, var(--default-personal-toolbar-floating-border));
-				border-radius: var(--personal-toolbar-floating-radius);
-				box-sizing: border-box;
-			}
+		#personal-toolbar-empty + #import-button:not(:last-child),
+		#personal-toolbar-empty + toolbarpaletteitem,
+		#personal-bookmarks {
+			margin-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
+		}
 
-			#personal-toolbar-empty {
-				padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
-			}
+		toolbarpaletteitem > #personal-bookmarks,
+		#import-button + #personal-bookmarks {
+			margin-inline-start: 0 !important;
+		}
 
-			#personal-toolbar-empty + #import-button:not(:last-child),
-			#personal-toolbar-empty + toolbarpaletteitem,
-			#personal-bookmarks {
-				margin-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
-			}
-
-			toolbarpaletteitem > #personal-bookmarks,
-			#import-button + #personal-bookmarks {
-				margin-inline-start: 0 !important;
-			}
-
-			> :last-child {
-				margin-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline) - 2px) !important;
-			}
+		> :last-child {
+			margin-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline) - 2px) !important;
 		}
 	}
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			height: var(--personal-toolbar-height) !important;
-			padding: 3px !important;
-			background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
-			gap: var(--personal-toolbar-gap);
-		
-			&::before,
-			&::after {
-				top: 0px;
-				height: var(--personal-toolbar-height);
-			}
+	&:not([personalbar="newtab"]) #PersonalToolbar {
+		height: var(--personal-toolbar-height) !important;
+		padding: 3px !important;
+		background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
+		gap: var(--personal-toolbar-gap);
+	
+		&::before,
+		&::after {
+			top: 0px;
+			height: var(--personal-toolbar-height);
+		}
 
-			> * {
-				margin-top: -3px !important;
-			}
+		> * {
+			margin-top: -3px !important;
 		}
 	}
 
@@ -687,18 +681,14 @@
 		}
 	}
 
-	&[personalbar="always"] {
-		#PersonalToolbar {
-			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
-		}
+	&[personalbar="always"] #PersonalToolbar {
+		border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 	}
 
 	#PlacesToolbarItems,
 	#personal-bookmarks /* Fix for Firefox ~120+ */ {
-		toolbarbutton.bookmark-item {
-			&:not(.menu-iconic, .menuitem-iconic) {
-				margin-top: 0 !important;
-			}
+		toolbarbutton.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
+			margin-top: 0 !important;
 		}
 		gap: var(--personal-toolbar-gap);
 	}
@@ -732,15 +722,13 @@
 			}
 		}
 
-		&#OtherBookmarks {
-			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				width: 1px;
-				height: 100%;
-				background-image: var(--test) linear-gradient(to bottom, rgba(222, 234, 248, 1) 50%, rgba(222, 234, 248, 0));
-			}
+		&#OtherBookmarks::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 1px;
+			height: 100%;
+			background-image: var(--test) linear-gradient(to bottom, rgba(222, 234, 248, 1) 50%, rgba(222, 234, 248, 0));
 		}
 	}
 	
@@ -785,15 +773,11 @@
 			--chrtheme-ntp-background-alignment: 50% 100%;
 			--chrtheme-ntp-background-repeat: no-repeat;
 
-			&[personalbar="newtab"] {
-				#PersonalToolbar {
-					> #personal-toolbar-bg {
-						background-color: var(--chrtheme-ntp-background);
-						background-image: var(--chrtheme-theme-ntp-background);
-						background-repeat: var(--chrtheme-ntp-background-repeat);
-						background-position: var(--chrtheme-ntp-background-alignment);
-					}
-				}
+			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
+				background-color: var(--chrtheme-ntp-background);
+				background-image: var(--chrtheme-theme-ntp-background);
+				background-repeat: var(--chrtheme-ntp-background-repeat);
+				background-position: var(--chrtheme-ntp-background-alignment);
 			}
 
 			#nav-bar,
@@ -805,10 +789,8 @@
 				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
 			}
 
-			&:not([personalbar="newtab"]) {
-				#PersonalToolbar {
-					background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
-				}
+			&:not([personalbar="newtab"]) #PersonalToolbar {
+				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
 			}
 		}
 	}
@@ -821,27 +803,20 @@
 		&:not([customthememode="none"]) {
 			--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
-			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-
-			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 			--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating)));
 			--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
 
-			&[personalbar="newtab"] {
-				#PersonalToolbar {
-					> #personal-toolbar-bg {
-						// TODO: expose NTP images to chrome.
+			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
+				// TODO: expose LwTheme NTP images to chrome.
 
-						background-color: var(--tabpanel-background-color, white);
-						background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
-						@media (prefers-color-scheme: dark) {
-							background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
-						}
-
-						background-repeat: var(--lwt-gknewtab-background-repeat);
-						background-position: var(--lwt-gknewtab-background-position);
-					}
+				background-color: var(--tabpanel-background-color, white);
+				background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+				@media (prefers-color-scheme: dark) {
+					background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
 				}
+
+				background-repeat: var(--lwt-gknewtab-background-repeat);
+				background-position: var(--lwt-gknewtab-background-position);
 			}
 
 			--toolbarbutton-border-color-normal: color-mix(
@@ -916,23 +891,67 @@
 			--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal)) !important;
 		}
 
+		// if Geckium or FXChrome-like
+		&[customthememode="geckium"],
+		&[customthememode="fxchrome"] {
+			&[toolbar-bgcolor-transparent="true"] {
+				--personal-toolbar: var(--toolbar-bgcolor) !important;
+			}
+		}
+		// if Geckium
+		&[customthememode="geckium"] {
+			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor) 3px,
+					var(--toolbar-bgcolor) 75%
+				) !important;
+			}
+		}
 		// if FXChrome-like
-		&[customthememode="fxchrome"][toolbar-bgcolor-transparent="true"] {
+		&[customthememode="fxchrome"] {
 			--nav-bar: linear-gradient(
 				to bottom,
-				var(--gktoolbar-bgcolor) 3px,
-				var(--toolbar-bgcolor) 50%
+				var(--toolbar-bgcolor) 3px,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor),
+					transparent 50%
+				) 50%
 			) !important;
-			--personal-toolbar: var(--toolbar-bgcolor) !important;
+			--personal-toolbar: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor),
+				transparent 50%
+			) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor) 3px,
+					var(--toolbar-bgcolor) 50%
+				) !important;
+			}
 		}
 		// if Silverfox
-		&[customthememode="silverfox"][toolbar-bgcolor-transparent="true"] {
+		&[customthememode="silverfox"] {
 			--nav-bar: linear-gradient(
-				to bottom,
-				var(--gktoolbar-bgcolor) 25%,
-				transparent
-			) !important;
-			--personal-toolbar: transparent !important;
+					to bottom,
+					var(--toolbar-bgcolor) 25%,
+					transparent
+				) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor) 25%,
+					transparent
+				) !important;
+				--personal-toolbar: transparent !important;
+			}
 		}
 	}
 

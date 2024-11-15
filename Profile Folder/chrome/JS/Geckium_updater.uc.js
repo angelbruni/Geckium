@@ -103,6 +103,17 @@ function updateSettings(iteration) {
 					gkPrefUtils.set("Geckium.profilepic.mode").string("custom");
 			}
 		} catch {}
+
+		// There's now a Geckium Custom LwTheme Mode
+		switch (gkPrefUtils.tryGet("Geckium.customtheme.mode").string) {
+			case "fxchrome":
+				/* bruni:	If the user had `fxchrome` selected, then we are gonna migrate to
+							`geckium`, the reason for this is because `geckium` is closer to what
+							`fxchrome` once was and it was also the default before Geckium got its
+							own `geckium` mode.*/
+				gkPrefUtils.set("Geckium.customtheme.mode").string("geckium")
+				break;
+		}
 	}
 	// Put future settings changes down here as < 6, and so on.
 
