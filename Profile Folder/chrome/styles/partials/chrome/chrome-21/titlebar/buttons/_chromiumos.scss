@@ -24,11 +24,9 @@
 	}
 
 	// Tweaks for Profile Titlebutton
-	//  TODO: Hide if setting is disabled
-	// #gkpeople-button-container {
-	// 	display: none !important;
-	// }
-	@import "../../../chrome-1/titlebar/people/win8";
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
+	}
 
 	//Shared non-native titlebar variables
 	// TODO when SVG'd
