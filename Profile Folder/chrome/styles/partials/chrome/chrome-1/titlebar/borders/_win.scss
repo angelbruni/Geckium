@@ -8,7 +8,7 @@
 // Change offsets for Incognito/pfp when window's maximised
 &[sizemode="maximized"],
 &[sizemode="fullscreen"] {
-	#people-tabs-space > #gk-firefox-account-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	#private-browsing-indicator-with-label {
 		height: calc(var(--tab-height) - 9px);
 
@@ -45,7 +45,8 @@
 		}
 	}
 }
-&[gktitnative="true"][gktitbuttons="win"] {
+&[gktitnative="true"][gktitbuttons="win"],
+&[gktitnative="true"][gktitbuttons="win8"] {
 	// Add 5px to tab gap to match AERO'd Chromium
 	--tab-distance-from-top: 20px;
 	&[sizemode="maximized"],

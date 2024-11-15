@@ -19,7 +19,7 @@
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#people-tabs-space > #gk-firefox-account-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -31,6 +31,11 @@
 				order: -3 !important;
 			}
 		}
+	}
+
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 6px !important;
 	}
 
 	//Restore Firefox's Win10 menubar styling

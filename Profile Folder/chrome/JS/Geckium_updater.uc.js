@@ -84,30 +84,25 @@ function updateSettings(iteration) {
 		gkPrefUtils.set("userChromeJS.persistent_domcontent_callback").bool(true);  // Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
 	}
 	if (iteration < 5) {
-		// pfpBtn needs to be enabled by default so the titlebar button one shows up.
-		const pfpBtn = gkPrefUtils.tryGet("Geckium.profilepic.button").bool;
-		if (!pfpBtn)
-			gkPrefUtils.set("Geckium.profilepic.mode").string(true);
-
-		// pfpMode was changed from `int` to `string`.
-		const pfpMode = gkPrefUtils.tryGet("Geckium.profilepic.mode").int;
-		switch (pfpMode) {
-			case 0:
-				gkPrefUtils.set("Geckium.profilepic.mode").string("geckium");
-				break;
-			case 1:
-				gkPrefUtils.set("Geckium.profilepic.mode").string("chromium");
-				break;
-			case 2:
-				gkPrefUtils.set("Geckium.profilepic.mode").string("firefox");
-				break;
-			case 3:
-				gkPrefUtils.set("Geckium.profilepic.mode").string("custom");
-				break;
-			default:
-				gkPrefUtils.set("Geckium.profilepic.mode").string("none");
-				break;
+		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");  // Remove the old avatar toolbarbutton
+		if (gkPrefUtils.tryGet("Geckium.appearance.titlebarStyle").string == "winnogaps") {
+			gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win8nogaps");	// Transition "Windows (no gaps)" to "Windows 8 (no gaps)"
 		}
+		// pfpMode was changed from `int` to `string`.
+		try {
+			const pfpMode = parseInt(Services.prefs.getIntPref("Geckium.profilepic.mode"));
+			// NOTE: Using this way to make sure new Geckium users bypass this entirely
+			switch (pfpMode) {
+				case 0:
+					gkPrefUtils.set("Geckium.profilepic.mode").string("geckium");
+				case 1:
+					gkPrefUtils.set("Geckium.profilepic.mode").string("chromium");
+				case 2:
+					gkPrefUtils.set("Geckium.profilepic.mode").string("firefox");
+				case 3:
+					gkPrefUtils.set("Geckium.profilepic.mode").string("custom");
+			}
+		} catch {}
 	}
 	// Put future settings changes down here as < 6, and so on.
 

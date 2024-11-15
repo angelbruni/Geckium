@@ -1,0 +1,25 @@
+& {
+    .gkpeople-titlebar {
+		background: rgba(0,0,0,.3) !important;
+		border-radius: 0 !important;
+		display: flex !important;
+		height: 20px;
+		min-width: 24px;
+
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
+        .toolbarbutton-text {
+            color: white !important;
+            font-size: 8pt;
+        }
+		
+		// Hover and pressed states
+		&:not([disabled]):hover {
+			background: rgb(51,99,282) !important;
+
+			&:active {
+				background: rgb(59,95,155) !important;
+				transition: none;
+			}
+		}
+	}
+}

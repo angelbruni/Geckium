@@ -53,6 +53,7 @@ const eras = {
         titlebar: {
             "linux": "linuxog",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -69,7 +70,14 @@ const eras = {
         basedOnVersion: "3.0.195.4",
         year: 2009,
         number: "three",
-        styles: ["chrome", "page"]
+        styles: ["chrome", "page"],
+        titlebar: {
+            "linux": "linuxog",
+            "win": "win",
+            "win8": "win",
+            "win10": "win",
+            "macos": "macosx"
+        }
     },
     4: {
         name: "4",
@@ -80,6 +88,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -93,6 +102,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -106,6 +116,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -119,6 +130,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -132,6 +144,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win",
             "win10": "win",
             "macos": "macosx"
         }
@@ -145,7 +158,8 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
-            "win10": "win",
+            "win8": "win8",
+            "win10": "win8",
             "macos": "macosx"
         }
     },
@@ -158,7 +172,8 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
-            "win10": "win",
+            "win8": "win8",
+            "win10": "win8",
             "macos": "macosx"
         }
     },
@@ -171,7 +186,8 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
-            "win10": "winnogaps",
+            "win8": "win8",
+            "win10": "win8nogaps",
             "macos": "macos"
         }
     },
@@ -184,6 +200,7 @@ const eras = {
         titlebar: {
             "linux": "linux",
             "win": "win",
+            "win8": "win8",
             "win10": "win10",
             "macos": "macos"
         }

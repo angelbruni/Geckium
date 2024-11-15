@@ -17,11 +17,18 @@
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#people-tabs-space > #gk-firefox-account-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
 	}
+
+	// Tweaks for Profile Titlebutton
+	//  TODO: Hide if setting is disabled
+	// #gkpeople-button-container {
+	// 	display: none !important;
+	// }
+	@import "../../../chrome-1/titlebar/people/win8";
 
 	//Shared non-native titlebar variables
 	// TODO when SVG'd

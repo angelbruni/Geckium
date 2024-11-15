@@ -4,9 +4,10 @@
 	}
     
     //Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+    #gkavatar-container,
+    #gkpeople-button-container {
         order: 998 !important; // Force to right
-        transform: scaleX(-1);
     }
     .titlebar-spacer[type="post-tabs"] {
         order: 999 !important; // Force to right of Incognito
@@ -22,11 +23,23 @@
             margin-inline-end: var(--tab-distance-from-toolbar-edge);
         }
     }
-    #people-tabs-space > #gk-firefox-account-button,
+    #gkavatar-container > #gk-firefox-account-button,
     .private-browsing-indicator-icon {
         margin-inline-start: var(--tab-distance-from-pfp) !important;
         margin-inline-end: 1px !important;
     }
+
+    // Flip Incognito and appropriate profile icons
+    #private-browsing-indicator-with-label,
+    &:not([profilepic="firefox"], [profilepic="geckium"]) #gkavatar-container #fxa-avatar-image {
+        transform: scaleX(-1);
+    }
+
+    // Tweaks for Profile Titlebutton
+    #gkpeople-button-container {
+        margin-inline-start: 6px !important;
+    }
+    @import "../people/mac";
 
     //Show the Google logo after the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
@@ -188,4 +201,10 @@
             }
         }
     }
+
+    // People Titlebar Button
+    // #gkpeople-button-container {
+    //     order: 999 !important; // Force to right of Incognito
+    // }
+
 }

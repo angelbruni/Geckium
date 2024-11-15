@@ -1,0 +1,211 @@
+
+:root {
+	// Make the Incognito indicator look like Chromium's
+	#private-browsing-indicator-with-label {
+		margin-inline: unset !important;
+		//#TabsToolbar-customization-target aligns items to end,
+		// so we have to mimic it for Incognito to be consistent.
+		align-self: end;
+		// same with .toolbarbutton-1 for this:
+		margin: 0 0 var(--tabs-navbar-shadow-size);
+	}
+	.private-browsing-indicator-icon {
+		width: auto !important;
+		height: auto !important;
+	}
+	[data-l10n-id="private-browsing-indicator-label"] {
+		display: none !important;
+	}
+	#gkavatar-container > #gk-firefox-account-button,
+	#private-browsing-indicator-with-label {
+		background: transparent !important;
+		border: 0 !important;
+		padding: 0 !important;
+		height: var(--tab-height);
+		align-items: end !important;
+
+		.toolbarbutton-badge-stack,
+		.private-browsing-indicator-icon {
+			background: transparent !important;
+		}
+	}
+	// NOTE: Maximised state is handled by titlebar border styles.
+
+	&:not([profilepicbutton="true"]),
+	&[profilepic="none"],
+	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
+		#gkavatar-container {
+			display: none !important;
+		}
+    }
+	&[profilepicbutton="true"]:not([profilepic="none"]) {
+		#gk-firefox-account-button #fxa-avatar-image {
+			width: 38px !important;
+			height: 32px !important;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: bottom;
+		}
+		&[profilepic="geckium"],
+		&[profilepic="chromium"],
+		&[profilepic="custom"] {
+			// Firefox rounds pfps, so we gotta disable that.
+			#gk-firefox-account-button #fxa-avatar-image {
+				border-radius: unset !important;
+			}
+		}
+		&[profilepic="geckium"],
+		&[profilepic="firefox"] {
+			// Sync the pfp width to prevent glaring inconsistencies
+			#gk-firefox-account-button #fxa-avatar-image {
+				width: 32px !important;
+				margin: 0 3px; //...and add some spacing to even out. (6px)
+			}
+		}
+		&[profilepic="chromium"],
+		&[profilepic="custom"] {
+			//list-style-image CAN'T use image 'fit' sizes,
+			// so for Chromium and Custom pfps, we use background
+			#gk-firefox-account-button #fxa-avatar-image {
+				list-style-image: unset !important;
+			}
+		}
+
+		// Profile Pictures
+		&[profilepic="geckium"] {
+			#gk-firefox-account-button #fxa-avatar-image {
+				// list-style-image is used here for the fill-colour
+				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
+			}
+		}
+		&[profilepic="chromium"] {
+			$profile-pictures: 25; // bruni: Set the amount of profile pictures
+			@for $i from 0 through $profile-pictures {
+				&[profilepicchromium="#{$i}"] {
+					#gk-firefox-account-button #fxa-avatar-image {
+						background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png") !important;
+					}
+
+					&:not([fxastatus="not_configured"]) panel toolbarbutton {
+						&.subviewbutton,
+						&.toolbarbutton-1 {
+							&#fxa-manage-account-button::before {
+								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png");
+							}
+						}
+					}
+					
+				}
+			}
+		}
+		&[profilepic="custom"] #gk-firefox-account-button #fxa-avatar-image {
+			background-image: var(
+				--custom-profile-picture,
+				url(chrome://userchrome/content/assets/img/profile/0.png)
+			);
+		}
+	}
+
+    // People Titlebar button
+    #gkpeople-button-container {
+        appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
+    }
+    #gk-firefox-account-button {
+        padding: 0 !important;
+    }
+    .gkpeople-titlebar {
+        appearance: none !important;
+        .toolbarbutton-text {
+            margin-inline: 7px !important;
+        }
+    }
+    
+    // Show text when signed in
+	&[fxastatus="signedin"] .gkpeople-titlebar {
+		.toolbarbutton-icon {
+			display: none !important;
+		}
+		.toolbarbutton-text {
+			display: flex !important;
+		}
+	}
+
+	// &[gktitbuttons="win8"] #gkpeople-button-container {
+	// 	margin-inline-end: 7px !important;
+	// }
+
+	// &[gktitbuttons*="linux"] #gkpeople-button-container {
+	// 	margin-inline-end: 5px !important;
+	// }
+
+	&[gktitnative="true"][gktitbuttons="win"],
+	&[gktitnative="false"][gktitbuttons="win"],
+	&[gktitbuttons*="linux"] {
+		.gkpeople-titlebar .toolbarbutton-text {
+			--stroke-color: rgba(0,0,0,.5);
+
+			color: white !important;
+			font-size: 8pt;
+			text-shadow:	1px		1px		0	var(--stroke-color),
+							1px		-1px	0	var(--stroke-color),
+							-1px	1px		0	var(--stroke-color),
+							-1px	-1px	0	var(--stroke-color),
+							1px		0px		0	var(--stroke-color),
+							0px		1px		0	var(--stroke-color),
+							-1px	0px		0	var(--stroke-color),
+							0px		-1px	0	var(--stroke-color),
+		}
+	}
+
+	&[gktitnative="false"][gktitbuttons="win"],
+	&[gktitbuttons*="linux"] {
+		.gkpeople-titlebar {
+			--themed-titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+			--themed-titlebutton-corner: 3.5px;
+	
+			// .titlebar-button
+			background: unset !important;
+			background-color: transparent !important;
+			border-radius: 0 !important;
+			border-left: var(--themed-titlebutton-border-outer) !important;
+			border-bottom: var(--themed-titlebutton-border-outer) !important;
+			min-width: 25px;
+			height: 17px;
+			padding: 0 !important;
+			background-clip: padding-box !important;
+			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+			transition: background-color 100ms linear; //hover-fade animation
+			display: flex !important; // Really, macOS's and Windows 8-'s Mozilla Firefox?
+	
+			// Hover and pressed states
+			&:not([disabled]):hover {
+				background-color: rgba(255, 255, 255, 0.3) !important;
+	
+				&:active {
+					background-color: rgba(255, 255, 255, 0.2) !important;
+					box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+					transition: none;
+				}
+			}
+	
+			// .gkpeople-titlebar
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
+			border-right: var(--themed-titlebutton-border-outer) !important;
+			border-bottom-left-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
+			border-bottom-right-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
+	
+			image { // Set the icon's opacity and hover-fade
+				opacity: .6 !important;
+				transition: opacity 100ms linear;
+			}
+
+			&:-moz-locale-dir(rtl) {
+				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
+
+				&:not([disabled]):hover:active {
+					box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+				}
+			}
+		}
+	}
+}
