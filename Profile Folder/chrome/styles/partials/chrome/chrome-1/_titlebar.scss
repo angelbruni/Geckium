@@ -1,73 +1,4 @@
 :root {
-	&[gktitstyle="macos"] {
-		--sign-in-button-top-left:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_left.svg");
-		--sign-in-button-top:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top.svg");
-		--sign-in-button-top-right:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_right.svg");
-		--sign-in-button-left:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_left.svg");
-		--sign-in-button-center:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_center.svg");
-		--sign-in-button-right:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_right.svg");
-		--sign-in-button-bottom-left:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_left.svg");
-		--sign-in-button-bottom:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom.svg");
-		--sign-in-button-bottom-right:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_right.svg");
-
-		--sign-in-button-top-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_left_hover.svg");
-		--sign-in-button-top-hover:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_hover.svg");
-		--sign-in-button-top-right-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_right_hover.svg");
-		--sign-in-button-left-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_left_hover.svg");
-		--sign-in-button-center-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_center_hover.svg");
-		--sign-in-button-right-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_right_hover.svg");
-		--sign-in-button-bottom-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_left_hover.svg");
-		--sign-in-button-bottom-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_hover.svg");
-		--sign-in-button-bottom-right-hover:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_right_hover.svg");
-
-		--sign-in-button-top-left-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_left_pressed.svg");
-		--sign-in-button-top-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_pressed.svg");
-		--sign-in-button-top-right-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_top_right_pressed.svg");
-		--sign-in-button-left-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_left_pressed.svg");
-		--sign-in-button-center-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_center_pressed.svg");
-		--sign-in-button-right-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_right_pressed.svg");
-		--sign-in-button-bottom-left-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_left_pressed.svg");
-		--sign-in-button-bottom-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_pressed.svg");
-		--sign-in-button-bottom-right-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_bottom_right_pressed.svg");
-
-		--sign-in-button-corner-size: 5px;
-	}
-
-	&[gktitnative="true"][gktitbuttons="win"] {
-		--sign-in-button-top-left:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left.svg");
-		--sign-in-button-top:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top.svg");
-		--sign-in-button-top-right:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right.svg");
-		--sign-in-button-left:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left.svg");
-		--sign-in-button-center:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center.svg");
-		--sign-in-button-right:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right.svg");
-		--sign-in-button-bottom-left:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left.svg");
-		--sign-in-button-bottom:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom.svg");
-		--sign-in-button-bottom-right:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right.svg");
-
-		--sign-in-button-top-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left_hover.svg");
-		--sign-in-button-top-hover:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_hover.svg");
-		--sign-in-button-top-right-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right_hover.svg");
-		--sign-in-button-left-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left_hover.svg");
-		--sign-in-button-center-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center_hover.svg");
-		--sign-in-button-right-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right_hover.svg");
-		--sign-in-button-bottom-left-hover:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left_hover.svg");
-		--sign-in-button-bottom-hover:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_hover.svg");
-		--sign-in-button-bottom-right-hover:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right_hover.svg");
-
-		--sign-in-button-top-left-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left_pressed.svg");
-		--sign-in-button-top-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_pressed.svg");
-		--sign-in-button-top-right-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right_pressed.svg");
-		--sign-in-button-left-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_left_pressed.svg");
-		--sign-in-button-center-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_center_pressed.svg");
-		--sign-in-button-right-pressed:			url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_right_pressed.svg");
-		--sign-in-button-bottom-left-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_left_pressed.svg");
-		--sign-in-button-bottom-pressed:		url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_pressed.svg");
-		--sign-in-button-bottom-right-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_bottom_right_pressed.svg");
-
-		--sign-in-button-corner-size: 6px;
-	}
-
-	
 	// Fix titlebar background in Firefox 133+
 	#TabsToolbar {
 		background-color: transparent !important;
@@ -439,8 +370,8 @@
 	//Google logo (native)
 	&[gkbranding="chrome"] {
 		&[gktitnative="true"][gktitbuttons="win"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]),
-		&[gktitnative="true"][gktitbuttons="win10"],
-		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
+		&[gktitnative="true"][gktitbuttons="win8"], &[gktitnative="true"][gktitbuttons="win10"],
+		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win8"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
 				.titlebar-buttonbox-container {
 					&::before {

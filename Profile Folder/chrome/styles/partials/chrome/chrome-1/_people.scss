@@ -1,7 +1,127 @@
 
 :root {
-    // People button
-	&[fxastatus="signedin"] .titlebar-people {
+	// Make the Incognito indicator look like Chromium's
+	#private-browsing-indicator-with-label {
+		margin-inline: unset !important;
+		//#TabsToolbar-customization-target aligns items to end,
+		// so we have to mimic it for Incognito to be consistent.
+		align-self: end;
+		// same with .toolbarbutton-1 for this:
+		margin: 0 0 var(--tabs-navbar-shadow-size);
+	}
+	.private-browsing-indicator-icon {
+		width: auto !important;
+		height: auto !important;
+	}
+	[data-l10n-id="private-browsing-indicator-label"] {
+		display: none !important;
+	}
+	#gkavatar-container > #gk-firefox-account-button,
+	#private-browsing-indicator-with-label {
+		background: transparent !important;
+		border: 0 !important;
+		padding: 0 !important;
+		height: var(--tab-height);
+		align-items: end !important;
+
+		.toolbarbutton-badge-stack,
+		.private-browsing-indicator-icon {
+			background: transparent !important;
+		}
+	}
+	// NOTE: Maximised state is handled by titlebar border styles.
+
+	&:not([profilepicbutton="true"]),
+	&[profilepic="none"],
+	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
+		#gkavatar-container {
+			display: none !important;
+		}
+    }
+	&[profilepicbutton="true"]:not([profilepic="none"]) {
+		#gk-firefox-account-button #fxa-avatar-image {
+			width: 38px !important;
+			height: 32px !important;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: bottom;
+		}
+		&[profilepic="geckium"],
+		&[profilepic="chromium"],
+		&[profilepic="custom"] {
+			// Firefox rounds pfps, so we gotta disable that.
+			#gk-firefox-account-button #fxa-avatar-image {
+				border-radius: unset !important;
+			}
+		}
+		&[profilepic="geckium"],
+		&[profilepic="firefox"] {
+			// Sync the pfp width to prevent glaring inconsistencies
+			#gk-firefox-account-button #fxa-avatar-image {
+				width: 32px !important;
+				margin: 0 3px; //...and add some spacing to even out. (6px)
+			}
+		}
+		&[profilepic="chromium"],
+		&[profilepic="custom"] {
+			//list-style-image CAN'T use image 'fit' sizes,
+			// so for Chromium and Custom pfps, we use background
+			#gk-firefox-account-button #fxa-avatar-image {
+				list-style-image: unset !important;
+			}
+		}
+
+		// Profile Pictures
+		&[profilepic="geckium"] {
+			#gk-firefox-account-button #fxa-avatar-image {
+				// list-style-image is used here for the fill-colour
+				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
+			}
+		}
+		&[profilepic="chromium"] {
+			$profile-pictures: 25; // bruni: Set the amount of profile pictures
+			@for $i from 0 through $profile-pictures {
+				&[profilepicchromium="#{$i}"] {
+					#gk-firefox-account-button #fxa-avatar-image {
+						background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png") !important;
+					}
+
+					&:not([fxastatus="not_configured"]) panel toolbarbutton {
+						&.subviewbutton,
+						&.toolbarbutton-1 {
+							&#fxa-manage-account-button::before {
+								background-image: url("chrome://userchrome/content/assets/img/profile/#{$i}.png");
+							}
+						}
+					}
+					
+				}
+			}
+		}
+		&[profilepic="custom"] #gk-firefox-account-button #fxa-avatar-image {
+			background-image: var(
+				--custom-profile-picture,
+				url(chrome://userchrome/content/assets/img/profile/0.png)
+			);
+		}
+	}
+
+    // People Titlebar button
+    #gkpeople-button-container {
+        appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
+    }
+    #gk-firefox-account-button {
+        padding: 0 !important;
+    }
+    .gkpeople-titlebar {
+        appearance: none !important;
+        .toolbarbutton-text {
+            margin-inline: 7px !important;
+        }
+    }
+    
+    // Show text when signed in
+	&[fxastatus="signedin"] .gkpeople-titlebar {
 		.toolbarbutton-icon {
 			display: none !important;
 		}
@@ -10,41 +130,18 @@
 		}
 	}
 
-	&:not([fxastatus="signedin"])[gktitstyle="macos"] #people-titlebuttons-space #gk-firefox-account-button {
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_avatar.svg");
+	// &[gktitbuttons="win8"] #gkpeople-button-container {
+	// 	margin-inline-end: 7px !important;
+	// }
 
-		&:hover,
-		&:active {
-			list-style-image: url("chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/sign_in_button_avatar_hover.svg");
-		}
-	}
-
-	&[gktitbuttons="win"] #people-titlebuttons-space {
-		margin-inline-end: 6px !important;
-	}
-
-	&[gktitbuttons="win10"] #people-titlebuttons-space {
-		margin-inline-end: 7px !important;
-	}
-
-	&[gktitnative="true"][gktitbuttons="win"] #people-titlebuttons-space,
-	&[gktitbuttons*="linux"] #people-titlebuttons-space {
-		margin-inline-end: 5px !important;
-	}
-
-	&[gktitbuttons="win10"],
-	&[gktitnative="true"][gktitbuttons="win"],
-	&[gktitnative="false"][gktitbuttons="win"],
-	&[gktitbuttons*="linux"] {
-		.titlebar-people .toolbarbutton-text {
-			margin-inline: 7px !important;
-		}
-	}
+	// &[gktitbuttons*="linux"] #gkpeople-button-container {
+	// 	margin-inline-end: 5px !important;
+	// }
 
 	&[gktitnative="true"][gktitbuttons="win"],
 	&[gktitnative="false"][gktitbuttons="win"],
 	&[gktitbuttons*="linux"] {
-		.titlebar-people .toolbarbutton-text {
+		.gkpeople-titlebar .toolbarbutton-text {
 			--stroke-color: rgba(0,0,0,.5);
 
 			color: white !important;
@@ -62,7 +159,7 @@
 
 	&[gktitnative="false"][gktitbuttons="win"],
 	&[gktitbuttons*="linux"] {
-		.titlebar-people {
+		.gkpeople-titlebar {
 			--themed-titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
 			--themed-titlebutton-corner: 3.5px;
 	
@@ -91,7 +188,7 @@
 				}
 			}
 	
-			// .titlebar-people
+			// .gkpeople-titlebar
 			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
 			border-right: var(--themed-titlebutton-border-outer) !important;
 			border-bottom-left-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
@@ -110,138 +207,5 @@
 				}
 			}
 		}
-	}
-
-	&[gktitbuttons="win10"],
-	&[gktitnative="true"][gktitbuttons="win"] {
-		.titlebar-people .toolbarbutton-text {
-			color: white !important;
-			font-size: 8pt;
-		}
-	}
-
-	&[gktitnative="true"][gktitbuttons="win"] {
-		@media (-moz-platform: windows) {
-			#people-titlebuttons-space {
-				appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
-			}
-
-			.titlebar-people {
-				margin-block-start: 1px !important;
-			}
-		}
-
-		.titlebar-people {
-			display: flex !important;
-			height: 20px;
-			min-width: 26px;
-
-			// .titlebar-people
-			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win7/sign_in_button_avatar.svg");
-	
-			.toolbarbutton-text {
-				--stroke-color: rgba(0,0,0,.5);
-	
-				margin-inline: 11px !important;
-				text-shadow:	1px		1px		0	var(--stroke-color),
-								1px		-1px	0	var(--stroke-color),
-								-1px	1px		0	var(--stroke-color),
-								-1px	-1px	0	var(--stroke-color),
-								1px		0px		0	var(--stroke-color),
-								0px		1px		0	var(--stroke-color),
-								-1px	0px		0	var(--stroke-color),
-								0px		-1px	0	var(--stroke-color),
-			}
-		}
-	}
-
-	&[gktitbuttons="win10"] .titlebar-people {
-		background: rgba(0,0,0,.3) !important;
-		border-radius: 0 !important;
-		display: flex !important;
-		height: 20px;
-		min-width: 24px;
-
-		// .titlebar-people
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
-		
-		// Hover and pressed states
-		&:not([disabled]):hover {
-			background: rgb(51,99,282) !important;
-
-			&:active {
-				background: rgb(59,95,155) !important;
-				transition: none;
-			}
-		}
-	}
-
-	&[gktitstyle="chromiumos"] #people-titlebuttons-space {
-		display: none !important;
-	}
-
-	&[gktitnative="true"][gktitbuttons="win"],
-	&[gktitstyle="macos"] {
-		#people-titlebuttons-space #gk-firefox-account-button {
-			background-repeat: no-repeat !important;
-			background-image:	var(--sign-in-button-top-left),		var(--sign-in-button-top),		var(--sign-in-button-top-right),
-								var(--sign-in-button-left),			var(--sign-in-button-center),	var(--sign-in-button-right),
-								var(--sign-in-button-bottom-left),	var(--sign-in-button-bottom),	var(--sign-in-button-bottom-right);
-			background-position:	0 0,											var(--sign-in-button-corner-size) 0,									100% 0,
-									0 var(--sign-in-button-corner-size),			var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),	100% var(--sign-in-button-corner-size),
-									0 100%,											var(--sign-in-button-corner-size) 100%,									100% 100%;
-			background-size:	var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),					calc(100% - (var(--sign-in-button-corner-size) * 2)) var(--sign-in-button-corner-size),						var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),
-								var(--sign-in-button-corner-size) calc(100% - (var(--sign-in-button-corner-size) * 2)),	calc(100% - (var(--sign-in-button-corner-size) * 2)) calc(100% - (var(--sign-in-button-corner-size) * 2)),	var(--sign-in-button-corner-size) calc(100% - (var(--sign-in-button-corner-size) * 2)),
-								var(--sign-in-button-corner-size) var(--sign-in-button-corner-size),					calc(100% - (var(--sign-in-button-corner-size) * 2)) var(--sign-in-button-corner-size),						var(--sign-in-button-corner-size) var(--sign-in-button-corner-size);
-
-			&:hover {
-				background-image:	var(--sign-in-button-top-left-hover),		var(--sign-in-button-top-hover),	var(--sign-in-button-top-right-hover),
-									var(--sign-in-button-left-hover),			var(--sign-in-button-center-hover),	var(--sign-in-button-right-hover),
-									var(--sign-in-button-bottom-left-hover),	var(--sign-in-button-bottom-hover),	var(--sign-in-button-bottom-right-hover);
-			}
-
-			&:active {
-				background-image:	var(--sign-in-button-top-left-pressed),		var(--sign-in-button-top-pressed),	var(--sign-in-button-top-right-pressed),
-									var(--sign-in-button-left-pressed),			var(--sign-in-button-center-pressed),	var(--sign-in-button-right-pressed),
-									var(--sign-in-button-bottom-left-pressed),	var(--sign-in-button-bottom-pressed),	var(--sign-in-button-bottom-right-pressed);
-			}
-		}
-	}
-
-	&[gktitnative="true"][gktitbuttons="win"] #people-titlebuttons-space #gk-firefox-account-button image {
-		margin-block-end: 2px !important;
-	}
-
-	&[gktitstyle="macos"] {
-		#people-tabs-space {
-			align-items: end;
-		}
-
-		&:not([profilepic="firefox"], [profilepic="geckium"]) #people-tabs-space #fxa-avatar-image {
-			transform: scaleX(-1);
-		}
-
-		#people-titlebuttons-space {
-			margin-inline: 3px !important;
-			align-items: center !important;
-			padding-block-end: 1px;
-	
-			#gk-firefox-account-button {
-				min-width: 28px;
-				min-height: 28px;
-	
-				.toolbarbutton-text {
-					margin-inline: 10px !important;
-				}
-			}
-		}
-	}
-
-	.titlebar-people {
-		appearance: none !important;
-	}
-
-	#gk-firefox-account-button {
-		padding: 0 !important;
 	}
 }

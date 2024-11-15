@@ -15,18 +15,19 @@ class gkPeople {
 		const TabsToolbarCustomizationTarget = document.getElementById("TabsToolbar-customization-target");
 		const beforeTabsSpace = document.createXULElement("toolbaritem");
 		beforeTabsSpace.setAttribute("removable", "false");
-		beforeTabsSpace.id = "people-tabs-space";
+		beforeTabsSpace.id = "gkavatar-container";
 		TabsToolbarCustomizationTarget.prepend(beforeTabsSpace);
 
 		const titlebarButtonboxContainer = document.querySelector("#TabsToolbar .titlebar-buttonbox-container");
 		const titlebarButtonboxSpace = document.createXULElement("hbox");
 		titlebarButtonboxSpace.classList.add("titlebar-buttonbox");
-		titlebarButtonboxSpace.id = "people-titlebuttons-space";
-		titlebarButtonboxContainer.prepend(titlebarButtonboxSpace);
+		titlebarButtonboxSpace.id = "gkpeople-button-container";
+		TabsToolbarCustomizationTarget.append(titlebarButtonboxSpace);
+		gkInsertElm.before(titlebarButtonboxSpace, titlebarButtonboxContainer);
 	}
 
 	static get getReservedSpaces() {
-		return [document.getElementById("people-tabs-space"), document.getElementById("people-titlebuttons-space")];
+		return [document.getElementById("gkavatar-container"), document.getElementById("gkpeople-button-container")];
 	}
 
 	/**
@@ -75,31 +76,17 @@ class gkPeople {
 			// We're done here if it is disabled.
 			return;
 		} else if (prefChoice == "avatar") {
-			// Position
-			// if (titlebarBorder == "macos")
-			// 	gkInsertElm.before(this.getReservedSpaces[0], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container"));
-			// else
-			document.getElementById("TabsToolbar-customization-target").prepend(this.getReservedSpaces[0]);
-
 			this.getReservedSpaces[0].style.display = null;
-			this.getReservedSpaces[1].style.display = "none";
-			
+
 			// Actual Button
 			this.getReservedSpaces[0].appendChild(this.getPeopleButton);
 			this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
 		} else if (prefChoice == "titlebutton") {
-			// Position
-			// if (titlebarBorder == "macos")
-			// 	gkInsertElm.before(this.getReservedSpaces[1], document.querySelector("#TabsToolbar > .titlebar-buttonbox-container:not(#people-titlebuttons-space)"));
-			// else
-				document.querySelector("#TabsToolbar .titlebar-buttonbox-container:not(#people-titlebuttons-space)").prepend(this.getReservedSpaces[1]);
-
-			this.getReservedSpaces[0].style.display = "none";
 			this.getReservedSpaces[1].style.display = null;
-			
+
 			// Actual Button
 			this.getReservedSpaces[1].appendChild(this.getPeopleButton);
-			this.getPeopleButton.classList.add("titlebar-people");
+			this.getPeopleButton.classList.add("gkpeople-titlebar");
 		}
 	}
 
