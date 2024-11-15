@@ -1,4 +1,4 @@
-& {
+&[gktitnative="true"] {
     --sign-in-button-top-left:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_left.svg");
     --sign-in-button-top:					url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top.svg");
     --sign-in-button-top-right:				url("chrome://userchrome/content/assets/img/chrome-47/titlebar/windows/sign_in_button_top_right.svg");
@@ -60,18 +60,11 @@
         }
     }
 
-    // @media (-moz-platform: windows) {
-    // 	.gkpeople-titlebar {
-    // 		margin-block-start: 1px !important;
-    // 	}
-    // }
-
     .gkpeople-titlebar {
         display: flex !important;
         height: 20px;
         min-width: 26px;
 
-        // .gkpeople-titlebar
         list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win7/sign_in_button_avatar.svg");
 
         .toolbarbutton-text {
@@ -79,7 +72,7 @@
             color: white !important;
             font-size: 8pt;
             margin-inline: 8px !important;
-            
+
             text-shadow:	1px		1px		0	var(--stroke-color),
                             1px		-1px	0	var(--stroke-color),
                             -1px	1px		0	var(--stroke-color),
@@ -90,4 +83,7 @@
                             0px		-1px	0	var(--stroke-color),
         }
     }
+}
+&[gktitnative="false"] {
+    @import "wincompact";
 }
