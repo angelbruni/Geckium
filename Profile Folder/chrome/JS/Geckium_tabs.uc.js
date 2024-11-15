@@ -4,18 +4,27 @@
 // @include			main
 // ==/UserScript==
 
-UC_API.Runtime.startupFinished().then(() => {
+UC_API.Runtime.startupFinished().then(async () => {
 	// Modify currently existing tabs
 	document.querySelectorAll(`.tabbrowser-tab:not([gkmodified="true"])`).forEach(existingTab => {
 		modifyTab(existingTab);
 	});		
 
+	/* bruni:	The entire code should be ran after startup has finished, meaning that
+				gBrowser is available, however, in Floorp, when creating a new window
+				the code complains about gBrowser being unavailable meaning that we have
+				to wait for it to be available. */
+	// TODO: Investigate a better fix?? :thonk:
+	while (!gBrowser) {
+		await new Promise(resolve => setTimeout(resolve, 100));
+	}
+
 	// Get a reference to the TabContainer, which holds all the tabs in the browser
     let tabContainer = gBrowser.tabContainer;
 
-    tabContainer.addEventListener('TabOpen', function(event) {
+    tabContainer.addEventListener('TabOpen', function(e) {
         // The newly created tab is accessible via event.target
-        let tab = event.target;
+        let tab = e.target;
 
 		modifyTab(tab);
     });
