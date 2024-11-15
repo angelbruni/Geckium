@@ -31,7 +31,14 @@
 }
 
 .urlbarView-row {
-	// Remove empty gap in Firefox 121+
+	&:not([type="tip"]) {
+		padding-block: unset !important;
+
+		.urlbarView-no-wrap {
+			flex-basis: 0 !important;
+		}
+	}
+
 	&:not([has-url]) {
 		.urlbarView-title {
 			&::before {
@@ -49,10 +56,6 @@
 	&[type="switchtab"] .urlbarView-row-inner .urlbarView-title {
 		padding-left: 24px;
 	}
-}
-
-.urlbarView-no-wrap {
-	flex-basis: 0 !important;
 }
 
 .urlbarView-favicon {
