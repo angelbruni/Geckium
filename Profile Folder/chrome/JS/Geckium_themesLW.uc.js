@@ -202,13 +202,12 @@ class gkLWTheme {
 	
 	// LWTheme Toolbar Background Modes
 	static get getCustomThemeMode() {
-		let modes = ["fxchrome", "silverfox", "none"]; // TODO: "firefox"
+		let modes = ["geckium", "fxchrome", "silverfox", "none"]; // TODO: "firefox"
 		let prefChoice = gkPrefUtils.tryGet("Geckium.customtheme.mode").string;
-		if (modes.includes(prefChoice)) {
+		if (modes.includes(prefChoice))
 			return prefChoice;
-		} else {
+		else
 			return modes[0];
-		}
 	}
 	static customThemeModeChanged() {
 		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);
