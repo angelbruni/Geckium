@@ -110,6 +110,7 @@ class gkLWTheme {
 		setTimeout(async () => {
 			// Delete lwtheme-specific variable (if themed, they get remade)
 			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+			document.documentElement.style.removeProperty("--gktoolbar-bgcolor-opacity-percentage");
 			document.documentElement.style.removeProperty("--gktab-selected-bgcolor");
 			document.documentElement.style.removeProperty("--gktab-selected-bgcolor-opacity-percentage");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-height");
@@ -142,6 +143,7 @@ class gkLWTheme {
 					var toolbarBgColorArray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
 					document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${toolbarBgColorArray[0]}, ${toolbarBgColorArray[1]}, ${toolbarBgColorArray[2]})`);
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `${Math.floor((toolbarBgColorArray[3] / 1) * 100)}%`);
 					if (toolbarBgColorArray[3] == 0 || toolbarBgColorArray[3].includes("."))
 						document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
 

@@ -150,9 +150,9 @@
 			--tabbrowser-tab-color: black;
 		}
 
-		// if Geckium or FXChrome
-		&[customthememode="geckium"],
-		&[customthememode="fxchrome"] {
+		// if Geckium
+		&[customthememode="geckium"] {
+			--selected-tab-background-opacity-percentage-additive: 20%;
 			--inactive-tab-background: color-mix(
 				in srgb,
 				color-mix(
@@ -162,10 +162,6 @@
 				) 80%,
 				transparent
 			) !important;
-		}
-		// if Geckium
-		&[customthememode="geckium"] {
-			--selected-tab-background-opacity-percentage-additive: 10%;
 
 			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
 				--selected-tab-background: var(--toolbar-bgcolor) !important;
@@ -236,6 +232,14 @@
 						var(--tab-selected-bgcolor) 3px,
 						var(--gktoolbar-bgcolor)
 					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--tab-selected-bgcolor) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
 				}
 				&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
 					--selected-tab-background: linear-gradient(
@@ -244,6 +248,15 @@
 						var(--tab-selected-bgcolor) 3px,
 						var(--gktoolbar-bgcolor)
 					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--lwt-tab-line-color) 3px,
+							var(--tab-selected-bgcolor) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
 				}
 
 				&[tab-selected-bgcolor-transparent="true"] {
@@ -257,6 +270,18 @@
 							) 3px,
 							var(--gktoolbar-bgcolor)
 						) !important;
+
+						&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+							--selected-tab-background: linear-gradient(
+								to bottom,
+								color-mix(
+									in srgb,
+									var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+									var(--lwt-accent-color)
+								) 3px,
+								var(--lwt-accent-color)
+							) !important;
+						}
 					}
 					&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
 						--selected-tab-background: linear-gradient(
@@ -269,6 +294,19 @@
 							) 3px,
 							var(--gktoolbar-bgcolor)
 						) !important;
+
+						&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+							--selected-tab-background: linear-gradient(
+								to bottom,
+								var(--lwt-tab-line-color) 3px,
+								color-mix(
+									in srgb,
+									var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+									var(--lwt-accent-color)
+								) 3px,
+								var(--lwt-accent-color)
+							) !important;
+						}
 					}
 				}
 				
@@ -277,9 +315,27 @@
 		// if FXChrome-like
 		&[customthememode="fxchrome"] {
 			--selected-tab-background: var(--toolbar-bgcolor) !important;
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
 
 			&[toolbar-bgcolor-transparent="true"] {
 				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
 			}
 		}
 		// if Silverfox

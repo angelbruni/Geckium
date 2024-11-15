@@ -909,6 +909,23 @@
 					var(--gktoolbar-bgcolor) 3px,
 					var(--toolbar-bgcolor) 75%
 				) !important;
+
+				&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+					--nav-bar: linear-gradient(
+						to bottom,
+						var(--lwt-accent-color) 3px,
+						transparent 75%
+					) !important;
+
+
+					&[tab-selected-bgcolor-transparent="true"] {
+						--nav-bar: linear-gradient(
+							to bottom,
+							var(--lwt-accent-color) 3px,
+							transparent 75%
+						) !important;
+					}
+				}
 			}
 		}
 		// if FXChrome-like
