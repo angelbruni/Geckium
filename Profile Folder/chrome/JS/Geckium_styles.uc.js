@@ -364,9 +364,8 @@ window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
 // Custom tab glare colouring
 class customTabGlare {
     static toggle() {
-        if (isBrowserWindow) {
+        if (isBrowserWindow)
             document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool);
-        }
     }
 }
 window.addEventListener("load", customTabGlare.toggle);
@@ -380,3 +379,22 @@ const customTabGlareObserver = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customTabGlareObserver, false);
+
+// Custom tab glare colouring
+class themeOmniboxInEveryEra {
+    static toggle() {
+        if (isBrowserWindow)
+            document.documentElement.setAttribute("urlbarthemingforincompatibledesigns", gkPrefUtils.tryGet("Geckium.appearance.URLBarThemingForIncompatibleDesigns").bool);
+    }
+}
+window.addEventListener("load", themeOmniboxInEveryEra.toggle);
+
+// Automatically toggle when setting changes
+const themeOmniboxInEveryEraObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			themeOmniboxInEveryEra.toggle();
+		}
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.URLBarThemingForIncompatibleDesigns", themeOmniboxInEveryEraObserver, false);
