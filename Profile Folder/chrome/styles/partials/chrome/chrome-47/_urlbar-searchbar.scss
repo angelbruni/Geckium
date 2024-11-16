@@ -1,7 +1,11 @@
 & {
 	--urlbar-height-definitive: 28px;
 
-	&[geckium-choice="fortyseven"] {
+	&:not([geckium-choice="fifty"]) {
+		#identity-box {
+			margin-block-start: 1px !important;
+		}
+		
 		#go-button-box {
 			width: 56px !important;
 			height: var(--urlbar-height-definitive) !important;
