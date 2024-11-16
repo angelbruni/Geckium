@@ -30,15 +30,15 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-normal-width: 194px;
-	--tab-pinned-width: 39px;
-	--tab-selected-min-width: 31px;
-	--tab-height: 27px;
-	--tab-sides-width: 15px;
-	--tab-inner-margin-start: 15px;
-	--tab-inner-margin-end: 0;
-	--tab-content-y-from-top: 0;
-	--tab-gap-between: -16px;
+	--tab-normal-width:			194px;
+	--tab-pinned-width:			39px;
+	--tab-selected-min-width:	31px;
+	--tab-height:				27px;
+	--tab-sides-width:			15px;
+	--tab-inner-margin-start:	15px;
+	--tab-inner-margin-end:		0;
+	--tab-content-y-from-top:	0;
+	--tab-gap-between:			-16px;
 
 	--tab-glare-opacity: 1;
 	--tab-glare: var(--default-tab-glare);
@@ -64,6 +64,14 @@
 	--tab-gap-between-favicon-and-title: 5px;
 	--tab-pinned-icon-offset-x: 0;
 
+	// Added in Chromium 27
+	--tab-sharing-icon-animation:	2s linear tab-sharing-icon-pulse infinite !important;
+	--tab-recording:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_100.png");
+	--tab-recording-size:			10px;
+	--tab-capture:					url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_capture.svg");
+	--tab-capture-size:				16px;
+
+	// Added in Chromium 27
 	--tab-audio-animation-spritesheet-image:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/audio_animation.svg");
 	--tab-audio-animation-spritesheet-width:	90px;
 	--tab-audio-animation-spritesheet-height:	15px;
@@ -76,10 +84,10 @@
 	--tab-close-button-margin-block-start:	1px;
 	--tab-close-button-margin-inline-end:	-2px;
 
-	--newtab-distance-from-tabs: 11px;
-	--newtab-distance-from-bottom: 4px;
-	--newtab-width: 28px;
-	--newtab-height: 18px;
+	--newtab-distance-from-tabs:	11px;
+	--newtab-distance-from-bottom:	4px;
+	--newtab-width:					28px;
+	--newtab-height:				18px;
 
 	--default-theme-newtab: transparent;
 
@@ -99,6 +107,10 @@
 		--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_alpha_right.svg");
 		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.svg");
 		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.svg");
+
+		&:not([geckium-fortyseven]) {
+			--tab-recording: url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_200.png");
+		}
 
 		--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_button_mask.svg");
 		--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.svg");
@@ -471,6 +483,31 @@
 			transition-property: opacity;
 			transition-duration: var(--tab-glare-hover-timer);
 			transition-timing-function: linear;
+		}
+
+		&[sharing] .tab-sharing-icon-overlay {
+			display: revert !important;
+		}
+
+		.tab-content > .tab-sharing-icon-overlay {
+			display: none !important;
+		}
+		
+		.tab-icon-stack .tab-sharing-icon-overlay {
+			align-self: end;
+			justify-self: end;
+	
+			&[sharing="microphone"] {
+				list-style-image: var(--tab-recording) !important;
+				width: var(--tab-recording-size) !important;
+				height: var(--tab-recording-size) !important;
+			}
+
+			&[sharing="screen"] {
+				list-style-image: var(--tab-capture) !important;
+				width: var(--tab-capture-size) !important;
+				height: var(--tab-capture-size) !important;
+			}
 		}
 
 		&:not([soundplaying]),
