@@ -31,6 +31,10 @@
 
     --sign-in-button-corner-size: 6px;
 
+    &:not([sizemode="normal"]) .gkpeople-titlebar {
+        margin-block-start: -1px !important;
+    }
+
     #gkpeople-button-container #gk-firefox-account-button {
         background-repeat: no-repeat !important;
         background-image:	var(--sign-in-button-top-left),		var(--sign-in-button-top),		var(--sign-in-button-top-right),
@@ -64,6 +68,7 @@
         display: flex !important;
         height: 20px;
         min-width: 26px;
+        margin-block-start: 1px !important;
 
         list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win7/sign_in_button_avatar.svg");
 

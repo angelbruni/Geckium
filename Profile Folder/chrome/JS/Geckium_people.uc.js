@@ -72,6 +72,8 @@ class gkPeople {
 		this.getReservedSpaces[1].style.display = "none";
 
 		let prefChoice = gkPeople.getStyle(era);
+		document.documentElement.setAttribute("gkpeoplestyle", prefChoice);
+
 		if (prefChoice == "off") {
 			// We're done here if it is disabled.
 			return;
