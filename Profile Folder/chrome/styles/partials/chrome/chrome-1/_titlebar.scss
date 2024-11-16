@@ -189,10 +189,9 @@
 			margin-top: 0 !important;
 		}
 		//Windows 10 quirks
-		&[isWindows10] #titlebar { // remove the top gap
-			@media not (-moz-windows-glass) {
-				appearance: none !important;
-			}
+		&[isWindows10][mozNativeControls="false"] #titlebar {
+			// remove the top gap
+			appearance: none !important;
 		}
 		
 		//Windows 10 + Native Controls Patch quirks
