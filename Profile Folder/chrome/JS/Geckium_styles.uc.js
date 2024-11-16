@@ -20,6 +20,11 @@ function isWindows10() {
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
 
+function hasMozNativeControlsAttr() {
+    document.documentElement.setAttribute("mozNativeControls", window.matchMedia("(-moz-native-controls)").matches);
+}
+window.addEventListener("load", hasMozNativeControlsAttr);
+
 // Initial variables
 let previousEra;
 const appearanceChanged = new CustomEvent("appearanceChanged");
