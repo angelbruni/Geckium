@@ -190,8 +190,11 @@
 		}
 		//Windows 10 quirks
 		&[isWindows10] #titlebar { // remove the top gap
-			appearance: none !important;
+			@media not (-moz-windows-glass) {
+				appearance: none !important;
+			}
 		}
+		
 		//Windows 10 + Native Controls Patch quirks
 		@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
 			&:not([isWindows10])#main-window {
