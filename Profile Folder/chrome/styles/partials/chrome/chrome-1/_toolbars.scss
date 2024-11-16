@@ -900,67 +900,49 @@
 		}
 		// if Geckium
 		&[customthememode="geckium"] {
-			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
-					var(--gktoolbar-bgcolor) 3px,
-					var(--toolbar-bgcolor) 75%
+					var(--gktoolbar-bgcolor) 25%,
+					var(--toolbar-bgcolor)
 				) !important;
-
-				&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
-					--nav-bar: linear-gradient(
-						to bottom,
-						var(--lwt-accent-color) 3px,
-						transparent 75%
-					) !important;
-
-
-					&[tab-selected-bgcolor-transparent="true"] {
-						--nav-bar: linear-gradient(
-							to bottom,
-							var(--lwt-accent-color) 3px,
-							transparent 75%
-						) !important;
-					}
-				}
+				--personal-toolbar: var(--toolbar-bgcolor) !important;
 			}
-		}
-		// if FXChrome-like
-		&[customthememode="fxchrome"] {
-			--nav-bar: linear-gradient(
-				to bottom,
-				var(--toolbar-bgcolor) 3px,
-				color-mix(
-					in srgb,
-					var(--toolbar-bgcolor),
-					transparent 50%
-				) 50%
-			) !important;
-			--personal-toolbar: color-mix(
-				in srgb,
-				var(--toolbar-bgcolor),
-				transparent 50%
-			) !important;
 
+
+			// --nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			// --personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+
+			// &[toolbar-bgcolor-transparent="true"] {
+			// 	--nav-bar: linear-gradient(
+			// 		to bottom,
+			// 		var(--gktoolbar-bgcolor) 25%,
+			// 		var(--toolbar-bgcolor)
+			// 	) !important;
+
+			// 	&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+			// 		&[tab-selected-bgcolor-transparent="true"] {
+			// 			--nav-bar: linear-gradient(
+			// 				to bottom,
+			// 				var(--lwt-accent-color) 3px,
+			// 				transparent 75%
+			// 			) !important;
+			// 		}
+			// 	}
+			// }
+		}
+		// if FXChrome
+		&[customthememode="fxchrome"] {
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
-					var(--gktoolbar-bgcolor) 3px,
+					var(--gktoolbar-bgcolor),
 					var(--toolbar-bgcolor) 50%
 				) !important;
 			}
 		}
 		// if Silverfox
 		&[customthememode="silverfox"] {
-			--nav-bar: linear-gradient(
-					to bottom,
-					var(--toolbar-bgcolor) 25%,
-					transparent
-				) !important;
-
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
