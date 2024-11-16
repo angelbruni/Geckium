@@ -2,6 +2,10 @@
 	--tab-normal-width: 191px;
 	--tab-pinned-width: 36px;
 
+	--tab-recording:		url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_recording_indicator.svg");
+	--tab-recording-size:	16px;
+	--tab-capture:			url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_capture_indicator_100.png");
+
 	--tab-audio-indicator-margin-block-start:	1px;
 	--tab-audio-indicator-size: 				16px;
 	--tab-audio-indicator: 						url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_audio_indicator.svg");
@@ -12,11 +16,33 @@
 	--tab-close-button-normal:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close.svg");
 	--tab-close-button-hot:		url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_h.svg");
 	--tab-close-button-pressed:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_close_p.svg");
+
+	@media not (resolution: 96dpi) {
+		--tab-capture:	url("chrome://userchrome/content/assets/img/chrome-47/tabbar/tab_capture_indicator_200.png");
+	}
 }
 
 .tabbrowser-tab {
-	&[visuallyselected][minwidthreached="true"] .tab-close-button {
-		transform: translateX(-1.5px);
+	&[sharing] .tab-content > .tab-sharing-icon-overlay {
+		display: flex !important;
+	}
+
+	&[sharing="microphone"] .tab-content > .tab-sharing-icon-overlay {	
+		margin-block-start: var(--tab-audio-indicator-margin-block-start);
+		list-style-image: var(--tab-recording) !important;
+		width: var(--tab-recording-size) !important;
+		height: var(--tab-recording-size) !important;
+	}
+
+	&[sharing="screen"] .tab-content > .tab-sharing-icon-overlay {	
+		margin-block-start: var(--tab-audio-indicator-margin-block-start);
+		list-style-image: var(--tab-capture) !important;
+		width: var(--tab-capture-size) !important;
+		height: var(--tab-capture-size) !important;
+	}
+
+	.tab-icon-stack .tab-sharing-icon-overlay {
+		display: none !important;
 	}
 
 	&[soundplaying],
@@ -38,5 +64,9 @@
 		background-image: var(--tab-audio-indicator);
 		animation: unset;
 		margin-block-start: var(--tab-audio-indicator-margin-block-start);
+	}
+
+	&[visuallyselected][minwidthreached="true"] .tab-close-button {
+		transform: translateX(-1.5px);
 	}
 }
