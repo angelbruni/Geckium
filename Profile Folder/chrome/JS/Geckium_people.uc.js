@@ -98,7 +98,6 @@ class gkPeople {
 		document.documentElement.style.removeProperty("--custom-profile-picture");
 
 		const prefChoice = gkPrefUtils.tryGet("Geckium.profilepic.mode").string;
-		document.documentElement.setAttribute("profilepicbutton", gkPrefUtils.tryGet("Geckium.profilepic.button").bool) //TODO: Was header switch
 		document.documentElement.setAttribute("profilepic", prefChoice);
 		switch (prefChoice) {
 			case "firefox":
