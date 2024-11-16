@@ -45,7 +45,7 @@
 	}
 	
 	description,
-	label:not(.sidebar-footer-label, .dialogTitle, .button-text),
+	label:not(.sidebar-footer-label, .dialogTitle, .button-text, menuitem[selected] label),
 	[data-l10n-id="preferences-web-appearance-footer"] {
 		color: var(--header-color) !important;
 		font-size: 9pt !important;	
@@ -128,7 +128,7 @@
 	
 	menupopup menuitem {
 		&[selected] {
-			color: red !important;
+			color: white !important;
 		}
 	}
 	
