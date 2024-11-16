@@ -124,8 +124,8 @@
 		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
     }
     
-    // Show text when signed in
-	&[fxastatus="signedin"] .gkpeople-titlebar {
+    // Show text when signed in and privacy setting disabled
+	&[fxastatus="signedin"]:not([hideAccountInfo="true"]) .gkpeople-titlebar {
 		.toolbarbutton-icon {
 			display: none !important;
 		}
