@@ -17,21 +17,24 @@ setTimeout(() => {
 			btn.setAttribute("value", defaultItem.getAttribute("value"));
 			defaultItem.setAttribute("selected", true);
 		}
+
+		const list = btn.querySelector(".list");
+		const listWidth = list.getBoundingClientRect().width;
+		btn.style.width = `${listWidth + 48}px`;
 	
 		btn.addEventListener("click", (e) => {
 			const windowHeight = document.querySelector("#window").getBoundingClientRect().height;
+
+			const listHeight = list.getBoundingClientRect().height;
 	
 			const btnWidth = btn.getBoundingClientRect().width;
 			const btnHeight = btn.getBoundingClientRect().height;
 			const btnX = btn.getBoundingClientRect().x;
 			const btnY = btn.getBoundingClientRect().y;
 	
-			const list = btn.querySelector(".list");
-			const listHeight = list.getBoundingClientRect().height;
-	
-			list.style.width = btnWidth + "px";
-			list.style.top = 0 + "px";
-			list.style.left = btnX + "px";
+			list.style.top = "0px";
+			list.style.width = `${btnWidth}px`;
+			list.style.left = `${btnX}px`;
 	
 			if (btnY + listHeight < windowHeight) {
 				list.style.top = btnHeight + btnY + "px";
@@ -40,7 +43,6 @@ setTimeout(() => {
 				list.style.top = btnY - listHeight + "px";
 				list.setAttribute("position", "bottom");
 			}
-	
 	
 			if (!btn.hasAttribute("open"))
 				btn.setAttribute("open", true);
