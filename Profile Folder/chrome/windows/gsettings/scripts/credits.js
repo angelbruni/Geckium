@@ -288,7 +288,7 @@ Research: Useful insight into Firefox JS.`,
 					<label class="description">${quote}</label>
 					<label class="description" style="white-space: pre-wrap">Contributions: ${person.contributions}</label>
 				</vbox>
-				<spacer style="min-width: 18px" />
+				<spacer />
 			</hbox>
 		</html:button>
 		`;
