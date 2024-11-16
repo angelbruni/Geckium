@@ -1,5 +1,6 @@
 function updateSignInStatus() {
 	let appearanceChoice = gkEras.getNTPEra();
+	let privacySetting = gkPrefUtils.tryGet("Geckium.privacy.hideAccountInfo").bool;
 	let email = gkPrefUtils.tryGet("services.sync.username").string;
 	let loginContainer = document.getElementById("login-container");
 	let loginUsername;
@@ -10,7 +11,7 @@ function updateSignInStatus() {
 		loginUsername = document.getElementById("login-email");
 	
 	if (loginContainer && loginUsername) {
-		if (email) {
+		if (email && !privacySetting) {
 			if (appearanceChoice > 11) {
 				loginContainer.style.setProperty("display", "none");
 				loginUsername.style.removeProperty("display");
@@ -33,3 +34,4 @@ const fxSyncObs = {
 	},
 };
 Services.prefs.addObserver("services.sync.username", fxSyncObs, false);
+Services.prefs.addObserver("Geckium.privacy.hideAccountInfo", fxSyncObs, false);
