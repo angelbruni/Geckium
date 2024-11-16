@@ -1,18 +1,3 @@
-function updateProfilePictureSettingsState() {
-	const container = document.getElementById("profile-pic-content");
-
-	container.setAttribute("profile-pic-button", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
-}
-const profilePictureStateObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			updateProfilePictureSettingsState()
-		}
-	}
-};
-Services.prefs.addObserver("Geckium.profilepic.button", profilePictureStateObserver, false)
-document.addEventListener("DOMContentLoaded", updateProfilePictureSettingsState);
-
 function updateProfilePictures() {
 	const menu = document.getElementById("pfp-mode-select");
 
