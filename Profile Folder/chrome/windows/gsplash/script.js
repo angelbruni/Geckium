@@ -22,7 +22,6 @@ function startFromScratch() {
 	gkPrefUtils.delete("Geckium.appearance.titlebarNative");
 	gkPrefUtils.delete("Geckium.branding.choice");
 	gkPrefUtils.delete("Geckium.appearance.choice");
-	gkPrefUtils.delete("Geckium.profilepic.button");
 	gkPrefUtils.delete("Geckium.profilepic.mode");
 	gkPrefUtils.delete("Geckium.profilepic.chromiumIndex");
 	gkPrefUtils.delete("Geckium.customtheme.mode");
