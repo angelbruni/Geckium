@@ -42,6 +42,13 @@
 		}
 	}
 
+	checkbox,
+	radio {
+		&.tail-with-learn-more + a {
+			margin-block: 0 !important;
+		}
+	}
+
 	@media (-moz-ev-native-controls-patch) {
 		checkbox,
 		radio {
