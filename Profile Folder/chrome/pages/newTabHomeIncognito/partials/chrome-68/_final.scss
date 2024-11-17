@@ -22,8 +22,11 @@
 	src: url("chrome://userchrome/content/frameworks/GeckiumMaterial/fonts/Roboto-Bold.woff2") format("woff2");
 }
 
+& {
+	--default-ntp-background-color: #303030;
+}
+
 body {
-	background-color: #303030;
 	color: rgba(255, 255, 255, 0.7);
 	font: unset;
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
@@ -44,7 +47,7 @@ body {
 	font-size: 10pt;
 	box-sizing: content-box;
 	margin-top: 40px;
-	background-color: #303030;
+	background-color: var(--default-ntp-background-color);
 	color: rgba(255, 255, 255, 0.7);
 
 	.icon,

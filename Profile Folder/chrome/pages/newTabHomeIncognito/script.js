@@ -8,7 +8,7 @@ const specialCharacters = {
 };
 
 function createMainLayout() {
-	let appearanceChoice = gkEras.getBrowserEra();
+	let appearanceChoice = gkEras.getNTPEra();
 
 	let main = ``;
 	if (appearanceChoice <= 3) {
