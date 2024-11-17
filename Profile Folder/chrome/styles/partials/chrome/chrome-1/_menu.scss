@@ -193,7 +193,7 @@ toolbarbutton menupopup[placespopup] {
 			&[disabled="true"] {
 				color: var(--gk-menu-foreground-disabled) !important;
 			}
-			&[_moz-menuactive="true"]:not([disabled]) {
+			&:not([disabled="true"])[_moz-menuactive="true"] {
 				background: var(--gk-menuitem-background) !important;
 				color: var(--gk-menuitem-foreground) !important;
 			}
@@ -249,7 +249,7 @@ toolbarbutton menupopup[placespopup] {
 					color: currentColor !important;
 				}
 			}
-			&[_moz-menuactive="true"]:not([disabled]) .menu-accel-container {
+			&:not([disabled="true"])[_moz-menuactive="true"] .menu-accel-container {
 				color: var(--gk-menuitem-foreground-keys) !important;
 			}
 
@@ -395,11 +395,11 @@ toolbarbutton menupopup[placespopup] {
 			#context-navigation > :is(menu, menuitem) {
 				padding-block: 2px !important;
 
-				&[_moz-menuactive="true"]:not([disabled]) {
+				&:not([disabled="true"])[_moz-menuactive="true"] {
 					background-color: AccentColor !important;
 					color: AccentColorText !important;
 				}
-				&[_moz-menuactive="true"][disabled] {
+				&[disabled="true"][_moz-menuactive="true"] {
 					background-color: unset !important;
 				}
 			}
@@ -440,7 +440,7 @@ toolbarbutton menupopup[placespopup] {
 				> :is(menu, menuitem),
 				#context-navigation > :is(menu, menuitem) {
 					padding-block: unset !important;
-					&[_moz-menuactive="true"]:not([disabled]) {
+					&:not([disabled="true"])[_moz-menuactive="true"] {
 						background-color: -moz-menuhover !important;
 						color: -moz-menuhovertext !important;
 					}
@@ -470,7 +470,7 @@ toolbarbutton menupopup[placespopup] {
 						color: -moz-menuhovertext !important;
 					}
 					
-					&[disabled] {
+					&[disabled="true"] {
 						color: GreyText !important;
 					}
 			

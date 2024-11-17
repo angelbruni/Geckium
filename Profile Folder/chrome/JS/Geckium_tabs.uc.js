@@ -117,6 +117,12 @@ function modifyTab(tab) {
 	tabMuteButtonElm.addEventListener("click", () => {
 		tab.toggleMuteAudio()
 	});
+
+	// Tab Sharing
+	let tabSharingElm = document.createElement("div");
+	tabSharingElm.classList.add("tab-sharing-icon-overlay");
+	tabSharingElm.appendChild(document.createXULElement("image"));
+	gkInsertElm.before(tabSharingElm, tabMuteButtonElm);
 }
 
 (function() {

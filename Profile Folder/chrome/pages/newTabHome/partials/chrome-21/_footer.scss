@@ -1,3 +1,12 @@
+& {
+	--default-dot-color-normal: #999;
+	--default-dot-color-hot: #7f7f7f;
+
+	@media (prefers-color-scheme: dark) {
+		--default-dot-color-normal: #666666;
+	}
+}
+
 #footer {
 	#footer-content {
 		padding-inline-end: 12px;
@@ -8,20 +17,8 @@
 		padding-block-end: 0;
 	}
 
-	.dot {
-		color: var(--dot-color-normal);
-		
-		&:not([disbled]) {
-			&:hover,
-			&:focus,
-			&.selected {
-				color: var(--dot-color-hot);
-			}
-		}
-
-		.selection-bar {
-			margin-block-end: 5px;
-		}
+	.dot .selection-bar {
+		margin-block-end: 5px;
 	}
 
 	.footer-menu {
