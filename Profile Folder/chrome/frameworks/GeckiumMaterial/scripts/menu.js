@@ -44,10 +44,15 @@ setTimeout(() => {
 				list.setAttribute("position", "bottom");
 			}
 	
-			if (!btn.hasAttribute("open"))
+			if (!btn.hasAttribute("open")) {
+				document.querySelectorAll('.menu[open="true"]').forEach(openMenu => {
+					openMenu.removeAttribute("open");
+				})
+
 				btn.setAttribute("open", true);
-			else
+			} else {
 				btn.removeAttribute("open");
+			}
 	
 			e.stopPropagation();
 		});
