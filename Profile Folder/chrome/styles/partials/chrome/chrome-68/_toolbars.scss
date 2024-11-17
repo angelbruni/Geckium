@@ -102,26 +102,26 @@
 }
 
 :not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#gkavatar-container > #gk-firefox-account-button,
-		#tabs-newtab-button,
-		#new-tab-button,
-		.subviewbutton) {
-		&#unified-extensions-button,
-		&#searchmode-switcher-button,
-		&[type="menu"]:not(#back-button, #forward-button),
-		&#PanelUI-menu-button,
-		&[class*="webextension"],
-		&#gsettings-button,
-		&#nav-bar-overflow-button,
-		&#developer-button {
-			&#gsettings-button .toolbarbutton-icon,
-			&#searchmode-switcher-button .toolbarbutton-icon,
-			&[class*="webextension"] .toolbarbutton-icon {
-				width: 16px !important;
-				height: 16px !important;
-			}
+	#gkavatar-container > #gk-firefox-account-button,
+	#tabs-newtab-button,
+	#new-tab-button,
+	.subviewbutton) {
+	&#unified-extensions-button,
+	&#searchmode-switcher-button,
+	&[type="menu"]:not(#back-button, #forward-button),
+	&#PanelUI-menu-button,
+	&[class*="webextension"],
+	&#gsettings-button,
+	&#nav-bar-overflow-button,
+	&#developer-button {
+		&#gsettings-button .toolbarbutton-icon,
+		&#searchmode-switcher-button .toolbarbutton-icon,
+		&[class*="webextension"] .toolbarbutton-icon {
+			width: 16px !important;
+			height: 16px !important;
 		}
 	}
+}
 
 .urlbar-page-action {
 	width: calc(var(--urlbar-height-definitive) - 4px) !important;
