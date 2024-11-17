@@ -41,37 +41,38 @@
 
 	// Download Shelf
 	--downloads-favicon: url("chrome://userchrome/content/assets/img/chrome-1/downloadshelf/downloads_favicon.svg");
-}
-@media (-moz-platform: linux) {
-	:root[gksystheme="gtk"]:not([gtkicons="2"], [gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
-		// Fallback favicon
-		--default-favicon:		url(moz-icon://stock/text-x-generic?size=button);
 
-		// Toolbar
-		--back-button-icon:		url(moz-icon://stock/go-previous?size=toolbar);
-		--forward-button-icon:	url(moz-icon://stock/go-next?size=toolbar);
-		--reload-button-icon:	url(moz-icon://stock/view-refresh?size=toolbar);
-		--stop-button-icon:		url(moz-icon://stock/process-stop?size=toolbar);
-		--home-button-icon:		url(moz-icon://stock/go-home?size=toolbar);
-		--bookmark-folder-icon:	url(moz-icon://stock/folder?size=button);
-		&[gtkicons="1"] {
-			--password-notification-icon: url(moz-icon://stock/dialog-password?size=toolbar);
-			--star-button-icon-normal:	  url(moz-icon://stock/stock_delete-bookmark?size=button);
-			--star-button-icon-starred:	  url(moz-icon://stock/stock_bookmark?size=button);
-			--go-button-box-icon:		  url(moz-icon://stock/go-jump?size=button);
-
-			--bookmarks-menu-button-icon:		url(moz-icon://stock/user-bookmarks?size=toolbar);
-			--unified-extensions-button-icon:	url(moz-icon://stock/extension?size=toolbar);
-			--page-button-icon:					url(moz-icon://stock/document-properties?size=toolbar);
-			--chrome-button-icon:				url(moz-icon://stock/gtk-preferences?size=toolbar);
-
-			--logins-button-icon:		url(moz-icon://stock/dialog-password?size=toolbar);
-			--developer-button-icon: 	url(moz-icon://stock/gtk-preferences?size=toolbar);
-			--preferences-button-icon:	url(moz-icon://stock/preferences-system?size=toolbar);
-			--fullscreen-button-icon:	url(moz-icon://stock/view-fullscreen?size=toolbar);
-			--new-window-button-icon:	url(moz-icon://stock/window-new?size=toolbar);
-			--save-page-button-icon:	url(moz-icon://stock/document-save?size=toolbar);
-			--open-file-button-icon:	url(moz-icon://stock/document-open?size=toolbar);
+	@media (-moz-platform: linux) { 
+		&[gksystheme="gtk"]:not([gtkicons="2"], [gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
+			// Fallback favicon
+			--default-favicon:		url(moz-icon://stock/text-x-generic?size=button);
+	
+			// Toolbar
+			--back-button-icon:		url(moz-icon://stock/go-previous?size=toolbar);
+			--forward-button-icon:	url(moz-icon://stock/go-next?size=toolbar);
+			--reload-button-icon:	url(moz-icon://stock/view-refresh?size=toolbar);
+			--stop-button-icon:		url(moz-icon://stock/process-stop?size=toolbar);
+			--home-button-icon:		url(moz-icon://stock/go-home?size=toolbar);
+			--bookmark-folder-icon:	url(moz-icon://stock/folder?size=button);
+			&[gtkicons="1"] {
+				--password-notification-icon: url(moz-icon://stock/dialog-password?size=toolbar);
+				--star-button-icon-normal:	  url(moz-icon://stock/stock_delete-bookmark?size=button);
+				--star-button-icon-starred:	  url(moz-icon://stock/stock_bookmark?size=button);
+				--go-button-box-icon:		  url(moz-icon://stock/go-jump?size=button);
+	
+				--bookmarks-menu-button-icon:		url(moz-icon://stock/user-bookmarks?size=toolbar);
+				--unified-extensions-button-icon:	url(moz-icon://stock/extension?size=toolbar);
+				--page-button-icon:					url(moz-icon://stock/document-properties?size=toolbar);
+				--chrome-button-icon:				url(moz-icon://stock/gtk-preferences?size=toolbar);
+	
+				--logins-button-icon:		url(moz-icon://stock/dialog-password?size=toolbar);
+				--developer-button-icon: 	url(moz-icon://stock/gtk-preferences?size=toolbar);
+				--preferences-button-icon:	url(moz-icon://stock/preferences-system?size=toolbar);
+				--fullscreen-button-icon:	url(moz-icon://stock/view-fullscreen?size=toolbar);
+				--new-window-button-icon:	url(moz-icon://stock/window-new?size=toolbar);
+				--save-page-button-icon:	url(moz-icon://stock/document-save?size=toolbar);
+				--open-file-button-icon:	url(moz-icon://stock/document-open?size=toolbar);
+			}
 		}
 	}
 }
