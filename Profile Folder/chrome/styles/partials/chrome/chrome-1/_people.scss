@@ -31,6 +31,14 @@
 	}
 	// NOTE: Maximised state is handled by titlebar border styles.
 
+	&[gkpeoplestyle="off"] {
+		#gkavatar-container,
+		#gkpeople-button-container,
+		#gk-firefox-account-button {
+			display: none !important;
+		}
+	}
+
 
 	/*
 		Avatar besides Tabs
