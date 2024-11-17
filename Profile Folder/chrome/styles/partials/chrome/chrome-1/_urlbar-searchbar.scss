@@ -25,10 +25,6 @@
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 	--urlbar-min-height: var(--urlbar-height-definitive) !important;
 
-	@media (prefers-color-scheme: dark) {
-		--default-urlbar-color: black !important;
-	}
-
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
 		-moz-menuhover 20%,
@@ -50,17 +46,21 @@
 	}
 
 	&[forceColorizeAddressBar="true"] {
+		&[customthememode="geckium"] {
+			@media (prefers-color-scheme: dark) {
+				--default-urlbar-background-color: black;
+				--default-urlbar-color: white;
+				--urlbar-border: rgba(127, 127, 127, 0.4);
+			}
+		}
+
 		// if lwtheme
 		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 			// if Geckium
-			&[customthememode="geckium"] {
-				@media (prefers-color-scheme: dark) {
-					--default-urlbar-background-color: black;
-					--default-urlbar-color: white;
-				}
-				
+			&[customthememode="geckium"] {				
 				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
 				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
+				--urlbar-border: rgba(127, 127, 127, 0.4);
 
 				&[toolbar-field-background-color-transparent="true"] {
 					--protocol-background-color: transparent;
@@ -91,7 +91,7 @@
 		&[securestate="secure"],
 		&[securestate="ev"],
 		.verifiedDomain ~ .urlbar-input-box {
-			--urlbar-color: var(--default-urlbar-color);
+			--urlbar-color: black;
 		}
 	}
 
