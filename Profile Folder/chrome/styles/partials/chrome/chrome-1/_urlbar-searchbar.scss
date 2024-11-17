@@ -5,7 +5,7 @@
 	--urlbar-focused-background-color: var(--default-urlbar-focused-background-color) !important;
 	--default-urlbar-color: black;
 	--urlbar-color: var(--default-urlbar-color) !important;
-	--urlbar-focused-color: var(--default-urlbar-color) !important;
+	--urlbar-focused-color: black !important;
 
 	--identity-icon-invalid:			 						 var(--search-favicon);
 	--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity: var(--default-favicon);
@@ -51,6 +51,10 @@
 				--default-urlbar-background-color: black;
 				--default-urlbar-color: white;
 				--urlbar-border: rgba(127, 127, 127, 0.4);
+
+				--urlbar-background-verified-proxystate-valid: rgb(61, 51, 0);
+				--urlbar-verified-proxystate-valid: 		   rgb(102, 245, 130);
+				--urlbar-verified-proxystate-valid-overridden: rgb(255, 46, 46);
 			}
 		}
 
@@ -91,7 +95,7 @@
 		&[securestate="secure"],
 		&[securestate="ev"],
 		.verifiedDomain ~ .urlbar-input-box {
-			--urlbar-color: black;
+			--urlbar-color: var(--default-urlbar-color);
 		}
 	}
 
