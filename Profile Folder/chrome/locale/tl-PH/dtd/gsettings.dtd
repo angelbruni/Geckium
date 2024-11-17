@@ -30,7 +30,7 @@
 
 <!ENTITY gsettings.titlebar                         "Titlebar">
 <!ENTITY gsettings.titlebarStyle                    "Titlebar at Istilo ng Interface">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps           "Windows (walang gap)">
+<!ENTITY gsettings.titlebarStyleWinNoGaps           "Windows (walang gap)">
 <!ENTITY gsettings.titlebarStyleLinuxAlpha          "Linux (Alpha)">
 <!ENTITY gsettings.titlebarMode                     "Titlebar Mode">
 <!ENTITY gsettings.titlebarModeDisclaimer           "Babalewalain ng ilang istilo ng titlebar ang setting na ito">
@@ -53,10 +53,6 @@
 <!ENTITY gsettings.designToThemes       	"I-palitan o i-pamahalaan yung tema">
 <!ENTITY gsettings.designToExperiments      "I-explore ang mga na-scrap na opsyon sa disenyo ng Chromium...">
 
-<!ENTITY gsettings.privacy          "[!!! ÞřïƲáç¥ !!!]">
-<!ENTITY gsettings.hideAccountInfo  "[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
-<!ENTITY gsettings.WillHideInfoFrom "[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
-
 <!ENTITY gsettings.browser                              "Browser">
 <!ENTITY gsettings.branding								"Branding">
 <!ENTITY gsettings.saveDiscardedCRX						"I-save ang mga itinapon na pag-download ng CRX file">
@@ -70,34 +66,33 @@
 <!ENTITY gsettings.macOSZoomIsFullscreen				"Palitan ang Zoom ng Full screen sa macOS Titlebar Style">
 <!ENTITY gsettings.macOSZoomIsFullscreenDisclaimer		"Gumagana lang ang opsyong ito sa Windows at Linux">
 
-<!ENTITY gsettings.themes                                       "Mga Tema">
-<!ENTITY gsettings.accommodateChrThemes                         "I-accommodate ang Mga Tema ng Chromium sa mga disenyong hindi ginawa para sa kanila">
-<!ENTITY gsettings.accommodateChrThemesDisclaimer               "This allows modern themes to be compatible with old designs, and vice-versaz">
-<!ENTITY gsettings.chrThemeFallbacks                            "Fallback na titlebar at mga kulay ng toolbar sa Mga Tema ng Chromium">
-<!ENTITY gsettings.chrThemeFallbacksDisclaimer                  "Hindi babalewalain ng mga tema na may mga texture ng imahe ang setting na ito">
-<!ENTITY gsettings.enabled					                    "Naka-on">
-<!ENTITY gsettings.disabled					                    "Naka-off">
-<!ENTITY gsettings.chrThemesMustAero                            "Pilitin ang lahat ng Chromium Theme na gumamit ng System Borders">
-<!ENTITY gsettings.chrThemesMustAeroDisclaimer                  "Nangangailangan ng mga hangganan ng system sa katugmang Mga Tema ng Chromium na paganahin">
-<!ENTITY gsettings.enableForceColorizeAddressBar                "[!!! Éñáβℓè ÛR£ ßář ƭλè₥ïñϱ ƒôř ïñçô₥ƥáƭïβℓè δèƨïϱñƨ !!!]">
-<!ENTITY gsettings.enableForceColorizeAddressBarDisclaimer      "[!!! Rè9úïřèƨ Gèçƙïú₥ Fïřèƒôж Tλè₥è ₥ôδè ôř á çô₥ƥáƭïβℓè Çλřô₥ïú₥ Tλè₥è !!!]">
-<!ENTITY gsettings.firefoxThemeOnTitlebuttons                   "Ilapat ang background ng toolbar sa mga pindutan ng titlebar">
-<!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer         "Babalewalain ng ilang istilo ng titlebar ang setting na ito">
-<!ENTITY gsettings.colorizeTabGlareEffect 				        "Kulayin ang epekto ng glare ng tab ayon sa custom na tema">
-<!ENTITY gsettings.colorizeTabGlareEffectDescription            "Kulayin yung tab hover epekto">
-<!ENTITY gsettings.themeNewTabFooter                            "Tema bagong tab footer ayon sa inilapat na custom na tema">
+<!ENTITY gsettings.themes                               "Mga Tema">
+<!ENTITY gsettings.accommodateChrThemes                 "I-accommodate ang Mga Tema ng Chromium sa mga disenyong hindi ginawa para sa kanila">
+<!ENTITY gsettings.accommodateChrThemesDisclaimer       "This allows modern themes to be compatible with old designs, and vice-versaz">
+<!ENTITY gsettings.chrThemeFallbacks                    "Fallback na titlebar at mga kulay ng toolbar sa Mga Tema ng Chromium">
+<!ENTITY gsettings.chrThemeFallbacksDisclaimer          "Hindi babalewalain ng mga tema na may mga texture ng imahe ang setting na ito">
+<!ENTITY gsettings.enabled					            "Naka-on">
+<!ENTITY gsettings.disabled					            "Naka-off">
+<!ENTITY gsettings.chrThemesMustAero                    "Pilitin ang lahat ng Chromium Theme na gumamit ng System Borders">
+<!ENTITY gsettings.chrThemesMustAeroDisclaimer          "Nangangailangan ng mga hangganan ng system sa katugmang Mga Tema ng Chromium na paganahin">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttons           "Ilapat ang background ng toolbar sa mga pindutan ng titlebar">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer "Babalewalain ng ilang istilo ng titlebar ang setting na ito">
+<!ENTITY gsettings.colorizeTabGlareEffect 				"Kulayin ang epekto ng glare ng tab ayon sa custom na tema">
+<!ENTITY gsettings.colorizeTabGlareEffectDescription    "Kulayin yung tab hover epekto">
+<!ENTITY gsettings.themeNewTabFooter                    "Tema bagong tab footer ayon sa inilapat na custom na tema">
 
-<!ENTITY gsettings.gtkIconsInToolbarItems		        "[!!! §¥ƨƭè₥ ïçôñƨ ïñ ƭôôℓβář ïƭè₥ƨ !!!]">
+<!ENTITY gsettings.gtkIconsInToolbarItems		        "Mga icon ng system sa mga item sa toolbar">
 <!ENTITY gsettings.gtkIconsInToolbarItemsDisclaimer	    "Nangangailangan ng Linux na may pinaganang tema ng GTK+">
-<!ENTITY gsettings.official                             "[!!! Óƒƒïçïáℓ !!!]">
-<!ENTITY gsettings.allToolbarItems                      "[!!! Âℓℓ ƭôôℓβář ïƭè₥ƨ !!!]">
-<!ENTITY gsettings.none                                 "[!!! Nôñè !!!]">
+<!ENTITY gsettings.official                             "Opisyal">
+<!ENTITY gsettings.allToolbarItems                      "Lahat ng item sa toolbar">
+<!ENTITY gsettings.none                                 "Wala">
 
 <!ENTITY gsettings.enableWebsitePinningInEveryEra				"Paganahin ang pag-pin ng website sa bawat panahon">
 <!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Ipinapakita ang pin button sa bawat disenyo">
 
 <!ENTITY gsettings.about        "About">
 <!ENTITY gsettings.chooseAbout  "Choose About">
+<!ENTITY gsettings.browser      "Browser">
 <!ENTITY gsettings.ask          "Ask">
 
 <!ENTITY gsettings.behaviourToDesign        "Switch design or manage overrides...">
@@ -113,9 +108,9 @@
 <!ENTITY gsettings.appearance                           "Hitsura">
 <!ENTITY gsettings.openChrThemesFolder				    "Buksan ang folder ng mga tema ng Chromium">
 <!ENTITY gsettings.refreshList					        "Refresh listahan">
-<!ENTITY gsettings.filename								"[!!! Fïℓèñá₥è: !!!]">
-<!ENTITY gsettings.viewStorePage						"[!!! Vïèω §ƭôřè ƥáϱè !!!]">
-<!ENTITY gsettings.search								"[!!! §èářçλ !!!]">
+<!ENTITY gsettings.filename								"Pangalan ng file:">
+<!ENTITY gsettings.viewStorePage						"Tingnan ang pahina ng Store">
+<!ENTITY gsettings.search								"Hanapin">
 
 <!ENTITY gsettings.customFirefoxThemeMode				"Custom na Firefox Theme mode">
 <!ENTITY gsettings.toolbarStyleFXChrome                 "Parang-FXChrome">
@@ -150,22 +145,13 @@
 <!ENTITY gsettings.themeToBehaviour             "Ayusin kung gaano kalaki ang epekto ng mga tema ng interface...">
 <!ENTITY gsettings.themeToExperiments           "Mag-personalize pa gamit ang mga na-scrap na opsyon sa Chromium...">
 
-<!ENTITY gsettings.peopleButton                 "[!!! Þèôƥℓè ßúƭƭôñ !!!]">
-<!ENTITY gsettings.peopleButtonStyle			"[!!! Þèôƥℓè ßúƭƭôñ §ƭ¥ℓè !!!]">
-<!ENTITY gsettings.avatarBesideTabs             "[!!! ÂƲáƭář βèƨïδè Táβƨ !!!]">
-<!ENTITY gsettings.titlebarButton               "[!!! Tïƭℓèβář ßúƭƭôñ !!!]">
+<!ENTITY gsettings.peoplePositionTitle			"Posisyon">
+<!ENTITY gsettings.peoplePositionDescription	"Ang pindutan ng Mga Tao ay may iba't ibang posisyon sa paglipas ng mga taon.">
 
-<!ENTITY gsettings.avatar                       "[!!! ÂƲáƭář !!!]">
-<!ENTITY gsettings.avatarSource		            "[!!! ÂƲáƭář §ôúřçè !!!]">
-<!ENTITY gsettings.avatarSourceDisclaimer       "[!!! Fïřèƒôж Âççôúñƭ ωïℓℓ ôñℓ¥ δïƨƥℓá¥ ïƒ ƨïϱñèδ ïñ !!!]">
-<!ENTITY gsettings.firefoxAccount               "[!!! Fïřèƒôж Âççôúñƭ !!!]">
-<!ENTITY gsettings.selectYourAvatar             "[!!! §èℓèçƭ ¥ôúř áƲáƭář !!!]">
-<!ENTITY gsettings.imagePath		            "Landas ng imahe">
-
-<!ENTITY gsettings.force68Linux                 "[!!! Fôřçè Çλřô₥ïú₥ 68'ƨ Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.force68LinuxDescription      "[!!! ßèƒôřè 68, ƭλè ƭïƭℓèβář βúƭƭôñ úƨèδ Wïñδôωƨ'ƨ βúƭƭôñ ƨƭ¥ℓè !!!]">
-<!ENTITY gsettings.showChrOSPeople              "[!!! §λôω Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.showChrOSPeopleDescription   "[!!! Tλè Þèôƥℓè Tïƭℓèβář ßúƭƭôñ ωáƨ èжçℓúƨïƲè ƭô Wïñδôωƨ 8 Môδè !!!]">
+<!ENTITY gsettings.pickAnAvatar		"Pumili ng avatar.">
+<!ENTITY gsettings.avatarMode		"Mode ng Avatar">
+<!ENTITY gsettings.chooseAPicture	"Pumili ng picture.">
+<!ENTITY gsettings.imagePath		"Landas ng imahe">
 
 <!ENTITY gsettings.flags 'Mga Flags - magagamit din sa pamamagitan ng "about:flags"'>
 
@@ -178,6 +164,10 @@
 
 <!ENTITY gsettings.usefulLinks 				"Mga kapaki-pakinabang na link">
 <!ENTITY gsettings.faq						"Mga madalas itanong">
+<!ENTITY gsettings.faqWindowBlindsQuestion 	"Q: WindowBli-">
+<!ENTITY gsettings.faqWindowBlindsAnswer	"A: NO.">
+<!ENTITY gsettings.aboutFlagsQuestion		"Q: Bakit ang about:flags ay nagpapakita lamang ng ilan o walang flag?">
+<!ENTITY gsettings.aboutFlagsAnswer			"A: Sa kasalukuyan, ilan lang sa mga visual na istilo ang may available na mga flag.">
 
 <!ENTITY gsettings.checkForUpdates			"Tingnan kung may mga update">
 <!ENTITY gsettings.automaticUpdateChecker	"Awtomatikong Update Checker">
