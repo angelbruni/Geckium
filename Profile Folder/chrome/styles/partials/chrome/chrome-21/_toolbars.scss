@@ -76,6 +76,7 @@
 					) !important;
 				}
 			}
+
 			&#reload-button,
 			&#home-button {
 				.toolbarbutton-icon {
@@ -85,12 +86,8 @@
 		}
 	}
 
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			> * {
-				margin-bottom: 1px !important;
-			}
-		}
+	&:not([personalbar="newtab"]) #PersonalToolbar > * {
+		margin-bottom: 1px !important;
 	}
 
 	#PersonalToolbar {
@@ -183,17 +180,15 @@
 		}
 
 		// Pinned bookmarks
-		#PersonalToolbar {
-			.bookmark-item:not(
-				.menu-iconic,
-				.menuitem-iconic,
-				[data-l10n-id="places-empty-bookmarks-folder"]
-			) {
-				background-color: transparent !important;
-				border: 0 !important;
-				outline: 0 !important;
-				box-shadow: unset !important;
-			}
+		#PersonalToolbar .bookmark-item:not(
+			.menu-iconic,
+			.menuitem-iconic,
+			[data-l10n-id="places-empty-bookmarks-folder"]
+		) {
+			background-color: transparent !important;
+			border: 0 !important;
+			outline: 0 !important;
+			box-shadow: unset !important;
 		}
 	}
 }

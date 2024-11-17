@@ -11,15 +11,13 @@
 
 	--personal-toolbar-height: 24px;
 
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			
-			
-			
-			> * {
-				margin-top: -2px !important;
-				margin-bottom: 2px !important;
-			}
+	&:not([personalbar="newtab"]) #PersonalToolbar {
+		
+		
+		
+		> * {
+			margin-top: -2px !important;
+			margin-bottom: 2px !important;
 		}
 	}
 

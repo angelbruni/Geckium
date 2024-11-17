@@ -74,13 +74,9 @@
 	// 	}
 	// }
 
-	&:not([sizemode="fullscreen"]) {
-		#nav-bar {
-			//FIXME: why does this need this condition?
-			&:not([urlbar-exceeds-toolbar-bounds]) {
-				overflow: visible !important; //Required for the pseudos
-			}
-		}
+	//FIXME: why does this need `[urlbar-exceeds-toolbar-bounds]`?
+	&:not([sizemode="fullscreen"]) #nav-bar:not([urlbar-exceeds-toolbar-bounds]) {
+		overflow: visible !important; //Required for the pseudos
 	}
 
 	#nav-bar,
@@ -285,12 +281,14 @@
 		justify-content: center !important;
 	}
 
-	&[gkcanupdate="true"] {
-		:not(.widget-overflow-list) > .toolbarbutton-1#chrome-button {
-			.toolbarbutton-icon,
-			&:not(.menu-right) > image:first-of-type {
-				fill: rgb(237,66,62) !important;
-			}
+	&[gkcanupdate="true"] :not(.widget-overflow-list) > .toolbarbutton-1#chrome-button:not(
+		#gkavatar-container > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		&:not(.menu-right) > image:first-of-type,
+		.toolbarbutton-icon {
+			fill: rgb(237,66,62) !important;
 		}
 	}
 
@@ -687,11 +685,13 @@
 
 	#PlacesToolbarItems,
 	#personal-bookmarks /* Fix for Firefox ~120+ */ {
+		gap: var(--personal-toolbar-gap);
+
 		toolbarbutton.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
 			margin-top: 0 !important;
 		}
-		gap: var(--personal-toolbar-gap);
 	}
+	
 	toolbarbutton.bookmark-item {
 		position: relative !important;
 		border: 1px solid transparent !important;
@@ -711,7 +711,7 @@
 					:active,
 					[open]
 				) {
-					color: var(--default-bookmark-item-color) !important;
+					color: var(--bookmark-item-color) !important;
 				}
 			}
 
