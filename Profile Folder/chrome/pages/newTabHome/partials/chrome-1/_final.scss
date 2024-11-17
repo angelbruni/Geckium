@@ -1,6 +1,10 @@
 & {
-	font-family: Arial, sans-serif;
-	font-size: 10pt;
+	--default-section-title-color: black;
+	--section-title-color: var(--default-section-title-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-section-title-color: white;
+	}
 
 	&:not([geckium-three]) {
 		&[gkbranding="chromium"] {
@@ -35,6 +39,12 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--ntp-background-color: var(--newtab-background-color);
 
+		--section-title-color: var(--toolbarbutton-icon-color, var(--lwt-text-color, var(--default-recently-closed-item-color)));
+
+		&[style*="--arrowpanel-background"] {
+			--section-title-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
+		}
+
 		body {
 			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
 			@media (prefers-color-scheme: dark) {
@@ -61,6 +71,8 @@
 	&[gkthemed][gkchrthemed] {
 		--ntp-background-color: var(--chrtheme-ntp-background);
 
+		--section-title-color: var(--chrtheme-ntp-section-link, var(--default-recently-closed-item-color));
+
 		body {
 			background-image: var(--chrtheme-theme-ntp-background);
 			background-attachment: fixed;
@@ -76,6 +88,9 @@
 			color: FieldText;
 		}
 	}
+
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
 }
 
 body {
@@ -101,7 +116,7 @@ body {
 }
 
 .section-title {
-	color: black;
+	color: var(--section-title-color);
 	font-size: 11pt;
 	font-weight: bold;
 	min-height: 25px;
