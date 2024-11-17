@@ -449,7 +449,7 @@ Creative Commons may be contacted at creativecommons.org.
 ```
 
 
-File: Firefox Folder/*
+File: Firefox Folder/*, Profile Folder/chrome/utils/chrome.manifest
 
 Copyright 2019-2024 MrOtherGuy <https://github.com/MrOtherGuy/fx-autoconfig>
 
