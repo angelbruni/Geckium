@@ -40,10 +40,17 @@
 	background-color: var(--sidebar-panes-background-color);
 }
 
+#recentlyBookmarkedContainer .recent-bookmark {
+	color: var(--link-color);
+}
+
+#recentlyClosedContainer .recent-bookmark {
+	color: var(--default-link-color);
+}
+
 .recent-bookmark {
 	display: flex;
 	height: 21px;
-	color: var(--link-color);
 	-moz-context-properties: fill, fill-opacity;
 
 	@media (prefers-color-scheme: dark) {
