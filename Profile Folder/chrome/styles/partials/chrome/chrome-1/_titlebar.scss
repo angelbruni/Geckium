@@ -119,7 +119,8 @@
 		#titlebar {
 			height: 22px !important;
 			// Prevent the Incognito indicator from appearing whatsoever
-			#private-browsing-indicator-with-label {
+			#private-browsing-indicator-with-label,
+			.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 				display: none !important;
 			}
 			#TabsToolbar {

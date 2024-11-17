@@ -1,7 +1,8 @@
 & {
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: 0;
 			margin-block-end: 1px;
 			margin-inline-start: 7px !important;
@@ -9,7 +10,8 @@
 		}
 	}
 
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		height: var(--tab-height);
 		margin-block-end: 2px;
 		margin-inline-start: 8px !important;

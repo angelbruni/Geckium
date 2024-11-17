@@ -1,7 +1,8 @@
 
 :root {
 	// Make the Incognito indicator look like Chromium's
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		margin-inline: unset !important;
 		//#TabsToolbar-customization-target aligns items to end,
 		// so we have to mimic it for Incognito to be consistent.
@@ -17,7 +18,8 @@
 		display: none !important;
 	}
 	#gkavatar-container > #gk-firefox-account-button,
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		background: transparent !important;
 		border: 0 !important;
 		padding: 0 !important;
