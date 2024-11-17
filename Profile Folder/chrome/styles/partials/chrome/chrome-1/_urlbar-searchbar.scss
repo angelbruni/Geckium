@@ -157,6 +157,11 @@
 	}
 
 	&[is133Plus] {
+		// Fix URL bar being too short in popups.
+		&[chromehidden~="toolbar"] #urlbar {
+			position: relative !important;
+		}
+
 		#urlbar {
 			&[breakout],
 			&[breakout][breakout-extend] {
