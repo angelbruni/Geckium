@@ -1,6 +1,68 @@
+& {
+	--default-ntp-background-color: white;
+	--ntp-background-color: var(--default-ntp-background-color);
+
+	&:not([geckium-sixtyeight]) {
+		@media (prefers-color-scheme: dark) {
+			--default-ntp-background-color: black;
+		}
+	}
+
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--ntp-background-color:			var(--newtab-background-color);
+		--ntp-background-image:			var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+		--ntp-background-size:			var(--lwt-gknewtab-background-size);
+		--ntp-background-position:		var(--lwt-gknewtab-background-position);
+		--ntp-background-position-x: 	var(--lwt-gknewtab-background-position-x);
+		--ntp-background-position-y: 	var(--lwt-gknewtab-background-position-y);
+		--ntp-background-repeat:		var(--lwt-gknewtab-background-repeat);
+
+		@media (prefers-color-scheme: dark) {
+			--ntp-background-image:	var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
+		}
+
+		body {
+			image-rendering: var(--lwt-gknewtab-image-rendering);
+
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-x);
+			}
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-y);
+			}
+		}
+	}
+
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--ntp-background-color: 	var(--chrtheme-ntp-background);
+		--ntp-background-image:		var(--chrtheme-theme-ntp-background);
+		--ntp-background-position:	var(--chrtheme-theme-ntp-background);
+		--ntp-background-repeat:	var(--chrtheme-ntp-background-alignment);
+	}
+
+	// GTK+
+	//   blame >=115 for gkthemed being here too
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--ntp-background-color: Field;
+
+		body {
+			color: FieldText;
+		}
+	}
+}
+
+
 body {
 	margin: 10px 8px;
-	background-color: white;
+	background-attachment:	fixed; // Create the parallax scrolling effect
+	background-image:		var(--ntp-background-image);
+	background-color:		var(--ntp-background-color);
+	background-size:		var(--ntp-background-size);
+	background-position:	var(--ntp-background-position);
+	background-repeat:		var(--ntp-background-repeat);
 	color: black;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 10pt;
@@ -10,15 +72,7 @@ body {
 	}
 
 	@media (prefers-color-scheme: dark) {
-		background-color: black;
 		color: white;
-	}
-}
-// GTK+
-&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
-	body {
-		background-color: Field;
-		color: FieldText;
 	}
 }
 

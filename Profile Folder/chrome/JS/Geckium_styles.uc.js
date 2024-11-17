@@ -292,7 +292,7 @@ class gkEras {
 
     static applyEra() {
         let prefChoice;
-        if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps")
+        if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps" || document.URL == "about:privatebrowsing")
             prefChoice = gkEras.getNTPEra();
         else if (document.URL !== "about:gmzoo" && document.URL !== "about:gsplash")
             prefChoice = gkEras.getBrowserEra();
