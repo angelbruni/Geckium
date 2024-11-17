@@ -53,6 +53,10 @@
 <!ENTITY gsettings.designToThemes       	"Keisti arba tvarkyti temas...">
 <!ENTITY gsettings.designToExperiments      "Nagrinėkite išbrauktas Chromium dizaino parinktis...">
 
+<!ENTITY gsettings.privacy          "[!!! ÞřïƲáç¥ !!!]">
+<!ENTITY gsettings.hideAccountInfo  "[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
+<!ENTITY gsettings.willHideInfoFrom "[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
+
 <!ENTITY gsettings.browser                              "Naršyklė">
 <!ENTITY gsettings.branding								"Prekės ženklo kūrimas">
 <!ENTITY gsettings.saveDiscardedCRX						"Išsaugoti išmestus CRX failų atsisiuntimus">
@@ -66,20 +70,22 @@
 <!ENTITY gsettings.macOSZoomIsFullscreen				"Pakeiskite priartinimą į visą ekraną macOS antraštinės juostos stilių">
 <!ENTITY gsettings.macOSZoomIsFullscreenDisclaimer		"Ši parinktis veikia tik Windows ir Linux">
 
-<!ENTITY gsettings.themes                               "Temos">
-<!ENTITY gsettings.accommodateChrThemes                 "Pritaikykite Chromium temos dizainui, kuriam jos nebuvo sukurtos">
-<!ENTITY gsettings.accommodateChrThemesDisclaimer       "Dėl to šiuolaikinės temos gali būti suderinamos su senais dizainais ir atvirkščiai.">
-<!ENTITY gsettings.chrThemeFallbacks                    "Atsarginės antraštės juostos ir įrankių juostos spalvos Chromium temose">
-<!ENTITY gsettings.chrThemeFallbacksDisclaimer          "Temos su vaizdo tekstūromis ignoruos šį nustatymą.">
-<!ENTITY gsettings.enabled					            "Įjungtas">
-<!ENTITY gsettings.disabled					            "Išjungtas">
-<!ENTITY gsettings.chrThemesMustAero                    "Priversti visas Chromium temos naudoti sistemos ribas">
-<!ENTITY gsettings.chrThemesMustAeroDisclaimer          "Reikia, kad suderinamose Chromium temose būtų įjungtos sistemos ribos">
-<!ENTITY gsettings.firefoxThemeOnTitlebuttons           "Taikyti įrankių juostos foną į antraštės juostos mygtukus">
-<!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer "Kiti antraštės juostos stiliai ignoruos šį nustatymą">
-<!ENTITY gsettings.colorizeTabGlareEffect 				"Spalvinkite skirtuko atspindžio efektą pagal pasirinktą temą">
-<!ENTITY gsettings.colorizeTabGlareEffectDescription    "Nuspalvina skirtuko užvedimo efektą">
-<!ENTITY gsettings.themeNewTabFooter                    "Temos naujojo skirtuko poraštė pagal taikomą pasirinktinę temą">
+<!ENTITY gsettings.themes                                       "Temos">
+<!ENTITY gsettings.accommodateChrThemes                         "Pritaikykite Chromium temos dizainui, kuriam jos nebuvo sukurtos">
+<!ENTITY gsettings.accommodateChrThemesDisclaimer               "Dėl to šiuolaikinės temos gali būti suderinamos su senais dizainais ir atvirkščiai.">
+<!ENTITY gsettings.chrThemeFallbacks                            "Atsarginės antraštės juostos ir įrankių juostos spalvos Chromium temose">
+<!ENTITY gsettings.chrThemeFallbacksDisclaimer                  "Temos su vaizdo tekstūromis ignoruos šį nustatymą.">
+<!ENTITY gsettings.enabled					                            "Įjungtas">
+<!ENTITY gsettings.disabled					                            "Išjungtas">
+<!ENTITY gsettings.chrThemesMustAero                            "Priversti visas Chromium temos naudoti sistemos ribas">
+<!ENTITY gsettings.chrThemesMustAeroDisclaimer                  "Reikia, kad suderinamose Chromium temose būtų įjungtos sistemos ribos">
+<!ENTITY gsettings.enableForceColorizeAddressBar                "[!!! Éñáβℓè ÛR£ ßář ƭλè₥ïñϱ ƒôř ïñçô₥ƥáƭïβℓè δèƨïϱñƨ !!!]">
+<!ENTITY gsettings.enableForceColorizeAddressBarDisclaimer      "[!!! Rè9úïřèƨ Gèçƙïú₥ Fïřèƒôж Tλè₥è ₥ôδè ôř á çô₥ƥáƭïβℓè Çλřô₥ïú₥ Tλè₥è !!!]">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttons                   "Taikyti įrankių juostos foną į antraštės juostos mygtukus">
+<!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer         "Kiti antraštės juostos stiliai ignoruos šį nustatymą">
+<!ENTITY gsettings.colorizeTabGlareEffect 				              "Spalvinkite skirtuko atspindžio efektą pagal pasirinktą temą">
+<!ENTITY gsettings.colorizeTabGlareEffectDescription            "Nuspalvina skirtuko užvedimo efektą">
+<!ENTITY gsettings.themeNewTabFooter                            "Temos naujojo skirtuko poraštė pagal taikomą pasirinktinę temą">
 
 <!ENTITY gsettings.gtkIconsInToolbarItems		        "Sistemos piktogramos įrankių juostos elementuose">
 <!ENTITY gsettings.gtkIconsInToolbarItemsDisclaimer	    "Reikės Linux su įjungta GTK+ tema">
@@ -172,10 +178,6 @@
 
 <!ENTITY gsettings.usefulLinks 				"Naudingos nuorodos">
 <!ENTITY gsettings.faq						"Dažnai užduodami klausimai">
-<!ENTITY gsettings.faqWindowBlindsQuestion 	"Q: WindowBli-">
-<!ENTITY gsettings.faqWindowBlindsAnswer	"A: NE.">
-<!ENTITY gsettings.aboutFlagsQuestion		"Q: Kodėl about:flags rodo tik kai kurias arba jokių vėliavų?">
-<!ENTITY gsettings.aboutFlagsAnswer			"A: Šiuo metu galima naudoti tik kai kurių vaizdinių stilių vėliavėles.">
 
 <!ENTITY gsettings.checkForUpdates			"Patikrinkite, ar yra atnaujinimų">
 <!ENTITY gsettings.automaticUpdateChecker	"Automatinis atnaujinimo tikrintuvas">
