@@ -35,9 +35,7 @@ function rippleEffect() {
 				} else {
 					maxSize = Math.sqrt(rectWidth * rectWidth + rectHeight * rectHeight);
 				}
-	
-				console.log(maxSize)
-	
+		
 				/*if (rectWidth < rectHeight)
 					maxSize = rectHeight * 2.1;
 				else
