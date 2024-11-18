@@ -68,8 +68,6 @@ class gkPeople {
 		}
 		// Delete existing profile button style values (they will get remade)
 		this.getPeopleButton.removeAttribute("class");
-		this.getReservedSpaces[0].style.display = "none";
-		this.getReservedSpaces[1].style.display = "none";
 
 		let prefChoice = gkPeople.getStyle(era);
 		document.documentElement.setAttribute("gkpeoplestyle", prefChoice);
@@ -78,15 +76,9 @@ class gkPeople {
 			// We're done here if it is disabled.
 			return;
 		} else if (prefChoice == "avatar") {
-			this.getReservedSpaces[0].style.display = null;
-
-			// Actual Button
 			this.getReservedSpaces[0].appendChild(this.getPeopleButton);
 			this.getPeopleButton.classList.add("toolbarbutton-1", "chromeclass-toolbar-additional");
 		} else if (prefChoice == "titlebutton") {
-			this.getReservedSpaces[1].style.display = null;
-
-			// Actual Button
 			this.getReservedSpaces[1].appendChild(this.getPeopleButton);
 			this.getPeopleButton.classList.add("gkpeople-titlebar");
 		}

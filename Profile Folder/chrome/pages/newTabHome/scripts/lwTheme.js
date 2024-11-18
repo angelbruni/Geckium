@@ -85,10 +85,10 @@ function setProperties() {
 						}
 						document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
 					}
+					
+					if (json.backgroundColor)
+						document.documentElement.style.setProperty("--newtab-background-color", json.backgroundColor); // Added for debugging purposes, use the Firefox Colour method for the final `.xpi` instead.
 
-					if (json.imageRendering)
-						document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", json.imageRendering);
-						
 					if (json.backgroundSize)
 						document.documentElement.style.setProperty("--lwt-gknewtab-background-size", json.backgroundSize);
 
@@ -103,6 +103,12 @@ function setProperties() {
 
 					if (json.backgroundRepeat)
 						document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", json.backgroundRepeat);
+					
+					if (json.foregroundColor)
+						document.documentElement.style.setProperty("--newtab-text-primary-color", json.foregroundColor); // Added for debugging purposes, use the Firefox Colour method for the final `.xpi` instead.
+
+					if (json.imageRendering)
+						document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", json.imageRendering);
 
 					if (json.attributionImage)
 						document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url('chrome://userchrome/content/lwTesting/${activeThemeID}/${json.attributionImage}')`);
@@ -150,9 +156,6 @@ function setProperties() {
 					}
 					document.documentElement.style.setProperty("--lwt-gknewtab-background-image", backgroundImageUrls.join(', '));
 				}
-
-				if (fullmani.imageRendering)
-					document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", fullmani.imageRendering);
 					
 				if (fullmani.backgroundSize)
 					document.documentElement.style.setProperty("--lwt-gknewtab-background-size", fullmani.backgroundSize);
@@ -168,6 +171,9 @@ function setProperties() {
 
 				if (fullmani.backgroundRepeat)
 					document.documentElement.style.setProperty("--lwt-gknewtab-background-repeat", fullmani.backgroundRepeat);
+
+				if (fullmani.imageRendering)
+					document.documentElement.style.setProperty("--lwt-gknewtab-image-rendering", fullmani.imageRendering);
 
 				if (fullmani.attributionImage)
 					document.documentElement.style.setProperty("--lwt-gknewtab-attribution-image", `url('moz-extension://${themeUUID}/${fullmani.attributionImage}')`);

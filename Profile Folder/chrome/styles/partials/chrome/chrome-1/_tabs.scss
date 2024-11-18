@@ -158,7 +158,7 @@
 		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
 		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color, var(--lwt-text-color))) !important;
 
-		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"] {
+		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"]:not([style*="--gktoolbar-bgcolor-opacity-percentage: 0%;"]) {
 			--tabbrowser-tab-color: black;
 		}
 

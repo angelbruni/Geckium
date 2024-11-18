@@ -5,7 +5,7 @@
 	--urlbar-focused-background-color: var(--default-urlbar-focused-background-color) !important;
 	--default-urlbar-color: black;
 	--urlbar-color: var(--default-urlbar-color) !important;
-	--urlbar-focused-color: var(--default-urlbar-color) !important;
+	--urlbar-focused-color: black !important;
 
 	--identity-icon-invalid:			 						 var(--search-favicon);
 	--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity: var(--default-favicon);
@@ -18,16 +18,14 @@
 	--protocol-background-color: var(--urlbar-background-color);
 	--protocol-color:			 var(--urlbar-color);
 
-	--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
-	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
-	--urlbar-verified-proxystate-valid: 		   rgb(10, 155, 38);
-	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
+	--urlbar-border:										var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
+	--default-urlbar-background-verified-proxystate-valid:	rgb(255, 245, 196);
+	--urlbar-background-verified-proxystate-valid: 			var(--default-urlbar-background-verified-proxystate-valid);
+	--urlbar-verified-proxystate-valid:						rgb(10, 155, 38);
+	--urlbar-verified-proxystate-valid-overridden:			rgb(210, 0, 0);
+
 	--urlbar-height-definitive: var(--toolbarbutton-height);
 	--urlbar-min-height: var(--urlbar-height-definitive) !important;
-
-	@media (prefers-color-scheme: dark) {
-		--default-urlbar-color: black !important;
-	}
 
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
@@ -50,24 +48,33 @@
 	}
 
 	&[forceColorizeAddressBar="true"] {
+		&[customthememode="geckium"] {
+			@media (prefers-color-scheme: dark) {
+				--default-urlbar-background-color:	black;
+				--default-urlbar-color:				white;
+				--urlbar-border:					rgba(127, 127, 127, 0.4);
+
+				--default-urlbar-background-verified-proxystate-valid:	rgb(61, 51, 0);
+				--urlbar-verified-proxystate-valid: 		   			rgb(102, 245, 130);
+				--urlbar-verified-proxystate-valid-overridden: 			rgb(255, 46, 46);
+			}
+		}
+
 		// if lwtheme
 		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 			// if Geckium
-			&[customthememode="geckium"] {
-				@media (prefers-color-scheme: dark) {
-					--default-urlbar-background-color: black;
-					--default-urlbar-color: white;
-				}
-				
+			&[customthememode="geckium"] {		
 				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
 				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
+				--urlbar-border: rgba(127, 127, 127, 0.4);
+				--protocol-background-color: transparent;
 
 				&[toolbar-field-background-color-transparent="true"] {
-					--protocol-background-color: transparent;
-					
-					#urlbar #urlbar-protocol {
-						background: transparent !important;
-					}
+					--urlbar-background-verified-proxystate-valid: color-mix(
+						in srgb,
+						var(--default-urlbar-background-verified-proxystate-valid) var(--gktoolbar-field-background-color-opacity-percentage),
+						transparent
+					);
 
 					&[style*="--gktoolbar-field-background-color-opacity-percentage: 0%"] {
 						--urlbar-background-color: color-mix(
@@ -75,6 +82,16 @@
 							var(--gktoolbar-field-background-color) 20%,
 							transparent
 						) !important;
+
+						--urlbar-background-verified-proxystate-valid: color-mix(
+							in srgb,
+							var(--default-urlbar-background-verified-proxystate-valid) 50%,
+							transparent
+						);
+					}
+
+					#urlbar #urlbar-protocol {
+						background: transparent !important;
 					}
 				}
 			}
@@ -140,6 +157,11 @@
 	}
 
 	&[is133Plus] {
+		// Fix URL bar being too short in popups.
+		&[chromehidden~="toolbar"] #urlbar {
+			position: relative !important;
+		}
+
 		#urlbar {
 			&[breakout],
 			&[breakout][breakout-extend] {
@@ -301,7 +323,7 @@
 	&[securestate="secure"],
 	&[securestate="ev"],
 	.verifiedDomain ~ .urlbar-input-box {
-		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid);
+		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid) !important;
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
