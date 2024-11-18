@@ -46,12 +46,13 @@
 		Avatar besides Tabs
 	*/
 	&:not([fxastatus="signedin"])[profilepic="firefox"],
-	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord or if set to Firefox Account but not signed in yet
+	&[privatebrowsingmode="temporary"],
+	&:not([gkpeoplestyle="avatar"]) { // Hide the account icon if in OffTheRecord, not in use, or if set to Firefox Account but not signed in yet
 		#gkavatar-container {
 			display: none !important;
 		}
     }
-	&:not([gkpeoplestyle="off"]) {
+	&[gkpeoplestyle="avatar"] {
 		#gk-firefox-account-button #fxa-avatar-image {
 			width: 38px !important;
 			height: 32px !important;
@@ -126,6 +127,9 @@
     #gkpeople-button-container {
         appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
     }
+	&:not([gkpeoplestyle="titlebutton"]) #gkpeople-button-container {
+		display: none !important;
+	}
     #gk-firefox-account-button {
         padding: 0 !important;
     }
