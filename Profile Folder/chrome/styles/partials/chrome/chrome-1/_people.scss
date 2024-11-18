@@ -51,7 +51,7 @@
 			display: none !important;
 		}
     }
-	&:not([profilepic="none"]) {
+	&:not([gkpeoplestyle="off"]) {
 		#gk-firefox-account-button #fxa-avatar-image {
 			width: 38px !important;
 			height: 32px !important;
@@ -133,6 +133,9 @@
         appearance: none !important;
 		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
     }
+	.titlebar-buttonbox #gk-firefox-account-button .toolbarbutton-badge-stack #fxa-avatar-image {
+		display: none;
+	}
     
     // Show text when signed in and privacy setting disabled
 	&[fxastatus="signedin"]:not([hideAccountInfo="true"]) .gkpeople-titlebar {
