@@ -1,5 +1,16 @@
 const modesList = document.getElementById("thememode-grid");
 
+const refreshListBtn = document.getElementById("refreshListBtn");
+
+const themesList = document.getElementById("gkthemes-grid");
+const sysThemesAmount = themesList.querySelectorAll('[class*="chrome-appearance"]:not([is="text-link"])').length;
+
+const gkThemeFilterItemDescriptionElm = document.querySelector("#gkThemeFilterItem .description");
+gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
+
+let gridsInitialised = false;
+let themesAmount = 0;
+
 function generateThemeModes() {
 	var modes = {
 		"auto": disableTheme,
@@ -9,27 +20,53 @@ function generateThemeModes() {
 	}
 
 	for (const mode in modes) {
-		if (!modes[mode] && mode != "themed") {
+		if (!modes[mode] && mode != "themed")
 			continue; // Don't add modes if they aren't mapped to an LWTheme
-		}
-
+		
 		let modeElm = document.createElement("input");
 		modeElm.type = "radio";
 		modeElm.id = `thememode-${mode}`;
 		modeElm.name = "thememode";
 		modeElm.classList.add("thememode", "ripple-enabled");
 
-		if (modes[mode]) {
+		if (modes[mode])
 			modeElm.addEventListener("click", modes[mode]);
-		}
+		
 		modesList.appendChild(modeElm);
+		
+		modesList.removeAttribute("loading");
 	}
 }
 
-
-const themesList = document.getElementById("gkthemes-grid");
+function rebuildGrids() {
+	destroyGrids();
+	initGrids();
+}
 
 async function initGrids() {
+	if (!themesList.getAttribute("loading")) {
+		modesList.setAttribute("loading", true);
+		themesList.setAttribute("loading", true);
+		refreshListBtn.setAttribute("disabled", true);
+		
+		// Populate themes and modes lists
+		await populateThemesList();
+
+		// Generate theme modes list
+		generateThemeModes();
+
+		// Pre-select theme and theme mode
+		selectSysTheme();
+		selectChrTheme();
+		selectLWTheme();
+
+		themesList.removeAttribute("loading");
+		refreshListBtn.removeAttribute("disabled");
+		gridsInitialised = true;
+	}
+}
+
+function filterGrid() {
 	// Map filter dropdown
 	var selector = document.getElementById("gkthemefilter");
 	selector.querySelectorAll(".list .item").forEach(item => {
@@ -37,24 +74,50 @@ async function initGrids() {
 			var value = item.getAttribute("value");
 			if (value != "all") {
 				document.documentElement.setAttribute("gkthemefilter", value);
+				
+				switch (value) {
+					case "systhemes":
+						gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+																		.replace("{{desiredAmount}}", sysThemesAmount)
+																		.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+						break;
+					case "chrthemes":
+						gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+																		.replace("{{desiredAmount}}", themesList.querySelectorAll('[class*="geckium-appearance"][data-browser="chrome"], [class*="geckium-appearance"][data-browser="msedge"]').length)
+																		.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+						break;
+					case "lwthemes":
+						gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+																		.replace("{{desiredAmount}}", themesList.querySelectorAll('[class*="geckium-appearance"][data-browser="firefox"]').length)
+																		.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+				}
 			} else {
 				document.documentElement.removeAttribute("gkthemefilter");
+				gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
 			}
 		})
 	})
-
-	// Populate themes and modes lists
-	await populateThemesList();
-
-	// Generate theme modes list
-	generateThemeModes();
-
-	// Pre-select theme and theme mode
-	selectSysTheme();
-	selectChrTheme();
-	selectLWTheme();
 }
-document.addEventListener("DOMContentLoaded", initGrids);
+window.addEventListener("load", filterGrid);
+
+function destroyGrids() {
+	modesList.innerHTML = "";
+
+	themesList.querySelectorAll(`[class*="geckium-appearance"`).forEach(theme => theme.remove());
+
+	gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
+
+	gridsInitialised = false;
+}
+
+document.addEventListener("pageChanged", () => {
+	if (gmPages.getCurrentPage("main").dataset.page == 13) {
+		initGrids();
+	} else {
+		if (gridsInitialised == true)
+			destroyGrids();
+	}
+})
 
 async function populateThemesList() {
 	// Get info about all chrThemes and LWThemes
@@ -249,5 +312,29 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 				themeInfo[i].apply();
 			});
 		})
+	}
+
+	themesAmount = themeInfo.length;
+
+	const value = document.documentElement.getAttribute("gkthemefilter");
+	switch (value) {
+		case "systhemes":
+			gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+															.replace("{{desiredAmount}}", sysThemesAmount)
+															.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+			break;
+		case "chrthemes":
+			gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+															.replace("{{desiredAmount}}", themesList.querySelectorAll('[class*="geckium-appearance"][data-browser="chrome"], [class*="geckium-appearance"][data-browser="msedge"]').length)
+															.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+			break;
+		case "lwthemes":
+			gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingXofYRetrievedThemes")
+															.replace("{{desiredAmount}}", themesList.querySelectorAll('[class*="geckium-appearance"][data-browser="firefox"]').length)
+															.replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+			break;
+		default:
+			gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount + themesAmount);
+			break;
 	}
 }

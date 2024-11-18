@@ -74,11 +74,11 @@
 												</hbox>
 												<hbox class="item">
 													<spacer />
-													<html:button class="button ripple-enabled text color" onclick="skipToPage('main', 34)">&gsettings.supportTheProject;</html:button>
+													<html:button class="button ripple-enabled text color" onclick="gmPages.skipToPage('main', 34)">&gsettings.supportTheProject;</html:button>
 													<label class="button ripple-enabled text disable-in-wizard" is="text-link" href="https://github.com/angelbruni/Geckium">GitHub</label>
 													<label class="button ripple-enabled text disable-in-wizard" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
-													<html:button class="button ripple-enabled text" onclick="skipToPage('main', 32)">&gsettings.help;</html:button>
-													<html:button class="button ripple-enabled text" onclick="skipToPage('main', 33)">&gsettings.about;</html:button>
+													<html:button class="button ripple-enabled text" onclick="gmPages.skipToPage('main', 32)">&gsettings.help;</html:button>
+													<html:button class="button ripple-enabled text" onclick="gmPages.skipToPage('main', 33)">&gsettings.about;</html:button>
 													<spacer />
 												</hbox>
 											</vbox>
@@ -96,7 +96,7 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-palette ripple-enabled" onclick="skipToPage('main', 10)">
+													<html:button class="link icon-palette ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
 														<vbox>
 															<label>&gsettings.design;</label>
 															<p>&gsettings.designDescription;</p>
@@ -107,7 +107,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-settings ripple-enabled" onclick="skipToPage('main', 11)">
+													<html:button class="link icon-settings ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
 														<vbox>
 															<label>&gsettings.behaviour;</label>
 															<p>&gsettings.behaviourDescription;</p>
@@ -123,7 +123,7 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-tab ripple-enabled" onclick="skipToPage('main', 12)">
+													<html:button class="link icon-tab ripple-enabled" onclick="gmPages.skipToPage('main', 12)">
 														<vbox>
 															<label>&gsettings.pages;</label>
 															<p>&gsettings.pagesDescription;</p>
@@ -134,7 +134,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-brush ripple-enabled" onclick="skipToPage('main', 13)">
+													<html:button class="link icon-brush ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
 														<vbox>
 															<label>&gsettings.theme;</label>
 															<p>&gsettings.themeDescription;</p>
@@ -149,7 +149,7 @@
 											</vbox>
 											<vbox class="link-container" style="margin-top: 8px;">
 												<hbox>
-													<html:button class="link icon-person ripple-enabled" onclick="skipToPage('main', 14)">
+													<html:button class="link icon-person ripple-enabled" onclick="gmPages.skipToPage('main', 14)">
 														<vbox>
 															<label>&gsettings.people;</label>
 															<p>&gsettings.peopleDescription;</p>
@@ -160,7 +160,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-science ripple-enabled" onclick="skipToPage('main', 21)">
+													<html:button class="link icon-science ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
 														<vbox>
 															<label>&gsettings.chromiumExperiments;</label>
 															<p>&gsettings.chromiumExperimentsDescription;</p>
@@ -319,22 +319,22 @@
 												&gsettings.quickAccess;
 											</h4>
 											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
 													<vbox>
 														<label class="name">&gsettings.designToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 12)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 12)">
 													<vbox>
 														<label class="name">&gsettings.designToPages;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
 													<vbox>
 														<label class="name">&gsettings.designToThemes;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
 													<vbox>
 														<label class="name">&gsettings.designToExperiments;</label>
 													</vbox>
@@ -592,17 +592,17 @@
 												&gsettings.quickAccess;
 											</h4>
 											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
 													<vbox>
 														<label class="name">&gsettings.behaviourToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
 													<vbox>
 														<label class="name">&gsettings.behaviourToTheme;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
 													<vbox>
 														<label class="name">&gsettings.behaviourToExperiments;</label>
 													</vbox>
@@ -687,17 +687,17 @@
 												&gsettings.quickAccess;
 											</h4>
 											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
 													<vbox>
 														<label class="name">&gsettings.pagesToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
 													<vbox>
 														<label class="name">&gsettings.pagesToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
 													<vbox>
 														<label class="name">&gsettings.pagesToTheme;</label>
 													</vbox>
@@ -762,15 +762,20 @@
 												</div>
 											</div>
 											<vbox class="card">
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center;" flex="1">
+												<vbox class="item" flex="1" style="padding-block-start: 19px; position: relative;">
+													<grid id="thememode-grid" style="grid-template-columns: repeat(auto-fit, minmax(76px, 76px)); gap: 40px; margin-block-end: 19px; justify-content: center; min-height: 80px;" flex="1">
 													</grid>
+													<html:div class="spinner-container">
+														<svg class="spinner" width="48px" height="48px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+															<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+														</svg>
+													</html:div>
 												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.themes;
 												<label class="button ripple-enabled text color" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
-												<label class="button ripple-enabled text color" onclick="populateThemesList();">&gsettings.refreshList;</label>
+												<label id="refreshListBtn" class="button ripple-enabled text color" onclick="rebuildGrids();">&gsettings.refreshList;</label>
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
@@ -808,9 +813,10 @@
 													</html:button>
 													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" data-parent-pref="you.mode" data-requires-value="custom" id="you-color-select"></html:input>
 												</hbox>
-												<hbox class="item">
+												<hbox class="item" id="gkThemeFilterItem">
 													<vbox>
 														<label class="name">&gsettings.filterThemesBy;</label>
+														<label class="description" />
 													</vbox>
 													<spacer />
 													<html:button id="gkthemefilter" class="menu">
@@ -824,7 +830,7 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
+												<vbox class="item" flex="1" style="padding-block-start: 19px; position: relative;">
 													<grid id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
@@ -973,23 +979,28 @@
 															</html:label>
 														</label>
 													</grid>
+													<html:div class="spinner-container">
+														<svg class="spinner" width="48px" height="48px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+															<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+														</svg>
+													</html:div>
 												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.quickAccess;
 											</h4>
 											<vbox class="card">
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
 													<vbox>
 														<label class="name">&gsettings.themeToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
 													<vbox>
 														<label class="name">&gsettings.themeToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
 													<vbox>
 														<label class="name">&gsettings.themeToExperiments;</label>
 													</vbox>
@@ -1302,7 +1313,7 @@
 														</div>
 													</div>
 												</div>-->
-												<html:button class="item ripple-enabled" onclick="skipToPage('main', 34)">
+												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 34)">
 													<vbox>
 														<label class="name">&gsettings.creditsTitle;</label>
 														<label class="description">&gsettings.creditsDescription;</label>
