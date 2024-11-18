@@ -7,6 +7,7 @@
 (function() {
     'use strict';
 
+    // Replace the URL redirects in the "People" menu.
 	function modifyButtons() {
 		// Firefox Monitor
 		waitForElm('#PanelUI-fxa-menu #PanelUI-fxa-menu-monitor-button').then((monitorButton) => {
@@ -25,9 +26,29 @@
 		});
 	}
 
+    // Replace the strings 
+	// TODO: This is pretty much a hack but it works for what it is supposed to do. (I won't blame you bruni if you decide to make custom buttons instead. This
+	// TODO: 																		 is straight up ass to deal with.)
+    function replaceMenuText() {
+		function observeTextChange(selector, targetText) {
+			waitForElm(selector).then((element) => {
+				if (element) {
+					const observer = new MutationObserver(() => {
+						if (element.textContent !== targetText) {
+							element.textContent = targetText;
+						}
+					});
+					observer.observe(element, { childList: true, subtree: true });
+				}
+			});
+		}
+		observeTextChange('#PanelUI-fxa-menu-monitor-button #fxa-menu-header-title', '[!!! §ωïƭçλ ƥèřƨôñ !!!]'); // TODO: Replace these with localizable strings
+		observeTextChange('#PanelUI-fxa-menu-relay-button #fxa-menu-header-title', '[!!! Gô ïñçôϱñïƭô !!!]');
+    }
 
     window.addEventListener('load', function() {
-        modifyButtons();
+	replaceMenuText();
+    modifyButtons();
     });
 
 })();
