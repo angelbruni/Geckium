@@ -10,9 +10,9 @@ function goToPage(direction) {
 	console.log(currentPageIndex, direction, currentPageIndex + 1,)
 
 	if (direction == "next")
-		skipToPage('main', currentPageIndex + 1)
+		gmPages.skipToPage('main', currentPageIndex + 1)
 	else if (direction == "back")
-		skipToPage('main', currentPageIndex - 1)
+		gmPages.skipToPage('main', currentPageIndex - 1)
 }
 
 backElm.addEventListener("click", () => {
@@ -25,9 +25,8 @@ nextElm.addEventListener("click", () => {
 
 finishElm.addEventListener("click", () => {
 	gkPrefUtils.set("Geckium.firstRun.complete").bool(true);
-	if (gkPrefUtils.prefExists("Geckium.firstRun.wasSilverfox")) {
+	if (gkPrefUtils.prefExists("Geckium.firstRun.wasSilverfox"))
 		gkPrefUtils.delete("Geckium.firstRun.wasSilverfox");
-	}
 
 	gkWindow.close();
 })
