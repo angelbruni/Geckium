@@ -63,22 +63,18 @@
 		// if lwtheme
 		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 			// if Geckium
-			&[customthememode="geckium"] {				
+			&[customthememode="geckium"] {		
+				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
+				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
+				--urlbar-border: rgba(127, 127, 127, 0.4);
+				--protocol-background-color: transparent;
+
 				&[toolbar-field-background-color-transparent="true"] {
-					--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
-					--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
-					--urlbar-border: rgba(127, 127, 127, 0.4);
-					--protocol-background-color: transparent;
-					
 					--urlbar-background-verified-proxystate-valid: color-mix(
 						in srgb,
 						var(--default-urlbar-background-verified-proxystate-valid) var(--gktoolbar-field-background-color-opacity-percentage),
 						transparent
 					);
-
-					#urlbar #urlbar-protocol {
-						background: transparent !important;
-					}
 
 					&[style*="--gktoolbar-field-background-color-opacity-percentage: 0%"] {
 						--urlbar-background-color: color-mix(
@@ -92,6 +88,10 @@
 							var(--default-urlbar-background-verified-proxystate-valid) 50%,
 							transparent
 						);
+					}
+
+					#urlbar #urlbar-protocol {
+						background: transparent !important;
 					}
 				}
 			}
@@ -323,7 +323,7 @@
 	&[securestate="secure"],
 	&[securestate="ev"],
 	.verifiedDomain ~ .urlbar-input-box {
-		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid);
+		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid) !important;
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
