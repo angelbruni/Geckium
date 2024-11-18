@@ -2,7 +2,8 @@
 & { // TODO: When MD2 is added, ensure this code doesn't run on it
 	&[gktitnative="false"] {
 		//Shared titlebar button code
-		.titlebar-button {
+		.titlebar-button,
+		&[gkpeopleforce68linux="true"] .gkpeople-titlebar {
 			appearance: none !important;
 			background: transparent !important;
 			border-radius: 2px !important;

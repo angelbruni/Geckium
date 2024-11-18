@@ -191,7 +191,7 @@
 														<label class="name">&gsettings.titlebarStyle;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="titlebar-style" data-pref="appearance.titlebarStyle" id="titlebar-style-select" style="width: 200px">
+													<html:button class="menu" data-name="titlebar-style" data-pref="appearance.titlebarStyle" id="titlebar-style-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -214,7 +214,7 @@
 														<label class="description">&gsettings.titlebarModeDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="titlebar-native" data-pref="appearance.titlebarNative" id="titlebar-native-select" style="width: 200px">
+													<html:button class="menu" data-name="titlebar-native" data-pref="appearance.titlebarNative" id="titlebar-native-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -230,7 +230,7 @@
 														<label class="description">&gsettings.titlebarInThemesIsSysDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="appearance-titlebarThemedNative" data-pref="appearance.titlebarThemedNative" id="appearance-titlebarThemedNative-select" style="width: 200px">
+													<html:button class="menu" data-name="appearance-titlebarThemedNative" data-pref="appearance.titlebarThemedNative" id="appearance-titlebarThemedNative-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -351,6 +351,22 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4>
+												&gsettings.privacy;
+											</h4>
+											<vbox class="card">
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.hideAccountInfo;</label>
+														<label class="description">&gsettings.willHideInfoFrom;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.privacy.hideAccountInfo" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+											</vbox>
+											<h4>
 												&gsettings.browser;
 											</h4>
 											<vbox class="card">
@@ -359,7 +375,7 @@
 														<label class="name">&gsettings.branding;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select" style="width: 200px">
+													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -454,7 +470,7 @@
 														<label class="description">&gsettings.chrThemeFallbacksDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="chrTheme.fallbacks" id="chrTheme-fallbacks-select" style="width: 200px">
+													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="chrTheme.fallbacks" id="chrTheme-fallbacks-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -488,6 +504,17 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
+														<label class="name">&gsettings.enableForceColorizeAddressBar;</label>
+														<label class="description">&gsettings.enableForceColorizeAddressBarDisclaimer;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.appearance.forceColorizeAddressBar" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
 														<label class="name"><div class="year">2012+</div>&gsettings.colorizeTabGlareEffect;</label>
 														<label class="description">&gsettings.colorizeTabGlareEffectDescription;</label>
 													</vbox>
@@ -513,7 +540,7 @@
 														<label class="description">&gsettings.gtkIconsInToolbarItemsDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="appearance-GTKIcons" data-pref="appearance.GTKIcons" id="appearance-GTKIcons-select" style="width: 200px">
+													<html:button class="menu" data-name="appearance-GTKIcons" data-pref="appearance.GTKIcons" id="appearance-GTKIcons-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -549,7 +576,7 @@
 														<label class="name">&gsettings.chooseAbout;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="about-mode" data-pref="about.mode" id="about-mode-select" style="width: 200px">
+													<html:button class="menu" data-name="about-mode" data-pref="about.mode" id="about-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -751,10 +778,11 @@
 														<label class="name">&gsettings.customFirefoxThemeMode;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select" style="width: 300px">
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
+															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
 															<hbox class="item ripple-enabled" value="fxchrome">&gsettings.toolbarStyleFXChrome;</hbox>
 															<hbox class="item ripple-enabled" value="silverfox">Silverfox</hbox>
 															<hbox class="item ripple-enabled" value="none">&gsettings.doNotThemeToolbars;</hbox>
@@ -767,7 +795,7 @@
 														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select" style="width: 300px">
+													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -785,7 +813,7 @@
 														<label class="name">&gsettings.filterThemesBy;</label>
 													</vbox>
 													<spacer />
-													<html:button id="gkthemefilter" class="menu" style="width: 300px">
+													<html:button id="gkthemefilter" class="menu">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -976,38 +1004,38 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" id="people-content">
-											<h4>People Button TODO</h4>
+											<h4>&gsettings.peopleButton;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">People Button Style TODO</label>
+														<label class="name">&gsettings.peopleButtonStyle;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="people-style" data-pref="people.style" id="people-style-select" style="width: 200px">
+													<html:button class="menu" data-name="people-style" data-pref="people.style" id="people-style-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
 															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="off">Disabled TODO</hbox>
-															<hbox class="item ripple-enabled" value="avatar">Avatar beside Tabs TODO</hbox>
-															<hbox class="item ripple-enabled" value="titlebutton">Titlebar Button TODO</hbox>
+															<hbox class="item ripple-enabled" value="off">&gsettings.disabled;</hbox>
+															<hbox class="item ripple-enabled" value="avatar">&gsettings.avatarBesideTabs;</hbox>
+															<hbox class="item ripple-enabled" value="titlebutton">&gsettings.titlebarButton;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
 											</vbox>
-											<h4>Avatar TODO</h4>
+											<h4>&gsettings.avatar;</h4>
 											<vbox class="card" id="card-avatar" >
 												<hbox class="item">
 													<vbox>
-														<label class="name">Avatar Source TODO</label>
-														<label class="description">Firefox Account will only display if signed in TODO</label>
+														<label class="name">&gsettings.avatarSource;</label>
+														<label class="description">&gsettings.avatarSourceDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select" style="width: 200px">
+													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="firefox">Firefox Account TODO</hbox>
+															<hbox class="item ripple-enabled" value="firefox">&gsettings.firefoxAccount;</hbox>
 															<hbox class="item ripple-enabled" value="geckium">Geckium</hbox>
 															<hbox class="item ripple-enabled" value="chromium">Chromium</hbox>
 															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
@@ -1015,7 +1043,7 @@
 													</html:button>
 												</hbox>
 												<vbox class="item" flex="1">
-													<h4>Select your avatar TODO</h4>
+													<h4>&gsettings.selectYourAvatar;</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
 														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true" />
@@ -1023,12 +1051,12 @@
 													</div>
 												</vbox>
 											</vbox>
-											<h4>Titlebar Button TODO</h4>
+											<h4>&gsettings.titlebarButton;</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Linux</div>Force Chromium 68's People Titlebar Button TODO</label>
-														<label class="description">Before 68, the titlebar button used Windows's button style TODO</label>
+														<label class="name"><div class="year">Linux</div>&gsettings.force68Linux;</label>
+														<label class="description">&gsettings.force68LinuxDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -1038,8 +1066,8 @@
 												</hbox>
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">Chromium OS</div>Show People Titlebar Button TODO</label>
-														<label class="description">The People Titlebar Button was exclusive to Windows 8 Mode TODO</label>
+														<label class="name"><div class="year">Chromium OS</div>&gsettings.showChrOSPeople;</label>
+														<label class="description">&gsettings.showChrOSPeopleDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -1091,7 +1119,7 @@
 							<vbox class="page" data-page="31">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" id="profile-pic-content">
+										<vbox class="list-container">
 											<vbox class="card">
 												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="wizard_modal">
 													<vbox>
@@ -1199,9 +1227,14 @@
 							<vbox class="page" data-page="32">
 								<vbox class="content-container">
 									<vbox class="content">
-										<vbox class="list-container" id="profile-pic-content">
+										<vbox class="list-container">
 											<h4>&gsettings.usefulLinks;</h4>
 											<vbox class="card">
+												<label class="item ripple-enabled disable-in-wizard" is="text-link" href="https://github.com/angelbruni/Geckium/wiki/Frequently-Asked-Questions">
+													<vbox>
+														<label class="name">&gsettings.faq;</label>
+													</vbox>
+												</label>
 												<label class="item ripple-enabled disable-in-wizard" is="text-link" href="https://github.com/angelbruni/Geckium">
 													<vbox>
 														<label class="name">GitHub</label>
@@ -1212,13 +1245,6 @@
 														<label class="name">Discord</label>
 													</vbox>
 												</label>
-											</vbox>
-											<h4>&gsettings.faq;</h4>
-											<vbox class="card" style="padding: 16px; padding-block-start: 0">
-												<p class="headline-5">&gsettings.faqWindowBlindsQuestion;</p>
-												<p><html:strong>&gsettings.faqWindowBlindsAnswer;</html:strong></p>
-												<p class="headline-5">&gsettings.aboutFlagsQuestion;</p>
-												<p><html:strong>&gsettings.aboutFlagsAnswer;</html:strong></p>
 											</vbox>
 										</vbox>
 									</vbox>

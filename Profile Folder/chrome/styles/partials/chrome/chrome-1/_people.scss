@@ -1,7 +1,8 @@
 
 :root {
 	// Make the Incognito indicator look like Chromium's
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		margin-inline: unset !important;
 		//#TabsToolbar-customization-target aligns items to end,
 		// so we have to mimic it for Incognito to be consistent.
@@ -17,7 +18,8 @@
 		display: none !important;
 	}
 	#gkavatar-container > #gk-firefox-account-button,
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		background: transparent !important;
 		border: 0 !important;
 		padding: 0 !important;
@@ -31,14 +33,25 @@
 	}
 	// NOTE: Maximised state is handled by titlebar border styles.
 
-	&:not([profilepicbutton="true"]),
-	&[profilepic="none"],
-	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord
+	&[gkpeoplestyle="off"] {
+		#gkavatar-container,
+		#gkpeople-button-container,
+		#gk-firefox-account-button {
+			display: none !important;
+		}
+	}
+
+
+	/*
+		Avatar besides Tabs
+	*/
+	&:not([fxastatus="signedin"])[profilepic="firefox"],
+	&[privatebrowsingmode="temporary"] { // Hide the account icon if in OffTheRecord or if set to Firefox Account but not signed in yet
 		#gkavatar-container {
 			display: none !important;
 		}
     }
-	&[profilepicbutton="true"]:not([profilepic="none"]) {
+	&:not([profilepic="none"]) {
 		#gk-firefox-account-button #fxa-avatar-image {
 			width: 38px !important;
 			height: 32px !important;
@@ -106,7 +119,10 @@
 		}
 	}
 
-    // People Titlebar button
+
+    /*
+		People Titlebar Button
+	*/
     #gkpeople-button-container {
         appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
     }
@@ -115,97 +131,16 @@
     }
     .gkpeople-titlebar {
         appearance: none !important;
-        .toolbarbutton-text {
-            margin-inline: 7px !important;
-        }
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
     }
     
-    // Show text when signed in
-	&[fxastatus="signedin"] .gkpeople-titlebar {
+    // Show text when signed in and privacy setting disabled
+	&[fxastatus="signedin"]:not([hideAccountInfo="true"]) .gkpeople-titlebar {
 		.toolbarbutton-icon {
 			display: none !important;
 		}
 		.toolbarbutton-text {
 			display: flex !important;
-		}
-	}
-
-	// &[gktitbuttons="win8"] #gkpeople-button-container {
-	// 	margin-inline-end: 7px !important;
-	// }
-
-	// &[gktitbuttons*="linux"] #gkpeople-button-container {
-	// 	margin-inline-end: 5px !important;
-	// }
-
-	&[gktitnative="true"][gktitbuttons="win"],
-	&[gktitnative="false"][gktitbuttons="win"],
-	&[gktitbuttons*="linux"] {
-		.gkpeople-titlebar .toolbarbutton-text {
-			--stroke-color: rgba(0,0,0,.5);
-
-			color: white !important;
-			font-size: 8pt;
-			text-shadow:	1px		1px		0	var(--stroke-color),
-							1px		-1px	0	var(--stroke-color),
-							-1px	1px		0	var(--stroke-color),
-							-1px	-1px	0	var(--stroke-color),
-							1px		0px		0	var(--stroke-color),
-							0px		1px		0	var(--stroke-color),
-							-1px	0px		0	var(--stroke-color),
-							0px		-1px	0	var(--stroke-color),
-		}
-	}
-
-	&[gktitnative="false"][gktitbuttons="win"],
-	&[gktitbuttons*="linux"] {
-		.gkpeople-titlebar {
-			--themed-titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-			--themed-titlebutton-corner: 3.5px;
-	
-			// .titlebar-button
-			background: unset !important;
-			background-color: transparent !important;
-			border-radius: 0 !important;
-			border-left: var(--themed-titlebutton-border-outer) !important;
-			border-bottom: var(--themed-titlebutton-border-outer) !important;
-			min-width: 25px;
-			height: 17px;
-			padding: 0 !important;
-			background-clip: padding-box !important;
-			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
-			transition: background-color 100ms linear; //hover-fade animation
-			display: flex !important; // Really, macOS's and Windows 8-'s Mozilla Firefox?
-	
-			// Hover and pressed states
-			&:not([disabled]):hover {
-				background-color: rgba(255, 255, 255, 0.3) !important;
-	
-				&:active {
-					background-color: rgba(255, 255, 255, 0.2) !important;
-					box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
-					transition: none;
-				}
-			}
-	
-			// .gkpeople-titlebar
-			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/sign_in_button_avatar.svg");
-			border-right: var(--themed-titlebutton-border-outer) !important;
-			border-bottom-left-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
-			border-bottom-right-radius: var(--themed-titlebutton-corner) !important; // because border-radius is !important
-	
-			image { // Set the icon's opacity and hover-fade
-				opacity: .6 !important;
-				transition: opacity 100ms linear;
-			}
-
-			&:-moz-locale-dir(rtl) {
-				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
-
-				&:not([disabled]):hover:active {
-					box-shadow: inset -1px 1px 0px 0px rgba(0, 0, 0, 0.2);
-				}
-			}
 		}
 	}
 }

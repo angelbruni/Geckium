@@ -17,9 +17,13 @@ function isWindows10() {
 	}
 	return false;
 }
-if (isWindows10()) {
+if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
+
+function hasMozNativeControlsAttr() {
+    document.documentElement.setAttribute("mozNativeControls", window.matchMedia("(-moz-native-controls)").matches);
 }
+window.addEventListener("load", hasMozNativeControlsAttr);
 
 // Initial variables
 let previousEra;
@@ -217,9 +221,9 @@ class gkEras {
     static getEras(style) {
         if (style == "chrome" || style == "page")
 			return Object.keys(eras).reduce(function (filtered, key) {
-                if (eras[key]["styles"].includes(style)) {
+                if (eras[key]["styles"].includes(style))
                     filtered[key] = eras[key];
-                }
+
                 return filtered;
             }, {});
 		else
@@ -234,9 +238,9 @@ class gkEras {
     
     static getEra(location) {
         let prefChoice = gkPrefUtils.tryGet(location).int;
-        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
+        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString()))
             return 1;
-        }
+
         return prefChoice;
     }
 
@@ -249,14 +253,13 @@ class gkEras {
     static getBrowserEra() {
         if (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool == true) {
             let override = gkPrefUtils.tryGet("Geckium.main.style").int;
-            if (override && Object.keys(eras).includes(override.toString())) {
+            if (override && Object.keys(eras).includes(override.toString()))
                 return override;
-            }
         }
         let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
+        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString()))
             return 1;
-        }
+
         return prefChoice;
     }
 
@@ -268,20 +271,18 @@ class gkEras {
 
     static getNTPEra() {
         // TEMPORARY: Force 21 on Apps
-        if (document.URL == "about:apps") {
+        if (document.URL == "about:apps")
             return 21;
-        }
 
         if (gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool == true) {
             let override = gkPrefUtils.tryGet("Geckium.newTabHome.style").int;
-            if (override && Object.keys(eras).includes(override.toString())) {
+            if (override && Object.keys(eras).includes(override.toString()))
                 return override;
-            }
         }
         let prefChoice = gkPrefUtils.tryGet("Geckium.appearance.choice").int;
-        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString())) {
+        if (!prefChoice || !Object.keys(eras).includes(prefChoice.toString()))
             return 1;
-        }
+        
         return prefChoice;
     }
 
@@ -291,27 +292,24 @@ class gkEras {
 
     static applyEra() {
         let prefChoice;
-        if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps") {
+        if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps" || document.URL == "about:privatebrowsing")
             prefChoice = gkEras.getNTPEra();
-        } else if (document.URL !== "about:gmzoo" && document.URL !== "about:gsplash") {
+        else if (document.URL !== "about:gmzoo" && document.URL !== "about:gsplash")
             prefChoice = gkEras.getBrowserEra();
-        }
 
         // Don't continue if acting on the browser and the prior era == the new era
         if (document.URL == "chrome://browser/content/browser.xhtml") {
-            if (prefChoice == previousEra) {
+            if (prefChoice == previousEra)
                 return;
-            }
         }
 
         // Add and remove geckium-* values from documentElement based on new era's values
         for (const i of Object.keys(eras)) {
             const attr = "geckium-" + eras[i].number;
-            if (i <= prefChoice) {
+            if (i <= prefChoice)
                 document.documentElement.setAttribute(attr, "");
-            } else {
+            else
                 document.documentElement.removeAttribute(attr);
-            }
         }
 
         // bruni: Let's also apply the attribute specific to the
@@ -320,9 +318,8 @@ class gkEras {
 
         previousEra = prefChoice;
         
-        if (isBrowserWindow) {
+        if (isBrowserWindow)
             dispatchEvent(appearanceChanged);
-        }
     }
 }
 window.addEventListener("load", gkEras.applyEra);
@@ -330,9 +327,8 @@ window.addEventListener("load", gkEras.applyEra);
 // Automatically change Geckium eras when the setting changes
 const eraObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
+		if (topic == "nsPref:changed")
 			gkEras.applyEra();
-		}
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", eraObserver, false);
@@ -341,20 +337,36 @@ Services.prefs.addObserver("Geckium.main.style", eraObserver, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", eraObserver, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", eraObserver, false);
 
+// Privacy Setting
+class hideAccountInfo {
+    static toggle() {
+        if (isBrowserWindow)
+            document.documentElement.setAttribute("hideAccountInfo", gkPrefUtils.tryGet("Geckium.privacy.hideAccountInfo").bool);
+    }
+}
+window.addEventListener("load", hideAccountInfo.toggle);
+
+// Automatically toggle when setting changes
+const hideAccountInfoObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			hideAccountInfo.toggle();
+	},
+};
+Services.prefs.addObserver("Geckium.privacy.hideAccountInfo", hideAccountInfoObserver, false);
+
 
 // Provide a way to let the CSS know if the menubar is visible 
 class menuBarVisible {
 	static toggled(newvalue) {
-		if (newvalue == true) {
+		if (newvalue == true)
 			document.documentElement.setAttribute("menubarvisible", "");
-		} else {
+		else
 			document.documentElement.removeAttribute("menubarvisible");
-		}
 	}
 	static check() {
-        if (isBrowserWindow) {
+        if (isBrowserWindow)
 		    menuBarVisible.toggled(document.getElementById("toolbar-menubar").getAttribute("autohide") == "false");
-        }
 	}
 }
 window.addEventListener("load", menuBarVisible.check);
@@ -364,9 +376,8 @@ window.addEventListener("toolbarvisibilitychange", menuBarVisible.check);
 // Custom tab glare colouring
 class customTabGlare {
     static toggle() {
-        if (isBrowserWindow) {
+        if (isBrowserWindow)
             document.documentElement.setAttribute("customthemecolorizetabglare", gkPrefUtils.tryGet("Geckium.appearance.customThemeColorizeTabGlare").bool);
-        }
     }
 }
 window.addEventListener("load", customTabGlare.toggle);
@@ -374,9 +385,26 @@ window.addEventListener("load", customTabGlare.toggle);
 // Automatically toggle when setting changes
 const customTabGlareObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
+		if (topic == "nsPref:changed")
 			customTabGlare.toggle();
-		}
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.customThemeColorizeTabGlare", customTabGlareObserver, false);
+
+// Custom tab glare colouring
+class themeOmniboxInEveryEra {
+    static toggle() {
+        if (isBrowserWindow)
+            document.documentElement.setAttribute("forceColorizeAddressBar", gkPrefUtils.tryGet("Geckium.appearance.forceColorizeAddressBar").bool);
+    }
+}
+window.addEventListener("load", themeOmniboxInEveryEra.toggle);
+
+// Automatically toggle when setting changes
+const themeOmniboxInEveryEraObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			themeOmniboxInEveryEra.toggle();
+	},
+};
+Services.prefs.addObserver("Geckium.appearance.forceColorizeAddressBar", themeOmniboxInEveryEraObserver, false);

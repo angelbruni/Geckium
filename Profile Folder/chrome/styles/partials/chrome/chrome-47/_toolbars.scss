@@ -15,7 +15,7 @@
 		transform: unset;
 	}
 
-	&[profilepicbutton="true"]:not([profilepic="none"])[profilepic="chromium"] {
+	&:not([profilepic="none"])[profilepic="chromium"] {
 		$profile-pictures: 25; // bruni: Set the amount of profile pictures
 		@for $i from 0 through $profile-pictures {
 			&[profilepicchromium="#{$i}"]:not([fxastatus="not_configured"]) panel toolbarbutton {

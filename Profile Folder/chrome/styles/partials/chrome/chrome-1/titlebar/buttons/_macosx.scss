@@ -5,8 +5,8 @@
     
     //Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label,
-    #gkavatar-container,
-    #gkpeople-button-container {
+    .private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+    #gkavatar-container {
         order: 998 !important; // Force to right
     }
     .titlebar-spacer[type="post-tabs"] {
@@ -19,7 +19,8 @@
     }
     // Incognito can't use this^ spacing, so we need to set it separately for Incognito
     &[privatebrowsingmode="temporary"] {
-        #private-browsing-indicator-with-label {
+        #private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
             margin-inline-end: var(--tab-distance-from-toolbar-edge);
         }
     }
@@ -31,6 +32,7 @@
 
     // Flip Incognito and appropriate profile icons
     #private-browsing-indicator-with-label,
+    .private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
     &:not([profilepic="firefox"], [profilepic="geckium"]) #gkavatar-container #fxa-avatar-image {
         transform: scaleX(-1);
     }
@@ -39,7 +41,6 @@
     #gkpeople-button-container {
         margin-inline-start: 6px !important;
     }
-    @import "../people/mac";
 
     //Show the Google logo after the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {

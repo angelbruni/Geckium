@@ -169,6 +169,10 @@
 		--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
 		--thumbnail-container-color: var(--link-color, var(--default-thumbnail-container-color));
 		--thumbnail-disabled-color: var(--thumbnail-border-color-normal);
+
+		&[toolbar-bgcolor-transparent="true"] {
+			--thumbnail-border-color-hot: var(--gktoolbar-bgcolor, var(--lwt-accent-color));
+		}
 		
 		&:not([style*="--toolbar-color: white"]),
 		&:not([style*="--toolbar-color: rgb(255,255,255)"]),
@@ -179,6 +183,10 @@
 				color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),
 				var(--edit-bar-background-color-hot)
 			);
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--edit-bar-background-color-hot: var(--gktoolbar-bgcolor, var(--lwt-accent-color));
+			}
 		}
 	}
 	// chrtheme

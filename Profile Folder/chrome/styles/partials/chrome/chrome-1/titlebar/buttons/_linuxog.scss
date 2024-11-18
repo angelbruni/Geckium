@@ -5,12 +5,14 @@
 		margin-inline-end: 16px !important;
 	}
 	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
-		margin-inline-end: 5px !important;
+		margin-inline-end: 2px !important;
 	}
 
 	// Give the tabs/Incognito/pfp the appropriate offset
 	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+		#gkavatar-container {
 			order: -1 !important; // Force to left
 		}
 		.titlebar-spacer[type="pre-tabs"] {
@@ -23,7 +25,8 @@
 		}
 		// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 		&[privatebrowsingmode="temporary"] {
-			#private-browsing-indicator-with-label {
+			#private-browsing-indicator-with-label,
+			.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 				margin-inline-start: var(--tab-distance-from-toolbar-edge);
 			}
 		}
@@ -40,6 +43,7 @@
 	}
 	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
 		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
 		#gkavatar-container,
 		#gkpeople-button-container {
 			order: 998 !important; // Force to right
@@ -51,7 +55,8 @@
 			margin-inline-end: var(--tab-distance-from-toolbar-edge);
 		}
 		&[privatebrowsingmode="temporary"] {
-			#private-browsing-indicator-with-label {
+			#private-browsing-indicator-with-label,
+			.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 				margin-inline-end: var(--tab-distance-from-toolbar-edge);
 			}
 		}
@@ -59,12 +64,6 @@
 		.private-browsing-indicator-icon {
 			margin-inline-start: var(--tab-distance-from-pfp) !important;
 			margin-inline-end: 1px !important;
-		}
-
-		// Flip Incognito and appropriate profile icons
-		#private-browsing-indicator-with-label,
-		&:not([profilepic="firefox"], [profilepic="geckium"]) #gkavatar-container #fxa-avatar-image {
-			transform: scaleX(-1);
 		}
 
 		// Tweaks for Profile Titlebutton
@@ -137,7 +136,8 @@
 		}
 
 		//Shared titlebar button code
-		.titlebar-button {
+		.titlebar-button,
+		&[gkpeopleforce68linux="true"] .gkpeople-titlebar {
 			background: linear-gradient(
 				to bottom,
 				rgba(255,255,255,.23),

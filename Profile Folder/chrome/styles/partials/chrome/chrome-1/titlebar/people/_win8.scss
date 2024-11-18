@@ -1,4 +1,4 @@
-& {
+&[gktitnative="true"] {
     .gkpeople-titlebar {
 		background: rgba(0,0,0,.3) !important;
 		border-radius: 0 !important;
@@ -8,13 +8,24 @@
 
 		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
         .toolbarbutton-text {
+            --stroke-color: rgba(0,0,0,.3);
             color: white !important;
             font-size: 8pt;
+            margin-inline: 8px !important;
+
+            text-shadow:	1px		1px		0	var(--stroke-color),
+                            1px		-1px	0	var(--stroke-color),
+                            -1px	1px		0	var(--stroke-color),
+                            -1px	-1px	0	var(--stroke-color),
+                            1px		0px		0	var(--stroke-color),
+                            0px		1px		0	var(--stroke-color),
+                            -1px	0px		0	var(--stroke-color),
+                            0px		-1px	0	var(--stroke-color),
         }
 		
 		// Hover and pressed states
 		&:not([disabled]):hover {
-			background: rgb(51,99,282) !important;
+			background: rgb(51,99,182) !important;
 
 			&:active {
 				background: rgb(59,95,155) !important;
@@ -22,4 +33,7 @@
 			}
 		}
 	}
+}
+&[gktitnative="false"] {
+    @import "wincompact";
 }

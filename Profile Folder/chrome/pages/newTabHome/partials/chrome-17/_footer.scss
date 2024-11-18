@@ -7,23 +7,38 @@
 		/* COLOR_NTP_SECTION_BORDER */ rgba(150, 150, 150, 0.2)
 	);
 	--footer-border: var(--default-footer-border);
-	--footer-background: linear-gradient(
+	--default-footer-background: linear-gradient(
 		to bottom,
 		rgba(242, 242, 242, 0.9),
 		rgba(222, 222, 222, 0.9)
 	);
-	--footer-color: #7f7f7f;
+	--footer-background: var(--default-footer-background);
+	--default-footer-color: #7f7f7f;
+	--footer-color: var(--default-footer-color);
 
-	--dot-color-normal: #999;
-	--dot-color-hot: #7f7f7f;
-	--selection-bar-background-color-normal: rgba(0, 0, 0, 0.1);
-	--selection-bar-background-color-hot: #b2b2b2;
-	--selection-bar-background-color-active: #7f7f7f;
+	--default-dot-color-normal: rgb(118,118,118);
+	--dot-color-normal: var(--default-dot-color-normal);
+	--default-dot-color-hot: rgb(84,84,84);
+	--dot-color-hot: var(--default-dot-color-hot);
+	--default-selection-bar-background-color-normal: rgba(0, 0, 0, 0.1);
+	--selection-bar-background-color-normal: var(--default-selection-bar-background-color-normal);
+	--default-selection-bar-background-color-hot: #b2b2b2;
+	--selection-bar-background-color-hot: var(--default-selection-bar-background-color-hot);
+	--default-selection-bar-background-color-active: #7f7f7f;
+	--selection-bar-background-color-active: var(--default-selection-bar-background-color-active);
 
-	--footer-item-color-hot: #666;
-	--footer-menu-button-glyph-background-color-normal: #7f7f7f;
-	--footer-menu-item-link-color: #063874;
-	--footer-vertical-separator-background-color: rgb(178, 178, 178);
+	--default-footer-item-color-hot: #666666;
+	--footer-item-color-hot: var(--default-footer-item-color-hot);
+	--default-footer-menu-button-glyph-background-color-normal: #7f7f7f;
+	--footer-menu-button-glyph-background-color-normal: var(--default-footer-menu-button-glyph-background-color-normal);
+	--default-footer-menu-background-color: white;
+	--footer-menu-background-color: var(--default-footer-menu-background-color);
+	--default-footer-menu-outline-color: rgba(0, 0, 0, 0.2);
+	--footer-menu-outline-color: var(--default-footer-menu-outline-color);
+	--default-footer-menu-item-link-color: #063874;
+	--footer-menu-item-link-color: var(--default-footer-menu-item-link-color);
+	--default-footer-vertical-separator-background-color: rgb(178, 178, 178);
+	--footer-vertical-separator-background-color: var(--default-footer-vertical-separator-background-color);
 
 	// Geckium You
 	&[gksystheme="you"]:not([gkthemed], [gkchrthemed]) {
@@ -80,6 +95,32 @@
 		
 
 		&[footer-themable="true"] {
+			@media (prefers-color-scheme: dark) {
+				--default-footer-border: linear-gradient(
+					to left,
+					rgba(105, 105, 105, 0.2),
+					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 20%,
+					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 80%,
+					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.2)
+				);
+				--default-footer-background: linear-gradient(
+					to bottom,
+					rgba(33, 33, 33, 0.9),
+					rgba(13, 13, 13, 0.9)
+				);
+		
+				--default-dot-color-normal: rgb(138, 138, 138);
+				--default-dot-color-hot: rgb(171, 171, 171);
+				--default-selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
+				--default-selection-bar-background-color-hot: rgb(77, 77, 77);
+		
+				--default-footer-item-color-hot: rgb(153, 153, 153);
+				--default-footer-menu-background-color: black;
+				--default-footer-menu-outline-color: rgba(255, 255, 255, 0.2);
+				--default-footer-menu-item-link-color: rgb(139, 188, 249);
+				--default-footer-vertical-separator-background-color: rgb(77, 77, 77);
+			}
+
 			--logo-wordmark-color: var(--toolbar-color, var(--lwt-text-color));
 
 			--footer-background: linear-gradient(
@@ -121,7 +162,14 @@
 				var(--toolbar-color, var(--lwt-text-color)) 90%,
 				black
 			);
-			--footer-menu-button-glyph-background-color-normal: var(--toolbar-color, var(--lwt-text-color));
+			--footer-menu-button-glyph-background-color-normal: var(--toolbar-color, var(--lwt-text-color, var(--default-footer-menu-button-glyph-background-color-normal)));
+			--footer-menu-background-color: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color)));
+			--footer-menu-outline-color: color-mix(
+				in srgb,
+				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				transparent
+			);
+			--footer-menu-item-link-color: var(--toolbar-color, var(--lwt-text-color));
 			--footer-vertical-separator-background-color: color-mix(
 				in srgb,
 				var(--toolbar-color, var(--lwt-text-color)) 40%,
@@ -211,9 +259,14 @@
 				var(--gk-footer-fg) 90%,
 				black
 			);
-			--footer-menu-button-glyph-background-color-normal: var(
-				--gk-footer-fg
+			--footer-menu-button-glyph-background-color-normal: var(--gk-footer-fg);
+			--footer-menu-background-color: var(--gk-footer-bg);
+			--footer-menu-outline-color: color-mix(
+				in srgb,
+				var(--gk-footer-fg) 20%,
+				transparent
 			);
+			--footer-menu-item-link-color: var(--gk-footer-fg, var(--default-footer-menu-item-link-color));
 			--footer-vertical-separator-background-color: color-mix(
 				in srgb,
 				var(--gk-footer-fg) 40%,
@@ -299,15 +352,11 @@
 		}
 	}
 
-	&[gkbranding="chromium"] {
-		#chrome-web-store-link::after {
-			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chromium/IDR_WEBSTORE_ICON_24.png");
-		}
+	&[gkbranding="chromium"] #chrome-web-store-link::after {
+		content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chromium/IDR_WEBSTORE_ICON_24.png");
 	}
-	&[gkbranding="chrome"] {
-		#chrome-web-store-link::after {
-			content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chrome/IDR_WEBSTORE_ICON_24.png");
-		}
+	&[gkbranding="chrome"] #chrome-web-store-link::after {
+		content: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/chrome/IDR_WEBSTORE_ICON_24.png");
 	}
 }
 
@@ -366,7 +415,7 @@
 		display: flex;
 		flex-direction: column;
 		padding-top: 10px;
-		color: rgb(118,118,118);
+		color: var(--dot-color-normal);
 		width: 80px;
 		text-align: start;
 		align-items: start;
@@ -378,7 +427,7 @@
 			&:hover,
 			&:focus,
 			&.selected {
-				color: rgb(84,84,84);
+				color: var(--dot-color-hot);
 			}
 
 			&:hover,
@@ -418,10 +467,8 @@
 
 	.footer-menu-button,
 	a {
-		&:not([disabled]) {
-			&:hover {
-				color: var(--footer-item-color-hot);
-			}
+		&:not([disabled], .footer-menu-item):hover {
+			color: var(--footer-item-color-hot);
 		}
 	}
 
@@ -431,16 +478,12 @@
 		padding-inline-end: 15px;
 
 		&:not([disabled]) {
-			&:hover {
-				&::after {
-					background-color: var(--footer-item-color-hot);
-				}
+			&:hover::after {
+				background-color: var(--footer-item-color-hot);
 			}
 
-			&[open] {
-				.footer-menu {
-					display: flex;
-				}
+			&[open] .footer-menu {
+				display: flex;
 			}
 		}
 
@@ -460,11 +503,10 @@
 	.footer-menu {
 		display: none;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-		background: white;
-		color: black;
+		background: var(--footer-menu-background-color);
 		cursor: default;
 		margin: 0;
-		outline: 1px solid rgba(0, 0, 0, 0.2);
+		outline: 1px solid var(--footer-menu-outline-color);
 		position: absolute;
 		white-space: nowrap;
 		margin-inline-end: 10px;
@@ -475,11 +517,6 @@
 		min-width: 150px;
 		bottom: 23px;
 		right: 0;
-
-		@media (prefers-color-scheme: dark) {
-			background: rgb(54, 54, 54);
-			color: white;
-		}
 	}
 
 	.footer-menu-item {
@@ -508,10 +545,8 @@
 			fill: white;
 		}
 
-		&:not([disabled]) {
-			&:hover {
-				text-decoration: underline;
-			}
+		&:not([disabled]):hover {
+			text-decoration: underline;
 		}
 
 		image {

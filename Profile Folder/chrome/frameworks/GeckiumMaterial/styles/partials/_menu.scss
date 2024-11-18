@@ -7,22 +7,20 @@
 	padding-left: var(--input-padding);
 	transition: border-color 0.2s;
 	font-size: 16px;
-	width: 100%;
+	min-width: 200px;
 	height: 32px;
 	appearance: none;
 	box-sizing: border-box;
 
-	&:not([open]) {
-		.list {
-			pointer-events: none;
-			opacity: 0;
+	&:not([open]) .list {
+		pointer-events: none;
+		opacity: 0;
 
-			&[position="top"] {
-				transform: translateY(-8px);
-			}
-			&[position="bottom"] {
-				transform: translateY(8px);
-			}
+		&[position="top"] {
+			transform: translateY(-8px);
+		}
+		&[position="bottom"] {
+			transform: translateY(8px);
 		}
 	}
 	&[open] {
@@ -111,8 +109,7 @@
 			position: relative;
 			display: flex;
 			align-items: center;
-			padding-inline-start: 16px;
-			padding-inline-end: 8px;
+			padding-inline: 16px;
 			height: 48px;
 			overflow: hidden;
 			border: 0 !important;

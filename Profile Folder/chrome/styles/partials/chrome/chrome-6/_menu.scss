@@ -15,13 +15,11 @@ menupopup {
 		border: 1px solid rgb(205, 205, 205) !important;
 		color: black !important;
 
-		&:not([disabled="true"]) {
-			&:hover {
-				background-color: rgb(251, 251, 251) !important;
-				border-color: rgb(171, 171, 171) !important;
-				color: rgb(6, 45, 117) !important;
-				z-index: 1 !important;
-			}
+		&:not([disabled="true"]):hover {
+			background-color: rgb(251, 251, 251) !important;
+			border-color: rgb(171, 171, 171) !important;
+			color: rgb(6, 45, 117) !important;
+			z-index: 1 !important;
 		}
 
 		&#menu_cut6,
