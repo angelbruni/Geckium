@@ -11,13 +11,13 @@ function updateSignInStatus() {
 		loginUsername = document.getElementById("login-email");
 	
 	if (loginContainer && loginUsername) {
-		if (email && !privacySetting) {
+		if (email) {
 			if (appearanceChoice > 11) {
 				loginContainer.style.setProperty("display", "none");
 				loginUsername.style.removeProperty("display");
 			}
 			
-			loginUsername.textContent = email;
+			loginUsername.textContent = !privacySetting ? email : "";
 		} else {
 			if (appearanceChoice > 11) {
 				loginContainer.style.removeProperty("display");
