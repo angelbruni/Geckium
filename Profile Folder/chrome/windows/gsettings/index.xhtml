@@ -266,8 +266,8 @@
 														<label class="name">&gsettings.resetOverrides;</label>
 													</vbox>
 												</html:button>
-												<vbox class="item" flex="1" style="padding-block-start: 19px">
-													<grid class="disable-in-wizard" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+												<vbox class="item disable-in-wizard" flex="1" style="padding-block-start: 19px">
+													<grid class="appearance-container" id="global-appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 												<div class="modal" data-modal="overrides_modal">
 													<div class="wrapper">
@@ -312,7 +312,7 @@
 													</div>
 												</hbox>
 												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle" style="padding-block-start: 19px">
-													<grid id="ntp-visual-styles-grid" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
+													<grid id="ntp-visual-styles-grid" class="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
 											<h4>
@@ -1452,6 +1452,7 @@
 	
 
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/window.js" type="text/javascript" defer="true" />
+	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/sfx.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/ripple.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/pages.js" type="text/javascript" defer="true" />
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/menu.js" type="text/javascript" defer="true" />
