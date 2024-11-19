@@ -1,7 +1,7 @@
 & {
     .gkpeople-titlebar {
 		display: flex !important;
-		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win8/sign_in_button_avatar.svg");
+		list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/win10/user_account_avatar.svg");
 
 		background: transparent !important;
 		border-radius: 0 !important;
@@ -11,6 +11,11 @@
 		color: var(--titlebar-button-foreground, inherit) !important;
 		&:-moz-window-inactive {
 			color: var(--titlebar-button-foreground-inactive, inherit) !important;
+		}
+
+		.toolbarbutton-icon {
+			width: 14px;
+			height: 14px;
 		}
 
 		.toolbarbutton-text {
