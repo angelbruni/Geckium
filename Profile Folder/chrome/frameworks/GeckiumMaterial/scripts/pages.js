@@ -7,6 +7,8 @@ class gmPages {
 
 	static skipToPage(pageContainer, targetPage) {
 		if (pageContainer !== undefined && targetPage !== undefined) {
+			const previousPage = this.getCurrentPage(pageContainer).dataset.page;
+
 			// Button
 			const pageBtns = document.querySelectorAll("button[data-page-container='" + pageContainer + "'");
 	
@@ -28,7 +30,10 @@ class gmPages {
 				});
 			}
 			page.setAttribute("selected", true);
-			document.dispatchEvent(this.pageChanged);
+
+			// Only send `pageChanged` event if the page that we skipped to is not the same as the previous page.
+			if (previousPage !== this.getCurrentPage(pageContainer).dataset.page)
+				document.dispatchEvent(this.pageChanged);
 	
 			const pageTitle = document.querySelector("#page-title[data-page-container='" + pageContainer + "']");
 			if (pageTitle) {
