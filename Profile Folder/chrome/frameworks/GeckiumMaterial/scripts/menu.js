@@ -21,7 +21,20 @@ setTimeout(() => {
 		const list = btn.querySelector(".list");
 		const listWidth = list.getBoundingClientRect().width;
 		btn.style.width = `${listWidth + 48}px`;
-	
+
+		window.addEventListener("resize", () => {
+			document.querySelectorAll('.menu[open="true"]').forEach(openMenu => {
+				openMenu.removeAttribute("open");
+			})
+		})
+		document.querySelectorAll(".content-container").forEach(container => {
+			container.addEventListener("scroll", () => {
+				document.querySelectorAll('.menu[open="true"]').forEach(openMenu => {
+					openMenu.removeAttribute("open");
+				})
+			})
+		})
+
 		btn.addEventListener("click", (e) => {
 			const windowHeight = document.querySelector("#window").getBoundingClientRect().height;
 
