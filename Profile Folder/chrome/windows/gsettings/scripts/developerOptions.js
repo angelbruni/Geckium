@@ -6,13 +6,13 @@ let clickCount = 0;
 let clickTimer;
 
 function developerOptionsEnable() {
-	if (!gkPrefUtils.tryGet("Geckium.developerOptions.status").bool) {
+	if (!gkPrefUtils.tryGet("Geckium.devOptions.status").bool) {
 		// Increment click count
 		clickCount++;
 		
 		// If the click count reaches the required number, enable developer options
 		if (clickCount === clicksRequired) {
-			gkPrefUtils.set("Geckium.developerOptions.status").bool(true);
+			gkPrefUtils.set("Geckium.devOptions.status").bool(true);
 
 			document.getElementById("ndi-do").style.display = null;
 			
@@ -34,7 +34,7 @@ function developerOptionsEnable() {
 document.getElementById("gk_version").addEventListener("click", developerOptionsEnable)
 
 document.addEventListener("DOMContentLoaded", () => {
-	if (gkPrefUtils.tryGet("Geckium.developerOptions.status").bool) {
+	if (gkPrefUtils.tryGet("Geckium.devOptions.status").bool) {
 		document.getElementById("ndi-do").style.display = null;
 	}
 })
