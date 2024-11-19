@@ -56,8 +56,6 @@ class gmPages {
 				}
 			}
 		}
-
-		console.log(this.getCurrentPage(pageContainer));
 	}
 
 	static setCurrentStep() {
