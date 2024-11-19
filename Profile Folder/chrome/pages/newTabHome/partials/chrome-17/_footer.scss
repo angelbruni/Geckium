@@ -45,6 +45,34 @@
 		--footer-menu-item-link-color: hsl(var(--you-h), var(--you-s), calc(var(--you-l) - 34%));
 	}
 
+	&[footer-themable="true"] {
+		@media (prefers-color-scheme: dark) {
+			--default-footer-border: linear-gradient(
+				to left,
+				rgba(105, 105, 105, 0.2),
+				/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 20%,
+				/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 80%,
+				/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.2)
+			);
+			--default-footer-background: linear-gradient(
+				to bottom,
+				rgba(33, 33, 33, 0.9),
+				rgba(13, 13, 13, 0.9)
+			);
+	
+			--default-dot-color-normal: rgb(138, 138, 138);
+			--default-dot-color-hot: rgb(171, 171, 171);
+			--default-selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
+			--default-selection-bar-background-color-hot: rgb(77, 77, 77);
+	
+			--default-footer-item-color-hot: rgb(153, 153, 153);
+			--default-footer-menu-background-color: black;
+			--default-footer-menu-outline-color: rgba(255, 255, 255, 0.2);
+			--default-footer-menu-item-link-color: rgb(139, 188, 249);
+			--default-footer-vertical-separator-background-color: rgb(77, 77, 77);
+		}
+	}
+
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
@@ -95,32 +123,6 @@
 		
 
 		&[footer-themable="true"] {
-			@media (prefers-color-scheme: dark) {
-				--default-footer-border: linear-gradient(
-					to left,
-					rgba(105, 105, 105, 0.2),
-					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 20%,
-					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.3) 80%,
-					/* COLOR_NTP_SECTION_BORDER */ rgba(105, 105, 105, 0.2)
-				);
-				--default-footer-background: linear-gradient(
-					to bottom,
-					rgba(33, 33, 33, 0.9),
-					rgba(13, 13, 13, 0.9)
-				);
-		
-				--default-dot-color-normal: rgb(138, 138, 138);
-				--default-dot-color-hot: rgb(171, 171, 171);
-				--default-selection-bar-background-color-normal: rgba(255, 255, 255, 0.1);
-				--default-selection-bar-background-color-hot: rgb(77, 77, 77);
-		
-				--default-footer-item-color-hot: rgb(153, 153, 153);
-				--default-footer-menu-background-color: black;
-				--default-footer-menu-outline-color: rgba(255, 255, 255, 0.2);
-				--default-footer-menu-item-link-color: rgb(139, 188, 249);
-				--default-footer-vertical-separator-background-color: rgb(77, 77, 77);
-			}
-
 			--logo-wordmark-color: var(--toolbar-color, var(--lwt-text-color));
 
 			--footer-background: linear-gradient(
