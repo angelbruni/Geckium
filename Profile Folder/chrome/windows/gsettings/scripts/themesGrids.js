@@ -208,7 +208,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 			manageThemeModal.querySelector("#preview").style.backgroundSize = null;
 			manageThemeModal.querySelector("#preview").style.backgroundSize = themeInfo[i].bannerSizing;
 
-			manageThemeModal.querySelector(".description p").textContent = themeDescription;
+			manageThemeModal.querySelector(".description p").textContent = themeInfo[i].desc ? themeInfo[i].desc : gSettingsBundle.GetStringFromName("themeHasNoDescription");
 
 			const viewStorePageBtn = manageThemeModal.querySelector("#viewStorePageBtn");
 			viewStorePageBtn.removeAttribute("disabled");
