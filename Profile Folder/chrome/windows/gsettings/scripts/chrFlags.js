@@ -40,9 +40,7 @@ function populateFlags() {
 			</html:button>
 			`
 
-			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.flexDirection = "column";
 			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.alignItems = "start";
-			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.paddingBlockEnd = "15px";
 		} else {
 			flagSetting = `
 			<div class="switch-parent">
