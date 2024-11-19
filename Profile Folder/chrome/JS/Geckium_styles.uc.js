@@ -20,12 +20,10 @@ function isWindows10() {
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
 
-// Native Controls Patch / Marble check
+// Marble check
 function isNativeControls() {
     if (AppConstants.platform == "win") {
-        if (isNCPatched) { // Native Controls Patch
-            return true;
-        } else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) { // Marble
+        if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) { // Marble
             return true;
         }
     }

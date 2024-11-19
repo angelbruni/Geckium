@@ -776,6 +776,9 @@ h4 .about-flag {
 :root:not([isWindows10]) .win10 {
 	display: none !important;
 }
+:root:not([nativecontrols]) .nativecontrols {
+	display: none !important;
+}
 .linuxonly {
 	@media not (-moz-platform: linux) {
 		display: none !important;
