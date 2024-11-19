@@ -45,8 +45,8 @@
 				}
 			});
 		}
-			observeTextChange('#PanelUI-fxa-menu-monitor-button #fxa-menu-header-title', peopleBundle.GetStringFromName("SwitchThePeople"));
-			observeTextChange('#PanelUI-fxa-menu-relay-button #fxa-menu-header-title', peopleBundle.GetStringFromName("GoIncognito"));
+			observeTextChange('#PanelUI-fxa-menu-monitor-button #fxa-menu-header-title', peopleBundle.GetStringFromName("switchperson"));
+			observeTextChange('#PanelUI-fxa-menu-relay-button #fxa-menu-header-title', peopleBundle.GetStringFromName("goincognito"));
     }
 
     window.addEventListener('load', function() {
