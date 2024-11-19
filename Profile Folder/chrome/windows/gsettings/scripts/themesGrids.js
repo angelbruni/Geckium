@@ -102,16 +102,13 @@ window.addEventListener("load", filterGrid);
 
 function destroyGrids() {
 	modesList.innerHTML = "";
-
 	themesList.querySelectorAll(`[class*="geckium-appearance"`).forEach(theme => theme.remove());
-
 	gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
-
 	gridsInitialised = false;
 }
 
 document.addEventListener("pageChanged", () => {
-	if (gmPages.getCurrentPage("main").dataset.page == 13) {
+	if (gmPages.getCurrentPage("main") == 13) {
 		initGrids();
 	} else {
 		if (gridsInitialised == true)
