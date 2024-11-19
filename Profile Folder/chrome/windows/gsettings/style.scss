@@ -1,15 +1,17 @@
 :root {
-	&[contentmode="wizard"] {
-		.disable-in-wizard {
-			pointer-events: none;
-			opacity: .5;
+	
+	&[contentmode="wizard"] .disable-in-wizard,
+	[disabled="true"] {
+		pointer-events: none;
+		opacity: .5;
 
-			&#global-appearance-container {
-				max-height: 100px;
-				mask-image: linear-gradient(to bottom, black, transparent);
-			}
+		.appearance-container {
+			max-height: 100px;
+			mask-image: linear-gradient(to bottom, black, transparent);
 		}
+	}
 
+	&[contentmode="wizard"] {
 		.show-in-wizard {
 			display: flex;
 		}
