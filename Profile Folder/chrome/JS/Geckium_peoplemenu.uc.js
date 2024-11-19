@@ -30,6 +30,9 @@
 	// TODO: This is pretty much a hack but it works for what it is supposed to do. (I won't blame you bruni if you decide to make custom buttons instead. This
 	// TODO: 																		 is straight up ass to deal with.)
     function replaceMenuText() {
+		const peopleBundle = Services.strings.createBundle("chrome://geckium/locale/properties/people.properties");
+
+
 		function observeTextChange(selector, targetText) {
 			waitForElm(selector).then((element) => {
 				if (element) {
@@ -42,8 +45,8 @@
 				}
 			});
 		}
-		observeTextChange('#PanelUI-fxa-menu-monitor-button #fxa-menu-header-title', '[!!! §ωïƭçλ ƥèřƨôñ !!!]'); // TODO: Replace these with localizable strings
-		observeTextChange('#PanelUI-fxa-menu-relay-button #fxa-menu-header-title', '[!!! Gô ïñçôϱñïƭô !!!]');
+			observeTextChange('#PanelUI-fxa-menu-monitor-button #fxa-menu-header-title', peopleBundle.GetStringFromName("SwitchThePeople"));
+			observeTextChange('#PanelUI-fxa-menu-relay-button #fxa-menu-header-title', peopleBundle.GetStringFromName("GoIncognito"));
     }
 
     window.addEventListener('load', function() {
