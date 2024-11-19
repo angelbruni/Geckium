@@ -95,9 +95,9 @@ function loadConditionalSettings(setting) {
 	conditionalitems.forEach(item => {
 		gkswitch = document.querySelector(`input.switch[data-pref="${item.dataset.switchreq}"]`)
 		if (gkswitch.checked == true) {
-			item.style.removeProperty("display");
+			item.removeAttribute("disabled");
 		} else {
-			item.style.setProperty("display", "none");
+			item.setAttribute("disabled", true);
 		}
 		if (!setting) {
 			// Add toggle event to re-trigger the check for only this switch's setting
