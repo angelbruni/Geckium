@@ -150,4 +150,12 @@
 			display: flex !important;
 		}
 	}
+	
+	// Replace Menu Icons
+	.PanelUI-fxa-menu-monitor-button.ctaMenuLogo {
+	  list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/peoplemenu/switchperson.png") !important;
+	}
+	.PanelUI-fxa-menu-relay-button.ctaMenuLogo {
+	  list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/peoplemenu/goincognito.svg") !important;
+	}
 }
