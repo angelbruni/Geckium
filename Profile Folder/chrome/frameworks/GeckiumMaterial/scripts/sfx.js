@@ -3,11 +3,13 @@ const SFXTick = new Audio("chrome://userchrome/content/frameworks/GeckiumMateria
 setTimeout(() => {
 	document.querySelectorAll('button, label.button, .input, .checkbox-parent, .switch-parent, .radio-parent, .step').forEach(btn => {
 		btn.addEventListener("mousedown", () => {
-			const snd = SFXTick.cloneNode();
-			snd.play();
-			snd.addEventListener("ended", () => {
-				snd.remove();
-			});
+			if (gkPrefUtils.tryGet("Geckium.gmWindow.clickFeedbackSFX").bool) {
+				const snd = SFXTick.cloneNode();
+				snd.play();
+				snd.addEventListener("ended", () => {
+					snd.remove();
+				});
+			}
 		})
 	})
 }, 100);
