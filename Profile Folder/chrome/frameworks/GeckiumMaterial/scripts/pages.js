@@ -2,26 +2,31 @@ class gmPages {
 	static pageChanged = new CustomEvent("pageChanged");
 
 	static getCurrentPage(pageContainer) {
-		return document.querySelector(`.pages-container[data-page-container="${pageContainer}"] vbox[selected="true"]`)
+		try {
+			return document.querySelector(`.pages-container[data-page-container="${pageContainer}"] .page[selected="true"]`).dataset.page
+		} catch (e) {
+			console.error(e);
+			return null
+		}
 	}
 
 	static skipToPage(pageContainer, targetPage) {
 		if (pageContainer !== undefined && targetPage !== undefined) {
-			const previousPage = this.getCurrentPage(pageContainer).dataset.page;
+			const previousPage = this.getCurrentPage(pageContainer);
 
 			// Button
-			const pageBtns = document.querySelectorAll("button[data-page-container='" + pageContainer + "'");
+			const pageBtns = document.querySelectorAll(`button[data-page-container="${pageContainer}"`);
 	
 			pageBtns.forEach(selectedBtn => {
 				selectedBtn.removeAttribute("selected");
 			})
 	
-			const pageBtn = document.querySelector("button[data-page-container='" + pageContainer + "'][data-page='"+ targetPage +"']");
+			const pageBtn = document.querySelector(`button[data-page-container="${pageContainer}"][data-page="${targetPage}"]`);
 			if (pageBtn)
 				pageBtn.setAttribute("selected", true);
 	
 			// Page
-			const page = document.querySelector(".pages-container[data-page-container='" + pageContainer + "'] vbox[data-page='" + targetPage +"']");
+			const page = document.querySelector(`.pages-container[data-page-container="${pageContainer}"] vbox[data-page="${targetPage}"]`);
 			
 			const pageList = page.parentNode.querySelectorAll("vbox[data-page]");
 			if (pageList) {
@@ -32,10 +37,10 @@ class gmPages {
 			page.setAttribute("selected", true);
 
 			// Only send `pageChanged` event if the page that we skipped to is not the same as the previous page.
-			if (previousPage !== this.getCurrentPage(pageContainer).dataset.page)
+			if (previousPage !== this.getCurrentPage(pageContainer))
 				document.dispatchEvent(this.pageChanged);
 	
-			const pageTitle = document.querySelector("#page-title[data-page-container='" + pageContainer + "']");
+			const pageTitle = document.querySelector(`#page-title[data-page-container="${pageContainer}"]`);
 			if (pageTitle) {
 				if (pageBtn) {
 					if (pageBtn.dataset.pageTitle)
@@ -52,19 +57,19 @@ class gmPages {
 					const indicator = pageBtn.parentNode.querySelector(".indicator");
 					const pageBtnRect = pageBtn.getBoundingClientRect()
 		
-					indicator.style.left = pageBtnRect.x - pageBtn.parentNode.getBoundingClientRect().x + "px";
-					indicator.style.width = pageBtnRect.width + "px";
+					indicator.style.left = `${pageBtnRect.x} - ${pageBtn.parentNode.getBoundingClientRect().x}px`;
+					indicator.style.width = `${pageBtnRect.width}px`;
 		
 					// Page
 					const pagesContainer = page.parentNode;
-					pagesContainer.style.transform = "translateX(calc(-100% * " + targetPage + "))";
+					pagesContainer.style.transform = `translateX(calc(-100% * ${targetPage}))`;
 				}
 			}
 		}
 	}
 
 	static setCurrentStep() {
-		const currentPage = document.querySelector(`.pages-container > .page[selected="true"]`).dataset.page;
+		const currentPage = document.querySelector('.pages-container > .page[selected="true"]').dataset.page;
 	
 		if (document.querySelector(".stepper")) {
 			document.querySelectorAll(`.step.active`).forEach(step => {
@@ -81,7 +86,7 @@ class gmPages {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	document.querySelectorAll("button[data-page-container]").forEach(item => {
+	document.querySelectorAll("[data-page-container]").forEach(item => {
 		item.addEventListener("click", () => {
 			gmPages.skipToPage(item.dataset.pageContainer, item.dataset.page);
 		})
