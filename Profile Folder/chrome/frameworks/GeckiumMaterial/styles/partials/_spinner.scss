@@ -35,6 +35,10 @@
 	background-color: rgba(255,255,255,.8);
 	justify-content: center;
 	align-items: center;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: rgba(30,30,30,.8);
+	}
 }
 *:not([loading="true"]) + .spinner-container {
 	display: none;
