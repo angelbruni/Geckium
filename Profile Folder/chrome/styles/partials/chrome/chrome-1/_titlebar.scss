@@ -186,7 +186,7 @@
 			margin-top: 0 !important;
 		}
 		//Windows 10 quirks
-		&[isWindows10]:not([nativecontrols="true"]) #titlebar {
+		&[isWindows10]:not([nativeControls="win10"]) #titlebar {
 			// remove the top gap
 			appearance: none !important;
 		}

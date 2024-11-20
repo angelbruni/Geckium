@@ -29,7 +29,17 @@ if (parseInt(ffVersion.split(".")[0]) >= 134) {
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
-const isNCPatched = window.matchMedia("(-moz-ev-native-controls-patch)").matches;
+function getNCPatched() {
+	if (AppConstants.platform == "win") {
+		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches) // Native Controls Patch
+			return "ev";
+        else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) // Marble
+			return "marble";
+    }
+	return null;
+}
+const isNCPatched = getNCPatched();
+
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
 const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar");
 

@@ -19,30 +19,16 @@ function isWindows10() {
 }
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
-
-function getNCPStatus() {
-	let patched = false;
-	let type;
-
-    if (AppConstants.platform == "win") {
-			/* NCP */															/* Marble check */
-        if ((window.matchMedia("(-moz-ev-native-controls-patch)").matches) || (isWindows10() && window.matchMedia("(-moz-native-controls)").matches)) {
-            patched = true;
-
-			if (window.matchMedia("(-moz-ev-native-controls-patch)").matches)
-				type = "ev";
-			else if (window.matchMedia("(-moz-native-controls)").matches)
-				type = "marble";
-        }
-    }
-
-	return {
-		patched: patched,
-		type: type
-	}
+if (isNCPatched && isNCPatched != "ev") { // Marble
+    document.documentElement.setAttribute("nativeControls", "win10");
+} else if (isNCPatched == "ev") { // Native Controls Patch
+    // We need a way to differentiate Native Controls Patch from
+    // Windows 10 with Native Controls (e.g.: Marble), as Native
+    // Controls Patch allows you to use the Windows 10 CSDs still
+    // whereas Windows 10 with Native Controls lacks the CSDs,
+    // causing issues if not differentiated between in the CSS.
+    document.documentElement.setAttribute("nativeControls", "patch");
 }
-if (getNCPStatus().patched)
-    document.documentElement.setAttribute("nativecontrols", true);
 
 // Initial variables
 let previousEra;
