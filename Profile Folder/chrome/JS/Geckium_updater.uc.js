@@ -112,6 +112,8 @@ async function gkCheckForUpdateReleases() {
         .then((releases) => {
             if (releases[0].tag_name !== gkver) {
                 document.documentElement.setAttribute("gkcanupdate", "true");
+            } else {
+                document.documentElement.setAttribute("gkcanupdate", "false");
             }
         })
         .catch(error => {
@@ -122,28 +124,39 @@ async function gkCheckForUpdateReleases() {
 async function gkCheckForUpdatesCanary() {
     // Canary is under a weird case where it is not an actual release, so we need to get it from github actions.
     // Also versioning is different, using the commit hash.
-    const ghURL = "https://api.github.com/repos/angelbruni/Geckium/actions/workflows/127139753/runs?status=success&branch=main&check_suite_id=30704180915";
+    const ghURL = "https://api.github.com/repos/angelbruni/Geckium/actions/workflows/127139753/runs?status=success&branch=main";
     var gkverraw = await gkUpdater.getRawVersion();
     fetch(ghURL, {cache: "reload", headers: {"X-GitHub-Api-Version": "2022-11-28", "Accept": "application/vnd.github+json", "UserAgent": "GeckiumUpdater/1.0"}})
         .then((response) => response.json())
         .then((workflow_runs) => {
-            workflow_runs.forEach(run => {
+            // JSON is beautiful, isn't it?
+            let hasUpdate = false;
+            for (let run of workflow_runs.workflow_runs) {
+                if (hasUpdate) break;
+                console.log("We found a run with the following commit hash: " + run.head_commit.id.substring(0, 7) + " current version: " + gkverraw);
                 // check if the latest successful run is newer than the current version. I am assuming they are in order of when they were run.
                 if (run.head_commit.id.substring(0, 7) == gkverraw) {
                     // We are on the newest version, abort.
-                    return;
+                    console.log("We are on the newest version, aborting.");
+                    document.documentElement.setAttribute("gkcanupdate", "false");
+                    break;
                 }
+                console.log("Not using latest run, checking for artifacts.");
                 // We know that the latest run is newer than the current version, but we do not know if it actually built anything.
                 // We need to check the artifacts to see if there is a build.
-                fetch(`https://api.github.com/repos/angelbruni/Geckium/actions/runs/${run.id}/artifacts`, {cache: "reload", headers: {"X-GitHub-Api-Version": "2022-11-28", "Accept": "application/vnd.github+json", "UserAgent": "GeckiumUpdater/1.0"}})
+                fetch(run.artifacts_url, {cache: "reload", headers: {"X-GitHub-Api-Version": "2022-11-28", "Accept": "application/vnd.github+json", "UserAgent": "GeckiumUpdater/1.0"}})
                     .then((response) => response.json())
                     .then((artifacts) => {
                         if (artifacts.total_count > 0) {
                             // We have a build, we can update.
                             document.documentElement.setAttribute("gkcanupdate", "true");
+                            console.log("We have a build, we can update.");
+                            hasUpdate = true;
+                        } else {
+                            console.log("No artifacts found, skipping.");
                         }
                     });
-            });
+            }
         })
         .catch(error => {
             console.error("Something happened when checking for newer Geckium Canary builds:", error);
