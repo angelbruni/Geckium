@@ -8,15 +8,7 @@
 // @include		about:addons*
 // ==/UserScript==
 
-// Windows version check
-function isWindows10() {
-	if (AppConstants.platform == "win") {
-		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
-		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
-			return true;
-	}
-	return false;
-}
+// Windows version and native check
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
 if (isNCPatched && isNCPatched != "ev") { // Marble
