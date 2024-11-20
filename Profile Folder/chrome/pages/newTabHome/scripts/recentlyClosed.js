@@ -1,7 +1,9 @@
 function createRecentlyClosed() {
 	let appearanceChoice = gkEras.getNTPEra();
 
-	const closedTabsList = SessionStore.getClosedTabDataForWindow(Services.wm.getMostRecentWindow('navigator:browser'));
+	let closedTabsList = [];
+	if (!gkPrefUtils.tryGet("Geckium.devOptions.disableRecentlyClosed").bool)
+		closedTabsList = SessionStore.getClosedTabDataForWindow(Services.wm.getMostRecentWindow('navigator:browser'));
 
 	let url;
 	let title;
