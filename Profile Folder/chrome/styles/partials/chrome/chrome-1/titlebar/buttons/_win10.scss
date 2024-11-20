@@ -1,6 +1,8 @@
 & {
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+    #gkavatar-container {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer {
@@ -15,11 +17,12 @@
 	}
 	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 	&[privatebrowsingmode="temporary"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -31,6 +34,11 @@
 				order: -3 !important;
 			}
 		}
+	}
+
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
 	}
 
 	//Restore Firefox's Win10 menubar styling
@@ -114,13 +122,14 @@
 				color: var(--titlebar-button-foreground-inactive, inherit) !important;
 			}
 			
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background: color-mix(in srgb, currentColor 12%, transparent) !important;
-			}
-			&:not([disabled]):hover:active {
-				background: color-mix(in srgb, currentColor 22%, transparent) !important;
-				transition: none;
+
+				&:active {
+					background: color-mix(in srgb, currentColor 22%, transparent) !important;
+					transition: none;
+				}
 			}
 
 			//Make the stroke actually visible

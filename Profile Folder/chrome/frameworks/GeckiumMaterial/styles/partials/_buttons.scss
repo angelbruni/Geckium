@@ -5,8 +5,14 @@ label {
 	box-sizing: border-box;
 
 	position: relative;
-	display: flex;
 	align-items: center;
+
+	&.button,
+	&.floating-action-button,
+	&.link,
+	&.action-item {
+		display: flex;
+	}
 
 	&.button {
 		overflow: hidden;

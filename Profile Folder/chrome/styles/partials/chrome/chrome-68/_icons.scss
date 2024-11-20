@@ -1,4 +1,18 @@
 & {
     // Favicons
     --sadfavicon:		  url("chrome://userchrome/content/assets/img/chrome-68/favicons/favicon_sad_tab.svg");
+
+    // Toolbar
+    --bookmark-folder-icon:	url("chrome://userchrome/content/assets/img/chrome-68/toolbar/bookmark_folder.svg");
+
+    &[gkthemed][gkchrthemed],
+    &[gkthemed]:not([gkchrthemed]) {
+        .bookmark-item[container="true"] {
+            fill: currentColor !important;
+        }
+    }
+}
+
+.bookmark-item[container="true"] {
+    fill: #5A5A5A !important;
 }

@@ -12,26 +12,31 @@
 	width: calc(100% + 2 * var(--toolbarbutton-width)) !important;
 }
 
-#urlbar-results {
-	> .urlbarView-row:first-of-type {
-		.urlbarView-no-wrap::before {
-			content: var(--search-favicon);
-			position: absolute;
-			width: 16px;
-			height: 16px;
-			left: 4px;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-		
-		.urlbarView-favicon {
-			display: none;
-		}
+#urlbar-results > .urlbarView-row:first-of-type {
+	.urlbarView-no-wrap::before {
+		content: var(--search-favicon);
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 4px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	.urlbarView-favicon {
+		display: none;
 	}
 }
 
 .urlbarView-row {
-	// Remove empty gap in Firefox 121+
+	&:not([type="tip"]) {
+		padding-block: unset !important;
+
+		.urlbarView-no-wrap {
+			flex-basis: 0 !important;
+		}
+	}
+
 	&:not([has-url]) {
 		.urlbarView-title {
 			&::before {
@@ -49,10 +54,6 @@
 	&[type="switchtab"] .urlbarView-row-inner .urlbarView-title {
 		padding-left: 24px;
 	}
-}
-
-.urlbarView-no-wrap {
-	flex-basis: 0 !important;
 }
 
 .urlbarView-favicon {

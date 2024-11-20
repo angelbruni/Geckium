@@ -1,0 +1,57 @@
+&[gktitnative="true"] {
+    .gkpeople-titlebar {
+        -moz-default-appearance: button !important;
+        appearance: button !important;
+		align-self: center;
+		display: flex !important;
+        height: 24px;
+        min-width: 24px;
+	}
+}
+
+&[gktitnative="false"] {
+    &:not([gkpeopleforce68linux="true"]) {
+        @import "wincompact";
+    }
+    &[gkpeopleforce68linux="true"] {
+        .gkpeople-titlebar {
+            display: flex !important;
+            width: unset;
+            min-width: 30px;
+    
+            .toolbarbutton-text {
+                --stroke-color: rgba(0, 0, 0, 0.55);
+                color: white !important;
+                font-size: 8pt;
+                margin-inline: 8px !important;
+    
+                text-shadow:	1px		1px		0	var(--stroke-color),
+                                1px		-1px	0	var(--stroke-color),
+                                -1px	1px		0	var(--stroke-color),
+                                -1px	-1px	0	var(--stroke-color),
+                                1px		0px		0	var(--stroke-color),
+                                0px		1px		0	var(--stroke-color),
+                                -1px	0px		0	var(--stroke-color),
+                                0px		-1px	0	var(--stroke-color),
+            }
+
+            image { // Set the icon's opacity and hover-fade
+                opacity: .6 !important;
+                transition: opacity 100ms linear;
+            }
+        }
+
+        &[gktitbuttons="linux"] .gkpeople-titlebar::after {
+            left: 2px;
+            top: 2px;
+            right: 2px;
+            height: 14px;
+            position: absolute;
+            z-index: -1;
+        }
+    }
+
+    #gkpeople-button-container {
+        margin-block-start: 2px; // top margin
+    }
+}

@@ -1,4 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-	skipToPage("main", 0)
-	skipToPage("buttons", 0)
+	gmPages.skipToPage("main", 0)
+	gmPages.skipToPage("buttons", 0)
 });

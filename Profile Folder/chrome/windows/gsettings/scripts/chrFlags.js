@@ -6,18 +6,15 @@ function populateFlags() {
 	flags.forEach((flag, index) => {
 		const isMultipleChoice = flag.hasOwnProperty("values");
 
-		// console.log(flag, isMultipleChoice);
-
 		const flagName = Object.keys(chrFlags.getFlagsList())[index];
 
 		var flagDuration = `Chrome ${gkEras.getEras("main")[flag.styleints[0]].name}`;
 		var flagEnd = gkEras.getEras("main")[flag.styleints[flag.styleints.length - 1]].name;
-		if (gkEras.getEras("main")[flag.styleints[0]].name != flagEnd) {
+		if (gkEras.getEras("main")[flag.styleints[0]].name != flagEnd)
 			flagDuration = `${flagDuration} - ${flagEnd}`;
-		}
 
 		let flagItem = `
-		<hbox class="item" data-pref="${flagName}">
+		<hbox class="item" data-pref="Geckium.chrflag.${flagName}">
 			<vbox>
 				<label class="name"><div class="year">${flagDuration}</div>${flag.name}</label>
 				<label class="description">${flag.description}</label>
@@ -31,18 +28,14 @@ function populateFlags() {
 		let flagSetting;
 		if (isMultipleChoice) {
 			flagSetting = `
-			<html:button class="menu" data-name="test-style" data-pref="chrflag.${flagName.replace(/-/g, ".")}" id="test-style-select" style="width: 100%">
+			<html:button class="menu" data-name="test-style" data-pref="Geckium.chrflag.${flagName.replace(/-/g, ".")}" id="test-style-select" style="width: 100%">
 				<label class="placeholder" />
 				<label class="selected" />
-				<vbox class="list">
-					
-				</vbox>
+				<vbox class="list" />
 			</html:button>
 			`
 
-			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.flexDirection = "column";
-			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.alignItems = "start";
-			document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).style.paddingBlockEnd = "15px";
+			document.querySelector(`#flags-container .item[data-pref="Geckium.chrflag.${flagName}"]`).style.alignItems = "start";
 		} else {
 			flagSetting = `
 			<div class="switch-parent">
@@ -52,18 +45,16 @@ function populateFlags() {
 			`
 		}
 
-		document.querySelector(`#flags-container .item[data-pref="${flagName}"]`).appendChild(MozXULElement.parseXULToFragment(flagSetting));
+		document.querySelector(`#flags-container .item[data-pref="Geckium.chrflag.${flagName}"]`).appendChild(MozXULElement.parseXULToFragment(flagSetting));
 
 		let flagOption;
 		if (isMultipleChoice) {
 			Object.values(flag.values).forEach((value, index) => {
-				// console.log(index, value);
-
 				flagOption = `
 				<hbox class="item ripple-enabled" value="${index}">${value}</hbox>
 				`
 
-				document.querySelector(`#flags-container .item[data-pref="${flagName}"] .menu .list`).appendChild(MozXULElement.parseXULToFragment(flagOption));
+				document.querySelector(`#flags-container .item[data-pref="Geckium.chrflag.${flagName}"] .menu .list`).appendChild(MozXULElement.parseXULToFragment(flagOption));
 			})
 			
 		}

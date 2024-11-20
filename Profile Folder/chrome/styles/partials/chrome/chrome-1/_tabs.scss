@@ -30,15 +30,15 @@
 
 	--tab-transition-time: 220ms;
 
-	--tab-normal-width: 194px;
-	--tab-pinned-width: 39px;
-	--tab-selected-min-width: 31px;
-	--tab-height: 27px;
-	--tab-sides-width: 15px;
-	--tab-inner-margin-start: 15px;
-	--tab-inner-margin-end: 0;
-	--tab-content-y-from-top: 0;
-	--tab-gap-between: -16px;
+	--tab-normal-width:			194px;
+	--tab-pinned-width:			39px;
+	--tab-selected-min-width:	31px;
+	--tab-height:				27px;
+	--tab-sides-width:			15px;
+	--tab-inner-margin-start:	15px;
+	--tab-inner-margin-end:		0;
+	--tab-content-y-from-top:	0;
+	--tab-gap-between:			-16px;
 
 	--tab-glare-opacity: 1;
 	--tab-glare: var(--default-tab-glare);
@@ -64,6 +64,14 @@
 	--tab-gap-between-favicon-and-title: 5px;
 	--tab-pinned-icon-offset-x: 0;
 
+	// Added in Chromium 27
+	--tab-sharing-icon-animation:	2s linear tab-sharing-icon-pulse infinite !important;
+	--tab-recording:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_100.png");
+	--tab-recording-size:			10px;
+	--tab-capture:					url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_capture.svg");
+	--tab-capture-size:				16px;
+
+	// Added in Chromium 27
 	--tab-audio-animation-spritesheet-image:	url("chrome://userchrome/content/assets/img/chrome-1/tabbar/audio_animation.svg");
 	--tab-audio-animation-spritesheet-width:	90px;
 	--tab-audio-animation-spritesheet-height:	15px;
@@ -76,10 +84,10 @@
 	--tab-close-button-margin-block-start:	1px;
 	--tab-close-button-margin-inline-end:	-2px;
 
-	--newtab-distance-from-tabs: 11px;
-	--newtab-distance-from-bottom: 4px;
-	--newtab-width: 28px;
-	--newtab-height: 18px;
+	--newtab-distance-from-tabs:	11px;
+	--newtab-distance-from-bottom:	4px;
+	--newtab-width:					28px;
+	--newtab-height:				18px;
 
 	--default-theme-newtab: transparent;
 
@@ -99,6 +107,10 @@
 		--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_alpha_right.svg");
 		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.svg");
 		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.svg");
+
+		&:not([geckium-fortyseven]) {
+			--tab-recording: url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_200.png");
+		}
 
 		--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab_button_mask.svg");
 		--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/newtab.svg");
@@ -140,9 +152,181 @@
 	}
 
 	/* bruni: This entire code takes care of custom themes support for tabs */
-	// else if lwtheme
-	&[gkthemed]:not([gkchrthemed]) {
-		&:not([customthememode="none"]) {
+	// if lwtheme
+	&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
+		// --selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
+		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color, var(--lwt-text-color))) !important;
+
+		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"]:not([style*="--gktoolbar-bgcolor-opacity-percentage: 0%;"]) {
+			--tabbrowser-tab-color: black;
+		}
+
+		// if Geckium
+		&[customthememode="geckium"] {
+			--selected-tab-background-opacity-percentage-additive: 20%;
+			--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor, var(--lwt-accent-color)) 35%,
+					var(--lwt-accent-color)
+				) 80%,
+				transparent
+			) !important;
+
+			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
+				--selected-tab-background: var(--toolbar-bgcolor) !important;
+			}
+			&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--lwt-tab-line-color) 3px,
+					var(--toolbar-bgcolor) 3px
+				) !important;
+			}
+			&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--tab-selected-bgcolor) 3px,
+					var(--toolbar-bgcolor)
+				) !important;
+			}
+			&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--lwt-tab-line-color) 3px,
+					var(--tab-selected-bgcolor) 3px,
+					var(--toolbar-bgcolor)
+				) !important;
+			}
+
+			&[tab-selected-bgcolor-transparent="true"] {
+				&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						color-mix(
+							in srgb,
+							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+							var(--toolbar-bgcolor)
+						) 3px,
+						var(--toolbar-bgcolor)
+					) !important;
+				}
+				&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						color-mix(
+							in srgb,
+							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+							var(--toolbar-bgcolor)
+						) 3px,
+						var(--toolbar-bgcolor)
+					) !important;
+				}
+			}
+
+			&[toolbar-bgcolor-transparent="true"] {
+				&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				}
+				&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--gktoolbar-bgcolor) 3px
+					) !important;
+				}
+				&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--tab-selected-bgcolor) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--tab-selected-bgcolor) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
+				}
+				&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--tab-selected-bgcolor) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--lwt-tab-line-color) 3px,
+							var(--tab-selected-bgcolor) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
+				}
+
+				&[tab-selected-bgcolor-transparent="true"] {
+					&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							color-mix(
+								in srgb,
+								var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+								var(--gktoolbar-bgcolor)
+							) 3px,
+							var(--gktoolbar-bgcolor)
+						) !important;
+
+						&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+							--selected-tab-background: linear-gradient(
+								to bottom,
+								color-mix(
+									in srgb,
+									var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+									var(--lwt-accent-color)
+								) 3px,
+								var(--lwt-accent-color)
+							) !important;
+						}
+					}
+					&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--lwt-tab-line-color) 3px,
+							color-mix(
+								in srgb,
+								var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+								var(--gktoolbar-bgcolor)
+							) 3px,
+							var(--gktoolbar-bgcolor)
+						) !important;
+
+						&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+							--selected-tab-background: linear-gradient(
+								to bottom,
+								var(--lwt-tab-line-color) 3px,
+								color-mix(
+									in srgb,
+									var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
+									var(--lwt-accent-color)
+								) 3px,
+								var(--lwt-accent-color)
+							) !important;
+						}
+					}
+				}
+				
+			}
+		}
+		// if FXChrome-like
+		&[customthememode="fxchrome"] {
+			--selected-tab-background: var(--toolbar-bgcolor) !important;
 			--inactive-tab-background: color-mix(
 				in srgb,
 				color-mix(
@@ -152,35 +336,54 @@
 				) 80%,
 				transparent
 			) !important;
-			--selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-			--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-			--tabbrowser-tab-color-inactive: var(--tabbrowser-tab-color) !important;
 
-			// if FXChrome
-			&[customthememode="fxchrome"] {
-				&[toolbar-bgcolor-transparent="true"] {
-					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
-				}
+			&[toolbar-bgcolor-transparent="true"] {
+				--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				--inactive-tab-background: color-mix(
+				in srgb,
+				color-mix(
+					in srgb,
+					var(--gktoolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					black
+				) 80%,
+				transparent
+			) !important;
 			}
-			// if Silverfox
-			&[customthememode="silverfox"] {
-				&[toolbar-bgcolor-transparent="true"] {
-					--selected-tab-background: linear-gradient(
-						to bottom,
-						transparent -50%,
-						var(--gktoolbar-bgcolor) 70%
-					) !important;
+		}
+		// if Silverfox
+		&[customthememode="silverfox"] {
+			--selected-tab-background: linear-gradient(
+				to bottom,
+				transparent -50%,
+				var(--toolbar-bgcolor) 70%
+			) !important;
 
-					--inactive-tab-background: linear-gradient(
-						to bottom,
-						transparent -10%,
-						color-mix(
-							in srgb,
-							var(--gktoolbar-bgcolor) 70%,
-							transparent
-						) 60%
-					) !important;
-				}
+			--inactive-tab-background: linear-gradient(
+				to bottom,
+				transparent -10%,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor) 70%,
+					transparent
+				) 60%
+			) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					transparent -50%,
+					var(--gktoolbar-bgcolor) 70%
+				) !important;
+	
+				--inactive-tab-background: linear-gradient(
+					to bottom,
+					transparent -10%,
+					color-mix(
+						in srgb,
+						var(--gktoolbar-bgcolor) 70%,
+						transparent
+					) 60%
+				) !important;
 			}
 		}
 	}
@@ -190,10 +393,10 @@
 		&:not([geckium-eleven]) {
 			--tab-glare: var(--selected-tab-background, var(--default-selected-tab-background)) !important;
 		}
-		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+		--inactive-tab-background: var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background))) !important;
 		
 		&[gktitnative="true"] { // Use different inactive tab background when in System
-			--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame, var(--default-inactive-tab-background-color))) !important;
+			--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame, var(--default-inactive-tab-background))) !important;
 		}
 		
 		--tabbrowser-tab-color-inactive: var(--chrtheme-tab-background-text, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
@@ -210,6 +413,10 @@
 				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px)) !important;
 			}
 		}
+	}
+
+	&:not([geckium-fortyseven]) [soundplaying] .tab-icon-image {
+		display: flex !important;
 	}
 
 	#TabsToolbar-customization-target {
@@ -273,14 +480,37 @@
 
 		pointer-events: none !important;
 
-		&:hover {
-			.tab-glare-container {
-				opacity: var(--tab-glare-opacity);
+		&:hover .tab-glare-container {
+			opacity: var(--tab-glare-opacity);
 
-				/* bruni: In Chrome, the glare shows up faster when hovering. */
-				transition-property: opacity;
-				transition-duration: var(--tab-glare-hover-timer);
-				transition-timing-function: linear;
+			/* bruni: In Chrome, the glare shows up faster when hovering. */
+			transition-property: opacity;
+			transition-duration: var(--tab-glare-hover-timer);
+			transition-timing-function: linear;
+		}
+
+		&[sharing] .tab-sharing-icon-overlay {
+			display: revert !important;
+		}
+
+		.tab-content > .tab-sharing-icon-overlay {
+			display: none !important;
+		}
+		
+		.tab-icon-stack .tab-sharing-icon-overlay {
+			align-self: end;
+			justify-self: end;
+	
+			&[sharing="microphone"] {
+				list-style-image: var(--tab-recording) !important;
+				width: var(--tab-recording-size) !important;
+				height: var(--tab-recording-size) !important;
+			}
+
+			&[sharing="screen"] {
+				list-style-image: var(--tab-capture) !important;
+				width: var(--tab-capture-size) !important;
+				height: var(--tab-capture-size) !important;
 			}
 		}
 
@@ -322,9 +552,7 @@
 				&::before {
 					background: var(--selected-tab-background, var(--default-selected-tab-background));
 				}
-			}
 
-			.tab-background-container {
 				&::after {
 					background-image: var(--tab-inline-start-active-texture), var(--tab-inline-center-active-texture), var(--tab-inline-end-active-texture);
 				}
@@ -335,14 +563,8 @@
 				transition: opacity 0s !important;
 			}
 		}
-		&:not([visuallyselected]) {
-			.tab-background-container {
-				> * {
-					&::before {
-						background: var(--inactive-tab-background, var(--default-inactive-tab-background));
-					}
-				}
-			}
+		&:not([visuallyselected]) .tab-background-container > *::before {
+			background: var(--inactive-tab-background, var(--default-inactive-tab-background));
 		}
 
 		/** 
@@ -394,7 +616,7 @@
 				}
 
 				.tab-context-line {
-					mask-image:		var(--tab-container2-left),		var(--tab-container-center),					var(--tab-container-right);
+					mask-image:	var(--tab-container2-left),	var(--tab-container-center), var(--tab-container-right);
 				}
 		
 				.tab-glare-container {
@@ -403,11 +625,11 @@
 			}
 		}
 
-		&[fadein] {
-			&[pinned]:not([style*="max-width"]) {
+		&[fadein]:not([style*="max-width"]) {
+			&[pinned] {
 				max-width: var(--tab-pinned-width) !important;
 			}
-			&:not([pinned]):not([style*="max-width"]) {
+			&:not([pinned]) {
 				max-width: var(--tab-normal-width) !important;
 			}
 		}
@@ -718,6 +940,10 @@
 			mask-position: center;
 			mask-size: var(--newtab-width) var(--newtab-height);
 			background: var(--theme-newtab, var(--default-theme-newtab));
+		}
+
+		&:-moz-locale-dir(rtl) {
+			transform: scaleX(-1);
 		}
 
 		.toolbarbutton-icon {
