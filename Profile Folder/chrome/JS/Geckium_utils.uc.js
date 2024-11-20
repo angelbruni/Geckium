@@ -29,6 +29,15 @@ if (parseInt(ffVersion.split(".")[0]) >= 134) {
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
+function isWindows10() {
+	if (AppConstants.platform == "win") {
+		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
+		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
+			return true;
+	}
+	return false;
+}
+
 function getNCPatched() {
 	if (AppConstants.platform == "win") {
 		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches) // Native Controls Patch
