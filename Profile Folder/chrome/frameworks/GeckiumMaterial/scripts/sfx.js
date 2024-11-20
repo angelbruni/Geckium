@@ -3,7 +3,7 @@ const SFXTick = new Audio("chrome://userchrome/content/frameworks/GeckiumMateria
 setTimeout(() => {
 	document.querySelectorAll('button, label.button, .input, .checkbox-parent, .switch-parent, .radio-parent, .step').forEach(btn => {
 		btn.addEventListener("mousedown", () => {
-			if (gkPrefUtils.tryGet("Geckium.gmWindow.clickFeedbackSFX").bool) {
+			if (gkPrefUtils.tryGet("Geckium.gmWindow.clickSndFeedback").bool) {
 				const snd = SFXTick.cloneNode();
 				snd.play();
 				snd.addEventListener("ended", () => {
