@@ -2,7 +2,7 @@
 	--tab-normal-width: 192px;
 	--tab-pinned-width: 39px;
 	--tab-selected-min-width: 31px;
-	--tab-height: 30px;
+	--tab-height: 29px;
 	--tab-sides-width: 14px;
 	--tab-inner-margin-start: 15px;
 	--tab-content-y-from-top: -1px;
@@ -42,6 +42,12 @@
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_p_views.svg");
+
+	/* bruni: This entire code takes care of custom themes support for tabs */
+	// else if chrtheme
+	&[gkthemed][gkchrthemed][gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
+		--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
+	}
 }
 
 .tabbrowser-tab {
@@ -59,10 +65,4 @@
 #tabbrowser-tabs {
 	// Remove the spacing counteract as it's no longer necessary
 	margin-top: unset !important;
-}
-
-/* bruni: This entire code takes care of custom themes support for tabs */
-// else if chrtheme
-&[gkthemed][gkchrthemed][gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
-	--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
 }
