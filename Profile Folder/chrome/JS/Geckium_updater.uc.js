@@ -88,6 +88,7 @@ function updateSettings(iteration) {
 		if (gkPrefUtils.tryGet("Geckium.appearance.titlebarStyle").string == "winnogaps") {
 			gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win8nogaps");	// Transition "Windows (no gaps)" to "Windows 8 (no gaps)"
 		}
+		
 		// pfpMode was changed from `int` to `string`.
 		try {
 			const pfpMode = parseInt(Services.prefs.getIntPref("Geckium.profilepic.mode"));
@@ -114,6 +115,10 @@ function updateSettings(iteration) {
 						own `geckium` mode.*/
 			gkPrefUtils.set("Geckium.customtheme.mode").string("geckium");
 		}
+
+		// Change this pref's name to be more inline with the rest of the `devOptions` settings.
+		gkPrefUtils.set("Geckium.devOptions.status").bool(gkPrefUtils.tryGet("Geckium.developerOptions.status").bool);
+		gkPrefUtils.delete("Geckium.developerOptions.status");
 	}
 	// Put future settings changes down here as < 6, and so on.
 

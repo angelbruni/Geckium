@@ -127,8 +127,11 @@
     #gkpeople-button-container {
         appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
     }
-	&:not([gkpeoplestyle="titlebutton"]) #gkpeople-button-container {
-		display: none !important;
+	#toolbar-menubar[autohide="true"]:not([inactive]) ~ #TabsToolbar,
+	&:not([gkpeoplestyle="titlebutton"]) {
+		#gkpeople-button-container {
+			display: none !important;
+		}
 	}
     #gk-firefox-account-button {
         padding: 0 !important;

@@ -1,15 +1,17 @@
 :root {
-	&[contentmode="wizard"] {
-		.disable-in-wizard {
-			pointer-events: none;
-			opacity: .5;
+	
+	&[contentmode="wizard"] .disable-in-wizard,
+	[disabled="true"] {
+		pointer-events: none;
+		opacity: .5;
 
-			&#global-appearance-container {
-				max-height: 100px;
-				mask-image: linear-gradient(to bottom, black, transparent);
-			}
+		.appearance-container {
+			max-height: 100px;
+			mask-image: linear-gradient(to bottom, black, transparent);
 		}
+	}
 
+	&[contentmode="wizard"] {
 		.show-in-wizard {
 			display: flex;
 		}
@@ -76,7 +78,7 @@ h4 .about-flag {
 	margin-inline-start: 4px;
 	cursor: pointer;
 	transition: all 150ms ease-in;
-	border-radius: 9999px;
+	border-radius: 50%;
 	overflow: hidden;
 	
 	&::before {
@@ -240,7 +242,7 @@ h4 .about-flag {
 	position: relative;
 	overflow: hidden;
 	padding-inline: 8px;
-	border-radius: 9999px;
+	border-radius: 50%;
 	width: fit-content;
 	transition: background-color 155ms;
 
@@ -772,6 +774,9 @@ h4 .about-flag {
 	display: none !important;
 }
 :root:not([isWindows10]) .win10 {
+	display: none !important;
+}
+:root:not([nativeControls]) .nativecontrols {
 	display: none !important;
 }
 .linuxonly {
