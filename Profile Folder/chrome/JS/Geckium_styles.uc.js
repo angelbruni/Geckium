@@ -8,22 +8,19 @@
 // @include		about:addons*
 // ==/UserScript==
 
-// Windows version check
-function isWindows10() {
-	if (AppConstants.platform == "win") {
-		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
-		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
-			return true;
-	}
-	return false;
-}
+// Windows version and nativeness check
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
-
-function hasMozNativeControlsAttr() {
-    document.documentElement.setAttribute("mozNativeControls", window.matchMedia("(-moz-native-controls)").matches);
+if (isNCPatched && isNCPatched != "patch") { // Marble
+    document.documentElement.setAttribute("nativeControls", "win10");
+} else if (isNCPatched == "patch") { // Native Controls Patch
+    // We need a way to differentiate Native Controls Patch from
+    // Windows 10 with Native Controls (e.g.: Marble), as Native
+    // Controls Patch allows you to use the Windows 10 CSDs still
+    // whereas Windows 10 with Native Controls lacks the CSDs,
+    // causing issues if not differentiated between in the CSS.
+    document.documentElement.setAttribute("nativeControls", "patch");
 }
-window.addEventListener("load", hasMozNativeControlsAttr);
 
 // Initial variables
 let previousEra;

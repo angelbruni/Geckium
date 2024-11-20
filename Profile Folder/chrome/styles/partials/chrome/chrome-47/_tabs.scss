@@ -54,16 +54,22 @@
 
 	&[muted] .tab-mute-button {
 		opacity: unset;
-		background-image: var(--tab-audio-muting-indicator);
+		list-style-image: var(--tab-audio-muting-indicator);
 	}
 
 	.tab-mute-button {
 		position: static;
-		width: var(--tab-audio-indicator-size);
-		height: var(--tab-audio-indicator-size);
-		background-image: var(--tab-audio-indicator);
+		background-image: unset;
+		list-style-image: var(--tab-audio-indicator);
 		animation: unset;
 		margin-block-start: var(--tab-audio-indicator-margin-block-start);
+
+		image {
+			width: var(--tab-audio-indicator-size);
+			height: var(--tab-audio-indicator-size);
+			-moz-context-properties: fill, fill-opacity;
+			fill: currentColor;
+		}
 	}
 
 	&[visuallyselected][minwidthreached="true"] .tab-close-button {

@@ -102,16 +102,13 @@ window.addEventListener("load", filterGrid);
 
 function destroyGrids() {
 	modesList.innerHTML = "";
-
 	themesList.querySelectorAll(`[class*="geckium-appearance"`).forEach(theme => theme.remove());
-
 	gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
-
 	gridsInitialised = false;
 }
 
 document.addEventListener("pageChanged", () => {
-	if (gmPages.getCurrentPage("main").dataset.page == 13) {
+	if (gmPages.getCurrentPage("main") == 13) {
 		initGrids();
 	} else {
 		if (gridsInitialised == true)
@@ -208,7 +205,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 			manageThemeModal.querySelector("#preview").style.backgroundSize = null;
 			manageThemeModal.querySelector("#preview").style.backgroundSize = themeInfo[i].bannerSizing;
 
-			manageThemeModal.querySelector(".description p").textContent = themeDescription;
+			manageThemeModal.querySelector(".description p").textContent = themeInfo[i].desc ? themeInfo[i].desc : gSettingsBundle.GetStringFromName("themeHasNoDescription");
 
 			const viewStorePageBtn = manageThemeModal.querySelector("#viewStorePageBtn");
 			viewStorePageBtn.removeAttribute("disabled");
