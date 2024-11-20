@@ -41,7 +41,7 @@ function isWindows10() {
 function getNCPatched() {
 	if (AppConstants.platform == "win") {
 		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches) // Native Controls Patch
-			return "ev";
+			return "patch";
         else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) // Marble
 			return "marble";
     }

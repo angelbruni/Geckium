@@ -3,7 +3,7 @@ const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/Gecki
 function setAppropriateNCPPrefs() {
 	const maskPresetsMenuElm = document.querySelector('.menu[data-name="ncp-aerobuttonsmask"]');
 	
-	if (isNCPatched == "ev") {
+	if (isNCPatched == "patch") {
 		maskPresetsMenuElm.dataset.pref = "widget.ev-native-controls-patch.override-aero-caption-buttons-mask-width";
 	} else if (isNCPatched == "marble") {
 		maskPresetsMenuElm.dataset.pref = "widget.native-controls.override-aero-caption-buttons-mask-width";

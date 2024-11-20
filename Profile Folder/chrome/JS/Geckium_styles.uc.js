@@ -8,12 +8,12 @@
 // @include		about:addons*
 // ==/UserScript==
 
-// Windows version and native check
+// Windows version and nativeness check
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
-if (isNCPatched && isNCPatched != "ev") { // Marble
+if (isNCPatched && isNCPatched != "patch") { // Marble
     document.documentElement.setAttribute("nativeControls", "win10");
-} else if (isNCPatched == "ev") { // Native Controls Patch
+} else if (isNCPatched == "patch") { // Native Controls Patch
     // We need a way to differentiate Native Controls Patch from
     // Windows 10 with Native Controls (e.g.: Marble), as Native
     // Controls Patch allows you to use the Windows 10 CSDs still
