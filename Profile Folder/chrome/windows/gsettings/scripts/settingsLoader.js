@@ -1,7 +1,19 @@
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
 
+function setAppropriateNCPPrefs() {
+	const maskPresetsMenuElm = document.querySelector('.menu[data-name="ncp-aerobuttonsmask"]');
+	
+	if (getNCPStatus().type == "ev") {
+		maskPresetsMenuElm.dataset.pref = "widget.ev-native-controls-patch.override-aero-caption-buttons-mask-width";
+	} else if (getNCPStatus().type == "marble") {
+		maskPresetsMenuElm.dataset.pref = "widget.native-controls.override-aero-caption-buttons-mask-width";
+	}
+}
+
 function loadSelectorSetting() {
 	setTimeout(() => {
+		setAppropriateNCPPrefs();
+
 		document.querySelectorAll("button.menu[data-pref]").forEach(selector => {
 			let current;
 	

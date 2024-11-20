@@ -20,16 +20,28 @@ function isWindows10() {
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
 
-// Marble check
-function isNativeControls() {
+function getNCPStatus() {
+	let patched = false;
+	let type;
+
     if (AppConstants.platform == "win") {
-        if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) { // Marble
-            return true;
+			/* NCP */															/* Marble check */
+        if ((window.matchMedia("(-moz-ev-native-controls-patch)").matches) || (isWindows10() && window.matchMedia("(-moz-native-controls)").matches)) {
+            patched = true;
+
+			if (window.matchMedia("(-moz-ev-native-controls-patch)").matches)
+				type = "ev";
+			else if (window.matchMedia("(-moz-native-controls)").matches)
+				type = "marble";
         }
     }
-    return false;
+
+	return {
+		patched: patched,
+		type: type
+	}
 }
-if (isNativeControls())
+if (getNCPStatus().patched)
     document.documentElement.setAttribute("nativecontrols", true);
 
 // Initial variables
