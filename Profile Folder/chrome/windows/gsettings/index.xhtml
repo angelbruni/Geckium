@@ -420,16 +420,25 @@
 														</vbox>
 													</html:button>
 												</hbox>
+											</vbox>
+											<h4>
+												&gsettings.aboutDialog;
+											</h4>
+											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.saveDiscardedCRX;</label>
-														<label class="description">&gsettings.saveDiscardedCRXDescription;</label>
+														<label class="name">&gsettings.chooseAbout;</label>
 													</vbox>
 													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.crx.saveDiscarded" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
+													<html:button class="menu" data-name="about-mode" data-pref="Geckium.about.mode" id="about-mode-select">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.ask;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.browser;</hbox>
+															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
+														</vbox>
+													</html:button>
 												</hbox>
 											</vbox>
 											<h4>
@@ -603,23 +612,30 @@
 												</hbox>
 											</vbox>
 											<h4>
-												&gsettings.aboutDialog;
+												&gsettings.downloadShelf;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.chooseAbout;</label>
+														<label class="name">&gsettings.disableDownloadShelf;</label>
+														<label class="description">&gsettings.disableDownloadShelfDescription;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="about-mode" data-pref="Geckium.about.mode" id="about-mode-select">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.ask;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.browser;</hbox>
-															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
-														</vbox>
-													</html:button>
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.downloadShelf.disabled" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.saveDiscardedCRX;</label>
+														<label class="description">&gsettings.saveDiscardedCRXDescription;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.crx.saveDiscarded" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
 												</hbox>
 											</vbox>
 
