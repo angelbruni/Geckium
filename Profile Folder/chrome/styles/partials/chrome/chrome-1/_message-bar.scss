@@ -85,6 +85,7 @@ link[href*="infobar"] ~ div.container /* Fix for Firefox ~120+ */ {
 		
 		> .text-container {
 			gap: 0 !important;
+			align-items: center;
 		}
 	}
 
@@ -156,7 +157,10 @@ link[href*="infobar"] ~ div.container /* Fix for Firefox ~120+ */ {
 }
 
 link[href*="infobar"] ~ div.container /* Yellow infobar for Firefox 121+ only */ {
-	&:has(.icon[src*="warning.svg"]) {
+	&:has(
+		.icon[src*="error.svg"],
+		.icon[src*="warning.svg"]
+	) {
 		background: linear-gradient(
 			to bottom,
 			rgb(255,242,183),
