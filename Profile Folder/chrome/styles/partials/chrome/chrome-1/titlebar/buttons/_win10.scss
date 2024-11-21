@@ -69,15 +69,30 @@
 		
 		//Always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
-			.titlebar-buttonbox-container::before {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-				margin-block-start: 3px;
-				margin-inline-end: 7px;
-			}
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
+			&:not([gkpeoplestyle="titlebutton"]) {
 				.titlebar-buttonbox-container::before {
-					content: unset !important;
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::before {
+						content: unset !important;
+					}
+				}
+			}
+			&[gkpeoplestyle="titlebutton"] {
+				#gkpeople-button-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					#gkpeople-button-container::before {
+						content: unset !important;
+					}
 				}
 			}
 		}
