@@ -91,6 +91,24 @@ class gkDownloadManager {
 	<menuitem class="cancel" disabled="true" data-l10n-id="bookmark-panel-cancel" />
 	`
 
+	static get getShelfDisabledPref() {
+		return gkPrefUtils.tryGet("Geckium.downloadShelf.disabled").bool;
+	}
+
+	static loadShelfPref() {
+		const shelfDisabledPref = this.getShelfDisabledPref;
+		const downloadsButtonId = "downloads-button";
+		if (!shelfDisabledPref) {
+			CustomizableUI.removeWidgetFromArea(downloadsButtonId)
+		} else {
+			CustomizableUI.addWidgetToArea("downloads-button", CustomizableUI.AREA_NAVBAR);
+			this.clearDownloadsFromShelfOnly(); // This is so we don't have unnecessry events being listened to in the background.
+			this.toggleShelf("hideNoClear");
+		}
+			
+		document.documentElement.setAttribute("downloadshelf", !shelfDisabledPref)
+	}
+
 	static get directorySlashes() {
 		if (AppConstants.platform == "win")
 			return "\\";
@@ -100,6 +118,12 @@ class gkDownloadManager {
 
 	static get shelf() {
 		return document.getElementById("gkDownloadShelf");
+	}
+
+	static clearDownloadsFromShelfOnly() {
+		document.getElementById("gkDownloadList").querySelectorAll(".item").forEach(download => {
+			download.remove();
+		});
 	}
 
 	static getDownloadItem(targetPath) {
@@ -191,121 +215,127 @@ class gkDownloadManager {
 
 			list.addView({
 				onDownloadAdded: download => {
-					const downloadItem = gkDownloadManager.createItem(download);
-					document.getElementById("gkDownloadList").prepend(downloadItem);
-					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
-					new ResizeObserver(() => {
-						gkDownloadManager.checkItemBounds();
-					}).observe(downloadItemElm);
-
-					downloadItemElm.addEventListener('contextmenu', (e) => {
-						e.preventDefault();
-						
-						if (downloadItemElm.dataset.state.includes !== "dangerous") {
-							document.getElementById(downloadItemElm.getAttribute("context")).openPopupAtScreen(e.screenX, e.screenY, true);
-
-							downloadItemElm.querySelector(".more").removeAttribute("open");
-						}
-					});
-					
-					// Open / Open when complete
-					downloadItemElm.querySelector(`.file-button`).addEventListener("click", (e) => {
-						// Only open if it's a left click.
-						if (e.button == 0) {
-							if (!download.succeeded && !download.stopped && !download.error)
-								gkDownloadManager.openWhenDone(download);
-							else if (download.succeeded)
-								gkDownloadManager.open(download);
-						}
-					});
-
-					gkDownloadManager.updateItemMenu(download);	
-					
-					downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
-						// Open when done
-						downloadItemElm.querySelector(`.openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
-
-						// Pause
-						const pauseMenuItem = gkDownloadManager.getDownloadItem(download.target.path).querySelector(`.pause`);
-						
-						if (download.stopped)
-							pauseMenuItem.dataset.l10nId = "downloads-cmd-resume";
-						else
-							pauseMenuItem.dataset.l10nId = "downloads-cmd-pause";
-					});
-
-					// Initialize previous bytes and time for download speed calculation
-					if (typeof downloadItemElm.dataset.previousBytes !== undefined)
-						downloadItemElm.dataset.previousBytes = 0;
-
-					if (typeof downloadItemElm.dataset.previousTime !== undefined)
-						downloadItemElm.dataset.previousTime = Date.now();
-				},
-				onDownloadChanged: async function(download) {
-					gkDownloadManager.updateItem(download);
-					gkDownloadManager.updateItemMenu(download);
-
-					if (download.succeeded) {
-						const fileName = download.target.path.split(gkDownloadManager.directorySlashes).pop()	;
-
+					if (!gkPrefUtils.tryGet("Geckium.downloadShelf.disabled").bool) {
+						const downloadItem = gkDownloadManager.createItem(download);
+						document.getElementById("gkDownloadList").prepend(downloadItem);
 						const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
-						// Always open files of this type
-						downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
-							const downloadAlwaysOpenThisTypeMenuItem = downloadItemElm.querySelector(".alwaysopenthistype");
+						new ResizeObserver(() => {
+							gkDownloadManager.checkItemBounds();
+						}).observe(downloadItemElm);
 
-							downloadAlwaysOpenThisTypeMenuItem.removeAttribute("hidden");
-							const mimeInfo = DownloadsCommon.getMimeInfo(download);
-							downloadAlwaysOpenThisTypeMenuItem.setAttribute("checked", mimeInfo.preferredAction === mimeInfo.useSystemDefault);
+						downloadItemElm.addEventListener('contextmenu', (e) => {
+							e.preventDefault();
+							
+							if (downloadItemElm.dataset.state.includes !== "dangerous") {
+								document.getElementById(downloadItemElm.getAttribute("context")).openPopupAtScreen(e.screenX, e.screenY, true);
+
+								downloadItemElm.querySelector(".more").removeAttribute("open");
+							}
+						});
+						
+						// Open / Open when complete
+						downloadItemElm.querySelector(`.file-button`).addEventListener("click", (e) => {
+							// Only open if it's a left click.
+							if (e.button == 0) {
+								if (!download.succeeded && !download.stopped && !download.error)
+									gkDownloadManager.openWhenDone(download);
+								else if (download.succeeded)
+									gkDownloadManager.open(download);
+							}
 						});
 
-						// Special CRX treatment
-						if (fileName.endsWith(".crx")) {
-							const extensionJson = await gkChrTheme.getThemeData(`jar:file://${download.target.path}!/manifest.json`);
+						gkDownloadManager.updateItemMenu(download);	
+						
+						downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
+							// Open when done
+							downloadItemElm.querySelector(`.openwhendone`).setAttribute("checked", download.launchWhenSucceeded);
 
-							if (extensionJson != null && extensionJson.theme) {
-								downloadItemElm.querySelectorAll(".warning > *").forEach(warning => {
-									warning.remove();
-								});	
-								downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningExtensionsTemplate));
-								downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("extensionsAndThemesCanHarm");
-								downloadItemElm.dataset.state = "dangerous_not_malware";
+							// Pause
+							const pauseMenuItem = gkDownloadManager.getDownloadItem(download.target.path).querySelector(`.pause`);
+							
+							if (download.stopped)
+								pauseMenuItem.dataset.l10nId = "downloads-cmd-resume";
+							else
+								pauseMenuItem.dataset.l10nId = "downloads-cmd-pause";
+						});
 
-								downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
-									try {
-										if (AppConstants.platform == "win")
-											await gkFileUtils.move(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
-										else
-											await gkFileUtils.move(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
+						// Initialize previous bytes and time for download speed calculation
+						if (typeof downloadItemElm.dataset.previousBytes !== undefined)
+							downloadItemElm.dataset.previousBytes = 0;
 
-										const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
-										await lighttheme.enable();
-										gkPrefUtils.set("Geckium.chrTheme.fileName").string(fileName.split(".")[0]);
+						if (typeof downloadItemElm.dataset.previousTime !== undefined)
+							downloadItemElm.dataset.previousTime = Date.now();
+					}
+				},
+				onDownloadChanged: async function(download) {
+					if (!gkPrefUtils.tryGet("Geckium.downloadShelf.disabled").bool) {
+						gkDownloadManager.updateItem(download);
+						gkDownloadManager.updateItemMenu(download);
 
-										DownloadsCommon.deleteDownload(download).catch(console.error);
-									} catch (error) {
-										console.error('Failed to move file: ' + error.message);
-										await DownloadsCommon.deleteDownload(download);
-									}
-								});
+						if (download.succeeded) {
+							const fileName = download.target.path.split(gkDownloadManager.directorySlashes).pop()	;
 
-								downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
-									if (gkPrefUtils.tryGet("Geckium.crx.saveDiscarded").bool) {
-										downloadItemElm.dataset.state = "done";
-									} else {
-										DownloadsCommon.deleteDownload(download).catch(console.error);
-									}
-								});
+							const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+							// Always open files of this type
+							downloadItemElm.querySelector(`menupopup`).addEventListener("popupshowing", () => {
+								const downloadAlwaysOpenThisTypeMenuItem = downloadItemElm.querySelector(".alwaysopenthistype");
+
+								downloadAlwaysOpenThisTypeMenuItem.removeAttribute("hidden");
+								const mimeInfo = DownloadsCommon.getMimeInfo(download);
+								downloadAlwaysOpenThisTypeMenuItem.setAttribute("checked", mimeInfo.preferredAction === mimeInfo.useSystemDefault);
+							});
+
+							// Special CRX treatment
+							if (fileName.endsWith(".crx")) {
+								const extensionJson = await gkChrTheme.getThemeData(`jar:file://${download.target.path}!/manifest.json`);
+
+								if (extensionJson != null && extensionJson.theme) {
+									downloadItemElm.querySelectorAll(".warning > *").forEach(warning => {
+										warning.remove();
+									});	
+									downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningExtensionsTemplate));
+									downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("extensionsAndThemesCanHarm");
+									downloadItemElm.dataset.state = "dangerous_not_malware";
+
+									downloadItemElm.querySelector(`.continue`).addEventListener("click", async () => {
+										try {
+											if (AppConstants.platform == "win")
+												await gkFileUtils.move(download.target.path, `${chrThemesFolder.replace(/\//g, "\\")}${gkDownloadManager.directorySlashes}${fileName}`);
+											else
+												await gkFileUtils.move(download.target.path, `${chrThemesFolder}${gkDownloadManager.directorySlashes}${fileName}`);
+
+											const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
+											await lighttheme.enable();
+											gkPrefUtils.set("Geckium.chrTheme.fileName").string(fileName.split(".")[0]);
+
+											DownloadsCommon.deleteDownload(download).catch(console.error);
+										} catch (error) {
+											console.error('Failed to move file: ' + error.message);
+											await DownloadsCommon.deleteDownload(download);
+										}
+									});
+
+									downloadItemElm.querySelector(`.discard`).addEventListener("click", () => {
+										if (gkPrefUtils.tryGet("Geckium.crx.saveDiscarded").bool) {
+											downloadItemElm.dataset.state = "done";
+										} else {
+											DownloadsCommon.deleteDownload(download).catch(console.error);
+										}
+									});
+								}
 							}
 						}
 					}
 				},
 				onDownloadRemoved: download => {
-					const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
-					if (downloadItemElm)
-						downloadItemElm.remove();
+					if (!gkPrefUtils.tryGet("Geckium.downloadShelf.disabled").bool) {
+						const downloadItemElm = gkDownloadManager.getDownloadItem(download.target.path);
+						if (downloadItemElm)
+							downloadItemElm.remove();
 
-					if (document.getElementById("gkDownloadList").children.length == 0)
-						gkDownloadManager.toggleShelf("hide");
+						if (document.getElementById("gkDownloadList").children.length == 0)
+							gkDownloadManager.toggleShelf("hide");
+					}
 				}
 			});
 		}).catch(console.error);
@@ -331,6 +361,9 @@ class gkDownloadManager {
 				case "hide":
 					this.shelf.setAttribute("hidden", true);
 					DownloadsViewController.downloadsCmd_clearList() 
+					break;
+				case "hideNoClear":
+					this.shelf.setAttribute("hidden", true);
 					break;
 			}
 		}
@@ -648,3 +681,11 @@ UC_API.Runtime.startupFinished().then(() => {
 	if (!isBrowserPopUpWindow)
 		gkDownloadManager.createShelf();
 });
+
+const downloadShelfToggleObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			gkDownloadManager.loadShelfPref();
+	},
+};
+Services.prefs.addObserver("Geckium.downloadShelf.disabled", downloadShelfToggleObs, false);
