@@ -143,6 +143,10 @@
 		}
 	}
 
+	&:not([customizing]) #urlbar {
+		position: absolute !important;
+	}
+
 	#star-button-box > #star-button {
 		width: fit-content !important;
 		height: fit-content !important;
@@ -204,7 +208,6 @@
 	--urlbar-height: var(--urlbar-height-definitive) !important;
 	--urlbar-toolbar-height: var(--urlbar-height-definitive) !important;
 
-	position: absolute !important;
 	font-size: 10pt !important;
 
 	&[focused] {
