@@ -9,15 +9,9 @@
 		--panel-item-background-hot: rgba(59, 144, 219, 0.3);
 	}
 
-	&[geckium-choice="one"],
-	&[geckium-choice="three"],
-	&[geckium-choice="four"],
-	&[geckium-choice="five"],
-	&[geckium-choice="six"],
-	&[geckium-choice="eleven"],
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		#PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button) {
+	&:not([geckium-fortyseven]) {
+		#PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button),
+		#PanelUI-signedin-panel > toolbarbutton.subviewbutton {
 			background-color: transparent !important;
 			padding-block: 0 !important;
 			margin: 0 !important;
@@ -39,6 +33,15 @@
 				background-color: var(--panel-separator-color);
 				pointer-events: none;
 			}
+		}
+
+		#PanelUI-fxa-remotetabs-tabslist {
+			margin-block-start: 8px;
+			margin-inline-start: 32px;
+		}
+		
+		[id*="synced-tabs-client"] {
+			margin-inline-start: 16px;
 		}
 	}
 

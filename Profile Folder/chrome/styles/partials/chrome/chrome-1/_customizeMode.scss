@@ -1,3 +1,13 @@
+:root {
+	// Let's hide the downloads button if the Shelf isn't disabled.
+	&[downloadshelf="true"]	{
+		#downloads-button,
+		#wrapper-downloads-button {
+			display: none !important;
+		}
+	}
+}
+
 toolbarpaletteitem {
 	&[place="palette"] {
 		justify-content: center;
