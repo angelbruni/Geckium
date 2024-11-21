@@ -1,19 +1,7 @@
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
 
-function setAppropriateNCPPrefs() {
-	const maskPresetsMenuElm = document.querySelector('.menu[data-name="ncp-aerobuttonsmask"]');
-	
-	if (isNCPatched == "patch") {
-		maskPresetsMenuElm.dataset.pref = "widget.ev-native-controls-patch.override-aero-caption-buttons-mask-width";
-	} else if (isNCPatched == "marble") {
-		maskPresetsMenuElm.dataset.pref = "widget.native-controls.override-aero-caption-buttons-mask-width";
-	}
-}
-
 function loadSelectorSetting() {
 	setTimeout(() => {
-		setAppropriateNCPPrefs();
-
 		document.querySelectorAll("button.menu[data-pref]").forEach(selector => {
 			let current;
 	
@@ -120,3 +108,15 @@ function loadConditionalSettings(setting) {
 	})
 }
 document.addEventListener("DOMContentLoaded", () => loadConditionalSettings());
+
+function loadMaskWidthMode() {
+	document.getElementById("ncphelper-maskwidthmode").setAttribute("NCPMaskWidthMode", gkPrefUtils.tryGet("Geckium.NCPHelper.maskWidthMode").string)
+}
+document.addEventListener("DOMContentLoaded", loadMaskWidthMode);
+const NCPMaskWidthModeObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			loadMaskWidthMode();
+	},
+};
+Services.prefs.addObserver("Geckium.NCPHelper.maskWidthMode", NCPMaskWidthModeObserver, false);

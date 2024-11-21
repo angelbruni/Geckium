@@ -16,7 +16,8 @@
 				}
 			}
 			// Decrease button height like Microsoft
-			&[sizemode="maximized"], &[sizemode="fullscreen"] {
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
 				.titlebar-button {
 					height: 24px !important;
 				}
@@ -200,6 +201,14 @@
 	&[gktitnative="true"] { //  System Borders
 		//Windows quirks
 		@media (-moz-platform: windows) {
+			&[nativeControls="win7"],
+			&[nativeControls="patch"],
+			&[nativeControls="win10"] {
+				.titlebar-buttonbox-container {
+					width: var(--helper-mask-width) !important;
+				}
+			}
+
 			// Top-align the titlebar buttons, so the Win8- AERO cut-out aligns
 			.titlebar-buttonbox-container {
 				align-self: start;
