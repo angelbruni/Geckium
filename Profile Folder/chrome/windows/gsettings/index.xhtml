@@ -250,23 +250,30 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<hbox class="item nativecontrols">
+												<hbox id="ncphelper-maskwidthmode" class="item nativecontrols">
 													<vbox>
-														<label class="name"><div class="year">Native Titlebars TODO</div>Native Titlebar Buttons Size TODO</label>
-														<label class="description">Required for Titlebar Buttons and Tabs to be sized properly. TODO</label>
+														<label class="name">&gsettings.nativeTitlebarButtonsSize;</label>
+														<label class="description">&gsettings.nativeTitlebarButtonsSizeDescription;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="ncp-aerobuttonsmask" id="ncp-aerobuttonsmask-select">
+													<html:button class="menu" data-name="ncp-aerobuttonsmask" data-pref="Geckium.NCPHelper.maskWidthMode" id="ncp-aerobuttonsmask-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="98">Windows 8</hbox>
-															<hbox class="item ripple-enabled" value="102">Windows 7</hbox>
-															<hbox class="item ripple-enabled" value="92">Windows Vista</hbox>
+															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="win8">Windows 8</hbox>
+															<hbox class="item ripple-enabled" value="win7">Windows 7</hbox>
+															<hbox class="item ripple-enabled" value="winvista">Windows Vista</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
+												<vbox id="ncphelper-custommaskwidth" class="item nativecontrols" flex="1" style="overflow: visible; padding-block-end: 19px;">
+													<div id="custom-width" class="input-parent size-md" flex="1">
+														<html:input type="text" inputmode="numeric" data-pref="Geckium.NCPHelper.customMaskWidth" class="input" id="custom-width-input" name="custom-width" required="true" />
+														<label class="placeholder">&gsettings.customWidthInPixels;</label>
+													</div>
+												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.availablePresets;

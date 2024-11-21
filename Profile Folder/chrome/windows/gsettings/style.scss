@@ -1,5 +1,4 @@
 :root {
-	
 	&[contentmode="wizard"] .disable-in-wizard,
 	[disabled="true"] {
 		pointer-events: none;
@@ -97,6 +96,19 @@ h4 .about-flag {
 
 	.ripple {
 		background: rgb(0, 0, 0, 20%);
+	}
+}
+
+#ncphelper-maskwidthmode {
+	&[NCPMaskWidthMode="custom"] {
+		border-bottom: 0 !important;
+	}
+
+	&[NCPMaskWidthMode="custom"] ~ #ncphelper-custommaskwidth {
+		display: flex;
+	}
+	&:not([NCPMaskWidthMode="custom"]) ~ #ncphelper-custommaskwidth {
+		display: none;
 	}
 }
 

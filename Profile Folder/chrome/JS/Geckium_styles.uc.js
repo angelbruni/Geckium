@@ -20,6 +20,8 @@ if (isNCPatched && isNCPatched != "patch") { // Marble
     // whereas Windows 10 with Native Controls lacks the CSDs,
     // causing issues if not differentiated between in the CSS.
     document.documentElement.setAttribute("nativeControls", "patch");
+} else if (isNCPatched == "native") { // From Firefox 115 itself running in Windows 7/8
+	document.documentElement.setAttribute("nativeControls", "win7");
 }
 
 // Initial variables

@@ -9,6 +9,7 @@
 
 // Initial variables
 let previousTabY;
+let previousDPI;
 
 class gkTitlebars {
 	// Titlebar style information
@@ -613,9 +614,8 @@ window.addEventListener("load", gkTitlebars.enableSizeEvents);
 // Automatically change the titlebar when the setting changes
 const titObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
+		if (topic == "nsPref:changed")
 			gkTitlebars.applyTitlebar();
-		}
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", titObserver, false);
@@ -630,9 +630,8 @@ Services.prefs.addObserver("Geckium.chrTheme.mustAero", titObserver, false);
 // Automatically change the macOS/Mac OS X titlebutton style when Graphite's toggled
 const graphiteObserver = {
 	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
+		if (topic == "nsPref:changed")
 			gkTitlebars.applyGraphite();
-		}
 	},
 };
 window.addEventListener("load", gkTitlebars.applyGraphite);
@@ -640,3 +639,144 @@ Services.prefs.addObserver("Geckium.appearance.macIsGraphite", graphiteObserver,
 
 // Add div for titlebar border shadow
 window.addEventListener("load", gkTitlebars.addShadowDiv);
+
+function NCPHelper() {
+	if (isNCPatched) {
+		const standardizedDPI = getStandardizedDPI();
+
+		let helperMaskWidthProperty = "--helper-mask-width";
+		let helperMaskWidth = gkPrefUtils.tryGet("Geckium.NCPHelper.maskWidthMode").string;
+		let maskWidth;
+
+		// We have to do the DPI stuff manually ;-;
+		if (helperMaskWidth == "winvista") {
+			switch (standardizedDPI) {
+				case 96:
+					maskWidth = 92
+					break;
+				case 120:
+					maskWidth = 94.4
+					break;
+				case 144:
+					maskWidth = 94.6667
+					break;
+				case 168:
+					maskWidth = 91.2333
+					break;
+				case 192:
+					maskWidth = 93.5
+					break;
+				case 216:
+					maskWidth = 95.85000610351562
+					break;
+				case 240:
+					maskWidth = 94.80000305175781
+					break;
+				case 288:
+					maskWidth = 94
+					break;
+				case 384:
+					maskWidth = 94.25
+					break;
+				case 480:
+					maskWidth = 94.40000915527344
+					break;
+			}
+		} else if (helperMaskWidth == "win7") {
+			switch (standardizedDPI) {
+				case 96:
+					maskWidth = 102
+					break;
+				case 120:
+					maskWidth = 101.6
+					break;
+				case 144:
+					maskWidth = 104.667
+					break;
+				case 168:
+					maskWidth = 103.133
+					break;
+				case 192:
+					maskWidth = 103.5
+					break;
+				case 216:
+					maskWidth = 104.4
+					break;
+				case 240:
+					maskWidth = 104.8
+					break;
+				case 288:
+					maskWidth = 104
+					break;
+				case 384:
+					maskWidth = 104.25
+					break;
+				case 480:
+					maskWidth = 104.4
+					break;
+			}
+		} else if (helperMaskWidth == "win8") {
+			switch (standardizedDPI) {
+				case 96:
+					maskWidth = 98
+					break;
+				case 120:
+					maskWidth = 100
+					break;
+				case 144:
+					maskWidth = 99.5
+					break;
+				case 168:
+					maskWidth = 98
+					break;
+				case 192:
+					maskWidth = 99
+					break;
+				case 216:
+					maskWidth = 102
+					break;
+				case 240:
+					maskWidth = 100
+					break;
+				case 288:
+					maskWidth = 99
+					break;
+				case 384:
+					maskWidth = 99
+					break;
+				case 480:
+					maskWidth = 102
+					break;
+			}
+		} else if (helperMaskWidth == "custom") {
+			maskWidth = parseInt(gkPrefUtils.tryGet("Geckium.NCPHelper.customMaskWidth").string);
+		}
+
+		if (helperMaskWidth !== "auto")
+			document.documentElement.style.setProperty(helperMaskWidthProperty, `${maskWidth}px`);
+		else
+			document.documentElement.style.removeProperty(helperMaskWidthProperty);
+	}
+}
+
+window.addEventListener("load", () => {
+	NCPHelper();
+})
+
+// There's no good way to verify for DPI change, so we will have to rely on the window `resize` event :/
+window.addEventListener("resize", () => {
+	// Only run on `resize` if there's a DPI change
+	previousDPI = getStandardizedDPI();
+	if (previousDPI !== getStandardizedDPI())
+		NCPHelper();
+});
+
+// Automatically choose the best mask sizes depending on DPI
+const NCPHelperObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			NCPHelper();
+	},
+};
+Services.prefs.addObserver("Geckium.NCPHelper.maskWidthMode", NCPHelperObserver, false);
+Services.prefs.addObserver("Geckium.NCPHelper.customMaskWidth", NCPHelperObserver, false);
