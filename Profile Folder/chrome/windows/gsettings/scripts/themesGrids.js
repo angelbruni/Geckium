@@ -8,7 +8,7 @@ const sysThemesAmount = themesList.querySelectorAll('[class*="chrome-appearance"
 const gkThemeFilterItemDescriptionElm = document.querySelector("#gkThemeFilterItem .description");
 gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
 
-let gridsInitialised = false;
+let gridsInitialized = false;
 let themesAmount = 0;
 
 function generateThemeModes() {
@@ -62,7 +62,7 @@ async function initGrids() {
 
 		themesList.removeAttribute("loading");
 		refreshListBtn.removeAttribute("disabled");
-		gridsInitialised = true;
+		gridsInitialized = true;
 	}
 }
 
@@ -104,14 +104,14 @@ function destroyGrids() {
 	modesList.innerHTML = "";
 	themesList.querySelectorAll(`[class*="geckium-appearance"`).forEach(theme => theme.remove());
 	gkThemeFilterItemDescriptionElm.textContent = gSettingsBundle.GetStringFromName("showingRetrievedThemes").replace("{{totalThemesAmount}}", sysThemesAmount);
-	gridsInitialised = false;
+	gridsInitialized = false;
 }
 
 document.addEventListener("pageChanged", () => {
 	if (gmPages.getCurrentPage("main") == 13) {
 		initGrids();
 	} else {
-		if (gridsInitialised == true)
+		if (gridsInitialized == true)
 			destroyGrids();
 	}
 })
