@@ -6,14 +6,9 @@
 		font: message-box;
 	}
 
-	--chrtheme-ntp-background-alignment: 50% 100%;
-	--chrtheme-ntp-background-repeat: no-repeat;
-
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
-		--ntp-background-color: var(--newtab-background-color);
-
 		&[style*="--lwt-gknewtab-attribution-image"] {
 			#attribution {
 				display: flex;
@@ -25,38 +20,10 @@
 				height: var(--lwt-gknewtab-attribution-height);
 			}
 		}
-
-		body {
-			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
-			@media (prefers-color-scheme: dark) {
-				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
-			}
-
-			background-attachment: fixed; // Create the parallax scrolling effect
-			image-rendering: var(--lwt-gknewtab-image-rendering);
-			background-size: var(--lwt-gknewtab-background-size);
-			background-position: var(--lwt-gknewtab-background-position);
-
-			&[style*="--lwt-gknewtab-background-position-y"] {
-				background-position-x: var(--lwt-gknewtab-background-position-x);
-			}
-			&[style*="--lwt-gknewtab-background-position-y"] {
-				background-position-x: var(--lwt-gknewtab-background-position-y);
-			}
-
-			background-repeat: var(--lwt-gknewtab-background-repeat);
-		}
 	}
 
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
-		--ntp-background-color: var(--chrtheme-ntp-background);
-
-		body {
-			background-image: var(--chrtheme-theme-ntp-background);
-			background-attachment: fixed;
-		}
-
 		#attribution-img {
 			background-image: var(--chrtheme-theme-ntp-attribution);
 			width: var(--chrtheme-theme-ntp-attribution-width);
@@ -67,16 +34,6 @@
 			#attribution {
 				display: flex;
 			}
-		}
-	}
-
-	// GTK+
-	//   blame >=115 for gkthemed being here too
-	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
-		--ntp-background-color: Field;
-
-		body {
-			color: FieldText;
 		}
 	}
 
@@ -119,11 +76,6 @@
 	}
 }
 
-body {
-	background-size: unset;
-	background-repeat: var(--chrtheme-ntp-background-repeat);
-	background-position: var(--chrtheme-ntp-background-alignment);
-}
 
 #main {
 	margin-inline: auto;

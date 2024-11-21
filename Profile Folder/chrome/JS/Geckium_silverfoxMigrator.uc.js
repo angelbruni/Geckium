@@ -136,22 +136,15 @@ class sfMigrator {
 			"whitepfp": 0,
 			"yellowpfp": 7
 		}
-		if (pfp != "off" && pfp != "") {
-			gkPrefUtils.set("Geckium.profilepic.button").bool(true);
-
-			if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
-				// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
-				if (gkPrefUtils.tryGet("services.sync.username").string) {
-					//  Firefox Account's user picture if signed in...
-					gkPrefUtils.set("Geckium.profilepic.mode").int(2);
-				} else {				
-					//  Otherwise Geckium.
-					gkPrefUtils.set("Geckium.profilepic.mode").int(0);
-				}
-			} else {
-				gkPrefUtils.set("Geckium.profilepic.mode").int(1);
-				gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
+		if (pfp == "custom" || pfp == "animated" || pfp == "chrome" || pfp == "chromium") {
+			// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
+			if (!gkPrefUtils.tryGet("services.sync.username").string) {
+				//  The Geckium user picture if not signed in
+				gkPrefUtils.set("Geckium.profilepic.mode").string("geckium");
 			}
+		} else if (pfp != "off" && pfp != "") {
+			gkPrefUtils.set("Geckium.profilepic.mode").string("chromium");
+			gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(pfps[pfp]);
 		}
 
 		// Finishing touches
@@ -255,7 +248,7 @@ class sfMigrator {
 			],
 			"toolbar-menubar":["menubar-items"],
 			"TabsToolbar":[
-				"fxa-toolbar-menu-button","tabbrowser-tabs","new-tab-button",
+				"gk-firefox-account-button","tabbrowser-tabs","new-tab-button",
 				"alltabs-button"
 			],
 			"PersonalToolbar":["personal-bookmarks"]},

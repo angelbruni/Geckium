@@ -1,3 +1,13 @@
+:root {
+	// Let's hide the downloads button if the Shelf isn't disabled.
+	&[downloadshelf="true"]	{
+		#downloads-button,
+		#wrapper-downloads-button {
+			display: none !important;
+		}
+	}
+}
+
 toolbarpaletteitem {
 	&[place="palette"] {
 		justify-content: center;
@@ -8,6 +18,11 @@ toolbarpaletteitem {
 		outline-color: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;
 		height: var(--toolbarbutton-height);
 	}
+}
+
+// We have our own `#gk-firefox-account-button`.
+#wrapper-fxa-toolbar-menu-button {
+    display: none !important;
 }
 
 #customization-footer {

@@ -5,13 +5,11 @@
 	--identity-icon-warning-or-insecure: url("chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_invalid.png");
 	--identity-icon-valid-n-notSecure:	 url("chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_warning.png");
 
-	&:not([chromehidden~="toolbar"]) {
-		#urlbar-container {
-			margin-inline-start: 5px !important;
+	&:not([chromehidden~="toolbar"]) #urlbar-container {
+		margin-inline-start: 5px !important;
 
-			&:not(:last-child) {
-				margin-inline-end: 5px !important;
-			}
+		&:not(:last-child) {
+			margin-inline-end: 5px !important;
 		}
 	}
 
@@ -23,22 +21,16 @@
 			}
 		}
 
-		&[securestate="ev"] {
-			#identity-icon-box {
-				border-radius: calc(var(--toolbarbutton-border-radius) - 2px) !important;
-			}
+		&[securestate="ev"] #identity-icon-box {
+			border-radius: calc(var(--toolbarbutton-border-radius) - 2px) !important;
 		}
 
-		&[securestate="warning"] {
-			#identity-icon {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
-			}
+		&[securestate="warning"] #identity-icon {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_warning.png) !important;
 		}
 
-		&[securestate="insecure"] {
-			#identity-icon {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
-			}
+		&[securestate="insecure"] #identity-icon {
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/toolbar/omnibox_https_invalid.png) !important;
 		}
 	}
 
@@ -46,19 +38,15 @@
 	#searchbar {
 		outline: 1px solid rgba(255, 255, 255, 0.3);
 		border-radius: calc(var(--toolbarbutton-border-radius) - 1px) !important;
-		border-top-color: rgb(164, 164, 163) !important;
+		border-top-color: rgba(0,0,0,.36) !important;
 	}
 }
 
-#urlbar {
-	&:not(.searchButton) {
-		> #urlbar-input-container,
-		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
-			> #identity-box[pageproxystate="invalid"] {
-				#identity-icon {
-					list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
-				}
-			}
+#urlbar:not(.searchButton) {
+	> #urlbar-input-container,
+	> .urlbar-input-container /* Fix for Firefox ~120+ */ {
+		> #identity-box[pageproxystate="invalid"] #identity-icon {
+			list-style-image: url("assets/img/chrome-1/toolbar/search.svg") !important;
 		}
 	}
 }

@@ -7,7 +7,7 @@ function createMainLayout() {
 
 	if (appearanceChoice <= 3)
 		window.resizeTo(490 + (window.outerWidth - window.innerWidth), 266 + (window.outerHeight - window.innerHeight));
-	else if (appearanceChoice <= 11)
+	else if (appearanceChoice <= 17)
 		window.resizeTo(516 + (window.outerWidth - window.innerWidth), 266 + (window.outerHeight - window.innerHeight));
 	else
 		window.resizeTo(576 + (window.outerWidth - window.innerWidth), 307 + (window.outerHeight - window.innerHeight));
