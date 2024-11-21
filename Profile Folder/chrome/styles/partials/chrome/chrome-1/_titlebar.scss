@@ -165,7 +165,7 @@
 		color: inherit !important;
 		border-radius: unset !important;
 		
-		& > menu {
+		> menu {
 			text-shadow: unset !important;
 		}
 	}
@@ -190,6 +190,10 @@
 		&[isWindows10]:not([nativeControls="win10"]) #titlebar {
 			// remove the top gap
 			appearance: none !important;
+		}
+		// Temporary fix due to Mozilla's removal of the `#titlebar` element.
+		&[is133Plus][isWindows10][nativeControls="win10"][sizemode="maximized"] #navigator-toolbox {
+			appearance: -moz-window-titlebar-maximized !important;
 		}
 		// Windows 10 + Native Controls Patch quirks
 		@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
