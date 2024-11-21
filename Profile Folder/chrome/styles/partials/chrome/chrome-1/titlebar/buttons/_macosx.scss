@@ -3,7 +3,7 @@
 		margin-inline-end: var(--gap-size) !important; // Add spacing between caption buttons and tabs.
 	}
     
-    //Give the tabs/Incognito/pfp the appropriate offset
+    // Give the tabs/Incognito/pfp the appropriate offset
 	#private-browsing-indicator-with-label,
     .private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
     #gkavatar-container {
@@ -12,11 +12,9 @@
     .titlebar-spacer[type="post-tabs"] {
         order: 999 !important; // Force to right of Incognito
     }
-    &:not([privatebrowsingmode="temporary"]) {
-        #TabsToolbar-customization-target {
-            margin-inline-end: var(--tab-distance-from-toolbar-edge);
-        }
-    }
+    &:not([privatebrowsingmode="temporary"]) #TabsToolbar-customization-target {
+		margin-inline-end: var(--tab-distance-from-toolbar-edge);
+	}
     // Incognito can't use this^ spacing, so we need to set it separately for Incognito
     &[privatebrowsingmode="temporary"] {
         #private-browsing-indicator-with-label,
@@ -42,31 +40,45 @@
         margin-inline-start: 6px !important;
     }
 
-    //Show the Google logo after the buttons if enabled
+    // Show the Google logo after the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
-        .titlebar-buttonbox-container::after {
-            content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-            margin-block-start: 2px;
-            margin-inline-start: 7px;
-        }
-        &[sizemode="maximized"],
-        &[sizemode="fullscreen"] {
-            .titlebar-buttonbox-container::after {
-                content: unset !important;
-            }
-        }
+		&:not([gkpeoplestyle="titlebutton"]) {
+			.titlebar-buttonbox-container::after {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+				margin-block-start: 2px;
+				margin-inline-start: 7px;
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				.titlebar-buttonbox-container::after {
+					content: unset !important;
+				}
+			}
+		}
+        &[gkpeoplestyle="titlebutton"] {
+			#gkpeople-button-container::before {
+				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+				margin-block-start: 2px;
+			}
+			&[sizemode="maximized"],
+			&[sizemode="fullscreen"] {
+				#gkpeople-button-container::before {
+					content: unset !important;
+				}
+			}
+		}
     }
 
-    //NOTE: macOS and Mac OS X BLOCK native titlebars
+    // NOTE: macOS and Mac OS X BLOCK native titlebars
 
-    //Titlebar button box (force onto left side)
+    // Titlebar button box (force onto left side)
     .titlebar-buttonbox-container {
         order: -1 !important;
         align-items: unset !important;
         margin-inline-start: 8px; // left margin
         margin-block-start: 6px; // top margin
     }
-    //Linux quirk: Counteract exclusive menubar padding
+    // Linux quirk: Counteract exclusive menubar padding
     @media (-moz-platform: linux) {
         #toolbar-menubar .titlebar-buttonbox-container {
             margin-block-start: 5px;
@@ -77,43 +89,39 @@
         align-items: unset !important;
         gap: 7px;
     }
-    .titlebar-button {
-        &::before { //macOS WILL NOT have its buttons filled
-            content: unset !important;
-        }
-    }
+    .titlebar-button::before { // macOS WILL NOT have its buttons filled
+		content: unset !important;
+	}
 
-    //Shared titlebar button code
+    // Shared titlebar button code
     .titlebar-button {
         height: 14px;
         width: 14px;
         border-radius: 100% !important;
         background-clip: padding-box !important;
-        transition: none; //Mac OS X lacked an animation for titlebar button-hover
+        transition: none; // Mac OS X lacked an animation for titlebar button-hover
         display: flex !important;
 
         box-shadow: inset 0 0.8px 2px 1px rgba(0,0,0,0.58),
                     0 1px rgba(255, 255, 255, 0.38);
         list-style-image: unset !important;
 
-        &:not([disabled]):active {
-            &::after {
-                content: "";
-                left: 0;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				position: absolute;
-                border-radius: 100%;
-                background: rgba(0,0,0,0.22);
-            }
-        }
+        &:not([disabled]):active::after {
+			content: "";
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			position: absolute;
+			border-radius: 100%;
+			background: rgba(0,0,0,0.22);
+		}
         image {
             -moz-context-properties: fill, fill-opacity !important;
         }
     }
 
-    //Close button
+    // Close button
     .titlebar-close:not([disabled]) {
         order: 0 !important;
 
@@ -129,7 +137,7 @@
         background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-close.svg) !important;
     }
 
-    //Minimise button
+    // Minimise button
     .titlebar-min:not([disabled]) {
         order: 1 !important;
 
@@ -145,18 +153,16 @@
         background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-min.svg) !important;
     }
 
-    //Maximise and Restore buttons
+    // Maximise and Restore buttons
     &[sizemode="maximized"],
     &[sizemode="fullscreen"] {
         .titlebar-max {
             display: none !important;
         }
     }
-    &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-        .titlebar-restore {
-            display: none !important;
-        }
-    }
+    &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .titlebar-restore {
+		display: none !important;
+	}
     .titlebar-max:not([disabled]),
     .titlebar-restore:not([disabled]) {
         order: 2 !important;
@@ -203,9 +209,8 @@
         }
     }
 
-    // People Titlebar Button
-    // #gkpeople-button-container {
-    //     order: 999 !important; // Force to right of Incognito
-    // }
-
+    /* People Titlebar Button
+    #gkpeople-button-container {
+        order: 999 !important; // Force to right of Incognito
+    } */
 }

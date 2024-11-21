@@ -26,9 +26,9 @@
 	}
 
 	// Variables for titlebar styles
-	--tab-distance-from-toolbar-edge: 2px;
-	--tab-distance-from-pfp: 3px;
-	--tab-distance-from-top: 15px;
+	--tab-distance-from-toolbar-edge:	2px;
+	--tab-distance-from-pfp:			3px;
+	--tab-distance-from-top:			15px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--tab-distance-from-top: 0px;
@@ -44,21 +44,21 @@
 			}
 		}
 		// Base colour
-		--titlebar-active: var(--lwt-accent-color) !important;
-		--titlebar-inactive: var(--titlebar-active) !important;
-		--titlebar-foreground: var(--lwt-text-color);
-		--titlebar-foreground-inactive: var(--titlebar-foreground);
-		--titlebar-foreground-cros: var(--lwt-text-color);
-		--titlebar-foreground-cros-inactive: var(--titlebar-foreground);
+		--titlebar-active:						var(--lwt-accent-color) !important;
+		--titlebar-inactive:					var(--titlebar-active) !important;
+		--titlebar-foreground:					var(--lwt-text-color);
+		--titlebar-foreground-inactive:			var(--titlebar-foreground);
+		--titlebar-foreground-cros:				var(--lwt-text-color);
+		--titlebar-foreground-cros-inactive:	var(--titlebar-foreground);
 		// Additional titlebar background
-		--titlebar-pseudo-texture: var(--lwt-additional-images);
-		--titlebar-pseudo-texture-pos: var(--lwt-background-alignment);
-		--titlebar-pseudo-texture-repeat: var(--lwt-background-tiling);
+		--titlebar-pseudo-texture:			var(--lwt-additional-images);
+		--titlebar-pseudo-texture-pos:		var(--lwt-background-alignment);
+		--titlebar-pseudo-texture-repeat:	var(--lwt-background-tiling);
 		
 		&[lwtheme-image] {
-			--titlebar-pseudo-texture: var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
-			--titlebar-pseudo-texture-pos: right top, var(--lwt-background-alignment);
-			--titlebar-pseudo-texture-repeat: no-repeat, var(--lwt-background-tiling);
+			--titlebar-pseudo-texture:			var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
+			--titlebar-pseudo-texture-pos:		right top, var(--lwt-background-alignment);
+			--titlebar-pseudo-texture-repeat:	no-repeat, var(--lwt-background-tiling);
 		}
 
 		// Themes without image header/additional images
@@ -98,21 +98,21 @@
 	}
 	// Chromium Themes
 	&[gkthemed][gkchrthemed] {
-		--titlebar-buttonbox-background: var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
-		--titlebar-foreground: var(--chrtheme-frame-color);
-		--titlebar-foreground-inactive: var(--chrtheme-frame-color);
-		--titlebar-foreground-cros: var(--chrtheme-frame-color-cros);
-		--titlebar-foreground-cros-inactive: var(--chrtheme-frame-color-cros);
-		--titlebar-button-foreground: var(--chrtheme-button-color, var(--chrtheme-frame-color));
-		//  TODO: inactive titlebutton foreground
+		--titlebar-buttonbox-background:		var(--chrtheme-theme-window-control-background, var(--chrtheme-control-background, var(--chrtheme-button-background, transparent)));
+		--titlebar-foreground:					var(--chrtheme-frame-color);
+		--titlebar-foreground-inactive:			var(--chrtheme-frame-color);
+		--titlebar-foreground-cros:				var(--chrtheme-frame-color-cros);
+		--titlebar-foreground-cros-inactive:	var(--chrtheme-frame-color-cros);
+		--titlebar-button-foreground:			var(--chrtheme-button-color, var(--chrtheme-frame-color));
+		// TODO: inactive titlebutton foreground
 		// Base colour
-		--titlebar-active: var(--chrtheme-frame) !important;
-    	--titlebar-inactive: var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
+		--titlebar-active:		var(--chrtheme-frame) !important;
+    	--titlebar-inactive:	var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
 		// Additional titlebar background
-		--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
-		--titlebar-pseudo-texture-repeat: no-repeat, repeat no-repeat;
-		--titlebar-pseudo-texture-pos: -1px 0;
-		--titlebar-pseudo-height: 100%;
+		--titlebar-pseudo-texture:			var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
+		--titlebar-pseudo-texture-repeat:	no-repeat, repeat no-repeat;
+		--titlebar-pseudo-texture-pos:		-1px 0;
+		--titlebar-pseudo-height:			100%;
 	}
 
 	// Pop up window titlebars
@@ -175,31 +175,31 @@
 	--chrtheme-theme-frame-overlay: 0; // Required value for chrThemes because Firefox logic
 
 	// Fixes for various OS quirks
-	//Windows quirks (both System and Compact)
+	// Windows quirks (both System and Compact)
 	@media (-moz-platform: windows) {
 		// Rid of the fog.
 		#TabsToolbar {
 			background: transparent !important;
 		}
-		//Remove margin in w/AERO
+		// Remove margin in w/AERO
 		#TabsToolbar > .toolbar-items {
 			padding-top: 0 !important;
 			margin-top: 0 !important;
 		}
-		//Windows 10 quirks
+		// Windows 10 quirks
 		&[isWindows10]:not([nativeControls="win10"]) #titlebar {
 			// remove the top gap
 			appearance: none !important;
 		}
-		//Windows 10 + Native Controls Patch quirks
+		// Windows 10 + Native Controls Patch quirks
 		@media (-moz-ev-native-controls-patch) and (not (-moz-windows-compositor: 0)) and (not (-moz-windows-classic)) {
 			&:not([isWindows10])#main-window {
 				background: rgba(0,0,0,.002) !important;
 			}
 		}
 	}
-	&[gktitnative="true"] { //  System Borders
-		//Windows quirks
+	&[gktitnative="true"] { // System Borders
+		// Windows quirks
 		@media (-moz-platform: windows) {
 			&[nativeControls="win7"],
 			&[nativeControls="patch"],
@@ -234,30 +234,30 @@
 				}
 			}
 		}
-		//Linux quirks
+		// Linux quirks
 		@media (-moz-platform: linux) {
 			// Stop Light and Dark from getting custom Firefox titlebars
 			&:not([gkthemed]:not([gkchrthemed])) {
 				#navigator-toolbox {
 					background-image: unset !important;
 					background-repeat: unset !important;
-					background-position: unset !important; //browser.css:88, 115
+					background-position: unset !important; // browser.css:88, 115
 				}
 				&:not([is117Plus]) #navigator-toolbox {
-					background-color: transparent !important; //browser.css:37, 115
+					background-color: transparent !important; // browser.css:37, 115
 				}
 				&[is117Plus] #navigator-toolbox {
 					background-color: var(--toolbox-non-lwt-bgcolor) !important;
-					color: var(--toolbox-non-lwt-textcolor) !important; //browser-shared.css:205, 128
+					color: var(--toolbox-non-lwt-textcolor) !important; // browser-shared.css:205, 128
 					&:-moz-window-inactive {
 						background-color: var(--toolbox-non-lwt-bgcolor-inactive) !important;
-						color: var(--toolbox-non-lwt-textcolor-inactive) !important; //browser-shared.css:192, 128
+						color: var(--toolbox-non-lwt-textcolor-inactive) !important; // browser-shared.css:192, 128
 					}
 				}
 				&:not([is117Plus]) .titlebar-button {
-					list-style-image: unset !important; //browser.css:366, 115
-					appearance: auto !important; //browser.css:357, 115
-					border-radius: unset !important; //browser.css:357, 115
+					list-style-image: unset !important; // browser.css:366, 115
+					appearance: auto !important; // browser.css:357, 115
+					border-radius: unset !important; // browser.css:357, 115
 				}
 			}
 		}
@@ -269,30 +269,30 @@
 			}
 		}
 	}
-	&[gktitnative="false"] { //  Compact Borders
+	&[gktitnative="false"] { // Compact Borders
 		// Default to top-aligning the titlebar buttons
 		.titlebar-buttonbox-container {
 			align-self: start;
 		}
-		//Windows quirks
+		// Windows quirks
 		@media (-moz-platform: windows) {
-			//Prevent Basic's titlebar texture showing
+			// Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
 				#titlebar {
 					visibility: hidden !important;
 				}
 				&:not([inFullscreen], [chromehidden~="menubar"]) #toolbar-menubar,
 				&:not([inFullscreen], [chromehidden~="toolbar"]) #TabsToolbar {
-					visibility: visible !important; //browser.css:186, 115
+					visibility: visible !important; // browser.css:186, 115
 				}
 			}
-			//Remove margin in Windows Classic
+			// Remove margin in Windows Classic
 			@media (-moz-windows-classic) {
 				#toolbar-menubar {
 					margin-top: 0 !important;
 				}
 			}
-			//Always use white background for unremovable window corners
+			// Always use white background for unremovable window corners
 			@media not (-moz-ev-native-controls-patch) {
 				&[isWindows10]#main-window {
 					background: white !important;
@@ -300,7 +300,7 @@
 			}
 		}
 
-		//Linux quirks
+		// Linux quirks
 		@media (-moz-platform: linux) {
 			/* In Linux, we don't have a surface spanning the entire browser window to draw our borders on.
 			- GTK3's CSDs only cover the browser from top to bookmarks area
@@ -334,7 +334,7 @@
 			}
 		}
 
-		//Misc. quirk-workarounds
+		// Misc. quirk-workarounds
 		#navigator-toolbox-background {
 			position: relative; // Makes the background PROPERLY disappear
 		}
@@ -378,46 +378,72 @@
 		}
 	}
 
-	//Google logo (native)
+	// Google logo (native)
 	&[gkbranding="chrome"] {
 		&[gktitnative="true"][gktitbuttons="win"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]),
 		&[gktitnative="true"][gktitbuttons="win8"], &[gktitnative="true"][gktitbuttons="win10"],
 		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win8"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-				.titlebar-buttonbox-container {
-					&::before {
+				&:not([gkpeoplestyle="titlebutton"]) {
+					.titlebar-buttonbox-container::before {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
 						margin-block-start: 3px;
 						margin-inline-end: 7px;
 					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						.titlebar-buttonbox-container::before {
+							content: unset !important;
+						}
+					}
 				}
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
-					.titlebar-buttonbox-container {
-						&::before {
+				&[gkpeoplestyle="titlebutton"] {
+					#gkpeople-button-container::before {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+						margin-block-start: 3px;
+						margin-inline-end: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						#gkpeople-button-container::before {
 							content: unset !important;
 						}
 					}
 				}
 			}
 			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-				.titlebar-buttonbox-container::after {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
-					margin-block-start: 2px;
-					margin-inline-start: 7px;
-				}
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] { .titlebar-buttonbox-container {
-					&::after {
-						content: unset !important;
+				&:not([gkpeoplestyle="titlebutton"])  {
+					.titlebar-buttonbox-container::after {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+						margin-block-start: 2px;
+						margin-inline-start: 7px;
 					}
-				} }
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						.titlebar-buttonbox-container::after {
+							content: unset !important;
+						}
+					}
+				}
+				&[gkpeoplestyle="titlebutton"] {
+					#gkpeople-button-container::after {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
+						margin-block-start: 2px;
+						margin-inline-end: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						#gkpeople-button-container::after {
+							content: unset !important;
+						}
+					}
+				}
 			}
 		}
 	}
 
 
-	//Titlebar styles
+	// Titlebar styles
 	&[chromemargin]:not([macOSNativeFullscreen]) {
 		// Windows
 		&[gktitstyle="win"] {
@@ -436,12 +462,12 @@
 			@import "titlebar/borders/chromiumos";
 		}
 	}
-	&:not([chromemargin]), //Native (titlebar enabled)
+	&:not([chromemargin]), // Native (titlebar enabled)
 	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}
 
-	//Titlebutton styles
+	// Titlebutton styles
 	// Windows
 	&[gktitbuttons="win"] {
 		@import "titlebar/buttons/win";
