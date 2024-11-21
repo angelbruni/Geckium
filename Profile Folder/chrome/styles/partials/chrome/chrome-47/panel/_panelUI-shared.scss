@@ -24,7 +24,8 @@
 	margin-inline-end: 2px !important;
 }
 
-#PanelUI-fxa-menu > toolbarbutton.subviewbutton {
+#PanelUI-fxa-menu > toolbarbutton.subviewbutton,
+#PanelUI-signedin-panel > toolbarbutton.subviewbutton {
 	&:last-of-type {
 		margin-block-end: 1px !important;
 	}
@@ -46,8 +47,11 @@
 			content: url(chrome://userchrome/content/assets/img/chrome-47/panel/sync.svg);
 		}
 		
-		&#PanelUI-fxa-menu-connect-device-button::before {
-			content: url(chrome://userchrome/content/assets/img/chrome-47/panel/connect-device.svg);
+		&#PanelUI-fxa-menu-connect-device-button,
+		&#PanelUI-fxa-menu-sendtab-button {
+			&::before {
+				content: url(chrome://userchrome/content/assets/img/chrome-47/panel/connect-device.svg);
+			}
 		}
 
 		&#PanelUI-fxa-menu-sync-prefs-button::before {
@@ -58,6 +62,14 @@
 			content: url(chrome://userchrome/content/assets/img/chrome-47/panel/sign-out.svg);
 		}
 	}
+}
+
+.PanelUI-tabitem-container {
+	margin: 0 !important;
+}
+
+[id*="synced-tabs-client"] {
+	margin-inline-start: 21px !important;
 }
 
 panel toolbarbutton {
