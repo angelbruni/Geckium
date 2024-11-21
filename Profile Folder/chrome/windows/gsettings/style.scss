@@ -57,6 +57,19 @@
 	[data-browser="msedge"] .theme-icons .theme-browser-icon {
 		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
 	}
+
+	&[is120Plus="true"] .is-below-120 {
+		display: none !important;
+	}
+}
+
+.is-linux-only {
+	display: none !important;
+}
+@media (-moz-platform: linux) {
+	.is-linux-only {
+		display: flex !important;
+	}
 }
 
 #window {
@@ -99,11 +112,14 @@ h4 .about-flag {
 	}
 }
 
-#ncphelper-maskwidthmode {
-	&[NCPMaskWidthMode="custom"] {
-		border-bottom: 0 !important;
-	}
+#overridevisualstyle,
+#ncphelper-maskwidthmode[NCPMaskWidthMode="custom"],
+#gkThemeFilterItem,
+#card-avatar > .item:nth-child(1) {
+	border-bottom: 0 !important;
+}
 
+#ncphelper-maskwidthmode {
 	&[NCPMaskWidthMode="custom"] ~ #ncphelper-custommaskwidth {
 		display: flex;
 	}
@@ -231,14 +247,6 @@ h4 .about-flag {
 		}
 	}
 
-	&[profile-pic-mode="none"],
-	&[profile-pic-mode="geckium"],
-	&[profile-pic-mode="firefox"] {
-		> .item:nth-child(1) {
-			border-bottom: 0;
-		}
-	}
-
 	&[profile-pic-mode="custom"] {
 		> .item:nth-child(2) {
 			display: flex;
@@ -282,6 +290,7 @@ h4 .about-flag {
 	}
 
 	label {
+		display: flex;
 		margin-inline-start: 8px;
 	}
 }

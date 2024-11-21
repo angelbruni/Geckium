@@ -9,10 +9,15 @@ const specialCharacters = {
 	"'": "&#39;",
 };
 
-function populateAppsList() {
-    const container = document.getElementById("apps-list");
+let appsListInitialized = false;
 
-    container.innerHTML = "";
+function populateAppsList() {
+	destroyAppsList();
+
+    const container = document.getElementById("apps-list");
+	container.setAttribute("loading", true);
+	const addAppFAB = document.getElementById("add-app-fab");
+	addAppFAB.setAttribute("disabled", true);
 
     let appsList = gkNTP.getAppsList;
 
@@ -75,20 +80,12 @@ function populateAppsList() {
                     </hbox>
                 </html:button>
                 `;
-                container.appendChild(MozXULElement.parseXULToFragment(item));
+				gkInsertElm.before(MozXULElement.parseXULToFragment(item), container.querySelector(".spinner-container"));
             }
         }
     }
-
-	container.appendChild(MozXULElement.parseXULToFragment(`
-	<html:button class="item ripple-enabled" data-toggle-modal="editApp_modal">
-		<vbox>
-			<label class="name">${gSettingsBundle.GetStringFromName("addAnApp")}</label>
-		</vbox>
-	</html:button>
-	`));
-
-	container.querySelectorAll(".item").forEach(item => {
+	
+	document.querySelectorAll("#apps-list > .item, #add-app-fab").forEach(item => {
 		item.addEventListener("click", () => {
 			const modal = document.querySelector(`.modal[data-modal="${item.dataset.toggleModal}"]`);
 			modal.classList.add("active");
@@ -151,9 +148,26 @@ function populateAppsList() {
 			modalURL.value = item.dataset.appUrl;
 		})
 	})
-}
 
-document.addEventListener("DOMContentLoaded", populateAppsList);
+	container.removeAttribute("loading");
+	addAppFAB.removeAttribute("disabled");
+	appsListInitialized = true;
+}
+function destroyAppsList() {
+	document.querySelectorAll("#apps-list > button.app").forEach(appItem => {
+		appItem.remove();
+	})
+
+	appsListInitialized = false;
+}
+document.addEventListener("pageChanged", () => {
+	if (gmPages.getCurrentPage("main") == 12) {
+		populateAppsList();
+	} else {
+		if (appsListInitialized == true)
+			destroyAppsList();
+	}
+})
 
 const modal = document.querySelector(`.modal[data-modal="editApp_modal"]`)
 modal.querySelector(".button#deleteBtn").addEventListener("click", () => {
@@ -167,9 +181,7 @@ modal.querySelector(".button#deleteBtn").addEventListener("click", () => {
 
 	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
 
-	setTimeout(() => {
-		populateAppsList();
-	}, 10);
+	populateAppsList();
 });
 modal.querySelector(".button#cancelBtn");
 modal.querySelector(".button#OKBtn").addEventListener("click", () => {
@@ -218,9 +230,7 @@ modal.querySelector(".button#OKBtn").addEventListener("click", () => {
 
 	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
 
-	setTimeout(() => {
-		populateAppsList();
-	}, 10);
+	populateAppsList();
 });
 modal.querySelector(".button#createBtn").addEventListener("click", () => {
 	currentModal = document.querySelector(`.modal[data-modal="editApp_modal"]`);
@@ -229,9 +239,8 @@ modal.querySelector(".button#createBtn").addEventListener("click", () => {
 
 	let maxKey = -1;
 	for (let key in newAppsList) {
-		if (newAppsList.hasOwnProperty(key) && !isNaN(parseInt(key))) {
+		if (newAppsList.hasOwnProperty(key) && !isNaN(parseInt(key)))
 			maxKey = Math.max(maxKey, parseInt(key));
-		}
 	}
 
 	// Calculate the new key
@@ -266,7 +275,5 @@ modal.querySelector(".button#createBtn").addEventListener("click", () => {
 	
 	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
 
-	setTimeout(() => {
-		populateAppsList();
-	}, 10);
+	populateAppsList();
 });
