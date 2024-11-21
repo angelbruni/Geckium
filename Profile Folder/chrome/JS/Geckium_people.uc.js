@@ -20,14 +20,17 @@ class gkPeople {
 
 		const titlebarButtonboxContainer = document.querySelector("#TabsToolbar .titlebar-buttonbox-container");
 		const titlebarButtonboxSpace = document.createXULElement("hbox");
-		titlebarButtonboxSpace.classList.add("titlebar-buttonbox");
 		titlebarButtonboxSpace.id = "gkpeople-button-container";
+		const titlebarButton = document.createXULElement("hbox");
+		titlebarButton.id = "gkpeople-button";
+		titlebarButton.classList.add("titlebar-buttonbox");
 		TabsToolbarCustomizationTarget.append(titlebarButtonboxSpace);
+		titlebarButtonboxSpace.appendChild(titlebarButton);
 		gkInsertElm.before(titlebarButtonboxSpace, titlebarButtonboxContainer);
 	}
 
 	static get getReservedSpaces() {
-		return [document.getElementById("gkavatar-container"), document.getElementById("gkpeople-button-container")];
+		return [document.getElementById("gkavatar-container"), document.querySelector("#gkpeople-button-container > #gkpeople-button")];
 	}
 
 	/**
