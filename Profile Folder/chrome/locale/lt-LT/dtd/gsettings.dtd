@@ -16,8 +16,7 @@
 
 <!ENTITY gsettings.welcomeTo "Sveiki atvykę">
 
-<!ENTITY gsettings.supportTheProject	"Paremti projektą">
-<!ENTITY gsettings.openInTabNext		"Kitą kartą atidarykite tai naujame skirtuke">
+<!ENTITY gsettings.supportTheProject "Paremti projektą">
 
 <!ENTITY gsettings.designDescription				"Pasirinkite pageidaujamą dizainą arba pakeiskite antraštinės juostos išvaizdą ir elgseną">
 <!ENTITY gsettings.behaviourDescription				"Tvarkykite Geckium prekės ženklą, temų veikimą ir reguliuokite kitą Geckium elgseną">
@@ -28,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "Automatinis">
 
-<!ENTITY gsettings.titlebar							"Pavadinimo juosta">
-<!ENTITY gsettings.titlebarStyle					"Pavadinimo juosta ir sąsajos stilius">
-<!ENTITY gsettings.titlebarStyleWinNoGaps			"Windows (be tarpų)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alfa)">
-<!ENTITY gsettings.titlebarMode						"Pavadinimų juostos režimas">
-<!ENTITY gsettings.titlebarModeDisclaimer			"Kai kurie antraštės juostos stiliai ignoruos šį nustatymą">
-<!ENTITY gsettings.titlebarModeSystem				"Sistemos sienos">
-<!ENTITY gsettings.titlebarModeCompact				"Kompaktinės sienos">
-<!ENTITY gsettings.titlebarInThemesIsSys			"Suderinamose Chromium temose naudokite sistemos ribas">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"Reikia, kad būtų įjungti sistemos apvadai arba kad juos naudotų jūsų antraštinės juostos stilius.">
+<!ENTITY gsettings.titlebar								"Pavadinimo juosta">
+<!ENTITY gsettings.titlebarStyle						"Pavadinimo juosta ir sąsajos stilius">
+<!ENTITY gsettings.titlebarStyleWinNoGaps				"Windows (be tarpų)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alfa)">
+<!ENTITY gsettings.titlebarMode							"Pavadinimų juostos režimas">
+<!ENTITY gsettings.titlebarModeDisclaimer				"Kai kurie antraštės juostos stiliai ignoruos šį nustatymą">
+<!ENTITY gsettings.titlebarModeSystem					"Sistemos sienos">
+<!ENTITY gsettings.titlebarModeCompact					"Kompaktinės sienos">
+<!ENTITY gsettings.titlebarInThemesIsSys				"Suderinamose Chromium temose naudokite sistemos ribas">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Reikia, kad būtų įjungti sistemos apvadai arba kad juos naudotų jūsų antraštinės juostos stilius.">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"Gimtoji antraštės juostos mygtuko dydis">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"Reikalinga, kad gimtosios antraštės juostos mygtukai ir skirtukai būtų tinkamo dydžio">
+<!ENTITY gsettings.customWidthInPixels					"Pasirinktinis plotis (pikseliais)">
 
 <!ENTITY gsettings.availablePresets	"Galimi išankstiniai nustatymai">
 <!ENTITY gsettings.resetOverrides	"Iš naujo nustatyti viršenybę">
@@ -55,7 +57,7 @@
 
 <!ENTITY gsettings.privacy			"Privatumas">
 <!ENTITY gsettings.hideAccountInfo	"Paslėpti paskyros informaciją">
-<!ENTITY gsettings.willHideInfoFrom	'Šis nustatymas paslėps jūsų vardą, pavardę ir el. pašto adresą tokiose vietose kaip mygtukas "Žmonės" ir naujojo skirtuko puslapis.'>
+<!ENTITY gsettings.willHideInfoFrom	'Šis nustatymas paslėps jūsų vardą, pavardę ir el. pašto adresą tokiose vietose kaip mygtukas "Žmonės" ir naujojo skirtuko puslapis'>
 
 <!ENTITY gsettings.browser						"Naršyklė">
 <!ENTITY gsettings.branding						"Prekės ženklo kūrimas">
@@ -63,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Leidžia atsisiųsti Chromium temas jų neįdiegus paspaudžiant Atmesti">
 <!ENTITY gsettings.toolbar						"Įrankių juosta">
 <!ENTITY gsettings.needsRestart					"Reikia paleisti iš naujo">
-<!ENTITY gsettings.enableTabManager				"Įjungti skirtuko tvarkytuvą">
+<!ENTITY gsettings.tabManager					"Skirtuko tvarkytuvą">
+<!ENTITY gsettings.tabManagerDescription		'Įjungiamas "rodyklės mygtukas" su atidarytų skirtukų sąrašu skirtukų juostoje'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"Slėpti plėtinių meniu mygtuką">
 
 <!ENTITY gsettings.macIsGraphite					"Naudoti grafito antraštės juostos mygtukus">
@@ -93,10 +96,14 @@
 <!ENTITY gsettings.allToolbarItems					"Visi įrankių juostos elementai">
 <!ENTITY gsettings.none								"Nė vieno">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"Įjungti svetainių prisegimą kiekviename laikmetyje">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Rodo smeigtuko mygtuką kiekviename dizaine">
+<!ENTITY gsettings.websitePinningInEveryEra				"Svetainių prisegimą kiekviename laikmetyje">
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"Rodo smeigtuko mygtuką kiekviename dizaine">
 
-<!ENTITY gsettings.about		"Apie">
+<!ENTITY gsettings.downloadShelf					"Atsisiuntimu lentyną">
+<!ENTITY gsettings.disableDownloadShelf				"Išjungti atsisiuntimo lentyną">
+<!ENTITY gsettings.disableDownloadShelfDescription	'Tai įjungs "Firefox" atsisiuntimo mygtuką'>
+
+<!ENTITY gsettings.aboutDialog	"Apie">
 <!ENTITY gsettings.chooseAbout	"Pasirinkite Apie">
 <!ENTITY gsettings.ask			"Paklauskite">
 
@@ -105,6 +112,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Nagrinėkite išbrauktas Chromium elgsenos parinktis...">
 
 <!ENTITY gsettings.appsList "Programėlių sąrašas">
+<!ENTITY gsettings.addAnApp "Pridėti programėlę">
 
 <!ENTITY gsettings.pagesToDesign	"Pakeiskite naujojo skirtuko puslapio dizainą...">
 <!ENTITY gsettings.pagesToBehaviour	"Tvarkykite temų elgseną naujojo skirtuko puslapyje...">
@@ -125,7 +133,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 nepalaikomas Geckium You">
 <!ENTITY gsettings.grey					"Pilkas">
 <!ENTITY gsettings.w3cAccentColor		"Akcento spalva">
-<!ENTITY gsettings.custom				"Pasirinktinis">
+<!ENTITY gsettings.custom				"Pasirinktinis...">
 <!ENTITY gsettings.wincolor				"Langų spalva">
 
 <!ENTITY gsettings.filterThemesBy	"Filtruok temas pagal...">
