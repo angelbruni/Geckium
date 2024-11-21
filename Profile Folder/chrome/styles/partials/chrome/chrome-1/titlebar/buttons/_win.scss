@@ -48,13 +48,11 @@
 			color: black !important;
 			border-radius: 4px !important;
 		}
-		#main-menubar {
-			& > menu {
-				text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
-				@media not (-moz-platform: linux) {
-					-moz-default-appearance: menuitem;
-					appearance: menuitem !important;
-				}
+		#main-menubar > menu {
+			text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+			@media not (-moz-platform: linux) {
+				-moz-default-appearance: menuitem;
+				appearance: menuitem !important;
 			}
 		}
 	}
