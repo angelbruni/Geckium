@@ -27,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "อัตโนมัติ">
 
-<!ENTITY gsettings.titlebar							"แถบชื่อเรื่อง">
-<!ENTITY gsettings.titlebarStyle					"ลักษณะของแถบชื่อเรื่องและอินเทอร์เฟซต่างๆ">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (ไม่มีขอบ)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alpha)">
-<!ENTITY gsettings.titlebarMode						"รูปแบบของแถบชื่อเรื่อง">
-<!ENTITY gsettings.titlebarModeDisclaimer			"แถบชื่อเรื่องบางรูปแบบจะไม่สนใจการตั้งค่านี้">
-<!ENTITY gsettings.titlebarModeSystem				"กรอบของระบบ">
-<!ENTITY gsettings.titlebarModeCompact				"กรอบแบบกระทัดรัด">
-<!ENTITY gsettings.titlebarInThemesIsSys			"ใช้กรอบหน้าต่างของระบบในธีมของ Chromium ที่เข้ากันได้">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"จำเป็นต้องเปิดใช้กรอบหน้าต่างของระบบในรูปแบบของแถบชื่อเรื่องหรือถูกใช้งานโดยลักษณะของแถบชื่อเรื่อง">
+<!ENTITY gsettings.titlebar								"แถบชื่อเรื่อง">
+<!ENTITY gsettings.titlebarStyle						"ลักษณะของแถบชื่อเรื่องและอินเทอร์เฟซต่างๆ">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (ไม่มีขอบ)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alpha)">
+<!ENTITY gsettings.titlebarMode							"รูปแบบของแถบชื่อเรื่อง">
+<!ENTITY gsettings.titlebarModeDisclaimer				"แถบชื่อเรื่องบางรูปแบบจะไม่สนใจการตั้งค่านี้">
+<!ENTITY gsettings.titlebarModeSystem					"กรอบของระบบ">
+<!ENTITY gsettings.titlebarModeCompact					"กรอบแบบกระทัดรัด">
+<!ENTITY gsettings.titlebarInThemesIsSys				"ใช้กรอบหน้าต่างของระบบในธีมของ Chromium ที่เข้ากันได้">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"จำเป็นต้องเปิดใช้กรอบหน้าต่างของระบบในรูปแบบของแถบชื่อเรื่องหรือถูกใช้งานโดยลักษณะของแถบชื่อเรื่อง">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
+<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
 
 <!ENTITY gsettings.availablePresets	"ตัวเลือกชุดรูปแบบที่มีอยู่ในขณะนี้">
 <!ENTITY gsettings.resetOverrides	"รีเซ็ตทุกการตั้งค่าต่างๆ ที่ทับซ้อนกับค่านี้">
@@ -62,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"อนุญาตให้คุณดาวน์โหลดธีมของ Chromium โดยไม่ต้องติดตั้งมันโดยการกดปุ่มทิ้ง">
 <!ENTITY gsettings.toolbar						"แถบเครื่องมือ">
 <!ENTITY gsettings.needsRestart					"ต้องการรีสตาร์ท">
-<!ENTITY gsettings.enableTabManager				"เปิดใช้ตัวจัดการแท็บ">
+<!ENTITY gsettings.tabManager					"เปิดใช้ตัวจัดการแท็บ"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"ซ่อนปุ่มเมนูส่วนขยาย">
 
 <!ENTITY gsettings.macIsGraphite					"ใช้ปุ่มแบบ Graphite ในแถบชื่อเรื่อง">
@@ -92,10 +96,10 @@
 <!ENTITY gsettings.allToolbarItems					"ทุกรายการบนแถบเครื่องมือ">
 <!ENTITY gsettings.none								"ไม่ใช้งาน">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"เปิดใช้การปักหมุดเว็บไซต์ในทุกยุคสมัย">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"แสดงปุ่มพินในทุกชุดรูปแบบ">
+<!ENTITY gsettings.websitePinningInEveryEra				"เปิดใช้การปักหมุดเว็บไซต์ในทุกยุคสมัย"> <!-- THIS REQUIRES STRING AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"แสดงปุ่มพินในทุกชุดรูปแบบ">
 
-<!ENTITY gsettings.about		"About">
+<!ENTITY gsettings.aboutDialog	"About">
 <!ENTITY gsettings.chooseAbout	"Choose About">
 <!ENTITY gsettings.ask			"Ask">
 
@@ -104,6 +108,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"เรียกดูตัวเลือกการทำงานต่างๆ ของ Chromium ที่ถูกยกเลิกไป...">
 
 <!ENTITY gsettings.appsList "รายชื่อแอป">
+<!ENTITY gsettings.addAnApp "เพิ่มแอป">
 
 <!ENTITY gsettings.pagesToDesign	"ปรับเปลี่ยนการออกแบบในหน้าแท็บใหม่...">
 <!ENTITY gsettings.pagesToBehaviour	"จัดการการทำงานของธีมในหน้าแท็บใหม่...">
@@ -124,7 +129,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 ไม่รองรับ Geckium You">
 <!ENTITY gsettings.grey					"สีเทา">
 <!ENTITY gsettings.w3cAccentColor		"สีหลัก">
-<!ENTITY gsettings.custom				"กำหนดเอง">
+<!ENTITY gsettings.custom				"กำหนดเอง...">
 <!ENTITY gsettings.wincolor				"สีของหน้าต่าง">
 
 <!ENTITY gsettings.filterThemesBy	"กรองธีมโดย...">

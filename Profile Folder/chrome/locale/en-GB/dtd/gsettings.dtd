@@ -27,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "Automatic">
 
-<!ENTITY gsettings.titlebar							"Titlebar">
-<!ENTITY gsettings.titlebarStyle					"Titlebar and Interface Style">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (gapless)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alpha)">
-<!ENTITY gsettings.titlebarMode						"Titlebar Mode">
-<!ENTITY gsettings.titlebarModeDisclaimer			"Some titlebar styles will ignore this setting">
-<!ENTITY gsettings.titlebarModeSystem				"System Borders">
-<!ENTITY gsettings.titlebarModeCompact				"Compact Borders">
-<!ENTITY gsettings.titlebarInThemesIsSys			"Use system borders in compatible Chromium Themes">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"Requires system borders to be enabled or used by your titlebar style">
+<!ENTITY gsettings.titlebar								"Titlebar">
+<!ENTITY gsettings.titlebarStyle						"Titlebar and Interface Style">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (gapless)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alpha)">
+<!ENTITY gsettings.titlebarMode							"Titlebar Mode">
+<!ENTITY gsettings.titlebarModeDisclaimer				"Some titlebar styles will ignore this setting">
+<!ENTITY gsettings.titlebarModeSystem					"System Borders">
+<!ENTITY gsettings.titlebarModeCompact					"Compact Borders">
+<!ENTITY gsettings.titlebarInThemesIsSys				"Use system borders in compatible Chromium Themes">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Requires system borders to be enabled or used by your titlebar style">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"Native Titlebar Buttons Size">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"Required for Native Titlebar Buttons and Tabs to be sized properly">
+<!ENTITY gsettings.customWidthInPixels					"Custom width (in pixels)">
 
 <!ENTITY gsettings.availablePresets	"Available presets">
 <!ENTITY gsettings.resetOverrides	"Reset overrides">
@@ -62,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Allows you to download Chromium Themes without installing them by pressing Discard">
 <!ENTITY gsettings.toolbar						"Toolbar">
 <!ENTITY gsettings.needsRestart					"Needs restart">
-<!ENTITY gsettings.enableTabManager				"Enable tab manager">
+<!ENTITY gsettings.tabManager					"Tab manager">
+<!ENTITY gsettings.tabManagerDescription		'Enables the "arrow button" with the list of open tabs in the tabbar'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"Hide extensions menu button">
 
 <!ENTITY gsettings.macIsGraphite					"Use Graphite titlebar buttons">
@@ -92,10 +96,10 @@
 <!ENTITY gsettings.allToolbarItems					"All toolbar items">
 <!ENTITY gsettings.none								"None">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"Enable website pinning in every era">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Displays the pin button in every design">
+<!ENTITY gsettings.websitePinningInEveryEra				"Website pinning in every era">
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"Displays the pin button in every design">
 
-<!ENTITY gsettings.about		"About">
+<!ENTITY gsettings.aboutDialog	"About">
 <!ENTITY gsettings.chooseAbout	"Choose About">
 <!ENTITY gsettings.ask			"Ask">
 
@@ -104,6 +108,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Explore scrapped Chromium behaviour options...">
 
 <!ENTITY gsettings.appsList "Apps List">
+<!ENTITY gsettings.addAnApp "Add an app">
 
 <!ENTITY gsettings.pagesToDesign	"Change the new tab page design...">
 <!ENTITY gsettings.pagesToBehaviour	"Manage behaviour of themes in the new tab page...">
@@ -124,7 +129,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 is not supported by Geckium You">
 <!ENTITY gsettings.grey					"Grey">
 <!ENTITY gsettings.w3cAccentColor		"Accent Colour">
-<!ENTITY gsettings.custom				"Custom">
+<!ENTITY gsettings.custom				"Custom...">
 <!ENTITY gsettings.wincolor				"Window Colour">
 
 <!ENTITY gsettings.filterThemesBy	"Filter themes by...">

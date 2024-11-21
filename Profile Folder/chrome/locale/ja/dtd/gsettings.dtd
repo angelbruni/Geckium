@@ -27,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "自動">
 
-<!ENTITY gsettings.titlebar							"タイトルバー">
-<!ENTITY gsettings.titlebarStyle					"タイトルバーとインターフェースの外観">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (間隔なし)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (アルファ版)">
-<!ENTITY gsettings.titlebarMode						"タイトルバーのモード">
-<!ENTITY gsettings.titlebarModeDisclaimer			"一部のタイトルバーの外観はこの設定を無視します">
-<!ENTITY gsettings.titlebarModeSystem				"システムの境界">
-<!ENTITY gsettings.titlebarModeCompact				"コンパクトな境界">
-<!ENTITY gsettings.titlebarInThemesIsSys			"対応する Chromium テーマでシステムの境界を使用する">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"上記にて「システムの境界」を選択するかタイトルバーのスタイルで有効化されている必要があります">
+<!ENTITY gsettings.titlebar								"タイトルバー">
+<!ENTITY gsettings.titlebarStyle						"タイトルバーとインターフェースの外観">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (間隔なし)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (アルファ版)">
+<!ENTITY gsettings.titlebarMode							"タイトルバーのモード">
+<!ENTITY gsettings.titlebarModeDisclaimer				"一部のタイトルバーの外観はこの設定を無視します">
+<!ENTITY gsettings.titlebarModeSystem					"システムの境界">
+<!ENTITY gsettings.titlebarModeCompact					"コンパクトな境界">
+<!ENTITY gsettings.titlebarInThemesIsSys				"対応する Chromium テーマでシステムの境界を使用する">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"上記にて「システムの境界」を選択するかタイトルバーのスタイルで有効化されている必要があります">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
+<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
 
 <!ENTITY gsettings.availablePresets	"利用可能なプリセット">
 <!ENTITY gsettings.resetOverrides	"上書き設定をリセット">
@@ -62,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Chromium のテーマをダウンロードする際、「破棄」ボタンを押すことでインストールせずにダウンロードすることができます">
 <!ENTITY gsettings.toolbar						"ツールバー">
 <!ENTITY gsettings.needsRestart					"再起動が必要">
-<!ENTITY gsettings.enableTabManager				"タブ マネージャーを有効化する">
+<!ENTITY gsettings.tabManager					"タブ マネージャーを有効化する"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"拡張機能ボタンを無効化する">
 
 <!ENTITY gsettings.macIsGraphite					"グラファイト カラーのタイトルバー ボタン">
@@ -92,10 +96,10 @@
 <!ENTITY gsettings.allToolbarItems					"すべてのツールバー項目">
 <!ENTITY gsettings.none								"なし">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"ウェブサイトのピンをすべてのデザインで有効化する">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"ピンボタンをすべてのデザインで表示します">
+<!ENTITY gsettings.websitePinningInEveryEra				"ウェブサイトのピンをすべてのデザインで有効化する">  <!-- THIS REQUIRES STRING AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"ピンボタンをすべてのデザインで表示します">
 
-<!ENTITY gsettings.about		"概要">
+<!ENTITY gsettings.aboutDialog	"概要">
 <!ENTITY gsettings.chooseAbout	"概要を選択">
 <!ENTITY gsettings.ask			"聞く">
 
@@ -108,6 +112,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Chromium の廃止された試験的機能を探す">
 
 <!ENTITY gsettings.appsList "アプリリスト">
+<!ENTITY gsettings.addAnApp "アプリを追加する">
 
 <!ENTITY gsettings.pagesToDesign	"新しいタブ ページの外観を変える">
 <!ENTITY gsettings.pagesToBehaviour	"新しいタブ ページでのテーマの挙動を変える">
@@ -125,7 +130,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Geckium You は Chrome 58 では利用できません">
 <!ENTITY gsettings.grey					"グレー">
 <!ENTITY gsettings.w3cAccentColor		"アクセントカラー">
-<!ENTITY gsettings.custom				"カスタム">
+<!ENTITY gsettings.custom				"カスタム…">
 <!ENTITY gsettings.wincolor				"ウィンドウの色">
 
 <!ENTITY gsettings.filterThemesBy	"テーマのフィルタ">

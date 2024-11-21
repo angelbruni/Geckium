@@ -5,7 +5,6 @@ class gmPages {
 		try {
 			return document.querySelector(`.pages-container[data-page-container="${pageContainer}"] .page[selected="true"]`).dataset.page
 		} catch (e) {
-			console.error(e);
 			return null
 		}
 	}
@@ -31,7 +30,10 @@ class gmPages {
 			const pageList = page.parentNode.querySelectorAll("vbox[data-page]");
 			if (pageList) {
 				pageList.forEach(pages => {
-					pages.removeAttribute("selected")
+					pages.removeAttribute("selected");
+
+					if (pages.querySelector(".content-container"))
+						pages.querySelector(".content-container").scrollTo({top: 0, behavior: 'smooth'}); // Smoothly reset scrolling.
 				});
 			}
 			page.setAttribute("selected", true);
