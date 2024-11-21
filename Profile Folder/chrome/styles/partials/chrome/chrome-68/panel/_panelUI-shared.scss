@@ -7,13 +7,10 @@
 	}
 }
 
-#PanelUI-fxa-menu > toolbarbutton.subviewbutton {
+#PanelUI-fxa-menu > toolbarbutton.subviewbutton,
+#PanelUI-signedin-panel > toolbarbutton.subviewbutton {
 	&:first-of-type {
 		margin-block-start: 10px !important;
-	}
-
-	&:last-of-type {
-		margin-block-end: 10px !important;
 	}
 
 	&:not(#fxa-manage-account-button) {
@@ -28,6 +25,14 @@
 			text-align: center !important;
 		}
 	}
+}
+
+#PanelUI-fxa-menu {
+	padding-block-end: 10px !important;
+}
+
+[id*="synced-tabs-client"] {
+	margin-inline-start: 16px !important;
 }
 
 panel toolbarbutton {
