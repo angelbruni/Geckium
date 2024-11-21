@@ -25,7 +25,7 @@
 .spinner-container {
 	position: absolute;
 	z-index: 1;
-	display: flex;
+	display: none;
 	box-sizing: border-box;
 	left: 0;
 	top: 0;
@@ -41,8 +41,9 @@
 		background-color: rgba(30,30,30,.8);
 	}
 }
-*:not([loading="true"]) + .spinner-container {
-	display: none;
+[loading="true"] > .spinner-container,
+[loading="true"] + .spinner-container {
+	display: flex;
 }
 
 .spinner {
