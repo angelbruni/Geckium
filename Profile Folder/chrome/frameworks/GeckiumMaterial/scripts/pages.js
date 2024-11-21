@@ -5,7 +5,6 @@ class gmPages {
 		try {
 			return document.querySelector(`.pages-container[data-page-container="${pageContainer}"] .page[selected="true"]`).dataset.page
 		} catch (e) {
-			console.error(e);
 			return null
 		}
 	}
