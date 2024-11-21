@@ -653,7 +653,13 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gsettings.appsList;</h4>
-											<vbox class="card" id="apps-list" />
+											<vbox class="card" id="apps-list" style="position: relative;">
+												<html:div class="spinner-container">
+													<svg class="spinner" width="48px" height="48px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+														<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+													</svg>
+												</html:div>
+											</vbox>
 											<div class="modal" data-modal="editApp_modal">
 												<div class="wrapper">
 													<div class="card">
@@ -741,6 +747,7 @@
 										</vbox>
 									</vbox>
 								</vbox>
+								<html:button id="add-app-fab" class="floating-action-button ripple-enabled leading-icon icon-add extended" label="&gsettings.addAnApp;" data-toggle-modal="editApp_modal" />
 							</vbox>
 
 							<vbox class="page" data-page="13">
