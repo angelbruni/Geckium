@@ -335,7 +335,7 @@
 											</vbox>-->
 											<h4>&gsettings.newTab;</h4>
 											<vbox class="card">
-												<hbox class="item">
+												<hbox id="overridevisualstyle" class="item">
 													<vbox>
 														<label class="name">&gsettings.overrideVisualStylePreset;</label>
 													</vbox>
@@ -345,7 +345,7 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle" style="padding-block-start: 19px">
+												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle">
 													<grid id="ntp-visual-styles-grid" class="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
@@ -464,7 +464,8 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">&gsettings.needsRestart;</div>&gsettings.enableTabManager;</label>
+														<label class="name"><div class="year is-below-120">&gsettings.needsRestart;</div>&gsettings.tabManager;</label>
+														<label class="description">&gsettings.tabManagerDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -568,7 +569,7 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<hbox class="item">
+												<hbox class="item is-linux-only">
 													<vbox>
 														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInToolbarItems;</label>
 														<label class="description">&gsettings.gtkIconsInToolbarItemsDisclaimer;</label>
@@ -591,8 +592,8 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.enableWebsitePinningInEveryEra;</label>
-														<label class="description">&gsettings.enableWebsitePinningInEveryEraDescription;</label>
+														<label class="name">&gsettings.websitePinningInEveryEra;</label>
+														<label class="description">&gsettings.websitePinningInEveryEraDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -845,7 +846,7 @@
 															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
 														</vbox>
 													</html:button>
-													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" data-parent-pref="Geckium.you.mode" data-requires-value="custom" id="you-color-select"></html:input>
+													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" data-parent-pref="Geckium.you.mode" data-requires-value="custom" id="you-color-select" style="margin-inline-start: 19px" />
 												</hbox>
 												<hbox class="item" id="gkThemeFilterItem">
 													<vbox>
@@ -864,7 +865,7 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px; position: relative;">
+												<vbox class="item" flex="1" style="position: relative; overflow: visible;">
 													<grid id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
