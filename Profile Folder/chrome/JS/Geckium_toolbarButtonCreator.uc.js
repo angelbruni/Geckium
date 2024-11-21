@@ -832,7 +832,7 @@ UC_API.Runtime.startupFinished().then(() => {
 		},
 		adjustAccelTextWidth: true,
 	});
-	if (is133Plus) {
+	if (versionFlags.is133Plus) {
 		gkToolbarButtons.create({
 			id: "searchmode-switcher",
 			removable: true,

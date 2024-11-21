@@ -12,9 +12,13 @@
 const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
 const checkedVersions = [117, 120, 133, 134];
+const versionFlags = {};
 checkedVersions.forEach(version => {
-	if (majorVersion >= version)
-		document.documentElement.setAttribute(`is${version}Plus`, true);
+	if (majorVersion >= version) {
+		const flagName = `is${version}Plus`;
+		document.documentElement.setAttribute(flagName, true);
+		versionFlags[flagName] = true;
+	}
 });
 
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
