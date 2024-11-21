@@ -31,7 +31,10 @@ class gmPages {
 			const pageList = page.parentNode.querySelectorAll("vbox[data-page]");
 			if (pageList) {
 				pageList.forEach(pages => {
-					pages.removeAttribute("selected")
+					pages.removeAttribute("selected");
+
+					if (pages.querySelector(".content-container"))
+						pages.querySelector(".content-container").scrollTo({top: 0, behavior: 'smooth'}); // Smoothly reset scrolling.
 				});
 			}
 			page.setAttribute("selected", true);
