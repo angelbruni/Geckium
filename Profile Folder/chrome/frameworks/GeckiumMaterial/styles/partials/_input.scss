@@ -133,7 +133,7 @@
 		&:checked {
 			border-color: var(--secondary-color, var(--primary-color));
 
-			& + .gutter {
+			+ .gutter {
 				scale: 2.4;
 
 				&::before {
@@ -317,7 +317,7 @@
 		transition: all 150ms ease-in;
 		cursor: pointer;
 
-		& + .gutter {
+		+ .gutter {
 			position: relative;
 			height: 20px;
 			width: 20px;
