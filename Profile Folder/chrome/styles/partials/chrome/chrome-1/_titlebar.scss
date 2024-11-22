@@ -274,6 +274,11 @@
 		}
 	}
 	&[gktitnative="false"] { // Compact Borders
+		// Disable window metrics border padding affecting titlebar height
+		&[sizemode="normal"] #titlebar {
+			appearance: none !important;
+		}
+
 		// Default to top-aligning the titlebar buttons
 		.titlebar-buttonbox-container {
 			align-self: start;
@@ -285,8 +290,8 @@
 				#titlebar {
 					visibility: hidden !important;
 				}
-				&:not([inFullscreen], [chromehidden~="menubar"]) #toolbar-menubar,
-				&:not([inFullscreen], [chromehidden~="toolbar"]) #TabsToolbar {
+				&:not([chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([chromehidden~="toolbar"]) #TabsToolbar {
 					visibility: visible !important; // browser.css:186, 115
 				}
 			}
