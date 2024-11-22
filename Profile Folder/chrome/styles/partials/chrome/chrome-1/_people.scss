@@ -127,6 +127,9 @@
     #gkpeople-button-container {
         appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
     }
+	#gkpeople-button {
+		display: flex !important;
+	}
 	#toolbar-menubar[autohide="true"]:not([inactive]) ~ #TabsToolbar,
 	&:not([gkpeoplestyle="titlebutton"]) {
 		#gkpeople-button-container {
