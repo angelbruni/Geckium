@@ -39,7 +39,7 @@ function getNCPatched() {
 			return "patch";
         else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) // Marble
 			return "marble";
-		else if ((!is117Plus && window.matchMedia("(-moz-platform: windows-win7)").matches) || (!is117Plus && window.matchMedia("(-moz-platform: windows-win8)").matches)) // From Firefox 115 itself running in Windows 7/8
+		else if (!versionFlags.is117Plus && (window.matchMedia("(-moz-platform: windows-win7)").matches || window.matchMedia("(-moz-platform: windows-win8)").matches)) // From Firefox 115 itself running in Windows 7/8
 			return "native"
     }
 	return null;
