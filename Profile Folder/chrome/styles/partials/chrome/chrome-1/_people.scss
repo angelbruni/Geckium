@@ -124,10 +124,8 @@
     /*
 		People Titlebar Button
 	*/
-    #gkpeople-button-container {
-        appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
-    }
 	#gkpeople-button {
+		appearance: none !important; // bruni: We disable the `.titlebar-buttonbox` apperance so it doesn't mask the People button.
 		display: flex !important;
 	}
 	#toolbar-menubar[autohide="true"]:not([inactive]) ~ #TabsToolbar,
