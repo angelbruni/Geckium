@@ -37,9 +37,9 @@
 <!ENTITY gsettings.titlebarModeCompact					"Kompakt Kenarlıklar">
 <!ENTITY gsettings.titlebarInThemesIsSys				"Uyumlu Chromium Temalarında sistem kenarlıklarını kullan">
 <!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Sistem kenarlıklarının etkinleştirilmesini veya başlık çubuğu stiliniz tarafından kullanılmasını gerektirir">
-<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
-<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
-<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"Yerel Başlık Çubuğu Düğme Boyutu">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"Yerel başlık çubuğu düğmelerinin ve sekmelerin düzgün boyutlandırılması için gereklidir">
+<!ENTITY gsettings.customWidthInPixels					"Özel genişlik (piksel cinsinden)">
 
 <!ENTITY gsettings.availablePresets	"Mevcut Ön Ayarlar">
 <!ENTITY gsettings.resetOverrides	"Geçersiz Kılmaları Sıfırla">
@@ -55,9 +55,9 @@
 <!ENTITY gsettings.designToThemes		"Temaları değiştirin veya yönetin...">
 <!ENTITY gsettings.designToExperiments	"Kaldırılış Chromium görünüm seçeneklerini keşfedin...">
 
-<!ENTITY gsettings.privacy			"[!!! ÞřïƲáç¥ !!!]">
-<!ENTITY gsettings.hideAccountInfo	"[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
-<!ENTITY gsettings.willHideInfoFrom	"[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
+<!ENTITY gsettings.privacy			"Gizlilik">
+<!ENTITY gsettings.hideAccountInfo	"Hesap bilgilerini gizle">
+<!ENTITY gsettings.willHideInfoFrom	"Bu ayar, adınızı ve e-posta adresinizi Kişiler düğmesi ve Yeni Sekme sayfası gibi yerlerde gizleyecek">
 
 <!ENTITY gsettings.browser						"Tarayıcı">
 <!ENTITY gsettings.branding						"Markalama">
@@ -66,7 +66,7 @@
 <!ENTITY gsettings.toolbar						"Araç Çubuğu">
 <!ENTITY gsettings.needsRestart					"Yeniden Başlatma Gerekir">
 <!ENTITY gsettings.tabManager					"Sekme Yöneticisini">
-<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
+<!ENTITY gsettings.tabManagerDescription		"Sekme çubuğunda açık sekmelerin listesini içeren 'ok düğmesi'ni etkinleştirir">
 <!ENTITY gsettings.hideExtensionsMenuButton		"Eklentiler Menüsü Düğmesini Gizle">
 
 <!ENTITY gsettings.macIsGraphite					"Grafit başlık çubuğu düğmelerini kullan">
@@ -82,8 +82,8 @@
 <!ENTITY gsettings.disabled								"Devre Dışı">
 <!ENTITY gsettings.chrThemesMustAero					"Tüm Chromium temalarını sistem kenarlıklarını kullanmaya zorla">
 <!ENTITY gsettings.chrThemesMustAeroDisclaimer			"Uyumlu Chromium temalarında sistem kenarlıklarının etkinleştirilmesini gerektirir">
-<!ENTITY gsettings.forceColorizeAddressBar				"[!!! ÛR£ ßář ƭλè₥ïñϱ ƒôř ïñçô₥ƥáƭïβℓè δèƨïϱñƨ !!!]">
-<!ENTITY gsettings.forceColorizeAddressBarDisclaimer	"[!!! Rè9úïřèƨ Gèçƙïú₥ Fïřèƒôж Tλè₥è ₥ôδè ôř á çô₥ƥáƭïβℓè Çλřô₥ïú₥ Tλè₥è !!!]">
+<!ENTITY gsettings.forceColorizeAddressBar				"Uyumsuz sürümler için URL çubuğu temalandırmasını etkinleştir">
+<!ENTITY gsettings.forceColorizeAddressBarDisclaimer	"Geckium Firefox Tema modu veya uyumlu bir Chromium Teması gerektirir">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttons			"Firefox Temalarında başlık çubuğu düğmelerine araç çubuğu arka planını uygula">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer	"Bazı başlık çubuğu stilleri bu ayarı yok sayacaktır">
 <!ENTITY gsettings.colorizeTabGlareEffect				"Özelleştirilmiş temaya göre sekme parıltı efektini renklendir">
@@ -99,13 +99,13 @@
 <!ENTITY gsettings.websitePinningInEveryEra				"Her temada web sitesi sabitlemeyi">
 <!ENTITY gsettings.websitePinningInEveryEraDescription	"Her sürümde sabitleme düğmesini göster">
 
-<!ENTITY gsettings.downloadShelf					"[!!! Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelf				"[!!! Ðïƨáβℓè Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelfDescription	"[!!! Tλïƨ ωïℓℓ ƭúřñ ôñ Fïřèƒôж'ƨ Ðôωñℓôáδ βúƭƭôñ !!!]">
+<!ENTITY gsettings.downloadShelf					"İndirme Rafı">
+<!ENTITY gsettings.disableDownloadShelf				"İndirme Rafını Devre Dışı Bırak">
+<!ENTITY gsettings.disableDownloadShelfDescription	"Bu, Firefox'un İndirme Düğmesini etkinleştirecektir">
 
-<!ENTITY gsettings.aboutDialog	"About">
-<!ENTITY gsettings.chooseAbout	"Choose About">
-<!ENTITY gsettings.ask			"Ask">
+<!ENTITY gsettings.aboutDialog	"Hakkında">
+<!ENTITY gsettings.chooseAbout	"Hakkında Seç">
+<!ENTITY gsettings.ask			"Sor">
 
 <!ENTITY gsettings.behaviourToDesign		"Tasarımı değiştirin veya geçersiz kılmaları yönetin...">
 <!ENTITY gsettings.behaviourToTheme			"Davranış değişikliklerini gözlemlemek için bir tema uygulayın...">
@@ -158,22 +158,22 @@
 <!ENTITY gsettings.themeToBehaviour		"Arayüz temalarının etkisini ayarlayın...">
 <!ENTITY gsettings.themeToExperiments	"Kaldırılmış Chromium seçenekleriyle gelişmiş kişiselleştirme...">
 
-<!ENTITY gsettings.peopleButton			"[!!! Þèôƥℓè ßúƭƭôñ !!!]">
-<!ENTITY gsettings.peopleButtonStyle	"[!!! Þèôƥℓè ßúƭƭôñ §ƭ¥ℓè !!!]">
-<!ENTITY gsettings.avatarBesideTabs		"[!!! ÂƲáƭář βèƨïδè Táβƨ !!!]">
-<!ENTITY gsettings.titlebarButton		"[!!! Tïƭℓèβář ßúƭƭôñ !!!]">
+<!ENTITY gsettings.peopleButton			"Kişiler Düğmesi">
+<!ENTITY gsettings.peopleButtonStyle	"Kişiler Düğmesi Stili">
+<!ENTITY gsettings.avatarBesideTabs		"Sekmelerin Yanında Avatar">
+<!ENTITY gsettings.titlebarButton		"Başlık Çubuğu Düğmesi">
 
-<!ENTITY gsettings.avatar					"[!!! ÂƲáƭář !!!]">
-<!ENTITY gsettings.avatarSource				"[!!! ÂƲáƭář §ôúřçè !!!]">
-<!ENTITY gsettings.avatarSourceDisclaimer	"[!!! Fïřèƒôж Âççôúñƭ ωïℓℓ ôñℓ¥ δïƨƥℓá¥ ïƒ ƨïϱñèδ ïñ !!!]">
-<!ENTITY gsettings.firefoxAccount			"[!!! Fïřèƒôж Âççôúñƭ !!!]">
-<!ENTITY gsettings.selectYourAvatar			"[!!! §èℓèçƭ ¥ôúř áƲáƭář !!!]">
-<!ENTITY gsettings.imagePath				"Resim Yolu">
+<!ENTITY gsettings.avatar					"Avatar">
+<!ENTITY gsettings.avatarSource				"Avatar Kaynağı">
+<!ENTITY gsettings.avatarSourceDisclaimer	"Firefox Hesabı yalnızca oturum açıldığında görüntülenir">
+<!ENTITY gsettings.firefoxAccount			"Firefox Hesabı">
+<!ENTITY gsettings.selectYourAvatar			"Avatarınızı Seçin">
+<!ENTITY gsettings.imagePath				"Resim Konumu">
 
-<!ENTITY gsettings.force68Linux					"[!!! Fôřçè Çλřô₥ïú₥ 68'ƨ Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.force68LinuxDescription		"[!!! ßèƒôřè 68, ƭλè ƭïƭℓèβář βúƭƭôñ úƨèδ Wïñδôωƨ'ƨ βúƭƭôñ ƨƭ¥ℓè !!!]">
-<!ENTITY gsettings.showChrOSPeople				"[!!! §λôω Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.showChrOSPeopleDescription	"[!!! Tλè Þèôƥℓè Tïƭℓèβář ßúƭƭôñ ωáƨ èжçℓúƨïƲè ƭô Wïñδôωƨ 8 Môδè !!!]">
+<!ENTITY gsettings.force68Linux					"Chromium 68'in Kişiler Başlık Çubuğu Düğmesini Zorla">
+<!ENTITY gsettings.force68LinuxDescription		"68'den önce, başlık çubuğu düğmesi Windows'un düğme stilini kullanıyordu">>
+<!ENTITY gsettings.showChrOSPeople				"Kişiler Başlık Çubuğu Düğmesini Göster">
+<!ENTITY gsettings.showChrOSPeopleDescription	"Kişiler Başlık Çubuğu Düğmesi yalnızca Windows 8 Modu'na özeldi">
 
 <!ENTITY gsettings.flags 'Bayraklar - ayrıca "about:flags" sayfasından da erişilebilir'>
 
