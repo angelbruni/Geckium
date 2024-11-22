@@ -6,8 +6,9 @@
 }
 
 // Permanently use offset'd Incognito/pfp measurements
-#fxa-toolbar-menu-button,
-#private-browsing-indicator-with-label {
+#gkavatar-container > #gk-firefox-account-button,
+#private-browsing-indicator-with-label,
+.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
     height: calc(var(--tab-height) - 9px);
 
     .toolbarbutton-badge-stack,

@@ -37,16 +37,16 @@
 				}
 			}
 
-			&.ripple-enabled {
-				&:not([disabled]) {
-					&:hover,
-					&:focus-visible {
-						background: rgba(153, 153, 153, .1);
-					}
+			&.ripple-enabled:not([disabled]) {
+				&:hover,
+				&:focus-visible {
+					background: rgba(153, 153, 153, .1);
 				}
 			}
 
 			> h4 {
+				height: 32px;
+				align-items: start;
 				color: var(--secondary-color, var(--primary-color));
 			}
 
@@ -65,10 +65,8 @@
 				}
 			}
 
-			.menu {
-				.placeholder {
-					display: none;
-				}
+			.menu .placeholder {
+				display: none;
 			}
 
 			.description {
@@ -91,10 +89,6 @@
 					pointer-events: none;
 					opacity: .5;
 				}
-
-				/*&:last-of-type {
-					margin-block-end: 15px;
-				}*/
 
 				.placeholder {
 					display: none;

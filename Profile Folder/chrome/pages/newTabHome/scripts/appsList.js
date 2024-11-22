@@ -49,7 +49,7 @@ function setUpApps() {
 				`
 			}
 		
-			if (appearanceChoice == 21 || appearanceChoice == 25) {
+			if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 				appsContainer = "#apps-page .tile-grid";
 
 				icon = app.newIcon;

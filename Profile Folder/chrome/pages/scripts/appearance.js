@@ -4,7 +4,7 @@ function appearance() {
 
 	document.documentElement.dataset.url = document.URL;
 
-	if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps")
+	if (document.URL == "about:newtab" || document.URL == "about:home" || document.URL == "about:apps" || document.URL == "about:privatebrowsing")
 		prefChoice = gkEras.getNTPEra();
 	else
 		prefChoice = gkEras.getBrowserEra();	
@@ -59,3 +59,5 @@ Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.devOptions.disableRecentlyVisited", appearanceObs, false);
+Services.prefs.addObserver("Geckium.devOptions.disableRecentlyClosed", appearanceObs, false);

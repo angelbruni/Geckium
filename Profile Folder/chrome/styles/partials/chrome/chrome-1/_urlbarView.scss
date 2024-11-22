@@ -1,5 +1,6 @@
 :root {
-	--urlbarView: white;
+	--urlbarView-background-color: white;
+	--urlbarView-color: black;
 	--urlbarView-row-height: 25px;
 	--urlbarView-highlight-background: SelectedItem !important;
 	--urlbarView-highlight-color: SelectedItemText !important;
@@ -86,7 +87,7 @@
 
 .urlbarView {
 	display: block;
-	background: var(--urlbarView) !important;
+	background: var(--urlbarView-background-color) !important;
 	border: 1px solid rgba(0, 0, 0, 0.3) !important;
 	margin-inline: 0 !important;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .5);
@@ -139,7 +140,7 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	min-width: 0;
-	color: black;
+	color: var(--urlbarView-color);
 
 	&:is([isurl="true"])::before {
 		display: none !important;

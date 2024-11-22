@@ -346,7 +346,7 @@ function createTile(website) {
 
 				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 				thumbnail = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .thumbnail-wrapper";
-			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
+			} else if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 				for (const key in websiteColors) {
 					const websiteURL = urlFixedSpecialChars.toLowerCase();
 					
@@ -477,7 +477,7 @@ function createTile(website) {
 					</html:div>
 				</html:a>
 				`
-			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
+			} else if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 				tile = `
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
@@ -522,7 +522,7 @@ function populateRecentSitesGrid() {
 		mostViewed = "#most-visited";
 	else if (appearanceChoice == 11)
 		mostViewed = "#most-viewed-content";
-	else if (appearanceChoice == 21 || appearanceChoice == 25)
+	else if (appearanceChoice >= 17 && appearanceChoice <= 25)
 		mostViewed = "#most-visited-page .tile-grid";
 	else if (appearanceChoice >= 47)
 		mostViewed = "#mv-tiles";
@@ -539,9 +539,12 @@ function populateRecentSitesGrid() {
     const combinedSites = [...pinnedSites];
 
     // Add frequent sites until we fill up the total number of tiles
-    for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
-        combinedSites.push(topFrecentSites[i]);
-    }
+	if (!gkPrefUtils.tryGet("Geckium.devOptions.disableRecentlyVisited").bool) {
+		for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
+			combinedSites.push(topFrecentSites[i]);
+		}	
+	}
+    
     const mostVisited = document.querySelector(mostViewed);
 
 	waitForElm(mostViewed).then(function() {

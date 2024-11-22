@@ -7,7 +7,8 @@ async function getInstalledLWThemes() {
 		// Directly await the result if getAddonsByTypes returns a promise
 		const themes = await AddonManager.getAddonsByTypes(["theme"]);
 		if (Array.isArray(themes)) {
-			console.log("Themes fetched successfully:", themes);
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log("getInstalledLWThemes: Themes fetched successfully:", themes);
 			return themes;  // Return the list of themes
 		} else {
 			throw new Error("No valid themes found");
@@ -20,9 +21,11 @@ async function getInstalledLWThemes() {
 
 async function getLWThemesList() {
     const result = [];
-	console.log(`getLWThemesList: Looking for themes...`);
-    const themes = await getInstalledLWThemes();
 
+	if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+		console.log(`getLWThemesList: Looking for themes...`);
+
+    const themes = await getInstalledLWThemes();
     for (const i in themes) {
         let theme = themes[i];
 		// Map Light and Dark to theme modes if found
@@ -31,24 +34,35 @@ async function getLWThemesList() {
 				theme.enable();
 				Services.prefs.clearUserPref("Geckium.chrTheme.fileName");
 			};
-			console.log(`getLWThemesList: Mapped Light to ${theme.id}`);
+
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Mapped Light to ${theme.id}`);
 		} else if (theme.id.startsWith("firefox-compact-dark@") && !darkLWTheme) {
 			darkLWTheme = function(){ theme.enable(); };
-			console.log(`getLWThemesList: Mapped Dark to ${theme.id}`);
+
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Mapped Dark to ${theme.id}`);
 		}
 		// Skip themes mapped to theme modes
 		if (theme.id.startsWith("default-theme@") || theme.id.startsWith("firefox-compact-light@") ||
 				theme.id.startsWith("firefox-compact-dark@")) {
-			console.log(`getLWThemesList: Skipping ${theme.id} as it is mapped to the top...`);
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Skipping ${theme.id} as it is mapped to the top...`);
 			continue;
 		}
 
-		console.log(`getLWThemesList: Trying to get ${theme.id}'s manifest...`);
+		if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+			console.log(`getLWThemesList: Trying to get ${theme.id}'s manifest...`);
         let mani = await getLWThemeData(`${theme.__AddonInternal__.rootURI}manifest.json`);
 		if (!mani) {
-			console.log(`getLWThemesList: Skipping ${theme.id} as it has no manifest`);
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Skipping ${theme.id} as it has no manifest`);
 			continue;
 		}
+
+		let themeSourceURL;
+		if (theme.__AddonInternal__.installTelemetryInfo && theme.__AddonInternal__.installTelemetryInfo.sourceURL)
+			themeSourceURL = theme.__AddonInternal__.installTelemetryInfo.sourceURL;
 
 		let themeBanner;
 		let themeBannerAlignment;
@@ -66,13 +80,16 @@ async function getLWThemesList() {
 			if (mani.browser_specific_settings.geckium.backgroundSize)
 				themeBannerSizing = mani.browser_specific_settings.geckium.backgroundSize;
 
-			console.log(`getLWThemesList: Supplied Geckium-exclusive values to ${theme.id}'s thumbnail`);
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Supplied Geckium-exclusive values to ${theme.id}'s thumbnail`);
 			
 		} else if (mani.theme.images) {
 			if (mani.theme.images.theme_frame) {
 				themeBanner = `url('${theme.__AddonInternal__.rootURI}/${mani.theme.images.theme_frame}')`;
-				console.log(`getLWThemesList: Set ${theme.id} banner to titlebar theme_frame`);
-			} else if (mani.theme.images.additional_backgrounds) {
+
+				if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+					console.log(`getLWThemesList: Set ${theme.id} banner to titlebar theme_frame`);
+			} else if (mani.theme.images.additional_backgrounds && mani.theme.properties) {
 				themeBanner = mani.theme.images.additional_backgrounds.map(obj => `url('${theme.__AddonInternal__.rootURI}${obj}')`).join(', ');
 
 				if (mani.theme.properties.additional_backgrounds_alignment)
@@ -81,15 +98,19 @@ async function getLWThemesList() {
 				if (mani.theme.properties.additional_backgrounds_tiling)
 					themeBannerTiling = mani.theme.properties.additional_backgrounds_tiling.map(obj => obj).join(', ');
 			}
-			console.log(`getLWThemesList: Set ${theme.id} banner to titlebar additional_backgrounds`);
+
+			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+				console.log(`getLWThemesList: Set ${theme.id} banner to titlebar additional_backgrounds`);
 		}
 
         result.push({
             "type": "lwtheme",
 			"browser": "firefox",
+			"builtin": theme.__AddonInternal__._key.includes("app-builtin:"),
             "name": theme.name,
             "desc": theme.description,
             "id": theme.id,
+			"page": themeSourceURL,
             "icon": theme.icons[128] ?
 						theme.icons[128] : theme.icons[64] ?
 							theme.icons[64] : theme.icons[32],
@@ -99,9 +120,12 @@ async function getLWThemesList() {
 			"bannerSizing": themeBannerSizing ? themeBannerSizing : null,
 			"bannerColor": mani.theme.colors.frame || "white",
             "version": theme.version,
-			"event": function(){ theme.enable(); }
+			"apply": function() { theme.enable(); },
+			"uninstall": function() { theme.uninstall(false); }
         });
-		console.log(`getLWThemesList: Added ${theme.id} to themes grid!`);
+
+		if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
+			console.log(`getLWThemesList: Added ${theme.id} to themes grid!`);
     }
     return result;
 }

@@ -22,7 +22,6 @@ function startFromScratch() {
 	Services.prefs.clearUserPref("Geckium.appearance.titlebarNative");
 	Services.prefs.clearUserPref("Geckium.branding.choice");
 	Services.prefs.clearUserPref("Geckium.appearance.choice");
-	Services.prefs.clearUserPref("Geckium.profilepic.button");
 	Services.prefs.clearUserPref("Geckium.profilepic.mode");
 	Services.prefs.clearUserPref("Geckium.profilepic.chromiumIndex");
 	Services.prefs.clearUserPref("Geckium.customtheme.mode");

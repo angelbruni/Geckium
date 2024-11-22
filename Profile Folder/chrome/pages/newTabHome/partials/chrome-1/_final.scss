@@ -1,6 +1,10 @@
 & {
-	font-family: Arial, sans-serif;
-	font-size: 10pt;
+	--default-section-title-color: black;
+	--section-title-color: var(--default-section-title-color);
+
+	@media (prefers-color-scheme: dark) {
+		--default-section-title-color: white;
+	}
 
 	&:not([geckium-three]) {
 		&[gkbranding="chromium"] {
@@ -26,6 +30,73 @@
 			}
 		}
 	}
+
+	--chrtheme-ntp-background-alignment: 50% 100%;
+	--chrtheme-ntp-background-repeat: no-repeat;
+
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--ntp-background-color: var(--newtab-background-color);
+
+		--section-title-color: var(--toolbarbutton-icon-color, var(--lwt-text-color, var(--default-recently-closed-item-color)));
+
+		&[style*="--arrowpanel-background"] {
+			--section-title-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
+		}
+
+		body {
+			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+			@media (prefers-color-scheme: dark) {
+				background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
+			}
+
+			background-attachment: fixed; // Create the parallax scrolling effect
+			image-rendering: var(--lwt-gknewtab-image-rendering);
+			background-size: var(--lwt-gknewtab-background-size);
+			background-position: var(--lwt-gknewtab-background-position);
+
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-x);
+			}
+			&[style*="--lwt-gknewtab-background-position-y"] {
+				background-position-x: var(--lwt-gknewtab-background-position-y);
+			}
+
+			background-repeat: var(--lwt-gknewtab-background-repeat);
+		}
+	}
+
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--ntp-background-color: var(--chrtheme-ntp-background);
+
+		--section-title-color: var(--chrtheme-ntp-section-link, var(--default-recently-closed-item-color));
+
+		body {
+			background-image: var(--chrtheme-theme-ntp-background);
+			background-attachment: fixed;
+		}
+	}
+
+	// GTK+
+	//   blame >=115 for gkthemed being here too
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--ntp-background-color: Field;
+
+		body {
+			color: FieldText;
+		}
+	}
+
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+}
+
+body {
+	background-size: unset;
+	background-repeat: var(--chrtheme-ntp-background-repeat);
+	background-position: var(--chrtheme-ntp-background-alignment);
 }
 
 #main {
@@ -45,7 +116,7 @@
 }
 
 .section-title {
-	color: black;
+	color: var(--section-title-color);
 	font-size: 11pt;
 	font-weight: bold;
 	min-height: 25px;

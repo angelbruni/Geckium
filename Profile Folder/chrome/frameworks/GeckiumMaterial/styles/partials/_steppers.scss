@@ -1,4 +1,5 @@
 .stepper {
+	z-index: 1;
 	box-shadow: var(--elevation-1);
 	justify-content: center;
 	align-items: center;
@@ -38,6 +39,7 @@
 		}
 
 		> label {
+			display: flex;
 			white-space: nowrap;
 		}
 		
@@ -80,8 +82,4 @@
 hbox.stepper {
 	height: 68px;
 	padding-inline: 32px;
-}
-
-vbox.stepper {
-	
 }

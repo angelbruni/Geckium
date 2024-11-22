@@ -1,7 +1,9 @@
 function createRecentlyClosed() {
 	let appearanceChoice = gkEras.getNTPEra();
 
-	const closedTabsList = SessionStore.getClosedTabDataForWindow(Services.wm.getMostRecentWindow('navigator:browser'));
+	let closedTabsList = [];
+	if (!gkPrefUtils.tryGet("Geckium.devOptions.disableRecentlyClosed").bool)
+		closedTabsList = SessionStore.getClosedTabDataForWindow(Services.wm.getMostRecentWindow('navigator:browser'));
 
 	let url;
 	let title;
@@ -22,7 +24,7 @@ function createRecentlyClosed() {
 
 			if (appearanceChoice <= 11)
 				recentlyClosedEntriesAmount = 5;
-			else if (appearanceChoice == 21 || appearanceChoice == 25)
+			else if (appearanceChoice >= 17 && appearanceChoice <= 25)
 				recentlyClosedEntriesAmount = 10;
 
 			if (visitedURLs.size >= recentlyClosedEntriesAmount)
@@ -70,7 +72,7 @@ function createRecentlyClosed() {
 					recentlyClosedContainer = "#recently-closed > .items"
 				else
 					recentlyClosedContainer = "#recently-closed-content"
-			} else if (appearanceChoice == 21 || appearanceChoice == 25) {
+			} else if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 				recentlyClosedItem = `
 				<html:a class="footer-menu-item" href="${url}" style="list-style-image: url('${favicon}')">
 					<image></image>
@@ -92,7 +94,7 @@ function createRecentlyClosed() {
 			// #endregion
 		});
 	} else {
-		if (appearanceChoice == 21 || appearanceChoice == 25) {
+		if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 			const recentlyClosedMenuButton = document.getElementById("recently-closed-menu-button");
 
 			const verticalSeparator = document.getElementById("vertical-separator")

@@ -1,6 +1,8 @@
 & {
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+    #gkavatar-container {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer{
@@ -15,16 +17,17 @@
 	}
 	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 	&[privatebrowsingmode="temporary"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
 	}
-	//Ensure left-sided titlebuttons go before Incognito in native titlebars
+	// Ensure left-sided titlebuttons go before Incognito in native titlebars
 	&[gktitnative="true"] {
 		@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
 			.titlebar-buttonbox-container {
@@ -33,20 +36,23 @@
 		}
 	}
 
-	//Restore Firefox's AERO menubar styling
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 6px !important;
+	}
+
 	&[gktitnative="true"] {
+		// Restore Firefox's AERO menubar styling
 		#main-menubar:not(:-moz-lwtheme, :-moz-window-inactive) {
 			background-color: rgba(255,255,255,.5) !important;
 			color: black !important;
 			border-radius: 4px !important;
 		}
-		#main-menubar {
-			& > menu {
-				text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
-				@media not (-moz-platform: linux) {
-					-moz-default-appearance: menuitem;
-					appearance: menuitem !important;
-				}
+		#main-menubar > menu {
+			text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+			@media not (-moz-platform: linux) {
+				-moz-default-appearance: menuitem;
+				appearance: menuitem !important;
 			}
 		}
 	}
@@ -54,24 +60,37 @@
 	&[gktitnative="false"] {
 		//Unless the Linux Pre-Alpha flag is enabled, always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
-			.titlebar-buttonbox-container::before {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-				margin-block-start: 3px;
-				margin-inline-end: 7px;
-			}
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
+			&:not([gkpeoplestyle="titlebutton"]) {
 				.titlebar-buttonbox-container::before {
-					content: unset !important;
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::before {
+						content: unset !important;
+					}
+				}
+			}
+			&[gkpeoplestyle="titlebutton"] {
+				#gkpeople-button-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					#gkpeople-button-container::before {
+						content: unset !important;
+					}
 				}
 			}
 		}
 
 		//Shared non-native titlebar variables
-		& {
-			--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
-			--titlebutton-corner: 3.5px;
-		}
+		--titlebutton-border-outer: 1px solid rgb(0, 0, 0, 0.35);
+		--titlebutton-corner: 3.5px;
 
 		//Titlebar button box (force onto right side)
 		.titlebar-buttonbox-container {
@@ -112,7 +131,7 @@
 			background-clip: padding-box !important;
 			box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 			transition: background-color 100ms linear; //hover-fade animation
-			width: 25px;
+			min-width: 25px;
 			display: flex !important; // Really, macOS's and Windows 8-'s Mozilla Firefox?
 
 			image { // Set the icon's opacity and hover-fade
@@ -120,16 +139,18 @@
 				transition: opacity 100ms linear;
 			}
 
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background-color: rgba(255, 255, 255, 0.3) !important;
+
+				&:active {
+					background-color: rgba(255, 255, 255, 0.2) !important;
+					transition: none;
+				}
+
 				image {
 					opacity: 1 !important;
 				}
-			}
-			&:not([disabled]):hover:active {
-				background-color: rgba(255, 255, 255, 0.2) !important;
-				transition: none;
 			}
 		}
 		.titlebar-max,
@@ -145,6 +166,7 @@
 				border-right: var(--titlebutton-border-outer) !important;
 				box-shadow: inset -1px 1px 0px 0px rgba(255, 255, 255, 0.3);
 			}
+
 			.titlebar-max,
 			.titlebar-restore,
 			.titlebar-min {
@@ -157,7 +179,7 @@
 		//Close button
 		.titlebar-close {
 			width: 43px;
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg) !important; // Mozilla bias moment #idk
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/close.svg") !important; // Mozilla bias moment #idk
 			border-right: var(--titlebutton-border-outer) !important;
 			border-bottom-right-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 2 !important;
@@ -180,7 +202,7 @@
 
 		//Maximise and Restore buttons
 		.titlebar-max {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/maximize.svg") !important;
 		}
 		&[sizemode="maximized"],
 		&[sizemode="fullscreen"] {
@@ -189,16 +211,14 @@
 			}
 		}
 		.titlebar-restore {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/restore.svg") !important;
 			.toolbarbutton-icon {
 				transform: translateX(-1px);
 			}
 		}
 		&:-moz-locale-dir(rtl) { //Mirror glyph in RTL
-			.titlebar-restore {
-				.toolbarbutton-icon {
-					transform: translateX(0px) scaleX(-1);
-				}
+			.titlebar-restore .toolbarbutton-icon {
+				transform: translateX(0px) scaleX(-1);
 			}
 		}
 		&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
@@ -213,7 +233,7 @@
 
 		//Minimise button
 		.titlebar-min {
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg) !important;
+			list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/minimize.svg") !important;
 			border-bottom-left-radius: var(--titlebutton-corner) !important; // because border-radius is !important
 			order: 0 !important;
 		}
@@ -230,10 +250,8 @@
 			.titlebar-buttonbox {
 				box-shadow: unset;
 			}
-			.titlebar-button {
-				&::before { //Linux didn't have this until 17/18
-					content: unset !important;
-				}
+			.titlebar-button::before { //Linux didn't have this until 17/18
+				content: unset !important;
 			}
 			.titlebar-max,
 			.titlebar-restore,
@@ -253,7 +271,7 @@
 			.titlebar-close {
 				width: 24px;
 				height: 32px;
-				background: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png) !important; // Mozilla bias moment #idk
+				background: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/linux/glen-close.png") !important; // Mozilla bias moment #idk
 				background-position: center !important;
 				background-repeat: no-repeat !important;
 				border-bottom: unset !important;

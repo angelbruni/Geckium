@@ -9,47 +9,52 @@
 		--panel-item-background-hot: rgba(59, 144, 219, 0.3);
 	}
 
-	&[geckium-choice="one"],
-	&[geckium-choice="three"],
-	&[geckium-choice="four"],
-	&[geckium-choice="five"],
-	&[geckium-choice="six"],
-	&[geckium-choice="eleven"],
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		#PanelUI-fxa-menu {
-			> toolbarbutton {
-				&.subviewbutton {
-					&:not(#fxa-manage-account-button) {
-						background-color: transparent !important;
-						padding-block: 0 !important;
-						margin: 0 !important;
-						margin-inline-start: 41px !important;
-						text-decoration: underline !important;
-						cursor: pointer !important;
-					}
-				}
+	&:not([geckium-fortyseven]) {
+		#PanelUI-fxa-menu > toolbarbutton.subviewbutton:not(#fxa-manage-account-button),
+		#PanelUI-signedin-panel > toolbarbutton.subviewbutton {
+			background-color: transparent !important;
+			padding-block: 0 !important;
+			margin: 0 !important;
+			margin-inline-start: 41px !important;
+			text-decoration: underline !important;
+			cursor: pointer !important;
+		}
+
+		toolbarbutton.subviewbutton#fxa-manage-account-button {
+			margin-block-end: 13px !important;
+	
+			&::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -10px;
+				width: 100%;
+				height: 1px;
+				background-color: var(--panel-separator-color);
+				pointer-events: none;
 			}
 		}
 
-		toolbarbutton {
-			&.subviewbutton {
-				&#fxa-manage-account-button {
-					margin-block-end: 13px !important;
-			
-					&::after {
-						content: "";
-						position: absolute;
-						left: 0;
-						bottom: -10px;
-						width: 100%;
-						height: 1px;
-						background-color: var(--panel-separator-color);
-						pointer-events: none;
-					}
-				}
-			}
+		#PanelUI-fxa-remotetabs-tabslist {
+			margin-block-start: 8px;
+			margin-inline-start: 32px;
 		}
+		
+		[id*="synced-tabs-client"] {
+			margin-inline-start: 16px;
+		}
+	}
+
+	&[fxastatus="not_configured"] {
+		--avatar-image-url: url("chrome://userchrome/content/assets/img/profile/avatar_empty.svg") !important;
+	}
+}
+
+#PanelUI-fxa-menu {
+	#PanelUI-fxa-menu-monitor-button,
+	#PanelUI-fxa-menu-relay-button,
+	#PanelUI-fxa-menu-vpn-button {
+		display: none !important;
 	}
 }
 
@@ -61,10 +66,8 @@ panelview {
 	background-color: var(--modal-background) !important;
 }
 
-panelmultiview {
-	toolbarbutton {
-		margin: 0 !important;
-	}
+panelmultiview toolbarbutton {
+	margin: 0 !important;
 }
 
 .panel-header {
@@ -97,49 +100,47 @@ panelmultiview {
 	margin: 0 !important;
 }
 
-panel {
-	toolbarbutton {
-		&.subviewbutton,
-		&.toolbarbutton-1 {
-			border-radius: 0 !important;
-		
-			&:hover,
-			&:active {
-				background-color: var(--panel-item-background-hot) !important;
-			}
-		
-			&#fxa-manage-account-button {
-				position: relative;
-		
-				&::before {
-					content: "";
-					background-image: var(--avatar-image-url);
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: contain;
-					width: 34px;
-					height: 34px;
-					margin-inline-end: 7px !important;
-				}
-		
-				> vbox {
-					flex-direction: column-reverse;
-			
-					#fxa-menu-header-title {
-						color: rgb(127,129,130) !important;
-					}
-			
-					#fxa-menu-header-description {
-						color: FieldText !important;
-						font-weight: bold !important;
-					}
-				}
-			}
-		
-			.fxa-menu-header-description {
-				color: rgb(127,129,130) !important;
-			}	
+panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		border-radius: 0 !important;
+	
+		&:hover,
+		&:active {
+			background-color: var(--panel-item-background-hot) !important;
 		}
+	
+		&#fxa-manage-account-button {
+			position: relative;
+	
+			&::before {
+				content: "";
+				background-image: var(--avatar-image-url);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				width: 34px;
+				height: 34px;
+				margin-inline-end: 7px !important;
+			}
+	
+			> vbox {
+				flex-direction: column-reverse;
+		
+				#fxa-menu-header-title {
+					color: rgb(127,129,130) !important;
+				}
+		
+				#fxa-menu-header-description {
+					color: FieldText !important;
+					font-weight: bold !important;
+				}
+			}
+		}
+	
+		.fxa-menu-header-description {
+			color: rgb(127,129,130) !important;
+		}	
 	}
 }
 

@@ -1,6 +1,7 @@
 & { // TODO: Exclude in MD2
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer[type="pre-tabs"] {
@@ -13,11 +14,12 @@
 	}
 	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 	&[privatebrowsingmode="temporary"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -52,13 +54,14 @@
 		height: 35px;
 		width: 35px;
 		
-		//Hover and pressed states
+		// Hover and pressed states
 		&:not([disabled]):hover {
 			background: rgba(20, 20, 23, 0.078) !important;
-		}
-		&:not([disabled]):hover:active {
-			background: rgba(20, 20, 23, 0.141) !important;
-			transition: none;
+
+			&:active {
+				background: rgba(20, 20, 23, 0.141) !important;
+				transition: none;
+			}
 		}
 		
         &::before { //Chrome OS NEVER has its buttons filled

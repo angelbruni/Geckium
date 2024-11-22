@@ -1,18 +1,3 @@
-function updateProfilePictureSettingsState() {
-	const container = document.getElementById("profile-pic-content");
-
-	container.setAttribute("profile-pic-button", gkPrefUtils.tryGet("Geckium.profilepic.button").bool)
-}
-const profilePictureStateObserver = {
-	observe: function (subject, topic, data) {
-		if (topic == "nsPref:changed") {
-			updateProfilePictureSettingsState()
-		}
-	}
-};
-Services.prefs.addObserver("Geckium.profilepic.button", profilePictureStateObserver, false)
-document.addEventListener("DOMContentLoaded", updateProfilePictureSettingsState);
-
 function updateProfilePictures() {
 	const menu = document.getElementById("pfp-mode-select");
 
@@ -47,8 +32,11 @@ document.addEventListener("DOMContentLoaded", updateProfilePictures);
 
 function updateProfilePictureChoiceOption() {
 	const container = document.getElementById("card-avatar");
+	let mode = gkPrefUtils.tryGet("Geckium.profilepic.mode").string;
+	if (!mode)
+		mode = "firefox";
 
-	container.setAttribute("profile-pic-mode", gkPrefUtils.tryGet("Geckium.profilepic.mode").int);
+	container.setAttribute("profile-pic-mode", mode);
 }
 const profilePictureObserver = {
 	observe: function (subject, topic, data) {

@@ -288,7 +288,7 @@ Research: Useful insight into Firefox JS.`,
 					<label class="description">${quote}</label>
 					<label class="description" style="white-space: pre-wrap">Contributions: ${person.contributions}</label>
 				</vbox>
-				<spacer style="min-width: 18px" />
+				<spacer />
 			</hbox>
 		</html:button>
 		`;
@@ -365,6 +365,8 @@ Research: Useful insight into Firefox JS.`,
 
 		if (person.socials) {
 			const socialBox = document.createXULElement("vbox");
+			socialBox.style.flexShrink = "0";
+			socialBox.style.alignItems = "end";
 			creditElm.querySelector(".information-container").appendChild(socialBox);
 			person.socials.forEach(social => {
 				const socialElm = document.createXULElement("label", { is: "text-link" });

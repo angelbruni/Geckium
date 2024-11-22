@@ -7,12 +7,10 @@ function goToPage(direction) {
 	const currentPage = document.querySelector('.pages .page[selected="true"]');
 	const currentPageIndex = parseInt(currentPage.dataset.page);
 
-	console.log(currentPageIndex, direction, currentPageIndex + 1,)
-
 	if (direction == "next")
-		skipToPage('main', currentPageIndex + 1)
+		gmPages.skipToPage('main', currentPageIndex + 1)
 	else if (direction == "back")
-		skipToPage('main', currentPageIndex - 1)
+		gmPages.skipToPage('main', currentPageIndex - 1)
 }
 
 backElm.addEventListener("click", () => {
@@ -24,10 +22,9 @@ nextElm.addEventListener("click", () => {
 })
 
 finishElm.addEventListener("click", () => {
-	UC_API.Prefs.set("Geckium.firstRun.complete", true);
-	if (gkPrefUtils.prefExists("Geckium.firstRun.wasSilverfox")) {
+	UC_API.set("Geckium.firstRun.complete", true);
+	if (gkPrefUtils.prefExists("Geckium.firstRun.wasSilverfox"))
 		Services.prefs.clearUserPref("Geckium.firstRun.wasSilverfox");
-	}
 
 	gkWindow.close();
 })
@@ -35,7 +32,6 @@ finishElm.addEventListener("click", () => {
 document.addEventListener("pageChanged", () => {
 	const currentPage = document.querySelector('.pages .page[selected="true"]');
 	const currentPageIndex = parseInt(currentPage.dataset.page);
-	console.log(currentPageIndex);
 
 	if (currentPageIndex == 0)
 		backElm.style.display = "none";
