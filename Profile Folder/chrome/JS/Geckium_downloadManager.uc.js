@@ -678,8 +678,10 @@ class gkDownloadManager {
 }
 
 UC_API.Runtime.startupFinished().then(() => {
-	if (!isBrowserPopUpWindow)
+	if (!isBrowserPopUpWindow) {
 		gkDownloadManager.createShelf();
+		gkDownloadManager.loadShelfPref();
+	}
 });
 
 const downloadShelfToggleObs = {
