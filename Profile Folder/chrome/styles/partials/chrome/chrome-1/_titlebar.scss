@@ -287,12 +287,14 @@
 		@media (-moz-platform: windows) {
 			// Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
-				&:not([inFullscreen]) #titlebar {
+				#titlebar {
 					visibility: hidden !important;
 				}
-				&:not([inFullscreen][chromehidden~="menubar"]) #toolbar-menubar,
-				&:not([inFullscreen][chromehidden~="toolbar"]) #TabsToolbar {
-					visibility: visible !important; // browser.css:186, 115
+				&:not([chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([chromehidden~="toolbar"]) #TabsToolbar {
+					// Making the titlebar invisible makes its children invisible - we therefore
+					// need to make its children visible manually:
+					visibility: visible !important;
 				}
 			}
 			// Remove margin in Windows Classic
