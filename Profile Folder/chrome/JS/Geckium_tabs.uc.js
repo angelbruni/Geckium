@@ -113,6 +113,7 @@ function modifyTab(tab) {
 	// Tab Mute
 	let tabMuteButtonElm = document.createElement("div");
 	tabMuteButtonElm.classList.add("tab-mute-button");
+	tabMuteButtonElm.appendChild(document.createXULElement("image"));
 	gkInsertElm.before(tabMuteButtonElm, tabCloseButtonElm);
 	tabMuteButtonElm.addEventListener("click", () => {
 		tab.toggleMuteAudio()

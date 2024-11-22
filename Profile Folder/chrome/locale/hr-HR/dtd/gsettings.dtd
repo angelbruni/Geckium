@@ -16,8 +16,7 @@
 
 <!ENTITY gsettings.welcomeTo "Dobrodošli u">
 
-<!ENTITY gsettings.supportTheProject	"Podržite projekt">
-<!ENTITY gsettings.openInTabNext		"Sljedeći put ovo otvorite u novoj kartici">
+<!ENTITY gsettings.supportTheProject "Podržite projekt">
 
 <!ENTITY gsettings.designDescription				"Odaberite željeni dizajn ili promijenite način na koji naslovna traka izgleda i ponaša se">
 <!ENTITY gsettings.behaviourDescription				"Upravljajte robnom markom Geckiuma, kako teme funkcioniraju i prilagodite druga ponašanja u Geckiumu">
@@ -28,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "Automatski">
 
-<!ENTITY gsettings.titlebar							"Naslovna traka">
-<!ENTITY gsettings.titlebarStyle					"Stil naslovne trake i sučelja">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (bez razmaka)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alfa)">
-<!ENTITY gsettings.titlebarMode						"Način rada naslovne trake">
-<!ENTITY gsettings.titlebarModeDisclaimer			"Neki stilovi naslovne trake zanemarit će ovu postavku">
-<!ENTITY gsettings.titlebarModeSystem				"Sistemske granice">
-<!ENTITY gsettings.titlebarModeCompact				"Kompaktne granice">
-<!ENTITY gsettings.titlebarInThemesIsSys			"Koristite sistemske granice u kompatibilnim Chromium temama">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"Zahtijeva omogućene sistemske granice ili korištenje odabranog stila naslovne trake">
+<!ENTITY gsettings.titlebar								"Naslovna traka">
+<!ENTITY gsettings.titlebarStyle						"Stil naslovne trake i sučelja">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (bez razmaka)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alfa)">
+<!ENTITY gsettings.titlebarMode							"Način rada naslovne trake">
+<!ENTITY gsettings.titlebarModeDisclaimer				"Neki stilovi naslovne trake zanemarit će ovu postavku">
+<!ENTITY gsettings.titlebarModeSystem					"Sistemske granice">
+<!ENTITY gsettings.titlebarModeCompact					"Kompaktne granice">
+<!ENTITY gsettings.titlebarInThemesIsSys				"Koristite sistemske granice u kompatibilnim Chromium temama">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Zahtijeva omogućene sistemske granice ili korištenje odabranog stila naslovne trake">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"Izvorna veličina gumba naslovne trake">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"Potrebno za izvorne gumbe naslovne trake i kartice kako bi bili pravilne veličine">
+<!ENTITY gsettings.customWidthInPixels					"Prilagođena veličina (u pikselima)">
 
 <!ENTITY gsettings.availablePresets	"Dostupni predlošci">
 <!ENTITY gsettings.resetOverrides	"Poništi prilagodbe">
@@ -53,9 +55,9 @@
 <!ENTITY gsettings.designToThemes		"Promijenite ili upravljajte temama...">
 <!ENTITY gsettings.designToExperiments	"Istražite odbačene opcije dizajna u Chromiumu...">
 
-<!ENTITY gsettings.privacy			"[!!! ÞřïƲáç¥ !!!]">
-<!ENTITY gsettings.hideAccountInfo	"[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
-<!ENTITY gsettings.willHideInfoFrom	"[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
+<!ENTITY gsettings.privacy			"Privatnost">
+<!ENTITY gsettings.hideAccountInfo	"Sakrij informacije računa">
+<!ENTITY gsettings.willHideInfoFrom	"Ova postavka će sakriti tvoje ime i e-mail od mjesta kao gumb Ljudi i stranica Nove Kartice">
 
 <!ENTITY gsettings.browser						"Preglednik">
 <!ENTITY gsettings.branding						"Brendiranje">
@@ -63,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Omogućuje vam preuzimanje Chromium tema bez instalacije pritiskom na Discard">
 <!ENTITY gsettings.toolbar						"Alatna traka">
 <!ENTITY gsettings.needsRestart					"Potrebno ponovno pokretanje">
-<!ENTITY gsettings.enableTabManager				"Omogući upravitelj kartica">
+<!ENTITY gsettings.tabManager					"Upravitelj kartica">
+<!ENTITY gsettings.tabManagerDescription		'Omogućite gumb sa strelicom s popisom otvorenih kartica na traci kartica'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"Sakrij gumb izbornika proširenja">
 
 <!ENTITY gsettings.macIsGraphite					"Koristite grafitne gumbe na naslovnoj traci">
@@ -93,10 +96,14 @@
 <!ENTITY gsettings.allToolbarItems					"Sve stavke alatne trake">
 <!ENTITY gsettings.none								"Ništa">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"Omogućite pričvršćivanje web stranica u svakoj eri">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Prikazuje gumb za pričvršćivanje u svakom dizajnu">
+<!ENTITY gsettings.websitePinningInEveryEra				"Pričvršćivanje web stranica u svakoj eri">
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"Prikazuje gumb za pričvršćivanje u svakom dizajnu">
 
-<!ENTITY gsettings.about		"O programu">
+<!ENTITY gsettings.downloadShelf					"Polica preuzimanja">
+<!ENTITY gsettings.disableDownloadShelf				"Onemogući policu preuzimanja">
+<!ENTITY gsettings.disableDownloadShelfDescription	"Ovo će upailit Firefox-ov gumb preuzimanja">
+
+<!ENTITY gsettings.aboutDialog	"O programu">
 <!ENTITY gsettings.chooseAbout	"Odaberi 'O programu'">
 <!ENTITY gsettings.ask			"Pitaj">
 
@@ -105,6 +112,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Istražite odbačene opcije ponašanja u Chromiumu...">
 
 <!ENTITY gsettings.appsList "Popis aplikacija">
+<!ENTITY gsettings.addAnApp "Dodaj aplikaciju">
 
 <!ENTITY gsettings.pagesToDesign	"Promijenite dizajn nove kartice...">
 <!ENTITY gsettings.pagesToBehaviour	"Upravljajte ponašanjem tema novoj kartici...">
@@ -125,7 +133,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 nije podržan od strane Geckium You">
 <!ENTITY gsettings.grey					"Siva">
 <!ENTITY gsettings.w3cAccentColor		"Boja naglaska">
-<!ENTITY gsettings.custom				"Prilagođeno">
+<!ENTITY gsettings.custom				"Prilagođeno...">
 <!ENTITY gsettings.wincolor				"Boja prozora">
 
 <!ENTITY gsettings.filterThemesBy	"Filtriraj teme prema...">

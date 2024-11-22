@@ -10,26 +10,42 @@
 
 // Firefox version check
 const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
-let is117Plus = false;
-if (parseInt(ffVersion.split(".")[0]) >= 117) {
-	document.documentElement.setAttribute("is117Plus", true);
-	is117Plus = true;
-}
-let is133Plus = false;
-if (parseInt(ffVersion.split(".")[0]) >= 133) {
-	document.documentElement.setAttribute("is133Plus", true);
-	is133Plus = true;
-}
-let is134Plus = false;
-if (parseInt(ffVersion.split(".")[0]) >= 134) {
-	document.documentElement.setAttribute("is134Plus", true);
-	is134Plus = true;
-}
+const majorVersion = parseInt(ffVersion.split(".")[0]);
+const checkedVersions = [117, 120, 133, 134];
+const versionFlags = {};
+checkedVersions.forEach(version => {
+	if (majorVersion >= version) {
+		const flagName = `is${version}Plus`;
+		document.documentElement.setAttribute(flagName, true);
+		versionFlags[flagName] = true;
+	}
+});
 
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
-const isNCPatched = window.matchMedia("(-moz-ev-native-controls-patch)").matches;
+function isWindows10() {
+	if (AppConstants.platform == "win") {
+		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
+		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
+			return true;
+	}
+	return false;
+}
+
+function getNCPatched() {
+	if (AppConstants.platform == "win") {
+		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches) // Native Controls Patch
+			return "patch";
+        else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) // Marble
+			return "marble";
+		else if (!versionFlags.is117Plus && (window.matchMedia("(-moz-platform: windows-win7)").matches || window.matchMedia("(-moz-platform: windows-win8)").matches)) // From Firefox 115 itself running in Windows 7/8
+			return "native"
+    }
+	return null;
+}
+const isNCPatched = getNCPatched();
+
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
 const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar");
 
@@ -97,9 +113,8 @@ function updateAboutLocale() {
 
 function waitForElm(selector) {
     return new Promise(resolve => {
-        if (document.querySelector(selector)) {
+        if (document.querySelector(selector))
             return resolve(document.querySelector(selector));
-        }
 
         const observer = new MutationObserver(mutations => {
             if (document.querySelector(selector)) {
@@ -114,4 +129,34 @@ function waitForElm(selector) {
             subtree: true
         });
     });
+}
+
+// Since there's no other way to get the actual DPI (`window.devicePixelRatio` only returns the pixel ratio which is not the same), we do this.
+function getStandardizedDPI() {
+    const { displayDPI } = window.windowUtils;
+    const scalingFactor = displayDPI / 96;
+
+    let standardizedDPI;
+    if (scalingFactor < 1.25)
+        standardizedDPI = 96; // 100% scaling
+    else if (scalingFactor < 1.5)
+        standardizedDPI = 120; // 125% scaling
+    else if (scalingFactor < 1.75)
+        standardizedDPI = 144; // 150% scaling
+    else if (scalingFactor < 2)
+        standardizedDPI = 168; // 175% scaling
+	else if (scalingFactor < 2.25)
+        standardizedDPI = 192; // 200% scaling
+	else if (scalingFactor < 2.5)
+        standardizedDPI = 216; // 225% scaling
+	else if (scalingFactor < 3)
+        standardizedDPI = 240; // 250% scaling
+	else if (scalingFactor < 4)
+        standardizedDPI = 288; // 300% scaling
+	else if (scalingFactor < 5)
+        standardizedDPI = 384; // 400% scaling
+	else
+        standardizedDPI = 480; // 500% scaling
+
+    return standardizedDPI;
 }

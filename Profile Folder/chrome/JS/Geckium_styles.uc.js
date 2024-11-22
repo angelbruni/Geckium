@@ -8,31 +8,21 @@
 // @include		about:addons*
 // ==/UserScript==
 
-// Windows version check
-function isWindows10() {
-	if (AppConstants.platform == "win") {
-		if (!window.matchMedia("(-moz-platform: windows-win7)").matches && !window.matchMedia("(-moz-platform: windows-win8)").matches
-		   && !window.matchMedia("(-moz-platform: windows-winvista)").matches && !window.matchMedia("(-moz-platform: windows-winxp)").matches)
-			return true;
-	}
-	return false;
-}
+// Windows version and nativeness check
 if (isWindows10())
     document.documentElement.setAttribute("isWindows10", true);
-
-// Native Controls Patch / Marble check
-function isNativeControls() {
-    if (AppConstants.platform == "win") {
-        if (isNCPatched) { // Native Controls Patch
-            return true;
-        } else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) { // Marble
-            return true;
-        }
-    }
-    return false;
+if (isNCPatched && isNCPatched != "patch") { // Marble
+    document.documentElement.setAttribute("nativeControls", "win10");
+} else if (isNCPatched == "patch") { // Native Controls Patch
+    // We need a way to differentiate Native Controls Patch from
+    // Windows 10 with Native Controls (e.g.: Marble), as Native
+    // Controls Patch allows you to use the Windows 10 CSDs still
+    // whereas Windows 10 with Native Controls lacks the CSDs,
+    // causing issues if not differentiated between in the CSS.
+    document.documentElement.setAttribute("nativeControls", "patch");
+} else if (isNCPatched == "native") { // From Firefox 115 itself running in Windows 7/8
+	document.documentElement.setAttribute("nativeControls", "win7");
 }
-if (isNativeControls())
-    document.documentElement.setAttribute("nativecontrols", true);
 
 // Initial variables
 let previousEra;

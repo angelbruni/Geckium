@@ -14,10 +14,9 @@
 <!ENTITY gsettings.help		"Ajuda">
 <!ENTITY gsettings.about	"Sobre">
 
-<!ENTITY gsettings.welcomeTo "Bem-vindo ao ">
+<!ENTITY gsettings.welcomeTo "Bem-vindo ao">
 
-<!ENTITY gsettings.supportTheProject	"Suporte o projeto">
-<!ENTITY gsettings.openInTabNext		"Abrir isto em uma nova guia na próxima vez">
+<!ENTITY gsettings.supportTheProject "Suporte o projeto">
 
 <!ENTITY gsettings.designDescription				"Escolha seu design preferido, ou mude o visual e comportamento da barra de título">
 <!ENTITY gsettings.behaviourDescription				"Gerencie a identidade visual do Geckium, como temas funcionam, e ajuste outros comportamentos no Geckium">
@@ -28,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "Automático">
 
-<!ENTITY gsettings.titlebar							"Barra de título">
-<!ENTITY gsettings.titlebarStyle					"Estilo da barra de título e interface">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (Sem espaços)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alpha)">
-<!ENTITY gsettings.titlebarMode						"Modo da barra de título">
-<!ENTITY gsettings.titlebarModeDisclaimer			"Alguns estilos da barra de título vão ignorar essa configuração">
-<!ENTITY gsettings.titlebarModeSystem				"Bordas do sistema">
-<!ENTITY gsettings.titlebarModeCompact				"Bordas compactas">
-<!ENTITY gsettings.titlebarInThemesIsSys			"Usar bordas do sistema em temas compatíveis do Chromium">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"Requer bordas do sistema ativadas or usadas pelo seu estilo de barra de título">
+<!ENTITY gsettings.titlebar								"Barra de título">
+<!ENTITY gsettings.titlebarStyle						"Estilo da barra de título e interface">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (Sem espaços)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alpha)">
+<!ENTITY gsettings.titlebarMode							"Modo da barra de título">
+<!ENTITY gsettings.titlebarModeDisclaimer				"Alguns estilos da barra de título vão ignorar essa configuração">
+<!ENTITY gsettings.titlebarModeSystem					"Bordas do sistema">
+<!ENTITY gsettings.titlebarModeCompact					"Bordas compactas">
+<!ENTITY gsettings.titlebarInThemesIsSys				"Usar bordas do sistema em temas compatíveis do Chromium">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Requer bordas do sistema ativadas or usadas pelo seu estilo de barra de título">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
+<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
 
 <!ENTITY gsettings.availablePresets	"Predefinições disponíveis">
 <!ENTITY gsettings.resetOverrides	"Redefinir substituições">
@@ -63,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Permite baixar temas do Chromium sem instalar eles ao apertar em Descartar">
 <!ENTITY gsettings.toolbar						"Barra de ferramentas">
 <!ENTITY gsettings.needsRestart					"Precisa de reinício">
-<!ENTITY gsettings.enableTabManager				"Ativar o gerenciador de guias">
+<!ENTITY gsettings.tabManager					"Gerenciador de guias">
+<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"Esconder o botão do menu de extensões">
 
 <!ENTITY gsettings.macIsGraphite					"Usar botões da barra de título do Graphite">
@@ -93,10 +96,14 @@
 <!ENTITY gsettings.allToolbarItems					"Todos os itens">
 <!ENTITY gsettings.none								"Nenhum">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"Habilitar fixagem de websites em todas as eras">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Mostra o botão de fixar em todos os designs">
+<!ENTITY gsettings.websitePinningInEveryEra				"Fixagem de websites em todas as eras">
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"Mostra o botão de fixar em todos os designs">
 
-<!ENTITY gsettings.about		"About">
+<!ENTITY gsettings.downloadShelf					"Barra de downloads">
+<!ENTITY gsettings.disableDownloadShelf				"Desativar a barra de downloads">
+<!ENTITY gsettings.disableDownloadShelfDescription	"Esta opção irá ativar o botão de downloads fo Firefox">
+
+<!ENTITY gsettings.aboutDialog	"About">
 <!ENTITY gsettings.chooseAbout	"Choose About">
 <!ENTITY gsettings.ask			"Ask">
 
@@ -105,6 +112,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Explorar opções de comportamento descartadas do Chromium...">
 
 <!ENTITY gsettings.appsList "Lista de apps">
+<!ENTITY gsettings.addAnApp "Adicionar um app">
 
 <!ENTITY gsettings.pagesToDesign	"Mudar o design da página de nova guia...">
 <!ENTITY gsettings.pagesToBehaviour	"Gerenciar o comportamento de temas na página de nova guia...">
@@ -125,7 +133,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 não tem suporte pro Geckium You">
 <!ENTITY gsettings.grey					"Cinza">
 <!ENTITY gsettings.w3cAccentColor		"Cor de destaque">
-<!ENTITY gsettings.custom				"Customizado">
+<!ENTITY gsettings.custom				"Customizado...">
 <!ENTITY gsettings.wincolor				"Cor da janela">
 
 <!ENTITY gsettings.filterThemesBy	"Filtrar temas por...">

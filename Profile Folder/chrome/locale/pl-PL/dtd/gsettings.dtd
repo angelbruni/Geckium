@@ -16,8 +16,7 @@
 
 <!ENTITY gsettings.welcomeTo "Witamy w">
 
-<!ENTITY gsettings.supportTheProject	"Wesprzyj projekt">
-<!ENTITY gsettings.openInTabNext		"Otwórz okno w nowej karcie następnym razem">
+<!ENTITY gsettings.supportTheProject "Wesprzyj projekt">
 
 <!ENTITY gsettings.designDescription				"Wybierz preferowany styl, lub zmień jak mają wyglądać i zachowywać się paski narzędzi">
 <!ENTITY gsettings.behaviourDescription				"Zarządzaj oznakowaniem Geckium, jak motywy działają i dostosuj inne zachowania w Geckium">
@@ -28,16 +27,19 @@
 
 <!ENTITY gsettings.automatic "Automatyczny">
 
-<!ENTITY gsettings.titlebar							"Pasek tytułowy">
-<!ENTITY gsettings.titlebarStyle					"Pasek tytułu i styl interfejsu">
-<!ENTITY gsettings.titlebarStyleWin8NoGaps			"Windows (bez przerwy)">
-<!ENTITY gsettings.titlebarStyleLinuxAlpha			"Linux (Alpha)">
-<!ENTITY gsettings.titlebarMode						"Tryb paska tytułu">
-<!ENTITY gsettings.titlebarModeDisclaimer			"Niektóre style paska tytułu zignorują to ustawienie">
-<!ENTITY gsettings.titlebarModeSystem				"Obramowania systemowe">
-<!ENTITY gsettings.titlebarModeCompact				"Obramowania kompaktowe">
-<!ENTITY gsettings.titlebarInThemesIsSys			"Użyj ramek systemowych z kompatybilnością wraz z motywamu Chromium">
-<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer	"Wymaga włączonego obramowania systemowego, lub aby były używane przez styl paska tytułu">
+<!ENTITY gsettings.titlebar								"Pasek tytułowy">
+<!ENTITY gsettings.titlebarStyle						"Pasek tytułu i styl interfejsu">
+<!ENTITY gsettings.titlebarStyleWin8NoGaps				"Windows (bez przerwy)">
+<!ENTITY gsettings.titlebarStyleLinuxAlpha				"Linux (Alpha)">
+<!ENTITY gsettings.titlebarMode							"Tryb paska tytułu">
+<!ENTITY gsettings.titlebarModeDisclaimer				"Niektóre style paska tytułu zignorują to ustawienie">
+<!ENTITY gsettings.titlebarModeSystem					"Obramowania systemowe">
+<!ENTITY gsettings.titlebarModeCompact					"Obramowania kompaktowe">
+<!ENTITY gsettings.titlebarInThemesIsSys				"Użyj ramek systemowych z kompatybilnością wraz z motywamu Chromium">
+<!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"Wymaga włączonego obramowania systemowego, lub aby były używane przez styl paska tytułu">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"Natywny rozmiar przycisków na pasku tytułowym">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"Wymagane, aby natywne przyciski paska tytułu i karty miały odpowiedni rozmiar">
+<!ENTITY gsettings.customWidthInPixels					"Niestandardowy (w pikselach)">
 
 <!ENTITY gsettings.availablePresets	"Dostępne ustawienia">
 <!ENTITY gsettings.resetOverrides	"Przywróć domyślne ustawienia">
@@ -63,7 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"Pozwala pobrać motywy Chromium, bez instalacji ich poprzez klikanie przycisku Odrzuć">
 <!ENTITY gsettings.toolbar						"Pasek narzędzi">
 <!ENTITY gsettings.needsRestart					"Wymaga restartu">
-<!ENTITY gsettings.enableTabManager				"Włącz menedżer kart">
+<!ENTITY gsettings.tabManager					"Menedżer kart">
+<!ENTITY gsettings.tabManagerDescription		'Włącza "przycisk strzałki", która wyświetla wszystkie altualnie otwarte karty'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"Ukryj przycisk menu rozszerzeń">
 
 <!ENTITY gsettings.macIsGraphite					"Użyj czarno-białych przycisków na pasku tytułowym">
@@ -93,10 +96,14 @@
 <!ENTITY gsettings.allToolbarItems					"Wszystkie elementy paska narzędzi">
 <!ENTITY gsettings.none								"Brak">
 
-<!ENTITY gsettings.enableWebsitePinningInEveryEra				"Włącz przypinanie stron w każdej erze">
-<!ENTITY gsettings.enableWebsitePinningInEveryEraDescription	"Wyświetla przycisk przypięcia w każdym stylu">
+<!ENTITY gsettings.websitePinningInEveryEra				"Przypinanie stron w każdej erze">
+<!ENTITY gsettings.websitePinningInEveryEraDescription	"Wyświetla przycisk przypięcia w każdym stylu">
 
-<!ENTITY gsettings.about		"Dialog informacji">
+<!ENTITY gsettings.downloadShelf					"Półka pobierania">
+<!ENTITY gsettings.disableDownloadShelf				"Wyłącz półkę pobierania">
+<!ENTITY gsettings.disableDownloadShelfDescription	"Włączy to przycisk pobierania z przeglądarki Firefox">
+
+<!ENTITY gsettings.aboutDialog	"Dialog informacji">
 <!ENTITY gsettings.chooseAbout	"Wybierz dialog informacji">
 <!ENTITY gsettings.ask			"Zapytaj">
 
@@ -105,6 +112,7 @@
 <!ENTITY gsettings.behaviourToExperiments	"Eksploruj usunięte opcje zachowania Chromium...">
 
 <!ENTITY gsettings.appsList "Lista aplikacji">
+<!ENTITY gsettings.addAnApp "Dodaj aplikację">
 
 <!ENTITY gsettings.pagesToDesign	"Zmień styl strony nowej karty...">
 <!ENTITY gsettings.pagesToBehaviour	"Zarządzaj zachowaniem motywów na stronie nowej karty...">
@@ -125,7 +133,7 @@
 <!ENTITY gsettings.geckiumYouDisclaimer	"Chrome 58 nie jest wspierany przez Geckium You">
 <!ENTITY gsettings.grey					"Szary">
 <!ENTITY gsettings.w3cAccentColor		"Kolor akcentu">
-<!ENTITY gsettings.custom				"Niestandardowy">
+<!ENTITY gsettings.custom				"Niestandardowy...">
 <!ENTITY gsettings.wincolor				"Kolor okna">
 
 <!ENTITY gsettings.filterThemesBy	"Filtruj motywy przez...">

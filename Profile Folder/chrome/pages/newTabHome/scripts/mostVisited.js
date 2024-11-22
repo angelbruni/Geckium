@@ -539,9 +539,12 @@ function populateRecentSitesGrid() {
     const combinedSites = [...pinnedSites];
 
     // Add frequent sites until we fill up the total number of tiles
-    for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
-        combinedSites.push(topFrecentSites[i]);
-    }
+	if (!gkPrefUtils.tryGet("Geckium.devOptions.disableRecentlyVisited").bool) {
+		for (let i = 0; i < topFrecentSites.length && combinedSites.length < totalTiles; i++) {
+			combinedSites.push(topFrecentSites[i]);
+		}	
+	}
+    
     const mostVisited = document.querySelector(mostViewed);
 
 	waitForElm(mostViewed).then(function() {

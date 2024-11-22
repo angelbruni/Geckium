@@ -41,7 +41,7 @@
 					</hbox>
 					<vbox id="navigation-drawer" class="color iconic item-radius">
 						<vbox class="navigation-items">
-							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="&gsettings.welcome;" selected="true" />
+							<button class="item ripple-enabled icon-tungsten" data-page-container="main" data-page="0" label="&gsettings.welcome;" />
 							<separator />
 							<button class="item ripple-enabled icon-palette" data-page-container="main" data-page="10" label="&gsettings.design;" />
 							<button class="item ripple-enabled icon-settings" data-page-container="main" data-page="11" label="&gsettings.behaviour;" />
@@ -59,7 +59,7 @@
 					</vbox>
 					<div class="pages">
 						<vbox class="pages-container" data-page-container="main">
-							<vbox class="page" data-page="0" selected="true">
+							<vbox class="page" data-page="0">
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container">
@@ -85,11 +85,21 @@
 											<vbox class="card">
 												<hbox class="item disable-in-wizard">
 													<vbox>
-														<label class="name">&gsettings.openInTabNext;</label>
+														<label class="name">&gm.openInTabNext;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
 														<html:input class="switch" data-pref="Geckium.gmWindow.newTab" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gm.clickSoundFeedback;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.gmWindow.clickSndFeedback" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
@@ -191,7 +201,7 @@
 														<label class="name">&gsettings.titlebarStyle;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="titlebar-style" data-pref="appearance.titlebarStyle" id="titlebar-style-select">
+													<html:button class="menu" data-name="titlebar-style" data-pref="Geckium.appearance.titlebarStyle" id="titlebar-style-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -214,7 +224,7 @@
 														<label class="description">&gsettings.titlebarModeDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="titlebar-native" data-pref="appearance.titlebarNative" id="titlebar-native-select">
+													<html:button class="menu" data-name="titlebar-native" data-pref="Geckium.appearance.titlebarNative" id="titlebar-native-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -230,7 +240,7 @@
 														<label class="description">&gsettings.titlebarInThemesIsSysDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="appearance-titlebarThemedNative" data-pref="appearance.titlebarThemedNative" id="appearance-titlebarThemedNative-select">
+													<html:button class="menu" data-name="appearance-titlebarThemedNative" data-pref="Geckium.appearance.titlebarThemedNative" id="appearance-titlebarThemedNative-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -240,6 +250,30 @@
 														</vbox>
 													</html:button>
 												</hbox>
+												<hbox id="ncphelper-maskwidthmode" class="item nativecontrols">
+													<vbox>
+														<label class="name">&gsettings.nativeTitlebarButtonsSize;</label>
+														<label class="description">&gsettings.nativeTitlebarButtonsSizeDescription;</label>
+													</vbox>
+													<spacer />
+													<html:button class="menu" data-name="ncp-aerobuttonsmask" data-pref="Geckium.NCPHelper.maskWidthMode" id="ncp-aerobuttonsmask-select">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
+															<hbox class="item ripple-enabled" value="win8">Windows 8</hbox>
+															<hbox class="item ripple-enabled" value="win7">Windows 7</hbox>
+															<hbox class="item ripple-enabled" value="winvista">Windows Vista</hbox>
+															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+														</vbox>
+													</html:button>
+												</hbox>
+												<vbox id="ncphelper-custommaskwidth" class="item nativecontrols" flex="1" style="overflow: visible; padding-block-end: 19px;">
+													<div id="custom-width" class="input-parent size-md" flex="1">
+														<html:input type="text" inputmode="numeric" data-pref="Geckium.NCPHelper.customMaskWidth" class="input" id="custom-width-input" name="custom-width" required="true" />
+														<label class="placeholder">&gsettings.customWidthInPixels;</label>
+													</div>
+												</vbox>
 											</vbox>
 											<h4>
 												&gsettings.availablePresets;
@@ -301,7 +335,7 @@
 											</vbox>-->
 											<h4>&gsettings.newTab;</h4>
 											<vbox class="card">
-												<hbox class="item">
+												<hbox id="overridevisualstyle" class="item">
 													<vbox>
 														<label class="name">&gsettings.overrideVisualStylePreset;</label>
 													</vbox>
@@ -311,7 +345,7 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle" style="padding-block-start: 19px">
+												<vbox class="item" flex="1" data-switchreq="Geckium.newTabHome.overrideStyle">
 													<grid id="ntp-visual-styles-grid" class="appearance-container" style="margin-block-end: 19px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;" flex="1" />
 												</vbox>
 											</vbox>
@@ -375,7 +409,7 @@
 														<label class="name">&gsettings.branding;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="branding-choice" data-pref="branding.choice" id="branding-choice-select">
+													<html:button class="menu" data-name="branding-choice" data-pref="Geckium.branding.choice" id="branding-choice-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -386,16 +420,25 @@
 														</vbox>
 													</html:button>
 												</hbox>
+											</vbox>
+											<h4>
+												&gsettings.aboutDialog;
+											</h4>
+											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.saveDiscardedCRX;</label>
-														<label class="description">&gsettings.saveDiscardedCRXDescription;</label>
+														<label class="name">&gsettings.chooseAbout;</label>
 													</vbox>
 													<spacer />
-													<div class="switch-parent">
-														<html:input class="switch" data-pref="Geckium.crx.saveDiscarded" type="checkbox" id="auto_switch" name="auto_switch" />
-														<html:label class="gutter" for="auto_switch" />
-													</div>
+													<html:button class="menu" data-name="about-mode" data-pref="Geckium.about.mode" id="about-mode-select">
+														<label class="placeholder" />
+														<label class="selected" />
+														<vbox class="list">
+															<hbox class="item ripple-enabled" value="0">&gsettings.ask;</hbox>
+															<hbox class="item ripple-enabled" value="1">&gsettings.browser;</hbox>
+															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
+														</vbox>
+													</html:button>
 												</hbox>
 											</vbox>
 											<h4>
@@ -430,7 +473,8 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name"><div class="year">&gsettings.needsRestart;</div>&gsettings.enableTabManager;</label>
+														<label class="name"><div class="year is-below-120">&gsettings.needsRestart;</div>&gsettings.tabManager;</label>
+														<label class="description">&gsettings.tabManagerDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -470,7 +514,7 @@
 														<label class="description">&gsettings.chrThemeFallbacksDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="chrTheme.fallbacks" id="chrTheme-fallbacks-select">
+													<html:button class="menu" data-name="chrTheme-fallbacks" data-pref="Geckium.chrTheme.fallbacks" id="chrTheme-fallbacks-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -534,13 +578,13 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
-												<hbox class="item">
+												<hbox class="item is-linux-only">
 													<vbox>
 														<label class="name"><div class="year">Linux</div>&gsettings.gtkIconsInToolbarItems;</label>
 														<label class="description">&gsettings.gtkIconsInToolbarItemsDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="appearance-GTKIcons" data-pref="appearance.GTKIcons" id="appearance-GTKIcons-select">
+													<html:button class="menu" data-name="appearance-GTKIcons" data-pref="Geckium.appearance.GTKIcons" id="appearance-GTKIcons-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -557,8 +601,8 @@
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.enableWebsitePinningInEveryEra;</label>
-														<label class="description">&gsettings.enableWebsitePinningInEveryEraDescription;</label>
+														<label class="name">&gsettings.websitePinningInEveryEra;</label>
+														<label class="description">&gsettings.websitePinningInEveryEraDescription;</label>
 													</vbox>
 													<spacer />
 													<div class="switch-parent">
@@ -568,23 +612,30 @@
 												</hbox>
 											</vbox>
 											<h4>
-												&gsettings.about;
+												&gsettings.downloadShelf;
 											</h4>
 											<vbox class="card">
 												<hbox class="item">
 													<vbox>
-														<label class="name">&gsettings.chooseAbout;</label>
+														<label class="name">&gsettings.disableDownloadShelf;</label>
+														<label class="description">&gsettings.disableDownloadShelfDescription;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="about-mode" data-pref="about.mode" id="about-mode-select">
-														<label class="placeholder" />
-														<label class="selected" />
-														<vbox class="list">
-															<hbox class="item ripple-enabled" value="0">&gsettings.ask;</hbox>
-															<hbox class="item ripple-enabled" value="1">&gsettings.browser;</hbox>
-															<hbox class="item ripple-enabled" value="2">Chromium</hbox>
-														</vbox>
-													</html:button>
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.downloadShelf.disabled" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">&gsettings.saveDiscardedCRX;</label>
+														<label class="description">&gsettings.saveDiscardedCRXDescription;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.crx.saveDiscarded" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
 												</hbox>
 											</vbox>
 
@@ -618,7 +669,13 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gsettings.appsList;</h4>
-											<vbox class="card" id="apps-list" />
+											<vbox class="card" id="apps-list" style="position: relative;">
+												<html:div class="spinner-container">
+													<svg class="spinner" width="48px" height="48px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+														<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+													</svg>
+												</html:div>
+											</vbox>
 											<div class="modal" data-modal="editApp_modal">
 												<div class="wrapper">
 													<div class="card">
@@ -706,6 +763,7 @@
 										</vbox>
 									</vbox>
 								</vbox>
+								<html:button id="add-app-fab" class="floating-action-button ripple-enabled leading-icon icon-add extended" label="&gsettings.addAnApp;" data-toggle-modal="editApp_modal" />
 							</vbox>
 
 							<vbox class="page" data-page="13">
@@ -783,7 +841,7 @@
 														<label class="name">&gsettings.customFirefoxThemeMode;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="custom-theme-mode" data-pref="customtheme.mode" id="custom-theme-mode-select">
+													<html:button class="menu" data-name="custom-theme-mode" data-pref="Geckium.customtheme.mode" id="custom-theme-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -800,7 +858,7 @@
 														<label class="description">&gsettings.geckiumYouDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="you-mode" data-pref="you.mode" id="you-mode-select">
+													<html:button class="menu" data-name="you-mode" data-pref="Geckium.you.mode" id="you-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -811,7 +869,7 @@
 															<hbox class="item ripple-enabled winonly win10" value="awm">Aero Window Manager</hbox>
 														</vbox>
 													</html:button>
-													<html:input class="color" type="color" data-name="you-color" data-pref="you.color" data-parent-pref="you.mode" data-requires-value="custom" id="you-color-select"></html:input>
+													<html:input class="color" type="color" data-name="you-color" data-pref="Geckium.you.color" data-parent-pref="Geckium.you.mode" data-requires-value="custom" id="you-color-select" style="margin-inline-start: 19px" />
 												</hbox>
 												<hbox class="item" id="gkThemeFilterItem">
 													<vbox>
@@ -830,7 +888,7 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<vbox class="item" flex="1" style="padding-block-start: 19px; position: relative;">
+												<vbox class="item" flex="1" style="position: relative; overflow: visible;">
 													<grid id="gkthemes-grid" style="margin-block-end: 19px; grid-template-columns: repeat(auto-fit, minmax(218px, 218px)); gap: 10px; justify-content: center;" flex="1">
 														<!-- FIXME: Trying to do this with JS yielded 'not well-formed'. -->
 														<html:button
@@ -1022,7 +1080,7 @@
 														<label class="name">&gsettings.peopleButtonStyle;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="people-style" data-pref="people.style" id="people-style-select">
+													<html:button class="menu" data-name="people-style" data-pref="Geckium.people.style" id="people-style-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -1042,7 +1100,7 @@
 														<label class="description">&gsettings.avatarSourceDisclaimer;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="pfp-mode" data-pref="profilepic.mode" id="pfp-mode-select">
+													<html:button class="menu" data-name="pfp-mode" data-pref="Geckium.profilepic.mode" id="pfp-mode-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
@@ -1057,7 +1115,7 @@
 													<h4>&gsettings.selectYourAvatar;</h4>
 													<grid id="profile-pictures-grid" class="profile-mode-option" style="grid-template-columns: repeat(10, minmax(0, 1fr));" flex="1" />
 													<div id="profile-pictures-path" class="profile-mode-option input-parent size-md" flex="1">
-														<html:input type="text" data-pref="profilepic.customPath" class="input" id="example" name="example" required="true" />
+														<html:input type="text" data-pref="Geckium.profilepic.customPath" class="input" id="example" name="example" required="true" />
 														<label class="placeholder">&gsettings.imagePath;</label>
 													</div>
 												</vbox>
@@ -1227,6 +1285,28 @@
 													<spacer />
 													<div class="switch-parent">
 														<html:input class="switch" data-pref="devtools.debugger.chrthemes-enabled" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Disable recently visited list building in New Tab page</label>
+														<label class="description">Convenient for screenshots</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.devOptions.disableRecentlyVisited" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
+													</div>
+												</hbox>
+												<hbox class="item">
+													<vbox>
+														<label class="name">Disable recently closed list building in New Tab page</label>
+														<label class="description">Convenient for screenshots</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="Geckium.devOptions.disableRecentlyClosed" type="checkbox" id="auto_switch" name="auto_switch" />
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>
