@@ -116,7 +116,7 @@
 		--titlebar-pseudo-height:			100%;
 	}
 
-	// Pop up window titlebars
+	// Popup window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
 		@media (-moz-platform: windows) {
 			&[sizemode="maximized"] #titlebar {
@@ -143,6 +143,10 @@
 					display: flex !important;
 				}
 			}
+		}
+
+		#gkpeople-button-container {
+			display: none !important;
 		}
 	}
 
