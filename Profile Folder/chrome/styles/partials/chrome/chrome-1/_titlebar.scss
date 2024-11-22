@@ -287,11 +287,11 @@
 		@media (-moz-platform: windows) {
 			// Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
-				#titlebar {
+				&:not([inFullscreen]) #titlebar {
 					visibility: hidden !important;
 				}
-				&:not([chromehidden~="menubar"]) #toolbar-menubar,
-				&:not([chromehidden~="toolbar"]) #TabsToolbar {
+				&:not([inFullscreen][chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([inFullscreen][chromehidden~="toolbar"]) #TabsToolbar {
 					visibility: visible !important; // browser.css:186, 115
 				}
 			}
