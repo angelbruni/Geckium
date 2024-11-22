@@ -1,7 +1,10 @@
 // Remove the Google logo, as it's no longer present
-.titlebar-buttonbox-container::before,
-.titlebar-buttonbox-container::after {
-	content: unset !important;
+#gkpeople-button-container,
+.titlebar-buttonbox-container {
+	&::before,
+	&::after {
+		content: unset !important;
+	}
 }
 
 //Updated titlebar styles
