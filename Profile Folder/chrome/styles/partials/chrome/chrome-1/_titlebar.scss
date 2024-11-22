@@ -118,6 +118,11 @@
 
 	// Pop up window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
+		@media (-moz-platform: windows) {
+			&[sizemode="maximized"] #titlebar {
+				appearance: -moz-window-titlebar-maximized !important;
+			}
+		}
 		#titlebar {
 			height: 22px !important;
 			// Prevent the Incognito indicator from appearing whatsoever
