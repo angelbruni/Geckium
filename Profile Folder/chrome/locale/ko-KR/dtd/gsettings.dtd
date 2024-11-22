@@ -37,9 +37,9 @@
 <!ENTITY gsettings.titlebarModeCompact					"작은 테두리">
 <!ENTITY gsettings.titlebarInThemesIsSys				"호환되는 크롬 테마에서 시스템 경계 사용">
 <!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"제목 표시줄 스타일에서 시스템 경계를 사용하거나 사용해야 합니다">
-<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
-<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
-<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"기본 제목 표시줄 단추 크기">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"네이티브 타이틀바 버튼과 탭의 크기를 적절히 조정하려면 필요합니다.">
+<!ENTITY gsettings.customWidthInPixels					"사용자 지정 너비(픽셀)">
 
 <!ENTITY gsettings.availablePresets	"사용 가능한 사전 설정">
 <!ENTITY gsettings.resetOverrides	"재정의 재설정">
@@ -55,9 +55,9 @@
 <!ENTITY gsettings.designToThemes		"테마 변경 또는 관리...">
 <!ENTITY gsettings.designToExperiments	"폐기된 크롬 설계 옵션 탐색...">
 
-<!ENTITY gsettings.privacy			"[!!! ÞřïƲáç¥ !!!]">
-<!ENTITY gsettings.hideAccountInfo	"[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
-<!ENTITY gsettings.willHideInfoFrom	"[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
+<!ENTITY gsettings.privacy			"사생활">
+<!ENTITY gsettings.hideAccountInfo	"계정 정보 숨기기">
+<!ENTITY gsettings.willHideInfoFrom	"이 설정은 사용자 버튼 및 새 탭 페이지와 같은 장소에서 사용자의 이름과 이메일을 숨깁니다.">
 
 <!ENTITY gsettings.browser						"브라우저">
 <!ENTITY gsettings.branding						"브랜딩">
@@ -65,8 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"폐기를 눌러 설치하지 않고도 크롬 테마를 다운로드할 수 있습니다">
 <!ENTITY gsettings.toolbar						"도구 모음">
 <!ENTITY gsettings.needsRestart					"다시 시작해야 함">
-<!ENTITY gsettings.tabManager					"탭 관리자 사용"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
-<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
+<!ENTITY gsettings.tabManager					"탭 관리자"> 
+<!ENTITY gsettings.tabManagerDescription		'탭 표시줄에 열려 있는 탭 목록이 있는 '화살표 버튼'을 활성화합니다.'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"확장자 메뉴 숨기기 버튼">
 
 <!ENTITY gsettings.macIsGraphite					"흑연 제목 표시줄 버튼 사용">
@@ -82,30 +82,30 @@
 <!ENTITY gsettings.disabled									"비활성화된">
 <!ENTITY gsettings.chrThemesMustAero						"모든 크로미엄 테마에 시스템 테두리 사용 강제">
 <!ENTITY gsettings.chrThemesMustAeroDisclaimer				"호환되는 크로미엄 테마의 시스템 경계를 활성화해야 합니다">
-<!ENTITY gsettings.enableForceColorizeAddressBar			"[!!! Éñáβℓè ÛR£ ßář ƭλè₥ïñϱ ƒôř ïñçô₥ƥáƭïβℓè δèƨïϱñƨ !!!]">
-<!ENTITY gsettings.enableForceColorizeAddressBarDisclaimer	"[!!! Rè9úïřèƨ Gèçƙïú₥ Fïřèƒôж Tλè₥è ₥ôδè ôř á çô₥ƥáƭïβℓè Çλřô₥ïú₥ Tλè₥è !!!]">
+<!ENTITY gsettings.enableForceColorizeAddressBar			"사용자 지정 테마에 따라 주소 표시줄 색상 지정">
+<!ENTITY gsettings.enableForceColorizeAddressBarDisclaimer	"Geckium 파이어폭스 테마 모드 또는 호환되는 크로미엄 테마 필요">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttons				"파이어폭스 테마의 제목 표시줄 버튼에 도구 모음 배경 적용">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer		"일부 제목 표시줄 스타일은 이 설정을 무시합니다">
 <!ENTITY gsettings.colorizeTabGlareEffect					"커스텀 테마에 따른 컬러라이즈 탭 글레어 효과">
 <!ENTITY gsettings.colorizeTabGlareEffectDescription		"탭 호버 효과 색을 지정합니다">
 <!ENTITY gsettings.themeNewTabFooter						"적용된 사용자 정의 테마에 따른 테마 새 탭 바닥글">
 
-<!ENTITY gsettings.gtkIconsInToolbarItems			"[!!! §¥ƨƭè₥ ïçôñƨ ïñ ƭôôℓβář ïƭè₥ƨ !!!]">
+<!ENTITY gsettings.gtkIconsInToolbarItems			"도구 모음 항목의 시스템 아이콘">
 <!ENTITY gsettings.gtkIconsInToolbarItemsDisclaimer	"GTK+ 테마가 활성화된 리눅스가 필요합니다">
-<!ENTITY gsettings.official							"[!!! Óƒƒïçïáℓ !!!]">
-<!ENTITY gsettings.allToolbarItems					"[!!! Âℓℓ ƭôôℓβář ïƭè₥ƨ !!!]">
-<!ENTITY gsettings.none								"[!!! Nôñè !!!]">
+<!ENTITY gsettings.official							"공식적인">
+<!ENTITY gsettings.allToolbarItems					"모든 도구 모음 항목">
+<!ENTITY gsettings.none								"없음">
 
-<!ENTITY gsettings.websitePinningInEveryEra				"모든 시대에 웹사이트 고정 사용">  <!-- THIS REQUIRES STRING AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.websitePinningInEveryEra				"모든 시대의 웹사이트 고정">  
 <!ENTITY gsettings.websitePinningInEveryEraDescription	"모든 디자인의 핀 버튼을 표시합니다">
 
-<!ENTITY gsettings.downloadShelf					"[!!! Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelf				"[!!! Ðïƨáβℓè Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelfDescription	"[!!! Tλïƨ ωïℓℓ ƭúřñ ôñ Fïřèƒôж'ƨ Ðôωñℓôáδ βúƭƭôñ !!!]">
+<!ENTITY gsettings.downloadShelf					"선반 다운로드">
+<!ENTITY gsettings.disableDownloadShelf				"다운로드 선반 비활성화">
+<!ENTITY gsettings.disableDownloadShelfDescription	"파이어폭스의 다운로드 버튼이 켜집니다">
 
-<!ENTITY gsettings.aboutDialog	"About">
-<!ENTITY gsettings.chooseAbout	"Choose About">
-<!ENTITY gsettings.ask			"Ask">
+<!ENTITY gsettings.aboutDialog	"정보">
+<!ENTITY gsettings.chooseAbout	"정보 선택">
+<!ENTITY gsettings.ask			"묻기">
 
 <!ENTITY gsettings.behaviourToDesign		"설계 또는 오버라이드 관리...">
 <!ENTITY gsettings.behaviourToTheme			"테마를 적용하여 행동 변화를 관찰합니다.">
@@ -121,9 +121,9 @@
 <!ENTITY gsettings.appearance			"모양">
 <!ENTITY gsettings.openChrThemesFolder	"크롬 테마 폴더 열기">
 <!ENTITY gsettings.refreshList			"목록 새로 고침">
-<!ENTITY gsettings.filename				"[!!! Fïℓèñá₥è: !!!]">
-<!ENTITY gsettings.viewStorePage		"[!!! Vïèω §ƭôřè ƥáϱè !!!]">
-<!ENTITY gsettings.search				"[!!! §èářçλ !!!]">
+<!ENTITY gsettings.filename				"파일 이름:">
+<!ENTITY gsettings.viewStorePage		"스토어 페이지 보기">
+<!ENTITY gsettings.search				"검색">
 
 <!ENTITY gsettings.customFirefoxThemeMode	"사용자 지정 파이어폭스 테마 모드">
 <!ENTITY gsettings.toolbarStyleFXChrome		"원래 FXChrome에서 재현">
@@ -158,22 +158,22 @@
 <!ENTITY gsettings.themeToBehaviour		"인터페이스 테마가 영향을 미치는 정도를 조정합니다...">
 <!ENTITY gsettings.themeToExperiments	"폐기된 크롬 옵션으로 추가 개인화...">
 
-<!ENTITY gsettings.peopleButton			"[!!! Þèôƥℓè ßúƭƭôñ !!!]">
-<!ENTITY gsettings.peopleButtonStyle	"[!!! Þèôƥℓè ßúƭƭôñ §ƭ¥ℓè !!!]">
-<!ENTITY gsettings.avatarBesideTabs		"[!!! ÂƲáƭář βèƨïδè Táβƨ !!!]">
-<!ENTITY gsettings.titlebarButton		"[!!! Tïƭℓèβář ßúƭƭôñ !!!]">
+<!ENTITY gsettings.peopleButton			"사용자 버튼">
+<!ENTITY gsettings.peopleButtonStyle	"사용자 버튼 스타일">
+<!ENTITY gsettings.avatarBesideTabs		"탭 옆의 아바타">
+<!ENTITY gsettings.titlebarButton		"제목 표시줄 버튼">
 
-<!ENTITY gsettings.avatar					"[!!! ÂƲáƭář !!!]">
-<!ENTITY gsettings.avatarSource				"[!!! ÂƲáƭář §ôúřçè !!!]">
-<!ENTITY gsettings.avatarSourceDisclaimer	"[!!! Fïřèƒôж Âççôúñƭ ωïℓℓ ôñℓ¥ δïƨƥℓá¥ ïƒ ƨïϱñèδ ïñ !!!]">
-<!ENTITY gsettings.firefoxAccount			"[!!! Fïřèƒôж Âççôúñƭ !!!]">
-<!ENTITY gsettings.selectYourAvatar			"[!!! §èℓèçƭ ¥ôúř áƲáƭář !!!]">
+<!ENTITY gsettings.avatar					"아바타">
+<!ENTITY gsettings.avatarSource				"아바타 출처">
+<!ENTITY gsettings.avatarSourceDisclaimer	"파이어폭스 계정은 로그인한 경우에만 표시됩니다">
+<!ENTITY gsettings.firefoxAccount			"파이어폭스 계정">
+<!ENTITY gsettings.selectYourAvatar			"아바타 선택">
 <!ENTITY gsettings.imagePath				"이미지 경로">
 
-<!ENTITY gsettings.force68Linux					"[!!! Fôřçè Çλřô₥ïú₥ 68'ƨ Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.force68LinuxDescription		"[!!! ßèƒôřè 68, ƭλè ƭïƭℓèβář βúƭƭôñ úƨèδ Wïñδôωƨ'ƨ βúƭƭôñ ƨƭ¥ℓè !!!]">
-<!ENTITY gsettings.showChrOSPeople				"[!!! §λôω Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.showChrOSPeopleDescription	"[!!! Tλè Þèôƥℓè Tïƭℓèβář ßúƭƭôñ ωáƨ èжçℓúƨïƲè ƭô Wïñδôωƨ 8 Môδè !!!]">
+<!ENTITY gsettings.force68Linux					"크로미엄 68의 사람 제목 표시줄 버튼 강제 사용">
+<!ENTITY gsettings.force68LinuxDescription		"68 버전 이전에는 타이틀 바 버튼이 윈도우 버튼 스타일을 사용했습니다.">
+<!ENTITY gsettings.showChrOSPeople				"사용자 제목 표시줄 표시 버튼">
+<!ENTITY gsettings.showChrOSPeopleDescription	"피플 타이틀바 버튼은 윈도우 8 모드 전용이었습니다.">
 
 <!ENTITY gsettings.flags '깃발 - 또한 "about:flags"를 통해 사용할 수 있습니다.'>
 
