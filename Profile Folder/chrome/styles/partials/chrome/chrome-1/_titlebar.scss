@@ -26,9 +26,10 @@
 	}
 
 	// Variables for titlebar styles
-	--tab-distance-from-toolbar-edge:	2px;
-	--tab-distance-from-pfp:			3px;
-	--tab-distance-from-top:			15px;
+	--tab-distance-from-toolbar-edge:		2px;
+	--tab-distance-from-pfp:				3px;
+	--tab-distance-from-top:				15px;
+	--toolbar-background-y-pos:	-1px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--tab-distance-from-top: 0px;
@@ -292,7 +293,9 @@
 				}
 				&:not([chromehidden~="menubar"]) #toolbar-menubar,
 				&:not([chromehidden~="toolbar"]) #TabsToolbar {
-					visibility: visible !important; // browser.css:186, 115
+					// Making the titlebar invisible makes its children invisible - we therefore
+					// need to make its children visible manually:
+					visibility: visible !important;
 				}
 			}
 			// Remove margin in Windows Classic

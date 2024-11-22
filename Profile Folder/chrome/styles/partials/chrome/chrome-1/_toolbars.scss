@@ -786,11 +786,11 @@
 			}
 
 			#nav-bar {
-				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
 			}
 
 			&:not([personalbar="newtab"]) #PersonalToolbar {
-				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
 			}
 		}
 	}
