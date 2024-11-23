@@ -2,6 +2,9 @@
 	--default-ntp-background-color: white;
 	--ntp-background-color: var(--default-ntp-background-color);
 
+	--chrtheme-ntp-background-alignment: 50% 100%;
+	--chrtheme-ntp-background-repeat: no-repeat;
+
 	&:not([geckium-sixtyeight]) {
 		@media (prefers-color-scheme: dark) {
 			--default-ntp-background-color: black;
@@ -39,8 +42,8 @@
 	&[gkthemed][gkchrthemed] {
 		--ntp-background-color: 	var(--chrtheme-ntp-background);
 		--ntp-background-image:		var(--chrtheme-theme-ntp-background);
-		--ntp-background-position:	var(--chrtheme-theme-ntp-background);
-		--ntp-background-repeat:	var(--chrtheme-ntp-background-alignment);
+		--ntp-background-position:	var(--chrtheme-ntp-background-alignment);
+		--ntp-background-repeat:	var(--chrtheme-ntp-background-repeat);
 	}
 
 	// GTK+
