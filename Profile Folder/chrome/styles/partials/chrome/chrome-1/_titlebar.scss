@@ -26,9 +26,10 @@
 	}
 
 	// Variables for titlebar styles
-	--tab-distance-from-toolbar-edge:	2px;
-	--tab-distance-from-pfp:			3px;
-	--tab-distance-from-top:			15px;
+	--tab-distance-from-toolbar-edge:		2px;
+	--tab-distance-from-pfp:				3px;
+	--tab-distance-from-top:				15px;
+	--toolbar-background-y-pos:	-1px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--tab-distance-from-top: 0px;
@@ -115,8 +116,13 @@
 		--titlebar-pseudo-height:			100%;
 	}
 
-	// Pop up window titlebars
+	// Popup window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
+		@media (-moz-platform: windows) {
+			&[sizemode="maximized"] #titlebar {
+				appearance: -moz-window-titlebar-maximized !important;
+			}
+		}
 		#titlebar {
 			height: 22px !important;
 			// Prevent the Incognito indicator from appearing whatsoever
@@ -137,6 +143,10 @@
 					display: flex !important;
 				}
 			}
+		}
+
+		#gkpeople-button-container {
+			display: none !important;
 		}
 	}
 
@@ -274,6 +284,11 @@
 		}
 	}
 	&[gktitnative="false"] { // Compact Borders
+		// Disable window metrics border padding affecting titlebar height
+		&[sizemode="normal"] #titlebar {
+			appearance: none !important;
+		}
+
 		// Default to top-aligning the titlebar buttons
 		.titlebar-buttonbox-container {
 			align-self: start;
@@ -285,9 +300,11 @@
 				#titlebar {
 					visibility: hidden !important;
 				}
-				&:not([inFullscreen], [chromehidden~="menubar"]) #toolbar-menubar,
-				&:not([inFullscreen], [chromehidden~="toolbar"]) #TabsToolbar {
-					visibility: visible !important; // browser.css:186, 115
+				&:not([chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([chromehidden~="toolbar"]) #TabsToolbar {
+					// Making the titlebar invisible makes its children invisible - we therefore
+					// need to make its children visible manually:
+					visibility: visible !important;
 				}
 			}
 			// Remove margin in Windows Classic
