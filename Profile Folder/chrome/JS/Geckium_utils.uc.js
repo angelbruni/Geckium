@@ -160,3 +160,8 @@ function getStandardizedDPI() {
 
     return standardizedDPI;
 }
+
+// Firefox 115 and later versions had different functions for fullscreen, so let's just use a generalised one
+function toggleFullscreen() {
+	window.fullScreen = !window.fullScreen || BrowserHandler.kiosk;
+}
