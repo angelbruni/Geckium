@@ -405,6 +405,7 @@
 		&[gktitnative="true"][gktitbuttons="win8"], &[gktitnative="true"][gktitbuttons="win10"],
 		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win8"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+				&[privatebrowsingmode="temporary"],
 				&:not([gkpeoplestyle="titlebutton"]) {
 					.titlebar-buttonbox-container::before {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -418,6 +419,7 @@
 						}
 					}
 				}
+				&:not([privatebrowsingmode="temporary"]),
 				&[gkpeoplestyle="titlebutton"] {
 					#gkpeople-button-container::before {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -433,6 +435,7 @@
 				}
 			}
 			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+				&[privatebrowsingmode="temporary"],
 				&:not([gkpeoplestyle="titlebutton"])  {
 					.titlebar-buttonbox-container::after {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -446,6 +449,7 @@
 						}
 					}
 				}
+				&:not([privatebrowsingmode="temporary"]),
 				&[gkpeoplestyle="titlebutton"] {
 					#gkpeople-button-container::after {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");

@@ -69,6 +69,7 @@
 		
 		//Always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
+			&[privatebrowsingmode="temporary"],
 			&:not([gkpeoplestyle="titlebutton"]) {
 				.titlebar-buttonbox-container::before {
 					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
@@ -82,6 +83,7 @@
 					}
 				}
 			}
+			&:not([privatebrowsingmode="temporary"]),
 			&[gkpeoplestyle="titlebutton"] {
 				#gkpeople-button-container::before {
 					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
