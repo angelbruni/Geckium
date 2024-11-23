@@ -2,6 +2,9 @@
 	--default-section-title-color: black;
 	--section-title-color: var(--default-section-title-color);
 
+	--chrtheme-ntp-background-alignment: 50% 100%;
+	--chrtheme-ntp-background-repeat: no-repeat;
+
 	@media (prefers-color-scheme: dark) {
 		--default-section-title-color: white;
 	}
@@ -30,9 +33,6 @@
 			}
 		}
 	}
-
-	--chrtheme-ntp-background-alignment: 50% 100%;
-	--chrtheme-ntp-background-repeat: no-repeat;
 
 	// Custom theme support
 	// lwtheme
