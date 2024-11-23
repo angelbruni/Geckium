@@ -129,6 +129,7 @@
 		display: flex !important;
 	}
 	#toolbar-menubar[autohide="true"]:not([inactive]) ~ #TabsToolbar,
+	&[privatebrowsingmode="temporary"],
 	&:not([gkpeoplestyle="titlebutton"]) {
 		#gkpeople-button-container {
 			display: none !important;
