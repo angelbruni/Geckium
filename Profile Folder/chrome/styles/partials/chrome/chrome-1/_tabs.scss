@@ -413,6 +413,14 @@
 				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
 			}
 		}
+
+		&[privatebrowsingmode="temporary"] {
+			--inactive-tab-background: var(--chrtheme-theme-tab-background-incognito, var(--chrtheme-frame-incognito, var(--default-inactive-tab-background))) !important;
+
+			&[gktitnative="true"] { // Use different inactive tab background when in System
+				--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame-incognito, var(--default-inactive-tab-background))) !important;
+			}
+		}
 	}
 
 	&:not([geckium-fortyseven]) [soundplaying] .tab-icon-image {

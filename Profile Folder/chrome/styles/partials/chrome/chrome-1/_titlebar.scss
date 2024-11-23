@@ -55,6 +55,20 @@
 		--titlebar-pseudo-texture:			var(--lwt-additional-images);
 		--titlebar-pseudo-texture-pos:		var(--lwt-background-alignment);
 		--titlebar-pseudo-texture-repeat:	var(--lwt-background-tiling);
+
+		&[privatebrowsingmode="temporary"] {
+			// Base colour
+			--titlebar-active: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 55%,
+				black
+			) !important;
+			--titlebar-inactive: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 70%,
+				#6c6b6b
+			) !important;
+		}
 		
 		&[lwtheme-image] {
 			--titlebar-pseudo-texture:			var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
@@ -87,6 +101,35 @@
 				)
 			) !important;
 			--titlebar-pseudo-texture: unset !important;
+
+			&[privatebrowsingmode="temporary"] {
+				--titlebar-active: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 70%,
+						black
+					),
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 60%,
+						black
+					) 40px
+				) !important;
+				--titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 60%,
+						#313131
+					),
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 50%,
+						#313131
+					)
+				) !important;
+			}
 		}
 
 		&[windowtype="navigator:browser"] > body::before {
@@ -111,9 +154,36 @@
     	--titlebar-inactive:	var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
 		// Additional titlebar background
 		--titlebar-pseudo-texture:			var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
+		&[style*="--chrtheme-theme-frame-inactive"] {
+			--titlebar-pseudo-inactive-texture:	var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-inactive);
+		}
 		--titlebar-pseudo-texture-repeat:	no-repeat, repeat no-repeat;
 		--titlebar-pseudo-texture-pos:		-1px 0;
 		--titlebar-pseudo-height:			100%;
+
+		&[privatebrowsingmode="temporary"] {
+			--titlebar-foreground:			var(--chrtheme-frame-incognito-color);
+			--titlebar-foreground-inactive:	var(--chrtheme-frame-incognito-color);
+			--titlebar-button-foreground:	var(--chrtheme-button-color, var(--chrtheme-frame-incognito-color));
+			// Base colour
+			--titlebar-active: var(--chrtheme-frame-incognito, color-mix(
+				in srgb,
+				var(--chrtheme-frame) 55%,
+				black
+			)) !important;
+			--titlebar-inactive: var(--chrtheme-frame-incognito-inactive, var(--chrtheme-frame-incognito, color-mix(
+				in srgb,
+				var(--chrtheme-frame) 90%,
+				black
+			))) !important;
+			// Additional titlebar background
+			&[style*="--chrtheme-theme-frame-inactive"] {
+				--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-incognito);
+			}
+			&[style*="--chrtheme-theme-frame-incognito-inactive"] {
+				--titlebar-pseudo-inactive-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-incognito-inactive);
+			}
+		}
 	}
 
 	// Popup window titlebars
