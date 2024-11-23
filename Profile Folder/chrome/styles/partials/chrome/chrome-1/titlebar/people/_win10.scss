@@ -50,11 +50,17 @@
 			stroke: currentColor !important;
 		}
 	}
-	// Decrease button height before MD1
-	&:not([geckium-sixtyeight])[sizemode="maximized"],
-	&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-		.gkpeople-titlebar {
+
+	&[sizemode="maximized"],
+	&[sizemode="fullscreen"] {
+		// Decrease button height before MD1
+		&:not([geckium-sixtyeight]) .gkpeople-titlebar {
 			height: 24px;
+		}
+
+		// Decrease button height during MD1
+		&[geckium-sixtyeight] .gkpeople-titlebar {
+			height: 29px;
 		}
 	}
 }
