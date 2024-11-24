@@ -14,6 +14,12 @@
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
+		--thumbnail-border-color: color-mix(
+			in srgb,
+			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 31.37254901960784%,
+			transparent
+		);
+		--thumbnail-border-color-hot: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color)));
 		--thumbnail-inner-border-color: color-mix(
 			in srgb,
 			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 50%,
@@ -28,6 +34,7 @@
 			var(--chrtheme-ntp-header, var(--default-thumbnail-border-color)) 31.37254901960784%,
 			transparent
 		);
+		--thumbnail-border-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color));
 		--thumbnail-inner-border-color: var(--chrtheme-ntp-background, var(--default-thumbnail-inner-border-color));
 		--thumbnail-wrapper-background-color-hot: var(--chrtheme-ntp-header, var(--default-thumbnail-border-color));
 	}

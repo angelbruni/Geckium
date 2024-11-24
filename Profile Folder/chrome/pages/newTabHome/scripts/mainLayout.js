@@ -84,6 +84,7 @@ function createMainLayout() {
 	let footer = ``;
 
 	let menuBtnsContainer;
+	let searchbox;
 	let recentActivitiesSectionElm;
 
 	if (appearanceChoice == 1) {
@@ -883,137 +884,186 @@ function createMainLayout() {
 			</hbox>
 		</vbox>
 		`;
-	} else if (appearanceChoice >= 47) {
-		// Chrome 47 - 50
-		if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
-			header = `
-			<vbox id="google-search">
-				<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
-				<html:form>
-					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
-				</html:form>
-			</vbox>
-			`;
-		} else {
-			header = `
-			<hbox id="google-bar">
-				<html:a href="https://mail.google.com/mail">${ntpBundle.GetStringFromName("gmailProduct")}</html:a>
-				<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
-				<html:a id="google-products-link" href="https://about.google/products/#all-products" title="${ntpBundle.GetStringFromName("apps")}" />
-				<html:div id="products-grid-pane-container">
-					<html:div id="products-grid-arrow-border" />
-					<html:div id="products-grid-arrow-background" />
+	} else if (appearanceChoice >= 37) {
+		header = `
+		<hbox id="google-bar">
+			<html:a href="https://mail.google.com/mail">${ntpBundle.GetStringFromName("gmailProduct")}</html:a>
+			<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
+			<html:a id="google-products-link" href="https://about.google/products/#all-products" title="${ntpBundle.GetStringFromName("apps")}" />
+			<html:div id="products-grid-pane-container">
+				<html:div id="products-grid-arrow-border" />
+				<html:div id="products-grid-arrow-background" />
 
-					<vbox id="products-grid-container" class="hide-scrollbar">
-						<html:ul class="products-grid">
-							<html:li class="product-container">
-								<html:a class="product" href="https://www.google.com/">
-									<html:span class="product-icon" style="background-position:0 -190px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("searchProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://www.youtube.com/">
-									<html:span class="product-icon" style="background-position:-70px -1116px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("youTubeProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://maps.google.com/">
-									<html:span class="product-icon" style="background-position:0 -466px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("mapsProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://play.google.com/">
-									<html:span class="product-icon" style="background-position:0 -328px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("playProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://news.google.com/">
-									<html:span class="product-icon" style="background-position:-69px -770px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("newsProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://mail.google.com/">
-									<html:span class="product-icon" style="background-position:0 -836px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("gmailProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://drive.google.com/">
-									<html:span class="product-icon" style="background-position:0 -397px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("driveProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://www.google.com/calendar">
-									<html:span class="product-icon" style="background-position:0 -905px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("calendarProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://translate.google.com/">
-									<html:span class="product-icon" style="background-position:0 -974px"/>
-									<html:span class="product-name">${ntpBundle.GetStringFromName("translateProduct")}</html:span>
-								</html:a>
-							</html:li>
-						</html:ul>
-						<html:a id="more-products-button">${ntpBundle.GetStringFromName("more")}</html:a>
-						<html:span class="divider" />
-						<html:ul id="more-products-grid" class="products-grid">
-							<html:li class="product-container">
-								<html:a class="product" href="https://books.google.com/">
-									<html:span class="product-icon" style="background-position:-69px -572px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("booksProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://wallet.google.com/">
-									<html:span class="product-icon" style="background-position:-69px -978px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("walletProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="http://www.google.com/shopping">
-									<html:span class="product-icon" style="background-position:0 -535px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("shoppingProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="http://www.blogger.com/">
-									<html:span class="product-icon" style="background-position:-69px -259px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("bloggerProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="http://www.google.com/finance">
-									<html:span class="product-icon" style="background-position:0 -1043px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("financeProduct")}</html:span>
-								</html:a>
-							</html:li>
-							<html:li class="product-container">
-								<html:a class="product" href="https://photos.google.com/">
-									<html:span class="product-icon" style="background-position:0 -629px" />
-									<html:span class="product-name">${ntpBundle.GetStringFromName("photosProduct")}</html:span>
-								</html:a>
-							</html:li>
-						</html:ul>
-						<html:a id="even-more" href="http://www.google.com/intl/en/options/">${ntpBundle.GetStringFromName("evenMoreFromGoogle")}</html:a>
-					</vbox>
-				</html:div>
-				
-			</hbox>
-			<vbox id="google-search">
-				<html:div id="hplogo" title="Google" />
-				<html:form>
-					<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
-				</html:form>
-			</vbox>
-			`;
+				<vbox id="products-grid-container" class="hide-scrollbar">
+					<html:ul class="products-grid">
+						<html:li class="product-container">
+							<html:a class="product" href="https://www.google.com/">
+								<html:span class="product-icon" style="background-position:0 -190px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("searchProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://www.youtube.com/">
+								<html:span class="product-icon" style="background-position:-70px -1116px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("youTubeProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://maps.google.com/">
+								<html:span class="product-icon" style="background-position:0 -466px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("mapsProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://play.google.com/">
+								<html:span class="product-icon" style="background-position:0 -328px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("playProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://news.google.com/">
+								<html:span class="product-icon" style="background-position:-69px -770px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("newsProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://mail.google.com/">
+								<html:span class="product-icon" style="background-position:0 -836px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("gmailProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://drive.google.com/">
+								<html:span class="product-icon" style="background-position:0 -397px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("driveProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://www.google.com/calendar">
+								<html:span class="product-icon" style="background-position:0 -905px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("calendarProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://translate.google.com/">
+								<html:span class="product-icon" style="background-position:0 -974px"/>
+								<html:span class="product-name">${ntpBundle.GetStringFromName("translateProduct")}</html:span>
+							</html:a>
+						</html:li>
+					</html:ul>
+					<html:a id="more-products-button">${ntpBundle.GetStringFromName("more")}</html:a>
+					<html:span class="divider" />
+					<html:ul id="more-products-grid" class="products-grid">
+						<html:li class="product-container">
+							<html:a class="product" href="https://books.google.com/">
+								<html:span class="product-icon" style="background-position:-69px -572px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("booksProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://wallet.google.com/">
+								<html:span class="product-icon" style="background-position:-69px -978px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("walletProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="http://www.google.com/shopping">
+								<html:span class="product-icon" style="background-position:0 -535px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("shoppingProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="http://www.blogger.com/">
+								<html:span class="product-icon" style="background-position:-69px -259px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("bloggerProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="http://www.google.com/finance">
+								<html:span class="product-icon" style="background-position:0 -1043px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("financeProduct")}</html:span>
+							</html:a>
+						</html:li>
+						<html:li class="product-container">
+							<html:a class="product" href="https://photos.google.com/">
+								<html:span class="product-icon" style="background-position:0 -629px" />
+								<html:span class="product-name">${ntpBundle.GetStringFromName("photosProduct")}</html:span>
+							</html:a>
+						</html:li>
+					</html:ul>
+					<html:a id="even-more" href="http://www.google.com/intl/en/options/">${ntpBundle.GetStringFromName("evenMoreFromGoogle")}</html:a>
+				</vbox>
+			</html:div>
+		</hbox>
+		`;
 
+		if (appearanceChoice == 37) {
+			main = `
+			<html:div id="logo" />
+			<html:div id="fakebox">
+				<html:form>
+					<html:input id="fakebox-input" />
+				</html:form>
+			</html:div>
+			<vbox id="most-visited">
+				<html:div id="mv-tiles" />
+			</vbox>
+			<vbox id="attribution">
+				<label id="attribution-text">${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
+				<html:div id="attribution-img" />
+			</vbox>
+			`
+
+			searchbox = `#fakebox`;
+
+			waitForElm(`${searchbox} input`).then(() => {
+				const mainContainerElm = document.getElementById("main-container");
+				const inputElm = document.querySelector(`${searchbox} input`);
+				inputElm.addEventListener("focusin", () => {
+					mainContainerElm.classList.add("fakebox-focused");
+				});
+				inputElm.addEventListener("focusout", () => {
+					mainContainerElm.classList.remove("fakebox-focused");
+				});
+			});
+		} else if (appearanceChoice >= 47) {
+			// Chrome 47 - 50
+			if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
+				header = ``;
+
+				main = `
+				<vbox id="google-search">
+					<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
+					<html:form>
+						<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
+					</html:form>
+				</vbox>
+				<html:div id="mv-tiles" />
+				<vbox id="attribution">
+					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
+					<html:div id="attribution-img" />
+				</vbox>
+				`;
+			} else {
+				main = `
+				<vbox id="google-search">
+					<html:div id="hplogo" title="Google" />
+					<html:form>
+						<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
+					</html:form>
+				</vbox>
+				<html:div id="mv-tiles" />
+				<vbox id="attribution">
+					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
+					<html:div id="attribution-img" />
+				</vbox>
+				`;
+			}
+
+			searchbox = `#google-search`;
+		}
+
+		if ((appearanceChoice == 37) || (appearanceChoice == 47 && !gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool)) {
 			waitForElm("#google-products-link").then(() => {
 				const googleAppsLink = document.getElementById("google-products-link");
 				googleAppsLink.addEventListener("click", (e) => {
@@ -1062,16 +1112,8 @@ function createMainLayout() {
 			});
 		}
 
-		main = `
-		<html:div id="mv-tiles" />
-		<vbox id="attribution">
-			<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
-			<html:div id="attribution-img" />
-		</vbox>
-		`;
-
-		waitForElm("#google-search").then(() => {
-			const form = document.querySelector("#google-search > form");
+		waitForElm(searchbox).then(() => {
+			const form = document.querySelector(`${searchbox} form`);
 			form.addEventListener("submit", (event) => {
 				event.preventDefault();
 				location.href = "https://www.google.com/search?q=" + form.querySelector("input").value;

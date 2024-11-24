@@ -26,14 +26,14 @@ function changeGoButton() {
 
 		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 47)
+		else if (appearanceChoice == 37 || appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
 		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 47)
+		else if (appearanceChoice == 37 || appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	}
 }
@@ -65,7 +65,7 @@ function styleURLBar() {
 		}
 	}, 10);
 
-	if (appearanceChoice <= 5 || appearanceChoice == 47)
+	if (appearanceChoice <= 5 || appearanceChoice == 37 || appearanceChoice == 47)
 		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);

@@ -1,0 +1,59 @@
+& {
+	--menu_fullScreen-icon: url("chrome://userchrome/content/assets/img/chrome-47/menu/fullscreen_menu_button.svg");
+}
+
+menupopup {
+	button {
+		margin: 0 !important;
+		border: 1px solid rgb(205, 205, 205) !important;
+		background-color: transparent !important;
+		height: 100% !important;
+
+		-moz-context-properties: fill, fill-opacity;
+		fill: #969696 !important;
+		color: var(--gk-menu-foreground) !important;
+
+		transition: fill .2s;
+
+		&:not([disabled="true"]):hover {
+			background-color: var(--gk-menuitem-background) !important;
+			color: white !important;
+			fill: white !important;
+
+			z-index: 1 !important;
+		}
+
+		&#menu_smaller6 {
+			border-right: 0 !important;
+		}
+	}
+
+	menuseparator {
+		margin-block: 5.5px !important;
+	}
+}
+
+// Hardcoded menu skin
+//  Hardcoded menu style construction variables
+& {
+	--gk-menu-border-color: #BABABA;
+	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.5);
+	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.5);
+	--gk-menu-padding: 0px;
+	--gk-menu-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+	
+	--gk-menuitem-background: #4281F4;
+	--gk-menuitem-foreground: white;
+	--gk-menuitem-foreground-keys: white;
+
+	--gk-menusep-color: rgba(0, 0, 0, 0.1);
+	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/check.svg");
+	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio.svg");
+	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio-sel.svg");
+
+	@media (prefers-color-scheme: dark) {
+		--gk-menu-border-color: black;
+		--gk-menu-foreground-disabled: rgba(255, 255, 255, 0.5);
+		--gk-menu-foreground-keys: rgba(255, 255, 255, 0.5);
+	}
+}

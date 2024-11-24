@@ -1,0 +1,116 @@
+#google-bar {
+	gap: 15px;
+	margin-block-start: 15px;
+	margin-inline-end: 15px;
+	align-items: center;
+	justify-content: end;
+
+	a {
+		color: color-mix(in srgb, var(--google-bar-color) 87%, transparent);
+		text-decoration: none;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	#google-products-link {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/v1_ff29c1d8.png");
+		mask-size: 92px 3767px;
+		mask-position: -35px -3668px;
+		opacity: .55;
+		background-color: var(--google-bar-color);
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				opacity: .85;
+			}
+		}
+	}
+}
+
+&[style*="--chrtheme-ntp-logo-alternate: 1"],
+&[style*="--lwt-gkntp-logo-alternate: 1"] {
+	#logo {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.png");
+	}
+}
+
+#logo,
+#fakebox {
+	margin-inline: auto;
+}
+
+#logo {
+	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/google_logo.png");
+	background-repeat: no-repeat;
+	background-size: 269px 95px;
+	height: 95px;
+	margin-block-start: 157px;
+	margin-block-end: 24px;
+	width: 269px;
+
+	@media (prefers-color-scheme: dark) {
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.png");
+	}
+}
+
+#fakebox {
+	display: flex;
+
+	width: 618px;
+
+	transition: border-color 100ms linear;
+	background-color: white;
+	border: 1px solid rgb(185, 185, 185);
+	border-radius: 1px;
+	border-block-start-color: rgb(160, 160, 160);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	cursor: text;
+	font-size: 18px;
+	height: 36px;
+	max-width: 620px;
+	position: relative;
+
+	&:hover {
+		border: 1px solid rgb(169, 169, 169);
+		border-block-start-color: rgb(144, 144, 144);
+	}
+
+	> form {
+		display: flex;
+
+		flex: 1;
+	}
+}
+
+#main-container.fakebox-focused #fakebox {
+	border: 1px solid rgb(77, 144, 254);
+}
+
+#fakebox-input {
+	all: unset;
+
+	flex: 1;
+
+	margin: 2px;
+	padding-block: 1px;
+	padding-inline: 8px;
+}
+
+#cursor {
+	background: #333;
+	bottom: 5px;
+	left: 9px;
+	visibility: hidden;
+	width: 1px;
+	position: absolute;
+	top: 5px;
+}

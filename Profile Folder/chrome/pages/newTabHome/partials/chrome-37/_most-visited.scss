@@ -1,0 +1,186 @@
+& {
+	--default-thumbnail-border-color-normal: #c0c0c0;
+	--default-thumbnail-border-color-hot: #7f7f7f;
+	--default-thumbnail-container-color: rgb(119, 119, 119);
+}
+
+#most-visited {
+	display: flex;
+
+	margin-block-start: 51px;
+}
+
+#mv-tiles {
+	margin-inline: auto;
+	gap: 17px 20px;
+
+	width: 620px;
+	height: 260px;
+	padding-inline: 1em;
+}
+
+.mv-tile {
+	position: relative;
+
+	background: linear-gradient(
+		to bottom,
+		#f2f2f2,
+		#e8e8e8
+	);
+	border: 1px solid transparent;
+	border-radius: 3px;
+	box-shadow: inset 0 2px 3px rgba(0, 0, 0, .09);
+	height: 83px;
+	width: 138px;
+}
+
+.mv-page {
+	&:focus .mv-mask {
+		transition: background-color 100ms ease-in-out;
+		background: linear-gradient(
+			to bottom,
+			transparent,
+			transparent,
+			rgba(255, 255, 255, 0.9)
+		);
+		background-color: black;
+	}
+
+	&[pinned="true"] .mv-pin {
+		background: transparent url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_p.svg");
+	}
+
+	.mv-pin,
+	.mv-x {
+		transition: opacity 150ms;
+		opacity: 0;
+		position: absolute;
+		top: 2px;
+	}
+
+	.mv-x {
+		right: 2px;
+	}
+
+	.mv-pin {
+		left: 2px;
+	}
+}
+
+.mv-page-ready {
+	border: 1px solid var(--thumbnail-border-color);
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		border-color: var(--thumbnail-border-color-hot);
+	}
+
+	&:hover {
+		.mv-pin,
+		.mv-x {
+			transition-delay: 500ms;
+			opacity: 1;
+		}
+	}
+
+	.mv-pin,
+	.mv-x {
+		&:hover {
+			transition: none;
+		}
+	}
+}
+
+.mv-thumb,
+.mv-mask {
+	border: none;
+	cursor: pointer;
+	height: 83px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 138px;
+}
+
+.shadow {
+	box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.09);
+	position: absolute;
+}
+
+.shadow,
+.thumb-img {
+	border-radius: 2px;
+	height: 100%;
+	width: 100%;
+}
+
+.thumb-img {
+	background-position: top center;
+	background-size: cover;
+}
+
+.mv-mask {
+	opacity: 0.35;
+	pointer-events: none;
+}
+
+.mv-pin,
+.mv-x {
+	appearance: none;
+
+	border: none;
+	cursor: default;
+	height: 16px;
+	width: 16px;
+}
+
+.mv-pin {
+	background: transparent url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off.svg");
+
+	&:hover {
+		background: transparent url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_h.svg");
+	}
+
+	&:active {
+		background: transparent url("chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/newtab_pin_off_p.svg");
+	}
+}
+
+.mv-x {
+	background: transparent url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off.svg");
+
+	&:hover {
+		background: transparent url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_h.svg");
+	}
+
+	&:active {
+		background: transparent url("chrome://userchrome/content/assets/img/chrome-1/infobar/infobar_close_off_p.svg");
+	}
+}
+
+.mv-favicon {
+	background-size: 16px;
+	bottom: -8px;
+	left: 61px;
+	pointer-events: none;
+	position: absolute;
+}
+
+.mv-title {
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	text-decoration: none;
+
+	color: var(--thumbnail-container-color);
+
+	border: none;
+	bottom: -28px;
+	height: 18px;
+	left: 0;
+	position: absolute;
+	width: 140px;
+}

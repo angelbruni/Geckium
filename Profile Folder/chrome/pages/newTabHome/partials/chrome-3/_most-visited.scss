@@ -61,6 +61,9 @@
 		--newtab_pin_on_p: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-3/imgs/newtab_pin_on_p.svg");
 	}
 
+	--default-google-bar-color: black;
+	--google-bar-color: var(--default-google-bar-color);
+
 	--default-window-menu-item-hover-bg: hsl(213, 66%, 57%);
 	--window-menu-item-hover-bg: var(--default-window-menu-item-hover-bg);
 
@@ -88,6 +91,8 @@
 	--default-link-color: #06C;
 
 	@media (prefers-color-scheme: dark) {
+		--google-bar-color: white;
+
 		--thumbnail-border-color-normal: color-mix(
 			in srgb,
 			color-mix(
@@ -162,6 +167,8 @@
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
+		--google-bar-color: var(--link-color, var(--default-thumbnail-container-color));
+
 		--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color));
 		--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color));
 
@@ -191,6 +198,8 @@
 	}
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
+		--google-bar-color: var(--chrtheme-ntp-text, var(--default-thumbnail-container-color));
+
 		--manually-adapted-header: var(--chrtheme-ntp-section, var(--chrtheme-ntp-header));
 		--view-toolbar-buttons-bg: color-mix(
 			in srgb,
@@ -224,6 +233,8 @@
 	}
 	// GTK+
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--google-bar-color: FieldText;
+
 		--view-toolbar-buttons-bg: -moz-dialog;
 		--window-menu-item-hover-bg: AccentColor;
 
