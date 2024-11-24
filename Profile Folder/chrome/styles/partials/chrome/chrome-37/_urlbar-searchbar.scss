@@ -25,7 +25,7 @@
 			border-bottom: 1px !important;
 			border-color: rgb(56,115,209) !important;
 			border-style: solid !important;
-			list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/go.svg);
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/toolbar/go.svg);
 			align-items: center;
 		
 			&::before {
@@ -65,7 +65,7 @@
 #urlbar-input-container,
 .urlbar-input-container /* Fix for Firefox ~120+ */ {
 	&[pageproxystate="invalid"] > #go-button-box {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/toolbar/search.svg);
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/toolbar/search.svg);
 	}
 }
 
