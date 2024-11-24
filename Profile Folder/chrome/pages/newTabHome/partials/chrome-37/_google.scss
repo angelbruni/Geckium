@@ -39,7 +39,7 @@
 &[style*="--chrtheme-ntp-logo-alternate: 1"],
 &[style*="--lwt-gkntp-logo-alternate: 1"] {
 	#logo {
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.png");
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
 	}
 }
 
@@ -49,7 +49,7 @@
 }
 
 #logo {
-	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/google_logo.png");
+	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/google_logo.svg");
 	background-repeat: no-repeat;
 	background-size: 269px 95px;
 	height: 95px;
@@ -58,7 +58,7 @@
 	width: 269px;
 
 	@media (prefers-color-scheme: dark) {
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.png");
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
 	}
 }
 
