@@ -1,7 +1,36 @@
 & {
+	--default-tile-background: linear-gradient(
+		to bottom,
+		#f2f2f2,
+		#e8e8e8
+	);
+	--tile-background: var(--default-tile-background);
 	--default-thumbnail-border-color-normal: #c0c0c0;
 	--default-thumbnail-border-color-hot: #7f7f7f;
 	--default-thumbnail-container-color: rgb(119, 119, 119);
+
+	@media (prefers-color-scheme: dark) {
+		--default-thumbnail-border-color-normal: hsl(0, 0%, 25%);
+		--default-thumbnail-border-color-hot: #7f7f7f;
+		--default-thumbnail-container-color: hsl(0, 0%, 53%);
+		--default-tile-background: linear-gradient(
+			to bottom,
+			hsl(0, 0%, 5%),
+			hsl(0, 0%, 8%)
+		);
+	}
+
+	&[style*="--chrtheme-ntp-logo-alternate: 1"],
+	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--default-thumbnail-border-color-normal: hsl(0, 0%, 25%);
+		--default-thumbnail-border-color-hot: #7f7f7f;
+		--default-thumbnail-container-color: hsl(0, 0%, 53%);
+		--default-tile-background: linear-gradient(
+			to bottom,
+			hsl(0, 0%, 5%),
+			hsl(0, 0%, 8%)
+		);
+	}
 }
 
 &[pinineveryera="false"] {
@@ -28,11 +57,7 @@
 .mv-tile {
 	position: relative;
 
-	background: linear-gradient(
-		to bottom,
-		#f2f2f2,
-		#e8e8e8
-	);
+	background: var(--tile-background);
 	border: 1px solid transparent;
 	border-radius: 3px;
 	box-shadow: inset 0 2px 3px rgba(0, 0, 0, .09);
