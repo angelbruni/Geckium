@@ -1,14 +1,14 @@
 & {
 	@media (prefers-color-scheme: dark) {
 		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light.svg");
 		}
 	}
 
 	&[style*="--chrtheme-ntp-logo-alternate: 1"],
 	&[style*="--lwt-gkntp-logo-alternate: 1"] {
 		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light.svg");
 		}
 	}
 
@@ -46,7 +46,7 @@
 		background-repeat: no-repeat;
 		width: 272px;
 		height: 92px;
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png");
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color.svg");
 	}
 
 	form {
