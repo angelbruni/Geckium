@@ -1,5 +1,5 @@
 & {
-	--tile-background: rgb(242,242,242);
+	--default-tile-background: rgb(242,242,242);
 	--tile-background-disabled: var(--tile-background);
 	--tile-border-color-normal: rgba(150,150,150,.3137254901960784);
 	--tile-border-color-hot: rgba(150,150,150,1);
@@ -7,17 +7,17 @@
 	--tile-close-background-color-hot: rgb(90,90,90);
 	--tile-close-background-color-active: rgb(66,133,244);
 	--tile-thumbnail-background-color: white;
-	--thumbnail-container-color: black;
+	--default-thumbnail-container-color: black;
 
 	@media (prefers-color-scheme: dark) {
-		--tile-background: rgb(51, 51, 51);
+		--default-tile-background: rgb(51, 51, 51);
 		--thumbnail-container-color: white;
 	}
 
 	&[style*="--chrtheme-ntp-logo-alternate: 1"],
 	&[style*="--lwt-gkntp-logo-alternate: 1"] {
-		--tile-background: rgb(51, 51, 51);
-		--thumbnail-container-color: white;
+		--default-tile-background: rgb(51, 51, 51);
+		--default-thumbnail-container-color: white;
 
 		&[geckium-choice="fortyseven"][icon-ntp] .mv-tile {
 			color: rgb(170, 170, 170);
@@ -80,6 +80,9 @@
 	}
 	
 	.mv-tile {
+		box-shadow: none;
+		width: auto;
+
 		position: relative;
 		border-radius: 2px;
 		height: 126px;
@@ -125,6 +128,10 @@
 		}
 	
 		.mv-title {
+			position: static;
+			height: auto;
+			text-align: start;
+
 			overflow: hidden;
 			white-space: nowrap;
 			width: 100%;
@@ -205,6 +212,8 @@
 		}
 	
 		.mv-thumb {
+			position: static;
+
 			background-color: var(--tile-thumbnail-background-color);
 			background-position: top center;
 			background-size: cover;
@@ -221,6 +230,13 @@
 		}
 	
 		.mv-tile {
+			box-shadow: none;
+			width: auto;
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+			height: auto;
+
 			position: relative;
 			display: flex;
 			flex-direction: column;
@@ -271,6 +287,11 @@
 			}
 	
 			.mv-title {
+				position: static;
+				height: auto;
+				white-space: unset;
+				width: auto;
+
 				height: 29px;
 				overflow: hidden;
 			}

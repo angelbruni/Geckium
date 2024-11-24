@@ -66,7 +66,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -87,7 +87,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -108,7 +108,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -130,7 +130,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			},
 			68: {
@@ -162,7 +162,7 @@ class gkTitlebars {
 					macos: "macosx"
 				}
 			},
-			47: {
+			37: {
 				systheme: {
 					linux: "gtk",
 					win: "classic",
@@ -197,7 +197,7 @@ class gkTitlebars {
 					macos: "macosx"
 				}
 			},
-			47: {
+			37: {
 				systheme: {
 					linux: "gtk",
 					win: "classic",

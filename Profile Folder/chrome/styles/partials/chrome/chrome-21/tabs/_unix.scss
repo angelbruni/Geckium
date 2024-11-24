@@ -1,7 +1,7 @@
 // Linux and macOS used a smol new tab button, with the texture in themes
 //  being the titlebar button texture instead, until they all got unified
 //  with Windows's style sometime after 25 (in 2013?).
-&:not([geckium-fortyseven]) {
+&:not([geckium-thirtyseven]) {
     //Nuke tab fill as only Windows used it
     --default-theme-newtab: transparent !important;
     #tabs-newtab-button,

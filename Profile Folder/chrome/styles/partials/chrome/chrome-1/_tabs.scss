@@ -108,7 +108,7 @@
 		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.svg");
 		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.svg");
 
-		&:not([geckium-fortyseven]) {
+		&:not([geckium-thirtyseven]) {
 			--tab-recording: url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_200.png");
 		}
 
@@ -423,7 +423,7 @@
 		}
 	}
 
-	&:not([geckium-fortyseven]) [soundplaying] .tab-icon-image {
+	&:not([geckium-thirtyseven]) [soundplaying] .tab-icon-image {
 		display: flex !important;
 	}
 

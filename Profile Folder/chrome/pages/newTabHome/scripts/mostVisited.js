@@ -252,12 +252,12 @@ function createTile(website) {
 			else
 				pinTitle = ntpBundle.GetStringFromName("keepOnThisPage");
 		
-			const thumbnailImageFb1 = PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/");
-			const thumbnailImageFb2 = PageThumbs.getThumbnailURL(website.url);
-			const thumbnailImageFb3 = PageThumbs.getThumbnailURL(website.url + "/");
-			const thumbnailImageFb4 = PageThumbs.getThumbnailURL(website.url.split("://www")[1]);
-			const thumbnailImageFb5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
-			let thumbnailImageFb6;
+			const thumbnailImageFallback1 = PageThumbs.getThumbnailURL(website.url.split("://")[0] + "://www." + website.url.split("://")[1] + "/");
+			const thumbnailImageFallback2 = PageThumbs.getThumbnailURL(website.url);
+			const thumbnailImageFallback3 = PageThumbs.getThumbnailURL(website.url + "/");
+			const thumbnailImageFallback4 = PageThumbs.getThumbnailURL(website.url.split("://www")[1]);
+			const thumbnailImageFallback5 = PageThumbs.getThumbnailURL(website.url.split("://")[1]);
+			let thumbnailImageFallback6;
 			
 			const defaultColor = 'rgb(14,108,188)'; // Default color
 			let websiteColor = defaultColor;
@@ -344,7 +344,7 @@ function createTile(website) {
 				pin = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .pin";
 				close = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .remove";
 
-				thumbnailImageFb6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
+				thumbnailImageFallback6 = "chrome://userchrome/content/pages/newTabHome/assets/chrome-5/imgs/default_thumbnail.png";
 				thumbnail = ".thumbnail-container[href='"+ urlFixedSpecialChars +"'] .thumbnail-wrapper";
 			} else if (appearanceChoice >= 17 && appearanceChoice <= 25) {
 				for (const key in websiteColors) {
@@ -360,14 +360,14 @@ function createTile(website) {
 				<html:div class="tile" pinned="${pinned}">
 					<html:a class="most-visited" href="${urlFixedSpecialChars}">
 						<html:div class="thumbnail-wrapper">
-							<html:button class="pin-button" title="${pinTitle}"></html:button>
-							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
+							<html:button class="pin-button" title="${pinTitle}" />
+							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}" />
 							<html:div class="thumbnail">
-								<html:div class="thumbnail-shield"></html:div>
+								<html:div class="thumbnail-shield" />
 							</html:div>
-							<html:img class="favicon" src="${favicon}"></html:img>
+							<html:img class="favicon" src="${favicon}" />
 						</html:div>
-						<html:div class="color-stripe" style="background-color: ${websiteColor}"></html:div>
+						<html:div class="color-stripe" style="background-color: ${websiteColor}" />
 						<html:p class="title">${title}</html:p>
 					</html:a>
 				</html:div>
@@ -377,28 +377,47 @@ function createTile(website) {
 				close = ".most-visited[href='"+ url +"'] .close-button";
 				
 				thumbnail = ".most-visited[href='"+ url +"'] .thumbnail";
+			} else if (appearanceChoice == 37) {
+				tile = `
+				<html:div class="mv-tile mv-page mv-page-ready" pinned="${pinned}">
+					<html:a class="mv-thumb" href="${urlFixedSpecialChars}" title="${title}" style="font-size: 11px; font-family: arial, sans-serif;">
+						<html:span class="shadow" />
+						<html:div class="thumb-img" />
+					</html:a>
+					<html:div class="mv-mask" />
+					<html:button class="mv-pin" title="${pinTitle}}" />
+					<html:button class="mv-x" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}" />
+					<html:div class="mv-favicon" style="background-image: url(${favicon});" />
+					<html:a class="mv-title" href="${urlFixedSpecialChars}" title="${title}" style="font-size: 11px; font-family: arial, sans-serif;">${title}</html:a>
+				</html:div>
+				`
+
+				pin = `.mv-thumb[href="${urlFixedSpecialChars}"] ~ .mv-pin`;
+				close = `.mv-thumb[href="${urlFixedSpecialChars}"] ~ .mv-x`;
+
+				thumbnail = `.mv-thumb[href="${urlFixedSpecialChars}"] .thumb-img`;
 			} else if (appearanceChoice >= 47) {
 				if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					document.documentElement.setAttribute("icon-ntp", true);
 
 					tile = `
 					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${urlFixedSpecialChars}" title="${title}" data-letter="${Array.from(title)[0]}" pinned="${pinned}">
-						<image class="mv-favicon"></image>
+						<image class="mv-favicon" />
 						<label class="mv-title">${title}</label>
-						<html:button class="mv-pin"></html:button>
-						<html:button class="mv-x"></html:button>
+						<html:button class="mv-pin" />
+						<html:button class="mv-x" />
 					</html:a>
 					`
 				} else {
 					tile = `
 					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${urlFixedSpecialChars}" title="${title}" pinned="${pinned}">
 						<hbox class="title-container">
-							<image class="mv-favicon"></image>
+							<image class="mv-favicon" />
 							<label class="mv-title">${title}</label>
-							<html:button class="mv-pin"></html:button>
-							<html:button class="mv-x"></html:button>
+							<html:button class="mv-pin" />
+							<html:button class="mv-x" />
 						</hbox>
-						<html:div class="mv-thumb"></html:div>
+						<html:div class="mv-thumb" />
 					</html:a>
 					`
 				}
@@ -447,7 +466,7 @@ function createTile(website) {
 			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 25)) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < getTilesAmount(); i++) {
-						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFb1 + "), url(" + thumbnailImageFb2 + "), url(" + thumbnailImageFb3 + "), url(" + thumbnailImageFb4 + "), url(" + thumbnailImageFb5 + "), url(" + thumbnailImageFb6 + ")";
+						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFallback1 + "), url(" + thumbnailImageFallback2 + "), url(" + thumbnailImageFallback3 + "), url(" + thumbnailImageFallback4 + "), url(" + thumbnailImageFallback5 + "), url(" + thumbnailImageFallback6 + ")";
 					}
 				});
 			}
@@ -461,18 +480,18 @@ function createTile(website) {
 				<html:a class="thumbnail-container" disabled="true">
 					<vbox class="edit-mode-border">
 						<hbox class="edit-bar">
-							<html:button class="pin"></html:button>
-							<spacer></spacer>
-							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
+							<html:button class="pin" />
+							<spacer />
+							<html:button class="remove" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}" />
 						</hbox>
 						<html:div class="thumbnail-wrapper">
-							<html:div class="thumbnail"></html:div>
+							<html:div class="thumbnail" />
 						</html:div>
 					</vbox>
 					<html:div class="title">
 						<hbox>
-							<image></image>
-							<label></label>
+							<image />
+							<label />
 						</hbox>
 					</html:div>
 				</html:a>
@@ -482,24 +501,28 @@ function createTile(website) {
 				<html:div class="tile">
 					<html:a class="most-visited" disabled="true">
 						<html:div class="thumbnail-wrapper">
-							<html:button class="pin-button"></html:button>
-							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}"></html:button>
+							<html:button class="pin-button" />
+							<html:button class="close-button" title="${ntpBundle.GetStringFromName("doNotShowOnThisPage")}" />
 							<html:div class="thumbnail">
-								<html:div class="thumbnail-shield"></html:div>
+								<html:div class="thumbnail-shield" />
 							</html:div>
-							<html:img class="favicon"></html:img>
+							<html:img class="favicon" />
 						</html:div>
-						<html:div class="color-stripe"></html:div>
-						<html:p class=""></html:p>
+						<html:div class="color-stripe" />
+						<html:p />
 					</html:a>
 				</html:div>
 				`
-			}  else if (appearanceChoice >= 47) {
+			} else if (appearanceChoice >= 37) {
+				tile = `
+				<html:div class="mv-tile" />
+				`
+			} else if (appearanceChoice >= 47) {
 				if (appearanceChoice == 47 && gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool) {
 					tile = ``;
 				} else {
 					tile = `
-					<html:a class="mv-tile" disabled="true"></html:a>
+					<html:a class="mv-tile" disabled="true" />
 					`
 				}
 			}
@@ -524,7 +547,7 @@ function populateRecentSitesGrid() {
 		mostViewed = "#most-viewed-content";
 	else if (appearanceChoice >= 17 && appearanceChoice <= 25)
 		mostViewed = "#most-visited-page .tile-grid";
-	else if (appearanceChoice >= 47)
+	else if (appearanceChoice >= 37)
 		mostViewed = "#mv-tiles";
 
 	// Delete the tiles to update with new information (there might be a better way to do this).
