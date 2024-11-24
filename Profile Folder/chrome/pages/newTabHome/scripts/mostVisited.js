@@ -513,7 +513,7 @@ function createTile(website) {
 					</html:a>
 				</html:div>
 				`
-			} else if (appearanceChoice >= 37) {
+			} else if (appearanceChoice == 37) {
 				tile = `
 				<html:div class="mv-tile" />
 				`
