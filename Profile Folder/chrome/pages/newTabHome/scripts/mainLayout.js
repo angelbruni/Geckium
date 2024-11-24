@@ -1033,7 +1033,7 @@ function createMainLayout() {
 
 				main = `
 				<vbox id="google-search">
-					<html:img id="hplogo" width="272px" height="92px" alt="Google" src="chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png" title="Google"></html:img>
+					<html:div id="hplogo" />
 					<html:form>
 						<html:input id="google-input" placeholder="${ntpBundle.GetStringFromName("searchGoogleOrTypeURL")}"></html:input>
 					</html:form>
