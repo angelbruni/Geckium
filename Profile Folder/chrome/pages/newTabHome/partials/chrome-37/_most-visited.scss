@@ -4,6 +4,12 @@
 	--default-thumbnail-container-color: rgb(119, 119, 119);
 }
 
+&[pinineveryera="false"] {
+	.mv-pin {
+		display: none !important;
+	}
+}
+
 #most-visited {
 	display: flex;
 
