@@ -463,7 +463,7 @@ function createTile(website) {
 				})
 			})
 
-			if (!(gkPrefUtils.tryGet("Geckium.chrflag.enable.icon.ntp").bool && appearanceChoice == 25)) {
+			if (appearanceChoice == 25) {
 				waitForElm(thumbnail).then(function() {
 					for (let i = 0; i < getTilesAmount(); i++) {
 						document.querySelector(thumbnail).style.backgroundImage = "url(" + thumbnailImageFallback1 + "), url(" + thumbnailImageFallback2 + "), url(" + thumbnailImageFallback3 + "), url(" + thumbnailImageFallback4 + "), url(" + thumbnailImageFallback5 + "), url(" + thumbnailImageFallback6 + ")";
