@@ -1,5 +1,15 @@
 :root[nav-drawer-auto-hide] {
 	@media all and (max-width: 640px) {
+		button.floating-action-button.extended {
+			&::before {
+				margin-inline-end: 0;
+			}
+
+			&::after {
+				display: none;
+			}
+		}
+
 		.link-container {
 			box-shadow: var(--elevation-2);
 			grid-template-columns: repeat(1, minmax(0, 1fr));
