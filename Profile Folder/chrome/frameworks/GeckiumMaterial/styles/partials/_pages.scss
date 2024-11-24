@@ -1,3 +1,16 @@
+
+:root[nav-drawer-auto-hide] {
+	@media all and (max-width: 640px) {
+		.content {
+			padding: 0;
+		}
+
+		.list-container > .card:first-child {
+			margin-block-start: 0;
+		}
+	}
+}
+
 .pages {
 	position: relative;
 	flex: 1;
@@ -51,4 +64,8 @@
 			}
 		}
 	}
+}
+
+.content {
+	padding: var(--inner-padding);
 }

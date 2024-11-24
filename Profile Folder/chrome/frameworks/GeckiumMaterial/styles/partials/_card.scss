@@ -1,3 +1,11 @@
+:root[nav-drawer-auto-hide] {
+	@media all and (max-width: 640px) {
+		.card {
+			border-radius: 0;
+		}
+	}
+}
+
 .card {
 	min-width: 100px;
 	min-height: 100px;

@@ -1,3 +1,46 @@
+:root {
+	--nav-drawer-width: 256px;
+
+	&[nav-drawer-auto-hide] #navigation-drawer {
+		z-index: 2;
+		position: absolute;
+		height: 100%;
+		box-shadow: var(--elevation-16);
+	}
+
+	&:not([nav-drawer-auto-hide]) #btn-menu {
+		display: none;
+	}
+
+	&[is-navigation-drawer-collapsed] {
+		#navigation-drawer__dim {
+			transition: opacity 200ms;
+		}
+
+		#navigation-drawer {
+			transition: margin-inline-start 200ms;
+			margin-inline-start: calc(var(--nav-drawer-width) * -1 - 18px);
+		}
+	}
+	&:not([is-navigation-drawer-collapsed])[nav-drawer-auto-hide] #navigation-drawer__dim {
+		opacity: .5;
+		pointer-events: all;
+	}
+}
+
+#navigation-drawer__dim {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: rgb(0,0,0);
+	z-index: 2;
+	pointer-events: none;
+	transition: opacity 250ms;
+}
+
 #window > #navigation-drawer {
 	&.card {
 		height: auto;
@@ -54,7 +97,9 @@
 #navigation-drawer {
 	position: relative;
 	background: white;
-	width: 256px;
+	width: var(--nav-drawer-width);
+	margin-inline-start: 0px;
+	transition: margin-inline-start 250ms;
 
 	@media (prefers-color-scheme: dark) {
 		background: hsl(0, 0%, 22%);

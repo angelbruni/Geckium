@@ -67,6 +67,9 @@ class gmPages {
 					pagesContainer.style.transform = `translateX(calc(-100% * ${targetPage}))`;
 				}
 			}
+
+			if (document.documentElement.getAttribute("nav-drawer-auto-hide"))
+				gmNavDrawer.toggleHamburgerMenu("close");
 		}
 	}
 

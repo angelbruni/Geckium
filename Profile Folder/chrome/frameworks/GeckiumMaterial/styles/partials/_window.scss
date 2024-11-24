@@ -2,22 +2,20 @@
 	--titlebar-height: 32px;
 	--toolbar-height: 64px;
 
-	&[containertype="window"] {
-		#window {
-			@media (-moz-platform: windows) {
-				// prepare for animation
-				opacity: 0;
-		
-				// animation settings
-				animation-name: windowOpen;
-				animation-duration: 300ms;
-				animation-fill-mode: forwards;
+	&[containertype="window"] #window {
+		@media (-moz-platform: windows) {
+			// prepare for animation
+			opacity: 0;
+	
+			// animation settings
+			animation-name: windowOpen;
+			animation-duration: 300ms;
+			animation-fill-mode: forwards;
 
-				&.closing {
-					opacity: 1;
+			&.closing {
+				opacity: 1;
 
-					animation-name: windowClose !important;
-				}
+				animation-name: windowClose !important;
 			}
 		}
 	}
@@ -150,8 +148,6 @@ window {
 }
 
 #window-content-container {
-	background: var(--primary-color);
-
 	flex: 1;
 	z-index: 1;
 

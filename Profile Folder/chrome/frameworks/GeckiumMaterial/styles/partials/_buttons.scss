@@ -1,3 +1,38 @@
+:root[nav-drawer-auto-hide] {
+	@media all and (max-width: 640px) {
+		.link-container {
+			box-shadow: var(--elevation-2);
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+			margin-inline-start: 0;
+			margin-block-start: 0;
+			gap: 0;
+
+			&:not([disabled], .outlined) {
+				&:hover,
+				&:focus-visible {
+					box-shadow: var(--elevation-8);
+				}
+			}
+
+			> hbox {
+				gap: 0;
+			}
+
+			button.link {
+				box-shadow: none;
+
+				&:not(:last-child) {
+					border-bottom: 1px solid rgb(240, 240, 240);
+
+					@media (prefers-color-scheme: dark) {
+						border-bottom: 1px solid rgb(54, 54, 54);
+					}
+				}
+			}
+		}
+	}
+}
+
 button,
 label {
 	all: unset;
@@ -16,6 +51,8 @@ label {
 
 	&.button {
 		overflow: hidden;
+
+		flex-shrink: 0;
 		
 		margin-block: 6px;
 		margin-inline: 3px;
@@ -355,7 +392,12 @@ label {
 }
 
 .link-container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-block-start: 8px;
 	gap: 16px;
+	margin-block: 6px;
+	transition: box-shadow 155ms;
 
 	> hbox {
 		gap: 16px;
