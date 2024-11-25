@@ -1,21 +1,54 @@
-&:not([geckium-fortyseven]) {
-	@media only screen and (max-width: 820px) {
-		#fakebox {
-			width: 458px;
+
+& {
+	--default-google-bar-color: black;
+	--google-bar-color: var(--default-google-bar-color);
+	
+	@media (prefers-color-scheme: dark) {
+		--google-bar-color: white;
+
+		&:not([geckium-fortyseven]) #google-bar > a {
+			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, .3));
+			font-weight: bold;
+		}
+
+		#logo {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
 		}
 	}
 
-	@media only screen and (max-width: 660px) {
-		#fakebox {
-			width: 298px;
+	&[style*="--chrtheme-ntp-logo-alternate: 1"],
+	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--google-bar-color: white;
+
+		&:not([geckium-fortyseven]) #google-bar > a {
+			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, .3));
+			font-weight: bold;
+		}
+
+		#logo {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
+		}
+	}
+
+	&:not([geckium-fortyseven]) {
+		@media only screen and (max-width: 820px) {
+			#fakebox {
+				width: 458px;
+			}
+		}
+	
+		@media only screen and (max-width: 660px) {
+			#fakebox {
+				width: 298px;
+			}
 		}
 	}
 }
 
 #google-bar {
 	gap: 15px;
-	margin-block-start: 15px;
-	margin-inline-end: 15px;
+	margin-block-start: 14px;
+	margin-inline-end: 14px;
 	align-items: center;
 	justify-content: end;
 
@@ -35,11 +68,10 @@
 		position: relative;
 		width: 30px;
 		height: 30px;
-		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/v1_ff29c1d8.png");
-		mask-size: 92px 3767px;
-		mask-position: -35px -3668px;
+		list-style-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/products-link.svg");
 		opacity: .55;
-		background-color: var(--google-bar-color);
+		-moz-context-properties: fill, fill-opacity;
+		fill: var(--google-bar-color);
 
 		&:not([disabled]) {
 			&:hover,
@@ -48,12 +80,15 @@
 			}
 		}
 	}
-}
 
-&[style*="--chrtheme-ntp-logo-alternate: 1"],
-&[style*="--lwt-gkntp-logo-alternate: 1"] {
-	#logo {
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
+	#login-avatar,
+	#login-avatar > img {
+		width: 32px;
+		height: 32px;
+	}
+
+	#login-avatar > img {
+		border-radius: 50%;
 	}
 }
 
@@ -70,10 +105,6 @@
 	margin-block-start: 157px;
 	margin-block-end: 24px;
 	width: 269px;
-
-	@media (prefers-color-scheme: dark) {
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
-	}
 }
 
 #fakebox {
