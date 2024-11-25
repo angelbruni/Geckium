@@ -1,12 +1,22 @@
 & {
-	@media (prefers-color-scheme: dark) {
-		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light.svg");
-		}
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--google-bar-color: var(--link-color, var(--default-thumbnail-container-color));
+	}
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--google-bar-color: var(--chrtheme-ntp-text, var(--default-thumbnail-container-color));
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--google-bar-color: FieldText;
 	}
 
 	&[style*="--chrtheme-ntp-logo-alternate: 1"],
 	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--google-bar-color: white;
+
 		#google-search #hplogo {
 			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light.svg");
 		}
