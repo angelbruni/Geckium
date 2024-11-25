@@ -1,3 +1,17 @@
+&:not([geckium-fortyseven]) {
+	@media only screen and (max-width: 820px) {
+		#fakebox {
+			width: 458px;
+		}
+	}
+
+	@media only screen and (max-width: 660px) {
+		#fakebox {
+			width: 298px;
+		}
+	}
+}
+
 #google-bar {
 	gap: 15px;
 	margin-block-start: 15px;
