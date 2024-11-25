@@ -887,9 +887,12 @@ function createMainLayout() {
 	} else if (appearanceChoice >= 37) {
 		header = `
 		<hbox id="google-bar">
+			<html:a href="https://accounts.firefox.com/" id="login-displayName" />
 			<html:a href="https://mail.google.com/mail">${ntpBundle.GetStringFromName("gmailProduct")}</html:a>
 			<html:a href="https://www.google.com/imghp">${ntpBundle.GetStringFromName("googleImages")}</html:a>
-			<html:a id="google-products-link" href="https://about.google/products/#all-products" title="${ntpBundle.GetStringFromName("apps")}" />
+			<html:a id="google-products-link" href="https://about.google/products/#all-products" title="${ntpBundle.GetStringFromName("apps")}">
+				<image />
+			</html:a>
 			<html:div id="products-grid-pane-container">
 				<html:div id="products-grid-arrow-border" />
 				<html:div id="products-grid-arrow-background" />
@@ -994,6 +997,9 @@ function createMainLayout() {
 					<html:a id="even-more" href="http://www.google.com/intl/en/options/">${ntpBundle.GetStringFromName("evenMoreFromGoogle")}</html:a>
 				</vbox>
 			</html:div>
+			<html:a id="login-avatar" href="https://accounts.firefox.com/">
+				<html:img />
+			</html:a>
 		</hbox>
 		`;
 
@@ -1161,7 +1167,8 @@ function createMainLayout() {
 			});
 		});
 	}
-	if (appearanceChoice == 11 || appearanceChoice == 17 || appearanceChoice == 21 || appearanceChoice == 25) {
+	
+	if (appearanceChoice >= 11) {
 		//Trigger sign in status-update
 		updateSignInStatus();
 	}
