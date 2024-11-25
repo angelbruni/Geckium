@@ -409,6 +409,8 @@ function createTile(website) {
 					</html:a>
 					`
 				} else {
+					document.documentElement.removeAttribute("icon-ntp");
+
 					tile = `
 					<html:a class="mv-tile" style="list-style-image: url(${favicon})" href="${urlFixedSpecialChars}" title="${title}" pinned="${pinned}">
 						<hbox class="title-container">

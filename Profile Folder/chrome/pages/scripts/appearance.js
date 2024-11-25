@@ -54,10 +54,9 @@ const appearanceObs = {
 	},
 };
 Services.prefs.addObserver("Geckium.appearance.choice", appearanceObs, false);
-Services.prefs.addObserver("Geckium.main.overrideStyle", appearanceObs, false);
-Services.prefs.addObserver("Geckium.main.style", appearanceObs, false);
+Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.overrideStyle", appearanceObs, false);
 Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
-Services.prefs.addObserver("Geckium.branding.choice", appearanceObs, false);
+Services.prefs.addObserver("Geckium.chrflag.enable.icon.ntp", appearanceObs, false);
 Services.prefs.addObserver("Geckium.devOptions.disableRecentlyVisited", appearanceObs, false);
 Services.prefs.addObserver("Geckium.devOptions.disableRecentlyClosed", appearanceObs, false);
