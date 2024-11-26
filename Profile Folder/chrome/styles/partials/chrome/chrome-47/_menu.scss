@@ -1,46 +1,13 @@
-& {
-	--menu_fullScreen-icon: url("chrome://userchrome/content/assets/img/chrome-47/menu/fullscreen_menu_button.svg");
-}
-
 menupopup {
 	button {
-		margin: 0 !important;
 		padding: 0 !important;
 		padding-inline: 15px !important;
-		height: 100% !important;
-		background-color: transparent !important;
 		border-radius: 0 !important;
 		border-block: 0 !important;
 		border-inline: 1px solid var(--gk-menusep-color) !important;
 
-		-moz-context-properties: fill, fill-opacity;
-		fill: #969696 !important;
-		color: var(--gk-menu-foreground) !important;
-
-		transition: fill .2s;
-
 		&:not([disabled="true"]):hover {
-			background-color: var(--gk-menuitem-background) !important;
-			// border-color: rgb(171,171,171) !important;
 			border-color: var(--gk-menusep-color) !important;
-			color: white !important;
-			fill: white !important;
-
-			z-index: 1 !important;
-		}
-
-		&#menu_cut6,
-		&#menu_smaller6 {
-			margin-right: -1px !important;
-		}
-
-		&#menu_paste6,
-		&#menu_larger6 {
-			margin-left: -1px !important;
-		}
-
-		&#menu_smaller6 {
-			border-right: 0 !important;
 		}
 
 		&#menu_normal6 {
@@ -55,8 +22,8 @@ menupopup {
 		}
 	}
 
-	separator {
-		display: none !important;
+	menuseparator {
+		margin-block: 2px !important;
 	}
 
 	.menuitem-right-items {
@@ -64,29 +31,8 @@ menupopup {
 		margin-block: -3px !important;
 		margin-inline-end: -7px !important;
 	}
-}
 
-// Hardcoded menu skin
-//  Hardcoded menu style construction variables
-& {
-	--gk-menu-border-color: #BABABA;
-	--gk-menu-foreground-disabled: rgba(0, 0, 0, 0.5);
-	--gk-menu-foreground-keys: rgba(0, 0, 0, 0.5);
-	--gk-menu-padding: 0px;
-	--gk-menu-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
-	
-	--gk-menuitem-background: #4281F4;
-	--gk-menuitem-foreground: white;
-	--gk-menuitem-foreground-keys: white;
-
-	--gk-menusep-color: rgba(0, 0, 0, 0.1);
-	--gk-menuchecked-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/check.svg");
-	--gk-menuradioff-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio.svg");
-	--gk-menuradion-texture: url("chrome://userchrome/content/assets/img/chrome-47/menu/radio-sel.svg");
-
-	@media (prefers-color-scheme: dark) {
-		--gk-menu-border-color: black;
-		--gk-menu-foreground-disabled: rgba(255, 255, 255, 0.5);
-		--gk-menu-foreground-keys: rgba(255, 255, 255, 0.5);
+	separator {
+		display: none !important;
 	}
 }

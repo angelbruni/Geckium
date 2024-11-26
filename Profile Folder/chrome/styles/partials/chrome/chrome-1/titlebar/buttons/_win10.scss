@@ -69,6 +69,7 @@
 		
 		//Always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
+			&[privatebrowsingmode="temporary"],
 			&:not([gkpeoplestyle="titlebutton"]) {
 				.titlebar-buttonbox-container::before {
 					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
@@ -82,6 +83,7 @@
 					}
 				}
 			}
+			&:not([privatebrowsingmode="temporary"]),
 			&[gkpeoplestyle="titlebutton"] {
 				#gkpeople-button-container::before {
 					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
@@ -151,13 +153,20 @@
 				stroke: currentColor !important;
 			}
 		}
-		// Decrease button height before MD1
-		&:not([geckium-sixtyeight])[sizemode="maximized"],
-		&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-			.titlebar-button {
+
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			// Decrease button height before MD1
+			&:not([geckium-sixtyeight]) .titlebar-button {
 				height: 24px;
 			}
+
+			// Decrease button height during MD1
+			&[geckium-sixtyeight] .titlebar-button {
+				height: 29px;
+			}
 		}
+
 		// Halve opacity if window's inactive
 		&:-moz-window-inactive[gkthemed],
 		&:-moz-window-inactive:not([gksystheme="gtk"], [gkthemed]) { // can cause readability issues on GTK+

@@ -1,0 +1,31 @@
+& {
+	--panel-header-color: black;
+
+	@media (prefers-color-scheme: dark) {
+		--panel-header-color: white;
+	}
+}
+
+.panel-footer {
+	margin-block-start: 10px !important;
+	margin-inline-end: 2px !important;
+}
+
+.PanelUI-tabitem-container {
+	margin: 0 !important;
+}
+
+[id*="synced-tabs-client"] {
+	margin-inline-start: 21px !important;
+}
+
+panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		padding-inline: 22px !important;
+		
+		&:hover {
+			color: var(--panel-item-color-hot) !important;
+		}
+	}
+}

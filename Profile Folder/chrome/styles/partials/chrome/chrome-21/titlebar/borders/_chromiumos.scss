@@ -43,7 +43,7 @@
 		--default-titlebar-inactive: #444446;
 	}
 	@media (-moz-platform: linux) {
-		&[is117Plus]:not([geckium-fortyseven]) {
+		&[is117Plus]:not([geckium-thirtyseven]) {
 			--default-titlebar-active: rgba(255, 255, 255, 0.2);
 			--default-titlebar-inactive: rgba(255, 255, 255, 0.2);
 			@media (prefers-color-scheme: dark) {
@@ -67,7 +67,7 @@
 		border: 0;
 	}
 	
-	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed], [geckium-fortyseven]) #titlebar {
+	&[gksystheme="chromiumos"]:not([gkthemed], [gkchrthemed], [geckium-thirtyseven]) #titlebar {
 		background: black !important;
 		color: white !important;
 	}

@@ -42,6 +42,7 @@
 
     // Show the Google logo after the buttons if enabled
     &[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
+		&[privatebrowsingmode="temporary"],
 		&:not([gkpeoplestyle="titlebutton"]) {
 			.titlebar-buttonbox-container::after {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -55,7 +56,8 @@
 				}
 			}
 		}
-        &[gkpeoplestyle="titlebutton"] {
+        &:not([privatebrowsingmode="temporary"]),
+		&[gkpeoplestyle="titlebutton"] {
 			#gkpeople-button-container::before {
 				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
 				margin-block-start: 2px;

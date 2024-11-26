@@ -25,6 +25,13 @@
 :root {
 	--inner-padding: 16px;
 
+	@media all and (max-width: 640px) {
+		&[nav-drawer-auto-hide] .list-container > h4 {
+			padding-inline-start: 19px;
+			margin-block-end: -10px;
+		}
+	}
+
 	&,
 	body {
 		font-size: 10pt;

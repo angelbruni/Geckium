@@ -53,7 +53,7 @@ const experiments = {
 	"search-button-in-omnibox": {
 		name: "Enable search button in Omnibox",
 		description: "Places a search button in the Omnibox.",
-		from: 47, // Needs to be 33+ only.
+		from: 37, // Needs to be 33+ only.
 		to: 47,
 		values: {
 			0: "Default",

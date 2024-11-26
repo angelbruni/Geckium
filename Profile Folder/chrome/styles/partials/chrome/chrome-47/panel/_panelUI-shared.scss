@@ -1,27 +1,20 @@
 & {
-	--panel-header-color: black;
 	--panel-item-background-hot: rgb(234,234,234);
 	--panel-item-color-hot: rgb(6,45,117);
 
 	@media (prefers-color-scheme: dark) {
-		--panel-header-color: white;
 		--panel-item-background-hot: rgb(255, 255, 255, .15);
 		--panel-item-color-hot: rgb(72, 129, 236);
 	}
-
-	&[fxastatus="not_configured"] panel toolbarbutton {
-		&.subviewbutton,
-		&.toolbarbutton-1 {
-			&#fxa-manage-account-button::before {
-				background-size: 61px;
-			}
-		}
-	}
 }
 
-.panel-footer {
-	margin-block-start: 10px !important;
-	margin-inline-end: 2px !important;
+&[fxastatus="not_configured"] panel toolbarbutton {
+	&.subviewbutton,
+	&.toolbarbutton-1 {
+		&#fxa-manage-account-button::before {
+			background-size: 61px;
+		}
+	}
 }
 
 #PanelUI-fxa-menu > toolbarbutton.subviewbutton,
@@ -64,23 +57,9 @@
 	}
 }
 
-.PanelUI-tabitem-container {
-	margin: 0 !important;
-}
-
-[id*="synced-tabs-client"] {
-	margin-inline-start: 21px !important;
-}
-
 panel toolbarbutton {
 	&.subviewbutton,
 	&.toolbarbutton-1 {
-		padding-inline: 22px !important;
-		
-		&:hover {
-			color: var(--panel-item-color-hot) !important;
-		}
-	
 		&#fxa-manage-account-button {
 			position: relative;
 			flex-direction: column !important;
