@@ -61,7 +61,7 @@ export class chrFlags {
 			"search-button-in-omnibox": {
 				name: "Enable search button in Omnibox",
 				description: "Places a search button in the Omnibox.",
-				styleints: [47],
+				styleints: [37, 47],
 				values: {
 					0: "Default",
 					1: "Disabled",

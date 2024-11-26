@@ -108,7 +108,7 @@
 		--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_inactive_right.svg");
 		--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_active_right.svg");
 
-		&:not([geckium-fortyseven]) {
+		&:not([geckium-thirtyseven]) {
 			--tab-recording: url("chrome://userchrome/content/assets/img/chrome-1/tabbar/tab_recording_200.png");
 		}
 
@@ -410,12 +410,20 @@
 				background-attachment: fixed !important;
 			}
 			.tabbrowser-tab:not([style*="transform: "]) .tab-background-container::before {
-				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px)) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
+			}
+		}
+
+		&[privatebrowsingmode="temporary"] {
+			--inactive-tab-background: var(--chrtheme-theme-tab-background-incognito, var(--chrtheme-frame-incognito, var(--default-inactive-tab-background))) !important;
+
+			&[gktitnative="true"] { // Use different inactive tab background when in System
+				--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-frame-incognito, var(--default-inactive-tab-background))) !important;
 			}
 		}
 	}
 
-	&:not([geckium-fortyseven]) [soundplaying] .tab-icon-image {
+	&:not([geckium-thirtyseven]) [soundplaying] .tab-icon-image {
 		display: flex !important;
 	}
 

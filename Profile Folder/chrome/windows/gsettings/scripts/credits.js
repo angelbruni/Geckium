@@ -306,11 +306,27 @@ Research: Useful insight into Firefox JS.`,
 				developersCard.classList.add("card");
 
 				cardRoleTitle.textContent = gSettingsBundle.GetStringFromName("developersTitle");
-				creditsList.appendChild(cardRoleTitle);
 				creditsList.appendChild(developersCard);
+				developersCard.appendChild(cardRoleTitle);
 			}
 			
 			developersCard.appendChild(creditFragment);
+		}  else if (person.role == "js-loader") {
+			let jsLoaderCard;
+
+			if (document.querySelector("#jsLoaderCard.card")) {
+				jsLoaderCard = document.querySelector("#jsLoaderCard.card")
+			} else {
+				jsLoaderCard = document.createXULElement("vbox");
+				jsLoaderCard.id = "jsLoaderCard";
+				jsLoaderCard.classList.add("card");
+
+				cardRoleTitle.textContent = "JavaScript Loader";
+				creditsList.appendChild(jsLoaderCard);
+				jsLoaderCard.appendChild(cardRoleTitle);
+			}
+
+			jsLoaderCard.appendChild(creditFragment);
 		} else if (person.role == "tester") {
 			let testersCard;
 
@@ -322,8 +338,8 @@ Research: Useful insight into Firefox JS.`,
 				testersCard.classList.add("card");
 
 				cardRoleTitle.textContent = gSettingsBundle.GetStringFromName("testersTitle");
-				creditsList.appendChild(cardRoleTitle);
 				creditsList.appendChild(testersCard);
+				testersCard.appendChild(cardRoleTitle);
 			}
 
 			testersCard.appendChild(creditFragment);
@@ -338,27 +354,11 @@ Research: Useful insight into Firefox JS.`,
 				exDevelopersCard.classList.add("card");
 
 				cardRoleTitle.textContent = gSettingsBundle.GetStringFromName("exDevelopersTitle");
-				creditsList.appendChild(cardRoleTitle);
 				creditsList.appendChild(exDevelopersCard);
+				exDevelopersCard.appendChild(cardRoleTitle);
 			}
 
 			exDevelopersCard.appendChild(creditFragment);
-		} else if (person.role == "js-loader") {
-			let jsLoaderCard;
-
-			if (document.querySelector("#jsLoaderCard.card")) {
-				jsLoaderCard = document.querySelector("#jsLoaderCard.card")
-			} else {
-				jsLoaderCard = document.createXULElement("vbox");
-				jsLoaderCard.id = "jsLoaderCard";
-				jsLoaderCard.classList.add("card");
-
-				cardRoleTitle.textContent = "JavaScript Loader";
-				creditsList.appendChild(cardRoleTitle);
-				creditsList.appendChild(jsLoaderCard);
-			}
-
-			jsLoaderCard.appendChild(creditFragment);
 		}
 
 		let creditElm = document.querySelector(`button[data-name="${person.name}"]`);

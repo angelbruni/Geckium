@@ -78,7 +78,7 @@
 
 	//Close button
 	.titlebar-close {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/close.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/titlebar/cros/close.png) !important;
 		order: 2 !important;
 		border-top-right-radius: var(--titlebar-border-radius) !important; // Ensure it doesn't overlay the border
 	}
@@ -91,7 +91,7 @@
 
 	//Maximise and Restore buttons
 	.titlebar-max {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/titlebar/cros/maximize.png) !important;
 	}
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
@@ -100,7 +100,7 @@
 		}
 	}
 	.titlebar-restore {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/maximize.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/titlebar/cros/maximize.png) !important;
 	}
 	&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
 		.titlebar-restore {
@@ -114,7 +114,7 @@
 
 	//Minimise button
 	.titlebar-min {
-		list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/cros/minimize.png) !important;
+		list-style-image: url(chrome://userchrome/content/assets/img/chrome-37/titlebar/cros/minimize.png) !important;
 		order: 0 !important;
 	}
 }

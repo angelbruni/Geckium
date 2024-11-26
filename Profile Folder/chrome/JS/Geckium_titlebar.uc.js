@@ -66,7 +66,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -87,7 +87,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -108,7 +108,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			}
 		},
@@ -130,7 +130,7 @@ class gkTitlebars {
 					macos: "classic"
 				}
 			},
-			47: {
+			37: {
 				menunative: 2
 			},
 			68: {
@@ -162,7 +162,7 @@ class gkTitlebars {
 					macos: "macosx"
 				}
 			},
-			47: {
+			37: {
 				systheme: {
 					linux: "gtk",
 					win: "classic",
@@ -197,7 +197,7 @@ class gkTitlebars {
 					macos: "macosx"
 				}
 			},
-			47: {
+			37: {
 				systheme: {
 					linux: "gtk",
 					win: "classic",
@@ -715,7 +715,7 @@ function NCPHelper() {
 					maskWidth = 104.4
 					break;
 			}
-		} else if (helperMaskWidth == "win8") {
+		} else if ((helperMaskWidth == "auto" && window.matchMedia("(-moz-platform: windows-win8)").matches) || (helperMaskWidth == "win8")) {
 			switch (standardizedDPI) {
 				case 96:
 					maskWidth = 98
@@ -752,7 +752,7 @@ function NCPHelper() {
 			maskWidth = parseInt(gkPrefUtils.tryGet("Geckium.NCPHelper.customMaskWidth").string);
 		}
 
-		if (helperMaskWidth !== "auto")
+		if ((helperMaskWidth !== "auto") || (helperMaskWidth == "auto" && window.matchMedia("(-moz-platform: windows-win8)").matches))
 			document.documentElement.style.setProperty(helperMaskWidthProperty, `${maskWidth}px`);
 		else
 			document.documentElement.style.removeProperty(helperMaskWidthProperty);

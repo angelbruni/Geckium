@@ -2,23 +2,23 @@
 	--tab-normal-width:			192px;
 	--tab-pinned-width:			39px;
 	--tab-selected-min-width:	31px;
-	--tab-height:				29px;
-	--tab-sides-width:			14px;
+	--tab-height:				30px;
+	--tab-sides-width:			15px;
 	--tab-inner-margin-start:	15px;
 	--tab-content-y-from-top:	-1px;
 	--tab-gap-between:			-15px;
 
 	--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_left.svg");
-	--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_left.svg");
+	--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_left.svg");
 	--tab-inline-start-inactive2-mask: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive2_alpha_left.svg");
 	--tab-inline-start-inactive2-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive2_left.svg");
-	--tab-inline-start-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_left.svg");
+	--tab-inline-start-active-texture: 		var(--tab-inline-start-inactive-texture);
 	--tab-inline-center-mask: 				url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_center.svg");
-	--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_center.svg");
-	--tab-inline-center-active-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_center.svg");
+	--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_center.svg");
+	--tab-inline-center-active-texture: 	var(--tab-inline-center-inactive-texture);
 	--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_right.svg");
-	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_right.svg");
-	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_right.svg");
+	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_right.svg");
+	--tab-inline-end-active-texture: 		var(--tab-inline-end-inactive-texture);
 
 	--tab-container-left:	linear-gradient(to bottom, transparent, transparent);
 	--tab-container2-left:	linear-gradient(to bottom, transparent, transparent);

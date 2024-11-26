@@ -26,9 +26,10 @@
 	}
 
 	// Variables for titlebar styles
-	--tab-distance-from-toolbar-edge:	2px;
-	--tab-distance-from-pfp:			3px;
-	--tab-distance-from-top:			15px;
+	--tab-distance-from-toolbar-edge:		2px;
+	--tab-distance-from-pfp:				3px;
+	--tab-distance-from-top:				15px;
+	--toolbar-background-y-pos:	-1px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
 		--tab-distance-from-top: 0px;
@@ -54,6 +55,20 @@
 		--titlebar-pseudo-texture:			var(--lwt-additional-images);
 		--titlebar-pseudo-texture-pos:		var(--lwt-background-alignment);
 		--titlebar-pseudo-texture-repeat:	var(--lwt-background-tiling);
+
+		&[privatebrowsingmode="temporary"] {
+			// Base colour
+			--titlebar-active: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 55%,
+				black
+			) !important;
+			--titlebar-inactive: color-mix(
+				in srgb,
+				var(--lwt-accent-color) 70%,
+				#6c6b6b
+			) !important;
+		}
 		
 		&[lwtheme-image] {
 			--titlebar-pseudo-texture:			var(--lwt-header-image, linear-gradient(transparent, transparent)), var(--lwt-additional-images);
@@ -86,6 +101,35 @@
 				)
 			) !important;
 			--titlebar-pseudo-texture: unset !important;
+
+			&[privatebrowsingmode="temporary"] {
+				--titlebar-active: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 70%,
+						black
+					),
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 60%,
+						black
+					) 40px
+				) !important;
+				--titlebar-inactive: linear-gradient(
+					to bottom,
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 60%,
+						#313131
+					),
+					color-mix(
+						in srgb,
+						var(--lwt-accent-color) 50%,
+						#313131
+					)
+				) !important;
+			}
 		}
 
 		&[windowtype="navigator:browser"] > body::before {
@@ -110,13 +154,45 @@
     	--titlebar-inactive:	var(--chrtheme-frame-inactive, var(--chrtheme-frame)) !important;
 		// Additional titlebar background
 		--titlebar-pseudo-texture:			var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame);
+		&[style*="--chrtheme-theme-frame-inactive"] {
+			--titlebar-pseudo-inactive-texture:	var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-inactive);
+		}
 		--titlebar-pseudo-texture-repeat:	no-repeat, repeat no-repeat;
 		--titlebar-pseudo-texture-pos:		-1px 0;
 		--titlebar-pseudo-height:			100%;
+
+		&[privatebrowsingmode="temporary"] {
+			--titlebar-foreground:			var(--chrtheme-frame-incognito-color);
+			--titlebar-foreground-inactive:	var(--chrtheme-frame-incognito-color);
+			--titlebar-button-foreground:	var(--chrtheme-button-color, var(--chrtheme-frame-incognito-color));
+			// Base colour
+			--titlebar-active: var(--chrtheme-frame-incognito, color-mix(
+				in srgb,
+				var(--chrtheme-frame) 55%,
+				black
+			)) !important;
+			--titlebar-inactive: var(--chrtheme-frame-incognito-inactive, var(--chrtheme-frame-incognito, color-mix(
+				in srgb,
+				var(--chrtheme-frame) 90%,
+				black
+			))) !important;
+			// Additional titlebar background
+			&[style*="--chrtheme-theme-frame-inactive"] {
+				--titlebar-pseudo-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-incognito);
+			}
+			&[style*="--chrtheme-theme-frame-incognito-inactive"] {
+				--titlebar-pseudo-inactive-texture: var(--chrtheme-theme-frame-overlay), var(--chrtheme-theme-frame-incognito-inactive);
+			}
+		}
 	}
 
-	// Pop up window titlebars
+	// Popup window titlebars
 	&[chromehidden~="toolbar"][gktitnative="false"] {
+		@media (-moz-platform: windows) {
+			&[sizemode="maximized"] #titlebar {
+				appearance: -moz-window-titlebar-maximized !important;
+			}
+		}
 		#titlebar {
 			height: 22px !important;
 			// Prevent the Incognito indicator from appearing whatsoever
@@ -137,6 +213,10 @@
 					display: flex !important;
 				}
 			}
+		}
+
+		#gkpeople-button-container {
+			display: none !important;
 		}
 	}
 
@@ -274,6 +354,11 @@
 		}
 	}
 	&[gktitnative="false"] { // Compact Borders
+		// Disable window metrics border padding affecting titlebar height
+		&[sizemode="normal"] #titlebar {
+			appearance: none !important;
+		}
+
 		// Default to top-aligning the titlebar buttons
 		.titlebar-buttonbox-container {
 			align-self: start;
@@ -285,9 +370,11 @@
 				#titlebar {
 					visibility: hidden !important;
 				}
-				&:not([inFullscreen], [chromehidden~="menubar"]) #toolbar-menubar,
-				&:not([inFullscreen], [chromehidden~="toolbar"]) #TabsToolbar {
-					visibility: visible !important; // browser.css:186, 115
+				&:not([chromehidden~="menubar"]) #toolbar-menubar,
+				&:not([chromehidden~="toolbar"]) #TabsToolbar {
+					// Making the titlebar invisible makes its children invisible - we therefore
+					// need to make its children visible manually:
+					visibility: visible !important;
 				}
 			}
 			// Remove margin in Windows Classic
@@ -388,6 +475,7 @@
 		&[gktitnative="true"][gktitbuttons="win8"], &[gktitnative="true"][gktitbuttons="win10"],
 		&[gktitnative="true"]:not([gktitbuttons="win"], [gktitbuttons="win8"], [gktitbuttons="win10"])[geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
+				&[privatebrowsingmode="temporary"],
 				&:not([gkpeoplestyle="titlebutton"]) {
 					.titlebar-buttonbox-container::before {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -401,6 +489,7 @@
 						}
 					}
 				}
+				&:not([privatebrowsingmode="temporary"]),
 				&[gkpeoplestyle="titlebutton"] {
 					#gkpeople-button-container::before {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -416,6 +505,7 @@
 				}
 			}
 			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
+				&[privatebrowsingmode="temporary"],
 				&:not([gkpeoplestyle="titlebutton"])  {
 					.titlebar-buttonbox-container::after {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
@@ -429,6 +519,7 @@
 						}
 					}
 				}
+				&:not([privatebrowsingmode="temporary"]),
 				&[gkpeoplestyle="titlebutton"] {
 					#gkpeople-button-container::after {
 						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google.png");
