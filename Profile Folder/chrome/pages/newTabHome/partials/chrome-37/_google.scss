@@ -1,0 +1,161 @@
+
+& {
+	--default-google-bar-color: black;
+	--google-bar-color: var(--default-google-bar-color);
+	
+	@media (prefers-color-scheme: dark) {
+		--google-bar-color: white;
+
+		&:not([geckium-fortyseven]) #google-bar > a {
+			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, .3));
+			font-weight: bold;
+		}
+
+		#logo {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
+		}
+	}
+
+	&[style*="--chrtheme-ntp-logo-alternate: 1"],
+	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--google-bar-color: white;
+
+		&:not([geckium-fortyseven]) #google-bar > a {
+			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, .3));
+			font-weight: bold;
+		}
+
+		#logo {
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/white_google_logo.svg");
+		}
+	}
+
+	&:not([geckium-fortyseven]) {
+		@media only screen and (max-width: 820px) {
+			#fakebox {
+				width: 458px;
+			}
+		}
+	
+		@media only screen and (max-width: 660px) {
+			#fakebox {
+				width: 298px;
+			}
+		}
+	}
+}
+
+#google-bar {
+	gap: 15px;
+	margin-block-start: 14px;
+	margin-inline-end: 14px;
+	align-items: center;
+	justify-content: end;
+
+	a {
+		color: color-mix(in srgb, var(--google-bar-color) 87%, transparent);
+		text-decoration: none;
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	#google-products-link {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		list-style-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/products-link.svg");
+		opacity: .55;
+		-moz-context-properties: fill, fill-opacity;
+		fill: var(--google-bar-color);
+
+		&:not([disabled]) {
+			&:hover,
+			&:focus {
+				opacity: .85;
+			}
+		}
+	}
+
+	#login-avatar,
+	#login-avatar > img {
+		width: 32px;
+		height: 32px;
+	}
+
+	#login-avatar > img {
+		border-radius: 50%;
+	}
+}
+
+#logo,
+#fakebox {
+	margin-inline: auto;
+}
+
+#logo {
+	background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-37/imgs/google_logo.svg");
+	background-repeat: no-repeat;
+	background-size: 269px 95px;
+	height: 95px;
+	margin-block-start: 157px;
+	margin-block-end: 24px;
+	width: 269px;
+}
+
+#fakebox {
+	display: flex;
+
+	width: 618px;
+
+	transition: border-color 100ms linear;
+	background-color: white;
+	border: 1px solid rgb(185, 185, 185);
+	border-radius: 1px;
+	border-block-start-color: rgb(160, 160, 160);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	cursor: text;
+	font-size: 18px;
+	height: 36px;
+	max-width: 620px;
+	position: relative;
+
+	&:hover {
+		border: 1px solid rgb(169, 169, 169);
+		border-block-start-color: rgb(144, 144, 144);
+	}
+
+	> form {
+		display: flex;
+
+		flex: 1;
+	}
+}
+
+#main-container.fakebox-focused #fakebox {
+	border: 1px solid rgb(77, 144, 254);
+}
+
+#fakebox-input {
+	all: unset;
+
+	flex: 1;
+
+	margin: 2px;
+	padding-block: 1px;
+	padding-inline: 8px;
+}
+
+#cursor {
+	background: #333;
+	bottom: 5px;
+	left: 9px;
+	visibility: hidden;
+	width: 1px;
+	position: absolute;
+	top: 5px;
+}

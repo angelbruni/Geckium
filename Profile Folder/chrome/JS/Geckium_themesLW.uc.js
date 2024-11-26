@@ -106,8 +106,12 @@ class gkLWTheme {
 	 */
 
 	static setThemeAttrs() {
+		const { LightweightThemeManager } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeManager.sys.mjs");
+		
 		// This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
 		setTimeout(async () => {
+			const lwThemeResource = LightweightThemeManager.themeData.theme;
+
 			// Delete lwtheme-specific variable (if themed, they get remade)
 			document.documentElement.style.removeProperty("--titlebar-pseudo-height");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-texture-ypos");
@@ -120,6 +124,9 @@ class gkLWTheme {
 			document.documentElement.style.removeProperty("--gktoolbar-field-background-color");
 			document.documentElement.style.removeProperty("--gktoolbar-field-background-color-opacity-percentage");
 			document.documentElement.removeAttribute("toolbar-field-background-color-transparent");
+
+			if (!versionFlags.is122Plus)
+				document.documentElement.style.removeProperty("--lwt-tab-line-color")
 			
 			// Do not run further if a Chromium Theme is currently used
 			if (isChromeThemed) {
@@ -129,6 +136,10 @@ class gkLWTheme {
 			isThemed = gkLWTheme.isThemed;
 			if (isThemed) {
 				document.documentElement.setAttribute("gkthemed", true);
+
+				// Add `--lwt-tab-line-color` to `root` in versions which adds it to `#TabsToolbar` instead.
+				if (!versionFlags.is122Plus && LightweightThemeManager.themeData.theme.tab_line)
+					document.documentElement.style.setProperty("--lwt-tab-line-color", LightweightThemeManager.themeData.theme.tab_line);
 
 				// Ensure the tab selected background colour is opaque
 				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue('--tab-selected-bgcolor');

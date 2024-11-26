@@ -680,7 +680,7 @@ UC_API.Runtime.startupFinished().then(() => {
 						4: {},
 						5: {
 							id: "fullScreen6",
-							click: "BrowserFullScreen();",
+							click: "toggleFullscreen();",
 						},
 					},
 				],

@@ -45,7 +45,7 @@ function modifyTab(tab) {
 
 			if (appearanceChoice <= 11)
 				minWidth = 31;
-			else if (appearanceChoice <= 47)
+			else if (appearanceChoice <= 37)
 				minWidth = 27;
 			else if (appearanceChoice <= 58)
 				minWidth = 31;

@@ -11,7 +11,7 @@
 // Firefox version check
 const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
-const checkedVersions = [117, 120, 133, 134];
+const checkedVersions = [117, 120, 122, 133, 134];
 const versionFlags = {};
 checkedVersions.forEach(version => {
 	if (majorVersion >= version) {
@@ -159,4 +159,9 @@ function getStandardizedDPI() {
         standardizedDPI = 480; // 500% scaling
 
     return standardizedDPI;
+}
+
+// Firefox 115 and later versions had different functions for fullscreen, so let's just use a generalised one
+function toggleFullscreen() {
+	window.fullScreen = !window.fullScreen || BrowserHandler.kiosk;
 }

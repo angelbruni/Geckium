@@ -10,6 +10,18 @@
 
 		--pane-border-block-end-color: rgba(255, 255, 255, .3);
 	}
+
+	&:not([geckium-twentyone]) {
+		.main-content > .pane-container,
+		#content > #main {
+			groupbox h2:not(#fxaDisplayNameHeading) {
+				position: absolute;
+				left: 0;
+				width: 140px;
+				margin: 0 !important;
+			}
+		}
+	}
 }
 
 .sticky-container {
@@ -75,13 +87,6 @@
 		padding-inline-start: 148px !important;
 		padding-block-end: 20px !important;
 		border-block-end: 1px solid var(--pane-border-block-end-color) !important;
-
-		h2 {
-			position: absolute;
-			left: 0;
-			width: 140px;
-			margin: 0 !important;
-		}
 	}
 }
 

@@ -61,6 +61,14 @@
 	&[is120Plus="true"] .is-below-120 {
 		display: none !important;
 	}
+
+	&[nav-drawer-auto-hide] {
+		@media all and (max-width: 640px) {
+			.banner image {
+				width: 148px;
+			}
+		}
+	}
 }
 
 .is-linux-only {
@@ -75,10 +83,6 @@
 #window {
 	width: 1160px;
 	height: 710px;
-}
-
-.content:not([data-page-container]) {
-	padding: var(--inner-padding);
 }
 
 h4 .about-flag {
@@ -115,7 +119,7 @@ h4 .about-flag {
 #overridevisualstyle,
 #ncphelper-maskwidthmode[NCPMaskWidthMode="custom"],
 #gkThemeFilterItem,
-#card-avatar > .item:nth-child(1) {
+#card-avatar > .item:nth-child(2) {
 	border-bottom: 0 !important;
 }
 
@@ -201,7 +205,8 @@ h4 .about-flag {
 	gap: 32px;
 	
 	image {
-		transition: fill 320ms;
+		width: 200px;
+		transition: fill 320ms, width 200ms;
 
 		&:hover {
 			fill: #209f43;
@@ -232,13 +237,13 @@ h4 .about-flag {
 		padding-block-end: 19px;
 	}
 
-	> .item:nth-child(2) {
+	> .item:nth-child(3) {
 		display: none;
 	}
 
 
 	&[profile-pic-mode="chromium"] {
-		> .item:nth-child(2) {
+		> .item:nth-child(3) {
 			display: flex;
 		}
 
@@ -248,7 +253,7 @@ h4 .about-flag {
 	}
 
 	&[profile-pic-mode="custom"] {
-		> .item:nth-child(2) {
+		> .item:nth-child(3) {
 			display: flex;
 		}
 
