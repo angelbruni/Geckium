@@ -11,10 +11,8 @@
 		}
 	}
 
-	&:not([geckium-one]) {
-		* {
-			visibility: hidden;
-		}
+	&:not([geckium-one]) body > * {
+		visibility: hidden;
 	}
 
 	&[geckium-one] {
