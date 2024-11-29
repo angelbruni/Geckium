@@ -51,7 +51,7 @@
 }
 
 .path {
-	stroke: var(--primary-color);
+	stroke: var(--secondary-color, var(--primary-color));
 	stroke-dasharray: var(--spinner-offset);
 	stroke-dashoffset: 0;
 	transform-origin: center;
