@@ -14,7 +14,7 @@ class gkImpossibleForks {
 
 	static showWarning() {
 		if (gkPrefUtils.tryGet("Geckium.impossibruFork.warningShown").bool != true) {
-			gkPrefUtils.set("Geckium.impossibruFork.warningShown").bool(true);
+			UC_API.Prefs.set("Geckium.impossibruFork.warningShown", true);
 			UC_API.Notifications.show({
 				label : "what.",
 				type : "geckium-notification",
@@ -47,7 +47,7 @@ class gkNCPAdj {
 		if (!isNCPatched) {
 			if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true) {
 				if (parseInt(Services.appinfo.version.split(".")[0]) > 115) { // Special message for ex-115-users
-					gkPrefUtils.delete("Geckium.NCP.installed");
+					Services.prefs.clearUserPref("Geckium.NCP.installed");
 					UC_API.Notifications.show(
 					{
 						label : "To continue using native Windows titlebars, please switch to a compatible Firefox fork.",
@@ -84,8 +84,8 @@ class gkNCPAdj {
 						{
 							label: "Don't ask again",
 							callback: (notification) => {
-								gkPrefUtils.set("Geckium.NCP.installed").bool(false);
-								gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
+								UC_API.Prefs.set("Geckium.NCP.installed", false);
+								UC_API.Prefs.set("Geckium.NCP.bannerDismissed", true);
 								return false
 							}
 						}]
@@ -111,7 +111,7 @@ class gkNCPAdj {
 					{
 						label: "Don't ask again",
 						callback: (notification) => {
-							gkPrefUtils.set("Geckium.NCP.bannerDismissed").bool(true);
+							UC_API.Prefs.set("Geckium.NCP.bannerDismissed", true);
 							return false
 						}
 					}]
@@ -119,7 +119,7 @@ class gkNCPAdj {
 				)
 			}
 		} else if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool != true) {
-			gkPrefUtils.set("Geckium.NCP.installed").bool(true);
+			UC_API.Prefs.set("Geckium.NCP.installed", true);
 		}
 	}
 }
@@ -166,7 +166,7 @@ class gkWaterfoxAdj {
 
 	static disableThemeCusto() {
 		if (gkPrefUtils.tryGet("browser.theme.enableWaterfoxCustomizations").int != 2) {
-			gkPrefUtils.set("browser.theme.enableWaterfoxCustomizations").int(2);
+			UC_API.Prefs.set("browser.theme.enableWaterfoxCustomizations", 2);
 			UC_API.Notifications.show({
 				label : "Waterfox theme customisations are not supported by Geckium and have been disabled.",
 				type : "geckium-notification",
@@ -206,13 +206,13 @@ class gkRfoxAdj {
 		let changes = 0;
 		if (id) {
 			if (gkPrefUtils.tryGet(id).bool != false) {
-				gkPrefUtils.set(id).bool(false);
+				UC_API.Prefs.set(id, false);
 				changes += 1;
 			}
 		} else {
 			for (const i in gkRfoxAdj.blacklist) {
 				if (gkPrefUtils.tryGet(gkRfoxAdj.blacklist[i]).bool != false) {
-					gkPrefUtils.set(gkRfoxAdj.blacklist[i]).bool(false);
+					UC_API.Prefs.set(gkRfoxAdj.blacklist[i], false);
 					changes += 1;
 				}
 			}

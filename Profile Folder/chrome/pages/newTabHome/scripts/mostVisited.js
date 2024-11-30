@@ -140,7 +140,7 @@ function pinSite(site, title) {
 		pinnedSites.push(pinnedObject);
 
 		// Update the pinned sites in preferences
-		gkPrefUtils.set("browser.newtabpage.pinned").string(JSON.stringify(pinnedSites));
+		UC_API.Prefs.set("browser.newtabpage.pinned", JSON.stringify(pinnedSites));
 
 		// Refresh the pinned and frequent sites after a short delay
 		setTimeout(() => {
@@ -169,7 +169,7 @@ function unpinSite(site) {
 		});
 	
 		// Update the pinned sites in preferences
-		gkPrefUtils.set("browser.newtabpage.pinned").string(JSON.stringify(pinnedSites));
+		UC_API.Prefs.set("browser.newtabpage.pinned", JSON.stringify(pinnedSites));
 	
 		// Refresh the pinned and frequent sites after a short delay
 		setTimeout(() => {

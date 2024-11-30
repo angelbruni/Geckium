@@ -47,7 +47,7 @@ function insertGlobalVisualStyles() {
 
 	document.querySelectorAll(`#global-appearance-container input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
-			gkPrefUtils.set("Geckium.appearance.choice").int(appearance.dataset.appearance);
+			UC_API.Prefs.set("Geckium.appearance.choice", appearance.dataset.appearance);
 			if (gkPrefUtils.tryGet("Geckium.main.overrideStyle").bool == true || gkPrefUtils.tryGet("Geckium.newTabHome.overrideStyle").bool == true)
 				document.querySelector(`[data-modal="overrides_modal"]`).classList.add('active');
 		})
@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", insertGlobalVisualStyles);
 function disableOverrides() {
 	// document.querySelector('input[data-pref="Geckium.main.overrideStyle"]').checked = false;
 	loadConditionalSettings("Geckium.main.overrideStyle");
-	gkPrefUtils.set("Geckium.main.overrideStyle").bool(false);
+	UC_API.Prefs.set("Geckium.main.overrideStyle", false);
 	document.querySelector('input[data-pref="Geckium.newTabHome.overrideStyle"]').checked = false;
 	loadConditionalSettings("Geckium.newTabHome.overrideStyle");
-	gkPrefUtils.set("Geckium.newTabHome.overrideStyle").bool(false);
+	UC_API.Prefs.set("Geckium.newTabHome.overrideStyle", false);
 }

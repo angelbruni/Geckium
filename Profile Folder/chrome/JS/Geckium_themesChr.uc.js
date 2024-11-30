@@ -567,7 +567,7 @@ class gkChrTheme {
     static applyTheme() {
         // FIXME: This one needs to default to True
         if (!gkPrefUtils.prefExists("Geckium.chrTheme.accommodate")) {
-		    gkPrefUtils.set("Geckium.chrTheme.accommodate").bool(true);																			    // Add default apps if the apps list is empty
+		    UC_API.Prefs.set("Geckium.chrTheme.accommodate", true);																			    // Add default apps if the apps list is empty
 	    }
         gkChrTheme.removeVariables(); // Not all variables can be ensured to be replaced, thus pre-emptively remove EVERY possible variable.
         let prefChoice = gkPrefUtils.tryGet("Geckium.chrTheme.fileName").string;
@@ -595,7 +595,7 @@ class gkChrTheme {
             let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
             if (!prefChoice.startsWith("firefox-compact-light@")) {
                 // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
-                gkPrefUtils.delete("Geckium.chrTheme.fileName");
+                Services.prefs.clearUserPref("Geckium.chrTheme.fileName");
             }
         }, 0);
     }

@@ -61,7 +61,7 @@ Services.prefs.addObserver("Geckium.chrTheme.fileName", chrGridObserver, false);
 async function applyTheme(themeid) {
 	const lighttheme = await AddonManager.getAddonByID("firefox-compact-light@mozilla.org");
 	await lighttheme.enable();
-	gkPrefUtils.set("Geckium.chrTheme.fileName").string(themeid);
+	UC_API.Prefs.set("Geckium.chrTheme.fileName", themeid);
 	themesList.querySelector(`button[data-chrtheme-name="${themeid}"] input[type="radio"]`).checked = true;
 }
 

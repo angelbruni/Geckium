@@ -32,7 +32,7 @@ async function getLWThemesList() {
 		if (theme.id.startsWith("firefox-compact-light@") && !lightLWTheme) {
 			lightLWTheme = function(){
 				theme.enable();
-				gkPrefUtils.delete("Geckium.chrTheme.fileName");
+				Services.prefs.clearUserPref("Geckium.chrTheme.fileName");
 			};
 
 			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)

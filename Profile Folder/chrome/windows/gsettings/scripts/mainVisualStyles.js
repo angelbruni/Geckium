@@ -47,7 +47,7 @@ function insertGlobalVisualStyles() {
 
 	document.querySelectorAll(`#main-appearance-container input[data-appearance]`).forEach(appearance => {
 		appearance.addEventListener("click", function() {
-			gkPrefUtils.set("Geckium.main.style").int(appearance.dataset.appearance);
+			UC_API.Prefs.set("Geckium.main.style", appearance.dataset.appearance);
 		})
 	})
 

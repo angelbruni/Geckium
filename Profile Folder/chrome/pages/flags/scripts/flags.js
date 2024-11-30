@@ -200,7 +200,7 @@ function setUpExperiments() {
                 waitForElm("select#select-" + key).then(function() {
                     document.querySelector("select#select-" + key).addEventListener("change", () => {
                         const selectedValue = document.querySelector("select#select-" + key).value;
-                        gkPrefUtils.set("Geckium.chrflag." + key.replace(/-/g, ".")).int(selectedValue);
+                        UC_API.Prefs.set("Geckium.chrflag." + key.replace(/-/g, "."), selectedValue);
 						console.log("Geckium.chrflag." + key.replace(/-/g, "."))
                         updateFlags();
                     });

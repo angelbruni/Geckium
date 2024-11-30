@@ -14,7 +14,7 @@ function updateProfilePictures() {
 		pfPRadio.dataset.index = i;
 
 		pfPRadio.addEventListener("click", () => {
-			gkPrefUtils.set("Geckium.profilepic.chromiumIndex").int(i);
+			UC_API.Prefs.set("Geckium.profilepic.chromiumIndex", i);
 		})
 
 		const pfPImage = document.createXULElement("image");

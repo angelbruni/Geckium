@@ -16,16 +16,16 @@ function openWizardFromSplash(reset) {
 }
 
 function startFromScratch() {
-	gkPrefUtils.delete("Geckium.appearance.titlebarStyle");
-	gkPrefUtils.delete("Geckium.appearance.GTKIcons");
-	gkPrefUtils.delete("Geckium.appearance.systemTheme");
-	gkPrefUtils.delete("Geckium.appearance.titlebarNative");
-	gkPrefUtils.delete("Geckium.branding.choice");
-	gkPrefUtils.delete("Geckium.appearance.choice");
-	gkPrefUtils.delete("Geckium.profilepic.mode");
-	gkPrefUtils.delete("Geckium.profilepic.chromiumIndex");
-	gkPrefUtils.delete("Geckium.customtheme.mode");
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
+	Services.prefs.clearUserPref("Geckium.appearance.titlebarStyle");
+	Services.prefs.clearUserPref("Geckium.appearance.GTKIcons");
+	Services.prefs.clearUserPref("Geckium.appearance.systemTheme");
+	Services.prefs.clearUserPref("Geckium.appearance.titlebarNative");
+	Services.prefs.clearUserPref("Geckium.branding.choice");
+	Services.prefs.clearUserPref("Geckium.appearance.choice");
+	Services.prefs.clearUserPref("Geckium.profilepic.mode");
+	Services.prefs.clearUserPref("Geckium.profilepic.chromiumIndex");
+	Services.prefs.clearUserPref("Geckium.customtheme.mode");
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", `
 {
 	"0": {
 		"pos": 0,

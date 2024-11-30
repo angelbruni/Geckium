@@ -17,20 +17,6 @@ export class gkColorUtils {
 }
 
 export class gkPrefUtils {
-	static set(pref) {
-		return {
-			bool(value) { 
-				Services.prefs.setBoolPref(pref, value);
-			},
-			int(value) { 
-				Services.prefs.setIntPref(pref, value);
-			},
-			string(value) { 
-				Services.prefs.setStringPref(pref, value);
-			}
-		}
-	}
-
 	static tryGet(pref) {
 		return {
 			get bool() {
@@ -61,19 +47,8 @@ export class gkPrefUtils {
 	}
 
 	static toggle(pref) {
-		if (this.tryGet(pref).bool == true)
-			this.set(pref).bool(false);
-		else
-			this.set(pref).bool(true);
-	}
-
-	static delete(pref) {
-		try {
-			Services.prefs.clearUserPref(pref);
-			return true;
-		} catch (e) {
-			return false;
-		}
+		const value = this.tryGet(pref).bool !== true;
+		UC_API.Prefs.set(pref, value);
 	}
 
 	static prefExists(pref) {

@@ -70,10 +70,14 @@ class sfMigrator {
 		if (AppConstants.platform == "linux") {
 			if (gkPrefUtils.tryGet("silverfox.beChromeOS").bool) {
 				// Be Chrome OS
-				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromiumos");
+				UC_API.Prefs.set("Geckium.appearance.titlebarStyle", "chromiumos");
 			} else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// Force Windows Styling
-				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
+				UC_API.Prefs.set("Geckium.appearance.titlebarStyle", "windows");
+			}
+			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
+				// Disable System Icons in Toolbarbuttons
+				UC_API.Prefs.set("Geckium.appearance.GTKIcons", 2);
 			}
 			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
 				// Disable System Icons in Toolbarbuttons
@@ -87,24 +91,24 @@ class sfMigrator {
 			lwtheme.startsWith("firefox-compact-dark@")) {
 			if (AppConstants.platform != "win" && !gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// On Linux and macOS, set the System Theme to Classic to match Silverfox's former behaviour
-				gkPrefUtils.set("Geckium.appearance.systemTheme").string("classic");
+				UC_API.Prefs.set("Geckium.appearance.systemTheme", "classic");
 			} else if (lwtheme.startsWith("firefox-compact-light@")) {
 				// On Windows, enable Compact Borders to match Silverfox's former behaviour
-				gkPrefUtils.set("Geckium.appearance.titlebarNative").int(2);
+				UC_API.Prefs.set("Geckium.appearance.titlebarNative", 2);
 			}
 		}
 
 		//Branding
 		if (gkPrefUtils.tryGet("silverfox.beChromium").bool)
-			gkPrefUtils.set("Geckium.branding.choice").string("chromium");
+			UC_API.Prefs.set("Geckium.branding.choice", "chromium");
 		else
-			gkPrefUtils.set("Geckium.branding.choice").string("chrome");
+			UC_API.Prefs.set("Geckium.branding.choice", "chrome");
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)
-			gkPrefUtils.set("Geckium.appearance.choice").int(11);
+			UC_API.Prefs.set("Geckium.appearance.choice", 11);
 		else
-			gkPrefUtils.set("Geckium.appearance.choice").int(25);
+			UC_API.Prefs.set("Geckium.appearance.choice", 25);
 
 		//Profile Pictures
 		const pfp = gkPrefUtils.tryGet("silverfox.usepfp").string;
@@ -140,7 +144,7 @@ class sfMigrator {
 			// Silverfox's custom pfps no longer exist if the user replaced SF with GK - fallback to:
 			if (!gkPrefUtils.tryGet("services.sync.username").string) {
 				//  The Geckium user picture if not signed in
-				gkPrefUtils.set("Geckium.profilepic.mode").string("geckium");
+				UC_API.Prefs.set("Geckium.profilepic.mode", "geckium");
 			}
 		} else if (pfp != "off" && pfp != "") {
 			gkPrefUtils.set("Geckium.profilepic.mode").string("chromium");
@@ -149,7 +153,7 @@ class sfMigrator {
 
 		// Finishing touches
 		// Apply Silverfox's Apps list
-		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`{
+		UC_API.Prefs.set("Geckium.newTabHome.appsList", `{
 "0": {
 "pos": 0,
 "favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
@@ -223,13 +227,13 @@ class sfMigrator {
 }`);
 
 		// Enable Silverfox Firefox Theming
-		gkPrefUtils.set("Geckium.customtheme.mode").string("silverfox");
+		UC_API.Prefs.set("Geckium.customtheme.mode", "silverfox");
 
 		// Delete leftover Silverfox settings
 		this.deleteSfPrefs();
 
 		// Leave a note about this having been a Silverfox install once, in case bruni decides to add a special wizard splash if detected
-		gkPrefUtils.set("Geckium.firstRun.wasSilverfox").bool(true);
+		UC_API.Prefs.set("Geckium.firstRun.wasSilverfox", true);
 
 		/**
 		 *  Apply a pre-defined toolbar layout to re-add the icon to the top-left
@@ -237,7 +241,7 @@ class sfMigrator {
 		 *  FIXME: Geckium should do the same for itself so we can remove this
 		 *        from Silverfox-only code, and the below restart.
 		 */
-		gkPrefUtils.set("browser.uiCustomization.state").string(`
+		UC_API.Prefs.set("browser.uiCustomization.state", `
 		{"placements":{
 			"widget-overflow-fixed-list":[],
 			"unified-extensions-area":[],

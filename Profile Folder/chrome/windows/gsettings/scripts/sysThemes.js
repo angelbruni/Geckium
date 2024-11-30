@@ -9,7 +9,7 @@ async function disableTheme() {
 // System Themes
 async function applySysTheme(themeid) {
 	// Applies themeid as the System Theme, and disables themes
-	gkPrefUtils.set("Geckium.appearance.systemTheme").string(themeid);
+	UC_API.Prefs.set("Geckium.appearance.systemTheme", themeid);
     disableTheme();
 }
 

@@ -179,7 +179,7 @@ modal.querySelector(".button#deleteBtn").addEventListener("click", () => {
 
 	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
 
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", JSON.stringify(newAppsList))
 
 	populateAppsList();
 });
@@ -228,7 +228,7 @@ modal.querySelector(".button#OKBtn").addEventListener("click", () => {
 
 	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
 
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", JSON.stringify(newAppsList))
 
 	populateAppsList();
 });
@@ -273,7 +273,7 @@ modal.querySelector(".button#createBtn").addEventListener("click", () => {
 
 	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
 	
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
+	UC_API.Prefs.set("Geckium.newTabHome.appsList", JSON.stringify(newAppsList))
 
 	populateAppsList();
 });
