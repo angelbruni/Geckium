@@ -26,14 +26,14 @@ function changeGoButton() {
 
 		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 47)
+		else if (appearanceChoice == 37 || appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	} else {
 		const goButtonBox = document.getElementById("go-button-box");
 
 		if (appearanceChoice <= 5)
 			urlbarContainer.appendChild(goButtonBox);
-		else if (appearanceChoice == 47)
+		else if (appearanceChoice == 37 || appearanceChoice == 47)
 			urlbarInputContainer.appendChild(goButtonBox);
 	}
 }
@@ -51,7 +51,7 @@ function styleURLBar() {
 
 	setTimeout(() => {
 		if (appearanceChoice <= 5) {
-			_ucUtils.windowIsReady(window).then(() => {
+			UC_API.Runtime.startupFinished().then(() => {
 				urlbarContainer.setAttribute("starpos", "start");
 				gkInsertElm.before(starButtonBox, urlbar);
 				starButtonBox.classList.add("toolbarbutton-1");
@@ -65,7 +65,7 @@ function styleURLBar() {
 		}
 	}, 10);
 
-	if (appearanceChoice <= 5 || appearanceChoice == 47)
+	if (appearanceChoice <= 5 || appearanceChoice == 37 || appearanceChoice == 47)
 		waitForElm("#page-action-buttons").then(changeGoButton)
 }
 window.addEventListener("load", styleURLBar);

@@ -1,11 +1,18 @@
 & { // TODO: When MD2 is added, ensure this code doesn't run on it
-	.titlebar-spacer[type="post-tabs"] {
-		margin-inline-end: var(--gap-size) !important; // Add spacing between caption buttons and tabs.
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 2px !important;
 	}
 
 	// Give the tabs/Incognito/pfp the appropriate offset
 	@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+		#gkavatar-container {
 			order: -1 !important; // Force to left
 		}
 		.titlebar-spacer[type="pre-tabs"] {
@@ -18,84 +25,124 @@
 		}
 		// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 		&[privatebrowsingmode="temporary"] {
-			#private-browsing-indicator-with-label {
+			#private-browsing-indicator-with-label,
+			.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 				margin-inline-start: var(--tab-distance-from-toolbar-edge);
 			}
 		}
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		.private-browsing-indicator-icon {
 			margin-inline-start: 1px !important;
 			margin-inline-end: var(--tab-distance-from-pfp) !important;
 		}
+
+		// Tweaks for Profile Titlebutton
+		#gkpeople-button-container {
+			margin-inline-end: 6px !important;
+		}
 	}
 	@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-		#private-browsing-indicator-with-label {
-			order: 999 !important; // Force to right
-			transform: scaleX(-1);
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+		#gkavatar-container,
+		#gkpeople-button-container {
+			order: 998 !important; // Force to right
 		}
 		.titlebar-spacer[type="post-tabs"] {
-			order: 1000 !important; // Force to right of Incognito
+			order: 999 !important; // Force to right of Incognito
 		}
-		&:not([privatebrowsingmode="temporary"]) {
-			#TabsToolbar-customization-target {
-				margin-inline-end: var(--tab-distance-from-toolbar-edge);
-			}
+		&:not([privatebrowsingmode="temporary"]) #TabsToolbar-customization-target {
+			margin-inline-end: var(--tab-distance-from-toolbar-edge);
 		}
 		&[privatebrowsingmode="temporary"] {
-			#private-browsing-indicator-with-label {
+			#private-browsing-indicator-with-label,
+			.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 				margin-inline-end: var(--tab-distance-from-toolbar-edge);
 			}
 		}
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		.private-browsing-indicator-icon {
 			margin-inline-start: var(--tab-distance-from-pfp) !important;
 			margin-inline-end: 1px !important;
 		}
-	}
 
-	//Remake the current Linux menubar as adequately as possible
-	&[gktitnative="true"] {
-		#main-menubar {
-			& > menu {
-				&[open] {
-					border-bottom: 3px solid AccentColor !important;
-				}
-			}
+		// Tweaks for Profile Titlebutton
+		#gkpeople-button-container {
+			margin-inline-start: 6px !important;
 		}
 	}
 
+	// Remake the current Linux menubar as adequately as possible
+	&[gktitnative="true"] #main-menubar > menu[open] {
+		border-bottom: 3px solid AccentColor !important;
+	}
+
 	&[gktitnative="false"] {
-		//Show the Google logo before the buttons if enabled
+		// Show the Google logo before the buttons if enabled
 		&[gkbranding="chrome"][geckium-chrflag-other-platforms-watermark="true"] {
 			@media (-moz-platform: windows) or ((-moz-platform: linux) and (not (-moz-gtk-csd-reversed-placement))) {
-				.titlebar-buttonbox-container::before {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-					margin-block-start: 3px;
-					margin-inline-end: 7px;
-				}
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
+				&[privatebrowsingmode="temporary"],
+				&:not([gkpeoplestyle="titlebutton"]) {
 					.titlebar-buttonbox-container::before {
-						content: unset !important;
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+						margin-block-start: 3px;
+						margin-inline-end: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						.titlebar-buttonbox-container::before {
+							content: unset !important;
+						}
+					}
+				}
+				&:not([privatebrowsingmode="temporary"]),
+				&[gkpeoplestyle="titlebutton"] {
+					#gkpeople-button-container::before {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+						margin-block-start: 3px;
+						margin-inline-end: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						#gkpeople-button-container::before {
+							content: unset !important;
+						}
 					}
 				}
 			}
 			@media (-moz-platform: macos) or ((-moz-platform: linux) and (-moz-gtk-csd-reversed-placement)) {
-				.titlebar-buttonbox-container::after {
-					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-					margin-block-start: 3px;
-					margin-inline-start: 7px;
-				}
-				&[sizemode="maximized"],
-				&[sizemode="fullscreen"] {
+				&[privatebrowsingmode="temporary"],
+				&:not([gkpeoplestyle="titlebutton"]) {
 					.titlebar-buttonbox-container::after {
-						content: unset !important;
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+						margin-block-start: 3px;
+						margin-inline-start: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						.titlebar-buttonbox-container::after {
+							content: unset !important;
+						}
+					}
+				}
+				&:not([privatebrowsingmode="temporary"]),
+				&[gkpeoplestyle="titlebutton"] {
+					#gkpeople-button-container::after {
+						content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+						margin-block-start: 3px;
+						margin-inline-start: 7px;
+					}
+					&[sizemode="maximized"],
+					&[sizemode="fullscreen"] {
+						#gkpeople-button-container::after {
+							content: unset !important;
+						}
 					}
 				}
 			}
 		}
 		
-		//Titlebar button box
+		// Titlebar button box
 		.titlebar-buttonbox-container {
 			align-items: unset !important;
 			margin-block-start: 2px; // top margin
@@ -123,7 +170,8 @@
 		}
 
 		//Shared titlebar button code
-		.titlebar-button {
+		.titlebar-button,
+		&[gkpeopleforce68linux="true"] .gkpeople-titlebar {
 			background: linear-gradient(
 				to bottom,
 				rgba(255,255,255,.23),
@@ -137,15 +185,16 @@
 			transition: border-color 100ms linear,
 				box-shadow 100ms linear; //hover-fade animation
 
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				border-color: rgba(26,26,26,.77) !important;
 				box-shadow: inset 0 0 0 1px rgba(251,251,241,.1);
-			}
-			&:not([disabled]):hover:active {
-				border-color: rgba(0,0,0,.61) !important;
-				box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-				transition: none;
+
+				&:active {
+					border-color: rgba(0,0,0,.61) !important;
+					box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+					transition: none;
+				}
 			}
 		}
 
@@ -184,10 +233,8 @@
 					display: none !important;
 				}
 			}
-			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-				.titlebar-restore {
-					display: none !important;
-				}
+			&:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .titlebar-restore {
+				display: none !important;
 			}
 		}
 

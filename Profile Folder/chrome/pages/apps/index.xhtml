@@ -10,21 +10,14 @@
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns="http://www.w3.org/1999/xhtml"
 	preload="true"
-	geckium-one=""
-	geckium-two=""
-	geckium-three=""
-	geckium-four=""
-	geckium-five=""
-	geckium-six=""
-	geckium-eleven=""
-	geckium-twentyone=""
+	geckium-one="" geckium-two="" geckium-three="" geckium-four="" geckium-five="" geckium-six="" geckium-eleven="" geckium-twentyone=""
 	geckiun-choice="twentyone"
 >
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>&page.appsTitle;</title>
-		<link rel="icon" type="image/png" href="chrome://userchrome/content/pages/apps/apps_bookmark_bar_icon.svg" />
+		<link rel="icon" type="image/png" href="chrome://userchrome/content/pages/apps/assets/apps_bookmark_bar_icon.svg" />
 	</head>
 	<body>
 		<vbox id="main-container" />
@@ -33,6 +26,8 @@
 			var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 			const ntpBundle = Services.strings.createBundle("chrome://geckium/locale/properties/ntp.properties");
 		</script>
+
+		<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js" />
 
 		<script src="chrome://userchrome/content/JS/Geckium_branding.uc.js" />
 		<script src="chrome://userchrome/content/JS/Geckium_themes.uc.js" />

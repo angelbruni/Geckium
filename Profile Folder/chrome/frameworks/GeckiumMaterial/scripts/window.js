@@ -1,4 +1,7 @@
 class gkWindow {
+	static windowContentContainerElm = document.getElementById("window-content-container");
+	static windowContentElm = document.getElementById("window-content");
+	
 	static setTitle() {
 		const titleElm = document.getElementById("window-title");
 

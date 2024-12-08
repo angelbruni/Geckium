@@ -1,0 +1,78 @@
+name: Build Canary
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Every day at 00:00 UTC
+    #- cron: "*/5 * * * *" # Every 5 minutes for testing
+  workflow_dispatch:
+  workflow_call:
+  # also for testing
+  # push:
+  #   branches:
+  #     - '**'
+    
+jobs:
+  # thanks https://stackoverflow.com/questions/63014786/how-to-schedule-a-github-actions-nightly-build-but-run-it-only-when-there-where
+  # Makes it so we don't build if there are no new commits in the last 24 hours. This gets overwritten if the workflow is triggered manually.
+  check_date:
+    runs-on: ubuntu-latest
+    name: Check latest commit
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print latest_commit
+        run: echo ${{ github.sha }}
+
+      - id: should_run
+        name: Check if latest commit is less than a day (only on schedule)
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+          if [ -z "$(git rev-list --after="24 hours ago" ${{ github.sha }})" ]; then
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          fi
+  build:
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' || github.event_name != 'schedule' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Versioning
+      - name: Extract commit short sha
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Create Canary Version File
+        run: |
+          rm -f Profile\ Folder/chrome/version.json
+          echo '{
+            "version": "${{ env.COMMIT_SHORT_SHA }}",
+            "update_channel": "canary",
+            "branch": "${{ steps.extract_branch.outputs.branch }}"
+          }' > Profile\ Folder/chrome/version.json
+      # Setup the SASS command
+      - name: Setup SASS
+        run: npm install -g sass
+      # Actual building
+      - name: Compile CSS from SCSS files
+        run: sass --update Profile\ Folder/chrome:Profile\ Folder/chrome
+        # Some cleanup of files that aren't featured in actual geckium builds
+      - name: Cleanup the build output
+        run: rm -rf .github .gitignore 
+        # Zip it, and send it off!
+      - name: Archive the build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Geckium Canary Build ${{ env.COMMIT_SHORT_SHA }}
+          path: .

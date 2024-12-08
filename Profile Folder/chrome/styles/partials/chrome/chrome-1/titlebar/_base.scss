@@ -10,29 +10,59 @@
         transition: none !important;
     }
 }
-&[windowtype="navigator:browser"] > body {
-    background: var(--titlebar-active, var(--default-titlebar-active));
-    &:-moz-window-inactive {
-        background: var(--titlebar-inactive, var(--default-titlebar-inactive));
-    }
-    border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-    position: relative;
-    background-origin: padding-box;
 
-    &::before {
-        content: "";
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100%;
-        height: var(--titlebar-pseudo-height);
-        border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
-        background: var(--titlebar-pseudo-texture);
-        background-position: var(--titlebar-pseudo-texture-pos);
-        background-repeat: var(--titlebar-pseudo-texture-repeat);
-        background-position-y: var(--titlebar-pseudo-texture-ypos);
-    }
+&[windowtype="navigator:browser"] {
+	// We only use the filter if the theme does not have any incognito frame texture
+	&[privatebrowsingmode="temporary"]:not([style*="--chrtheme-theme-frame-incognito"]) > body::before {
+		filter: brightness(.55) saturate(.6);
+	}
+
+	> body {
+		background: var(--titlebar-active, var(--default-titlebar-active));
+		border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+		position: relative;
+		background-origin: padding-box;
+	
+		&:-moz-window-inactive {
+			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+
+			&::before {
+				background: var(--titlebar-pseudo-inactive-texture, var(--titlebar-pseudo-texture));
+			}
+		}
+	
+		&::before {
+			content: "";
+			top: 0;
+			left: 0;
+			position: absolute;
+			width: 100%;
+			height: var(--titlebar-pseudo-height);
+			border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
+			background: var(--titlebar-pseudo-texture);
+			background-position: var(--titlebar-pseudo-texture-pos) !important;
+			background-repeat: var(--titlebar-pseudo-texture-repeat) !important;
+			background-position-y: var(--titlebar-pseudo-texture-ypos) !important;
+		}
+	}
 }
+&[gkthemed],
+&[gkchrthemed] {
+	// We only use the filter if the theme does not have any incognito frame texture
+	&:-moz-window-inactive[windowtype="navigator:browser"] {
+		&:not(
+			[style*="--chrtheme-theme-frame-incognito"],
+			[style*="--chrtheme-theme-frame-incognito-inactive"]
+		)[privatebrowsingmode="temporary"] > body::before {
+			filter: contrast(.8) brightness(1.05) saturate(.6)
+		}
+
+		&:not([style*="--chrtheme-theme-frame-inactive"]) > body::before {
+			filter: contrast(.5) brightness(1.4);
+		}
+	}
+}
+
 #gkshadow {
     top: 0;
     left: 0;
@@ -41,9 +71,4 @@
     height: 100%;
     border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
     box-shadow: var(--titlebar-box-shadow);
-}
-&[gkthemed][gkchrthemed]:-moz-window-inactive {
-    &[windowtype="navigator:browser"] > body::before {
-        filter: contrast(.5) brightness(1.4);
-    }
 }

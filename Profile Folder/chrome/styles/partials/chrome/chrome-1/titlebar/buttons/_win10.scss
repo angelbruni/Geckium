@@ -1,6 +1,8 @@
 & {
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */,
+    #gkavatar-container {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer {
@@ -15,11 +17,12 @@
 	}
 	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 	&[privatebrowsingmode="temporary"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
@@ -33,21 +36,28 @@
 		}
 	}
 
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
+	}
+
 	//Restore Firefox's Win10 menubar styling
 	&[gktitnative="true"] {
-		#main-menubar {
-			& > menu {
-				text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
-				&[_moz-menuactive] {
-					background-color: hsla(0,0%,0%,.12) !important;
+		.titlebar-spacer[type="post-tabs"] {
+			margin-inline-end: 4px !important; // Add spacing between caption buttons and tabs.
+		}
+		
+		#main-menubar > menu {
+			text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+			&[_moz-menuactive] {
+				background-color: hsla(0,0%,0%,.12) !important;
 
-					@media (prefers-color-scheme: dark) {
-						background-color: hsla(0,0%,100%,.22) !important;
-					}
+				@media (prefers-color-scheme: dark) {
+					background-color: hsla(0,0%,100%,.22) !important;
 				}
-				@media (-moz-platform: linux) { // Temporary
-					border-color: transparent !important;
-				}
+			}
+			@media (-moz-platform: linux) { // Temporary
+				border-color: transparent !important;
 			}
 		}
 	}
@@ -59,15 +69,32 @@
 		
 		//Always use the white Google logo in non-native titlebars
 		&[gkbranding="chrome"]:not([geckium-chrflag-linux-pre-alpha-titlebar="true"]) {
-			.titlebar-buttonbox-container::before {
-				content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
-				margin-block-start: 3px;
-				margin-inline-end: 7px;
-			}
-			&[sizemode="maximized"],
-			&[sizemode="fullscreen"] {
+			&[privatebrowsingmode="temporary"],
+			&:not([gkpeoplestyle="titlebutton"]) {
 				.titlebar-buttonbox-container::before {
-					content: unset !important;
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					.titlebar-buttonbox-container::before {
+						content: unset !important;
+					}
+				}
+			}
+			&:not([privatebrowsingmode="temporary"]),
+			&[gkpeoplestyle="titlebutton"] {
+				#gkpeople-button-container::before {
+					content: url("chrome://userchrome/content/assets/img/chrome-1/titlebar/windows/google-alternate.png");
+					margin-block-start: 3px;
+					margin-inline-end: 7px;
+				}
+				&[sizemode="maximized"],
+				&[sizemode="fullscreen"] {
+					#gkpeople-button-container::before {
+						content: unset !important;
+					}
 				}
 			}
 		}
@@ -110,13 +137,14 @@
 				color: var(--titlebar-button-foreground-inactive, inherit) !important;
 			}
 			
-			//Hover and pressed states
+			// Hover and pressed states
 			&:not([disabled]):hover {
 				background: color-mix(in srgb, currentColor 12%, transparent) !important;
-			}
-			&:not([disabled]):hover:active {
-				background: color-mix(in srgb, currentColor 22%, transparent) !important;
-				transition: none;
+
+				&:active {
+					background: color-mix(in srgb, currentColor 22%, transparent) !important;
+					transition: none;
+				}
 			}
 
 			//Make the stroke actually visible
@@ -125,13 +153,20 @@
 				stroke: currentColor !important;
 			}
 		}
-		// Decrease button height before MD1
-		&:not([geckium-sixtyeight])[sizemode="maximized"],
-		&:not([geckium-sixtyeight])[sizemode="fullscreen"] {
-			.titlebar-button {
+
+		&[sizemode="maximized"],
+		&[sizemode="fullscreen"] {
+			// Decrease button height before MD1
+			&:not([geckium-sixtyeight]) .titlebar-button {
 				height: 24px;
 			}
+
+			// Decrease button height during MD1
+			&[geckium-sixtyeight] .titlebar-button {
+				height: 29px;
+			}
 		}
+
 		// Halve opacity if window's inactive
 		&:-moz-window-inactive[gkthemed],
 		&:-moz-window-inactive:not([gksystheme="gtk"], [gkthemed]) { // can cause readability issues on GTK+
@@ -191,5 +226,13 @@
 			list-style-image: url(chrome://userchrome/content/assets/img/chrome-68/titlebar/windows/minimise.svg) !important;
 			order: 0 !important;
 		}
+	}
+
+	// Add spacing between caption buttons and tabs.
+	&[sizemode="maximized"] .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 16px !important;
+	}
+	&:not([sizemode="maximized"]) .titlebar-spacer[type="post-tabs"] {
+		margin-inline-end: 5px !important;
 	}
 }

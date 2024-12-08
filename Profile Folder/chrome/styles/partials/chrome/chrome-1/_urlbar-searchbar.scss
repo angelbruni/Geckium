@@ -1,6 +1,11 @@
 :root {
-	--toolbar-field-background-color: white !important;
-	--toolbar-field-color: black !important;
+	--default-urlbar-background-color: white;
+	--urlbar-background-color: var(--default-urlbar-background-color) !important;
+	--default-urlbar-focused-background-color: white;
+	--urlbar-focused-background-color: var(--default-urlbar-focused-background-color) !important;
+	--default-urlbar-color: black;
+	--urlbar-color: var(--default-urlbar-color) !important;
+	--urlbar-focused-color: black !important;
 
 	--identity-icon-invalid:			 						 var(--search-favicon);
 	--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity: var(--default-favicon);
@@ -10,24 +15,17 @@
 
 	--searchbar-icon: var(--identity-icon-invalid);
 
-	--protocol-background-color: var(--toolbar-field-background-color);
-	--protocol-color:			 var(--toolbar-field-color);
+	--protocol-background-color: var(--urlbar-background-color);
+	--protocol-color:			 var(--urlbar-color);
 
-	--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
-	--urlbar-background-verified-proxystate-valid: rgb(255, 245, 196);
-	--urlbar-verified-proxystate-valid: 		   rgb(10, 155, 38);
-	--urlbar-verified-proxystate-valid-overridden: rgb(210, 0, 0);
+	--urlbar-border:										var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
+	--default-urlbar-background-verified-proxystate-valid:	rgb(255, 245, 196);
+	--urlbar-background-verified-proxystate-valid: 			var(--default-urlbar-background-verified-proxystate-valid);
+	--urlbar-verified-proxystate-valid:						rgb(10, 155, 38);
+	--urlbar-verified-proxystate-valid-overridden:			rgb(210, 0, 0);
+
 	--urlbar-height-definitive: var(--toolbarbutton-height);
-
-	--urlbarView-row-height: 25px;
-	--urlbarView-highlight-background: SelectedItem !important;
-	--urlbarView-highlight-color: SelectedItemText !important;
-
-	@media (prefers-color-scheme: dark) {
-		--toolbar-field-color: black !important;
-	}
-
-	--urlbarView: white;
+	--urlbar-min-height: var(--urlbar-height-definitive) !important;
 
 	--autocomplete-popup-hover-background: color-mix(
 		in srgb,
@@ -49,9 +47,68 @@
 		--autocomplete-popup-highlight-background: -moz-menuhover !important;
 	}
 
-	&:not([uidensity="compact"]) {
-		.urlbarView-row:not([type="tip"], [type="dynamic"]) {
-			min-height: 0 !important;
+	&[forceColorizeAddressBar="true"] {
+		&[customthememode="geckium"] {
+			@media (prefers-color-scheme: dark) {
+				--default-urlbar-background-color:	black;
+				--default-urlbar-color:				white;
+				--urlbar-border:					rgba(127, 127, 127, 0.4);
+
+				--default-urlbar-background-verified-proxystate-valid:	rgb(61, 51, 0);
+				--urlbar-verified-proxystate-valid: 		   			rgb(102, 245, 130);
+				--urlbar-verified-proxystate-valid-overridden: 			rgb(255, 46, 46);
+			}
+		}
+
+		// if lwtheme
+		&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
+			// if Geckium
+			&[customthememode="geckium"] {		
+				--urlbar-background-color: var(--toolbar-field-background-color, var(--default-urlbar-background-color)) !important;
+				--urlbar-color: var(--toolbar-field-color, var(--default-urlbar-color)) !important;
+				--urlbar-border: rgba(127, 127, 127, 0.4);
+				--protocol-background-color: transparent;
+
+				&[toolbar-field-background-color-transparent="true"] {
+					--urlbar-background-verified-proxystate-valid: color-mix(
+						in srgb,
+						var(--default-urlbar-background-verified-proxystate-valid) var(--gktoolbar-field-background-color-opacity-percentage),
+						transparent
+					);
+
+					&[style*="--gktoolbar-field-background-color-opacity-percentage: 0%"] {
+						--urlbar-background-color: color-mix(
+							in srgb,
+							var(--gktoolbar-field-background-color) 20%,
+							transparent
+						) !important;
+
+						--urlbar-background-verified-proxystate-valid: color-mix(
+							in srgb,
+							var(--default-urlbar-background-verified-proxystate-valid) 50%,
+							transparent
+						);
+					}
+
+					#urlbar #urlbar-protocol {
+						background: transparent !important;
+					}
+				}
+			}
+		}
+		// else if chrtheme
+		&[gkthemed][gkchrthemed] {
+			--urlbar-background-color: var(--chrtheme-omnibox-background, var(--default-urlbar-background-color)) !important;
+			--urlbar-color: var(--chrtheme-omnibox-text, var(--default-urlbar-color)) !important;
+		}
+	}
+
+	// Force black text if URL bar is yellow.
+	&:not([geckium-six]) #nav-bar {
+		&[securestate="secure"],
+		&[securestate="ev"],
+		.verifiedDomain ~ .urlbar-input-box {
+			--urlbar-color: var(--default-urlbar-color);
 		}
 	}
 
@@ -61,7 +118,7 @@
 
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
@@ -86,39 +143,60 @@
 		}
 	}
 
-	#star-button-box {
-		> #star-button {
-			width: fit-content !important;
-			height: fit-content !important;
+	&:not([customizing]) #urlbar {
+		position: absolute !important;
+	}
+
+	#star-button-box > #star-button {
+		width: fit-content !important;
+		height: fit-content !important;
+	}
+
+	&:not([chromehidden~="toolbar"]) #urlbar-container {
+		margin-inline-start: var(--toolbarbutton-outer-padding) !important;
+
+		&:not(:last-child) {
+			margin-inline-end: 2px !important;
 		}
 	}
 
-	.urlbarView-no-wrap {
-		&::before {
-			content: unset;
+	&[is133Plus] {
+		// Fix URL bar being too short in popups.
+		&[chromehidden~="toolbar"] #urlbar {
+			position: relative !important;
 		}
-	}
-	
-	.urlbarView-favicon {
-		display: none;
-	}
 
-	.urlbarView-url {
-		width: 50%;
-		overflow: hidden !important;
-		text-overflow: ellipsis;
-		padding-inline-end: 8px;
-		box-sizing: border-box;
-	}
-
-	&:not([chromehidden~="toolbar"]) {
-		#urlbar-container {
-			margin-inline-start: var(--toolbarbutton-outer-padding) !important;
-
-			&:not(:last-child) {
-				margin-inline-end: 2px !important;
+		#urlbar {
+			&[breakout],
+			&[breakout][breakout-extend] {
+				width: calc(var(--urlbar-width) - (var(--toolbarbutton-width) * 2)) !important;
+				margin-left: var(--toolbarbutton-width) !important;
 			}
 		}
+
+		#urlbar-searchmode-switcher {
+			display: none !important;
+		}
+	}
+	&:not([is133Plus]) #urlbar {
+		&[breakout],
+		&[breakout][breakout-extend] {
+			width: calc(100% - (var(--toolbarbutton-width) * 2)) !important;
+			left: var(--toolbarbutton-width) !important;
+		}
+
+		&[breakout] {
+			--top: 0px;
+			top: var(--top) !important;
+	
+			&[breakout-extend] {
+				top: var(--top) !important;
+			}
+		}
+	}
+
+	&[is134Plus] #urlbar:not([breakout-extend]) {
+		top: unset !important;
 	}
 }
 
@@ -133,17 +211,13 @@
 	font-size: 10pt !important;
 
 	&[focused] {
-		&:not([supress-focus-border]) {
-			> #urlbar-background {
-				outline: 0 !important;
-			}
+		&:not([supress-focus-border]) > #urlbar-background {
+			outline: 0 !important;
 		}
 
 		// If text is selected but textbox is inactive
-		&:not([open]) {
-			#urlbar-protocol {
-				display: none !important;
-			}
+		&:not([open]) #urlbar-protocol {
+			display: none !important;
 		}
 	}
 
@@ -154,10 +228,8 @@
 		}
 	}
 
-	&:not([pageproxystate="valid"], [open]) {
-		#urlbar-protocol {
-			display: none !important;
-		}
+	&:not([pageproxystate="valid"], [open]) #urlbar-protocol {
+		display: none !important;
 	}
 
 	// If text is selected but window is inactive
@@ -169,40 +241,32 @@
 		}
 	}
 
-	&:not([focused="true"]) {
-		.verifiedDomain {
-			&[pageproxystate="valid"] {
-				&::before,
-				&::after {
-					position: absolute;
-					pointer-events: none !important;
-				}
+	&:not([focused="true"]) .verifiedDomain[pageproxystate="valid"] {
+		&::before,
+		&::after {
+			position: absolute;
+			pointer-events: none !important;
+		}
 
-				&::before {
-					content: "";
-				}
-			}
+		&::before {
+			content: "";
 		}
 	}
 
 	&:not(.searchButton) {
 		> #urlbar-input-container,
 		> .urlbar-input-container /* Fix for Firefox ~120+ */ {
-		> #identity-box {
-			/* Search icon */
-			&[pageproxystate="invalid"] {
-				#identity-icon {
+			> #identity-box {
+				/* Search icon */
+				&[pageproxystate="invalid"] #identity-icon {
 					list-style-image: var(--identity-icon-invalid) !important;
 				}
-			}
 
-			/* Grayfolder Icon */
-			&[pageproxystate="valid"].chromeUI {
-				#identity-icon {
+				/* Grayfolder Icon */
+				&[pageproxystate="valid"].chromeUI #identity-icon {
 					list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 				}
 			}
-		}
 		}
 	}
 
@@ -219,49 +283,31 @@
 		z-index: 1;
 
 		&::before {
-		content: "";
-		position: absolute;
-		height: 2px;
-		top: 11px;
-		left: -1px;
-		rotate: 160deg;
-		width: 35px;
-		z-index: 100;
+			content: "";
+			position: absolute;
+			height: 2px;
+			top: 11px;
+			left: -1px;
+			rotate: 160deg;
+			width: 35px;
+			z-index: 100;
 		}
 	}
 
-	&[breakout] {
-		--top: 0px;
-
-		top: var(--top) !important;
-
-		&[breakout-extend] {
-			left: initial !important;
-			width: 100% !important;
-			top: var(--top) !important;
-
-			#urlbar-protocol {
-				display: none;
-			}
-
-			> #urlbar-background {
-				animation: none !important;
-			}
-		}
-	}
-
-	&[breakout],
 	&[breakout][breakout-extend] {
-		left: var(--toolbarbutton-width) !important;
-		width: calc(100% - 2 * var(--toolbarbutton-width)) !important;
+		#urlbar-protocol {
+			display: none;
+		}
+
+		> #urlbar-background {
+			animation: none !important;
+		}
 	}
 }
 
 #nav-bar {
-	&[securestate="chrome"] {
-		#identity-box {
-			display: none !important;
-		}
+	&[securestate="chrome"] #identity-box {
+		display: none !important;
 	}
 
 	#identity-box[pageproxystate="valid"] {
@@ -280,7 +326,7 @@
 	&[securestate="secure"],
 	&[securestate="ev"],
 	.verifiedDomain ~ .urlbar-input-box {
-		--toolbar-field-background-color: var(--urlbar-background-verified-proxystate-valid);
+		--urlbar-background-color: var(--urlbar-background-verified-proxystate-valid) !important;
 		--protocol-color: var(--urlbar-verified-proxystate-valid);
 		--protocol-background-color: var(--urlbar-background-verified-proxystate-valid);
 
@@ -293,10 +339,8 @@
 	&[securestate="insecure"] {
 		--protocol-color: var(--urlbar-verified-proxystate-valid-overridden);
 
-		#urlbar-protocol {
-			&::before {
-				background: var(--urlbar-verified-proxystate-valid-overridden);
-			}
+		#urlbar-protocol::before {
+			background: var(--urlbar-verified-proxystate-valid-overridden);
 		}
 
 		#identity-icon {
@@ -313,6 +357,7 @@
 }
 
 #custom-identity-label {
+	margin-block: 0 !important;
 	margin-inline-start: 4px !important;
 	margin-inline-end: 6px !important;
 	color: var(--protocol-color);
@@ -323,14 +368,19 @@
 	outline: transparent !important;
 }
 
+#urlbar,
+#searchbar {
+	color: var(--urlbar-color) !important;
+}
+
 #urlbar:is([focused], [open]),
 #searchbar:focus-within {
-	color: var(--toolbar-field-color) !important;
+	color: var(--urlbar-focused-color) !important;
 }
 
 #urlbar:is([focused], [open]) > #urlbar-background,
 #searchbar:focus-within {
-	background-color: white !important;
+	background-color: var(--urlbar-focused-background-color) !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
@@ -375,10 +425,8 @@
 		}
 	}
 
-	.unknownIdentity {
-		#identity-icon {
-			list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
-		}
+	.unknownIdentity #identity-icon {
+		list-style-image: var(--identity-icon-valid-n-chromeUI-or-valid-n-unknownIdentity) !important;
 	}
 }
 #identity-icon-box,
@@ -400,6 +448,7 @@
 
 #urlbar-background,
 #searchbar {
+	background-color: var(--urlbar-background-color) !important;
 	border-inline: 0 !important;
 	border-block: 1px solid var(--urlbar-border) !important;
 	border-radius: 0 !important;
@@ -427,41 +476,12 @@
 	margin: 0 !important;
 }
 
-#identity-icon-box,
-#urlbar-search-mode-indicator {
-	background: transparent !important;
-}
-
 #urlbar-search-mode-indicator {
 	padding-inline: 0 !important;
 	color: rgb(0, 0, 0, 60%) !important;
 
 	#urlbar-search-mode-indicator-title {
 		display: block !important;
-	}
-}
-
-.urlbarView-title {
-	&:is([isurl="true"]) {
-		&::before {
-			display: none !important;
-		}
-	}
-}
-
-.urlbarView-favicon {
-	// Fix for Rich Results feature
-	margin-inline-start: 0 !important;
-
-	position: absolute;
-	left: 4px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 16px !important;
-	height: 16px !important;
-
-	&[src="chrome://browser/skin/history.svg"] {
-		opacity: 0.8;
 	}
 }
 
@@ -485,12 +505,10 @@
 	overflow: hidden;
 }
 
-#urlbar-input {
-	&::placeholder {
-		opacity: 1 !important;
-		color: rgb(127, 127, 127);
-		text-align: end;
-	}
+#urlbar-input::placeholder {
+	opacity: 1 !important;
+	color: rgb(127, 127, 127);
+	text-align: end;
 }
 
 #urlbar-container,
@@ -503,10 +521,10 @@
 #urlbar-container {
 	--urlbar-container-height: var(--urlbar-height-definitive) !important;
 
-	&:not([starpos="start"]) {
-		#go-button-box {
-			display: none;
-		}
+	position: relative !important;
+
+	&:not([starpos="start"]) #go-button-box {
+		display: none;
 	}
 
 	#urlbar-go-button,
@@ -536,203 +554,6 @@
 	border: 0 !important;
 }
 
-.urlbarView {
-	display: block;
-	background: var(--urlbarView) !important;
-	border: 1px solid rgba(0, 0, 0, 0.3) !important;
-	margin-inline: 0 !important;
-	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .5);
-	padding: 0;
-	width: 100% !important;
-}
-
-.urlbarView-url {
-	margin-top: 0 !important;
-	font-size: unset !important;
-}
-
-.urlbarView-results {
-	padding: 0 !important;
-}
-
-.urlbarView-row {
-	border-radius: 0 !important;
-	border: 0 !important;
-	padding-left: 4px !important;
-
-	&[selected] {
-		.urlbarView-action {
-			color: rgb(255, 255, 255, 80%) !important;
-		}
-
-		.urlbarView-url {
-			color: #7ff4b7 !important;
-		}
-		.urlbarView-title {
-			color: rgb(255, 255, 255, 60%) !important;
-		}
-	}
-
-	&[type="switchtab"] {
-		.urlbarView-row-inner {
-			.urlbarView-title {
-				padding-left: 24px;
-
-				&::before {
-					display: none;
-				}
-			}
-		}
-
-		.urlbarView-action {
-		padding: 0 !important;
-		}
-	}
-
-	&[dynamicType="onboardTabToSearch"] {
-		> .urlbarView-row-inner {
-			min-height: 14px !important;
-		}
-	}
-
-	&[type="search"] {
-		.urlbarView-title {
-			&::before {
-				display: none;
-			}
-		}
-	}
-
-	&[type="dynamic"] {
-		display: none !important;
-	}
-
-	&:is([row-selectable]:hover, [selected]) {
-		> .urlbarView-button {
-			background-color: transparent !important;
-			color: white !important;
-			fill-opacity: 1;
-		}
-	}
-
-	&[label] {
-		margin: 0 !important;
-
-		&::before {
-			content: unset !important;
-		}
-	}
-
-	// Fix for Rich Results feature
-	&[rich-suggestion] {
-		.urlbarView-row-body-description {
-			display: none !important;
-		}
-	}
-}
-
-.urlbarView-action {
-	position: absolute;
-	right: 8px !important;
-	background: transparent !important;
-	color: -moz-menuhover !important;
-}
-
-@media screen and (min-height: 600px) {
-	.urlbarView-results[wrap] > .urlbarView-row:where(:not([rich-suggestion="with-icon"])) > .urlbarView-row-inner {
-		flex-wrap: nowrap !important;
-	}
-
-	.urlbarView-url {
-		overflow: visible !important;
-	}
-}
-
-.urlbarView-overflowable[overflow],
-.urlbarView-url[overflow] {
-	mask-image: none !important;
-}
-
-#urlbar {
-	&[open] {
-		> .urlbarView {
-			> .urlbarView-body-outer {
-				> .urlbarView-body-inner {
-					border-top: 0 !important;
-				}
-			}
-		}
-	}
-}
-
-.urlbarView-type-icon {
-	display: none;
-}
-
-.search-one-offs {
-	display: none !important;
-}
-
-.urlbarView-url {
-	color: rgb(11, 133, 14) !important;
-	flex-grow: 0 !important;
-	order: 1 !important;
-}
-
-.urlbarView-no-wrap,
-.urlbarView-row-body-top-no-wrap /* Fix for Rich Results feature */ {
-	order: 2 !important;
-}
-
-.urlbarView-title-separator {
-	&::before {
-		display: none;
-	}
-}
-
-.urlbarView-title {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	min-width: 0;
-	color: black;
-}
-
-.urlbarView-row-inner {
-	position: relative !important;
-	height: var(--urlbarView-row-height) !important;
-	min-height: var(--urlbarView-row-height) !important;
-	padding-block: 0 !important;
-
-	// Fix for Rich Results feature
-	align-items: center !important;
-}
-
-.urlbarView-dynamic-onboardTabToSearch-no-wrap {
-	.urlbarView-dynamic-onboardTabToSearch-icon {
-		height: 16px !important;
-		width: 16px !important;
-		left: 0;
-	}
-
-	.urlbarView-dynamic-onboardTabToSearch-text-container {
-		padding-left: 26px !important;
-	}
-
-	.urlbarView-dynamic-onboardTabToSearch-title.urlbarView-title {
-		&::before {
-			display: none !important;
-		}
-	}
-}
-
-.urlbarView-dynamic-onboardTabToSearch-action {
-  	display: none;
-}
-
-.urlbarView-action {
-  	display: none !important;
-}
-
 #notification-popup-box {
 	height: var(--urlbar-height-definitive) !important;
 	fill: rgb(112,112,112) !important;
@@ -756,13 +577,11 @@
 	}
 }
 
-#notification-popup-box {
-	> * {
-		padding: 2px !important;
-		margin: 0 !important;
-		width: calc(var(--urlbar-height-definitive) - 4px) !important;
-		height: calc(var(--urlbar-height-definitive) - 4px) !important;
-	}
+#notification-popup-box > * {
+	padding: 2px !important;
+	margin: 0 !important;
+	width: calc(var(--urlbar-height-definitive) - 4px) !important;
+	height: calc(var(--urlbar-height-definitive) - 4px) !important;
 }
 
 
@@ -770,18 +589,17 @@
 	GTK+ SysTheme - exclusive urlbar styling
 */
 [gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
-	#urlbar-container {
-		&::before {
-			-moz-default-appearance: textarea;
-			content: "";
-			appearance: textarea;
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-		}
+	#urlbar-container::before {
+		-moz-default-appearance: textarea;
+		content: "";
+		appearance: textarea;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
 	}
+
 	#urlbar-container,
 	#search-container {
 		box-shadow: unset !important;
@@ -815,9 +633,9 @@
 	}
 
 	// Shrink icon sizes in the side-buttons in more icons enabled
-	&[moregtkicons="true"] {
+	&[gtkicons="1"] {
 		:not(.widget-overflow-list) > .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton

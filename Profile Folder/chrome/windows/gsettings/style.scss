@@ -1,15 +1,16 @@
 :root {
-	&[contentmode="wizard"] {
-		.disable-in-wizard {
-			pointer-events: none;
-			opacity: .5;
+	&[contentmode="wizard"] .disable-in-wizard,
+	[disabled="true"] {
+		pointer-events: none;
+		opacity: .5;
 
-			&#global-appearance-container {
-				max-height: 100px;
-				mask-image: linear-gradient(to bottom, black, transparent);
-			}
+		.appearance-container {
+			max-height: 100px;
+			mask-image: linear-gradient(to bottom, black, transparent);
 		}
+	}
 
+	&[contentmode="wizard"] {
 		.show-in-wizard {
 			display: flex;
 		}
@@ -19,84 +20,63 @@
 		}
 	}
 
-	&:not([contentmode="wizard"]) {
-		.show-in-wizard {
-			display: none;
-		}
+	&:not([contentmode="wizard"]) .show-in-wizard {
+		display: none;
 	}
 
 	&[geckium-one] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
-				}
-			}
-	
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
-				}
-			}
+		[data-browser="chrome"] .theme-icons .theme-browser-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2008.svg")
+		}
+
+		[data-browser="firefox"] .theme-icons .theme-browser-icon {
+			background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2008.png")
 		}
 	}
 
-	&[geckium-one][geckium-two] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
-				}
+	&[geckium-one][geckium-two] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2009.png")
+	}
+
+	&[geckium-one][geckium-two][geckium-eleven] [data-browser="chrome"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] [data-browser="chrome"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
+	}
+
+	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] [data-browser="firefox"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
+	}
+
+	[data-browser="msedge"] .theme-icons .theme-browser-icon {
+		background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
+	}
+
+	&[is120Plus="true"] .is-below-120 {
+		display: none !important;
+	}
+
+	&[nav-drawer-auto-hide] {
+		@media all and (max-width: 640px) {
+			.banner image {
+				width: 148px;
 			}
 		}
 	}
+}
 
-	&[geckium-one][geckium-two][geckium-eleven] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2011.png")
-				}
-			}
-		}
-	}
-
-	&[geckium-one][geckium-two][geckium-twentyfive] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2013.png")
-				}
-			}
-		}
-	}
-
-	&[geckium-one][geckium-two][geckium-twentyfive][geckium-fortyseven] {
-		.link.geckium-appearance {
-			&[data-browser="chrome"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/chrome-2015.png")
-				}
-			}
-		}
-	}
-
-	&[geckium-one][geckium-two][geckium-twentyfive][geckium-sixtyeight] {
-		.link.geckium-appearance {
-			&[data-browser="firefox"] {
-				.theme-browser-icon {
-					background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/firefox-2017.png")
-				}
-			}
-		}
-	}
-
-	.link.geckium-appearance {
-		&[data-browser="msedge"] {
-			.theme-browser-icon {
-				background-image: url("chrome://userchrome/content/windows/gsettings/imgs/browsers/msedge.svg")
-			}
-		}
+.is-linux-only {
+	display: none !important;
+}
+@media (-moz-platform: linux) {
+	.is-linux-only {
+		display: flex !important;
 	}
 }
 
@@ -105,42 +85,50 @@
 	height: 710px;
 }
 
-.content {
-	&:not([data-page-container]) {
-		padding: var(--inner-padding);
+h4 .about-flag {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 28px;
+	width: 28px;
+	margin-inline-start: 4px;
+	cursor: pointer;
+	transition: all 150ms ease-in;
+	border-radius: 50%;
+	overflow: hidden;
+	
+	&::before {
+		content: "";
+		height: 18px;
+		width: 18px;
+		mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
+		mask-size: cover;
+		mask-position: center center;
+		background: rgb(126, 126, 126);
+	}
+
+	&:hover {
+		background: rgb(0, 0, 0, 6%);
+	}
+
+	.ripple {
+		background: rgb(0, 0, 0, 20%);
 	}
 }
 
-h4 {
-	.about-flag {
+#overridevisualstyle,
+#ncphelper-maskwidthmode[NCPMaskWidthMode="custom"],
+#gkThemeFilterItem,
+#card-avatar > .item:nth-child(2) {
+	border-bottom: 0 !important;
+}
+
+#ncphelper-maskwidthmode {
+	&[NCPMaskWidthMode="custom"] ~ #ncphelper-custommaskwidth {
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 28px;
-		width: 28px;
-		margin-inline-start: 4px;
-		cursor: pointer;
-		transition: all 150ms ease-in;
-		border-radius: 9999px;
-		overflow: hidden;
-		
-		&::before {
-			content: "";
-			height: 18px;
-			width: 18px;
-			mask-image: url("chrome://userchrome/content/frameworks/GeckiumMaterial/icons/info_outline.svg");
-			mask-size: cover;
-			mask-position: center center;
-			background: rgb(126, 126, 126);
-		}
-
-		&:hover {
-			background: rgb(0, 0, 0, 6%);
-		}
-
-		.ripple {
-			background: rgb(0, 0, 0, 20%);
-		}
+	}
+	&:not([NCPMaskWidthMode="custom"]) ~ #ncphelper-custommaskwidth {
+		display: none;
 	}
 }
 
@@ -159,16 +147,12 @@ h4 {
 		cursor: pointer;
 	}
 
-	&.color {
-		&.ripple-enabled {
-			.ripple {
-				background: color-mix(
-					in srgb,
-					var(--secondary-color, var(--primary-color)) 40%,
-					transparent
-				);
-			}
-		}
+	&.color.ripple-enabled .ripple {
+		background: color-mix(
+			in srgb,
+			var(--secondary-color, var(--primary-color)) 40%,
+			transparent
+		);
 	}
 
 	&:checked {
@@ -221,7 +205,8 @@ h4 {
 	gap: 32px;
 	
 	image {
-		transition: fill 320ms;
+		width: 200px;
+		transition: fill 320ms, width 200ms;
 
 		&:hover {
 			fill: #209f43;
@@ -233,29 +218,12 @@ h4 {
 	}
 }
 
-#ntp-visual-styles-grid {
-	/*> [for="chrome-6"],
-	> [for="chrome-25"],
-	> [for="chrome-68"] {
-		display: none;
-	}*/
-
-	.link.chrome-appearance {
-		height: 163px;
-	}
+#ntp-visual-styles-grid .link.chrome-appearance {
+	height: 163px;
 }
 
-.chrome-appearance  {
-	.radio-parent {
-		margin-inline-start: 0 !important;
-	}
-}
-
-#profile-pic-content {
-	&[profile-pic-button="false"] {
-		pointer-events: none;
-		opacity: 0.5;
-	}
+.chrome-appearance .radio-parent {
+	margin-inline-start: 0 !important;
 }
 
 .profile-mode-option {
@@ -263,17 +231,19 @@ h4 {
 }
 
 #card-avatar {
-	&:not([profile-pic-mode="0"], [profile-pic-mode="2"]) {
+	&:not([profile-pic-mode="none"],
+		  [profile-pic-mode="geckium"],
+		  [profile-pic-mode="firefox"]) {
 		padding-block-end: 19px;
 	}
 
-	> .item:nth-child(2) {
+	> .item:nth-child(3) {
 		display: none;
 	}
 
 
-	&[profile-pic-mode="1"] {
-		> .item:nth-child(2) {
+	&[profile-pic-mode="chromium"] {
+		> .item:nth-child(3) {
 			display: flex;
 		}
 
@@ -282,15 +252,8 @@ h4 {
 		}
 	}
 
-	&[profile-pic-mode="0"],
-	&[profile-pic-mode="2"] {
-		> .item:nth-child(1) {
-			border-bottom: 0;
-		}
-	}
-
-	&[profile-pic-mode="3"] {
-		> .item:nth-child(2) {
+	&[profile-pic-mode="custom"] {
+		> .item:nth-child(3) {
 			display: flex;
 		}
 
@@ -322,19 +285,18 @@ h4 {
 	}
 }
 
-.item {
-	&.app {
-		padding-block: 6px;
+.item.app {
+	padding-block: 6px;
 
-		image {
-			width: 48px;
-			height: 48px;
-			margin-inline-start: -8px;
-		}
+	image {
+		width: 48px;
+		height: 48px;
+		margin-inline-start: -8px;
+	}
 
-		label {
-			margin-inline-start: 8px;
-		}
+	label {
+		display: flex;
+		margin-inline-start: 8px;
 	}
 }
 
@@ -412,7 +374,6 @@ h4 {
 		display: block;
 		width: 100%;
 		height: 160px;
-		overflow: hidden;
 		background-size: cover;
 		background-position: top center;
 		cursor: pointer;
@@ -421,6 +382,32 @@ h4 {
 			background-size: cover !important;
 			background-position: top center !important;
 			box-shadow: var(--elevation-8);
+		}
+
+		/*&:not(
+			[data-browser="chrome"],
+			[data-browser="msedge"]
+		) {
+			#manage {
+				display: none !important;
+			}
+		}*/
+		&[data-browser="firefox"],
+		&[data-browser="chrome"],
+		&[data-browser="msedge"] {
+			&:not([disabled]):hover {
+				.year {
+					opacity: 0;
+				}
+				#manage {
+					opacity: 1;
+				}
+			}
+		}
+
+		.theme-icons {
+			top: 10px;
+			left: 10px;
 		}
 
 		.name, .description {
@@ -444,50 +431,21 @@ h4 {
 			cursor: pointer;
 		}
 
-		.year {
+		.year,
+		#manage {
 			position: absolute;
-			top: 10px;
-			right: 5px;
+			transition: 155ms;
 		}
-		
-		.icon {
-			position: absolute;
+
+		.year {
 			top: 10px;
-			left: 10px;
-			transform: unset;
-			mask-image: unset;
-			mask-size: unset;
-			background: unset;
-			flex-shrink: unset;
+			right: 10px;
+		}
 
-			.theme-type-icon,
-			.theme-browser-icon {
-				position: absolute;
-			}
-
-			.theme-type-icon {
-				width: inherit;
-				height: inherit;
-
-				&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
-					filter: saturate(0);
-					fill: #209f43;
-					-moz-context-properties: fill, fill-opacity;
-					opacity: 0.5;
-				}
-			}
-
-			.theme-browser-icon {
-				bottom: 0;
-				right: 0;
-
-				width: 16px;
-				height: 16px;
-
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: contain;
-			}
+		#manage {
+			top: 5px;
+			right: 5px;
+			opacity: 0;
 		}
 
 		.identifier {
@@ -541,6 +499,47 @@ h4 {
 		background-color: ActiveCaption !important;
 	}
 }
+
+.theme-icons {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: unset;
+	mask-image: unset;
+	mask-size: unset;
+	background: unset;
+	flex-shrink: unset;
+
+	.theme-type-icon,
+	.theme-browser-icon {
+		position: absolute;
+	}
+
+	.theme-type-icon {
+		width: inherit;
+		height: inherit;
+
+		&[src="chrome://userchrome/content/windows/gsettings/imgs/logo.svg"] {
+			filter: saturate(0);
+			fill: #209f43;
+			-moz-context-properties: fill, fill-opacity;
+			opacity: 0.5;
+		}
+	}
+
+	.theme-browser-icon {
+		bottom: 0;
+		right: 0;
+
+		width: 16px;
+		height: 16px;
+
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+	}
+}
+
 // Grid filters
 :root {
 	&[gkthemefilter="chrthemes"],
@@ -642,25 +641,19 @@ h4 {
 		white-space: nowrap;
 	}
 
-	&.favicon {
-		.button {
-			width: 16px;
-			height: 16px;
-		}
+	&.favicon .button {
+		width: 16px;
+		height: 16px;
 	}
 
-	&.icon {
-		.button {
-			width: 128px;
-			height: 128px;
-		}
+	&.icon .button {
+		width: 128px;
+		height: 128px;
 	}
 }
 
-#app-name {
-	&::before {
-		content: "\00a0";
-	}
+#app-name::before {
+	content: "\00a0";
 }
 
 .modal[data-modal="editApp_modal"] {
@@ -706,11 +699,9 @@ h4 {
 	}
 }
 
-#gecko-stuff {
-	> .item {
-		min-height: 80px;
-		justify-content: center;
-	}
+#gecko-stuff > .item {
+	min-height: 80px;
+	justify-content: center;
 }
 
 #gecko-hue,
@@ -805,15 +796,14 @@ h4 {
 		display: none !important;
 	}
 }
-:root[isWindows10] {
-	.notwin10 {
-		display: none !important;
-	}
+:root[isWindows10] .notwin10 {
+	display: none !important;
 }
-:root:not([isWindows10]) {
-	.win10 {
-		display: none !important;
-	}
+:root:not([isWindows10]) .win10 {
+	display: none !important;
+}
+:root:not([nativeControls]) .nativecontrols {
+	display: none !important;
 }
 .linuxonly {
 	@media not (-moz-platform: linux) {

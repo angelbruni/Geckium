@@ -1,22 +1,24 @@
 & {
-	--tab-width: 192px;
-	--tab-height: 30px;
-	--tab-sides-width: 14px;
-	--tab-inner-margin-start: 15px;
-	--tab-content-y-from-top: -1px;
-	--tab-gap-between: -15px;
+	--tab-normal-width:			192px;
+	--tab-pinned-width:			39px;
+	--tab-selected-min-width:	31px;
+	--tab-height:				30px;
+	--tab-sides-width:			15px;
+	--tab-inner-margin-start:	15px;
+	--tab-content-y-from-top:	-1px;
+	--tab-gap-between:			-15px;
 
 	--tab-inline-start-mask: 				url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_left.svg");
-	--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_left.svg");
+	--tab-inline-start-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_left.svg");
 	--tab-inline-start-inactive2-mask: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive2_alpha_left.svg");
 	--tab-inline-start-inactive2-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive2_left.svg");
-	--tab-inline-start-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_left.svg");
+	--tab-inline-start-active-texture: 		var(--tab-inline-start-inactive-texture);
 	--tab-inline-center-mask: 				url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_center.svg");
-	--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_center.svg");
-	--tab-inline-center-active-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_center.svg");
+	--tab-inline-center-inactive-texture: 	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_center.svg");
+	--tab-inline-center-active-texture: 	var(--tab-inline-center-inactive-texture);
 	--tab-inline-end-mask: 					url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_alpha_right.svg");
-	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_inactive_right.svg");
-	--tab-inline-end-active-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_active_right.svg");
+	--tab-inline-end-inactive-texture: 		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/tab_right.svg");
+	--tab-inline-end-active-texture: 		var(--tab-inline-end-inactive-texture);
 
 	--tab-container-left:	linear-gradient(to bottom, transparent, transparent);
 	--tab-container2-left:	linear-gradient(to bottom, transparent, transparent);
@@ -28,23 +30,29 @@
 	--tab-close-button-margin-block-start:	2px;
 	--tab-close-button-margin-inline-end:	1px;
 
-	--newtab-height: 17px;
-	--newtab-width: 34px;
-	--newtab-distance-from-tabs: 10px;
-	--newtab-distance-from-bottom: 5px;
+	--newtab-height:				17px;
+	--newtab-width:					34px;
+	--newtab-distance-from-tabs:	10px;
+	--newtab-distance-from-bottom:	5px;
 
-	--default-theme-newtab-hover: rgba(255, 255, 255, 0.3) !important;
-	--default-theme-newtab-pressed: rgb(0, 0, 0, 0.04) !important;
+	--default-theme-newtab-hover:	rgba(255, 255, 255, 0.3) !important;
+	--default-theme-newtab-pressed:	rgb(0, 0, 0, 0.04) !important;
 
 	--newtab-button-mask:				url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_button_mask_views.svg");
 	--newtab-button-texture-normal:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-hot:		url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_views.svg");
 	--newtab-button-texture-pressed:	url("chrome://userchrome/content/assets/img/chrome-68/tabbar/newtab_p_views.svg");
+
+	/* bruni: This entire code takes care of custom themes support for tabs */
+	// else if chrtheme
+	&[gkthemed][gkchrthemed][gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
+		--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
+	}
 }
 
 .tabbrowser-tab {
 	&:not([image]),
-	&[image="chrome://branding/content/icon32.png"] {
+	&[image="chrome://branding/content/icon32.png"]:not([crashed="true"]) {
 		--tab-gap-between-favicon-and-title: 0;
 	}
 }
@@ -57,12 +65,4 @@
 #tabbrowser-tabs {
 	// Remove the spacing counteract as it's no longer necessary
 	margin-top: unset !important;
-}
-
-/* bruni: This entire code takes care of custom themes support for tabs */
-// else if chrtheme
-&[gkthemed][gkchrthemed] {
-	&[gktitnative="true"] { // Material Design 1 introduced a fallback to non-AERO inactive tab background when in System Borders
-		--inactive-tab-background: var(--chrtheme-theme-tab-background-v, var(--chrtheme-theme-tab-background, var(--chrtheme-frame, var(--default-inactive-tab-background-color)))) !important;
-	}
 }

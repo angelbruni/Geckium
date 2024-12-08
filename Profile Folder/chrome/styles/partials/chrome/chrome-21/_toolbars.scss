@@ -10,7 +10,7 @@
 
 	:not(.widget-overflow-list) {
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton,
@@ -76,6 +76,7 @@
 					) !important;
 				}
 			}
+
 			&#reload-button,
 			&#home-button {
 				.toolbarbutton-icon {
@@ -85,75 +86,69 @@
 		}
 	}
 
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			> * {
-				margin-bottom: 1px !important;
-			}
-		}
+	&:not([personalbar="newtab"]) #PersonalToolbar > * {
+		margin-bottom: 1px !important;
 	}
 
-	#PersonalToolbar {
-		.bookmark-item:not(
-			.menu-iconic,
-			.menuitem-iconic,
-			[data-l10n-id="places-empty-bookmarks-folder"]
-		) {
-			box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
-			transition: border-color 100ms linear, background-color 100ms linear, color 100ms linear, box-shadow 100ms linear;
+	#PersonalToolbar .bookmark-item:not(
+		.menu-iconic,
+		.menuitem-iconic,
+		[data-l10n-id="places-empty-bookmarks-folder"]
+	) {
+		box-shadow: 0 1px 0 0 transparent, inset 0 1px 2px transparent !important;
+		transition: border-color 100ms linear, background-color 100ms linear, color 100ms linear, box-shadow 100ms linear;
 
-			&:not([disabled]) {
-				&:hover,
-				&:active,
-				&[open] {
-					background-color: transparent !important;
-				}
-
-				&:hover {
-					background-color: rgba(255, 255, 255, 0.6) !important;
-					border-bottom-color: color-mix(
-						in srgb,
-						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 80%,
-						black
-					) !important;
-					box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
-						inset 0 1px 0 0 color-mix(
-							in srgb,
-							var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
-							white
-						),
-						inset 0 0 2px color-mix(
-							in srgb,
-							var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
-							white
-						) !important;
-				}
-
-				&:active,
-				&[open] {
-					background-color: rgba(240, 240, 240, 0.5) !important;
-					background: linear-gradient(
-						to bottom,
-						rgb(0,0,0,.4),
-						rgb(0,0,0,.1) 1%,
-					) !important;
-					box-shadow: 0 1px 0 0 transparent,
-						inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
-					border-color: var(
-						--toolbarbutton-border-color-active,
-						var(--default-toolbarbutton-border-color-active)
-					) !important;
-				}
+		&:not([disabled]) {
+			&:hover,
+			&:active,
+			&[open] {
+				background-color: transparent !important;
 			}
-			&[disabled] {
-				.toolbarbutton-icon,
-				image:first-of-type {
-					fill: color-mix(
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.6) !important;
+				border-bottom-color: color-mix(
+					in srgb,
+					var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 80%,
+					black
+				) !important;
+				box-shadow: 0 1px 0 0 rgb(0, 0, 0, 14%),
+					inset 0 1px 0 0 color-mix(
 						in srgb,
-						var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 25%,
-						transparent
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
+						white
+					),
+					inset 0 0 2px color-mix(
+						in srgb,
+						var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot)) 30%,
+						white
 					) !important;
-				}
+			}
+
+			&:active,
+			&[open] {
+				background-color: rgba(240, 240, 240, 0.5) !important;
+				background: linear-gradient(
+					to bottom,
+					rgb(0,0,0,.4),
+					rgb(0,0,0,.1) 1%,
+				) !important;
+				box-shadow: 0 1px 0 0 transparent,
+					inset 0 1px 2px rgb(0, 0, 0, 18%) !important;
+				border-color: var(
+					--toolbarbutton-border-color-active,
+					var(--default-toolbarbutton-border-color-active)
+				) !important;
+			}
+		}
+		&[disabled] {
+			.toolbarbutton-icon,
+			image:first-of-type {
+				fill: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) 25%,
+					transparent
+				) !important;
 			}
 		}
 	}
@@ -165,7 +160,7 @@
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton) {
@@ -183,17 +178,15 @@
 		}
 
 		// Pinned bookmarks
-		#PersonalToolbar {
-			.bookmark-item:not(
-				.menu-iconic,
-				.menuitem-iconic,
-				[data-l10n-id="places-empty-bookmarks-folder"]
-			) {
-				background-color: transparent !important;
-				border: 0 !important;
-				outline: 0 !important;
-				box-shadow: unset !important;
-			}
+		#PersonalToolbar .bookmark-item:not(
+			.menu-iconic,
+			.menuitem-iconic,
+			[data-l10n-id="places-empty-bookmarks-folder"]
+		) {
+			background-color: transparent !important;
+			border: 0 !important;
+			outline: 0 !important;
+			box-shadow: unset !important;
 		}
 	}
 }

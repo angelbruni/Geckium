@@ -1,19 +1,28 @@
 & {
-	@media (prefers-color-scheme: dark) {
-		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
-		}
+	// Custom theme support
+	// lwtheme
+	&[gkthemed]:not([gkchrthemed]) {
+		--google-bar-color: var(--link-color, var(--default-thumbnail-container-color));
+	}
+	// chrtheme
+	&[gkthemed][gkchrthemed] {
+		--google-bar-color: var(--chrtheme-ntp-text, var(--default-thumbnail-container-color));
+	}
+	// GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		--google-bar-color: FieldText;
 	}
 
 	&[style*="--chrtheme-ntp-logo-alternate: 1"],
 	&[style*="--lwt-gkntp-logo-alternate: 1"] {
+		--google-bar-color: white;
+
 		#google-search #hplogo {
-			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light_color_272x92dp.png");
+			background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_light.svg");
 		}
 	}
 
-	&[geckium-choice="fortyseven"],
-	&[geckium-choice="sixtyeight"] {
+	&[geckium-fortyseven] {
 		@media only screen and (max-width: 862px) {
 			#google-search,
 			#mv-tiles {
@@ -36,44 +45,6 @@
 	width: 664px;
 }
 
-#google-bar {
-	gap: 15px;
-	margin-block-start: 15px;
-	margin-inline-end: 15px;
-	align-items: center;
-	justify-content: end;
-
-	a {
-		color: color-mix(in srgb, var(--thumbnail-container-color) 87%, transparent);
-		text-decoration: none;
-
-		&:not([disabled]) {
-			&:hover,
-			&:focus {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	#google-products-link {
-		position: relative;
-		width: 30px;
-		height: 30px;
-		mask-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/v1_ff29c1d8.png");
-		mask-size: 92px 3767px;
-		mask-position: -35px -3668px;
-		opacity: .55;
-		background-color: var(--thumbnail-container-color);
-
-		&:not([disabled]) {
-			&:hover,
-			&:focus {
-				opacity: .85;
-			}
-		}
-	}
-}
-
 #google-search {
 	align-items: center;
 
@@ -84,7 +55,7 @@
 		background-repeat: no-repeat;
 		width: 272px;
 		height: 92px;
-		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color_272x92dp.png");
+		background-image: url("chrome://userchrome/content/pages/newTabHome/assets/chrome-47/imgs/googlelogo_color.svg");
 	}
 
 	form {

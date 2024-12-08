@@ -46,7 +46,14 @@
 	--bookmark-item-color: var(--default-bookmark-item-color);
 
 	--placed-chevron-width: 15px;
-	
+
+	&[customizing] {
+		#wrapper-gkavatar-container,
+		#gkpeople-button-container {
+			pointer-events: none;
+		}
+	}
+
 
 	/*
 		Tabs toolbar
@@ -54,107 +61,6 @@
 	#TabsToolbar {
 		--toolbarbutton-inner-padding: 0 !important; // Removes padding around buttons in the top toolbar
 		position: relative; // Required by tab shadow (the below ::before)
-	}
-
-
-	/*
-		Profile Picture/Incognito
-	*/
-	// Make the Incognito indicator look like Chromium's
-	#private-browsing-indicator-with-label {
-		margin-inline: unset !important;
-		//#TabsToolbar-customization-target aligns items to end,
-		// so we have to mimic it for Incognito to be consistent.
-		align-self: end;
-		// same with .toolbarbutton-1 for this:
-		margin: 0 0 var(--tabs-navbar-shadow-size);
-	}
-	.private-browsing-indicator-icon {
-		width: auto !important;
-		height: auto !important;
-	}
-	[data-l10n-id="private-browsing-indicator-label"] {
-		display: none !important;
-	}
-	#fxa-toolbar-menu-button,
-	#private-browsing-indicator-with-label {
-		background: transparent !important;
-		border: 0 !important;
-		padding: 0 !important;
-		height: var(--tab-height);
-		align-items: end !important;
-
-		.toolbarbutton-badge-stack,
-		.private-browsing-indicator-icon {
-			background: transparent !important;
-		}
-	}
-	// NOTE: Maximised state is handled by titlebar border styles.
-
-	&:not([profilepicbutton="true"]),
-	&[privatebrowsingmode="temporary"] { //Hide the account icon if in OffTheRecord
-		#fxa-toolbar-menu-button {
-			display: none !important;
-		}
-    }
-	&[profilepicbutton="true"] {
-		#fxa-avatar-image {
-			width: 38px !important;
-			height: 32px !important;
-			background-size: contain;
-			background-repeat: no-repeat;
-			background-position: bottom;
-		}
-		&[profilepic="geckium"],
-		&[profilepic="chromium"],
-		&[profilepic="custom"] {
-			// Firefox rounds pfps, so we gotta disable that.
-			#fxa-avatar-image {
-				border-radius: unset !important;
-			}
-		}
-		&[profilepic="geckium"],
-		&[profilepic="firefox"] {
-			// Sync the pfp width to prevent glaring inconsistencies
-			#fxa-avatar-image {
-				width: 32px !important;
-				margin: 0 3px; //...and add some spacing to even out. (6px)
-			}
-		}
-		&[profilepic="chromium"],
-		&[profilepic="custom"] {
-			//list-style-image CAN'T use image 'fit' sizes,
-			// so for Chromium and Custom pfps, we use background
-			#fxa-avatar-image {
-				list-style-image: unset !important;
-			}
-		}
-
-		// Profile Pictures
-		&[profilepic="geckium"] {
-			#fxa-avatar-image {
-				// list-style-image is used here for the fill-colour
-				list-style-image: url("chrome://userchrome/content/windows/gsettings/imgs/logo.svg") !important;
-			}
-		}
-		&[profilepic="chromium"] {
-			$profile-pictures: 25; // bruni: Set the amount of profile pictures
-			@for $i from 0 through $profile-pictures {
-				&[profilepicchromium="#{$i}"] {
-					#fxa-avatar-image {
-						background-image: url(chrome://userchrome/content/assets/img/profile/#{$i}.png) !important;
-					}
-				}
-			}
-		}
-		&[profilepic="custom"] {
-			#fxa-avatar-image {
-				background-image: var(
-					--custom-profile-picture,
-					url(chrome://userchrome/content/assets/img/profile/0.png)
-				);
-			}
-		}
 	}
 
 
@@ -168,13 +74,9 @@
 	// 	}
 	// }
 
-	&:not([sizemode="fullscreen"]) {
-		#nav-bar {
-			//FIXME: why does this need this condition?
-			&:not([urlbar-exceeds-toolbar-bounds]) {
-				overflow: visible !important; //Required for the pseudos
-			}
-		}
+	//FIXME: why does this need `[urlbar-exceeds-toolbar-bounds]`?
+	&:not([sizemode="fullscreen"]) #nav-bar:not([urlbar-exceeds-toolbar-bounds]) {
+		overflow: visible !important; //Required for the pseudos
 	}
 
 	#nav-bar,
@@ -207,8 +109,16 @@
 	}
 
 	// Generic toolbarbuttons
+	// Terrible temporary fix for toolbarbuttons affecting titlebar height in maximised.
+	:not(#TabsToolbar-customization-target, .widget-overflow-list) > .toolbarbutton-1:not(
+		#gkavatar-container > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		height: var(--toolbarbutton-height) !important;
+	}
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -219,10 +129,9 @@
 		fill: var(--toolbarbutton-icon-color, var(--default-toolbarbutton-icon-color)) !important;
 		margin: 0 var(--toolbarbutton-outer-padding) !important;
 		width: var(--toolbarbutton-width) !important;
-		height: var(--toolbarbutton-height) !important;
 		align-items: center;
 		justify-content: center;
-		transition: all 150ms linear;
+		transition: border 150ms linear, box-shadow 150ms linear;
 		border: 1px solid var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal));
 		border-radius: var(--toolbarbutton-border-radius);
 		flex-shrink: 0 !important;
@@ -263,6 +172,50 @@
 			box-shadow: var(--toolbarbutton-shadow-normal);
 		}
 
+		&:not([disabled]) {
+			&:hover {
+				border: 1px solid var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot));
+	
+				&::before {
+					opacity: 1;
+				}
+				&::after {
+					box-shadow: var(--toolbarbutton-shadow-hot);
+				}
+	
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					background-color: transparent !important;
+					filter: saturate(1.5)
+							var(--toolbarbutton-icon-drop-shadow);
+				}
+			}
+
+			&:active,
+			&[open] {
+				border: 1px solid var(--toolbarbutton-border-color-active, var(--default-toolbarbutton-border-color-active));
+				box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
+							inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
+				transition: none !important;
+	
+				&::before {
+					opacity: 1;
+					background: var(--toolbarbutton-active-background);
+					transition: none;
+				}
+				&::after {
+					box-shadow: none;
+				}
+	
+				.toolbarbutton-badge-stack,
+				.toolbarbutton-icon,
+				image:first-of-type {
+					filter: unset;
+				}
+			}
+		}
+
 		.toolbarbutton-icon,
 		&:not(.menu-right) > image:first-of-type {
 			border-radius: 0 !important;
@@ -289,78 +242,65 @@
 		}
 
 		.toolbarbutton-badge {
-			min-width: 0 !important;
+			height: 11px !important;
+			min-width: 11px !important;
 			margin: 0 !important;
 			margin-block-end: calc((var(--toolbarbutton-inner-padding) * -1) + 1px) !important;
+			margin-inline-end: calc(var(--toolbarbutton-inner-padding) * -1 + 3px) !important;
+			padding-block: 0 !important;
+			padding-inline: 2px !important;
 			align-self: end !important;
-			justify-self: center !important;
+			justify-self: end !important;
+			font-weight: bold !important;
+			text-align: center !important;
+			background-image: linear-gradient(
+				to bottom,
+				transparent 1px,
+				rgba(255,255,255,.85) 1px,
+				transparent 2px,
+				rgba(0,0,0,.40) calc(100% - 1px),
+				transparent 100%
+			);
+			background-size: calc(100% - 2px);
+			background-position: 1px 0px;
+			background-repeat: no-repeat;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.30) !important;
+			border-radius: 2.5px !important;
 			z-index: 1;
 		}
 
-		&:not([disabled]):hover {
-			border: 1px solid var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot));
-
-			&::before {
-				opacity: 1;
-			}
-			&::after {
-				box-shadow: var(--toolbarbutton-shadow-hot);
-			}
-
-			.toolbarbutton-badge-stack,
-			.toolbarbutton-icon,
-			image:first-of-type {
-				background-color: transparent !important;
-				filter: saturate(1.5)
-						var(--toolbarbutton-icon-drop-shadow);
-			}
-		}
-		&:not([disabled]):active,
-		&:not([disabled])[open] {
-			border: 1px solid var(--toolbarbutton-border-color-active, var(--default-toolbarbutton-border-color-active));
-			box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.05),
-						inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
-			transition: none !important;
-
-			&::before {
-				opacity: 1;
-				background: var(--toolbarbutton-active-background);
-				transition: none;
-			}
-			&::after {
-				box-shadow: none;
-			}
-
-			.toolbarbutton-badge-stack,
-			.toolbarbutton-icon,
-			image:first-of-type {
-				filter: unset;
-			}
+		.toolbarbutton-arrow {
+			display: none !important;
 		}
 	}
 
 	.urlbar-page-action {
 		width: var(--urlbar-height-definitive) !important;
   		height: var(--urlbar-height-definitive) !important;
+		align-items: center !important;
+		justify-content: center !important;
 	}
 
-	&[gkcanupdate="true"] {
-		:not(.widget-overflow-list) > .toolbarbutton-1#chrome-button {
-			.toolbarbutton-icon,
-			&:not(.menu-right) > image:first-of-type {
-				fill: rgb(237,66,62) !important;
-			}
+	&[gkcanupdate="true"] :not(.widget-overflow-list) > .toolbarbutton-1#chrome-button:not(
+		#gkavatar-container > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		&:not(.menu-right) > image:first-of-type,
+		.toolbarbutton-icon {
+			fill: rgb(237,66,62) !important;
 		}
 	}
 
 
 	// Special toolbarbuttons
 	&:not([geckium-eleven]) :not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
 		&#unified-extensions-button,
+		&#searchmode-switcher-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"],
@@ -400,11 +340,51 @@
 				}
 			}
 		}
+
+		&#searchmode-switcher-button {
+			.toolbarbutton-icon {
+				width: 15px !important;
+				height: 15px !important;
+			}
+	
+			.toolbarbutton-arrow {
+				display: flex !important;
+				list-style-image: url("chrome://userchrome/content/assets/img/chrome-1/toolbar/dropdown-arrow.svg") !important;
+				margin-inline-start: 3.5px;
+			}
+		}
+	}
+
+	:not(.widget-overflow-list) > .toolbarbutton-1:not(
+		#gkavatar-container > #gk-firefox-account-button,
+		#tabs-newtab-button,
+		#new-tab-button,
+		.subviewbutton) {
+		&#unified-extensions-button,
+		&#searchmode-switcher-button,
+		&[type="menu"]:not(#back-button, #forward-button),
+		&#PanelUI-menu-button,
+		&[class*="webextension"],
+		&#gsettings-button,
+		&#nav-bar-overflow-button,
+		&#developer-button {
+			&#gsettings-button,
+			&[class*="webextension"] {
+				.toolbarbutton-icon {
+					width: 19px !important;
+					height: 19px !important;
+				}
+			}
+
+			&[class*="webextension"] {
+				overflow: visible !important;
+			} 
+		}
 	}
 	
 	// Misc. toolbar button tweaks
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton) {
@@ -536,18 +516,16 @@
 	}
 
 	// Hide Extensions button if disabled
-	#nav-bar[unifiedextensions="hide"] {
-		#unified-extensions-button {
-			position: absolute !important;
-			left: 0;
-			top: var(--urlbar-height-definitive);
-			border: 0 !important;
-			width: 0 !important;
-			height: 0 !important;
-			padding: 0 !important;
-			margin: 0 !important;
-			opacity: 0 !important;
-		}
+	#nav-bar[unifiedextensions="hide"] #unified-extensions-button {
+		position: absolute !important;
+		left: 0;
+		top: var(--urlbar-height-definitive);
+		border: 0 !important;
+		width: 0 !important;
+		height: 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		opacity: 0 !important;
 	}
 
 
@@ -572,12 +550,11 @@
 	#unified-extensions-button {
 		list-style-image: var(--unified-extensions-button-icon) !important;
 	}
-
 	// Remove Customise Toolbar from Overflow Menu
 	#overflowMenu-customize-button {
 		display: none !important;
 	}
-	
+
 
 	/*
 		Personal (the bookmarks) toolbar
@@ -614,87 +591,83 @@
 		}
 	}
 
-	&[personalbar="newtab"] {
-		#PersonalToolbar {
-			height: var(--personal-toolbar-floating-height) !important;
+	&[personalbar="newtab"] #PersonalToolbar {
+		height: var(--personal-toolbar-floating-height) !important;
 
-			> *:not(
-				#personal-toolbar-bg,
-				#personal-toolbar-floating-bg
-			) {
-				margin-block: auto !important;
-				height: var(--personal-toolbar-floating-items-height) !important;
+		> *:not(
+			#personal-toolbar-bg,
+			#personal-toolbar-floating-bg
+		) {
+			margin-block: auto !important;
+			height: var(--personal-toolbar-floating-items-height) !important;
+		}
+
+		#personal-toolbar-bg {
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			
+			background-color: white;
+
+			@media (prefers-color-scheme: dark) {
+				background-color: rgb(32, 32, 32);
 			}
 
-			#personal-toolbar-bg {
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				
-				background-color: white;
+			background-attachment: fixed;
+			background-size: unset;
+		}
 
-				@media (prefers-color-scheme: dark) {
-					background-color: rgb(32, 32, 32);
-				}
+		#personal-toolbar-floating-bg {
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			height: var(--personal-toolbar-floating-bg-height);
+			width: calc(100% - (var(--personal-toolbar-floating-bg-margin-inline) * 2));
+			background: var(--personal-toolbar-floating, var(--default-personal-toolbar-floating));
+			border-block-start-width: var(--personal-toolbar-floating-border-block-start-width);
+			border-block-end-width: var(--personal-toolbar-floating-border-block-end-width);
+			border-inline-start-width: var(--personal-toolbar-floating-border-inline-start-width);
+			border-inline-end-width: var(--personal-toolbar-floating-border-inline-end-width);
+			border-style: solid;
+			border-color: var(--personal-toolbar-floating-border, var(--default-personal-toolbar-floating-border));
+			border-radius: var(--personal-toolbar-floating-radius);
+			box-sizing: border-box;
+		}
 
-				background-attachment: fixed;
-				background-size: unset;
-			}
+		#personal-toolbar-empty {
+			padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
+		}
 
-			#personal-toolbar-floating-bg {
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				height: var(--personal-toolbar-floating-bg-height);
-				width: calc(100% - (var(--personal-toolbar-floating-bg-margin-inline) * 2));
-				background: var(--personal-toolbar-floating, var(--default-personal-toolbar-floating));
-				border-block-start-width: var(--personal-toolbar-floating-border-block-start-width);
-				border-block-end-width: var(--personal-toolbar-floating-border-block-end-width);
-				border-inline-start-width: var(--personal-toolbar-floating-border-inline-start-width);
-				border-inline-end-width: var(--personal-toolbar-floating-border-inline-end-width);
-				border-style: solid;
-				border-color: var(--personal-toolbar-floating-border, var(--default-personal-toolbar-floating-border));
-				border-radius: var(--personal-toolbar-floating-radius);
-				box-sizing: border-box;
-			}
+		#personal-toolbar-empty + #import-button:not(:last-child),
+		#personal-toolbar-empty + toolbarpaletteitem,
+		#personal-bookmarks {
+			margin-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
+		}
 
-			#personal-toolbar-empty {
-				padding-inline: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
-			}
+		toolbarpaletteitem > #personal-bookmarks,
+		#import-button + #personal-bookmarks {
+			margin-inline-start: 0 !important;
+		}
 
-			#personal-toolbar-empty + #import-button:not(:last-child),
-			#personal-toolbar-empty + toolbarpaletteitem,
-			#personal-bookmarks {
-				margin-inline-start: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline)) !important;
-			}
-
-			toolbarpaletteitem > #personal-bookmarks,
-			#import-button + #personal-bookmarks {
-				margin-inline-start: 0 !important;
-			}
-
-			> :last-child {
-				margin-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline) - 2px) !important;
-			}
+		> :last-child {
+			margin-inline-end: calc(var(--personal-toolbar-floating-bg-margin-inline) + var(--personal-toolbar-floating-bg-padding-inline) - 2px) !important;
 		}
 	}
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			height: var(--personal-toolbar-height) !important;
-			padding: 3px !important;
-			background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
-			gap: var(--personal-toolbar-gap);
-		
-			&::before,
-			&::after {
-				top: 0px;
-				height: var(--personal-toolbar-height);
-			}
+	&:not([personalbar="newtab"]) #PersonalToolbar {
+		height: var(--personal-toolbar-height) !important;
+		padding: 3px !important;
+		background: var(--personal-toolbar, var(--default-personal-toolbar)) !important;
+		gap: var(--personal-toolbar-gap);
+	
+		&::before,
+		&::after {
+			top: 0px;
+			height: var(--personal-toolbar-height);
+		}
 
-			> * {
-				margin-top: -3px !important;
-			}
+		> * {
+			margin-top: -3px !important;
 		}
 	}
 
@@ -706,21 +679,19 @@
 		}
 	}
 
-	&[personalbar="always"] {
-		#PersonalToolbar {
-			border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
-		}
+	&[personalbar="always"] #PersonalToolbar {
+		border-bottom: 1px solid var(--personal-toolbar-border-bottom, var(--default-personal-toolbar-border-bottom)) !important;
 	}
 
 	#PlacesToolbarItems,
 	#personal-bookmarks /* Fix for Firefox ~120+ */ {
-		toolbarbutton.bookmark-item {
-			&:not(.menu-iconic, .menuitem-iconic) {
-				margin-top: 0 !important;
-			}
-		}
 		gap: var(--personal-toolbar-gap);
+
+		toolbarbutton.bookmark-item:not(.menu-iconic, .menuitem-iconic) {
+			margin-top: 0 !important;
+		}
 	}
+	
 	toolbarbutton.bookmark-item {
 		position: relative !important;
 		border: 1px solid transparent !important;
@@ -740,7 +711,7 @@
 					:active,
 					[open]
 				) {
-					color: var(--default-bookmark-item-color) !important;
+					color: var(--bookmark-item-color) !important;
 				}
 			}
 
@@ -751,15 +722,13 @@
 			}
 		}
 
-		&#OtherBookmarks {
-			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				width: 1px;
-				height: 100%;
-				background-image: var(--test) linear-gradient(to bottom, rgba(222, 234, 248, 1) 50%, rgba(222, 234, 248, 0));
-			}
+		&#OtherBookmarks::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 1px;
+			height: 100%;
+			background-image: var(--test) linear-gradient(to bottom, rgba(222, 234, 248, 1) 50%, rgba(222, 234, 248, 0));
 		}
 	}
 	
@@ -804,15 +773,11 @@
 			--chrtheme-ntp-background-alignment: 50% 100%;
 			--chrtheme-ntp-background-repeat: no-repeat;
 
-			&[personalbar="newtab"] {
-				#PersonalToolbar {
-					> #personal-toolbar-bg {
-						background-color: var(--chrtheme-ntp-background);
-						background-image: var(--chrtheme-theme-ntp-background);
-						background-repeat: var(--chrtheme-ntp-background-repeat);
-						background-position: var(--chrtheme-ntp-background-alignment);
-					}
-				}
+			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
+				background-color: var(--chrtheme-ntp-background);
+				background-image: var(--chrtheme-theme-ntp-background);
+				background-repeat: var(--chrtheme-ntp-background-repeat);
+				background-position: var(--chrtheme-ntp-background-alignment);
 			}
 
 			#nav-bar,
@@ -821,13 +786,11 @@
 			}
 
 			#nav-bar {
-				background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
+				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
 			}
 
-			&:not([personalbar="newtab"]) {
-				#PersonalToolbar {
-					background-position-y: calc(var(--tab-distance-from-top) + var(--gktabbar-y, 0px) + 1px) !important;
-				}
+			&:not([personalbar="newtab"]) #PersonalToolbar {
+				background-position-y: calc(var(--tab-distance-from-top) + var(--toolbar-background-y-pos) + var(--gktabbar-y, 0px)) !important;
 			}
 		}
 	}
@@ -840,27 +803,20 @@
 		&:not([customthememode="none"]) {
 			--bookmark-item-color: var(--toolbar-color, var(--lwt-text-color, var(--arrowpanel-color))) !important;
 
-			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-
-			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 			--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating)));
 			--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
 
-			&[personalbar="newtab"] {
-				#PersonalToolbar {
-					> #personal-toolbar-bg {
-						// TODO: expose NTP images to chrome.
+			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
+				// TODO: expose LwTheme NTP images to chrome.
 
-						background-color: var(--tabpanel-background-color, white);
-						background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
-						@media (prefers-color-scheme: dark) {
-							background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
-						}
-
-						background-repeat: var(--lwt-gknewtab-background-repeat);
-						background-position: var(--lwt-gknewtab-background-position);
-					}
+				background-color: var(--tabpanel-background-color, white);
+				background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
+				@media (prefers-color-scheme: dark) {
+					background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));
 				}
+
+				background-repeat: var(--lwt-gknewtab-background-repeat);
+				background-position: var(--lwt-gknewtab-background-position);
 			}
 
 			--toolbarbutton-border-color-normal: color-mix(
@@ -935,19 +891,76 @@
 			--urlbar-border: var(--toolbarbutton-border-color-normal, var(--default-toolbarbutton-border-color-normal)) !important;
 		}
 
-		// if FXChrome
+		// if Geckium or FXChrome-like
+		&[customthememode="geckium"],
 		&[customthememode="fxchrome"] {
+			&[toolbar-bgcolor-transparent="true"] {
+				--personal-toolbar: var(--toolbar-bgcolor) !important;
+			}
+		}
+		// if Geckium
+		&[customthememode="geckium"] {
+			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
-					var(--gktoolbar-bgcolor),
+					var(--gktoolbar-bgcolor) 3px,
+					var(--toolbar-bgcolor) 75%
+				) !important;
+
+				&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+					--nav-bar: linear-gradient(
+						to bottom,
+						var(--lwt-accent-color) 3px,
+						transparent 75%
+					) !important;
+
+
+					&[tab-selected-bgcolor-transparent="true"] {
+						--nav-bar: linear-gradient(
+							to bottom,
+							var(--lwt-accent-color) 3px,
+							transparent 75%
+						) !important;
+					}
+				}
+			}
+		}
+		// if FXChrome-like
+		&[customthememode="fxchrome"] {
+			--nav-bar: linear-gradient(
+				to bottom,
+				var(--toolbar-bgcolor) 3px,
+				color-mix(
+					in srgb,
+					var(--toolbar-bgcolor),
+					transparent 50%
+				) 50%
+			) !important;
+			--personal-toolbar: color-mix(
+				in srgb,
+				var(--toolbar-bgcolor),
+				transparent 50%
+			) !important;
+
+			&[toolbar-bgcolor-transparent="true"] {
+				--nav-bar: linear-gradient(
+					to bottom,
+					var(--gktoolbar-bgcolor) 3px,
 					var(--toolbar-bgcolor) 50%
 				) !important;
-				--personal-toolbar: var(--toolbar-bgcolor) !important;
 			}
 		}
 		// if Silverfox
 		&[customthememode="silverfox"] {
+			--nav-bar: linear-gradient(
+					to bottom,
+					var(--toolbar-bgcolor) 25%,
+					transparent
+				) !important;
+
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
@@ -967,7 +980,7 @@
 		// Toolbar buttons
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton
@@ -1020,7 +1033,7 @@
 				overflow: visible !important;
 			}
 			
-			:not(.widget-overflow-list) > .toolbarbutton-1 {
+			&:not([gtkicons="2"]) :not(.widget-overflow-list) > .toolbarbutton-1 {
 				&#back-button,
 				&#forward-button,
 				&#reload-button,
@@ -1038,11 +1051,12 @@
 					width: 19px !important;
 				}
 			}
-			&[moregtkicons="true"] :not(.widget-overflow-list) > .toolbarbutton-1 {
+			&[gtkicons="1"] :not(.widget-overflow-list) > .toolbarbutton-1 {
 				&#bookmarks-menu-button,
 				&#page-button,
 				&#PanelUI-menu-button,
 				&#unified-extensions-button,
+				&#searchmode-switcher-button,
 				&#chrome-button,
 				&#logins-button,
 				&#developer-button,

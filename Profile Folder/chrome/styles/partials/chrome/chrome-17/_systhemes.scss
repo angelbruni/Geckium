@@ -1,0 +1,31 @@
+& {
+    //Classic (Default/Fallback)
+    // Navbar
+    --default-toolbarbutton-icon-color: rgb(111, 111, 111);
+    --default-toolbarbutton-icon-drop-shadow: drop-shadow(0 1px 0 rgba(255, 255, 255, .3));
+
+	@media (prefers-color-scheme: dark) {
+		// Navbar
+		--default-toolbarbutton-icon-color: #C7C7C7;
+	}
+
+    // GTK+
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed]) {
+		// Navbar
+		--default-toolbarbutton-icon-color: var(--gtk-toolbarbutton-new-icon-fill);
+	}
+
+	&:not([geckium-sixtyeight]) {
+		// Mac OS X
+		&[gksystheme="macosx"],
+		&[gksystheme="macos"] {
+			// Navbar
+			--default-toolbarbutton-icon-color: rgb(111, 111, 111); // Mac OS X Chrome reverted to normal colouring
+
+            @media (prefers-color-scheme: dark) {
+				// Navbar
+				--default-toolbarbutton-icon-color: #C7C7C7; // Mac OS X Chrome reverted to normal colouring
+            }
+        }
+    }
+}

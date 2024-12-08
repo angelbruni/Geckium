@@ -129,10 +129,8 @@
 		margin-block-end: 2px;
 	}
 
-	&:not([geckium-one]) {
-		* {
-			visibility: hidden;
-		}
+	&:not([geckium-one]) * {
+		visibility: hidden;
 	}
 	&[geckium-four] {
 		@import "partials/chrome-4/final";

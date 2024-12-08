@@ -106,34 +106,63 @@ class gkLWTheme {
 	 */
 
 	static setThemeAttrs() {
+		const { LightweightThemeManager } = ChromeUtils.importESModule("resource://gre/modules/LightweightThemeManager.sys.mjs");
+		
 		// This needs to be delayed as without the delay the theme detection occurs before Firefox's own values update
 		setTimeout(async () => {
+			const lwThemeResource = LightweightThemeManager.themeData.theme;
+
 			// Delete lwtheme-specific variable (if themed, they get remade)
-			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-height");
 			document.documentElement.style.removeProperty("--titlebar-pseudo-texture-ypos");
+			document.documentElement.style.removeProperty("--gktab-selected-bgcolor");
+			document.documentElement.style.removeProperty("--gktab-selected-bgcolor-opacity-percentage");
+			document.documentElement.removeAttribute("tab-selected-bgcolor-transparent");
+			document.documentElement.style.removeProperty("--gktoolbar-bgcolor");
+			document.documentElement.style.removeProperty("--gktoolbar-bgcolor-opacity-percentage");
 			document.documentElement.removeAttribute("toolbar-bgcolor-transparent");
+			document.documentElement.style.removeProperty("--gktoolbar-field-background-color");
+			document.documentElement.style.removeProperty("--gktoolbar-field-background-color-opacity-percentage");
+			document.documentElement.removeAttribute("toolbar-field-background-color-transparent");
+
+			if (!versionFlags.is122Plus)
+				document.documentElement.style.removeProperty("--lwt-tab-line-color")
+			
 			// Do not run further if a Chromium Theme is currently used
 			if (isChromeThemed) {
-				if (gkChrTheme.getEligible) {
+				if (gkChrTheme.getEligible)
 					return;
-				}
 			}
 			isThemed = gkLWTheme.isThemed;
 			if (isThemed) {
 				document.documentElement.setAttribute("gkthemed", true);
 
-				// Ensure the toolbar colour is opaque
+				// Add `--lwt-tab-line-color` to `root` in versions which adds it to `#TabsToolbar` instead.
+				if (!versionFlags.is122Plus && LightweightThemeManager.themeData.theme.tab_line)
+					document.documentElement.style.setProperty("--lwt-tab-line-color", LightweightThemeManager.themeData.theme.tab_line);
+
+				// Ensure the tab selected background colour is opaque
+				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue('--tab-selected-bgcolor');
+				if (tabSelectedBgcolor.includes("rgba") && tabSelectedBgcolor.includes("rgba")) {
+					var tabSelectedBgcolorArray = tabSelectedBgcolor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					// if the colour is transparent...
+					document.documentElement.style.setProperty("--gktab-selected-bgcolor", `rgb(${tabSelectedBgcolorArray[0]}, ${tabSelectedBgcolorArray[1]}, ${tabSelectedBgcolorArray[2]})`);
+					document.documentElement.style.setProperty("--gktab-selected-bgcolor-opacity-percentage", `${Math.floor((tabSelectedBgcolorArray[3] / 1) * 100)}%`);
+
+					if (tabSelectedBgcolorArray[3] == 0 || tabSelectedBgcolorArray[3].includes("."))
+						document.documentElement.setAttribute("tab-selected-bgcolor-transparent", true);
+				}
+
+				// Ensure the toolbar background colour is opaque
 				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
 				if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
-					var tbgarray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					var toolbarBgColorArray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
-					if (tbgarray[3] == 0 || tbgarray[3].includes(".")) {
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${toolbarBgColorArray[0]}, ${toolbarBgColorArray[1]}, ${toolbarBgColorArray[2]})`);
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `${Math.floor((toolbarBgColorArray[3] / 1) * 100)}%`);
+					if (toolbarBgColorArray[3] == 0 || toolbarBgColorArray[3].includes("."))
 						document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
-						document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
-					} else {
-						document.documentElement.style.setProperty("--gktoolbar-bgcolor", `rgb(${tbgarray[0]}, ${tbgarray[1]}, ${tbgarray[2]})`);
-					}
+
 					// if the lwtheme was a Persona (and toolbar style isn't vanilla)
 					if (toolbarBgColor == "rgba(255,255,255,.4)" && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
 						var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue('--lwt-text-color');
@@ -146,6 +175,18 @@ class gkLWTheme {
 							document.documentElement.style.setProperty("--lwt-text-color", `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
 						}
 					}
+				}
+
+				// Ensure the urlbar background colour is opaque
+				var toolbarFieldBackgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-field-background-color');
+				if (toolbarFieldBackgroundColor.includes("rgba") && toolbarFieldBackgroundColor.includes("rgba")) {
+					var toolbarFieldBackgroundColorArray = toolbarFieldBackgroundColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					// if the colour is transparent...
+					document.documentElement.style.setProperty("--gktoolbar-field-background-color", `rgb(${toolbarFieldBackgroundColorArray[0]}, ${toolbarFieldBackgroundColorArray[1]}, ${toolbarFieldBackgroundColorArray[2]})`);
+					document.documentElement.style.setProperty("--gktoolbar-field-background-color-opacity-percentage", `${Math.floor((toolbarFieldBackgroundColorArray[3] / 1) * 100)}%`);
+
+					if (toolbarFieldBackgroundColorArray[3] == 0 || toolbarFieldBackgroundColorArray[3].includes("."))
+						document.documentElement.setAttribute("toolbar-field-background-color-transparent", true);
 				}
 
 				if (isBrowserWindow) {
@@ -167,7 +208,10 @@ class gkLWTheme {
 								document.documentElement.style.setProperty("--titlebar-pseudo-height", "calc(100% + 18px + 20px)");
 							} else {
 								// Center the titlebar texture within Geckium's top-boundaries
-								document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
+								if (this.height <= 68)
+									document.documentElement.style.setProperty("--titlebar-pseudo-height", `68px`);
+								else
+									document.documentElement.style.setProperty("--titlebar-pseudo-height", `${this.height}px`);
 							}
 							if (this.height >= 140) {
 								var alignment = getComputedStyle(document.documentElement).getPropertyValue("--lwt-background-alignment").split(", ")[0].split(" ");
@@ -191,13 +235,12 @@ class gkLWTheme {
 	
 	// LWTheme Toolbar Background Modes
 	static get getCustomThemeMode() {
-		let modes = ["fxchrome", "silverfox", "none"]; // TODO: "firefox"
+		let modes = ["geckium", "fxchrome", "silverfox", "none"]; // TODO: "firefox"
 		let prefChoice = gkPrefUtils.tryGet("Geckium.customtheme.mode").string;
-		if (modes.includes(prefChoice)) {
+		if (modes.includes(prefChoice))
 			return prefChoice;
-		} else {
+		else
 			return modes[0];
-		}
 	}
 	static customThemeModeChanged() {
 		document.documentElement.setAttribute("customthememode", gkLWTheme.getCustomThemeMode);

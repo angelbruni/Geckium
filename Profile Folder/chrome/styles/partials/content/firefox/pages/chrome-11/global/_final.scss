@@ -10,9 +10,10 @@
 body {
 	--main-pane-width: var(--main-pane-width-final) !important;
 
-	font: caption;
+	font-family: Helvetica, Arial, sans-serif !important;
 	font-size: 9pt !important;
-	@media (-moz-platform: windows) {
-		font-family: Arial, sans-serif !important;
+	
+	@media (-moz-platform: linux) {
+		font: message-box !important;
 	}
 }

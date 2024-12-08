@@ -1,6 +1,7 @@
-&:not([geckium-fortyseven]) {
+&:not([geckium-thirtyseven]) {
 	//Give the tabs/Incognito/pfp the appropriate offset
-	#private-browsing-indicator-with-label {
+	#private-browsing-indicator-with-label,
+	.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 		order: -1 !important; // Force to left
 	}
 	.titlebar-spacer[type="pre-tabs"] {
@@ -13,14 +14,20 @@
 	}
 	// Incognito can't use this^ spacing, so we need to set it separately for Incognito
 	&[privatebrowsingmode="temporary"] {
-		#private-browsing-indicator-with-label {
+		#private-browsing-indicator-with-label,
+		.private-browsing-indicator-with-label /* Fix for Firefox 133+ */ {
 			margin-inline-start: var(--tab-distance-from-toolbar-edge);
 		}
 	}
-	#fxa-toolbar-menu-button,
+	#gkavatar-container > #gk-firefox-account-button,
 	.private-browsing-indicator-icon {
 		margin-inline-start: 1px !important;
 		margin-inline-end: var(--tab-distance-from-pfp) !important;
+	}
+
+	// Tweaks for Profile Titlebutton
+	#gkpeople-button-container {
+		margin-inline-end: 0 !important;
 	}
 
 	//Shared non-native titlebar variables

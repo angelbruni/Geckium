@@ -1,4 +1,14 @@
 :root {
+	--default-link-color: rgb(0,0,255);
+
+	background-color: white;
+
+	@media (prefers-color-scheme: dark) {
+		--default-link-color: hsl(240, 100%, 80%);
+		
+		background-color: rgb(32, 32, 32);
+	}
+
 	body {
 		margin: 10px;
 	}
@@ -14,10 +24,10 @@
 	&[geckium-one] {
 		@import "partials/chrome-8/final";
 	}
-	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone] {
+	&[geckium-one][geckium-twentyone] {
 		@import "partials/chrome-21/final";
 	}
-	&[geckium-one][geckium-three][geckium-four][geckium-five][geckium-six][geckium-eleven][geckium-twentyone][geckium-twentyfive][geckium-fortyseven] {
+	&[geckium-one][geckium-twentyone][geckium-fortyseven] {
 		@import "partials/chrome-47/final";
 	}
 }

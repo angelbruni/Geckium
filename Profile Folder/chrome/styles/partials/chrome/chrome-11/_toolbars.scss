@@ -11,15 +11,13 @@
 
 	--personal-toolbar-height: 24px;
 
-	&:not([personalbar="newtab"]) {
-		#PersonalToolbar {
-			padding: 1px !important;
-			padding-inline: 3px !important;
-			
-			> * {
-				margin-top: -2px !important;
-				margin-bottom: 2px !important;
-			}
+	&:not([personalbar="newtab"]) #PersonalToolbar {
+		padding: 1px !important;
+		padding-inline: 3px !important;
+		
+		> * {
+			margin-top: -2px !important;
+			margin-bottom: 2px !important;
 		}
 	}
 
@@ -37,7 +35,7 @@
 	}
 
 	:not(.widget-overflow-list) > .toolbarbutton-1:not(
-		#fxa-toolbar-menu-button,
+		#gkavatar-container > #gk-firefox-account-button,
 		#tabs-newtab-button,
 		#new-tab-button,
 		.subviewbutton,
@@ -156,6 +154,7 @@
 		}
 
 		&#unified-extensions-button,
+		&#searchmode-switcher-button,
 		&[type="menu"]:not(#back-button, #forward-button),
 		&#PanelUI-menu-button,
 		&[class*="webextension"],
@@ -167,6 +166,11 @@
 			&::before {
 				transition: none;
 			}
+
+			&#searchmode-switcher-button .toolbarbutton-icon {
+				width: 19px !important;
+				height: 19px !important;
+			}
 		}
 	}
 
@@ -177,7 +181,7 @@
 	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-sixtyeight]) {
 		:not(.widget-overflow-list)
 		> .toolbarbutton-1:not(
-			#fxa-toolbar-menu-button,
+			#gkavatar-container > #gk-firefox-account-button,
 			#tabs-newtab-button,
 			#new-tab-button,
 			.subviewbutton) {
@@ -194,7 +198,7 @@
 			}
 		}
 	}
-	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-fortyseven]) {
+	&[gksystheme="gtk"]:not([gkthemed], [gkchrthemed], [geckium-thirtyseven]) {
 		#PanelUI-menu-button,
 		#chrome-button {
 			width: 33px !important;

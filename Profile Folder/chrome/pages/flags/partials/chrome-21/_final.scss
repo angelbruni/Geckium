@@ -1,7 +1,12 @@
 body {
+	font-family: 'Segoe UI', Tahoma, sans-serif;
 	font-size: 8pt !important;
-	@media (-moz-platform: windows) {
-		font-family: 'Segoe UI', Tahoma, sans-serif !important;
+	
+	@media (-moz-platform: linux) {
+		font: message-box;
+	}
+	@media (-moz-platform: macos) {
+		font: 'Lucida Grande', sans-serif;
 	}
 }
 

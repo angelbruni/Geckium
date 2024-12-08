@@ -1,11 +1,6 @@
-menupopup {
-	button {
-		&:not([disabled="true"]) {
-			&:hover {
-				fill: #969696 !important;
-			}
-		}
-	}
+menupopup button:not([disabled="true"]):hover {
+	color: var(--gk-menuitem-foreground) !important;
+	fill: #969696 !important;
 }
 
 // Hardcoded menu skin
@@ -21,7 +16,7 @@ menupopup {
 
 	@media (prefers-color-scheme: dark) {
 		--gk-menu-background: #2A2A2D;
-
+		
 		--gk-menuitem-background: #444547;
 		--gk-menuitem-foreground: white;
 		--gk-menuitem-foreground-keys: white;
