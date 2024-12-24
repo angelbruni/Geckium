@@ -1,12 +1,3 @@
-// Map of special characters and their corresponding HTML entities
-const specialCharacters = {
-	"&": "&amp;",
-	"<": "&lt;",
-	">": "&gt;",
-	'"': "&quot;",
-	"'": "&#39;",
-};
-
 function createMainLayout() {
 	let appearanceChoice = gkEras.getNTPEra();
 
