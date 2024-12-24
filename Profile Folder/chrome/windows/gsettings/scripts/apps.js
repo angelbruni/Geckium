@@ -1,13 +1,4 @@
-const { gkNTP } = ChromeUtils.importESModule("chrome://modules/content/GeckiumNTP.sys.mjs");
-
-// Map of special characters and their corresponding HTML entities
-const specialCharacters = {
-	"&": "&amp;",
-	"<": "&lt;",
-	">": "&gt;",
-	'"': "&quot;",
-	"'": "&#39;",
-};
+const years = gkNTP.getAppYears;
 
 let appsListInitialized = false;
 
@@ -19,135 +10,151 @@ function populateAppsList() {
 	const addAppFAB = document.getElementById("add-app-fab");
 	addAppFAB.setAttribute("disabled", true);
 
-    let appsList = gkNTP.getAppsList;
+    const appsList = gkNTP.getAppsList;
 
-    // Check if appsList is an object
     if (appsList && typeof appsList === 'object') {
-        for (let key in appsList) {
-            if (appsList.hasOwnProperty(key)) {
-                let app = appsList[key];
-				
-				let appFavicon;
-				if (!app.favicon)
-					appFavicon = "";
-				else
-					appFavicon = app.favicon.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-				let appOldIcon;
-				if (!app.oldIcon)
-					appOldIcon = "";
-				else
-					appOldIcon = app.oldIcon.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-				let appNewIcon;
-				if (!app.newIcon)
-					appNewIcon = "";
-				else
-					appNewIcon = app.newIcon.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-				let appOldName;
-				if (!app.oldName)
-					appOldName = "";
-				else
-					appOldName = app.oldName.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-				let appNewName;
-				if (!app.newName)
-					appNewName = "";
-				else
-					appNewName = app.newName.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-				let appURL;
-				if (!app.url)
-					appURL = "";
-				else
-					appURL = app.url.replace(/[&<>"']/g, match => specialCharacters[match]);
-
-                let item = `
-                <html:button class="item app ripple-enabled"
-							 style="list-style-image: url('${appNewIcon}')"
-							 data-app="${key}"
-							 data-app-old-favicon="${appFavicon}"
-							 data-app-old-icon="${appOldIcon}"
-							 data-app-new-icon="${appNewIcon}"
-							 data-app-old-name="${appOldName}"
-							 data-app-new-name="${appNewName}"
-							 data-app-url="${appURL}"
-							 data-toggle-modal="editApp_modal">
-                    <hbox>
-						<image />
-                        <label class="name">${appOldName} - ${appNewName}</label>
-                    </hbox>
-                </html:button>
-                `;
+		for (let key in appsList) {
+			if (appsList.hasOwnProperty(key)) {
+				const app = gkNTP.getAppsList[key];
+	
+				const appNames = {};
+				const appIcons = {};
+	
+				years.forEach(year => {
+					appNames[year] = app.names[year] ? app.names[year].replace(/[&<>"']/g, match => specialCharacters[match]) : null;
+					appIcons[year] = app.icons[year] ? app.icons[year].replace(/[&<>"']/g, match => specialCharacters[match]) : null;
+				});
+	
+				const reversedYears = [...years].reverse(); // Reverse the years array to prioritize the latest available icon and name
+	
+				const appName = reversedYears.map(year => appNames[year]).find(name => name) || "";
+				const appIcon = reversedYears.map(year => appIcons[year]).find(icon => icon) || "";
+	
+				const item = `
+					<html:button class="item app ripple-enabled"
+								 data-app="${key}"
+								 data-toggle-modals="editApp_modal"
+								 style="list-style-image: url('${appIcon}')">
+						<hbox>
+							<image />
+							<label class="name">${appName}</label>
+						</hbox>
+					</html:button>
+				`;
 				gkInsertElm.before(MozXULElement.parseXULToFragment(item), container.querySelector(".spinner-container"));
-            }
-        }
-    }
+			}
+		}
+	}	
 	
 	document.querySelectorAll("#apps-list > .item, #add-app-fab").forEach(item => {
 		item.addEventListener("click", () => {
-			const modal = document.querySelector(`.modal[data-modal="${item.dataset.toggleModal}"]`);
+			const modal = document.querySelector(`.modal[data-modal="${item.dataset.toggleModals}"]`);
 			modal.classList.add("active");
+			const modalTitle = modal.querySelector("#app-name.header");
+	
+			const index = item.dataset.app;
+			modal.dataset.app = index || null;
+	
+			modalTitle.textContent = document.getElementById("add-app-fab").getAttribute("label");
+	
+			years.forEach(year => {
+				const modalFaviconInput = modal.querySelector(`input#image-app-${year}-favicon`);
+				const modalFaviconLabel = modal.querySelector(`label[for='image-app-${year}-favicon']`);
+				const modalIconInput = modal.querySelector(`input#image-app-${year}-icon`);
+				const modalIconLabel = modal.querySelector(`label[for='image-app-${year}-icon']`);
+				const modalNameInput = modal.querySelector(`input#input-app-${year}-name`);
+				const modalDeleteBtn = modal.querySelector(`#delete-${year}-icon`);
+	
+				if (modalFaviconInput && modalFaviconLabel) {
+					modalFaviconInput.addEventListener("change", () => {
+						const value = modalFaviconInput.value.replace(/\\/g, "/");
+						
+						if (value.includes("://")) {
+							modalFaviconLabel.dataset.favicon = value;
+							modalFaviconLabel.style.listStyleImage = `url("${value}")`;
+						} else {
+							modalFaviconLabel.dataset.favicon = `file://${value}`;
+							modalFaviconLabel.style.listStyleImage = `url("file://${value}")`;
+						}
+							
+					});
+					delete modalFaviconLabel.dataset.favicon;
+					modalFaviconLabel.style.listStyleImage = null;
+				}
 
-			const modalTitle = modal.querySelector("span#app-name");
-			const modalOldFavicon = modal.querySelector("input#image-app-old-favicon");
-			const modalOldIcon = modal.querySelector("input#image-app-old-icon");
-			const modalNewIcon = modal.querySelector("input#image-app-new-icon");
-
-			const modalButtonOldFavicon = modal.querySelector("label[for='image-app-old-favicon']");
-			const modalButtonOldIcon = modal.querySelector("label[for='image-app-old-icon']");
-			const modalButtonNewIcon = modal.querySelector("label[for='image-app-new-icon']");
-
-			const modalOldName = modal.querySelector("input#input-app-old-name");
-			const modalNewName = modal.querySelector("input#input-app-new-name");
-
+				if (modalIconInput && modalIconLabel) {
+					modalIconInput.addEventListener("change", () => {
+						const value = modalIconInput.value.replace(/\\/g, "/");
+						
+						if (value) {
+							if (value.includes("://")) {
+								modalIconLabel.dataset.icon = value;
+								modalIconLabel.style.listStyleImage = `url("${value}")`;
+							} else {
+								modalIconLabel.dataset.icon = `file://${value}`;
+								modalIconLabel.style.listStyleImage = `url("file://${value}")`;
+							}
+						} else {
+							delete modalIconLabel.dataset.icon;
+							modalIconLabel.style.listStyleImage = null;
+						}
+							
+					});
+					delete modalIconLabel.dataset.icon;
+					modalIconLabel.style.listStyleImage = null;
+				}
+	
+				if (modalDeleteBtn) {
+					modalDeleteBtn.addEventListener("click", () => {
+						modalIconInput.value = null;
+						delete modalIconLabel.dataset.icon;
+						modalIconInput.dispatchEvent(new Event("change"));
+					});
+				}
+	
+				if (modalNameInput)
+					modalNameInput.value = null;
+			});
+	
 			const modalURL = modal.querySelector("input#input-app-url");
+			if (modalURL)
+				modalURL.value = null;
+	
+			const app = gkNTP.getAppsList[index];
+			if (app) {
+				years.forEach(year => {
+					const appFavicon = app.favicons[year] || null;
+					const appIcon = app.icons[year] || null;
+					const appName = app.names[year] || null;
+	
+					const modalFaviconLabel = modal.querySelector(`label[for='image-app-${year}-favicon']`);
+					const modalIconLabel = modal.querySelector(`label[for='image-app-${year}-icon']`);
+					const modalNameInput = modal.querySelector(`input#input-app-${year}-name`);
 
-			modal.dataset.app = null;
-
-			modalTitle.textContent = "";
-
-			modalButtonOldFavicon.style.listStyleImage = null;
-			modalButtonOldIcon.style.listStyleImage = null;
-			modalButtonNewIcon.style.listStyleImage = null;
-			
-			modalOldName.value = "";
-			modalNewName.value = "";
-
-			modalURL.value = "";
-
-			modalOldFavicon.addEventListener("change", () => {
-				modalButtonOldFavicon.style.listStyleImage = `url("file://${modalOldFavicon.value.replace(/\\/g, "/")}")`;
-			})
-			modalOldIcon.addEventListener("change", () => {
-				modalButtonOldIcon.style.listStyleImage = `url("file://${modalOldIcon.value.replace(/\\/g, "/")}")`;
-			})
-			modalNewIcon.addEventListener("change", () => {
-				modalButtonNewIcon.style.listStyleImage = `url("file://${modalNewIcon.value.replace(/\\/g, "/")}")`;
-			})
-
-			// if !app
-			if (item.dataset.app == undefined)
-				return;
-
-			modal.dataset.app = item.dataset.app;
-
-			modalTitle.textContent = item.dataset.appNewName;
-
-			modalOldFavicon.value = item.dataset.appOldFavicon;
-			modalOldIcon.value = item.dataset.appOldIcon;
-			modalNewIcon.value = item.dataset.appNewIcon;
-			modalButtonOldFavicon.style.listStyleImage = `url("${item.dataset.appOldFavicon}")`;
-			modalButtonOldIcon.style.listStyleImage = `url("${item.dataset.appOldIcon}")`;
-			modalButtonNewIcon.style.listStyleImage = `url("${item.dataset.appNewIcon}")`;
-			
-			modalOldName.value = item.dataset.appOldName;
-			modalNewName.value = item.dataset.appNewName;
-
-			modalURL.value = item.dataset.appUrl;
-		})
-	})
+					if (modalFaviconLabel && appFavicon) {
+						modalFaviconLabel.dataset.favicon = appFavicon;
+						modalFaviconLabel.style.listStyleImage = `url("${appFavicon}")`;
+					}
+	
+					if (modalIconLabel && appIcon) {
+						modalIconLabel.dataset.icon = appIcon;
+						modalIconLabel.style.listStyleImage = `url("${appIcon}")`;
+					}
+	
+					if (modalNameInput)
+						modalNameInput.value = appName;
+				});
+	
+				const appName = years.map(year => app.names[year]).find(name => name) || "";
+				modalTitle.textContent = gSettingsBundle
+					.GetStringFromName("editApp")
+					.replace("{{app}}", appName);
+	
+				if (modalURL)
+					modalURL.value = app.url;
+			}
+		});
+	});
 
 	container.removeAttribute("loading");
 	addAppFAB.removeAttribute("disabled");
@@ -169,111 +176,73 @@ document.addEventListener("pageChanged", () => {
 	}
 })
 
-const modal = document.querySelector(`.modal[data-modal="editApp_modal"]`)
-modal.querySelector(".button#deleteBtn").addEventListener("click", () => {
-	currentModal = document.querySelector(`.modal[data-modal="editApp_modal"]`);
-
-	const newAppsList = gkNTP.getAppsList;
-
-	delete newAppsList[currentModal.dataset.app];
-
-	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
-
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
-
+const editAppModal = document.querySelector(`.modal[data-modal="editApp_modal"]`)
+const deleteAppConfirmationModal = document.querySelector(`.modal[data-modal="deleteAppConfirmation_modal"]`)
+deleteAppConfirmationModal.querySelector(".button#app_deleteBtn").addEventListener("click", () => {
+	gkNTP.deleteApp(editAppModal.dataset.app);
 	populateAppsList();
 });
-modal.querySelector(".button#cancelBtn");
-modal.querySelector(".button#OKBtn").addEventListener("click", () => {
-	currentModal = document.querySelector(`.modal[data-modal="editApp_modal"]`);
+editAppModal.querySelector(".button#app_OKBtn").addEventListener("click", () => {
+    const currentModal = document.querySelector(`.modal[data-modal="editApp_modal"]`);
 
-	let newApp = {};
+    const getAppData = (year) => {
+        const faviconLabel = editAppModal.querySelector(`label[for='image-app-${year}-favicon']`);
+        const iconLabel = editAppModal.querySelector(`label[for='image-app-${year}-icon']`);
+        const nameInput = editAppModal.querySelector(`#input-app-${year}-name`);
 
-	const newAppsList = gkNTP.getAppsList;
+        return {
+            favicon: faviconLabel ? faviconLabel.dataset.favicon || "" : "",
+            icon: iconLabel ? iconLabel.dataset.icon || "" : "",
+            name: nameInput ? nameInput.value || "" : ""
+        };
+    };
 
-	/*const modalTitle = modal.querySelector("span#app-name");*/
-	const modalOldFavicon = modal.querySelector("input#image-app-old-favicon");
-	const modalOldIcon = modal.querySelector("input#image-app-old-icon");
-	const modalNewIcon = modal.querySelector("input#image-app-new-icon");
-	const modalOldName = modal.querySelector("input#input-app-old-name");
-	const modalNewName = modal.querySelector("input#input-app-new-name");
+    const appData = {
+        favicons: {},
+        icons: {},
+        names: {},
+        url: editAppModal.querySelector("input#input-app-url").value,
+        type: "tab"
+    };
 
-	const modalURL = modal.querySelector("input#input-app-url");
+    years.forEach(year => {
+        const { favicon, icon, name } = getAppData(year);
+        appData.favicons[year] = favicon;
+        appData.icons[year] = icon;
+        appData.names[year] = name;
+    });
 
-	newApp.pos = parseInt(currentModal.dataset.app);
+    gkNTP.editApp(currentModal.dataset.app, appData);
 
-	if (modalOldFavicon.value)
-		newApp.favicon = "file://" + modalOldFavicon.value.replace(/\\/g, "/");
-	else
-		newApp.favicon = newAppsList[currentModal.dataset.app]["favicon"];
-
-	if (modalOldIcon.value)
-		newApp.oldIcon = "file://" + modalOldIcon.value.replace(/\\/g, "/");
-	else
-		newApp.oldIcon = newAppsList[currentModal.dataset.app]["oldIcon"];
-
-	if (modalNewIcon.value)
-		newApp.newIcon = "file://" + modalNewIcon.value.replace(/\\/g, "/");
-	else
-		newApp.newIcon = newAppsList[currentModal.dataset.app]["newIcon"];
-
-	newApp.oldName = modalOldName.value;
-	newApp.newName = modalNewName.value;
-
-	newApp.url = modalURL.value;
-
-	newApp.type = 0;
-
-	newAppsList[currentModal.dataset.app] = newApp;
-
-	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
-
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
-
-	populateAppsList();
+    populateAppsList();
 });
-modal.querySelector(".button#createBtn").addEventListener("click", () => {
-	currentModal = document.querySelector(`.modal[data-modal="editApp_modal"]`);
 
-	const newAppsList = gkNTP.getAppsList;
+editAppModal.querySelector(".button#createBtn").addEventListener("click", () => {
+    const getData = (year, type) => {
+        const label = editAppModal.querySelector(`label[for='image-app-${year}-${type}']`);
+        return label ? label.dataset[type] || "" : "";
+    };
 
-	let maxKey = -1;
-	for (let key in newAppsList) {
-		if (newAppsList.hasOwnProperty(key) && !isNaN(parseInt(key)))
-			maxKey = Math.max(maxKey, parseInt(key));
-	}
+    const getName = (year) => {
+        const input = editAppModal.querySelector(`#input-app-${year}-name`);
+        return input ? input.value || "" : "";
+    };
 
-	// Calculate the new key
-	let newKey = maxKey + 1;
+    const appData = {
+        favicons: {},
+        icons: {},
+        names: {},
+        url: editAppModal.querySelector("input#input-app-url").value,
+        type: "tab"
+    };
 
-	let newApp = {};
+    years.forEach(year => {
+        appData.favicons[year] = getData(year, 'favicon');
+        appData.icons[year] = getData(year, 'icon');
+        appData.names[year] = getName(year);
+    });
 
-	/*const modalTitle = modal.querySelector("span#app-name");*/
-	const modalOldFavicon = modal.querySelector("input#image-app-old-favicon");
-	const modalOldIcon = modal.querySelector("input#image-app-old-icon");
-	const modalNewIcon = modal.querySelector("input#image-app-new-icon");
-	const modalOldName = modal.querySelector("input#input-app-old-name");
-	const modalNewName = modal.querySelector("input#input-app-new-name");
+    gkNTP.addApp(appData);
 
-	const modalURL = modal.querySelector("input#input-app-url");
-
-	newApp.pos = newKey;
-
-	newApp.favicon = "file://" + modalOldFavicon.value.replace(/\\/g, "/");
-	newApp.oldIcon = "file://" + modalOldIcon.value.replace(/\\/g, "/");
-	newApp.newIcon = "file://" + modalNewIcon.value.replace(/\\/g, "/");
-	newApp.oldName = modalOldName.value;
-	newApp.newName = modalNewName.value;
-
-	newApp.url = modalURL.value;
-
-	newApp.type = 0;
-
-	newAppsList[newKey] = newApp;
-
-	console.log(newAppsList, "\n", JSON.stringify(newAppsList));
-	
-	gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify(newAppsList))
-
-	populateAppsList();
+    populateAppsList();
 });

@@ -201,10 +201,6 @@
 }
 
 .bookmark-item {
-	&[container="true"] {
-		list-style-image: var(--bookmark-folder-icon) !important;
-	}
-
 	&[image="page-icon:about:newtab"],
 	&[image="page-icon:about:gsettings"],
 	&[image="page-icon:about:apps"] {
@@ -219,6 +215,10 @@
 		.menu-iconic-left {
 			display: none !important;
 		}
+	}
+	
+	&[container="true"] {
+		list-style-image: var(--bookmark-folder-icon) !important;
 	}
 
 	&[image="page-icon:about:newtab"]::before {

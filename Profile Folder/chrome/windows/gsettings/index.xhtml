@@ -261,7 +261,7 @@
 											<vbox class="card">
 												<h4>
 													&gsettings.availablePresets;
-													<html:button class="about-flag ripple-enabled" data-toggle-modal="aboutVisualStyles_modal"></html:button>
+													<html:button class="about-flag ripple-enabled" data-toggle-modals="aboutVisualStyles_modal"></html:button>
 													<div class="modal" data-modal="aboutVisualStyles_modal">
 														<div class="wrapper">
 															<div class="card">
@@ -271,7 +271,7 @@
 																		&gsettings.modalChromiumVisualStylePresetsDescription;
 																	</div>
 																	<div class="footer">
-																		<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutVisualStyles_modal" />
+																		<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modals="aboutVisualStyles_modal" />
 																	</div>
 																</vbox>
 															</div>
@@ -292,8 +292,8 @@
 															<vbox class="body">
 																<div class="header">&gsettings.modalDesignOverridden;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="overrides_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="overrides_modal" onclick="disableOverrides();" />
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="overrides_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="overrides_modal" onclick="disableOverrides();" />
 																</div>
 															</vbox>
 														</div>
@@ -626,72 +626,184 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<vbox class="card" id="apps-list" style="position: relative;">
-												<h4><div class="year" style="margin-inline-end: 5px">2010+</div> &gsettings.appsList;</h4>
+												<h4>
+													<div class="year" style="margin-inline-end: 5px">2011+</div> &gsettings.appsList;
+													<label id="restoreDefaultAppsBtn" style="margin-inline-start: auto;" class="button ripple-enabled text color" data-toggle-modals="restoreDefaultAppsConfirmation_modal">&gsettings.restoreDefaults;</label>
+												</h4>
 												<html:div class="spinner-container">
 													<svg class="spinner" width="48px" height="48px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
 														<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
 													</svg>
 												</html:div>
 											</vbox>
-											<div class="modal" data-modal="editApp_modal">
+											<div class="modal" data-modal="restoreDefaultAppsConfirmation_modal">
 												<div class="wrapper">
 													<div class="card">
 														<vbox class="body">
-															<div class="header">
-																&gsettings.modalEditAppTitle;
-																<span id="app-name" />
+															<div class="header">&dialog.areyousure;</div>
+															<div class="footer">
+																<button id="app_CancelRestoreBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modals="restoreDefaultAppsConfirmation_modal" />
+																<button id="app_restoreBtn" class="button ripple-enabled text" label="&gsettings.restore;" onclick="gkNTP.restoreDefaultApps(); populateAppsList();" data-toggle-modals="restoreDefaultAppsConfirmation_modal" />
 															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
+											<div class="modal" data-modal="editApp_modal">
+												<div class="wrapper">
+													<div class="card" style="width: 1000px">
+														<vbox class="body">
+															<div id="app-name" class="header" />
 															<vbox class="description">
-																<hbox style="gap: 24px">
-																	<hbox style="gap: 8px; align-items: center;">
-																		<vbox class="icon-picker favicon">
-																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-old-favicon" style="display: none;" />
-																			<html:label class="button raised text ripple-enabled" for="image-app-old-favicon">
-																				<image />
-																			</html:label>
-																			<label>&gsettings.modalEditAppOldFavicon;</label>
-																		</vbox>
-																		<vbox class="icon-picker icon">
-																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-old-icon" style="display: none;" />
-																			<html:label class="button raised text ripple-enabled" for="image-app-old-icon">
-																				<image />
-																			</html:label>
-																			<label>&gsettings.modalEditAppOldIcon;</label>
-																		</vbox>
-																	</hbox>
-																	<hbox>
-																		<vbox class="icon-picker icon">
-																			<html:input type="file" accept="image/png, image/jpeg" id="image-app-new-icon" style="display: none;" />
-																			<html:label class="button raised text ripple-enabled" for="image-app-new-icon">
-																				<image />
-																			</html:label>
-																			<label>&gsettings.modalEditAppNewIcon;*</label>
-																		</vbox>
-																	</hbox>
-																</hbox>
-																<vbox style="margin-block-start: 16px; gap: 16px;">
-																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-old-name" name="app" required="true" />
-																		<label class="placeholder">&gsettings.modalEditAppOldName;</label>
-																	</div>
-																	<div class="input-parent size-md" flex="1">
-																		<html:input type="text" class="input" id="input-app-new-name" name="app" required="true" />
-																		<label class="placeholder">&gsettings.modalEditAppNewName;*</label>
-																	</div>
-																</vbox>
+																<html:table style="align-self: baseline;">
+																	<html:tr>
+																		<html:th />
+																		<html:th>&gsettings.favicon;</html:th>
+																		<html:th>&gsettings.icon;</html:th>
+																		<html:th style="width: 100%;">&gsettings.name;</html:th>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2011</html:th>
+																		<html:td>
+																			<vbox class="icon-picker favicon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2011-favicon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2011-favicon">
+																					<image />
+																				</html:label>
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2011-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2011-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2011-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2011-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2012</html:th>
+																		<html:td />
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2012-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2012-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2012-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2012-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2013</html:th>
+																		<html:td />
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2013-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2013-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2013-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2013-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2014</html:th>
+																		<html:td />
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2014-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2014-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2014-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2014-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2015</html:th>
+																		<html:td />
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2015-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2015-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2015-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2015-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																	<html:tr>
+																		<html:th>2017</html:th>
+																		<html:td />
+																		<html:td>
+																			<vbox class="icon-picker icon">
+																				<html:input type="file" accept="image/png, image/jpeg" id="image-app-2017-icon" style="display: none;" />
+																				<html:label class="button raised text ripple-enabled" for="image-app-2017-icon">
+																					<image />
+																				</html:label>
+																				<html:button id="delete-2017-icon" class="action-item icon-delete" />
+																			</vbox>
+																		</html:td>
+																		<html:td>
+																			<div class="input-parent size-md" flex="1">
+																				<html:input type="text" class="input" id="input-app-2017-name" name="app" required="true" />
+																			</div>
+																		</html:td>
+																	</html:tr>
+																</html:table>
 																<vbox style="margin-block-start: 16px; gap: 16px;">
 																	<div class="input-parent size-md" flex="1">
 																		<html:input type="text" class="input" id="input-app-url" name="app" required="true" />
-																		<label class="placeholder">URL*</label>
+																		<label class="placeholder">URL</label>
 																	</div>
 																</vbox>
 															</vbox>
 															<div class="footer">
-																<button id="deleteBtn" class="button ripple-enabled text" label="&gsettings.delete;" data-toggle-modal="editApp_modal" />
-																<button id="cancelBtn" class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="editApp_modal" />
+																<button id="deleteConfirmationBtn" class="button ripple-enabled text" label="&gsettings.delete;" data-toggle-modals="deleteAppConfirmation_modal" />
+																<button id="cancelBtn" class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="editApp_modal" />
 																<spacer />
-																<button id="OKBtn" class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="editApp_modal" />
-																<button id="createBtn" class="button ripple-enabled text color" label="&gsettings.create;" data-toggle-modal="editApp_modal" />
+																<button id="app_OKBtn" class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modals="editApp_modal" />
+																<button id="createBtn" class="button ripple-enabled text color" label="&gsettings.create;" data-toggle-modals="editApp_modal" />
+															</div>
+														</vbox>
+													</div>
+												</div>
+											</div>
+											<div class="modal" data-modal="deleteAppConfirmation_modal">
+												<div class="wrapper">
+													<div class="card">
+														<vbox class="body">
+															<div class="header">&dialog.areyousure;</div>
+															<div class="footer">
+																<button id="app_CancelDeleteBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modals="deleteAppConfirmation_modal" />
+																<button id="app_deleteBtn" class="button ripple-enabled text" label="&gsettings.delete;" data-toggle-modals="deleteAppConfirmation_modal, editApp_modal" />
 															</div>
 														</vbox>
 													</div>
@@ -719,7 +831,7 @@
 										</vbox>
 									</vbox>
 								</vbox>
-								<html:button id="add-app-fab" class="floating-action-button ripple-enabled leading-icon icon-add extended" label="&gsettings.addAnApp;" data-toggle-modal="editApp_modal" />
+								<html:button id="add-app-fab" class="floating-action-button ripple-enabled leading-icon icon-add extended" label="&gsettings.addAnApp;" data-toggle-modals="editApp_modal" />
 							</vbox>
 
 							<vbox class="page" data-page="13">
@@ -752,11 +864,11 @@
 																</hbox>
 															</vbox>
 															<div class="footer">
-																<html:button id="deleteBtn" class="button ripple-enabled text" data-toggle-modal="deleteThemeConfirm_modal">&gsettings.delete;</html:button>
+																<html:button id="theme_deleteBtn" class="button ripple-enabled text" data-toggle-modals="deleteThemeConfirm_modal">&gsettings.delete;</html:button>
 																<label id="viewStorePageBtn" is="text-link" class="button ripple-enabled text">&gsettings.viewStorePage;</label>
 																<label id="searchBtn" is="text-link" class="button ripple-enabled text">&gsettings.search;</label>
 																<spacer />
-																<html:button id="OKBtn" class="button ripple-enabled text" data-toggle-modal="manageTheme_modal">&dialog.ok;</html:button>
+																<html:button id="theme_OKBtn" class="button ripple-enabled text" data-toggle-modals="manageTheme_modal">&dialog.ok;</html:button>
 															</div>
 														</vbox>
 													</div>
@@ -768,7 +880,7 @@
 														<vbox class="body">
 															<div class="header">&dialog.areyousure;</div>
 															<div class="footer">
-																<button id="cancelDeleteBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modal="deleteThemeConfirm_modal" />
+																<button id="cancelDeleteBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modals="deleteThemeConfirm_modal" />
 															</div>
 														</vbox>
 													</div>
@@ -1147,19 +1259,19 @@
 									<vbox class="content">
 										<vbox class="list-container">
 											<vbox class="card">
-												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="wizard_modal">
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modals="wizard_modal">
 													<vbox>
 														<label class="name">&gsettings.clearStartupCacheAndRestartWithWizard;</label>
 													</vbox>
 												</html:button>
 												
-												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="restart_modal">
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modals="restart_modal">
 													<vbox>
 														<label class="name">&gsettings.restartBrowser;</label>
 													</vbox>
 												</html:button>
 												
-												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modal="clearcache_modal">
+												<html:button class="item ripple-enabled disable-in-wizard" data-toggle-modals="clearcache_modal">
 													<vbox>
 														<label class="name">&gsettings.clearStartupCacheAndRestartBrowser;</label>
 													</vbox>
@@ -1170,8 +1282,8 @@
 															<vbox class="body">
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); UC_API.Runtime.restart(true);" />
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="wizard_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); UC_API.Runtime.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1183,8 +1295,8 @@
 															<vbox class="body">
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="restart_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="restart_modal" onclick="UC_API.Runtime.restart();" />
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="restart_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="restart_modal" onclick="UC_API.Runtime.restart();" />
 																</div>
 															</vbox>
 														</div>
@@ -1196,8 +1308,8 @@
 															<vbox class="body">
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
-																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modal="clearcache_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modal="clearcache_modal" onclick="UC_API.Runtime.restart(true);" />
+																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="clearcache_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="clearcache_modal" onclick="UC_API.Runtime.restart(true);" />
 																</div>
 															</vbox>
 														</div>
@@ -1324,7 +1436,7 @@
 														<html:label class="gutter" for="auto_switch" />
 													</div>
 												</hbox>-->
-												<!--<html:button class="item ripple-enabled" data-toggle-modal="aboutBranch_modal">
+												<!--<html:button class="item ripple-enabled" data-toggle-modals="aboutBranch_modal">
 													<vbox>
 														<label class="name">&gsettings.branch;</label>
 													</vbox>
@@ -1344,7 +1456,7 @@
 																	</html:p>
 																</vbox>
 																<div class="footer">
-																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modal="aboutBranch_modal" />
+																	<button class="button ripple-enabled text color" label="&dialog.ok;" data-toggle-modals="aboutBranch_modal" />
 																</div>
 															</vbox>
 														</div>
