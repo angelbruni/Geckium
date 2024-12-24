@@ -6,15 +6,6 @@ let storedForDeletion = [];
 
 const { PageThumbs } = ChromeUtils.importESModule("resource://gre/modules/PageThumbs.sys.mjs");
 
-// Map of special characters and their corresponding HTML entities
-const specialCharacters = {
-	"&": "&amp;",
-	"<": "&lt;",
-	">": "&gt;",
-	'"': "&quot;",
-	"'": "&#39;",
-};
-
 /* Temporary code for webpage colours until I pick a colour with canvas.
 
    These colours are based from the ones Internet Explorer 9 picked up.
