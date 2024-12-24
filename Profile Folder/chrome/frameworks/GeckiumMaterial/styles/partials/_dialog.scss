@@ -23,6 +23,8 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+		max-width: 100vw;
+		max-height: 100vh;
 
         .card {
             --header-text-color: rgb(0, 0, 0, 86%);
@@ -34,7 +36,6 @@
             }
 
             min-width: 240px;
-            max-width: 640px;
             border-radius: 4px;
             transition: all 100ms ease-out;
             box-shadow: var(--elevation-24);
@@ -104,6 +105,7 @@
                 letter-spacing: 0.2px;
                 font-weight: 400;
                 white-space: pre-wrap;
+				overflow-y: auto;
             }
 
             .footer {
