@@ -37,9 +37,9 @@
 <!ENTITY gsettings.titlebarModeCompact					"กรอบแบบกระทัดรัด">
 <!ENTITY gsettings.titlebarInThemesIsSys				"ใช้กรอบหน้าต่างของระบบในธีมของ Chromium ที่เข้ากันได้">
 <!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"จำเป็นต้องเปิดใช้กรอบหน้าต่างของระบบในรูปแบบของแถบชื่อเรื่องหรือถูกใช้งานโดยลักษณะของแถบชื่อเรื่อง">
-<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
-<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
-<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"ขนาดปุ่มหัวเรื่องดั้งเดิม">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"จำเป็นสำหรับการปรับขนาดปุ่มและแท็บของแถบหัวเรื่องดั้งเดิมอย่างเหมาะสม">
+<!ENTITY gsettings.customWidthInPixels					"ความกว้างที่กำหนดเอง (หน่วยพิกเซล)">
 
 <!ENTITY gsettings.availablePresets	"ตัวเลือกชุดรูปแบบที่มีอยู่ในขณะนี้">
 <!ENTITY gsettings.resetOverrides	"รีเซ็ตทุกการตั้งค่าต่างๆ ที่ทับซ้อนกับค่านี้">
@@ -55,9 +55,9 @@
 <!ENTITY gsettings.designToThemes		"เปลี่ยนหรือจัดการธีมต่างๆ...">
 <!ENTITY gsettings.designToExperiments	"เรียกดูตัวเลือกการออกแบบต่างๆ ของ Chromium ที่ถูกยกเลิกไป...">
 
-<!ENTITY gsettings.privacy			"[!!! ÞřïƲáç¥ !!!]">
-<!ENTITY gsettings.hideAccountInfo	"[!!! Hïδè áççôúñƭ ïñƒôř₥áƭïôñ !!!]">
-<!ENTITY gsettings.willHideInfoFrom	"[!!! Tλïƨ ƨèƭƭïñϱ ωïℓℓ λïδè ¥ôúř ñá₥è áñδ è-₥áïℓ ƒřô₥ ƥℓáçèƨ ƨúçλ áƨ Þèôƥℓè βúƭƭôñ áñδ Nèω Táβ ƥáϱè !!!]">
+<!ENTITY gsettings.privacy			"ความเป็นส่วนตัว">
+<!ENTITY gsettings.hideAccountInfo	"ซ่อนข้อมูลบัญชีผู้ใช้">
+<!ENTITY gsettings.willHideInfoFrom	"การตั้งค่านี้จะซ่อนชื่อและอีเมลของคุณจากที่ต่าง ๆ เช่น ปุ่ม ปุ่มประชาชน และหน้าแท็บใหม่">
 
 <!ENTITY gsettings.browser						"เบราว์เซอร์">
 <!ENTITY gsettings.branding						"แบรนด์">
@@ -65,8 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"อนุญาตให้คุณดาวน์โหลดธีมของ Chromium โดยไม่ต้องติดตั้งมันโดยการกดปุ่มทิ้ง">
 <!ENTITY gsettings.toolbar						"แถบเครื่องมือ">
 <!ENTITY gsettings.needsRestart					"ต้องการรีสตาร์ท">
-<!ENTITY gsettings.tabManager					"เปิดใช้ตัวจัดการแท็บ"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
-<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
+<!ENTITY gsettings.tabManager					"ตัวจัดการแท็บ"> 
+<!ENTITY gsettings.tabManagerDescription		'เปิดใช้ "ปุ่มลูกศร" พร้อมกับรายการแท็บที่เปิดอยู่ในแถบแท็บ'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"ซ่อนปุ่มเมนูส่วนขยาย">
 
 <!ENTITY gsettings.macIsGraphite					"ใช้ปุ่มแบบ Graphite ในแถบชื่อเรื่อง">
@@ -82,8 +82,8 @@
 <!ENTITY gsettings.disabled								"ปิดใช้งาน">
 <!ENTITY gsettings.chrThemesMustAero					"บังคับให้ธีมของ Chromium ทั้งหมดใช้กรอบหน้าต่างของระบบ">
 <!ENTITY gsettings.chrThemesMustAeroDisclaimer			"จำเป็นต้องเปิดใช้งานกรอบหน้าต่างของระบบในธีมของ Chromium ที่เข้ากันได้">
-<!ENTITY gsettings.forceColorizeAddressBar				"[!!! ÛR£ ßář ƭλè₥ïñϱ ƒôř ïñçô₥ƥáƭïβℓè δèƨïϱñƨ !!!]">
-<!ENTITY gsettings.forceColorizeAddressBarDisclaimer	"[!!! Rè9úïřèƨ Gèçƙïú₥ Fïřèƒôж Tλè₥è ₥ôδè ôř á çô₥ƥáƭïβℓè Çλřô₥ïú₥ Tλè₥è !!!]">
+<!ENTITY gsettings.forceColorizeAddressBar				"ปรับสีแถบที่อยู่ตามชุดตกแต่งที่กำหนดเอง">
+<!ENTITY gsettings.forceColorizeAddressBarDisclaimer	"ต้องการโหมดชุดตกแต่งของ Geckium หรือชุดตกแต่ง Chromium ที่เข้ากันได้">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttons			"ใช้พื้นหลังของแถบเครื่องมือกับปุ่มบนแถบชื่อเรื่อง">
 <!ENTITY gsettings.firefoxThemeOnTitlebuttonsDisclaimer	"แถบชื่อเรื่องบางรูปแบบจะไม่สนใจการตั้งค่านี้">
 <!ENTITY gsettings.colorizeTabGlareEffect				"เปลี่ยนสีลูกเล่นของแท็บตามธีมที่ใช้งาน">
@@ -96,16 +96,16 @@
 <!ENTITY gsettings.allToolbarItems					"ทุกรายการบนแถบเครื่องมือ">
 <!ENTITY gsettings.none								"ไม่ใช้งาน">
 
-<!ENTITY gsettings.websitePinningInEveryEra				"เปิดใช้การปักหมุดเว็บไซต์ในทุกยุคสมัย"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.websitePinningInEveryEra				"การปักหมุดเว็บไซต์ในทุกยุค">
 <!ENTITY gsettings.websitePinningInEveryEraDescription	"แสดงปุ่มพินในทุกชุดรูปแบบ">
 
-<!ENTITY gsettings.downloadShelf					"[!!! Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelf				"[!!! Ðïƨáβℓè Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelfDescription	"[!!! Tλïƨ ωïℓℓ ƭúřñ ôñ Fïřèƒôж'ƨ Ðôωñℓôáδ βúƭƭôñ !!!]">
+<!ENTITY gsettings.downloadShelf					"ดาวน์โหลดเลเยอร์">
+<!ENTITY gsettings.disableDownloadShelf				"ปิดใช้งานการดาวน์โหลดชั้นวาง">
+<!ENTITY gsettings.disableDownloadShelfDescription	"นี่จะเปิดปุ่มดาวน์โหลดของไฟร์ฟอกซ์">
 
-<!ENTITY gsettings.aboutDialog	"About">
-<!ENTITY gsettings.chooseAbout	"Choose About">
-<!ENTITY gsettings.ask			"Ask">
+<!ENTITY gsettings.aboutDialog	"เกี่ยวกับ">
+<!ENTITY gsettings.chooseAbout	"เลือกเกี่ยวกับ">
+<!ENTITY gsettings.ask			"ถามก่อน">
 
 <!ENTITY gsettings.behaviourToDesign		"ปรับเปลี่ยนการออกแบบหรือจัดการตัวเลือกทับซ้อน...">
 <!ENTITY gsettings.behaviourToTheme			"ใช้ธีมเพื่อสังเกตการทำงานที่เปลี่ยนแปลง">
@@ -126,9 +126,9 @@
 <!ENTITY gsettings.appearance			"ลักษณะที่ปรากฎ">
 <!ENTITY gsettings.openChrThemesFolder	"เปิดโฟลเดอร์ธีมของ Chromium">
 <!ENTITY gsettings.refreshList			"รีเฟรชรายการ">
-<!ENTITY gsettings.filename				"[!!! Fïℓèñá₥è: !!!]">
-<!ENTITY gsettings.viewStorePage		"[!!! Vïèω §ƭôřè ƥáϱè !!!]">
-<!ENTITY gsettings.search				"[!!! §èářçλ !!!]">
+<!ENTITY gsettings.filename				"ชื่อแฟ้ม:">
+<!ENTITY gsettings.viewStorePage		"ดูหน้าร้านค้า">
+<!ENTITY gsettings.search				"ค้นหา">
 
 <!ENTITY gsettings.customFirefoxThemeMode	"กำหนดรูปแบบการตกแต่งของ Firefox">
 <!ENTITY gsettings.toolbarStyleFXChrome		"คล้ายกับ FXChrome">
@@ -163,22 +163,22 @@
 <!ENTITY gsettings.themeToBehaviour		"ปรับตั้งค่าระดับของการตกแต่งอินเทอร์เฟซ...">
 <!ENTITY gsettings.themeToExperiments	"ปรับแต่งเพิ่มเติมด้วยตัวเลือกต่างๆ ของ Chromium ที่ถูกยกเลิกไป">
 
-<!ENTITY gsettings.peopleButton			"[!!! Þèôƥℓè ßúƭƭôñ !!!]">
-<!ENTITY gsettings.peopleButtonStyle	"[!!! Þèôƥℓè ßúƭƭôñ §ƭ¥ℓè !!!]">
-<!ENTITY gsettings.avatarBesideTabs		"[!!! ÂƲáƭář βèƨïδè Táβƨ !!!]">
-<!ENTITY gsettings.titlebarButton		"[!!! Tïƭℓèβář ßúƭƭôñ !!!]">
+<!ENTITY gsettings.peopleButton			"ปุ่มพีเพิล">
+<!ENTITY gsettings.peopleButtonStyle	"รูปแบบปุ่มพีเพิล">
+<!ENTITY gsettings.avatarBesideTabs		"อวตารข้างแท็บ">
+<!ENTITY gsettings.titlebarButton		"ปุ่มแถบหัวเรื่อง">
 
-<!ENTITY gsettings.avatar					"[!!! ÂƲáƭář !!!]">
-<!ENTITY gsettings.avatarSource				"[!!! ÂƲáƭář §ôúřçè !!!]">
-<!ENTITY gsettings.avatarSourceDisclaimer	"[!!! Fïřèƒôж Âççôúñƭ ωïℓℓ ôñℓ¥ δïƨƥℓá¥ ïƒ ƨïϱñèδ ïñ !!!]">
-<!ENTITY gsettings.firefoxAccount			"[!!! Fïřèƒôж Âççôúñƭ !!!]">
-<!ENTITY gsettings.selectYourAvatar			"[!!! §èℓèçƭ ¥ôúř áƲáƭář !!!]">
+<!ENTITY gsettings.avatar					"อวตาร">
+<!ENTITY gsettings.avatarSource				"แหล่งที่มาอวตาร">
+<!ENTITY gsettings.avatarSourceDisclaimer	"บัญชีผู้ใช้ของไฟร์ฟอกซ์จะแสดงก็ต่อเมื่อลงชื่อเข้าใช้เท่านั้น">
+<!ENTITY gsettings.firefoxAccount			"บัญชีผู้ใช้ไฟร์ฟอกซ์">
+<!ENTITY gsettings.selectYourAvatar			"เลือกอวตารของคุณ">
 <!ENTITY gsettings.imagePath				"ตำแหน่งที่ตั้งของภาพ">
 
-<!ENTITY gsettings.force68Linux					"[!!! Fôřçè Çλřô₥ïú₥ 68'ƨ Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.force68LinuxDescription		"[!!! ßèƒôřè 68, ƭλè ƭïƭℓèβář βúƭƭôñ úƨèδ Wïñδôωƨ'ƨ βúƭƭôñ ƨƭ¥ℓè !!!]">
-<!ENTITY gsettings.showChrOSPeople				"[!!! §λôω Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.showChrOSPeopleDescription	"[!!! Tλè Þèôƥℓè Tïƭℓèβář ßúƭƭôñ ωáƨ èжçℓúƨïƲè ƭô Wïñδôωƨ 8 Môδè !!!]">
+<!ENTITY gsettings.force68Linux					"บังคับใช้ปุ่มหัวเรื่องบุคคล Chromium 68">
+<!ENTITY gsettings.force68LinuxDescription		"ก่อนหน้าเวอร์ชัน 68 ปุ่มแถบหัวเรื่องใช้รูปแบบปุ่มของ Windows">
+<!ENTITY gsettings.showChrOSPeople				"แสดงปุ่มหัวเรื่องของผู้คน">
+<!ENTITY gsettings.showChrOSPeopleDescription	"ปุ่มชื่อแถบหัวเรื่องของคนถูกยกเว้นในโหมด Windows 8">
 
 <!ENTITY gsettings.flags 'Flags - สามารถใช้ได้ผ่านทาง "about:flags" เช่นกัน'>
 
