@@ -10,11 +10,45 @@
 }
 
 
+.tile-pos-grid,
 .tile-grid {
 	display: grid;
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 	grid-template-rows: repeat(2, minmax(0, 1fr));
 	gap: 32px;
+}
+
+.tile-page-content.debug {
+	.tile-container {
+		outline-width: 2px;
+		outline-offset: -2px;
+		outline-style: solid;
+	}
+
+	.tile-pos-grid .tile-container {
+		outline-color: red;
+	}
+
+	.tile-grid .tile-container {
+		outline-color: blue;
+	}
+}
+
+#apps-page .tile-grid {
+	position: absolute;
+
+	.tile-container {
+		position: absolute;
+
+		&:not([dragging]) {
+			transition-property: left, top;
+			transition-duration: 150ms;
+		}
+
+		&[dragging] {
+			z-index: 1;
+		}
+	}
 }
 
 .tile-container {

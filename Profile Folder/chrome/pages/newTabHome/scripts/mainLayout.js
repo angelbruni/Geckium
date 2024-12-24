@@ -839,6 +839,7 @@ function createMainLayout() {
 				</vbox>
 				<vbox class="tile-page" id="apps-page" data-page="1">
 					<vbox class="tile-page-content">
+						<html:div class="tile-pos-grid" />
 						<html:div class="tile-grid" />
 					</vbox>
 				</vbox>
