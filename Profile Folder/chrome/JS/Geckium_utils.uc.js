@@ -8,6 +8,15 @@
 // @include		about:addons*
 // ==/UserScript==
 
+// Map of special characters and their corresponding HTML entities
+const specialCharacters = {
+	"&": "&amp;",
+	"<": "&lt;",
+	">": "&gt;",
+	'"': "&quot;",
+	"'": "&#39;",
+};
+
 // Firefox version check
 const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
@@ -22,6 +31,7 @@ checkedVersions.forEach(version => {
 });
 
 const { gkPrefUtils, gkInsertElm, gkSetAttributes } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUtils.sys.mjs");
+const { gkNTP } = ChromeUtils.importESModule("chrome://modules/content/GeckiumNTP.sys.mjs");
 const { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
 function isWindows10() {
