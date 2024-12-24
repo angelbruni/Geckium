@@ -37,9 +37,9 @@
 <!ENTITY gsettings.titlebarModeCompact					"紧凑边框">
 <!ENTITY gsettings.titlebarInThemesIsSys				"在兼容的 Chromium 主题中使用系统边框">
 <!ENTITY gsettings.titlebarInThemesIsSysDisclaimer		"需要启用系统边框选项，或标题栏风格使用系统边框">
-<!ENTITY gsettings.nativeTitlebarButtonsSize			"[!!! NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ §ïƺè !!!]">
-<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"[!!! Rè9úïřèδ ƒôř NáƭïƲè Tïƭℓèβář ßúƭƭôñƨ áñδ Táβƨ ƭô βè ƨïƺèδ ƥřôƥèřℓ¥ !!!]">
-<!ENTITY gsettings.customWidthInPixels					"[!!! Çúƨƭô₥ ωïδƭλ (ïñ ƥïжèℓƨ) !!!]">
+<!ENTITY gsettings.nativeTitlebarButtonsSize			"原生标题栏按钮大小">
+<!ENTITY gsettings.nativeTitlebarButtonsSizeDescription	"用于使原生标题栏按钮和标签大小正确渲染">
+<!ENTITY gsettings.customWidthInPixels					"自定义宽度（以像素为单位）">
 
 <!ENTITY gsettings.availablePresets	"可选预设">
 <!ENTITY gsettings.resetOverrides	"重置覆盖选项">
@@ -65,8 +65,8 @@
 <!ENTITY gsettings.saveDiscardedCRXDescription	"允许你点击“舍弃”来下载 Chromium 主题背景，不执行安装">
 <!ENTITY gsettings.toolbar						"工具栏">
 <!ENTITY gsettings.needsRestart					"需要重新启动">
-<!ENTITY gsettings.tabManager					"启用标签管理器"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
-<!ENTITY gsettings.tabManagerDescription		'[!!! Éñáβℓèƨ ƭλè "ářřôω βúƭƭôñ" ωïƭλ ƭλè ℓïƨƭ ôƒ ôƥèñ ƭáβƨ ïñ ƭλè ƭáββář !!!]'>
+<!ENTITY gsettings.tabManager					"标签管理器"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Tab manager". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.tabManagerDescription		'在标题栏显示可展开标签列表的“箭头按钮”'>
 <!ENTITY gsettings.hideExtensionsMenuButton		"隐藏扩展菜单按钮">
 
 <!ENTITY gsettings.macIsGraphite					"使用石墨色标题栏按钮">
@@ -99,9 +99,9 @@
 <!ENTITY gsettings.websitePinningInEveryEra				"为所有时代的设计风格启用网页固定"> <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
 <!ENTITY gsettings.websitePinningInEveryEraDescription	"使所有设计风格均显示固定按钮">
 
-<!ENTITY gsettings.downloadShelf					"[!!! Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelf				"[!!! Ðïƨáβℓè Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelfDescription	"[!!! Tλïƨ ωïℓℓ ƭúřñ ôñ Fïřèƒôж'ƨ Ðôωñℓôáδ βúƭƭôñ !!!]">
+<!ENTITY gsettings.downloadShelf					"下载柜">
+<!ENTITY gsettings.disableDownloadShelf				"禁用下载柜">
+<!ENTITY gsettings.disableDownloadShelfDescription	"启用此选项后，将重新启用 Firefox 的下载按钮">
 
 <!ENTITY gsettings.aboutDialog	"关于">
 <!ENTITY gsettings.chooseAbout	"选择关于界面">
@@ -165,7 +165,7 @@
 
 <!ENTITY gsettings.peopleButton			"资料按钮">
 <!ENTITY gsettings.peopleButtonStyle	"资料按钮风格">
-<!ENTITY gsettings.avatarBesideTabs		"头像置于标签后方">
+<!ENTITY gsettings.avatarBesideTabs		"头像置于标签处">
 <!ENTITY gsettings.titlebarButton		"标题栏按钮">
 
 <!ENTITY gsettings.avatar					"头像">
