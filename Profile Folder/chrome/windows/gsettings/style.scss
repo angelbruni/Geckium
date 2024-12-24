@@ -622,8 +622,13 @@ h4 .about-flag {
 }
 
 .icon-picker {
+	position: relative;
 	height: fit-content;
 	align-items: center;
+
+	label:not([data-icon]) + .action-item.icon-delete {
+		display: none;
+	}
 
 	.button {
 		min-width: 0;
@@ -650,6 +655,16 @@ h4 .about-flag {
 		width: 128px;
 		height: 128px;
 	}
+
+	.action-item {
+		position: absolute;
+		top: 6px;
+		right: 3px;
+
+		&.icon-delete::before {
+			background-color: hsl(0, 0, 60%);
+		}
+	}
 }
 
 #app-name::before {
@@ -658,15 +673,13 @@ h4 .about-flag {
 
 .modal[data-modal="editApp_modal"] {
 	&[data-app="null"] {
-		#deleteBtn,
-		#OKBtn {
+		#app_deleteBtn,
+		#app_OKBtn {
 			display: none;
 		}
 	}
-	&:not([data-app="null"]) {
-		#createBtn {
-			display: none;
-		}
+	&:not([data-app="null"]) #createBtn {
+		display: none;
 	}
 }
 

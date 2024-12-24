@@ -84,10 +84,16 @@ function switchTab(direction, static, id) {
 
 	// console.log(currentTabIndex, id)
 
+	pageContainer.setAttribute("animating", true);
+
 	if (id !== 0)
 		pageContainer.style.transform = "translateX(calc(var(--page-width) * -1 * " + desiredTab + "))";
 	else
 		pageContainer.style.transform = null;
+
+	setTimeout(() => {
+		pageContainer.removeAttribute("animating");
+	}, 200);
 
 	pages.forEach((page) => {
 		page.classList.remove("selected");

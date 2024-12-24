@@ -60,3 +60,15 @@ Services.prefs.addObserver("Geckium.newTabHome.style", appearanceObs, false);
 Services.prefs.addObserver("Geckium.chrflag.enable.icon.ntp", appearanceObs, false);
 Services.prefs.addObserver("Geckium.devOptions.disableRecentlyVisited", appearanceObs, false);
 Services.prefs.addObserver("Geckium.devOptions.disableRecentlyClosed", appearanceObs, false);
+
+/* bruni: Automatically apply appearance and theme
+		  attributes when it detecs changes in the pref. */
+const appsObs = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed") {
+			if (document.URL == "about:apps" || document.URL == "about:newtab" || document.URL == "about:home")
+				setUpApps();	
+		}		
+	},
+};
+Services.prefs.addObserver(gkNTP.getAppsListPref, appsObs, false);
