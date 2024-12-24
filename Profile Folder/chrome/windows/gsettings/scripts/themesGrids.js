@@ -154,7 +154,7 @@ ${themeInfo[i].bannerTiling ? `background-repeat: ${themeInfo[i].bannerTiling} !
 ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !important; ` : ""}">
 			<vbox class="wrapper">
 				<html:div class="year">V${themeInfo[i].version}</html:div>
-				<html:button class="action-item icon-settings" id="manage" data-toggle-modal="manageTheme_modal"/>
+				<html:button class="action-item icon-settings" id="manage" data-toggle-modals="manageTheme_modal"/>
 				<html:div class="theme-icons" style="width: 48px; height: 48px">
 					<html:img class="theme-type-icon" src="${themeIconPath}" />
 					<html:div class="theme-browser-icon" />
@@ -179,7 +179,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 		document.querySelector(`button[data-${themeInfo[i].type}-name="${themeInfo[i].id}"] #manage`).addEventListener("click", (e) => {
 			e.stopPropagation();
 
-			const manageThemeModal = document.querySelector(`.modal[data-modal="${e.target.dataset.toggleModal}"]`)
+			const manageThemeModal = document.querySelector(`.modal[data-modal="${e.target.dataset.toggleModals}"]`)
 			manageThemeModal.classList.add("active");
 
 			manageThemeModal.dataset.browser = themeInfo[i].browser;
@@ -213,7 +213,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 			const searchBtn = manageThemeModal.querySelector("#searchBtn");
 			searchBtn.removeAttribute("disabled");
 
-			let deleteBtn = manageThemeModal.querySelector("#deleteBtn");
+			let deleteBtn = manageThemeModal.querySelector("#theme_deleteBtn");
 			deleteBtn.removeAttribute("disabled");
 
 			let showInFolderBtn = manageThemeModal.querySelector("#showInFolderBtn");
@@ -232,7 +232,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 			applyBtn.id = "applyBtn";
 			applyBtn.classList.add("button", "ripple-enabled", "text", "color");
 			applyBtn.textContent = gSettingsBundle.GetStringFromName("apply");
-			gkInsertElm.before(applyBtn, manageThemeModal.querySelector("#OKBtn"));
+			gkInsertElm.before(applyBtn, manageThemeModal.querySelector("#theme_OKBtn"));
 
 			let storePageLink;
 
@@ -275,7 +275,7 @@ ${themeInfo[i].bannerSizing ? `background-size: ${themeInfo[i].bannerSizing} !im
 			manageThemeModal.querySelector("#filename").textContent = ` ${themeInfo[i].id}`;
 
 			deleteBtn.addEventListener("click", (e) => {
-				const deleteThemeConfirmModal = document.querySelector(`.modal[data-modal="${e.target.dataset.toggleModal}"]`)
+				const deleteThemeConfirmModal = document.querySelector(`.modal[data-modal="${e.target.dataset.toggleModals}"]`)
 				deleteThemeConfirmModal.classList.add("active");
 
 				let yesDeleteBtn = deleteThemeConfirmModal.querySelector("#yesDeleteBtn");

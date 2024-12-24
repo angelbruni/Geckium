@@ -1,21 +1,10 @@
-:root {
-	&[geckium-choice="one"],
-	&[geckium-choice="three"],
-	&[geckium-choice="four"],
-	&[geckium-choice="five"],
-	&[geckium-choice="six"],
-	&[geckium-choice="eleven"],
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		input[type="text"] {
-			appearance: auto !important;
-			border-radius: 0 !important;
-			border: 1px solid rgb(217, 217, 217) !important;
-			background-color: white !important;
+:root:not([windowtype*="geckiummaterial"], [geckium-thirtyseven]) input[type="text"] {
+	appearance: auto !important;
+	border-radius: 0 !important;
+	border: 1px solid rgb(217, 217, 217) !important;
+	background-color: white !important;
 
-			&:focus-within {
-				outline: 0 !important;
-			}
-		}
+	&:focus-within {
+		outline: 0 !important;
 	}
 }

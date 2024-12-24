@@ -201,10 +201,6 @@
 }
 
 .bookmark-item {
-	&[container="true"] {
-		list-style-image: var(--bookmark-folder-icon) !important;
-	}
-
 	&[image="page-icon:about:newtab"],
 	&[image="page-icon:about:gsettings"],
 	&[image="page-icon:about:apps"] {
@@ -220,6 +216,10 @@
 			display: none !important;
 		}
 	}
+	
+	&[container="true"] {
+		list-style-image: var(--bookmark-folder-icon) !important;
+	}
 
 	&[image="page-icon:about:newtab"]::before {
 		content: var(--default-favicon);
@@ -229,6 +229,6 @@
 	}
 
 	&[image="page-icon:about:apps"]::before {
-		content: url("chrome://userchrome/content/pages/apps/apps_bookmark_bar_icon.svg") !important;
+		content: url("chrome://userchrome/content/pages/apps/assets/apps_bookmark_bar_icon.svg") !important;
 	}
 }

@@ -1,12 +1,3 @@
-// Map of special characters and their corresponding HTML entities
-const specialCharacters = {
-	"&": "&amp;",
-	"<": "&lt;",
-	">": "&gt;",
-	'"': "&quot;",
-	"'": "&#39;",
-};
-
 function createMainLayout() {
 	let appearanceChoice = gkEras.getNTPEra();
 
@@ -137,7 +128,7 @@ function createMainLayout() {
 		<hbox class="content">
 			<html:div class="icon" />
 			<vbox>
-				<html:h1>${ntpBundle.GetStringFromName("youHaveGoneIncognito47")}</html:h1>
+				<html:h1>${ntpBundle.GetStringFromName("youHaveGoneIncognito37")}</html:h1>
 				<html:p>
 					${ntpBundle.GetStringFromName("pagesYouViewInIncognito")}
 				</html:p>
