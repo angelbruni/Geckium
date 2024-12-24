@@ -46,47 +46,34 @@ function updateSettings(iteration) {
 			gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
 			gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
 			gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);
-			gkPrefUtils.set("browser.startup.blankWindow").bool(false);                         // Disable Firefox's splash screen
+			gkPrefUtils.set("browser.startup.blankWindow").bool(false);							// Disable Firefox's splash screen
 		}
 
-		gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);                         // Disable that context-inappropriate chevron
-		gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);				    // Show URL after a search in URLbar
-		gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);                                 // Show protocol in URL in URLbar
+		gkPrefUtils.set("browser.tabs.tabmanager.enabled").bool(false);							// Disable that context-inappropriate chevron
+		gkPrefUtils.set("browser.urlbar.showSearchTerms.enabled").bool(false);					// Show URL after a search in URLbar
+		gkPrefUtils.set("browser.urlbar.trimURLs").bool(false);									// Show protocol in URL in URLbar
 		gkPrefUtils.set("browser.newtab.preload").bool(false)									// Disable New Tab preload to prevent new data from not loading
 		gkPrefUtils.set("browser.theme.dark-private-windows").bool(false);						// Disable incognito dark mode
-		gkPrefUtils.set("widget.gtk.overlay-scrollbars.enabled").bool(false);                   // Disable GTK3's overlay scrollbars (Linux)
-		gkPrefUtils.set("widget.gtk.non-native-titlebar-buttons.enabled").bool(false);          // Disable non-native titlebar buttons in Light and Dark (Linux, 128+)
+		gkPrefUtils.set("widget.gtk.overlay-scrollbars.enabled").bool(false);					// Disable GTK3's overlay scrollbars (Linux)
+		gkPrefUtils.set("widget.gtk.non-native-titlebar-buttons.enabled").bool(false);			// Disable non-native titlebar buttons in Light and Dark (Linux, 128+)
 
 		if (!gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string) {
-			gkPrefUtils.set("Geckium.newTabHome.appsList").string(`
-			{
-				"0": {
-					"pos": 0,
-					"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
-					"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-					"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-					"oldName": "Web Store",
-					"newName": "Web Store",
-					"url": "https://chromewebstore.google.com",
-					"type": 0
-				}
-			}
-			`);																			        // Add initial app if the apps list is empty
+			gkNTP.restoreDefaultApps();															// Add initial app if the apps list is empty
 		}
 	}
 	if (iteration < 2) {
-		gkPrefUtils.set("widget.non-native-theme.enabled").bool(false); // Allow native theme colours to be used in specific pages
+		gkPrefUtils.set("widget.non-native-theme.enabled").bool(false);							// Allow native theme colours to be used in specific pages
 	}
 	if (iteration < 3) {
-		gkPrefUtils.set("browser.tabs.hoverPreview.enabled").bool(false);   // Disable tab preview thumbnails
+		gkPrefUtils.set("browser.tabs.hoverPreview.enabled").bool(false);						// Disable tab preview thumbnails
 	}
 	if (iteration < 4) {
-		gkPrefUtils.set("userChromeJS.persistent_domcontent_callback").bool(true);  // Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
+		gkPrefUtils.set("userChromeJS.persistent_domcontent_callback").bool(true);				// Enable hack that allows Geckium to have the ability to inject itself in `about:` pages
 	}
 	if (iteration < 5) {
-		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");  // Remove the old avatar toolbarbutton
+		CustomizableUI.removeWidgetFromArea("fxa-toolbar-menu-button");							// Remove the old avatar toolbarbutton
 		if (gkPrefUtils.tryGet("Geckium.appearance.titlebarStyle").string == "winnogaps") {
-			gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win8nogaps");	// Transition "Windows (no gaps)" to "Windows 8 (no gaps)"
+			gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win8nogaps");			// Transition "Windows (no gaps)" to "Windows 8 (no gaps)"
 		}
 		
 		// pfpMode was changed from `int` to `string`.
@@ -119,6 +106,11 @@ function updateSettings(iteration) {
 		// Change this pref's name to be more inline with the rest of the `devOptions` settings.
 		gkPrefUtils.set("Geckium.devOptions.status").bool(gkPrefUtils.tryGet("Geckium.developerOptions.status").bool);
 		gkPrefUtils.delete("Geckium.developerOptions.status");
+	}
+	if (iteration < 6) {
+		// Backup old apps format and set appsList to the new defaults
+		gkPrefUtils.set("Geckium.newTabHome.oldAppsList").string(gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string);
+		gkNTP.restoreDefaultApps();
 	}
 	// Put future settings changes down here as < 6, and so on.
 

@@ -1,13 +1,13 @@
 & {
 	--page-switcher-color: color-mix(in srgb, var(--thumbnail-container-color) 50%, transparent);
+	--page-switcher-width: 150px;
 
-	&[geckium-choice="twentyone"],
-	&[geckium-choice="twentyfive"] {
-		@media only screen and (max-width: 1277px) {
-			.page-switcher {
-				width: 90px;
-			}
-		}
+	@media only screen and (max-width: 1460px) {
+		--page-switcher-width: 120px;
+	}
+
+	@media only screen and (max-width: 1400px) {
+		--page-switcher-width: 90px;
 	}
 }
 
@@ -24,6 +24,10 @@
 	transition-property: transform;
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
+
+	&:not([animating]) {
+		transition-duration: 0s;
+	}
 }
 
 .page-switcher {
@@ -31,7 +35,7 @@
 	
 	display: flex;
 	position: absolute;
-	width: 150px;
+	width: var(--page-switcher-width);
 	font-family: Arial, sans-serif;
 	font-size: 40px;
 	color: var(--page-switcher-color);
@@ -71,9 +75,13 @@
 }
 
 .tile-page {
+	padding-inline: var(--page-switcher-width);
 	min-width: var(--page-width);
+	justify-content: center;
+	align-items: center;
+	transition: padding-inline 150ms;
 
 	.tile-page-content {
-		margin: auto;
+		width: fit-content;
 	}
 }
