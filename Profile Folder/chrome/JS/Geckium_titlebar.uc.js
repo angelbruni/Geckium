@@ -592,7 +592,11 @@ class gkTitlebars {
 			return;
 		}
 		gkTitlebars.tabscrollbox = document.getElementById("tabbrowser-arrowscrollbox");
-		new ResizeObserver(gkTitlebars.adjustTabY).observe(document.getElementById("titlebar"));
+		try {
+			new ResizeObserver(gkTitlebars.adjustTabY).observe(document.getElementById("titlebar"));
+		} catch { // Later Firefox releases deleted #titlebar
+			new ResizeObserver(gkTitlebars.adjustTabY).observe(document.getElementById("navigator-toolbox"));
+		}
 	}
 
 	/**
