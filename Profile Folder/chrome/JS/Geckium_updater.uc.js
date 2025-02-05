@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const configIteration = 5;
+const configIteration = 6;
 
 (async () => {
 	let ver = gkPrefUtils.tryGet("Geckium.version.current").string;

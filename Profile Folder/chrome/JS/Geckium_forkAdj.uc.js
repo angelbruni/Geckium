@@ -6,6 +6,28 @@
 // @include		main
 // ==/UserScript==
 
+// Temporary Firefox adjustments
+class gkFirefoxTempAdj {
+	static disableVertical() {
+		if (gkPrefUtils.tryGet("sidebar.verticalTabs").bool != false) {
+			gkPrefUtils.set("sidebar.verticalTabs").bool(false);
+			UC_API.Notifications.show({
+				label : "The Vertical Tabs feature is not supported by Geckium at the moment.",
+				type : "geckium-notification",
+				priority: "critical"
+			})
+		}
+	}
+}
+window.addEventListener("load", gkFirefoxTempAdj.disableVertical);
+const firefoxObserver = {
+	observe: function (subject, topic, data) {
+		if (topic == "nsPref:changed")
+			gkFirefoxTempAdj.disableVertical();
+	},
+};
+Services.prefs.addObserver("sidebar.verticalTabs", firefoxObserver, false);
+
 // Firefox forks with NO hope of ever being Geckium compatible
 class gkImpossibleForks {
 	/**
