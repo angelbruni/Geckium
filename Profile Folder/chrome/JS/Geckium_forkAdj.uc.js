@@ -12,7 +12,7 @@ class gkFirefoxTempAdj {
 		if (gkPrefUtils.tryGet("sidebar.verticalTabs").bool != false) {
 			gkPrefUtils.set("sidebar.verticalTabs").bool(false);
 			UC_API.Notifications.show({
-				label : "you shall not pass",
+				label : "The Vertical Tabs feature is not supported by Geckium at the moment.",
 				type : "geckium-notification",
 				priority: "critical"
 			})
