@@ -1,7 +1,7 @@
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL } from "chrome://userchromejs/content/utils.sys.mjs";
+import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL, toggleScript } from "chrome://userchromejs/content/utils.sys.mjs";
 
-const FX_AUTOCONFIG_VERSION = "0.10.1";
+const FX_AUTOCONFIG_VERSION = "0.10.4";
 console.warn( "Browser is executing custom scripts via autoconfig" );
 
 const APP_VARIANT = (() => {
@@ -306,15 +306,7 @@ function maybeShowBrokenNotification(window){
       label: "fx-autoconfig: Startup might be broken",
       image: "chrome://browser/skin/notification-icons/popup.svg",
       priority: "critical"
-    },
-    [{
-      label: "Enable workaround",
-      callback: (notification) => {
-        Services.prefs.setBoolPref("userChromeJS.gBrowser_hack.required",true);
-        restartApplication(false);
-        return false
-      }
-    }]
+    }
   );
 }
 
@@ -330,7 +322,7 @@ function updateMenuStatus(event){
     if(item.getAttribute("type") != "checkbox"){
       continue
     }
-    if (disabledScripts.includes(item.getAttribute("filename"))){
+    if (disabledScripts.includes(item.dataset.filename)){
       item.removeAttribute("checked");
     }else{
       item.setAttribute("checked","true");
@@ -415,7 +407,7 @@ class UserChrome_js{
           this.registerScript(style,!disabledScripts.includes(style.filename));
         }
       }
-      this.addAgentStyles(this.styles.filter(style => style.styleSheetMode === "agent"));
+      this.addAgentStyles(this.styles.filter(style => style.styleSheetMode === "agent" && !disabledScripts.includes(style.filename)));
     }
     this.scripts.sort((a,b) => a.loadOrder - b.loadOrder);
     this.styles.sort((a,b) => a.loadOrder - b.loadOrder);
@@ -522,9 +514,9 @@ class UserChrome_js{
       <menu id="userScriptsMenu" label="userScripts">
         <menupopup id="menuUserScriptsPopup">
           <menuseparator></menuseparator>
-          <menuitem id="userScriptsMenu-OpenFolder" label="Open folder" oncommand="UC_API.Scripts.openScriptDir()"></menuitem>
-          <menuitem id="userScriptsMenu-Restart" label="Restart" oncommand="UC_API.Runtime.restart(false)" tooltiptext="Toggling scripts requires restart"></menuitem>
-          <menuitem id="userScriptsMenu-ClearCache" label="Restart and clear startup cache" oncommand="UC_API.Runtime.restart(true)" tooltiptext="Toggling scripts requires restart"></menuitem>
+          <menuitem id="userScriptsMenu-OpenFolder" label="Open folder"></menuitem>
+          <menuitem id="userScriptsMenu-Restart" label="Restart" tooltiptext="Toggling scripts requires restart"></menuitem>
+          <menuitem id="userScriptsMenu-ClearCache" label="Restart and clear startup cache" tooltiptext="Toggling scripts requires restart"></menuitem>
         </menupopup>
       </menu>
     `);
@@ -541,9 +533,27 @@ class UserChrome_js{
     if(!this.IS_ENABLED){
       itemsFragment.append(window.MozXULElement.parseXULToFragment('<menuitem label="&lt;fx-autoconfig is disabled&gt;" disabled="true"></menuitem>'));
     }
-    menuFragment.getElementById("menuUserScriptsPopup").prepend(itemsFragment);
+    let menupopup = menuFragment.getElementById("menuUserScriptsPopup");
+    menupopup.prepend(itemsFragment);
     popup.prepend(menuFragment);
-    popup.querySelector("#menuUserScriptsPopup").addEventListener("popupshown",updateMenuStatus);
+    menupopup.addEventListener("popupshown",updateMenuStatus);
+    menupopup.addEventListener("command",ev => {
+      switch(ev.target.id){
+        case "userScriptsMenu-OpenFolder":
+          FileSystem.getScriptDir().showInFileManager();
+          break;
+        case "userScriptsMenu-Restart":
+          restartApplication(false);
+          break;
+        case "userScriptsMenu-ClearCache":
+          restartApplication(true);
+          break;
+        default:
+          if(ev.target.dataset.filename){
+            toggleScript(ev.target.dataset.filename);
+          }
+      }
+    });
     aDoc.l10n.formatValues(["restart-button-label","clear-startup-cache-label","show-dir-label"])
     .then(values => {
       let baseTitle = `${values[0]} ${BRAND_NAME}`;
@@ -558,9 +568,8 @@ class UserChrome_js{
       aWindow.MozXULElement.parseXULToFragment(`
         <menuitem type="checkbox"
                   label="${escapeXUL(aScript.name || aScript.filename)}"
-                  filename="${escapeXUL(aScript.filename)}"
-                  checked="true"
-                  oncommand="UC_API.Scripts.toggleScript(this)">
+                  data-filename="${escapeXUL(aScript.filename)}"
+                  checked="true">
         </menuitem>
     `)
     );
