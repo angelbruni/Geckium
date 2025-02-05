@@ -26,7 +26,7 @@ const firefoxObserver = {
 			gkFirefoxTempAdj.disableVertical();
 	},
 };
-Services.prefs.addObserver("browser.theme.enableWaterfoxCustomizations", firefoxObserver, false);
+Services.prefs.addObserver("sidebar.verticalTabs", firefoxObserver, false);
 
 // Firefox forks with NO hope of ever being Geckium compatible
 class gkImpossibleForks {
