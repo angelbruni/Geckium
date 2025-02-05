@@ -13,7 +13,6 @@ const { gkFileUtils } = ChromeUtils.importESModule("chrome://modules/content/Gec
 
 const gkDownloadManagerBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gkdownloadmanager.properties");
 
-const { FileUtils } = ChromeUtils.import("resource://gre/modules/FileUtils.jsm");
 handlerSvc = Cc["@mozilla.org/uriloader/handler-service;1"].getService(
 	Ci.nsIHandlerService
 );
