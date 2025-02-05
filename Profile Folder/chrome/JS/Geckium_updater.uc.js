@@ -112,10 +112,7 @@ function updateSettings(iteration) {
 		gkPrefUtils.set("Geckium.newTabHome.oldAppsList").string(gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string);
 		gkNTP.restoreDefaultApps();
 	}
-	if (iteration < 7) {
-		gkPrefUtils.set("sidebar.verticalTabs").bool(false);
-	}
-	// Put future settings changes down here as < 7, and so on.
+	// Put future settings changes down here as < 6, and so on.
 
 	if (iteration < configIteration)
 		gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
