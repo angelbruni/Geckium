@@ -14,13 +14,18 @@ export class Hotkey{
   constructor(hotkeyDetails,commandDetails){
     this.command = commandDetails;
     this.trigger = hotkeyDetails;
-    this.#matchingSelector = `key[modifiers="${hotkeyDetails.modifiers}"][${hotkeyDetails.key?'key="'+hotkeyDetails.key:'keycode="'+hotkeyDetails.keycode}"]`;
+    this.#matchingSelector = null;
   }
   get matchingSelector(){
+    if(!this.#matchingSelector){
+      let trigger = this.trigger;
+      this.#matchingSelector = `key[modifiers="${trigger.modifiers}"][${trigger.key?'key="'+trigger.key:'keycode="'+trigger.keycode}"]`
+    }
     return this.#matchingSelector
   }
-  autoAttach(opt){
+  async autoAttach(opt){
     const suppress = opt?.suppressOriginal || false;
+    await startupFinished();
     for (let window of windowUtils.getAll()){
       if(window.document.getElementById(this.trigger.id)){
         continue
@@ -42,13 +47,13 @@ export class Hotkey{
     }
   }
   suppressOriginalKey(window){
-    let oldKey = window.document.querySelector(this.#matchingSelector);
+    let oldKey = window.document.querySelector(this.matchingSelector);
     if(oldKey){
       oldKey.setAttribute("disabled","true")
     }
   }
   restoreOriginalKey(window){
-    let oldKey = window.document.querySelector(this.#matchingSelector);
+    let oldKey = window.document.querySelector(this.matchingSelector);
     oldKey.removeAttribute("disabled");
   }
   static #createKey(doc,details){
@@ -72,23 +77,25 @@ export class Hotkey{
       console.warn("Fx-autoconfig: command with id '"+details.id+"' already exists");
       return
     }
-    let command = createElement(doc,"command",{id: details.id,oncommand: "this._oncommand(event);"});
+    let command = createElement(doc,"command",{id: details.id});
     commandSet.insertBefore(command,commandSet.firstChild||null);
     const fun = details.command;
-    command._oncommand = (e) => fun(e.view,e);
+    command.addEventListener("command",ev => fun(ev.view,ev))
     return
   }
   static ERR_KEY = 0;
   static NORMAL_KEY = 1;
   static FUN_KEY = 2;
+  static VK_KEY = 4;
   
   static #getKeyCategory(key){
     return (/^[\w-]$/).test(key)
           ? Hotkey.NORMAL_KEY
-          : (/^F(?:1[0,2]|[1-9])$/)
-            .test(key)
-            ? Hotkey.FUN_KEY
-            : Hotkey.ERR_KEY
+          : (/^VK_[A-Z]+/).test(key)
+            ? Hotkey.VK_KEY
+            : (/^F(?:1[0,1,2]|[1-9])$/).test(key)
+              ? Hotkey.FUN_KEY
+              : Hotkey.ERR_KEY
   }
   
   static define(desc){
@@ -96,19 +103,21 @@ export class Hotkey{
     if(keyCategory === Hotkey.ERR_KEY){
       throw new Error("Provided key '"+desc.key+"' is invalid")
     }
-    if(keyCategory === Hotkey.FUN_KEY){
-      throw new Error("Registering a hotkey with no modifiers is not supported, except for function keys F1-F12")
-    }
     let commandType = typeof desc.command;
     if(!(commandType === "string" || commandType === "function")){
-      throw new TypeError("command must be either a string or function")
+      throw new Error("command must be either a string or function")
     }
-    
+    if(commandType === "function" && !desc.id){
+      throw new Error("command id must be specified when callback is a function")
+    }
     const validMods = ["accel","alt","ctrl","meta","shift"];
-    const mods = desc.modifiers.toLowerCase().split(" ").filter(a => validMods.includes(a));
+    const mods = desc.modifiers?.toLowerCase().split(" ").filter(a => validMods.includes(a));
+    if(keyCategory === Hotkey.NORMAL_KEY && !(mods && mods.length > 0)){
+      throw new Error("Registering a hotkey with no modifiers is not supported, except for function keys F1-F12")
+    }
     let keyDetails = {
       id: desc.id,
-      modifiers: mods.join(",").replace("ctrl","accel"),
+      modifiers: mods?.join(",").replace("ctrl","accel") ?? "",
       command: commandType === "string"
                 ? desc.command
                 : `cmd_${desc.id}`
@@ -119,7 +128,7 @@ export class Hotkey{
     if(keyCategory === Hotkey.NORMAL_KEY){
       keyDetails.key = desc.key.toUpperCase();
     }else{
-      keyDetails.keycode = `VK_${desc.key}`;
+      keyDetails.keycode = keyCategory === Hotkey.FUN_KEY ? `VK_${desc.key}` : desc.key;
     }
     return new Hotkey(
       keyDetails,
@@ -604,8 +613,12 @@ export function createWidget(desc){
       for (let p in props){
         toolbaritem.setAttribute(p, props[p]);
       }
+      
       if(typeof callback === "function"){
-        toolbaritem.setAttribute("onclick",`${desc.allEvents?"":"event.button===0 && "}UC_API.SharedStorage.widgetCallbacks.get(this.id)(event,window)`);
+        const allEvents = !!desc.allEvents;
+        toolbaritem.addEventListener("click",(ev) => {
+          allEvents || ev.button === 0 && SharedGlobal.widgetCallbacks.get(ev.target.id)(ev,ev.target.ownerGlobal)
+        })
       }
       for (let attr in desc){
         if(attr != "callback" && !(attr in props)){
@@ -774,15 +787,13 @@ export function startupFinished(){
   return new Promise(resolve => lazy.startupPromises.add(resolve))
 }
 
-export function toggleScript(el){
-  let isElement = !!el.tagName;
-  if(!isElement && typeof el != "string"){
-    return
+export function toggleScript(aFilename){
+  if(typeof aFilename != "string"){
+    throw new Error("expected name of the script as string")
   }
-  const name = isElement ? el.getAttribute("filename") : el;
-  let script = name.endsWith("js")
-    ? getScriptData(name)
-    : getStyleData(name);
+  let script = aFilename.endsWith("js")
+    ? getScriptData(aFilename)
+    : getStyleData(aFilename);
   if(!script){
     return null
   }
