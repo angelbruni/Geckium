@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const configIteration = 5;
+const configIteration = 6;
 
 (async () => {
 	let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
@@ -112,7 +112,10 @@ function updateSettings(iteration) {
 		gkPrefUtils.set("Geckium.newTabHome.oldAppsList").string(gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string);
 		gkNTP.restoreDefaultApps();
 	}
-	// Put future settings changes down here as < 6, and so on.
+	if (iteration < 7) {
+		gkPrefUtils.set("sidebar.verticalTabs").bool(false);
+	}
+	// Put future settings changes down here as < 7, and so on.
 
 	if (iteration < configIteration)
 		gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
