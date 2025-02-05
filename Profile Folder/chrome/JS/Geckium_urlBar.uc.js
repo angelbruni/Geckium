@@ -21,7 +21,7 @@ function changeGoButton() {
 		goButton.id = "go-button";
 		
 		goButtonBox.classList.add("toolbarbutton-1");
-		goButtonBox.setAttribute("onclick", "gURLBar.handleCommand(event);");
+		goButtonBox.addEventListener("click", (e) => gURLBar.handleCommand(e));
 		goButtonBox.appendChild(goButton);
 
 		if (appearanceChoice <= 5)
