@@ -3,9 +3,8 @@
 	 *	Fix weird aero fog in the whole window due to the lack of `-moz-win-exclude-glass`
 	 *	in `#appcontent` or the lack of the element entirely.
 	 */
-	
 	@media (-moz-windows-glass) {
-		&[is117Plus][nativeControls="patch"] #tabbrowser-tabbox {
+		&[is117Plus] #tabbrowser-tabbox {
 			-moz-default-appearance: -moz-win-exclude-glass;
 			will-change: unset !important;
 		}
