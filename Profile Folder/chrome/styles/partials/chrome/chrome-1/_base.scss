@@ -3,11 +3,14 @@
 	 *	Fix weird aero fog in the whole window due to the lack of `-moz-win-exclude-glass`
 	 *	in `#appcontent` or the lack of the element entirely.
 	 */
-	&:not([Windows10])[is117Plus][nativeControls="patch"] #tabbrowser-tabbox {
-		-moz-default-appearance: -moz-win-exclude-glass;
-		will-change: unset !important;
+	
+	@media (-moz-windows-compositor: 1) {
+		&[is117Plus][nativeControls="patch"] #tabbrowser-tabbox {
+			-moz-default-appearance: -moz-win-exclude-glass;
+			will-change: unset !important;
+		}
 	}
-
+	
 	&[lwtheme-image] {
 		text-shadow: none !important;
 	}
