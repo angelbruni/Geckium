@@ -6,7 +6,7 @@
 // ==/UserScript==
 
 let FileUtils;
-if (!versionFlags.is137Plus) {
+if (!versionFlags.is136Plus) {
 	({ FileUtils } = Components.utils.import("resource://gre/modules/FileUtils.jsm"));
 }
 else {

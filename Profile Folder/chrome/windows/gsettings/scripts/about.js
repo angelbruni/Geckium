@@ -1,5 +1,5 @@
 let ctypes;
-if (!versionFlags.is137Plus) {
+if (!versionFlags.is136Plus) {
 	({ ctypes } = Components.utils.import("resource://gre/modules/ctypes.jsm"));
 }
 else {
