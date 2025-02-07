@@ -48,6 +48,13 @@
 	&[fxastatus="not_configured"] {
 		--avatar-image-url: url("chrome://userchrome/content/assets/img/profile/avatar_empty.svg") !important;
 	}
+	&[is136Plus] {
+		#PanelUI-fxa-menu {
+			#PanelUI-fxa-menu-monitor-button {
+					display: none !important;
+		  }
+			  }
+		}
 }
 
 #PanelUI-fxa-menu {
@@ -57,13 +64,7 @@
 		display: none !important;
 	}
 }
-	 &[is136Plus] {
-#PanelUI-fxa-menu {
-	#PanelUI-fxa-menu-monitor-button {
-    		display: none !important;
-  }
-  	}
-}
+
 
 panel toolbarseparator {
 	display: none !important;
