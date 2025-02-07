@@ -4,7 +4,7 @@
 	 *	in `#appcontent` or the lack of the element entirely.
 	 */
 	
-	@media (-moz-windows-compositor: 1) {
+	@media (-moz-windows-glass) {
 		&[is117Plus][nativeControls="patch"] #tabbrowser-tabbox {
 			-moz-default-appearance: -moz-win-exclude-glass;
 			will-change: unset !important;
