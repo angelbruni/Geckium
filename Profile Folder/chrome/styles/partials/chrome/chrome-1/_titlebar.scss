@@ -272,7 +272,7 @@
 			appearance: none !important;
 		}
 		// Temporary fix due to Mozilla's removal of the `#titlebar` element.
-		&[is133Plus][isWindows10][nativeControls="win10"][sizemode="maximized"] #navigator-toolbox {
+		&[is133Plus][nativeControls][sizemode="maximized"] #navigator-toolbox {
 			appearance: -moz-window-titlebar-maximized !important;
 		}
 		// Windows 10 + Native Controls Patch quirks
@@ -539,25 +539,31 @@
 
 
 	// Titlebar styles
-	&[chromemargin]:not([macOSNativeFullscreen]) {
-		// Windows
-		&[gktitstyle="win"] {
-			@import "titlebar/borders/win";
-		}
-		// Windows 10
-		&[gktitstyle="win10"] {
-			@import "titlebar/borders/win10";
-		}
-		// Mac OS X / macOS
-		&[gktitstyle="macos"] {
-			@import "titlebar/borders/macos";
-		}
-		// Chromium OS
-		&[gktitstyle="chromiumos"] {
-			@import "titlebar/borders/chromiumos";
+	&:not([is135Plus])[tabsintitlebar],
+	&[is135Plus][nativeControls][tabsintitlebar],
+	&[is135Plus]:not([nativeControls])[customtitlebar] {
+		&:not([macOSNativeFullscreen]) {
+			// Windows
+			&[gktitstyle="win"] {
+				@import "titlebar/borders/win";
+			}
+			// Windows 10
+			&[gktitstyle="win10"] {
+				@import "titlebar/borders/win10";
+			}
+			// Mac OS X / macOS
+			&[gktitstyle="macos"] {
+				@import "titlebar/borders/macos";
+			}
+			// Chromium OS
+			&[gktitstyle="chromiumos"] {
+				@import "titlebar/borders/chromiumos";
+			}
 		}
 	}
-	&:not([chromemargin]), // Native (titlebar enabled)
+	&:not([is135Plus]):not([tabsintitlebar]), // Native (titlebar enabled)
+	&[is135Plus][nativeControls]:not([tabsintitlebar]),
+	&[is135Plus]:not([nativeControls], [customtitlebar]),
 	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}

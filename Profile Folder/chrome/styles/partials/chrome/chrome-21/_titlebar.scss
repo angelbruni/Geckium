@@ -3,11 +3,15 @@
 }
 
 // Updated titlebar styles
-&[chromemargin]:not([macOSNativeFullscreen]) {
-    // Chromium OS
-    &[gktitstyle="chromiumos"] {
-        @import "titlebar/borders/chromiumos";
-    }
+&:not([is135Plus])[tabsintitlebar],
+&[is135Plus][nativeControls][tabsintitlebar],
+&[is135Plus]:not([nativeControls])[customtitlebar] {
+	&:not([macOSNativeFullscreen]) {
+		// Chromium OS
+		&[gktitstyle="chromiumos"] {
+			@import "titlebar/borders/chromiumos";
+		}
+	}
 }
 
 // New and updated titlebutton styles

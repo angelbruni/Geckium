@@ -22,9 +22,11 @@
 	}
 
 	// Updated titlebar styles
-	&[chromemargin]:not([macOSNativeFullscreen]) {
+	&:not([is135Plus])[tabsintitlebar],
+	&[is135Plus][nativeControls][tabsintitlebar],
+	&[is135Plus]:not([nativeControls])[customtitlebar] {
 		// Chromium OS
-		&[gktitstyle="chromiumos"] {
+		&:not([macOSNativeFullscreen])[gktitstyle="chromiumos"] {
 			@import "titlebar/borders/chromiumos";
 		}
 	}
