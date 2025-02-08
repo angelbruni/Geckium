@@ -539,9 +539,9 @@
 
 
 	// Titlebar styles
-	&:not([is136Plus])[tabsintitlebar],
-	&[is136Plus][nativeControls][tabsintitlebar],
-	&[is136Plus]:not([nativeControls])[customtitlebar] {
+	&:not([is135Plus])[tabsintitlebar],
+	&[is135Plus][nativeControls][tabsintitlebar],
+	&[is135Plus]:not([nativeControls])[customtitlebar] {
 		&:not([macOSNativeFullscreen]) {
 			// Windows
 			&[gktitstyle="win"] {
@@ -561,9 +561,9 @@
 			}
 		}
 	}
-	&:not([is136Plus]):not([tabsintitlebar]), // Native (titlebar enabled)
-	&[is136Plus][nativeControls]:not([tabsintitlebar]),
-	&[is136Plus]:not([nativeControls], [customtitlebar]),
+	&:not([is135Plus]):not([tabsintitlebar]), // Native (titlebar enabled)
+	&[is135Plus][nativeControls]:not([tabsintitlebar]),
+	&[is135Plus]:not([nativeControls], [customtitlebar]),
 	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}
