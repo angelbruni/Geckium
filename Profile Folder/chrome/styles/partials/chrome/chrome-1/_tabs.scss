@@ -522,6 +522,11 @@
 			}
 		}
 
+		// Hide NEW tab mute button for now.
+		.tab-audio-button {
+			display: none !important;
+		}
+
 		&:not([soundplaying]),
 		&[muted] {
 			.tab-mute-button {
