@@ -272,7 +272,7 @@
 			appearance: none !important;
 		}
 		// Temporary fix due to Mozilla's removal of the `#titlebar` element.
-		&[is133Plus][nativeControls][sizemode="maximized"] #navigator-toolbox {
+		&[is133Plus][isWindows10][nativeControls="win10"][sizemode="maximized"] #navigator-toolbox {
 			appearance: -moz-window-titlebar-maximized !important;
 		}
 		// Windows 10 + Native Controls Patch quirks
@@ -365,6 +365,17 @@
 		}
 		// Windows quirks
 		@media (-moz-platform: windows) {
+			// Firefox 135+ - butchered Compact Borders
+			// See Geckium_titlebar.uc.js: getTitleBordersRemovable for more information
+			&[gkcompactsquared] {
+				--titlebar-border-radius: 0px !important;
+				--titlebar-box-shadow: none !important;
+				&[is117Plus][windowtype="navigator:browser"] > body {
+					border-left: unset !important;
+					border-right: unset !important;
+					border-bottom: unset !important;
+				}
+			}
 			// Prevent Basic's titlebar texture showing
 			@media (-moz-windows-compositor: 0) {
 				#titlebar {
@@ -539,31 +550,26 @@
 
 
 	// Titlebar styles
-	&:not([is135Plus])[tabsintitlebar],
-	&[is135Plus][nativeControls][tabsintitlebar],
-	&[is135Plus]:not([nativeControls])[customtitlebar] {
-		&:not([macOSNativeFullscreen]) {
-			// Windows
-			&[gktitstyle="win"] {
-				@import "titlebar/borders/win";
-			}
-			// Windows 10
-			&[gktitstyle="win10"] {
-				@import "titlebar/borders/win10";
-			}
-			// Mac OS X / macOS
-			&[gktitstyle="macos"] {
-				@import "titlebar/borders/macos";
-			}
-			// Chromium OS
-			&[gktitstyle="chromiumos"] {
-				@import "titlebar/borders/chromiumos";
-			}
+	&[chromemargin]:not([macOSNativeFullscreen]),
+	&[customtitlebar]:not([macOSNativeFullscreen]) {
+		// Windows
+		&[gktitstyle="win"] {
+			@import "titlebar/borders/win";
+		}
+		// Windows 10
+		&[gktitstyle="win10"] {
+			@import "titlebar/borders/win10";
+		}
+		// Mac OS X / macOS
+		&[gktitstyle="macos"] {
+			@import "titlebar/borders/macos";
+		}
+		// Chromium OS
+		&[gktitstyle="chromiumos"] {
+			@import "titlebar/borders/chromiumos";
 		}
 	}
-	&:not([is135Plus]):not([tabsintitlebar]), // Native (titlebar enabled)
-	&[is135Plus][nativeControls]:not([tabsintitlebar]),
-	&[is135Plus]:not([nativeControls], [customtitlebar]),
+	&:not([chromemargin], [customtitlebar]), // Native (titlebar enabled)
 	&[macOSNativeFullscreen] { //Fullscreen (macOS)
 		@import "titlebar/borders/native";
 	}

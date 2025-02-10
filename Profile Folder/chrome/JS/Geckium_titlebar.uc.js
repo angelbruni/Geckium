@@ -10,8 +10,61 @@
 // Initial variables
 let previousTabY;
 let previousDPI;
+let tbordersRemovable;
 
 class gkTitlebars {
+	/**
+	 * getTitleBordersRemovable - Fills in tbordersRemoable if not filled and returns its value
+	 * 
+	 * NOTE: Called by applyTitlebar and applyPopupTitlebar ONLY if Compact Borders are being applied (skipped if native titlebars are applied)
+	 * 
+	 * In Windows on Firefox 135+, Mozilla butchered all themes that require border removal by removing "chromemargin", so we need to check
+	 * that "chromemargin" is available, so that if not square Silverfox-style Compact Borders are used instead.
+	 */
+
+	static getTitleBordersRemovable() {
+		if (tbordersRemovable == null) {
+			// If not Windows, return True as the borders don't exist outside Windows
+			if (AppConstants.platform != "win") {
+				tbordersRemovable = true;
+			// If Windows, return False if "chromemargin" doesn't exist
+			} else if (!document.documentElement.getAttribute("chromemargin")) {
+				tbordersRemovable = false;
+				document.documentElement.setAttribute("gkcompactsquared", "true");
+
+				// Show a warning if not yet triggered
+				if (gkPrefUtils.tryGet("Geckium.appearance.squareCompactWarnDismissed").bool != true) {
+					UC_API.Notifications.show({
+						label : "Mozilla Firefox on Windows no longer supports Compact Borders, making titlebars inaccurate.",
+						type : "geckium-notification",
+						priority: "critical",
+						buttons: [{
+							label: "Learn more",
+							callback: (notification) => {
+								notification.ownerGlobal.openWebLinkIn(
+								"https://github.com/angelbruni/Geckium/wiki/Compact-Borders-are-no-longer-supported-on-Windows",
+								"tab"
+								);
+								return false
+							}
+						},
+						{
+							label: "Don't show again",
+							callback: (notification) => {
+								gkPrefUtils.set("Geckium.appearance.squareCompactWarnDismissed").bool(true);
+								return false
+							}
+						}]
+					})
+				}
+			} else {
+				tbordersRemovable = true;
+			}
+		}
+		return tbordersRemovable;
+	}
+
+
 	// Titlebar style information
 	static titlebars = {
 		/**
@@ -483,17 +536,21 @@ class gkTitlebars {
 			// Base Geckium CSS flag
 			document.documentElement.setAttribute("gktitnative", "true");
 			// chromemargin (border type)
-			document.documentElement.setAttribute("chromemargin", "0,2,2,2");
+			if (gkTitlebars.getTitleBordersRemovable()) {
+				document.documentElement.setAttribute("chromemargin", "0,2,2,2");
+			}
 			// Gaps
 			document.documentElement.setAttribute("gkhasgaps", spec.hasnativegaps ? "true" : "false");
 		} else {
 			document.documentElement.setAttribute("gktitnative", "false");
-			if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
-				document.documentElement.setAttribute("chromemargin", spec.chromemargin);
-			} else {
-				setTimeout(() => {
-					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-				}, 0);
+			if (gkTitlebars.getTitleBordersRemovable()) {
+				if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
+					document.documentElement.setAttribute("chromemargin", spec.chromemargin);
+				} else {
+					setTimeout(() => {
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+					}, 0);
+				}
 			}
 			document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
 		}
@@ -527,12 +584,14 @@ class gkTitlebars {
 			document.documentElement.setAttribute("gkhasgaps", "false");
 		} else {
 			document.documentElement.setAttribute("gktitnative", "false");
-			if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
-				document.documentElement.setAttribute("chromemargin", spec.chromemargin);
-			} else {
-				setTimeout(() => {
-					document.documentElement.setAttribute("chromemargin", "0,0,0,0");
-				}, 0);
+			if (gkTitlebars.getTitleBordersRemovable()) {
+				if (Object.keys(spec).includes("chromemargin")) { // Special case for Windows 10 style
+					document.documentElement.setAttribute("chromemargin", spec.chromemargin);
+				} else {
+					setTimeout(() => {
+						document.documentElement.setAttribute("chromemargin", "0,0,0,0");
+					}, 0);
+				}
 			}
 			document.documentElement.setAttribute("gkhasgaps", spec.hasgaps ? "true" : "false");
 		}
