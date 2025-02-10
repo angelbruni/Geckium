@@ -536,7 +536,7 @@ class gkTitlebars {
 			// Base Geckium CSS flag
 			document.documentElement.setAttribute("gktitnative", "true");
 			// chromemargin (border type)
-			if (gkTitlebars.getTitleBordersRemovable()) {
+			if (document.documentElement.getAttribute("chromemargin")) {
 				document.documentElement.setAttribute("chromemargin", "0,2,2,2");
 			}
 			// Gaps
