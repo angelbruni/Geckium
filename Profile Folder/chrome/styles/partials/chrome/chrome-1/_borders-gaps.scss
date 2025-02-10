@@ -50,6 +50,12 @@
 		&[gktitnative="true"][isWindows10] {
 			--gap-size: var(--content-border-width);
 		}
+		@media (-moz-platform: windows) {
+			// See Geckium_titlebar.uc.js: getTitleBordersRemovable for more information
+			&[gktitnative="false"][gkcompactsquared] {
+				--gap-size: 0px !important;
+			}
+		}
 		@media (-moz-platform: linux) {
 			// In Linux with CSDs, we physically CANNOT have gaps, however custom titlebar styles which add borders
 			// to alleviate this limitation should still be able to have gaps, hence rather than restricting it at the

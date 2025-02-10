@@ -100,6 +100,12 @@
 			align-items: unset !important;
 			margin-inline-end: var(--titlebar-border-radius); // right margin
 		}
+		//Windows quirk: See Geckium_titlebar.uc.js: getTitleBordersRemovable for more information
+		@media (-moz-platform: windows) {
+			.titlebar-buttonbox-container {
+				margin-inline-end: 4px !important;
+			}
+		}
 		//Linux quirk: Counteract exclusive menubar padding
 		@media (-moz-platform: linux) {
 			#toolbar-menubar .titlebar-buttonbox-container {
