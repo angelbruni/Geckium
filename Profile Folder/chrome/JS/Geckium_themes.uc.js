@@ -10,6 +10,7 @@ const { ChromiumGTKUI } = ChromeUtils.importESModule("chrome://modules/content/C
 // Initial variables
 let isThemed;
 let previousSysTheme;
+let gkYouRGBLoop;
 
 // System Theme Management
 class gkSysTheme {
@@ -250,6 +251,8 @@ class gkYou {
                 var rgb = window.getComputedStyle(colorDiv)["background-color"];
                 document.head.removeChild(colorDiv);
                 return rgb;
+            case "rgb":
+                return "rgb";
             case "custom":
                 var hex = gkPrefUtils.tryGet("Geckium.you.color").string;
                 if (hex.charAt(0) != "#") {
@@ -297,7 +300,7 @@ class gkYou {
      */
 
 	static setVariables(color) {
-		//Base accent colour
+		// Base accent colour
 		let rgb = color.match(/\d+/g);
         let hsl = ColorUtils.ColorToHSL(rgb);
         let lightl = hsl[2];
@@ -322,10 +325,29 @@ class gkYou {
 	}
 
     /**
-     * removeVariables - Removes Geckium You's palette
+     * startYou - Starts Geckium You's colour-loop
+     */
+
+    static startYou() {
+        let u = Math.floor(Math.random() * 360);
+        gkYouRGBLoop = setInterval(function() {
+            if (u >= 360) {
+                u = 0;
+            }
+            document.documentElement.style.setProperty("--you-h", u);
+            u += 1;
+        }, 100);
+        document.documentElement.style.setProperty("--you-s", `59%`);
+        document.documentElement.style.setProperty("--you-l", `56%`);
+        document.documentElement.style.setProperty("--you-l-dark", `56%`);
+    }
+
+    /**
+     * removeVariables - Removes Geckium You's palette (and stops Geckium You's colour-loop)
      */
 
     static removeVariables() {
+        clearInterval(gkYouRGBLoop);
         document.documentElement.style.removeProperty(`--you-h`);
         document.documentElement.style.removeProperty(`--you-s`);
         document.documentElement.style.removeProperty(`--you-l`);
@@ -344,8 +366,11 @@ class gkYou {
             } catch (error) {
                 console.error("Failed to source colour for Geckium You:", error);
             }
-            if (color != "") {
+            if (color != "" && color != "rgb") {
                 gkYou.setVariables(color);
+            } else if (color == "rgb" && isBrowserWindow) {
+                gkYou.startYou();
+                return;
             }
         }
 	}
