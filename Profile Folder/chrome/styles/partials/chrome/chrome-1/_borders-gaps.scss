@@ -103,7 +103,7 @@
 	#TabsToolbar::before {
 		content: "";
 		position: absolute;
-		top: unset !important;
+		top: unset !important; // Chinese Win7 Firefox - fog
 		bottom: -1px;
 		height: 23px !important;
 		background: var(--content-border-top-image) bottom !important;
