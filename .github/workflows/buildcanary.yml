@@ -34,6 +34,7 @@ jobs:
             echo "should_run=true" >> $GITHUB_OUTPUT
           fi
   build:
+    name: Build Canary
     needs: check_date
     if: ${{ needs.check_date.outputs.should_run != 'false' || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
