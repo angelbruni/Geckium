@@ -48,15 +48,23 @@
 	&[fxastatus="not_configured"] {
 		--avatar-image-url: url("chrome://userchrome/content/assets/img/profile/avatar_empty.svg") !important;
 	}
+	&[is136Plus] {
+		#PanelUI-fxa-menu {
+			#PanelUI-fxa-menu-monitor-button {
+					display: none !important;
+		  }
+			  }
+		}
 }
 
 #PanelUI-fxa-menu {
-	#PanelUI-fxa-menu-monitor-button,
-	#PanelUI-fxa-menu-relay-button,
+	#PanelUI-fxa-menu-monitor-button #cta-menu-header-description,
+	#PanelUI-fxa-menu-relay-button #cta-menu-header-description,
 	#PanelUI-fxa-menu-vpn-button {
 		display: none !important;
 	}
 }
+
 
 panel toolbarseparator {
 	display: none !important;
