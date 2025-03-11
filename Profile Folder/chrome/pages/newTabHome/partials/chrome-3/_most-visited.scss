@@ -492,7 +492,12 @@
 	}
 
 	.thumbnail-wrapper {
-		background: white;
+		background-color: white;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: black;
+		}
+
 		border-radius: 5px;
 		background-size: 209px 132px;
 		background-position: center;

@@ -27,7 +27,7 @@
 	}
 
 	#TabsToolbar::before {
-		width: calc(100% - (var(--gap-size) * 2));
+		width: calc(100% - (var(--gap-size) * 2)) !important;
 		left: var(--gap-size);
 	}
 
@@ -42,7 +42,7 @@
 		--gap-size: calc(var(--content-border-width) - 1px);
 		
 		#TabsToolbar::before {
-			width: calc(100% - ((var(--gap-size) + 1px) * 2));
+			width: calc(100% - ((var(--gap-size) + 1px) * 2)) !important;
 			left: calc(var(--gap-size) + 1px);
 		}
 
@@ -103,11 +103,12 @@
 	#TabsToolbar::before {
 		content: "";
 		position: absolute;
+		top: unset !important; // Chinese Win7 Firefox - fog
 		bottom: -1px;
-		height: 23px;
-		background: var(--content-border-top-image) bottom;
+		height: 23px !important;
+		background: var(--content-border-top-image) bottom !important;
 		pointer-events: none;
-		z-index: 100;
+		z-index: 100 !important;
 	}
 
 	//Page bodies - top 1px border
