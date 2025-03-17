@@ -6,7 +6,7 @@
 <!ENTITY gsettings.behaviour	"挙動">
 <!ENTITY gsettings.pages		"ページ">
 <!ENTITY gsettings.theme		"テーマ">
-<!ENTITY gsettings.people		"アバター">
+<!ENTITY gsettings.people		"プロファイル">
 
 <!ENTITY gsettings.chromiumExperiments	"Chromium の試験的機能">
 <!ENTITY gsettings.developerOptions		"開発者オプション">
@@ -22,7 +22,7 @@
 <!ENTITY gsettings.behaviourDescription				"Geckium のブランディングや、テーマをどのように動作させるかなど、Geckium の挙動を変更します">
 <!ENTITY gsettings.pagesDescription					"新しいタブ / アプリページ を含む様々なページのカスタマイズをします">
 <!ENTITY gsettings.themeDescription					"Geckium で使用する Firefox / Chromium テーマの設定をします">
-<!ENTITY gsettings.peopleDescription				"アバター ボタンの外観をどのようにするかを設定できます">
+<!ENTITY gsettings.peopleDescription				"プロファイル ボタンの外観をどのようにするかを設定できます">
 <!ENTITY gsettings.chromiumExperimentsDescription	"Chromium の歴史の中で廃止された試験的機能を有効または無効にできます">
 
 <!ENTITY gsettings.automatic "自動">
@@ -57,7 +57,7 @@
 
 <!ENTITY gsettings.privacy			"プライバシー">
 <!ENTITY gsettings.hideAccountInfo	"アカウント情報を隠す">
-<!ENTITY gsettings.willHideInfoFrom	"新しいタブやアバターボタンなどの場所からあなたの名前やメールアドレスを隠します">
+<!ENTITY gsettings.willHideInfoFrom	"新しいタブやプロファイルボタンなどの場所からあなたの名前やメールアドレスを隠します">
 
 <!ENTITY gsettings.browser						"ブラウザ">
 <!ENTITY gsettings.branding						"ブラウザのブランディング">
@@ -96,12 +96,12 @@
 <!ENTITY gsettings.allToolbarItems					"すべてのツールバー項目">
 <!ENTITY gsettings.none								"なし">
 
-<!ENTITY gsettings.websitePinningInEveryEra				"ウェブサイトのピンをすべてのデザインで有効化する">  <!-- THIS STRING REQUIRES AN UPDATE, REMOVE THE WORD(S) THAT MEAN "ENABLE"/"ENABLE THE", THE STRING IS NOW JUST "Website pinning in every era". Remove this comment after the string update OR if there are no words like that. -->
+<!ENTITY gsettings.websitePinningInEveryEra				"ウェブサイトのピンをすべてのデザインで有効化する">
 <!ENTITY gsettings.websitePinningInEveryEraDescription	"ピンボタンをすべてのデザインで表示します">
 
-<!ENTITY gsettings.downloadShelf					"[!!! Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelf				"[!!! Ðïƨáβℓè Ðôωñℓôáδ §λèℓƒ !!!]">
-<!ENTITY gsettings.disableDownloadShelfDescription	"[!!! Tλïƨ ωïℓℓ ƭúřñ ôñ Fïřèƒôж'ƨ Ðôωñℓôáδ βúƭƭôñ !!!]">
+<!ENTITY gsettings.downloadShelf					"ダウンロード バー">
+<!ENTITY gsettings.disableDownloadShelf				"ダウンロード バーを無効化する">
+<!ENTITY gsettings.disableDownloadShelfDescription	"無効化すると既存の Firefox のダウンロードメニューを有効化します">
 
 <!ENTITY gsettings.aboutDialog	"概要">
 <!ENTITY gsettings.chooseAbout	"概要を選択">
@@ -116,11 +116,11 @@
 <!ENTITY gsettings.behaviourToExperiments	"Chromium の廃止された試験的機能を探す">
 
 <!ENTITY gsettings.appsList			"アプリリスト">
-<!ENTITY gsettings.restoreDefaults	"[!!! Rèƨƭôřè Ðèƒáúℓƭƨ !!!]">
-<!ENTITY gsettings.restore			"[!!! Rèƨƭôřè !!!]">
-<!ENTITY gsettings.favicon			"[!!! FáƲïçôñ !!!]">
-<!ENTITY gsettings.icon				"[!!! Ìçôñ !!!]">
-<!ENTITY gsettings.name				"[!!! Ná₥è !!!]">
+<!ENTITY gsettings.restoreDefaults	"デフォルトに戻す">
+<!ENTITY gsettings.restore			"復元">
+<!ENTITY gsettings.favicon			"Favicon">
+<!ENTITY gsettings.icon				"アイコン">
+<!ENTITY gsettings.name				"名前">
 <!ENTITY gsettings.addAnApp			"アプリを追加する">
 
 <!ENTITY gsettings.pagesToDesign	"新しいタブ ページの外観を変える">
@@ -166,22 +166,22 @@
 <!ENTITY gsettings.themeToBehaviour		"テーマの挙動を変更する">
 <!ENTITY gsettings.themeToExperiments	"廃止された Chromium のオプションでもっと奥深くまで設定する">
 
-<!ENTITY gsettings.peopleButton			"[!!! Þèôƥℓè ßúƭƭôñ !!!]">
-<!ENTITY gsettings.peopleButtonStyle	"[!!! Þèôƥℓè ßúƭƭôñ §ƭ¥ℓè !!!]">
-<!ENTITY gsettings.avatarBesideTabs		"[!!! ÂƲáƭář βèƨïδè Táβƨ !!!]">
-<!ENTITY gsettings.titlebarButton		"[!!! Tïƭℓèβář ßúƭƭôñ !!!]">
+<!ENTITY gsettings.peopleButton			"プロファイル ボタン">
+<!ENTITY gsettings.peopleButtonStyle	"プロファイル ボタンのスタイル">
+<!ENTITY gsettings.avatarBesideTabs		"タブバーの先頭に配置">
+<!ENTITY gsettings.titlebarButton		"タイトルバーのボタンの隣に配置">
 
-<!ENTITY gsettings.avatar					"[!!! ÂƲáƭář !!!]">
-<!ENTITY gsettings.avatarSource				"[!!! ÂƲáƭář §ôúřçè !!!]">
-<!ENTITY gsettings.avatarSourceDisclaimer	"[!!! Fïřèƒôж Âççôúñƭ ωïℓℓ ôñℓ¥ δïƨƥℓá¥ ïƒ ƨïϱñèδ ïñ !!!]">
-<!ENTITY gsettings.firefoxAccount			"[!!! Fïřèƒôж Âççôúñƭ !!!]">
-<!ENTITY gsettings.selectYourAvatar			"[!!! §èℓèçƭ ¥ôúř áƲáƭář !!!]">
+<!ENTITY gsettings.avatar					"アバター">
+<!ENTITY gsettings.avatarSource				"アバター ソース">
+<!ENTITY gsettings.avatarSourceDisclaimer	"Firefox アカウントの場合は Firefox にサインインした時のみ表示されます">
+<!ENTITY gsettings.firefoxAccount			"Firefox アカウント">
+<!ENTITY gsettings.selectYourAvatar			"アバターの選択">
 <!ENTITY gsettings.imagePath				"画像のパス">
 
-<!ENTITY gsettings.force68Linux					"[!!! Fôřçè Çλřô₥ïú₥ 68'ƨ Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.force68LinuxDescription		"[!!! ßèƒôřè 68, ƭλè ƭïƭℓèβář βúƭƭôñ úƨèδ Wïñδôωƨ'ƨ βúƭƭôñ ƨƭ¥ℓè !!!]">
-<!ENTITY gsettings.showChrOSPeople				"[!!! §λôω Þèôƥℓè Tïƭℓèβář ßúƭƭôñ !!!]">
-<!ENTITY gsettings.showChrOSPeopleDescription	"[!!! Tλè Þèôƥℓè Tïƭℓèβář ßúƭƭôñ ωáƨ èжçℓúƨïƲè ƭô Wïñδôωƨ 8 Môδè !!!]">
+<!ENTITY gsettings.force68Linux					"Chromium 68 のタイトルバーのプロファイルボタンを強制する">
+<!ENTITY gsettings.force68LinuxDescription		"Chromium 68 以前では Windows のボタンスタイルを使用していました">
+<!ENTITY gsettings.showChrOSPeople				"タイトルバーにプロファイルボタンを表示する">
+<!ENTITY gsettings.showChrOSPeopleDescription	"タイトルバーのプロファイルボタンは Windows 8 モード限定でした">
 
 <!ENTITY gsettings.flags '試験的機能 - "about:flags" ページでも利用可能'>
 
