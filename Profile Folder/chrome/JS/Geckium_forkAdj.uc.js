@@ -263,10 +263,10 @@ if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfo
 
 // Marbie Adjustments
 class gkMarbleAdj {
-	static blacklist = [
-		"widget.windows-style.modern",
-		"browser.proton.enabled"
-	]
+	static blacklist = {
+		"widget.windows-style.modern": false,
+		"browser.proton.enabled": true
+	}
 
 	/**
 	 * disableThemeCusto - Ensures Marble's theme customisation options are turned off
@@ -275,14 +275,14 @@ class gkMarbleAdj {
 	static disableThemeCusto(id) {
 		let changes = 0;
 		if (id) {
-			if (gkPrefUtils.tryGet(id).bool != false) {
-				gkPrefUtils.set(id).bool(false);
+			if (gkPrefUtils.tryGet(id).bool != gkMarbleAdj.blacklist[id]) {
+				gkPrefUtils.set(id).bool(gkMarbleAdj.blacklist[id]);
 				changes += 1;
 			}
 		} else {
 			for (const i in gkMarbleAdj.blacklist) {
-				if (gkPrefUtils.tryGet(gkMarbleAdj.blacklist[i]).bool != false) {
-					gkPrefUtils.set(gkMarbleAdj.blacklist[i]).bool(false);
+				if (gkPrefUtils.tryGet(i).bool != gkMarbleAdj.blacklist[i]) {
+					gkPrefUtils.set(i).bool(gkMarbleAdj.blacklist[i]);
 					changes += 1;
 				}
 			}
@@ -305,6 +305,6 @@ if (AppConstants.MOZ_APP_NAME == "marble") {
 		},
 	};
 	for (const i in gkMarbleAdj.blacklist) {
-		Services.prefs.addObserver(gkMarbleAdj.blacklist[i], marbleObserver, false);
+		Services.prefs.addObserver(i, marbleObserver, false);
 	}
 }
