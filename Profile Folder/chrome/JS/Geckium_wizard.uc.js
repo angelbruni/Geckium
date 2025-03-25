@@ -7,7 +7,11 @@
 window.addEventListener("load", () => {
 	// Ensure Geckium is actually installed
 	let geckCheck = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
-	geckCheck.initWithPath(`${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/userChrome.css`);
+	if (AppConstants.platform == "win")
+		geckCheck.initWithPath(`${FileUtils.getDir("ProfD", []).path}\\chrome\\geckiumChrome.css`);
+	else
+		geckCheck.initWithPath(`${FileUtils.getDir("ProfD", []).path.replace(/\\/g, "/")}/chrome/geckiumChrome.css`);
+	
 	if (!geckCheck.exists()) {
 		UC_API.Notifications.show({
 			label : "Welcome to ium! To get the full Geckium experience, download Geckium from Releases or compile your chrome folder.",
