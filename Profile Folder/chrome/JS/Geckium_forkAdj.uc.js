@@ -261,10 +261,11 @@ if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfo
 	}
 }
 
-// r3dfox Adjustments
+// Marbie Adjustments
 class gkMarbleAdj {
 	static blacklist = [
-		"widget.windows-style.modern"
+		"widget.windows-style.modern",
+		"browser.proton.enabled"
 	]
 
 	/**
@@ -288,7 +289,7 @@ class gkMarbleAdj {
 		}
 		if (changes >= 1) {
 			UC_API.Notifications.show({
-				label : "Marble theme customisations are not supported by Geckium and have been disabled. If you still see aesthetic flaws, restart the browser.",
+				label : "Marble theme customisations are not supported by Geckium and have been disabled.",
 				type : "geckium-notification",
 				priority: "critical"
 			})
@@ -297,13 +298,13 @@ class gkMarbleAdj {
 }
 if (AppConstants.MOZ_APP_NAME == "marble") {
 	window.addEventListener("load", function () { gkMarbleAdj.disableThemeCusto(); });
-	const rfoxObserver = {
+	const marbleObserver = {
 		observe: function (subject, topic, data) {
 			if (topic == "nsPref:changed")
 				gkMarbleAdj.disableThemeCusto(data);
 		},
 	};
 	for (const i in gkMarbleAdj.blacklist) {
-		Services.prefs.addObserver(gkMarbleAdj.blacklist[i], rfoxObserver, false);
+		Services.prefs.addObserver(gkMarbleAdj.blacklist[i], marbleObserver, false);
 	}
 }
