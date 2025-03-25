@@ -322,20 +322,15 @@
 		@media (-moz-platform: linux) {
 			// Stop Light and Dark from getting custom Firefox titlebars
 			&:not([gkthemed]:not([gkchrthemed])) {
-				#navigator-toolbox {
-					background-image: unset !important;
-					background-repeat: unset !important;
-					background-position: unset !important; // browser.css:88, 115
-				}
 				&:not([is117Plus]) #navigator-toolbox {
 					background-color: transparent !important; // browser.css:37, 115
 				}
-				&[is117Plus] #navigator-toolbox {
-					background-color: var(--toolbox-non-lwt-bgcolor) !important;
-					color: var(--toolbox-non-lwt-textcolor) !important; // browser-shared.css:205, 128
+				&[is117Plus]:not([is134Plus]) #navigator-toolbox {
+					background-color: var(--toolbox-bgcolor) !important;
+					color: var(--toolbox-textcolor) !important; // browser-shared.css:205, 128, browser-shared.css:176, 136
 					&:-moz-window-inactive {
-						background-color: var(--toolbox-non-lwt-bgcolor-inactive) !important;
-						color: var(--toolbox-non-lwt-textcolor-inactive) !important; // browser-shared.css:192, 128
+						background-color: var(--toolbox-bgcolor-inactive) !important;
+						color: var(--toolbox-textcolor-inactive) !important; // browser-shared.css:192, 128, browser-shared.css:184, 136
 					}
 				}
 				&:not([is117Plus]) .titlebar-button {
@@ -343,6 +338,11 @@
 					appearance: auto !important; // browser.css:357, 115
 					border-radius: unset !important; // browser.css:357, 115
 				}
+				// New variables in Firefox 134
+				--toolbox-bgcolor: ActiveCaption !important;
+				--toolbox-textcolor: CaptionText !important;
+				--toolbox-bgcolor-inactive: InactiveCaption !important;
+				--toolbox-textcolor-inactive: InactiveCaptionText !important;
 			}
 		}
 		// Linux and macOS quirks
