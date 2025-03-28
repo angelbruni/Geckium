@@ -9,6 +9,7 @@
 class gkLWTheme {
 	static palettes = (function() {
 		switch (AppConstants.MOZ_APP_NAME) {
+			// Some forks use different palettes in their built-in Light and Dark LWTheme - 'default' is for everyone who doesn't
 			case "marble":
 				return {
 					"light": {
