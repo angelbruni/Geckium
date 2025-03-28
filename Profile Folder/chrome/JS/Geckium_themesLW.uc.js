@@ -7,16 +7,33 @@
 
 // Firefox LWThemes, and Light and Dark 'theme' checks
 class gkLWTheme {
-	static palettes = {
-		"light": {
-			"--lwt-accent-color": "rgb(240, 240, 244)",
-			"--lwt-text-color": "rgba(21, 20, 26)"
-		},
-		"dark": {
-			"--lwt-accent-color": "rgb(28, 27, 34)",
-			"--lwt-text-color": "rgba(251, 251, 254)"
+	static palettes = (function() {
+		switch (AppConstants.MOZ_APP_NAME) {
+			case "marble":
+				return {
+					"light": {
+						"--lwt-accent-color": "rgb(215, 215, 219)",
+						"--lwt-text-color": "rgba(24, 25, 26)"
+					},
+					"dark": {
+						"--lwt-accent-color": "rgb(12, 12, 13)",
+						"--lwt-text-color": "rgba(249, 249, 250)"
+					}
+				}
+			default:
+				return {
+					"light": {
+						"--lwt-accent-color": "rgb(240, 240, 244)",
+						"--lwt-text-color": "rgba(21, 20, 26)"
+					},
+					"dark": {
+						"--lwt-accent-color": "rgb(28, 27, 34)",
+						"--lwt-text-color": "rgba(251, 251, 254)"
+					}
+				}
 		}
-	}
+	})();
+	
 	/**
 	 * palettesMatch - Returns True if the palettes match the expected Mozilla Firefox lwtheme's
 	 * 
