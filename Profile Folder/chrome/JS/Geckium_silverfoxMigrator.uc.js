@@ -73,7 +73,7 @@ class sfMigrator {
 				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromiumos");
 			} else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// Force Windows Styling
-				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
+				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win");
 			}
 			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
 				// Disable System Icons in Toolbarbuttons
