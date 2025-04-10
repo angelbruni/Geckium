@@ -296,7 +296,7 @@ class gkMarbleAdj {
 		}
 	}
 }
-if (AppConstants.MOZ_APP_NAME == "marble") {
+if (AppConstants.MOZ_APP_NAME == "marble" || AppConstants.MOZ_APP_NAME == "okaeri") {
 	window.addEventListener("load", function () { gkMarbleAdj.disableThemeCusto(); });
 	const marbleObserver = {
 		observe: function (subject, topic, data) {
