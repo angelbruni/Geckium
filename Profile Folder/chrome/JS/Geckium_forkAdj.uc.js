@@ -261,11 +261,12 @@ if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfo
 	}
 }
 
-// r3dfox Adjustments
+// Marbie Adjustments
 class gkMarbleAdj {
-	static blacklist = [
-		"widget.windows-style.modern"
-	]
+	static blacklist = {
+		"widget.windows-style.modern": false,
+		"browser.proton.enabled": true
+	}
 
 	/**
 	 * disableThemeCusto - Ensures Marble's theme customisation options are turned off
@@ -274,36 +275,36 @@ class gkMarbleAdj {
 	static disableThemeCusto(id) {
 		let changes = 0;
 		if (id) {
-			if (gkPrefUtils.tryGet(id).bool != false) {
-				gkPrefUtils.set(id).bool(false);
+			if (gkPrefUtils.tryGet(id).bool != gkMarbleAdj.blacklist[id]) {
+				gkPrefUtils.set(id).bool(gkMarbleAdj.blacklist[id]);
 				changes += 1;
 			}
 		} else {
 			for (const i in gkMarbleAdj.blacklist) {
-				if (gkPrefUtils.tryGet(gkMarbleAdj.blacklist[i]).bool != false) {
-					gkPrefUtils.set(gkMarbleAdj.blacklist[i]).bool(false);
+				if (gkPrefUtils.tryGet(i).bool != gkMarbleAdj.blacklist[i]) {
+					gkPrefUtils.set(i).bool(gkMarbleAdj.blacklist[i]);
 					changes += 1;
 				}
 			}
 		}
 		if (changes >= 1) {
 			UC_API.Notifications.show({
-				label : "Marble theme customisations are not supported by Geckium and have been disabled. If you still see aesthetic flaws, restart the browser.",
+				label : "Marble theme customisations are not supported by Geckium and have been disabled.",
 				type : "geckium-notification",
 				priority: "critical"
 			})
 		}
 	}
 }
-if (AppConstants.MOZ_APP_NAME == "marble") {
+if (AppConstants.MOZ_APP_NAME == "marble" || AppConstants.MOZ_APP_NAME == "okaeri") {
 	window.addEventListener("load", function () { gkMarbleAdj.disableThemeCusto(); });
-	const rfoxObserver = {
+	const marbleObserver = {
 		observe: function (subject, topic, data) {
 			if (topic == "nsPref:changed")
 				gkMarbleAdj.disableThemeCusto(data);
 		},
 	};
 	for (const i in gkMarbleAdj.blacklist) {
-		Services.prefs.addObserver(gkMarbleAdj.blacklist[i], rfoxObserver, false);
+		Services.prefs.addObserver(i, marbleObserver, false);
 	}
 }
