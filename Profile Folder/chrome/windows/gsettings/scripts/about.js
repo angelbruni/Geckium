@@ -1,4 +1,10 @@
-const { ctypes } = Components.utils.import("resource://gre/modules/ctypes.jsm", {});
+let ctypes;
+if (!versionFlags.is136Plus) {
+	({ ctypes } = Components.utils.import("resource://gre/modules/ctypes.jsm"));
+}
+else {
+	({ ctypes } = ChromeUtils.importESModule("resource://gre/modules/ctypes.sys.mjs"));
+}
 
 const { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 XPCOMUtils.defineLazyServiceGetter(

@@ -27,7 +27,7 @@
 	}
 
 	#TabsToolbar::before {
-		width: calc(100% - (var(--gap-size) * 2));
+		width: calc(100% - (var(--gap-size) * 2)) !important;
 		left: var(--gap-size);
 	}
 
@@ -42,13 +42,19 @@
 		--gap-size: calc(var(--content-border-width) - 1px);
 		
 		#TabsToolbar::before {
-			width: calc(100% - ((var(--gap-size) + 1px) * 2));
+			width: calc(100% - ((var(--gap-size) + 1px) * 2)) !important;
 			left: calc(var(--gap-size) + 1px);
 		}
 
 		&[gktitnative="false"],
 		&[gktitnative="true"][isWindows10] {
 			--gap-size: var(--content-border-width);
+		}
+		@media (-moz-platform: windows) {
+			// See Geckium_titlebar.uc.js: getTitleBordersRemovable for more information
+			&[gktitnative="false"][gkcompactsquared] {
+				--gap-size: 0px !important;
+			}
 		}
 		@media (-moz-platform: linux) {
 			// In Linux with CSDs, we physically CANNOT have gaps, however custom titlebar styles which add borders
@@ -97,11 +103,12 @@
 	#TabsToolbar::before {
 		content: "";
 		position: absolute;
+		top: unset !important; // Chinese Win7 Firefox - fog
 		bottom: -1px;
-		height: 23px;
-		background: var(--content-border-top-image) bottom;
+		height: 23px !important;
+		background: var(--content-border-top-image) bottom !important;
 		pointer-events: none;
-		z-index: 100;
+		z-index: 100 !important;
 	}
 
 	//Page bodies - top 1px border

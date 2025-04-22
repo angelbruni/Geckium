@@ -29,10 +29,10 @@ class gkToolbarButtons {
 						toolbarbutton.dataset.l10nId = params.l10nId;
 		
 					if (params.onclick)
-						toolbarbutton.setAttribute("onclick", params.onclick);
+						toolbarbutton.addEventListener("click", params.onclick);
 
 					if (params.oncommand)
-						toolbarbutton.setAttribute("oncommand", params.oncommand);
+						toolbarbutton.addEventListener("command", params.oncommand);
 
 					if (typeof params.onCreated === "function")
 						params.onCreated(toolbarbutton);
@@ -178,26 +178,23 @@ class gkToolbarMenuButtons {
 				menuItem.setAttribute("accesskey", params.accesskey);
 
 			if (params.type == "menuitem") {
-				if (!params.oncommand && !params.click && !params.command)
+				if (!params.oncommand /*&& !params.onclick*/ && !params.command)
 					menuItem.disabled = true;
 			}
 
-			if (params.click)
-				menuItem.setAttribute("onclick", params.click);
-
-			if (params.command) {
-				if (typeof params.command === "string")
-					menuItem.setAttribute("command", params.command);
-				else
-					menuItem.addEventListener("command", params.command);
-			}
+			/*
+				if (params.onclick)
+					menuItem.setAttribute("onclick", params.onclick);
+			
+				This is deprecated in `gkToolbarMenuButtons.createItem()` due to it not working in macOS in `menuitem`s, use `oncommand` instead.
+			*/
 
 			if (params.oncommand) {
-				if (typeof params.oncommand === "string")
-					menuItem.setAttribute("oncommand", params.oncommand);
-				else
-					menuItem.addEventListener("oncommand", params.oncommand);
+				menuItem.addEventListener("command", params.oncommand);
 			}
+
+			if (params.command)
+				menuItem.setAttribute("command", params.command);
 
 			if (params.key)
 				menuItem.setAttribute("key", params.key);
@@ -233,15 +230,9 @@ class gkToolbarMenuButtons {
 	
 		function adjustAccelText(adjustAccelTextWidth) {
 			if (adjustAccelTextWidth) {
-				const menuAccelContainers = parent.querySelectorAll(
-					"menuitem[acceltext] > .menu-accel-container"
-				);
+				const menuAccelContainers = parent.querySelectorAll("menuitem[acceltext] > .menu-accel-container");
 	
-				if (
-					!parent.querySelector(
-						"menuitem[acceltext] > .menu-accel-container[style*='min-width']"
-					)
-				) {
+				if (!parent.querySelector("menuitem[acceltext] > .menu-accel-container[style*='min-width']")) {
 					let maxWidth = 0;
 					menuAccelContainers.forEach((container) => {
 						const width = container.clientWidth;
@@ -253,20 +244,28 @@ class gkToolbarMenuButtons {
 			}
 		}
 
+		const eventMap = {
+			onpopup: ["popupshowing", "popuphidden"],
+			onmouseover: ["mouseover"]
+		};
+		
 		if (object.properties) {
-			if (object.properties.onmouseover)
-				parentOfParent.setAttribute("onmouseover", object.properties.onmouseover)
-			
-			if (object.properties.onpopup) {
-				if (parent.tagName == "menupopup") {
-					parent.addEventListener("popupshowing", adjustAccelText);
-					
-					gkSetAttributes(parent, {
-						onpopupshowing: object.properties.onpopup,
-						onpopuphidden: object.properties.onpopup,
+			Object.entries(eventMap).forEach(([prop, eventNames]) => {
+				if (object.properties?.[prop]) {
+					let eventFunctions = Array.isArray(object.properties[prop]) ? object.properties[prop] : [object.properties[prop]];
+
+					eventFunctions.forEach(fn => {
+						if (typeof fn === "function") {
+							eventNames.forEach(eventName => {
+								if (eventName === "mouseover")
+									parentOfParent.addEventListener(eventName, fn);
+								else
+									parent.addEventListener(eventName, fn);
+							});
+						}
 					});
 				}
-			}
+			});
 		}
 	
 		for (let key in object) {
@@ -288,7 +287,7 @@ class gkToolbarMenuButtons {
 						id: object[key].id,
 						icon: object[key].icon,
 						checkbox: object[key].checkbox,
-						onclick: object[key].click,
+						oncommand: object[key].oncommand,
 						command: object[key].command,
 						label: object[key].label,
 						l10nId: object[key].l10nId,
@@ -312,7 +311,7 @@ class gkToolbarMenuButtons {
 						id: object[key].id,
 						icon: object[key].icon,
 						checkbox: object[key].checkbox,
-						click: object[key].click,
+						oncommand: object[key].oncommand,
 						command: object[key].command,
 						label: object[key].label,
 						l10nId: object[key].l10nId,
@@ -335,7 +334,7 @@ class gkToolbarMenuButtons {
 						id: object[key].id,
 						icon: object[key].icon,
 						checkbox: object[key].checkbox,
-						click: object[key].click,
+						oncommand: object[key].oncommand,
 						command: object[key].command,
 						label: object[key].label,
 						l10nId: object[key].l10nId,
@@ -354,7 +353,9 @@ UC_API.Runtime.startupFinished().then(() => {
 		parentID: "toolbar-context-menu",
 		type: "menuitem",
 		id: "toolbar-context-gsettings",
-		oncommand: "openGSettings()"
+		oncommand: function() {
+			openGSettings();
+		}
 	});
 
 	document.getElementById("toolbar-context-menu").addEventListener("popupshown", () => {
@@ -368,7 +369,9 @@ UC_API.Runtime.startupFinished().then(() => {
 		removable: true,
 		overflows: false,
 		area: CustomizableUI.AREA_NAVBAR,
-		oncommand: "openGSettings()",
+		oncommand: function() {
+			openGSettings();
+		},
 
 		onCreated: function(toolbarbutton) {
 			toolbarbutton.addEventListener("mouseover", () => {
@@ -561,7 +564,9 @@ UC_API.Runtime.startupFinished().then(() => {
 			16: {
 				id: "reportBugOrBrokenWebsite",
 				l10nId: "reportBugOrBrokenWebsite",
-				click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
+				oncommand: function() {
+					openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');
+				}
 			},
 		},
 		adjustAccelTextWidth: true,
@@ -575,13 +580,15 @@ UC_API.Runtime.startupFinished().then(() => {
 		area: CustomizableUI.AREA_NAVBAR,
 		object: {
 			properties: {
-				onmouseover: "updateMenuTooltipLocale();",
-				onpopup: "bookmarksBarStatus(); updateAboutLocale();",
+				onmouseover: [updateMenuTooltipLocale],
+            	onpopup: [bookmarksBarStatus, updateAboutLocale],
 			},
 			1: {
 				id: "newVersion",
 				l10nId: "newVersion",
-				click: "openTrustedLinkIn('https://github.com/angelbruni/Geckium/releases/latest', 'tab');",
+				oncommand: function() {
+					openTrustedLinkIn('https://github.com/angelbruni/Geckium/releases/latest', 'tab');
+				}
 			},
 			2: {
 				id: "newTab",
@@ -610,7 +617,7 @@ UC_API.Runtime.startupFinished().then(() => {
 							id: "showBookmarks",
 							l10nId: "showBookmarksBar",
 							checkbox: true,
-							command: onViewToolbarCommand,
+							oncommand: onViewToolbarCommand,
 							acceltext: "Ctrl+Shift+B",
 						},
 						2: {
@@ -680,7 +687,9 @@ UC_API.Runtime.startupFinished().then(() => {
 						4: {},
 						5: {
 							id: "fullScreen6",
-							click: "toggleFullscreen();",
+							oncommand: function() {
+								toggleFullscreen();
+							}
 						},
 					},
 				],
@@ -735,7 +744,9 @@ UC_API.Runtime.startupFinished().then(() => {
 						7: {
 							id: "reportIssue",
 							l10nId: "reportAnIssue",
-							click: "openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');",
+							oncommand: function() {
+								openTrustedLinkIn('https://bugzilla.mozilla.org/home', 'tab');
+							}
 						},
 						8: {},
 						9: {
@@ -768,7 +779,9 @@ UC_API.Runtime.startupFinished().then(() => {
 			16: {
 				id: "fullScreen5",
 				l10nId: "fullScreen",
-				click: "BrowserFullScreen();",
+				oncommand: function() {
+					BrowserFullScreen();
+				},
 				key: "key_enterFullScreen",
 			},
 			17: {},
@@ -799,28 +812,38 @@ UC_API.Runtime.startupFinished().then(() => {
 			23: {
 				id: "setupSync",
 				l10nId: "setUpSync",
-				click: "gSync.openPrefsFromFxaMenu('sync_settings', this);",
+				oncommand: function() {
+					gSync.openPrefsFromFxaMenu('sync_settings', this);
+				}
 			},
 			24: {},
 			25: {
 				id: "options5",
 				l10nId: "options",
-				click: "openPreferences()",
+				oncommand: function() {
+					openPreferences();
+				}
 			},
 			26: {
 				id: "settings6",
 				l10nId: "settings",
-				click: "openPreferences()",
+				oncommand: function() {
+					openPreferences();
+				}
 			},
 			27: {
 				id: "about",
 				l10nId: "about",
-				click: "openAbout()",
+				oncommand: function() {
+					openAbout();
+				}
 			},
 			28: {
 				id: "help",
 				l10nId: "help",
-				click: "openHelpLink('firefox-help')",
+				oncommand: function() {
+					openHelpLink('firefox-help');
+				},
 				acceltext: "F1",
 			},
 			29: {},

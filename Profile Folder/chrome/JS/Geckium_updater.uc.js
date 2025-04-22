@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const configIteration = 5;
+const configIteration = 6;
 
 (async () => {
 	let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
@@ -41,6 +41,9 @@ const configIteration = 5;
 function updateSettings(iteration) {
 	if (iteration < 1) {
 		gkPrefUtils.set("toolkit.legacyUserProfileCustomizations.stylesheets").bool(true);		// Turn on legacy stylesheets
+
+		// Customise the existing toolbar
+		geckifyToolbar();
 
 		if (AppConstants.platform == "win") {
 			gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
@@ -116,6 +119,45 @@ function updateSettings(iteration) {
 
 	if (iteration < configIteration)
 		gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
+}
+
+// Modify existing toolbar layout to suit Geckium on first run
+function geckifyToolbar() {
+	var types = [
+		[CustomizableUI.AREA_TABSTRIP, ["tabbrowser-tabs", "new-tab-button", "alltabs-button"]],
+		[CustomizableUI.AREA_NAVBAR, ["back-button", "forward-button", "stop-reload-button", "home-button", "urlbar-container"]],
+		[CustomizableUI.AREA_BOOKMARKS, ["import-button", "personal-bookmarks"]]
+	]
+	var delet = ["firefox-view-button"]
+	var ignorer = ["gk-firefox-account-button", "unified-extensions-button", "gsettings-button", "page-button", "chrome-button"]
+
+	// Move items that do not belong on the respective toolbars to the extensions area
+	types.forEach(function (type, index) {
+		for (const i of CustomizableUI.getWidgetIdsInArea(type[0])) {
+			if (i.startsWith("customizableui-special-spring") || delet.includes(i)) {
+				// Delete flexible spacers, and Firefox View's toolbarbutton, rather than moving them
+				CustomizableUI.removeWidgetFromArea(i);
+			} else if (!type[1].includes(i) && !ignorer.includes(i)) {
+				CustomizableUI.addWidgetToArea(i, CustomizableUI.AREA_NAVBAR, 99999);
+			}
+		}
+	});
+
+	// Move intended toolbar items to their in-Chromium locations
+	types.forEach(function (type, index) {
+		ii = 0
+		for (const i of type[1]) {
+			if (ignorer.includes(i)) {
+				i1 += 1;
+				continue; // Ignore this widget, but increment position for the other widgets
+			}
+			if (i == "home-button" && CustomizableUI.getPlacementOfWidget(i) == null) {
+				continue; // Avoid adding the home button if it's not currently added
+			}
+			CustomizableUI.addWidgetToArea(i, type[0], ii);
+			ii += 1;
+		}
+	});
 }
 
 // PLACEHOLDER UPDATE MECHANISM FOR GECKIUM PUBLIC BETA 1

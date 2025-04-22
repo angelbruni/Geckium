@@ -5,7 +5,14 @@
 // @include		main
 // ==/UserScript==
 
-Components.utils.import("resource://gre/modules/FileUtils.jsm");
+let FileUtils;
+if (!versionFlags.is136Plus) {
+	({ FileUtils } = Components.utils.import("resource://gre/modules/FileUtils.jsm"));
+}
+else {
+	({ FileUtils } = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs"));
+}
+
 const { ColorUtils } = ChromeUtils.importESModule("chrome://modules/content/ChromiumColorUtils.sys.mjs");
 // Initial variables
 let isChromeThemed;

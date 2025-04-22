@@ -213,7 +213,15 @@ link[href*="moz-button"] + button > .button-background[size="small"] {
 	padding-block: unset !important;
 	padding: calc((36px - 11pt)/2) 0 !important;
 	padding-inline: 14px !important;
-	content: "Yikes, Geckium is unable to start! Please ensure the Firefox Folder files have been copied to your installed Firefox's program folder."
+	content: "Yikes, Geckium is unable to start! Please ensure the Firefox Folder files have been copied to your installed Firefox's program folder.";
+
+	background: linear-gradient(
+		to bottom,
+		rgb(255,242,183),
+		rgb(250,231,147)
+	) !important;
+	color: black !important;
+	font-size: 11pt !important;
 }
 :root[geckium-one] #navigator-toolbox::after {
 	content: unset !important;

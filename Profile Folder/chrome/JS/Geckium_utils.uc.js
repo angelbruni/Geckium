@@ -20,7 +20,7 @@ const specialCharacters = {
 // Firefox version check
 const ffVersion = AppConstants.MOZ_APP_VERSION_DISPLAY;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
-const checkedVersions = [117, 120, 122, 133, 134];
+const checkedVersions = [116, 117, 120, 122, 133, 134, 135, 136];
 const versionFlags = {};
 checkedVersions.forEach(version => {
 	if (majorVersion >= version) {
@@ -43,9 +43,37 @@ function isWindows10() {
 	return false;
 }
 
+/**
+ * lookForChangesInAttributes - Used to quickly understand which attributes change after certain conditions.
+ * 
+ * @elm: Element for observing.
+ */
+function lookForChangesInAttributes(elm) {
+	if (!elm || !(elm instanceof Element)) {
+        console.error("Invalid element provided.");
+        return;
+    }
+
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.type === "attributes")
+                console.log(`'${mutation.attributeName}': '${mutation.oldValue}' -> '${elm.getAttribute(mutation.attributeName)}'`);
+        });
+    });
+
+    observer.observe(elm, {
+        attributes: true, 
+        attributeOldValue: true 
+    });
+
+    console.log("Started observing attributes of the element.");
+    return observer;
+}
+
 function getNCPatched() {
 	if (AppConstants.platform == "win") {
-		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches) // Native Controls Patch
+		if (window.matchMedia("(-moz-ev-native-controls-patch)").matches	// Native Controls Patch
+							|| versionFlags.is116Plus && !isWindows10())	// We are gonna assume that if the current Firefox version shouldn't be running on older Windows versions but it is, then it's a patched install.
 			return "patch";
         else if (isWindows10() && window.matchMedia("(-moz-native-controls)").matches) // Marble
 			return "marble";
