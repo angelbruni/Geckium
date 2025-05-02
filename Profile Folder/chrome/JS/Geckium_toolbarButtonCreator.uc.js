@@ -88,8 +88,16 @@ class gkToolbarMenuButtons {
 
 				if (item.tagName == "menuitem" && item.getAttribute("type") == "checkbox") {
 					item.label = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
-					item.querySelector(".menu-iconic-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
-					item.querySelector(".menu-iconic-highlightable-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
+					try {
+						item.querySelector(".menu-iconic-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
+					} catch { // As of Mozilla Firefox 139, this is now .menu-text too
+						item.querySelector(".menu-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
+					};
+					try {
+						item.querySelector(".menu-iconic-highlightable-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
+					} catch { // Same with highlightable.
+						item.querySelector(".menu-highlightable-text").value = gkMenuBundle.GetStringFromName(item.dataset.l10nId);
+					};
 				}
 				
 				if (item.tagName == "button") {
