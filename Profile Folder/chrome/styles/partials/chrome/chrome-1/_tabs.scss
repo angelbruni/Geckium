@@ -485,6 +485,9 @@
 		margin-inline-start: 0 !important;
 		padding: 0 !important;
 		color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
+		.tab-content:is([selected], [multiselected]) { // Necessary addition for post-128 Firefox
+			color: var(--tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color-inactive, var(--default-tabbrowser-tab-color))) !important;
+		}
 
 		pointer-events: none !important;
 
