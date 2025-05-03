@@ -7,16 +7,35 @@
 
 // Firefox LWThemes, and Light and Dark 'theme' checks
 class gkLWTheme {
-	static palettes = {
-		"light": {
-			"--lwt-accent-color": "rgb(240, 240, 244)",
-			"--lwt-text-color": "rgba(21, 20, 26)"
-		},
-		"dark": {
-			"--lwt-accent-color": "rgb(28, 27, 34)",
-			"--lwt-text-color": "rgba(251, 251, 254)"
+	static palettes = (function() {
+		switch (AppConstants.MOZ_APP_NAME) {
+			// Some forks use different palettes in their built-in Light and Dark LWTheme - 'default' is for everyone who doesn't
+			case "marble":
+				return {
+					"light": {
+						"--lwt-accent-color": "rgb(215, 215, 219)",
+						"--lwt-text-color": "rgba(24, 25, 26)"
+					},
+					"dark": {
+						"--lwt-accent-color": "rgb(12, 12, 13)",
+						"--lwt-text-color": "rgba(249, 249, 250)"
+					}
+				}
+			default:
+				// Firefox 138 changed the Light palette slightly - revert the check if pre-138
+				return {
+					"light": {
+						"--lwt-accent-color": versionFlags.is138Plus ? "rgb(234, 234, 237)" : "rgb(240, 240, 244)",
+						"--lwt-text-color": "rgba(21, 20, 26)"
+					},
+					"dark": {
+						"--lwt-accent-color": "rgb(28, 27, 34)",
+						"--lwt-text-color": "rgba(251, 251, 254)"
+					}
+				}
 		}
-	}
+	})();
+	
 	/**
 	 * palettesMatch - Returns True if the palettes match the expected Mozilla Firefox lwtheme's
 	 * 
@@ -52,7 +71,7 @@ class gkLWTheme {
 	 */
 
 	static get pageisSysTheme() {
-		if (parseInt(Services.appinfo.version.split(".")[0]) >= 117) { // Firefox 117+
+		if (versionFlags.is117Plus) { // Firefox 117+
 			if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "" ||
 				document.documentElement.style.getPropertyValue("--lwt-text-color") != "" ||
 				document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {

@@ -73,7 +73,7 @@ class sfMigrator {
 				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("chromiumos");
 			} else if (gkPrefUtils.tryGet("silverfox.forceWindowsStyling").bool) {
 				// Force Windows Styling
-				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("windows");
+				gkPrefUtils.set("Geckium.appearance.titlebarStyle").string("win");
 			}
 			if (gkPrefUtils.tryGet("silverfox.disableSystemThemeIcons").bool) {
 				// Disable System Icons in Toolbarbuttons
@@ -102,7 +102,7 @@ class sfMigrator {
 
 		//Era
 		if (gkPrefUtils.tryGet("silverfox.preferOldLook").bool)
-			gkPrefUtils.set("Geckium.appearance.choice").int(11);
+			gkPrefUtils.set("Geckium.appearance.choice").int(17);
 		else
 			gkPrefUtils.set("Geckium.appearance.choice").int(25);
 
@@ -149,78 +149,104 @@ class sfMigrator {
 
 		// Finishing touches
 		// Apply Silverfox's Apps list
-		gkPrefUtils.set("Geckium.newTabHome.appsList").string(`{
-"0": {
-"pos": 0,
-"favicon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png",
-"oldIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-"newIcon": "chrome://userchrome/content/pages/newTabHome/assets/chrome-21/imgs/1.png",
-"oldName": "Web Store",
-"newName": "Web Store",
-"url": "https://addons.mozilla.org/en-US/firefox",
-"type": 0
-},
-"1": {
-"pos": 1,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/gmail_app.png",
-"oldName": "Gmail",
-"newName": "Gmail",
-"url": "https://mail.google.com",
-"type": 0
-},
-"2": {
-"pos": 2,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/drive_app.png",
-"oldName": "Google Drive",
-"newName": "Google Drive",
-"url": "https://drive.google.com",
-"type": 0
-},
-"3": {
-"pos": 3,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/google_app.png",
-"oldName": "Google Search",
-"newName": "Google Search",
-"url": "https://www.google.com",
-"type": 0
-},
-"4": {
-"pos": 4,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/youtube_app.png",
-"oldName": "YouTube",
-"newName": "YouTube",
-"url": "https://www.youtube.com",
-"type": 0
-},
-"5": {
-"pos": 5,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png",
-"oldName": "Angry Birds",
-"newName": "Angry Birds",
-"url": "https://yell0wsuit.page/assets/games/angry-birds-chrome",
-"type": 0
-},
-"6": {
-"pos": 6,
-"favicon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-"oldIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-"newIcon": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg",
-"oldName": "MySpace",
-"newName": "MySpace",
-"url": "https://spacehey.com",
-"type": 0
-}
-}`);
+		gkPrefUtils.set("Geckium.newTabHome.appsList").string(JSON.stringify([
+		{
+			"favicons": {
+				"2011": "chrome://userchrome/content/pages/newTabHome/assets/chrome-11/imgs/IDR_PRODUCT_LOGO_16.png"
+			},
+			"icons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/chrome_webstore/128.png",
+				"2013": "chrome://userchrome/content/assets/img/app_icons/2013/chrome_webstore/128.png",
+				"2015": "chrome://userchrome/content/assets/img/app_icons/2015/chrome_webstore/128.png"
+			},
+			"names": {
+				"2011": "Web Store",
+				"2013": "Store"
+			},
+			"url": "https://addons.mozilla.org/en-US/firefox",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/gmail/24.png"
+			},
+			"icons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/gmail/128.png",
+				"2012": "chrome://userchrome/content/assets/img/app_icons/2012/gmail/128.png"
+			},
+			"names": {
+				"2011": "Gmail"
+			},
+			"url": "https://mail.google.com/",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2013/drive/128.png"
+			},
+			"icons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2013/drive/128.png"
+			},
+			"names": {
+				"2011": "Google Drive"
+			},
+			"url": "https://drive.google.com/",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/search/16.png"
+			},
+			"icons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/search/128.png",
+				"2012": "chrome://userchrome/content/assets/img/app_icons/2012/search/128.png"
+			},
+			"names": {
+				"2011": "Google Search"
+			},
+			"url": "https://www.google.com/",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/youtube/16.svg"
+			},
+			"icons": {
+				"2011": "chrome://userchrome/content/assets/img/app_icons/2011/youtube/128.png",
+				"2012": "chrome://userchrome/content/assets/img/app_icons/2012/youtube/128.png"
+			},
+			"names": {
+				"2011": "YouTube"
+			},
+			"url": "https://www.youtube.com/",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png"
+			},
+			"icons": {
+				"2011": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/angrybirds_app.png"
+			},
+			"names": {
+				"2011": "Angry Birds"
+			},
+			"url": "https://yell0wsuit.page/assets/games/angry-birds-chrome",
+			"type": "tab"
+		},
+		{
+			"favicons": {
+				"2011": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg"
+			},
+			"icons": {
+				"2011": "https://github.com/florinsdistortedvision/silverfox/raw/main/theme/chrome/resources/pages/homepage/assets/myspace_app.svg"
+			},
+			"names": {
+				"2011": "MySpace"
+			},
+			"url": "https://spacehey.com",
+			"type": "tab"
+		}]));
 
 		// Enable Silverfox Firefox Theming
 		gkPrefUtils.set("Geckium.customtheme.mode").string("silverfox");
