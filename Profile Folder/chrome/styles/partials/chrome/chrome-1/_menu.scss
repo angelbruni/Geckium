@@ -168,6 +168,8 @@ toolbarbutton menupopup[placespopup] {
 		--panel-padding: calc(var(--gk-menu-padding) + var(--panel-padding-block)) var(--gk-menu-padding) !important;
 		--panel-shadow: var(--gk-menu-shadow) !important;
 		--panel-shadow-margin: var(--gk-menu-shadow-margin) !important;
+		// New variables in 139+
+		--menuitem-border-radius: var(--gk-menu-radii) !important;
 
 		appearance: none !important;
 		
@@ -302,6 +304,17 @@ toolbarbutton menupopup[placespopup] {
 		--arrowpanel-menuitem-padding: var(--gk-menuitem-padding) !important;
 		--arrowpanel-menuitem-border-radius: var(--gk-menuitem-radii) !important;
 	}
+	
+	&[is139Plus] menupopup,
+	&[is139Plus] toolbarbutton menupopup[placespopup] {
+		// These also need extra care, starting Firefox 139
+		> :is(menu, menuitem),
+		#context-navigation > :is(menu, menuitem) {
+			.menu-text {
+				margin-inline-start: calc(28px - 16px - 0.5em) !important;
+			}
+		}
+	}
 }
 
 
@@ -317,11 +330,19 @@ toolbarbutton menupopup[placespopup] {
 			--panel-border-color: ThreeDShadow !important;
 			--panel-border-radius: 0 !important;
 			--panel-padding: 0 !important;
+			// New variables in 139+
+			--menuitem-border-radius: 0 !important;
 
 			&#contentAreaContextMenu #context-navigation > menuitem::after {
 				margin-inline-start: 21px !important; // 21px (menu.css:82, Firefox 115) - 16px
 			}
 		}
+		&[is139Plus] menupopup {
+			> .menuitemitems .menu-text { // Custom menuitems need extra care, starting Firefox 139
+				margin-inline-start: 23px !important;
+			}
+		}
+
 		toolbarbutton menupopup[placespopup] {
 			--panel-width: initial !important;
 			--nested-margin: -3px !important;
