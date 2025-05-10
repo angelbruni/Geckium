@@ -22,9 +22,10 @@ class gkLWTheme {
 					}
 				}
 			default:
+				// Firefox 138 changed the Light palette slightly - revert the check if pre-138
 				return {
 					"light": {
-						"--lwt-accent-color": "rgb(240, 240, 244)",
+						"--lwt-accent-color": versionFlags.is138Plus ? "rgb(234, 234, 237)" : "rgb(240, 240, 244)",
 						"--lwt-text-color": "rgba(21, 20, 26)"
 					},
 					"dark": {
@@ -70,7 +71,7 @@ class gkLWTheme {
 	 */
 
 	static get pageisSysTheme() {
-		if (parseInt(Services.appinfo.version.split(".")[0]) >= 117) { // Firefox 117+
+		if (versionFlags.is117Plus) { // Firefox 117+
 			if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "" ||
 				document.documentElement.style.getPropertyValue("--lwt-text-color") != "" ||
 				document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
