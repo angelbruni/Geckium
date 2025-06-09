@@ -129,7 +129,7 @@ function geckifyToolbar() {
 		[CustomizableUI.AREA_BOOKMARKS, ["import-button", "personal-bookmarks"]]
 	]
 	var delet = ["firefox-view-button"]
-	var ignorer = ["gk-firefox-account-button", "unified-extensions-button", "gsettings-button", "page-button", "chrome-button"]
+	var ignorer = ["gk-firefox-account-button", "unified-extensions-button", "gsettings-button", "page-button", "chrome-button", "fxms-bmb-button"]
 
 	// Move items that do not belong on the respective toolbars to the extensions area
 	types.forEach(function (type, index) {
