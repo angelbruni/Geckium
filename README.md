@@ -51,9 +51,10 @@ However,
 2. Look for `Profile Folder` and next to it press `Open Profile Directory`
 3. Copy the `chrome` folder (and, if it's your first time installing Geckium, `chrThemes` folder) from the `Profile Folder` folder in your copy of Geckium to the resulting file manager's window's currently displayed folder
 4. Navigate to `File System/usr/lib/firefox` (or `File System/usr/lib/firefox-esr` if using Mozilla Firefox ESR)
-5. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the `firefox`/`firefox-esr` folder (if your file manager does not ask for Superuser privilleges automatically, you will need to manually open your File Manager with Superuser privilleges)
-6. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
-7. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
+   - The folder also might be under `File System/usr/lib64/` on some distributions
+6. Copy the contents of the `Firefox Folder` folder in your copy of Geckium to the `firefox`/`firefox-esr` folder (if your file manager does not ask for Superuser privilleges automatically, you will need to manually open your File Manager with Superuser privilleges)
+7. Back in the Firefox window, scroll to the top, and press `Clear startup cache` followed by confirming the confirmation that then displays
+8. You are now running Geckium, and will see a setup window appear to start setting up Geckium - enjoy!
 
 | ![linux-1](https://github.com/user-attachments/assets/68656e29-1e4f-4140-ba50-3e5386e26344) | ![linux-2](https://github.com/user-attachments/assets/b2a1d60b-64fc-494a-959c-f1adee35d7e6) |
 |---|---|
