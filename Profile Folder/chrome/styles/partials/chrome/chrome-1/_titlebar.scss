@@ -400,6 +400,13 @@
 					background: white !important;
 				}
 			}
+			// Fix Mozilla breaking titlebar buttons in 141
+			&[is141Plus] .titlebar-button {
+				content: unset !important;
+				image {
+					display: inline-flex !important;
+				}
+			}
 		}
 
 		// Linux quirks
