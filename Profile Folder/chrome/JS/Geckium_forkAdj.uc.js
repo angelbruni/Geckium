@@ -18,8 +18,18 @@ class gkFirefoxTempAdj {
 			})
 		}
 	}
+	static webApps() {
+		if (window.document.documentElement.getAttribute("taskbartab")) {
+			UC_API.Notifications.show({
+				label : "Website Applications are not supported by Geckium at the moment.",
+				type : "geckium-notification",
+				priority: "critical"
+			})
+		}
+	}
 }
 window.addEventListener("load", gkFirefoxTempAdj.disableVertical);
+window.addEventListener("load", gkFirefoxTempAdj.webApps);
 const firefoxObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed")
