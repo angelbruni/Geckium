@@ -211,7 +211,8 @@
 	font-size: 10pt !important;
 
 	&[focused] {
-		&:not([supress-focus-border]) > #urlbar-background {
+		&:not([supress-focus-border]) > #urlbar-background,
+		&:not([supress-focus-border]) > .urlbar-background {
 			outline: 0 !important;
 		}
 
@@ -299,7 +300,8 @@
 			display: none;
 		}
 
-		> #urlbar-background {
+		> #urlbar-background,
+		.urlbar-background {
 			animation: none !important;
 		}
 	}
@@ -379,12 +381,15 @@
 }
 
 #urlbar:is([focused], [open]) > #urlbar-background,
+#urlbar:is([focused], [open]) > .urlbar-background,
 #searchbar:focus-within {
 	background-color: var(--urlbar-focused-background-color) !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
-#urlbar[focused="true"] > #urlbar-background #searchbar:focus-within {
+#urlbar[breakout][breakout-extend] > .urlbar-background,
+#urlbar[focused="true"] > #urlbar-background #searchbar:focus-within,
+#urlbar[focused="true"] > .urlbar-background #searchbar:focus-within {
 	box-shadow: none !important;
 }
 
@@ -447,14 +452,16 @@
 }
 
 #urlbar-background,
-#searchbar {
+.urlbar-background,
+#searchbar { // As of Firefox 143, urlbar-background is now a class.
 	background-color: var(--urlbar-background-color) !important;
 	border-inline: 0 !important;
 	border-block: 1px solid var(--urlbar-border) !important;
 	border-radius: 0 !important;
 	height: var(--urlbar-height-definitive);
 }
-#urlbar-background {
+#urlbar-background,
+.urlbar-background {
 	background-clip: content-box !important;
 	box-shadow: none !important;
 }
@@ -605,7 +612,8 @@
 		box-shadow: unset !important;
 	}
 
-	#urlbar-background {
+	#urlbar-background,
+	.urlbar-background {
 		visibility: hidden !important;
 	}
 
