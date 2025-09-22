@@ -1,7 +1,7 @@
 & {
 	--titlebar-border-radius: 5px;
 	@media (-moz-platform: macos) {
-		--titlebar-border-radius: calc(var(--titlebar-border-radius) + 1px) !important; //Artificial minimum radii set by macOS's window manager (+the 1px border)
+		--titlebar-border-radius: calc(var(--gk-mac-radius) + 1px) !important; //Artificial minimum radii set by macOS's window manager (+the 1px border)
 	}
 	--tab-distance-from-top: 12px;
 	&[sizemode="maximized"],
