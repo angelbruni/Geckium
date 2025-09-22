@@ -53,7 +53,7 @@ notification-message /* Fix for Firefox ~120+ */ {
 		content: unset !important;
 	}
 
-	&[style*="margin-top: -37px;"] {
+	&[style*="opacity: 0;"] { /* Dominic: and also Firefox 143 */
 		pointer-events: none !important;
 	}
 }
