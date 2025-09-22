@@ -438,6 +438,7 @@
 
 		//macOS quirks
 		@media (-moz-platform: macos) {
+			--titlebar-border-radius: var(--gk-mac-radius) !important;
 			&[windowtype="navigator:browser"] > body {
 				// Corners on the bottom are rounded, as aforementioned, too
 				border-radius: var(--titlebar-border-radius) !important;
