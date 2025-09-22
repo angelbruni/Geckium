@@ -31,7 +31,8 @@ Geckium is designed for the following platforms:
 However,
 
 - Compatibility with Firefox forks is never guaranteed - minor adjustments will be made by Geckium to accommodate itself in Firefox forks, but issues not seen in Firefox may still occur.
-- Due to the nature of how their packages are created, Geckium **CANNOT** be used in Mozilla Firefox from Flathub nor Ubuntu (and Snap Store). Ubuntu users will have to install Firefox [from the Mozilla PPA](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa#:~:text=sudo%20add%2Dapt%2Drepository%20ppa%3Amozillateam/ppa) in order to use Geckium.
+- Due to the nature of how their packages are created, Geckium **ISN'T** yet known to support Ubuntu (and Snap Store). Ubuntu users should instead install Firefox [from the Mozilla PPA](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa#:~:text=sudo%20add%2Dapt%2Drepository%20ppa%3Amozillateam/ppa) in order to use Geckium.
+- Due to the nature of how Flatpak works, you will need to create and install a **systemconfig** for your browser, IF it supports systemconfig, to use Geckium on it - see https://github.com/MrOtherGuy/fx-autoconfig/issues/48#issuecomment-3315929253 for more information (but replace the Sine step with the Firefox Folder step below).
 
 # Instructions
 
