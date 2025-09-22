@@ -475,6 +475,13 @@
 	}
 
 	// Tab container
+	&:not([is137Plus]) {
+		.tabbrowser-tab {
+			&[visuallyselected] {
+				min-width: var(--tab-selected-min-width) !important;
+			}
+		}
+	}
 	.tabbrowser-tab {
 		--tab-label-mask-size: 1em !important;
 
@@ -551,8 +558,6 @@
 		&[visuallyselected] {
 			// Bring selected tab to front
 			z-index: 100 !important;
-
-			min-width: var(--tab-selected-min-width) !important;
 
 			color: var(--tabbrowser-tab-color, var(--default-tabbrowser-tab-color)) !important;
 
@@ -938,6 +943,9 @@
 		}
 		#pinned-tabs-container > * {
 			z-index: 1;
+		}
+		#tabbrowser-arrowscrollbox[overflowing] {
+			margin-left: calc(var(--tab-gap-between)* -1) !important;
 		}
 	}
 
