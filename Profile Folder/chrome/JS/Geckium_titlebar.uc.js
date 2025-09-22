@@ -686,7 +686,7 @@ class gkTitlebars {
 	}
 	static checkMac() {
 		if (AppConstants.platform == "macosx") {
-			for (const i of Object.keys(macEras)) {
+			for (const i of Object.keys(gkTitlebars.macEras)) {
 				if (AppConstants.isPlatformAndVersionAtLeast("macosx", gkTitlebars.macEras[i][0]) == true) {
 					document.documentElement.style.setProperty("--gk-mac-radius", gkTitlebars.macEras[i][1]);
 					break;
