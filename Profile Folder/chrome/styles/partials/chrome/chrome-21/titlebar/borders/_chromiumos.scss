@@ -18,9 +18,6 @@
 
 & {
     --titlebar-border-radius: 3px;
-	@media (-moz-platform: macos) {
-		--titlebar-border-radius: 9px; //Artificial minimum radii set by macOS's window manager
-	}
 	--tab-distance-from-top: 10px;
 	&[sizemode="maximized"],
 	&[sizemode="fullscreen"] {
