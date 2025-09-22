@@ -927,6 +927,20 @@
 		background-color: transparent !important;
 	}
 
+	&[is143Plus] {
+		// HACK to work around new split pinned tabs container
+		#pinned-tabs-container {
+			margin-right: var(--tab-gap-between);
+			max-width: unset !important;
+		}
+		#pinned-tabs-container > *:last-child {
+			margin-right: calc(var(--tab-gap-between)* -1) !important;
+		}
+		#pinned-tabs-container > * {
+			z-index: 1;
+		}
+	}
+
 	#tabbrowser-arrowscrollbox-periphery {
 		// Align new tab button to the bottom
 		align-items: end;
