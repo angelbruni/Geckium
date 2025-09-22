@@ -8,6 +8,7 @@ function updateSignInStatus() {
 	const privacySetting = gkPrefUtils.tryGet("Geckium.privacy.hideAccountInfo").bool;
 	const email = UIState.get().email;
 	const displayName = UIState.get().displayName;
+	const firstName = displayName ? displayName.split(" ")[0] : email;
 	let loginContainer;
 	let accountSelector;
 	let avatarElm;
@@ -40,14 +41,14 @@ function updateSignInStatus() {
 				else
 					accountElm.style.display = null;
 
-				accountElm.textContent = !privacySetting ? ntpBundle.GetStringFromName("googleDisplayUsername").replace("{{displayUsername}}", displayName.split(" ")[0] || email) : "";
+				accountElm.textContent = !privacySetting ? ntpBundle.GetStringFromName("googleDisplayUsername").replace("{{displayUsername}}", firstName) : "";
 			} else if (appearanceChoice >= 47) {
 				if (privacySetting)
 					accountElm.style.display = "none";
 				else
 					accountElm.style.display = null;
 
-				accountElm.textContent = !privacySetting ? displayName.split(" ")[0] || email : "";
+				accountElm.textContent = !privacySetting ? firstName : "";
 			}
 
 			// User profile picture
