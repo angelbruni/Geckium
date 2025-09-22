@@ -670,9 +670,34 @@ class gkTitlebars {
 			previousTabY = previousTabY;
 		}
 	}
+
+	/**
+	 * checkMac - Informs the CSS about if the system is a Mac and if so which design era criteria it meets
+	 */
+
+	static macEras = {
+		/**
+		 * - codename
+		 *      - minimum version
+		 */
+		"tahoe": [25, "11px"],
+		"bigslur": [20, "9px"],
+		"yos": [0, "5px"]
+	}
+	static checkMac() {
+		if (AppConstants.platform == "macosx") {
+			for (const i of Object.keys(macEras)) {
+				if (AppConstants.isPlatformAndVersionAtLeast("macosx", macEras[i][0]) == true) {
+					document.documentElement.style.setProperty("--titlebar-border-radius", macEras[i][1], "important");
+					break;
+				}
+			}
+		}
+	}
 }
 window.addEventListener("load", () => gkTitlebars.applyTitlebar());
 window.addEventListener("load", gkTitlebars.enableSizeEvents);
+window.addEventListener("load", gkTitlebars.checkMac);
 
 // Automatically change the titlebar when the setting changes
 const titObserver = {
