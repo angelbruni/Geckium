@@ -687,8 +687,8 @@ class gkTitlebars {
 	static checkMac() {
 		if (AppConstants.platform == "macosx") {
 			for (const i of Object.keys(macEras)) {
-				if (AppConstants.isPlatformAndVersionAtLeast("macosx", macEras[i][0]) == true) {
-					document.documentElement.style.setProperty("--titlebar-border-radius", macEras[i][1], "important");
+				if (AppConstants.isPlatformAndVersionAtLeast("macosx", gkTitlebars.macEras[i][0]) == true) {
+					document.documentElement.style.setProperty("--gk-mac-radius", gkTitlebars.macEras[i][1]);
 					break;
 				}
 			}
