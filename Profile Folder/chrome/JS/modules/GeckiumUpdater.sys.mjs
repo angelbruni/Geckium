@@ -25,6 +25,28 @@ export class gkUpdater {
 			throw error; // re-throw the error to propagate it further if needed
 		}
 	}
+	static async getChannel() {
+		try {
+			const response = await fetch("chrome://userchrome/content/version.json");
+			const data = await response.json();
+
+			return data.update_channel;
+		} catch (error) {
+			console.error('Error fetching JSON:', error);
+			throw error; // re-throw the error to propagate it further if needed
+		}
+	}
+	static async getRawVersion() {
+		try {
+			const response = await fetch("chrome://userchrome/content/version.json");
+			const data = await response.json();
+
+			return data.version;
+		} catch (error) {
+			console.error('Error fetching JSON:', error);
+			throw error; // re-throw the error to propagate it further if needed
+		}
+	}
 	
 	static checkForUpdates() {
 		return "W.I.P."
