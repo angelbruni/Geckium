@@ -164,13 +164,36 @@ if (AppConstants.MOZ_APP_NAME == "firefox" || AppConstants.MOZ_APP_NAME == "fire
 
 // Floorp Adjustments
 class gkFloorpAdj {
+
 	/**
 	 * disableThemeCusto - Ensures Floorp's theme customisations feature is turned off
 	 */
 
 	static disableThemeCusto() {
-		if (gkPrefUtils.tryGet("floorp.browser.user.interface").int != 1) {
-			gkPrefUtils.set("floorp.browser.user.interface").int(1);
+		let changes = 0;
+		let floorconfs;
+		try {
+			floorconfs = JSON.parse(gkPrefUtils.tryGet("floorp.design.configs").string);
+		} catch {
+			return; // if it's invalid, Floorp will overwrite it and thus call this function again
+		}
+		console.log(floorconfs);
+
+		if (floorconfs["globalConfigs"]["userInterface"] != "proton") {
+			floorconfs["globalConfigs"]["userInterface"] = "proton";
+			changes += 1;
+		}
+		if (floorconfs["globalConfigs"]["faviconColor"] != false) {
+			floorconfs["globalConfigs"]["faviconColor"] = false;
+			changes += 1;
+		}
+		if (floorconfs["uiCustomization"]["display"]["deleteBrowserBorder"] != false) {
+			floorconfs["uiCustomization"]["display"]["deleteBrowserBorder"] = false;
+			changes += 1;
+		}
+
+		if (changes >= 1) {
+			gkPrefUtils.set("floorp.design.configs").string(JSON.stringify(floorconfs));
 			UC_API.Notifications.show({
 				label : "Floorp theme customisations are not supported by Geckium and have been disabled.",
 				type : "geckium-notification",
@@ -187,7 +210,7 @@ if (AppConstants.MOZ_APP_NAME == "floorp") {
 				gkFloorpAdj.disableThemeCusto();
 		},
 	};
-	Services.prefs.addObserver("floorp.browser.user.interface", floorpObserver, false);
+	Services.prefs.addObserver("floorp.design.configs", floorpObserver, false);
 }
 
 // Waterfox Adjustments
