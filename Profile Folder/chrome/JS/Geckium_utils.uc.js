@@ -20,7 +20,7 @@ const specialCharacters = {
 // Firefox version check
 const ffVersion = Services.appinfo.version;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
-const checkedVersions = [116, 117, 120, 122, 133, 134, 135, 136, 137, 138, 139, 141, 143];
+const checkedVersions = [116, 117, 120, 122, 133, 134, 135, 136, 137, 138, 139, 141, 143, 146];
 const versionFlags = {};
 checkedVersions.forEach(version => {
 	if (majorVersion >= version) {
