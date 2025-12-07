@@ -43,6 +43,18 @@ class gkLWTheme {
 	 */
 
 	static palettesMatch(type) {
+		if (versionFlags.is146Plus) {
+			// As of Firefox 146, Light and Dark are no longer lwthemes in the respect that they no longer have the variables
+			// checked for.
+			//
+			// Return True if the variables *don't* exist.
+			for (const i of Object.keys(gkLWTheme.palettes["light"])) { // FIXME: After 140's and 115's deaths, put the list in this line.
+				if (document.documentElement.style.getPropertyValue(i) != "") {
+					return false;
+				}
+			}
+			return true;
+		}
 		for (const i of Object.keys(gkLWTheme.palettes[type])) {
 			if (document.documentElement.style.getPropertyValue(i) != gkLWTheme.palettes[type][i]) {
 				return false;
@@ -98,7 +110,7 @@ class gkLWTheme {
 	static get isThemed() {
 		let current = gkPrefUtils.tryGet("extensions.activeThemeID").string;
 		if (current.startsWith("default-theme@")) {
-			if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") == "true") {
+			if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") != null) {
 				if (document.documentElement.getAttribute("lwt-default-theme-in-dark-mode") == "true") {
 					// Seriously, Mozilla??
 					return false; //System Theme - Dark Mode
@@ -114,7 +126,7 @@ class gkLWTheme {
 			return false; //Light Theme
 		} else if (current.startsWith("firefox-compact-dark@") && gkLWTheme.palettesMatch("dark")) {
 			return false; //Dark Theme
-		} else if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") != "true") {
+		} else if (isBrowserWindow && document.documentElement.getAttribute("lwtheme") == null) {
 			return false; //Bugged State - Add-on like Firefox Color was just disabled, causing the LWTheme to be 'disabled'
 		}
 		return true;
