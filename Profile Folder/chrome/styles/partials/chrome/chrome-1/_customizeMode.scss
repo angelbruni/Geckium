@@ -21,7 +21,8 @@ toolbarpaletteitem {
 }
 
 // We have our own `#gk-firefox-account-button`.
-#wrapper-fxa-toolbar-menu-button {
+#wrapper-fxa-toolbar-menu-button,
+#fxa-toolbar-menu-button { // Added in Firefox 146
     display: none !important;
 }
 
