@@ -914,6 +914,9 @@ UC_API.Runtime.startupFinished().then(() => {
 				}, "browser-search-engine-modified"); 
 
 				let _popup = document.getElementById("searchmode-switcher-popup");
+				if (_popup == null) { // Firefox 146 got rid of the ID :v
+					_popup = document.querySelectorAll(".searchmode-switcher-popup.toolbar-menupopup")[0];
+				}
 
 				_popup.addEventListener("popupshown", (e) => {
 					toolbarbutton.setAttribute("open", true);
@@ -923,7 +926,7 @@ UC_API.Runtime.startupFinished().then(() => {
 				})
 
 				toolbarbutton.addEventListener("command", (e) => {
-					window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
+					//window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
 					PanelMultiView.openPopup(
 						_popup,
 						toolbarbutton,
