@@ -911,7 +911,7 @@ UC_API.Runtime.startupFinished().then(() => {
 						updateIcon();
 						updateL10nArgs();
 					}
-				}, "browser-search-engine-modified"); 
+				}, "browser-search-engine-modified");
 
 				let _popup = document.getElementById("searchmode-switcher-popup");
 				if (_popup == null) { // Firefox 146 got rid of the ID :v
@@ -925,8 +925,14 @@ UC_API.Runtime.startupFinished().then(() => {
 					toolbarbutton.removeAttribute("open");
 				})
 
+				if (versionFlags.is146Plus) {
+					toolbarbutton.insertBefore(_popup, toolbarbutton.nextSibling);
+				}
+
 				toolbarbutton.addEventListener("command", (e) => {
-					//window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
+					if (!versionFlags.is146Plus) {
+						window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
+					}
 					PanelMultiView.openPopup(
 						_popup,
 						toolbarbutton,
