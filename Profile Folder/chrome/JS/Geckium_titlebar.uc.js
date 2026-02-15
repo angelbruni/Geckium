@@ -626,7 +626,22 @@ class gkTitlebars {
 	 */
 
 	static applyGraphite() {
-		document.documentElement.setAttribute("gkmacgraphite", gkPrefUtils.tryGet("Geckium.appearance.macIsGraphite").bool);
+		if (!isBrowserWindow) {
+			return;
+		}
+		// Use a div to get the exact accent colour value
+		// FIXME: in post-relicense, make this a generic function.
+		let colorDiv = document.createElement("div");
+		colorDiv.style.backgroundColor="AccentColor";
+		document.head.appendChild(colorDiv);
+		let rgb = window.getComputedStyle(colorDiv)["background-color"];
+		document.head.removeChild(colorDiv);
+
+		// Convert to HSL to get saturation
+		let hsl = ColorUtils.ColorToHSL(rgb.match(/\d+/g));
+
+		// Enable Graphite IF the accent is desaturated enough
+		document.documentElement.setAttribute("gkmacgraphite", hsl[1] < 17.0);
 	}
 
 	/**
@@ -715,7 +730,7 @@ Services.prefs.addObserver("Geckium.appearance.titlebarThemedNative", titObserve
 Services.prefs.addObserver("browser.tabs.inTitlebar", titObserver, false);
 Services.prefs.addObserver("Geckium.chrTheme.mustAero", titObserver, false);
 
-// Automatically change the macOS/Mac OS X titlebutton style when Graphite's toggled
+// Automatically change the macOS/Mac OS X titlebutton style when Graphite's used
 const graphiteObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed")
@@ -723,7 +738,7 @@ const graphiteObserver = {
 	},
 };
 window.addEventListener("load", gkTitlebars.applyGraphite);
-Services.prefs.addObserver("Geckium.appearance.macIsGraphite", graphiteObserver, false);
+window.addEventListener("nativethemechange", gkTitlebars.applyGraphite);
 
 // Add div for titlebar border shadow
 window.addEventListener("load", gkTitlebars.addShadowDiv);
