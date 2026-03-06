@@ -2,6 +2,7 @@ File: Profile Folder/*
 
 Copyright: 2024 Geckium Project Developers and Contributors, as seen in the
 repository's Contributions view
+
 License: MPL-2.0*
 
 *Some files in Geckium are licensed under different licenses - for these files,
@@ -11,6 +12,7 @@ their license can be found at the top of their source code.
 File: Firefox Folder/*, Profile Folder/chrome/utils/chrome.manifest
 
 Copyright 2019-2024 MrOtherGuy <https://github.com/MrOtherGuy/fx-autoconfig>
+
 License: MPL-2.0
 
 ```
