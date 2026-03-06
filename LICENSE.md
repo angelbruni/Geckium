@@ -13,6 +13,7 @@ File: Firefox Folder/*, Profile Folder/chrome/utils/chrome.manifest
 
 Copyright 2019-2024 MrOtherGuy <https://github.com/MrOtherGuy/fx-autoconfig>
 
+
 License: MPL-2.0
 
 ```
