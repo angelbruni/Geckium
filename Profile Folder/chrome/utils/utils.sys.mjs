@@ -1,13 +1,161 @@
 import { FileSystem } from "chrome://userchromejs/content/fs.sys.mjs";
 export { FileSystem };
-export const SharedGlobal = {};
-ChromeUtils.defineLazyGetter(SharedGlobal,"widgetCallbacks",() => {return new Map()});
+
 const lazy = {
   startupPromises: new Set()
 };
-ChromeUtils.defineESModuleGetters(lazy,{
-  CustomizableUI: "resource:///modules/CustomizableUI.sys.mjs"
+defineModuleGettersWithFallback(lazy,{
+  CustomizableUI: {
+    url: "moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs",
+    fallback: "resource:///modules/CustomizableUI.sys.mjs"
+  }
 });
+ChromeUtils.defineESModuleGetters(lazy, {
+    requestIdleCallback: "resource://gre/modules/Timer.sys.mjs"
+});
+const WidgetCallbacks = new Map();
+
+class Storage{
+  #listeners;
+  #onChanged;
+  #storage;
+  #boundGet;
+  #boundSet;
+  #boundRemove;
+  #boundClear;
+  #debug;
+  #changeset;
+  #idleCallback;
+  #boundKeys;
+  constructor(){
+    this.#listeners = new Set();
+    this.onChanged = Object.freeze({
+      addListener: fun => { this.#listeners.add(fun) },
+      removeListener: fun => { this.#listeners.delete(fun) },
+      hasListener: fun => { return this.#listeners.has(fun) }
+    });
+    this.#storage = {};
+    this.#changeset = new Map();
+    this.#idleCallback = 0;
+    this.#boundGet = this.get.bind(this);
+    this.#boundSet = this.set.bind(this);
+    this.#boundClear = this.clear.bind(this);
+    this.#boundRemove = this.remove.bind(this);
+    this.#debug = this.debug.bind(this);
+    this.#boundKeys = this.keys.bind(this);
+  }
+  get(aKey){
+    return this.#storage[aKey]
+  }
+  keys(){
+    return Object.getOwnPropertySymbols(this.#storage).concat(Object.keys(this.#storage))
+  }
+  set(aKey,aValue){
+    const key = typeof aKey === "symbol" ? aKey : aKey.toString();
+    let oldValue = this.#storage[key];
+    this.#storage[key] = aValue;
+    if(this.#listeners.size > 0){
+      this.#changeset.set(key,{ oldValue: this.#changeset.get(key)?.oldValue ?? oldValue, newValue: aValue });
+      if(this.#idleCallback === 0){
+        this.#idleCallback = lazy.requestIdleCallback(()=>this.#onIdleCallback())
+      }
+    }
+  }
+  #onIdleCallback(){
+    const cset = Object.fromEntries(this.#changeset.entries());
+    this.#changeset.clear();
+    for(let fun of this.#listeners){
+      try{
+        fun(cset)
+      }catch(e){
+        console.error(e)
+      }
+    }
+    this.#idleCallback = 0;
+  }
+  remove(aKey){
+    const key = typeof aKey === "symbol" ? aKey : aKey.toString();
+    if(Object.hasOwn(this.#storage,key)){
+      let oldValue = this.#storage[key];
+      delete this.#storage[key];
+      if(this.#listeners.size > 0){
+        this.#changeset.set(key,{ oldValue: this.#changeset.get(key)?.oldValue ?? oldValue, newValue: undefined });
+        if(this.#idleCallback > 0){
+          return
+        }
+        this.#idleCallback = lazy.requestIdleCallback(()=>this.#onIdleCallback())
+      }
+      return true
+    }
+    return false
+  }
+  clear(){
+    let keys = this.keys();
+    for(let key of keys){
+      this.remove(key)
+    }
+    return keys.length > 0
+  }
+  debug(){
+    return Object.assign({},this.#storage)
+  }
+  static getMethod(target,prop){
+    if(prop === "debug"){
+      return target.#debug
+    }
+    if(prop === "get"){
+      return target.#boundGet
+    }
+    if(prop === "set"){
+      return target.#boundSet
+    }
+    if(prop === "remove"){
+      return target.#boundRemove
+    }
+    if(prop === "clear"){
+      return target.#boundClear
+    }
+    if(prop === "keys"){
+      return target.#boundKeys
+    }
+  }
+}
+
+export const SharedStorage = new Proxy(new Storage(),{
+  get(target,key){
+    if(key === "onChanged"){
+      return target.onChanged
+    }
+    if(key in target){
+      return Storage.getMethod(target,key)
+    }
+    return Reflect.apply(target.get,target,[key])
+  },
+  set(target,key,value){
+    target.set(key,value);
+    return value
+  }
+});
+
+export function defineModuleGettersWithFallback(target, description){
+  for(let [name, value] of Object.entries(description)){
+    const { url, fallback } = value;
+    Object.defineProperty(target,name,{
+      get: () => {
+        let module;
+        try{
+          module = ChromeUtils.importESModule(url);
+        }catch(e){
+          console.warn(e);
+          module = ChromeUtils.importESModule(fallback);
+        }
+        Object.defineProperty(target,name,{ value: module[name], configurable: false });
+        return module[name]
+      },
+      configurable: true
+    })
+  }
+}
 
 export class Hotkey{
   #matchingSelector;
@@ -413,56 +561,103 @@ function reloadStyleSheet(name, type) {
   return false
 }
 
-// This stores data we need to link from the loader module
-export const loaderModuleLink = new (function(){
-  let sessionRestored = false;
-  let variant = null;
-  let brandName = null;
-  // .setup() is called once by boot.sys.mjs on startup
-  this.setup = (ref,aVersion,aBrandName,aVariant,aScriptData) => {
-    this.scripts = ref.scripts;
-    this.styles = ref.styles;
-    this.version = aVersion;
-    this.getScriptMenu = (aDoc) => {
-      return ref.generateScriptMenuItemsIfNeeded(aDoc);
+class LoaderLink{
+  #ScriptData;
+  #loaderInfo;
+  #scripts;
+  #styles;
+  #variant = null;
+  #brandName = null;
+  #sessionRestored = false;
+  constructor(){
+    this.setup = (ref,aBrandName,aVariant,aScriptData) => {
+      this.#scripts = ref.scripts;
+      this.#styles = ref.styles;
+      this.getScriptMenu = (aDoc) => {
+        return ref.generateScriptMenuItemsIfNeeded(aDoc);
+      }
+      this.#brandName = aBrandName;
+      this.#variant = aVariant;
+      this.#ScriptData = aScriptData;
+      delete this.setup;
+      Object.freeze(this);
+      return
     }
-    brandName = aBrandName;
-    variant = aVariant;
-    this.scriptDataConstructor = aScriptData;
-    delete this.setup;
-    Object.freeze(this);
-    return
   }
-  Object.defineProperty(this,"variant",{ get: () => {
-    if(variant === null){
+  get variant(){
+    if(this.#variant === null){
       let is_tb = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.BROWSER_CHROME_URL.startsWith("chrome://messenger");
-      variant = {
+      this.#variant = {
         THUNDERBIRD: is_tb,
         FIREFOX: !is_tb
       }
     }
-    return variant
-  }});
-  Object.defineProperty(this,"brandName",{ get: () => {
-    if(brandName === null){
-      brandName = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE
+    return this.#variant
+  }
+  get brandName(){
+    if(this.#brandName === null){
+      this.#brandName = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE
     }
-    return brandName
-  }});
-  this.setSessionRestored = () => { sessionRestored = true };
-  this.sessionRestored = () => sessionRestored;
-  return this
-})();
-
-// getScriptData() returns these types of objects
-export class ScriptInfo{
-  constructor(enabled){
-    this.isEnabled = enabled
+    return this.#brandName
   }
-  asFile(){
-    return FileSystem.getEntry(FileSystem.convertChromeURIToFileURI(this.chromeURI)).entry()
+  get loaderInfo(){
+    if(!this.#loaderInfo){
+      let aFile = FileSystem.convertChromeURIToFileURI(Services.io.newURI(`chrome://userchromejs/content/boot.sys.mjs`))
+                  .QueryInterface(Ci.nsIFileURL).file;
+      let result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
+      let headerText = extractScriptHeader(result);
+      let info = new this.#ScriptData(aFile.leafName, headerText, false, this.#ScriptData.TYPE_LOADER);
+      this.#ScriptData.markScriptRunning(info);
+      this.#loaderInfo = LoaderLink.#scriptDataToScriptInfo(info,true);
+    }
+    return this.#loaderInfo
   }
-  static fromScript(aScript, isEnabled){
+  createScriptInfo(aName, aStringAsFSResult, isStyle, isEnabled){
+    const headerText = extractScriptHeader(aStringAsFSResult);
+    const scriptData = new this.#ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2, isStyle ? this.#ScriptData.TYPE_STYLE : this.#ScriptData.TYPE_SCRIPT);
+    return LoaderLink.#scriptDataToScriptInfo(scriptData,isEnabled)
+  }
+  matchScripts(aFilter, uriOnly){
+    return LoaderLink.#getScriptInfoForType(aFilter, this.#scripts, uriOnly ? LoaderLink.#basicScriptInfo : LoaderLink.#scriptDataToScriptInfo);
+  }
+  matchStyles(aFilter, uriOnly){
+    return LoaderLink.#getScriptInfoForType(aFilter, this.#styles, uriOnly ? LoaderLink.#basicScriptInfo : LoaderLink.#scriptDataToScriptInfo);
+  }
+  setScriptRunning(scriptname){
+    this.#scripts.find(a => a.filename === scriptname)?.setRunning()
+  }
+  markScriptInjectionFailure(scriptname){
+    this.#scripts.find(a => a.filename === scriptname)?.markScriptInjectionFailure();
+  }
+  setSessionRestored(){
+    this.#sessionRestored = true
+  };
+  sessionRestored(){
+    return this.#sessionRestored;
+  }
+  static #getScriptInfoForType(aFilter, aScriptList, mapFn){
+    const filterType = typeof aFilter;
+    if(aFilter && !(filterType === "string" || filterType === "function")){
+      throw "getScriptData() called with invalid filter type: "+filterType
+    }
+    if(filterType === "string"){
+      let script = aScriptList.find(s => s.filename === aFilter);
+      return script ? mapFn(script,script.isEnabled) : null;
+    }
+    const disabledScripts = Services.prefs.getStringPref('userChromeJS.scriptsDisabled',"").split(",");
+    if(filterType === "function"){
+      return aScriptList.filter(aFilter).map(
+        script => mapFn(script,!disabledScripts.includes(script.filename))
+      );
+    }
+    return aScriptList.map(
+      script => mapFn(script,!disabledScripts.includes(script.filename))
+    );
+  }
+  static #basicScriptInfo(aScript){
+    return { chromeURI: aScript.chromeURI.spec, filename: aScript.filename }
+  }
+  static #scriptDataToScriptInfo(aScript, isEnabled){
     let info = new ScriptInfo(isEnabled);
     Object.assign(info,aScript);
     info.regex = aScript.regex ? new RegExp(aScript.regex.source, aScript.regex.flags) : null;
@@ -472,11 +667,49 @@ export class ScriptInfo{
     info.injectionFailed = aScript.injectionFailed;
     return info
   }
+}
+
+// This stores data we need to link from the loader module
+export const loaderModuleLink = new LoaderLink();
+
+export function extractScriptHeader(aFSResult){
+  return aFSResult.content()
+    .match(/^\/\/ ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*/m)?.[0] || ""
+}
+export function extractStyleHeader(aFSResult){
+  return aFSResult.content()
+    .match(/^\/\* ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*\*\//m)?.[0] || ""
+}
+
+// getScriptData() returns these types of objects
+export class ScriptInfo{
+  constructor(enabled){
+    this.isEnabled = enabled
+  }
+  asFile(){
+    return FileSystem.getEntry(FileSystem.convertChromeURIToFileURI(this.chromeURI)).entry()
+  }
   static fromString(aName, aStringAsFSResult, isStyle) {
-    const ScriptData = loaderModuleLink.scriptDataConstructor;
-    const headerText = ScriptData.extractScriptHeader(aStringAsFSResult);
-    const scriptData = new ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2, isStyle);
-    return ScriptInfo.fromScript(scriptData, false)
+    return loaderModuleLink.createScriptInfo(aName, aStringAsFSResult, isStyle, false);
+  }
+}
+
+export class WindowActors{
+  constructor(){
+    if(new.target){
+      throw new TypeError("WindowActors is not a constructor")
+    }
+  }
+  static get(actor,aBrowser){
+    let browser;
+    if(aBrowser){
+      browser = aBrowser
+    }else{
+      let win = Services.wm.getMostRecentBrowserWindow(windowUtils.mainWindowType);
+      browser = win.gBrowser.selectedBrowser
+    }
+    let windowGlobal = browser.browsingContext.currentWindowGlobal;
+    return windowGlobal.getActor(actor)
   }
 }
 
@@ -594,7 +827,7 @@ export function createWidget(desc){
   }
   const callback = desc.callback;
   if(typeof callback === "function"){
-    SharedGlobal.widgetCallbacks.set(desc.id,callback);
+    WidgetCallbacks.set(desc.id,callback);
   }
   return CUI.createWidget({
     id: desc.id,
@@ -615,10 +848,11 @@ export function createWidget(desc){
       }
       
       if(typeof callback === "function"){
-        const allEvents = !!desc.allEvents;
-        toolbaritem.addEventListener("click",(ev) => {
-          allEvents || ev.button === 0 && SharedGlobal.widgetCallbacks.get(ev.target.id)(ev,ev.target.ownerGlobal)
-        })
+        if(desc.allEvents){
+          toolbaritem.addEventListener("click",(ev) => WidgetCallbacks.get(ev.target.id)(ev,ev.target.ownerGlobal))
+        }else{
+          toolbaritem.addEventListener("click",(ev) => ev.button === 0 && WidgetCallbacks.get(ev.target.id)(ev,ev.target.ownerGlobal))
+        }
       }
       for (let attr in desc){
         if(attr != "callback" && !(attr in props)){
@@ -647,31 +881,11 @@ export function escapeXUL(markup) {
   });
 }
 
-function getScriptInfoForType(aFilter,aScriptList){
-  const filterType = typeof aFilter;
-  if(aFilter && !(filterType === "string" || filterType === "function")){
-    throw "getScriptData() called with invalid filter type: "+filterType
-  }
-  if(filterType === "string"){
-    let script = aScriptList.find(s => s.filename === aFilter);
-    return script ? ScriptInfo.fromScript(script,script.isEnabled) : null;
-  }
-  const disabledScripts = Services.prefs.getStringPref('userChromeJS.scriptsDisabled',"").split(",");
-  if(filterType === "function"){
-    return aScriptList.filter(aFilter).map(
-      script => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
-    );
-  }
-  return aScriptList.map(
-    script => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
-  );
-}
-
 export function getScriptData(aFilter){
-  return getScriptInfoForType(aFilter, loaderModuleLink.scripts)
+  return loaderModuleLink.matchScripts(aFilter);
 }
 export function getStyleData(aFilter){
-  return getScriptInfoForType(aFilter, loaderModuleLink.styles)
+  return loaderModuleLink.matchStyles(aFilter);
 }
 
 export function loadURI(win,desc){
@@ -763,7 +977,8 @@ export async function showNotification(description){
       priority: priority,
       eventCallback: typeof description.callback === "function" ? description.callback : null
     },
-    description.buttons
+    description.buttons,
+    description.disableClickJackingProtection
   );
 }
 
