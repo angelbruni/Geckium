@@ -108,6 +108,7 @@
         box-shadow: inset 0 0.8px 2px 1px rgba(0,0,0,0.58),
                     0 1px rgba(255, 255, 255, 0.38);
         list-style-image: unset !important;
+        fill: transparent !important;
 
         &:not([disabled]):active::after {
 			content: "";
@@ -129,12 +130,7 @@
         order: 0 !important;
 
         background-color: #F63132 !important;
-        fill: #A03429 !important;
-
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/close.svg) !important;
-        }
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/close.svg) !important;
     }
     &:not([geckium-twentyone]) .titlebar-close:not([disabled]) {
         background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-close.svg) !important;
@@ -145,12 +141,7 @@
         order: 1 !important;
 
         background-color: #F2AD54 !important;
-        fill: #6F312A !important;
-
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/min.svg) !important;
-        }
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/min.svg) !important;
     }
     &:not([geckium-twentyone]) .titlebar-min:not([disabled]) {
         background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-min.svg) !important;
@@ -171,43 +162,69 @@
         order: 2 !important;
 
         background-color: #91BF5C !important;
-        fill: #215118 !important;
-        
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/zoom.svg) !important;
-        }
+        list-style-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/zoom.svg) !important;
     }
-    &:not([geckium-twentyone]) .titlebar-max:not([disabled]),
-    &:not([geckium-twentyone]) .titlebar-restore:not([disabled]) {
-        background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-zoom.svg) !important;
+    &:not([geckium-twentyone]) {
+        .titlebar-max:not([disabled]),
+        .titlebar-restore:not([disabled]) {
+            background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-zoom.svg) !important;
+        }
     }
     
-    &:not([geckium-twentyone]) {
-        // TODO: When adding the fullscreen titlebutton, display: none it here as it just... didn't exist... until ~21.
+    // TODO: When adding the fullscreen titlebutton, display: none it here as it just... didn't exist... until ~21.
 
-        // Graphite
-        &[gkmacgraphite="true"] {
-            .titlebar-close:not([disabled]),
-            .titlebar-min:not([disabled]),
-            .titlebar-max:not([disabled]),
-            .titlebar-restore:not([disabled]) {
-                background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-graphite.svg) !important;
-                background-color: #9EA3A8 !important;
-                fill: #616772 !important;
-            }
-        }
-        // Inactive / Disabled
-        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
-        .titlebar-button[disabled] {
+    // Graphite
+    &:not([geckium-twentyone])[gkmacgraphite="true"] {
+        .titlebar-close:not([disabled]),
+        .titlebar-min:not([disabled]),
+        .titlebar-max:not([disabled]),
+        .titlebar-restore:not([disabled]) {
             background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-graphite.svg) !important;
-            background-color: #B3B3B3 !important;
-            opacity: 50% !important;
+            background-color: #9EA3A8 !important;
         }
-        @media (prefers-color-scheme: dark) {
-            &:-moz-window-inactive .titlebar-button:not(:hover, :active),
-            .titlebar-button[disabled] {
-                background-color: #AAA !important;
+    }
+    // Inactive / Disabled
+    &:not([geckium-twentyone]):-moz-window-inactive .titlebar-buttonbox:not(:hover, :active) .titlebar-button,
+    &:not([geckium-twentyone]) .titlebar-button[disabled] {
+        background-color: #B3B3B3 !important;
+        background-image: url(chrome://userchrome/content/assets/img/chrome-1/titlebar/macosx/tlight-graphite.svg) !important;
+        opacity: 50% !important;
+    }
+    @media (prefers-color-scheme: dark) {
+        &:-moz-window-inactive .titlebar-buttonbox:not(:hover, :active) .titlebar-button,
+        .titlebar-button[disabled] {
+            background-color: #AAA !important;
+        }
+    }
+
+    // Hover and pressed states
+    .titlebar-buttonbox:hover,
+    .titlebar-buttonbox:active {
+        // Close button
+        > .titlebar-close:not([disabled]) {
+            fill: #A03429 !important;
+        }
+
+        // Minimise button
+        > .titlebar-min:not([disabled]) {
+            fill: #6F312A !important;
+        }
+
+        // Maximise and Restore buttons
+        > .titlebar-max:not([disabled]),
+        > .titlebar-restore:not([disabled]) {
+            fill: #215118 !important;
+        }
+    }
+    // Graphite
+    &[gkmacgraphite="true"] {
+        .titlebar-buttonbox:hover,
+        .titlebar-buttonbox:active {
+            > .titlebar-close:not([disabled]),
+            > .titlebar-min:not([disabled]),
+            > .titlebar-max:not([disabled]),
+            > .titlebar-restore:not([disabled]) {
+                fill: #616772 !important;
             }
         }
     }
