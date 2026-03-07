@@ -1,32 +1,16 @@
 import { FileSystem } from "chrome://userchromejs/content/fs.sys.mjs";
 export { FileSystem };
-
-const lazy = {
-  startupPromises: new Set()
-};
-defineModuleGettersWithFallback(lazy,{
-  CustomizableUI: {
-    url: "moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs",
-    fallback: "resource:///modules/CustomizableUI.sys.mjs"
-  }
-});
-ChromeUtils.defineESModuleGetters(lazy, {
-    requestIdleCallback: "resource://gre/modules/Timer.sys.mjs"
-});
 const WidgetCallbacks = new Map();
 
 class Storage{
   #listeners;
   #onChanged;
-  #storage;
+  #storage = {};
   #boundGet;
   #boundSet;
   #boundRemove;
   #boundClear;
   #debug;
-  #changeset;
-  #idleCallback;
-  #boundKeys;
   constructor(){
     this.#listeners = new Set();
     this.onChanged = Object.freeze({
@@ -34,67 +18,45 @@ class Storage{
       removeListener: fun => { this.#listeners.delete(fun) },
       hasListener: fun => { return this.#listeners.has(fun) }
     });
-    this.#storage = {};
-    this.#changeset = new Map();
-    this.#idleCallback = 0;
     this.#boundGet = this.get.bind(this);
     this.#boundSet = this.set.bind(this);
     this.#boundClear = this.clear.bind(this);
     this.#boundRemove = this.remove.bind(this);
     this.#debug = this.debug.bind(this);
-    this.#boundKeys = this.keys.bind(this);
   }
-  get(aKey){
-    return this.#storage[aKey]
+  get(key){
+    return this.#storage[key]
   }
-  keys(){
-    return Object.getOwnPropertySymbols(this.#storage).concat(Object.keys(this.#storage))
+  set(key,value){
+    let changes = {[key]: { oldValue: this.#storage[key], newValue: value }};
+    this.#storage[key] = value;
+    this.#notifyListeners(changes);
   }
-  set(aKey,aValue){
-    const key = typeof aKey === "symbol" ? aKey : aKey.toString();
-    let oldValue = this.#storage[key];
-    this.#storage[key] = aValue;
-    if(this.#listeners.size > 0){
-      this.#changeset.set(key,{ oldValue: this.#changeset.get(key)?.oldValue ?? oldValue, newValue: aValue });
-      if(this.#idleCallback === 0){
-        this.#idleCallback = lazy.requestIdleCallback(()=>this.#onIdleCallback())
-      }
-    }
-  }
-  #onIdleCallback(){
-    const cset = Object.fromEntries(this.#changeset.entries());
-    this.#changeset.clear();
+  #notifyListeners(changes){
     for(let fun of this.#listeners){
-      try{
-        fun(cset)
-      }catch(e){
-        console.error(e)
-      }
+      fun(changes)
     }
-    this.#idleCallback = 0;
   }
-  remove(aKey){
-    const key = typeof aKey === "symbol" ? aKey : aKey.toString();
-    if(Object.hasOwn(this.#storage,key)){
-      let oldValue = this.#storage[key];
+  remove(key){
+    if(this.#storage.hasOwnProperty(key)){
+      let changes = {[key]: { oldValue: this.#storage[key], newValue: undefined }};
       delete this.#storage[key];
-      if(this.#listeners.size > 0){
-        this.#changeset.set(key,{ oldValue: this.#changeset.get(key)?.oldValue ?? oldValue, newValue: undefined });
-        if(this.#idleCallback > 0){
-          return
-        }
-        this.#idleCallback = lazy.requestIdleCallback(()=>this.#onIdleCallback())
-      }
+      this.#notifyListeners(changes);
       return true
     }
     return false
   }
   clear(){
-    let keys = this.keys();
-    for(let key of keys){
-      this.remove(key)
+    let changes = {};
+    for(let [key,val] of Object.entries(this.#storage)){
+      changes[key] = { oldValue: val, newValue: undefined }
+      delete this.#storage[key]
     }
-    return keys.length > 0
+    if(Object.keys(changes).length > 0){
+      this.#notifyListeners(changes);
+      return true
+    }
+    return false
   }
   debug(){
     return Object.assign({},this.#storage)
@@ -114,9 +76,6 @@ class Storage{
     }
     if(prop === "clear"){
       return target.#boundClear
-    }
-    if(prop === "keys"){
-      return target.#boundKeys
     }
   }
 }
@@ -156,6 +115,16 @@ export function defineModuleGettersWithFallback(target, description){
     })
   }
 }
+
+const lazy = {
+  startupPromises: new Set()
+};
+defineModuleGettersWithFallback(lazy,{
+  CustomizableUI: {
+    url: "moz-src:///browser/components/customizableui/CustomizableUI.sys.mjs",
+    fallback: "resource:///modules/CustomizableUI.sys.mjs"
+  }
+})
 
 export class Hotkey{
   #matchingSelector;
@@ -561,125 +530,46 @@ function reloadStyleSheet(name, type) {
   return false
 }
 
-class LoaderLink{
-  #ScriptData;
-  #loaderInfo;
-  #scripts;
-  #styles;
-  #variant = null;
-  #brandName = null;
-  #sessionRestored = false;
-  constructor(){
-    this.setup = (ref,aBrandName,aVariant,aScriptData) => {
-      this.#scripts = ref.scripts;
-      this.#styles = ref.styles;
-      this.getScriptMenu = (aDoc) => {
-        return ref.generateScriptMenuItemsIfNeeded(aDoc);
-      }
-      this.#brandName = aBrandName;
-      this.#variant = aVariant;
-      this.#ScriptData = aScriptData;
-      delete this.setup;
-      Object.freeze(this);
-      return
+// This stores data we need to link from the loader module
+export const loaderModuleLink = new (function(){
+  let sessionRestored = false;
+  let variant = null;
+  let brandName = null;
+  // .setup() is called once by boot.sys.mjs on startup
+  this.setup = (ref,aVersion,aBrandName,aVariant,aScriptData) => {
+    this.scripts = ref.scripts;
+    this.styles = ref.styles;
+    this.version = aVersion;
+    this.getScriptMenu = (aDoc) => {
+      return ref.generateScriptMenuItemsIfNeeded(aDoc);
     }
+    brandName = aBrandName;
+    variant = aVariant;
+    this.scriptDataConstructor = aScriptData;
+    delete this.setup;
+    Object.freeze(this);
+    return
   }
-  get variant(){
-    if(this.#variant === null){
+  Object.defineProperty(this,"variant",{ get: () => {
+    if(variant === null){
       let is_tb = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.BROWSER_CHROME_URL.startsWith("chrome://messenger");
-      this.#variant = {
+      variant = {
         THUNDERBIRD: is_tb,
         FIREFOX: !is_tb
       }
     }
-    return this.#variant
-  }
-  get brandName(){
-    if(this.#brandName === null){
-      this.#brandName = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE
+    return variant
+  }});
+  Object.defineProperty(this,"brandName",{ get: () => {
+    if(brandName === null){
+      brandName = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs").AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE
     }
-    return this.#brandName
-  }
-  get loaderInfo(){
-    if(!this.#loaderInfo){
-      let aFile = FileSystem.convertChromeURIToFileURI(Services.io.newURI(`chrome://userchromejs/content/boot.sys.mjs`))
-                  .QueryInterface(Ci.nsIFileURL).file;
-      let result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
-      let headerText = extractScriptHeader(result);
-      let info = new this.#ScriptData(aFile.leafName, headerText, false, this.#ScriptData.TYPE_LOADER);
-      this.#ScriptData.markScriptRunning(info);
-      this.#loaderInfo = LoaderLink.#scriptDataToScriptInfo(info,true);
-    }
-    return this.#loaderInfo
-  }
-  createScriptInfo(aName, aStringAsFSResult, isStyle, isEnabled){
-    const headerText = extractScriptHeader(aStringAsFSResult);
-    const scriptData = new this.#ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2, isStyle ? this.#ScriptData.TYPE_STYLE : this.#ScriptData.TYPE_SCRIPT);
-    return LoaderLink.#scriptDataToScriptInfo(scriptData,isEnabled)
-  }
-  matchScripts(aFilter, uriOnly){
-    return LoaderLink.#getScriptInfoForType(aFilter, this.#scripts, uriOnly ? LoaderLink.#basicScriptInfo : LoaderLink.#scriptDataToScriptInfo);
-  }
-  matchStyles(aFilter, uriOnly){
-    return LoaderLink.#getScriptInfoForType(aFilter, this.#styles, uriOnly ? LoaderLink.#basicScriptInfo : LoaderLink.#scriptDataToScriptInfo);
-  }
-  setScriptRunning(scriptname){
-    this.#scripts.find(a => a.filename === scriptname)?.setRunning()
-  }
-  markScriptInjectionFailure(scriptname){
-    this.#scripts.find(a => a.filename === scriptname)?.markScriptInjectionFailure();
-  }
-  setSessionRestored(){
-    this.#sessionRestored = true
-  };
-  sessionRestored(){
-    return this.#sessionRestored;
-  }
-  static #getScriptInfoForType(aFilter, aScriptList, mapFn){
-    const filterType = typeof aFilter;
-    if(aFilter && !(filterType === "string" || filterType === "function")){
-      throw "getScriptData() called with invalid filter type: "+filterType
-    }
-    if(filterType === "string"){
-      let script = aScriptList.find(s => s.filename === aFilter);
-      return script ? mapFn(script,script.isEnabled) : null;
-    }
-    const disabledScripts = Services.prefs.getStringPref('userChromeJS.scriptsDisabled',"").split(",");
-    if(filterType === "function"){
-      return aScriptList.filter(aFilter).map(
-        script => mapFn(script,!disabledScripts.includes(script.filename))
-      );
-    }
-    return aScriptList.map(
-      script => mapFn(script,!disabledScripts.includes(script.filename))
-    );
-  }
-  static #basicScriptInfo(aScript){
-    return { chromeURI: aScript.chromeURI.spec, filename: aScript.filename }
-  }
-  static #scriptDataToScriptInfo(aScript, isEnabled){
-    let info = new ScriptInfo(isEnabled);
-    Object.assign(info,aScript);
-    info.regex = aScript.regex ? new RegExp(aScript.regex.source, aScript.regex.flags) : null;
-    info.chromeURI = aScript.chromeURI.spec;
-    info.referenceURI = aScript.referenceURI.spec;
-    info.isRunning = aScript.isRunning;
-    info.injectionFailed = aScript.injectionFailed;
-    return info
-  }
-}
-
-// This stores data we need to link from the loader module
-export const loaderModuleLink = new LoaderLink();
-
-export function extractScriptHeader(aFSResult){
-  return aFSResult.content()
-    .match(/^\/\/ ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*/m)?.[0] || ""
-}
-export function extractStyleHeader(aFSResult){
-  return aFSResult.content()
-    .match(/^\/\* ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*\*\//m)?.[0] || ""
-}
+    return brandName
+  }});
+  this.setSessionRestored = () => { sessionRestored = true };
+  this.sessionRestored = () => sessionRestored;
+  return this
+})();
 
 // getScriptData() returns these types of objects
 export class ScriptInfo{
@@ -689,27 +579,21 @@ export class ScriptInfo{
   asFile(){
     return FileSystem.getEntry(FileSystem.convertChromeURIToFileURI(this.chromeURI)).entry()
   }
+  static fromScript(aScript, isEnabled){
+    let info = new ScriptInfo(isEnabled);
+    Object.assign(info,aScript);
+    info.regex = aScript.regex ? new RegExp(aScript.regex.source, aScript.regex.flags) : null;
+    info.chromeURI = aScript.chromeURI.spec;
+    info.referenceURI = aScript.referenceURI.spec;
+    info.isRunning = aScript.isRunning;
+    info.injectionFailed = aScript.injectionFailed;
+    return info
+  }
   static fromString(aName, aStringAsFSResult, isStyle) {
-    return loaderModuleLink.createScriptInfo(aName, aStringAsFSResult, isStyle, false);
-  }
-}
-
-export class WindowActors{
-  constructor(){
-    if(new.target){
-      throw new TypeError("WindowActors is not a constructor")
-    }
-  }
-  static get(actor,aBrowser){
-    let browser;
-    if(aBrowser){
-      browser = aBrowser
-    }else{
-      let win = Services.wm.getMostRecentBrowserWindow(windowUtils.mainWindowType);
-      browser = win.gBrowser.selectedBrowser
-    }
-    let windowGlobal = browser.browsingContext.currentWindowGlobal;
-    return windowGlobal.getActor(actor)
+    const ScriptData = loaderModuleLink.scriptDataConstructor;
+    const headerText = ScriptData.extractScriptHeader(aStringAsFSResult);
+    const scriptData = new ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2, isStyle);
+    return ScriptInfo.fromScript(scriptData, false)
   }
 }
 
@@ -881,11 +765,31 @@ export function escapeXUL(markup) {
   });
 }
 
+function getScriptInfoForType(aFilter,aScriptList){
+  const filterType = typeof aFilter;
+  if(aFilter && !(filterType === "string" || filterType === "function")){
+    throw "getScriptData() called with invalid filter type: "+filterType
+  }
+  if(filterType === "string"){
+    let script = aScriptList.find(s => s.filename === aFilter);
+    return script ? ScriptInfo.fromScript(script,script.isEnabled) : null;
+  }
+  const disabledScripts = Services.prefs.getStringPref('userChromeJS.scriptsDisabled',"").split(",");
+  if(filterType === "function"){
+    return aScriptList.filter(aFilter).map(
+      script => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
+    );
+  }
+  return aScriptList.map(
+    script => ScriptInfo.fromScript(script,!disabledScripts.includes(script.filename))
+  );
+}
+
 export function getScriptData(aFilter){
-  return loaderModuleLink.matchScripts(aFilter);
+  return getScriptInfoForType(aFilter, loaderModuleLink.scripts)
 }
 export function getStyleData(aFilter){
-  return loaderModuleLink.matchStyles(aFilter);
+  return getScriptInfoForType(aFilter, loaderModuleLink.styles)
 }
 
 export function loadURI(win,desc){
