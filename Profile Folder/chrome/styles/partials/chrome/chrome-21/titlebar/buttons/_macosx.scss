@@ -23,35 +23,20 @@
     //Close button
     .titlebar-close:not([disabled]) {
         background-color: #EA554E !important;
-        fill: #CF0000 !important;
-
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/close.svg) !important;
-        }
+        list-style-image: unset !important;
     }
 
     //Minimise button
     .titlebar-min:not([disabled]) {
         background-color: #F2BA5F !important;
-        fill: #C77B01 !important;
-
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/min.svg) !important;
-        }
+        list-style-image: unset !important;
     }
 
     //Maximise and Restore buttons
     .titlebar-max:not([disabled]),
     .titlebar-restore:not([disabled]) {
-        &:hover,
-        &:active {
-            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/zoom.svg) !important;
-        }
-
         background-color: #97CF72 !important;
-        fill: #529B0D !important;
+        list-style-image: unset !important;
     }
 
     // Graphite
@@ -61,18 +46,52 @@
         .titlebar-max:not([disabled]),
         .titlebar-restore:not([disabled]) {
             background-color: #A2B3C0 !important;
-            fill: #5E6C7A !important;
         }
     }
     // Inactive / Disabled
-    &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+    &:-moz-window-inactive .titlebar-buttonbox:not(:hover, :active) .titlebar-button,
     .titlebar-button[disabled] {
         background-color: #C9C9C9 !important;
     }
     @media (prefers-color-scheme: dark) {
-        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+        &:-moz-window-inactive .titlebar-button:not(:hover, :active) .titlebar-button,
         .titlebar-button[disabled] {
             background-color: #989898 !important;
+        }
+    }
+
+    // Hover and pressed states
+    .titlebar-buttonbox:hover,
+    .titlebar-buttonbox:active {
+        // Close button
+        > .titlebar-close:not([disabled]) {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/close.svg) !important;
+            fill: #CF0000 !important;
+        }
+
+        // Minimise button
+        > .titlebar-min:not([disabled]) {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/min.svg) !important;
+            fill: #C77B01 !important;
+        }
+
+        // Maximise and Restore buttons
+        > .titlebar-max:not([disabled]),
+        > .titlebar-restore:not([disabled]) {
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-21/titlebar/macosx/zoom.svg) !important;
+            fill: #529B0D !important;
+        }
+    }
+    // Graphite
+    &[gkmacgraphite="true"] {
+        .titlebar-buttonbox:hover,
+        .titlebar-buttonbox:active {
+            > .titlebar-close:not([disabled]),
+            > .titlebar-min:not([disabled]),
+            > .titlebar-max:not([disabled]),
+            > .titlebar-restore:not([disabled]) {
+                fill: #5E6C7A !important;
+            }
         }
     }
 }

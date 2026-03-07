@@ -117,6 +117,7 @@
             transition: none; // macOS lacks an animation for titlebar button-hover
             display: flex !important;
             list-style-image: unset !important;
+            fill: transparent;
             
             image {
                 -moz-context-properties: fill, fill-opacity !important;
@@ -128,18 +129,7 @@
             order: 0 !important;
             background: #ff6058 !important;
             border-color: #e34740;
-            fill: #4d0000 !important;
-            
-            &:hover,
-            &:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/close.svg) !important;
-            }
-
-            &:active {
-                background: #bf4943 !important;
-                border-color: #ae3a35;
-                fill: #1a0000 !important;
-            }
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/close.svg) !important;
         }
 
         // Minimise button
@@ -147,26 +137,12 @@
             order: 1 !important;
             background: #ffbd2e !important;
             border-color: #e2a217;
-            fill: #995800 !important;
-            
-            &:hover,
-            &:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/min.svg) !important;
-            }
-
-            &:active {
-                background: #bf8f23 !important;
-                border-color: #b18320;
-                fill: #592800 !important;
-            }
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/min.svg) !important;
         }
 
         // Maximise and Restore buttons
         .titlebar-max:not([disabled]) {
-            &:hover,
-            &:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
-            }
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
         }
         &[sizemode="maximized"],
         &[sizemode="fullscreen"] {
@@ -175,16 +151,10 @@
             }
         }
         .titlebar-restore:not([disabled]) {
-            &:hover,
-            &:active {
-                list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
-            }
+            list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/zoom.svg) !important;
         }
         &[sizemode="fullscreen"] .titlebar-restore:not([disabled]) { // Transform into Exit Fullscreen button
-			&:hover,
-			&:active {
-				list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/exitfs.svg) !important;
-			}
+			list-style-image: url(chrome://userchrome/content/assets/img/chrome-47/titlebar/macos/exitfs.svg) !important;
 		}
         &:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .titlebar-restore {
 			display: none !important;
@@ -194,13 +164,6 @@
             order: 2 !important;
             background: #28ca41 !important;
             border-color: #13ad29;
-            fill: #006300;
-            
-            &:active {
-                background: #1f9a31 !important;
-                border-color: #138723;
-                fill: #003100 !important;
-            }
         }
 
         // Graphite
@@ -211,13 +174,6 @@
             .titlebar-restore:not([disabled]) {
                 background-color: #8D8D92 !important;
                 border-color: #707075;
-                fill: #444446 !important;
-
-                &:active {
-                    background: #646468 !important;
-                    border-color: #555558;
-                    fill: #363638 !important;
-                }
             }
             @media (prefers-color-scheme: dark) {
                 .titlebar-close:not([disabled]),
@@ -226,27 +182,90 @@
                 .titlebar-restore:not([disabled]) {
                     background-color: #A9A8A8 !important;
                     border-color: #3F3F3F;
-                    fill: #515151 !important;
-    
-                    &:active {
-                        background: #817E7E !important;
-                        border-color: #3F3F3F;
-                        fill: #464444 !important;
-                    }
                 }
             }
         }
         // Inactive / Disabled
-        &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+        &:-moz-window-inactive .titlebar-buttonbox:not(:hover, :active) .titlebar-button,
         .titlebar-button[disabled] {
             background: #cecece !important;
             border-color: #acacac;
         }
         @media (prefers-color-scheme: dark) {
-            &:-moz-window-inactive .titlebar-button:not(:hover, :active),
+            &:-moz-window-inactive .titlebar-buttonbox:not(:hover, :active) .titlebar-button,
             .titlebar-button[disabled] {
                 background: #515151 !important;
                 border-color: #2d2d2d;
+            }
+        }
+
+        // Hover and pressed states
+        .titlebar-buttonbox:hover,
+        .titlebar-buttonbox:active {
+            // Close button
+            > .titlebar-close:not([disabled]) {
+                fill: #4d0000 !important;
+                
+                &:active {
+                    background: #bf4943 !important;
+                    border-color: #ae3a35;
+                    fill: #1a0000 !important;
+                }
+            }
+
+            // Minimise button
+            > .titlebar-min:not([disabled]) {
+                fill: #995800 !important;
+
+                &:active {
+                    background: #bf8f23 !important;
+                    border-color: #b18320;
+                    fill: #592800 !important;
+                }
+            }
+
+            // Maximise and Restore buttons
+            > .titlebar-max:not([disabled]),
+            > .titlebar-restore:not([disabled]) {
+                fill: #006300 !important;
+                
+                &:active {
+                    background: #1f9a31 !important;
+                    border-color: #138723;
+                    fill: #003100 !important;
+                }
+            }
+        }
+        // Graphite
+        &[gkmacgraphite="true"] {
+            .titlebar-buttonbox:hover,
+            .titlebar-buttonbox:active {
+                > .titlebar-close:not([disabled]),
+                > .titlebar-min:not([disabled]),
+                > .titlebar-max:not([disabled]),
+                > .titlebar-restore:not([disabled]) {
+                    fill: #444446 !important;
+
+                    &:active {
+                        background: #646468 !important;
+                        border-color: #555558;
+                        fill: #363638 !important;
+                    }
+                }
+                @media (prefers-color-scheme: dark) {
+                    > .titlebar-close:not([disabled]),
+                    > .titlebar-min:not([disabled]),
+                    > .titlebar-max:not([disabled]),
+                    > .titlebar-restore:not([disabled]) {
+                        fill: #515151 !important;
+        
+                        &:active {
+                            background: #817E7E !important;
+                            border-color: #3F3F3F;
+                            fill: #464444 !important;
+                        }
+                    }
+                }
             }
         }
     }
