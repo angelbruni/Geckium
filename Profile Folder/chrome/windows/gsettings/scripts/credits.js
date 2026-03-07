@@ -169,14 +169,14 @@ Research: Useful insight into Firefox JS.`,
 			]
 		},
 		{
-			name: "minguinmyoui",
+			name: "CodenameLonghorn",
 			role: "tester",
 			quote: "she geck on my userchrome till I Add a LICENSE",
 			contributions: "Tested pre-release Geckium builds.",
 			socials: [
 				{
 					name: "GitHub",
-					url: "https://github.com/minguinmyoui"
+					url: "https://github.com/codenamelonghorn"
 				}
 			]
 		},
