@@ -595,7 +595,7 @@ UC_API.Runtime.startupFinished().then(() => {
 				id: "newVersion",
 				l10nId: "newVersion",
 				oncommand: function() {
-					openTrustedLinkIn('https://github.com/angelbruni/Geckium/releases/latest', 'tab');
+					openLatestGKRelease();
 				}
 			},
 			2: {
