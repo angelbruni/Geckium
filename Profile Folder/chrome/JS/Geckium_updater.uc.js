@@ -8,6 +8,7 @@
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
 const configIteration = 6;
+var latestRel = "latest";
 
 (async () => {
 	let ver = gkPrefUtils.tryGet("Geckium.version.current").string;
@@ -160,21 +161,94 @@ function geckifyToolbar() {
 	});
 }
 
+
+const gkMaxVers = {
+	139: "b0.20.17.6"
+} // make sure to do it from lowest version top to highest last
+function gkTooNew() {
+	for (const i in gkMaxVers) {
+		if (majorVersion <= i) {
+			openTrustedLinkIn(`https://github.com/angelbruni/Geckium/releases/${gkMaxVers[i]}`, 'tab');
+			UC_API.Notifications.show({
+				label : `Geckium no longer supports ${Services.appinfo.name} ${majorVersion}. To use Geckium properly, switch to the release opened below.`,
+				type : "geckium-notification",
+				priority: "critical"
+			})
+			return false;
+		}
+	}
+}
+async function gkCheckUpdatability(gkver) {
+	// Check for a maximum Geckium version
+	try {
+		var eols = await fetch();
+		eols = await eols.json();
+		var rel = "";
+		
+	} catch {}
+	return true;
+}
+
 // PLACEHOLDER UPDATE MECHANISM FOR GECKIUM PUBLIC BETA 1
 async function gkCheckForUpdates() {
-	const ghURL = "https://api.github.com/repos/angelbruni/Geckium/releases?page=1&per_page=1";
+	if (gkPrefUtils.tryGet("Geckium.updater.lastEoL").string == ffVersion)
+		return; // skip if Firefox was already detected as EoL.
+	if (gkTooNew())
+		return;
 
-	// Fetch remote version with timestamp to prevent caching
 	var gkver = await gkUpdater.getVersion();
+	gkCheckVersionLatest(gkver);
+}
+function gkCheckVersionLatest(gkver) {
+	const ghURL = "https://api.github.com/repos/angelbruni/Geckium/releases?page=1&per_page=1";
+	// Fetch remote version with timestamp to prevent caching
 	fetch(ghURL, {cache: "reload", headers: {"X-GitHub-Api-Version": "2022-11-28", "Accept": "application/vnd.github+json",}})
 		.then((response) => response.json())
 		.then((releases) => {
 			if (releases[0].tag_name !== gkver) {
-				document.documentElement.setAttribute("gkcanupdate", "true");
+				// Don't check EoL status of a release more than once.
+				if (gkPrefUtils.tryGet("Geckium.updater.lastSeenUpdate").string == releases[0].tag_name) {
+					document.documentElement.setAttribute("gkcanupdate", "true");
+					return;
+				} else {
+					gkPrefUtils.set("Geckium.updater.lastSeenUpdate").string(releases[0].tag_name);
+				}
+
+				// Check this browser supports the latest release
+				fetch("https://raw.githubusercontent.com/angelbruni/Geckium/refs/heads/eols/eol.json", {cache: "reload"})
+					.then((response) => response.json())
+					.then((eols) => {
+						for (const i in eols) { // same here.
+							if (majorVersion <= parseInt(i)) {
+								if (eols[i] == gkver) {
+									gkPrefUtils.set("Geckium.updater.lastEoL").string(ffVersion); // avoid further update checks on this release
+									gkPrefUtils.delete("Geckium.updater.lastSeenUpdate");
+									UC_API.Notifications.show({
+										label : `Geckium will no longer receive updates because this version of Firefox is no longer supported.`,
+										type : "geckium-notification",
+										priority: "critical"
+									});
+									return;
+								} else {
+									latestRel = eols[i]; // override the latest release offered to users
+									document.documentElement.setAttribute("gkcanupdate", "true");
+									return;
+								}
+							}
+						}
+						document.documentElement.setAttribute("gkcanupdate", "true");
+					})
+					.catch((error) => {
+						document.documentElement.setAttribute("gkcanupdate", "true");
+					}); // Fail silently since to be at this stage means no EoLs.
 			}
 		})
 		.catch(error => {
 			console.error("Something happened when checking for newer Geckium builds:", error);
 		});
 }
+function openLatestGKRelease() {
+	openTrustedLinkIn(`https://github.com/angelbruni/Geckium/releases/${latestRel}`, 'tab');
+}
+
 window.addEventListener("load", gkCheckForUpdates);
