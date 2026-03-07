@@ -164,6 +164,14 @@ export class FileSystem{
     }
     return null
   }
+  static readIni(path){
+    let fileURI = FileSystem.convertChromeURIToFileURI(Services.io.newURI(`chrome://userchrome/content/${path}`));
+    return IniFile.parse(fileURI.QueryInterface(Ci.nsIFileURL).file)
+  }
+  static readConfig(path){
+    let fileURI = FileSystem.convertChromeURIToFileURI(Services.io.newURI(`chrome://userchrome/content/${path}`));
+    return IniConfig.fromURI(fileURI)
+  }
   static #appendToBaseURI(aPath,aFileURI){
     // Normally, this API can only write into resources directory
     // Writing outside of resources can be enabled using following pref
@@ -181,6 +189,15 @@ export class FileSystem{
     }
     return PathUtils.join(...baseParts.concat(pathParts))
   }
+  static IO = new Proxy(IOUtils,{
+    get(target,prop){
+      if(typeof target[prop] != "function"){
+        return undefined
+      }
+      const func = target[prop];
+      return (path, ...args) => Reflect.apply(func,null,[FileSystem.#appendToBaseURI(path),...args]) 
+    }
+  });
   static async writeFile(path, content, options = {}){
     if(!path || typeof path !== "string"){
       throw ResultError.fromKind(FileSystem.ERROR_KIND_INVALID_ARGUMENT,{expected: "string"})
@@ -214,6 +231,143 @@ export class FileSystem{
   static ERROR_KIND_INVALID_ARGUMENT = 6;
   static ERROR_KIND_NOT_READABLE = 7;
   static ERROR_KIND_NOT_ALLOWED = 8;
+}
+
+export class IniConfig{
+  #error;
+  constructor(iniFile,ex){
+    if(ex){
+      this.#error = ex;
+      return
+    }
+    this.#error = null;
+    
+    let keys = Object.keys(iniFile.data);
+    let iniSections = iniFile.sections();
+    let removedSections = new Set();
+    for(let [sectionName,sectionData] of iniSections){
+      if(removedSections.has(sectionName)){
+        continue
+      }
+      for(let [key,value] of sectionData){
+        if(keys.includes(key)){
+          if(!iniFile.data[key].has("enabled")){
+            iniFile.data[key].set("enabled",value)
+          }
+          sectionData.set(key,Object.fromEntries(iniFile.data[key]));
+          removedSections.add(key);
+        }
+      }
+    }
+    for(let [sectionName,sectionData] of iniSections){
+      if(!removedSections.has(sectionName)){
+        this[sectionName] = Object.fromEntries(sectionData)
+      }
+    }
+  }
+  
+  isError(){
+    return this.#error != null
+  }
+  error(){
+    return this.#error
+  }
+  static fromFile(aFile){
+    if(!(aFile instanceof Ci.nsIFile)){
+      throw ResultError.fromKind(FileSystem.ERROR_KIND_INVALID_ARGUMENT,{expected: "Ci.nsIFile"})
+    }
+    try{
+      return new IniConfig(IniUtils.parseFileSync(aFile))
+    }catch(ex){
+      return new IniConfig(null,ex)
+    }
+  }
+  static fromFileURI(aURI){
+    return IniConfig.fromFile(aURI.QueryInterface(Ci.nsIFileURL).file)
+  }
+}
+
+export class IniUtils{
+  static #createParser(aSource){
+    const factory = Cc["@mozilla.org/xpcom/ini-parser-factory;1"].getService(Ci.nsIINIParserFactory);
+    return factory.createINIParser(aSource);
+  }
+  static async parseFile(aIniFile){
+    if(!(aIniFile instanceof Ci.nsIFile)){
+      throw ResultError.fromKind(FileSystem.ERROR_KIND_INVALID_ARGUMENT,{expected: "Ci.nsIFile"})
+    }
+    const ini = IniUtils.#createParser(null);
+    ini.initFromString(await IOUtils.readUTF8(aIniFile.path));
+    return IniUtils.#parse(ini,PathUtils.toFileURI(aIniFile.path))
+  }
+  static parseFileSync(aIniFile){
+    if(!(aIniFile instanceof Ci.nsIFile)){
+      throw ResultError.fromKind(FileSystem.ERROR_KIND_INVALID_ARGUMENT,{expected: "Ci.nsIFile"})
+    }
+    return IniUtils.#parse(IniUtils.#createParser(aIniFile),PathUtils.toFileURI(aIniFile.path))
+  }
+  static parseContent(aIniContent){
+    const ini = IniUtils.#createParser(null);
+    if(aIniContent instanceof FileSystemResult){
+      ini.initFromString(aIniContent.content())
+    }else if(typeof aIniContent === "string"){
+      ini.initFromString(aIniContent)
+    }else{
+      throw new TypeError("unsupported argument")
+    }
+    return IniUtils.#parse(ini,aIniContent.fileURI || null)
+  }
+  static #parse(ini,fileURI){
+    const sections = ini.getSections();
+    const result = new IniUtils.IniFile(fileURI);
+    while (sections.hasMore()) {
+      const section = sections.getNext();
+      const uniqueKeys = new Map();
+      for(let iniKey of Array.from(ini.getKeys(section))){
+        let leafName = iniKey.trim();
+        if(uniqueKeys.has(leafName)){
+          console.warn("ini has duplicate keys: "+leafName);
+          continue
+        }
+        uniqueKeys.set(
+          leafName,
+          IniUtils.#iniValue(ini.getString(section,iniKey).trim())
+        )
+      }
+      result.addSection(section,uniqueKeys);
+    }
+    return result
+  }
+  static write(aIniFile){
+    
+    IOUtils.writeUTF8( fileName, content, options )
+  }
+  
+  static #iniValue(str){
+    if(str === "true")
+      return true
+    if(str === "false")
+      return false
+    if(/^".*"$/.test(str))
+      return str
+    let n = Number.parseFloat(str)
+    return Number.isNaN(n)
+      ? str
+      : n
+  }
+  
+  static IniFile = class{
+    constructor(filename){
+      this.urispec = filename;
+      this.data = {}
+    }
+    addSection(name,data){
+      this.data[name] = data;
+    }
+    sections(){
+      return Object.entries(this.data)
+    }
+  }
 }
 
 class ResultError extends Error{
