@@ -163,7 +163,7 @@ function geckifyToolbar() {
 
 
 const gkMaxVers = {
-	139: "b0.20.17.6"
+	
 } // make sure to do it from lowest version top to highest last
 function gkTooNew() {
 	for (const i in gkMaxVers) {
@@ -174,9 +174,10 @@ function gkTooNew() {
 				type : "geckium-notification",
 				priority: "critical"
 			})
-			return false;
+			return true;
 		}
 	}
+	return false;
 }
 async function gkCheckUpdatability(gkver) {
 	// Check for a maximum Geckium version
