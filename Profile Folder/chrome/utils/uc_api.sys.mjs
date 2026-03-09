@@ -17,7 +17,8 @@ const {
   toggleScript,
   updateStyleSheet,
   showNotification,
-  defineModuleGettersWithFallback
+  defineModuleGettersWithFallback,
+  WindowActors
   } = ChromeUtils.importESModule("chrome://userchromejs/content/utils.sys.mjs");
 
 export {
@@ -28,6 +29,12 @@ export {
   windowUtils as Windows
 }
 
+export const Experimental = Services.prefs.getBoolPref("userChromeJS.experimental.enabled",false)
+  ? Object.freeze({
+    WindowActors
+  })
+  : Object.freeze({});
+
 export const Runtime = Object.freeze({
   appVariant: loaderModuleLink.variant.THUNDERBIRD
     ? "Thunderbird"
@@ -36,7 +43,8 @@ export const Runtime = Object.freeze({
   config: null,
   restart: restartApplication,
   startupFinished: startupFinished,
-  loaderVersion: loaderModuleLink.version
+  loaderVersion: loaderModuleLink.loaderInfo.version,
+  loaderInfo: loaderModuleLink.loaderInfo
 });
 
 export const Utils = Object.freeze({
