@@ -1,8 +1,17 @@
+// ==UserScript==
+// @author MrOtherGuy
+// @version 0.10.12
+// @homepageURL https://github.com/MrOtherGuy/fx-autoconfig
+// ==/UserScript==
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL, toggleScript } from "chrome://userchromejs/content/utils.sys.mjs";
+import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL, toggleScript, extractScriptHeader, extractStyleHeader } from "chrome://userchromejs/content/utils.sys.mjs";
 
-const FX_AUTOCONFIG_VERSION = "0.10.8";
 console.warn( "Browser is executing custom scripts via autoconfig" );
+
+const lazy = {};
+ChromeUtils.defineESModuleGetters(lazy, {
+    ActorManagerParent: 'resource://gre/modules/ActorManagerParent.sys.mjs'
+});
 
 const APP_VARIANT = (() => {
   let is_tb = AppConstants.BROWSER_CHROME_URL.startsWith("chrome://messenger");
@@ -22,6 +31,7 @@ const BROWSERCHROME = (() => {
 
 const PREF_ENABLED = 'userChromeJS.enabled';
 const PREF_SCRIPTSDISABLED = 'userChromeJS.scriptsDisabled';
+const PREF_EXPERIMENTAL = 'userChromeJS.experimental.enabled';
 
 function getDisabledScripts(){
   return Services.prefs.getStringPref(PREF_SCRIPTSDISABLED,"").split(",")
@@ -46,7 +56,7 @@ class ScriptData {
   #chromeURI;
   #isRunning = false;
   #injectionFailed = false;
-  constructor(leafName, headerText, noExec, isStyle){
+  constructor(leafName, headerText, noExec, scriptType){
     const hasLongDescription = (/^\/\/\ @long-description/im).test(headerText);
     this.filename = leafName;
     this.name = headerText.match(/\/\/ @name\s+(.+)\s*$/im)?.[1];
@@ -68,15 +78,22 @@ class ScriptData {
     this.inbackground = this.filename.endsWith(".sys.mjs") || /\/\/ @backgroundmodule\b/.test(headerText);
     this.ignoreCache = /\/\/ @ignorecache\b/.test(headerText);
     this.manifest = headerText.match(/\/\/ @manifest\s+(.+)\s*$/im)?.[1];
-    this.type = isStyle ? "style" : "script";
-    this.styleSheetMode = isStyle 
+    this.type = scriptType.description;
+    this.styleSheetMode = scriptType === ScriptData.TYPE_STYLE
       ? headerText.match(/\/\/ @stylemode\s+(.+)\s*$/im)?.[1] === "agent_sheet"
         ? "agent" : "author"
       : null;
     this.useFileURI = /\/\/ @usefileuri\b/.test(headerText);
-    this.noExec = isStyle || noExec;
-    
-    if(this.inbackground || this.styleSheetMode === "agent" || (!isStyle && noExec)){
+    this.noExec = scriptType === ScriptData.TYPE_STYLE || noExec;
+    // Looks a bit funky, but we only allow windowActor if matches is also specified
+    let windowActor = scriptType === ScriptData.TYPE_SCRIPT ? headerText.match(/\/\/ @WindowActor\s+(.+)\s*$/im)?.[1] : null;
+    this.actorMatches = windowActor
+      ? headerText.match(/\/\/ @WindowActorMatches\s+(.+)\s*$/im)?.[1]
+      : null;
+    this.windowActor = this.actorMatches
+      ? windowActor
+      : null;
+    if(this.inbackground || this.styleSheetMode === "agent" || (scriptType === ScriptData.TYPE_SCRIPT && noExec)){
       this.regex = null;
       this.loadOrder = -1;
     }else{
@@ -121,7 +138,9 @@ class ScriptData {
     if(!this.#chromeURI){
       this.#chromeURI = this.type === "style"
         ? Services.io.newURI(`chrome://userstyles/skin/${this.filename}`)
-        : Services.io.newURI(`chrome://userscripts/content/${this.filename}`)
+        : this.type === "loader"
+          ? Services.io.newURI(`chrome://userchromejs/content/${this.filename}`)
+          : Services.io.newURI(`chrome://userscripts/content/${this.filename}`)
     }
     return this.#chromeURI
   }
@@ -133,6 +152,9 @@ class ScriptData {
   get preLoadedStyle(){
     return this.#preLoadedStyle
   }
+  static TYPE_SCRIPT = Symbol("script");
+  static TYPE_STYLE = Symbol("style");
+  static TYPE_LOADER = Symbol("loader");
   static preLoadAuthorStyle(aStyle){
     if(aStyle.#injectionFailed){
       console.warn(`ignoring style preload for ${aStyle.filename} because it has already failed`);
@@ -193,32 +215,47 @@ class ScriptData {
       console.warn(`Script '${aScript.filename}' tried to register a manifest but requested file '${aScript.manifest}' doesn't exist`);
     }
   }
-  static extractScriptHeader(aFSResult){
-    return aFSResult.content()
-      .match(/^\/\/ ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*/m)?.[0] || ""
-  }
-  static extractStyleHeader(aFSResult){
-    return aFSResult.content()
-      .match(/^\/\* ==UserScript==\s*[\n\r]+(?:.*[\n\r]+)*?\/\/ ==\/UserScript==\s*\*\//m)?.[0] || ""
+  static buildScriptActorDefinition(aActorName,aMatches){
+    let matches = JSON.parse(aMatches);
+    if(!Array.isArray(matches)){
+      matches = [matches]
+    }
+    if(!matches.every(a => typeof a === "string")){
+      throw new Error(`${aScript.filename}: WindowActorMatches for '${aActorName}' includes non-strings`)
+    }
+    return {
+      parent: {
+        esModuleURI: `chrome://userscripts/content/${aActorName}/${aActorName}Parent.sys.mjs`
+      },
+      child: {
+        esModuleURI: `chrome://userscripts/content/${aActorName}/${aActorName}Child.sys.mjs`,
+        events: {
+          DOMContentLoaded: {}
+        }
+      },
+      matches: matches,
+      remoteTypes: ["privilegedabout",null],
+      includeChrome: true
+    }
   }
   static fromScriptFile(aFile){
     if(aFile.fileSize < 24){
       // Smaller files can't possibly have a valid header
       // This also means that we successfully generate a ScriptData for *folders* named "xx.uc.js"...
-      return new ScriptData(aFile.leafName,"",aFile.fileSize === 0,false)
+      return new ScriptData(aFile.leafName,"",aFile.fileSize === 0,ScriptData.TYPE_SCRIPT)
     }
     const result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
-    const headerText = this.extractScriptHeader(result);
+    const headerText = extractScriptHeader(result);
     // If there are less than 2 bytes after the header then we mark the script as non-executable. This means that if the file only has a header then we don't try to inject it to any windows, since it wouldn't do anything.
-    return new ScriptData(aFile.leafName, headerText, headerText.length > aFile.fileSize - 2,false);
+    return new ScriptData(aFile.leafName, headerText, headerText.length > aFile.fileSize - 2,ScriptData.TYPE_SCRIPT);
   }
   static fromStyleFile(aFile){
     if(aFile.fileSize < 24){
       // Smaller files can't possibly have a valid header
-      return new ScriptData(aFile.leafName,"",true,true)
+      return new ScriptData(aFile.leafName,"",true,ScriptData.TYPE_STYLE)
     }
     const result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
-    return new ScriptData(aFile.leafName, this.extractStyleHeader(result), true,true);
+    return new ScriptData(aFile.leafName, extractStyleHeader(result), true,ScriptData.TYPE_STYLE);
   }
 }
 
@@ -264,8 +301,6 @@ function maybeShowBrokenNotification(window){
   );
 }
 
-
-
 function updateMenuStatus(event){
   const menu = event.target;
   if(!menu.id === "menuUserScriptsPopup"){
@@ -290,21 +325,46 @@ class UserChrome_js{
     this.styles = [];
     this.SESSION_RESTORED = false;
     this.IS_ENABLED = Services.prefs.getBoolPref(PREF_ENABLED,false);
+    this.EXPERIMENTS_ENABLED = Services.prefs.getBoolPref(PREF_EXPERIMENTAL,false);
     this.isInitialWindow = true;
     this.initialized = false;
     this.init();
   }
-  registerScript(aScript,isDisabled){
+  registerScript(aScript,isDisabled,aBuiltActorMap){
     if(aScript.type === "script"){
       this.scripts.push(aScript);
     }else{
       this.styles.push(aScript);
     }
-    if(!isDisabled && aScript.manifest){
+    if(isDisabled){
+      return true
+    }
+    if(aScript.manifest){
       try{
         ScriptData.registerScriptManifest(aScript);
       }catch(ex){
         console.error(new Error(`@ ${aScript.filename}`,{cause:ex}));
+      }
+    }
+    if(aScript.windowActor){
+      if(this.EXPERIMENTS_ENABLED){
+        const { windowActor } = aScript;
+        if(!/[A-Za-z][A-Za-z0-9_]*/.test(windowActor)){
+          console.warn(`${aScript.filename}: WindowActor name '${windowActor}' is not acceptable`)
+          return isDisabled
+        }
+        if(aBuiltActorMap.has(windowActor)){
+          console.warn(`${aScript.filename}: WindowActor '${windowActor}' already in use `)
+          return isDisabled
+        }
+        try{
+          let def = ScriptData.buildScriptActorDefinition(windowActor,aScript.actorMatches);
+          aBuiltActorMap.set(windowActor,def);
+        }catch(ex){
+          console.error(new Error(`@ ${aScript.filename}`,{cause:ex}));
+        }
+      }else{
+        console.warn(`fx-autoconfig: Script '${aScript.filename}' tries to use WindowActor - an experimental feature that is currently disabled.`)
       }
     }
     return isDisabled
@@ -313,7 +373,7 @@ class UserChrome_js{
     if(this.initialized){
       return
     }
-    loaderModuleLink.setup(this,FX_AUTOCONFIG_VERSION,AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE,APP_VARIANT,ScriptData);
+    loaderModuleLink.setup(this,AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE,APP_VARIANT,ScriptData);
     
     if(!this.IS_ENABLED){
       Services.obs.addObserver(this, 'domwindowopened', false);
@@ -328,11 +388,12 @@ class UserChrome_js{
     const disabledScripts = getDisabledScripts();
     // load script data
     const scriptDir = FileSystem.getScriptDir();
+    const windowActorDefinitions = new Map();
     if(scriptDir.isDirectory()){
       for(let entry of scriptDir){
         if (/^[A-Za-z0-9]+.*(\.uc\.js|\.uc\.mjs|\.sys\.mjs)$/i.test(entry.leafName)) {
           let script = ScriptData.fromScriptFile(entry);
-          if(this.registerScript(script,disabledScripts.includes(script.filename))){
+          if(this.registerScript(script,disabledScripts.includes(script.filename),windowActorDefinitions)){
             continue // script is disabled
           }
           if(script.inbackground){
@@ -359,6 +420,10 @@ class UserChrome_js{
         }
       }
       this.addAgentStyles(this.styles.filter(style => style.styleSheetMode === "agent" && !disabledScripts.includes(style.filename)));
+    }
+    if(this.EXPERIMENTS_ENABLED && windowActorDefinitions.size > 0){
+      lazy.ActorManagerParent.addJSWindowActors(Object.fromEntries(Array.from(windowActorDefinitions.entries())));
+      windowActorDefinitions.clear();
     }
     this.scripts.sort((a,b) => a.loadOrder - b.loadOrder);
     this.styles.sort((a,b) => a.loadOrder - b.loadOrder);
@@ -533,13 +598,32 @@ class UserChrome_js{
     return
   }
   observe(aSubject, aTopic, aData) {
-    aSubject.addEventListener('DOMContentLoaded', this, {once: !this.PERSISTENT_DOMCONTENT_CALLBACK, capture: true});
+    if(aSubject.document.isUncommittedInitialDocument){
+      const parent = aSubject.parent;
+      aSubject.addEventListener("DOMContentLoaded",()=>{
+        // If there's any better way to know if the subject is a dialog
+        // or not then please fix this.
+        // Note! window chromeFlag openas_dialog doesn't tell "dialoginess"
+        // for this purpose.
+        const isDialoglike = !aSubject.toolbar?.visible;
+        if(isDialoglike){
+          this.onDOMContent(aSubject.document);
+          if(this.PERSISTENT_DOMCONTENT_CALLBACK){
+            aSubject.addEventListener('DOMContentLoaded', this, { capture: true});
+          }
+          return
+        }
+        parent.addEventListener("DOMContentLoaded",this,{once: !this.PERSISTENT_DOMCONTENT_CALLBACK, capture: true})
+      },{once:true})
+    }else{
+      aSubject.addEventListener('DOMContentLoaded', this, {once: !this.PERSISTENT_DOMCONTENT_CALLBACK, capture: true});
+    }
   }
   
   handleEvent(aEvent){
     switch (aEvent.type){
       case "DOMContentLoaded":
-        this.onDOMContent(aEvent.originalTarget);
+        this.onDOMContent(aEvent.target);
         break;
       default:
         console.warn(new Error("unexpected event received",{cause:aEvent}));

@@ -5,20 +5,19 @@
   
   let disabledScripts = Services.prefs.getStringPref(PREF_SCRIPTSDISABLED,"").split(",");
   
-  let moduleScripts = loaderModuleLink.scripts
-  .filter(s => s.isESM
-            && s.regex?.test(window.location.href)
-            && !disabledScripts.includes(s.filename)
-            && !s.noExec
-            && !(s.onlyonce && s.isRunning)
-            && !s.injectionFailed
-  );
+  let moduleScripts = loaderModuleLink.matchScripts(s => s.isESM
+    && s.regex?.test(window.location.href)
+    && !disabledScripts.includes(s.filename)
+    && !s.noExec
+    && !(s.onlyonce && s.isRunning)
+    && !s.injectionFailed
+  ,true);
   for(let script of moduleScripts){
-    import(script.chromeURI.spec)
+    import(script.chromeURI)
     .catch(ex => {
       console.error(new Error(`@ ${script.filename}:${ex.lineNumber}`,{cause:ex}));
-      script.markScriptInjectionFailure();
+      loaderModuleLink.markScriptInjectionFailure(script.filename);
     })
-    .finally(()=>script.setRunning())
+    .finally(()=>loaderModuleLink.setScriptRunning(script.filename))
   }
 }
