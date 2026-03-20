@@ -295,7 +295,7 @@ if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfo
 	}
 }
 
-// Nocturne Adjustments
+//  Adjustments
 class gkNocturneAdj {
 	static blacklist = {
 		"nocturne.caption.text.color": 0,
@@ -303,6 +303,7 @@ class gkNocturneAdj {
 		"nocturne.force.transparency": false,
 		"nocturne.transparent.menubar": false,
 		"nocturne.translucent.navbar": false,
+		"nocturne.ui.oldurlbar": false,
 		"nocturne.aero.fog": 0,
 		"nocturne.backgrounds.enabled": false
 	}
