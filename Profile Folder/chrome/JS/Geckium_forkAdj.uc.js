@@ -295,6 +295,66 @@ if (AppConstants.MOZ_APP_NAME == "r3dfox" || AppConstants.MOZ_APP_NAME == "r3dfo
 	}
 }
 
+// Nocturne Adjustments
+class gkNocturneAdj {
+	static blacklist = {
+		"nocturne.caption.text.color": 0,
+		"nocturne.colors": 0,
+		"nocturne.force.transparency": false,
+		"nocturne.transparent.menubar": false,
+		"nocturne.translucent.navbar": false,
+		"nocturne.ui.oldurlbar": false,
+		"nocturne.aero.fog": 0,
+		"nocturne.backgrounds.enabled": false
+	}
+
+	/**
+	 * disableThemeCusto - Ensures Nocturne's theme customisation options are turned off
+	 */
+
+	static disableThemeCusto(id) {
+		let changes = 0;
+		const prefsToCheck = id ? [id] : Object.keys(gkNocturneAdj.blacklist);
+
+		for (const pref of prefsToCheck) {
+			const targetValue = gkNocturneAdj.blacklist[pref];
+			const currentValue = gkPrefUtils.tryGet(pref);
+
+			if (typeof targetValue === "boolean") {
+				if (currentValue.bool !== targetValue) {
+					gkPrefUtils.set(pref).bool(targetValue);
+					changes++;
+				}
+			} else if (typeof targetValue === "number") {
+				if (currentValue.int !== targetValue) {
+					gkPrefUtils.set(pref).int(targetValue);
+					changes++;
+				}
+			}
+		}
+
+		if (changes >= 1) {
+			UC_API.Notifications.show({
+				label : "Nocturne theme customisations are not supported by Geckium and have been disabled.",
+				type : "geckium-notification",
+				priority: "critical"
+			})
+		}
+	}
+}
+if (AppConstants.MOZ_APP_NAME == "nocturne") {
+	window.addEventListener("load", function () { gkNocturneAdj.disableThemeCusto(); });
+	const nocturneObserver = {
+		observe: function (subject, topic, data) {
+			if (topic == "nsPref:changed")
+				gkNocturneAdj.disableThemeCusto(data);
+		},
+	};
+	for (const pref in gkNocturneAdj.blacklist) {
+		Services.prefs.addObserver(pref, nocturneObserver, false);
+	}
+}
+
 // Marbie Adjustments
 class gkMarbleAdj {
 	static blacklist = {
