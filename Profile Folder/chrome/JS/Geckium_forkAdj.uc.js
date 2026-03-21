@@ -135,24 +135,21 @@ class gkImpossibleForks {
 	 */
 
 	static showWarning() {
-		if (gkPrefUtils.tryGet("Geckium.impossibruFork.warningShown").bool != true) {
-			gkPrefUtils.set("Geckium.impossibruFork.warningShown").bool(true);
-			UC_API.Notifications.show({
-				label : "what.",
-				type : "geckium-notification",
-				priority: "critical",
-				buttons: [{
-				label: "Seriously, what did you think was going to happen?",
-				callback: (notification) => {
-					notification.ownerGlobal.openWebLinkIn(
-					"https://youtu.be/swnVdhCsYBk",
-					"tab"
-					);
-					return false
-				}
-				}]
-			})
-		}
+		UC_API.Notifications.show({
+			label : "what.",
+			type : "geckium-notification",
+			priority: "critical",
+			buttons: [{
+			label: "Seriously, what did you think was going to happen?",
+			callback: (notification) => {
+				notification.ownerGlobal.openWebLinkIn(
+				"https://youtu.be/swnVdhCsYBk",
+				"tab"
+				);
+				return false
+			}
+			}]
+		})
 	}
 
 	// This is also self-explanatory
