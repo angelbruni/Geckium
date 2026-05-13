@@ -48,7 +48,6 @@ function updateSettings(iteration) {
 
 		if (AppConstants.platform == "win") {
 			gkPrefUtils.set("widget.ev-native-controls-patch.override-win-version").int(7);		// Force aero
-			gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(false);						// Disable dcomp
 			gkPrefUtils.set("browser.display.windows.non_native_menus").int(0);
 			gkPrefUtils.set("browser.startup.blankWindow").bool(false);							// Disable Firefox's splash screen
 		}
