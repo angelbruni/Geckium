@@ -18,13 +18,13 @@
 	}
 
 	> body {
-		background: var(--titlebar-active, var(--default-titlebar-active));
+		background: var(--titlebar-active, var(--default-titlebar-active)) !important;
 		border-radius: var(--titlebar-border-radius) var(--titlebar-border-radius) 0 0;
 		position: relative;
 		background-origin: padding-box;
 	
 		&:-moz-window-inactive {
-			background: var(--titlebar-inactive, var(--default-titlebar-inactive));
+			background: var(--titlebar-inactive, var(--default-titlebar-inactive)) !important;
 
 			&::before {
 				background: var(--titlebar-pseudo-inactive-texture, var(--titlebar-pseudo-texture));
