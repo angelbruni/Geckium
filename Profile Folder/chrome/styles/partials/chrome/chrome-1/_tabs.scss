@@ -184,30 +184,55 @@
 			) !important;
 
 			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
-				--selected-tab-background: var(--toolbar-background-color, var(--toolbar-bgcolor)) !important;
-			}
+				--selected-tab-background: var(--toolbar-bgcolor) !important;
+			} // pre-153
+			&:not([style*="--tab-background-color-selected"], [style*="--lwt-tab-line-color"]) {
+				--selected-tab-background: var(--toolbar-background-color) !important;
+			} // 153
 			&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
 				--selected-tab-background: linear-gradient(
 					to bottom,
 					var(--lwt-tab-line-color) 3px,
-					var(--toolbar-background-color, var(--toolbar-bgcolor)) 3px
+					var(--toolbar-bgcolor) 3px
 				) !important;
-			}
+			} // pre-153
+			&[style*="--lwt-tab-line-color"]:not([style*="--tab-background-color-selected"]) {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--lwt-tab-line-color) 3px,
+					var(--toolbar-background-color) 3px
+				) !important;
+			} // 153
 			&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
 				--selected-tab-background: linear-gradient(
 					to bottom,
 					var(--tab-background-color-selected, var(--tab-selected-bgcolor)) 3px,
-					var(--toolbar-background-color, var(--toolbar-bgcolor))
+					var(--toolbar-bgcolor)
 				) !important;
-			}
+			} // pre-153
+			&[style*="--tab-background-color-selected"]:not([style*="--lwt-tab-line-color"])  {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--tab-background-color-selected) 3px,
+					var(--toolbar-background-color)
+				) !important;
+			} // 153
 			&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
 				--selected-tab-background: linear-gradient(
 					to bottom,
 					var(--lwt-tab-line-color) 3px,
-					var(--tab-background-color-selected, var(--tab-selected-bgcolor)) 3px,
-					var(--toolbar-background-color, var(--toolbar-bgcolor))
+					var(--tab-selected-bgcolor) 3px,
+					var(--toolbar-bgcolor)
 				) !important;
-			}
+			} // pre-153
+			&[style*="--lwt-tab-line-color"][style*="--tab-background-color-selected"] {
+				--selected-tab-background: linear-gradient(
+					to bottom,
+					var(--lwt-tab-line-color) 3px,
+					var(--tab-background-color-selected) 3px,
+					var(--toolbar-background-color)
+				) !important;
+			} // 153
 
 			&[tab-selected-bgcolor-transparent="true"] {
 				&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
@@ -238,7 +263,10 @@
 			&[toolbar-bgcolor-transparent="true"] {
 				&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
 					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
-				}
+				} // pre-153
+				&:not([style*="--tab-background-color-selected"], [style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: var(--gktoolbar-bgcolor) !important;
+				} // 153
 				&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
 					--selected-tab-background: linear-gradient(
 						to bottom,
@@ -253,7 +281,7 @@
 						var(--gktoolbar-bgcolor) 3px
 					) !important;
 				} // 153
-				&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
+				&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
 					--selected-tab-background: linear-gradient(
 						to bottom,
 						var(--tab-selected-bgcolor) 3px,
@@ -267,7 +295,22 @@
 							var(--lwt-accent-color)
 						) !important;
 					}
-				}
+				} // pre-153
+				&[style*="--tab-background-color-selected"]:not([style*="--lwt-tab-line-color"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--tab-background-color-selected) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--tab-background-color-selected) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
+				} // 153
 				&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
 					--selected-tab-background: linear-gradient(
 						to bottom,
