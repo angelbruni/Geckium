@@ -8,6 +8,16 @@
 
 // Temporary Firefox adjustments
 class gkFirefoxTempAdj {
+	static disableNova() {
+		if (gkPrefUtils.tryGet("browser.nova.enabled").bool != false) {
+			gkPrefUtils.set("browser.nova.enabled").bool(false);
+			UC_API.Notifications.show({
+				label : "Support for Nova will arrive in Geckium Beta 2.",
+				type : "geckium-notification",
+				priority: "critical"
+			})
+		}
+	}
 	static disableVertical() {
 		if (gkPrefUtils.tryGet("sidebar.verticalTabs").bool != false) {
 			gkPrefUtils.set("sidebar.verticalTabs").bool(false);
@@ -28,14 +38,17 @@ class gkFirefoxTempAdj {
 		}
 	}
 }
+window.addEventListener("load", gkFirefoxTempAdj.disableNova);
 window.addEventListener("load", gkFirefoxTempAdj.disableVertical);
 window.addEventListener("load", gkFirefoxTempAdj.webApps);
 const firefoxObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed")
+			gkFirefoxTempAdj.disableNova();
 			gkFirefoxTempAdj.disableVertical();
 	},
 };
+Services.prefs.addObserver("browser.nova.enabled", firefoxObserver, false);
 Services.prefs.addObserver("sidebar.verticalTabs", firefoxObserver, false);
 
 // Firefox (Native Controls Patch) Adjustments
