@@ -806,6 +806,11 @@
 			--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating)));
 			--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
 
+			&[is153Plus] { // 153
+				--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--default-personal-toolbar-floating)));
+				--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--default-personal-toolbar-floating-border)));
+			}
+
 			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
 				// TODO: expose LwTheme NTP images to chrome.
 
@@ -821,17 +826,17 @@
 
 			--toolbarbutton-border-color-normal: color-mix(
 				in srgb,
-				var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+				var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 80%,
 				white
 			) !important;
 			--toolbarbutton-border-color-hot: color-mix(
 				in srgb,
-				var(--toolbar-bgcolor, var(--lwt-accent-color)) 60%,
+				var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 60%,
 				white
 			) !important;
 			--toolbarbutton-border-color-active: color-mix(
 				in srgb,
-				var(--toolbar-bgcolor, var(--lwt-accent-color)) 50%,
+				var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 50%,
 				white
 			) !important;
 			--toolbarbutton-inner-border-color-normal: color-mix(
@@ -847,7 +852,7 @@
 
 			--toolbarbutton-icon-color: var(--toolbarbutton-icon-fill);
 
-			&[style*="--toolbar-color"] {
+			&[style*="--toolbar-color"] { // pre-153
 				&:not([style*="--toolbarbutton-icon-fill"]) {
 					--toolbarbutton-icon-color: var(--toolbar-color);
 				}
@@ -864,23 +869,38 @@
 				) !important;
 			}
 
+			&[style*="--toolbar-text-color"] { // 153
+				--toolbarbutton-icon-color: var(--toolbar-text-color);
+
+				--toolbarbutton-inner-border-color-normal: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-color, var(--toolbar-text-color)) 30%,
+					transparent
+				) !important;
+				--toolbarbutton-inner-border-color-hot: color-mix(
+					in srgb,
+					var(--toolbarbutton-icon-color, var(--toolbar-text-color)) 50%,
+					transparent
+				) !important;
+			}
+
 			--toolbarbutton-texture: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 80%,
 					white
 				),
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
 					white
 				)
 			) !important;
 
 			--navigation-buttons-separator: color-mix(
 				in srgb,
-				var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+				var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 80%,
 				white
 			) !important;
 
@@ -896,19 +916,19 @@
 		&[customthememode="geckium"],
 		&[customthememode="fxchrome"] {
 			&[toolbar-bgcolor-transparent="true"] {
-				--personal-toolbar: var(--toolbar-bgcolor) !important;
+				--personal-toolbar: var(--toolbar-background-color, var(--toolbar-bgcolor)) !important;
 			}
 		}
 		// if Geckium
 		&[customthememode="geckium"] {
-			--nav-bar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
-			--personal-toolbar: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
+			--nav-bar: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) !important;
+			--personal-toolbar: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) !important;
 
 			&[toolbar-bgcolor-transparent="true"] {
 				--nav-bar: linear-gradient(
 					to bottom,
 					var(--gktoolbar-bgcolor) 3px,
-					var(--toolbar-bgcolor) 75%
+					var(--toolbar-background-color, var(--toolbar-bgcolor)) 75%
 				) !important;
 
 				&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
@@ -933,16 +953,16 @@
 		&[customthememode="fxchrome"] {
 			--nav-bar: linear-gradient(
 				to bottom,
-				var(--toolbar-bgcolor) 3px,
+				var(--toolbar-background-color, var(--toolbar-bgcolor)) 3px,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor),
+					var(--toolbar-background-color, var(--toolbar-bgcolor)),
 					transparent 50%
 				) 50%
 			) !important;
 			--personal-toolbar: color-mix(
 				in srgb,
-				var(--toolbar-bgcolor),
+				var(--toolbar-background-color, var(--toolbar-bgcolor)),
 				transparent 50%
 			) !important;
 
@@ -950,7 +970,7 @@
 				--nav-bar: linear-gradient(
 					to bottom,
 					var(--gktoolbar-bgcolor) 3px,
-					var(--toolbar-bgcolor) 50%
+					var(--toolbar-background-color, var(--toolbar-bgcolor)) 50%
 				) !important;
 			}
 		}
@@ -958,7 +978,7 @@
 		&[customthememode="silverfox"] {
 			--nav-bar: linear-gradient(
 					to bottom,
-					var(--toolbar-bgcolor) 25%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor)) 25%,
 					transparent
 				) !important;
 

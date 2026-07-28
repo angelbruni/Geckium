@@ -156,11 +156,19 @@
 	&[gkthemed]:not([gkchrthemed]):not([customthememode="none"]) {
 		// --selected-tab-background: var(--toolbar-bgcolor, var(--lwt-accent-color)) !important;
 		--tabbrowser-tab-color: var(--lwt-tab-text, var(--toolbar-color, var(--lwt-text-color)));
-		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color, var(--lwt-text-color))) !important;
+		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color)) !important;
+
+		&[is153Plus] {
+			--tabbrowser-tab-color: var(--tab-selected-textcolor, var(--toolbar-text-color, var(--lwt-text-color)));
+			--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-text-color)) !important;
+		}
 
 		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-color: rgb(255, 255, 255)"]:not([style*="--gktoolbar-bgcolor-opacity-percentage: 0%;"]) {
 			--tabbrowser-tab-color: black;
-		}
+		} // pre-153
+		&[style*="--gktoolbar-bgcolor: rgb(255, 255, 255)"][style*="--toolbar-text-color: rgb(255, 255, 255)"]:not([style*="--gktoolbar-bgcolor-opacity-percentage: 0%;"]) {
+			--tabbrowser-tab-color: black;
+		} // 153
 
 		// if Geckium
 		&[customthememode="geckium"] {
@@ -169,35 +177,35 @@
 				in srgb,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 35%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 35%,
 					var(--lwt-accent-color)
 				) 80%,
 				transparent
 			) !important;
 
 			&:not([style*="--tab-selected-bgcolor"], [style*="--lwt-tab-line-color"]) {
-				--selected-tab-background: var(--toolbar-bgcolor) !important;
+				--selected-tab-background: var(--toolbar-background-color, var(--toolbar-bgcolor)) !important;
 			}
 			&[style*="--lwt-tab-line-color"]:not([style*="--tab-selected-bgcolor"]) {
 				--selected-tab-background: linear-gradient(
 					to bottom,
 					var(--lwt-tab-line-color) 3px,
-					var(--toolbar-bgcolor) 3px
+					var(--toolbar-background-color, var(--toolbar-bgcolor)) 3px
 				) !important;
 			}
 			&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
 				--selected-tab-background: linear-gradient(
 					to bottom,
-					var(--tab-selected-bgcolor) 3px,
-					var(--toolbar-bgcolor)
+					var(--tab-background-color-selected, var(--tab-selected-bgcolor)) 3px,
+					var(--toolbar-background-color, var(--toolbar-bgcolor))
 				) !important;
 			}
 			&[style*="--lwt-tab-line-color"][style*="--tab-selected-bgcolor"] {
 				--selected-tab-background: linear-gradient(
 					to bottom,
 					var(--lwt-tab-line-color) 3px,
-					var(--tab-selected-bgcolor) 3px,
-					var(--toolbar-bgcolor)
+					var(--tab-background-color-selected, var(--tab-selected-bgcolor)) 3px,
+					var(--toolbar-background-color, var(--toolbar-bgcolor))
 				) !important;
 			}
 
@@ -208,9 +216,9 @@
 						color-mix(
 							in srgb,
 							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
-							var(--toolbar-bgcolor)
+							var(--toolbar-background-color, var(--toolbar-bgcolor))
 						) 3px,
-						var(--toolbar-bgcolor)
+						var(--toolbar-background-color, var(--toolbar-bgcolor))
 					) !important;
 				}
 				&[style*="--lwt-tab-line-color"][style*="--gktab-selected-bgcolor"] {
@@ -220,9 +228,9 @@
 						color-mix(
 							in srgb,
 							var(--gktab-selected-bgcolor) calc(var(--gktab-selected-bgcolor-opacity-percentage) + var(--selected-tab-background-opacity-percentage-additive)),
-							var(--toolbar-bgcolor)
+							var(--toolbar-background-color, var(--toolbar-bgcolor))
 						) 3px,
-						var(--toolbar-bgcolor)
+						var(--toolbar-background-color, var(--toolbar-bgcolor))
 					) !important;
 				}
 			}
@@ -237,7 +245,14 @@
 						var(--lwt-tab-line-color) 3px,
 						var(--gktoolbar-bgcolor) 3px
 					) !important;
-				}
+				} // pre-153
+				&[style*="--lwt-tab-line-color"]:not([style*="--tab-background-color-selected"]) {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--gktoolbar-bgcolor) 3px
+					) !important;
+				} // 153
 				&[style*="--tab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"])  {
 					--selected-tab-background: linear-gradient(
 						to bottom,
@@ -269,7 +284,24 @@
 							var(--lwt-accent-color)
 						) !important;
 					}
-				}
+				} // pre-153
+				&[style*="--lwt-tab-line-color"][style*="--tab-background-color-selected"] {
+					--selected-tab-background: linear-gradient(
+						to bottom,
+						var(--lwt-tab-line-color) 3px,
+						var(--tab-background-color-selected) 3px,
+						var(--gktoolbar-bgcolor)
+					) !important;
+
+					&[style*="--gktoolbar-bgcolor-opacity-percentage: 0%"] {
+						--selected-tab-background: linear-gradient(
+							to bottom,
+							var(--lwt-tab-line-color) 3px,
+							var(--tab-background-color-selected) 3px,
+							var(--lwt-accent-color)
+						) !important;
+					}
+				} // 153
 
 				&[tab-selected-bgcolor-transparent="true"] {
 					&[style*="--gktab-selected-bgcolor"]:not([style*="--lwt-tab-line-color"]) {
@@ -326,12 +358,12 @@
 		}
 		// if FXChrome-like
 		&[customthememode="fxchrome"] {
-			--selected-tab-background: var(--toolbar-bgcolor) !important;
+			--selected-tab-background: var(--toolbar-background-color, var(--toolbar-bgcolor)) !important;
 			--inactive-tab-background: color-mix(
 				in srgb,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
 					black
 				) 80%,
 				transparent
@@ -355,7 +387,7 @@
 			--selected-tab-background: linear-gradient(
 				to bottom,
 				transparent -50%,
-				var(--toolbar-bgcolor) 70%
+				var(--toolbar-background-color, var(--toolbar-bgcolor)) 70%
 			) !important;
 
 			--inactive-tab-background: linear-gradient(
@@ -363,7 +395,7 @@
 				transparent -10%,
 				color-mix(
 					in srgb,
-					var(--toolbar-bgcolor) 70%,
+					var(--toolbar-background-color, var(--toolbar-bgcolor)) 70%,
 					transparent
 				) 60%
 			) !important;
