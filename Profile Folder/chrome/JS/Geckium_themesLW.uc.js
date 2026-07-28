@@ -7,6 +7,9 @@
 
 // Firefox LWThemes, and Light and Dark 'theme' checks
 class gkLWTheme {
+	static toolbarbgcolor = versionFlags.is153Plus ? "--toolbar-background-color" : "--toolbar-bgcolor";
+	static tabselectedbgcolor = versionFlags.is153Plus ? "--tab-background-color-selected" : "--tab-selected-bgcolor";
+
 	static palettes = (function() {
 		switch (AppConstants.MOZ_APP_NAME) {
 			// Some forks use different palettes in their built-in Light and Dark LWTheme - 'default' is for everyone who doesn't
@@ -86,7 +89,7 @@ class gkLWTheme {
 		if (versionFlags.is117Plus) { // Firefox 117+
 			if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "" ||
 				document.documentElement.style.getPropertyValue("--lwt-text-color") != "" ||
-				document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+				document.documentElement.style.getPropertyValue(gkLWTheme.toolbarbgcolor) != "") {
 				return false;
 			}
 		} else { // Firefox 115
@@ -96,7 +99,7 @@ class gkLWTheme {
 			if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
 				return false;
 			}
-			if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+			if (document.documentElement.style.getPropertyValue(gkLWTheme.toolbarbgcolor) != "") {
 				return false;
 			}
 		}
@@ -173,7 +176,7 @@ class gkLWTheme {
 					document.documentElement.style.setProperty("--lwt-tab-line-color", LightweightThemeManager.themeData.theme.tab_line);
 
 				// Ensure the tab selected background colour is opaque
-				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue('--tab-selected-bgcolor');
+				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.tabselectedbgcolor);
 				if (tabSelectedBgcolor.includes("rgba") && tabSelectedBgcolor.includes("rgba")) {
 					var tabSelectedBgcolorArray = tabSelectedBgcolor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
@@ -185,7 +188,7 @@ class gkLWTheme {
 				}
 
 				// Ensure the toolbar background colour is opaque
-				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
+				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.toolbarbgcolor);
 				if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
 					var toolbarBgColorArray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
