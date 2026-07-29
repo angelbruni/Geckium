@@ -807,6 +807,8 @@
 			--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-personal-toolbar-floating-border)));
 
 			&[is153Plus] { // 153
+				--bookmark-item-color: var(--toolbar-text-color, var(--lwt-text-color, var(--panel-text-color))) !important;
+
 				--personal-toolbar-floating: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--default-personal-toolbar-floating)));
 				--personal-toolbar-floating-border: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--default-personal-toolbar-floating-border)));
 			}
@@ -814,7 +816,7 @@
 			&[personalbar="newtab"] #PersonalToolbar > #personal-toolbar-bg {
 				// TODO: expose LwTheme NTP images to chrome.
 
-				background-color: var(--tabpanel-background-color, white);
+				background-color: var(--newtab-background-color, (--tabpanel-background-color, white));
 				background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));
 				@media (prefers-color-scheme: dark) {
 					background-image: var(--lwt-gknewtab-background-image-dark, var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image)));

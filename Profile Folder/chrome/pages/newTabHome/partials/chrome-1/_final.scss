@@ -43,7 +43,10 @@
 
 		&[style*="--arrowpanel-background"] {
 			--section-title-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
-		}
+		} // pre-153
+		&[style*="--panel-background-color"] {
+			--section-title-color: var(--panel-text-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
+		} // 153
 
 		body {
 			background-image: var(--lwt-gknewtab-background-image, var(--lwt-gknewtab-image));

@@ -16,16 +16,16 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--thumbnail-border-color: color-mix(
 			in srgb,
-			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 31.37254901960784%,
+			var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)))) 31.37254901960784%,
 			transparent
 		);
-		--thumbnail-border-color-hot: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color)));
+		--thumbnail-border-color-hot: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))));
 		--thumbnail-inner-border-color: color-mix(
 			in srgb,
-			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 50%,
+			var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)))) 50%,
 			white
 		);
-		--thumbnail-wrapper-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		--thumbnail-wrapper-background-color-hot: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)));
 	}
 	// chrtheme
 	&[gkthemed][gkchrthemed] {
