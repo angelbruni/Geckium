@@ -28,15 +28,15 @@
 
 	// Custom theme support
 	&[gkthemed]:not([gkchrthemed])[footer-themable="true"] {
-		--tile-background: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		--tile-background: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)));
 		--tile-border-color-normal: color-mix(
 			in srgb,
-			var(--toolbar-bgcolor, var(--lwt-accent-color)) 90%,
+			var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
 			white
 		);
 		--tile-border-color-hot: color-mix(
 			in srgb,
-			var(--toolbar-bgcolor, var(--lwt-accent-color)) 80%,
+			var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 80%,
 			white
 		);
 		--tile-close-background-color-active: var(--thumbnail-container-color);

@@ -8,7 +8,9 @@
 // Firefox LWThemes, and Light and Dark 'theme' checks
 class gkLWTheme {
 	static toolbarbgcolor = versionFlags.is153Plus ? "--toolbar-background-color" : "--toolbar-bgcolor";
+	static personaplt = versionFlags.is153Plus ? "oklch(1 0 0 / 40%)" : "rgba(255,255,255,.4)";
 	static tabselectedbgcolor = versionFlags.is153Plus ? "--tab-background-color-selected" : "--tab-selected-bgcolor";
+	static lwttextcolor = versionFlags.is153Plus ? "--toolbar-text-color" : "--lwt-text-color";
 
 	static palettes = (function() {
 		switch (AppConstants.MOZ_APP_NAME) {
@@ -177,7 +179,7 @@ class gkLWTheme {
 
 				// Ensure the tab selected background colour is opaque
 				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.tabselectedbgcolor);
-				if (tabSelectedBgcolor.includes("rgba") && tabSelectedBgcolor.includes("rgba")) {
+				if (tabSelectedBgcolor.includes("rgba")) {
 					var tabSelectedBgcolorArray = tabSelectedBgcolor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
 					document.documentElement.style.setProperty("--gktab-selected-bgcolor", `rgb(${tabSelectedBgcolorArray[0]}, ${tabSelectedBgcolorArray[1]}, ${tabSelectedBgcolorArray[2]})`);
@@ -196,18 +198,22 @@ class gkLWTheme {
 					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `${Math.floor((toolbarBgColorArray[3] / 1) * 100)}%`);
 					if (toolbarBgColorArray[3] == 0 || toolbarBgColorArray[3].includes("."))
 						document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+				} else if (toolbarBgColor == gkLWTheme.personaplt) {
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor", `white`);
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `40%`);
+					document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+				}
 
-					// if the lwtheme was a Persona (and toolbar style isn't vanilla)
-					if (toolbarBgColor == "rgba(255,255,255,.4)" && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
-						var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue('--lwt-text-color');
-						var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
-						// Invert foreground lightness if text is also light
-						if (!ColorUtils.IsDark(tfgarray)) {
-							tfgarray = ColorUtils.ColorToHSL(tfgarray);
-							tfgarray[2] = 100 - tfgarray[2];
-							tfgarray = ColorUtils.HSLToColor(tfgarray);
-							document.documentElement.style.setProperty("--lwt-text-color", `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
-						}
+				// if the lwtheme was a Persona (and toolbar style isn't vanilla)
+				if (toolbarBgColor == gkLWTheme.personaplt && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
+					var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.lwttextcolor);
+					var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					// Invert foreground lightness if text is also light
+					if (!ColorUtils.IsDark(tfgarray)) {
+						tfgarray = ColorUtils.ColorToHSL(tfgarray);
+						tfgarray[2] = 100 - tfgarray[2];
+						tfgarray = ColorUtils.HSLToColor(tfgarray);
+						document.documentElement.style.setProperty(gkLWTheme.lwttextcolor, `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
 					}
 				}
 

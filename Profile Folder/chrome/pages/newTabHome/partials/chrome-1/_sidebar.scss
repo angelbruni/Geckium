@@ -12,7 +12,7 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--sidebar-panes-background-color: color-mix(
 			in srgb,
-			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
+			var(--panel-background-color, var(--arrowpanel-background, var(--lwt-accent-color))) 50%,
 			transparent
 		);
 	}
