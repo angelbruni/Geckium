@@ -58,6 +58,10 @@ menupopup {
 		.menu-text {
 			margin-inline-end: 48px !important;
 		}
+
+		.menu-icon { // force gap to appear for balancing (153)
+			display: revert !important;
+		}
 	}
 	
 	#context-sep-navigation {
@@ -77,6 +81,12 @@ menupopup {
 
 			> menuitem {
 				justify-content: unset !important;
+
+				--menuitem-icon: unset !important;
+				.menu-icon { // force gap to appear for balancing (153)
+					height: 23px !important;
+					margin-inline-start: -7px !important;
+				}
 				
 				&::after {
 					content: attr(aria-label);
@@ -315,6 +325,9 @@ toolbarbutton menupopup[placespopup] {
 			}
 		}
 	}
+	&[is153Plus] #context-navigation > :is(menu, menuitem) { // No longer needed.
+		padding: 1px 0 !important;
+	}
 }
 
 
@@ -360,7 +373,6 @@ toolbarbutton menupopup[placespopup] {
 	}
 
 	//  macOS
-	//  TODO: In the future, if using Mac OS X titlebar style then apply Mac OS X menu styling here
 	@media (-moz-platform: macos) {
 		menupopup,
 		toolbarbutton menupopup[placespopup] {
@@ -445,6 +457,11 @@ toolbarbutton menupopup[placespopup] {
 			--arrowpanel-menuitem-margin: 0 !important;
 			--arrowpanel-menuitem-padding: 4px 6px !important;
 			--arrowpanel-menuitem-border-radius: 3px !important;
+		}
+
+		&[is153Plus] #context-navigation > :is(menu, menuitem) { // No longer needed. (153)
+			padding-block: unset !important;
+			padding-inline-start: 27px !important;
 		}
 
 		//  Leverage a bug with Firefox's CSS logic to only apply native menus if the @media that 115- had exists, thus is 115 or patched Firefox
@@ -532,6 +549,10 @@ toolbarbutton menupopup[placespopup] {
 					border-top: 1px solid ThreeDShadow !important;
 					border-bottom: 1px solid ThreeDHighlight !important;
 				}
+			}
+
+			&[is153Plus] #context-navigation > :is(menu, menuitem) { // No longer needed. (153)
+				padding-inline-start: 2px !important;
 			}
 		}
 	}
