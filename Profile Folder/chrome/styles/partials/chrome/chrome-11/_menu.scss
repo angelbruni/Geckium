@@ -19,6 +19,15 @@
                     }
         
                     > menuitem {
+                        .menu-icon { // 153
+                            display: revert !important;
+                            height: 16px !important;
+                            width: 16px !important;
+                            margin-inline-start: unset !important;
+                            margin: 4px 1px 3px 6px !important;
+                            padding: unset !important;
+                        }
+
                         &::after {
                             margin-inline-start: 5px !important; // 21px (menu.css:82, Firefox 115) - 16px
                         }
@@ -26,18 +35,25 @@
                     
                     #context-back {
                         list-style-image: url(moz-icon://stock/go-previous?size=menu) !important;
+                        --menuitem-icon: url(moz-icon://stock/go-previous?size=menu) !important;
                     }
                     #context-forward {
                         list-style-image: url(moz-icon://stock/go-next?size=menu) !important;
+                        --menuitem-icon: url(moz-icon://stock/go-next?size=menu) !important;
                     }
                     #context-reload {
                         list-style-image: url(moz-icon://stock/view-refresh?size=menu) !important;
+                       --menuitem-icon: url(moz-icon://stock/view-refresh?size=menu) !important;
                     }
                     #context-stop {
                         list-style-image: url(moz-icon://stock/process-stop?size=menu) !important;
+                        --menuitem-icon: url(moz-icon://stock/process-stop?size=menu) !important;
                     }
                     #context-bookmarkpage {
                         list-style-image: unset !important;
+                        > .menu-icon {
+                            visibility: hidden !important;
+                        }
                     }
                 }
             }
