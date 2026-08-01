@@ -51,11 +51,11 @@ export class FileSystem{
   
   static get STYLE_URI(){
     return Services.io.newURI(FileSystem.#STYLE_URI)
-  } 
+  }
   
   static get RESOURCE_URI(){
     return Services.io.newURI(FileSystem.#RESOURCE_URI)
-  } 
+  }
   
   static getResourceDir(){
     return FileSystemResult.fromNsIFile(FileSystem.RESOURCE_URI.QueryInterface(Ci.nsIFileURL).file)
@@ -74,7 +74,7 @@ export class FileSystem{
     if(typeof aFilename !== "string"){
       return FileSystemResult.fromErrorKind(FileSystem.ERROR_KIND_INVALID_ARGUMENT,{expected:"String"});
     }
-    const parts = aFilename.replace("\\","/").split("/").filter(a => a.length > 0);
+    const parts = aFilename.replaceAll("\\","/").split("/").filter(a => a.length > 0);
     while(parts[0] === ".."){
       baseDirectory = baseDirectory.parent;
       parts.shift();

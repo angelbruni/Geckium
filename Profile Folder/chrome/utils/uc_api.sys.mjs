@@ -18,7 +18,9 @@ const {
   updateStyleSheet,
   showNotification,
   defineModuleGettersWithFallback,
-  WindowActors
+  WindowActors,
+  compareVersionString,
+  L10n
   } = ChromeUtils.importESModule("chrome://userchromejs/content/utils.sys.mjs");
 
 export {
@@ -26,6 +28,7 @@ export {
   Hotkey as Hotkeys,
   Pref as Prefs,
   SharedStorage,
+  L10n,
   windowUtils as Windows
 }
 
@@ -52,9 +55,9 @@ export const Utils = Object.freeze({
   createWidget: createWidget,
   escapeXUL: escapeXUL,
   loadURI: loadURI,
-  defineModuleGettersWithFallback: defineModuleGettersWithFallback
+  defineModuleGettersWithFallback: defineModuleGettersWithFallback,
+  compareVersionString: compareVersionString
 });
-
 export const Scripts = Object.freeze({
   getScriptData: getScriptData,
   getStyleData: getStyleData,

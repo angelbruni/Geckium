@@ -2,7 +2,8 @@ import { FileSystem } from "chrome://userchromejs/content/fs.sys.mjs";
 export { FileSystem };
 
 const lazy = {
-  startupPromises: new Set()
+  startupPromises: new Set(),
+  updateChecked: false
 };
 defineModuleGettersWithFallback(lazy,{
   CustomizableUI: {
@@ -12,6 +13,9 @@ defineModuleGettersWithFallback(lazy,{
 });
 ChromeUtils.defineESModuleGetters(lazy, {
     requestIdleCallback: "resource://gre/modules/Timer.sys.mjs"
+});
+ChromeUtils.defineLazyGetter(lazy, "l10n", () => {
+  return new Localization(["browser/appMenuNotifications.ftl", "browser/aboutDialog.ftl","toolkit/about/aboutSupport.ftl"])
 });
 const WidgetCallbacks = new Map();
 
@@ -562,7 +566,8 @@ function reloadStyleSheet(name, type) {
 }
 
 class LoaderLink{
-  #ScriptData;
+  #ScriptType;
+  #ScriptFactory;
   #loaderInfo;
   #scripts;
   #styles;
@@ -570,7 +575,7 @@ class LoaderLink{
   #brandName = null;
   #sessionRestored = false;
   constructor(){
-    this.setup = (ref,aBrandName,aVariant,aScriptData) => {
+    this.setup = (ref,aBrandName,aVariant,aScriptFactory,aScriptType) => {
       this.#scripts = ref.scripts;
       this.#styles = ref.styles;
       this.getScriptMenu = (aDoc) => {
@@ -578,7 +583,8 @@ class LoaderLink{
       }
       this.#brandName = aBrandName;
       this.#variant = aVariant;
-      this.#ScriptData = aScriptData;
+      this.#ScriptFactory = aScriptFactory;
+      this.#ScriptType = aScriptType;
       delete this.setup;
       Object.freeze(this);
       return
@@ -606,15 +612,17 @@ class LoaderLink{
                   .QueryInterface(Ci.nsIFileURL).file;
       let result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
       let headerText = extractScriptHeader(result);
-      let info = new this.#ScriptData(aFile.leafName, headerText, false, this.#ScriptData.TYPE_LOADER);
-      this.#ScriptData.markScriptRunning(info);
+      let info = this.#ScriptFactory(aFile.leafName, headerText, false, this.#ScriptType.LOADER, true);
       this.#loaderInfo = LoaderLink.#scriptDataToScriptInfo(info,true);
     }
     return this.#loaderInfo
   }
   createScriptInfo(aName, aStringAsFSResult, isStyle, isEnabled){
+    return this.#createScriptInfo(aName, aStringAsFSResult, isStyle ? this.#ScriptType.STYLE : this.#ScriptType.SCRIPT, isEnabled)
+  }
+  #createScriptInfo(aName, aStringAsFSResult, type, isEnabled){
     const headerText = extractScriptHeader(aStringAsFSResult);
-    const scriptData = new this.#ScriptData(aName, headerText, headerText.length > aStringAsFSResult.size - 2, isStyle ? this.#ScriptData.TYPE_STYLE : this.#ScriptData.TYPE_SCRIPT);
+    const scriptData = this.#ScriptFactory(aName, headerText, headerText.length > aStringAsFSResult.size - 2, type);
     return LoaderLink.#scriptDataToScriptInfo(scriptData,isEnabled)
   }
   matchScripts(aFilter, uriOnly){
@@ -634,6 +642,9 @@ class LoaderLink{
   };
   sessionRestored(){
     return this.#sessionRestored;
+  }
+  static _cloneScriptInfo(link, info, fsResult, type){
+    return link.#createScriptInfo(info.filename, fsResult, type, false)
   }
   static #getScriptInfoForType(aFilter, aScriptList, mapFn){
     const filterType = typeof aFilter;
@@ -658,8 +669,9 @@ class LoaderLink{
     return { chromeURI: aScript.chromeURI.spec, filename: aScript.filename }
   }
   static #scriptDataToScriptInfo(aScript, isEnabled){
-    let info = new ScriptInfo(isEnabled);
+    let info = new ScriptInfo(isEnabled, aScript.type);
     Object.assign(info,aScript);
+    info.type = aScript.type.description;
     info.regex = aScript.regex ? new RegExp(aScript.regex.source, aScript.regex.flags) : null;
     info.chromeURI = aScript.chromeURI.spec;
     info.referenceURI = aScript.referenceURI.spec;
@@ -683,11 +695,25 @@ export function extractStyleHeader(aFSResult){
 
 // getScriptData() returns these types of objects
 export class ScriptInfo{
-  constructor(enabled){
-    this.isEnabled = enabled
+  #scriptType;
+  constructor(enabled, type = null){
+    this.isEnabled = enabled;
+    this.#scriptType = type
   }
   asFile(){
     return FileSystem.getEntry(FileSystem.convertChromeURIToFileURI(this.chromeURI)).entry()
+  }
+  async checkScriptUpdate(){
+    if(!(this.updateURL && this.version)){
+      return { available: false, localVersion: this.version, remoteVersion: null, script: null }
+    }
+    let response = await fetch(this.updateURL);
+    let content = FileSystem.StringContent({ content: await response.text() });
+    let scriptInfo = LoaderLink._cloneScriptInfo(loaderModuleLink, this, content, this.#scriptType);
+    let remoteVersion = scriptInfo.version;
+    const localVersion = this.version;
+    let available = compareVersionString(remoteVersion, localVersion) === 1;
+    return { localVersion, remoteVersion, available, script: { info: scriptInfo, response: content } }
   }
   static fromString(aName, aStringAsFSResult, isStyle) {
     return loaderModuleLink.createScriptInfo(aName, aStringAsFSResult, isStyle, false);
@@ -1048,4 +1074,82 @@ export function updateStyleSheet(name = "../userChrome.css",type){
     return reloadRegisteredStyleSheet(name)
   }
   return reloadStyleSheet(name,type)
+}
+
+// Comparison of strings conforming to format that is valid for webextension version strings
+// falling back to string comparison if format doesn't match
+export function compareVersionString(ver1, ver2){
+  if(ver1 === ver2){
+    return 0
+  }
+  if(![ver1,ver2].every(v => /^(0|[1-9][0-9]{0,8})([.](0|[1-9][0-9]{0,8})){0,3}$/.test(v))){
+    return ver1 > ver2 ? 1 : -1
+  }
+  const buffer = new Uint32Array(8);
+  buffer.set(ver1.split(".").map(b => Number.parseInt(b)),0);
+  buffer.set(ver2.split(".").map(b => Number.parseInt(b)),4);
+  for(let part = 0; part < 4; part++){
+    if(buffer[part] === buffer[part + 4]){
+      continue
+    }
+    if(buffer[part] > buffer[part + 4]){
+      return 1
+    }
+    return -1
+  }
+  return 0
+}
+
+export const L10n = Object.freeze({
+  formatMessages(arr){
+    return lazy.l10n.formatMessages(arr)
+  },
+  async formatMessage(msg){
+    return (await lazy.l10n.formatMessages([msg]))[0]
+  },
+  formatValues(arr){
+    return lazy.l10n.formatValues(arr)
+  },
+  formatValue(val){
+    return lazy.l10n.formatValue(val)
+  }
+})
+
+export async function checkLoaderUpdate(opt = {}){
+  const { ignoreVersion, ignoreIfAlreadyChecked } = opt;
+  if(ignoreIfAlreadyChecked && lazy.updateChecked){
+    return
+  }
+  lazy.updateChecked = true;
+  let update = await loaderModuleLink.loaderInfo.checkScriptUpdate();
+
+  if(update.available && !(ignoreVersion === update.remoteVersion)){
+    let message = await L10n.formatMessage("appmenu-update-available2");
+    let updateMsg = message.attributes.find(a => a.name === "label");
+    let dlMsg = message.attributes.find(a => a.name === "buttonlabel")?.value || "Download";
+    let dismissMsg = message.attributes.find(a => a.name === "secondarybuttonlabel")?.value || "Dismiss";
+    showNotification({
+      label : `fx-autoconfig: ${updateMsg?.value || "Update available"} (${update.localVersion} → ${update.remoteVersion})`,
+      type : "fx-autoconfig-update-notification",
+      priority: "info",
+      buttons: [{
+        label: dlMsg+"...",
+        callback: (notification) => {
+          notification.ownerGlobal.openWebLinkIn(
+            "https://github.com/MrOtherGuy/fx-autoconfig/tree/master",
+            "tab"
+          );
+          return false
+        }
+      },
+      {
+        label: dismissMsg,
+        callback: () => {
+          const ignoreVersionPref = "userChromeJS.updates.ignore-version";
+          Services.prefs.setStringPref(ignoreVersionPref,update.remoteVersion)
+          return false
+        }
+      }]
+    })
+  }
 }
