@@ -60,6 +60,7 @@
 	*/
 	#TabsToolbar {
 		--toolbarbutton-inner-padding: 0 !important; // Removes padding around buttons in the top toolbar
+		--toolbarbutton-padding-inner: 0 !important; // 153 renamed it. Of course it did.
 		position: relative; // Required by tab shadow (the below ::before)
 	}
 
