@@ -695,7 +695,7 @@ class gkTitlebars {
 		 * - codename
 		 *      - minimum version
 		 */
-		"tahoe": [25, "11px"],
+		"tahoe": [25, "14px"],
 		"bigslur": [20, "9px"],
 		"yos": [0, "5px"]
 	}
