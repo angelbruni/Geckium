@@ -40,3 +40,13 @@ function startFromScratch() {
 }
 `);
 }
+
+const getStartedBtn = document.getElementById("getStartedBtn");
+if (getStartedBtn) getStartedBtn.addEventListener("click", () => {
+	openWizardFromSplash(false);
+});
+
+const startFromScratchBtn = document.getElementById("startFromScratchBtn");
+if (startFromScratchBtn) startFromScratchBtn.addEventListener("click", () => {
+	openWizardFromSplash(true);
+});

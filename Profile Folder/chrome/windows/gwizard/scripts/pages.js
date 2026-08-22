@@ -5,7 +5,7 @@ const finishElm = document.getElementById("btn-finish");
 
 function goToPage(direction) {
 	const currentPage = document.querySelector('.pages .page[selected="true"]');
-	const currentPageIndex = parseInt(currentPage.dataset.page);
+	const currentPageIndex = parseInt(currentPage.dataset.page, 10);
 
 	if (direction == "next")
 		gmPages.skipToPage('main', currentPageIndex + 1)
@@ -29,9 +29,14 @@ finishElm.addEventListener("click", () => {
 	gkWindow.close();
 })
 
+const openGSettingsBtn = document.getElementById("openGSettingsBtn");
+if (openGSettingsBtn) openGSettingsBtn.addEventListener("click", () => {
+	openGSettings('wizard');
+})
+
 document.addEventListener("pageChanged", () => {
 	const currentPage = document.querySelector('.pages .page[selected="true"]');
-	const currentPageIndex = parseInt(currentPage.dataset.page);
+	const currentPageIndex = parseInt(currentPage.dataset.page, 10);
 
 	if (currentPageIndex == 0)
 		backElm.style.display = "none";

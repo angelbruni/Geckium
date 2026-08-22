@@ -169,14 +169,14 @@ const gkMaxVers = {
 	
 } // make sure to do it from lowest version top to highest last
 function gkTooNew() {
-	if (majorVersion > 152) {
+	/** if (majorVersion > 152) {
 		UC_API.Notifications.show({
 			label : `${Services.appinfo.name} ${majorVersion} doesn't support Geckium Beta 1. Please use ${Services.appinfo.name} ESR until Geckium Beta 2 releases.`,
 			type : "geckium-notification",
 			priority: "critical"
 		})
 		return false;
-	} // TEMP UNTIL BETA 2
+	} // TEMP UNTIL BETA 2 **/
 
 	for (const i in gkMaxVers) {
 		if (majorVersion <= i) {

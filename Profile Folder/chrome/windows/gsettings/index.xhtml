@@ -70,11 +70,11 @@
 													</vbox>
 												</hbox>
 												<hbox class="item" style="padding-inline: 0; overflow-x: auto; justify-content: center;">
-													<html:button class="button ripple-enabled text color" onclick="gmPages.skipToPage('main', 34)">&gsettings.supportTheProject;</html:button>
+													<html:button class="button ripple-enabled text color" data-page-container="main" data-page="34">&gsettings.supportTheProject;</html:button>
 													<label class="button ripple-enabled text disable-in-wizard" is="text-link" href="https://github.com/angelbruni/Geckium">GitHub</label>
 													<label class="button ripple-enabled text disable-in-wizard" is="text-link" href="https://discord.gg/XFAdeUSWyb">Discord</label>
-													<html:button class="button ripple-enabled text" onclick="gmPages.skipToPage('main', 32)">&gsettings.help;</html:button>
-													<html:button class="button ripple-enabled text" onclick="gmPages.skipToPage('main', 33)">&gsettings.about;</html:button>
+													<html:button class="button ripple-enabled text" data-page-container="main" data-page="32">&gsettings.help;</html:button>
+													<html:button class="button ripple-enabled text" data-page-container="main" data-page="33">&gsettings.about;</html:button>
 												</hbox>
 											</vbox>
 											<vbox class="card">
@@ -100,7 +100,7 @@
 												</hbox>
 											</vbox>
 											<vbox class="link-container">
-												<html:button class="link icon-palette ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
+												<html:button class="link icon-palette ripple-enabled" data-page-container="main" data-page="10">
 														<vbox>
 															<label>&gsettings.design;</label>
 															<p>&gsettings.designDescription;</p>
@@ -111,7 +111,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-settings ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
+													<html:button class="link icon-settings ripple-enabled" data-page-container="main" data-page="11">
 														<vbox>
 															<label>&gsettings.behaviour;</label>
 															<p>&gsettings.behaviourDescription;</p>
@@ -122,7 +122,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-tab ripple-enabled" onclick="gmPages.skipToPage('main', 12)">
+													<html:button class="link icon-tab ripple-enabled" data-page-container="main" data-page="12">
 														<vbox>
 															<label>&gsettings.pages;</label>
 															<p>&gsettings.pagesDescription;</p>
@@ -133,7 +133,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-brush ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
+													<html:button class="link icon-brush ripple-enabled" data-page-container="main" data-page="13">
 														<vbox>
 															<label>&gsettings.theme;</label>
 															<p>&gsettings.themeDescription;</p>
@@ -144,7 +144,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-person ripple-enabled" onclick="gmPages.skipToPage('main', 14)">
+													<html:button class="link icon-person ripple-enabled" data-page-container="main" data-page="14">
 														<vbox>
 															<label>&gsettings.people;</label>
 															<p>&gsettings.peopleDescription;</p>
@@ -155,7 +155,7 @@
 															<div class="icon" />
 														</hbox>
 													</html:button>
-													<html:button class="link icon-science ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
+													<html:button class="link icon-science ripple-enabled" data-page-container="main" data-page="21">
 														<vbox>
 															<label>&gsettings.chromiumExperiments;</label>
 															<p>&gsettings.chromiumExperimentsDescription;</p>
@@ -278,7 +278,7 @@
 														</div>
 													</div>
 												</h4>
-												<html:button class="item ripple-enabled" onclick="disableOverrides()">
+												<html:button class="item ripple-enabled" id="resetOverridesBtn">
 													<vbox>
 														<label class="name">&gsettings.resetOverrides;</label>
 													</vbox>
@@ -293,7 +293,7 @@
 																<div class="header">&gsettings.modalDesignOverridden;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="overrides_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="overrides_modal" onclick="disableOverrides();" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" id="overridesModalYesBtn" data-toggle-modals="overrides_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -320,22 +320,22 @@
 											
 											<vbox class="card">
 												<h4>&gsettings.quickAccess;</h4>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="11">
 													<vbox>
 														<label class="name">&gsettings.designToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 12)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="12">
 													<vbox>
 														<label class="name">&gsettings.designToPages;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="13">
 													<vbox>
 														<label class="name">&gsettings.designToThemes;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="21">
 													<vbox>
 														<label class="name">&gsettings.designToExperiments;</label>
 													</vbox>
@@ -590,17 +590,17 @@
 											
 											<vbox class="card">
 												<h4>&gsettings.quickAccess;</h4>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="10">
 													<vbox>
 														<label class="name">&gsettings.behaviourToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="13">
 													<vbox>
 														<label class="name">&gsettings.behaviourToTheme;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="21">
 													<vbox>
 														<label class="name">&gsettings.behaviourToExperiments;</label>
 													</vbox>
@@ -633,7 +633,7 @@
 															<div class="header">&dialog.areyousure;</div>
 															<div class="footer">
 																<button id="app_CancelRestoreBtn" class="button ripple-enabled text color" label="&dialog.cancel;" data-toggle-modals="restoreDefaultAppsConfirmation_modal" />
-																<button id="app_restoreBtn" class="button ripple-enabled text" label="&gsettings.restore;" onclick="gkNTP.restoreDefaultApps(); populateAppsList();" data-toggle-modals="restoreDefaultAppsConfirmation_modal" />
+																<button id="app_restoreBtn" class="button ripple-enabled text" label="&gsettings.restore;" data-toggle-modals="restoreDefaultAppsConfirmation_modal" />
 															</div>
 														</vbox>
 													</div>
@@ -802,17 +802,17 @@
 
 											<vbox class="card">
 												<h4>&gsettings.quickAccess;</h4>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="10">
 													<vbox>
 														<label class="name">&gsettings.pagesToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="11">
 													<vbox>
 														<label class="name">&gsettings.pagesToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 13)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="13">
 													<vbox>
 														<label class="name">&gsettings.pagesToTheme;</label>
 													</vbox>
@@ -890,9 +890,9 @@
 											
 											<vbox class="card">
 												<h4>
-													&gsettings.themes;
-													<label class="button ripple-enabled text color" style="margin-inline-start: auto;" onclick="openChrThemesDir();">&gsettings.openChrThemesFolder;</label>
-													<label id="refreshListBtn" class="button ripple-enabled text color" onclick="rebuildGrids();">&gsettings.refreshList;</label>
+													&gsettings.themes;
+													<label class="button ripple-enabled text color" style="margin-inline-start: auto;" id="openChrThemesFolderBtn">&gsettings.openChrThemesFolder;</label>
+												<label id="refreshListBtn" class="button ripple-enabled text color">&gsettings.refreshList;</label>
 												</h4>
 												<hbox class="item">
 													<vbox>
@@ -953,8 +953,7 @@
 														<html:button
 																class="link chrome-appearance ripple-enabled"
 																data-systheme="auto"
-																style="height: 160px"
-																onclick="applySysTheme('auto')">
+																style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -968,8 +967,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-classic"
-																data-systheme="classic" style="height: 160px"
-																onclick="applySysTheme('classic')">
+																data-systheme="classic" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -984,8 +982,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-you"
-																data-systheme="you" style="height: 160px"
-																onclick="applySysTheme('you')">
+																data-systheme="you" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -999,8 +996,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-gtk"
-																data-systheme="gtk" style="height: 160px"
-																onclick="applySysTheme('gtk')">
+																data-systheme="gtk" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -1015,8 +1011,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-macosx"
-																data-systheme="macosx" style="height: 160px"
-																onclick="applySysTheme('macosx')">
+																data-systheme="macosx" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -1030,8 +1025,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-macos"
-																data-systheme="macos" style="height: 160px"
-																onclick="applySysTheme('macos')">
+																data-systheme="macos" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -1045,8 +1039,7 @@
 														</html:button>
 														<html:button
 																class="link chrome-appearance ripple-enabled systheme-chromiumos"
-																data-systheme="chromiumos" style="height: 160px"
-																onclick="applySysTheme('chromiumos')">
+																data-systheme="chromiumos" style="height: 160px">
 															<html:label class="wrapper">
 																<div class="year">&gsettings.sysThemeIsFallback;</div>
 																<div class="identifier">
@@ -1106,17 +1099,17 @@
 											
 											<vbox class="card">
 												<h4>&gsettings.quickAccess;</h4>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 10)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="10">
 													<vbox>
 														<label class="name">&gsettings.themeToDesign;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 11)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="11">
 													<vbox>
 														<label class="name">&gsettings.themeToBehaviour;</label>
 													</vbox>
 												</html:button>
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 21)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="21">
 													<vbox>
 														<label class="name">&gsettings.themeToExperiments;</label>
 													</vbox>
@@ -1274,7 +1267,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="wizard_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="wizard_modal" onclick="gkPrefUtils.set('Geckium.firstRun.complete').bool(false); UC_API.Runtime.restart(true);" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" id="wizardModalYesBtn" data-toggle-modals="wizard_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -1287,7 +1280,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="restart_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="restart_modal" onclick="UC_API.Runtime.restart();" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" id="restartModalYesBtn" data-toggle-modals="restart_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -1300,7 +1293,7 @@
 																<div class="header">&dialog.areyousure;</div>
 																<div class="footer">
 																	<button class="button ripple-enabled text" label="&dialog.cancel;" data-toggle-modals="clearcache_modal" />
-																	<button class="button ripple-enabled text color" label="&dialog.yes;" data-toggle-modals="clearcache_modal" onclick="UC_API.Runtime.restart(true);" />
+																	<button class="button ripple-enabled text color" label="&dialog.yes;" id="clearCacheModalYesBtn" data-toggle-modals="clearcache_modal" />
 																</div>
 															</vbox>
 														</div>
@@ -1453,7 +1446,7 @@
 														</div>
 													</div>
 												</div>-->
-												<html:button class="item ripple-enabled" onclick="gmPages.skipToPage('main', 34)">
+												<html:button class="item ripple-enabled" data-page-container="main" data-page="34">
 													<vbox>
 														<label class="name">&gsettings.creditsTitle;</label>
 														<label class="description">&gsettings.creditsDescription;</label>
@@ -1565,12 +1558,7 @@
 		</hbox>
 	</html:div>
 
-	<script>
-		var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
-		const gSettingsBundle = Services.strings.createBundle("chrome://geckium/locale/properties/gsettings.properties");
-
-		document.documentElement.setAttribute("title", gSettingsBundle.GetStringFromName("geckiumSettings"));
-	</script>
+	<script src="chrome://windows/content/gsettings/scripts/globals.js" />
 
 	<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js" />
 
@@ -1609,4 +1597,6 @@
 	<script src="chrome://userchrome/content/frameworks/GeckiumMaterial/scripts/modal.js" type="text/javascript" defer="true" />
 
 	<script src="chrome://userchrome/content/windows/gsettings/scripts/settingsLoader.js" type="text/javascript" defer="true" />
+
+	<script src="chrome://userchrome/content/windows/gsettings/scripts/handlers.js" type="text/javascript" defer="true" />
 </window>

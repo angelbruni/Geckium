@@ -74,7 +74,7 @@
 								<vbox class="content-container">
 									<vbox class="content">
 										<vbox class="list-container" style="margin-top: 4%; gap: 8px;">
-											<html:button class="link icon-web-asset ripple-enabled" onclick="openGSettings('wizard')">
+											<html:button id="openGSettingsBtn" class="link icon-web-asset ripple-enabled">
 												<vbox>
 													<label>Geckium Settings</label>
 													<p>&gwizard.gsettingsDescription;</p>
@@ -85,7 +85,7 @@
 													<div class="icon" />
 												</hbox>
 											</html:button>
-											<html:button class="link icon-web-asset ripple-enabled" onclick="gmPages.skipToPage('main', 10)" disabled="true">
+											<html:button class="link icon-web-asset ripple-enabled" data-page-container="main" data-page="10" disabled="true">
 												<vbox>
 													<label>&gwizard.chromiumFlagsTitle;</label>
 													<p>&gwizard.chromiumFlagsDescription;</p>
@@ -139,9 +139,7 @@
 		</hbox>
 	</html:div>
 
-	<script>
-		var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
-	</script>
+	<script src="chrome://windows/content/gwizard/scripts/globals.js" />
 
 	<script src="chrome://userchrome/content/JS/Geckium_utils.uc.js" />
 

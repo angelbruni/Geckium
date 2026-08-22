@@ -8,9 +8,9 @@
 const { ChromiumGTKUI } = ChromeUtils.importESModule("chrome://modules/content/ChromiumGTKUI.sys.mjs");
 
 // Initial variables
-let isThemed;
-let previousSysTheme;
-let gkYouRGBLoop;
+var isThemed;
+var previousSysTheme;
+var gkYouRGBLoop;
 
 // System Theme Management
 class gkSysTheme {

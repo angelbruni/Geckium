@@ -36,7 +36,7 @@ function createMainLayout() {
 			<image src="chrome://windows/content/about/assets/chrome-1/imgs/IDR_UPDATE_FAIL.png" />
 			<html:p>${aboutBundle.GetStringFromName("serverNotAvailable")}</html:p>
 			<spacer />
-			<html:button onclick="window.close();">${dialogBundle.GetStringFromName("ok")}</html:button>
+			<html:button id="okButton">${dialogBundle.GetStringFromName("ok")}</html:button>
 		</footer>
 	</vbox>
 	`;
@@ -45,4 +45,8 @@ function createMainLayout() {
 	const container = document.getElementById("main-container");
 	container.innerHTML = ``;
 	container.appendChild(MozXULElement.parseXULToFragment(main));
+
+	container.querySelector("#okButton").addEventListener("click", () => {
+		window.close();
+	});
 }

@@ -104,7 +104,7 @@ function createMainLayout() {
 						</html:div>
 					</html:div>
 				</vbox>
-				<html:button class="manage" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">
+				<html:button class="manage nav">
 					<html:span>${ntpBundle.GetStringFromName("showFullHistory")}</html:span>
 					»
 				</html:button>
@@ -168,7 +168,7 @@ function createMainLayout() {
 					<html:button class="manage edit-visible" id="restorethumbnails">
 						${ntpBundle.GetStringFromName("restoreAllRemovedThumbnails")}
 					</html:button>
-					<html:button class="manage non-edit-visible" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">
+					<html:button class="manage non-edit-visible nav">
 						<html:span>${ntpBundle.GetStringFromName("showFullHistory")}</html:span>
 						»
 					</html:button>
@@ -260,7 +260,7 @@ function createMainLayout() {
 								<vbox class="item-container">
 									<vbox id="tab-items" />
 									<vbox>
-										<html:button class="item nav" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav">${ntpBundle.GetStringFromName("viewFullHistory")}</html:button>
+										<html:button class="item nav">${ntpBundle.GetStringFromName("viewFullHistory")}</html:button>
 									</vbox>
 								</vbox>
 								<vbox class="item-container">
@@ -336,7 +336,7 @@ function createMainLayout() {
 				<hbox id="recently-closed">
 					<label value="${ntpBundle.GetStringFromName("recentlyClosed")}"></label>
 					<hbox class="items"></hbox>
-					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
+					<button class="item nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>
 				<vbox id="attribution">
 					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
@@ -371,7 +371,7 @@ function createMainLayout() {
 				<hbox id="recently-closed">
 					<label value="${ntpBundle.GetStringFromName("recentlyClosed")}"></label>
 					<hbox class="items"></hbox>
-					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
+					<button class="item nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>
 				<vbox id="attribution">
 					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
@@ -410,7 +410,7 @@ function createMainLayout() {
 				<hbox id="recently-closed" class="section">
 					<html:h2>${ntpBundle.GetStringFromName("recentlyClosed")}</html:h2>
 					<hbox class="items"></hbox>
-					<button class="item" onclick="Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History')" id="nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
+					<button class="item nav" label="${ntpBundle.GetStringFromName("viewFullHistory")}"></button>
 				</hbox>
 				<vbox id="attribution">
 					<label>${ntpBundle.GetStringFromName("themeCreatedBy")}</label>
@@ -861,10 +861,10 @@ function createMainLayout() {
 					<html:div id="logo-wordmark" />
 				</hbox>
 				<hbox id="dot-list">
-					<button onclick="switchTab('', false, 0)" class="dot selected" label="${ntpBundle.GetStringFromName("mostVisited")}" data-page="0">
+					<button class="dot selected" label="${ntpBundle.GetStringFromName("mostVisited")}" data-page="0">
 						<html:div class="selection-bar" />
 					</button>
-					<button onclick="switchTab('', false, 1)" class="dot" label="${ntpBundle.GetStringFromName("apps")}" data-page="1">
+					<button class="dot" label="${ntpBundle.GetStringFromName("apps")}" data-page="1">
 						<html:div class="selection-bar" />
 					</button>
 				</hbox>
@@ -1138,6 +1138,19 @@ function createMainLayout() {
 	container.appendChild(MozXULElement.parseXULToFragment(header));
 	container.appendChild(MozXULElement.parseXULToFragment(main));
 	container.appendChild(MozXULElement.parseXULToFragment(footer));
+
+	container.querySelectorAll(".nav").forEach(navBtn => {
+		navBtn.addEventListener("click", () => {
+			Services.wm.getMostRecentBrowserWindow().PlacesCommandHook.showPlacesOrganizer('History');
+		});
+	});
+
+	container.querySelectorAll("#dot-list > .dot").forEach(dot => {
+		dot.addEventListener("click", () => {
+			const page = parseInt(dot.getAttribute("data-page"), 10);
+			if (!isNaN(page)) switchTab('', false, page);
+		});
+	});
 
 	waitForElm("#most-visited").then(() => {
 		setMostVisitedLayout("default");

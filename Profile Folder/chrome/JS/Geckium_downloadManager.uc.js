@@ -67,7 +67,7 @@ class gkDownloadManager {
 		<menupopup position="before_start">
 			<menuitem class="menuitem_keep" label="${gkDownloadManagerBundle.GetStringFromName("keep")}" />
 			<menuseparator />
-			<menuitem label="Learn more" onclick="openTrustedLinkIn('https://support.google.com/chrome/?p=ib_download_blocked', 'tab')" />
+			<menuitem class="learnmore" label="Learn more" />
 		</menupopup>
 	</toolbarbutton>
 	`;
@@ -514,6 +514,9 @@ class gkDownloadManager {
 						downloadItemElm.querySelector(`.warning .warning_text`).textContent = gkDownloadManagerBundle.GetStringFromName("fileIsMaliciousAndBrowserHasBlockedIt").replace("%s", download.target.path.split(gkDownloadManager.directorySlashes).pop()).replace("%b", gkBranding.getBrandingKey("productName", true));
 						downloadItemElm.querySelector(`.menuitem_keep`).addEventListener("click", () => {
 							download.unblock();
+						});
+						downloadItemElm.querySelector(`.learnmore`).addEventListener("click", () => {
+							openTrustedLinkIn('https://support.google.com/chrome/?p=ib_download_blocked', 'tab');
 						});
 					} else {
 						downloadItemElm.querySelector(`.warning`).appendChild(MozXULElement.parseXULToFragment(gkDownloadManager.itemWarningNotMalwareTemplate));
