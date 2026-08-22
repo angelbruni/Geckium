@@ -3,12 +3,6 @@
 
 ###### Geckium is not officially developed, approved or endorsed by Google!
 
-## Heads up!
-
-The current release, Public Beta 1, is not compatible with Firefox 154, nor 153 ESR due to a backport, as the Content Security Policy requirements for all internal Firefox pages, thus including Geckium's assortment of various pages and dialogs, is too high for the current Geckium codebase to work, due to admittedly questionable decisions on our part during Geckium's creation (inline scripting). While this change is 100% justified, it also leaves Geckium effectively bricked for the time being.
-
-Please use Firefox 140 ESR, 115 ESR, or wait until the release of Geckium Beta 2 which will feature the necessary rewrites for this, and also support for Nova, Firefox's redesign coming next.
-
 ![Geckium artwork showing every era up to Chromium 47 on all 3 supported platforms](https://github.com/user-attachments/assets/554b95e4-d6e3-4bcf-a55e-32a1d9251b28)
 
 Geckium is a Mozilla Firefox **(115 - latest)** CSS and JS modification that restores the look and feel of past Chromium (or Google Chrome) releases, spanning from 1.0 to 58, while also bringing Chromium Theme support to Firefox, bringing obscure prerelease content to the limelight and retrofitting new content into every design.
