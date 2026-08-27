@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const configIteration = 6;
+const configIteration = 7;
 var latestRel = "latest";
 
 (async () => {
@@ -115,6 +115,10 @@ function updateSettings(iteration) {
 		gkPrefUtils.set("Geckium.newTabHome.oldAppsList").string(gkPrefUtils.tryGet("Geckium.newTabHome.appsList").string);
 		gkNTP.restoreDefaultApps();
 	}
+	if (iteration < 7 && gkPrefUtils.tryGet("Geckium.version.iteration").int != 0) {
+		// Undo disable in prior releases
+		gkPrefUtils.delete("gfx.webrender.dcomp-win.enabled");
+	}
 	// Put future settings changes down here as < 6, and so on.
 
 	if (iteration < configIteration)
@@ -165,6 +169,15 @@ const gkMaxVers = {
 	139: "b0.20.17.6"
 } // make sure to do it from lowest version top to highest last
 function gkTooNew() {
+	if (majorVersion > 152) {
+		UC_API.Notifications.show({
+			label : `${Services.appinfo.name} ${majorVersion} doesn't support Geckium Beta 1. Please use ${Services.appinfo.name} ESR until Geckium Beta 2 releases.`,
+			type : "geckium-notification",
+			priority: "critical"
+		})
+		return false;
+	} // TEMP UNTIL BETA 2
+
 	for (const i in gkMaxVers) {
 		if (majorVersion <= i) {
 			openTrustedLinkIn(`https://github.com/angelbruni/Geckium/releases/${gkMaxVers[i]}`, 'tab');

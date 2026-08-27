@@ -695,15 +695,23 @@ class gkTitlebars {
 		 * - codename
 		 *      - minimum version
 		 */
-		"tahoe": [25, "11px"],
+		"tahoe": [25, "14px"],
 		"bigslur": [20, "9px"],
-		"yos": [0, "5px"]
+		"yos": [14, "5px"],
+		"mav": [0, "3px"]
 	}
 	static checkMac() {
 		if (AppConstants.platform == "macosx") {
 			for (const i of Object.keys(gkTitlebars.macEras)) {
 				if (AppConstants.isPlatformAndVersionAtLeast("macosx", gkTitlebars.macEras[i][0]) == true) {
 					document.documentElement.style.setProperty("--gk-mac-radius", gkTitlebars.macEras[i][1]);
+					if (i == "mav") {
+						document.documentElement.setAttribute("gkmacisskeuo", true);
+
+						var result = document.createElement('div');
+						result.id = "gkfsspacer";
+						document.getElementById("TabsToolbar").appendChild(result);
+					}
 					break;
 				}
 			}

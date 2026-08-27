@@ -174,7 +174,8 @@
 			}
 		}
 
-		#urlbar-searchmode-switcher {
+		#urlbar-searchmode-switcher,
+		.searchmode-switcher {
 			display: none !important;
 		}
 	}
@@ -371,25 +372,30 @@
 }
 
 #urlbar,
+#searchbar-new,
 #searchbar {
 	color: var(--urlbar-color) !important;
 }
 
 #urlbar:is([focused], [open]),
+#searchbar-new:is([focused], [open]),
 #searchbar:focus-within {
 	color: var(--urlbar-focused-color) !important;
 }
 
 #urlbar:is([focused], [open]) > #urlbar-background,
 #urlbar:is([focused], [open]) > .urlbar-background,
+#searchbar-new:is([focused], [open]) > .urlbar-background,
 #searchbar:focus-within {
 	background-color: var(--urlbar-focused-background-color) !important;
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-background,
 #urlbar[breakout][breakout-extend] > .urlbar-background,
+#searchbar-new[breakout][breakout-extend] > .urlbar-background,
 #urlbar[focused="true"] > #urlbar-background #searchbar:focus-within,
-#urlbar[focused="true"] > .urlbar-background #searchbar:focus-within {
+#urlbar[focused="true"] > .urlbar-background #searchbar:focus-within,
+#searchbar-new[focused="true"] > .urlbar-background #searchbar:focus-within {
 	box-shadow: none !important;
 }
 
@@ -458,7 +464,7 @@
 	border-inline: 0 !important;
 	border-block: 1px solid var(--urlbar-border) !important;
 	border-radius: 0 !important;
-	height: var(--urlbar-height-definitive);
+	max-height: var(--urlbar-height-definitive);
 }
 #urlbar-background,
 .urlbar-background {
@@ -553,7 +559,8 @@
 
 #urlbar-input-container,
 .urlbar-input-container /* Fix for Firefox ~120+ */,
-#searchbar {
+#searchbar,
+#searchbar-new {
 	min-height: var(--urlbar-height-definitive) !important;
 	height: var(--urlbar-height-definitive) !important;
 	padding: 0 !important;

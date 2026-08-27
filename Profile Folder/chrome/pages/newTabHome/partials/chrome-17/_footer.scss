@@ -80,7 +80,7 @@
 			to left,
 			color-mix(
 				in srgb,
-				color-mix(in srgb, var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%, black)
+				color-mix(in srgb, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 10%, black)
 					20%,
 				transparent
 			),
@@ -89,7 +89,7 @@
 				in srgb,
 				color-mix(
 						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 10%,
 						black
 					)
 					30%,
@@ -101,7 +101,7 @@
 				in srgb,
 				color-mix(
 						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 10%,
 						black
 					)
 					30%,
@@ -113,7 +113,7 @@
 				in srgb,
 				color-mix(
 						in srgb,
-						var(--toolbar-bgcolor, var(--lwt-accent-color)) 10%,
+						var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))) 10%,
 						black
 					)
 					20%,
@@ -123,58 +123,58 @@
 		
 
 		&[footer-themable="true"] {
-			--logo-wordmark-color: var(--toolbar-color, var(--lwt-text-color));
+			--logo-wordmark-color: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 
 			--footer-background: linear-gradient(
 				to bottom,
 				color-mix(
 					in srgb,
-					var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 90%,
+					var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)))) 90%,
 					transparent
 				),
 				color-mix(
 					in srgb,
-					color-mix(in srgb, var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 86%, black)
+					color-mix(in srgb, var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)))) 86%, black)
 						90%,
 					transparent
 				)
 			);
-			--footer-color: var(--toolbar-color, var(--lwt-text-color));
+			--footer-color: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 
 			--dot-color-normal: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 20%,
 				gray
 			);
-			--dot-color-hot: var(--toolbar-color, var(--lwt-text-color));
+			--dot-color-hot: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 			--selection-bar-background-color-normal: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 20%,
 				transparent
 			);
 			--selection-bar-background-color-hot: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 40%,
 				transparent
 			);
-			--selection-bar-background-color-active: var(--toolbar-color, var(--lwt-text-color));
+			--selection-bar-background-color-active: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 
 			--footer-item-color-hot: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 90%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 90%,
 				black
 			);
-			--footer-menu-button-glyph-background-color-normal: var(--toolbar-color, var(--lwt-text-color, var(--default-footer-menu-button-glyph-background-color-normal)));
-			--footer-menu-background-color: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color)));
+			--footer-menu-button-glyph-background-color-normal: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color, var(--default-footer-menu-button-glyph-background-color-normal))));
+			--footer-menu-background-color: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color))));
 			--footer-menu-outline-color: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 20%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 20%,
 				transparent
 			);
-			--footer-menu-item-link-color: var(--toolbar-color, var(--lwt-text-color));
+			--footer-menu-item-link-color: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 			--footer-vertical-separator-background-color: color-mix(
 				in srgb,
-				var(--toolbar-color, var(--lwt-text-color)) 40%,
+				var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color))) 40%,
 				transparent
 			);
 		}

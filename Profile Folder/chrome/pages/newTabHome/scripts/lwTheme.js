@@ -22,6 +22,9 @@ function setProperties() {
 				document.documentElement.style.removeProperty(propertyName);
 			}
 		});
+		
+		var toolbarbgcolor = versionFlags.is153Plus ? "--toolbar-background-color" : "--toolbar-bgcolor";
+		var toolbarfgcolor = versionFlags.is153Plus ? "--toolbar-text-color" : "--toolbar-color";
 
 		if (!gkLWTheme.isThemed) {
 			return;
@@ -34,15 +37,15 @@ function setProperties() {
 		if (toolbarButtonIconFill)
 			document.documentElement.style.setProperty("--toolbarbutton-icon-color", toolbarButtonIconFill);
 		
-		document.documentElement.style.removeProperty("--toolbar-bgcolor");
+		document.documentElement.style.removeProperty(toolbarbgcolor);
 		const toolbarColor = lwThemeResource.toolbarColor;
 		if (toolbarColor)
-			document.documentElement.style.setProperty("--toolbar-bgcolor", toolbarColor);
+			document.documentElement.style.setProperty(toolbarbgcolor, toolbarColor);
 
-		document.documentElement.style.removeProperty("--toolbar-color");
+		document.documentElement.style.removeProperty(toolbarfgcolor);
 		const toolbarText = lwThemeResource.toolbar_text;
 		if (toolbarText)
-			document.documentElement.style.setProperty("--toolbar-color", toolbarText);
+			document.documentElement.style.setProperty(toolbarfgcolor, toolbarText);
 
 		if (gkPrefUtils.tryGet("extensions.activeThemeID").string == "firefox-alpenglow@mozilla.org") {
 			// Custom new tab palette for Alpenglow

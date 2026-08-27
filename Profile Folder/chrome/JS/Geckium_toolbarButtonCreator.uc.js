@@ -863,87 +863,87 @@ UC_API.Runtime.startupFinished().then(() => {
 		},
 		adjustAccelTextWidth: true,
 	});
-	if (versionFlags.is133Plus) {
-		gkToolbarButtons.create({
-			id: "searchmode-switcher",
-			removable: true,
-			overflows: false,
-			area: CustomizableUI.AREA_NAVBAR,
+	//if (versionFlags.is133Plus) {
+	//	gkToolbarButtons.create({
+	//		id: "searchmode-switcher",
+	//		removable: true,
+	//		overflows: false,
+	//		area: CustomizableUI.AREA_NAVBAR,
 
-			onCreated: function(toolbarbutton) {
-				async function updateL10nArgs() {
-					try {
-						while (!Services.search.hasSuccessfullyInitialized) {
-							await new Promise(resolve => setTimeout(resolve, 100));
-						}
-					
-						toolbarbutton.dataset.l10nArgs = `{"engine":"${Services.search.defaultEngine.name}"}`;
-						toolbarbutton.dataset.l10nId = "urlbar-searchmode-button2";
-					} catch (e) {
-						console.error(e);	
-					}
-				}
+	//		onCreated: function(toolbarbutton) {
+	//			async function updateL10nArgs() {
+	//				try {
+	//					while (!Services.search.hasSuccessfullyInitialized) {
+	//						await new Promise(resolve => setTimeout(resolve, 100));
+	//					}
+	//				
+	//					toolbarbutton.dataset.l10nArgs = `{"engine":"${Services.search.defaultEngine.name}"}`;
+	//					toolbarbutton.dataset.l10nId = "urlbar-searchmode-button2";
+	//				} catch (e) {
+	//					console.error(e);	
+	//				}
+	//			}
 
-				async function updateIcon() {
-					try {
-						while (!Services.search.hasSuccessfullyInitialized) {
-							await new Promise(resolve => setTimeout(resolve, 100));
-						}
-					
-						toolbarbutton.style.listStyleImage = `url('${await Services.search.defaultEngine.getIconURL()}')`;
-					} catch (e) {
-						console.error(e);	
-					}
-				}
+	//			async function updateIcon() {
+	//				try {
+	//					while (!Services.search.hasSuccessfullyInitialized) {
+	//						await new Promise(resolve => setTimeout(resolve, 100));
+	//					}
+	//				
+	//					toolbarbutton.style.listStyleImage = `url('${await Services.search.defaultEngine.getIconURL()}')`;
+	//				} catch (e) {
+	//					console.error(e);	
+	//				}
+	//			}
 
-				updateIcon();
-				updateL10nArgs();
+	//			updateIcon();
+	//			updateL10nArgs();
 
-				const toolbarButtonArrow = document.createXULElement("image");
-				toolbarButtonArrow.classList.add("toolbarbutton-arrow");
+	//			const toolbarButtonArrow = document.createXULElement("image");
+	//			toolbarButtonArrow.classList.add("toolbarbutton-arrow");
 				
-				waitForElm(`#${this.id}-button .toolbarbutton-text`).then(() => {
-					gkInsertElm.after(toolbarButtonArrow, toolbarbutton.querySelector(".toolbarbutton-text"));
-				})
+	//			waitForElm(`#${this.id}-button .toolbarbutton-text`).then(() => {
+	//				gkInsertElm.after(toolbarButtonArrow, toolbarbutton.querySelector(".toolbarbutton-text"));
+	//			})
 
-				Services.obs.addObserver((subject, topic, data) => {
-					if (topic === "browser-search-engine-modified") {
-						updateIcon();
-						updateL10nArgs();
-					}
-				}, "browser-search-engine-modified");
+	//			Services.obs.addObserver((subject, topic, data) => {
+	//				if (topic === "browser-search-engine-modified") {
+	//					updateIcon();
+	//					updateL10nArgs();
+	//				}
+	//			}, "browser-search-engine-modified");
 
-				let _popup = document.getElementById("searchmode-switcher-popup");
-				if (_popup == null) { // Firefox 146 got rid of the ID :v
-					_popup = document.querySelectorAll(".searchmode-switcher-popup.toolbar-menupopup")[0];
-				}
+	//			let _popup = document.getElementById("searchmode-switcher-popup");
+	//			if (_popup == null) { // Firefox 146 got rid of the ID :v
+	//				_popup = document.querySelectorAll(".searchmode-switcher-popup.toolbar-menupopup")[0];
+	//			}
 
-				_popup.addEventListener("popupshown", (e) => {
-					toolbarbutton.setAttribute("open", true);
-				});
-				_popup.addEventListener("popuphidden", () => {
-					toolbarbutton.removeAttribute("open");
-				})
+	//			_popup.addEventListener("popupshown", (e) => {
+	//				toolbarbutton.setAttribute("open", true);
+	//			});
+	//			_popup.addEventListener("popuphidden", () => {
+	//				toolbarbutton.removeAttribute("open");
+	//			})
 
-				if (versionFlags.is146Plus) {
-					toolbarbutton.insertBefore(_popup, toolbarbutton.nextSibling);
-				}
+	//			if (versionFlags.is146Plus) {
+	//				toolbarbutton.insertBefore(_popup, toolbarbutton.nextSibling);
+	//			}
 
-				toolbarbutton.addEventListener("command", (e) => {
-					if (!versionFlags.is146Plus) {
-						window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
-					}
-					PanelMultiView.openPopup(
-						_popup,
-						toolbarbutton,
-						{
-							position: "bottomright topright"
-						}
-					)
-				});
-			}
-		});
-	}
+	//			toolbarbutton.addEventListener("command", (e) => {
+	//				if (!versionFlags.is146Plus) {
+	//					window.gURLBar.searchModeSwitcher.openPanel(e) // Force list building.
+	//				}
+	//				PanelMultiView.openPopup(
+	//					_popup,
+	//					toolbarbutton,
+	//					{
+	//						position: "bottomright topright"
+	//					}
+	//				)
+	//			});
+	//		}
+	//	});
+	//}
 	
 	const panelUIButton = document.getElementById("PanelUI-button");
 	panelUIButton.appendChild(document.getElementById("page-button"));

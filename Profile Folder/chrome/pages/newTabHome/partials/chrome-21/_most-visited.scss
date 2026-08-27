@@ -11,7 +11,7 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--thumbnail-background-color: color-mix(
 			in srgb,
-			var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--lwt-accent-color))) 12.3029601%,
+			var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)))) 12.3029601%,
 			transparent
 		);
 	}

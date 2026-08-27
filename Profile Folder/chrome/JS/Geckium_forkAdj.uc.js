@@ -8,6 +8,16 @@
 
 // Temporary Firefox adjustments
 class gkFirefoxTempAdj {
+	static disableNova() {
+		if (gkPrefUtils.tryGet("browser.nova.enabled").bool != false) {
+			gkPrefUtils.set("browser.nova.enabled").bool(false);
+			UC_API.Notifications.show({
+				label : "Support for Nova will arrive in Geckium Beta 2.",
+				type : "geckium-notification",
+				priority: "critical"
+			})
+		}
+	}
 	static disableVertical() {
 		if (gkPrefUtils.tryGet("sidebar.verticalTabs").bool != false) {
 			gkPrefUtils.set("sidebar.verticalTabs").bool(false);
@@ -28,19 +38,28 @@ class gkFirefoxTempAdj {
 		}
 	}
 }
+window.addEventListener("load", gkFirefoxTempAdj.disableNova);
 window.addEventListener("load", gkFirefoxTempAdj.disableVertical);
 window.addEventListener("load", gkFirefoxTempAdj.webApps);
 const firefoxObserver = {
 	observe: function (subject, topic, data) {
 		if (topic == "nsPref:changed")
+			gkFirefoxTempAdj.disableNova();
 			gkFirefoxTempAdj.disableVertical();
 	},
 };
+Services.prefs.addObserver("browser.nova.enabled", firefoxObserver, false);
 Services.prefs.addObserver("sidebar.verticalTabs", firefoxObserver, false);
 
 // Firefox (Native Controls Patch) Adjustments
 class gkNCPAdj {
 	static checkNCP() {
+		let NCP = (isNCPatched == "patch");
+        if (gkPrefUtils.tryGet("gfx.webrender.dcomp-win.enabled").bool == NCP) {
+			gkPrefUtils.set("gfx.webrender.dcomp-win.enabled").bool(!NCP);
+			UC_API.Runtime.restart(false);
+			return;
+		} // Ensure dcomp is automatically switched when installed or uninstalled
 		if (!isNCPatched) {
 			if (gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true) {
 				if (parseInt(Services.appinfo.version.split(".")[0]) > 115) { // Special message for ex-115-users
@@ -72,7 +91,7 @@ class gkNCPAdj {
 						label: "Redownload",
 						callback: (notification) => {
 							notification.ownerGlobal.openWebLinkIn(
-							"https://github.com/kawapure/firefox-native-controls/releases/tag/" + Services.appinfo.version,
+							"https://github.com/xYannikx/firefox-native-controls/releases/tag/" + Services.appinfo.version,
 							"tab"
 							);
 							return false
@@ -99,7 +118,7 @@ class gkNCPAdj {
 					label: "Learn more",
 					callback: (notification) => {
 						notification.ownerGlobal.openWebLinkIn(
-						"https://github.com/kawapure/firefox-native-controls",
+						"https://github.com/xYannikx/firefox-native-controls",
 						"tab"
 						);
 						return false
@@ -121,8 +140,8 @@ class gkNCPAdj {
 	}
 }
 if (AppConstants.MOZ_APP_NAME == "firefox" || AppConstants.MOZ_APP_NAME == "firefox-esr") {
-	if (isWindows10() && (parseInt(Services.appinfo.version.split(".")[0]) == 115 ||
-		isNCPatched == "patch" || gkPrefUtils.tryGet("Geckium.NCP.installed").bool == true)) { // Only for Windows 10+
+	if (parseInt(Services.appinfo.version.split(".")[0]) == 115 && (isWindows10() ||
+			isNCPatched == "patch")) { // Only for Windows 10+
 		window.addEventListener("load", gkNCPAdj.checkNCP);
 	}
 }

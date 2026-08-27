@@ -174,7 +174,7 @@
 		LightWeight (aka Firefox) Themes
 	*/
 	&[gkthemed]:not([gkchrthemed]) {
-		--gkdownload-shelf-background: var(--gktoolbar-bgcolor, var(--toolbar-bgcolor, var(--default-gkdownload-shelf-background)));
+		--gkdownload-shelf-background: var(--gktoolbar-bgcolor, var(--toolbar-background-color, var(--toolbar-bgcolor, var(--default-gkdownload-shelf-background))));
 		--gkdownload-shelf-foreground-color: var(--bookmark-item-color, var(--default-gkdownload-item-name-color));
 		--gkdownload-item-name-color: var(--gkdownload-shelf-foreground-color);
 	}

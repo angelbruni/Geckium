@@ -162,11 +162,11 @@
 	// Custom theme support
 	// lwtheme
 	&[gkthemed]:not([gkchrthemed]) {
-		--view-toolbar-buttons-bg: var(--toolbar-color, var(--lwt-text-color));
-		--window-menu-item-hover-bg: var(--toolbar-color, var(--lwt-text-color));
+		--view-toolbar-buttons-bg: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
+		--window-menu-item-hover-bg: var(--toolbar-text-color, var(--toolbar-color, var(--lwt-text-color)));
 
 		--thumbnail-border-color-normal: color-mix(in srgb, var(--edit-bar-background-color-hot) 50%, white);
-		--thumbnail-border-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		--thumbnail-border-color-hot: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)));
 		--thumbnail-container-color: var(--link-color, var(--default-thumbnail-container-color));
 		--thumbnail-disabled-color: var(--thumbnail-border-color-normal);
 
@@ -176,8 +176,11 @@
 		
 		&:not([style*="--toolbar-color: white"]),
 		&:not([style*="--toolbar-color: rgb(255,255,255)"]),
-		&:not([style*="--toolbar-color: rgba(255,255,255,1)"]) {
-			--edit-bar-background-color-hot: var(--toolbar-bgcolor, var(--lwt-accent-color));
+		&:not([style*="--toolbar-color: rgba(255,255,255,1)"]),
+		&:not([style*="--toolbar-text-color: white"]),
+		&:not([style*="--toolbar-text-color: rgb(255,255,255)"]),
+		&:not([style*="--toolbar-text-color: rgba(255,255,255,1)"]) {
+			--edit-bar-background-color-hot: var(--toolbar-background-color, var(--toolbar-bgcolor, var(--lwt-accent-color)));
 			--edit-bar-background-hot: linear-gradient(
 				to bottom,
 				color-mix(in srgb, var(--edit-bar-background-color-hot) 70%, white),

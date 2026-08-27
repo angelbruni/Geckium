@@ -1,10 +1,11 @@
 // ==UserScript==
 // @author MrOtherGuy
-// @version 0.10.12
+// @version 0.10.16
 // @homepageURL https://github.com/MrOtherGuy/fx-autoconfig
+// @updateURL https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/refs/heads/master/profile/chrome/utils/boot.sys.mjs
 // ==/UserScript==
 import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
-import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL, toggleScript, extractScriptHeader, extractStyleHeader } from "chrome://userchromejs/content/utils.sys.mjs";
+import { loaderModuleLink, Pref, FileSystem, windowUtils, showNotification, startupFinished, restartApplication, escapeXUL, toggleScript, extractScriptHeader, extractStyleHeader, checkLoaderUpdate, L10n } from "chrome://userchromejs/content/utils.sys.mjs";
 
 console.warn( "Browser is executing custom scripts via autoconfig" );
 
@@ -51,6 +52,13 @@ const MODULE_LOADER = new (function(){
   return this
 })();
 
+const ScriptType = Object.freeze({
+  STYLE: Symbol("style"),
+  SCRIPT: Symbol("script"),
+  LOADER: Symbol("loader"),
+  UNKNOWN: Symbol("unknown")
+});
+
 class ScriptData {
   #preLoadedStyle;
   #chromeURI;
@@ -78,22 +86,22 @@ class ScriptData {
     this.inbackground = this.filename.endsWith(".sys.mjs") || /\/\/ @backgroundmodule\b/.test(headerText);
     this.ignoreCache = /\/\/ @ignorecache\b/.test(headerText);
     this.manifest = headerText.match(/\/\/ @manifest\s+(.+)\s*$/im)?.[1];
-    this.type = scriptType.description;
-    this.styleSheetMode = scriptType === ScriptData.TYPE_STYLE
+    this.type = scriptType;
+    this.styleSheetMode = scriptType === ScriptType.STYLE
       ? headerText.match(/\/\/ @stylemode\s+(.+)\s*$/im)?.[1] === "agent_sheet"
         ? "agent" : "author"
       : null;
     this.useFileURI = /\/\/ @usefileuri\b/.test(headerText);
-    this.noExec = scriptType === ScriptData.TYPE_STYLE || noExec;
+    this.noExec = scriptType === ScriptType.STYLE || noExec;
     // Looks a bit funky, but we only allow windowActor if matches is also specified
-    let windowActor = scriptType === ScriptData.TYPE_SCRIPT ? headerText.match(/\/\/ @WindowActor\s+(.+)\s*$/im)?.[1] : null;
+    let windowActor = scriptType === ScriptType.SCRIPT ? headerText.match(/\/\/ @WindowActor\s+(.+)\s*$/im)?.[1] : null;
     this.actorMatches = windowActor
       ? headerText.match(/\/\/ @WindowActorMatches\s+(.+)\s*$/im)?.[1]
       : null;
     this.windowActor = this.actorMatches
       ? windowActor
       : null;
-    if(this.inbackground || this.styleSheetMode === "agent" || (scriptType === ScriptData.TYPE_SCRIPT && noExec)){
+    if(this.inbackground || this.styleSheetMode === "agent" || (scriptType === ScriptType.SCRIPT && noExec)){
       this.regex = null;
       this.loadOrder = -1;
     }else{
@@ -136,25 +144,22 @@ class ScriptData {
   }
   get chromeURI(){
     if(!this.#chromeURI){
-      this.#chromeURI = this.type === "style"
+      this.#chromeURI = this.type === ScriptType.STYLE
         ? Services.io.newURI(`chrome://userstyles/skin/${this.filename}`)
-        : this.type === "loader"
+        : this.type === ScriptType.LOADER
           ? Services.io.newURI(`chrome://userchromejs/content/${this.filename}`)
           : Services.io.newURI(`chrome://userscripts/content/${this.filename}`)
     }
     return this.#chromeURI
   }
   get referenceURI(){
-    return this.useFileURI && this.type === "style"
+    return this.useFileURI && this.type === ScriptType.STYLE
       ? FileSystem.convertChromeURIToFileURI(this.chromeURI)
       : this.chromeURI
   }
   get preLoadedStyle(){
     return this.#preLoadedStyle
   }
-  static TYPE_SCRIPT = Symbol("script");
-  static TYPE_STYLE = Symbol("style");
-  static TYPE_LOADER = Symbol("loader");
   static preLoadAuthorStyle(aStyle){
     if(aStyle.#injectionFailed){
       console.warn(`ignoring style preload for ${aStyle.filename} because it has already failed`);
@@ -203,6 +208,13 @@ class ScriptData {
       return Promise.reject(ex)
     }
   }
+  static createDummyScript(leafName, headerText, noExec, scriptType, isRunning = false){
+    let data = new ScriptData(leafName, headerText, noExec, scriptType);
+    if(isRunning){
+      ScriptData.markScriptRunning(data);
+    }
+    return data
+  }
   static registerScriptManifest(aScript){
     if(aScript.#isRunning){
       return
@@ -234,28 +246,29 @@ class ScriptData {
         }
       },
       matches: matches,
-      remoteTypes: ["privilegedabout",null],
-      includeChrome: true
+      remoteTypes: ["privilegedabout",null,"parent"],
+      includeChrome: true,
+      allFrames: true
     }
   }
   static fromScriptFile(aFile){
     if(aFile.fileSize < 24){
       // Smaller files can't possibly have a valid header
       // This also means that we successfully generate a ScriptData for *folders* named "xx.uc.js"...
-      return new ScriptData(aFile.leafName,"",aFile.fileSize === 0,ScriptData.TYPE_SCRIPT)
+      return new ScriptData(aFile.leafName,"",aFile.fileSize === 0,ScriptType.SCRIPT)
     }
     const result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
     const headerText = extractScriptHeader(result);
     // If there are less than 2 bytes after the header then we mark the script as non-executable. This means that if the file only has a header then we don't try to inject it to any windows, since it wouldn't do anything.
-    return new ScriptData(aFile.leafName, headerText, headerText.length > aFile.fileSize - 2,ScriptData.TYPE_SCRIPT);
+    return new ScriptData(aFile.leafName, headerText, headerText.length > aFile.fileSize - 2,ScriptType.SCRIPT);
   }
   static fromStyleFile(aFile){
     if(aFile.fileSize < 24){
       // Smaller files can't possibly have a valid header
-      return new ScriptData(aFile.leafName,"",true,ScriptData.TYPE_STYLE)
+      return new ScriptData(aFile.leafName,"",true,ScriptType.STYLE)
     }
     const result = FileSystem.readNSIFileSyncUncheckedWithOptions(aFile,{ metaOnly: true });
-    return new ScriptData(aFile.leafName, extractStyleHeader(result), true,ScriptData.TYPE_STYLE);
+    return new ScriptData(aFile.leafName, extractStyleHeader(result), true,ScriptType.STYLE);
   }
 }
 
@@ -273,7 +286,8 @@ function showgBrowserNotification(){
     buttons: [{
       label: "Why am I seeing this?",
       callback: (notification) => {
-        notification.ownerGlobal.openWebLinkIn(
+        const owner = notification.documentGlobal || notification.ownerGlobal;
+        owner.openWebLinkIn(
           "https://github.com/MrOtherGuy/fx-autoconfig#startup-error",
           "tab"
         );
@@ -319,6 +333,20 @@ function updateMenuStatus(event){
   }
 }
 
+function checkLoaderUpdateWhenIdle(){
+  const idleService = Cc[
+    "@mozilla.org/widget/useridleservice;1"
+  ].getService(Ci.nsIUserIdleService);
+  const updateCheckObserver = (subject,topic,data) => {
+    if(topic === "idle"){
+      idleService.removeIdleObserver(updateCheckObserver,10);
+      const ignoreVersionPref = "userChromeJS.updates.ignore-version";
+      checkLoaderUpdate({ ignoreVersion: Services.prefs.getStringPref(ignoreVersionPref,""), ignoreIfAlreadyChecked: true})
+    }
+  };
+  idleService.addIdleObserver(updateCheckObserver, 10)
+}
+
 class UserChrome_js{
   constructor(){
     this.scripts = [];
@@ -331,7 +359,7 @@ class UserChrome_js{
     this.init();
   }
   registerScript(aScript,isDisabled,aBuiltActorMap){
-    if(aScript.type === "script"){
+    if(aScript.type === ScriptType.SCRIPT){
       this.scripts.push(aScript);
     }else{
       this.styles.push(aScript);
@@ -373,7 +401,7 @@ class UserChrome_js{
     if(this.initialized){
       return
     }
-    loaderModuleLink.setup(this,AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE,APP_VARIANT,ScriptData);
+    loaderModuleLink.setup(this,AppConstants.MOZ_APP_DISPLAYNAME_DO_NOT_USE,APP_VARIANT,ScriptData.createDummyScript,ScriptType);
     
     if(!this.IS_ENABLED){
       Services.obs.addObserver(this, 'domwindowopened', false);
@@ -428,6 +456,11 @@ class UserChrome_js{
     this.scripts.sort((a,b) => a.loadOrder - b.loadOrder);
     this.styles.sort((a,b) => a.loadOrder - b.loadOrder);
     Services.obs.addObserver(this, 'domwindowopened', false);
+
+    if(Services.prefs.getBoolPref("userChromeJS.updates.update-check.enabled",false)){
+      checkLoaderUpdateWhenIdle()
+    }
+
     this.initialized = true;
 
   }
@@ -529,14 +562,13 @@ class UserChrome_js{
     if(aDoc.location.href !== BROWSERCHROME || !popup){
       return null
     }
-    const window = aDoc.ownerGlobal;
-    
-    window.MozXULElement.insertFTLIfNeeded("toolkit/about/aboutSupport.ftl");
+    const window = aDoc.documentGlobal || aDoc.ownerGlobal;
     let menuFragment = window.MozXULElement.parseXULToFragment(`
       <menu id="userScriptsMenu" label="userScripts">
         <menupopup id="menuUserScriptsPopup">
           <menuseparator></menuseparator>
           <menuitem id="userScriptsMenu-OpenFolder" label="Open folder"></menuitem>
+          <menuitem id="userScriptsMenu-CheckUpdate" label="Check for updates" tooltiptext="Check for updates"></menuitem>
           <menuitem id="userScriptsMenu-Restart" label="Restart" tooltiptext="Toggling scripts requires restart"></menuitem>
           <menuitem id="userScriptsMenu-ClearCache" label="Restart and clear startup cache" tooltiptext="Toggling scripts requires restart"></menuitem>
         </menupopup>
@@ -570,18 +602,22 @@ class UserChrome_js{
         case "userScriptsMenu-ClearCache":
           restartApplication(true);
           break;
+        case "userScriptsMenu-CheckUpdate":
+          checkLoaderUpdate();
+          break;
         default:
           if(ev.target.dataset.filename){
             toggleScript(ev.target.dataset.filename);
           }
       }
     });
-    aDoc.l10n.formatValues(["restart-button-label","clear-startup-cache-label","show-dir-label"])
-    .then(values => {
+    Promise.all([L10n.formatValues(["restart-button-label","clear-startup-cache-label","show-dir-label"]),L10n.formatMessage("update-checkForUpdatesButton")])
+    .then(([values, updateMsg]) => {
       let baseTitle = `${values[0]} ${BRAND_NAME}`;
       aDoc.getElementById("userScriptsMenu-Restart").setAttribute("label", baseTitle);
       aDoc.getElementById("userScriptsMenu-ClearCache").setAttribute("label", values[1].replace("…","") + " & " + baseTitle);
-      aDoc.getElementById("userScriptsMenu-OpenFolder").setAttribute("label",values[2])
+      aDoc.getElementById("userScriptsMenu-OpenFolder").setAttribute("label",values[2]);
+      aDoc.getElementById("userScriptsMenu-CheckUpdate").setAttribute("label",updateMsg.attributes.find(a => a.name === "label")?.value || "Check for updates");
     });
     return popup.querySelector("#userScriptsMenu");
   }

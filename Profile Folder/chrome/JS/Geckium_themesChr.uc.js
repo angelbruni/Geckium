@@ -207,12 +207,8 @@ class gkChrTheme {
 	}
 
     static getEligible() {
-        let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-        // Chromium Themes require Light Theme
-        if (prefChoice.startsWith("firefox-compact-light@") && gkLWTheme.palettesMatch("light")) {
-            return true;
-        }
-        return false;
+        // Chromium Themes require System Theme
+        return document.documentElement.getAttribute("lwtheme") == null;
     }
 
     static async getThemeData(manipath) {
@@ -599,8 +595,7 @@ class gkChrTheme {
      */
     static LWThemeChanged() {
         setTimeout(async () => {
-            let prefChoice = gkPrefUtils.tryGet("extensions.activeThemeID").string;
-            if (!prefChoice.startsWith("firefox-compact-light@")) {
+            if (!gkChrTheme.getEligible()) {
                 // If the user is not using Light, it signifies they want to use normal themes, thus reset their setting
                 gkPrefUtils.delete("Geckium.chrTheme.fileName");
             }

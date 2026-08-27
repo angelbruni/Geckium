@@ -7,6 +7,11 @@
 
 // Firefox LWThemes, and Light and Dark 'theme' checks
 class gkLWTheme {
+	static toolbarbgcolor = versionFlags.is153Plus ? "--toolbar-background-color" : "--toolbar-bgcolor";
+	static personaplt = versionFlags.is153Plus ? "oklch(1 0 0 / 40%)" : "rgba(255,255,255,.4)";
+	static tabselectedbgcolor = versionFlags.is153Plus ? "--tab-background-color-selected" : "--tab-selected-bgcolor";
+	static lwttextcolor = versionFlags.is153Plus ? "--toolbar-text-color" : "--lwt-text-color";
+
 	static palettes = (function() {
 		switch (AppConstants.MOZ_APP_NAME) {
 			// Some forks use different palettes in their built-in Light and Dark LWTheme - 'default' is for everyone who doesn't
@@ -86,7 +91,7 @@ class gkLWTheme {
 		if (versionFlags.is117Plus) { // Firefox 117+
 			if (document.documentElement.style.getPropertyValue("--lwt-accent-color") != "" ||
 				document.documentElement.style.getPropertyValue("--lwt-text-color") != "" ||
-				document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+				document.documentElement.style.getPropertyValue(gkLWTheme.toolbarbgcolor) != "") {
 				return false;
 			}
 		} else { // Firefox 115
@@ -96,7 +101,7 @@ class gkLWTheme {
 			if (document.documentElement.style.getPropertyValue("--lwt-text-color") != "rgba(0, 0, 0)") {
 				return false;
 			}
-			if (document.documentElement.style.getPropertyValue("--toolbar-bgcolor") != "") {
+			if (document.documentElement.style.getPropertyValue(gkLWTheme.toolbarbgcolor) != "") {
 				return false;
 			}
 		}
@@ -173,8 +178,8 @@ class gkLWTheme {
 					document.documentElement.style.setProperty("--lwt-tab-line-color", LightweightThemeManager.themeData.theme.tab_line);
 
 				// Ensure the tab selected background colour is opaque
-				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue('--tab-selected-bgcolor');
-				if (tabSelectedBgcolor.includes("rgba") && tabSelectedBgcolor.includes("rgba")) {
+				var tabSelectedBgcolor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.tabselectedbgcolor);
+				if (tabSelectedBgcolor.includes("rgba")) {
 					var tabSelectedBgcolorArray = tabSelectedBgcolor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
 					document.documentElement.style.setProperty("--gktab-selected-bgcolor", `rgb(${tabSelectedBgcolorArray[0]}, ${tabSelectedBgcolorArray[1]}, ${tabSelectedBgcolorArray[2]})`);
@@ -185,7 +190,7 @@ class gkLWTheme {
 				}
 
 				// Ensure the toolbar background colour is opaque
-				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue('--toolbar-bgcolor');
+				var toolbarBgColor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.toolbarbgcolor);
 				if (toolbarBgColor.includes("rgba")) { // Remove any transparency values
 					var toolbarBgColorArray = toolbarBgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
 					// if the colour is transparent...
@@ -193,18 +198,22 @@ class gkLWTheme {
 					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `${Math.floor((toolbarBgColorArray[3] / 1) * 100)}%`);
 					if (toolbarBgColorArray[3] == 0 || toolbarBgColorArray[3].includes("."))
 						document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+				} else if (toolbarBgColor == gkLWTheme.personaplt) {
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor", `white`);
+					document.documentElement.style.setProperty("--gktoolbar-bgcolor-opacity-percentage", `40%`);
+					document.documentElement.setAttribute("toolbar-bgcolor-transparent", true);
+				}
 
-					// if the lwtheme was a Persona (and toolbar style isn't vanilla)
-					if (toolbarBgColor == "rgba(255,255,255,.4)" && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
-						var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue('--lwt-text-color');
-						var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
-						// Invert foreground lightness if text is also light
-						if (!ColorUtils.IsDark(tfgarray)) {
-							tfgarray = ColorUtils.ColorToHSL(tfgarray);
-							tfgarray[2] = 100 - tfgarray[2];
-							tfgarray = ColorUtils.HSLToColor(tfgarray);
-							document.documentElement.style.setProperty("--lwt-text-color", `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
-						}
+				// if the lwtheme was a Persona (and toolbar style isn't vanilla)
+				if (toolbarBgColor == gkLWTheme.personaplt && gkPrefUtils.tryGet("Geckium.customtheme.mode").string != "firefox") {
+					var toolbarFgColor = getComputedStyle(document.documentElement).getPropertyValue(gkLWTheme.lwttextcolor);
+					var tfgarray = toolbarFgColor.replace("rgba(", "").replace(")", "").replace(" ", "").replace(" ", "").split(",");
+					// Invert foreground lightness if text is also light
+					if (!ColorUtils.IsDark(tfgarray)) {
+						tfgarray = ColorUtils.ColorToHSL(tfgarray);
+						tfgarray[2] = 100 - tfgarray[2];
+						tfgarray = ColorUtils.HSLToColor(tfgarray);
+						document.documentElement.style.setProperty(gkLWTheme.lwttextcolor, `rgb(${tfgarray[0]}, ${tfgarray[1]}, ${tfgarray[2]})`);
 					}
 				}
 

@@ -30,10 +30,7 @@ async function getLWThemesList() {
         let theme = themes[i];
 		// Map Light and Dark to theme modes if found
 		if (theme.id.startsWith("firefox-compact-light@") && !lightLWTheme) {
-			lightLWTheme = function(){
-				theme.enable();
-				gkPrefUtils.delete("Geckium.chrTheme.fileName");
-			};
+			lightLWTheme = function(){ theme.enable(); };
 
 			if (gkPrefUtils.tryGet("devtools.debugger.lwthemes-enabled").bool)
 				console.log(`getLWThemesList: Mapped Light to ${theme.id}`);

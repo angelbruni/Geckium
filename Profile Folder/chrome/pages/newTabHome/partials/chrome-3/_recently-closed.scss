@@ -32,7 +32,7 @@
 	&[gkthemed]:not([gkchrthemed]) {
 		--recently-closed-background: color-mix(
 			in srgb,
-			var(--arrowpanel-background, var(--lwt-accent-color)) 50%,
+			var(--panel-background-color, var(--arrowpanel-background, var(--lwt-accent-color))) 50%,
 			transparent
 		);
 		--recently-closed-border-color: color-mix(
@@ -45,7 +45,10 @@
 
 		&[style*="--arrowpanel-background"] {
 			--recently-closed-item-color: var(--arrowpanel-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
-		}
+		} // pre-153
+		&[style*="--panel-background-color"] {
+			--recently-closed-item-color: var(--panel-text-color, var(--toolbarbutton-icon-color, var(--lwt-text-color)));
+		} // 153
 	}
 
 	// chrtheme
