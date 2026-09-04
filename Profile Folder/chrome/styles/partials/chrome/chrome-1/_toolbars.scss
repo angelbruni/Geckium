@@ -373,13 +373,20 @@
 			&[class*="webextension"] {
 				.toolbarbutton-icon {
 					width: 19px !important;
-					height: 19px !important;
+					height: auto !important;
 				}
 			}
 
 			&[class*="webextension"] {
+				--webextension-toolbar-image: var(--webextension-menupanel-image) !important;
+				--webextension-toolbar-image-dark: var(--webextension-menupanel-image-dark) !important;
 				overflow: visible !important;
-			} 
+
+				.toolbarbutton-badge-stack {
+					height: auto !important;
+					padding: 0 !important;
+				}
+			}
 		}
 	}
 	
