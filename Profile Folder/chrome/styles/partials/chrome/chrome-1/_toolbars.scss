@@ -137,7 +137,15 @@
 		border-radius: var(--toolbarbutton-border-radius);
 		flex-shrink: 0 !important;
 
-		&::before,
+		// Keep decoration in a non-interactive child, off the native menu frame.
+		> .gk-menu-button-overlay {
+			position: absolute;
+			inset: 0;
+			pointer-events: none !important;
+		}
+
+		&:not([type="menu"])::before,
+		> .gk-menu-button-overlay::before,
 		&::after {
 			content: "";
 			position: absolute;
@@ -150,7 +158,8 @@
 			border-radius: var(--toolbarbutton-border-radius) !important;
 		}
 
-		&::before {
+		&::before,
+		> .gk-menu-button-overlay::before {
 			opacity: 0;
 			background: linear-gradient(
 				to bottom,
@@ -177,7 +186,8 @@
 			&:hover {
 				border: 1px solid var(--toolbarbutton-border-color-hot, var(--default-toolbarbutton-border-color-hot));
 	
-				&::before {
+				&::before,
+				> .gk-menu-button-overlay::before {
 					opacity: 1;
 				}
 				&::after {
@@ -200,7 +210,8 @@
 							inset 0 0 6px 1px rgba(0, 0, 0, 0.1) !important;
 				transition: none !important;
 	
-				&::before {
+				&::before,
+				> .gk-menu-button-overlay::before {
 					opacity: 1;
 					background: var(--toolbarbutton-active-background);
 					transition: none;
@@ -314,6 +325,7 @@
 			transition: border-color 100ms linear, background-color 100ms linear;
 
 			&::before,
+			> .gk-menu-button-overlay::before,
 			&::after {
 				content: unset !important;
 			}
@@ -432,6 +444,7 @@
 			border-right: 1px solid transparent;
 
 			&::before,
+			> .gk-menu-button-overlay::before,
 			&::after {
 				border-top-right-radius: 0 !important;
 				border-bottom-right-radius: 0 !important;
@@ -448,6 +461,7 @@
 			border-left: 1px solid transparent;
 
 			&::before,
+			> .gk-menu-button-overlay::before,
 			&::after {
 				border-top-left-radius: 0 !important;
 				border-bottom-left-radius: 0 !important;
@@ -1017,6 +1031,7 @@
 			box-shadow: unset !important;
 
 			&::before,
+			> .gk-menu-button-overlay::before,
 			&::after {
 				content: unset !important;
 			}
