@@ -20,7 +20,7 @@ const specialCharacters = {
 // Firefox version check
 const ffVersion = Services.appinfo.version;
 const majorVersion = parseInt(ffVersion.split(".")[0]);
-const checkedVersions = [116, 117, 120, 122, 133, 134, 135, 136, 137, 138, 139, 141, 143, 146, 153];
+const checkedVersions = [116, 117, 120, 122, 133, 134, 135, 136, 137, 138, 139, 141, 143, 146, 153, 157];
 const versionFlags = {};
 checkedVersions.forEach(version => {
 	if (majorVersion >= version) {
@@ -85,7 +85,9 @@ function getNCPatched() {
 const isNCPatched = getNCPatched();
 
 const isBrowserWindow = window.location.href == "chrome://browser/content/browser.xhtml" && document.querySelector(`#main-window`).getAttribute("windowtype") == "navigator:browser";
-const isBrowserPopUpWindow = isBrowserWindow && document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar");
+const isBrowserPopUpWindow = isBrowserWindow && (versionFlags.is157Plus ? 
+	document.querySelector(`#main-window`).getAttribute("popup-window") == "true" :
+	document.querySelector(`#main-window`).getAttribute("chromehidden").includes("menubar toolbar"));
 
 function openWindow(windowName, features) {
 	window.openDialog('chrome://windows/content/'+ windowName +'/index.xhtml', '', features);

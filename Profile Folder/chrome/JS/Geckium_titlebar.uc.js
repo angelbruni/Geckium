@@ -495,6 +495,9 @@ class gkTitlebars {
 	 */
 
 	static getIsPopup() {
+		if (versionFlags.is157Plus)
+			return document.documentElement.getAttribute("popup-window");
+		
 		let chromehidden = document.documentElement.getAttribute("chromehidden");
 		let hidden = chromehidden.split(" ");
 		return (hidden.includes("toolbar"));
