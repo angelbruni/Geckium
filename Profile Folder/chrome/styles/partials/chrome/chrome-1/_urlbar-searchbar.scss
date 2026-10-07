@@ -143,7 +143,7 @@
 		}
 	}
 
-	&:not([customizing]) #urlbar {
+	&:not([customizing], [is157Plus]) #urlbar {
 		position: absolute !important;
 	}
 
@@ -229,6 +229,9 @@
 			display: none !important;
 		}
 	}
+	&[popover-open] #urlbar-protocol {
+		display: none;
+	}
 
 	&:not([pageproxystate="valid"], [open]) #urlbar-protocol {
 		display: none !important;
@@ -307,6 +310,26 @@
 		}
 	}
 }
+
+:root[is157Plus] {
+	.urlbar[popover-open] > .urlbar-input-container {
+		margin-block: unset !important;
+		margin-inline: unset !important;
+		padding-block: unset !important;
+	}	
+
+	.urlbar[popover-open] > .urlbar-background {
+		clip-path: unset !important;
+		inset-inline: 0 !important;
+		inset-block: 0 !important;
+	}
+
+	.urlbarView-background {
+		inset-block: unset !important;
+	}
+}
+
+
 
 #nav-bar {
 	&[securestate="chrome"] #identity-box {
