@@ -159,7 +159,7 @@
 		--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-color)) !important;
 
 		&[is153Plus] {
-			--tabbrowser-tab-color: var(--tab-selected-textcolor, var(--toolbar-text-color, var(--lwt-text-color)));
+			--tabbrowser-tab-color: var(--tab-text-color-selected, var(--tab-selected-textcolor, var(--toolbar-text-color, var(--lwt-text-color))));
 			--tabbrowser-tab-color-inactive: var(--lwt-text-color, var(--toolbar-text-color)) !important;
 		}
 
