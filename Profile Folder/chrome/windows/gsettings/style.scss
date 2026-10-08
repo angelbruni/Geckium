@@ -828,3 +828,11 @@ h4 .about-flag {
 		display: none !important;
 	}
 }
+.aerothemefox {
+	@media not (-moz-platform: linux) {
+		display: none !important;
+	}
+}
+:root:not([aerothemefox]) .aerothemefox {
+	display: none !important;
+}

@@ -232,30 +232,30 @@
 														</vbox>
 													</html:button>
 												</hbox>
-												<hbox id="ncphelper-maskwidthmode" class="item nativecontrols">
+												<hbox id="atf1-theme" class="item aerothemefox">
 													<vbox>
-														<label class="name">&gsettings.nativeTitlebarButtonsSize;</label>
-														<label class="description">&gsettings.nativeTitlebarButtonsSizeDescription;</label>
+														<label class="name">&gsettings.ATFTitlebuttons;</label>
 													</vbox>
 													<spacer />
-													<html:button class="menu" data-name="ncp-aerobuttonsmask" data-pref="Geckium.NCPHelper.maskWidthMode" id="ncp-aerobuttonsmask-select">
+													<html:button class="menu" data-name="atp-buttons" data-pref="atf.theme" id="atf-buttons-select">
 														<label class="placeholder" />
 														<label class="selected" />
 														<vbox class="list">
-															<hbox class="item ripple-enabled" value="auto">&gsettings.automatic;</hbox>
-															<hbox class="item ripple-enabled" value="win8">Windows 8</hbox>
-															<hbox class="item ripple-enabled" value="win7">Windows 7</hbox>
-															<hbox class="item ripple-enabled" value="winvista">Windows Vista</hbox>
-															<hbox class="item ripple-enabled" value="custom">&gsettings.custom;</hbox>
+															<hbox class="item ripple-enabled" value="7">Windows 7</hbox>
+															<hbox class="item ripple-enabled" value="vista">Windows Vista</hbox>
 														</vbox>
 													</html:button>
 												</hbox>
-												<vbox id="ncphelper-custommaskwidth" class="item nativecontrols" flex="1" style="overflow: visible; padding-block-end: 19px;">
-													<div id="custom-width" class="input-parent size-md" flex="1">
-														<html:input type="text" inputmode="numeric" data-pref="Geckium.NCPHelper.customMaskWidth" class="input" id="custom-width-input" name="custom-width" required="true" />
-														<label class="placeholder">&gsettings.customWidthInPixels;</label>
+												<hbox id="atf1-basic" class="item aerothemefox">
+													<vbox>
+														<label class="name">&gsettings.ATFBasic;</label>
+													</vbox>
+													<spacer />
+													<div class="switch-parent">
+														<html:input class="switch" data-pref="atf.basic" type="checkbox" id="auto_switch" name="auto_switch" />
+														<html:label class="gutter" for="auto_switch" />
 													</div>
-												</vbox>
+												</hbox>
 											</vbox>
 
 											<vbox class="card">
@@ -890,7 +890,8 @@
 											
 											<vbox class="card">
 												<h4>
-													&gsettings.themes;
+													&gsettings.themes;
+
 													<label class="button ripple-enabled text color" style="margin-inline-start: auto;" id="openChrThemesFolderBtn">&gsettings.openChrThemesFolder;</label>
 												<label id="refreshListBtn" class="button ripple-enabled text color">&gsettings.refreshList;</label>
 												</h4>
