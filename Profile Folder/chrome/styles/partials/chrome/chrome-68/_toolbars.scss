@@ -26,7 +26,8 @@
 		box-shadow: none !important;
 		transition: background 150ms linear;
 	
-		&::before {
+		&:not([type="menu"])::before,
+		> .gk-menu-button-overlay::before {
 			content: "" !important;
 			transform: scale(0);
 			left: 50% !important;
@@ -53,7 +54,8 @@
 			&:hover {
 				background: var(--toolbarbutton-background-hot, var(--default-toolbarbutton-background-hot)) !important;
 				
-				&::before {
+				&::before,
+				> .gk-menu-button-overlay::before {
 					opacity: 0;
 				}
 			}
@@ -61,7 +63,8 @@
 			&:active {
 				background: transparent !important;
 	
-				&::before {			
+				&::before,
+				> .gk-menu-button-overlay::before {
 					width: calc(var(--nav-bar-height) - 6px);
 					height: calc(var(--nav-bar-height) - 6px);
 					opacity: 1;
@@ -79,12 +82,14 @@
 			}
 		}
 	
-		&#back-button::before {
+		&#back-button::before,
+		&#back-button > .gk-menu-button-overlay::before {
 			border-top-right-radius: 50% !important;
 			border-bottom-right-radius: 50% !important;
 		}
 	
-		&#forward-button::before {
+		&#forward-button::before,
+		&#forward-button > .gk-menu-button-overlay::before {
 			border-top-left-radius: 50% !important;
 			border-bottom-left-radius: 50% !important;
 		}

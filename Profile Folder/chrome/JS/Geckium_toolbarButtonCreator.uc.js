@@ -46,6 +46,15 @@ class gkToolbarButtons {
 }
 
 class gkToolbarMenuButtons {
+	static addOverlay(toolbarButton) {
+		if (toolbarButton.querySelector(":scope > .gk-menu-button-overlay"))
+			return;
+
+		const overlay = document.createXULElement("box");
+		gkSetAttributes(overlay, { class: "gk-menu-button-overlay", "aria-hidden": true });
+		toolbarButton.appendChild(overlay);
+	}
+
 	static create(params) {
 		const alreadyExists = document.getElementById(params.id + "-button");
 		let toolbarButton;
@@ -108,6 +117,7 @@ class gkToolbarMenuButtons {
 		});
 
 		toolbarButton.appendChild(menuPopUp);
+		gkToolbarMenuButtons.addOverlay(toolbarButton);
 
 		gkToolbarMenuButtons.createItemsFromObject(parentID, params.object, params.adjustAccelTextWidth);
 	}
@@ -234,7 +244,6 @@ class gkToolbarMenuButtons {
 
 	static createItemsFromObject(parentID, object, adjustAccelTextWidth) {
 		const parent = document.getElementById(parentID);
-		const parentOfParent = parent.parentNode;
 	
 		function adjustAccelText(adjustAccelTextWidth) {
 			if (adjustAccelTextWidth) {
@@ -266,7 +275,7 @@ class gkToolbarMenuButtons {
 						if (typeof fn === "function") {
 							eventNames.forEach(eventName => {
 								if (eventName === "mouseover")
-									parentOfParent.addEventListener(eventName, fn);
+									parent.parentNode.addEventListener(eventName, fn);
 								else
 									parent.addEventListener(eventName, fn);
 							});
@@ -357,6 +366,19 @@ class gkToolbarMenuButtons {
 }
 
 UC_API.Runtime.startupFinished().then(() => {
+	const menuButtonSelector = '.toolbarbutton-1[type="menu"]:not(#tabs-newtab-button, #new-tab-button, .subviewbutton)';
+	for (const button of document.querySelectorAll(menuButtonSelector))
+		gkToolbarMenuButtons.addOverlay(button);
+
+	const menuButtonListener = {
+		onWidgetAfterDOMChange(node, nextNode, container, isRemoval) {
+			if (!isRemoval && node.ownerDocument === document && node.matches(menuButtonSelector))
+				gkToolbarMenuButtons.addOverlay(node);
+		}
+	};
+	CustomizableUI.addListener(menuButtonListener);
+	window.addEventListener("unload", () => CustomizableUI.removeListener(menuButtonListener), { once: true });
+
 	gkToolbarMenuButtons.createItem({
 		parentID: "toolbar-context-menu",
 		type: "menuitem",

@@ -43,7 +43,8 @@
 		background: transparent !important;
 		border: 1px solid transparent !important;
 
-		&::before {
+		&::before,
+		> .gk-menu-button-overlay::before {
 			position: absolute;
 			inset: 0;
 			background: linear-gradient(
@@ -69,7 +70,8 @@
 				) !important;
 				box-shadow: 0 1px 0 0 rgba(255,255,255,.3);
 				
-				&::before {
+				&::before,
+				> .gk-menu-button-overlay::before {
 					opacity: .8;
 				}
 
@@ -91,7 +93,8 @@
 				box-shadow: none !important;
 				border-color: var(--toolbarbutton-border-color-active, var(--default-toolbarbutton-border-color-active)) !important;
 
-				&::before {
+				&::before,
+				> .gk-menu-button-overlay::before {
 					transition: none !important;
 					opacity: 0;
 				}
