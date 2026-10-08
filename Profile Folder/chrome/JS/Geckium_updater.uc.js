@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 const { gkUpdater } = ChromeUtils.importESModule("chrome://modules/content/GeckiumUpdater.sys.mjs");
-const configIteration = 7;
+const configIteration = 8;
 var latestRel = "latest";
 
 (async () => {
@@ -119,7 +119,11 @@ function updateSettings(iteration) {
 		// Undo disable in prior releases
 		gkPrefUtils.delete("gfx.webrender.dcomp-win.enabled");
 	}
-	// Put future settings changes down here as < 6, and so on.
+	if (iteration < 9) {
+		// Disable new perms interface
+		gkPrefUtils.set("browser.urlbar.trustPanel.featureGate").bool(false);
+	}
+	// Put future settings changes down here as < 9, and so on.
 
 	if (iteration < configIteration)
 		gkPrefUtils.set("Geckium.version.iteration").int(configIteration);
