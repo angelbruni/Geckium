@@ -206,6 +206,7 @@ class gkForkAdj {
 				"nocturne.transparent.menubar": false,
 				"nocturne.translucent.navbar": false,
 				"nocturne.ui.oldurlbar": false,
+				"browser.favicon.ico.enabled": false,
 				"nocturne.backgrounds.enabled": false
 			},
 			1: {
